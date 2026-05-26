@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>পাঠক ঘর - বাংলা বইয়ের ডিজিটাল পাঠাগার</title>
+    <meta name="description" content="বাংলা ও ইংরেজি বইয়ের ডিজিটাল পাঠাগার - পড়ুন, ডাউনলোড করুন">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 50: '#f0f7ff', 100: '#e1f0ff', 500: '#0056b3', 600: '#004494' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .book-scroll { scroll-padding-left: 1rem; }
+        .book-scroll::after { content: ''; display: block; min-width: 1rem; flex-shrink: 0; }
+        .book-scroll::-webkit-scrollbar-track { background: transparent; }
+        .book-scroll::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 9999px; }
+        .dark .book-scroll::-webkit-scrollbar-thumb { background: #4b5563; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
+
+    <!-- HEADER -->
+    <header class="bg-white dark:bg-[#1a1a1b] fixed top-0 w-full h-14 z-[100] border-b border-gray-200 dark:border-gray-700 shadow-sm">
+        <div class="container mx-auto px-4 h-full flex items-center gap-3">
+            <button id="hamburger-btn" class="md:hidden p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                <i class="fas fa-bars"></i>
+            </button>
+            <a href="index.html" class="text-2xl font-extrabold tracking-tighter hover:bg-gray-100 dark:hover:bg-gray-800 px-2 py-1 rounded transition-colors duration-200 shrink-0">
+                পাঠক <span class="font-light text-gray-400">ঘর</span>
+            </a>
+            <div class="hidden md:flex flex-1 max-w-2xl relative group">
+                <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-500 text-sm"></i>
+                <input type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
+                    class="w-full bg-gray-50 dark:bg-[#2d2d2d] border border-gray-300 dark:border-gray-600 rounded py-1.5 pl-9 pr-4 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all">
+            </div>
+            <div class="flex items-center space-x-2 ml-auto shrink-0">
+                <button id="mobile-search-btn" class="md:hidden p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition">
+                    <i class="fas fa-search text-xl"></i>
+                </button>
+                <button id="theme-btn" class="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition text-gray-600 dark:text-gray-300">
+                    <i id="theme-icon" class="fas fa-moon text-lg"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-search-bar" class="absolute top-14 left-0 w-full bg-white dark:bg-[#1a1a1b] border-b dark:border-gray-700 p-2 hidden shadow-lg">
+            <div class="relative">
+                <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                <input type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
+                    class="w-full bg-gray-50 dark:bg-[#2d2d2d] border border-gray-300 dark:border-gray-600 rounded-lg py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+            </div>
+        </div>
+    </header>
+
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-[140] hidden"></div>
+
+    <div class="container mx-auto flex flex-1 pt-14">
+
+        <!-- SIDEBAR -->
+        <aside id="mobile-sidebar"
+            class="fixed md:sticky top-14 left-0 w-60 h-[calc(100vh-3.5rem)]
+                   bg-white dark:bg-[#1a1a1b] border-r border-gray-200 dark:border-gray-700
+                   z-[150] md:z-40 -translate-x-full md:translate-x-0
+                   overflow-y-auto transition-transform duration-300">
+            <nav class="flex flex-col py-2 text-[14px]">
+                <a href="index.html" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-blue-600 bg-blue-50 dark:bg-gray-800 transition-colors">
+                    <i class="fas fa-home w-4"></i> <span>প্রধান পাতা</span>
+                </a>
+                <a href="new.html" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 transition-colors">
+                    <i class="fas fa-clock w-4"></i> <span>নতুন বই</span>
+                </a>
+                <a href="popular.html" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 transition-colors">
+                    <i class="fas fa-fire w-4"></i> <span>জনপ্রিয়</span>
+                </a>
+                <hr class="my-3 border-gray-100 dark:border-gray-800 mx-4">
+                <details class="group mx-2" open>
+                    <summary class="flex items-center justify-between px-4 py-2 text-gray-500 dark:text-gray-400 cursor-pointer md:hover:bg-gray-50 dark:md:hover:bg-gray-800 rounded-md list-none uppercase text-[11px] font-semibold tracking-wider">
+                        <span>ক্যাটাগরি</span>
+                        <i class="fas fa-chevron-down text-[9px] transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="flex flex-col mt-1 space-y-0.5">
+                        <a href="category.html?c=uponyas" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 rounded-md transition-colors">
+                            <i class="fas fa-book text-xs text-blue-400"></i> <span>উপন্যাস</span>
+                        </a>
+                        <a href="category.html?c=golpo" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 rounded-md transition-colors">
+                            <i class="fas fa-book text-xs text-green-400"></i> <span>গল্প</span>
+                        </a>
+                        <a href="category.html?c=kobita" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 rounded-md transition-colors">
+                            <i class="fas fa-book text-xs text-pink-400"></i> <span>কবিতা</span>
+                        </a>
+                        <a href="category.html?c=probondho" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 rounded-md transition-colors">
+                            <i class="fas fa-book text-xs text-yellow-400"></i> <span>প্রবন্ধ</span>
+                        </a>
+                        <a href="category.html?c=itihas" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 rounded-md transition-colors">
+                            <i class="fas fa-book text-xs text-purple-400"></i> <span>ইতিহাস</span>
+                        </a>
+                    </div>
+                </details>
+                <hr class="my-3 border-gray-100 dark:border-gray-800 mx-4">
+                <details class="group mx-2">
+                    <summary class="flex items-center justify-between px-4 py-2 text-gray-500 dark:text-gray-400 cursor-pointer md:hover:bg-gray-50 dark:md:hover:bg-gray-800 rounded-md list-none uppercase text-[11px] font-semibold tracking-wider">
+                        <span>লেখক</span>
+                        <i class="fas fa-chevron-down text-[9px] transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="flex flex-col mt-1 space-y-0.5">
+                        <a href="author.html?a=humayun" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 rounded-md transition-colors">
+                            <i class="fas fa-user text-xs text-gray-400"></i> <span>হুমায়ূন আহমেদ</span>
+                        </a>
+                        <a href="author.html?a=rabindra" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 rounded-md transition-colors">
+                            <i class="fas fa-user text-xs text-gray-400"></i> <span>রবীন্দ্রনাথ ঠাকুর</span>
+                        </a>
+                    </div>
+                </details>
+                <div class="mt-8 pt-4 px-4 border-t border-gray-100 dark:border-gray-800">
+                    <div class="flex flex-wrap gap-x-3 gap-y-1 text-[12px] text-gray-500 dark:text-gray-400">
+                        <a href="#" class="hover:text-blue-500 transition-colors">সম্পর্কে</a>
+                        <a href="#" class="hover:text-blue-500 transition-colors">যোগাযোগ</a>
+                    </div>
+                    <div class="mt-2 text-[11px] text-gray-400 dark:text-gray-500 pb-4">© ২০২৬ পাঠক ঘর</div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="flex-1 py-4 md:py-6 min-h-[calc(100vh-3.5rem)] overflow-hidden">
+
+            <!-- Section: সর্বশেষ বই -->
+            <section class="mb-8">
+                <div class="flex items-center justify-between mb-3 px-4 md:px-6">
+                    <h2 class="text-base font-bold text-gray-800 dark:text-gray-100">সর্বশেষ বই</h2>
+                    <a href="new.html" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">সব দেখুন →</a>
+                </div>
+                <div class="book-scroll flex gap-3 overflow-x-auto pb-2 px-4 md:px-6 scroll-pl-4">
+                    <!-- 12 cards desktop / 9 mobile — dummy data -->
+                    <a href="books/sapiens.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <img src="https://raw.githubusercontent.com/physarif/pathokghar/refs/heads/main/assets/photos/sapiens-cover.jpg"
+                                alt="সেপিয়েন্স" class="w-full aspect-[2/3] object-cover">
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">সেপিয়েন্স: মানুষের ইতিহাস</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">ইউভাল নোয়া হারারি</p>
+                    </a>
+                    <a href="books/himu.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-blue-400 to-blue-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">হিমু</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">হিমু</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">হুমায়ূন আহমেদ</p>
+                    </a>
+                    <a href="books/misir-ali.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-green-400 to-green-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">মিসির আলি</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">মিসির আলি সমগ্র</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">হুমায়ূন আহমেদ</p>
+                    </a>
+                    <a href="books/gitanjali.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">গীতাঞ্জলি</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">গীতাঞ্জলি</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">রবীন্দ্রনাথ ঠাকুর</p>
+                    </a>
+                    <a href="books/gortre.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-pink-400 to-red-600 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">গর্তরে</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">গর্তরে বাস</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">আখতারুজ্জামান ইলিয়াস</p>
+                    </a>
+                    <a href="books/padma-nadir-majhi.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">পদ্মা নদীর মাঝি</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">পদ্মা নদীর মাঝি</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">মানিক বন্দ্যোপাধ্যায়</p>
+                    </a>
+                    <a href="books/lalsalu.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-red-400 to-red-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">লালসালু</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">লালসালু</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">সৈয়দ ওয়ালীউল্লাহ</p>
+                    </a>
+                    <a href="books/shesher-kobita.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-purple-400 to-purple-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">শেষের কবিতা</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">শেষের কবিতা</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">রবীন্দ্রনাথ ঠাকুর</p>
+                    </a>
+                    <a href="books/neel-udash.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-teal-400 to-teal-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">নীল উদাস</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">নীল উদাস</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">জাফর ইকবাল</p>
+                    </a>
+                    <!-- Extra 3 for desktop (hidden on mobile via JS) -->
+                    <a href="books/aguner.html" class="book-card book-extra shrink-0 w-28 md:w-32 group hidden md:block">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-amber-400 to-amber-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">আগুনের পরশমণি</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">আগুনের পরশমণি</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">হুমায়ূন আহমেদ</p>
+                    </a>
+                    <a href="books/cheler-hat.html" class="book-card book-extra shrink-0 w-28 md:w-32 group hidden md:block">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-indigo-400 to-indigo-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">ছেলেটি</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">ছেলেটি</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">সুনীল গঙ্গোপাধ্যায়</p>
+                    </a>
+                    <a href="books/akash-bhora.html" class="book-card book-extra shrink-0 w-28 md:w-32 group hidden md:block">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-sky-400 to-sky-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">আকাশ ভরা</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">আকাশ ভরা সূর্য তারা</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">বিভূতিভূষণ</p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Section: উপন্যাস -->
+            <section class="mb-8">
+                <div class="flex items-center justify-between mb-3 px-4 md:px-6">
+                    <h2 class="text-base font-bold text-gray-800 dark:text-gray-100">উপন্যাস</h2>
+                    <a href="category.html?c=uponyas" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">সব দেখুন →</a>
+                </div>
+                <div class="book-scroll flex gap-3 overflow-x-auto pb-2 px-4 md:px-6 scroll-pl-4">
+                    <a href="books/himu.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-blue-400 to-blue-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">হিমু</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">হিমু</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">হুমায়ূন আহমেদ</p>
+                    </a>
+                    <a href="books/padma-nadir-majhi.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">পদ্মা নদীর মাঝি</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">পদ্মা নদীর মাঝি</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">মানিক বন্দ্যোপাধ্যায়</p>
+                    </a>
+                    <a href="books/lalsalu.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-red-400 to-red-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">লালসালু</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">লালসালু</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">সৈয়দ ওয়ালীউল্লাহ</p>
+                    </a>
+                    <a href="books/shesher-kobita.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-purple-400 to-purple-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">শেষের কবিতা</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">শেষের কবিতা</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">রবীন্দ্রনাথ ঠাকুর</p>
+                    </a>
+                    <a href="books/aguner.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-amber-400 to-amber-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">আগুনের পরশমণি</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">আগুনের পরশমণি</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">হুমায়ূন আহমেদ</p>
+                    </a>
+                    <a href="books/misir-ali.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-green-400 to-green-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">মিসির আলি</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">মিসির আলি সমগ্র</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">হুমায়ূন আহমেদ</p>
+                    </a>
+                    <a href="books/neel-udash.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-teal-400 to-teal-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">নীল উদাস</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">নীল উদাস</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">জাফর ইকবাল</p>
+                    </a>
+                    <a href="books/gortre.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-pink-400 to-red-600 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">গর্তরে</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">গর্তরে বাস</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">আখতারুজ্জামান ইলিয়াস</p>
+                    </a>
+                    <a href="books/cheler-hat.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-indigo-400 to-indigo-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">ছেলেটি</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">ছেলেটি</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">সুনীল গঙ্গোপাধ্যায়</p>
+                    </a>
+                    <a href="books/akash-bhora.html" class="book-card book-extra shrink-0 w-28 md:w-32 group hidden md:block">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-sky-400 to-sky-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">আকাশ ভরা</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">আকাশ ভরা সূর্য তারা</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">বিভূতিভূষণ</p>
+                    </a>
+                    <a href="books/b11.html" class="book-card book-extra shrink-0 w-28 md:w-32 group hidden md:block">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-rose-400 to-rose-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">দেবদাস</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">দেবদাস</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">শরৎচন্দ্র চট্টোপাধ্যায়</p>
+                    </a>
+                    <a href="books/b12.html" class="book-card book-extra shrink-0 w-28 md:w-32 group hidden md:block">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-lime-400 to-lime-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">পথের পাঁচালী</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">পথের পাঁচালী</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">বিভূতিভূষণ বন্দ্যোপাধ্যায়</p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Section: ইতিহাস -->
+            <section class="mb-8">
+                <div class="flex items-center justify-between mb-3 px-4 md:px-6">
+                    <h2 class="text-base font-bold text-gray-800 dark:text-gray-100">ইতিহাস</h2>
+                    <a href="category.html?c=itihas" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">সব দেখুন →</a>
+                </div>
+                <div class="book-scroll flex gap-3 overflow-x-auto pb-2 px-4 md:px-6 scroll-pl-4">
+                    <a href="books/sapiens.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <img src="https://raw.githubusercontent.com/physarif/pathokghar/refs/heads/main/assets/photos/sapiens-cover.jpg"
+                                alt="সেপিয়েন্স" class="w-full aspect-[2/3] object-cover">
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">সেপিয়েন্স: মানুষের ইতিহাস</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">ইউভাল নোয়া হারারি</p>
+                    </a>
+                    <a href="books/ekattorer-diary.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-green-600 to-red-600 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">একাত্তরের ডায়েরি</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">একাত্তরের ডায়েরি</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">সুফিয়া কামাল</p>
+                    </a>
+                    <a href="books/muktijuddher-itihas.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-orange-400 to-red-600 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">মুক্তিযুদ্ধের ইতিহাস</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">মুক্তিযুদ্ধের ইতিহাস</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">মুনতাসীর মামুন</p>
+                    </a>
+                    <a href="books/h4.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-slate-400 to-slate-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">বিশ্বের ইতিহাস</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">বিশ্বের সংক্ষিপ্ত ইতিহাস</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">H.G. Wells</p>
+                    </a>
+                    <a href="books/h5.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-yellow-500 to-yellow-800 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">সভ্যতার ইতিহাস</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">সভ্যতার উত্থান-পতন</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">আব্দুর রাজ্জাক</p>
+                    </a>
+                    <a href="books/h6.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-blue-500 to-indigo-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">প্রাচীন বাংলা</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">প্রাচীন বাংলার ইতিহাস</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">রমেশচন্দ্র মজুমদার</p>
+                    </a>
+                    <a href="books/h7.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-emerald-400 to-emerald-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">ইসলামের ইতিহাস</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">ইসলামের ইতিহাস ও সংস্কৃতি</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">আকবর শাহ নজিবাবাদী</p>
+                    </a>
+                    <a href="books/h8.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-fuchsia-400 to-fuchsia-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">রোমান সাম্রাজ্য</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">রোমান সাম্রাজ্যের পতন</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Edward Gibbon</p>
+                    </a>
+                    <a href="books/h9.html" class="book-card shrink-0 w-28 md:w-32 group">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-cyan-500 to-blue-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">মোগল সাম্রাজ্য</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">মোগল সাম্রাজ্যের ইতিহাস</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">আবুল ফজল</p>
+                    </a>
+                    <a href="books/h10.html" class="book-card book-extra shrink-0 w-28 md:w-32 group hidden md:block">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-red-500 to-pink-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">বিপ্লবের ইতিহাস</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">ফরাসি বিপ্লবের ইতিহাস</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Thomas Carlyle</p>
+                    </a>
+                    <a href="books/h11.html" class="book-card book-extra shrink-0 w-28 md:w-32 group hidden md:block">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-violet-400 to-violet-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">গ্রিস সভ্যতা</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">প্রাচীন গ্রিসের ইতিহাস</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Herodotus</p>
+                    </a>
+                    <a href="books/h12.html" class="book-card book-extra shrink-0 w-28 md:w-32 group hidden md:block">
+                        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+                            <div class="w-full aspect-[2/3] bg-gradient-to-br from-teal-500 to-green-700 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold text-center px-2">বাংলাদেশের ইতিহাস</span>
+                            </div>
+                        </div>
+                        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">বাংলাদেশের ইতিহাস</p>
+                        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">সিরাজুল ইসলাম</p>
+                    </a>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        const themeBtn = document.getElementById('theme-btn');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
+
+        function applyTheme(dark) {
+            if (dark) {
+                html.classList.add('dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.theme = 'dark';
+            } else {
+                html.classList.remove('dark');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.theme = 'light';
+            }
+        }
+
+        applyTheme(localStorage.theme === 'dark');
+        themeBtn.addEventListener('click', () => applyTheme(!html.classList.contains('dark')));
+
+        const mobileSearchBtn = document.getElementById('mobile-search-btn');
+        const mobileSearchBar = document.getElementById('mobile-search-bar');
+        mobileSearchBtn.addEventListener('click', () => {
+            mobileSearchBar.classList.toggle('hidden');
+            if (!mobileSearchBar.classList.contains('hidden')) mobileSearchBar.querySelector('input').focus();
+        });
+
+        const hamburger = document.getElementById('hamburger-btn');
+        const sidebar = document.getElementById('mobile-sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        });
+        overlay.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+        });
+    </script>
+
+</body>
+</html>
