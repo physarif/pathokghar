@@ -1120,7 +1120,7 @@
               const imgTag = s.img
                 ? `<img class="ci-thumb" src="${CH_esc(s.img)}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/><div class="ci-thumb-placeholder" style="display:none;">📺</div>`
                 : `<div class="ci-thumb-placeholder">📺</div>`;
-              return `<div class="channel-item">${imgTag}<div class="ci-info"><div class="ci-name">${CH_esc(s.name || key)}</div><div class="ci-meta"><span class="ci-id">#${s.id || "—"}</span>${s.desc ? `<span style="margin-left:0.4rem;">${CH_esc(s.desc)}</span>` : ""}</div></div><div class="ci-actions"><button class="ci-btn edit" onclick="CH_editChannel('${key}')">Edit</button><button class="ci-btn del" onclick="CH_deleteChannel('${key}')">Delete</button></div></div>`;
+              return `<div class="channel-item">${imgTag}<div class="ci-info"><div class="ci-name">${CH_esc(s.name || key)}</div><div class="ci-meta"><span class="ci-id">#${s.id || "—"}</span>${s.desc ? `<span style="margin-left:0.4rem;">${CH_esc(s.desc)}</span>` : ""}</div></div><div class="ci-actions"><button class="ci-btn edit" onclick="CH_editChannel('${key}')">Edit</button><button class="ci-btn del" style="color:#e53e3e;border-color:#e53e3e;" onclick="CH_deleteChannel('${key}')">Delete</button></div></div>`;
             },
             `<div class="empty-state"><div class="empty-icon">📺</div>No channels yet. Add one above!</div>`
           );
@@ -1300,7 +1300,7 @@
             </div>
             <div class="ci-actions">
               <button class="ci-btn edit" onclick="SP_editMatch('${SP_esc(key)}')">Edit</button>
-              <button class="ci-btn del" onclick="SP_deleteMatch('${SP_esc(key)}')">Delete</button>
+              <button class="ci-btn del" style="color:#e53e3e;border-color:#e53e3e;" onclick="SP_deleteMatch('${SP_esc(key)}')">Delete</button>
             </div>
           </div>`;
         }).join("");
@@ -1463,7 +1463,7 @@
               const imgTag = s.img
                 ? `<img class="li-thumb" src="${WC_esc(s.img)}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/><div class="li-thumb-placeholder" style="display:none;">🎙️</div>`
                 : `<div class="li-thumb-placeholder">🎙️</div>`;
-              return `<div class="list-item">${imgTag}<div class="li-info"><div class="li-name">${WC_esc(s.title || key)}</div><div class="li-meta"><span class="li-id">#${s.id || "—"}</span>${s.desc ? `<span>${WC_esc(s.desc)}</span>` : ""}</div></div><div class="li-actions"><button class="si-btn edit" onclick="WC_editItem('${key}')">Edit</button><button class="si-btn del" onclick="WC_deleteItem('${key}')">Delete</button></div></div>`;
+              return `<div class="list-item">${imgTag}<div class="li-info"><div class="li-name">${WC_esc(s.title || key)}</div><div class="li-meta"><span class="li-id">#${s.id || "—"}</span>${s.desc ? `<span>${WC_esc(s.desc)}</span>` : ""}</div></div><div class="li-actions"><button class="si-btn edit" onclick="WC_editItem('${key}')">Edit</button><button class="si-btn del" style="color:#e53e3e;border-color:#e53e3e;" onclick="WC_deleteItem('${key}')">Delete</button></div></div>`;
             },
             `<div class="empty-state"><div class="empty-icon">🎙️</div>No categories yet. Add one above!</div>`
           );
@@ -1738,7 +1738,7 @@ x-amz-date:${amzDate}
               : `<div class="li-thumb-placeholder">📖</div>`;
             const authorName = VI_authors[b.author]?.name || b.author || '—';
             const catName    = VI_categories[b.category]?.name || b.category || '—';
-            return `<div class="list-item">${imgTag}<div class="li-info"><div class="li-name">${VI_esc(b.title || key)}</div><div class="li-meta"><span class="li-id">${VI_esc(authorName)}</span><span class="cat-badge">${VI_esc(catName)}</span></div></div><div class="li-actions"><button class="si-btn edit" onclick="VI_editItem('${key}')">Edit</button><button class="si-btn del" onclick="VI_deleteItem('${key}')">Del</button></div></div>`;
+            return `<div class="list-item">${imgTag}<div class="li-info"><div class="li-name">${VI_esc(b.title || key)}</div><div class="li-meta"><span class="li-id">${VI_esc(authorName)}</span>${b.slug ? `<span class="li-cat">${VI_esc(b.slug)}</span>` : ""}<span class="cat-badge">${VI_esc(catName)}</span></div></div><div class="li-actions"><button class="si-btn edit" onclick="VI_editItem('${key}')">Edit</button><button class="si-btn del" style="color:#e53e3e;border-color:#e53e3e;" onclick="VI_deleteItem('${key}')">Delete</button></div></div>`;
           },
           `<div class="empty-state"><div class="empty-icon">📚</div>No books yet. Add one above!</div>`
         );
@@ -1887,7 +1887,7 @@ x-amz-date:${amzDate}
               const imgTag = s.img
                 ? `<img class="si-thumb" src="${ST_esc(s.img)}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/><div class="si-thumb-placeholder" style="display:none;">📻</div>`
                 : `<div class="si-thumb-placeholder">📻</div>`;
-              return `<div class="station-item">${imgTag}<div class="si-info"><div class="si-name">${ST_esc(s.name || key)}</div><div class="si-meta"><span class="si-id">#${s.id || "—"}</span>${s.desc ? `<span style="margin-left:0.4rem;">${ST_esc(s.desc)}</span>` : ""}</div></div><div class="si-actions"><button class="si-btn edit" onclick="ST_editStation('${key}')">Edit</button><button class="si-btn del" onclick="ST_deleteStation('${key}')">Delete</button></div></div>`;
+              return `<div class="station-item">${imgTag}<div class="si-info"><div class="si-name">${ST_esc(s.name || key)}</div><div class="si-meta"><span class="si-id">#${s.id || "—"}</span>${s.desc ? `<span style="margin-left:0.4rem;">${ST_esc(s.desc)}</span>` : ""}</div></div><div class="si-actions"><button class="si-btn edit" onclick="ST_editStation('${key}')">Edit</button><button class="si-btn del" style="color:#e53e3e;border-color:#e53e3e;" onclick="ST_deleteStation('${key}')">Delete</button></div></div>`;
             },
             `<div class="empty-state"><div class="empty-icon">📻</div>No stations yet. Add one above!</div>`
           );
@@ -2193,7 +2193,7 @@ x-amz-date:${amzDate}
             const tagsHtml = Array.isArray(c.tags) && c.tags.length
               ? c.tags.map(t => `<span class="cat-badge">${CT_esc(t)}</span>`).join("")
               : "";
-            return `<div class="list-item">${imgTag}<div class="li-info"><div class="li-name">${CT_esc(c.title || key)}</div><div class="li-meta"><span class="li-id">#${CT_esc(String(c.id||"—"))}</span><span class="li-cat">${CT_esc(c.slug||"")}</span>${tagsHtml}</div></div><div class="li-actions"><button class="si-btn edit" onclick="CT_editItem('${CT_esc(key)}')">Edit</button><button class="si-btn del" onclick="CT_deleteItem('${CT_esc(key)}')">Del</button></div></div>`;
+            return `<div class="list-item">${imgTag}<div class="li-info"><div class="li-name">${CT_esc(c.title || key)}</div><div class="li-meta"><span class="li-id">#${CT_esc(String(c.id||"—"))}</span><span class="li-cat">${CT_esc(c.slug||"")}</span>${tagsHtml}</div></div><div class="li-actions"><button class="si-btn edit" onclick="CT_editItem('${CT_esc(key)}')">Edit</button><button class="si-btn del" style="color:#e53e3e;border-color:#e53e3e;" onclick="CT_deleteItem('${CT_esc(key)}')">Delete</button></div></div>`;
           },
           `<div class="empty-state"><div class="empty-icon">🗂️</div>No categories yet. Add one above!</div>`
         );
@@ -2324,7 +2324,7 @@ x-amz-date:${amzDate}
               const imgTag = s.img
                 ? `<img class="li-thumb" src="${PC_esc(s.img)}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/><div class="li-thumb-placeholder" style="display:none;">🎙️</div>`
                 : `<div class="li-thumb-placeholder">🎙️</div>`;
-              return `<div class="list-item">${imgTag}<div class="li-info"><div class="li-name">${PC_esc(s.title || key)}</div><div class="li-meta"><span class="li-id">#${s.id || "—"}</span>${s.desc ? `<span>${PC_esc(s.desc)}</span>` : ""}</div></div><div class="li-actions"><button class="si-btn edit" onclick="PC_editItem('${key}')">Edit</button><button class="si-btn del" onclick="PC_deleteItem('${key}')">Delete</button></div></div>`;
+              return `<div class="list-item">${imgTag}<div class="li-info"><div class="li-name">${PC_esc(s.title || key)}</div><div class="li-meta"><span class="li-id">#${s.id || "—"}</span>${s.desc ? `<span>${PC_esc(s.desc)}</span>` : ""}</div></div><div class="li-actions"><button class="si-btn edit" onclick="PC_editItem('${key}')">Edit</button><button class="si-btn del" style="color:#e53e3e;border-color:#e53e3e;" onclick="PC_deleteItem('${key}')">Delete</button></div></div>`;
             },
             `<div class="empty-state"><div class="empty-icon">🎙️</div>No categories yet. Add one above!</div>`
           );
