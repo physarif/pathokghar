@@ -1564,7 +1564,7 @@
 
     // === VIDEOS ===
     (function() {
-      var db = _firestore;
+      var db = _rtdb;
       let allBooks      = {};
       let VI_editingKey = null;
       let VI_authors    = {};
@@ -1688,17 +1688,15 @@ x-amz-date:${amzDate}
         }
       };
 
-      // ─── Load authors & categories from Firestore ─────────
+      // ─── Load authors & categories from Realtime DB ───────
       async function VI_loadDropdowns() {
         try {
           const [authSnap, catSnap] = await Promise.all([
-            getDocs(collection(db, 'author')),
-            getDocs(collection(db, 'category')),
+            get(child(ref(db), 'authors')),
+            get(child(ref(db), 'categories')),
           ]);
-          VI_authors = {};
-          authSnap.forEach(d => { VI_authors[d.id] = d.data(); });
-          VI_categories = {};
-          catSnap.forEach(d => { VI_categories[d.id] = d.data(); });
+          VI_authors = authSnap.exists() ? authSnap.val() : {};
+          VI_categories = catSnap.exists() ? catSnap.val() : {};
           VI_populateDropdowns();
         } catch(e) {
           console.warn('Dropdown load error:', e);
@@ -1723,9 +1721,8 @@ x-amz-date:${amzDate}
         const btn = document.getElementById("vi-refreshBtn");
         btn.classList.add("loading");
         try {
-          const snap = await getDocs(query(collection(db, 'books'), orderBy('createdAt', 'desc')));
-          allBooks = {};
-          snap.forEach(d => { allBooks[d.id] = d.data(); });
+          const snap = await get(child(ref(db), 'books'));
+          allBooks = snap.exists() ? snap.val() : {};
           VI_renderItems();
         } catch(e) {
           showToast("Failed to load: " + e.message, "error-t");
@@ -1777,16 +1774,11 @@ x-amz-date:${amzDate}
         btn.disabled = true; btn.textContent = "Saving...";
 
         try {
+          const key  = VI_editingKey || (uid + '_' + Date.now().toString(36));
           const data = { uid, id, title, slug, img, file, author, category, desc, tags, createdAt: Date.now() };
-          if (VI_editingKey) {
-            await updateDoc(doc(db, 'books', VI_editingKey), data);
-            allBooks[VI_editingKey] = data;
-            showToast("Book updated!", "success");
-          } else {
-            const ref2 = await addDoc(collection(db, 'books'), data);
-            allBooks[ref2.id] = data;
-            showToast("Book added!", "success");
-          }
+          await set(ref(db, 'books/' + key), data);
+          allBooks[key] = data;
+          showToast(VI_editingKey ? "Book updated!" : "Book added!", "success");
           VI_editingKey = null;
           VI_clearForm();
           VI_renderItems();
@@ -1835,7 +1827,7 @@ x-amz-date:${amzDate}
         const b = allBooks[key];
         if (!confirm(`Delete "${b?.title || key}"? This cannot be undone.`)) return;
         try {
-          await deleteDoc(doc(db, 'books', key));
+          await remove(ref(db, 'books/' + key));
           delete allBooks[key];
           VI_renderItems();
           showToast("Book deleted.", "success");
@@ -2010,7 +2002,7 @@ x-amz-date:${amzDate}
 
     // === EPISODES (Authors) ===
     (function() {
-      var db = _firestore;
+      var db = _rtdb;
       let EP_allEpisodes = {};
       let EP_editingKey  = null;
 
@@ -2035,9 +2027,8 @@ x-amz-date:${amzDate}
         const btn = document.getElementById("ep-refreshBtn");
         btn.classList.add("loading");
         try {
-          const snap = await getDocs(query(collection(db, 'author'), orderBy('id')));
-          EP_allEpisodes = {};
-          snap.forEach(d => { EP_allEpisodes[d.id] = d.data(); });
+          const snap = await get(child(ref(db), 'authors'));
+          EP_allEpisodes = snap.exists() ? snap.val() : {};
           EP_renderItems(EP_allEpisodes);
         } catch(e) {
           showToast("Failed to load: " + e.message, "error-t");
@@ -2086,16 +2077,11 @@ x-amz-date:${amzDate}
         btn.disabled = true; btn.textContent = "Saving...";
 
         try {
+          const key  = EP_editingKey || uid;
           const data = { uid, id, title, img, desc, tags, createdAt: Date.now() };
-          if (EP_editingKey) {
-            await updateDoc(doc(db, 'author', EP_editingKey), data);
-            EP_allEpisodes[EP_editingKey] = data;
-            showToast("Author updated!", "success");
-          } else {
-            const ref2 = await addDoc(collection(db, 'author'), data);
-            EP_allEpisodes[ref2.id] = data;
-            showToast("Author added!", "success");
-          }
+          await set(ref(db, 'authors/' + key), data);
+          EP_allEpisodes[key] = data;
+          showToast(EP_editingKey ? "Author updated!" : "Author added!", "success");
           EP_editingKey = null;
           EP_clearForm();
           EP_renderItems(EP_allEpisodes);
@@ -2143,7 +2129,7 @@ x-amz-date:${amzDate}
         const a = EP_allEpisodes[key];
         if (!confirm(`Delete "${a?.title || key}"? This cannot be undone.`)) return;
         try {
-          await deleteDoc(doc(db, 'author', key));
+          await remove(ref(db, 'authors/' + key));
           delete EP_allEpisodes[key];
           EP_renderItems(EP_allEpisodes);
           showToast("Author deleted.", "success");
@@ -2156,7 +2142,7 @@ x-amz-date:${amzDate}
 
     // === CATEGORY ===
     (function() {
-      var db = _firestore;
+      var db = _rtdb;
       let CT_allItems  = {};
       let CT_editingKey = null;
 
@@ -2185,9 +2171,8 @@ x-amz-date:${amzDate}
         const btn = document.getElementById("ct-refreshBtn");
         btn.classList.add("loading");
         try {
-          const snap = await getDocs(query(collection(db, 'category'), orderBy('id')));
-          CT_allItems = {};
-          snap.forEach(d => { CT_allItems[d.id] = d.data(); });
+          const snap = await get(child(ref(db), 'categories'));
+          CT_allItems = snap.exists() ? snap.val() : {};
           CT_renderItems(CT_allItems);
         } catch(e) {
           showToast("Failed to load: " + e.message, "error-t");
@@ -2238,16 +2223,11 @@ x-amz-date:${amzDate}
         btn.disabled = true; btn.textContent = "Saving...";
 
         try {
+          const key  = CT_editingKey || uid;
           const data = { uid, id, title, slug, img, desc, tags, createdAt: Date.now() };
-          if (CT_editingKey) {
-            await updateDoc(doc(db, 'category', CT_editingKey), data);
-            CT_allItems[CT_editingKey] = data;
-            showToast("Category updated!", "success");
-          } else {
-            const ref2 = await addDoc(collection(db, 'category'), data);
-            CT_allItems[ref2.id] = data;
-            showToast("Category added!", "success");
-          }
+          await set(ref(db, 'categories/' + key), data);
+          CT_allItems[key] = data;
+          showToast(CT_editingKey ? "Category updated!" : "Category added!", "success");
           CT_editingKey = null;
           CT_clearForm();
           CT_renderItems(CT_allItems);
@@ -2296,7 +2276,7 @@ x-amz-date:${amzDate}
         const c = CT_allItems[key];
         if (!confirm(`Delete "${c?.title || key}"? This cannot be undone.`)) return;
         try {
-          await deleteDoc(doc(db, 'category', key));
+          await remove(ref(db, 'categories/' + key));
           delete CT_allItems[key];
           CT_renderItems(CT_allItems);
           showToast("Category deleted.", "success");
