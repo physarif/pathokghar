@@ -473,8 +473,8 @@
   <div id="sidebar-footer" style="padding:0.9rem 1.2rem;border-top:1px solid var(--border);">
     <div style="font-size:0.62rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;">Admin Dashboard</div>
   </div>
-  <button class="tab-item" data-section="students" onclick="openSection('students')" title="Students">
-    <i class="fa-solid fa-user-graduate"></i>
+  <button class="tab-item" data-section="students" onclick="openSection('students')" title="Books">
+    <i class="fa-solid fa-book"></i>
   </button>
   <button class="tab-item active" data-section="media" onclick="openSection('media')" title="Media">
     <i class="fa-solid fa-upload"></i>
@@ -489,104 +489,103 @@
 <div id="section-students" class="section-page" style="display:none;">
   <div class="section-inner">
     <header>
-      <h1>Manage Students</h1>
-      <p>Add, View & Manage Students Information</p>
+      <h1>Manage Books</h1>
+      <p>Add, View &amp; Manage Books</p>
       <div class="divider"></div>
     </header>
 
 
 
-    <!-- ══ PANEL: Students ══ -->
+    <!-- ══ PANEL: Books ══ -->
     <div id="vi-panel-students">
-      <!-- Add Student -->
+      <!-- Add Book -->
       <div class="card" id="vi-addCard">
-        <div class="card-title" id="vi-formTitle">Add New Student</div>
+        <div class="card-title" id="vi-formTitle">Add New Book</div>
 
         <div class="field-row">
           <div class="field">
-            <label>Roll</label>
-            <input type="number" id="vi-fRoll" placeholder="e.g. 1" min="1"/>
+            <label>ID <span style="font-weight:300;text-transform:none;letter-spacing:0;">(auto)</span></label>
+            <input type="text" id="vi-fId" readonly style="opacity:0.5;cursor:default;"/>
           </div>
           <div class="field">
-            <label>Student ID <span style="font-weight:300;text-transform:none;letter-spacing:0;">(auto)</span></label>
-            <input type="text" id="vi-fStudentId" readonly style="opacity:0.5;cursor:default;"/>
+            <label>Slug</label>
+            <input type="text" id="vi-fSlug" placeholder="e.g. my-book-title"/>
           </div>
         </div>
 
         <div class="field">
-          <label>Name</label>
-          <input type="text" id="vi-fName" placeholder="Student full name"/>
-        </div>
-
-        <div class="field">
-          <label>Photo URL</label>
-          <input type="text" id="vi-fPhoto" placeholder="https://..."/>
+          <label>Title</label>
+          <input type="text" id="vi-fTitle" placeholder="Book title"/>
         </div>
 
         <div class="field-row">
           <div class="field">
-            <label>Class</label>
-            <select id="vi-fClass">
-              <option value="">— Select —</option>
-              <option value="Play">Play</option>
-              <option value="Nursery">Nursery</option>
-              <option value="One">One</option>
-              <option value="Two">Two</option>
-              <option value="Three">Three</option>
-              <option value="Four">Four</option>
-              <option value="Five">Five</option>
-            </select>
+            <label>Author</label>
+            <select id="vi-fAuthor"><option value="">Loading...</option></select>
           </div>
           <div class="field">
-            <label>Section</label>
-            <select id="vi-fSection">
-              <option value="">— Select —</option>
-              <option value="Section-A">Section-A</option>
-              <option value="Section-B">Section-B</option>
-            </select>
+            <label>Category</label>
+            <select id="vi-fCategory"><option value="">Loading...</option></select>
           </div>
         </div>
 
         <div class="field">
-          <label>Contact</label>
-          <input type="number" id="vi-fContact" placeholder="Phone number"/>
+          <label>Cover Image</label>
+          <div style="display:flex;gap:0.5rem;align-items:center;">
+            <input type="text" id="vi-fImg" placeholder="URL or upload below" style="flex:1;"/>
+            <label style="cursor:pointer;padding:0.45rem 0.75rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:0.78rem;color:var(--muted);white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">
+              Upload
+              <input type="file" id="vi-fImgFile" accept="image/*" style="display:none;" onchange="VI_uploadImg(this)"/>
+            </label>
+          </div>
+          <div id="vi-imgPreview" style="margin-top:0.5rem;display:none;">
+            <img id="vi-imgThumb" src="" style="height:64px;border-radius:8px;border:1px solid var(--border);object-fit:cover;"/>
+          </div>
+          <div id="vi-imgUploadStatus" style="font-size:0.72rem;color:var(--muted);margin-top:0.25rem;"></div>
+        </div>
+
+        <div class="field">
+          <label>Book File (PDF/EPUB)</label>
+          <div style="display:flex;gap:0.5rem;align-items:center;">
+            <input type="text" id="vi-fFile" placeholder="URL or upload below" style="flex:1;"/>
+            <label style="cursor:pointer;padding:0.45rem 0.75rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:0.78rem;color:var(--muted);white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">
+              Upload
+              <input type="file" id="vi-fFileInput" accept=".pdf,.epub" style="display:none;" onchange="VI_uploadFile(this)"/>
+            </label>
+          </div>
+          <div id="vi-fileUploadStatus" style="font-size:0.72rem;color:var(--muted);margin-top:0.25rem;"></div>
+        </div>
+
+        <div class="field">
+          <label>SEO Description</label>
+          <textarea id="vi-fSeo" placeholder="Short description for SEO..." rows="2"></textarea>
         </div>
 
         <div class="btn-row">
           <button class="action-btn" id="vi-cancelBtn" onclick="VI_cancelEdit()">Cancel</button>
-          <button class="action-btn primary" id="vi-submitBtn" onclick="VI_submitStudent()">
+          <button class="action-btn primary" id="vi-submitBtn" onclick="VI_submitBook()">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Add Student
+            Add Book
           </button>
         </div>
       </div>
 
-      <!-- Student List -->
+      <!-- Book List -->
       <div style="animation: fadeUp 0.5s ease 0.2s both;">
         <div class="lib-header">
-          <span class="lib-title">All Students</span>
+          <span class="lib-title">All Books</span>
           <div class="lib-right">
-            <span class="lib-count" id="vi-itemCount">0 students</span>
+            <span class="lib-count" id="vi-itemCount">0 books</span>
             <button class="refresh-btn" id="vi-refreshBtn" onclick="VI_loadAll()">
               <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
               Refresh
             </button>
           </div>
         </div>
-        <div class="filter-tabs" id="vi-filterTabs">
-            <button class="ftab active" onclick="VI_filterByClass('all')">All</button>
-            <button class="ftab" onclick="VI_filterByClass('Play')">Play</button>
-            <button class="ftab" onclick="VI_filterByClass('Nursery')">Nursery</button>
-            <button class="ftab" onclick="VI_filterByClass('One')">One</button>
-            <button class="ftab" onclick="VI_filterByClass('Two')">Two</button>
-            <button class="ftab" onclick="VI_filterByClass('Three')">Three</button>
-            <button class="ftab" onclick="VI_filterByClass('Four')">Four</button>
-            <button class="ftab" onclick="VI_filterByClass('Five')">Five</button>
-          </div>
 
         <div class="search-wrap">
           <div class="search-row">
-            <input type="text" placeholder="Search students..." id="vi-searchInput" oninput="VI_filterItems()"/>
+            <input type="text" placeholder="Search books..." id="vi-searchInput" oninput="VI_filterItems()"/>
             <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </div>
         </div>
@@ -859,7 +858,7 @@
     media: "Media Manager",
     channels: "TV Channels",
     watch_category: "Watch Categories",
-    students: "Manage Students",
+    students: "Manage Books",
     stations: "Radio Stations",
     results: "Manage Results"
   };
@@ -1482,159 +1481,276 @@
 
     // === VIDEOS ===
     (function() {
-      var db = _rtdb;
-      let allStudents   = {};
+      var db = _firestore;
+      let allBooks      = {};
       let VI_editingKey = null;
+      let VI_authors    = {};
+      let VI_categories = {};
 
-      // ─── Generate 8-digit numeric student_id ─────────────
-      function VI_genStudentId() {
-        let id = "";
-        for (let i = 0; i < 8; i++) id += Math.floor(Math.random() * 10);
-        return id;
+      // R2 config (shared)
+      const BK_R2_ACCOUNT_ID = 'e55cff90ef185c0bc9ab5ddffb1946a4';
+      const BK_R2_BUCKET     = 'pathokghar';
+      const BK_R2_ACCESS_KEY = '35a518de8107d0a52f67995d14415ad9';
+      const BK_R2_SECRET_KEY = '4d246a0449e9bfe9074cd1660e041a05fbf0aa417a6510f38c525fcec01d4cee';
+      const BK_R2_PUBLIC_URL = 'https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev';
+      const BK_R2_ENDPOINT   = `https://${BK_R2_ACCOUNT_ID}.r2.cloudflarestorage.com`;
+
+      // ─── ID gen ───────────────────────────────────────────
+      function VI_genId() {
+        return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+      }
+      function VI_genSlug(title) {
+        return title.toLowerCase().replace(/[^\w\s-]/g,'').trim().replace(/[\s_-]+/g,'-');
+      }
+      function VI_esc(str) {
+        if (!str) return "";
+        return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
       }
 
-      function VI_updateStudentId() {
-        if (!VI_editingKey) document.getElementById("vi-fStudentId").value = VI_genStudentId();
+      // ─── R2 upload helper ─────────────────────────────────
+      async function BK_r2Upload(file, prefix, onProgress) {
+        const ext = file.name.split('.').pop();
+        const key = `${prefix}${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
+        const now = new Date();
+        const amzDate = now.toISOString().replace(/[:-]|\.\d{3}/g,'').slice(0,15) + 'Z';
+        const dateStamp = amzDate.slice(0,8);
+        const payloadHash = 'UNSIGNED-PAYLOAD';
+        const canonicalHeaders = `host:${BK_R2_ACCOUNT_ID}.r2.cloudflarestorage.com
+x-amz-content-sha256:${payloadHash}
+x-amz-date:${amzDate}
+`;
+        const signedHeaders = 'host;x-amz-content-sha256;x-amz-date';
+        const canonicalRequest = ['PUT', `/${BK_R2_BUCKET}/${key}`, '', canonicalHeaders, signedHeaders, payloadHash].join('\n');
+        const credentialScope = `${dateStamp}/auto/s3/aws4_request`;
+
+        async function sha256(msg) {
+          const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
+          return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+        }
+        async function hmac(key, msg) {
+          const k = typeof key==='string' ? new TextEncoder().encode(key) : key;
+          const ck = await crypto.subtle.importKey('raw',k,{name:'HMAC',hash:'SHA-256'},false,['sign']);
+          return new Uint8Array(await crypto.subtle.sign('HMAC',ck,new TextEncoder().encode(msg)));
+        }
+        function toHex(buf) { return Array.from(buf).map(b=>b.toString(16).padStart(2,'0')).join(''); }
+
+        const stringToSign = ['AWS4-HMAC-SHA256', amzDate, credentialScope, await sha256(canonicalRequest)].join('\n');
+        const kDate = await hmac('AWS4'+BK_R2_SECRET_KEY, dateStamp);
+        const kRegion = await hmac(kDate, 'auto');
+        const kService = await hmac(kRegion, 's3');
+        const kSigning = await hmac(kService, 'aws4_request');
+        const signature = toHex(await hmac(kSigning, stringToSign));
+        const authorization = `AWS4-HMAC-SHA256 Credential=${BK_R2_ACCESS_KEY}/${credentialScope}, SignedHeaders=${signedHeaders}, Signature=${signature}`;
+
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('PUT', `${BK_R2_ENDPOINT}/${BK_R2_BUCKET}/${key}`);
+          xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+          xhr.setRequestHeader('x-amz-content-sha256', payloadHash);
+          xhr.setRequestHeader('x-amz-date', amzDate);
+          xhr.setRequestHeader('Authorization', authorization);
+          if (onProgress) xhr.upload.onprogress = e => { if (e.lengthComputable) onProgress(Math.round(e.loaded/e.total*100)); };
+          xhr.onload = () => {
+            if (xhr.status >= 200 && xhr.status < 300) resolve(`${BK_R2_PUBLIC_URL}/${key}`);
+            else reject(new Error('Upload failed: ' + xhr.status));
+          };
+          xhr.onerror = () => reject(new Error('Network error'));
+          xhr.send(file);
+        });
       }
 
-      // ─── LOAD students ────────────────────────────────────
+      // ─── Upload cover image ───────────────────────────────
+      window.VI_uploadImg = async function(input) {
+        const file = input.files[0]; if (!file) return;
+        const status = document.getElementById('vi-imgUploadStatus');
+        status.textContent = 'Uploading...';
+        try {
+          const url = await BK_r2Upload(file, '', p => status.textContent = `Uploading ${p}%...`);
+          document.getElementById('vi-fImg').value = url;
+          const preview = document.getElementById('vi-imgPreview');
+          document.getElementById('vi-imgThumb').src = url;
+          preview.style.display = 'block';
+          status.textContent = '✓ Image uploaded';
+          status.style.color = 'var(--success)';
+        } catch(e) {
+          status.textContent = '✗ ' + e.message;
+          status.style.color = 'var(--error)';
+        }
+      };
+
+      // ─── Upload book file ─────────────────────────────────
+      window.VI_uploadFile = async function(input) {
+        const file = input.files[0]; if (!file) return;
+        const status = document.getElementById('vi-fileUploadStatus');
+        status.textContent = 'Uploading...';
+        try {
+          const url = await BK_r2Upload(file, '', p => status.textContent = `Uploading ${p}%...`);
+          document.getElementById('vi-fFile').value = url;
+          status.textContent = '✓ File uploaded: ' + file.name;
+          status.style.color = 'var(--success)';
+        } catch(e) {
+          status.textContent = '✗ ' + e.message;
+          status.style.color = 'var(--error)';
+        }
+      };
+
+      // ─── Load authors & categories from Firestore ─────────
+      async function VI_loadDropdowns() {
+        try {
+          const [authSnap, catSnap] = await Promise.all([
+            getDocs(collection(db, 'author')),
+            getDocs(collection(db, 'category')),
+          ]);
+          VI_authors = {};
+          authSnap.forEach(d => { VI_authors[d.id] = d.data(); });
+          VI_categories = {};
+          catSnap.forEach(d => { VI_categories[d.id] = d.data(); });
+          VI_populateDropdowns();
+        } catch(e) {
+          console.warn('Dropdown load error:', e);
+        }
+      }
+
+      function VI_populateDropdowns(selAuthor='', selCat='') {
+        const authSel = document.getElementById('vi-fAuthor');
+        const catSel  = document.getElementById('vi-fCategory');
+        authSel.innerHTML = '<option value="">— Select Author —</option>' +
+          Object.entries(VI_authors).map(([id, a]) =>
+            `<option value="${id}" ${selAuthor===id?'selected':''}>${VI_esc(a.name || id)}</option>`
+          ).join('');
+        catSel.innerHTML = '<option value="">— Select Category —</option>' +
+          Object.entries(VI_categories).map(([id, c]) =>
+            `<option value="${id}" ${selCat===id?'selected':''}>${VI_esc(c.name || id)}</option>`
+          ).join('');
+      }
+
+      // ─── LOAD books ───────────────────────────────────────
       window.VI_loadAll = async function() {
         const btn = document.getElementById("vi-refreshBtn");
         btn.classList.add("loading");
         try {
-          const snap = await get(child(ref(db), "students"));
-          allStudents = snap.exists() ? snap.val() : {};
-          VI_renderItems(allStudents);
-          VI_updateStudentId();
+          const snap = await getDocs(query(collection(db, 'books'), orderBy('createdAt', 'desc')));
+          allBooks = {};
+          snap.forEach(d => { allBooks[d.id] = d.data(); });
+          VI_renderItems();
         } catch(e) {
           showToast("Failed to load: " + e.message, "error-t");
         }
         btn.classList.remove("loading");
       };
 
-      let VI_activeClass = "all";
-
-      window.VI_filterByClass = function(cls) {
-        VI_activeClass = cls;
-        document.querySelectorAll("#vi-filterTabs .ftab").forEach(t => t.classList.remove("active"));
-        event.target.classList.add("active");
-        VI_applyFilter();
-      };
-
-      function VI_applyFilter() {
-        const q = (document.getElementById("vi-searchInput").value || "").toLowerCase();
-        const filtered = {};
-        Object.entries(allStudents).forEach(([k, v]) => {
-          const matchClass = VI_activeClass === "all" || v.class === VI_activeClass;
-          const matchSearch = !q || (v.name||"").toLowerCase().includes(q) || (v.student_id||"").includes(q) || (v.roll||"").toString().includes(q);
-          if (matchClass && matchSearch) filtered[k] = v;
-        });
-        VI_renderItems(filtered);
-      }
-
       // ─── RENDER ──────────────────────────────────────────
-      function VI_renderItems(data) {
+      function VI_renderItems() {
         const list = document.getElementById("vi-itemList");
-        let entries = Object.entries(data).sort((a, b) => (a[1].name||"").localeCompare(b[1].name||""));
-        document.getElementById("vi-itemCount").textContent = entries.length + " student" + (entries.length !== 1 ? "s" : "");
+        const q = (document.getElementById("vi-searchInput").value || "").toLowerCase();
+        let entries = Object.entries(allBooks).filter(([,b]) =>
+          !q || (b.title||"").toLowerCase().includes(q) || (b.author||"").toLowerCase().includes(q)
+        );
+        document.getElementById("vi-itemCount").textContent = entries.length + " book" + (entries.length !== 1 ? "s" : "");
         createPager(entries, list, "vi-sentinel",
-          ([key, s]) => {
-            const imgTag = s.photo
-              ? `<img class="li-thumb" src="${VI_esc(s.photo)}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/><div class="li-thumb-placeholder" style="display:none;">🎓</div>`
-              : `<div class="li-thumb-placeholder">🎓</div>`;
-            return `<div class="list-item">${imgTag}<div class="li-info"><div class="li-name">${VI_esc(s.name || key)}</div><div class="li-meta"><span class="li-id">#${s.roll || "—"} · ${VI_esc(s.class || "—")}</span></div></div><div class="li-actions"><button class="si-btn edit" onclick="VI_editItem('${key}')">Edit</button><button class="si-btn del" onclick="VI_deleteItem('${key}')">Delete</button></div></div>`;
+          ([key, b]) => {
+            const imgTag = b.img
+              ? `<img class="li-thumb" src="${VI_esc(b.img)}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/><div class="li-thumb-placeholder" style="display:none;">📖</div>`
+              : `<div class="li-thumb-placeholder">📖</div>`;
+            const authorName = VI_authors[b.author]?.name || b.author || '—';
+            const catName    = VI_categories[b.category]?.name || b.category || '—';
+            return `<div class="list-item">${imgTag}<div class="li-info"><div class="li-name">${VI_esc(b.title || key)}</div><div class="li-meta"><span class="li-id">${VI_esc(authorName)}</span><span class="cat-badge">${VI_esc(catName)}</span></div></div><div class="li-actions"><button class="si-btn edit" onclick="VI_editItem('${key}')">Edit</button><button class="si-btn del" onclick="VI_deleteItem('${key}')">Del</button></div></div>`;
           },
-          `<div class="empty-state"><div class="empty-icon">🎓</div>No students yet. Add one above!</div>`
+          `<div class="empty-state"><div class="empty-icon">📚</div>No books yet. Add one above!</div>`
         );
       }
 
-      function VI_esc(str) {
-        if (!str) return "";
-        return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
-      }
-
-      window.VI_filterItems = function() { VI_applyFilter(); };
+      window.VI_filterItems = function() { VI_renderItems(); };
 
       // ─── SUBMIT ──────────────────────────────────────────
-      window.VI_submitStudent = async function() {
-        const student_id = document.getElementById("vi-fStudentId").value.trim();
-        const name       = document.getElementById("vi-fName").value.trim();
-        const photo      = document.getElementById("vi-fPhoto").value.trim();
-        const cls        = document.getElementById("vi-fClass").value;
-        const section    = document.getElementById("vi-fSection").value;
-        const roll       = document.getElementById("vi-fRoll").value.trim();
-        const contact    = document.getElementById("vi-fContact").value.trim();
+      window.VI_submitBook = async function() {
+        const id       = document.getElementById("vi-fId").value.trim();
+        const title    = document.getElementById("vi-fTitle").value.trim();
+        const slug     = document.getElementById("vi-fSlug").value.trim() || VI_genSlug(title);
+        const img      = document.getElementById("vi-fImg").value.trim();
+        const file     = document.getElementById("vi-fFile").value.trim();
+        const author   = document.getElementById("vi-fAuthor").value;
+        const category = document.getElementById("vi-fCategory").value;
+        const seo      = document.getElementById("vi-fSeo").value.trim();
 
-        if (!roll)    { showToast("Roll is required!", "error-t"); return; }
-        if (!name)    { showToast("Name is required!", "error-t"); return; }
-        if (!cls)     { showToast("Please select a class!", "error-t"); return; }
-        if (!section) { showToast("Please select a section!", "error-t"); return; }
+        if (!title)  { showToast("Title is required!", "error-t"); return; }
+        if (!author) { showToast("Please select an author!", "error-t"); return; }
 
-        const key = VI_editingKey || student_id;
         const btn = document.getElementById("vi-submitBtn");
         btn.disabled = true; btn.textContent = "Saving...";
 
         try {
-          const data = { student_id, name, photo, class: cls, section, roll, contact };
-          await set(ref(db, "students/" + key), data);
-          allStudents[key] = data;
-          VI_renderItems(allStudents);
-          const wasEditing = !!VI_editingKey;
+          const data = { title, slug, img, file, author, category, seo, createdAt: Date.now() };
+          if (VI_editingKey) {
+            await updateDoc(doc(db, 'books', VI_editingKey), data);
+            allBooks[VI_editingKey] = data;
+            showToast("Book updated!", "success");
+          } else {
+            const ref2 = await addDoc(collection(db, 'books'), data);
+            allBooks[ref2.id] = data;
+            showToast("Book added!", "success");
+          }
           VI_editingKey = null;
           VI_clearForm();
-          showToast(wasEditing ? "Student updated!" : "Student added!", "success");
+          VI_renderItems();
         } catch(e) {
           showToast("Error: " + e.message, "error-t");
         }
-
         btn.disabled = false;
-        btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Student`;
+        btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Book`;
       };
 
       // ─── EDIT ────────────────────────────────────────────
       window.VI_editItem = function(key) {
-        const s = allStudents[key];
-        if (!s) return;
+        const b = allBooks[key]; if (!b) return;
         VI_editingKey = key;
-
-        document.getElementById("vi-fStudentId").value = s.student_id || key;
-        document.getElementById("vi-fName").value      = s.name       || "";
-        document.getElementById("vi-fPhoto").value     = s.photo      || "";
-        document.getElementById("vi-fClass").value     = s.class      || "";
-        document.getElementById("vi-fSection").value   = s.section    || "";
-        document.getElementById("vi-fRoll").value      = s.roll       || "";
-        document.getElementById("vi-fContact").value   = s.contact    || "";
-
-        document.getElementById("vi-formTitle").textContent = "Edit Student — " + (s.name || key);
-        document.getElementById("vi-submitBtn").innerHTML = `✎ Update Student`;
+        document.getElementById("vi-fId").value    = key;
+        document.getElementById("vi-fTitle").value = b.title    || "";
+        document.getElementById("vi-fSlug").value  = b.slug     || "";
+        document.getElementById("vi-fImg").value   = b.img      || "";
+        document.getElementById("vi-fFile").value  = b.file     || "";
+        document.getElementById("vi-fSeo").value   = b.seo      || "";
+        VI_populateDropdowns(b.author || '', b.category || '');
+        if (b.img) {
+          document.getElementById('vi-imgThumb').src = b.img;
+          document.getElementById('vi-imgPreview').style.display = 'block';
+        }
+        document.getElementById("vi-formTitle").textContent = "Edit Book — " + (b.title || key);
+        document.getElementById("vi-submitBtn").innerHTML = `✎ Update Book`;
         document.getElementById("vi-addCard").scrollIntoView({ behavior: "smooth" });
       };
 
       window.VI_cancelEdit = function() { VI_editingKey = null; VI_clearForm(); };
 
       function VI_clearForm() {
-        ["vi-fName","vi-fPhoto","vi-fRoll","vi-fContact"].forEach(id => document.getElementById(id).value = "");
-        document.getElementById("vi-fClass").value   = "";
-        document.getElementById("vi-fSection").value = "";
-        document.getElementById("vi-formTitle").textContent = "Add New Student";
-        document.getElementById("vi-submitBtn").innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Student`;
+        ["vi-fTitle","vi-fSlug","vi-fImg","vi-fFile","vi-fSeo"].forEach(id => document.getElementById(id).value = "");
+        document.getElementById("vi-fId").value = VI_genId();
+        VI_populateDropdowns();
+        document.getElementById('vi-imgPreview').style.display = 'none';
+        document.getElementById('vi-imgUploadStatus').textContent = '';
+        document.getElementById('vi-fileUploadStatus').textContent = '';
+        document.getElementById("vi-formTitle").textContent = "Add New Book";
+        document.getElementById("vi-submitBtn").innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Book`;
         VI_editingKey = null;
-        VI_updateStudentId();
       }
 
       // ─── DELETE ──────────────────────────────────────────
       window.VI_deleteItem = async function(key) {
-        const s = allStudents[key];
-        if (!confirm(`Delete "${s?.name || key}"? This cannot be undone.`)) return;
+        const b = allBooks[key];
+        if (!confirm(`Delete "${b?.title || key}"? This cannot be undone.`)) return;
         try {
-          await remove(ref(db, "students/" + key));
-          delete allStudents[key];
-          VI_renderItems(allStudents);
-          showToast("Student deleted.", "success");
+          await deleteDoc(doc(db, 'books', key));
+          delete allBooks[key];
+          VI_renderItems();
+          showToast("Book deleted.", "success");
         } catch(e) {
           showToast("Error: " + e.message, "error-t");
         }
       };
+
+      // ─── INIT ─────────────────────────────────────────────
+      document.getElementById('vi-fId').value = VI_genId();
+      VI_loadDropdowns();
 
     })();
 
