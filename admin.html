@@ -2482,7 +2482,7 @@
             try {
               const file = item.file;
               const ext  = file.name.split('.').pop();
-              const key  = `uploads/${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
+              const key  = `${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
               const url  = `${R2_ENDPOINT}/${R2_BUCKET}/${key}`;
 
               // Build signing values
@@ -2542,7 +2542,7 @@
               };
 
               xhr.onload = async () => {
-                if (xhr.status === 200) {
+                if (xhr.status >= 200 && xhr.status < 300) {
                   const publicUrl = `${R2_PUBLIC_URL}/${key}`;
                   item.url = publicUrl;
                   item.status = 'done';
