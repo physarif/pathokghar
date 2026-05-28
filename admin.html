@@ -482,6 +482,9 @@
   <button class="tab-item" data-section="results" onclick="openSection('results')" title="Author">
     <i class="fa-solid fa-feather-pointed"></i>
   </button>
+  <button class="tab-item" data-section="category" onclick="openSection('category')" title="Category">
+    <i class="fa-solid fa-layer-group"></i>
+  </button>
 </nav>
 
 <!-- Watch Categories section is now embedded inside Watch tab (above) -->
@@ -697,6 +700,103 @@
   </div>
 </div>
 
+<div id="section-category" class="section-page" style="display:none;">
+  <div class="section-inner">
+    <header>
+      <h1>Manage Categories</h1>
+      <p>Add, View &amp; Manage Book Categories</p>
+      <div class="divider"></div>
+    </header>
+
+    <div id="ct-panel">
+      <!-- Add Category -->
+      <div class="card" id="ct-addCard">
+        <div class="card-title" id="ct-formTitle">Add New Category</div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>UID <span style="font-weight:300;text-transform:none;letter-spacing:0;">(alphanumeric)</span></label>
+            <div style="display:flex;gap:0.4rem;align-items:center;">
+              <input type="text" id="ct-fUid" placeholder="e.g. cat_a1b2" style="flex:1;font-family:monospace;font-size:0.82rem;"/>
+              <button type="button" onclick="CT_genUid()" style="padding:0.45rem 0.6rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:0.75rem;color:var(--muted);cursor:pointer;white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Gen</button>
+            </div>
+          </div>
+          <div class="field">
+            <label>ID <span style="font-weight:300;text-transform:none;letter-spacing:0;">(numeric)</span></label>
+            <input type="number" id="ct-fId" placeholder="e.g. 1" min="1" step="1"/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Title</label>
+          <input type="text" id="ct-fTitle" placeholder="Category title"/>
+        </div>
+
+        <div class="field">
+          <label>Slug</label>
+          <input type="text" id="ct-fSlug" placeholder="e.g. fiction"/>
+        </div>
+
+        <div class="field">
+          <label>Image URL</label>
+          <input type="text" id="ct-fImg" placeholder="https://..." oninput="(function(v){var p=document.getElementById('ct-imgPreview'),t=document.getElementById('ct-imgThumb');if(v){t.src=v;p.style.display='block';}else{p.style.display='none';}})(this.value)"/>
+          <div id="ct-imgPreview" style="margin-top:0.5rem;display:none;">
+            <img id="ct-imgThumb" src="" style="height:64px;border-radius:8px;border:1px solid var(--border);object-fit:cover;"/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Description</label>
+          <textarea id="ct-fDesc" placeholder="Short description..." rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label>Tags <span style="font-weight:300;text-transform:none;letter-spacing:0;">(comma separated)</span></label>
+          <input type="text" id="ct-fTags" placeholder="e.g. fiction, classic, bangla"/>
+        </div>
+
+        <div class="btn-row">
+          <button class="action-btn" id="ct-cancelBtn" onclick="CT_cancelEdit()">Cancel</button>
+          <button class="action-btn primary" id="ct-submitBtn" onclick="CT_submit()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Category
+          </button>
+        </div>
+      </div>
+
+      <!-- Category List -->
+      <div style="animation: fadeUp 0.5s ease 0.2s both;">
+        <div class="lib-header">
+          <span class="lib-title">All Categories</span>
+          <div class="lib-right">
+            <span class="lib-count" id="ct-itemCount">0 categories</span>
+            <button class="refresh-btn" id="ct-refreshBtn" onclick="CT_loadAll()">
+              <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+              Refresh
+            </button>
+          </div>
+        </div>
+
+        <div class="search-wrap">
+          <div class="search-row">
+            <input type="text" placeholder="Search categories..." id="ct-searchInput" oninput="CT_filterItems()"/>
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+        </div>
+        <div class="lib-card">
+          <div class="item-list" id="ct-itemList">
+            <div class="sk-item"><div class="sk-box sk-thumb"></div><div class="sk-lines"><div class="sk-box sk-line w70"></div><div class="sk-box sk-line w45"></div></div></div>
+            <div class="sk-item"><div class="sk-box sk-thumb"></div><div class="sk-lines"><div class="sk-box sk-line w70"></div><div class="sk-box sk-line w45"></div></div></div>
+            <div class="sk-item"><div class="sk-box sk-thumb"></div><div class="sk-lines"><div class="sk-box sk-line w70"></div><div class="sk-box sk-line w45"></div></div></div>
+          </div>
+          <div id="ct-sentinel" style="height:1px;"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <div id="section-media" class="section-page" style="display:none;">
   <div class="section-inner">
 <header>
@@ -832,7 +932,7 @@
     sentinel._pagerObserver = obs;
   };
 
-  var LOAD_FNS = { students: "VI_loadAll", stations: "ST_loadStations", results: "EP_loadAll", media: "MD_loadLibrary" };
+  var LOAD_FNS = { students: "VI_loadAll", stations: "ST_loadStations", results: "EP_loadAll", media: "MD_loadLibrary", category: "CT_loadAll" };
   var loadedSections = {};
   var currentSection = "media";
 
@@ -842,7 +942,8 @@
     watch_category: "Watch Categories",
     students: "Manage Books",
     stations: "Radio Stations",
-    results: "Manage Authors"
+    results: "Manage Authors",
+    category: "Manage Categories"
   };
 
   // ─── KEY EDIT TOGGLE (shared) ───────────────────────────────
@@ -897,7 +998,7 @@
     if (hash === "watch_category" || hash === "videos" || hash === "watch") hash = "students";
     // episodes/podcast_category/podcast now inside results tab
     if (hash === "episodes" || hash === "podcast_category" || hash === "podcast" || hash === "listen") hash = "results";
-    var validKeys = ["channels", "students", "stations", "results", "media"];
+    var validKeys = ["channels", "students", "stations", "results", "media", "category"];
     var key = (hash && validKeys.indexOf(hash) !== -1) ? hash : "media";
     showSection(key);
   }
@@ -912,7 +1013,7 @@
     var hash = window.location.hash.replace("#", "").trim();
     if (hash === "watch_category" || hash === "videos" || hash === "watch") hash = "students";
     if (hash === "episodes" || hash === "podcast_category" || hash === "podcast" || hash === "listen") hash = "results";
-    var validKeys = ["channels", "students", "stations", "results", "media"];
+    var validKeys = ["channels", "students", "stations", "results", "media", "category"];
     var startKey = (hash && validKeys.indexOf(hash) !== -1) ? hash : "media";
     showSection(startKey);
   }
@@ -2046,6 +2147,159 @@ x-amz-date:${amzDate}
           delete EP_allEpisodes[key];
           EP_renderItems(EP_allEpisodes);
           showToast("Author deleted.", "success");
+        } catch(e) {
+          showToast("Error: " + e.message, "error-t");
+        }
+      };
+
+    })();
+
+    // === CATEGORY ===
+    (function() {
+      var db = _firestore;
+      let CT_allItems  = {};
+      let CT_editingKey = null;
+
+      function CT_esc(str) {
+        if (!str) return "";
+        return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+      }
+
+      function CT_makeUid() {
+        const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+        let s = "cat_";
+        for (let i = 0; i < 6; i++) s += chars[Math.floor(Math.random() * chars.length)];
+        return s;
+      }
+
+      window.CT_genUid = function() {
+        document.getElementById("ct-fUid").value = CT_makeUid();
+      };
+
+      function CT_genSlug(title) {
+        return title.toLowerCase().replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').trim();
+      }
+
+      // ─── LOAD ──────────────────────────────────────────────
+      window.CT_loadAll = async function() {
+        const btn = document.getElementById("ct-refreshBtn");
+        btn.classList.add("loading");
+        try {
+          const snap = await getDocs(query(collection(db, 'category'), orderBy('id')));
+          CT_allItems = {};
+          snap.forEach(d => { CT_allItems[d.id] = d.data(); });
+          CT_renderItems(CT_allItems);
+        } catch(e) {
+          showToast("Failed to load: " + e.message, "error-t");
+        }
+        btn.classList.remove("loading");
+      };
+
+      // ─── RENDER ────────────────────────────────────────────
+      function CT_renderItems(data) {
+        const list = document.getElementById("ct-itemList");
+        const q = (document.getElementById("ct-searchInput").value || "").toLowerCase();
+        let entries = Object.entries(data).filter(([,c]) =>
+          !q || (c.title||"").toLowerCase().includes(q) || (c.slug||"").toLowerCase().includes(q) ||
+          (c.desc||"").toLowerCase().includes(q) ||
+          (Array.isArray(c.tags) ? c.tags.join(" ") : (c.tags||"")).toLowerCase().includes(q)
+        ).sort((a,b) => (parseInt(a[1].id)||0) - (parseInt(b[1].id)||0));
+        document.getElementById("ct-itemCount").textContent = entries.length + " categor" + (entries.length !== 1 ? "ies" : "y");
+        createPager(entries, list, "ct-sentinel",
+          ([key, c]) => {
+            const imgTag = c.img
+              ? `<img class="li-thumb" src="${CT_esc(c.img)}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/><div class="li-thumb-placeholder" style="display:none;">🗂️</div>`
+              : `<div class="li-thumb-placeholder">🗂️</div>`;
+            const tagsHtml = Array.isArray(c.tags) && c.tags.length
+              ? c.tags.map(t => `<span class="cat-badge">${CT_esc(t)}</span>`).join("")
+              : "";
+            return `<div class="list-item">${imgTag}<div class="li-info"><div class="li-name">${CT_esc(c.title || key)}</div><div class="li-meta"><span class="li-id">#${CT_esc(String(c.id||"—"))}</span><span class="li-cat">${CT_esc(c.slug||"")}</span>${tagsHtml}</div></div><div class="li-actions"><button class="si-btn edit" onclick="CT_editItem('${CT_esc(key)}')">Edit</button><button class="si-btn del" onclick="CT_deleteItem('${CT_esc(key)}')">Del</button></div></div>`;
+          },
+          `<div class="empty-state"><div class="empty-icon">🗂️</div>No categories yet. Add one above!</div>`
+        );
+      }
+
+      window.CT_filterItems = function() { CT_renderItems(CT_allItems); };
+
+      // ─── SUBMIT ────────────────────────────────────────────
+      window.CT_submit = async function() {
+        const uid     = (document.getElementById("ct-fUid").value.trim() || CT_makeUid()).replace(/[^a-zA-Z0-9_-]/g, "");
+        const id      = parseInt(document.getElementById("ct-fId").value) || 0;
+        const title   = document.getElementById("ct-fTitle").value.trim();
+        const slug    = document.getElementById("ct-fSlug").value.trim() || CT_genSlug(title);
+        const img     = document.getElementById("ct-fImg").value.trim();
+        const desc    = document.getElementById("ct-fDesc").value.trim();
+        const tagsRaw = document.getElementById("ct-fTags").value.trim();
+        const tags    = tagsRaw ? tagsRaw.split(",").map(t => t.trim()).filter(Boolean) : [];
+
+        if (!title) { showToast("Title is required!", "error-t"); return; }
+
+        const btn = document.getElementById("ct-submitBtn");
+        btn.disabled = true; btn.textContent = "Saving...";
+
+        try {
+          const data = { uid, id, title, slug, img, desc, tags, createdAt: Date.now() };
+          if (CT_editingKey) {
+            await updateDoc(doc(db, 'category', CT_editingKey), data);
+            CT_allItems[CT_editingKey] = data;
+            showToast("Category updated!", "success");
+          } else {
+            const ref2 = await addDoc(collection(db, 'category'), data);
+            CT_allItems[ref2.id] = data;
+            showToast("Category added!", "success");
+          }
+          CT_editingKey = null;
+          CT_clearForm();
+          CT_renderItems(CT_allItems);
+        } catch(e) {
+          showToast("Error: " + e.message, "error-t");
+        }
+        btn.disabled = false;
+        btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Category`;
+      };
+
+      // ─── EDIT ──────────────────────────────────────────────
+      window.CT_editItem = function(key) {
+        const c = CT_allItems[key]; if (!c) return;
+        CT_editingKey = key;
+        document.getElementById("ct-fUid").value   = c.uid   || "";
+        document.getElementById("ct-fId").value    = c.id    || "";
+        document.getElementById("ct-fTitle").value = c.title || "";
+        document.getElementById("ct-fSlug").value  = c.slug  || "";
+        document.getElementById("ct-fImg").value   = c.img   || "";
+        document.getElementById("ct-fDesc").value  = c.desc  || "";
+        document.getElementById("ct-fTags").value  = Array.isArray(c.tags) ? c.tags.join(", ") : (c.tags || "");
+        if (c.img) {
+          document.getElementById('ct-imgThumb').src = c.img;
+          document.getElementById('ct-imgPreview').style.display = 'block';
+        }
+        document.getElementById("ct-formTitle").textContent = "Edit Category — " + (c.title || key);
+        document.getElementById("ct-submitBtn").innerHTML   = `✎ Update Category`;
+        document.getElementById("ct-addCard").scrollIntoView({ behavior: "smooth" });
+      };
+
+      window.CT_cancelEdit = function() { CT_editingKey = null; CT_clearForm(); };
+
+      function CT_clearForm() {
+        ["ct-fUid","ct-fId","ct-fTitle","ct-fSlug","ct-fImg","ct-fDesc","ct-fTags"].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.value = "";
+        });
+        document.getElementById('ct-imgPreview').style.display = 'none';
+        document.getElementById("ct-formTitle").textContent = "Add New Category";
+        document.getElementById("ct-submitBtn").innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Category`;
+        CT_editingKey = null;
+      }
+
+      // ─── DELETE ────────────────────────────────────────────
+      window.CT_deleteItem = async function(key) {
+        const c = CT_allItems[key];
+        if (!confirm(`Delete "${c?.title || key}"? This cannot be undone.`)) return;
+        try {
+          await deleteDoc(doc(db, 'category', key));
+          delete CT_allItems[key];
+          CT_renderItems(CT_allItems);
+          showToast("Category deleted.", "success");
         } catch(e) {
           showToast("Error: " + e.message, "error-t");
         }
