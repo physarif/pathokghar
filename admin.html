@@ -474,7 +474,7 @@
     <div style="font-size:0.62rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;">Admin Dashboard</div>
   </div>
   <button class="tab-item" data-section="students" onclick="openSection('students')" title="Books">
-    <i class="fa-solid fa-book"></i>
+    <i class="fa-solid fa-swatchbook"></i>
   </button>
   <button class="tab-item active" data-section="media" onclick="openSection('media')" title="Media">
     <i class="fa-solid fa-upload"></i>
@@ -504,8 +504,8 @@
 
         <div class="field-row">
           <div class="field">
-            <label>ID <span style="font-weight:300;text-transform:none;letter-spacing:0;">(auto)</span></label>
-            <input type="text" id="vi-fId" readonly style="opacity:0.5;cursor:default;"/>
+            <label>ID <span style="font-weight:300;text-transform:none;letter-spacing:0;">(numeric)</span></label>
+            <input type="number" id="vi-fId" placeholder="e.g. 101" min="1" step="1"/>
           </div>
           <div class="field">
             <label>Slug</label>
@@ -530,35 +530,26 @@
         </div>
 
         <div class="field">
-          <label>Cover Image</label>
-          <div style="display:flex;gap:0.5rem;align-items:center;">
-            <input type="text" id="vi-fImg" placeholder="URL or upload below" style="flex:1;"/>
-            <label style="cursor:pointer;padding:0.45rem 0.75rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:0.78rem;color:var(--muted);white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">
-              Upload
-              <input type="file" id="vi-fImgFile" accept="image/*" style="display:none;" onchange="VI_uploadImg(this)"/>
-            </label>
-          </div>
+          <label>Cover Image URL</label>
+          <input type="text" id="vi-fImg" placeholder="https://..."/>
           <div id="vi-imgPreview" style="margin-top:0.5rem;display:none;">
             <img id="vi-imgThumb" src="" style="height:64px;border-radius:8px;border:1px solid var(--border);object-fit:cover;"/>
           </div>
-          <div id="vi-imgUploadStatus" style="font-size:0.72rem;color:var(--muted);margin-top:0.25rem;"></div>
         </div>
 
         <div class="field">
-          <label>Book File (PDF/EPUB)</label>
-          <div style="display:flex;gap:0.5rem;align-items:center;">
-            <input type="text" id="vi-fFile" placeholder="URL or upload below" style="flex:1;"/>
-            <label style="cursor:pointer;padding:0.45rem 0.75rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:0.78rem;color:var(--muted);white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">
-              Upload
-              <input type="file" id="vi-fFileInput" accept=".pdf,.epub" style="display:none;" onchange="VI_uploadFile(this)"/>
-            </label>
-          </div>
-          <div id="vi-fileUploadStatus" style="font-size:0.72rem;color:var(--muted);margin-top:0.25rem;"></div>
+          <label>Book File URL (PDF/EPUB)</label>
+          <input type="text" id="vi-fFile" placeholder="https://..."/>
         </div>
 
         <div class="field">
-          <label>SEO Description</label>
-          <textarea id="vi-fSeo" placeholder="Short description for SEO..." rows="2"></textarea>
+          <label>Description</label>
+          <textarea id="vi-fDesc" placeholder="Book description..." rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label>Tags <span style="font-weight:300;text-transform:none;letter-spacing:0;">(comma separated)</span></label>
+          <input type="text" id="vi-fTags" placeholder="e.g. fiction, bangla, history"/>
         </div>
 
         <div class="btn-row">
@@ -1664,14 +1655,16 @@ x-amz-date:${amzDate}
 
       // ─── SUBMIT ──────────────────────────────────────────
       window.VI_submitBook = async function() {
-        const id       = document.getElementById("vi-fId").value.trim();
+        const id       = parseInt(document.getElementById("vi-fId").value) || 0;
         const title    = document.getElementById("vi-fTitle").value.trim();
         const slug     = document.getElementById("vi-fSlug").value.trim() || VI_genSlug(title);
         const img      = document.getElementById("vi-fImg").value.trim();
         const file     = document.getElementById("vi-fFile").value.trim();
         const author   = document.getElementById("vi-fAuthor").value;
         const category = document.getElementById("vi-fCategory").value;
-        const seo      = document.getElementById("vi-fSeo").value.trim();
+        const desc     = document.getElementById("vi-fDesc").value.trim();
+        const tagsRaw  = document.getElementById("vi-fTags").value.trim();
+        const tags     = tagsRaw ? tagsRaw.split(",").map(t => t.trim()).filter(Boolean) : [];
 
         if (!title)  { showToast("Title is required!", "error-t"); return; }
         if (!author) { showToast("Please select an author!", "error-t"); return; }
@@ -1680,7 +1673,7 @@ x-amz-date:${amzDate}
         btn.disabled = true; btn.textContent = "Saving...";
 
         try {
-          const data = { title, slug, img, file, author, category, seo, createdAt: Date.now() };
+          const data = { id, title, slug, img, file, author, category, desc, tags, createdAt: Date.now() };
           if (VI_editingKey) {
             await updateDoc(doc(db, 'books', VI_editingKey), data);
             allBooks[VI_editingKey] = data;
@@ -1704,12 +1697,13 @@ x-amz-date:${amzDate}
       window.VI_editItem = function(key) {
         const b = allBooks[key]; if (!b) return;
         VI_editingKey = key;
-        document.getElementById("vi-fId").value    = key;
-        document.getElementById("vi-fTitle").value = b.title    || "";
-        document.getElementById("vi-fSlug").value  = b.slug     || "";
-        document.getElementById("vi-fImg").value   = b.img      || "";
-        document.getElementById("vi-fFile").value  = b.file     || "";
-        document.getElementById("vi-fSeo").value   = b.seo      || "";
+        document.getElementById("vi-fId").value    = b.id      || "";
+        document.getElementById("vi-fTitle").value = b.title   || "";
+        document.getElementById("vi-fSlug").value  = b.slug    || "";
+        document.getElementById("vi-fImg").value   = b.img     || "";
+        document.getElementById("vi-fFile").value  = b.file    || "";
+        document.getElementById("vi-fDesc").value  = b.desc    || "";
+        document.getElementById("vi-fTags").value  = Array.isArray(b.tags) ? b.tags.join(", ") : (b.tags || "");
         VI_populateDropdowns(b.author || '', b.category || '');
         if (b.img) {
           document.getElementById('vi-imgThumb').src = b.img;
@@ -1723,12 +1717,9 @@ x-amz-date:${amzDate}
       window.VI_cancelEdit = function() { VI_editingKey = null; VI_clearForm(); };
 
       function VI_clearForm() {
-        ["vi-fTitle","vi-fSlug","vi-fImg","vi-fFile","vi-fSeo"].forEach(id => document.getElementById(id).value = "");
-        document.getElementById("vi-fId").value = VI_genId();
+        ["vi-fId","vi-fTitle","vi-fSlug","vi-fImg","vi-fFile","vi-fDesc","vi-fTags"].forEach(id => document.getElementById(id).value = "");
         VI_populateDropdowns();
         document.getElementById('vi-imgPreview').style.display = 'none';
-        document.getElementById('vi-imgUploadStatus').textContent = '';
-        document.getElementById('vi-fileUploadStatus').textContent = '';
         document.getElementById("vi-formTitle").textContent = "Add New Book";
         document.getElementById("vi-submitBtn").innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Book`;
         VI_editingKey = null;
@@ -1749,7 +1740,7 @@ x-amz-date:${amzDate}
       };
 
       // ─── INIT ─────────────────────────────────────────────
-      document.getElementById('vi-fId').value = VI_genId();
+      // ID is entered manually by user
       VI_loadDropdowns();
 
     })();
