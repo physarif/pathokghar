@@ -26,6 +26,9 @@
       .upload-all-btn:disabled, .upload-btn:disabled { background: #21262d; color: #484f58; }
       .sk-box { background: linear-gradient(90deg,#222220 25%,#2a2a28 50%,#222220 75%); background-size:200% 100%; }
       #bottomTabBar { background: #1c2128; border-color: #444c56; box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04); }
+      @media (min-width: 768px) {
+        #bottomTabBar { box-shadow: 2px 0 20px rgba(0,0,0,0.4); border-right-color: #30363d; }
+      }
     }
  
     body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; -webkit-user-select:none; user-select:none; }
@@ -36,7 +39,7 @@
     @keyframes spin     { to{transform:rotate(360deg)} }
     @keyframes shimmer  { to{background-position:-200% 0} }
  
-    /* ── BOTTOM TAB BAR ── */
+    /* ── BOTTOM TAB BAR (mobile) ── */
     #bottomTabBar {
       position: fixed; bottom: 12px; left: 28px; right: 28px; z-index: 200;
       background: var(--surface);
@@ -72,6 +75,73 @@
       border-radius: 16px;
       transition: opacity 0.18s ease;
     }
+
+    /* ── DESKTOP SIDEBAR ── */
+    @media (min-width: 768px) {
+      #bottomTabBar {
+        position: fixed;
+        top: 0; left: 0; bottom: 0; right: auto;
+        width: 220px;
+        height: 100vh;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        border-radius: 0;
+        border: none;
+        border-right: 1px solid var(--border);
+        box-shadow: 2px 0 20px rgba(0,0,0,0.06);
+        padding: 0;
+        margin-bottom: 0;
+        overflow: hidden;
+      }
+      #sidebar-brand {
+        display: flex !important;
+      }
+      .tab-item {
+        flex: none;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 0.72rem;
+        height: 44px;
+        padding: 0 1rem;
+        border-radius: 10px;
+        margin: 2px 0.6rem;
+        color: var(--muted);
+        font-size: 0.83rem;
+        font-weight: 500;
+        transition: background 0.15s, color 0.15s;
+      }
+      .tab-item i {
+        font-size: 0.95rem;
+        width: 18px;
+        text-align: center;
+        flex-shrink: 0;
+        transition: transform 0.15s;
+      }
+      .tab-item::after {
+        content: attr(title);
+        font-size: 0.83rem;
+        font-weight: 500;
+        font-family: 'Inter', sans-serif;
+      }
+      .tab-item.active {
+        color: var(--accent);
+        background: var(--accent-soft);
+      }
+      .tab-item.active i { transform: none; }
+      .tab-item:active i { transform: scale(0.9); }
+      .tab-item:hover:not(.active) { background: var(--border); color: var(--text); }
+      .tab-item.active::before { display: none; }
+
+      .section-page { margin-left: 220px; }
+      .section-inner { padding-bottom: 3rem; }
+    }
+    @media (prefers-color-scheme: dark) and (min-width: 768px) {
+      #bottomTabBar { box-shadow: 2px 0 20px rgba(0,0,0,0.35); }
+      .tab-item:hover:not(.active) { background: var(--border2); color: var(--text); }
+    }
+    #sidebar-brand { display: none; }
 
     /* ── DASHBOARD old styles not needed ── */
     .container { width:100%; max-width:680px; margin:0 auto; }
@@ -182,6 +252,10 @@
     }
     .back-btn { display:none; }
     .back-title { font-size:0.95rem; color:var(--text); font-weight:600; font-family:'Playfair Display',serif; letter-spacing:-0.01em; }
+    @media (min-width: 768px) {
+      .back-bar { padding: 0 1.5rem; }
+      .section-inner header { display: none; }
+    }
 
     /* ── SHARED COMPONENT STYLES ── */
     .card { background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:1.75rem; box-shadow:var(--shadow); margin-bottom:1.75rem; animation:fadeUp 0.5s ease 0.1s both; }
@@ -384,6 +458,10 @@
 </div>
 
 <nav id="bottomTabBar" style="display:none;">
+  <div id="sidebar-brand" style="padding:1.5rem 1.2rem 1rem; border-bottom:1px solid var(--border); margin-bottom:0.4rem; flex-shrink:0;">
+    <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:500;color:var(--text);letter-spacing:-0.01em;line-height:1.2;">Pathok Ghar</div>
+    <div style="font-size:0.62rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-top:0.2rem;">Admin Dashboard</div>
+  </div>
   <button class="tab-item" data-section="students" onclick="openSection('students')" title="Students">
     <i class="fa-solid fa-user-graduate"></i>
   </button>
@@ -393,7 +471,6 @@
   <button class="tab-item" data-section="results" onclick="openSection('results')" title="Results">
     <i class="fa-solid fa-medal"></i>
   </button>
-
 </nav>
 
 <!-- Watch Categories section is now embedded inside Watch tab (above) -->
