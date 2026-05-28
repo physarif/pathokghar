@@ -469,17 +469,17 @@
 <nav id="bottomTabBar" style="display:none;">
   <div id="sidebar-brand" style="padding:1.5rem 1.2rem 1rem; border-bottom:1px solid var(--border); margin-bottom:0.4rem; flex-shrink:0;">
     <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:500;color:var(--text);letter-spacing:-0.01em;line-height:1.2;">Pathok Ghar</div>
+    <div style="font-size:0.62rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-top:0.25rem;">Admin Dashboard</div>
   </div>
   <div id="sidebar-footer" style="padding:0.9rem 1.2rem;border-top:1px solid var(--border);">
-    <div style="font-size:0.62rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;">Admin Dashboard</div>
   </div>
   <button class="tab-item active" data-section="media" onclick="openSection('media')" title="Media">
     <i class="fa-solid fa-upload"></i>
   </button>
-  <button class="tab-item" data-section="students" onclick="openSection('students')" title="Books">
+  <button class="tab-item" data-section="books" onclick="openSection('books')" title="Books">
     <i class="fa-solid fa-swatchbook"></i>
   </button>
-  <button class="tab-item" data-section="results" onclick="openSection('results')" title="Author">
+  <button class="tab-item" data-section="authors" onclick="openSection('authors')" title="Author">
     <i class="fa-solid fa-user"></i>
   </button>
   <button class="tab-item" data-section="category" onclick="openSection('category')" title="Category">
@@ -489,7 +489,7 @@
 
 <!-- Watch Categories section is now embedded inside Watch tab (above) -->
 
-<div id="section-students" class="section-page" style="display:none;">
+<div id="section-books" class="section-page" style="display:none;">
   <div class="section-inner">
     <header>
       <h1>Manage Books</h1>
@@ -608,7 +608,7 @@
 
 <!-- Stations section is now embedded inside Listen tab -->
 
-<div id="section-results" class="section-page" style="display:none;">
+<div id="section-authors" class="section-page" style="display:none;">
   <div class="section-inner">
     <header>
       <h1>Manage Authors</h1>
@@ -932,17 +932,14 @@
     sentinel._pagerObserver = obs;
   };
 
-  var LOAD_FNS = { students: "VI_loadAll", stations: "ST_loadStations", results: "EP_loadAll", media: "MD_loadLibrary", category: "CT_loadAll" };
+  var LOAD_FNS = { media: "MD_loadLibrary", books: "VI_loadAll", authors: "EP_loadAll", category: "CT_loadAll" };
   var loadedSections = {};
   var currentSection = "media";
 
   var SECTION_TITLES = {
     media: "Media Manager",
-    channels: "TV Channels",
-    watch_category: "Watch Categories",
-    students: "Manage Books",
-    stations: "Radio Stations",
-    results: "Manage Authors",
+    books: "Manage Books",
+    authors: "Manage Authors",
     category: "Manage Categories"
   };
 
@@ -994,11 +991,7 @@
 
   function handleHash() {
     var hash = window.location.hash.replace("#", "").trim();
-    // watch_category/videos now inside students tab
-    if (hash === "watch_category" || hash === "videos" || hash === "watch") hash = "students";
-    // episodes/podcast_category/podcast now inside results tab
-    if (hash === "episodes" || hash === "podcast_category" || hash === "podcast" || hash === "listen") hash = "results";
-    var validKeys = ["channels", "students", "stations", "results", "media", "category"];
+    var validKeys = ["media", "books", "authors", "category"];
     var key = (hash && validKeys.indexOf(hash) !== -1) ? hash : "media";
     showSection(key);
   }
@@ -1011,9 +1004,7 @@
     document.getElementById("bottomTabBar").style.display = "flex";
     initAllSections();
     var hash = window.location.hash.replace("#", "").trim();
-    if (hash === "watch_category" || hash === "videos" || hash === "watch") hash = "students";
-    if (hash === "episodes" || hash === "podcast_category" || hash === "podcast" || hash === "listen") hash = "results";
-    var validKeys = ["channels", "students", "stations", "results", "media", "category"];
+    var validKeys = ["media", "books", "authors", "category"];
     var startKey = (hash && validKeys.indexOf(hash) !== -1) ? hash : "media";
     showSection(startKey);
   }
