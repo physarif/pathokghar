@@ -469,9 +469,7 @@
 <nav id="bottomTabBar" style="display:none;">
   <div id="sidebar-brand" style="padding:1.5rem 1.2rem 1rem; border-bottom:1px solid var(--border); margin-bottom:0.4rem; flex-shrink:0;">
     <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:500;color:var(--text);letter-spacing:-0.01em;line-height:1.2;">Pathok Ghar</div>
-    <div style="font-size:0.62rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-top:0.25rem;">Admin Dashboard</div>
-  </div>
-  <div id="sidebar-footer" style="padding:0.9rem 1.2rem;border-top:1px solid var(--border);">
+    <div style="font-size:0.62rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-top:0.2rem;">Admin Dashboard</div>
   </div>
   <button class="tab-item active" data-section="media" onclick="openSection('media')" title="Media">
     <i class="fa-solid fa-upload"></i>
@@ -637,7 +635,11 @@
         </div>
         <div class="field">
           <label>Title / Name</label>
-          <input type="text" id="ep-fTitle" placeholder="Author name"/>
+          <input type="text" id="ep-fTitle" placeholder="Author name" oninput="(function(v){var s=document.getElementById('ep-fSlug');if(s&&!s.dataset.manual)s.value=v.toLowerCase().replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').trim();})(this.value)"/>
+        </div>
+        <div class="field">
+          <label>Slug</label>
+          <input type="text" id="ep-fSlug" placeholder="e.g. humayun-ahmed" oninput="this.dataset.manual='1'"/>
         </div>
 
         <div class="field">
@@ -1699,11 +1701,11 @@ x-amz-date:${amzDate}
         const catSel  = document.getElementById('vi-fCategory');
         authSel.innerHTML = '<option value="">— Select Author —</option>' +
           Object.entries(VI_authors).map(([id, a]) =>
-            `<option value="${id}" ${selAuthor===id?'selected':''}>${VI_esc(a.name || id)}</option>`
+            `<option value="${id}" ${selAuthor===id?'selected':''}>${VI_esc(a.title || a.name || id)}</option>`
           ).join('');
         catSel.innerHTML = '<option value="">— Select Category —</option>' +
           Object.entries(VI_categories).map(([id, c]) =>
-            `<option value="${id}" ${selCat===id?'selected':''}>${VI_esc(c.name || id)}</option>`
+            `<option value="${id}" ${selCat===id?'selected':''}>${VI_esc(c.title || c.name || id)}</option>`
           ).join('');
       }
 
@@ -2057,6 +2059,7 @@ x-amz-date:${amzDate}
         const uid     = (document.getElementById("ep-fUid").value.trim() || EP_makeUid()).replace(/[^a-zA-Z0-9_-]/g, "");
         const id      = parseInt(document.getElementById("ep-fId").value) || 0;
         const title   = document.getElementById("ep-fTitle").value.trim();
+        const slug    = document.getElementById("ep-fSlug").value.trim() || title.toLowerCase().replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').trim();
         const img     = document.getElementById("ep-fImg").value.trim();
         const desc    = document.getElementById("ep-fDesc").value.trim();
         const tagsRaw = document.getElementById("ep-fTags").value.trim();
@@ -2069,7 +2072,7 @@ x-amz-date:${amzDate}
 
         try {
           const key  = EP_editingKey || uid;
-          const data = { uid, id, title, img, desc, tags, createdAt: Date.now() };
+          const data = { uid, id, title, slug, img, desc, tags, createdAt: Date.now() };
           await set(ref(db, 'authors/' + key), data);
           EP_allEpisodes[key] = data;
           showToast(EP_editingKey ? "Author updated!" : "Author added!", "success");
@@ -2090,6 +2093,7 @@ x-amz-date:${amzDate}
         document.getElementById("ep-fUid").value   = a.uid   || "";
         document.getElementById("ep-fId").value    = a.id    || "";
         document.getElementById("ep-fTitle").value = a.title || "";
+        document.getElementById("ep-fSlug").value  = a.slug  || "";
         document.getElementById("ep-fImg").value   = a.img   || "";
         document.getElementById("ep-fDesc").value  = a.desc  || "";
         document.getElementById("ep-fTags").value  = Array.isArray(a.tags) ? a.tags.join(", ") : (a.tags || "");
@@ -2105,7 +2109,7 @@ x-amz-date:${amzDate}
       window.EP_cancelEdit = function() { EP_editingKey = null; EP_clearForm(); };
 
       function EP_clearForm() {
-        ["ep-fUid","ep-fId","ep-fTitle","ep-fImg","ep-fDesc","ep-fTags"].forEach(id => {
+        ["ep-fUid","ep-fId","ep-fTitle","ep-fSlug","ep-fImg","ep-fDesc","ep-fTags"].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.value = "";
         });
