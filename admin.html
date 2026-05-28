@@ -479,8 +479,8 @@
   <button class="tab-item active" data-section="media" onclick="openSection('media')" title="Media">
     <i class="fa-solid fa-upload"></i>
   </button>
-  <button class="tab-item" data-section="results" onclick="openSection('results')" title="Results">
-    <i class="fa-solid fa-medal"></i>
+  <button class="tab-item" data-section="results" onclick="openSection('results')" title="Author">
+    <i class="fa-solid fa-feather-pointed"></i>
   </button>
 </nav>
 
@@ -531,7 +531,7 @@
 
         <div class="field">
           <label>Cover Image URL</label>
-          <input type="text" id="vi-fImg" placeholder="https://..."/>
+          <input type="text" id="vi-fImg" placeholder="https://..." oninput="(function(v){var p=document.getElementById('vi-imgPreview'),t=document.getElementById('vi-imgThumb');if(v){t.src=v;p.style.display='block';}else{p.style.display='none';}})(this.value)"/>
           <div id="vi-imgPreview" style="margin-top:0.5rem;display:none;">
             <img id="vi-imgThumb" src="" style="height:64px;border-radius:8px;border:1px solid var(--border);object-fit:cover;"/>
           </div>
@@ -599,96 +599,71 @@
 <div id="section-results" class="section-page" style="display:none;">
   <div class="section-inner">
     <header>
-      <h1>Manage Results</h1>
-      <p>Add, View & Manage Exam Results</p>
+      <h1>Manage Authors</h1>
+      <p>Add, View &amp; Manage Authors</p>
       <div class="divider"></div>
     </header>
 
-    <!-- ══ PANEL: Results ══ -->
+    <!-- ══ PANEL: Authors ══ -->
     <div id="po-panel-episodes">
-      <!-- Add Result -->
+      <!-- Add Author -->
       <div class="card" id="ep-addCard">
-        <div class="card-title" id="ep-formTitle">Add New Result</div>
+        <div class="card-title" id="ep-formTitle">Add New Author</div>
 
         <div class="field-row">
           <div class="field">
-            <label>Year</label>
-            <select id="ep-fYear" onchange="EP_autoLoadStudents()">
-              <option value="">— Select year —</option>
-              <option value="2026">2026</option>
-              <option value="2027">2027</option>
-              <option value="2028">2028</option>
-              <option value="2029">2029</option>
-              <option value="2030">2030</option>
-            </select>
+            <label>ID <span style="font-weight:300;text-transform:none;letter-spacing:0;">(numeric)</span></label>
+            <input type="number" id="ep-fId" placeholder="e.g. 1" min="1" step="1"/>
           </div>
           <div class="field">
-            <label>Terminal</label>
-            <select id="ep-fTerminal" onchange="EP_autoLoadStudents()">
-              <option value="">— Select terminal —</option>
-              <option value="1st Terminal">1st Terminal</option>
-              <option value="2nd Terminal">2nd Terminal</option>
-              <option value="3rd Terminal">3rd Terminal</option>
-              <option value="Final Exam">Final Exam</option>
-            </select>
+            <label>Title / Name</label>
+            <input type="text" id="ep-fTitle" placeholder="Author name"/>
           </div>
         </div>
 
-        <div class="field-row">
-          <div class="field">
-            <label>Class</label>
-            <select id="ep-fClass" onchange="EP_autoLoadStudents()">
-              <option value="">— Select class —</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>Subject</label>
-            <select id="ep-fSubject" onchange="EP_autoLoadStudents()">
-              <option value="">— Select subject —</option>
-              <option value="Bangla">Bangla</option>
-              <option value="English">English</option>
-              <option value="Mathematics">Mathematics</option>
-              <option value="Science">Science</option>
-              <option value="Bangladesh &amp; Global Studies">Bangladesh &amp; Global Studies</option>
-              <option value="Islam &amp; Moral Education">Islam &amp; Moral Education</option>
-            </select>
+        <div class="field">
+          <label>Image URL</label>
+          <input type="text" id="ep-fImg" placeholder="https://..." oninput="(function(v){var p=document.getElementById('ep-imgPreview'),t=document.getElementById('ep-imgThumb');if(v){t.src=v;p.style.display='block';}else{p.style.display='none';}})(this.value)"/>
+          <div id="ep-imgPreview" style="margin-top:0.5rem;display:none;">
+            <img id="ep-imgThumb" src="" style="height:64px;border-radius:8px;border:1px solid var(--border);object-fit:cover;"/>
           </div>
         </div>
 
-        <!-- Student marks list — shown after Load -->
-        <div id="ep-studentRows" style="display:none; margin-bottom:0.85rem;">
-          <div style="font-size:0.72rem;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;">Students &amp; Marks</div>
-          <div id="ep-studentList"></div>
+        <div class="field">
+          <label>Description</label>
+          <textarea id="ep-fDesc" placeholder="Short bio or description..." rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label>Tags <span style="font-weight:300;text-transform:none;letter-spacing:0;">(comma separated)</span></label>
+          <input type="text" id="ep-fTags" placeholder="e.g. novelist, poet, bangladeshi"/>
         </div>
 
         <div class="btn-row">
           <button class="action-btn" id="ep-cancelBtn" onclick="EP_cancelEdit()">Cancel</button>
           <button class="action-btn primary" id="ep-submitBtn" onclick="EP_submitEpisode()">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Add Result
+            Add Author
           </button>
         </div>
       </div>
 
-      <!-- Result List -->
+      <!-- Author List -->
       <div style="animation: fadeUp 0.5s ease 0.2s both;">
         <div class="lib-header">
-          <span class="lib-title">All Results</span>
+          <span class="lib-title">All Authors</span>
           <div class="lib-right">
-            <span class="lib-count" id="ep-itemCount">0 results</span>
+            <span class="lib-count" id="ep-itemCount">0 authors</span>
             <button class="refresh-btn" id="ep-refreshBtn" onclick="EP_loadAll()">
               <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
               Refresh
             </button>
           </div>
         </div>
-        <div class="filter-tabs" id="ep-filterTabs">
-            <button class="ftab active" onclick="EP_filterByCategory('all')">All</button>
-          </div>
 
         <div class="search-wrap">
           <div class="search-row">
-            <input type="text" placeholder="Search results..." id="ep-searchInput" oninput="EP_filterItems()"/>
+            <input type="text" placeholder="Search authors..." id="ep-searchInput" oninput="EP_filterItems()"/>
             <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </div>
         </div>
@@ -851,7 +826,7 @@
     watch_category: "Watch Categories",
     students: "Manage Books",
     stations: "Radio Stations",
-    results: "Manage Results"
+    results: "Manage Authors"
   };
 
   // ─── KEY EDIT TOGGLE (shared) ───────────────────────────────
@@ -1903,28 +1878,25 @@ x-amz-date:${amzDate}
         // ─── TOAST ───────────────────────────────────────────
     })();
 
-    // === EPISODES (Results) ===
+    // === EPISODES (Authors) ===
     (function() {
-      var db = _rtdb;
-      let EP_allEpisodes   = {};   // results node entries
-      let EP_allCategories = {};   // { classValue: true } used for filter tabs
-      let EP_editingKey    = null;
-      let EP_activeFilter  = "all";
-      let EP_allStudents   = {};   // students node cache
+      var db = _firestore;
+      let EP_allEpisodes = {};
+      let EP_editingKey  = null;
 
-      // ─── LOAD all students + results ──────────────────────
+      function EP_esc(str) {
+        if (!str) return "";
+        return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+      }
+
+      // ─── LOAD ──────────────────────────────────────────────
       window.EP_loadAll = async function() {
         const btn = document.getElementById("ep-refreshBtn");
         btn.classList.add("loading");
         try {
-          const [studSnap, resSnap] = await Promise.all([
-            get(child(ref(db), "students")),
-            get(child(ref(db), "results"))
-          ]);
-          EP_allStudents = studSnap.exists() ? studSnap.val() : {};
-          EP_allEpisodes = resSnap.exists()  ? resSnap.val()  : {};
-          EP_populateClassSelect();
-          EP_buildFilterTabs();
+          const snap = await getDocs(query(collection(db, 'author'), orderBy('id')));
+          EP_allEpisodes = {};
+          snap.forEach(d => { EP_allEpisodes[d.id] = d.data(); });
           EP_renderItems(EP_allEpisodes);
         } catch(e) {
           showToast("Failed to load: " + e.message, "error-t");
@@ -1932,291 +1904,106 @@ x-amz-date:${amzDate}
         btn.classList.remove("loading");
       };
 
-      // ─── Populate Class dropdown from students node ────────
-      function EP_populateClassSelect() {
-        const classSet = new Set();
-        Object.values(EP_allStudents).forEach(s => { if (s.class) classSet.add(s.class); });
-        const sel = document.getElementById("ep-fClass");
-        const current = sel.value;
-        sel.innerHTML = `<option value="">— Select class —</option>`;
-        const order = ["Play","Nursery","One","Two","Three","Four","Five"];
-        [...classSet].sort((a,b) => {
-          const ai = order.indexOf(a), bi = order.indexOf(b);
-          if (ai !== -1 && bi !== -1) return ai - bi;
-          if (ai !== -1) return -1; if (bi !== -1) return 1;
-          return a.localeCompare(b);
-        }).forEach(cls => {
-          const opt = document.createElement("option");
-          opt.value = cls; opt.textContent = cls;
-          sel.appendChild(opt);
-        });
-        if (current) sel.value = current;
-      }
-
-      // ─── Filter tabs (by class) ────────────────────────────
-      function EP_buildFilterTabs() {
-        const classSet = new Set();
-        Object.values(EP_allEpisodes).forEach(r => { if (r.class) classSet.add(r.class); });
-        const tabs = document.getElementById("ep-filterTabs");
-        tabs.innerHTML = `<button class="ftab ${EP_activeFilter === 'all' ? 'active' : ''}" onclick="EP_filterByCategory('all')">All</button>`;
-        const order = ["Play","Nursery","One","Two","Three","Four","Five"];
-        [...classSet].sort((a,b) => {
-          const ai = order.indexOf(a), bi = order.indexOf(b);
-          if (ai !== -1 && bi !== -1) return ai - bi;
-          return a.localeCompare(b);
-        }).forEach(cls => {
-          tabs.innerHTML += `<button class="ftab ${EP_activeFilter === cls ? 'active' : ''}" onclick="EP_filterByCategory('${EP_esc(cls)}')">${EP_esc(cls)}</button>`;
-        });
-      }
-
-      window.EP_filterByCategory = function(val) {
-        EP_activeFilter = val;
-        document.querySelectorAll("#ep-filterTabs .ftab").forEach(t => t.classList.remove("active"));
-        event.target.classList.add("active");
-        EP_filterItems();
-      };
-
-      // ─── RENDER list ────────────────────────────────────────
+      // ─── RENDER ────────────────────────────────────────────
       function EP_renderItems(data) {
         const list = document.getElementById("ep-itemList");
-        const terminalOrder = { 'Final Exam': 4, '3rd Terminal': 3, '2nd Terminal': 2, '1st Terminal': 1 };
-          let entries = Object.entries(data).sort((a, b) => {
-            const yearDiff = (parseInt(b[1].year)||0) - (parseInt(a[1].year)||0);
-            if (yearDiff !== 0) return yearDiff;
-            return (terminalOrder[b[1].terminal]||0) - (terminalOrder[a[1].terminal]||0);
-          });
-        if (EP_activeFilter !== "all") {
-          entries = entries.filter(([, v]) => v.class === EP_activeFilter);
-        }
-        document.getElementById("ep-itemCount").textContent = entries.length + " result" + (entries.length !== 1 ? "s" : "");
+        const q = (document.getElementById("ep-searchInput").value || "").toLowerCase();
+        let entries = Object.entries(data).filter(([,a]) =>
+          !q || (a.title||"").toLowerCase().includes(q) || (a.desc||"").toLowerCase().includes(q) ||
+          (Array.isArray(a.tags) ? a.tags.join(" ") : (a.tags||"")).toLowerCase().includes(q)
+        ).sort((a,b) => (parseInt(a[1].id)||0) - (parseInt(b[1].id)||0));
+        document.getElementById("ep-itemCount").textContent = entries.length + " author" + (entries.length !== 1 ? "s" : "");
         createPager(entries, list, "ep-sentinel",
-          ([key, r]) => {
-            return `<div class="list-item">
-              <div class="li-info">
-                <div class="li-name">${EP_esc(r.class || "—")} · ${EP_esc(r.subject || "—")}</div>
-                <div class="li-meta">
-                  <span class="li-id">${EP_esc(r.year || "—")}</span>
-                  <span class="li-cat">${EP_esc(r.terminal || "—")}</span>
-                </div>
-              </div>
-              <div class="li-actions">
-                <button class="si-btn edit" onclick="EP_editItem('${EP_esc(key)}')">Edit</button>
-                <button class="si-btn del" onclick="EP_deleteItem('${EP_esc(key)}')">Delete</button>
-              </div>
-            </div>`;
+          ([key, a]) => {
+            const imgTag = a.img
+              ? `<img class="li-thumb" src="${EP_esc(a.img)}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/><div class="li-thumb-placeholder" style="display:none;">✍️</div>`
+              : `<div class="li-thumb-placeholder">✍️</div>`;
+            const tagsHtml = Array.isArray(a.tags) && a.tags.length
+              ? a.tags.map(t => `<span class="cat-badge">${EP_esc(t)}</span>`).join("")
+              : "";
+            return `<div class="list-item">${imgTag}<div class="li-info"><div class="li-name">${EP_esc(a.title || key)}</div><div class="li-meta"><span class="li-id">#${EP_esc(String(a.id||"—"))}</span>${tagsHtml}</div></div><div class="li-actions"><button class="si-btn edit" onclick="EP_editItem('${EP_esc(key)}')">Edit</button><button class="si-btn del" onclick="EP_deleteItem('${EP_esc(key)}')">Del</button></div></div>`;
           },
-          `<div class="empty-state"><div class="empty-icon">🏅</div>No results yet. Add one above!</div>`
+          `<div class="empty-state"><div class="empty-icon">✍️</div>No authors yet. Add one above!</div>`
         );
       }
 
-      function EP_esc(str) {
-        if (!str) return "";
-        return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
-      }
+      window.EP_filterItems = function() { EP_renderItems(EP_allEpisodes); };
 
-      window.EP_filterItems = function() {
-        const q = document.getElementById("ep-searchInput").value.toLowerCase();
-        if (!q) { EP_renderItems(EP_allEpisodes); return; }
-        const filtered = {};
-        Object.entries(EP_allEpisodes).forEach(([k, v]) => {
-          if ((v.class||"").toLowerCase().includes(q) || (v.subject||"").toLowerCase().includes(q) ||
-              (v.year||"").toString().includes(q) || (v.terminal||"").toLowerCase().includes(q) || k.toLowerCase().includes(q))
-            filtered[k] = v;
-        });
-        EP_renderItems(filtered);
-      };
-
-      // ─── AUTO-TRIGGER on select change ────────────────────
-      window.EP_autoLoadStudents = function() {
-        const year     = document.getElementById("ep-fYear").value;
-        const terminal = document.getElementById("ep-fTerminal").value;
-        const cls      = document.getElementById("ep-fClass").value;
-        const subject  = document.getElementById("ep-fSubject").value;
-        // hide students if any field is empty
-        if (!year || !terminal || !cls || !subject) {
-          document.getElementById("ep-studentRows").style.display = "none";
-          
-          document.getElementById("ep-studentList").innerHTML = "";
-          return;
-        }
-        EP_loadStudents();
-      };
-
-      // ─── LOAD STUDENTS for form ────────────────────────────
-      window.EP_loadStudents = async function() {
-        const year     = document.getElementById("ep-fYear").value;
-        const terminal = document.getElementById("ep-fTerminal").value;
-        const cls      = document.getElementById("ep-fClass").value;
-        const subject  = document.getElementById("ep-fSubject").value;
-        if (!year || !terminal || !cls || !subject) return;
-
-        // Reload students if empty
-        if (!Object.keys(EP_allStudents).length) {
-          try {
-            const snap = await get(child(ref(db), "students"));
-            EP_allStudents = snap.exists() ? snap.val() : {};
-            EP_populateClassSelect();
-            document.getElementById("ep-fClass").value = cls;
-          } catch(e) { showToast("Failed to load students: " + e.message, "error-t"); return; }
-        }
-
-        const classStudents = Object.entries(EP_allStudents)
-          .filter(([, s]) => s.class === cls)
-          .sort((a, b) => (parseInt(a[1].roll)||0) - (parseInt(b[1].roll)||0));
-
-        if (!classStudents.length) {
-          showToast("No students found in Class " + cls + "!", "error-t"); return;
-        }
-
-        // Always check Firebase for existing result with this exact combination
-        const _termMap = {"1st Terminal":"t1","2nd Terminal":"t2","3rd Terminal":"t3","Final Exam":"fe"};
-        const _clsMap  = {"Play":"pl","Nursery":"nu","One":"1","Two":"2","Three":"3","Four":"4","Five":"5"};
-        const _subjMap = {"Bangla":"bn","English":"en","Mathematics":"math","Science":"sci","Bangladesh & Global Studies":"bgs","Islam & Moral Education":"ime"};
-        const resultKey = `${year}-${_termMap[terminal]||"t0"}-cls${_clsMap[cls]||cls}-${_subjMap[subject]||subject}`.toLowerCase();
-
-        let existingMarks = {};
-        try {
-          const rSnap = await get(child(ref(db), "results/" + resultKey + "/marks"));
-          if (rSnap.exists()) {
-            existingMarks = rSnap.val();
-            EP_editingKey = resultKey;
-          } else {
-            EP_editingKey = null;
-          }
-        } catch(e) { /* ignore */ }
-
-        // Render student rows
-        const listEl = document.getElementById("ep-studentList");
-        listEl.innerHTML = classStudents.map(([key, s]) => {
-          const sid = s.student_id || key;
-          const existing = existingMarks[sid] !== undefined ? existingMarks[sid] : "";
-          const picTag = s.photo
-            ? `<img src="${EP_esc(s.photo)}" style="width:36px;height:36px;border-radius:8px;object-fit:cover;border:1px solid var(--border);display:block;flex-shrink:0;" onerror="this.style.display='none';this.nextSibling.style.display='flex'" alt=""/><div style="display:none;width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:var(--bg);align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;">🎓</div>`
-            : `<div style="width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;">🎓</div>`;
-          return `<div style="display:flex;align-items:center;gap:0.6rem;padding:0.55rem 0;border-bottom:1px solid var(--border);" data-sid="${EP_esc(sid)}">
-            ${picTag}
-            <div style="flex:1;min-width:0;">
-              <div style="font-size:0.82rem;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${EP_esc(s.name || key)}</div>
-              <div style="font-size:0.7rem;color:var(--muted);">#${EP_esc(s.roll||"—")} · ${EP_esc(s.student_id||"—")}</div>
-            </div>
-            <input type="number" min="0" max="100" step="0.5"
-              value="${EP_esc(String(existing))}"
-              placeholder="Marks"
-              style="width:72px;padding:0.4rem 0.5rem;border:1px solid var(--border);border-radius:7px;font-size:0.82rem;font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);outline:none;text-align:center;transition:border-color 0.2s;flex-shrink:0;"
-              onfocus="this.style.borderColor='var(--accent)'"
-              onblur="this.style.borderColor='var(--border)'"
-              class="ep-marks-input"
-              data-sid="${EP_esc(sid)}"/>
-          </div>`;
-        }).join('');
-        // remove border on last row
-        const rows = listEl.children;
-        if (rows.length) rows[rows.length-1].style.borderBottom = "none";
-
-        document.getElementById("ep-studentRows").style.display = "block";
-        
-      };
-
-      // ─── SUBMIT (save result) ──────────────────────────────
+      // ─── SUBMIT ────────────────────────────────────────────
       window.EP_submitEpisode = async function() {
-        const year     = document.getElementById("ep-fYear").value;
-        const terminal = document.getElementById("ep-fTerminal").value;
-        const cls      = document.getElementById("ep-fClass").value;
-        const subject  = document.getElementById("ep-fSubject").value;
+        const id      = parseInt(document.getElementById("ep-fId").value) || 0;
+        const title   = document.getElementById("ep-fTitle").value.trim();
+        const img     = document.getElementById("ep-fImg").value.trim();
+        const desc    = document.getElementById("ep-fDesc").value.trim();
+        const tagsRaw = document.getElementById("ep-fTags").value.trim();
+        const tags    = tagsRaw ? tagsRaw.split(",").map(t => t.trim()).filter(Boolean) : [];
 
-        if (!year)     { showToast("Please select a year!", "error-t"); return; }
-        if (!terminal) { showToast("Please select a terminal!", "error-t"); return; }
-        if (!cls)      { showToast("Please select a class!", "error-t"); return; }
-        if (!subject)  { showToast("Please select a subject!", "error-t"); return; }
-
-        // Collect marks
-        const marks = {};
-        document.querySelectorAll(".ep-marks-input").forEach(inp => {
-          const sid = inp.dataset.sid;
-          const val = inp.value.trim();
-          if (sid && val !== "") marks[sid] = parseFloat(val);
-        });
-
-        // Key: short slug (e.g. 2026-fe-cls5-math)
-        const _termMap2 = {"1st Terminal":"t1","2nd Terminal":"t2","3rd Terminal":"t3","Final Exam":"fe"};
-        const _clsMap2  = {"Play":"pl","Nursery":"nu","One":"1","Two":"2","Three":"3","Four":"4","Five":"5"};
-        const _subjMap2 = {"Bangla":"bn","English":"en","Mathematics":"math","Science":"sci","Bangladesh & Global Studies":"bgs","Islam & Moral Education":"ime"};
-        const key = EP_editingKey || `${year}-${_termMap2[terminal]||"t0"}-cls${_clsMap2[cls]||cls}-${_subjMap2[subject]||subject}`.toLowerCase();
+        if (!title) { showToast("Name is required!", "error-t"); return; }
 
         const btn = document.getElementById("ep-submitBtn");
         btn.disabled = true; btn.textContent = "Saving...";
 
         try {
-          const data = { year, terminal, class: cls, subject, marks };
-          await set(ref(db, "results/" + key), data);
-          EP_allEpisodes[key] = data;
-          EP_buildFilterTabs();
-          EP_renderItems(EP_allEpisodes);
-          const wasEditing = !!EP_editingKey;
+          const data = { id, title, img, desc, tags, createdAt: Date.now() };
+          if (EP_editingKey) {
+            await updateDoc(doc(db, 'author', EP_editingKey), data);
+            EP_allEpisodes[EP_editingKey] = data;
+            showToast("Author updated!", "success");
+          } else {
+            const ref2 = await addDoc(collection(db, 'author'), data);
+            EP_allEpisodes[ref2.id] = data;
+            showToast("Author added!", "success");
+          }
           EP_editingKey = null;
           EP_clearForm();
-          showToast(wasEditing ? "Result updated!" : "Result saved!", "success");
+          EP_renderItems(EP_allEpisodes);
         } catch(e) {
           showToast("Error: " + e.message, "error-t");
         }
-
         btn.disabled = false;
-        btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Result`;
+        btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Author`;
       };
 
       // ─── EDIT ──────────────────────────────────────────────
-      window.EP_editItem = async function(key) {
-        const r = EP_allEpisodes[key];
-        if (!r) return;
+      window.EP_editItem = function(key) {
+        const a = EP_allEpisodes[key]; if (!a) return;
         EP_editingKey = key;
-
-        document.getElementById("ep-fYear").value     = r.year     || "";
-        document.getElementById("ep-fTerminal").value = r.terminal || "";
-        document.getElementById("ep-fSubject").value  = r.subject  || "";
-        // class select may not be populated yet — populate first
-        if (!Object.keys(EP_allStudents).length) {
-          try {
-            const snap = await get(child(ref(db), "students"));
-            EP_allStudents = snap.exists() ? snap.val() : {};
-            EP_populateClassSelect();
-          } catch(e) {}
+        document.getElementById("ep-fId").value    = a.id    || "";
+        document.getElementById("ep-fTitle").value = a.title || "";
+        document.getElementById("ep-fImg").value   = a.img   || "";
+        document.getElementById("ep-fDesc").value  = a.desc  || "";
+        document.getElementById("ep-fTags").value  = Array.isArray(a.tags) ? a.tags.join(", ") : (a.tags || "");
+        if (a.img) {
+          document.getElementById('ep-imgThumb').src = a.img;
+          document.getElementById('ep-imgPreview').style.display = 'block';
         }
-        document.getElementById("ep-fClass").value = r.class || "";
-
-        document.getElementById("ep-formTitle").textContent = "Edit Result — " + key;
-        document.getElementById("ep-submitBtn").innerHTML   = `✎ Update Result`;
+        document.getElementById("ep-formTitle").textContent = "Edit Author — " + (a.title || key);
+        document.getElementById("ep-submitBtn").innerHTML   = `✎ Update Author`;
         document.getElementById("ep-addCard").scrollIntoView({ behavior: "smooth" });
-
-        // Auto-load students with existing marks
-        await EP_loadStudents();
       };
 
       window.EP_cancelEdit = function() { EP_editingKey = null; EP_clearForm(); };
 
       function EP_clearForm() {
-        ["ep-fYear","ep-fTerminal","ep-fClass","ep-fSubject"].forEach(id => {
+        ["ep-fId","ep-fTitle","ep-fImg","ep-fDesc","ep-fTags"].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.value = "";
         });
-        document.getElementById("ep-studentList").innerHTML   = "";
-        document.getElementById("ep-studentRows").style.display = "none";
-        
-        document.getElementById("ep-formTitle").textContent = "Add New Result";
-        document.getElementById("ep-submitBtn").innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Result`;
+        document.getElementById('ep-imgPreview').style.display = 'none';
+        document.getElementById("ep-formTitle").textContent = "Add New Author";
+        document.getElementById("ep-submitBtn").innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Author`;
         EP_editingKey = null;
       }
 
       // ─── DELETE ────────────────────────────────────────────
       window.EP_deleteItem = async function(key) {
-        const r = EP_allEpisodes[key];
-        const label = r ? `${r.class} · ${r.subject} · ${r.year}` : key;
-        if (!confirm(`Delete "${label}"? This cannot be undone.`)) return;
+        const a = EP_allEpisodes[key];
+        if (!confirm(`Delete "${a?.title || key}"? This cannot be undone.`)) return;
         try {
-          await remove(ref(db, "results/" + key));
+          await deleteDoc(doc(db, 'author', key));
           delete EP_allEpisodes[key];
-          EP_buildFilterTabs();
           EP_renderItems(EP_allEpisodes);
-          showToast("Result deleted.", "success");
+          showToast("Author deleted.", "success");
         } catch(e) {
           showToast("Error: " + e.message, "error-t");
         }
