@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ডাউনলোড - সেপিয়েন্স - পাঠক ঘর</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: { 500: '#0056b3', 600: '#004494' } } } }
+        }
+    </script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        #countdown-ring {
+            stroke-dasharray: 113;
+            stroke-dashoffset: 113;
+            transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes jump {
+            0%   { transform: scale(1); }
+            40%  { transform: scale(1.18); }
+            70%  { transform: scale(0.92); }
+            100% { transform: scale(1); }
+        }
+        .jump { animation: jump 0.4s ease; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
+
+    <!-- HEADER -->
+    <header class="bg-white dark:bg-[#1a1a1b] fixed top-0 w-full h-14 z-[100] border-b border-gray-200 dark:border-gray-700 shadow-sm">
+        <div class="px-4 h-full flex items-center gap-3">
+            <a href="javascript:history.back()" class="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                <i class="fas fa-arrow-left text-sm"></i>
+            </a>
+            <span class="flex-1 text-sm font-semibold truncate text-center">সেপিয়েন্স: মানুষের ইতিহাস</span>
+            <button id="theme-btn" class="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition text-gray-600 dark:text-gray-300">
+                <i id="theme-icon" class="fas fa-moon text-lg"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 pt-14 flex items-start justify-center px-4 py-8">
+        <div class="w-full max-w-sm">
+
+            <!-- Book Info Card -->
+            <div class="bg-white dark:bg-[#2d2d2d] rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5 mb-4">
+                <!-- Cover center top -->
+                <div class="flex justify-center mb-4">
+                    <img src="https://raw.githubusercontent.com/physarif/pathokghar/refs/heads/main/assets/photos/sapiens-cover.jpg"
+                        alt="সেপিয়েন্স"
+                        class="w-32 rounded-lg shadow-md object-cover aspect-[2/3]">
+                </div>
+                <!-- Meta data below -->
+                <div class="text-center">
+                    <h1 class="text-base font-bold leading-snug text-gray-900 dark:text-gray-100 mb-1">সেপিয়েন্স: মানুষের ইতিহাস</h1>
+                    <p class="text-sm text-blue-600 dark:text-blue-400 mb-3">ইউভাল নোয়া হারারি</p>
+                    <div class="flex items-center justify-center gap-2">
+                        <span class="text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2.5 py-1 rounded-full">ইতিহাস</span>
+                        <span id="file-type" class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2.5 py-1 rounded-full">ePub</span>
+                        <span id="file-size" class="text-xs text-gray-400 dark:text-gray-500">-- MB</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Download Section -->
+            <div class="bg-white dark:bg-[#2d2d2d] rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5">
+
+                <!-- Step 1: Get link button -->
+                <div id="step-1">
+                    <p class="text-xs text-gray-500 dark:text-gray-400 text-center mb-4">ডাউনলোড লিংক পেতে নিচের বাটনে ট্যাপ করুন</p>
+                    <button id="get-link-btn"
+                        class="w-full bg-[#0056b3] hover:bg-[#004494] active:scale-95 text-white font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2">
+                        <i class="fas fa-link text-sm"></i>
+                        Get Download Link
+                    </button>
+                </div>
+
+                <!-- Step 2: Countdown + Ad slot -->
+                <div id="step-2" class="hidden">
+                    <p class="text-xs text-gray-500 dark:text-gray-400 text-center mb-4">কয়েক সেকেন্ড অপেক্ষা করুন...</p>
+
+                    <!-- Ad slot -->
+                    <div class="w-full h-24 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mb-5 border border-dashed border-gray-300 dark:border-gray-600">
+                        <span class="text-xs text-gray-400">বিজ্ঞাপন</span>
+                    </div>
+
+                    <!-- Countdown ring -->
+                    <div class="flex flex-col items-center gap-2">
+                        <div class="relative w-16 h-16">
+                            <svg class="w-16 h-16 -rotate-90" viewBox="0 0 40 40">
+                                <circle cx="20" cy="20" r="18" fill="none" stroke="#e5e7eb" stroke-width="3"/>
+                                <circle id="countdown-ring" cx="20" cy="20" r="18" fill="none"
+                                    stroke="#0056b3" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+                            <span id="countdown-text" class="absolute inset-0 flex items-center justify-center text-lg font-bold text-[#0056b3]">5</span>
+                        </div>
+                        <p class="text-xs text-gray-400">লিংক তৈরি হচ্ছে</p>
+                    </div>
+                </div>
+
+                <!-- Step 3: Download button -->
+                <div id="step-3" class="hidden">
+                    <div class="flex flex-col items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                            <i class="fas fa-check text-green-500 text-lg"></i>
+                        </div>
+                        <p class="text-sm font-medium text-gray-700 dark:text-gray-200">লিংক প্রস্তুত!</p>
+                        <a id="download-btn" href="#"
+                            class="w-full bg-green-500 hover:bg-green-600 active:scale-95 text-white font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2">
+                            <i class="fas fa-download text-sm"></i>
+                            ডাউনলোড করুন
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Dark mode
+        const themeBtn = document.getElementById('theme-btn');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
+
+        function applyTheme(dark) {
+            if (dark) {
+                html.classList.add('dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.theme = 'dark';
+            } else {
+                html.classList.remove('dark');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.theme = 'light';
+            }
+        }
+        applyTheme(localStorage.theme === 'dark');
+        themeBtn.addEventListener('click', () => applyTheme(!html.classList.contains('dark')));
+
+        // Download link (Firebase থেকে আসবে — এখন dummy)
+        const DOWNLOAD_URL = 'https://example.com/sapiens.epub';
+
+        // Auto detect file type & size
+        async function detectFileInfo(url) {
+            try {
+                const res = await fetch(url, { method: 'HEAD' });
+                const size = res.headers.get('content-length');
+                const type = res.headers.get('content-type') || '';
+                document.getElementById('file-size').textContent =
+                    size ? (size / (1024 * 1024)).toFixed(1) + ' MB' : '';
+                if (type.includes('epub')) document.getElementById('file-type').textContent = 'ePub';
+                else if (type.includes('pdf')) document.getElementById('file-type').textContent = 'PDF';
+            } catch (e) {}
+        }
+        detectFileInfo(DOWNLOAD_URL);
+
+        // Countdown logic
+        const COUNTDOWN_SECONDS = 5;
+        const ring = document.getElementById('countdown-ring');
+        const circumference = 2 * Math.PI * 18; // ≈ 113
+
+        const countdownWrapper = document.querySelector('.relative.w-16');
+
+        document.getElementById('get-link-btn').addEventListener('click', () => {
+            document.getElementById('step-1').classList.add('hidden');
+            document.getElementById('step-2').classList.remove('hidden');
+
+            let remaining = COUNTDOWN_SECONDS;
+            ring.style.strokeDashoffset = circumference;
+
+            // প্রথম tick এর আগে একবার jump
+            countdownWrapper.classList.add('jump');
+            setTimeout(() => countdownWrapper.classList.remove('jump'), 400);
+
+            const interval = setInterval(() => {
+                remaining--;
+                document.getElementById('countdown-text').textContent = remaining;
+                const offset = circumference * (remaining / COUNTDOWN_SECONDS);
+                ring.style.strokeDashoffset = offset;
+
+                // প্রতি second-এ jump
+                countdownWrapper.classList.add('jump');
+                setTimeout(() => countdownWrapper.classList.remove('jump'), 400);
+
+                if (remaining <= 0) {
+                    clearInterval(interval);
+                    document.getElementById('step-2').classList.add('hidden');
+                    document.getElementById('step-3').classList.remove('hidden');
+                    document.getElementById('download-btn').href = DOWNLOAD_URL;
+                }
+            }, 1000);
+        });
+    </script>
+
+</body>
+</html>
