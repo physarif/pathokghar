@@ -790,6 +790,7 @@
     apiKey: "AIzaSyCN0PqjGG78r6IGKJz7D53xhfllqwFhBo0",
     authDomain: "pathokghar.firebaseapp.com",
     projectId: "pathokghar",
+    databaseURL: "https://pathokghar-default-rtdb.asia-southeast1.firebasedatabase.app",
     storageBucket: "pathokghar.firebasestorage.app",
     messagingSenderId: "367068410598",
     appId: "1:367068410598:web:3be0af281acf767a448127",
@@ -2491,15 +2492,15 @@
               const region    = 'auto';
               const service   = 's3';
 
-              const payloadHash = await _sha256(await file.arrayBuffer());
+              // Use UNSIGNED-PAYLOAD to avoid browser content-type normalization issues
+              const payloadHash = 'UNSIGNED-PAYLOAD';
 
               const canonicalHeaders =
-                `content-type:${file.type}\n` +
                 `host:${R2_ACCOUNT_ID}.r2.cloudflarestorage.com\n` +
                 `x-amz-content-sha256:${payloadHash}\n` +
                 `x-amz-date:${amzDate}\n`;
 
-              const signedHeaders = 'content-type;host;x-amz-content-sha256;x-amz-date';
+              const signedHeaders = 'host;x-amz-content-sha256;x-amz-date';
 
               const canonicalRequest = [
                 'PUT',
