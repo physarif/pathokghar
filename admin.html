@@ -92,10 +92,14 @@
         box-shadow: 2px 0 20px rgba(0,0,0,0.06);
         padding: 0;
         margin-bottom: 0;
-        overflow: hidden;
+        overflow: visible;
+        position: relative;
       }
       #sidebar-brand {
         display: flex !important;
+      }
+      #sidebar-footer {
+        display: block !important;
       }
       .tab-item {
         flex: none;
@@ -142,6 +146,7 @@
       .tab-item:hover:not(.active) { background: var(--border2); color: var(--text); }
     }
     #sidebar-brand { display: none; }
+    #sidebar-footer { display: none; }
 
     /* ── DASHBOARD old styles not needed ── */
     .container { width:100%; max-width:680px; margin:0 auto; }
@@ -254,8 +259,11 @@
     .back-title { font-size:0.95rem; color:var(--text); font-weight:600; font-family:'Playfair Display',serif; letter-spacing:-0.01em; }
     @media (min-width: 768px) {
       .back-bar { padding: 0 1.5rem; }
-      .section-inner header { display: none; }
     }
+
+
+
+
 
     /* ── SHARED COMPONENT STYLES ── */
     .card { background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:1.75rem; box-shadow:var(--shadow); margin-bottom:1.75rem; animation:fadeUp 0.5s ease 0.1s both; }
@@ -460,7 +468,9 @@
 <nav id="bottomTabBar" style="display:none;">
   <div id="sidebar-brand" style="padding:1.5rem 1.2rem 1rem; border-bottom:1px solid var(--border); margin-bottom:0.4rem; flex-shrink:0;">
     <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:500;color:var(--text);letter-spacing:-0.01em;line-height:1.2;">Pathok Ghar</div>
-    <div style="font-size:0.62rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-top:0.2rem;">Admin Dashboard</div>
+  </div>
+  <div id="sidebar-footer" style="position:absolute;bottom:0;left:0;right:0;padding:0.9rem 1.2rem;border-top:1px solid var(--border);background:var(--surface);">
+    <div style="font-size:0.62rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;">Admin Dashboard</div>
   </div>
   <button class="tab-item" data-section="students" onclick="openSection('students')" title="Students">
     <i class="fa-solid fa-user-graduate"></i>
