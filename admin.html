@@ -2046,7 +2046,7 @@ x-amz-date:${amzDate}
             const tagsHtml = Array.isArray(a.tags) && a.tags.length
               ? a.tags.map(t => `<span class="cat-badge">${EP_esc(t)}</span>`).join("")
               : "";
-            return `<div class="list-item">${imgTag}<div class="li-info"><div class="li-name">${EP_esc(a.title || key)}</div><div class="li-meta"><span class="li-id">#${EP_esc(String(a.id||"—"))}</span>${tagsHtml}</div></div><div class="li-actions"><button class="si-btn edit" onclick="EP_editItem('${EP_esc(key)}')">Edit</button><button class="si-btn del" onclick="EP_deleteItem('${EP_esc(key)}')">Del</button></div></div>`;
+            return `<div class="list-item">${imgTag}<div class="li-info"><div class="li-name">${EP_esc(a.title || key)}</div><div class="li-meta"><span class="li-id">#${EP_esc(String(a.id||"—"))}</span>${a.slug ? `<span class="li-cat">${EP_esc(a.slug)}</span>` : ""}${tagsHtml}</div></div><div class="li-actions"><button class="si-btn edit" onclick="EP_editItem('${EP_esc(key)}')">Edit</button><button class="si-btn del" style="color:#e53e3e;border-color:#e53e3e;" onclick="EP_deleteItem('${EP_esc(key)}')">Delete</button></div></div>`;
           },
           `<div class="empty-state"><div class="empty-icon">✍️</div>No authors yet. Add one above!</div>`
         );
