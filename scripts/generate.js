@@ -5,17 +5,14 @@ const path = require('path');
 // Firebase init
 admin.initializeApp({
   credential: admin.credential.cert({
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-    privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    projectId: process.env.FIREBASE_PROJECT_ID.trim(),
+    clientEmail: process.env.FIREBASE_CLIENT_EMAIL.trim(),
+    privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n').trim(),
   }),
 });
 
 const DB_URL = 'https://pathokghar-default-rtdb.asia-southeast1.firebasedatabase.app';
-console.log('DB URL:', DB_URL);
-console.log('DB URL length:', DB_URL.length);
-console.log('DB URL charCodes:', [...DB_URL].map(c => c.charCodeAt(0)).join(','));
-
+console.log('DB URL:', JSON.stringify(DB_URL));
 const db = admin.database(DB_URL);
 
 // Template load
@@ -33,7 +30,10 @@ if (!fs.existsSync('books')) fs.mkdirSync('books');
 async function generateBookPages() {
   console.log('📚 Firebase থেকে book data fetch করছি...');
   
-  const snapshot = await db.ref('/books').once('value');
+  const snapshot = await Promise.race([
+    db.ref('/books').once('value'),
+    new Promise((_, reject) => setTimeout(() => reject(new Error('Firebase timeout after 30s')), 30000))
+  ]);
   const books = snapshot.val();
   
   if (!books) {
@@ -140,12 +140,15 @@ async function generateHomepage(bookList) {
 // Main
 (async () => {
   try {
+    console.log('🚀 Script শুরু হয়েছে...');
     const bookList = await generateBookPages();
     await generateHomepage(bookList);
     console.log('\n🎉 সব pages generate হয়েছে!');
+    await admin.app().delete();
     process.exit(0);
   } catch (err) {
     console.error('❌ Error:', err);
+    await admin.app().delete().catch(() => {});
     process.exit(1);
   }
 })();
