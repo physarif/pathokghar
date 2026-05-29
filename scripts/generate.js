@@ -3,18 +3,20 @@ const fs = require('fs');
 const path = require('path');
 
 // Firebase init
-const databaseURL = process.env.FIREBASE_DATABASE_URL || 'https://pathokghar-default-rtdb.asia-southeast1.firebasedatabase.app';
-
 admin.initializeApp({
   credential: admin.credential.cert({
     projectId: process.env.FIREBASE_PROJECT_ID,
     clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
     privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
   }),
-  databaseURL: databaseURL.replace(/\/$/, ''),
 });
 
-const db = admin.database();
+const DB_URL = 'https://pathokghar-default-rtdb.asia-southeast1.firebasedatabase.app';
+console.log('DB URL:', DB_URL);
+console.log('DB URL length:', DB_URL.length);
+console.log('DB URL charCodes:', [...DB_URL].map(c => c.charCodeAt(0)).join(','));
+
+const db = admin.database(DB_URL);
 
 // Template load
 const layout = fs.readFileSync('components/layout.html', 'utf8');
