@@ -9,11 +9,10 @@ admin.initializeApp({
     clientEmail: process.env.FIREBASE_CLIENT_EMAIL.trim(),
     privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n').trim(),
   }),
+  databaseURL: 'https://pathokghar-default-rtdb.asia-southeast1.firebasedatabase.app',
 });
 
-const DB_URL = 'https://pathokghar-default-rtdb.asia-southeast1.firebasedatabase.app';
-console.log('DB URL:', JSON.stringify(DB_URL));
-const db = admin.database(DB_URL);
+const db = admin.database();
 
 // Template load
 const layout = fs.readFileSync('components/layout.html', 'utf8');
