@@ -1736,9 +1736,9 @@ x-amz-date:${amzDate}
             const imgTag = b.img
               ? `<img class="li-thumb" src="${VI_esc(b.img)}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/><div class="li-thumb-placeholder" style="display:none;">📖</div>`
               : `<div class="li-thumb-placeholder">📖</div>`;
-            const authorName = VI_authors[b.author]?.name || b.author || '—';
-            const catName    = VI_categories[b.category]?.name || b.category || '—';
-            return `<div class="list-item">${imgTag}<div class="li-info"><div class="li-name">${VI_esc(b.title || key)}</div><div class="li-meta"><span class="li-id">${VI_esc(authorName)}</span>${b.slug ? `<span class="li-cat">${VI_esc(b.slug)}</span>` : ""}<span class="cat-badge">${VI_esc(catName)}</span></div></div><div class="li-actions"><button class="si-btn edit" onclick="VI_editItem('${key}')">Edit</button><button class="si-btn del" style="color:#e53e3e;border-color:#e53e3e;" onclick="VI_deleteItem('${key}')">Delete</button></div></div>`;
+            const authorName = VI_authors[b.author]?.title || VI_authors[b.author]?.name || b.author || '—';
+            const catName    = VI_categories[b.category]?.title || VI_categories[b.category]?.name || b.category || '—';
+            return `<div class="list-item">${imgTag}<div class="li-info"><div class="li-name">${VI_esc(b.title || key)}</div><div class="li-meta"><span class="li-id">#${VI_esc(String(b.id||'—'))}</span><span class="li-cat">${VI_esc(authorName)}</span><span class="cat-badge">${VI_esc(catName)}</span></div></div><div class="li-actions"><button class="si-btn edit" onclick="VI_editItem('${key}')">Edit</button><button class="si-btn del" style="color:#e53e3e;border-color:#e53e3e;" onclick="VI_deleteItem('${key}')">Delete</button></div></div>`;
           },
           `<div class="empty-state"><div class="empty-icon">📚</div>No books yet. Add one above!</div>`
         );
@@ -2884,11 +2884,10 @@ x-amz-date:${amzDate}
         };
 
         window.MD_toggleDelete = async (btnEl, id) => {
-          const isDeleteMode = btnEl.classList.contains('delete-mode');
-          if (isDeleteMode) {
-            // second click — confirm and delete
-            const fileData = MD_allFiles.find(f => f.id === id);
-            if (fileData?.r2Key) {
+          const fileData = MD_allFiles.find(f => f.id === id);
+          if (!confirm(`"${fileData?.name || id}" ফাইলটি মুছে ফেলবেন?`)) return;
+
+          if (fileData?.r2Key) {
               try {
                 const key       = fileData.r2Key;
                 const now       = new Date();
@@ -2948,20 +2947,6 @@ x-amz-date:${amzDate}
               showToast('🗑 File deleted');
               MD_renderList();
             }).catch(e => console.error(e));
-          } else {
-            // first click — enter confirm mode
-            btnEl.classList.add('delete-mode');
-            btnEl.dataset.orig = btnEl.textContent;
-            btnEl.textContent = 'Sure?';
-            const cancel = (e) => {
-              if (!btnEl.contains(e.target)) {
-                btnEl.classList.remove('delete-mode');
-                btnEl.textContent = btnEl.dataset.orig;
-                document.removeEventListener('click', cancel);
-              }
-            };
-            setTimeout(() => document.addEventListener('click', cancel), 50);
-          }
         };
 
         window.MD_startEdit = (nameEl, id, currentName) => {
