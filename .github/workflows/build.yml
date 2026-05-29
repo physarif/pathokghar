@@ -1,0 +1,91 @@
+name: Build & Deploy Pathok Ghar
+
+on:
+  # Firebase data change হলে trigger (webhook দিয়ে)
+  repository_dispatch:
+    types: [firebase-update]
+  
+  # Template বা layout change হলে trigger
+  push:
+    branches: [main]
+    paths:
+      - 'components/layout.html'
+      - 'templates/**'
+  
+  # Manual trigger
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # ১. Repo checkout
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ২. Node.js setup
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # ৩. Python setup (epub convert এর জন্য)
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # ৪. Dependencies install
+      - name: Install dependencies
+        run: |
+          npm install firebase-admin
+          pip install ebooklib beautifulsoup4
+
+      # ৫. Firebase থেকে data fetch + pages generate
+      - name: Generate static pages
+        env:
+          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+          FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
+          FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY: ${{ secrets.R2_ACCESS_KEY }}
+          R2_SECRET_KEY: ${{ secrets.R2_SECRET_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: node scripts/generate.js
+
+      # ৬. epub → html convert
+      - name: Convert epub to html
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY: ${{ secrets.R2_ACCESS_KEY }}
+          R2_SECRET_KEY: ${{ secrets.R2_SECRET_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python scripts/convert_epub.py
+
+      # ৭. read pages generate
+      - name: Generate read pages
+        run: node scripts/generate_read.js
+
+      # ৮. sitemap.xml generate
+      - name: Generate sitemap
+        run: node scripts/generate_sitemap.js
+
+      # ৯. Changes commit & push
+      - name: Commit generated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add books/ read/ index.html sitemap.xml
+          git diff --staged --quiet || git commit -m "build: auto-generate pages [skip ci]"
+          git push
+
+      # ১০. Cloudflare Pages deploy
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: pathokghar
+          directory: .
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
