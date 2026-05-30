@@ -98,7 +98,7 @@ async function generateBookPages() {
     console.log(`  ✓ ${outputPath}`);
   }
 
-  return bookList;
+  return { bookList, authorsRaw };
 }
 
 async function generateHomepage(bookList) {
@@ -166,7 +166,7 @@ async function generateHomepage(bookList) {
   console.log('  ✓ index.html');
 }
 
-async function generateAuthorPages(bookList) {
+async function generateAuthorPages(bookList, authorsRaw) {
   console.log('\n👤 Author pages generate করছি...');
   const authorTemplate = fs.readFileSync('components/author.html', 'utf8');
   if (!fs.existsSync('author')) fs.mkdirSync('author');
@@ -175,10 +175,12 @@ async function generateAuthorPages(bookList) {
   const byAuthor = {};
   for (const book of bookList) {
     if (!byAuthor[book.author_slug]) {
+      // Firebase থেকে সরাসরি author data নাও
+      const authorData = Object.values(authorsRaw).find(a => a.slug === book.author_slug) || {};
       byAuthor[book.author_slug] = {
         name: book.author_name,
         img: book.author_img || '',
-        desc: '',
+        desc: authorData.desc || '',
         books: [],
       };
     }
@@ -303,9 +305,9 @@ async function generateCategoryPages(bookList) {
 (async () => {
   try {
     console.log('🚀 Script শুরু হয়েছে...');
-    const bookList = await generateBookPages();
+    const { bookList, authorsRaw } = await generateBookPages();
     await generateHomepage(bookList);
-    await generateAuthorPages(bookList);
+    await generateAuthorPages(bookList, authorsRaw);
     await generateDownloadPages(bookList);
     await generateCategoryPages(bookList);
     console.log('\n🎉 সব pages generate হয়েছে!');
