@@ -238,10 +238,20 @@
         color: #60a5fa;
     }
 
-    /* ── Desktop TOC sidebar ── */
-    #toc-sidebar {
-        top: 3.5rem;
-        max-height: calc(100vh - 3.5rem);
+    /* ── Desktop TOC sidebar — fixed to avoid jitter ── */
+    @media (min-width: 1024px) {
+        #toc-sidebar {
+            position: fixed;
+            top: 3.5rem;
+            right: 0;
+            width: 14rem; /* w-56 */
+            height: calc(100vh - 3.5rem);
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        #toc-sidebar::-webkit-scrollbar { display: none; }
+        /* push reading column left so fixed sidebar doesn't overlap */
+        #read-layout { padding-right: 14rem; }
     }
     #toc-controls-bar {
         position: sticky;
@@ -447,7 +457,7 @@
 <!-- ════════════════════════════════════════════
      Main layout: reading column + desktop TOC
      ════════════════════════════════════════════ -->
-<div class="flex gap-0 min-h-[calc(100vh-3.5rem)] w-full">
+<div class="flex gap-0 min-h-[calc(100vh-3.5rem)] w-full" id="read-layout">
 
     <!-- Reading column -->
     <div class="flex-1 min-w-0">
@@ -3879,9 +3889,9 @@
         </div>
     </div>
 
-    <!-- Desktop TOC sidebar -->
+    <!-- Desktop TOC sidebar (fixed, no jitter) -->
     <aside id="toc-sidebar"
-        class="hidden lg:flex flex-col w-56 shrink-0 sticky self-start border-l border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1b] overflow-y-auto">
+        class="hidden lg:flex flex-col w-56 shrink-0 border-l border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1b] overflow-y-auto">
 
         <div id="toc-controls-bar"
             class="bg-white dark:bg-[#1a1a1b] border-b border-gray-200 dark:border-gray-700 px-3 py-2.5 flex flex-col gap-2 shrink-0">
