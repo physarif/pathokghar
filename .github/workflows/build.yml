@@ -70,7 +70,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add books/ read/ index.html sitemap.xml
+          git add books/ index.html sitemap.xml || true
+          git add read/ content/ || true
           git diff --staged --quiet || git commit -m "build: auto-generate pages [skip ci]"
           git push
 
