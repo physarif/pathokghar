@@ -181,18 +181,18 @@
             <!-- components/read.html — layout.html এর  এ inject হবে -->
 
 <style>
-    /* Reading progress bar */
+    /* ── Progress bar ── */
     #read-progress-bar {
         position: fixed;
         top: 0; left: 0;
         height: 3px;
         width: 0%;
         background: linear-gradient(90deg, #0056b3, #3b82f6);
-        z-index: 999;
+        z-index: 1000;
         transition: width 0.1s linear;
     }
 
-    /* Book content typography */
+    /* ── Book content typography ── */
     #book-content h1 {
         font-size: 1.4rem;
         font-weight: 800;
@@ -220,13 +220,13 @@
         display: block;
     }
 
-    /* Font size variants */
+    /* ── Font size variants ── */
     #book-content.fs-sm p { font-size: 0.875rem; }
     #book-content.fs-md p { font-size: 1rem; }
     #book-content.fs-lg p { font-size: 1.125rem; }
     #book-content.fs-xl p { font-size: 1.25rem; }
 
-    /* TOC active */
+    /* ── TOC active ── */
     .toc-link.active {
         color: #0056b3;
         font-weight: 600;
@@ -238,51 +238,220 @@
         color: #60a5fa;
     }
 
-    /* TOC sidebar sticky — top aligns with layout header */
+    /* ── Desktop TOC sidebar ── */
     #toc-sidebar {
         top: 3.5rem;
         max-height: calc(100vh - 3.5rem);
     }
-
-    /* TOC controls bar — sticky inside sidebar, sits above TOC links */
     #toc-controls-bar {
         position: sticky;
         top: 0;
         z-index: 10;
     }
 
-    /* Smooth scroll */
+    /* ── MOBILE: top bar hide/show ── */
+    #mobile-topbar {
+        position: fixed;
+        top: 3.5rem; /* below layout header */
+        left: 0; right: 0;
+        z-index: 80;
+        transform: translateY(0);
+        transition: transform 0.28s ease;
+    }
+    #mobile-topbar.hide {
+        transform: translateY(-100%);
+    }
+
+    /* ── MOBILE: bottom bar hide/show ── */
+    #mobile-bottombar {
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 80;
+        transform: translateY(0);
+        transition: transform 0.28s ease;
+    }
+    #mobile-bottombar.hide {
+        transform: translateY(100%);
+    }
+
+    /* ── MOBILE: left TOC drawer ── */
+    #mobile-toc-drawer {
+        position: fixed;
+        top: 0; left: 0; bottom: 0;
+        width: 78vw;
+        max-width: 300px;
+        z-index: 300;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+        display: flex;
+        flex-direction: column;
+    }
+    #mobile-toc-drawer.open {
+        transform: translateX(0);
+    }
+    #mobile-toc-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 299;
+        background: rgba(0,0,0,0.45);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #mobile-toc-overlay.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* ── MOBILE: settings bottom sheet ── */
+    #mobile-settings-sheet {
+        position: fixed;
+        inset: 0;
+        z-index: 300;
+        pointer-events: none;
+    }
+    #mobile-settings-sheet.open {
+        pointer-events: auto;
+    }
+    #mobile-settings-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+        opacity: 0;
+        transition: opacity 0.25s ease;
+    }
+    #mobile-settings-sheet.open #mobile-settings-overlay {
+        opacity: 1;
+    }
+    #mobile-settings-panel {
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        border-radius: 1.25rem 1.25rem 0 0;
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        transform: translateY(100%);
+        transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    #mobile-settings-sheet.open #mobile-settings-panel {
+        transform: translateY(0);
+    }
+
+    /* mobile content padding — space for fixed top+bottom bars */
+    @media (max-width: 767px) {
+        #read-main-content {
+            padding-top: 3.25rem; /* topbar height */
+            padding-bottom: 4rem;  /* bottombar height */
+        }
+    }
+
     html { scroll-behavior: smooth; }
 </style>
 
-<!-- Progress bar (always fixed top) -->
+<!-- Progress bar -->
 <div id="read-progress-bar"></div>
 
-<!-- ── Outer wrapper: reading area + TOC sidebar ── -->
+<!-- ════════════════════════════════════════════
+     MOBILE: Fixed top bar (hide on scroll down)
+     ════════════════════════════════════════════ -->
+<div id="mobile-topbar"
+    class="md:hidden bg-white/95 dark:bg-[#1a1a1b]/95 backdrop-blur border-b border-gray-200 dark:border-gray-700">
+    <div class="flex items-center gap-2 px-3 py-2.5">
+        <!-- TOC toggle — left drawer -->
+        <button id="mobile-toc-btn"
+            class="w-8 h-8 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 shrink-0"
+            aria-label="সূচিপত্র">
+            <i class="fas fa-bars text-sm"></i>
+        </button>
+        <!-- Title -->
+        <span class="flex-1 text-sm font-semibold truncate text-gray-800 dark:text-gray-100 px-1">আমার অবিশ্বাস</span>
+        <!-- Settings -->
+        <button id="mobile-settings-btn"
+            class="w-8 h-8 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 shrink-0"
+            aria-label="সেটিংস">
+            <i class="fas fa-sliders-h text-sm"></i>
+        </button>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     MOBILE: Fixed bottom bar (hide on scroll down)
+     ════════════════════════════════════════════ -->
+<div id="mobile-bottombar"
+    class="md:hidden bg-white/95 dark:bg-[#1a1a1b]/95 backdrop-blur border-t border-gray-200 dark:border-gray-700 px-4 py-2.5">
+    <div class="flex items-center gap-3">
+        <!-- progress pill -->
+        <div class="flex-1 h-1.5 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
+            <div id="mobile-progress-fill" class="h-full rounded-full bg-[#0056b3] transition-all duration-200" style="width:0%"></div>
+        </div>
+        <span id="mobile-progress-pct" class="text-[11px] tabular-nums text-gray-400 dark:text-gray-500 shrink-0 w-7 text-right">০%</span>
+        <!-- font controls -->
+        <button id="m-font-decrease"
+            class="w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 text-xs font-bold text-gray-600 dark:text-gray-300 flex items-center justify-center">A−</button>
+        <button id="m-font-increase"
+            class="w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 text-xs font-bold text-gray-600 dark:text-gray-300 flex items-center justify-center">A+</button>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     MOBILE: Left TOC drawer + overlay
+     ════════════════════════════════════════════ -->
+<div id="mobile-toc-overlay"></div>
+<div id="mobile-toc-drawer"
+    class="md:hidden bg-white dark:bg-[#1a1a1b] shadow-xl">
+    <!-- Drawer header -->
+    <div class="flex items-center justify-between px-4 pt-12 pb-3 border-b border-gray-200 dark:border-gray-700 shrink-0">
+        <p class="text-sm font-semibold text-gray-800 dark:text-gray-100">সূচিপত্র</p>
+        <button id="mobile-toc-close"
+            class="w-7 h-7 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400"
+            aria-label="বন্ধ">
+            <i class="fas fa-times text-xs"></i>
+        </button>
+    </div>
+    <!-- Back to book info -->
+    <a href="/books/amar-obishas.html"
+       class="flex items-center gap-2 px-4 py-3 text-xs text-gray-500 dark:text-gray-400 hover:text-[#0056b3] dark:hover:text-blue-400 border-b border-gray-100 dark:border-gray-800 transition">
+        <i class="fas fa-arrow-left text-[10px]"></i> বইয়ের তথ্য
+    </a>
+    <!-- TOC nav -->
+    <nav id="toc-nav-mobile"
+        class="flex flex-col px-2 py-3 gap-0.5 text-[13px] overflow-y-auto flex-1">
+        <!-- JS generates -->
+    </nav>
+</div>
+
+<!-- ════════════════════════════════════════════
+     MOBILE: Settings bottom sheet
+     ════════════════════════════════════════════ -->
+<div id="mobile-settings-sheet" class="md:hidden">
+    <div id="mobile-settings-overlay"></div>
+    <div id="mobile-settings-panel"
+        class="bg-white dark:bg-[#2d2d2d]">
+        <div class="w-10 h-1 bg-gray-200 dark:bg-gray-600 rounded-full mx-auto"></div>
+        <p class="text-sm font-semibold text-gray-700 dark:text-gray-200">পড়ার সেটিংস</p>
+        <div class="flex items-center gap-3">
+            <span class="text-xs text-gray-500 dark:text-gray-400 w-20">ফন্ট সাইজ</span>
+            <button id="ms-font-decrease"
+                class="flex-1 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-sm font-bold text-gray-700 dark:text-gray-200">A−</button>
+            <button id="ms-font-increase"
+                class="flex-1 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-sm font-bold text-gray-700 dark:text-gray-200">A+</button>
+        </div>
+        <button id="close-settings-btn"
+            class="w-full py-2.5 rounded-lg bg-gray-100 dark:bg-gray-700 text-sm text-gray-600 dark:text-gray-300">
+            বন্ধ করুন
+        </button>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     Main layout: reading column + desktop TOC
+     ════════════════════════════════════════════ -->
 <div class="flex gap-0 min-h-[calc(100vh-3.5rem)] w-full">
 
-    <!-- ── MAIN reading column (no top bar on desktop) ── -->
+    <!-- Reading column -->
     <div class="flex-1 min-w-0">
-
-        <!-- Mobile top bar (book title + settings toggle) — hidden on desktop -->
-        <div class="md:hidden flex items-center gap-2 px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1b] sticky top-14 z-40">
-            <a href="/books/amar-obishas.html"
-               class="p-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition shrink-0">
-                <i class="fas fa-arrow-left text-sm text-gray-600 dark:text-gray-300"></i>
-            </a>
-            <span class="flex-1 text-sm font-semibold truncate text-gray-800 dark:text-gray-100">আমার অবিশ্বাস</span>
-            <button id="mobile-settings-btn"
-                class="p-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition shrink-0 text-gray-600 dark:text-gray-300">
-                <i class="fas fa-sliders-h text-sm"></i>
-            </button>
-            <button id="mobile-toc-btn"
-                class="p-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition shrink-0 text-gray-600 dark:text-gray-300">
-                <i class="fas fa-list text-sm"></i>
-            </button>
-        </div>
-
-        <!-- Book content — starts directly, no desktop top bar here -->
-        <div class="px-5 md:px-10 lg:px-16 py-7 max-w-2xl">
+        <div id="read-main-content" class="px-5 md:px-10 lg:px-16 py-7 max-w-2xl">
             <div id="book-content" class="fs-md text-gray-800 dark:text-gray-200">
                 <h2>দ্বিতীয় সংস্করণের ভূমিকা</h2>
 <p>‘সত্যের সন্ধান’ পুস্তিকাখানা প্রকাশিত হইলে ইহা সুধীমহলে সমাদৃত হয়, বহু পত্র-পত্রিকায় প্রশংসা মূলক সমালোচনা হইতে থাকে এবং বইখানার জন্য বাংলাদেশ লেখক শিবির আমাকে ‘হুমায়ুন কবির স্মৃতি পুরস্কার’ প্রদান করে [৮.৫.১৯৭৯] ।</p>
@@ -1704,21 +1873,16 @@
         </div>
     </div>
 
-    <!-- ── RIGHT: TOC sidebar (desktop only) ── -->
+    <!-- Desktop TOC sidebar -->
     <aside id="toc-sidebar"
         class="hidden lg:flex flex-col w-56 shrink-0 sticky self-start border-l border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1b] overflow-y-auto">
 
-        <!-- Controls bar: sits at top of sidebar — back link, font size, progress % -->
         <div id="toc-controls-bar"
             class="bg-white dark:bg-[#1a1a1b] border-b border-gray-200 dark:border-gray-700 px-3 py-2.5 flex flex-col gap-2 shrink-0">
-
-            <!-- Back to book info -->
             <a href="/books/amar-obishas.html"
                class="flex items-center gap-1.5 text-[11px] text-gray-500 dark:text-gray-400 hover:text-[#0056b3] dark:hover:text-blue-400 transition">
                 <i class="fas fa-arrow-left text-[10px]"></i> বইয়ের তথ্য
             </a>
-
-            <!-- Font size + progress row -->
             <div class="flex items-center gap-1.5">
                 <button id="font-decrease"
                     class="flex-1 py-1 rounded bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-[11px] font-bold transition text-gray-700 dark:text-gray-200">A−</button>
@@ -1729,75 +1893,66 @@
             </div>
         </div>
 
-        <!-- TOC header label -->
         <div class="px-4 pt-3 pb-1.5 shrink-0">
             <p class="text-[11px] uppercase font-semibold text-gray-400 dark:text-gray-500 tracking-wider">সূচিপত্র</p>
         </div>
 
-        <!-- TOC links -->
         <nav id="toc-nav-desktop" class="flex flex-col px-2 pb-6 gap-0.5 text-[12px]">
             <!-- JS generate -->
         </nav>
     </aside>
 </div>
 
-<!-- ── MOBILE: Settings bottom sheet ── -->
-<div id="mobile-settings-sheet"
-    class="md:hidden fixed inset-0 z-[200] hidden">
-    <div id="mobile-settings-overlay" class="absolute inset-0 bg-black/50"></div>
-    <div class="absolute bottom-0 left-0 right-0 bg-white dark:bg-[#2d2d2d] rounded-t-2xl p-5 flex flex-col gap-4">
-        <div class="w-10 h-1 bg-gray-200 dark:bg-gray-600 rounded-full mx-auto mb-1"></div>
-        <p class="text-sm font-semibold text-gray-700 dark:text-gray-200">পড়ার সেটিংস</p>
-        <!-- Font size -->
-        <div class="flex items-center gap-3">
-            <span class="text-xs text-gray-500 dark:text-gray-400 w-20">ফন্ট সাইজ</span>
-            <button id="m-font-decrease"
-                class="flex-1 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 text-sm font-bold transition text-gray-700 dark:text-gray-200">A−</button>
-            <button id="m-font-increase"
-                class="flex-1 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 text-sm font-bold transition text-gray-700 dark:text-gray-200">A+</button>
-        </div>
-        <button id="close-settings-btn"
-            class="w-full py-2.5 rounded-lg bg-gray-100 dark:bg-gray-700 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-200 transition">
-            বন্ধ করুন
-        </button>
-    </div>
-</div>
-
-<!-- ── MOBILE: TOC bottom sheet ── -->
-<div id="mobile-toc-sheet"
-    class="md:hidden fixed inset-0 z-[200] hidden">
-    <div id="mobile-toc-overlay" class="absolute inset-0 bg-black/50"></div>
-    <div class="absolute bottom-0 left-0 right-0 bg-white dark:bg-[#2d2d2d] rounded-t-2xl max-h-[70vh] flex flex-col">
-        <div class="px-5 pt-4 pb-3 border-b border-gray-100 dark:border-gray-700 shrink-0">
-            <div class="w-10 h-1 bg-gray-200 dark:bg-gray-600 rounded-full mx-auto mb-3"></div>
-            <p class="text-sm font-semibold text-gray-700 dark:text-gray-200">সূচিপত্র</p>
-        </div>
-        <nav id="toc-nav-mobile" class="flex flex-col px-3 py-3 gap-0.5 text-[13px] overflow-y-auto">
-            <!-- JS generate -->
-        </nav>
-    </div>
-</div>
-
 <script>
 (function () {
-    const bookContent  = document.getElementById('book-content');
-    const progressBar  = document.getElementById('read-progress-bar');
-    const progressPct  = document.getElementById('progress-pct');
-    const tocDesktop   = document.getElementById('toc-nav-desktop');
-    const tocMobile    = document.getElementById('toc-nav-mobile');
+    const bookContent = document.getElementById('book-content');
+    const progressBar = document.getElementById('read-progress-bar');
+    const progressPct = document.getElementById('progress-pct');
+    const mobileFill  = document.getElementById('mobile-progress-fill');
+    const mobilePct   = document.getElementById('mobile-progress-pct');
+    const tocDesktop  = document.getElementById('toc-nav-desktop');
+    const tocMobile   = document.getElementById('toc-nav-mobile');
 
-    // ── Reading progress ──
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    function toBN(n) {
+        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
+    }
+
+    // ── Hide-on-scroll logic ──
+    const mobileTopbar    = document.getElementById('mobile-topbar');
+    const mobileBottombar = document.getElementById('mobile-bottombar');
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
     window.addEventListener('scroll', () => {
-        const scrollTop  = window.scrollY;
-        const docHeight  = document.documentElement.scrollHeight - window.innerHeight;
-        const pct        = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        progressBar.style.width = pct + '%';
-        if (progressPct) {
-            const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
-            const num = Math.round(pct).toString().split('').map(c => bn[c] || c).join('');
-            progressPct.textContent = num + '%';
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const currentY = window.scrollY;
+                const delta    = currentY - lastScrollY;
+
+                // hide when scrolling down (delta > 5), show when scrolling up (delta < -5)
+                if (delta > 5 && currentY > 60) {
+                    mobileTopbar?.classList.add('hide');
+                    mobileBottombar?.classList.add('hide');
+                } else if (delta < -5) {
+                    mobileTopbar?.classList.remove('hide');
+                    mobileBottombar?.classList.remove('hide');
+                }
+                lastScrollY = currentY;
+
+                // progress
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const pct = docHeight > 0 ? (currentY / docHeight) * 100 : 0;
+                progressBar.style.width = pct + '%';
+                if (progressPct) progressPct.textContent = toBN(pct) + '%';
+                if (mobileFill)  mobileFill.style.width = pct + '%';
+                if (mobilePct)   mobilePct.textContent  = toBN(pct) + '%';
+
+                ticking = false;
+            });
+            ticking = true;
         }
-    });
+    }, { passive: true });
 
     // ── Build TOC ──
     const headings = bookContent.querySelectorAll('h1, h2');
@@ -1814,7 +1969,7 @@
                     ? 'font-semibold text-[13px] text-gray-800 dark:text-gray-100'
                     : 'pl-5 text-[11px]');
             if (isMobile) {
-                a.addEventListener('click', () => closeTocSheet());
+                a.addEventListener('click', () => closeTocDrawer());
             }
             nav.appendChild(a);
         });
@@ -1835,8 +1990,8 @@
     }, { passive: true });
 
     // ── Font size ──
-    const fontSizes  = ['fs-sm', 'fs-md', 'fs-lg', 'fs-xl'];
-    let currentSize  = parseInt(localStorage.getItem('pg-font-size') || '1');
+    const fontSizes = ['fs-sm', 'fs-md', 'fs-lg', 'fs-xl'];
+    let currentSize = parseInt(localStorage.getItem('pg-font-size') || '1');
     bookContent.classList.add(fontSizes[currentSize]);
 
     function changeFont(delta) {
@@ -1847,31 +2002,49 @@
         localStorage.setItem('pg-font-size', currentSize);
     }
 
-    document.getElementById('font-increase')?.addEventListener('click', () => changeFont(1));
-    document.getElementById('font-decrease')?.addEventListener('click', () => changeFont(-1));
-    document.getElementById('m-font-increase')?.addEventListener('click', () => changeFont(1));
-    document.getElementById('m-font-decrease')?.addEventListener('click', () => changeFont(-1));
+    document.getElementById('font-increase')?.addEventListener('click',    () => changeFont(1));
+    document.getElementById('font-decrease')?.addEventListener('click',    () => changeFont(-1));
+    document.getElementById('m-font-increase')?.addEventListener('click',  () => changeFont(1));
+    document.getElementById('m-font-decrease')?.addEventListener('click',  () => changeFont(-1));
+    document.getElementById('ms-font-increase')?.addEventListener('click', () => changeFont(1));
+    document.getElementById('ms-font-decrease')?.addEventListener('click', () => changeFont(-1));
+
+    // ── Mobile left TOC drawer ──
+    const tocDrawer  = document.getElementById('mobile-toc-drawer');
+    const tocOverlay = document.getElementById('mobile-toc-overlay');
+
+    function openTocDrawer() {
+        tocDrawer.classList.add('open');
+        tocOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeTocDrawer() {
+        tocDrawer.classList.remove('open');
+        tocOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('mobile-toc-btn')?.addEventListener('click', openTocDrawer);
+    document.getElementById('mobile-toc-close')?.addEventListener('click', closeTocDrawer);
+    tocOverlay?.addEventListener('click', closeTocDrawer);
+
+    // swipe left to close drawer
+    let touchStartX = 0;
+    tocDrawer?.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    tocDrawer?.addEventListener('touchend', e => {
+        if (touchStartX - e.changedTouches[0].clientX > 60) closeTocDrawer();
+    }, { passive: true });
 
     // ── Mobile settings sheet ──
     const settingsSheet   = document.getElementById('mobile-settings-sheet');
     const settingsOverlay = document.getElementById('mobile-settings-overlay');
 
-    function openSettingsSheet()  { settingsSheet.classList.remove('hidden'); }
-    function closeSettingsSheet() { settingsSheet.classList.add('hidden'); }
+    function openSettingsSheet()  { settingsSheet.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeSettingsSheet() { settingsSheet.classList.remove('open'); document.body.style.overflow = ''; }
 
     document.getElementById('mobile-settings-btn')?.addEventListener('click', openSettingsSheet);
     document.getElementById('close-settings-btn')?.addEventListener('click', closeSettingsSheet);
     settingsOverlay?.addEventListener('click', closeSettingsSheet);
-
-    // ── Mobile TOC sheet ──
-    const tocSheet   = document.getElementById('mobile-toc-sheet');
-    const tocOverlay = document.getElementById('mobile-toc-overlay');
-
-    function openTocSheet()  { tocSheet.classList.remove('hidden'); }
-    function closeTocSheet() { tocSheet.classList.add('hidden'); }
-
-    document.getElementById('mobile-toc-btn')?.addEventListener('click', openTocSheet);
-    tocOverlay?.addEventListener('click', closeTocSheet);
 })();
 </script>
 
