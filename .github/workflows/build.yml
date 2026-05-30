@@ -5,18 +5,18 @@ on:
   repository_dispatch:
     types: [firebase-update]
   
-  # Template বা layout change হলে trigger
+  # Component বা script change হলে trigger
   push:
     branches: [main]
     paths:
       - 'components/**'
+      - 'scripts/**'
   
   # Manual trigger
   workflow_dispatch:
 
 permissions:
   contents: write
-  deployments: write
 
 jobs:
   build:
@@ -44,7 +44,7 @@ jobs:
       # ৪. Dependencies install
       - name: Install dependencies
         run: |
-          npm install firebase-admin
+          npm install firebase-admin wrangler
           pip install ebooklib beautifulsoup4 --break-system-packages
 
       # ৫. Firebase থেকে data fetch + সব pages generate
@@ -64,7 +64,14 @@ jobs:
       - name: Generate sitemap
         run: node scripts/generate_sitemap.js
 
-      # ৮. Changes commit & push → Cloudflare auto deploy হবে
+      # ৮. Cloudflare Pages এ deploy
+      - name: Deploy to Cloudflare Pages
+        run: npx wrangler pages deploy . --project-name=pathokghar --commit-dirty=true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      # ৯. Generated files commit & push
       - name: Commit generated files
         run: |
           git config user.name "github-actions[bot]"
@@ -72,5 +79,4 @@ jobs:
           git add books/ index.html sitemap.xml || true
           git add read/ || true
           git add author/ download/ category/ || true
-          git diff --staged --quiet || git commit -m "build: auto-generate pages [skip ci]"
-          git push
+          git diff --staged --quiet || git commit -m "build: auto-generate pages [skip ci]" && git push
