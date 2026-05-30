@@ -16,7 +16,7 @@ const db = admin.database();
 
 // Template load
 const layout = fs.readFileSync('components/layout.html', 'utf8');
-const bookTemplate = fs.readFileSync('templates/book.html', 'utf8');
+const bookTemplate = fs.readFileSync('components/book.html', 'utf8');
 
 // Placeholder replace helper
 function render(template, data) {
@@ -186,7 +186,7 @@ async function generateHomepage(bookList) {
 
 async function generateAuthorPages(bookList) {
   console.log('\n👤 Author pages generate করছি...');
-  const authorTemplate = fs.readFileSync('templates/author.html', 'utf8');
+  const authorTemplate = fs.readFileSync('components/author.html', 'utf8');
   if (!fs.existsSync('author')) fs.mkdirSync('author');
 
   // author অনুযায়ী group
@@ -228,7 +228,7 @@ async function generateAuthorPages(bookList) {
 
 async function generateDownloadPages(bookList) {
   console.log('\n📥 Download pages generate করছি...');
-  const downloadTemplate = fs.readFileSync('templates/download.html', 'utf8');
+  const downloadTemplate = fs.readFileSync('components/download.html', 'utf8');
   if (!fs.existsSync('download')) fs.mkdirSync('download');
 
   for (const book of bookList) {
@@ -247,7 +247,7 @@ async function generateDownloadPages(bookList) {
 
 async function generateCategoryPages(bookList) {
   console.log('\n📂 Category pages generate করছি...');
-  const categoryTemplate = fs.readFileSync('templates/category.html', 'utf8');
+  const categoryTemplate = fs.readFileSync('components/category.html', 'utf8');
 
   const byCategory = {};
   for (const book of bookList) {
