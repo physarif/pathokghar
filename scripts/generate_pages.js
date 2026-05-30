@@ -2,17 +2,21 @@ const admin = require('firebase-admin');
 const fs = require('fs');
 const path = require('path');
 
-// Firebase init
-admin.initializeApp({
-  credential: admin.credential.cert({
-    projectId: process.env.FIREBASE_PROJECT_ID.trim(),
-    clientEmail: process.env.FIREBASE_CLIENT_EMAIL.trim(),
-    privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n').trim(),
-  }),
-  databaseURL: 'https://pathokghar-default-rtdb.asia-southeast1.firebasedatabase.app',
-});
+const isReadOnly = process.argv.includes('--read-only');
 
-const db = admin.database();
+// Firebase init — read-only mode এ দরকার নেই
+let db = null;
+if (!isReadOnly) {
+  admin.initializeApp({
+    credential: admin.credential.cert({
+      projectId: process.env.FIREBASE_PROJECT_ID.trim(),
+      clientEmail: process.env.FIREBASE_CLIENT_EMAIL.trim(),
+      privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n').trim(),
+    }),
+    databaseURL: 'https://pathokghar-default-rtdb.asia-southeast1.firebasedatabase.app',
+  });
+  db = admin.database();
+}
 
 // Template load
 const layout = fs.readFileSync('components/layout.html', 'utf8');
