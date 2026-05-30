@@ -39,6 +39,14 @@ async function generateBookPages() {
   const authorsRaw = authorsSnap.val() || {};
   const categoriesRaw = categoriesSnap.val() || {};
 
+  // Python script এর জন্য raw data save করো
+  fs.writeFileSync('firebase_data.json', JSON.stringify({
+    books: booksRaw || {},
+    authors: authorsRaw,
+    categories: categoriesRaw,
+  }, null, 2), 'utf8');
+  console.log('  ✓ firebase_data.json saved');
+
   if (!booksRaw) {
     console.log('কোনো book data পাওয়া যায়নি।');
     return [];
