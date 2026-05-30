@@ -282,31 +282,6 @@
         body.theme-sepia #mobile-toolbar { background: #ede5d8; border-top: 1px solid #d4c8b8; }
         body.theme-light #mobile-toolbar { background: #fff;    border-top: 1px solid #e5e7eb; }
 
-        /* Brightness slider row */
-        #brightness-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 18px 6px;
-            border-bottom: 1px solid rgba(128,128,128,0.15);
-        }
-        #brightness-slider {
-            -webkit-appearance: none;
-            flex: 1;
-            height: 3px;
-            border-radius: 2px;
-            outline: none;
-            background: rgba(128,128,128,0.3);
-        }
-        #brightness-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 22px; height: 22px;
-            border-radius: 50%;
-            background: #f5c518;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.25);
-            cursor: pointer;
-        }
-
         /* Theme color pickers row */
         #theme-row {
             display: flex;
@@ -433,25 +408,13 @@
         <p class="title-text text-sm font-semibold truncate leading-tight">আমার অবিশ্বাস</p>
         <p class="text-[10px] text-gray-400" id="topbar-pct">০%</p>
     </div>
-    <button class="w-9 h-9 flex items-center justify-center rounded-full" aria-label="খোঁজ">
-        <i class="fas fa-search text-sm"></i>
-    </button>
-    <button class="w-9 h-9 flex items-center justify-center rounded-full" aria-label="বুকমার্ক">
-        <i class="far fa-bookmark text-sm"></i>
-    </button>
-    <button class="w-9 h-9 flex items-center justify-center rounded-full" aria-label="আরো">
-        <i class="fas fa-ellipsis-v text-sm"></i>
+    <button id="mob-toc-btn-top" class="w-9 h-9 flex items-center justify-center rounded-full" aria-label="সূচিপত্র">
+        <i class="fas fa-list-ul text-sm"></i>
     </button>
 </div>
 
 <!-- Bottom toolbar -->
 <div id="mobile-toolbar" class="md:hidden">
-    <!-- Brightness row -->
-    <div id="brightness-row">
-        <i class="fas fa-sun text-xs" style="color:#aaa; font-size:13px;"></i>
-        <input id="brightness-slider" type="range" min="20" max="100" value="80">
-        <i class="fas fa-sun" style="color:#aaa; font-size:18px;"></i>
-    </div>
     <!-- Theme color row -->
     <div id="theme-row">
         <button class="theme-btn active" data-theme="light" style="background:#ffffff; box-shadow:0 0 0 1px #ddd;">
@@ -2026,26 +1989,6 @@
         btn.addEventListener('click', () => applyTheme(btn.dataset.theme));
     });
 
-    // ── Brightness ──
-    const brightnessSlider = document.getElementById('brightness-slider');
-    let brightnessOverlay = null;
-
-    function applyBrightness(val) {
-        const opacity = 1 - val / 100;
-        if (!brightnessOverlay) {
-            brightnessOverlay = document.createElement('div');
-            Object.assign(brightnessOverlay.style, {
-                position:'fixed', inset:'0', background:'#000',
-                pointerEvents:'none', zIndex:'9999', transition:'opacity 0.15s'
-            });
-            document.body.appendChild(brightnessOverlay);
-        }
-        brightnessOverlay.style.opacity = Math.max(0, opacity * 0.75);
-    }
-
-    brightnessSlider?.addEventListener('input', e => applyBrightness(+e.target.value));
-    applyBrightness(+(brightnessSlider?.value || 80));
-
     // ── Hide-on-scroll ──
     let lastScrollY = window.scrollY;
     let ticking = false;
@@ -2153,6 +2096,7 @@
     }
 
     document.getElementById('mob-toc-btn')?.addEventListener('click', openTocDrawer);
+    document.getElementById('mob-toc-btn-top')?.addEventListener('click', openTocDrawer);
     document.getElementById('mobile-toc-close')?.addEventListener('click', closeTocDrawer);
     tocOverlay?.addEventListener('click', closeTocDrawer);
 
