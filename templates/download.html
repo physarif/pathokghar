@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ডাউনলোড - সেপিয়েন্স - পাঠক ঘর</title>
+    <title>{{book_title}} - ডাউনলোড - পাঠক ঘর</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script>
@@ -36,7 +36,7 @@
             <a href="javascript:history.back()" class="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                 <i class="fas fa-arrow-left text-sm"></i>
             </a>
-            <span class="flex-1 text-sm font-semibold truncate text-center">সেপিয়েন্স: মানুষের ইতিহাস</span>
+            <span class="flex-1 text-sm font-semibold truncate text-center">{{book_title}}</span>
             <button id="theme-btn" class="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition text-gray-600 dark:text-gray-300">
                 <i id="theme-icon" class="fas fa-moon text-lg"></i>
             </button>
@@ -50,16 +50,16 @@
             <div class="bg-white dark:bg-[#2d2d2d] rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5 mb-4">
                 <!-- Cover center top -->
                 <div class="flex justify-center mb-4">
-                    <img src="https://raw.githubusercontent.com/physarif/pathokghar/refs/heads/main/assets/photos/sapiens-cover.jpg"
-                        alt="সেপিয়েন্স"
+                    <img src="{{book_cover}}"
+                        alt="{{book_title}}"
                         class="w-32 rounded-lg shadow-md object-cover aspect-[2/3]">
                 </div>
                 <!-- Meta data below -->
                 <div class="text-center">
-                    <h1 class="text-base font-bold leading-snug text-gray-900 dark:text-gray-100 mb-1">সেপিয়েন্স: মানুষের ইতিহাস</h1>
-                    <p class="text-sm text-blue-600 dark:text-blue-400 mb-3">ইউভাল নোয়া হারারি</p>
+                    <h1 class="text-base font-bold leading-snug text-gray-900 dark:text-gray-100 mb-1">{{book_title}}</h1>
+                    <p class="text-sm text-blue-600 dark:text-blue-400 mb-3">{{book_author}}</p>
                     <div class="flex items-center justify-center gap-2">
-                        <span class="text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2.5 py-1 rounded-full">ইতিহাস</span>
+                        <span class="text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2.5 py-1 rounded-full">{{book_category}}</span>
                         <span id="file-type" class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2.5 py-1 rounded-full">ePub</span>
                         <span id="file-size" class="text-xs text-gray-400 dark:text-gray-500">-- MB</span>
                     </div>
@@ -143,7 +143,7 @@
         themeBtn.addEventListener('click', () => applyTheme(!html.classList.contains('dark')));
 
         // Download link (Firebase থেকে আসবে — এখন dummy)
-        const DOWNLOAD_URL = 'https://example.com/sapiens.epub';
+        const DOWNLOAD_URL = '{{book_download_url}}';
 
         // Auto detect file type & size
         async function detectFileInfo(url) {
