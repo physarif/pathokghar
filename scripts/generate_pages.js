@@ -329,13 +329,22 @@ async function generateReadPages() {
 // Main
 (async () => {
   try {
+    // --read-only flag দিলে শুধু read pages generate করবে (epub convert এর পরে)
+    if (process.argv.includes('--read-only')) {
+      console.log('📖 শুধু read pages generate করছি...');
+      await generateReadPages();
+      console.log('\n🎉 Read pages generate হয়েছে!');
+      process.exit(0);
+      return;
+    }
+
     console.log('🚀 Script শুরু হয়েছে...');
     const bookList = await generateBookPages();
     await generateHomepage(bookList);
     await generateAuthorPages(bookList);
     await generateDownloadPages(bookList);
     await generateCategoryPages(bookList);
-    await generateReadPages();
+    // epub convert এর আগে চলে, তাই read pages এখানে skip — পরে আলাদা step এ হবে
     console.log('\n🎉 সব pages generate হয়েছে!');
     await admin.app().delete();
     process.exit(0);
