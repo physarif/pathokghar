@@ -1,22 +1,16 @@
 <!-- components/download.html — layout.html এর {{content}} এ inject হবে -->
 
 <style>
-    @keyframes jump {
-        0%   { transform: scale(1); }
-        40%  { transform: scale(1.18); }
-        70%  { transform: scale(0.92); }
-        100% { transform: scale(1); }
-    }
-    .jump { animation: jump 0.4s ease; }
-
-    #countdown-ring {
-        stroke-dasharray: 113;
-        stroke-dashoffset: 113;
-        transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
     .dl-cover-shadow {
         box-shadow: 0 8px 32px rgba(0,86,179,0.18), 0 2px 8px rgba(0,0,0,0.10);
+    }
+
+    .progress-bar-fill {
+        height: 100%;
+        border-radius: 9999px;
+        background: linear-gradient(90deg, #0056b3, #3b82f6);
+        transition: width 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 100%;
     }
 
     .step-fade {
@@ -80,20 +74,21 @@
             </div>
         </div>
         <div id="m-step-2" class="hidden step-fade">
-            <div class="flex flex-col items-center gap-5">
-                <p class="text-xs text-gray-500 dark:text-gray-400">কয়েক সেকেন্ড অপেক্ষা করুন...</p>
+            <div class="flex flex-col gap-5">
+                <p class="text-xs text-gray-500 dark:text-gray-400 text-center">কয়েক সেকেন্ড অপেক্ষা করুন...</p>
                 <div class="w-full h-20 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center justify-center border border-dashed border-gray-200 dark:border-gray-700">
                     <span class="text-xs text-gray-300 dark:text-gray-600">বিজ্ঞাপন</span>
                 </div>
-                <div id="m-countdown-wrapper" class="relative w-16 h-16">
-                    <svg class="w-16 h-16 -rotate-90" viewBox="0 0 40 40">
-                        <circle cx="20" cy="20" r="18" fill="none" stroke="#e5e7eb" stroke-width="3"/>
-                        <circle id="m-countdown-ring" cx="20" cy="20" r="18" fill="none"
-                            stroke="#0056b3" stroke-width="3" stroke-linecap="round"/>
-                    </svg>
-                    <span id="m-countdown-text" class="absolute inset-0 flex items-center justify-center text-lg font-bold text-[#0056b3] dark:text-blue-400">5</span>
+                <!-- Progress bar -->
+                <div class="flex flex-col gap-2">
+                    <div class="flex items-center justify-between text-xs text-gray-400 dark:text-gray-500">
+                        <span>লিংক তৈরি হচ্ছে...</span>
+                        <span class="progress-seconds"><span id="m-countdown-text">5</span>s</span>
+                    </div>
+                    <div class="w-full h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                        <div id="m-progress-fill" class="progress-bar-fill"></div>
+                    </div>
                 </div>
-                <p class="text-xs text-gray-400">লিংক তৈরি হচ্ছে...</p>
             </div>
         </div>
         <div id="m-step-3" class="hidden step-fade">
@@ -211,15 +206,16 @@
                         <span class="text-xs text-gray-300 dark:text-gray-600">বিজ্ঞাপন</span>
                     </div>
 
-                    <div id="d-countdown-wrapper" class="relative w-20 h-20">
-                        <svg class="w-20 h-20 -rotate-90" viewBox="0 0 40 40">
-                            <circle cx="20" cy="20" r="18" fill="none" stroke="#e5e7eb" stroke-width="2.5"/>
-                            <circle id="d-countdown-ring" cx="20" cy="20" r="18" fill="none"
-                                stroke="#0056b3" stroke-width="2.5" stroke-linecap="round"/>
-                        </svg>
-                        <span id="d-countdown-text" class="absolute inset-0 flex items-center justify-center text-2xl font-bold text-[#0056b3] dark:text-blue-400">5</span>
+                    <!-- Progress bar -->
+                    <div class="w-full flex flex-col gap-2">
+                        <div class="flex items-center justify-between text-sm text-gray-400 dark:text-gray-500">
+                            <span>লিংক তৈরি হচ্ছে...</span>
+                            <span class="progress-seconds font-semibold text-[#0056b3] dark:text-blue-400"><span id="d-countdown-text">5</span>s</span>
+                        </div>
+                        <div class="w-full h-2.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                            <div id="d-progress-fill" class="progress-bar-fill"></div>
+                        </div>
                     </div>
-                    <p class="text-sm text-gray-400">লিংক তৈরি হচ্ছে...</p>
                 </div>
             </div>
 
@@ -276,7 +272,6 @@
 (function () {
     const DOWNLOAD_URL = '{{book_download_url}}';
     const COUNTDOWN_SECONDS = 5;
-    const circumference = 2 * Math.PI * 18;
 
     // Detect file info — update both mobile & desktop elements
     async function detectFileInfo(url) {
@@ -304,23 +299,25 @@
 
     // Generic countdown runner
     function startCountdown(prefix) {
-        const ring    = document.getElementById(prefix + 'countdown-ring');
-        const wrapper = document.getElementById(prefix + 'countdown-wrapper');
+        const fill    = document.getElementById(prefix + 'progress-fill');
         const text    = document.getElementById(prefix + 'countdown-text');
         let remaining = COUNTDOWN_SECONDS;
-        ring.style.strokeDashoffset = circumference;
 
-        function tick() {
-            wrapper.classList.add('jump');
-            setTimeout(() => wrapper.classList.remove('jump'), 400);
-        }
-        tick();
+        // Start full, shrink to 0
+        fill.style.width = '100%';
+
+        // First tick after 1 frame so transition plays
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                fill.style.width = ((remaining - 1) / COUNTDOWN_SECONDS * 100) + '%';
+            });
+        });
 
         const interval = setInterval(() => {
             remaining--;
             text.textContent = remaining;
-            ring.style.strokeDashoffset = circumference * (remaining / COUNTDOWN_SECONDS);
-            tick();
+            fill.style.width = (remaining / COUNTDOWN_SECONDS * 100) + '%';
+
             if (remaining <= 0) {
                 clearInterval(interval);
                 showStep(prefix, 3);
