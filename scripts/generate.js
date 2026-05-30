@@ -171,6 +171,9 @@ async function generateHomepage(bookList) {
     console.log('🚀 Script শুরু হয়েছে...');
     const bookList = await generateBookPages();
     await generateHomepage(bookList);
+    await generateAuthorPages(bookList);
+    await generateDownloadPages(bookList);
+    await generateCategoryPages(bookList);
     console.log('\n🎉 সব pages generate হয়েছে!');
     await admin.app().delete();
     process.exit(0);
@@ -180,3 +183,120 @@ async function generateHomepage(bookList) {
     process.exit(1);
   }
 })();
+
+async function generateAuthorPages(bookList) {
+  console.log('\n👤 Author pages generate করছি...');
+  const authorTemplate = fs.readFileSync('templates/author.html', 'utf8');
+  if (!fs.existsSync('author')) fs.mkdirSync('author');
+
+  // author অনুযায়ী group
+  const byAuthor = {};
+  for (const book of bookList) {
+    if (!byAuthor[book.author_slug]) {
+      byAuthor[book.author_slug] = {
+        name: book.author_name,
+        img: book.author_img || '',
+        desc: '',
+        books: [],
+      };
+    }
+    byAuthor[book.author_slug].books.push(book);
+  }
+
+  for (const [slug, data] of Object.entries(byAuthor)) {
+    const booksGrid = data.books.map(book => `
+    <a href="/books/${book.slug}.html" class="group">
+      <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+        <img src="${book.cover}" alt="${book.title}" class="w-full aspect-[2/3] object-cover">
+      </div>
+      <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">${book.title}</p>
+      <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">${book.category_name}</p>
+    </a>`).join('');
+
+    const fullPage = render(authorTemplate, {
+      author_name: data.name,
+      author_img: data.img,
+      author_desc: data.desc,
+      author_book_count: data.books.length,
+      author_books_grid: booksGrid,
+    });
+
+    fs.writeFileSync(`author/${slug}.html`, fullPage, 'utf8');
+    console.log(`  ✓ author/${slug}.html`);
+  }
+}
+
+async function generateDownloadPages(bookList) {
+  console.log('\n📥 Download pages generate করছি...');
+  const downloadTemplate = fs.readFileSync('templates/download.html', 'utf8');
+  if (!fs.existsSync('download')) fs.mkdirSync('download');
+
+  for (const book of bookList) {
+    const fullPage = render(downloadTemplate, {
+      book_title: book.title,
+      book_author: book.author_name,
+      book_cover: book.cover,
+      book_category: book.category_name,
+      book_download_url: book.download_url || '',
+    });
+
+    fs.writeFileSync(`download/${book.slug}.html`, fullPage, 'utf8');
+    console.log(`  ✓ download/${book.slug}.html`);
+  }
+}
+
+async function generateCategoryPages(bookList) {
+  console.log('\n📂 Category pages generate করছি...');
+  const categoryTemplate = fs.readFileSync('templates/category.html', 'utf8');
+
+  const byCategory = {};
+  for (const book of bookList) {
+    if (!byCategory[book.category_slug]) {
+      byCategory[book.category_slug] = { name: book.category_name, books: [] };
+    }
+    byCategory[book.category_slug].books.push(book);
+  }
+
+  for (const [slug, data] of Object.entries(byCategory)) {
+    const BOOKS_PER_PAGE = 24;
+    const totalPages = Math.ceil(data.books.length / BOOKS_PER_PAGE);
+    const dir = `category/${slug}`;
+    if (!fs.existsSync('category')) fs.mkdirSync('category');
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+
+    for (let page = 1; page <= totalPages; page++) {
+      const pageBooks = data.books.slice((page - 1) * BOOKS_PER_PAGE, page * BOOKS_PER_PAGE);
+
+      const booksGrid = pageBooks.map(book => `
+      <a href="/books/${book.slug}.html" class="group">
+        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+          <img src="${book.cover}" alt="${book.title}" class="w-full aspect-[2/3] object-cover">
+        </div>
+        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">${book.title}</p>
+        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">${book.author_name}</p>
+      </a>`).join('');
+
+      // Pagination HTML
+      let paginationHTML = '<div class="px-4 md:px-6 flex items-center justify-center gap-1 flex-wrap">';
+      if (page > 1) paginationHTML += `<a href="/category/${slug}/${page - 1}/" class="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"><i class="fas fa-chevron-left text-xs"></i> আগের</a>`;
+      for (let i = 1; i <= totalPages; i++) {
+        if (i === page) paginationHTML += `<span class="w-9 h-9 flex items-center justify-center rounded-lg text-sm bg-[#0056b3] text-white font-semibold">${i}</span>`;
+        else paginationHTML += `<a href="/category/${slug}/${i}/" class="w-9 h-9 flex items-center justify-center rounded-lg text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">${i}</a>`;
+      }
+      if (page < totalPages) paginationHTML += `<a href="/category/${slug}/${page + 1}/" class="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">পরের <i class="fas fa-chevron-right text-xs"></i></a>`;
+      paginationHTML += '</div>';
+
+      const fullPage = render(categoryTemplate, {
+        category_name: data.name,
+        category_book_count: data.books.length,
+        category_books_grid: booksGrid,
+        category_pagination: paginationHTML,
+      });
+
+      const pageDir = `${dir}/${page}`;
+      if (!fs.existsSync(pageDir)) fs.mkdirSync(pageDir, { recursive: true });
+      fs.writeFileSync(`${pageDir}/index.html`, fullPage, 'utf8');
+      console.log(`  ✓ category/${slug}/${page}/index.html`);
+    }
+  }
+}
