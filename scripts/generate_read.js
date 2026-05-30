@@ -1,7 +1,5 @@
 const fs = require('fs');
 
-const layout = fs.readFileSync('components/layout.html', 'utf8');
-
 function render(template, data) {
   return template.replace(/\{\{(\w+)\}\}/g, (_, key) => data[key] || '');
 }
@@ -15,23 +13,35 @@ if (!fs.existsSync('content')) {
   process.exit(0);
 }
 
+// read.html template load
+const readTemplate = fs.readFileSync('templates/read.html', 'utf8');
+
+// Firebase data থেকে book info নাও
+const firebaseData = JSON.parse(fs.readFileSync('firebase_data.json', 'utf8'));
+const books = firebaseData.books || {};
+const authors = firebaseData.authors || {};
+
+// slug → title map
+const slugToTitle = {};
+Object.values(books).forEach(book => {
+  const author = authors[book.author] || {};
+  slugToTitle[book.slug] = {
+    title: book.title || '',
+    author: author.title || '',
+  };
+});
+
 const contentFiles = fs.readdirSync('content').filter(f => f.endsWith('.html'));
 console.log(`content/ এ ${contentFiles.length}টা file পাওয়া গেছে:`, contentFiles);
 
 for (const file of contentFiles) {
   const slug = file.replace('.html', '');
   const bookContent = fs.readFileSync(`content/${file}`, 'utf8');
+  const bookInfo = slugToTitle[slug] || { title: slug, author: '' };
 
-  // Read page content — book content inject হবে
-  const readContent = `
-  <div id="book-content" class="fs-md prose dark:prose-invert max-w-none">
-    ${bookContent}
-  </div>`;
-
-  const fullPage = render(layout, {
-    page_title: slug,
-    page_description: '',
-    content: readContent,
+  const fullPage = render(readTemplate, {
+    book_title: bookInfo.title,
+    book_content: bookContent,
   });
 
   fs.writeFileSync(`read/${slug}.html`, fullPage, 'utf8');
