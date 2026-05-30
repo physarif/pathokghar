@@ -250,55 +250,25 @@
         body.theme-dark  #book-content h2 { border-top-color: #333; }
         body.theme-sepia #book-content h2 { border-top-color: #d9ccc0; }
 
-        /* Fixed top bar */
+        /* Fixed bottom bar */
         #mobile-topbar {
             position: fixed;
-            top: 0; left: 0; right: 0;
+            bottom: 0; left: 0; right: 0;
             height: 52px;
             z-index: 200;
             display: flex;
             align-items: center;
             gap: 4px;
             padding: 0 10px;
+            padding-bottom: env(safe-area-inset-bottom);
             transition: transform 0.28s ease, background 0.3s;
         }
-        #mobile-topbar.hide { transform: translateY(-100%); }
+        #mobile-topbar.hide { transform: translateY(100%); }
 
-        body.theme-dark  #mobile-topbar { background: #111113; border-bottom: 1px solid #2a2a2e; }
-        body.theme-sepia #mobile-topbar { background: #ede5d8; border-bottom: 1px solid #d4c8b8; }
-        body.theme-light #mobile-topbar { background: #fff;    border-bottom: 1px solid #e5e7eb; }
+        body.theme-dark  #mobile-topbar { background: #111113; border-top: 1px solid #2a2a2e; }
+        body.theme-sepia #mobile-topbar { background: #ede5d8; border-top: 1px solid #d4c8b8; }
+        body.theme-light #mobile-topbar { background: #fff;    border-top: 1px solid #e5e7eb; }
 
-        /* Fixed bottom toolbar */
-        #mobile-toolbar {
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            z-index: 200;
-            padding: 0 0 env(safe-area-inset-bottom);
-            transition: transform 0.28s ease, background 0.3s;
-        }
-        #mobile-toolbar.hide { transform: translateY(100%); }
-
-        body.theme-dark  #mobile-toolbar { background: #111113; border-top: 1px solid #2a2a2e; }
-        body.theme-sepia #mobile-toolbar { background: #ede5d8; border-top: 1px solid #d4c8b8; }
-        body.theme-light #mobile-toolbar { background: #fff;    border-top: 1px solid #e5e7eb; }
-
-        /* Theme color pickers row */
-        #theme-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            padding: 8px 18px 6px;
-            border-bottom: 1px solid rgba(128,128,128,0.15);
-        }
-        .theme-btn {
-            width: 36px; height: 36px;
-            border-radius: 50%;
-            border: 2px solid transparent;
-            cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            transition: border-color 0.15s;
-        }
         .theme-btn.active { border-color: #0056b3; }
         .theme-btn i { font-size: 14px; display: none; }
         .theme-btn.active i { display: block; }
@@ -313,8 +283,8 @@
 
         /* main content padding */
         #read-main-content {
-            padding-top: 52px;
-            padding-bottom: 160px;
+            padding-top: 16px;
+            padding-bottom: calc(52px + env(safe-area-inset-bottom) + 16px);
         }
         #mobile-reader-bg {
             min-height: 100vh;
@@ -384,28 +354,10 @@
     </a>
     <div class="flex-1 min-w-0 px-1">
         <p class="title-text text-sm font-semibold truncate leading-tight">ময়ূরাক্ষী</p>
-        <p class="text-[10px] text-gray-400" id="topbar-pct">০%</p>
     </div>
     <button id="mob-toc-btn-top" class="w-9 h-9 flex items-center justify-center rounded-full" aria-label="সূচিপত্র">
         <i class="fas fa-list-ul text-sm"></i>
     </button>
-</div>
-
-<!-- Bottom toolbar -->
-<div id="mobile-toolbar" class="md:hidden">
-    <!-- Theme color row -->
-    <div id="theme-row">
-        <button class="theme-btn active" data-theme="light" style="background:#ffffff; box-shadow:0 0 0 1px #ddd;">
-            <i class="fas fa-check" style="color:#0056b3;"></i>
-        </button>
-        <button class="theme-btn" data-theme="sepia" style="background:#f5efe6; box-shadow:0 0 0 1px #d4c8b8;">
-            <i class="fas fa-check" style="color:#0056b3;"></i>
-        </button>
-        <button class="theme-btn" data-theme="dark" style="background:#1c1c1e; box-shadow:0 0 0 1px #444;">
-            <i class="fas fa-check" style="color:#6aabff;"></i>
-        </button>
-    </div>
-
 </div>
 
 <!-- ── MOBILE: right TOC drawer + overlay ── -->
@@ -3898,11 +3850,9 @@
     const bookContent  = document.getElementById('book-content');
     const progressBar  = document.getElementById('read-progress-bar');
     const progressPct  = document.getElementById('progress-pct');
-    const topbarPct    = document.getElementById('topbar-pct');
     const tocDesktop   = document.getElementById('toc-nav-desktop');
     const tocMobile    = document.getElementById('toc-nav-mobile');
     const mobileTopbar = document.getElementById('mobile-topbar');
-    const mobileToolbar= document.getElementById('mobile-toolbar');
     const readerBg     = document.getElementById('mobile-reader-bg');
     const fontPopup    = document.getElementById('font-popup');
     const fontLabel    = document.getElementById('font-label');
@@ -3935,10 +3885,6 @@
         }
     }
 
-    document.querySelectorAll('.theme-btn').forEach(btn => {
-        btn.addEventListener('click', () => applyTheme(btn.dataset.theme));
-    });
-
     // ── Hide-on-scroll ──
     let lastScrollY = window.scrollY;
     let ticking = false;
@@ -3953,16 +3899,13 @@
 
                 if (delta > 6 && currentY > 80) {
                     mobileTopbar?.classList.add('hide');
-                    mobileToolbar?.classList.add('hide');
                 } else if (delta < -6) {
                     mobileTopbar?.classList.remove('hide');
-                    mobileToolbar?.classList.remove('hide');
                 }
 
                 lastScrollY = currentY;
                 progressBar.style.width = pct + '%';
                 if (progressPct) progressPct.textContent = toBN(pct) + '%';
-                if (topbarPct)   topbarPct.textContent   = toBN(pct) + '%';
                 ticking = false;
             });
             ticking = true;
