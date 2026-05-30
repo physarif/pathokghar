@@ -21,13 +21,10 @@ def epub_to_html(epub_path):
                 full_html += str(body)[6:-7]
     return full_html
 
-# Firebase data পড়ো (generate.js আগেই চলেছে)
 with open('firebase_data.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
 books = data.get('books', {})
-authors = data.get('authors', {})
-categories = data.get('categories', {})
 
 for uid, book in books.items():
     slug = book.get('slug', '')
