@@ -47,11 +47,7 @@ jobs:
           npm install firebase-admin wrangler
           pip install ebooklib beautifulsoup4 --break-system-packages
 
-      # ৫. epub → html convert (generate এর আগে, content/ তৈরি হোক)
-      - name: Convert epub to html
-        run: python scripts/convert_epub.py
-
-      # ৬. Firebase থেকে data fetch + সব pages generate
+      # ৫. Firebase থেকে data fetch + firebase_data.json তৈরি করো
       - name: Generate static pages
         env:
           FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
@@ -59,6 +55,10 @@ jobs:
           FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
           FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
         run: node scripts/generate_pages.js
+
+      # ৬. epub → html convert (generate এর পরে, firebase_data.json তৈরি হয়েছে)
+      - name: Convert epub to html
+        run: python scripts/convert_epub.py
 
       # ৭. sitemap.xml generate
       - name: Generate sitemap
