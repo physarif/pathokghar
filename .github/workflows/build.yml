@@ -40,7 +40,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm install firebase-admin
-          pip install ebooklib beautifulsoup4
+          pip install ebooklib beautifulsoup4 --break-system-packages
 
       # ৫. Firebase থেকে data fetch + pages generate
       - name: Generate static pages
@@ -49,19 +49,10 @@ jobs:
           FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
           FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
           FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
-          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
-          R2_ACCESS_KEY: ${{ secrets.R2_ACCESS_KEY }}
-          R2_SECRET_KEY: ${{ secrets.R2_SECRET_KEY }}
-          R2_BUCKET: ${{ secrets.R2_BUCKET }}
         run: node scripts/generate.js
 
       # ৬. epub → html convert
       - name: Convert epub to html
-        env:
-          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
-          R2_ACCESS_KEY: ${{ secrets.R2_ACCESS_KEY }}
-          R2_SECRET_KEY: ${{ secrets.R2_SECRET_KEY }}
-          R2_BUCKET: ${{ secrets.R2_BUCKET }}
         run: python scripts/convert_epub.py
 
       # ৭. read pages generate
