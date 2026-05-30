@@ -185,9 +185,9 @@
     #read-progress-bar {
         position: fixed;
         top: 0; left: 0;
-        height: 3px;
+        height: 2px;
         width: 0%;
-        background: linear-gradient(90deg, #0056b3, #3b82f6);
+        background: #0056b3;
         z-index: 1000;
         transition: width 0.1s linear;
     }
@@ -206,12 +206,11 @@
         margin-top: 2rem;
         margin-bottom: 0.75rem;
         padding-top: 1rem;
-        border-top: 1px solid #e5e7eb;
+        border-top: 1px solid rgba(128,128,128,0.2);
     }
-    .dark #book-content h2 { border-top-color: #374151; }
     #book-content p {
-        margin-bottom: 1rem;
-        line-height: 1.95;
+        margin-bottom: 1.1rem;
+        line-height: 2;
     }
     #book-content img {
         max-width: 100%;
@@ -230,20 +229,153 @@
     .toc-link.active {
         color: #0056b3;
         font-weight: 600;
-        background: #e1f0ff;
+        background: rgba(0,86,179,0.1);
         border-radius: 0.375rem;
     }
-    .dark .toc-link.active {
-        background: #1e3a5f;
-        color: #60a5fa;
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        body.theme-dark  #book-content { color: #e0e0e0; }
+        body.theme-sepia #book-content { color: #3b2f20; }
+        body.theme-light #book-content { color: #1a1a1a; }
+
+        body.theme-dark  #book-content h2 { border-top-color: #333; }
+        body.theme-sepia #book-content h2 { border-top-color: #d9ccc0; }
+
+        /* Fixed top bar */
+        #mobile-topbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 52px;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 0 10px;
+            transition: transform 0.28s ease, background 0.3s;
+        }
+        #mobile-topbar.hide { transform: translateY(-100%); }
+
+        body.theme-dark  #mobile-topbar { background: #111113; border-bottom: 1px solid #2a2a2e; }
+        body.theme-sepia #mobile-topbar { background: #ede5d8; border-bottom: 1px solid #d4c8b8; }
+        body.theme-light #mobile-topbar { background: #fff;    border-bottom: 1px solid #e5e7eb; }
+
+        /* Fixed bottom toolbar */
+        #mobile-toolbar {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 200;
+            padding: 0 0 env(safe-area-inset-bottom);
+            transition: transform 0.28s ease, background 0.3s;
+        }
+        #mobile-toolbar.hide { transform: translateY(100%); }
+
+        body.theme-dark  #mobile-toolbar { background: #111113; border-top: 1px solid #2a2a2e; }
+        body.theme-sepia #mobile-toolbar { background: #ede5d8; border-top: 1px solid #d4c8b8; }
+        body.theme-light #mobile-toolbar { background: #fff;    border-top: 1px solid #e5e7eb; }
+
+        /* Brightness slider row */
+        #brightness-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 18px 6px;
+            border-bottom: 1px solid rgba(128,128,128,0.15);
+        }
+        #brightness-slider {
+            -webkit-appearance: none;
+            flex: 1;
+            height: 3px;
+            border-radius: 2px;
+            outline: none;
+            background: rgba(128,128,128,0.3);
+        }
+        #brightness-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            background: #f5c518;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+            cursor: pointer;
+        }
+
+        /* Theme color pickers row */
+        #theme-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            padding: 8px 18px 6px;
+            border-bottom: 1px solid rgba(128,128,128,0.15);
+        }
+        .theme-btn {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: border-color 0.15s;
+        }
+        .theme-btn.active { border-color: #0056b3; }
+        .theme-btn i { font-size: 14px; display: none; }
+        .theme-btn.active i { display: block; }
+
+        /* Icon toolbar row */
+        #icon-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 8px 16px 10px;
+        }
+        .toolbar-icon-btn {
+            display: flex; flex-direction: column;
+            align-items: center; gap: 3px;
+            background: none; border: none;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 10px;
+            transition: background 0.15s;
+        }
+        .toolbar-icon-btn:active { background: rgba(128,128,128,0.15); }
+        .toolbar-icon-btn i { font-size: 20px; }
+
+        body.theme-dark  .toolbar-icon-btn i,
+        body.theme-dark  #mobile-topbar i   { color: #ccc; }
+        body.theme-sepia .toolbar-icon-btn i,
+        body.theme-sepia #mobile-topbar i   { color: #5a4535; }
+        body.theme-light .toolbar-icon-btn i,
+        body.theme-light #mobile-topbar i   { color: #444; }
+
+        body.theme-dark  #mobile-topbar .title-text { color: #e8e8e8; }
+        body.theme-sepia #mobile-topbar .title-text { color: #3b2f20; }
+        body.theme-light #mobile-topbar .title-text { color: #111; }
+
+        /* main content padding */
+        #read-main-content {
+            padding-top: 52px;
+            padding-bottom: 160px;
+        }
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
     }
 
-    /* ── Desktop TOC sidebar — fixed, no jitter ── */
+    /* ══════════════════════════════
+       DESKTOP TOC sidebar — fixed, no jitter
+    ══════════════════════════════ */
     @media (min-width: 1024px) {
         #toc-sidebar {
             position: fixed;
-            top: 3.5rem;
-            right: 0;
+            top: 3.5rem; right: 0;
             width: 14rem;
             height: calc(100vh - 3.5rem);
             scrollbar-width: none;
@@ -253,99 +385,33 @@
         #read-layout { padding-right: 15.5rem; }
     }
     #toc-controls-bar {
-        position: sticky;
-        top: 0;
-        z-index: 10;
+        position: sticky; top: 0; z-index: 10;
     }
-
-    /* ── MOBILE: floating TOC button ── */
-    #mobile-fab {
-        position: fixed;
-        bottom: 1.5rem;
-        right: 1.25rem;
-        z-index: 200;
-        width: 3rem;
-        height: 3rem;
-        border-radius: 50%;
-        background: #0056b3;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 16px rgba(0,86,179,0.35);
-        border: none;
-        cursor: pointer;
-        transition: transform 0.2s ease, opacity 0.28s ease;
-    }
-    #mobile-fab.hide {
-        transform: scale(0.7);
-        opacity: 0;
-        pointer-events: none;
-    }
-    #mobile-fab:active { transform: scale(0.92); }
 
     /* ── MOBILE: right TOC drawer ── */
     #mobile-toc-drawer {
         position: fixed;
         top: 0; right: 0; bottom: 0;
-        width: 78vw;
-        max-width: 300px;
-        z-index: 300;
-        display: flex;
-        flex-direction: column;
-        transform: translateX(100%);
+        width: 78vw; max-width: 300px;
+        z-index: 500;
+        display: flex; flex-direction: column;
+        transform: translateX(110%);
         transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
     }
-    #mobile-toc-drawer.open {
-        transform: translateX(0);
-    }
+    #mobile-toc-drawer.open { transform: translateX(0); }
+
     #mobile-toc-overlay {
-        position: fixed;
-        inset: 0;
-        z-index: 299;
-        background: rgba(0,0,0,0.45);
-        opacity: 0;
-        pointer-events: none;
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.5);
+        opacity: 0; pointer-events: none;
         transition: opacity 0.3s ease;
     }
-    #mobile-toc-overlay.open {
-        opacity: 1;
-        pointer-events: auto;
-    }
+    #mobile-toc-overlay.open { opacity: 1; pointer-events: auto; }
 
-    /* ── MOBILE: settings bottom sheet ── */
-    #mobile-settings-sheet {
-        position: fixed;
-        inset: 0;
-        z-index: 300;
-        pointer-events: none;
-    }
-    #mobile-settings-sheet.open { pointer-events: auto; }
-    #mobile-settings-overlay {
-        position: absolute;
-        inset: 0;
-        background: rgba(0,0,0,0.45);
-        opacity: 0;
-        transition: opacity 0.25s ease;
-    }
-    #mobile-settings-sheet.open #mobile-settings-overlay { opacity: 1; }
-    #mobile-settings-panel {
-        position: absolute;
-        bottom: 0; left: 0; right: 0;
-        border-radius: 1.25rem 1.25rem 0 0;
-        padding: 1.25rem;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        transform: translateY(100%);
-        transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
-    }
-    #mobile-settings-sheet.open #mobile-settings-panel { transform: translateY(0); }
-
-    /* mobile content bottom padding so FAB doesn't overlap text */
-    @media (max-width: 767px) {
-        #read-main-content { padding-bottom: 5rem; }
-    }
+    body.theme-dark  #mobile-toc-drawer { background: #1c1c1e; border-left: 1px solid #2a2a2e; }
+    body.theme-sepia #mobile-toc-drawer { background: #f5efe6; border-left: 1px solid #d4c8b8; }
+    body.theme-light #mobile-toc-drawer { background: #fff;    border-left: 1px solid #e5e7eb; }
 
     html { scroll-behavior: smooth; }
 </style>
@@ -353,90 +419,114 @@
 <!-- Progress bar -->
 <div id="read-progress-bar"></div>
 
-<!-- ════════════════════════
-     MOBILE: Floating TOC button (right bottom)
-     ════════════════════════ -->
-<button id="mobile-fab" class="md:hidden" aria-label="সূচিপত্র">
-    <i class="fas fa-list-ul" style="font-size:1rem;"></i>
-</button>
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
 
-<!-- ════════════════════════
-     MOBILE: Right TOC drawer + overlay
-     ════════════════════════ -->
+<!-- Top bar -->
+<div id="mobile-topbar" class="md:hidden">
+    <a href="/books/moyurakkhi.html"
+       class="w-9 h-9 flex items-center justify-center rounded-full shrink-0">
+        <i class="fas fa-chevron-left text-base"></i>
+    </a>
+    <div class="flex-1 min-w-0 px-1">
+        <p class="title-text text-sm font-semibold truncate leading-tight">ময়ূরাক্ষী</p>
+        <p class="text-[10px] text-gray-400" id="topbar-pct">০%</p>
+    </div>
+    <button class="w-9 h-9 flex items-center justify-center rounded-full" aria-label="খোঁজ">
+        <i class="fas fa-search text-sm"></i>
+    </button>
+    <button class="w-9 h-9 flex items-center justify-center rounded-full" aria-label="বুকমার্ক">
+        <i class="far fa-bookmark text-sm"></i>
+    </button>
+    <button class="w-9 h-9 flex items-center justify-center rounded-full" aria-label="আরো">
+        <i class="fas fa-ellipsis-v text-sm"></i>
+    </button>
+</div>
+
+<!-- Bottom toolbar -->
+<div id="mobile-toolbar" class="md:hidden">
+    <!-- Brightness row -->
+    <div id="brightness-row">
+        <i class="fas fa-sun text-xs" style="color:#aaa; font-size:13px;"></i>
+        <input id="brightness-slider" type="range" min="20" max="100" value="80">
+        <i class="fas fa-sun" style="color:#aaa; font-size:18px;"></i>
+    </div>
+    <!-- Theme color row -->
+    <div id="theme-row">
+        <button class="theme-btn active" data-theme="light" style="background:#ffffff; box-shadow:0 0 0 1px #ddd;">
+            <i class="fas fa-check" style="color:#0056b3;"></i>
+        </button>
+        <button class="theme-btn" data-theme="sepia" style="background:#f5efe6; box-shadow:0 0 0 1px #d4c8b8;">
+            <i class="fas fa-check" style="color:#0056b3;"></i>
+        </button>
+        <button class="theme-btn" data-theme="dark" style="background:#1c1c1e; box-shadow:0 0 0 1px #444;">
+            <i class="fas fa-check" style="color:#6aabff;"></i>
+        </button>
+    </div>
+    <!-- Icon row -->
+    <div id="icon-row">
+        <button class="toolbar-icon-btn" id="mob-toc-btn" aria-label="সূচিপত্র">
+            <i class="fas fa-list-ul"></i>
+        </button>
+        <button class="toolbar-icon-btn" aria-label="নোট">
+            <i class="fas fa-sticky-note"></i>
+        </button>
+        <button class="toolbar-icon-btn" aria-label="শেয়ার">
+            <i class="fas fa-share-alt"></i>
+        </button>
+        <button class="toolbar-icon-btn" aria-label="হাইলাইট">
+            <i class="fas fa-highlighter"></i>
+        </button>
+        <button class="toolbar-icon-btn" aria-label="উজ্জ্বলতা">
+            <i class="fas fa-adjust"></i>
+        </button>
+        <button class="toolbar-icon-btn" aria-label="ফন্ট" id="mob-font-btn">
+            <i class="fas fa-font"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Font size popup (mobile) -->
+<div id="font-popup"
+    class="md:hidden fixed bottom-[160px] right-4 z-[300] hidden
+           rounded-2xl shadow-xl border px-4 py-3 flex items-center gap-3"
+    style="background:inherit;">
+    <button id="m-font-decrease"
+        class="w-10 h-10 rounded-xl text-base font-bold flex items-center justify-center"
+        style="background:rgba(128,128,128,0.15);">A−</button>
+    <span id="font-label" class="text-sm font-medium w-6 text-center">2</span>
+    <button id="m-font-increase"
+        class="w-10 h-10 rounded-xl text-base font-bold flex items-center justify-center"
+        style="background:rgba(128,128,128,0.15);">A+</button>
+</div>
+
+<!-- ── MOBILE: right TOC drawer + overlay ── -->
 <div id="mobile-toc-overlay" class="md:hidden"></div>
-<div id="mobile-toc-drawer"
-    class="md:hidden bg-white dark:bg-[#1a1a1b] border-l border-gray-200 dark:border-gray-700">
-
-    <!-- Drawer header -->
+<div id="mobile-toc-drawer" class="md:hidden">
     <div class="flex items-center justify-between px-4 pt-12 pb-3 border-b border-gray-200 dark:border-gray-700 shrink-0">
-        <p class="text-sm font-semibold text-gray-800 dark:text-gray-100">সূচিপত্র</p>
+        <p class="text-sm font-semibold" style="color:inherit;">সূচিপত্র</p>
         <button id="mobile-toc-close"
-            class="w-7 h-7 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400"
-            aria-label="বন্ধ">
+            class="w-7 h-7 rounded-full flex items-center justify-center"
+            style="background:rgba(128,128,128,0.15);">
             <i class="fas fa-times text-xs"></i>
         </button>
     </div>
-
-    <!-- Font size row -->
-    <div class="flex items-center gap-2 px-4 py-3 border-b border-gray-100 dark:border-gray-800 shrink-0">
-        <span class="text-xs text-gray-500 dark:text-gray-400 flex-1">ফন্ট সাইজ</span>
-        <button id="m-font-decrease"
-            class="w-9 h-8 rounded-lg bg-gray-100 dark:bg-gray-700 text-sm font-bold text-gray-700 dark:text-gray-200 flex items-center justify-center">A−</button>
-        <button id="m-font-increase"
-            class="w-9 h-8 rounded-lg bg-gray-100 dark:bg-gray-700 text-sm font-bold text-gray-700 dark:text-gray-200 flex items-center justify-center">A+</button>
-    </div>
-
-    <!-- Progress row -->
-    <div class="flex items-center gap-3 px-4 py-2.5 border-b border-gray-100 dark:border-gray-800 shrink-0">
-        <div class="flex-1 h-1.5 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
-            <div id="mobile-progress-fill" class="h-full rounded-full bg-[#0056b3] transition-all duration-200" style="width:0%"></div>
-        </div>
-        <span id="mobile-progress-pct" class="text-[11px] tabular-nums text-gray-400 dark:text-gray-500 shrink-0 w-7 text-right">০%</span>
-    </div>
-
-    <!-- Back link -->
     <a href="/books/moyurakkhi.html"
-       class="flex items-center gap-2 px-4 py-3 text-xs text-gray-500 dark:text-gray-400 hover:text-[#0056b3] dark:hover:text-blue-400 border-b border-gray-100 dark:border-gray-800 transition shrink-0">
+       class="flex items-center gap-2 px-4 py-3 text-xs border-b border-gray-100 dark:border-gray-800 shrink-0"
+       style="color:#0056b3;">
         <i class="fas fa-arrow-left text-[10px]"></i> বইয়ের তথ্য
     </a>
-
-    <!-- TOC label -->
-    <div class="px-4 pt-3 pb-1 shrink-0">
-        <p class="text-[10px] uppercase font-semibold text-gray-400 dark:text-gray-500 tracking-wider">অধ্যায়সমূহ</p>
-    </div>
-
-    <!-- TOC nav -->
     <nav id="toc-nav-mobile"
-        class="flex flex-col px-2 pb-6 gap-0.5 text-[13px] overflow-y-auto flex-1"
-        style="scrollbar-width:none; -ms-overflow-style:none;">
+        class="flex flex-col px-2 py-3 gap-0.5 text-[13px] overflow-y-auto flex-1"
+        style="scrollbar-width:none;">
     </nav>
 </div>
 
-<!-- ════════════════════════
-     MOBILE: Settings bottom sheet (unused on new design but kept for future)
-     ════════════════════════ -->
-<div id="mobile-settings-sheet" class="md:hidden">
-    <div id="mobile-settings-overlay"></div>
-    <div id="mobile-settings-panel" class="bg-white dark:bg-[#2d2d2d]">
-        <div class="w-10 h-1 bg-gray-200 dark:bg-gray-600 rounded-full mx-auto"></div>
-        <p class="text-sm font-semibold text-gray-700 dark:text-gray-200">পড়ার সেটিংস</p>
-        <div class="flex items-center gap-3">
-            <span class="text-xs text-gray-500 dark:text-gray-400 w-20">ফন্ট সাইজ</span>
-            <button id="ms-font-decrease"
-                class="flex-1 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-sm font-bold text-gray-700 dark:text-gray-200">A−</button>
-            <button id="ms-font-increase"
-                class="flex-1 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-sm font-bold text-gray-700 dark:text-gray-200">A+</button>
-        </div>
-        <button id="close-settings-btn"
-            class="w-full py-2.5 rounded-lg bg-gray-100 dark:bg-gray-700 text-sm text-gray-600 dark:text-gray-300">
-            বন্ধ করুন
-        </button>
-    </div>
-</div>
-
-<!-- ════════════════════════════════════════════
-     Main layout: reading column + desktop TOC
-     ════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg" class="md:block">
 <div class="flex gap-0 min-h-[calc(100vh-3.5rem)] w-full" id="read-layout">
 
     <!-- Reading column -->
@@ -3858,7 +3948,7 @@
             <!-- Bottom nav -->
             <div class="mt-12 pt-6 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
                 <a href="/books/moyurakkhi.html"
-                   class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-[#0056b3] dark:hover:text-blue-400 transition">
+                   class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#0056b3] transition">
                     <i class="fas fa-arrow-left text-xs"></i> বইয়ের তথ্য
                 </a>
                 <a href="/download/moyurakkhi.html"
@@ -3869,14 +3959,13 @@
         </div>
     </div>
 
-    <!-- Desktop TOC sidebar (fixed, no jitter) -->
+    <!-- Desktop TOC sidebar -->
     <aside id="toc-sidebar"
         class="hidden lg:flex flex-col w-56 shrink-0 border-l border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1b] overflow-y-auto">
-
         <div id="toc-controls-bar"
             class="bg-white dark:bg-[#1a1a1b] border-b border-gray-200 dark:border-gray-700 px-3 py-2.5 flex flex-col gap-2 shrink-0">
             <a href="/books/moyurakkhi.html"
-               class="flex items-center gap-1.5 text-[11px] text-gray-500 dark:text-gray-400 hover:text-[#0056b3] dark:hover:text-blue-400 transition">
+               class="flex items-center gap-1.5 text-[11px] text-gray-500 hover:text-[#0056b3] transition">
                 <i class="fas fa-arrow-left text-[10px]"></i> বইয়ের তথ্য
             </a>
             <div class="flex items-center gap-1.5">
@@ -3885,37 +3974,85 @@
                 <button id="font-increase"
                     class="flex-1 py-1 rounded bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-[11px] font-bold transition text-gray-700 dark:text-gray-200">A+</button>
                 <span id="progress-pct"
-                    class="text-[10px] text-gray-400 dark:text-gray-500 tabular-nums shrink-0 w-7 text-right">০%</span>
+                    class="text-[10px] text-gray-400 tabular-nums shrink-0 w-7 text-right">০%</span>
             </div>
         </div>
-
         <div class="px-4 pt-3 pb-1.5 shrink-0">
-            <p class="text-[11px] uppercase font-semibold text-gray-400 dark:text-gray-500 tracking-wider">সূচিপত্র</p>
+            <p class="text-[11px] uppercase font-semibold text-gray-400 tracking-wider">সূচিপত্র</p>
         </div>
-
         <nav id="toc-nav-desktop" class="flex flex-col px-2 pb-6 gap-0.5 text-[12px]">
-            <!-- JS generate -->
         </nav>
     </aside>
+</div>
 </div>
 
 <script>
 (function () {
-    const bookContent = document.getElementById('book-content');
-    const progressBar = document.getElementById('read-progress-bar');
-    const progressPct = document.getElementById('progress-pct');
-    const mobileFill  = document.getElementById('mobile-progress-fill');
-    const mobilePct   = document.getElementById('mobile-progress-pct');
-    const tocDesktop  = document.getElementById('toc-nav-desktop');
-    const tocMobile   = document.getElementById('toc-nav-mobile');
-    const fab         = document.getElementById('mobile-fab');
+    const bookContent  = document.getElementById('book-content');
+    const progressBar  = document.getElementById('read-progress-bar');
+    const progressPct  = document.getElementById('progress-pct');
+    const topbarPct    = document.getElementById('topbar-pct');
+    const tocDesktop   = document.getElementById('toc-nav-desktop');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+    const mobileTopbar = document.getElementById('mobile-topbar');
+    const mobileToolbar= document.getElementById('mobile-toolbar');
+    const readerBg     = document.getElementById('mobile-reader-bg');
+    const fontPopup    = document.getElementById('font-popup');
+    const fontLabel    = document.getElementById('font-label');
 
     const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
     function toBN(n) {
         return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
     }
 
-    // ── FAB hide on scroll down, show on scroll up ──
+    // ── Default theme ──
+    let currentTheme = localStorage.getItem('pg-theme') || 'light';
+    applyTheme(currentTheme);
+
+    function applyTheme(t) {
+        ['light','sepia','dark'].forEach(th => document.body.classList.remove('theme-'+th));
+        document.body.classList.add('theme-'+t);
+        currentTheme = t;
+        localStorage.setItem('pg-theme', t);
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.theme === t);
+        });
+        // font popup bg
+        const bgMap = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e' };
+        const bdMap = { light:'#e5e7eb', sepia:'#d4c8b8', dark:'#2a2a2e' };
+        const clMap = { light:'#111', sepia:'#3b2f20', dark:'#e0e0e0' };
+        if (fontPopup) {
+            fontPopup.style.background = bgMap[t];
+            fontPopup.style.borderColor = bdMap[t];
+            fontPopup.style.color = clMap[t];
+        }
+    }
+
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+        btn.addEventListener('click', () => applyTheme(btn.dataset.theme));
+    });
+
+    // ── Brightness ──
+    const brightnessSlider = document.getElementById('brightness-slider');
+    let brightnessOverlay = null;
+
+    function applyBrightness(val) {
+        const opacity = 1 - val / 100;
+        if (!brightnessOverlay) {
+            brightnessOverlay = document.createElement('div');
+            Object.assign(brightnessOverlay.style, {
+                position:'fixed', inset:'0', background:'#000',
+                pointerEvents:'none', zIndex:'9999', transition:'opacity 0.15s'
+            });
+            document.body.appendChild(brightnessOverlay);
+        }
+        brightnessOverlay.style.opacity = Math.max(0, opacity * 0.75);
+    }
+
+    brightnessSlider?.addEventListener('input', e => applyBrightness(+e.target.value));
+    applyBrightness(+(brightnessSlider?.value || 80));
+
+    // ── Hide-on-scroll ──
     let lastScrollY = window.scrollY;
     let ticking = false;
 
@@ -3924,22 +4061,21 @@
             requestAnimationFrame(() => {
                 const currentY = window.scrollY;
                 const delta    = currentY - lastScrollY;
+                const docH     = document.documentElement.scrollHeight - window.innerHeight;
+                const pct      = docH > 0 ? (currentY / docH) * 100 : 0;
 
-                if (delta > 5 && currentY > 80) {
-                    fab?.classList.add('hide');
-                } else if (delta < -5) {
-                    fab?.classList.remove('hide');
+                if (delta > 6 && currentY > 80) {
+                    mobileTopbar?.classList.add('hide');
+                    mobileToolbar?.classList.add('hide');
+                } else if (delta < -6) {
+                    mobileTopbar?.classList.remove('hide');
+                    mobileToolbar?.classList.remove('hide');
                 }
-                lastScrollY = currentY;
 
-                // progress update
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const pct = docHeight > 0 ? (currentY / docHeight) * 100 : 0;
+                lastScrollY = currentY;
                 progressBar.style.width = pct + '%';
                 if (progressPct) progressPct.textContent = toBN(pct) + '%';
-                if (mobileFill)  mobileFill.style.width  = pct + '%';
-                if (mobilePct)   mobilePct.textContent   = toBN(pct) + '%';
-
+                if (topbarPct)   topbarPct.textContent   = toBN(pct) + '%';
                 ticking = false;
             });
             ticking = true;
@@ -3960,16 +4096,14 @@
                 (h.tagName === 'H1'
                     ? 'font-semibold text-[13px] text-gray-800 dark:text-gray-100'
                     : 'pl-5 text-[11px]');
-            if (isMobile) {
-                a.addEventListener('click', () => closeTocDrawer());
-            }
+            if (isMobile) a.addEventListener('click', closeTocDrawer);
             nav.appendChild(a);
         });
     }
     buildToc(tocDesktop, false);
-    buildToc(tocMobile,  true);
+    buildToc(tocMobile, true);
 
-    // ── TOC active highlight ──
+    // ── TOC active ──
     const allTocLinks = document.querySelectorAll('.toc-link');
     window.addEventListener('scroll', () => {
         let current = 0;
@@ -3985,6 +4119,7 @@
     const fontSizes = ['fs-sm', 'fs-md', 'fs-lg', 'fs-xl'];
     let currentSize = parseInt(localStorage.getItem('pg-font-size') || '1');
     bookContent.classList.add(fontSizes[currentSize]);
+    if (fontLabel) fontLabel.textContent = currentSize + 1;
 
     function changeFont(delta) {
         const next = Math.max(0, Math.min(fontSizes.length - 1, currentSize + delta));
@@ -3992,14 +4127,21 @@
         bookContent.classList.replace(fontSizes[currentSize], fontSizes[next]);
         currentSize = next;
         localStorage.setItem('pg-font-size', currentSize);
+        if (fontLabel) fontLabel.textContent = currentSize + 1;
     }
 
-    document.getElementById('font-increase')?.addEventListener('click',    () => changeFont(1));
-    document.getElementById('font-decrease')?.addEventListener('click',    () => changeFont(-1));
-    document.getElementById('m-font-increase')?.addEventListener('click',  () => changeFont(1));
-    document.getElementById('m-font-decrease')?.addEventListener('click',  () => changeFont(-1));
-    document.getElementById('ms-font-increase')?.addEventListener('click', () => changeFont(1));
-    document.getElementById('ms-font-decrease')?.addEventListener('click', () => changeFont(-1));
+    document.getElementById('font-increase')?.addEventListener('click', () => changeFont(1));
+    document.getElementById('font-decrease')?.addEventListener('click', () => changeFont(-1));
+    document.getElementById('m-font-increase')?.addEventListener('click', () => changeFont(1));
+    document.getElementById('m-font-decrease')?.addEventListener('click', () => changeFont(-1));
+
+    // Font popup toggle
+    document.getElementById('mob-font-btn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        fontPopup?.classList.toggle('hidden');
+    });
+    document.addEventListener('click', () => fontPopup?.classList.add('hidden'));
+    fontPopup?.addEventListener('click', e => e.stopPropagation());
 
     // ── Mobile right TOC drawer ──
     const tocDrawer  = document.getElementById('mobile-toc-drawer');
@@ -4016,26 +4158,16 @@
         document.body.style.overflow = '';
     }
 
-    fab?.addEventListener('click', openTocDrawer);
+    document.getElementById('mob-toc-btn')?.addEventListener('click', openTocDrawer);
     document.getElementById('mobile-toc-close')?.addEventListener('click', closeTocDrawer);
     tocOverlay?.addEventListener('click', closeTocDrawer);
 
-    // swipe right to close drawer
+    // swipe right to close
     let touchStartX = 0;
     tocDrawer?.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
     tocDrawer?.addEventListener('touchend', e => {
         if (e.changedTouches[0].clientX - touchStartX > 60) closeTocDrawer();
     }, { passive: true });
-
-    // ── Mobile settings sheet ──
-    const settingsSheet   = document.getElementById('mobile-settings-sheet');
-    const settingsOverlay = document.getElementById('mobile-settings-overlay');
-
-    function openSettingsSheet()  { settingsSheet.classList.add('open');    document.body.style.overflow = 'hidden'; }
-    function closeSettingsSheet() { settingsSheet.classList.remove('open'); document.body.style.overflow = ''; }
-
-    settingsOverlay?.addEventListener('click', closeSettingsSheet);
-    document.getElementById('close-settings-btn')?.addEventListener('click', closeSettingsSheet);
 })();
 </script>
 
