@@ -27,23 +27,44 @@ function render(template, data) {
 if (!fs.existsSync('books')) fs.mkdirSync('books');
 
 async function generateBookPages() {
-  console.log('📚 Firebase থেকে book data fetch করছি...');
-  
-  const snapshot = await Promise.race([
+  console.log('📚 Firebase থেকে data fetch করছি...');
+
+  const [booksSnap, authorsSnap, categoriesSnap] = await Promise.all([
     db.ref('/books').once('value'),
-    new Promise((_, reject) => setTimeout(() => reject(new Error('Firebase timeout after 30s')), 30000))
+    db.ref('/authors').once('value'),
+    db.ref('/categories').once('value'),
   ]);
-  const books = snapshot.val();
-  
-  if (!books) {
+
+  const booksRaw = booksSnap.val();
+  const authorsRaw = authorsSnap.val() || {};
+  const categoriesRaw = categoriesSnap.val() || {};
+
+  if (!booksRaw) {
     console.log('কোনো book data পাওয়া যায়নি।');
     return [];
   }
 
-  const bookList = Object.values(books);
+  const bookList = Object.values(booksRaw).map(book => {
+    const author = authorsRaw[book.author] || {};
+    const category = categoriesRaw[book.category] || {};
+    return {
+      slug: book.slug,
+      title: book.title,
+      description: book.desc || '',
+      cover: book.img || '',
+      download_url: book.file || '',
+      language: 'বাংলা',
+      created_at: book.createdAt || 0,
+      author_name: author.title || '',
+      author_slug: author.slug || '',
+      author_img: author.img || '',
+      category_name: category.title || '',
+      category_slug: category.slug || '',
+    };
+  });
+
   console.log(`✅ ${bookList.length}টা বই পাওয়া গেছে।`);
 
-  // প্রতিটা বইয়ের জন্য HTML page generate
   for (const book of bookList) {
     const bookContent = render(bookTemplate, {
       book_title: book.title,
