@@ -1,18 +1,13 @@
 name: Build & Deploy Pathok Ghar
 
 on:
-  # Firebase data change হলে trigger (webhook দিয়ে)
   repository_dispatch:
     types: [firebase-update]
-  
-  # Component বা script change হলে trigger
   push:
     branches: [main]
     paths:
       - 'components/**'
       - 'scripts/**'
-  
-  # Manual trigger
   workflow_dispatch:
 
 permissions:
@@ -21,13 +16,14 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       # ১. Repo checkout
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           clean: true
+          fetch-depth: 2
 
       # ২. Node.js setup
       - name: Setup Node.js
@@ -35,7 +31,7 @@ jobs:
         with:
           node-version: '22'
 
-      # ৩. Python setup (epub convert এর জন্য)
+      # ৩. Python setup
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -47,7 +43,30 @@ jobs:
           npm install firebase-admin wrangler
           pip install ebooklib beautifulsoup4 --break-system-packages
 
-      # ৫. Firebase থেকে data fetch + firebase_data.json তৈরি করো
+      # ৫. কোন files বদলেছে সেটা detect করো
+      - name: Detect changed files
+        id: changes
+        run: |
+          # repository_dispatch বা workflow_dispatch হলে সব rebuild
+          if [ "${{ github.event_name }}" != "push" ]; then
+            echo "layout_only=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          CHANGED=$(git diff --name-only HEAD~1 HEAD)
+          echo "Changed files: $CHANGED"
+
+          # শুধু components/ বদলেছে কিনা দেখো (layout.html সহ, কিন্তু read.html ও download.html বাদে)
+          LAYOUT_CHANGED=$(echo "$CHANGED" | grep '^components/' | grep -v 'read\.html\|download\.html' || true)
+          OTHER_CHANGED=$(echo "$CHANGED" | grep -v '^components/' || true)
+
+          if [ -n "$LAYOUT_CHANGED" ] && [ -z "$OTHER_CHANGED" ]; then
+            echo "layout_only=true" >> $GITHUB_OUTPUT
+          else
+            echo "layout_only=false" >> $GITHUB_OUTPUT
+          fi
+
+      # ৬. Firebase থেকে data fetch + সব pages generate (read/ ছাড়া)
       - name: Generate static pages
         env:
           FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
@@ -56,31 +75,28 @@ jobs:
           FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
         run: node scripts/generate_pages.js
 
-      # ৬. epub → html convert (generate এর পরে, firebase_data.json তৈরি হয়েছে)
+      # ৭. epub convert — শুধু full rebuild এ (layout_only হলে skip)
       - name: Convert epub to html
+        if: steps.changes.outputs.layout_only != 'true'
         run: python scripts/convert_epub.py
-
-      # ৭. read/ pages generate (epub convert এর পরে, content/ folder তৈরি হয়েছে)
-      - name: Generate read pages
-        run: node scripts/generate_pages.js --read-only
 
       # ৮. sitemap.xml generate
       - name: Generate sitemap
         run: node scripts/generate_sitemap.js
 
-      # ৮. Cloudflare Pages এ deploy
+      # ৯. Cloudflare Pages এ deploy
       - name: Deploy to Cloudflare Pages
         run: npx wrangler pages deploy . --project-name=pathokghar --commit-dirty=true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
-      # ৯. Generated files commit & push
+      # ১০. Generated files commit & push
       - name: Commit generated files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add books/ index.html sitemap.xml || true
-          git add read/ || true
           git add author/ download/ category/ || true
+          git add read/ || true
           git diff --staged --quiet || git commit -m "build: auto-generate pages [skip ci]" && git push
