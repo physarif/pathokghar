@@ -4,6 +4,188 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>উপন্যাস - পাঠক ঘর</title>
+    <meta name="description" content="">
+    <meta property="og:title" content="উপন্যাস - পাঠক ঘর">
+    <meta property="og:description" content="">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50:  '#f0f7ff',
+                            100: '#e1f0ff',
+                            500: '#0056b3',
+                            600: '#004494'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
+
+    <!-- HEADER -->
+    <header class="bg-white dark:bg-[#1a1a1b] fixed top-0 w-full h-14 z-[100] border-b border-gray-200 dark:border-gray-700 shadow-sm transition-transform duration-300">
+        <div class="container mx-auto px-4 h-full flex items-center gap-3">
+
+            <!-- Hamburger -->
+            <button id="hamburger-btn" class="md:hidden p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Logo -->
+            <a href="https://pathokghar.pages.dev" class="text-2xl font-extrabold tracking-tighter hover:bg-gray-100 dark:hover:bg-gray-800 px-2 py-1 rounded transition-colors duration-200 shrink-0">
+                পাঠক <span class="font-light text-gray-400">ঘর</span>
+            </a>
+
+            <!-- Search (desktop) -->
+            <div class="hidden md:flex flex-1 max-w-2xl gap-1">
+                <div class="relative flex-1 group">
+                    <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-500 text-sm"></i>
+                    <input id="desktop-search-input" type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
+                        class="w-full bg-gray-50 dark:bg-[#2d2d2d] border border-gray-300 dark:border-gray-600 rounded py-1.5 pl-9 pr-4 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all">
+                </div>
+                <button id="desktop-search-btn" class="bg-brand-500 hover:bg-brand-600 text-white px-4 rounded transition-colors shrink-0">
+                    <i class="fas fa-search text-sm"></i>
+                </button>
+            </div>
+
+            <!-- Right side actions -->
+            <div class="flex items-center space-x-2 ml-auto shrink-0">
+
+                <!-- Mobile search button -->
+                <button id="mobile-search-btn" class="md:hidden p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition" title="খুঁজুন">
+                    <i class="fas fa-search text-xl"></i>
+                </button>
+
+                <!-- Day/Night toggle -->
+                <button id="theme-btn" class="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition text-gray-600 dark:text-gray-300" title="ডার্ক মোড">
+                    <i id="theme-icon" class="fas fa-moon text-lg"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Mobile search bar (dropdown) -->
+        <div id="mobile-search-bar" class="absolute top-14 left-0 w-full bg-white dark:bg-[#1a1a1b] border-b dark:border-gray-700 p-2 hidden shadow-lg">
+            <div class="flex gap-2">
+                <div class="relative flex-1">
+                    <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                    <input id="mobile-search-input" type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
+                        class="w-full bg-gray-50 dark:bg-[#2d2d2d] border border-gray-300 dark:border-gray-600 rounded-lg py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <button id="mobile-search-submit" class="bg-brand-500 hover:bg-brand-600 text-white text-sm px-4 rounded-lg transition-colors shrink-0">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- Sidebar overlay (mobile) -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-[140] hidden"></div>
+
+    <div class="container mx-auto flex flex-1 pt-14">
+
+        <!-- SIDEBAR -->
+        <aside id="mobile-sidebar"
+            class="fixed md:sticky top-14 left-0 w-60 h-[calc(100vh-3.5rem)]
+                   bg-white dark:bg-[#1a1a1b]
+                   border-r border-gray-200 dark:border-gray-700
+                   z-[150] md:z-40
+                   -translate-x-full md:translate-x-0
+                   overflow-y-auto transition-transform duration-300 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+
+            <!-- Nav -->
+            <nav class="flex flex-col py-2 text-[14px]">
+
+                <a href="https://pathokghar.pages.dev" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-blue-600 bg-blue-50 dark:bg-gray-800 transition-colors">
+                    <i class="fas fa-home w-4"></i> <span>প্রধান পাতা</span>
+                </a>
+                <a href="new.html" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 transition-colors">
+                    <i class="fas fa-clock w-4"></i> <span>নতুন বই</span>
+                </a>
+                <a href="popular.html" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 transition-colors">
+                    <i class="fas fa-fire w-4"></i> <span>জনপ্রিয়</span>
+                </a>
+
+                <hr class="my-3 border-gray-100 dark:border-gray-800 mx-4">
+
+                <!-- Categories -->
+                <details class="group mx-2" open>
+                    <summary class="flex items-center justify-between px-4 py-2 text-gray-500 dark:text-gray-400 cursor-pointer md:hover:bg-gray-50 dark:md:hover:bg-gray-800 active:bg-gray-100 rounded-md list-none uppercase text-[11px] font-semibold tracking-wider">
+                        <span>ক্যাটাগরি</span>
+                        <i class="fas fa-chevron-down text-[9px] transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="flex flex-col mt-1 space-y-0.5">
+                        <a href="category.html?c=uponyas" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
+                            <i class="fas fa-book text-xs text-blue-400"></i> <span>উপন্যাস</span>
+                        </a>
+                        <a href="category.html?c=golpo" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
+                            <i class="fas fa-book text-xs text-green-400"></i> <span>গল্প</span>
+                        </a>
+                        <a href="category.html?c=kobita" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
+                            <i class="fas fa-book text-xs text-pink-400"></i> <span>কবিতা</span>
+                        </a>
+                        <a href="category.html?c=probondho" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
+                            <i class="fas fa-book text-xs text-yellow-400"></i> <span>প্রবন্ধ</span>
+                        </a>
+                        <a href="category.html?c=science" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
+                            <i class="fas fa-book text-xs text-purple-400"></i> <span>বিজ্ঞান</span>
+                        </a>
+                    </div>
+                </details>
+
+                <hr class="my-3 border-gray-100 dark:border-gray-800 mx-4">
+
+                <!-- Authors -->
+                <details class="group mx-2" open>
+                    <summary class="flex items-center justify-between px-4 py-2 text-gray-500 dark:text-gray-400 cursor-pointer md:hover:bg-gray-50 dark:md:hover:bg-gray-800 active:bg-gray-100 rounded-md list-none uppercase text-[11px] font-semibold tracking-wider">
+                        <span>লেখক</span>
+                        <i class="fas fa-chevron-down text-[9px] transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="flex flex-col mt-1 space-y-0.5">
+                        <a href="author.html?a=humayun" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
+                            <i class="fas fa-user text-xs text-gray-400"></i> <span>হুমায়ূন আহমেদ</span>
+                        </a>
+                        <a href="author.html?a=rabindra" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
+                            <i class="fas fa-user text-xs text-gray-400"></i> <span>রবীন্দ্রনাথ ঠাকুর</span>
+                        </a>
+                    </div>
+                </details>
+
+                <!-- Footer links -->
+                <div class="mt-8 pt-4 px-4 border-t border-gray-100 dark:border-gray-800">
+                    <div class="flex flex-wrap gap-x-3 gap-y-1 text-[12px] text-gray-500 dark:text-gray-400">
+                        <a href="#" class="hover:text-blue-500 transition-colors">সম্পর্কে</a>
+                        <a href="#" class="hover:text-blue-500 transition-colors">যোগাযোগ</a>
+                        <a href="#" class="hover:text-blue-500 transition-colors">গোপনীয়তা</a>
+                    </div>
+                    <div class="mt-2 text-[11px] text-gray-400 dark:text-gray-500 pb-4">
+                        © ২০২৬ পাঠক ঘর
+                    </div>
+                </div>
+
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="flex-1 p-4 md:p-6 min-h-[calc(100vh-3.5rem)]">
+            <!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>উপন্যাস - পাঠক ঘর</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script>
@@ -170,6 +352,106 @@
         hamburger.addEventListener('click', () => { sidebar.classList.toggle('-translate-x-full'); overlay.classList.toggle('hidden'); });
         overlay.addEventListener('click', () => { sidebar.classList.add('-translate-x-full'); overlay.classList.add('hidden'); });
     </script>
+
+</body>
+</html>
+
+        </main>
+
+    </div>
+
+    <script>
+        // Dark mode
+        const themeBtn = document.getElementById('theme-btn');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
+
+        function applyTheme(dark) {
+            if (dark) {
+                html.classList.add('dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.theme = 'dark';
+            } else {
+                html.classList.remove('dark');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.theme = 'light';
+            }
+        }
+
+        applyTheme(localStorage.theme === 'dark');
+
+        themeBtn.addEventListener('click', () => {
+            applyTheme(!html.classList.contains('dark'));
+        });
+
+        // Mobile search
+        const mobileSearchBtn = document.getElementById('mobile-search-btn');
+        const mobileSearchBar = document.getElementById('mobile-search-bar');
+
+        mobileSearchBtn.addEventListener('click', () => {
+            mobileSearchBar.classList.toggle('hidden');
+            if (!mobileSearchBar.classList.contains('hidden')) {
+                mobileSearchBar.querySelector('input').focus();
+            }
+        });
+
+        // Search functionality
+        function doSearch(query) {
+            if (query.trim()) {
+                window.location.href = '/search.html?q=' + encodeURIComponent(query.trim());
+            }
+        }
+
+        const desktopInput = document.getElementById('desktop-search-input');
+        const desktopBtn = document.getElementById('desktop-search-btn');
+        const mobileInput = document.getElementById('mobile-search-input');
+        const mobileSubmit = document.getElementById('mobile-search-submit');
+
+        desktopBtn.addEventListener('click', () => doSearch(desktopInput.value));
+        desktopInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(desktopInput.value); });
+
+        mobileSubmit.addEventListener('click', () => doSearch(mobileInput.value));
+        mobileInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(mobileInput.value); });
+
+        // Hide header on scroll down, show on scroll up (mobile only)
+        const header = document.querySelector('header');
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                if (window.innerWidth < 768) {
+                    const currentScrollY = window.scrollY;
+                    if (currentScrollY > lastScrollY && currentScrollY > 56) {
+                        header.style.transform = 'translateY(-100%)';
+                    } else {
+                        header.style.transform = 'translateY(0)';
+                    }
+                    lastScrollY = currentScrollY;
+                }
+                ticking = false;
+            });
+        });
+
+        // Mobile sidebar
+        const hamburger = document.getElementById('hamburger-btn');
+        const sidebar = document.getElementById('mobile-sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+        });
+    </script>
+
+
 
 </body>
 </html>
