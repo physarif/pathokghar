@@ -227,6 +227,9 @@ async function generateDownloadPages(bookList) {
       book_cover: book.cover,
       book_category: book.category_name,
       book_download_url: book.download_url || '',
+      book_slug: book.slug,
+      book_author_slug: book.author_slug,
+      book_category_slug: book.category_slug,
     });
     const fullPage = render(layout, {
       page_title: book.title,
