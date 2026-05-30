@@ -69,7 +69,7 @@ jobs:
       - name: Generate sitemap
         run: node scripts/generate_sitemap.js
 
-      # ৯. Changes commit & push
+      # ৯. Changes commit & push → Cloudflare auto deploy হবে
       - name: Commit generated files
         run: |
           git config user.name "github-actions[bot]"
@@ -78,13 +78,3 @@ jobs:
           git add read/ content/ || true
           git diff --staged --quiet || git commit -m "build: auto-generate pages [skip ci]"
           git push
-
-      # ১০. Cloudflare Pages deploy
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: pathokghar
-          directory: .
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
