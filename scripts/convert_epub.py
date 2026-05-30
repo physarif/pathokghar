@@ -21,10 +21,13 @@ def epub_to_html(epub_path):
                 full_html += str(body)[6:-7]
     return full_html
 
+# Firebase data পড়ো (generate.js আগেই চলেছে)
 with open('firebase_data.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
 books = data.get('books', {})
+authors = data.get('authors', {})
+categories = data.get('categories', {})
 
 for uid, book in books.items():
     slug = book.get('slug', '')
@@ -43,7 +46,10 @@ for uid, book in books.items():
     local_epub = f'/tmp/{slug}.epub'
 
     try:
-        urllib.request.urlretrieve(file_url, local_epub)
+        req = urllib.request.Request(file_url, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req) as response:
+            with open(local_epub, 'wb') as f:
+                f.write(response.read())
         print(f'  🔄 {slug} convert করছি...')
         html_content = epub_to_html(local_epub)
         with open(output_path, 'w', encoding='utf-8') as f:
