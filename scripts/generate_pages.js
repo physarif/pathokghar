@@ -304,6 +304,38 @@ async function generateCategoryPages(bookList) {
 }
 
 
+async function generateReadPages(bookList) {
+  console.log('\n📖 Read pages generate করছি...');
+  const readTemplate = fs.readFileSync('components/read.html', 'utf8');
+  if (!fs.existsSync('read')) fs.mkdirSync('read');
+
+  for (const book of bookList) {
+    const contentPath = `content/${book.slug}.html`;
+    if (!fs.existsSync(contentPath)) {
+      console.log(`  ⏭ ${book.slug} — content নেই, skip`);
+      continue;
+    }
+
+    const bookContentHTML = fs.readFileSync(contentPath, 'utf8');
+
+    const readContent = render(readTemplate, {
+      book_title: book.title,
+      book_slug: book.slug,
+      book_content: bookContentHTML,
+    });
+
+    const fullPage = render(layout, {
+      page_title: `${book.title} - পড়ুন`,
+      page_description: book.description?.slice(0, 160) || '',
+      content: readContent,
+    });
+
+    fs.writeFileSync(`read/${book.slug}.html`, fullPage, 'utf8');
+    console.log(`  ✓ read/${book.slug}.html`);
+  }
+}
+
+
 // Main
 (async () => {
   try {
@@ -313,6 +345,7 @@ async function generateCategoryPages(bookList) {
     await generateAuthorPages(bookList, authorsRaw);
     await generateDownloadPages(bookList);
     await generateCategoryPages(bookList);
+    await generateReadPages(bookList);
     console.log('\n🎉 সব pages generate হয়েছে!');
     await admin.app().delete();
     process.exit(0);
