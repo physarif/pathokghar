@@ -2,21 +2,18 @@ const admin = require('firebase-admin');
 const fs = require('fs');
 const path = require('path');
 
-const isReadOnly = process.argv.includes('--read-only');
+// Firebase init
+admin.initializeApp({
+  credential: admin.credential.cert({
+    projectId: process.env.FIREBASE_PROJECT_ID.trim(),
+    clientEmail: process.env.FIREBASE_CLIENT_EMAIL.trim(),
+    privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n').trim(),
+  }),
+  databaseURL: 'https://pathokghar-default-rtdb.asia-southeast1.firebasedatabase.app',
+});
 
-// Firebase init — read-only mode এ দরকার নেই
-let db = null;
-if (!isReadOnly) {
-  admin.initializeApp({
-    credential: admin.credential.cert({
-      projectId: process.env.FIREBASE_PROJECT_ID.trim(),
-      clientEmail: process.env.FIREBASE_CLIENT_EMAIL.trim(),
-      privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n').trim(),
-    }),
-    databaseURL: 'https://pathokghar-default-rtdb.asia-southeast1.firebasedatabase.app',
-  });
-  db = admin.database();
-}
+const db = admin.database();
+
 
 // Template load
 const layout = fs.readFileSync('components/layout.html', 'utf8');
@@ -198,12 +195,17 @@ async function generateAuthorPages(bookList) {
       <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">${book.category_name}</p>
     </a>`).join('');
 
-    const fullPage = render(authorTemplate, {
+    const authorContent = render(authorTemplate, {
       author_name: data.name,
       author_img: data.img,
       author_desc: data.desc,
       author_book_count: data.books.length,
       author_books_grid: booksGrid,
+    });
+    const fullPage = render(layout, {
+      page_title: data.name,
+      page_description: '',
+      content: authorContent,
     });
 
     fs.writeFileSync(`author/${slug}.html`, fullPage, 'utf8');
@@ -217,12 +219,17 @@ async function generateDownloadPages(bookList) {
   if (!fs.existsSync('download')) fs.mkdirSync('download');
 
   for (const book of bookList) {
-    const fullPage = render(downloadTemplate, {
+    const downloadContent = render(downloadTemplate, {
       book_title: book.title,
       book_author: book.author_name,
       book_cover: book.cover,
       book_category: book.category_name,
       book_download_url: book.download_url || '',
+    });
+    const fullPage = render(layout, {
+      page_title: book.title,
+      page_description: '',
+      content: downloadContent,
     });
 
     fs.writeFileSync(`download/${book.slug}.html`, fullPage, 'utf8');
@@ -271,11 +278,16 @@ async function generateCategoryPages(bookList) {
       if (page < totalPages) paginationHTML += `<a href="/category/${slug}/${page + 1}/" class="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">পরের <i class="fas fa-chevron-right text-xs"></i></a>`;
       paginationHTML += '</div>';
 
-      const fullPage = render(categoryTemplate, {
+      const categoryContent = render(categoryTemplate, {
         category_name: data.name,
         category_book_count: data.books.length,
         category_books_grid: booksGrid,
         category_pagination: paginationHTML,
+      });
+      const fullPage = render(layout, {
+        page_title: data.name,
+        page_description: '',
+        content: categoryContent,
       });
 
       const pageDir = `${dir}/${page}`;
@@ -286,69 +298,16 @@ async function generateCategoryPages(bookList) {
   }
 }
 
-async function generateReadPages() {
-  console.log('\n📖 Read pages generate করছি...');
-
-  if (!fs.existsSync('content')) {
-    console.log('content/ folder নেই — skip');
-    return;
-  }
-
-  const readTemplate = fs.readFileSync('components/read.html', 'utf8');
-  if (!fs.existsSync('read')) fs.mkdirSync('read');
-
-  // firebase_data.json থেকে book info নাও
-  const firebaseData = JSON.parse(fs.readFileSync('firebase_data.json', 'utf8'));
-  const books = firebaseData.books || {};
-  const authors = firebaseData.authors || {};
-
-  // slug → title/author map
-  const slugToInfo = {};
-  Object.values(books).forEach(book => {
-    const author = authors[book.author] || {};
-    slugToInfo[book.slug] = {
-      title: book.title || '',
-      author: author.title || '',
-    };
-  });
-
-  const contentFiles = fs.readdirSync('content').filter(f => f.endsWith('.html'));
-  console.log(`  content/ এ ${contentFiles.length}টা file পাওয়া গেছে`);
-
-  for (const file of contentFiles) {
-    const slug = file.replace('.html', '');
-    const bookContent = fs.readFileSync(`content/${file}`, 'utf8');
-    const bookInfo = slugToInfo[slug] || { title: slug, author: '' };
-
-    const fullPage = render(readTemplate, {
-      book_title: bookInfo.title,
-      book_content: bookContent,
-    });
-
-    fs.writeFileSync(`read/${slug}.html`, fullPage, 'utf8');
-    console.log(`  ✓ read/${slug}.html`);
-  }
-}
 
 // Main
 (async () => {
   try {
-    // --read-only flag দিলে শুধু read pages generate করবে (epub convert এর পরে)
-    if (process.argv.includes('--read-only')) {
-      console.log('📖 শুধু read pages generate করছি...');
-      await generateReadPages();
-      console.log('\n🎉 Read pages generate হয়েছে!');
-      process.exit(0);
-      return;
-    }
-
     console.log('🚀 Script শুরু হয়েছে...');
     const bookList = await generateBookPages();
     await generateHomepage(bookList);
     await generateAuthorPages(bookList);
     await generateDownloadPages(bookList);
     await generateCategoryPages(bookList);
-    // epub convert এর আগে চলে, তাই read pages এখানে skip — পরে আলাদা step এ হবে
     console.log('\n🎉 সব pages generate হয়েছে!');
     await admin.app().delete();
     process.exit(0);
