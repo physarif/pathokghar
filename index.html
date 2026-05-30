@@ -42,15 +42,18 @@
             </button>
 
             <!-- Logo -->
-            <a href="https://pathokghar.pages.dev" class="text-2xl font-extrabold tracking-tighter hover:bg-gray-100 dark:hover:bg-gray-800 px-2 py-1 rounded transition-colors duration-200 shrink-0">
+            <a href="index.html" class="text-2xl font-extrabold tracking-tighter hover:bg-gray-100 dark:hover:bg-gray-800 px-2 py-1 rounded transition-colors duration-200 shrink-0">
                 পাঠক <span class="font-light text-gray-400">ঘর</span>
             </a>
 
             <!-- Search (desktop) -->
             <div class="hidden md:flex flex-1 max-w-2xl relative group">
                 <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-500 text-sm"></i>
-                <input type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
-                    class="w-full bg-gray-50 dark:bg-[#2d2d2d] border border-gray-300 dark:border-gray-600 rounded py-1.5 pl-9 pr-4 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all">
+                <input id="desktop-search-input" type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
+                    class="w-full bg-gray-50 dark:bg-[#2d2d2d] border border-gray-300 dark:border-gray-600 rounded py-1.5 pl-9 pr-24 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all">
+                <button id="desktop-search-btn" class="absolute right-1 top-1/2 -translate-y-1/2 bg-brand-500 hover:bg-brand-600 text-white text-xs px-3 py-1 rounded transition-colors">
+                    <i class="fas fa-search"></i>
+                </button>
             </div>
 
             <!-- Right side actions -->
@@ -72,10 +75,15 @@
 
         <!-- Mobile search bar (dropdown) -->
         <div id="mobile-search-bar" class="absolute top-14 left-0 w-full bg-white dark:bg-[#1a1a1b] border-b dark:border-gray-700 p-2 hidden shadow-lg">
-            <div class="relative">
-                <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-                <input type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
-                    class="w-full bg-gray-50 dark:bg-[#2d2d2d] border border-gray-300 dark:border-gray-600 rounded-lg py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+            <div class="flex gap-2">
+                <div class="relative flex-1">
+                    <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                    <input id="mobile-search-input" type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
+                        class="w-full bg-gray-50 dark:bg-[#2d2d2d] border border-gray-300 dark:border-gray-600 rounded-lg py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <button id="mobile-search-submit" class="bg-brand-500 hover:bg-brand-600 text-white text-sm px-4 rounded-lg transition-colors shrink-0">
+                    <i class="fas fa-search"></i>
+                </button>
             </div>
         </div>
 
@@ -98,7 +106,7 @@
             <!-- Nav -->
             <nav class="flex flex-col py-2 text-[14px]">
 
-                <a href="https://pathokghar.pages.dev" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-blue-600 bg-blue-50 dark:bg-gray-800 transition-colors">
+                <a href="index.html" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-blue-600 bg-blue-50 dark:bg-gray-800 transition-colors">
                     <i class="fas fa-home w-4"></i> <span>প্রধান পাতা</span>
                 </a>
                 <a href="new.html" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 transition-colors">
@@ -138,7 +146,7 @@
                 <hr class="my-3 border-gray-100 dark:border-gray-800 mx-4">
 
                 <!-- Authors -->
-                <details class="group mx-2">
+                <details class="group mx-2" open>
                     <summary class="flex items-center justify-between px-4 py-2 text-gray-500 dark:text-gray-400 cursor-pointer md:hover:bg-gray-50 dark:md:hover:bg-gray-800 active:bg-gray-100 rounded-md list-none uppercase text-[11px] font-semibold tracking-wider">
                         <span>লেখক</span>
                         <i class="fas fa-chevron-down text-[9px] transition-transform group-open:rotate-180"></i>
@@ -158,6 +166,7 @@
                     <div class="flex flex-wrap gap-x-3 gap-y-1 text-[12px] text-gray-500 dark:text-gray-400">
                         <a href="#" class="hover:text-blue-500 transition-colors">সম্পর্কে</a>
                         <a href="#" class="hover:text-blue-500 transition-colors">যোগাযোগ</a>
+                        <a href="#" class="hover:text-blue-500 transition-colors">গোপনীয়তা</a>
                     </div>
                     <div class="mt-2 text-[11px] text-gray-400 dark:text-gray-500 pb-4">
                         © ২০২৬ পাঠক ঘর
@@ -263,6 +272,24 @@
                 mobileSearchBar.querySelector('input').focus();
             }
         });
+
+        // Search functionality
+        function doSearch(query) {
+            if (query.trim()) {
+                window.location.href = '/search.html?q=' + encodeURIComponent(query.trim());
+            }
+        }
+
+        const desktopInput = document.getElementById('desktop-search-input');
+        const desktopBtn = document.getElementById('desktop-search-btn');
+        const mobileInput = document.getElementById('mobile-search-input');
+        const mobileSubmit = document.getElementById('mobile-search-submit');
+
+        desktopBtn.addEventListener('click', () => doSearch(desktopInput.value));
+        desktopInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(desktopInput.value); });
+
+        mobileSubmit.addEventListener('click', () => doSearch(mobileInput.value));
+        mobileInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(mobileInput.value); });
 
         // Mobile sidebar
         const hamburger = document.getElementById('hamburger-btn');
