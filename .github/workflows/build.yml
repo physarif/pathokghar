@@ -60,7 +60,11 @@ jobs:
       - name: Convert epub to html
         run: python scripts/convert_epub.py
 
-      # ৭. sitemap.xml generate
+      # ৭. read/ pages generate (epub convert এর পরে, content/ folder তৈরি হয়েছে)
+      - name: Generate read pages
+        run: node scripts/generate_pages.js --read-only
+
+      # ৮. sitemap.xml generate
       - name: Generate sitemap
         run: node scripts/generate_sitemap.js
 
