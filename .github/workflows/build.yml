@@ -9,8 +9,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'components/layout.html'
-      - 'templates/**'
+      - 'components/**'
   
   # Manual trigger
   workflow_dispatch:
@@ -48,28 +47,24 @@ jobs:
           npm install firebase-admin
           pip install ebooklib beautifulsoup4 --break-system-packages
 
-      # ৫. Firebase থেকে data fetch + pages generate
+      # ৫. Firebase থেকে data fetch + সব pages generate
       - name: Generate static pages
         env:
           FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
           FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
           FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
           FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
-        run: node scripts/generate.js
+        run: node scripts/generate_pages.js
 
       # ৬. epub → html convert
       - name: Convert epub to html
         run: python scripts/convert_epub.py
 
-      # ৭. read pages generate
-      - name: Generate read pages
-        run: node scripts/generate_read.js
-
-      # ৮. sitemap.xml generate
+      # ৭. sitemap.xml generate
       - name: Generate sitemap
         run: node scripts/generate_sitemap.js
 
-      # ৯. Changes commit & push → Cloudflare auto deploy হবে
+      # ৮. Changes commit & push → Cloudflare auto deploy হবে
       - name: Commit generated files
         run: |
           git config user.name "github-actions[bot]"
