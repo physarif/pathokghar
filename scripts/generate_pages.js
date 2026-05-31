@@ -121,16 +121,12 @@ async function generateHomepage(bookList) {
 
   // Book card — styling সব components/index.html এ
   function bookCard(book) {
-    const avatar = book.author_img
-      ? `<img src="${book.author_img}" alt="${book.author_name}" class="bc-avatar">`
-      : '';
     return `<a href="books/${book.slug}.html" class="bc-card">
       <div class="bc-img-wrap">
         <img src="${book.cover}" alt="${book.title}" class="bc-img">
-        ${avatar}
+        <div class="bc-author-overlay">${book.author_name}</div>
       </div>
       <p class="bc-title">${book.title}</p>
-      <p class="bc-author">${book.author_name}</p>
     </a>`;
   }
 
