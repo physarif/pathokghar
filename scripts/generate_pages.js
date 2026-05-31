@@ -119,31 +119,26 @@ async function generateHomepage(bookList) {
     byCategory[cat].books.push(book);
   }
 
-  // Book card HTML — CastFM style
+  // Book card — styling সব components/index.html এ
   function bookCard(book) {
-    return `
-    <a href="books/${book.slug}.html" class="book-card shrink-0 w-28 md:w-32 group flex flex-col">
-      <div class="rounded-xl overflow-hidden shadow-md group-hover:shadow-xl group-hover:scale-[1.03] transform transition-all duration-300">
-        <img src="${book.cover}" alt="${book.title}" class="w-full aspect-[2/3] object-cover">
-      </div>
-      <p class="mt-2 text-xs font-semibold text-gray-800 dark:text-gray-100 line-clamp-2 leading-snug">${book.title}</p>
-      <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">${book.author_name}</p>
+    return `<a href="books/${book.slug}.html" class="bc-card">
+      <div class="bc-img-wrap"><img src="${book.cover}" alt="${book.title}" class="bc-img"></div>
+      <p class="bc-title">${book.title}</p>
+      <p class="bc-author">${book.author_name}</p>
     </a>`;
   }
 
-  // Category section HTML
+  // Category section HTML — structure সব components/index.html এ
   let categorySectionsHTML = '';
   for (const [slug, data] of Object.entries(byCategory)) {
     const catBooks = data.books.slice(0, 12);
     categorySectionsHTML += `
-  <section class="book-section mb-2 py-6">
-    <div class="flex items-center justify-between mb-4 px-4 md:px-6">
-      <h2 class="text-base font-bold text-gray-800 dark:text-gray-100">${data.name}</h2>
-      <a href="category/${slug}/1/" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">সব দেখুন →</a>
+  <section class="book-section">
+    <div class="bc-section-header">
+      <h2 class="bc-section-title">${data.name}</h2>
+      <a href="category/${slug}/1/" class="bc-section-link">সব দেখুন →</a>
     </div>
-    <div class="flex gap-3 overflow-x-auto pb-3 px-4 md:px-6" style="scrollbar-width:none; -webkit-overflow-scrolling:touch;">
-      ${catBooks.map(bookCard).join('')}
-    </div>
+    <div class="bc-scroll">${catBooks.map(bookCard).join('')}</div>
   </section>`;
   }
 
