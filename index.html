@@ -221,7 +221,7 @@
   }
   @media (min-width: 768px) { .bc-card { width: 6.5rem; } }
 
-  /* Cover — 2:3 with book spine effect */
+  /* Cover — 2:3 */
   .bc-img-wrap {
     width: 100%;
     aspect-ratio: 2/3;
@@ -229,35 +229,9 @@
     overflow: hidden;
     background: #e5e7eb;
     position: relative;
-    box-shadow:
-      -3px 0 6px rgba(0,0,0,0.25),
-      3px 3px 10px rgba(0,0,0,0.18);
+    box-shadow: -3px 0 6px rgba(0,0,0,0.25), 3px 3px 10px rgba(0,0,0,0.18);
   }
   .dark .bc-img-wrap { background: #374151; }
-
-  /* Spine — left edge dark strip */
-  .bc-img-wrap::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 5%;
-    height: 100%;
-    background: linear-gradient(to right, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.06) 60%, transparent 100%);
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  /* Page edge — right side subtle light */
-  .bc-img-wrap::after {
-    content: '';
-    position: absolute;
-    top: 0; right: 0;
-    width: 3%;
-    height: 100%;
-    background: linear-gradient(to left, rgba(255,255,255,0.12) 0%, transparent 100%);
-    z-index: 1;
-    pointer-events: none;
-  }
 
   .bc-img {
     width: 100%;
@@ -289,6 +263,7 @@
     margin-top: 0.35rem;
     padding: 0.3rem 0.35rem 0.35rem;
     font-size: 0.65rem;
+    font-weight: 700;
     line-height: 1.35;
     color: #374151;
     display: -webkit-box;
@@ -297,12 +272,8 @@
     overflow: hidden;
     background: #fff;
     border-radius: 0.35rem;
-    font-weight: 700;
   }
-  .dark .bc-meta {
-    color: #d1d5db;
-    background: #1f2937;
-  }
+  .dark .bc-meta { color: #d1d5db; background: #1f2937; }
 
 </style>
 
