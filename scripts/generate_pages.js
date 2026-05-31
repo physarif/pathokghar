@@ -121,13 +121,13 @@ async function generateHomepage(bookList) {
 
   // Book card — styling সব components/index.html এ
   function bookCard(book) {
-    return `<a href="books/${book.slug}.html" class="bc-card">
+    return `<div class="bc-card">
       <div class="bc-img-wrap">
         <img src="${book.cover}" alt="${book.title}" class="bc-img">
         <div class="bc-author-overlay">${book.author_name}</div>
       </div>
-      <p class="bc-meta">${book.title}</p>
-    </a>`;
+      <a href="books/${book.slug}.html" class="bc-meta">${book.title}</a>
+    </div>`;
   }
 
   // Category section HTML — structure সব components/index.html এ
