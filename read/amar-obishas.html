@@ -672,6 +672,15 @@
         transition: background 0.15s;
     }
     #tts-desktop-play:hover { background: #004494; }
+
+    /* ── TTS active chunk highlight ── */
+    .tts-highlight {
+        background: rgba(0, 86, 179, 0.15);
+        border-radius: 3px;
+        transition: background 0.2s;
+    }
+    body.theme-dark  .tts-highlight { background: rgba(91, 156, 246, 0.2); }
+    body.theme-sepia .tts-highlight { background: rgba(139, 90, 43, 0.15); }
     html { scroll-behavior: smooth; }
     /* ── Hide browser scrollbar (page level) ── */
     html { scrollbar-width: none; -ms-overflow-style: none; }
@@ -2891,8 +2900,12 @@
 
     function ttsSpeak() {
         if (!ttsChunks.length || ttsChunkIdx >= ttsChunks.length) {
-            ttsPlaying = false; ttsUpdateUI(); return;
+            ttsPlaying = false;
+            ttsClearHighlight();
+            ttsUpdateUI();
+            return;
         }
+        ttsHighlight(ttsChunkIdx);
         const utt = new SpeechSynthesisUtterance(ttsChunks[ttsChunkIdx]);
         utt.lang  = 'bn-BD';
         utt.rate  = ttsSpeeds[ttsSpeedIdx];
@@ -2900,9 +2913,9 @@
         utt.onend = () => {
             ttsChunkIdx++;
             if (ttsPlaying) ttsSpeak();
-            else ttsUpdateUI();
+            else { ttsClearHighlight(); ttsUpdateUI(); }
         };
-        utt.onerror = () => { ttsPlaying = false; ttsUpdateUI(); };
+        utt.onerror = () => { ttsPlaying = false; ttsClearHighlight(); ttsUpdateUI(); };
         ttsEngine.speak(utt);
         ttsUpdateUI();
     }
@@ -2912,6 +2925,7 @@
         if (ttsPlaying) {
             ttsPlaying = false;
             ttsEngine.cancel();
+            ttsClearHighlight();
             ttsUpdateUI();
         } else {
             ttsPlaying = true;
