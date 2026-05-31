@@ -141,7 +141,7 @@ async function generateHomepage(bookList) {
       <h2 class="text-base font-bold text-gray-800 dark:text-gray-100">${data.name}</h2>
       <a href="category/${slug}/1/" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">সব দেখুন →</a>
     </div>
-    <div class="flex gap-3 overflow-x-auto pb-2 px-4 md:px-6 [scrollbar-width:none] [\class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 px-4 md:px-6"::-webkit-scrollbar]:hidden">
+    <div class="flex gap-3 overflow-x-auto pb-3 px-4 md:px-6" style="scrollbar-width:none; -webkit-overflow-scrolling:touch;">
       ${catBooks.map(bookCard).join('')}
     </div>
   </section>`;
