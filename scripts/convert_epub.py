@@ -2,6 +2,7 @@ import os
 import json
 import urllib.request
 import base64
+import re
 import ebooklib
 from ebooklib import epub
 from bs4 import BeautifulSoup
@@ -43,14 +44,10 @@ def epub_to_html(epub_path):
 
 
 def render(template, data):
-    import re
     return re.sub(r'\{\{(\w+)\}\}', lambda m: data.get(m.group(1), ''), template)
 
 
-# Layout ও read template পড়ো
-with open('components/layout.html', 'r', encoding='utf-8') as f:
-    layout = f.read()
-
+# read template পড়ো (standalone page — layout inject নেই)
 with open('components/read.html', 'r', encoding='utf-8') as f:
     read_template = f.read()
 
@@ -98,16 +95,12 @@ for uid, book in books.items():
         with open(content_path, 'r', encoding='utf-8') as f:
             book_content_html = f.read()
 
-        read_content = render(read_template, {
+        # read_template নিজেই standalone page — শুধু placeholders replace করো
+        full_page = render(read_template, {
             'book_title': title,
             'book_slug': slug,
+            'book_description': desc[:160] if desc else '',
             'book_content': book_content_html,
-        })
-
-        full_page = render(layout, {
-            'page_title': f'{title} - পড়ুন',
-            'page_description': desc[:160] if desc else '',
-            'content': read_content,
         })
 
         with open(read_path, 'w', encoding='utf-8') as f:
