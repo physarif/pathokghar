@@ -178,43 +178,133 @@
 
         <!-- MAIN CONTENT -->
         <main class="flex-1 min-w-0 min-h-[calc(100vh-3.5rem)]">
-            <div class="px-4 md:px-6 mb-6">
-    <div class="bg-white dark:bg-[#2d2d2d] rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5 md:p-6">
-        <div class="flex flex-col md:flex-row gap-5 md:gap-7 items-center md:items-start">
-            <div class="shrink-0">
-                <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780238162695_2vvy9d88tm3.jpg" alt="জীবনানন্দ দাশ" class="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-4 border-gray-100 dark:border-gray-700 shadow-md">
-            </div>
-            <div class="flex-1 text-center md:text-left">
-                <h1 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1">জীবনানন্দ দাশ</h1>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mb-3 leading-relaxed">জীবনানন্দ দাশ (ফেব্রুয়ারি ১৮, ১৮৯৯ - অক্টোবর ২২, ১৯৫৪; বঙ্গাব্দ ফাল্গুন ৬, ১৩০৫ - কার্তিক ৫, ১৩৬১) ছিলেন বিংশ শতাব্দীর অন্যতম প্রধান আধুনিক বাঙালি কবি, লেখক, প্রাবন্ধিক এবং অধ্যাপক। তাকে বাংলাভাষার “শুদ্ধতম কবি” বলে আখ্যায়িত করা হয়ে থাকে। তিনি বাংলা কাব্যে আধুনিকতার পথিকৃতদের মধ্যে অগ্রগণ্য। মৃত্যুর পর থেকে শুরু করে বিংশ শতাব্দীর শেষ ধাপে তিনি জনপ্রিয়তা পেতে শুরু করেন এবং ১৯৯৯ খ্রিস্টাব্দে যখন তার জন্মশতবার্ষিকী পালিত হচ্ছিল ততদিনে তিনি বাংলা সাহিত্যের জনপ্রিয়তম কবিতে পরিণত হয়েছেন। তিনি প্রধানত কবি হলেও বেশ কিছু প্রবন্ধ-নিবন্ধ রচনা ও প্রকাশ করেছেন। তবে ১৯৫৪ খ্রিস্টাব্দে অকাল মৃত্যুর আগে তিনি নিভৃতে ১৪টি উপন্যাস এবং ১০৮টি ছোটগল্প রচনা গ্রন্থ করেছেন যার একটিও তিনি জীবদ্দশায় প্রকাশ করেননি। তাঁর জীবন কেটেছে চরম দারিদ্রের মধ্যে। বিংশ শতাব্দীর শেষার্ধকাল অনপনেয়ভাবে বাংলা কবিতায় তাঁর প্রভাব মুদ্রিত হয়েছে। রবীন্দ্র-পরবর্তীকালে বাংলা ভাষার প্রধান কবি হিসাবে তিনি সর্বসাধারণ্যে স্বীকৃত।</p>
-            </div>
-        </div>
-    </div>
-</div>
+            <!-- components/index.html — homepage content + সব styling এখানে -->
+<style>
+  /* Section */
+  .book-section { padding: 1.5rem 0; margin-bottom: 0.5rem; }
 
-<div class="px-4 md:px-6">
-    <div class="flex items-center justify-between mb-4">
-        <h2 class="text-base font-bold text-gray-800 dark:text-gray-100">লেখকের বইসমূহ</h2>
-        <span class="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2.5 py-1 rounded-full">মোট 2</span>
+  .bc-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+  }
+  @media (min-width: 768px) { .bc-section-header { padding: 0 1.5rem; } }
+
+  .bc-section-title { font-size: 0.875rem; font-weight: 700; color: #1f2937; }
+  .dark .bc-section-title { color: #f3f4f6; }
+
+  .bc-section-link { font-size: 0.75rem; color: #2563eb; text-decoration: none; }
+  .dark .bc-section-link { color: #60a5fa; }
+  .bc-section-link:hover { text-decoration: underline; }
+
+  /* Scroll container */
+  .bc-scroll {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding: 0 1rem 0.75rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  @media (min-width: 768px) { .bc-scroll { padding: 0 1.5rem 0.75rem; } }
+  .bc-scroll::-webkit-scrollbar { display: none; }
+
+  /* Book card */
+  .bc-card {
+    flex-shrink: 0;
+    width: 7rem;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+  }
+  @media (min-width: 768px) { .bc-card { width: 8rem; } }
+
+  /* Cover wrap — position:relative for author overlay */
+  .bc-img-wrap {
+    position: relative;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    background: #fff;
+  }
+  .dark .bc-img-wrap { background: #2d2d2d; }
+
+  .bc-img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Author avatar — bottom-right corner overlay */
+  .bc-avatar {
+    position: absolute;
+    bottom: 0.4rem;
+    right: 0.4rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+    background: #e5e7eb;
+  }
+  .dark .bc-avatar { border-color: #2d2d2d; }
+
+  .bc-title {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #1f2937;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.3;
+  }
+  .dark .bc-title { color: #f3f4f6; }
+
+  .bc-author {
+    font-size: 0.688rem;
+    color: #6b7280;
+    margin-top: 0.125rem;
+  }
+  .dark .bc-author { color: #9ca3af; }
+</style>
+
+<main class="flex-1 py-4 md:py-6 min-h-[calc(100vh-3.5rem)] min-w-0 overflow-hidden">
+
+  <!-- সর্বশেষ বই -->
+  <section class="book-section">
+    <div class="bc-section-header">
+      <h2 class="bc-section-title">সর্বশেষ বই</h2>
+      <a href="new.html" class="bc-section-link">সব দেখুন →</a>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-        
-    <a href="/books/shrestho-kobita.html" class="group">
-      <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
-        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780239348488_r7qnw9el19q.webp" alt="শ্রেষ্ঠ কবিতা" class="w-full aspect-[2/3] object-cover">
-      </div>
-      <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">শ্রেষ্ঠ কবিতা</p>
-      <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">কবিতা</p>
-    </a>
-    <a href="/books/ruposhi-bangla.html" class="group">
-      <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
-        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780239429326_tgzvn2excdg.webp" alt="রূপসী বাংলা" class="w-full aspect-[2/3] object-cover">
-      </div>
-      <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">রূপসী বাংলা</p>
-      <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">কবিতা</p>
-    </a>
-    </div>
-</div
+    <div class="bc-scroll"></div>
+  </section>
+
+  <!-- Category sections -->
+  
+
+</main>
+
+<script>
+  const lightBgs = ['#eff6ff','#f5f3ff','#f0fdf4','#fffbeb','#fff1f2','#ecfeff'];
+  const darkBgs  = ['#1e2a3a','#1e1a2e','#1a2e1e','#2e2a1a','#2e1a1e','#1a2a2e'];
+
+  const isDark = () => document.documentElement.classList.contains('dark');
+
+  function applyBgs() {
+    document.querySelectorAll('.book-section').forEach((s, i) => {
+      s.style.backgroundColor = isDark() ? darkBgs[i % darkBgs.length] : lightBgs[i % lightBgs.length];
+    });
+  }
+
+  applyBgs();
+  new MutationObserver(applyBgs).observe(document.documentElement, { attributeFilter: ['class'] });
+</script>
 
         </main>
 
