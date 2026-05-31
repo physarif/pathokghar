@@ -1,4 +1,36 @@
-<!-- components/read.html — layout.html এর  এ inject হবে -->
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ময়ূরাক্ষী - পড়ুন - পাঠক ঘর</title>
+    <meta name="description" content="">
+    <meta property="og:title" content="ময়ূরাক্ষী - পড়ুন - পাঠক ঘর">
+    <meta property="og:description" content="">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50:  '#f0f7ff',
+                            100: '#e1f0ff',
+                            500: '#0056b3',
+                            600: '#004494'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
 
 <style>
     /* ── Progress bar ── */
@@ -3778,7 +3810,6 @@
     const tocDesktop   = document.getElementById('toc-nav-desktop');
     const tocMobile    = document.getElementById('toc-nav-mobile');
     const mobileTopbar = document.getElementById('mobile-topbar');
-    const readerBg     = document.getElementById('mobile-reader-bg');
     const fontPopup    = document.getElementById('font-popup');
     const fontLabel    = document.getElementById('font-label');
 
@@ -3799,7 +3830,6 @@
         document.querySelectorAll('.theme-btn').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.theme === t);
         });
-        // font popup bg
         const bgMap = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e' };
         const bdMap = { light:'#e5e7eb', sepia:'#d4c8b8', dark:'#2a2a2e' };
         const clMap = { light:'#111', sepia:'#3b2f20', dark:'#e0e0e0' };
@@ -3893,7 +3923,6 @@
     document.getElementById('m-font-increase')?.addEventListener('click', () => changeFont(1));
     document.getElementById('m-font-decrease')?.addEventListener('click', () => changeFont(-1));
 
-    // Font popup toggle
     document.getElementById('mob-font-btn')?.addEventListener('click', (e) => {
         e.stopPropagation();
         fontPopup?.classList.toggle('hidden');
@@ -3921,7 +3950,6 @@
     document.getElementById('mobile-toc-close')?.addEventListener('click', closeTocDrawer);
     tocOverlay?.addEventListener('click', closeTocDrawer);
 
-    // swipe right to close
     let touchStartX = 0;
     tocDrawer?.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
     tocDrawer?.addEventListener('touchend', e => {
@@ -3929,3 +3957,6 @@
     }, { passive: true });
 })();
 </script>
+
+</body>
+</html>
