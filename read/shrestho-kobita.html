@@ -1,0 +1,1905 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>শ্রেষ্ঠ কবিতা - পড়ুন - পাঠক ঘর</title>
+    <meta name="description" content="ভালো কবিতা যাচাই করবার বিশেষ শক্তি সংকলকের থাকলেও আদি নির্বাচন অনেক সময়ই কবির মৃত্যুর পরে খাঁটি সংকলনে গিয়া দাঁড়াবার সুযোগ পায়। কিন্তু কোনো-কোনো সংকলনে প্রথ">
+    <meta property="og:title" content="শ্রেষ্ঠ কবিতা - পড়ুন - পাঠক ঘর">
+    <meta property="og:description" content="ভালো কবিতা যাচাই করবার বিশেষ শক্তি সংকলকের থাকলেও আদি নির্বাচন অনেক সময়ই কবির মৃত্যুর পরে খাঁটি সংকলনে গিয়া দাঁড়াবার সুযোগ পায়। কিন্তু কোনো-কোনো সংকলনে প্রথ">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50:  '#f0f7ff',
+                            100: '#e1f0ff',
+                            500: '#0056b3',
+                            600: '#004494'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
+
+<style>
+    /* ── Progress bar ── */
+    #read-progress-bar {
+        position: fixed;
+        top: 0; left: 0;
+        height: 2px;
+        width: 0%;
+        background: #0056b3;
+        z-index: 1000;
+        transition: width 0.1s linear;
+    }
+
+    /* ── Book content typography ── */
+    #book-content h1 {
+        font-size: 1.4rem;
+        font-weight: 800;
+        margin-bottom: 1.25rem;
+        line-height: 1.35;
+        color: inherit;
+    }
+    #book-content h2 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(128,128,128,0.2);
+    }
+    #book-content p {
+        margin-bottom: 1.1rem;
+        line-height: 2;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1rem auto;
+        display: block;
+    }
+
+    /* ── Font size variants ── */
+    #book-content.fs-sm p { font-size: 0.875rem; }
+    #book-content.fs-md p { font-size: 1rem; }
+    #book-content.fs-lg p { font-size: 1.125rem; }
+    #book-content.fs-xl p { font-size: 1.25rem; }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: #0056b3;
+        font-weight: 600;
+        background: rgba(0,86,179,0.1);
+        border-radius: 0.375rem;
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        /* book-content theme handled globally below */
+
+        /* Fixed top bar */
+        #mobile-topbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 52px;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 0 10px;
+            padding-top: env(safe-area-inset-top);
+            transition: transform 0.28s ease, background 0.3s;
+            border-bottom-left-radius: 14px;
+            border-bottom-right-radius: 14px;
+        }
+        #mobile-topbar.hide { transform: translateY(-100%); }
+
+        body.theme-dark  #mobile-topbar { background: #111113; border-bottom: 1px solid #2a2a2e; }
+        body.theme-sepia #mobile-topbar { background: #ede5d8; border-bottom: 1px solid #d4c8b8; }
+        body.theme-light #mobile-topbar { background: #fff;    border-bottom: 1px solid #e5e7eb; }
+
+        .theme-btn.active { border-color: #0056b3; }
+        .theme-btn i { font-size: 14px; display: none; }
+        .theme-btn.active i { display: block; }
+
+        body.theme-dark  #mobile-topbar i   { color: #ccc; }
+        body.theme-sepia #mobile-topbar i   { color: #5a4535; }
+        body.theme-light #mobile-topbar i   { color: #444; }
+
+        body.theme-dark  #mobile-topbar .title-text { color: #e8e8e8; }
+        body.theme-sepia #mobile-topbar .title-text { color: #3b2f20; }
+        body.theme-light #mobile-topbar .title-text { color: #111; }
+
+        /* main content padding */
+        #read-main-content {
+            padding-top: calc(52px + env(safe-area-inset-top) + 16px);
+            padding-bottom: 32px;
+        }
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    /* ══════════════════════════════
+       DESKTOP LEFT sidebar — book info
+    ══════════════════════════════ */
+    @media (min-width: 1024px) {
+        #desktop-left-sidebar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 15rem;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid rgba(128,128,128,0.15);
+            background: inherit;
+            z-index: 50;
+            overflow: hidden;
+        }
+
+        /* ══════════════════════════════
+           DESKTOP RIGHT sidebar — controls + TOC
+        ══════════════════════════════ */
+        #toc-sidebar {
+            position: fixed;
+            top: 0; right: 0;
+            width: 14rem;
+            height: 100vh;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        #toc-sidebar::-webkit-scrollbar { display: none; }
+
+        /* push main content between both sidebars */
+        #read-layout {
+            padding-left: 15rem;
+            padding-right: 14rem;
+        }
+    }
+    #toc-controls-bar {
+        position: sticky; top: 0; z-index: 10;
+    }
+
+    /* ── MOBILE: right TOC drawer ── */
+    #mobile-toc-drawer {
+        position: fixed;
+        top: 0; right: 0; bottom: 0;
+        width: 82vw; max-width: 320px;
+        z-index: 500;
+        display: flex; flex-direction: column;
+        transform: translateX(105%);
+        transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
+        border-radius: 0;
+    }
+    #mobile-toc-drawer.open { transform: translateX(0); }
+
+    #mobile-toc-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.45);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.32s ease;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+    }
+    #mobile-toc-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* Drawer theme colors */
+    body.theme-dark  #mobile-toc-drawer { background: #18181a; border-left: 1px solid #2c2c30; }
+    body.theme-sepia #mobile-toc-drawer { background: #f5efe6; border-left: 1px solid #d9ccbe; }
+    body.theme-light #mobile-toc-drawer { background: #fafafa; border-left: 1px solid #e8eaed; }
+
+    /* Drawer header */
+    #toc-drawer-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+        height: 56px;
+        shrink: 0;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+    }
+    body.theme-dark  #toc-drawer-header { border-bottom-color: #2c2c30; }
+    body.theme-sepia #toc-drawer-header { border-bottom-color: #d9ccbe; }
+    body.theme-light #toc-drawer-header { border-bottom-color: #e8eaed; }
+
+    #toc-drawer-header .drawer-title {
+        font-size: 0.8125rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+    }
+    body.theme-dark  #toc-drawer-header .drawer-title { color: #9ca3af; }
+    body.theme-sepia #toc-drawer-header .drawer-title { color: #8a7060; }
+    body.theme-light #toc-drawer-header .drawer-title { color: #9ca3af; }
+
+    #mobile-toc-close {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        border: none; cursor: pointer;
+        transition: background 0.15s;
+    }
+    body.theme-dark  #mobile-toc-close { background: rgba(255,255,255,0.08); color: #aaa; }
+    body.theme-sepia #mobile-toc-close { background: rgba(0,0,0,0.07);       color: #6b5443; }
+    body.theme-light #mobile-toc-close { background: rgba(0,0,0,0.06);       color: #555; }
+
+    /* Back to book link */
+    #toc-drawer-back {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        text-decoration: none;
+        transition: opacity 0.15s;
+    }
+    #toc-drawer-back:active { opacity: 0.6; }
+    body.theme-dark  #toc-drawer-back { color: #5b9cf6; border-bottom-color: #2c2c30; }
+    body.theme-sepia #toc-drawer-back { color: #0056b3; border-bottom-color: #d9ccbe; }
+    body.theme-light #toc-drawer-back { color: #0056b3; border-bottom-color: #e8eaed; }
+
+    /* TOC nav items */
+    #toc-nav-mobile {
+        flex: 1;
+        overflow-y: auto;
+        padding: 8px 10px 24px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    #toc-nav-mobile::-webkit-scrollbar { display: none; }
+
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 9px 12px;
+        border-radius: 8px;
+        font-size: 0.8125rem;
+        line-height: 1.4;
+        text-decoration: none;
+        transition: background 0.15s, color 0.15s;
+        margin-bottom: 1px;
+    }
+    #toc-nav-mobile .toc-link.h1-link {
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-top: 4px;
+    }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 24px;
+        font-size: 0.8rem;
+        font-weight: 400;
+    }
+
+    body.theme-dark  #toc-nav-mobile .toc-link         { color: #9ca3af; }
+    body.theme-dark  #toc-nav-mobile .toc-link.h1-link { color: #d1d5db; }
+    body.theme-dark  #toc-nav-mobile .toc-link:hover   { background: rgba(255,255,255,0.06); color: #e5e7eb; }
+    body.theme-dark  #toc-nav-mobile .toc-link.active  { background: rgba(91,156,246,0.15); color: #5b9cf6; }
+
+    body.theme-sepia #toc-nav-mobile .toc-link         { color: #7a6355; }
+    body.theme-sepia #toc-nav-mobile .toc-link.h1-link { color: #3b2f20; }
+    body.theme-sepia #toc-nav-mobile .toc-link:hover   { background: rgba(0,0,0,0.05); color: #3b2f20; }
+    body.theme-sepia #toc-nav-mobile .toc-link.active  { background: rgba(0,86,179,0.1); color: #0056b3; }
+
+    body.theme-light #toc-nav-mobile .toc-link         { color: #6b7280; }
+    body.theme-light #toc-nav-mobile .toc-link.h1-link { color: #111827; }
+    body.theme-light #toc-nav-mobile .toc-link:hover   { background: rgba(0,0,0,0.04); color: #111827; }
+    body.theme-light #toc-nav-mobile .toc-link.active  { background: rgba(0,86,179,0.08); color: #0056b3; }
+
+
+    /* ── Line spacing variants ── */
+    #book-content.ls-compact p  { line-height: 1.6; }
+    #book-content.ls-normal p   { line-height: 2; }
+    #book-content.ls-relaxed p  { line-height: 2.4; }
+
+    /* ── Font family variants ── */
+    #book-content.ff-sans    { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    #book-content.ff-serif   { font-family: 'Noto Serif Bengali', 'Noto Serif', Georgia, serif; }
+    #book-content.ff-system  { font-family: system-ui, -apple-system, sans-serif; }
+
+    /* ── Reading width variants ── */
+    #read-main-content.rw-narrow { max-width: 36rem; }
+    #read-main-content.rw-medium { max-width: 42rem; }
+    #read-main-content.rw-wide   { max-width: 56rem; }
+
+    /* ── Estimated time badge ── */
+    #est-time-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 11px;
+        color: #6b7280;
+    }
+
+    /* ══════════════════════════════
+       MOBILE bottom customization bar
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+        #mobile-bottom-bar {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 190;
+            padding-bottom: env(safe-area-inset-bottom);
+            transition: transform 0.28s ease, background 0.3s;
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
+        }
+        #mobile-bottom-bar.hide { transform: translateY(100%); }
+
+        /* tabs row */
+        #mob-cust-tabs {
+            display: flex;
+            border-top-width: 1px;
+            border-top-style: solid;
+            height: 48px;
+        }
+        .mob-tab-btn {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            font-size: 9px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            transition: color 0.15s;
+        }
+        .mob-tab-btn i { font-size: 13px; }
+        .mob-tab-btn.active { color: #0056b3; }
+
+        /* panel */
+        #mob-cust-panel {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.32s cubic-bezier(0.4,0,0.2,1);
+        }
+        #mob-cust-panel.open { max-height: 220px; }
+
+        .mob-panel-section {
+            display: none;
+            padding: 12px 16px 4px;
+        }
+        .mob-panel-section.active { display: block; }
+
+        /* theme buttons mobile */
+        #mob-cust-panel .theme-btn {
+            flex: 1;
+            height: 34px;
+            border-radius: 10px;
+            border-width: 2px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        /* ls/ff/rw buttons mobile */
+        #mob-cust-panel .ls-btn,
+        #mob-cust-panel .rw-btn {
+            flex: 1;
+            height: 36px;
+            border-radius: 10px;
+            border-width: 2px;
+            font-size: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            cursor: pointer;
+            transition: border-color 0.15s;
+        }
+        #mob-cust-panel .ff-btn {
+            width: 100%;
+            height: 36px;
+            border-radius: 10px;
+            border-width: 2px;
+            font-size: 12px;
+            text-align: left;
+            padding: 0 12px;
+            cursor: pointer;
+            transition: border-color 0.15s;
+        }
+
+        /* theme colors for bottom bar */
+        body.theme-dark  #mobile-bottom-bar { background: #111113; }
+        body.theme-dark  #mob-cust-tabs     { border-top-color: #2a2a2e; }
+        body.theme-dark  #mob-cust-panel    { background: #111113; border-top: 1px solid #2a2a2e; }
+        body.theme-dark  .mob-tab-btn       { color: #888; }
+        body.theme-dark  .mob-tab-btn.active { color: #5b9cf6; }
+        body.theme-dark  #mob-cust-panel .ls-btn,
+        body.theme-dark  #mob-cust-panel .rw-btn,
+        body.theme-dark  #mob-cust-panel .ff-btn { background: #1e1e20; color: #ccc; border-color: #333; }
+
+        body.theme-sepia #mobile-bottom-bar { background: #ede5d8; }
+        body.theme-sepia #mob-cust-tabs     { border-top-color: #d4c8b8; }
+        body.theme-sepia #mob-cust-panel    { background: #ede5d8; border-top: 1px solid #d4c8b8; }
+        body.theme-sepia .mob-tab-btn       { color: #9a8070; }
+        body.theme-sepia .mob-tab-btn.active { color: #0056b3; }
+        body.theme-sepia #mob-cust-panel .ls-btn,
+        body.theme-sepia #mob-cust-panel .rw-btn,
+        body.theme-sepia #mob-cust-panel .ff-btn { background: #f5efe6; color: #5a4535; border-color: #d4c8b8; }
+
+        body.theme-light #mobile-bottom-bar { background: #fff; }
+        body.theme-light #mob-cust-tabs     { border-top-color: #e5e7eb; }
+        body.theme-light #mob-cust-panel    { background: #fff; border-top: 1px solid #e5e7eb; }
+        body.theme-light .mob-tab-btn       { color: #9ca3af; }
+        body.theme-light .mob-tab-btn.active { color: #0056b3; }
+        body.theme-light #mob-cust-panel .ls-btn,
+        body.theme-light #mob-cust-panel .rw-btn,
+        body.theme-light #mob-cust-panel .ff-btn { background: #f9fafb; color: #374151; border-color: #e5e7eb; }
+
+        /* bottom bar visible — push content up */
+        #read-main-content {
+            padding-bottom: calc(48px + env(safe-area-inset-bottom) + 16px);
+        }
+    }
+
+    /* ── Text alignment variants ── */
+    #book-content.ta-justify p { text-align: justify; }
+    #book-content.ta-center  p { text-align: center; }
+    #book-content.ta-default p { text-align: left; }
+    html { scroll-behavior: smooth; }
+    /* ── Hide browser scrollbar (page level) ── */
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* ══ Global theme rules (mobile + desktop) ══ */
+    body.theme-dark  #mobile-reader-bg,
+    body.theme-dark  #read-main-content { background: #1c1c1e; }
+    body.theme-sepia #mobile-reader-bg,
+    body.theme-sepia #read-main-content { background: #f5efe6; }
+    body.theme-light #mobile-reader-bg,
+    body.theme-light #read-main-content { background: #ffffff; }
+
+    body.theme-dark  #book-content { color: #e0e0e0; }
+    body.theme-sepia #book-content { color: #3b2f20; }
+    body.theme-light #book-content { color: #1a1a1a; }
+
+    body.theme-dark  #book-content h1,
+    body.theme-dark  #book-content h2 { color: #f0f0f0; }
+    body.theme-sepia #book-content h1,
+    body.theme-sepia #book-content h2 { color: #2a1f14; }
+    body.theme-light #book-content h1,
+    body.theme-light #book-content h2 { color: #111111; }
+
+    body.theme-dark  #book-content h2 { border-top-color: #333; }
+    body.theme-sepia #book-content h2 { border-top-color: #d9ccc0; }
+    body.theme-light #book-content h2 { border-top-color: rgba(128,128,128,0.2); }
+
+    /* sidebars follow theme too */
+    body.theme-dark  #desktop-left-sidebar,
+    body.theme-dark  #toc-sidebar { background: #141415 !important; border-color: #222224 !important; }
+    body.theme-sepia #desktop-left-sidebar,
+    body.theme-sepia #toc-sidebar { background: #ede5d8 !important; border-color: #d4c8b8 !important; }
+    body.theme-light #desktop-left-sidebar,
+    body.theme-light #toc-sidebar { background: #fafafa !important; border-color: #ebebeb !important; }
+
+    body.theme-dark  #desktop-left-sidebar *,
+    body.theme-dark  #toc-sidebar * { --tw-text-opacity: 1; }
+
+    /* progress bar color stays brand */
+    body.theme-sepia #read-progress-bar { background: #8b5e3c; }
+
+    /* ══ Desktop left sidebar theme colors ══ */
+    body.theme-dark  #desktop-left-sidebar { background: #141415; border-right-color: #222224; }
+    body.theme-sepia #desktop-left-sidebar { background: #f0e9df; border-right-color: #d9ccbe; }
+    body.theme-light #desktop-left-sidebar { background: #fafafa; border-right-color: #ebebeb; }
+
+    body.theme-dark  #toc-sidebar { background: #141415; border-left-color: #222224; }
+    body.theme-sepia #toc-sidebar { background: #f0e9df; border-left-color: #d9ccbe; }
+    body.theme-light #toc-sidebar { background: #fafafa; border-left-color: #ebebeb; }
+
+    /* Active theme button */
+    .theme-btn.active { border-color: #0056b3 !important; box-shadow: 0 0 0 1px #0056b3; }
+
+    /* Hide main content bottom back-link on desktop since left sidebar has it */
+    @media (min-width: 1024px) {
+        #desktop-bottom-backnav { display: none; }
+    }
+
+</style>
+
+<!-- Progress bar -->
+<div id="read-progress-bar"></div>
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- Top bar -->
+<div id="mobile-topbar" class="md:hidden">
+    <a href="/books/shrestho-kobita.html"
+       class="w-9 h-9 flex items-center justify-center rounded-full shrink-0">
+        <i class="fas fa-chevron-left text-base"></i>
+    </a>
+    <div class="flex-1 min-w-0 px-1">
+        <p class="title-text text-sm font-semibold truncate leading-tight">শ্রেষ্ঠ কবিতা</p>
+    </div>
+    <button id="mob-toc-btn-top" class="w-9 h-9 flex items-center justify-center rounded-full shrink-0" aria-label="সূচিপত্র">
+        <i class="fas fa-list-ul text-sm"></i>
+    </button>
+</div>
+
+<!-- ── MOBILE: right TOC drawer + overlay ── -->
+<div id="mobile-toc-overlay" class="md:hidden"></div>
+<div id="mobile-toc-drawer" class="md:hidden">
+
+    <!-- Header -->
+    <div id="toc-drawer-header" class="shrink-0">
+        <span class="drawer-title">সূচিপত্র</span>
+        <button id="mobile-toc-close" aria-label="বন্ধ করুন">
+            <i class="fas fa-times" style="font-size:13px;"></i>
+        </button>
+    </div>
+
+    <!-- TOC nav -->
+    <nav id="toc-nav-mobile"></nav>
+
+</div>
+
+<!-- ══════════════════════════════════════════
+     MOBILE bottom customization bar
+══════════════════════════════════════════ -->
+<div id="mobile-bottom-bar" class="md:hidden">
+
+    <!-- Expandable panel -->
+    <div id="mob-cust-panel">
+
+        <!-- থিম -->
+        <div id="mob-panel-theme" class="mob-panel-section">
+            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">থিম</p>
+            <div class="flex gap-2">
+                <button data-theme="light" class="theme-btn" style="background:#fff; color:#333;">আলো</button>
+                <button data-theme="sepia" class="theme-btn" style="background:#f5efe6; color:#5a4535;">সেপিয়া</button>
+                <button data-theme="dark"  class="theme-btn" style="background:#1c1c1e; color:#ccc;">অন্ধকার</button>
+            </div>
+        </div>
+
+        <!-- লেখার আকার -->
+        <div id="mob-panel-font" class="mob-panel-section">
+            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">লেখার আকার ও ফন্ট</p>
+            <div class="flex gap-2 mb-2">
+                <button id="m-font-decrease"
+                    class="flex-1 h-9 rounded-xl border-2 border-gray-200 bg-gray-50 text-[13px] font-bold text-gray-600">A−</button>
+                <div class="flex-1 flex justify-center gap-1.5 items-center">
+                    <span id="m-font-dot-0" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
+                    <span id="m-font-dot-1" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
+                    <span id="m-font-dot-2" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
+                    <span id="m-font-dot-3" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
+                </div>
+                <button id="m-font-increase"
+                    class="flex-1 h-9 rounded-xl border-2 border-gray-200 bg-gray-50 text-[13px] font-bold text-gray-600">A+</button>
+            </div>
+            <div class="flex flex-col gap-1.5">
+                <button data-ff="ff-sans"  class="ff-btn border-2 border-gray-200 bg-gray-50" style="font-family:'Segoe UI',sans-serif;">সাধারণ (Sans)</button>
+                <button data-ff="ff-serif" class="ff-btn border-2 border-gray-200 bg-gray-50" style="font-family:'Noto Serif Bengali',serif;">বইয়ের ফন্ট (Serif)</button>
+            </div>
+        </div>
+
+        <!-- লাইনের ফাঁক -->
+        <div id="mob-panel-spacing" class="mob-panel-section">
+            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">লাইনের ফাঁক, প্রস্থ ও সারিবদ্ধতা</p>
+            <div class="flex gap-2 mb-2">
+                <button data-ls="ls-compact" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
+                    <span class="flex flex-col gap-[2px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
+                    <span>আঁটো</span>
+                </button>
+                <button data-ls="ls-normal" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
+                    <span class="flex flex-col gap-[4px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
+                    <span>স্বাভাবিক</span>
+                </button>
+                <button data-ls="ls-relaxed" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
+                    <span class="flex flex-col gap-[6px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
+                    <span>প্রশস্ত</span>
+                </button>
+            </div>
+            <div class="flex gap-2">
+                <button data-rw="rw-narrow" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
+                    <span class="w-[3px] h-4 bg-current rounded-sm opacity-80"></span><span>সরু</span>
+                </button>
+                <button data-rw="rw-medium" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
+                    <span class="w-[5px] h-4 bg-current rounded-sm opacity-80"></span><span>মাঝারি</span>
+                </button>
+                <button data-rw="rw-wide" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
+                    <span class="w-[8px] h-4 bg-current rounded-sm opacity-80"></span><span>চওড়া</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Tab buttons row -->
+    <div id="mob-cust-tabs">
+        <button class="mob-tab-btn" id="mob-tab-theme" data-panel="mob-panel-theme">
+            <i class="fas fa-circle-half-stroke"></i>
+            <span>থিম</span>
+        </button>
+        <button class="mob-tab-btn" id="mob-tab-font" data-panel="mob-panel-font">
+            <i class="fas fa-font"></i>
+            <span>ফন্ট</span>
+        </button>
+        <button class="mob-tab-btn" id="mob-tab-spacing" data-panel="mob-panel-spacing">
+            <i class="fas fa-text-height"></i>
+            <span>ফাঁক/প্রস্থ</span>
+        </button>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     DESKTOP LEFT sidebar (book info + nav)
+══════════════════════════════════════════ -->
+<aside id="desktop-left-sidebar"
+    class="hidden lg:flex flex-col bg-white dark:bg-[#1a1a1b]">
+
+    <!-- Back button + Book name -->
+    <div class="px-4 pt-5 pb-4 border-b border-gray-100 dark:border-gray-800 shrink-0 flex items-center gap-2.5">
+        <a href="/books/shrestho-kobita.html"
+           class="w-7 h-7 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-brand-100 dark:hover:bg-[#1e3a5f] flex items-center justify-center shrink-0 transition-colors">
+            <i class="fas fa-arrow-left text-[11px] text-gray-500 dark:text-gray-400 hover:text-[#0056b3] transition-colors"></i>
+        </a>
+        <div class="min-w-0">
+            <p id="left-book-title"
+               class="text-[13px] font-bold leading-snug text-gray-900 dark:text-gray-100 line-clamp-2">
+                শ্রেষ্ঠ কবিতা
+            </p>
+            <p id="left-book-subtitle"
+               class="text-[10px] text-gray-400 dark:text-gray-500 mt-0.5 line-clamp-1">
+                
+            </p>
+        </div>
+    </div>
+
+    <!-- TOC label -->
+    <div class="px-5 pt-4 pb-1.5 shrink-0">
+        <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600">সূচিপত্র</p>
+    </div>
+
+    <!-- TOC nav (populated by JS alongside desktop nav) -->
+    <nav id="toc-nav-left" class="flex flex-col px-3 pb-8 gap-0.5 text-[12px] overflow-y-auto flex-1"
+         style="scrollbar-width:none;-ms-overflow-style:none;"></nav>
+</aside>
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg" class="md:block">
+<div class="flex gap-0 min-h-screen w-full" id="read-layout">
+
+    <!-- Reading column -->
+    <div class="flex-1 min-w-0">
+        <div id="read-main-content" class="px-5 md:px-10 lg:px-16 py-7 max-w-2xl">
+            <div id="book-content" class="fs-md text-gray-800 dark:text-gray-200">
+                <h2 style="text-align: center;">ভূমিকা</h2>
+কবিতা কী এ জিজ্ঞাসার কোনো আবছা উত্তর দেওয়ার আগে এটুকু অন্তত স্পষ্টভাবে বলতে পারা যায় যে কবিতা অনেক রকম। হোমরও কবিতা লিখেছিলেন, মালার্মে র‍্যাঁবো ও রিলকেও। শেক্সপীয়র বদ‍্লেয়র রবীন্দ্রনাথ ও এলিয়টও কবিতা রচনা করে গেছেন। কেউ-কেউ কবিকে সবের ওপরে সংস্কারকের ভূমিকায় দেখেন; কারো কারো ঝোক একান্তই রসের দিকে। কবিতা রসেরই ব্যাপার, কিন্তু এক ধরনের উৎকৃষ্ট চিত্তের বিশেষ সব অভিজ্ঞতা ও চেতনার জিনিস – শুদ্ধ কল্পনা বা একান্ত বুদ্ধির রস নয়।
+<br/>
+বিভিন্ন অভিজ্ঞ পাঠকের বিচার ও রুচির সঙ্গে যুক্ত থাকা দরকার কবির; কবিতার সম্পর্কে পাঠক ও সমালোচকেরা কীভাবে দায়িত্ব সম্পন্ন করেছেন - এবং কীভাবে তা করা উচিত সেইসব চেতনার উপর কবির ভবিষ্যৎ কাব্য, আমার মনে হয়, আরো স্পষ্ট ভাবে দাঁড়াবার সুযোগ পেতে পারে। কাব্য চেনবার আস্বাদ করবার ও বিচার করবার নানারকম স্বভাব ও পদ্ধতির বিচিত্র সত্যমিথ্যার পথে আধুনিক কাব্যের আধুনিক সমালোচককে প্রায়ই চলতে দেখা যায়, কিন্তু সেই কাব্যের মোটামুটি সত্যও অনেক সময়ই তাকে এড়িয়ে যায়।
+<br/>
+আমার কবিতাকে বা এ কাব্যের কবিকে নির্জন বা নির্জনতম ব্যাখ্যা দেওয়া হয়েছে; কেউ বলেছেন, এ কবিতা প্রধানত প্রকৃতির বা প্রধানত ইতিহাস ও সমাজ চেতনার, অন্যমতে নিশ্চেতনার; কারো মীমাংসায় এ কাব্য একান্তই প্রতীকী; সম্পূর্ণ অবচেতনার, সুররিয়ালিস্ট। আরো নানারকম আখ্যা চোখে পড়েছে। প্রায় সবই আংশিক সত্য- কোনো কোনো কবিতা বা কাব্যের কোনো কোনো অধ্যায় সম্বন্ধে খাটে; সমগ্র কাব্যের ব্যাখ্যা হিসেবে নয়। কিন্তু কবিতাসৃষ্টি ও কাব্যপাঠ দুই-ই শেষ পর্যন্ত ব্যক্তি-মনের ব্যাপার; কাজেই পাঠক ও সমালোচকদের উপলব্ধি ও মীমাংসায় এত তারতম্য। একটা সীমারেখা আছে এ তারতম্যের; সেটা ছাড়িয়ে গেলে বড়ো সমালোচককে অবহিত হতে হয়।
+<br/>
+নানা দেশে অনেকদিন থেকেই কাব্য সংগ্রহ বেরুচ্ছে। বাংলায় কবিতার সঞ্চয়ন খুবই কম। নানা শতকের অক্সফোর্ড বুক অফ ভর্সের সংকলকদের মধ্যে বড়ো কবি প্রায়ই কেউ নেই; কিন্তু সংকলনগুলো ভালো হয়েছে; ঢের পুরোনো কাব্যের বাছবিচারে বেশি সার্থকতা বেশি সহজ, নতুন কবি ও কবিতার খাঁটি বিচার বেশি কঠিন। অনেক কবির সমাবেশে একটি সংগ্রহ; একজন কবির প্রায় সমস্ত উল্লেখ্য কবিতা নিয়ে আর এক জাতীয় সংকলন; পশ্চিমে এধরনের অনেক বই আছে; তাদের মধ্যে কয়কটি তাৎপর্যে- এমনকি মাহাত্ম্যে প্রায় অক্ষুণ্ন। আমাদের দেশে দু-একজন পূর্বজ (উনিশ-বিশ শতকের) কবির নির্বাচিত কাব্যাংশ প্রকাশিত হয়েছিল; কতদূর সফল হয়েছে এখনো ঠিক বলতে পারছি না। ভালো কবিতা যাচাই করবার বিশেষ শক্তি সংকলকের থাকলেও আদি নির্বাচন অনেক সময়ই কবির মৃত্যুর পরে খাটি সংকলনে গিয়ে দাড়াবার সুযোগ পায়। কিন্তু কোনো কোনো সংকলনে প্রথম থেকেই যথেষ্ট নির্ভুল চেতনার প্রয়োগ দেখা যায়। পাঠকদের সঙ্গে বিশেষভাবে যোগ স্থাপনের দিক দিয়ে এ ধরনের প্রাথমিক সংকলনের মূল্য আমাদের দেশেও লেখক পাঠক ও প্রকাশকদের কাছে ক্রমেই বেশি স্বীকৃত হচ্ছে হয়ত। যিনি কবিতা লেখা ছেড়ে দেননি তার কবিতার এ-রকম সংগ্রহ থেকে পাঠক ও সমালোচক এ কাব্যের যথেষ্ট সংগত পরিচয় পেতে পারেন; যদিও শেষ পরিচয়লাভ সমসাময়িকদের পক্ষে নানা কারণেই দুঃসাধ্য।
+<br/>
+<br/>
+এই সংকলনের কবিতাগুলো শ্রীযুক্ত বিরাম মুখোপাধ্যায় আমার পাঁচখানা কবিতার বই এবং অন্যান্য প্রকাশিত ও অপ্রকাশিত রচনা থেকে সঞ্চয় করেছেন, তার নির্বাচনে বিশেষ শুদ্ধতার পরিচয় পেয়েছি। বিন্যাস-সাধনে মোটামুটিভাবে রচনা-কালক্রম অনুসরণ করা হয়েছে।
+<br/>
+কলকাতা                                                          জীবনানন্দ দাশ
+২০।০৪।১৯৫৪
+<h2>তবু</h2>
+সে অনেক রাজনীতি রুগ্ন নীতি মারী<br/>
+মন্বন্তর যুদ্ধ ঋণ সময়ের থেকে
+উঠে এসে এই পৃথিবীর পথে আড়াই হাজার
+বছরে বয়সী আমি;
+বুদ্ধকে স্বচক্ষে মহানির্বাণের আশ্চর্য শান্তিতে
+চ’লে যেতে দেখে—তবু—অবিরল অশান্তির দীপ্তি ভিক্ষা ক’রে
+এখানে তোমার কাছে দাঁড়ায়ে রয়েছি;
+আজ ভোরে বাংলার তেরোশো চুয়ান্ন সাল এই
+কোথাও নদীর জলে নিজেকে গণনা করে নিতে ভুলে গিয়ে
+আগামী লোকের দিকে অগ্রসর হয়ে যায়; আমি
+তবুও নিজেকে রোধ করে আজ থেমে যেতে চাই
+তোমার জ্যোতির কাছে; আড়াই হাজার
+বছর তা হলে আজ এই খানে শেষ হয়ে গেছে।
+<br/>
+নদীর জলের পথে মাছরাঙা ডানা বাড়াতেই
+আলো ঠিকরায়ে গেছে—যারা পথে চলে যায় তাদের হৃদয়ে;
+সৃষ্টির প্রথম আলোর কাছে; আহা,
+অন্তিম আভার কাছে; জীবনের যতিহীন প্রগতিশীলতা
+নিখিলের স্মরণীয় সত্য বলে প্রমাণিত হয়ে গেছে; দেখ
+পাখি চলে, তারা চলে, সূর্য মেঘে জ্বলে যায়, আমি
+তবুও মধ্যম পথে দাঁড়ায়ে রয়েছি—তবু দাঁড়াতে বলো নি।
+আমাকে দেখ নি তুমি; দেখবার মতো
+অপব্যয়ী কল্পনায় ইন্দ্রত্বের আসনে আমাকে
+বসালে চকিত হয়ে দেখে যেতে যদি—তবু, সে আসলে আমি
+যুগে যুগে সাময়িক শত্রুদের বসিয়েছি, নারী,
+ভালোবেসে ধ্বংস হয়ে গেছে তারা সব।
+এ রকম অন্তহীন পটভূমিকায়—প্রেমে—
+নতুন ঈশ্বরদের বারবার লুপ্ত হতে দেখে
+আমারও হৃদয় থেকে তরুণতা হারায়ে গিয়েছে;
+অথচ নবীন তুমি।
+<br/>
+নারী, তুমি সকালের জল উজ্জ্বলতা ছাড়া পৃথিবীর কোনো নদীকেই
+বিকেলে অপর ঢেউয়ে খরশান হতে
+দিতে ভুলে গিয়েছিলে; রাতের প্রখর জলে নিয়তির দিকে
+বহে যেতে দিতে মনে ছিল কি তোমার?
+এখনও কি মনে নেই?
+<br/>
+আজ এই পৃথিবীর অন্ধকারে মানুষের হৃদয়ে বিশ্বাস
+কেবলই শিথিল হয়ে যায়; তবু তুমি
+সেই শিথিলতা নও, জানি, তবু ইতিহাসরীতিপ্রতিভার
+মুখোমুখি আবছায়া দেয়ালের মতো নীল আকাশের দিকে
+ঊর্ধ্বে উঠে যেতে চেয়ে তুমি
+আমাদের দেশে কোনো বিশ্বাসের দীর্ঘ তরু নও।
+<br/>
+তবু
+কী যে উদয়ের সাগরের প্রতিবিম্ব জ্বলে ওঠে রোদে।
+উদয় সমাপ্ত হয়ে গেছে নাকি সে অনেক আগে?
+কোথাও বাতাস নেই, তবু
+মর্মরিত হয়ে ওঠে উদয়ের সমুদ্রের পারে।
+কোনো পাখি
+কালের ফোকরে আজ নেই, তবু, নব সৃষ্টিমরালের মতো কলস্বরে
+কেন কথা বলি; কোনো নারী
+নেই, তবু আকাশহংসীর কণ্ঠে ভোরের সাগর উতরোল।
+<h2>এই সব দিনরাত্রি</h2>
+<br/>
+মনে হয় এর চেয়ে অন্ধকারে ডুবে যাওয়া ভালো।
+এইখানে
+পৃথিবীর এই ক্লান্ত এ অশান্ত কিনারা দেশে
+এখানে আশ্চর্য সব মানুষ রয়েছে।
+তাদের সম্রাট নেই, সেনাপতি নেই;
+তাদের হৃদয়ে কোনো সভাপতি নেই;
+শরীর বিবশ হলে অবশেষে ট্রেড-ইউনিয়নের
+কংগ্রেসের মতো কোনো আশা-হতাশার
+কোলাহল নেই।
+<br/>
+অনেক শ্রমিক আছে এইখানে।
+আরো ঢের লোক আছে
+সঠিক শ্রমিক নয় তারা।
+স্বাভাবিক মধ্যশ্রেণী নিম্নশ্রেণী মধ্যবিত্ত শ্রেনীর পরিধি থেকে ঝ’রে
+এরা তবু মৃত নয়; অন্তবিহীন কাল মৃতবৎ ঘোরে।
+নামগুলো কুশ্রী নয়, পৃথিবীর চেনা-জানা নাম এই সব।
+আমরা অনেক দিন এ-সব নামের সাথে পরিচিত; তবু,
+গৃহ নীড় নির্দেশ সকলই হারায়ে ফেলে ওরা
+জানে না কোথায় গেলে মানুষের সমাজের পারিশ্রমিকের
+মতন নির্দিষ্ট কোনো শ্রমের বিধান পাওয়া যাবে;
+জানে না কোথায় গেলে জল তেল খাদ্য পাওয়া যাবে;
+অথবা কোথায় মুক্ত পরিচ্ছন্ন বাতাসের সিন্ধুতীর আছে।
+<br/>
+মেডিকেল ক্যাম্বেলের বেলগাছিয়ার
+যাদবপুরের বেড কাঁচড়াপাড়ার বেড সব মিলে কতগুলো সব?
+ওরা নয়—সহসা ওদের হয়ে আমি
+কাউকে শুধায়ে কোনো ঠিকমতো জবাব পাইনি।
+বেড আছে, বেশি নেই—সকলের প্রয়োজনে নেই।
+যাদের আস্তানা ঘর তল্পিতল্পা নেই
+হাসপাতালের বেড হয়তো তাদের তরে নয়।
+বটতলা মুচিপাড়া তালতলা জোড়াসাঁকো—আরো ঢের ব্যার্থ অন্ধকারে
+যারা ফুটপাত ধ’রে অথবা ট্রামের লাইন মাড়িয়ে চলছে
+তাদের আকাশ কোন্‌ দিকে?
+জানু ভেঙে পড়ে গেলে হাত কিছুক্ষন আশাশীল
+হয়ে কিছু চায়ে—কিছু খোঁজে;
+এ ছাড়া আকাশ আর নেই।
+তাদের আকাশ সর্বদাই ফুটপাতে;
+মাঝে মাঝে এম্বুলেন্‌স্‌ গাড়ির ভিতরে
+রণক্লান্ত নাবিকেরা ঘরে
+ফিরে আসে
+যেন এক অসীম আকাশে।
+<br/>
+এ-রকম ভাবে চ’লে দিন যদি রাত হয়, রাত যদি হয়ে যায় দিন,
+পদচিহ্নময় পথ হয় যদি দিকচিহ্নহীন,
+কেবলই পাথুরেঘাটা নিমতলা চিৎপুরে—
+খালের এপার-ওপার রাজাবাজারের অস্পষ্ট নির্দেশে
+হাঘরে হাভাতেদের তবে
+অনেক বেডের প্রয়োজন;
+বিশ্রামের প্রয়োজন আছে;
+বিচিত্র মৃত্যুর আগে শান্তির কিছুটা প্রয়োজন।
+হাসপাতালের জন্য যাদের অমূল্য দাদন,
+কিংবা যারা মরণের আগে মৃতদের
+জাতিধর্ম নির্বিচারে সকলকে—সব তুচ্ছতম আর্তকেও
+শরীরের সান্ত্বনা এনে দিতে চায়,
+কিংবা যারা এইসব মৃত্যু রোধ করে এক সাহসী পৃথিবী
+সুবাতাস সমুজ্জ্বল সমাজ চেয়েছে—
+তাদের ও তাদের প্রতিভা প্রেম সংকল্পকে ধন্যবাদ দিয়ে
+মানুষকে ধন্যবাদ দিয়ে যেতে হয়।
+মানুষের অনিঃশেষ কাজ চিন্তা কথা
+রক্তের নদীর মতো ভেসে গেলে, তারপর, তবু, এক অমূল্য মুগ্ধতা
+অধিকার করে নিয়ে ক্রমেই নির্মল হতে পারে।
+<br/>
+ইতিহাস অর্ধসত্যে কামাচ্ছন্ন এখনো কালের কিনারায়;
+তবুও মানুষ এই জীবনকে ভালোবাসে; মানুষের মন
+জানে জীবনের মানে : সকলের ভালো ক’রে জীবনযাপন।
+কিন্তু সেই শুভ রাষ্ট্র ঢের দূরে আজ।
+চারি দিকে বিকলাঙ্গ অন্ধ ভিড়—অলীক প্রয়াণ।
+মন্বন্তর শেষ হলে পুনরায় নব মন্বন্তর;
+যুদ্ধ শেষ হয়ে গেলে নতুন যুদ্ধের নান্দীরোল;
+মানুষের লালসার শেষ নেই;
+উত্তেজনা ছাড়া কোনো দিন ঋতু ক্ষণ
+অবৈধ সংগম ছাড়া সুখ
+অপরের সুখ ম্লান করে দেওয়া ছাড়া প্রিয় সাধ নেই।
+কেবলই আসন থেকে বড়ো, নবতর
+সিংহাসনে যাওয়া ছাড়া গতি নেই কোনো।
+মানুষের দুঃখ কষ্ট মিথ্যা নিষ্ফলতা বেড়ে যায়।
+<br/>
+মনে পড়ে কবে এক রাত্রির স্বপ্নের ভিতরে
+শুনেছি একটি কুষ্ঠকলঙ্কিত নারী
+কেমন আশ্চর্য গান গায়;
+বোবা কালা পাগল মিনসে এক অপরূপ বেহালা বাজায়;
+গানের ঝংকারে যেন সে এক একান্ত শ্যাম দেবদারুগাছে
+রাত্রির বর্ণের মতো কালো কালো শিকারী বেড়াল
+প্রেম নিবেদন করে আলোর রঙের মতো অগণন পাখিদের কাছে;
+ঝর্‌ ঝর্‌ ঝর্‌
+সারারাত শ্রাবণের নির্গলিত ক্লেদরক্ত বৃষ্টির ভিতর
+এ পৃথিবী ঘুম স্বপ্ন রুদ্ধশ্বাস
+শঠতা রিরংসা মৃত্যু নিয়ে
+কেমন প্রদত্ত কালো গণিকার উল্লোল সংগীতে
+মুখের ব্যাদান সাধ দুর্দান্ত গণিকালয়ে—নরক শ্মশান হল সব।
+জেগে উঠে আমাদের আজকের পৃথিবীকে এ-রকম ভাবে অনুভব
+আমিও করেছি রোজ সকালের আলোর ভিতরে
+বিকেলে-রাত্রির পথে হেঁটে;
+দেখেছি রজনীগন্ধা নারীর শরীর অন্ন মুখে দিতে গিয়ে
+আমরা অঙ্গার রক্ত: শতাব্দীর অন্তহীন আগুনের ভিতরে দাঁড়িয়ে।
+<br/>
+এ আগুন এত রক্ত মধ্যযুগ দেখেছে কখনও?
+তবুও সকল কাল শতাব্দীকে হিসেব নিকেশ করে আজ
+শুভ কাজ সূচনার আগে এই পৃথিবীর মানবহৃদয়
+স্নিগ্ধ হয়-বীতশোক হয়?
+মানুষের সব গুণ শান্ত নীলিমার মতো ভালো?
+দীনতা; অন্তিম গুণ, অন্তহীন নক্ষত্রের আলো।
+<br/>
+চতুরঙ্গ ॥ কার্তিক-পৌষ ১৩৫৬
+<h2>১৯৪৬-৪৭</h2>
+দিনের আলোয় অই চারি দিকে মানুষের অস্পষ্ট ব্যস্ততা:
+পথে-ঘাটে ট্রাক ট্রামলাইনে ফুটপাতে;
+কোথায় পরের বাড়ি এখুনি নিলেম হবে—মনে হয়,
+জলের মতন দামে।
+সকলকে ফাঁকি দিয়ে স্বর্গে পৌঁছুবে
+সকলের আগে সকলেই তাই।
+<br/>
+অনেকেরই ঊর্ধশ্বাসে যেতে হয়, তবু
+নিলেমের ঘরবাড়ি আসবাব—অথবা যা নিলেমের নয়
+সে সব জিনিস
+বহুকে বঞ্চিত ক’রে দু জন কি একজন কিনে নিতে পারে।
+পৃথিবীতে সুদ খাটে: সকলের জন্যে নয়।
+অনির্বচনীয় হুণ্ডি একজন দু জনের হাতে।
+পৃথিবীর এইসব উঁচু লোকদের দাবি এসে
+সবই নেয়, নারীকেও নিয়ে যায়।
+বাকি সব মানুষেরা অন্ধকারে হেমন্তের অবিরল পাতার মতন
+কোথাও নদীর পানে উড়ে যেতে চায়,
+অথবা মাটির দিকে—পৃথিবীর কোনো পুনঃপ্রবাহের বীজের ভিতরে
+মিশে গিয়ে। পৃথিবীতে ঢের জন্ম নষ্ট হয়ে গেছে জেনে, তবু
+আবার সূর্যের গন্ধে ফিরে এসে ধুলো ঘাস কুসুমের অমৃতত্বে
+কবে পরিচিত জল, আলো আধো অধিকারিণীকে অধিকার করে নিতে হবে:
+ভেবে তারা অন্ধকারে লীন হয়ে যায়।
+লীন হয়ে গেলে তারা তখন তো—মৃত।
+মৃতেরা এ পৃথিবীতে ফেরে না কখনও
+মৃতেরা কোথাও নেই; আছে?
+কোনো কোনো অঘ্রানের পথে পায়চারি-করা শান্ত মানুষের
+হৃদয়ের পথে ছাড়া মৃতেরা কোথাও নেই বলে মনে হয়;
+তা হলে মৃত্যুর আগে আলো অন্ন আকাশ নারীকে
+কিছুটা সুস্থিরভাবে পেলে ভালো হত।
+<br/>
+বাংলার লক্ষ গ্রাম নিরাশায় আলোহীনতায় ডুবে নিস্তব্ধ নিস্তেজ।
+সূর্য অস্তে চলে গেলে কেমন সুকেশী অন্ধকার
+খোঁপা বেঁধে নিতে আসে—কিন্তু কার হাতে?
+আলুলায়িত হয়ে চেয়ে থাকে—কিন্তু কার তরে?
+হাত নেই—কোথাও মানুষ নেই; বাংলার লক্ষ গ্রামরাত্রি একদিন
+আলপনার, পটের ছবির মতো সুহাস্যা, পটলচেরা চোখের মানুষী
+হতে পেরেছিল প্রায়; নিভে গেছে সব।
+<br/>
+এইখানে নবান্নের ঘ্রাণ ওরা সেদিনও পেয়েছে;
+নতুন চালের রসে রৌদ্রে কতো কাক
+এ-পাড়ার বড়ো...ও-পাড়ার দুলে বোয়েদের
+ডাকশাঁখে উড়ে এসে সুধা খেয়ে যেত;
+এখন টুঁ শব্দ নেই সেই সব কাকপাখিদেরও;
+মানুষের হাড় খুলি মানুষের গণনার সংখ্যাধীন নয়;
+সময়ের হাতে অন্তহীন।
+<br/>
+ওখানে চাঁদের রাতে প্রান্তরে চাষার নাচ হত
+ধানের অদ্ভুত রস খেয়ে ফেলে মাঝি-বাগ্‌দির
+ঈশ্বরী মেয়ের সাথে
+বিবাহের কিছু আগে-বিবাহের কিছু পরে-সন্তানের জন্মাবার আগে।
+সে সব সন্তান আজ এ যুগের কুরাষ্ট্রের মূঢ়
+ক্লান্ত লোকসমাজের ভীড়ে চাপা পড়ে
+মৃতপ্রায়; আজকের এই সব গ্রাম্য সন্ততির
+প্রপিতামহের দল হেসে খেলে ভালোবেসে-অন্ধকারে জমিদারদের
+চিরস্থায়ী ব্যবস্থাকে চড়কের গাছে তুলে ঘুমায়ে গিয়েছে।
+ওরা খুব বেশি ভালো ছিল না; তবুও
+আজকের মন্বন্তর দাঙ্গা দুঃখ নিরক্ষরতায়
+অন্ধ শতচ্ছিন্ন গ্রাম্য প্রাণীদের চেয়ে
+পৃথক আর-এক স্পষ্ট জগতের অধিবাসী ছিল।
+<br/>
+আজকে অস্পষ্ট সব? ভালো করে কথা ভাবা এখন কঠিন;
+অন্ধকারে অর্ধসত্য সকলকে জানিয়ে দেবার
+নিয়ম এখন আছে; তারপর একা অন্ধকারে
+বাকি সত্য আঁচ করে নেওয়ার রেওয়াজ
+রয়ে গেছে; সকলেই আড়চোখে সকলকে দেখে।
+<br/>
+সৃষ্টির মনের কথা মনে হয়—দ্বেষ।
+সৃষ্টির মনের কথা; আমাদেরই আন্তরিকতাতে
+আমাদেরই সন্দেহের ছায়াপাত টেনে এনে ব্যাথা
+খুঁজে আনা। প্রকৃতির পাহাড়ে পাথরে সমুচ্ছল
+ঝর্নার জল দেখে তারপর হৃদয়ে তাকিয়ে
+দেখেছি প্রথম জল নিহত প্রাণীর রক্তে লাল
+হয়ে আছে ব’লে বাঘ হরিণের পিছু আজও ধায়;
+মানুষ মেরেছি আমি—তার রক্তে আমার শরীর
+ভরে গেছে; পৃথিবীর পথে এই নিহত ভ্রাতার
+ভাই আমি; আমাকে সে কনিষ্ঠের মতো জেনে তবু
+হৃদয়ে কঠিন হয়ে বধ করে গেল, আমি রক্তাক্ত নদীর
+কল্লোলের কাছে শুয়ে অগ্রজপ্রতিম বিমূঢ়কে
+বধ করে ঘুমাতেছি—তাহার অপরিসর বুকের ভিতরে
+মুখ রেখে মনে হয় জীবনের স্নেহশীল ব্রতী
+সকলকে আলো দেবে মনে করে অগ্রসর হয়ে
+তবুও কোথাও কোনো আলো নেই বলে ঘুমাতেছে।
+<br/>
+ঘুমাতেছে।
+যদি ডাকি রক্তের নদীর থেকে কল্লোলিত হয়ে
+বলে যাবে কাছে এসে, 'ইয়াসিন আমি,
+হানিফ মহম্মদ মকবুল করিম আজিজ—
+আর তুমি?' আমার বুকের 'পরে হাত রেখে মৃত মুখ থেকে
+চোখ তুলে শুধাবে সে—রক্তনদী উদ্বেলিত হয়ে
+ব’লে যাবে, 'গগন, বিপিন, শশী,পাথুরেঘাটার;
+মানিকতলার, শ্যামবাজারের, গ্যালিফ স্ট্রীটের, এন্টালির-'
+কোথাকার কেবা জানে; জীবনের ইতর শ্রেণীর
+মানুষ তো এরা সব; ছেঁড়া জুতো পায়ে
+বাজারের পোকাকাটা জিনিসের কেনাকাটা করে;
+সৃষ্টির অপরিক্লান্ত চারণার বেগে
+এইসব প্রাণকণা জেগেছিল—বিকেলের সূর্যের রশ্মিতে
+সহসা সুন্দর বলে মনে হয়েছিল কোনো উজ্জ্বল চোখের
+মনীষী লোকের কাছে এই সব অণুর মতন
+উদ্ভাসিত পৃথিবীর উপেক্ষিত জীবনগুলোকে।
+সূর্যের আলোর ঢলে রোমাঞ্চিত রেণুর শরীরে
+রেণুর সংঘর্ষে যেই শব্দ জেগে ওঠে
+সেখানে তার অনুপম কণ্ঠের সংগীতে
+কথা বলে; কাকে বলে? ইয়াসিন মকবুল শশী
+সহসা নিকটে এসে কোনো-কিছু বলবার আগে
+আধ-খণ্ড অনন্তের অন্তরের থেকে যেন ঢের
+কথা বলে গিয়েছিল; তবু—
+অনন্ত তো খণ্ড নয়; তাই সেই স্বপ্ন, কাজ, কথা
+অখণ্ডে অনন্তে অন্তর্হিত হয়ে গেছে;
+কেউ নেই, কিছু নেই-সূর্য নিভে গেছে।
+<br/>
+এ যুগে এখন ঢের কম আলো সব দিকে, তবে।
+আমরা এ পৃথিবীর বহুদিনকার
+কথা কাজ ব্যথা ভুল সংকল্প চিন্তার
+মর্যাদায় গড়া কাহিনীর মূল্য নিংড়ে এখন
+সঞ্চয় করেছি বাক্য শব্দ ভাষা অনুপম বাচনের রীতি।
+মানুষের ভাষা তবু অনুভূতিদেশ থেকে আলো
+না পেলে নিছক ক্রিয়া; বিশেষণ; এলোমেলো নিরাশ্রয় শব্দের কঙ্কাল
+জ্ঞানের নিকট থেকে ঢের দূরে থাকে।
+অনেক বিদ্যার দান উত্তরাধিকারে পেয়ে তবু
+আমাদের এই শতকের
+বিজ্ঞান তো সংকলিত জিনিসের ভিড় শুধু—বেড়ে যায় শুধু;
+তবুও কোথাও তার প্রাণ নেই বলে অর্থময়
+জ্ঞান নেই আজ এই পৃথিবীতে; জ্ঞানের বিহনে প্রেম নেই।
+<br/>
+এ-যুগে কোথাও কোনো আলো—কোনো কান্তিময় আলো
+চোখের সুমুখে নেই যাত্রিকের; নেই তো নিঃসৃত অন্ধকার
+রাত্রির মায়ের মতো: মানুষের বিহ্বল দেহের
+সব দোষ প্রক্ষালিত করে দেয়—মানুষের মানুষের বিহ্বল আত্মাকে
+লোকসমাগমহীন একান্তের অন্ধকারে অন্তঃশীল ক’রে
+তাকে আর শুধায় না—অতীতের শুধানো
+প্রশ্নের উত্তর চায় না আর—শুধু শব্দহীন মৃত্যুহীন
+অন্ধকারে ঘিরে রাখে, সব অপরাধ ক্লান্তি ভয় ভুল পাপ
+বীতকাম হয় যাতে—এ জীবন ধীরে ধীরে বীতশোক হয়,
+স্নিগ্ধতা হৃদয়ে জাগে; যেন দিকচিহ্নময় সমুদ্রের পারে
+কয়েকটি দেবদারুগাছের ভিতরে অবলীন
+বাতাসের প্রিয়কণ্ঠ কাছে আসে—মানুষের রক্তাক্ত আত্মায়
+সে-হাওয়া অনবচ্ছিন্ন সুগমের—মানুষের জীবন নির্মল।
+আজ এই পৃথিবীতে এমন মহানুভব ব্যাপ্ত অন্ধকার
+নেই আর? সুবাতাস গভীরতা পবিত্রতা নেই?
+তবুও মানুষ অন্ধ দুর্দশার থেকে স্নিগ্ধ আঁধারের দিকে
+অন্ধকার হ’তে তার নবীন নগরী গ্রাম উৎসবের পানে
+যে অনবনমনে চলেছে আজও—তার হৃদয়ের
+ভুলের পাপের উৎস অতিক্রম ক’রে চেতনার
+বলয়ের নিজ গুণ রয়ে গেছে বলে মনে হয়।
+<br/>
+পূর্বাশা ॥ কার্তিক ১৩৫৫
+<h2>পৃথিবীতে</h2>
+শস্যের ভিতরে পৃথিবীর সকালবেলায়
+কোনো-এক কবি বসে আছে;
+অথবা সে কারাগারে ক্যাম্পে অন্ধকারে;
+তবুও সে প্রীত অবহিত হয়ে আছে
+<br/>
+এই পৃথিবীর রোদে—এখানে রাত্রির গন্ধে—নক্ষত্রের তরে।
+তাই সে এখানকার ক্লান্ত মানবীয় পরিবেশ
+সুস্থ করে নিতে চায় পরিচ্ছন্ন মানুষের মতো,
+সব ভবিতব্যতার অন্ধকারে দেশ
+<br/>
+মিশে গেলে; জীবনকে সকলের তরে ভালো ক’রে
+পেতে হলে এই অবসন্ন ম্লান পৃথিবীর মতো
+অম্লান; অক্লান্ত হয়ে বেঁচে থাকা চাই।
+একদিন স্বর্গে যেতে হত।
+<br/>
+আজকাল ॥ শারদীয় ১৩৫২
+<h2>লোকেন বোসের জর্নাল</h2>
+সুজাতাকে ভালোবাসতাম আমি—
+এখন কি ভালোবাসি?
+সেটা অবসরে ভাববার কথা,
+অবসর তবু নেই;
+তবু একদিন হেমন্ত এলে অবকাশ পাওয়া যাবে;
+এখন শেল্‌ফে চার্বাক ফ্রয়েড প্লেটো পাভ্‌লভ্‌ ভাবে
+সুজাতাকে আমি ভালোবাসি কিনা।
+<br/>
+পুরোনো চিঠির ফাইল কিছু আছে:
+সুজাতা লিখেছে আমার কাছে,
+বারো তেরো কুড়ি বছর আগের সে-সব কথা;
+ফাইল নাড়া কী যে মিহি কেরানির কাজ;
+নাড়বো না আমি,
+নেড়ে কার কী সে লাভ;
+মনে হয় যেন অমিতা সেনের সাথে সুবলের ভাব,
+সুবলেরই শুধু? অবশ্য আমি
+তাকে মানে—এই অমিতা বলছি যাকে—
+কিন্তু কথাটা থাক;
+কিন্তু তবুও-
+আজকে হৃদয় পথিক নয় তো আর,
+নারী যদি মৃগতৃষ্ণার মতো—তবে
+এখন কী করে মন ক্যারাভান হবে।
+<br/>
+প্রৌঢ় হৃদয়, তুমি
+সেই সব মৃগতৃষ্ণিকাতালে ঈষৎ সিমুমে
+হয়তো কখনো বৈতাল মরুভূমি,
+হৃদয়, হৃদয় তুমি!
+তারপর তুমি নিজের ভিতরে এসে তবু চুপে
+মরীচিকা জয় করেছ বিনয়ী যে ভীষণ নামরূপে—
+সেখানে বালির সৎ নীরবতা ধু ধু
+প্রেম নয় তবু প্রেমেরই মতন শুধু।
+<br/>
+অমিতা সেনকে সুবল কি ভালোবাসে?
+অমিতা নিজে কি তাকে?
+অবসরমতো কথা ভাবা যাবে,
+ঢের অবসর চাই;
+দূর ব্রহ্মাণ্ডকে তিলে টেনে এনে সমাহিত হওয়া চাই;
+এখুনি টেনিসে যেতে হবে তবু,
+ফিরে এসে রাতে ক্লাবে;
+কখন সময় হবে।
+<br/>
+হেমন্তে ঘাসে নীল ফুল ফোটেে—
+হৃদয় কেন যে কাঁপে,
+“ভালোবাসতাম”—স্মৃতি—অঙ্গার—পাপে
+তর্কিত কেন রয়েছে বর্তমান।
+সে-ও কি আমায়—সুজাতা আমায় ভালোবেসে ফেলেছিল।
+আজও ভালোবাসে না কি?
+ইলেক্‌ট্রনেরা নিজ দোষগুণে বলয়িত হয়ে রবে;
+কোনো অন্তিম ক্ষালিত আকাশে এর উত্তর হবে?
+<br/>
+সুজাতা এখন ভুবনেশ্বরে;
+অমিতা কি মিহিজামে?
+বহুদিন থেকে ঠিকানা না জেনে ভালোই হয়েছে-সবই।
+ঘাসের ভিতরে নীল শাদা ফুল ফোটে হেমন্তরাগে;
+সময়ের এই স্থির এক দিক,
+তবু স্থিরতর নয়;
+প্রতিটি দিনের নতুন জীবাণু আবার স্থাপিত হয়।
+<br/>
+পূর্বাশা। কার্তিক ১৩৫৭
+<h2>মানুষের মৃত্যু হলে</h2>
+মানুষের মৃত্যু হলে তবুও মানব
+থেকে যায়; অতীতের থেকে উঠে আজকের মানুষের কাছে
+প্রথমত চেতনার পরিমাপ নিতে আসে।
+<br/>
+আজকের আগে যেই জীবনের ভিড় জমেছিল
+তারা মরে গেছে;
+প্রতিটি মানুষ তার নিজের স্বতন্ত্র সত্তা নিয়ে
+অন্ধকারে হারায়েছে;
+    তবু তারা আজকের আলোর ভিতরে
+সঞ্চারিত হয়ে উঠে আজকের মানুষের সুরে
+যখন প্রেমের কথা বলে
+অথবা জ্ঞানের কথা–
+অনন্ত যাত্রার কথা মনে হয় সে-সময়
+দীপংকর শ্রীজ্ঞানের;
+চলেছে-চলেছে-
+<br/>
+একদিন বুদ্ধকে সে চেয়েছিল বলে ভেবেছিল।
+একদিন ধূসর পাতায় যেই জ্ঞান থাকে—তাকে।
+একদিন নগরীর দুরোনো সিড়ির পথ বেয়ে
+বিজ্ঞানে প্রবীণ হয়ে—তবু— কেন অম্বাপালীকে
+চেয়েছিল প্রণয়ে নিবিড় হয়ে উঠে।
+<br/>
+চেয়েছিল–
+পেয়েছিল শ্ৰীমতীকে কম্প্র প্রাসাদে;
+সেই সিড়ি ঘুরে প্রায় নীলিমার গায়ে গিয়ে লাগে;
+সিড়ি উদ্ভাসিত করে রোদ;
+সিড়ি ধরে ওপরে ওঠার পথে আরেকরকম
+বাতাস ও আলোকের আসাযাওয়া স্থির করে কী অসাধারণ
+প্রেমের প্রয়াণ। তবু-এই শেষ অনিমেষ পথে
+দেখেছে সে কোনো-এক মহীয়সী আর তার শিশু;
+দু-জনেই মৃত।
+অথবা কেউ কি নেই।
+ওইখানে কেউ নেই।
+মৃত্যু আজ নারীনৰ্দামার ক্বাথে;
+অন্তহীন শিশুফুটপাতে;
+আর সেই শিশুদের জনিতার ক্লীবতায়।
+<br/>
+সকল রৌদ্রের মতো ব্যাপ্ত আশা যদি
+গোলকধাঁধায় ঘুরে আবার প্রথম স্থানে ফিরে আসে
+শ্রীজ্ঞান কী তবে চেয়েছিল?
+
+সূর্য যদি কেবলই দিনের জন্ম দিয়ে যায়,
+রাত্রি যদি শুধু নক্ষত্রের,
+মানুষ কেবলই যদি সমাজের জন্ম দেয়,
+সমাজ অস্পষ্ট বিপ্লবের,
+বিপ্লব নির্মম আবেশের,
+তা হলে শ্রীজ্ঞান কিছু চেয়েছিল?
+<br/>
+নগরীর সিড়ি প্রায় নীলিমার গায়ে লেগে আছে;
+অথচ নগরী মৃত।
+সে সিড়ির আশ্চর্য নির্জন
+দিগন্তরে এক মহীয়সী,
+আর তার শিশু;
+তবু কেউ নেই।
+<br/>
+ঢের ভারতীয় কাল-পৃথিবীর আয়ু-শেষ করে
+জীবনের বঙ্গাব্দ পর্বের প্রান্তে ঠেকে,
+পুনরুদ‍্‍যাপনের মতন আরেকবার এই
+তেরোশো পঞ্চাশ সাল থেকে শুরু করে ঢের দিন
+আমারও হৃদয় এই সব কথা ভেবে
+সৃষ্টির উৎস আর উৎসারিত মানুষকে তবু
+ধন্যবাদ দিয়ে যায়।
+কেননা সৃষ্টির নিহিত ছলনা ছেলে-ভুলোবার মতো তবু নয়;
+মানুষও ঘুমের আগে কথা ভেবে সব সমাধান
+ক'রে নিতে চায়।
+কথা ভেবে হৃদয় শুকায় জেনে কাজ করে।
+
+সময় এখন শাদা জলের বদলে বোনভায়ের
+নিয়ত বিপন্ন রক্ত রোজ
+মানুষকে দিয়ে যায়;
+ফসলের পরিবর্তে মানুষের শরীরে মানুষ
+গোলাবাড়ি উচু করে রেখে নিয়তির
+অন্ধকারে অমানব;
+তবুও গ্লানির মতো মানুষের মনের ভিতরে
+এইসব জেগে থাকে ব'লে
+শতকের আয়ু-আধো আয়ু-আজ ফুরিয়ে গেলেও এই শতাব্দীকে তারা
+কঠিন নিস্পৃহভাবে আলোচনা করে
+আশায় উজ্জ্বল রাখে; না হলে এ ছাড়া
+কোথাও অন্য কোন প্রতি নেই।
+মানুষের মৃত্যু হলে তবুও মানব
+থেকে যায়; অতীতের থেকে উঠে আজকের মানুষের কাছে
+আরো ভালো-আরো স্থির দিকনির্ণয়ের মতো চেতনার
+পরিমাপে নিয়ন্ত্রিত কাজ
+কতদূর অগ্রসর হয়ে গেল জেনে নিতে আসে।
+<br/>
+পূর্বাশা বৈশাখ ১৩৫৭
+
+<h2>অনন্দা</h2>
+এই পৃথিবীর এ এক শতচ্ছিদ্র নগরী।
+দিন ফুরুলে তারার আলো ক্ষণিক নেমে আসে।
+গ্যাসের বাতি দাড়িয়ে থাকে রাতের বাতাসে।
+দ্রুতগতি নরনারীর ক্ষণিক শরীর থেকে
+উৎসারিত ছায়ার কালো ভারে
+আঁধার আলোয় মনে হতে পারে
+এ-সব দেয়াল যে-কোনো নগরীর;
+সন্দেহ ভয় অপ্রেম দ্বেষ অবক্ষয়ের ভিড়
+সূর্য-তারার আলোয় অঢেল রক্ত হতে পারে
+যে-কোনো দিন; সে কতবার আঁধার বেশি শানিত হয়েছে;
+বাহক নেই –দুরন্ত কাল নিজেই বয়েছে
+নিজেরই শব নিজে মানুষ,
+মানবপ্রাণের রহস্যময় গভীর গুহার থেকে
+সিংহ শকুন শেয়াল নেউল সৰ্পদন্ত ডেকে।
+<br/>
+হৃদয় আছে বলেই মানুষ দেখ, কেমন বিচলিত হয়ে
+বোনভায়েকে খুন ক'রে সেই রক্ত দেখে আঁশটে হৃদয়ে
+জেগে উঠে ইতিহাসের অধম স্থূলতাকে
+ঘুচিয়ে দিতে জ্ঞানপ্রতিভা আকাশ প্ৰেম নক্ষত্রকে ডাকে।
+এই নগরী যে-কোনো দেশ; যে-কোনো পরিচয়ে
+আজ পৃথিবীর মানবজাতির ক্ষয়ের বলয়ে
+অন্তবিহীন ফ্যাক্টরি ক্রেন ট্রাকের শব্দে ট্রাফিক কোলাহলে
+হৃদয়ে যা হারিয়ে গেছে মেশিনকণ্ঠে তাকে
+শূন্য অবলেহন থেকে ডাকে।
+<br/>
+‘তুমি কি গ্রীস পোল্যাণ্ড চেক প্যারিস মিউনিক
+টোকিও রোম নুইয়র্ক ক্রেমলিন আটলান্টিক
+লণ্ডন চীন দিল্লী মিশর করাচী প্যালেস্টাইন?
+একটি মৃত্যু, এক ভূমিকা, একটি শুধু আইন।
+বলছে মেশিন। মেশিনপ্রতিম অধিনায়ক বলে;
+সকল ভূগোল নিতে হবে নতুন করে গড়ে
+আমার হাতে গড়া ইতিহাসের ভেতরে,
+
+নতুন সময় সীমাবলয় সবই তো আজ আমি;
+ওদের ছোয়া বাচিয়ে আমার স্বত্বাধিকারকামী;
+আমি সংঘ জাতি রীতি রক্ত হলুদ নীল
+সবুজ শাদা মেরুন অশ্লীল
+নিয়মগুলো বাতিল করি; কালো কোর্তা দিয়ে
+ওদের ধূসর পাটকিলে বফ্ কোর্তা তাড়িয়ে
+আমার অনুচরের বৃন্দ অন্ধকারের বার
+আলোক ক'রে কী অবিনাশ দ্বৈপ-পরিবার।
+<br/>
+এই দ্বীপই দেশ; এ-দ্বীপ নিখিল তবে।
+অন্য সকল দ্বীপের হতে হবে
+আমার মতো—আমার অনুচরের মতো ধ্রুব।
+হে রক্তবীজ, তুমি হবে আমার আঘাত পেয়ে
+অনবতুল আমির মতো শুভ।
+<br/>
+সবাই তো আজ যে যার অন্তরঙ্গ জিনিস খুঁজে
+মানবভ্রাতাবোনকে বুকে টেনে নেবার ছলে
+তাদের নিকেশ করে অনির্বচন রক্তে এই পৃথিবীর জলে
+নানারকম নতুন নামের বৃহৎ ভীষণ নদী হয়ে গেল;
+এই পৃথিবীর সব নগরী পরিক্রম করে
+নতুন অভিধানের শব্দে ছন্দে জেগে সুপরিসর ভোরে
+এ-সব নদী গভীরতর মানে পেতে চায়—
+দিকসময়ের আতল রক্ত ক্ষালন করে অনুতপ্ততায়;
+বাস্তবিকই জল কি জলের নিকটতম মানে?
+অথবা কি মানবরক্ত বহন করি নির্মম অজ্ঞানে?
+কি আন্তরিক অর্থ কোথায় আছে?
+এই পৃথিবীর গোষ্ঠীরা কি পরস্পরের কাছে
+
+ভাইয়ের মতো; সৎ প্রকৃতির স্পষ্ট উৎস থেকে
+মানবসভ্যতার এই মলিন ব্যতিক্রমে জেগে উঠে?
+যে যার দেহ আত্মা ভালোবেসে অমল জলকণার মতন সমুদ্রকে এক মুঠে
+ধ'রে আছে?
+ভালো করে বেচে থাকার বিশদ নির্দেশে
+সূর্যকরোজ্জ্বল প্রভাতে এসে
+হিংসা গ্লানি মৃত্যুকে শেষ করে
+জেগে আছে?
+<br/>
+জেগে উঠে সময়সাগরতীরে সূর্যস্রোতে
+তবুও ক্লান্ত পতিত মলিন হতে
+কী আবেদন আসছে মানুষ প্রতিদিনই –
+কোথার থেকে শুকুনক্রান্তি বলে;
+জলের নদী? জেগে উঠুক আপামরের রক্তকোলাহলে !
+<br/>
+এ-সুর শুরু হয়েছিলো কুরুবর্ষে-বেবিলনে ট্রয়ে;
+মানুষ মানী জ্ঞানী প্রধান হয়ে গেছে; তবুও হৃদয়ে
+ভালোবাসার যৌনকুয়াশা কেটে
+যে-প্রেম আসে সেটা কি তার নিজের ছায়ার প্রতি?
+জলের কলরোলের পাশে এই নগরীর অন্ধকারে আজ
+আধার আরো গভীরতর করে ফেলে সভ্যতার এই অপার আত্মরতি;
+চারি দিকে নীল নরকে প্রবেশ করার চাবি
+অসীম স্বৰ্গ খুলে দিয়ে লক্ষ কোটি নরককীটের দাবি
+জাগিয়ে তবু সে-কীট ধ্বংস করার মতো হয়ে
+ইতিহাসের গভীরতর শক্তি ও প্রেম রেখেছে কিছু হয়তো হৃদয়ে।
+<h2>আছে</h2>
+এখন চৈত্রের দিন নিভে আসে –আরো নিভে আসে;
+           এখানে মাঠের পরে শুয়ে আছি ঘাসে;
+এসে শেষ হয়ে যায় মানুষের ইচ্ছা কাজ পৃথিবীর পথে,
+         দু-চারটে-বড়ো জোর একশো শরতে;
+<br/>
+উর ময় চীন ভারতের গল্প বহিঃপৃথিবীর শর্তে হয়ে গেছে শেষ;
+         জীবনের রূপ আর রক্তের নির্দেশ
+পৃথিবীর কাম আর বিচ্ছেদের ভূমি-মনে হয়—এক তিলের সমান;
+         কিন্তু এই চেয়ে থাকা, স্থিতি, রাত্রি, শান্তি– অফুরান।
+চারিদিকে বড়ো বড়ো আকাশ ও গাছের শরীরে
+         সময় এসেছে তার নীড়ে।
+ভালো লাগে পৃথিবীর রূঢ় নষ্ট সভ্যতার দিনের ব্যত্যয়;
+         অন্ধকার সনাতনে মিশে যাওয়া-কিন্তু মরণের ঘুম নয়;
+জেগে থাকা; নক্ষত্রের বাগীশ্বরী দ্যোতনার থেকে কিছু দূরে;
+         পৃথিবীর অবলুপ্ত জ্ঞানী বন্ধুরে
+এই স্তব্ধ মাটিতেই মিশে যেতে হল জেনে তবু চোখ রেখে নীলাকাশে
+         শুয়ে থাকা পৃথিবীর মাধুরীর অন্ধকার ঘাসে।
+<br/>
+কবিতা। আশ্বিন ১৩৫৯
+<h2>যাত্রী</h2>
+মনে হয় প্রাণ এক দূর স্বচ্ছ সাগরের কূলে
+জন্ম নিয়েছিল কবে;
+পিছে মৃত্যুহীন জন্মহীন চিহ্নহীন
+
+কুয়াশার যে-ইঙ্গিত ছিল
+সেই সব ধীরে ধীরে ভুলে গিয়ে অন্য এক মানে
+পেয়েছিল এখানে ভূমিষ্ঠ হয়ে—আলো জল আকাশের টানে;
+কেন যেন কাকে ভালোবেসে।
+<br/>
+মৃত্যু আর জীবনের কালো আর শাদা
+হৃদয়ে জড়িয়ে নিয়ে যাত্রী মানুষ
+এসেছে এ-পৃথিবীর দেশে;
+কঙ্কাল অঙ্গার কালি-চারিদিকে রক্তের ভিতরে
+অন্তহীন করুণ ইচ্ছার চিহ্ন দেখে
+পথ চিনে এ-ধুলোয় নিজের জন্মের চিহ্ন চেনাতে এলাম;
+কাকে তবু?
+পৃথিবীকে আকাশকে আকাশে যে-সূর্য জ্বলে তাকে?
+ধুলোর কণিকা অণুপরমাণু ছায়া বৃষ্টি জলকণিকাকে?
+নগর বন্দর রাষ্ট্র জ্ঞান অজ্ঞানের পৃথিবীকে?
+<br/>
+যেই কুজ্ঝটিকা ছিল জন্মসৃষ্টির আগে, আর
+যে-সব কুয়াশা রবে শেষে একদিন
+তার অন্ধকার আজ আলোর বলয়ে এসে পড়ে পলে-পলে;
+নীলিমার দিকে মন যেতে চায় প্রেমে;
+সনাতন কালো মহাসাগরের দিকে যেতে বলে।
+তবু আলো পৃথিবীর দিকে
+সূর্য রোজ সঙ্গে করে আনে
+যেই ঋতু যেই তিথি যে-জীবন যেই মৃত্যুরীতি
+মহাইতিহাস এসে এখনও জানে নি যার মানে;
+<br/>
+সেদিকে যেতেছে লোক গ্লানি প্ৰেম ক্ষয়
+
+নিত্য পদচিহ্নের মতো সঙ্গে করে;
+নদী আর মানুষের ধাবমান ধূসর হৃদয়
+রাত্রি পোহালো ভোরে –কাহিনীর কত শত ভোরে
+নব সূর্য নব পাখি নব চিহ্ন নগরে নিবাসে;
+নব-নব যাত্রীদের সাথে মিশে যায়
+প্রাণলোকযাত্রীদের ভিড়;
+হৃদয়ে চলার গতি গান আলো রয়েছে, অকূলে
+মানুষের পটভূমি হয়তো বা শাশ্বত যাত্রীর।
+<br/>
+আনন্দবাজার পত্রিকা। শারদীয় ১৩৬০
+
+<h2>স্থান থেকে</h2>
+স্থান থেকে স্থানচ্যুত হয়ে
+চিহ্ন ছেড়ে অন্য চিহ্নে গিয়ে
+ঘড়ির কাঁটার থেকে সময়ের স্নায়ুর স্পন্দন
+খসিয়ে বিমুক্ত করে তাকে
+দেখা যায় অবিরল শাদা-কালো সময়ের ফাঁকে
+সৈকত কেবলই দূরে সৈকতে ফুরায়;
+পটভূমি বারবার পটভূমিচ্ছেদ
+করে ফেলে আঁধারকে আলোর বিলয়
+আলোককে আঁধারের ক্ষয়
+শেখায় শুক্ল সূর্যে; গ্লানি রক্তসাগরের জয়
+দেখায় কৃষ্ণ সূর্যে; ক্রমেই গভীর কৃষ্ণ হয়।
+<h2>দিনরাত</h2>
+সারাদিন মিছে কেটে গেলো;
+সারারাত বড্ডো খারাপ
+নিরাশায় ব্যর্থতায় কাটবে; জীবন
+দিনরাত দিনগতপাপ
+ক্ষয় করবার মতো ব্যবহার শুধু।
+ফণীমনসার কাঁটা তবুও তো স্নিগ্ধ শিশিরে
+মেখে আছে;
+একটিও পাখি শূন্যে নেই;
+সব জ্ঞানপাপী পাখি ফিরে গেছে নীড়ে।
+<h2>পৃথিবীতে এই</h2>
+পৃথিবীতে এই জন্মলাভ তবু ভালো;
+ভূমিষ্ঠ হবার পরে যদিও ক্রমেই মনে হয়
+কোনো-এক অন্ধকার স্তন্ধ সৈকতের
+বিন্দুর ভেতর থেকে কোনো
+অন্য দূর স্থির বলয়ের
+চিহ্ন লক্ষ্য করে দুই শব্দহীন শেষ সাগরের
+মাঝখানে কয়েক মুহূর্ত এই সূর্যের আলো।
+<br/>
+কেন আলো? মাছিদের ওড়াউড়ি?
+কেবলই ভঙ্গুর চিহ্ন মুখে নিয়ে জল
+সুয়েজ হেলেস‍্পন্ট প্রশান্ত লোহিতে
+পরিণতি চায় এই মাছি মাছরাঙা
+প্রেমিক নাবিক নষ্ট নাসপাতি মুখ
+ঠোঁট চোখ নাক করোটির গন্ধ
+স্পষ্ট এক নিরসনে স্থির করে রেখে দেবে বলে;
+চলেছে– চলেছে–
+শিশির কুয়াশা বৃষ্টি ঝড়ের বিহ্বল আলোড়ন
+সমুদ্রের শত মৃত্যুশীল ফাঁকি
+ডানে-বায়ে সারা দিন আবছা মরণ
+ঝেড়ে ফেলে –ঝাপসায় বিপদের ঘন্টা বাজিয়ে
+আমাদের আশা ভালোবাসা ব্যথা রণঘড়ি সূর্যের ঘড়ি
+চিন্তা বুদ্ধি চাকার ঘুরুনি গ্লানি দাঁতালো ইস্পাত
+খানিকটা আলো উজ্জ্বলতা শান্তি চায়;
+<br/>
+জলের মরণশীল চ্ছলচ্ছল শুনে
+কম্পাসের চেতনাকে সর্বদাই উত্তরের দিকে রেখে
+সমুদ্রকে সর্বদাই শান্ত হতে বলে
+আমরা অন্তিম মূল্য পেতে চাই– প্রেমে;
+পৃথিবীর ভরাট বাজার ভরা লোকসান
+লোভ পঁচা উদ্ভিদ কুষ্ঠ মৃত গলিত আমিষ গন্ধ ঠেলে
+সময়ের সমুদ্রকে বারবার মৃত্যু থেকে জীবনের দিকে যেতে ব'লে।
+
+
+
+
+
+
+
+            </div>
+
+            <!-- Bottom nav -->
+            <div class="mt-12 pt-6 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
+                <a href="/books/shrestho-kobita.html"
+                   class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#0056b3] transition">
+                    <i class="fas fa-arrow-left text-xs"></i> বইয়ের তথ্য
+                </a>
+                <a href="/download/shrestho-kobita.html"
+                   class="flex items-center gap-2 text-sm bg-[#0056b3] hover:bg-[#004494] text-white px-4 py-2 rounded-lg transition">
+                    <i class="fas fa-download text-xs"></i> ডাউনলোড করুন
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desktop RIGHT sidebar: customization controls -->
+    <aside id="toc-sidebar"
+        class="hidden lg:flex flex-col w-56 shrink-0 border-l border-gray-100 dark:border-gray-800 bg-white dark:bg-[#1a1a1b] overflow-y-auto">
+
+        <!-- Reading progress -->
+        <div class="px-4 pt-6 pb-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
+            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-3">অগ্রগতি</p>
+            <div class="flex items-center gap-3">
+                <div class="relative w-12 h-12 shrink-0">
+                    <svg class="w-full h-full -rotate-90" viewBox="0 0 36 36">
+                        <circle cx="18" cy="18" r="14" fill="none" stroke="currentColor"
+                            class="text-gray-100 dark:text-gray-800" stroke-width="3"/>
+                        <circle id="progress-ring-circle" cx="18" cy="18" r="14" fill="none"
+                            stroke="#0056b3" stroke-width="3"
+                            stroke-dasharray="87.96" stroke-dashoffset="87.96"
+                            stroke-linecap="round"/>
+                    </svg>
+                    <span id="progress-pct"
+                        class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-gray-700 dark:text-gray-300 tabular-nums leading-none">০%</span>
+                </div>
+                <div>
+                    <p class="text-[12px] font-semibold text-gray-700 dark:text-gray-300">পড়া হয়েছে</p>
+                    <p class="text-[11px] text-gray-400 dark:text-gray-500 mt-0.5">স্ক্রোল করুন</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Font size -->
+        <div class="px-4 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
+            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">লেখার আকার</p>
+            <div class="flex items-center gap-2">
+                <button id="font-decrease"
+                    class="w-9 h-9 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-[13px] font-bold transition text-gray-600 dark:text-gray-300 flex items-center justify-center">A−</button>
+                <div class="flex-1 flex justify-center gap-1.5 items-center">
+                    <span id="font-dot-0" class="w-2 h-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></span>
+                    <span id="font-dot-1" class="w-2 h-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></span>
+                    <span id="font-dot-2" class="w-2 h-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></span>
+                    <span id="font-dot-3" class="w-2 h-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></span>
+                </div>
+                <button id="font-increase"
+                    class="w-9 h-9 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-[13px] font-bold transition text-gray-600 dark:text-gray-300 flex items-center justify-center">A+</button>
+            </div>
+            <p class="text-center text-[10px] text-gray-400 dark:text-gray-600 mt-2">
+                স্তর: <span id="font-label" class="font-semibold text-gray-600 dark:text-gray-400">২</span> / ৪
+            </p>
+        </div>
+
+        <!-- Theme selector -->
+        <div class="px-4 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
+            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">থিম</p>
+            <div class="flex flex-col gap-1.5">
+                <button data-theme="light"
+                    class="theme-btn w-full h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[11px] font-medium transition-all flex items-center gap-2 px-3"
+                    style="background:#fff; color:#333;">
+                    <span class="w-3 h-3 rounded-full border border-gray-300" style="background:#fff;"></span> আলো
+                </button>
+                <button data-theme="sepia"
+                    class="theme-btn w-full h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[11px] font-medium transition-all flex items-center gap-2 px-3"
+                    style="background:#f5efe6; color:#5a4535;">
+                    <span class="w-3 h-3 rounded-full" style="background:#f5efe6; border:1px solid #c8b89a;"></span> সেপিয়া
+                </button>
+                <button data-theme="dark"
+                    class="theme-btn w-full h-8 rounded-lg border-2 border-gray-700 text-[11px] font-medium transition-all flex items-center gap-2 px-3"
+                    style="background:#1c1c1e; color:#ccc;">
+                    <span class="w-3 h-3 rounded-full" style="background:#333; border:1px solid #555;"></span> অন্ধকার
+                </button>
+            </div>
+        </div>
+
+        <!-- Line spacing -->
+        <div class="px-4 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
+            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">লাইনের ফাঁক</p>
+            <div class="flex gap-1.5">
+                <button data-ls="ls-compact"
+                    class="ls-btn flex-1 h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[11px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center justify-center gap-0.5">
+                    <span class="flex flex-col gap-[2px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
+                    <span class="text-[9px]">আঁটো</span>
+                </button>
+                <button data-ls="ls-normal"
+                    class="ls-btn flex-1 h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[11px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center justify-center gap-0.5">
+                    <span class="flex flex-col gap-[4px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
+                    <span class="text-[9px]">স্বাভাবিক</span>
+                </button>
+                <button data-ls="ls-relaxed"
+                    class="ls-btn flex-1 h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[11px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center justify-center gap-0.5">
+                    <span class="flex flex-col gap-[6px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
+                    <span class="text-[9px]">প্রশস্ত</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Font family -->
+        <div class="px-4 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
+            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">ফন্ট</p>
+            <div class="flex flex-col gap-1.5">
+                <button data-ff="ff-sans"
+                    class="ff-btn w-full h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[12px] transition-all text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 px-3 text-left"
+                    style="font-family: 'Segoe UI', sans-serif;">সাধারণ (Sans)</button>
+                <button data-ff="ff-serif"
+                    class="ff-btn w-full h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[12px] transition-all text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 px-3 text-left"
+                    style="font-family: 'Noto Serif Bengali', serif;">বইয়ের ফন্ট (Serif)</button>
+            </div>
+        </div>
+
+        <!-- Reading width -->
+        <div class="px-4 py-4 shrink-0">
+            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">পড়ার প্রস্থ</p>
+            <div class="flex gap-1.5">
+                <button data-rw="rw-narrow"
+                    class="rw-btn flex-1 py-1.5 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[10px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center gap-1">
+                    <span class="flex gap-0.5 items-end h-3"><span class="w-[3px] h-3 bg-current rounded-sm opacity-80"></span></span>
+                    <span>সরু</span>
+                </button>
+                <button data-rw="rw-medium"
+                    class="rw-btn flex-1 py-1.5 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[10px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center gap-1">
+                    <span class="flex gap-0.5 items-end h-3"><span class="w-[5px] h-3 bg-current rounded-sm opacity-80"></span></span>
+                    <span>মাঝারি</span>
+                </button>
+                <button data-rw="rw-wide"
+                    class="rw-btn flex-1 py-1.5 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[10px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center gap-1">
+                    <span class="flex gap-0.5 items-end h-3"><span class="w-[8px] h-3 bg-current rounded-sm opacity-80"></span></span>
+                    <span>চওড়া</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Text alignment -->
+        <div class="px-4 py-4 border-t border-gray-100 dark:border-gray-800 shrink-0">
+            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">টেক্সট সারিবদ্ধতা</p>
+            <div class="flex gap-1.5">
+                <button data-ta="ta-default"
+                    class="ta-btn flex-1 h-9 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 flex flex-col items-center justify-center gap-1 transition-all">
+                    <i class="fas fa-align-left text-[11px]"></i>
+                    <span class="text-[9px]">বাম</span>
+                </button>
+                <button data-ta="ta-center"
+                    class="ta-btn flex-1 h-9 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 flex flex-col items-center justify-center gap-1 transition-all">
+                    <i class="fas fa-align-center text-[11px]"></i>
+                    <span class="text-[9px]">মাঝ</span>
+                </button>
+                <button data-ta="ta-justify"
+                    class="ta-btn flex-1 h-9 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 flex flex-col items-center justify-center gap-1 transition-all">
+                    <i class="fas fa-align-justify text-[11px]"></i>
+                    <span class="text-[9px]">জাস্টিফাই</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Hidden nav (TOC moved to left sidebar) -->
+        <nav id="toc-nav-desktop" class="hidden"></nav>
+    </aside>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const progressBar  = document.getElementById('read-progress-bar');
+    const progressPct  = document.getElementById('progress-pct');
+    const tocDesktop   = document.getElementById('toc-nav-desktop');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+    const tocLeft      = document.getElementById('toc-nav-left');
+    const progressRing = document.getElementById('progress-ring-circle');
+    const mobileTopbar  = document.getElementById('mobile-topbar');
+    const mobileBottomBar = document.getElementById('mobile-bottom-bar');
+    const fontPopup    = document.getElementById('font-popup');
+    const fontLabel    = document.getElementById('font-label');
+
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    function toBN(n) {
+        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
+    }
+
+    // ── Default theme ──
+    let currentTheme = localStorage.getItem('pg-theme') || 'light';
+    applyTheme(currentTheme);
+
+    function applyTheme(t) {
+        ['light','sepia','dark'].forEach(th => document.body.classList.remove('theme-'+th));
+        document.body.classList.add('theme-'+t);
+        currentTheme = t;
+        localStorage.setItem('pg-theme', t);
+
+        // sync Tailwind dark: variants with theme
+        if (t === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.theme === t);
+        });
+        const bgMap = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e' };
+        const bdMap = { light:'#e5e7eb', sepia:'#d4c8b8', dark:'#2a2a2e' };
+        const clMap = { light:'#111', sepia:'#3b2f20', dark:'#e0e0e0' };
+        if (fontPopup) {
+            fontPopup.style.background = bgMap[t];
+            fontPopup.style.borderColor = bdMap[t];
+            fontPopup.style.color = clMap[t];
+        }
+    }
+
+    // Wire ALL theme buttons including desktop right sidebar
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+        btn.addEventListener('click', () => applyTheme(btn.dataset.theme));
+    });
+
+    // ── Hide-on-scroll ──
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const currentY = window.scrollY;
+                const delta    = currentY - lastScrollY;
+                const docH     = document.documentElement.scrollHeight - window.innerHeight;
+                const pct      = docH > 0 ? (currentY / docH) * 100 : 0;
+
+                if (delta > 6 && currentY > 80) {
+                    mobileTopbar?.classList.add('hide');
+                    mobileBottomBar?.classList.add('hide');
+                } else if (delta < -6) {
+                    mobileTopbar?.classList.remove('hide');
+                    mobileBottomBar?.classList.remove('hide');
+                }
+
+                lastScrollY = currentY;
+                progressBar.style.width = pct + '%';
+                if (progressPct) progressPct.textContent = toBN(pct) + '%';
+                // animate ring (circumference 87.96)
+                if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    // ── Build TOC ──
+    const headings = bookContent.querySelectorAll('h1, h2');
+
+    function buildToc(nav, isMobile) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent;
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            if (isMobile) {
+                a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+                a.addEventListener('click', closeTocDrawer);
+            } else {
+                a.className = 'toc-link block px-3 py-1.5 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors ' +
+                    (isH1 ? 'font-semibold text-[13px] text-gray-800 dark:text-gray-100' : 'pl-5 text-[11px]');
+            }
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocDesktop, false);
+    buildToc(tocMobile, true);
+    if (tocLeft) buildToc(tocLeft, false);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    window.addEventListener('scroll', () => {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (window.scrollY >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+    }, { passive: true });
+
+    // ── Font size ──
+    const fontSizes = ['fs-sm', 'fs-md', 'fs-lg', 'fs-xl'];
+    let currentSize = parseInt(localStorage.getItem('pg-font-size') || '1');
+    bookContent.classList.add(fontSizes[currentSize]);
+    if (fontLabel) fontLabel.textContent = currentSize + 1;
+    updateFontDots(currentSize);
+
+    function updateFontDots(size) {
+        for (let i = 0; i < 4; i++) {
+            ['font-dot-', 'm-font-dot-'].forEach(prefix => {
+                const dot = document.getElementById(prefix + i);
+                if (dot) dot.style.background = i <= size ? '#0056b3' : '';
+            });
+        }
+    }
+
+    function changeFont(delta) {
+        const next = Math.max(0, Math.min(fontSizes.length - 1, currentSize + delta));
+        if (next === currentSize) return;
+        bookContent.classList.replace(fontSizes[currentSize], fontSizes[next]);
+        currentSize = next;
+        localStorage.setItem('pg-font-size', currentSize);
+        if (fontLabel) fontLabel.textContent = currentSize + 1;
+        updateFontDots(currentSize);
+    }
+
+    document.getElementById('font-increase')?.addEventListener('click', () => changeFont(1));
+    document.getElementById('font-decrease')?.addEventListener('click', () => changeFont(-1));
+    document.getElementById('m-font-increase')?.addEventListener('click', () => changeFont(1));
+    document.getElementById('m-font-decrease')?.addEventListener('click', () => changeFont(-1));
+
+    document.getElementById('mob-font-btn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        fontPopup?.classList.toggle('hidden');
+    });
+    document.addEventListener('click', () => fontPopup?.classList.add('hidden'));
+    fontPopup?.addEventListener('click', e => e.stopPropagation());
+
+    // ── Mobile right TOC drawer ──
+    const tocDrawer  = document.getElementById('mobile-toc-drawer');
+    const tocOverlay = document.getElementById('mobile-toc-overlay');
+
+    function openTocDrawer() {
+        tocDrawer.classList.add('open');
+        tocOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeTocDrawer() {
+        tocDrawer.classList.remove('open');
+        tocOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('mob-toc-btn')?.addEventListener('click', openTocDrawer);
+    document.getElementById('mob-toc-btn-top')?.addEventListener('click', openTocDrawer);
+    document.getElementById('mobile-toc-close')?.addEventListener('click', closeTocDrawer);
+    tocOverlay?.addEventListener('click', closeTocDrawer);
+
+
+    // ── Line spacing ──
+    const lsClasses = ['ls-compact', 'ls-normal', 'ls-relaxed'];
+    let currentLS = localStorage.getItem('pg-ls') || 'ls-normal';
+    bookContent.classList.add(currentLS);
+
+    function applyLS(ls) {
+        lsClasses.forEach(c => bookContent.classList.remove(c));
+        bookContent.classList.add(ls);
+        currentLS = ls;
+        localStorage.setItem('pg-ls', ls);
+        document.querySelectorAll('.ls-btn').forEach(b => {
+            b.classList.toggle('border-[#0056b3]', b.dataset.ls === ls);
+            b.classList.toggle('border-gray-200', b.dataset.ls !== ls);
+            b.classList.toggle('dark:border-gray-700', b.dataset.ls !== ls);
+        });
+    }
+    applyLS(currentLS);
+    document.querySelectorAll('.ls-btn').forEach(b => {
+        b.addEventListener('click', () => applyLS(b.dataset.ls));
+    });
+
+    // ── Font family ──
+    const ffClasses = ['ff-sans', 'ff-serif', 'ff-system'];
+    let currentFF = localStorage.getItem('pg-ff') || 'ff-sans';
+    bookContent.classList.add(currentFF);
+
+    function applyFF(ff) {
+        ffClasses.forEach(c => bookContent.classList.remove(c));
+        bookContent.classList.add(ff);
+        currentFF = ff;
+        localStorage.setItem('pg-ff', ff);
+        document.querySelectorAll('.ff-btn').forEach(b => {
+            b.classList.toggle('border-[#0056b3]', b.dataset.ff === ff);
+            b.classList.toggle('border-gray-200', b.dataset.ff !== ff);
+            b.classList.toggle('dark:border-gray-700', b.dataset.ff !== ff);
+        });
+    }
+    applyFF(currentFF);
+    document.querySelectorAll('.ff-btn').forEach(b => {
+        b.addEventListener('click', () => applyFF(b.dataset.ff));
+    });
+
+    // ── Reading width ──
+    const mainContent = document.getElementById('read-main-content');
+    const rwClasses   = ['rw-narrow', 'rw-medium', 'rw-wide'];
+    let currentRW = localStorage.getItem('pg-rw') || 'rw-medium';
+
+    function applyRW(rw) {
+        rwClasses.forEach(c => mainContent?.classList.remove(c));
+        mainContent?.classList.add(rw);
+        currentRW = rw;
+        localStorage.setItem('pg-rw', rw);
+        document.querySelectorAll('.rw-btn').forEach(b => {
+            b.classList.toggle('border-[#0056b3]', b.dataset.rw === rw);
+            b.classList.toggle('border-gray-200', b.dataset.rw !== rw);
+            b.classList.toggle('dark:border-gray-700', b.dataset.rw !== rw);
+        });
+    }
+    // remove existing max-w-2xl from classList and apply saved width
+    mainContent?.classList.remove('max-w-2xl');
+    applyRW(currentRW);
+    document.querySelectorAll('.rw-btn').forEach(b => {
+        b.addEventListener('click', () => applyRW(b.dataset.rw));
+    });
+
+
+    // ── Mobile bottom customization bar ──
+    const mobPanel    = document.getElementById('mob-cust-panel');
+    let activeTab     = null;
+
+    document.querySelectorAll('.mob-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const panelId = btn.dataset.panel;
+            const isActive = btn.classList.contains('active');
+
+            // deactivate all
+            document.querySelectorAll('.mob-tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.mob-panel-section').forEach(s => s.classList.remove('active'));
+
+            if (isActive) {
+                // toggle off
+                mobPanel.classList.remove('open');
+                activeTab = null;
+            } else {
+                // open this panel
+                btn.classList.add('active');
+                document.getElementById(panelId)?.classList.add('active');
+                mobPanel.classList.add('open');
+                activeTab = panelId;
+            }
+        });
+    });
+
+    // sync mobile ff-btn active state
+    function syncMobileFF(ff) {
+        document.querySelectorAll('#mob-cust-panel .ff-btn').forEach(b => {
+            b.style.borderColor = b.dataset.ff === ff ? '#0056b3' : '';
+        });
+    }
+    document.querySelectorAll('#mob-cust-panel .ff-btn').forEach(b => {
+        b.addEventListener('click', () => { applyFF(b.dataset.ff); syncMobileFF(b.dataset.ff); });
+    });
+
+    // sync mobile ls-btn active state
+    function syncMobileLS(ls) {
+        document.querySelectorAll('#mob-cust-panel .ls-btn').forEach(b => {
+            b.style.borderColor = b.dataset.ls === ls ? '#0056b3' : '';
+        });
+    }
+    document.querySelectorAll('#mob-cust-panel .ls-btn').forEach(b => {
+        b.addEventListener('click', () => { applyLS(b.dataset.ls); syncMobileLS(b.dataset.ls); });
+    });
+
+    // sync mobile rw-btn active state
+    function syncMobileRW(rw) {
+        document.querySelectorAll('#mob-cust-panel .rw-btn').forEach(b => {
+            b.style.borderColor = b.dataset.rw === rw ? '#0056b3' : '';
+        });
+    }
+    document.querySelectorAll('#mob-cust-panel .rw-btn').forEach(b => {
+        b.addEventListener('click', () => { applyRW(b.dataset.rw); syncMobileRW(b.dataset.rw); });
+    });
+
+    // init active states on mobile
+    syncMobileFF(currentFF);
+    syncMobileLS(currentLS);
+    syncMobileRW(currentRW);
+
+
+    // ── Text alignment ──
+    const taClasses = ['ta-default', 'ta-center', 'ta-justify'];
+    let currentTA = localStorage.getItem('pg-ta') || 'ta-default';
+
+    function applyTA(ta) {
+        taClasses.forEach(c => bookContent.classList.remove(c));
+        bookContent.classList.add(ta);
+        currentTA = ta;
+        localStorage.setItem('pg-ta', ta);
+        document.querySelectorAll('.ta-btn').forEach(b => {
+            b.style.borderColor = b.dataset.ta === ta ? '#0056b3' : '';
+        });
+    }
+    applyTA(currentTA);
+    document.querySelectorAll('.ta-btn').forEach(b => {
+        b.addEventListener('click', () => applyTA(b.dataset.ta));
+    });
+
+    let touchStartX = 0;
+    tocDrawer?.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    tocDrawer?.addEventListener('touchend', e => {
+        if (e.changedTouches[0].clientX - touchStartX > 60) closeTocDrawer();
+    }, { passive: true });
+})();
+</script>
+
+</body>
+</html>
