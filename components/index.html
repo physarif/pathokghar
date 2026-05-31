@@ -92,12 +92,11 @@
     overflow: hidden;
     background: #fff;
     border-radius: 0.35rem;
-    cursor: pointer;
-    transition: color 0.2s, background 0.2s;
+    transition: color 0.15s;
   }
   .dark .bc-meta { color: #d1d5db; background: #1f2937; }
-  .bc-meta.active { color: #2563eb; background: #eff6ff; }
-  .dark .bc-meta.active { color: #60a5fa; background: #1e2a3a; }
+  .bc-meta:hover { color: #2563eb; }
+  .dark .bc-meta:hover { color: #60a5fa; }
 
 </style>
 
@@ -132,14 +131,5 @@
   applyBgs();
   new MutationObserver(applyBgs).observe(document.documentElement, { attributeFilter: ['class'] });
 
-  // Title click — color toggle
-  document.addEventListener('click', e => {
-    const meta = e.target.closest('.bc-meta');
-    if (!meta) return;
-    e.preventDefault();
-    document.querySelectorAll('.bc-meta.active').forEach(el => {
-      if (el !== meta) el.classList.remove('active');
-    });
-    meta.classList.toggle('active');
-  });
+
 </script>
