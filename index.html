@@ -211,10 +211,11 @@
   @media (min-width: 768px) { .bc-scroll { padding: 0 1.5rem 0.75rem; } }
   .bc-scroll::-webkit-scrollbar { display: none; }
 
-  /* Book card */
+  /* Book card — full card is 9:16 */
   .bc-card {
     flex-shrink: 0;
     width: 6.5rem;
+    aspect-ratio: 9/16;
     display: flex;
     flex-direction: column;
     text-decoration: none;
@@ -226,16 +227,18 @@
   .dark .bc-card { background: #2d2d2d; }
   @media (min-width: 768px) { .bc-card { width: 7.5rem; } }
 
-  /* Cover wrap — position:relative for author overlay */
+  /* Cover wrap — flex:1 so image fills space left after title */
   .bc-img-wrap {
     position: relative;
+    flex: 1;
+    min-height: 0;
     background: #fff;
   }
   .dark .bc-img-wrap { background: #2d2d2d; }
 
   .bc-img {
     width: 100%;
-    aspect-ratio: 9/16;
+    height: 100%;
     object-fit: cover;
     display: block;
   }
@@ -266,6 +269,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     line-height: 1.3;
+    flex-shrink: 0;
   }
   .dark .bc-title { color: #f3f4f6; }
 
