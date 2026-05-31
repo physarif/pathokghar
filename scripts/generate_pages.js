@@ -104,6 +104,8 @@ async function generateBookPages() {
 async function generateHomepage(bookList) {
   console.log('\n🏠 Homepage generate করছি...');
 
+  const indexTemplate = fs.readFileSync('components/index.html', 'utf8');
+
   // সর্বশেষ ১২টা বই (created_at দিয়ে sort)
   const latest = [...bookList]
     .sort((a, b) => (b.created_at || 0) - (a.created_at || 0))
@@ -117,11 +119,11 @@ async function generateHomepage(bookList) {
     byCategory[cat].books.push(book);
   }
 
-  // Book card HTML generate helper — CastFM style
+  // Book card HTML — CastFM style
   function bookCard(book) {
     return `
     <a href="books/${book.slug}.html" class="book-card group flex flex-col">
-      <div class="rounded-xl overflow-hidden shadow-md group-hover:shadow-xl transition-shadow duration-300 group-hover:scale-[1.03] transform transition-transform duration-300">
+      <div class="rounded-xl overflow-hidden shadow-md group-hover:shadow-xl group-hover:scale-[1.03] transform transition-all duration-300">
         <img src="${book.cover}" alt="${book.title}" class="w-full aspect-[2/3] object-cover">
       </div>
       <p class="mt-2 text-xs font-semibold text-gray-800 dark:text-gray-100 line-clamp-2 leading-snug">${book.title}</p>
@@ -129,33 +131,31 @@ async function generateHomepage(bookList) {
     </a>`;
   }
 
-  // Grid section helper
-  function gridSection(title, linkHref, books) {
-    return `
+  // Category section HTML
+  let categorySectionsHTML = '';
+  for (const [slug, data] of Object.entries(byCategory)) {
+    const catBooks = data.books.slice(0, 12);
+    categorySectionsHTML += `
   <section class="mb-10">
     <div class="flex items-center justify-between mb-4 px-4 md:px-6">
-      <h2 class="text-base font-bold text-gray-800 dark:text-gray-100">${title}</h2>
-      <a href="${linkHref}" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">সব দেখুন →</a>
+      <h2 class="text-base font-bold text-gray-800 dark:text-gray-100">${data.name}</h2>
+      <a href="category/${slug}/1/" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">সব দেখুন →</a>
     </div>
     <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 px-4 md:px-6">
-      ${books.map(bookCard).join('')}
+      ${catBooks.map(bookCard).join('')}
     </div>
   </section>`;
   }
 
-  // Latest section
-  let sectionsHTML = gridSection('সর্বশেষ বই', 'new.html', latest);
-
-  // Category sections
-  for (const [slug, data] of Object.entries(byCategory)) {
-    const catBooks = data.books.slice(0, 12);
-    sectionsHTML += gridSection(data.name, `category/${slug}/1/`, catBooks);
-  }
+  const indexContent = render(indexTemplate, {
+    latest_books: latest.map(bookCard).join(''),
+    category_sections: categorySectionsHTML,
+  });
 
   const fullPage = render(layout, {
     page_title: 'পাঠক ঘর - বাংলা বইয়ের ডিজিটাল পাঠাগার',
     page_description: 'বাংলা ও ইংরেজি বইয়ের ডিজিটাল পাঠাগার - পড়ুন, ডাউনলোড করুন',
-    content: `<main class="flex-1 py-4 md:py-6 min-h-[calc(100vh-3.5rem)] overflow-hidden">${sectionsHTML}</main>`,
+    content: indexContent,
   });
 
   fs.writeFileSync('index.html', fullPage, 'utf8');
