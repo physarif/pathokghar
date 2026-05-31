@@ -117,43 +117,39 @@ async function generateHomepage(bookList) {
     byCategory[cat].books.push(book);
   }
 
-  // Book card HTML generate helper
+  // Book card HTML generate helper — CastFM style
   function bookCard(book) {
     return `
-    <a href="books/${book.slug}.html" class="book-card shrink-0 w-28 md:w-32 group">
-      <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+    <a href="books/${book.slug}.html" class="book-card group flex flex-col">
+      <div class="rounded-xl overflow-hidden shadow-md group-hover:shadow-xl transition-shadow duration-300 group-hover:scale-[1.03] transform transition-transform duration-300">
         <img src="${book.cover}" alt="${book.title}" class="w-full aspect-[2/3] object-cover">
       </div>
-      <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">${book.title}</p>
+      <p class="mt-2 text-xs font-semibold text-gray-800 dark:text-gray-100 line-clamp-2 leading-snug">${book.title}</p>
       <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">${book.author_name}</p>
     </a>`;
   }
 
-  // Latest section
-  let sectionsHTML = `
-  <section class="mb-8">
-    <div class="flex items-center justify-between mb-3 px-4 md:px-6">
-      <h2 class="text-base font-bold text-gray-800 dark:text-gray-100">সর্বশেষ বই</h2>
-      <a href="new.html" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">সব দেখুন →</a>
+  // Grid section helper
+  function gridSection(title, linkHref, books) {
+    return `
+  <section class="mb-10">
+    <div class="flex items-center justify-between mb-4 px-4 md:px-6">
+      <h2 class="text-base font-bold text-gray-800 dark:text-gray-100">${title}</h2>
+      <a href="${linkHref}" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">সব দেখুন →</a>
     </div>
-    <div class="book-scroll flex gap-3 overflow-x-auto pb-2 px-4 md:px-6">
-      ${latest.map(bookCard).join('')}
+    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 px-4 md:px-6">
+      ${books.map(bookCard).join('')}
     </div>
   </section>`;
+  }
+
+  // Latest section
+  let sectionsHTML = gridSection('সর্বশেষ বই', 'new.html', latest);
 
   // Category sections
   for (const [slug, data] of Object.entries(byCategory)) {
     const catBooks = data.books.slice(0, 12);
-    sectionsHTML += `
-  <section class="mb-8">
-    <div class="flex items-center justify-between mb-3 px-4 md:px-6">
-      <h2 class="text-base font-bold text-gray-800 dark:text-gray-100">${data.name}</h2>
-      <a href="category/${slug}/1/" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">সব দেখুন →</a>
-    </div>
-    <div class="book-scroll flex gap-3 overflow-x-auto pb-2 px-4 md:px-6">
-      ${catBooks.map(bookCard).join('')}
-    </div>
-  </section>`;
+    sectionsHTML += gridSection(data.name, `category/${slug}/1/`, catBooks);
   }
 
   const fullPage = render(layout, {
