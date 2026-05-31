@@ -111,6 +111,8 @@
             padding: 0 10px;
             padding-top: env(safe-area-inset-top);
             transition: transform 0.28s ease, background 0.3s;
+            border-bottom-left-radius: 14px;
+            border-bottom-right-radius: 14px;
         }
         #mobile-topbar.hide { transform: translateY(-100%); }
 
@@ -344,8 +346,11 @@
             bottom: 0; left: 0; right: 0;
             z-index: 190;
             padding-bottom: env(safe-area-inset-bottom);
-            transition: transform 0.32s cubic-bezier(0.4,0,0.2,1), background 0.3s;
+            transition: transform 0.28s ease, background 0.3s;
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
         }
+        #mobile-bottom-bar.hide { transform: translateY(100%); }
 
         /* tabs row */
         #mob-cust-tabs {
@@ -457,6 +462,10 @@
         }
     }
     html { scroll-behavior: smooth; }
+    /* ── Hide browser scrollbar (page level) ── */
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
     /* ══ Global theme rules (mobile + desktop) ══ */
     body.theme-dark  #mobile-reader-bg,
     body.theme-dark  #read-main-content { background: #1c1c1e; }
@@ -841,7 +850,8 @@
     const tocMobile    = document.getElementById('toc-nav-mobile');
     const tocLeft      = document.getElementById('toc-nav-left');
     const progressRing = document.getElementById('progress-ring-circle');
-    const mobileTopbar = document.getElementById('mobile-topbar');
+    const mobileTopbar  = document.getElementById('mobile-topbar');
+    const mobileBottomBar = document.getElementById('mobile-bottom-bar');
     const fontPopup    = document.getElementById('font-popup');
     const fontLabel    = document.getElementById('font-label');
 
@@ -899,8 +909,10 @@
 
                 if (delta > 6 && currentY > 80) {
                     mobileTopbar?.classList.add('hide');
+                    mobileBottomBar?.classList.add('hide');
                 } else if (delta < -6) {
                     mobileTopbar?.classList.remove('hide');
+                    mobileBottomBar?.classList.remove('hide');
                 }
 
                 lastScrollY = currentY;
