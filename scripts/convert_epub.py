@@ -36,9 +36,15 @@ def epub_to_html(epub_path):
                     elif src in images:
                         img['src'] = images[src]
 
+                # div → p তে convert করো (কবিতার প্রতিটা লাইন আলাদা থাকবে)
+                for div in body.find_all('div'):
+                    div.name = 'p'
+
+                # বাকি unknown tags unwrap করো
                 for tag in body.find_all(True):
                     if tag.name not in ['h1', 'h2', 'h3', 'p', 'br', 'img']:
                         tag.unwrap()
+
                 full_html += str(body)[6:-7]
     return full_html
 
