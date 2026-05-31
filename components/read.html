@@ -99,24 +99,24 @@
 
         /* book-content theme handled globally below */
 
-        /* Fixed bottom bar */
+        /* Fixed top bar */
         #mobile-topbar {
             position: fixed;
-            bottom: 0; left: 0; right: 0;
+            top: 0; left: 0; right: 0;
             height: 52px;
             z-index: 200;
             display: flex;
             align-items: center;
             gap: 4px;
             padding: 0 10px;
-            padding-bottom: env(safe-area-inset-bottom);
+            padding-top: env(safe-area-inset-top);
             transition: transform 0.28s ease, background 0.3s;
         }
-        #mobile-topbar.hide { transform: translateY(100%); }
+        #mobile-topbar.hide { transform: translateY(-100%); }
 
-        body.theme-dark  #mobile-topbar { background: #111113; border-top: 1px solid #2a2a2e; }
-        body.theme-sepia #mobile-topbar { background: #ede5d8; border-top: 1px solid #d4c8b8; }
-        body.theme-light #mobile-topbar { background: #fff;    border-top: 1px solid #e5e7eb; }
+        body.theme-dark  #mobile-topbar { background: #111113; border-bottom: 1px solid #2a2a2e; }
+        body.theme-sepia #mobile-topbar { background: #ede5d8; border-bottom: 1px solid #d4c8b8; }
+        body.theme-light #mobile-topbar { background: #fff;    border-bottom: 1px solid #e5e7eb; }
 
         .theme-btn.active { border-color: #0056b3; }
         .theme-btn i { font-size: 14px; display: none; }
@@ -132,8 +132,8 @@
 
         /* main content padding */
         #read-main-content {
-            padding-top: 16px;
-            padding-bottom: calc(52px + env(safe-area-inset-bottom) + 16px);
+            padding-top: calc(52px + env(safe-area-inset-top) + 16px);
+            padding-bottom: 32px;
         }
         #mobile-reader-bg {
             min-height: 100vh;
@@ -407,7 +407,7 @@
     <div class="flex-1 min-w-0 px-1">
         <p class="title-text text-sm font-semibold truncate leading-tight">{{book_title}}</p>
     </div>
-    <button id="mob-toc-btn-top" class="w-9 h-9 flex items-center justify-center rounded-full" aria-label="সূচিপত্র">
+    <button id="mob-toc-btn-top" class="w-9 h-9 flex items-center justify-center rounded-full shrink-0" aria-label="সূচিপত্র">
         <i class="fas fa-list-ul text-sm"></i>
     </button>
 </div>
@@ -423,12 +423,6 @@
             <i class="fas fa-times" style="font-size:13px;"></i>
         </button>
     </div>
-
-    <!-- Back link -->
-    <a id="toc-drawer-back" href="/books/{{book_slug}}.html" class="shrink-0">
-        <i class="fas fa-arrow-left" style="font-size:10px; opacity:0.7;"></i>
-        বইয়ের তথ্য
-    </a>
 
     <!-- TOC nav -->
     <nav id="toc-nav-mobile"></nav>
