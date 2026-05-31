@@ -334,6 +334,128 @@
         font-size: 11px;
         color: #6b7280;
     }
+
+    /* ══════════════════════════════
+       MOBILE bottom customization bar
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+        #mobile-bottom-bar {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 190;
+            padding-bottom: env(safe-area-inset-bottom);
+            transition: transform 0.32s cubic-bezier(0.4,0,0.2,1), background 0.3s;
+        }
+
+        /* tabs row */
+        #mob-cust-tabs {
+            display: flex;
+            border-top-width: 1px;
+            border-top-style: solid;
+            height: 48px;
+        }
+        .mob-tab-btn {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            font-size: 9px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            transition: color 0.15s;
+        }
+        .mob-tab-btn i { font-size: 13px; }
+        .mob-tab-btn.active { color: #0056b3; }
+
+        /* panel */
+        #mob-cust-panel {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.32s cubic-bezier(0.4,0,0.2,1);
+        }
+        #mob-cust-panel.open { max-height: 220px; }
+
+        .mob-panel-section {
+            display: none;
+            padding: 12px 16px 4px;
+        }
+        .mob-panel-section.active { display: block; }
+
+        /* theme buttons mobile */
+        #mob-cust-panel .theme-btn {
+            flex: 1;
+            height: 34px;
+            border-radius: 10px;
+            border-width: 2px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        /* ls/ff/rw buttons mobile */
+        #mob-cust-panel .ls-btn,
+        #mob-cust-panel .rw-btn {
+            flex: 1;
+            height: 36px;
+            border-radius: 10px;
+            border-width: 2px;
+            font-size: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            cursor: pointer;
+            transition: border-color 0.15s;
+        }
+        #mob-cust-panel .ff-btn {
+            width: 100%;
+            height: 36px;
+            border-radius: 10px;
+            border-width: 2px;
+            font-size: 12px;
+            text-align: left;
+            padding: 0 12px;
+            cursor: pointer;
+            transition: border-color 0.15s;
+        }
+
+        /* theme colors for bottom bar */
+        body.theme-dark  #mobile-bottom-bar { background: #111113; }
+        body.theme-dark  #mob-cust-tabs     { border-top-color: #2a2a2e; }
+        body.theme-dark  #mob-cust-panel    { background: #111113; border-top: 1px solid #2a2a2e; }
+        body.theme-dark  .mob-tab-btn       { color: #888; }
+        body.theme-dark  .mob-tab-btn.active { color: #5b9cf6; }
+        body.theme-dark  #mob-cust-panel .ls-btn,
+        body.theme-dark  #mob-cust-panel .rw-btn,
+        body.theme-dark  #mob-cust-panel .ff-btn { background: #1e1e20; color: #ccc; border-color: #333; }
+
+        body.theme-sepia #mobile-bottom-bar { background: #ede5d8; }
+        body.theme-sepia #mob-cust-tabs     { border-top-color: #d4c8b8; }
+        body.theme-sepia #mob-cust-panel    { background: #ede5d8; border-top: 1px solid #d4c8b8; }
+        body.theme-sepia .mob-tab-btn       { color: #9a8070; }
+        body.theme-sepia .mob-tab-btn.active { color: #0056b3; }
+        body.theme-sepia #mob-cust-panel .ls-btn,
+        body.theme-sepia #mob-cust-panel .rw-btn,
+        body.theme-sepia #mob-cust-panel .ff-btn { background: #f5efe6; color: #5a4535; border-color: #d4c8b8; }
+
+        body.theme-light #mobile-bottom-bar { background: #fff; }
+        body.theme-light #mob-cust-tabs     { border-top-color: #e5e7eb; }
+        body.theme-light #mob-cust-panel    { background: #fff; border-top: 1px solid #e5e7eb; }
+        body.theme-light .mob-tab-btn       { color: #9ca3af; }
+        body.theme-light .mob-tab-btn.active { color: #0056b3; }
+        body.theme-light #mob-cust-panel .ls-btn,
+        body.theme-light #mob-cust-panel .rw-btn,
+        body.theme-light #mob-cust-panel .ff-btn { background: #f9fafb; color: #374151; border-color: #e5e7eb; }
+
+        /* bottom bar visible — push content up */
+        #read-main-content {
+            padding-bottom: calc(48px + env(safe-area-inset-bottom) + 16px);
+        }
+    }
     html { scroll-behavior: smooth; }
     /* ══ Global theme rules (mobile + desktop) ══ */
     body.theme-dark  #mobile-reader-bg,
@@ -427,6 +549,94 @@
     <!-- TOC nav -->
     <nav id="toc-nav-mobile"></nav>
 
+</div>
+
+<!-- ══════════════════════════════════════════
+     MOBILE bottom customization bar
+══════════════════════════════════════════ -->
+<div id="mobile-bottom-bar" class="md:hidden">
+
+    <!-- Expandable panel -->
+    <div id="mob-cust-panel">
+
+        <!-- থিম -->
+        <div id="mob-panel-theme" class="mob-panel-section">
+            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">থিম</p>
+            <div class="flex gap-2">
+                <button data-theme="light" class="theme-btn" style="background:#fff; color:#333;">আলো</button>
+                <button data-theme="sepia" class="theme-btn" style="background:#f5efe6; color:#5a4535;">সেপিয়া</button>
+                <button data-theme="dark"  class="theme-btn" style="background:#1c1c1e; color:#ccc;">অন্ধকার</button>
+            </div>
+        </div>
+
+        <!-- লেখার আকার -->
+        <div id="mob-panel-font" class="mob-panel-section">
+            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">লেখার আকার ও ফন্ট</p>
+            <div class="flex gap-2 mb-2">
+                <button id="m-font-decrease"
+                    class="flex-1 h-9 rounded-xl border-2 border-gray-200 bg-gray-50 text-[13px] font-bold text-gray-600">A−</button>
+                <div class="flex-1 flex justify-center gap-1.5 items-center">
+                    <span id="m-font-dot-0" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
+                    <span id="m-font-dot-1" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
+                    <span id="m-font-dot-2" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
+                    <span id="m-font-dot-3" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
+                </div>
+                <button id="m-font-increase"
+                    class="flex-1 h-9 rounded-xl border-2 border-gray-200 bg-gray-50 text-[13px] font-bold text-gray-600">A+</button>
+            </div>
+            <div class="flex flex-col gap-1.5">
+                <button data-ff="ff-sans"  class="ff-btn border-2 border-gray-200 bg-gray-50" style="font-family:'Segoe UI',sans-serif;">সাধারণ (Sans)</button>
+                <button data-ff="ff-serif" class="ff-btn border-2 border-gray-200 bg-gray-50" style="font-family:'Noto Serif Bengali',serif;">বইয়ের ফন্ট (Serif)</button>
+            </div>
+        </div>
+
+        <!-- লাইনের ফাঁক -->
+        <div id="mob-panel-spacing" class="mob-panel-section">
+            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">লাইনের ফাঁক ও পড়ার প্রস্থ</p>
+            <div class="flex gap-2 mb-2">
+                <button data-ls="ls-compact" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
+                    <span class="flex flex-col gap-[2px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
+                    <span>আঁটো</span>
+                </button>
+                <button data-ls="ls-normal" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
+                    <span class="flex flex-col gap-[4px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
+                    <span>স্বাভাবিক</span>
+                </button>
+                <button data-ls="ls-relaxed" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
+                    <span class="flex flex-col gap-[6px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
+                    <span>প্রশস্ত</span>
+                </button>
+            </div>
+            <div class="flex gap-2">
+                <button data-rw="rw-narrow" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
+                    <span class="w-[3px] h-4 bg-current rounded-sm opacity-80"></span><span>সরু</span>
+                </button>
+                <button data-rw="rw-medium" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
+                    <span class="w-[5px] h-4 bg-current rounded-sm opacity-80"></span><span>মাঝারি</span>
+                </button>
+                <button data-rw="rw-wide" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
+                    <span class="w-[8px] h-4 bg-current rounded-sm opacity-80"></span><span>চওড়া</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Tab buttons row -->
+    <div id="mob-cust-tabs">
+        <button class="mob-tab-btn" id="mob-tab-theme" data-panel="mob-panel-theme">
+            <i class="fas fa-circle-half-stroke"></i>
+            <span>থিম</span>
+        </button>
+        <button class="mob-tab-btn" id="mob-tab-font" data-panel="mob-panel-font">
+            <i class="fas fa-font"></i>
+            <span>ফন্ট</span>
+        </button>
+        <button class="mob-tab-btn" id="mob-tab-spacing" data-panel="mob-panel-spacing">
+            <i class="fas fa-text-height"></i>
+            <span>ফাঁক/প্রস্থ</span>
+        </button>
+    </div>
 </div>
 
 <!-- ══════════════════════════════════════════
@@ -750,13 +960,10 @@
 
     function updateFontDots(size) {
         for (let i = 0; i < 4; i++) {
-            const dot = document.getElementById('font-dot-' + i);
-            if (dot) {
-                dot.style.background = i <= size ? '#0056b3' : '';
-                dot.classList.toggle('bg-[#0056b3]', i <= size);
-                dot.classList.toggle('bg-gray-200', i > size);
-                dot.classList.toggle('dark:bg-gray-700', i > size);
-            }
+            ['font-dot-', 'm-font-dot-'].forEach(prefix => {
+                const dot = document.getElementById(prefix + i);
+                if (dot) dot.style.background = i <= size ? '#0056b3' : '';
+            });
         }
     }
 
@@ -867,6 +1074,69 @@
     document.querySelectorAll('.rw-btn').forEach(b => {
         b.addEventListener('click', () => applyRW(b.dataset.rw));
     });
+
+
+    // ── Mobile bottom customization bar ──
+    const mobPanel    = document.getElementById('mob-cust-panel');
+    let activeTab     = null;
+
+    document.querySelectorAll('.mob-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const panelId = btn.dataset.panel;
+            const isActive = btn.classList.contains('active');
+
+            // deactivate all
+            document.querySelectorAll('.mob-tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.mob-panel-section').forEach(s => s.classList.remove('active'));
+
+            if (isActive) {
+                // toggle off
+                mobPanel.classList.remove('open');
+                activeTab = null;
+            } else {
+                // open this panel
+                btn.classList.add('active');
+                document.getElementById(panelId)?.classList.add('active');
+                mobPanel.classList.add('open');
+                activeTab = panelId;
+            }
+        });
+    });
+
+    // sync mobile ff-btn active state
+    function syncMobileFF(ff) {
+        document.querySelectorAll('#mob-cust-panel .ff-btn').forEach(b => {
+            b.style.borderColor = b.dataset.ff === ff ? '#0056b3' : '';
+        });
+    }
+    document.querySelectorAll('#mob-cust-panel .ff-btn').forEach(b => {
+        b.addEventListener('click', () => { applyFF(b.dataset.ff); syncMobileFF(b.dataset.ff); });
+    });
+
+    // sync mobile ls-btn active state
+    function syncMobileLS(ls) {
+        document.querySelectorAll('#mob-cust-panel .ls-btn').forEach(b => {
+            b.style.borderColor = b.dataset.ls === ls ? '#0056b3' : '';
+        });
+    }
+    document.querySelectorAll('#mob-cust-panel .ls-btn').forEach(b => {
+        b.addEventListener('click', () => { applyLS(b.dataset.ls); syncMobileLS(b.dataset.ls); });
+    });
+
+    // sync mobile rw-btn active state
+    function syncMobileRW(rw) {
+        document.querySelectorAll('#mob-cust-panel .rw-btn').forEach(b => {
+            b.style.borderColor = b.dataset.rw === rw ? '#0056b3' : '';
+        });
+    }
+    document.querySelectorAll('#mob-cust-panel .rw-btn').forEach(b => {
+        b.addEventListener('click', () => { applyRW(b.dataset.rw); syncMobileRW(b.dataset.rw); });
+    });
+
+    // init active states on mobile
+    syncMobileFF(currentFF);
+    syncMobileLS(currentLS);
+    syncMobileRW(currentRW);
 
     let touchStartX = 0;
     tocDrawer?.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
