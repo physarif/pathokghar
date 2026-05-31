@@ -95,12 +95,7 @@
         body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
         body.theme-light #mobile-reader-bg { background: #ffffff; }
 
-        body.theme-dark  #book-content { color: #e0e0e0; }
-        body.theme-sepia #book-content { color: #3b2f20; }
-        body.theme-light #book-content { color: #1a1a1a; }
-
-        body.theme-dark  #book-content h2 { border-top-color: #333; }
-        body.theme-sepia #book-content h2 { border-top-color: #d9ccc0; }
+        /* book-content theme handled globally below */
 
         /* Fixed bottom bar */
         #mobile-topbar {
@@ -314,6 +309,43 @@
     body.theme-light #toc-nav-mobile .toc-link.active  { background: rgba(0,86,179,0.08); color: #0056b3; }
 
     html { scroll-behavior: smooth; }
+    /* ══ Global theme rules (mobile + desktop) ══ */
+    body.theme-dark  #mobile-reader-bg,
+    body.theme-dark  #read-main-content { background: #1c1c1e; }
+    body.theme-sepia #mobile-reader-bg,
+    body.theme-sepia #read-main-content { background: #f5efe6; }
+    body.theme-light #mobile-reader-bg,
+    body.theme-light #read-main-content { background: #ffffff; }
+
+    body.theme-dark  #book-content { color: #e0e0e0; }
+    body.theme-sepia #book-content { color: #3b2f20; }
+    body.theme-light #book-content { color: #1a1a1a; }
+
+    body.theme-dark  #book-content h1,
+    body.theme-dark  #book-content h2 { color: #f0f0f0; }
+    body.theme-sepia #book-content h1,
+    body.theme-sepia #book-content h2 { color: #2a1f14; }
+    body.theme-light #book-content h1,
+    body.theme-light #book-content h2 { color: #111111; }
+
+    body.theme-dark  #book-content h2 { border-top-color: #333; }
+    body.theme-sepia #book-content h2 { border-top-color: #d9ccc0; }
+    body.theme-light #book-content h2 { border-top-color: rgba(128,128,128,0.2); }
+
+    /* sidebars follow theme too */
+    body.theme-dark  #desktop-left-sidebar,
+    body.theme-dark  #toc-sidebar { background: #141415 !important; border-color: #222224 !important; }
+    body.theme-sepia #desktop-left-sidebar,
+    body.theme-sepia #toc-sidebar { background: #ede5d8 !important; border-color: #d4c8b8 !important; }
+    body.theme-light #desktop-left-sidebar,
+    body.theme-light #toc-sidebar { background: #fafafa !important; border-color: #ebebeb !important; }
+
+    body.theme-dark  #desktop-left-sidebar *,
+    body.theme-dark  #toc-sidebar * { --tw-text-opacity: 1; }
+
+    /* progress bar color stays brand */
+    body.theme-sepia #read-progress-bar { background: #8b5e3c; }
+
     /* ══ Desktop left sidebar theme colors ══ */
     body.theme-dark  #desktop-left-sidebar { background: #141415; border-right-color: #222224; }
     body.theme-sepia #desktop-left-sidebar { background: #f0e9df; border-right-color: #d9ccbe; }
@@ -1943,11 +1975,15 @@
         document.body.classList.add('theme-'+t);
         currentTheme = t;
         localStorage.setItem('pg-theme', t);
-        // Wire ALL theme buttons including desktop right sidebar
-    document.querySelectorAll('.theme-btn').forEach(btn => {
-        btn.addEventListener('click', () => applyTheme(btn.dataset.theme));
-    });
-    document.querySelectorAll('.theme-btn').forEach(btn => {
+
+        // sync Tailwind dark: variants with theme
+        if (t === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        document.querySelectorAll('.theme-btn').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.theme === t);
         });
         const bgMap = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e' };
@@ -1959,6 +1995,11 @@
             fontPopup.style.color = clMap[t];
         }
     }
+
+    // Wire ALL theme buttons including desktop right sidebar
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+        btn.addEventListener('click', () => applyTheme(btn.dataset.theme));
+    });
 
     // ── Hide-on-scroll ──
     let lastScrollY = window.scrollY;
