@@ -41,7 +41,9 @@
   }
   @media (min-width: 768px) { .bc-card { width: 8rem; } }
 
+  /* Cover wrap — position:relative for author overlay */
   .bc-img-wrap {
+    position: relative;
     border-radius: 0.75rem;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.12);
@@ -54,6 +56,22 @@
     aspect-ratio: 2/3;
     object-fit: cover;
     display: block;
+  }
+
+  /* Author name — bottom overlay inside cover */
+  .bc-author-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.25rem 0.4rem 0.35rem;
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: #fff;
+    background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .bc-title {
@@ -69,12 +87,7 @@
   }
   .dark .bc-title { color: #f3f4f6; }
 
-  .bc-author {
-    font-size: 0.688rem;
-    color: #6b7280;
-    margin-top: 0.125rem;
-  }
-  .dark .bc-author { color: #9ca3af; }
+
 </style>
 
 <main class="flex-1 py-4 md:py-6 min-h-[calc(100vh-3.5rem)] min-w-0 overflow-hidden">
