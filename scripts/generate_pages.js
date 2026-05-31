@@ -122,7 +122,7 @@ async function generateHomepage(bookList) {
   // Book card HTML — CastFM style
   function bookCard(book) {
     return `
-    <a href="books/${book.slug}.html" class="book-card group flex flex-col">
+    <a href="books/${book.slug}.html" class="book-card shrink-0 w-28 md:w-32 group flex flex-col">
       <div class="rounded-xl overflow-hidden shadow-md group-hover:shadow-xl group-hover:scale-[1.03] transform transition-all duration-300">
         <img src="${book.cover}" alt="${book.title}" class="w-full aspect-[2/3] object-cover">
       </div>
@@ -136,12 +136,12 @@ async function generateHomepage(bookList) {
   for (const [slug, data] of Object.entries(byCategory)) {
     const catBooks = data.books.slice(0, 12);
     categorySectionsHTML += `
-  <section class="mb-10">
+  <section class="book-section mb-2 py-6">
     <div class="flex items-center justify-between mb-4 px-4 md:px-6">
       <h2 class="text-base font-bold text-gray-800 dark:text-gray-100">${data.name}</h2>
       <a href="category/${slug}/1/" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">সব দেখুন →</a>
     </div>
-    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 px-4 md:px-6">
+    <div class="flex gap-3 overflow-x-auto pb-2 px-4 md:px-6 [scrollbar-width:none] [\class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 px-4 md:px-6"::-webkit-scrollbar]:hidden">
       ${catBooks.map(bookCard).join('')}
     </div>
   </section>`;
