@@ -461,6 +461,11 @@
             padding-bottom: calc(48px + env(safe-area-inset-bottom) + 16px);
         }
     }
+
+    /* ── Text alignment variants ── */
+    #book-content.ta-justify p { text-align: justify; }
+    #book-content.ta-center  p { text-align: center; }
+    #book-content.ta-default p { text-align: left; }
     html { scroll-behavior: smooth; }
     /* ── Hide browser scrollbar (page level) ── */
     html { scrollbar-width: none; -ms-overflow-style: none; }
@@ -601,7 +606,7 @@
 
         <!-- লাইনের ফাঁক -->
         <div id="mob-panel-spacing" class="mob-panel-section">
-            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">লাইনের ফাঁক ও পড়ার প্রস্থ</p>
+            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">লাইনের ফাঁক, প্রস্থ ও সারিবদ্ধতা</p>
             <div class="flex gap-2 mb-2">
                 <button data-ls="ls-compact" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
                     <span class="flex flex-col gap-[2px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
@@ -2238,6 +2243,28 @@
             </div>
         </div>
 
+        <!-- Text alignment -->
+        <div class="px-4 py-4 border-t border-gray-100 dark:border-gray-800 shrink-0">
+            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">টেক্সট সারিবদ্ধতা</p>
+            <div class="flex gap-1.5">
+                <button data-ta="ta-default"
+                    class="ta-btn flex-1 h-9 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 flex flex-col items-center justify-center gap-1 transition-all">
+                    <i class="fas fa-align-left text-[11px]"></i>
+                    <span class="text-[9px]">বাম</span>
+                </button>
+                <button data-ta="ta-center"
+                    class="ta-btn flex-1 h-9 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 flex flex-col items-center justify-center gap-1 transition-all">
+                    <i class="fas fa-align-center text-[11px]"></i>
+                    <span class="text-[9px]">মাঝ</span>
+                </button>
+                <button data-ta="ta-justify"
+                    class="ta-btn flex-1 h-9 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 flex flex-col items-center justify-center gap-1 transition-all">
+                    <i class="fas fa-align-justify text-[11px]"></i>
+                    <span class="text-[9px]">জাস্টিফাই</span>
+                </button>
+            </div>
+        </div>
+
         <!-- Hidden nav (TOC moved to left sidebar) -->
         <nav id="toc-nav-desktop" class="hidden"></nav>
     </aside>
@@ -2552,6 +2579,25 @@
     syncMobileFF(currentFF);
     syncMobileLS(currentLS);
     syncMobileRW(currentRW);
+
+
+    // ── Text alignment ──
+    const taClasses = ['ta-default', 'ta-center', 'ta-justify'];
+    let currentTA = localStorage.getItem('pg-ta') || 'ta-default';
+
+    function applyTA(ta) {
+        taClasses.forEach(c => bookContent.classList.remove(c));
+        bookContent.classList.add(ta);
+        currentTA = ta;
+        localStorage.setItem('pg-ta', ta);
+        document.querySelectorAll('.ta-btn').forEach(b => {
+            b.style.borderColor = b.dataset.ta === ta ? '#0056b3' : '';
+        });
+    }
+    applyTA(currentTA);
+    document.querySelectorAll('.ta-btn').forEach(b => {
+        b.addEventListener('click', () => applyTA(b.dataset.ta));
+    });
 
     let touchStartX = 0;
     tocDrawer?.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
