@@ -9,6 +9,8 @@
     <meta property="og:description" content="">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap">
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -308,6 +310,30 @@
     body.theme-light #toc-nav-mobile .toc-link:hover   { background: rgba(0,0,0,0.04); color: #111827; }
     body.theme-light #toc-nav-mobile .toc-link.active  { background: rgba(0,86,179,0.08); color: #0056b3; }
 
+
+    /* ── Line spacing variants ── */
+    #book-content.ls-compact p  { line-height: 1.6; }
+    #book-content.ls-normal p   { line-height: 2; }
+    #book-content.ls-relaxed p  { line-height: 2.4; }
+
+    /* ── Font family variants ── */
+    #book-content.ff-sans    { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    #book-content.ff-serif   { font-family: 'Noto Serif Bengali', 'Noto Serif', Georgia, serif; }
+    #book-content.ff-system  { font-family: system-ui, -apple-system, sans-serif; }
+
+    /* ── Reading width variants ── */
+    #read-main-content.rw-narrow { max-width: 36rem; }
+    #read-main-content.rw-medium { max-width: 42rem; }
+    #read-main-content.rw-wide   { max-width: 56rem; }
+
+    /* ── Estimated time badge ── */
+    #est-time-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 11px;
+        color: #6b7280;
+    }
     html { scroll-behavior: smooth; }
     /* ══ Global theme rules (mobile + desktop) ══ */
     body.theme-dark  #mobile-reader-bg,
@@ -3927,7 +3953,7 @@
         </div>
 
         <!-- Theme selector -->
-        <div class="px-4 py-4 shrink-0">
+        <div class="px-4 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
             <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">থিম</p>
             <div class="flex flex-col gap-1.5">
                 <button data-theme="light"
@@ -3944,6 +3970,63 @@
                     class="theme-btn w-full h-8 rounded-lg border-2 border-gray-700 text-[11px] font-medium transition-all flex items-center gap-2 px-3"
                     style="background:#1c1c1e; color:#ccc;">
                     <span class="w-3 h-3 rounded-full" style="background:#333; border:1px solid #555;"></span> অন্ধকার
+                </button>
+            </div>
+        </div>
+
+        <!-- Line spacing -->
+        <div class="px-4 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
+            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">লাইনের ফাঁক</p>
+            <div class="flex gap-1.5">
+                <button data-ls="ls-compact"
+                    class="ls-btn flex-1 h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[11px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center justify-center gap-0.5">
+                    <span class="flex flex-col gap-[2px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
+                    <span class="text-[9px]">আঁটো</span>
+                </button>
+                <button data-ls="ls-normal"
+                    class="ls-btn flex-1 h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[11px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center justify-center gap-0.5">
+                    <span class="flex flex-col gap-[4px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
+                    <span class="text-[9px]">স্বাভাবিক</span>
+                </button>
+                <button data-ls="ls-relaxed"
+                    class="ls-btn flex-1 h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[11px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center justify-center gap-0.5">
+                    <span class="flex flex-col gap-[6px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
+                    <span class="text-[9px]">প্রশস্ত</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Font family -->
+        <div class="px-4 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
+            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">ফন্ট</p>
+            <div class="flex flex-col gap-1.5">
+                <button data-ff="ff-sans"
+                    class="ff-btn w-full h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[12px] transition-all text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 px-3 text-left"
+                    style="font-family: 'Segoe UI', sans-serif;">সাধারণ (Sans)</button>
+                <button data-ff="ff-serif"
+                    class="ff-btn w-full h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[12px] transition-all text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 px-3 text-left"
+                    style="font-family: 'Noto Serif Bengali', serif;">বইয়ের ফন্ট (Serif)</button>
+            </div>
+        </div>
+
+        <!-- Reading width -->
+        <div class="px-4 py-4 shrink-0">
+            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">পড়ার প্রস্থ</p>
+            <div class="flex gap-1.5">
+                <button data-rw="rw-narrow"
+                    class="rw-btn flex-1 py-1.5 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[10px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center gap-1">
+                    <span class="flex gap-0.5 items-end h-3"><span class="w-[3px] h-3 bg-current rounded-sm opacity-80"></span></span>
+                    <span>সরু</span>
+                </button>
+                <button data-rw="rw-medium"
+                    class="rw-btn flex-1 py-1.5 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[10px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center gap-1">
+                    <span class="flex gap-0.5 items-end h-3"><span class="w-[5px] h-3 bg-current rounded-sm opacity-80"></span></span>
+                    <span>মাঝারি</span>
+                </button>
+                <button data-rw="rw-wide"
+                    class="rw-btn flex-1 py-1.5 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[10px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center gap-1">
+                    <span class="flex gap-0.5 items-end h-3"><span class="w-[8px] h-3 bg-current rounded-sm opacity-80"></span></span>
+                    <span>চওড়া</span>
                 </button>
             </div>
         </div>
@@ -4133,6 +4216,72 @@
     document.getElementById('mob-toc-btn-top')?.addEventListener('click', openTocDrawer);
     document.getElementById('mobile-toc-close')?.addEventListener('click', closeTocDrawer);
     tocOverlay?.addEventListener('click', closeTocDrawer);
+
+
+    // ── Line spacing ──
+    const lsClasses = ['ls-compact', 'ls-normal', 'ls-relaxed'];
+    let currentLS = localStorage.getItem('pg-ls') || 'ls-normal';
+    bookContent.classList.add(currentLS);
+
+    function applyLS(ls) {
+        lsClasses.forEach(c => bookContent.classList.remove(c));
+        bookContent.classList.add(ls);
+        currentLS = ls;
+        localStorage.setItem('pg-ls', ls);
+        document.querySelectorAll('.ls-btn').forEach(b => {
+            b.classList.toggle('border-[#0056b3]', b.dataset.ls === ls);
+            b.classList.toggle('border-gray-200', b.dataset.ls !== ls);
+            b.classList.toggle('dark:border-gray-700', b.dataset.ls !== ls);
+        });
+    }
+    applyLS(currentLS);
+    document.querySelectorAll('.ls-btn').forEach(b => {
+        b.addEventListener('click', () => applyLS(b.dataset.ls));
+    });
+
+    // ── Font family ──
+    const ffClasses = ['ff-sans', 'ff-serif', 'ff-system'];
+    let currentFF = localStorage.getItem('pg-ff') || 'ff-sans';
+    bookContent.classList.add(currentFF);
+
+    function applyFF(ff) {
+        ffClasses.forEach(c => bookContent.classList.remove(c));
+        bookContent.classList.add(ff);
+        currentFF = ff;
+        localStorage.setItem('pg-ff', ff);
+        document.querySelectorAll('.ff-btn').forEach(b => {
+            b.classList.toggle('border-[#0056b3]', b.dataset.ff === ff);
+            b.classList.toggle('border-gray-200', b.dataset.ff !== ff);
+            b.classList.toggle('dark:border-gray-700', b.dataset.ff !== ff);
+        });
+    }
+    applyFF(currentFF);
+    document.querySelectorAll('.ff-btn').forEach(b => {
+        b.addEventListener('click', () => applyFF(b.dataset.ff));
+    });
+
+    // ── Reading width ──
+    const mainContent = document.getElementById('read-main-content');
+    const rwClasses   = ['rw-narrow', 'rw-medium', 'rw-wide'];
+    let currentRW = localStorage.getItem('pg-rw') || 'rw-medium';
+
+    function applyRW(rw) {
+        rwClasses.forEach(c => mainContent?.classList.remove(c));
+        mainContent?.classList.add(rw);
+        currentRW = rw;
+        localStorage.setItem('pg-rw', rw);
+        document.querySelectorAll('.rw-btn').forEach(b => {
+            b.classList.toggle('border-[#0056b3]', b.dataset.rw === rw);
+            b.classList.toggle('border-gray-200', b.dataset.rw !== rw);
+            b.classList.toggle('dark:border-gray-700', b.dataset.rw !== rw);
+        });
+    }
+    // remove existing max-w-2xl from classList and apply saved width
+    mainContent?.classList.remove('max-w-2xl');
+    applyRW(currentRW);
+    document.querySelectorAll('.rw-btn').forEach(b => {
+        b.addEventListener('click', () => applyRW(b.dataset.rw));
+    });
 
     let touchStartX = 0;
     tocDrawer?.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
