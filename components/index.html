@@ -31,30 +31,24 @@
   @media (min-width: 768px) { .bc-scroll { padding: 0 1.5rem 0.75rem; } }
   .bc-scroll::-webkit-scrollbar { display: none; }
 
-  /* Book card — full card is 9:16 */
+  /* Book card */
   .bc-card {
     flex-shrink: 0;
     width: 6.5rem;
-    aspect-ratio: 9/16;
     display: flex;
     flex-direction: column;
     text-decoration: none;
-    background: #fff;
+  }
+  @media (min-width: 768px) { .bc-card { width: 7.5rem; } }
+
+  /* Cover — 9:16 */
+  .bc-img-wrap {
+    width: 100%;
+    aspect-ratio: 9/16;
     border-radius: 0.75rem;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.10);
   }
-  .dark .bc-card { background: #2d2d2d; }
-  @media (min-width: 768px) { .bc-card { width: 7.5rem; } }
-
-  /* Cover wrap — flex:1 so image fills space left after title */
-  .bc-img-wrap {
-    position: relative;
-    flex: 1;
-    min-height: 0;
-    background: #fff;
-  }
-  .dark .bc-img-wrap { background: #2d2d2d; }
 
   .bc-img {
     width: 100%;
@@ -63,36 +57,35 @@
     display: block;
   }
 
-  /* Author name — bottom overlay inside cover */
-  .bc-author-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1.25rem 0.4rem 0.35rem;
+  /* Title — Author নিচে */
+  .bc-meta {
+    margin-top: 0.35rem;
+    padding: 0 0.1rem;
     font-size: 0.65rem;
-    font-weight: 500;
-    color: #fff;
-    background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .bc-title {
-    padding: 0.4rem 0.4rem 0.5rem;
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: #1f2937;
+    line-height: 1.35;
+    color: #374151;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    line-height: 1.3;
-    flex-shrink: 0;
   }
-  .dark .bc-title { color: #f3f4f6; }
+  .dark .bc-meta { color: #d1d5db; }
 
+  .bc-meta-title {
+    font-weight: 700;
+  }
+
+  .bc-meta-sep {
+    font-weight: 400;
+    color: #6b7280;
+  }
+  .dark .bc-meta-sep { color: #9ca3af; }
+
+  .bc-meta-author {
+    font-weight: 400;
+    color: #6b7280;
+  }
+  .dark .bc-meta-author { color: #9ca3af; }
 
 </style>
 
