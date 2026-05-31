@@ -124,8 +124,9 @@ async function generateHomepage(bookList) {
     return `<a href="books/${book.slug}.html" class="bc-card">
       <div class="bc-img-wrap">
         <img src="${book.cover}" alt="${book.title}" class="bc-img">
+        <div class="bc-author-overlay">${book.author_name}</div>
       </div>
-      <p class="bc-meta"><span class="bc-meta-title">${book.title}</span><span class="bc-meta-sep"> — </span><span class="bc-meta-author">${book.author_name}</span></p>
+      <p class="bc-meta">${book.title}</p>
     </a>`;
   }
 
