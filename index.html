@@ -182,7 +182,7 @@
 <main class="flex-1 py-4 md:py-6 min-h-[calc(100vh-3.5rem)]">
 
   <!-- সর্বশেষ বই -->
-  <section class="mb-10">
+  <section class="book-section mb-2 py-6">
     <div class="flex items-center justify-between mb-4 px-4 md:px-6">
       <h2 class="text-base font-bold text-gray-800 dark:text-gray-100">সর্বশেষ বই</h2>
       <a href="new.html" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">সব দেখুন →</a>
@@ -307,6 +307,42 @@
   </section>
 
 </main>
+
+<script>
+  // প্রতিটা section এ আলাদা bg color দেওয়া
+  const lightBgs = [
+    '#eff6ff', // blue-50
+    '#f5f3ff', // violet-50
+    '#f0fdf4', // green-50
+    '#fffbeb', // amber-50
+    '#fff1f2', // rose-50
+    '#ecfeff', // cyan-50
+  ];
+  const darkBgs = [
+    '#1e2a3a',
+    '#1e1a2e',
+    '#1a2e1e',
+    '#2e2a1a',
+    '#2e1a1e',
+    '#1a2a2e',
+  ];
+
+  const isDark = () => document.documentElement.classList.contains('dark');
+
+  function applyBgs() {
+    document.querySelectorAll('.book-section').forEach((section, i) => {
+      section.style.backgroundColor = isDark()
+        ? darkBgs[i % darkBgs.length]
+        : lightBgs[i % lightBgs.length];
+    });
+  }
+
+  applyBgs();
+
+  // Dark mode toggle হলে আবার apply করা
+  const observer = new MutationObserver(applyBgs);
+  observer.observe(document.documentElement, { attributeFilter: ['class'] });
+</script>
 
         </main>
 
