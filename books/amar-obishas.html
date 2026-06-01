@@ -184,7 +184,7 @@
     <div class="max-w-3xl mx-auto">
 
         <!-- Book Info Card -->
-        <div class="bg-white dark:bg-[#2d2d2d] rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <div class="bg-white dark:bg-[#2d2d2d] rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden" style="background: white;" >
             <!-- Mobile: cover full-width gradient top -->
             <div class="flex justify-center py-8 bg-gradient-to-b from-blue-50 to-white dark:from-[#1e2d42] dark:to-[#2d2d2d] md:hidden">
                 <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780049973280_skqw4ksgug.jpg"
@@ -192,26 +192,27 @@
                     class="w-40 rounded shadow-md object-cover aspect-[2/3]" style="box-shadow: 0 8px 32px rgba(0,86,179,0.18), 0 2px 8px rgba(0,0,0,0.10);">
             </div>
 
-            <div class="flex flex-col md:flex-row gap-0 md:gap-7">
-
-                <!-- Cover Image (desktop only) -->
-                <div class="hidden md:flex justify-start shrink-0 p-6 pr-8 bg-gradient-to-r from-blue-50 via-blue-50/60 to-white dark:from-[#1e2d42] dark:via-[#1e2d42]/60 dark:to-[#2d2d2d] rounded-l-lg" style="min-width:200px">
+            <!-- Desktop: full card left-to-right gradient -->
+            <style>.book-card-desktop{background:linear-gradient(to right,#eff6ff 0%,#eff6ff 25%,white 65%)}.dark .book-card-desktop{background:linear-gradient(to right,#1e2d42 0%,#1e2d42 25%,#2d2d2d 65%)}</style>
+            <div class="hidden md:flex flex-row gap-7 book-card-desktop" style="border-radius:inherit;">
+                <!-- Cover -->
+                <div class="flex justify-start shrink-0 p-6">
                     <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780049973280_skqw4ksgug.jpg"
                         alt="আমার অবিশ্বাস"
                         class="w-36 rounded shadow-md object-cover aspect-[2/3]" style="box-shadow: 0 8px 32px rgba(0,86,179,0.18), 0 2px 8px rgba(0,0,0,0.10);">
                 </div>
 
                 <!-- Info -->
-                <div class="flex flex-col justify-between flex-1 min-w-0 p-5 md:py-6 md:pr-6">
+                <div class="flex flex-col justify-between flex-1 min-w-0 py-6 pr-6">
                     <div>
-                        <h1 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100 leading-snug text-center md:text-left">
+                        <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100 leading-snug text-left">
                             আমার অবিশ্বাস
                         </h1>
                         <a href="/author/hymayun-azad.html"
-                            class="inline-block mt-1.5 text-sm text-blue-600 dark:text-blue-400 hover:underline w-full text-center md:text-left">
+                            class="inline-block mt-1.5 text-sm text-blue-600 dark:text-blue-400 hover:underline w-full text-left">
                             হুমায়ুন আজাদ
                         </a>
-                        <div class="flex flex-wrap gap-2 mt-3 justify-center md:justify-start">
+                        <div class="flex flex-wrap gap-2 mt-3 justify-start">
                             <a href="/category/probondho/1/"
                                 class="text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2.5 py-1 rounded-full hover:bg-blue-100 transition-colors">
                                 প্রবন্ধ
@@ -223,7 +224,7 @@
                     </div>
 
                     <!-- Buttons -->
-                    <div class="flex gap-3 mt-5 justify-center md:justify-start">
+                    <div class="flex gap-3 mt-5 justify-start">
                         <a href="/read/amar-obishas.html"
                             class="flex items-center gap-2 bg-[#0056b3] hover:bg-[#004494] text-white text-sm font-medium px-5 py-2 rounded transition-colors">
                             <i class="fas fa-book-open text-xs"></i> পড়ুন
@@ -233,6 +234,40 @@
                             <i class="fas fa-download text-xs"></i> ডাউনলোড
                         </a>
                     </div>
+                </div>
+            </div>
+
+            <!-- Mobile: info below cover -->
+            <div class="flex flex-col md:hidden p-5">
+                <div>
+                    <h1 class="text-xl font-bold text-gray-900 dark:text-gray-100 leading-snug text-center">
+                        আমার অবিশ্বাস
+                    </h1>
+                    <a href="/author/hymayun-azad.html"
+                        class="inline-block mt-1.5 text-sm text-blue-600 dark:text-blue-400 hover:underline w-full text-center">
+                        হুমায়ুন আজাদ
+                    </a>
+                    <div class="flex flex-wrap gap-2 mt-3 justify-center">
+                        <a href="/category/probondho/1/"
+                            class="text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2.5 py-1 rounded-full hover:bg-blue-100 transition-colors">
+                            প্রবন্ধ
+                        </a>
+                        <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2.5 py-1 rounded-full">
+                            বাংলা
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="flex gap-3 mt-5 justify-center">
+                    <a href="/read/amar-obishas.html"
+                        class="flex items-center gap-2 bg-[#0056b3] hover:bg-[#004494] text-white text-sm font-medium px-5 py-2 rounded transition-colors">
+                        <i class="fas fa-book-open text-xs"></i> পড়ুন
+                    </a>
+                    <a href="/download/amar-obishas.html"
+                        class="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 text-sm font-medium px-5 py-2 rounded transition-colors">
+                        <i class="fas fa-download text-xs"></i> ডাউনলোড
+                    </a>
                 </div>
             </div>
         </div>
