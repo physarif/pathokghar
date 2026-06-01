@@ -9,7 +9,7 @@
         height: 100%;
         border-radius: 9999px;
         background: linear-gradient(90deg, #0056b3, #3b82f6);
-        transition: width 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: none;
         width: 100%;
     }
 
@@ -114,7 +114,7 @@
 <div class="hidden md:flex items-start gap-7 max-w-4xl mx-auto py-4">
 
     <!-- LEFT: Book info panel -->
-    <div class="w-72 shrink-0">
+    <div class="w-72 shrink-0 pb-6">
 
         <!-- Cover card -->
         <div class="bg-white dark:bg-[#2d2d2d] rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden mb-4">
@@ -307,17 +307,27 @@
 
             if (remaining <= 0) {
                 clearInterval(interval);
-                // progress bar wrapper + waiting text hide
+                // progress wrap + waiting text fade out, তারপর download btn দেখাও
                 const progressWrap = document.getElementById(prefix + 'progress-wrap');
-                if (progressWrap) progressWrap.style.display = 'none';
-                const waitingText = document.getElementById(prefix + 'waiting-text');
-                if (waitingText) waitingText.style.display = 'none';
-                // download btn reveal
-                const dlBtn = document.getElementById(prefix + 'download-btn');
-                if (dlBtn) { dlBtn.href = DOWNLOAD_URL; dlBtn.classList.remove('hidden'); }
-                // restart btn hide — চাওয়া অনুযায়ী
-                const restartBtn = document.getElementById(prefix + 'restart-btn');
-                if (restartBtn) restartBtn.style.display = 'none';
+                const waitingText  = document.getElementById(prefix + 'waiting-text');
+                const dlBtn        = document.getElementById(prefix + 'download-btn');
+                const restartBtn   = document.getElementById(prefix + 'restart-btn');
+
+                // fade out
+                if (progressWrap) { progressWrap.style.transition = 'opacity 0.3s'; progressWrap.style.opacity = '0'; }
+                if (waitingText)  { waitingText.style.transition  = 'opacity 0.3s'; waitingText.style.opacity  = '0'; }
+
+                setTimeout(() => {
+                    if (progressWrap) progressWrap.style.display = 'none';
+                    if (waitingText)  waitingText.style.display  = 'none';
+                    if (restartBtn)   restartBtn.style.display   = 'none';
+                    // download btn step-fade দিয়ে আসবে
+                    if (dlBtn) {
+                        dlBtn.href = DOWNLOAD_URL;
+                        dlBtn.classList.remove('hidden');
+                        dlBtn.classList.add('step-fade');
+                    }
+                }, 300);
             }
         }, 1000);
     }
