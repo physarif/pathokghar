@@ -34,12 +34,7 @@
 
     <!-- HEADER -->
     <header class="bg-white dark:bg-[#1a1a1b] fixed top-0 w-full h-14 z-[100] border-b border-gray-200 dark:border-gray-700 shadow-sm transition-transform duration-300">
-        <div class="container mx-auto px-4 h-full flex items-center gap-3">
-
-            <!-- Hamburger -->
-            <button id="hamburger-btn" class="md:hidden p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-                <i class="fas fa-bars"></i>
-            </button>
+        <div class="max-w-5xl mx-auto px-4 h-full flex items-center gap-3">
 
             <!-- Logo -->
             <a href="https://pathokghar.pages.dev" class="text-2xl font-extrabold tracking-tighter hover:bg-gray-100 dark:hover:bg-gray-800 px-2 py-1 rounded transition-colors duration-200 shrink-0">
@@ -47,8 +42,8 @@
             </a>
 
             <!-- Search (desktop) -->
-            <div class="hidden md:flex flex-1 max-w-2xl gap-1">
-                <div class="relative flex-1 group">
+            <div class="hidden md:flex flex-1 max-w-xl gap-1">
+                <div class="relative flex-1">
                     <input id="desktop-search-input" type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
                         class="w-full bg-gray-50 dark:bg-[#2d2d2d] border border-gray-300 dark:border-gray-600 rounded py-1.5 px-4 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all">
                 </div>
@@ -61,12 +56,12 @@
             <div class="flex items-center space-x-2 ml-auto shrink-0">
 
                 <!-- Mobile search button -->
-                <button id="mobile-search-btn" class="md:hidden p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition" title="খুঁজুন">
-                    <i class="fas fa-search text-xl"></i>
+                <button id="mobile-search-btn" class="md:hidden p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition">
+                    <i class="fas fa-search text-lg"></i>
                 </button>
 
                 <!-- Day/Night toggle -->
-                <button id="theme-btn" class="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition text-gray-600 dark:text-gray-300" title="ডার্ক মোড">
+                <button id="theme-btn" class="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition text-gray-600 dark:text-gray-300">
                     <i id="theme-icon" class="fas fa-moon text-lg"></i>
                 </button>
 
@@ -77,111 +72,82 @@
         <!-- Mobile search bar (dropdown) -->
         <div id="mobile-search-bar" class="absolute top-14 left-0 w-full bg-white dark:bg-[#1a1a1b] border-b dark:border-gray-700 p-2 hidden shadow-lg">
             <div class="flex gap-2">
-                <div class="relative flex-1">
-                    <input id="mobile-search-input" type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
-                        class="w-full bg-gray-50 dark:bg-[#2d2d2d] border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
-                </div>
+                <input id="mobile-search-input" type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
+                    class="flex-1 bg-gray-50 dark:bg-[#2d2d2d] border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
                 <button id="mobile-search-submit" class="bg-brand-500 hover:bg-brand-600 text-white text-sm px-4 rounded-lg transition-colors shrink-0">
                     <i class="fas fa-search"></i>
                 </button>
             </div>
         </div>
-
     </header>
 
-    <!-- Sidebar overlay (mobile) -->
-    <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-[140] hidden"></div>
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 min-w-0 pt-14">
+        <div class="max-w-5xl mx-auto px-4 py-6">
+            {{content}}
+        </div>
+    </main>
 
-    <div class="container mx-auto flex flex-1 pt-14">
+    <!-- FOOTER -->
+    <footer class="bg-white dark:bg-[#1a1a1b] border-t border-gray-200 dark:border-gray-700 mt-auto">
+        <div class="max-w-5xl mx-auto px-4 py-8">
 
-        <!-- SIDEBAR -->
-        <aside id="mobile-sidebar"
-            class="fixed md:sticky top-14 left-0 w-60 h-[calc(100vh-3.5rem)]
-                   bg-white dark:bg-[#1a1a1b]
-                   border-r border-gray-200 dark:border-gray-700
-                   z-[150] md:z-40
-                   -translate-x-full md:translate-x-0
-                   overflow-y-auto transition-transform duration-300 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <!-- Footer grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
 
-            <!-- Nav -->
-            <nav class="flex flex-col py-2 text-[14px]">
-
-                <a href="https://pathokghar.pages.dev" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-blue-600 bg-blue-50 dark:bg-gray-800 transition-colors">
-                    <i class="fas fa-home w-4"></i> <span>প্রধান পাতা</span>
-                </a>
-                <a href="new.html" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 transition-colors">
-                    <i class="fas fa-clock w-4"></i> <span>নতুন বই</span>
-                </a>
-                <a href="popular.html" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 transition-colors">
-                    <i class="fas fa-fire w-4"></i> <span>জনপ্রিয়</span>
-                </a>
-
-                <hr class="my-3 border-gray-100 dark:border-gray-800 mx-4">
-
-                <!-- Categories -->
-                <details class="group mx-2" open>
-                    <summary class="flex items-center justify-between px-4 py-2 text-gray-500 dark:text-gray-400 cursor-pointer md:hover:bg-gray-50 dark:md:hover:bg-gray-800 active:bg-gray-100 rounded-md list-none uppercase text-[11px] font-semibold tracking-wider">
-                        <span class="flex items-center gap-2"><i class="fa-solid fa-layer-group text-xs"></i> ক্যাটাগরি</span>
-                        <i class="fas fa-chevron-down text-[9px] transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <div class="flex flex-col mt-1 space-y-0.5">
-                        <a href="category.html?c=uponyas" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
-                            <i class="fas fa-book text-xs text-blue-400"></i> <span>উপন্যাস</span>
-                        </a>
-                        <a href="category.html?c=golpo" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
-                            <i class="fas fa-book text-xs text-green-400"></i> <span>গল্প</span>
-                        </a>
-                        <a href="category.html?c=kobita" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
-                            <i class="fas fa-book text-xs text-pink-400"></i> <span>কবিতা</span>
-                        </a>
-                        <a href="category.html?c=probondho" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
-                            <i class="fas fa-book text-xs text-yellow-400"></i> <span>প্রবন্ধ</span>
-                        </a>
-                        <a href="category.html?c=science" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
-                            <i class="fas fa-book text-xs text-purple-400"></i> <span>বিজ্ঞান</span>
-                        </a>
-                    </div>
-                </details>
-
-                <hr class="my-3 border-gray-100 dark:border-gray-800 mx-4">
-
-                <!-- Authors -->
-                <details class="group mx-2" open>
-                    <summary class="flex items-center justify-between px-4 py-2 text-gray-500 dark:text-gray-400 cursor-pointer md:hover:bg-gray-50 dark:md:hover:bg-gray-800 active:bg-gray-100 rounded-md list-none uppercase text-[11px] font-semibold tracking-wider">
-                        <span>লেখক</span>
-                        <i class="fas fa-chevron-down text-[9px] transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <div class="flex flex-col mt-1 space-y-0.5">
-                        <a href="author.html?a=humayun" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
-                            <i class="fas fa-user text-xs text-gray-400"></i> <span>হুমায়ূন আহমেদ</span>
-                        </a>
-                        <a href="author.html?a=rabindra" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
-                            <i class="fas fa-user text-xs text-gray-400"></i> <span>রবীন্দ্রনাথ ঠাকুর</span>
-                        </a>
-                    </div>
-                </details>
-
-                <!-- Footer links -->
-                <div class="mt-8 pt-4 px-4 border-t border-gray-100 dark:border-gray-800">
-                    <div class="flex flex-wrap gap-x-3 gap-y-1 text-[12px] text-gray-500 dark:text-gray-400">
-                        <a href="#" class="hover:text-blue-500 transition-colors">সম্পর্কে</a>
-                        <a href="#" class="hover:text-blue-500 transition-colors">যোগাযোগ</a>
-                        <a href="#" class="hover:text-blue-500 transition-colors">গোপনীয়তা</a>
-                    </div>
-                    <div class="mt-2 text-[11px] text-gray-400 dark:text-gray-500 pb-4">
-                        © ২০২৬ পাঠক ঘর
-                    </div>
+                <!-- Logo + tagline -->
+                <div class="col-span-2 md:col-span-1">
+                    <a href="https://pathokghar.pages.dev" class="text-xl font-extrabold tracking-tighter">
+                        পাঠক <span class="font-light text-gray-400">ঘর</span>
+                    </a>
+                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 leading-relaxed">বাংলা বইয়ের সেরা অনলাইন পাঠাগার।</p>
                 </div>
 
-            </nav>
-        </aside>
+                <!-- নেভিগেশন -->
+                <div>
+                    <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-3">নেভিগেশন</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="https://pathokghar.pages.dev" class="text-gray-600 dark:text-gray-300 hover:text-brand-500 transition-colors flex items-center gap-2"><i class="fas fa-home text-xs w-3"></i> প্রধান পাতা</a></li>
+                        <li><a href="new.html" class="text-gray-600 dark:text-gray-300 hover:text-brand-500 transition-colors flex items-center gap-2"><i class="fas fa-clock text-xs w-3"></i> নতুন বই</a></li>
+                        <li><a href="popular.html" class="text-gray-600 dark:text-gray-300 hover:text-brand-500 transition-colors flex items-center gap-2"><i class="fas fa-fire text-xs w-3"></i> জনপ্রিয়</a></li>
+                    </ul>
+                </div>
 
-        <!-- MAIN CONTENT -->
-        <main class="flex-1 min-w-0 min-h-[calc(100vh-3.5rem)]">
-            {{content}}
-        </main>
+                <!-- ক্যাটাগরি -->
+                <div>
+                    <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-3">ক্যাটাগরি</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="category.html?c=uponyas" class="text-gray-600 dark:text-gray-300 hover:text-brand-500 transition-colors">উপন্যাস</a></li>
+                        <li><a href="category.html?c=golpo" class="text-gray-600 dark:text-gray-300 hover:text-brand-500 transition-colors">গল্প</a></li>
+                        <li><a href="category.html?c=kobita" class="text-gray-600 dark:text-gray-300 hover:text-brand-500 transition-colors">কবিতা</a></li>
+                        <li><a href="category.html?c=probondho" class="text-gray-600 dark:text-gray-300 hover:text-brand-500 transition-colors">প্রবন্ধ</a></li>
+                        <li><a href="category.html?c=science" class="text-gray-600 dark:text-gray-300 hover:text-brand-500 transition-colors">বিজ্ঞান</a></li>
+                    </ul>
+                </div>
 
-    </div>
+                <!-- লেখক -->
+                <div>
+                    <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-3">লেখক</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="author.html?a=humayun" class="text-gray-600 dark:text-gray-300 hover:text-brand-500 transition-colors">হুমায়ূন আহমেদ</a></li>
+                        <li><a href="author.html?a=rabindra" class="text-gray-600 dark:text-gray-300 hover:text-brand-500 transition-colors">রবীন্দ্রনাথ ঠাকুর</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Bottom bar -->
+            <div class="pt-4 border-t border-gray-100 dark:border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-400 dark:text-gray-500">
+                <span>© ২০২৬ পাঠক ঘর। সর্বস্বত্ব সংরক্ষিত।</span>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-brand-500 transition-colors">সম্পর্কে</a>
+                    <a href="#" class="hover:text-brand-500 transition-colors">যোগাযোগ</a>
+                    <a href="#" class="hover:text-brand-500 transition-colors">গোপনীয়তা</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
 
     <script>
         // Dark mode
@@ -202,15 +168,11 @@
         }
 
         applyTheme(localStorage.theme === 'dark');
-
-        themeBtn.addEventListener('click', () => {
-            applyTheme(!html.classList.contains('dark'));
-        });
+        themeBtn.addEventListener('click', () => applyTheme(!html.classList.contains('dark')));
 
         // Mobile search
         const mobileSearchBtn = document.getElementById('mobile-search-btn');
         const mobileSearchBar = document.getElementById('mobile-search-bar');
-
         mobileSearchBtn.addEventListener('click', () => {
             mobileSearchBar.classList.toggle('hidden');
             if (!mobileSearchBar.classList.contains('hidden')) {
@@ -218,66 +180,33 @@
             }
         });
 
-        // Search functionality
+        // Search
         function doSearch(query) {
-            if (query.trim()) {
-                window.location.href = '/search.html?q=' + encodeURIComponent(query.trim());
-            }
+            if (query.trim()) window.location.href = '/search.html?q=' + encodeURIComponent(query.trim());
         }
 
-        const desktopInput = document.getElementById('desktop-search-input');
-        const desktopBtn = document.getElementById('desktop-search-btn');
-        const mobileInput = document.getElementById('mobile-search-input');
-        const mobileSubmit = document.getElementById('mobile-search-submit');
+        document.getElementById('desktop-search-btn').addEventListener('click', () => doSearch(document.getElementById('desktop-search-input').value));
+        document.getElementById('desktop-search-input').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(e.target.value); });
+        document.getElementById('mobile-search-submit').addEventListener('click', () => doSearch(document.getElementById('mobile-search-input').value));
+        document.getElementById('mobile-search-input').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(e.target.value); });
 
-        desktopBtn.addEventListener('click', () => doSearch(desktopInput.value));
-        desktopInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(desktopInput.value); });
-
-        mobileSubmit.addEventListener('click', () => doSearch(mobileInput.value));
-        mobileInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(mobileInput.value); });
-
-        // Hide header on scroll down, show on scroll up (mobile only)
+        // Hide header on scroll down (mobile)
         const header = document.querySelector('header');
         let lastScrollY = window.scrollY;
         let ticking = false;
-
         window.addEventListener('scroll', () => {
             if (ticking) return;
             ticking = true;
             requestAnimationFrame(() => {
                 if (window.innerWidth < 768) {
-                    const currentScrollY = window.scrollY;
-                    if (currentScrollY > lastScrollY && currentScrollY > 56) {
-                        header.style.transform = 'translateY(-100%)';
-                    } else {
-                        header.style.transform = 'translateY(0)';
-                    }
-                    lastScrollY = currentScrollY;
+                    const y = window.scrollY;
+                    header.style.transform = (y > lastScrollY && y > 56) ? 'translateY(-100%)' : 'translateY(0)';
+                    lastScrollY = y;
                 }
                 ticking = false;
             });
         });
-
-        // Mobile sidebar
-        const hamburger = document.getElementById('hamburger-btn');
-        const sidebar = document.getElementById('mobile-sidebar');
-        const overlay = document.getElementById('sidebar-overlay');
-
-        hamburger.addEventListener('click', () => {
-            const isOpen = !sidebar.classList.contains('-translate-x-full');
-            sidebar.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('hidden');
-            document.body.style.overflow = isOpen ? '' : 'hidden';
-        });
-
-        overlay.addEventListener('click', () => {
-            sidebar.classList.add('-translate-x-full');
-            overlay.classList.add('hidden');
-            document.body.style.overflow = '';
-        });
     </script>
-
-
 
 </body>
 </html>
