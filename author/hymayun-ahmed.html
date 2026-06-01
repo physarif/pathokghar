@@ -29,7 +29,6 @@
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         header { border-top: 5px solid #f0f7ff; }
-        .dark header { border-top-color: #1e2a3a; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
@@ -221,15 +220,18 @@
         const themeIcon = document.getElementById('theme-icon');
         const html = document.documentElement;
 
+        const header = document.querySelector('header');
         function applyTheme(dark) {
             if (dark) {
                 html.classList.add('dark');
                 themeIcon.classList.replace('fa-moon', 'fa-sun');
                 localStorage.theme = 'dark';
+                header.style.borderTopColor = '#1e3a5f';
             } else {
                 html.classList.remove('dark');
                 themeIcon.classList.replace('fa-sun', 'fa-moon');
                 localStorage.theme = 'light';
+                header.style.borderTopColor = '#f0f7ff';
             }
         }
 
@@ -269,7 +271,6 @@
         mobileInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(mobileInput.value); });
 
         // Hide header on scroll down, show on scroll up (mobile only)
-        const header = document.querySelector('header');
         let lastScrollY = window.scrollY;
         let ticking = false;
 
