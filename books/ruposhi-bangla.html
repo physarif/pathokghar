@@ -29,21 +29,13 @@
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         header { border-top: 5px solid #f0f7ff; }
-
-        /* Desktop: header starts after sidebar */
-        @media (min-width: 768px) {
-            header {
-                left: 15rem; /* w-60 = 15rem */
-                width: calc(100% - 15rem);
-            }
-        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
 
     <!-- HEADER -->
     <header class="bg-white dark:bg-[#1a1a1b] fixed top-0 w-full h-14 z-[100] border-b border-gray-200 dark:border-gray-700 shadow-sm transition-transform duration-300">
-        <div class="container mx-auto px-4 h-full flex items-center gap-3">
+        <div class="w-full px-4 md:pl-[calc(240px+1rem)] h-full flex items-center gap-3">
 
             <!-- Hamburger -->
             <button id="hamburger-btn" class="md:hidden p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition">
@@ -101,19 +93,16 @@
     <!-- Sidebar overlay (mobile) -->
     <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-[140] hidden"></div>
 
-    <div class="flex flex-1 pt-14 md:pt-0 md:ml-60">
+    <div class="container mx-auto flex flex-1 pt-14">
 
         <!-- SIDEBAR -->
         <aside id="mobile-sidebar"
-            class="fixed top-14 md:top-0 left-0 w-60 h-[calc(100vh-3.5rem)] md:h-screen
+            class="fixed md:sticky top-14 md:top-[4.25rem] left-0 w-60 h-[calc(100vh-3.5rem)] md:h-[calc(100vh-4.25rem)]
                    bg-white dark:bg-[#1a1a1b]
                    border-r border-gray-200 dark:border-gray-700
-                   z-[150] md:z-[110]
+                   z-[150] md:z-40
                    -translate-x-full md:translate-x-0
-                   overflow-y-auto transition-transform duration-300 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-
-            <!-- Desktop spacer: pushes nav below header height -->
-            <div class="hidden md:block h-14 shrink-0"></div>
+                   overflow-y-auto transition-transform duration-300 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden rounded-tr-xl md:rounded-tr-2xl">
 
             <!-- Nav -->
             <nav class="flex flex-col py-2 text-[14px]">
@@ -189,7 +178,7 @@
         </aside>
 
         <!-- MAIN CONTENT -->
-        <main class="flex-1 min-w-0 min-h-[calc(100vh-3.5rem)] md:pt-14 md:mt-3 md:rounded-tl-xl md:rounded-tr-xl md:overflow-hidden md:shadow-sm">
+        <main class="flex-1 min-w-0 min-h-[calc(100vh-3.5rem)] md:mt-3 md:rounded-tl-xl md:rounded-tr-xl md:overflow-hidden md:shadow-sm">
             <!-- templates/book.html — শুধু content, layout.html এ inject হবে -->
 <main class="flex-1 p-4 md:p-6 min-h-[calc(100vh-3.5rem)]">
     <div class="max-w-3xl mx-auto">
