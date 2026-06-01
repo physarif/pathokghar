@@ -1,7 +1,8 @@
 <!-- components/index.html — homepage content + সব styling এখানে -->
 <style>
   /* Section */
-  .book-section { padding: 1.5rem 0; margin-bottom: 0.5rem; }
+  .book-section { padding: 1.5rem 0; margin-bottom: 0.5rem; background: #f0f7ff; border-radius: 0.75rem; margin-left: 1rem; }
+  .dark .book-section { background: #1e2d42; }
 
   .bc-section-header {
     display: flex;
@@ -115,21 +116,3 @@
   {{category_sections}}
 
 </main>
-
-<script>
-  const lightBgs = ['#eff6ff','#f5f3ff','#f0fdf4','#fffbeb','#fff1f2','#ecfeff'];
-  const darkBgs  = ['#1e2a3a','#1e1a2e','#1a2e1e','#2e2a1a','#2e1a1e','#1a2a2e'];
-
-  const isDark = () => document.documentElement.classList.contains('dark');
-
-  function applyBgs() {
-    document.querySelectorAll('.book-section').forEach((s, i) => {
-      s.style.backgroundColor = isDark() ? darkBgs[i % darkBgs.length] : lightBgs[i % lightBgs.length];
-    });
-  }
-
-  applyBgs();
-  new MutationObserver(applyBgs).observe(document.documentElement, { attributeFilter: ['class'] });
-
-
-</script>
