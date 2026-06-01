@@ -307,14 +307,25 @@
 
             if (remaining <= 0) {
                 clearInterval(interval);
-                showStep(prefix, 3);
-                document.getElementById(prefix + 'download-btn').href = DOWNLOAD_URL;
+                // FIX: step-3 div নেই — step-2 এর ভেতরেই download btn দেখাই
+                // progress label আপডেট করো
+                const label = document.getElementById(prefix + 'progress-label');
+                if (label) label.textContent = 'লিংক তৈরি হয়েছে!';
+                const countWrap = document.getElementById(prefix + 'countdown-wrap');
+                if (countWrap) countWrap.style.display = 'none';
+                // download btn reveal
+                const dlBtn = document.getElementById(prefix + 'download-btn');
+                if (dlBtn) { dlBtn.href = DOWNLOAD_URL; dlBtn.classList.remove('hidden'); }
+                // restart btn reveal
+                const restartBtn = document.getElementById(prefix + 'restart-btn');
+                if (restartBtn) restartBtn.classList.remove('hidden');
             }
         }, 1000);
     }
 
     function showStep(prefix, n) {
-        [1, 2, 3].forEach(i => {
+        // FIX: step-3 নেই, শুধু 1 ও 2 toggle করা হচ্ছে
+        [1, 2].forEach(i => {
             const el = document.getElementById(prefix + 'step-' + i);
             if (!el) return;
             if (i === n) { el.classList.remove('hidden'); el.classList.add('step-fade'); }
