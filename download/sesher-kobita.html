@@ -256,12 +256,12 @@
         </div>
         <div id="m-step-2" class="hidden step-fade">
             <div class="flex flex-col gap-5">
-                <p class="text-xs text-gray-500 dark:text-gray-400 text-center">কয়েক সেকেন্ড অপেক্ষা করুন...</p>
+                <p id="m-waiting-text" class="text-xs text-gray-500 dark:text-gray-400 text-center">কয়েক সেকেন্ড অপেক্ষা করুন...</p>
                 <div class="w-full h-20 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center justify-center border border-dashed border-gray-200 dark:border-gray-700">
                     <span class="text-xs text-gray-300 dark:text-gray-600">বিজ্ঞাপন</span>
                 </div>
                 <!-- Progress bar -->
-                <div class="flex flex-col gap-2">
+                <div id="m-progress-wrap" class="flex flex-col gap-2">
                     <div class="flex items-center justify-between text-xs text-gray-400 dark:text-gray-500">
                         <span id="m-progress-label">লিংক তৈরি হচ্ছে...</span>
                         <span id="m-countdown-wrap" class="progress-seconds"><span id="m-countdown-text">5</span>s</span>
@@ -346,7 +346,7 @@
             <!-- Step 2 -->
             <div id="d-step-2" class="hidden step-fade">
                 <div class="flex flex-col items-center gap-6">
-                    <p class="text-sm text-gray-500 dark:text-gray-400">কয়েক সেকেন্ড অপেক্ষা করুন...</p>
+                    <p id="d-waiting-text" class="text-sm text-gray-500 dark:text-gray-400">কয়েক সেকেন্ড অপেক্ষা করুন...</p>
 
                     <!-- Ad slot — wider on desktop -->
                     <div class="w-full h-24 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center justify-center border border-dashed border-gray-200 dark:border-gray-700">
@@ -354,7 +354,7 @@
                     </div>
 
                     <!-- Progress bar -->
-                    <div class="w-full flex flex-col gap-2">
+                    <div id="d-progress-wrap" class="w-full flex flex-col gap-2">
                         <div class="flex items-center justify-between text-sm text-gray-400 dark:text-gray-500">
                             <span id="d-progress-label">লিংক তৈরি হচ্ছে...</span>
                             <span id="d-countdown-wrap" class="progress-seconds font-semibold text-[#0056b3] dark:text-blue-400"><span id="d-countdown-text">5</span>s</span>
@@ -488,18 +488,17 @@
 
             if (remaining <= 0) {
                 clearInterval(interval);
-                // FIX: step-3 div নেই — step-2 এর ভেতরেই download btn দেখাই
-                // progress label আপডেট করো
-                const label = document.getElementById(prefix + 'progress-label');
-                if (label) label.textContent = 'লিংক তৈরি হয়েছে!';
-                const countWrap = document.getElementById(prefix + 'countdown-wrap');
-                if (countWrap) countWrap.style.display = 'none';
+                // progress bar wrapper + waiting text hide
+                const progressWrap = document.getElementById(prefix + 'progress-wrap');
+                if (progressWrap) progressWrap.style.display = 'none';
+                const waitingText = document.getElementById(prefix + 'waiting-text');
+                if (waitingText) waitingText.style.display = 'none';
                 // download btn reveal
                 const dlBtn = document.getElementById(prefix + 'download-btn');
                 if (dlBtn) { dlBtn.href = DOWNLOAD_URL; dlBtn.classList.remove('hidden'); }
-                // restart btn reveal
+                // restart btn hide — চাওয়া অনুযায়ী
                 const restartBtn = document.getElementById(prefix + 'restart-btn');
-                if (restartBtn) restartBtn.classList.remove('hidden');
+                if (restartBtn) restartBtn.style.display = 'none';
             }
         }, 1000);
     }
