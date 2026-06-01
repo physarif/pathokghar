@@ -34,8 +34,8 @@
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
 
     <!-- HEADER -->
-    <header class="bg-white dark:bg-[#1a1a1b] fixed top-0 left-0 md:left-60 right-0 h-14 z-[100] border-b border-gray-200 dark:border-gray-700 shadow-sm transition-transform duration-300">
-        <div class="container mx-auto px-4 h-full flex items-center gap-3">
+    <header class="bg-white dark:bg-[#1a1a1b] fixed top-0 left-0 right-0 h-14 z-[100] border-b border-gray-200 dark:border-gray-700 shadow-sm transition-transform duration-300">
+        <div class="container mx-auto px-4 md:px-6 h-full flex items-center gap-3">
 
             <!-- Hamburger -->
             <button id="hamburger-btn" class="md:hidden p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition">
@@ -90,10 +90,140 @@
 
     </header>
 
-    <!-- Sidebar overlay (mobile) -->
-    <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-[140] hidden"></div>
+    <!-- Desktop layout wrapper -->
+    <div class="hidden md:flex min-h-screen">
 
-    <div class="container mx-auto md:ml-60 md:max-w-[calc(100%-15rem)] flex flex-1 pt-14">
+        <!-- SIDEBAR (desktop) -->
+        <aside class="fixed top-0 left-0 w-60 h-screen
+                   bg-white dark:bg-[#1a1a1b]
+                   border-r border-gray-200 dark:border-gray-700
+                   z-40 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <!-- Nav (same as mobile sidebar nav) -->
+            <nav class="flex flex-col py-2 text-[14px]">
+                <a href="https://pathokghar.pages.dev" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-blue-600 bg-blue-50 dark:bg-gray-800 transition-colors">
+                    <i class="fas fa-home w-4"></i> <span>প্রধান পাতা</span>
+                </a>
+                <a href="new.html" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <i class="fas fa-clock w-4"></i> <span>নতুন বই</span>
+                </a>
+                <a href="popular.html" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <i class="fas fa-fire w-4"></i> <span>জনপ্রিয়</span>
+                </a>
+                <hr class="my-3 border-gray-100 dark:border-gray-800 mx-4">
+                <details class="group mx-2" open>
+                    <summary class="flex items-center justify-between px-4 py-2 text-gray-500 dark:text-gray-400 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md list-none uppercase text-[11px] font-semibold tracking-wider">
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-layer-group text-xs"></i> ক্যাটাগরি</span>
+                        <i class="fas fa-chevron-down text-[9px] transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="flex flex-col mt-1 space-y-0.5">
+                        <a href="category.html?c=uponyas" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"><i class="fas fa-book text-xs text-blue-400"></i> <span>উপন্যাস</span></a>
+                        <a href="category.html?c=golpo" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"><i class="fas fa-book text-xs text-green-400"></i> <span>গল্প</span></a>
+                        <a href="category.html?c=kobita" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"><i class="fas fa-book text-xs text-pink-400"></i> <span>কবিতা</span></a>
+                        <a href="category.html?c=probondho" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"><i class="fas fa-book text-xs text-yellow-400"></i> <span>প্রবন্ধ</span></a>
+                        <a href="category.html?c=science" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"><i class="fas fa-book text-xs text-purple-400"></i> <span>বিজ্ঞান</span></a>
+                    </div>
+                </details>
+                <hr class="my-3 border-gray-100 dark:border-gray-800 mx-4">
+                <details class="group mx-2" open>
+                    <summary class="flex items-center justify-between px-4 py-2 text-gray-500 dark:text-gray-400 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md list-none uppercase text-[11px] font-semibold tracking-wider">
+                        <span>লেখক</span>
+                        <i class="fas fa-chevron-down text-[9px] transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="flex flex-col mt-1 space-y-0.5">
+                        <a href="author.html?a=humayun" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"><i class="fas fa-user text-xs text-gray-400"></i> <span>হুমায়ূন আহমেদ</span></a>
+                        <a href="author.html?a=rabindra" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"><i class="fas fa-user text-xs text-gray-400"></i> <span>রবীন্দ্রনাথ ঠাকুর</span></a>
+                    </div>
+                </details>
+                <div class="mt-8 pt-4 px-4 border-t border-gray-100 dark:border-gray-800">
+                    <div class="flex flex-wrap gap-x-3 gap-y-1 text-[12px] text-gray-500 dark:text-gray-400">
+                        <a href="#" class="hover:text-blue-500 transition-colors">সম্পর্কে</a>
+                        <a href="#" class="hover:text-blue-500 transition-colors">যোগাযোগ</a>
+                        <a href="#" class="hover:text-blue-500 transition-colors">গোপনীয়তা</a>
+                    </div>
+                    <div class="mt-2 text-[11px] text-gray-400 dark:text-gray-500 pb-4">© ২০২৬ পাঠক ঘর</div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Right column: header + main -->
+        <div class="ml-60 flex flex-col flex-1 min-h-screen">
+
+            <!-- Desktop header (scrolls with page) -->
+            <header class="bg-white dark:bg-[#1a1a1b] h-14 border-b border-gray-200 dark:border-gray-700 shadow-sm shrink-0" id="desktop-header-inner">
+                <div class="px-6 h-full flex items-center gap-3">
+                    <!-- Search (desktop) -->
+                    <div class="flex flex-1 max-w-2xl gap-1">
+                        <div class="relative flex-1">
+                            <input id="desktop-search-input" type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
+                                class="w-full bg-gray-50 dark:bg-[#2d2d2d] border border-gray-300 dark:border-gray-600 rounded py-1.5 px-4 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all">
+                        </div>
+                        <button id="desktop-search-btn" class="bg-brand-500 hover:bg-brand-600 text-white px-4 rounded transition-colors shrink-0">
+                            <i class="fas fa-search text-sm"></i>
+                        </button>
+                    </div>
+                    <!-- Right actions -->
+                    <div class="flex items-center space-x-2 ml-auto shrink-0">
+                        <button id="theme-btn-desktop" class="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition text-gray-600 dark:text-gray-300" title="ডার্ক মোড">
+                            <i id="theme-icon-desktop" class="fas fa-moon text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Desktop main content -->
+            <main class="flex-1 min-w-0 mt-3 rounded-tl-xl rounded-tr-xl overflow-hidden shadow-sm">
+                <div class="px-4 md:px-6 mb-6">
+    <div class="bg-white dark:bg-[#2d2d2d] rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5 md:p-6">
+        <div class="flex flex-col md:flex-row gap-5 md:gap-7 items-center md:items-start">
+            <div class="shrink-0">
+                <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780238057171_vddsf4msbj.jpg" alt="রবীন্দ্রনাথ ঠাকুর" class="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-4 border-gray-100 dark:border-gray-700 shadow-md">
+            </div>
+            <div class="flex-1 text-center md:text-left">
+                <h1 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1">রবীন্দ্রনাথ ঠাকুর</h1>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-3 leading-relaxed">রবীন্দ্রনাথ ঠাকুর (৭ই মে, ১৮৬১ - ৭ই আগস্ট, ১৯৪১) (২৫ বৈশাখ, ১২৬৮ - ২২ শ্রাবণ, ১৩৪৮ বঙ্গাব্দ) ছিলেন অগ্রণী বাঙালি কবি, ঔপন্যাসিক, সংগীতস্রষ্টা, নাট্যকার, চিত্রকর, ছোটগল্পকার, প্রাবন্ধিক, অভিনেতা, কণ্ঠশিল্পী ও দার্শনিক। তাঁকে বাংলা ভাষার সর্বশ্রেষ্ঠ সাহিত্যিক মনে করা হয়। রবীন্দ্রনাথকে গুরুদেব, কবিগুরু ও বিশ্বকবি অভিধায় ভূষিত করা হয়। রবীন্দ্রনাথের ৫২টি কাব্যগ্রন্থ, ৩৮টি নাটক, ১৩টি উপন্যাস ও ৩৬টি প্রবন্ধ ও অন্যান্য গদ্যসংকলন তাঁর জীবদ্দশায় বা মৃত্যুর অব্যবহিত পরে প্রকাশিত হয়। তাঁর সর্বমোট ৯৫টি ছোটগল্প ও ১৯১৫টি গান যথাক্রমে গল্পগুচ্ছ ও গীতবিতান সংকলনের অন্তর্ভুক্ত হয়েছে। রবীন্দ্রনাথের যাবতীয় প্রকাশিত ও গ্রন্থাকারে অপ্রকাশিত রচনা ৩২ খণ্ডে রবীন্দ্র রচনাবলী নামে প্রকাশিত হয়েছে। রবীন্দ্রনাথের যাবতীয় পত্রসাহিত্য উনিশ খণ্ডে চিঠিপত্র ও চারটি পৃথক গ্রন্থে প্রকাশিত। এছাড়া তিনি প্রায় দুই হাজার ছবি এঁকেছিলেন। রবীন্দ্রনাথের রচনা বিশ্বের বিভিন্ন ভাষায় অনূদিত হয়েছে। ১৯১৩ সালে গীতাঞ্জলি কাব্যগ্রন্থের ইংরেজি অনুবাদের জন্য তিনি সাহিত্যে নোবেল পুরস্কার লাভ করেন।
+
+রবীন্দ্রনাথ ঠাকুর কলকাতার এক ধনাঢ্য ও সংস্কৃতিবান ব্রাহ্ম পিরালী ব্রাহ্মণ পরিবারে জন্মগ্রহণ করেন। বাল্যকালে প্রথাগত বিদ্যালয়-শিক্ষা তিনি গ্রহণ করেননি; গৃহশিক্ষক রেখে বাড়িতেই তাঁর শিক্ষার ব্যবস্থা করা হয়েছিল। আট বছর বয়সে তিনি কবিতা লেখা শুরু করেন। ১৮৭৪ সালে তত্ত্ববোধিনী পত্রিকা-এ তাঁর “অভিলাষ” কবিতাটি প্রকাশিত হয়। এটিই ছিল তাঁর প্রথম প্রকাশিত রচনা। ১৮৭৮ সালে মাত্র সতেরো বছর বয়সে রবীন্দ্রনাথ প্রথমবার ইংল্যান্ডে যান। ১৮৮৩ সালে মৃণালিনী দেবীর সঙ্গে তাঁর বিবাহ হয়। ১৮৯০ সাল থেকে রবীন্দ্রনাথ পূর্ববঙ্গের শিলাইদহের জমিদারি এস্টেটে বসবাস শুরু করেন। ১৯০১ সালে তিনি পশ্চিমবঙ্গের শান্তিনিকেতনে ব্রহ্মচর্যাশ্রম প্রতিষ্ঠা করেন এবং সেখানেই পাকাপাকিভাবে বসবাস শুরু করেন। ১৯০২ সালে তাঁর পত্নীবিয়োগ হয়। ১৯০৫ সালে তিনি বঙ্গভঙ্গ-বিরোধী আন্দোলনে জড়িয়ে পড়েন। ১৯১৫ সালে ব্রিটিশ সরকার তাঁকে নাইট উপাধিতে ভূষিত করেন। কিন্তু ১৯১৯ সালে জালিয়ানওয়ালাবাগ হত্যাকাণ্ডের প্রতিবাদে তিনি সেই উপাধি ত্যাগ করেন। ১৯২১ সালে গ্রামোন্নয়নের জন্য তিনি শ্রীনিকেতন নামে একটি সংস্থা প্রতিষ্ঠা করেন। ১৯২৩ সালে আনুষ্ঠানিকভাবে বিশ্বভারতী প্রতিষ্ঠিত হয়। দীর্ঘজীবনে তিনি বহুবার বিদেশ ভ্রমণ করেন এবং সমগ্র বিশ্বে বিশ্বভ্রাতৃত্বের বাণী প্রচার করেন। ১৯৪১ সালে দীর্ঘ রোগভোগের পর কলকাতার পৈত্রিক বাসভবনেই তাঁর মৃত্যু হয়।
+
+রবীন্দ্রনাথের কাব্যসাহিত্যের বৈশিষ্ট্য ভাবগভীরতা, গীতিধর্মিতা চিত্ররূপময়তা, অধ্যাত্মচেতনা, ঐতিহ্যপ্রীতি, প্রকৃতিপ্রেম, মানবপ্রেম, স্বদেশপ্রেম, বিশ্বপ্রেম, রোম্যান্টিক সৌন্দর্যচেতনা, ভাব, ভাষা, ছন্দ ও আঙ্গিকের বৈচিত্র্য, বাস্তবচেতনা ও প্রগতিচেতনা। রবীন্দ্রনাথের গদ্যভাষাও কাব্যিক। ভারতের ধ্রুপদি ও লৌকিক সংস্কৃতি এবং পাশ্চাত্য বিজ্ঞানচেতনা ও শিল্পদর্শন তাঁর রচনায় গভীর প্রভাব বিস্তার করেছিল। কথাসাহিত্য ও প্রবন্ধের মাধ্যমে তিনি সমাজ, রাজনীতি ও রাষ্ট্রনীতি সম্পর্কে নিজ মতামত প্রকাশ করেছিলেন। সমাজকল্যাণের উপায় হিসেবে তিনি গ্রামোন্নয়ন ও গ্রামের দরিদ্র জনসাধারণকে শিক্ষিত করে তোলার পক্ষে মতপ্রকাশ করেন। এর পাশাপাশি সামাজিক ভেদাভেদ, অস্পৃশ্যতা, ধর্মীয় গোঁড়ামি ও ধর্মান্ধতার বিরুদ্ধেও তিনি তীব্র প্রতিবাদ জানিয়েছিলেন। রবীন্দ্রনাথের দর্শনচেতনায় ঈশ্বরের মূল হিসেবে মানব সংসারকেই নির্দিষ্ট করা হয়েছে; রবীন্দ্রনাথ দেববিগ্রহের পরিবর্তে কর্মী অর্থাৎ মানুষ ঈশ্বরের পূজার কথা বলেছিলেন। সংগীত ও নৃত্যকে তিনি শিক্ষার অপরিহার্য অঙ্গ মনে করতেন। রবীন্দ্রনাথের গান তাঁর অন্যতম শ্রেষ্ঠ কীর্তি। তাঁর রচিত আমার সোনার বাংলা ও জনগণমন-অধিনায়ক জয় হে গানদুটি যথাক্রমে গণপ্রজাতন্ত্রী বাংলাদেশ ও ভারতীয় প্রজাতন্ত্রের জাতীয় সংগীত।</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="px-4 md:px-6">
+    <div class="flex items-center justify-between mb-4">
+        <h2 class="text-base font-bold text-gray-800 dark:text-gray-100">লেখকের বইসমূহ</h2>
+        <span class="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2.5 py-1 rounded-full">মোট 2</span>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+        
+    <a href="/books/jogajog.html" class="group">
+      <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780243146714_coszcjbobmg.webp" alt="যোগাযোগ" class="w-full aspect-[2/3] object-cover">
+      </div>
+      <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">যোগাযোগ</p>
+      <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">উপন্যাস</p>
+    </a>
+    <a href="/books/sesher-kobita.html" class="group">
+      <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780242158760_3rivje7ps4o.webp" alt="শেষের কবিতা" class="w-full aspect-[2/3] object-cover">
+      </div>
+      <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">শেষের কবিতা</p>
+      <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">উপন্যাস</p>
+    </a>
+    </div>
+</div
+
+            </main>
+
+        </div>
+
+    </div><!-- end desktop layout wrapper -->
+
+    <!-- MOBILE LAYOUT (hidden on desktop) -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-[140] hidden md:hidden"></div>
+
+    <div class="md:hidden flex flex-1 pt-14">
 
         <!-- SIDEBAR -->
         <aside id="mobile-sidebar"
@@ -177,8 +307,8 @@
             </nav>
         </aside>
 
-        <!-- MAIN CONTENT -->
-        <main class="flex-1 min-w-0 min-h-[calc(100vh-3.5rem)] md:mt-3 md:rounded-tl-xl md:rounded-tr-xl md:overflow-hidden md:shadow-sm">
+        <!-- MAIN CONTENT (mobile) -->
+        <main class="flex-1 min-w-0 min-h-[calc(100vh-3.5rem)]">
             <div class="px-4 md:px-6 mb-6">
     <div class="bg-white dark:bg-[#2d2d2d] rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5 md:p-6">
         <div class="flex flex-col md:flex-row gap-5 md:gap-7 items-center md:items-start">
@@ -226,37 +356,44 @@
     </div>
 
     <script>
-        // Dark mode
+        // Dark mode — handles both mobile header and desktop header-inner
         const themeBtn = document.getElementById('theme-btn');
+        const themeBtnDesktop = document.getElementById('theme-btn-desktop');
         const themeIcon = document.getElementById('theme-icon');
+        const themeIconDesktop = document.getElementById('theme-icon-desktop');
         const html = document.documentElement;
 
-        const header = document.querySelector('header');
+        const mobileHeader = document.querySelector('header');
+        const desktopHeaderInner = document.getElementById('desktop-header-inner');
+
         function applyTheme(dark) {
             if (dark) {
                 html.classList.add('dark');
-                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                themeIcon?.classList.replace('fa-moon', 'fa-sun');
+                themeIconDesktop?.classList.replace('fa-moon', 'fa-sun');
                 localStorage.theme = 'dark';
-                header.style.borderTopColor = '#1e3a5f';
+                if (mobileHeader) mobileHeader.style.borderTopColor = '#1e3a5f';
+                if (desktopHeaderInner) desktopHeaderInner.style.borderTopColor = '#1e3a5f';
             } else {
                 html.classList.remove('dark');
-                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                themeIcon?.classList.replace('fa-sun', 'fa-moon');
+                themeIconDesktop?.classList.replace('fa-sun', 'fa-moon');
                 localStorage.theme = 'light';
-                header.style.borderTopColor = '#f0f7ff';
+                if (mobileHeader) mobileHeader.style.borderTopColor = '#f0f7ff';
+                if (desktopHeaderInner) desktopHeaderInner.style.borderTopColor = '#f0f7ff';
             }
         }
 
         applyTheme(localStorage.theme === 'dark');
 
-        themeBtn.addEventListener('click', () => {
-            applyTheme(!html.classList.contains('dark'));
-        });
+        themeBtn?.addEventListener('click', () => applyTheme(!html.classList.contains('dark')));
+        themeBtnDesktop?.addEventListener('click', () => applyTheme(!html.classList.contains('dark')));
 
         // Mobile search
         const mobileSearchBtn = document.getElementById('mobile-search-btn');
         const mobileSearchBar = document.getElementById('mobile-search-bar');
 
-        mobileSearchBtn.addEventListener('click', () => {
+        mobileSearchBtn?.addEventListener('click', () => {
             mobileSearchBar.classList.toggle('hidden');
             if (!mobileSearchBar.classList.contains('hidden')) {
                 mobileSearchBar.querySelector('input').focus();
@@ -275,11 +412,11 @@
         const mobileInput = document.getElementById('mobile-search-input');
         const mobileSubmit = document.getElementById('mobile-search-submit');
 
-        desktopBtn.addEventListener('click', () => doSearch(desktopInput.value));
-        desktopInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(desktopInput.value); });
+        desktopBtn?.addEventListener('click', () => doSearch(desktopInput.value));
+        desktopInput?.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(desktopInput.value); });
 
-        mobileSubmit.addEventListener('click', () => doSearch(mobileInput.value));
-        mobileInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(mobileInput.value); });
+        mobileSubmit?.addEventListener('click', () => doSearch(mobileInput.value));
+        mobileInput?.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(mobileInput.value); });
 
         // Hide header on scroll down, show on scroll up (mobile only)
         let lastScrollY = window.scrollY;
@@ -292,9 +429,9 @@
                 if (window.innerWidth < 768) {
                     const currentScrollY = window.scrollY;
                     if (currentScrollY > lastScrollY && currentScrollY > 56) {
-                        header.style.transform = 'translateY(-100%)';
+                        mobileHeader.style.transform = 'translateY(-100%)';
                     } else {
-                        header.style.transform = 'translateY(0)';
+                        mobileHeader.style.transform = 'translateY(0)';
                     }
                     lastScrollY = currentScrollY;
                 }
@@ -307,14 +444,14 @@
         const sidebar = document.getElementById('mobile-sidebar');
         const overlay = document.getElementById('sidebar-overlay');
 
-        hamburger.addEventListener('click', () => {
+        hamburger?.addEventListener('click', () => {
             const isOpen = !sidebar.classList.contains('-translate-x-full');
             sidebar.classList.toggle('-translate-x-full');
             overlay.classList.toggle('hidden');
             document.body.style.overflow = isOpen ? '' : 'hidden';
         });
 
-        overlay.addEventListener('click', () => {
+        overlay?.addEventListener('click', () => {
             sidebar.classList.add('-translate-x-full');
             overlay.classList.add('hidden');
             document.body.style.overflow = '';

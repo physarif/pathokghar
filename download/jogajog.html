@@ -34,8 +34,8 @@
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
 
     <!-- HEADER -->
-    <header class="bg-white dark:bg-[#1a1a1b] fixed top-0 left-0 md:left-60 right-0 h-14 z-[100] border-b border-gray-200 dark:border-gray-700 shadow-sm transition-transform duration-300">
-        <div class="container mx-auto px-4 h-full flex items-center gap-3">
+    <header class="bg-white dark:bg-[#1a1a1b] fixed top-0 left-0 right-0 h-14 z-[100] border-b border-gray-200 dark:border-gray-700 shadow-sm transition-transform duration-300">
+        <div class="container mx-auto px-4 md:px-6 h-full flex items-center gap-3">
 
             <!-- Hamburger -->
             <button id="hamburger-btn" class="md:hidden p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition">
@@ -90,10 +90,456 @@
 
     </header>
 
-    <!-- Sidebar overlay (mobile) -->
-    <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-[140] hidden"></div>
+    <!-- Desktop layout wrapper -->
+    <div class="hidden md:flex min-h-screen">
 
-    <div class="container mx-auto md:ml-60 md:max-w-[calc(100%-15rem)] flex flex-1 pt-14">
+        <!-- SIDEBAR (desktop) -->
+        <aside class="fixed top-0 left-0 w-60 h-screen
+                   bg-white dark:bg-[#1a1a1b]
+                   border-r border-gray-200 dark:border-gray-700
+                   z-40 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <!-- Nav (same as mobile sidebar nav) -->
+            <nav class="flex flex-col py-2 text-[14px]">
+                <a href="https://pathokghar.pages.dev" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-blue-600 bg-blue-50 dark:bg-gray-800 transition-colors">
+                    <i class="fas fa-home w-4"></i> <span>প্রধান পাতা</span>
+                </a>
+                <a href="new.html" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <i class="fas fa-clock w-4"></i> <span>নতুন বই</span>
+                </a>
+                <a href="popular.html" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <i class="fas fa-fire w-4"></i> <span>জনপ্রিয়</span>
+                </a>
+                <hr class="my-3 border-gray-100 dark:border-gray-800 mx-4">
+                <details class="group mx-2" open>
+                    <summary class="flex items-center justify-between px-4 py-2 text-gray-500 dark:text-gray-400 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md list-none uppercase text-[11px] font-semibold tracking-wider">
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-layer-group text-xs"></i> ক্যাটাগরি</span>
+                        <i class="fas fa-chevron-down text-[9px] transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="flex flex-col mt-1 space-y-0.5">
+                        <a href="category.html?c=uponyas" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"><i class="fas fa-book text-xs text-blue-400"></i> <span>উপন্যাস</span></a>
+                        <a href="category.html?c=golpo" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"><i class="fas fa-book text-xs text-green-400"></i> <span>গল্প</span></a>
+                        <a href="category.html?c=kobita" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"><i class="fas fa-book text-xs text-pink-400"></i> <span>কবিতা</span></a>
+                        <a href="category.html?c=probondho" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"><i class="fas fa-book text-xs text-yellow-400"></i> <span>প্রবন্ধ</span></a>
+                        <a href="category.html?c=science" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"><i class="fas fa-book text-xs text-purple-400"></i> <span>বিজ্ঞান</span></a>
+                    </div>
+                </details>
+                <hr class="my-3 border-gray-100 dark:border-gray-800 mx-4">
+                <details class="group mx-2" open>
+                    <summary class="flex items-center justify-between px-4 py-2 text-gray-500 dark:text-gray-400 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md list-none uppercase text-[11px] font-semibold tracking-wider">
+                        <span>লেখক</span>
+                        <i class="fas fa-chevron-down text-[9px] transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="flex flex-col mt-1 space-y-0.5">
+                        <a href="author.html?a=humayun" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"><i class="fas fa-user text-xs text-gray-400"></i> <span>হুমায়ূন আহমেদ</span></a>
+                        <a href="author.html?a=rabindra" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"><i class="fas fa-user text-xs text-gray-400"></i> <span>রবীন্দ্রনাথ ঠাকুর</span></a>
+                    </div>
+                </details>
+                <div class="mt-8 pt-4 px-4 border-t border-gray-100 dark:border-gray-800">
+                    <div class="flex flex-wrap gap-x-3 gap-y-1 text-[12px] text-gray-500 dark:text-gray-400">
+                        <a href="#" class="hover:text-blue-500 transition-colors">সম্পর্কে</a>
+                        <a href="#" class="hover:text-blue-500 transition-colors">যোগাযোগ</a>
+                        <a href="#" class="hover:text-blue-500 transition-colors">গোপনীয়তা</a>
+                    </div>
+                    <div class="mt-2 text-[11px] text-gray-400 dark:text-gray-500 pb-4">© ২০২৬ পাঠক ঘর</div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Right column: header + main -->
+        <div class="ml-60 flex flex-col flex-1 min-h-screen">
+
+            <!-- Desktop header (scrolls with page) -->
+            <header class="bg-white dark:bg-[#1a1a1b] h-14 border-b border-gray-200 dark:border-gray-700 shadow-sm shrink-0" id="desktop-header-inner">
+                <div class="px-6 h-full flex items-center gap-3">
+                    <!-- Search (desktop) -->
+                    <div class="flex flex-1 max-w-2xl gap-1">
+                        <div class="relative flex-1">
+                            <input id="desktop-search-input" type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
+                                class="w-full bg-gray-50 dark:bg-[#2d2d2d] border border-gray-300 dark:border-gray-600 rounded py-1.5 px-4 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all">
+                        </div>
+                        <button id="desktop-search-btn" class="bg-brand-500 hover:bg-brand-600 text-white px-4 rounded transition-colors shrink-0">
+                            <i class="fas fa-search text-sm"></i>
+                        </button>
+                    </div>
+                    <!-- Right actions -->
+                    <div class="flex items-center space-x-2 ml-auto shrink-0">
+                        <button id="theme-btn-desktop" class="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition text-gray-600 dark:text-gray-300" title="ডার্ক মোড">
+                            <i id="theme-icon-desktop" class="fas fa-moon text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Desktop main content -->
+            <main class="flex-1 min-w-0 mt-3 rounded-tl-xl rounded-tr-xl overflow-hidden shadow-sm">
+                <!-- components/download.html — layout.html এর  এ inject হবে -->
+
+<style>
+    .dl-cover-shadow {
+        box-shadow: 0 8px 32px rgba(0,86,179,0.18), 0 2px 8px rgba(0,0,0,0.10);
+    }
+
+    .progress-bar-fill {
+        height: 100%;
+        border-radius: 9999px;
+        background: linear-gradient(90deg, #0056b3, #3b82f6);
+        transition: width 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 100%;
+    }
+
+    .step-fade {
+        animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(6px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .pulse-ring {
+        animation: pulse-ring 1.5s ease infinite;
+    }
+    @keyframes pulse-ring {
+        0%   { box-shadow: 0 0 0 0 rgba(0,86,179,0.25); }
+        70%  { box-shadow: 0 0 0 12px rgba(0,86,179,0); }
+        100% { box-shadow: 0 0 0 0 rgba(0,86,179,0); }
+    }
+</style>
+
+<!-- ─── MOBILE layout (default, hidden on md+) ─── -->
+<div class="md:hidden max-w-lg mx-auto py-2 px-4">
+
+    <!-- Book hero card -->
+    <div class="bg-white dark:bg-[#2d2d2d] rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden mb-4">
+        <div class="relative flex justify-center pt-8 pb-6 bg-gradient-to-b from-blue-50 to-white dark:from-[#1e2d42] dark:to-[#2d2d2d]">
+            <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780243146714_coszcjbobmg.webp" alt="যোগাযোগ"
+                 class="dl-cover-shadow w-36 rounded-lg object-cover aspect-[2/3]">
+        </div>
+        <div class="px-5 pb-5 text-center">
+            <a href="/books/jogajog.html"
+               class="text-lg font-bold text-gray-900 dark:text-gray-100 leading-snug mb-1 hover:text-[#0056b3] dark:hover:text-blue-400 transition-colors block">যোগাযোগ</a>
+            <a href="/author/rabindranath-tagore.html"
+               class="text-sm text-[#0056b3] dark:text-blue-400 hover:underline mb-3 block">রবীন্দ্রনাথ ঠাকুর</a>
+            <div class="flex items-center justify-center flex-wrap gap-2">
+                <a href="/category/uponyas/1/"
+                   class="text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-3 py-1 rounded-full border border-blue-100 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+                    উপন্যাস
+                </a>
+                <span id="m-file-type" class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300 px-3 py-1 rounded-full border border-gray-200 dark:border-gray-600">ePub</span>
+                <span id="m-file-size" class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300 px-3 py-1 rounded-full border border-gray-200 dark:border-gray-600"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Download action card -->
+    <div class="bg-white dark:bg-[#2d2d2d] rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-6">
+        <div id="m-step-1" class="step-fade">
+            <div class="flex flex-col items-center gap-4">
+                <div class="w-14 h-14 rounded-full bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center pulse-ring">
+                    <i class="fas fa-download text-[#0056b3] dark:text-blue-400 text-xl"></i>
+                </div>
+                <div class="text-center">
+                    <p class="text-sm font-semibold text-gray-800 dark:text-gray-100 mb-0.5">বইটি ডাউনলোড করুন</p>
+                    <p class="text-xs text-gray-400 dark:text-gray-500">বিনামূল্যে — কোনো অ্যাকাউন্ট ছাড়াই</p>
+                </div>
+                <button id="m-get-link-btn"
+                    class="w-full bg-[#0056b3] hover:bg-[#004494] active:scale-95 text-white font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2 text-sm shadow-sm">
+                    <i class="fas fa-link text-sm"></i> ডাউনলোড লিংক পান
+                </button>
+            </div>
+        </div>
+        <div id="m-step-2" class="hidden step-fade">
+            <div class="flex flex-col gap-5">
+                <p id="m-waiting-text" class="text-xs text-gray-500 dark:text-gray-400 text-center">কয়েক সেকেন্ড অপেক্ষা করুন...</p>
+                <div class="w-full h-20 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center justify-center border border-dashed border-gray-200 dark:border-gray-700">
+                    <span class="text-xs text-gray-300 dark:text-gray-600">বিজ্ঞাপন</span>
+                </div>
+                <!-- Progress bar -->
+                <div id="m-progress-wrap" class="flex flex-col gap-2">
+                    <div class="flex items-center justify-between text-xs text-gray-400 dark:text-gray-500">
+                        <span id="m-progress-label">লিংক তৈরি হচ্ছে...</span>
+                        <span id="m-countdown-wrap" class="progress-seconds"><span id="m-countdown-text">5</span>s</span>
+                    </div>
+                    <div class="w-full h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                        <div id="m-progress-fill" class="progress-bar-fill"></div>
+                    </div>
+                </div>
+                <!-- countdown শেষে দেখাবে -->
+                <a id="m-download-btn" href="#"
+                    class="hidden w-full bg-green-500 hover:bg-green-600 active:scale-95 text-white font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2 text-sm shadow-sm step-fade">
+                    <i class="fas fa-download text-sm"></i> ডাউনলোড করুন
+                </a>
+                <button id="m-restart-btn" class="hidden text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors underline underline-offset-2">
+                    আবার চেষ্টা করুন
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info strip -->
+    <div class="mt-4 flex items-center justify-center gap-5 text-xs text-gray-400 dark:text-gray-600">
+        <span class="flex items-center gap-1.5"><i class="fas fa-shield-alt text-[10px]"></i> নিরাপদ লিংক</span>
+        <span class="flex items-center gap-1.5"><i class="fas fa-bolt text-[10px]"></i> দ্রুত ডাউনলোড</span>
+        <span class="flex items-center gap-1.5"><i class="fas fa-ban text-[10px]"></i> কোনো রেজিস্ট্রেশন নেই</span>
+    </div>
+</div>
+
+
+<!-- ─── DESKTOP layout (hidden on mobile, flex on md+) ─── -->
+<div class="hidden md:flex items-start gap-7 max-w-4xl mx-auto py-4 pl-8">
+
+    <!-- LEFT: Book info panel -->
+    <div class="w-72 shrink-0 self-start sticky top-4">
+
+        <!-- Cover card -->
+        <div class="bg-white dark:bg-[#2d2d2d] rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden mb-4">
+            <div class="flex justify-center pt-8 pb-6 bg-gradient-to-b from-blue-50 to-white dark:from-[#1e2d42] dark:to-[#2d2d2d]">
+                <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780243146714_coszcjbobmg.webp" alt="যোগাযোগ"
+                     class="dl-cover-shadow w-40 rounded-lg object-cover aspect-[2/3]">
+            </div>
+            <div class="px-5 pb-5 text-center">
+                <a href="/books/jogajog.html"
+                   class="text-base font-bold text-gray-900 dark:text-gray-100 leading-snug mb-1 hover:text-[#0056b3] dark:hover:text-blue-400 transition-colors block">যোগাযোগ</a>
+                <a href="/author/rabindranath-tagore.html"
+                   class="text-sm text-[#0056b3] dark:text-blue-400 hover:underline mb-3 block">রবীন্দ্রনাথ ঠাকুর</a>
+                <div class="flex items-center justify-center flex-wrap gap-2">
+                    <a href="/category/uponyas/1/"
+                       class="text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-3 py-1 rounded-full border border-blue-100 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+                        উপন্যাস
+                    </a>
+                    <span id="d-file-type" class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300 px-3 py-1 rounded-full border border-gray-200 dark:border-gray-600">ePub</span>
+                    <span id="d-file-size" class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300 px-3 py-1 rounded-full border border-gray-200 dark:border-gray-600"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT: Download panel -->
+    <div class="flex-1 min-w-0">
+
+        <!-- Download action card -->
+        <div class="bg-white dark:bg-[#2d2d2d] rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-8 mb-4">
+
+            <!-- Step 1 -->
+            <div id="d-step-1" class="step-fade">
+                <div class="flex flex-col items-center gap-5">
+                    <div class="w-16 h-16 rounded-full bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center pulse-ring">
+                        <i class="fas fa-download text-[#0056b3] dark:text-blue-400 text-2xl"></i>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-base font-bold text-gray-800 dark:text-gray-100 mb-1">বইটি ডাউনলোড করুন</p>
+                        <p class="text-sm text-gray-400 dark:text-gray-500">বিনামূল্যে — কোনো অ্যাকাউন্ট ছাড়াই</p>
+                    </div>
+                    <button id="d-get-link-btn"
+                        class="w-full max-w-xs bg-[#0056b3] hover:bg-[#004494] active:scale-95 text-white font-semibold py-3.5 rounded-lg transition-all flex items-center justify-center gap-2 text-sm shadow-sm">
+                        <i class="fas fa-link"></i> ডাউনলোড লিংক পান
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div id="d-step-2" class="hidden step-fade">
+                <div class="flex flex-col items-center gap-6">
+                    <p id="d-waiting-text" class="text-sm text-gray-500 dark:text-gray-400">কয়েক সেকেন্ড অপেক্ষা করুন...</p>
+
+                    <!-- Ad slot — wider on desktop -->
+                    <div class="w-full h-24 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center justify-center border border-dashed border-gray-200 dark:border-gray-700">
+                        <span class="text-xs text-gray-300 dark:text-gray-600">বিজ্ঞাপন</span>
+                    </div>
+
+                    <!-- Progress bar -->
+                    <div id="d-progress-wrap" class="w-full flex flex-col gap-2">
+                        <div class="flex items-center justify-between text-sm text-gray-400 dark:text-gray-500">
+                            <span id="d-progress-label">লিংক তৈরি হচ্ছে...</span>
+                            <span id="d-countdown-wrap" class="progress-seconds font-semibold text-[#0056b3] dark:text-blue-400"><span id="d-countdown-text">5</span>s</span>
+                        </div>
+                        <div class="w-full h-2.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                            <div id="d-progress-fill" class="progress-bar-fill"></div>
+                        </div>
+                    </div>
+
+                    <!-- countdown শেষে দেখাবে -->
+                    <a id="d-download-btn" href="#"
+                        class="hidden w-full max-w-xs bg-green-500 hover:bg-green-600 active:scale-95 text-white font-semibold py-3.5 rounded-lg transition-all flex items-center justify-center gap-2 text-sm shadow-sm step-fade">
+                        <i class="fas fa-download"></i> ডাউনলোড করুন
+                    </a>
+                    <button id="d-restart-btn" class="hidden text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors underline underline-offset-2">
+                        আবার চেষ্টা করুন
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info strip cards -->
+        <div class="grid grid-cols-3 gap-3">
+            <div class="bg-white dark:bg-[#2d2d2d] rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-4 flex flex-col items-center gap-2 text-center">
+                <div class="w-9 h-9 rounded-full bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center">
+                    <i class="fas fa-shield-alt text-[#0056b3] dark:text-blue-400 text-sm"></i>
+                </div>
+                <p class="text-xs font-medium text-gray-700 dark:text-gray-200">নিরাপদ লিংক</p>
+                <p class="text-[11px] text-gray-400 dark:text-gray-500">ভেরিফাইড ডাউনলোড</p>
+            </div>
+            <div class="bg-white dark:bg-[#2d2d2d] rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-4 flex flex-col items-center gap-2 text-center">
+                <div class="w-9 h-9 rounded-full bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center">
+                    <i class="fas fa-bolt text-[#0056b3] dark:text-blue-400 text-sm"></i>
+                </div>
+                <p class="text-xs font-medium text-gray-700 dark:text-gray-200">দ্রুত ডাউনলোড</p>
+                <p class="text-[11px] text-gray-400 dark:text-gray-500">হাই-স্পিড সার্ভার</p>
+            </div>
+            <div class="bg-white dark:bg-[#2d2d2d] rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-4 flex flex-col items-center gap-2 text-center">
+                <div class="w-9 h-9 rounded-full bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center">
+                    <i class="fas fa-ban text-[#0056b3] dark:text-blue-400 text-sm"></i>
+                </div>
+                <p class="text-xs font-medium text-gray-700 dark:text-gray-200">রেজিস্ট্রেশন নেই</p>
+                <p class="text-[11px] text-gray-400 dark:text-gray-500">সরাসরি ডাউনলোড</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+(function () {
+    const DOWNLOAD_URL = 'https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780243750498_nud2jo5plgb.epub';
+    const COUNTDOWN_SECONDS = 5;
+
+    // URL extension থেকে file type detect করা (most reliable)
+    function getTypeFromUrl(url) {
+        try {
+            const path = new URL(url).pathname.toLowerCase();
+            if (path.endsWith('.pdf'))  return 'PDF';
+            if (path.endsWith('.epub')) return 'ePub';
+            if (path.endsWith('.djvu') || path.endsWith('.djv')) return 'DjVu';
+            if (path.endsWith('.mobi')) return 'Mobi';
+            if (path.endsWith('.cbz'))  return 'CBZ';
+            if (path.endsWith('.cbr'))  return 'CBR';
+        } catch (e) {}
+        return null; // unknown — HEAD request দিয়ে try করব
+    }
+
+    // Detect file info — update both mobile & desktop elements
+    async function detectFileInfo(url) {
+        // প্রথমে URL থেকে type বের করার চেষ্টা
+        let typeText = getTypeFromUrl(url);
+
+        try {
+            const res = await fetch(url, { method: 'HEAD' });
+            const size = res.headers.get('content-length');
+            const contentType = res.headers.get('content-type') || '';
+            const sizeText = size ? (size / (1024 * 1024)).toFixed(1) + ' MB' : '';
+
+            // URL থেকে না পেলে content-type দিয়ে detect
+            if (!typeText) {
+                if (contentType.includes('pdf'))  typeText = 'PDF';
+                else if (contentType.includes('epub')) typeText = 'ePub';
+                else typeText = 'ePub'; // fallback
+            }
+
+            ['m-file-type', 'd-file-type', 'd-file-type-info'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = typeText;
+            });
+            ['m-file-size', 'd-file-size'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.textContent = sizeText;
+                    el.style.display = sizeText ? '' : 'none';
+                }
+            });
+
+        } catch (e) {
+            // HEAD request fail করলেও URL থেকে type দেখানো হবে
+            if (typeText) {
+                ['m-file-type', 'd-file-type', 'd-file-type-info'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.textContent = typeText;
+                });
+            }
+        }
+    }
+    detectFileInfo(DOWNLOAD_URL);
+
+    // Generic countdown runner
+    function startCountdown(prefix) {
+        const fill    = document.getElementById(prefix + 'progress-fill');
+        const text    = document.getElementById(prefix + 'countdown-text');
+        let remaining = COUNTDOWN_SECONDS;
+
+        // Start full, shrink to 0
+        fill.style.width = '100%';
+
+        // First tick after 1 frame so transition plays
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                fill.style.width = ((remaining - 1) / COUNTDOWN_SECONDS * 100) + '%';
+            });
+        });
+
+        const interval = setInterval(() => {
+            remaining--;
+            text.textContent = remaining;
+            fill.style.width = (remaining / COUNTDOWN_SECONDS * 100) + '%';
+
+            if (remaining <= 0) {
+                clearInterval(interval);
+                // progress wrap + waiting text fade out, তারপর download btn দেখাও
+                const progressWrap = document.getElementById(prefix + 'progress-wrap');
+                const waitingText  = document.getElementById(prefix + 'waiting-text');
+                const dlBtn        = document.getElementById(prefix + 'download-btn');
+                const restartBtn   = document.getElementById(prefix + 'restart-btn');
+
+                // fade out
+                if (progressWrap) { progressWrap.style.transition = 'opacity 0.3s'; progressWrap.style.opacity = '0'; }
+                if (waitingText)  { waitingText.style.transition  = 'opacity 0.3s'; waitingText.style.opacity  = '0'; }
+
+                setTimeout(() => {
+                    if (progressWrap) progressWrap.style.display = 'none';
+                    if (waitingText)  waitingText.style.display  = 'none';
+                    if (restartBtn)   restartBtn.style.display   = 'none';
+                    // download btn step-fade দিয়ে আসবে
+                    if (dlBtn) {
+                        dlBtn.href = DOWNLOAD_URL;
+                        dlBtn.classList.remove('hidden');
+                        dlBtn.classList.add('step-fade');
+                    }
+                }, 300);
+            }
+        }, 1000);
+    }
+
+    function showStep(prefix, n) {
+        // FIX: step-3 নেই, শুধু 1 ও 2 toggle করা হচ্ছে
+        [1, 2].forEach(i => {
+            const el = document.getElementById(prefix + 'step-' + i);
+            if (!el) return;
+            if (i === n) { el.classList.remove('hidden'); el.classList.add('step-fade'); }
+            else el.classList.add('hidden');
+        });
+    }
+
+    // Mobile
+    const mBtn = document.getElementById('m-get-link-btn');
+    if (mBtn) mBtn.addEventListener('click', () => { showStep('m-', 2); startCountdown('m-'); });
+    const mRestart = document.getElementById('m-restart-btn');
+    if (mRestart) mRestart.addEventListener('click', () => showStep('m-', 1));
+
+    // Desktop
+    const dBtn = document.getElementById('d-get-link-btn');
+    if (dBtn) dBtn.addEventListener('click', () => { showStep('d-', 2); startCountdown('d-'); });
+    const dRestart = document.getElementById('d-restart-btn');
+    if (dRestart) dRestart.addEventListener('click', () => showStep('d-', 1));
+})();
+</script>
+
+            </main>
+
+        </div>
+
+    </div><!-- end desktop layout wrapper -->
+
+    <!-- MOBILE LAYOUT (hidden on desktop) -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-[140] hidden md:hidden"></div>
+
+    <div class="md:hidden flex flex-1 pt-14">
 
         <!-- SIDEBAR -->
         <aside id="mobile-sidebar"
@@ -177,8 +623,8 @@
             </nav>
         </aside>
 
-        <!-- MAIN CONTENT -->
-        <main class="flex-1 min-w-0 min-h-[calc(100vh-3.5rem)] md:mt-3 md:rounded-tl-xl md:rounded-tr-xl md:overflow-hidden md:shadow-sm">
+        <!-- MAIN CONTENT (mobile) -->
+        <main class="flex-1 min-w-0 min-h-[calc(100vh-3.5rem)]">
             <!-- components/download.html — layout.html এর  এ inject হবে -->
 
 <style>
@@ -542,37 +988,44 @@
     </div>
 
     <script>
-        // Dark mode
+        // Dark mode — handles both mobile header and desktop header-inner
         const themeBtn = document.getElementById('theme-btn');
+        const themeBtnDesktop = document.getElementById('theme-btn-desktop');
         const themeIcon = document.getElementById('theme-icon');
+        const themeIconDesktop = document.getElementById('theme-icon-desktop');
         const html = document.documentElement;
 
-        const header = document.querySelector('header');
+        const mobileHeader = document.querySelector('header');
+        const desktopHeaderInner = document.getElementById('desktop-header-inner');
+
         function applyTheme(dark) {
             if (dark) {
                 html.classList.add('dark');
-                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                themeIcon?.classList.replace('fa-moon', 'fa-sun');
+                themeIconDesktop?.classList.replace('fa-moon', 'fa-sun');
                 localStorage.theme = 'dark';
-                header.style.borderTopColor = '#1e3a5f';
+                if (mobileHeader) mobileHeader.style.borderTopColor = '#1e3a5f';
+                if (desktopHeaderInner) desktopHeaderInner.style.borderTopColor = '#1e3a5f';
             } else {
                 html.classList.remove('dark');
-                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                themeIcon?.classList.replace('fa-sun', 'fa-moon');
+                themeIconDesktop?.classList.replace('fa-sun', 'fa-moon');
                 localStorage.theme = 'light';
-                header.style.borderTopColor = '#f0f7ff';
+                if (mobileHeader) mobileHeader.style.borderTopColor = '#f0f7ff';
+                if (desktopHeaderInner) desktopHeaderInner.style.borderTopColor = '#f0f7ff';
             }
         }
 
         applyTheme(localStorage.theme === 'dark');
 
-        themeBtn.addEventListener('click', () => {
-            applyTheme(!html.classList.contains('dark'));
-        });
+        themeBtn?.addEventListener('click', () => applyTheme(!html.classList.contains('dark')));
+        themeBtnDesktop?.addEventListener('click', () => applyTheme(!html.classList.contains('dark')));
 
         // Mobile search
         const mobileSearchBtn = document.getElementById('mobile-search-btn');
         const mobileSearchBar = document.getElementById('mobile-search-bar');
 
-        mobileSearchBtn.addEventListener('click', () => {
+        mobileSearchBtn?.addEventListener('click', () => {
             mobileSearchBar.classList.toggle('hidden');
             if (!mobileSearchBar.classList.contains('hidden')) {
                 mobileSearchBar.querySelector('input').focus();
@@ -591,11 +1044,11 @@
         const mobileInput = document.getElementById('mobile-search-input');
         const mobileSubmit = document.getElementById('mobile-search-submit');
 
-        desktopBtn.addEventListener('click', () => doSearch(desktopInput.value));
-        desktopInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(desktopInput.value); });
+        desktopBtn?.addEventListener('click', () => doSearch(desktopInput.value));
+        desktopInput?.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(desktopInput.value); });
 
-        mobileSubmit.addEventListener('click', () => doSearch(mobileInput.value));
-        mobileInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(mobileInput.value); });
+        mobileSubmit?.addEventListener('click', () => doSearch(mobileInput.value));
+        mobileInput?.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(mobileInput.value); });
 
         // Hide header on scroll down, show on scroll up (mobile only)
         let lastScrollY = window.scrollY;
@@ -608,9 +1061,9 @@
                 if (window.innerWidth < 768) {
                     const currentScrollY = window.scrollY;
                     if (currentScrollY > lastScrollY && currentScrollY > 56) {
-                        header.style.transform = 'translateY(-100%)';
+                        mobileHeader.style.transform = 'translateY(-100%)';
                     } else {
-                        header.style.transform = 'translateY(0)';
+                        mobileHeader.style.transform = 'translateY(0)';
                     }
                     lastScrollY = currentScrollY;
                 }
@@ -623,14 +1076,14 @@
         const sidebar = document.getElementById('mobile-sidebar');
         const overlay = document.getElementById('sidebar-overlay');
 
-        hamburger.addEventListener('click', () => {
+        hamburger?.addEventListener('click', () => {
             const isOpen = !sidebar.classList.contains('-translate-x-full');
             sidebar.classList.toggle('-translate-x-full');
             overlay.classList.toggle('hidden');
             document.body.style.overflow = isOpen ? '' : 'hidden';
         });
 
-        overlay.addEventListener('click', () => {
+        overlay?.addEventListener('click', () => {
             sidebar.classList.add('-translate-x-full');
             overlay.classList.add('hidden');
             document.body.style.overflow = '';
