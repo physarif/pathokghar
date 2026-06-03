@@ -37,11 +37,6 @@
     <header class="bg-white dark:bg-[#1a1a1b] fixed top-0 w-full h-14 z-[100] border-b border-gray-200 dark:border-gray-700 shadow-sm transition-transform duration-300">
         <div class="w-full px-4 h-full flex items-center gap-3">
 
-            <!-- Hamburger -->
-            <button id="hamburger-btn" class="md:hidden p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-                <i class="fas fa-bars"></i>
-            </button>
-
             <!-- Logo -->
             <a href="https://pathokghar.pages.dev" class="text-2xl font-extrabold tracking-tighter hover:bg-gray-100 dark:hover:bg-gray-800 px-2 py-1 rounded transition-colors duration-200 shrink-0">
                 পাঠক <span class="font-light text-gray-400">ঘর</span>
@@ -90,96 +85,9 @@
 
     </header>
 
-    <!-- Sidebar overlay (mobile) -->
-    <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-[140] hidden"></div>
-
-    <div class="container mx-auto flex flex-1 pt-14">
-
-        <!-- SIDEBAR -->
-        <aside id="mobile-sidebar"
-            class="fixed md:sticky top-14 md:top-[4.25rem] left-0 w-60 h-[calc(100vh-3.5rem)] md:h-[calc(100vh-4.25rem)]
-                   bg-white dark:bg-[#1a1a1b]
-                   border-r border-gray-200 dark:border-gray-700
-                   z-[150] md:z-40
-                   -translate-x-full md:translate-x-0
-                   overflow-y-auto transition-transform duration-300 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden rounded-tr-xl md:rounded-tr-2xl">
-
-            <!-- Nav -->
-            <nav class="flex flex-col py-2 text-[14px]">
-
-                <a href="https://pathokghar.pages.dev" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-blue-600 bg-blue-50 dark:bg-gray-800 transition-colors">
-                    <i class="fas fa-home w-4"></i> <span>প্রধান পাতা</span>
-                </a>
-                <a href="new.html" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 transition-colors">
-                    <i class="fas fa-clock w-4"></i> <span>নতুন বই</span>
-                </a>
-                <a href="popular.html" class="flex items-center gap-3 px-4 py-2 rounded-md mx-2 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 transition-colors">
-                    <i class="fas fa-fire w-4"></i> <span>জনপ্রিয়</span>
-                </a>
-
-                <hr class="my-3 border-gray-100 dark:border-gray-800 mx-4">
-
-                <!-- Categories -->
-                <details class="group mx-2" open>
-                    <summary class="flex items-center justify-between px-4 py-2 text-gray-500 dark:text-gray-400 cursor-pointer md:hover:bg-gray-50 dark:md:hover:bg-gray-800 active:bg-gray-100 rounded-md list-none uppercase text-[11px] font-semibold tracking-wider">
-                        <span class="flex items-center gap-2"><i class="fa-solid fa-layer-group text-xs"></i> ক্যাটাগরি</span>
-                        <i class="fas fa-chevron-down text-[9px] transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <div class="flex flex-col mt-1 space-y-0.5">
-                        <a href="category.html?c=uponyas" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
-                            <i class="fas fa-book text-xs text-blue-400"></i> <span>উপন্যাস</span>
-                        </a>
-                        <a href="category.html?c=golpo" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
-                            <i class="fas fa-book text-xs text-green-400"></i> <span>গল্প</span>
-                        </a>
-                        <a href="category.html?c=kobita" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
-                            <i class="fas fa-book text-xs text-pink-400"></i> <span>কবিতা</span>
-                        </a>
-                        <a href="category.html?c=probondho" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
-                            <i class="fas fa-book text-xs text-yellow-400"></i> <span>প্রবন্ধ</span>
-                        </a>
-                        <a href="category.html?c=science" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
-                            <i class="fas fa-book text-xs text-purple-400"></i> <span>বিজ্ঞান</span>
-                        </a>
-                    </div>
-                </details>
-
-                <hr class="my-3 border-gray-100 dark:border-gray-800 mx-4">
-
-                <!-- Authors -->
-                <details class="group mx-2" open>
-                    <summary class="flex items-center justify-between px-4 py-2 text-gray-500 dark:text-gray-400 cursor-pointer md:hover:bg-gray-50 dark:md:hover:bg-gray-800 active:bg-gray-100 rounded-md list-none uppercase text-[11px] font-semibold tracking-wider">
-                        <span>লেখক</span>
-                        <i class="fas fa-chevron-down text-[9px] transition-transform group-open:rotate-180"></i>
-                    </summary>
-                    <div class="flex flex-col mt-1 space-y-0.5">
-                        <a href="author.html?a=humayun" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
-                            <i class="fas fa-user text-xs text-gray-400"></i> <span>হুমায়ূন আহমেদ</span>
-                        </a>
-                        <a href="author.html?a=rabindra" class="flex items-center gap-3 px-8 py-1.5 text-gray-600 dark:text-gray-300 md:hover:bg-gray-100 dark:md:hover:bg-gray-800 active:bg-gray-200 rounded-md transition-colors">
-                            <i class="fas fa-user text-xs text-gray-400"></i> <span>রবীন্দ্রনাথ ঠাকুর</span>
-                        </a>
-                    </div>
-                </details>
-
-                <!-- Footer links -->
-                <div class="mt-8 pt-4 px-4 border-t border-gray-100 dark:border-gray-800">
-                    <div class="flex flex-wrap gap-x-3 gap-y-1 text-[12px] text-gray-500 dark:text-gray-400">
-                        <a href="#" class="hover:text-blue-500 transition-colors">সম্পর্কে</a>
-                        <a href="#" class="hover:text-blue-500 transition-colors">যোগাযোগ</a>
-                        <a href="#" class="hover:text-blue-500 transition-colors">গোপনীয়তা</a>
-                    </div>
-                    <div class="mt-2 text-[11px] text-gray-400 dark:text-gray-500 pb-4">
-                        © ২০২৬ পাঠক ঘর
-                    </div>
-                </div>
-
-            </nav>
-        </aside>
-
-        <!-- MAIN CONTENT -->
-        <main class="flex-1 min-w-0 min-h-[calc(100vh-3.5rem)] md:mt-3 md:rounded-tl-xl md:rounded-tr-xl md:overflow-hidden md:shadow-sm">
-            <div class="px-4 md:px-6 mb-5 flex items-center justify-between">
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 min-w-0 pt-14">
+        <div class="px-4 md:px-6 mb-5 flex items-center justify-between">
     <div>
         <h1 class="text-lg font-bold text-gray-900 dark:text-gray-100">উপন্যাস</h1>
     </div>
@@ -213,9 +121,70 @@
 
 <div class="px-4 md:px-6 flex items-center justify-center gap-1 flex-wrap"><span class="w-9 h-9 flex items-center justify-center rounded-lg text-sm bg-[#0056b3] text-white font-semibold">1</span></div>
 
-        </main>
+    </main>
 
-    </div>
+    <!-- FOOTER -->
+    <footer class="bg-white dark:bg-[#1a1a1b] border-t border-gray-200 dark:border-gray-700 mt-auto">
+        <div class="max-w-6xl mx-auto px-6 py-8">
+
+            <!-- Top row: Brand + Description + Social -->
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+
+                <!-- Brand + Description -->
+                <div class="max-w-xs">
+                    <a href="https://pathokghar.pages.dev" class="text-xl font-extrabold tracking-tighter">
+                        পাঠক <span class="font-light text-gray-400">ঘর</span>
+                    </a>
+                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                        বাংলা বইয়ের সেরা সংগ্রহ। উপন্যাস, গল্প, কবিতা, প্রবন্ধ ও বিজ্ঞানসহ বিভিন্ন বিষয়ের বই এক জায়গায়।
+                    </p>
+                </div>
+
+                <!-- Links -->
+                <div class="flex flex-wrap gap-x-8 gap-y-4 text-sm">
+                    <div class="flex flex-col gap-2">
+                        <span class="text-[11px] uppercase font-semibold tracking-wider text-gray-400 dark:text-gray-500">পাঠক ঘর</span>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-brand-500 transition-colors">সম্পর্কে</a>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-brand-500 transition-colors">যোগাযোগ</a>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-brand-500 transition-colors">গোপনীয়তা নীতি</a>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <span class="text-[11px] uppercase font-semibold tracking-wider text-gray-400 dark:text-gray-500">ক্যাটাগরি</span>
+                        <a href="category.html?c=uponyas" class="text-gray-600 dark:text-gray-300 hover:text-brand-500 transition-colors">উপন্যাস</a>
+                        <a href="category.html?c=golpo" class="text-gray-600 dark:text-gray-300 hover:text-brand-500 transition-colors">গল্প</a>
+                        <a href="category.html?c=kobita" class="text-gray-600 dark:text-gray-300 hover:text-brand-500 transition-colors">কবিতা</a>
+                    </div>
+                </div>
+
+                <!-- Social icons -->
+                <div class="flex flex-col gap-3">
+                    <span class="text-[11px] uppercase font-semibold tracking-wider text-gray-400 dark:text-gray-500">আমাদের অনুসরণ করুন</span>
+                    <div class="flex items-center gap-3">
+                        <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-brand-500 hover:text-white transition-all" title="Facebook">
+                            <i class="fab fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-sky-500 hover:text-white transition-all" title="Twitter / X">
+                            <i class="fab fa-x-twitter text-sm"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-pink-500 hover:text-white transition-all" title="Instagram">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-red-500 hover:text-white transition-all" title="YouTube">
+                            <i class="fab fa-youtube text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom: copyright -->
+            <div class="mt-8 pt-4 border-t border-gray-100 dark:border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-[12px] text-gray-400 dark:text-gray-500">
+                <span>© ২০২৬ পাঠক ঘর। সর্বস্বত্ব সংরক্ষিত।</span>
+                <span>বাংলা বইয়ের ডিজিটাল সংগ্রহ</span>
+            </div>
+
+        </div>
+    </footer>
 
     <script>
         // Dark mode
@@ -292,23 +261,7 @@
             });
         });
 
-        // Mobile sidebar
-        const hamburger = document.getElementById('hamburger-btn');
-        const sidebar = document.getElementById('mobile-sidebar');
-        const overlay = document.getElementById('sidebar-overlay');
 
-        hamburger.addEventListener('click', () => {
-            const isOpen = !sidebar.classList.contains('-translate-x-full');
-            sidebar.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('hidden');
-            document.body.style.overflow = isOpen ? '' : 'hidden';
-        });
-
-        overlay.addEventListener('click', () => {
-            sidebar.classList.add('-translate-x-full');
-            overlay.classList.add('hidden');
-            document.body.style.overflow = '';
-        });
     </script>
 
 
