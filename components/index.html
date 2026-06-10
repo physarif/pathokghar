@@ -1,39 +1,269 @@
 <!-- components/index.html — homepage content + সব styling এখানে -->
 <style>
-  /* Section */
-  .book-section { padding: 0.25rem 0; margin-bottom: 0.25rem; background: #f0f7ff; }
-  @media (min-width: 768px) { .book-section { border-radius: 0.75rem; margin-left: 0.5rem; margin-right: 0.5rem; } }
-  .dark .book-section { background: #1e2d42; }
+  @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Kalpurush&display=swap');
 
-  .bc-section-header { background: #fff;
+  /* ── Tokens ── */
+  :root {
+    --paper:   #faf6f0;
+    --ink:     #2c1810;
+    --muted:   #7a6652;
+    --accent:  #b5451b;
+    --accent2: #1b6eb5;
+    --gold:    #c8963e;
+    --card-bg: #ffffff;
+    --spine:   #d4b896;
+    --section-latest-bg: #fdf3e7;
+    --section-cat-bgs: #eef6ff, #f0fff4, #fff5f0, #f5f0ff, #fffbea, #f0f8ff;
+  }
+  .dark {
+    --paper:   #1a1209;
+    --ink:     #f0e8d8;
+    --muted:   #a89070;
+    --accent:  #e06a3a;
+    --accent2: #5aabf0;
+    --gold:    #d4a84a;
+    --card-bg: #261a0e;
+    --spine:   #4a3420;
+    --section-latest-bg: #261a0e;
+  }
+
+  /* ── Section wrapper ── */
+  .book-section {
+    padding: 0.5rem 0 0.75rem;
+    margin-bottom: 0.5rem;
+    background: var(--section-latest-bg);
+  }
+  @media (min-width: 768px) {
+    .book-section {
+      border-radius: 1rem;
+      margin-left: 0.625rem;
+      margin-right: 0.625rem;
+    }
+  }
+
+  /* Category sections get rotating tints */
+  .book-section:nth-of-type(2)  { background: #fdf3e7; }
+  .dark .book-section:nth-of-type(2) { background: #201508; }
+
+  .book-section:nth-of-type(3)  { background: #eef6ff; }
+  .dark .book-section:nth-of-type(3) { background: #091522; }
+
+  .book-section:nth-of-type(4)  { background: #f0fff6; }
+  .dark .book-section:nth-of-type(4) { background: #091810; }
+
+  .book-section:nth-of-type(5)  { background: #fff5f0; }
+  .dark .book-section:nth-of-type(5) { background: #1f0d07; }
+
+  .book-section:nth-of-type(6)  { background: #f5f0ff; }
+  .dark .book-section:nth-of-type(6) { background: #110a1f; }
+
+  .book-section:nth-of-type(7)  { background: #fffbea; }
+  .dark .book-section:nth-of-type(7) { background: #1c1600; }
+
+  .book-section:nth-of-type(8)  { background: #f0f8ff; }
+  .dark .book-section:nth-of-type(8) { background: #091522; }
+
+  .book-section:nth-of-type(9)  { background: #fff0f5; }
+  .dark .book-section:nth-of-type(9) { background: #1f0710; }
+
+  .book-section:nth-of-type(10) { background: #f0fff6; }
+  .dark .book-section:nth-of-type(10) { background: #091810; }
+
+  /* ── Section header ── */
+  .bc-section-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 0.5rem;
-    padding: 0 1rem;
+    padding: 0.5rem 1rem 0.4rem;
+    background: transparent;
+    border-bottom: 1.5px solid rgba(180,140,80,0.18);
+    margin-bottom: 0.6rem;
   }
-  @media (min-width: 768px) { .bc-section-header { background: #fff; padding: 0 1.5rem; } }
+  @media (min-width: 768px) {
+    .bc-section-header { padding: 0.5rem 1.5rem 0.4rem; }
+  }
 
-  .bc-section-title { font-size: 0.875rem; font-weight: 700; color: #1f2937; }
-  .dark .bc-section-title { color: #f3f4f6; }
-  
+  .bc-section-title {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .bc-section-title::before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    background: var(--accent);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .dark .bc-section-title { color: var(--ink); }
 
-  .bc-section-link { font-size: 0.75rem; color: #2563eb; text-decoration: none; }
-  .dark .bc-section-link { color: #60a5fa; }
-  
-  .bc-section-link:hover { text-decoration: underline; }
+  .bc-section-link {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--accent2);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .bc-section-link:hover {
+    background: var(--accent2);
+    color: #fff;
+  }
+  .dark .bc-section-link { color: var(--accent2); }
 
-  /* Scroll container */
+  /* ── Scroll row ── */
   .bc-scroll {
     display: flex;
-    gap: 0.75rem;
+    gap: 0.65rem;
     overflow-x: auto;
-    padding: 0 1rem 0.75rem;
+    padding: 0.25rem 1rem 0.5rem;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
   }
-  @media (min-width: 768px) { .bc-scroll { padding: 0 1.5rem 0.75rem; } }
+  @media (min-width: 768px) { .bc-scroll { padding: 0.25rem 1.5rem 0.5rem; } }
   .bc-scroll::-webkit-scrollbar { display: none; }
+
+  /* ── Book card ── */
+  .bc-card {
+    flex-shrink: 0;
+    width: calc(42% - 1rem);
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  @media (min-width: 480px) { .bc-card { width: calc(33% - 1rem); } }
+  @media (min-width: 768px) { .bc-card { width: 6.75rem; } }
+
+  /* ── Cover: book with spine effect ── */
+  .bc-img-wrap {
+    width: 100%;
+    aspect-ratio: 2/3;
+    border-radius: 0 0.45rem 0.45rem 0;
+    overflow: hidden;
+    background: var(--spine);
+    position: relative;
+    box-shadow:
+      -3px 0 0 0 var(--spine),
+      -5px 2px 8px rgba(0,0,0,0.25),
+      2px 3px 10px rgba(0,0,0,0.18);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .bc-card:hover .bc-img-wrap {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow:
+      -3px 0 0 0 var(--spine),
+      -6px 4px 14px rgba(0,0,0,0.32),
+      3px 5px 16px rgba(0,0,0,0.22);
+  }
+
+  .bc-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── Author overlay ── */
+  .bc-author-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    background: linear-gradient(to top, rgba(30,12,4,0.82) 0%, rgba(30,12,4,0.0) 100%);
+    text-align: center;
+    padding: 1.2rem 0.3rem 0.3rem;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 0.56rem;
+    font-weight: 600;
+    color: #f0d8b8;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ── Mobile card number badge ── */
+  .bc-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 0.55rem;
+    font-weight: 700;
+    position: absolute;
+    top: 0.4rem;
+    right: 0.4rem;
+    z-index: 3;
+    line-height: 1;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+  @media (min-width: 768px) { .bc-num { display: none; } }
+
+  /* ── Title below cover ── */
+  .bc-meta {
+    margin-top: 0.3rem;
+    padding: 0.3rem 0.3rem 0.25rem;
+    text-align: center;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 0.67rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--ink);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    background: rgba(255,255,255,0.7);
+    border-radius: 0.35rem;
+    transition: color 0.15s, background 0.15s;
+    text-decoration: none;
+  }
+  .dark .bc-meta {
+    color: #e8d8c0;
+    background: rgba(255,255,255,0.06);
+  }
+  .bc-card:hover .bc-meta {
+    color: var(--accent);
+    background: rgba(255,255,255,0.95);
+  }
+  .dark .bc-card:hover .bc-meta {
+    color: var(--accent);
+    background: rgba(255,255,255,0.1);
+  }
+</style>
+
+<main class="flex-1 py-3 md:py-5 min-h-[calc(100vh-3.5rem)] min-w-0 overflow-hidden">
+
+  <!-- সর্বশেষ বই -->
+  <section class="book-section">
+    <div class="bc-section-header">
+      <h2 class="bc-section-title">সর্বশেষ বই</h2>
+      <a href="new.html" class="bc-section-link">সব দেখুন →</a>
+    </div>
+    <div class="bc-scroll">{{latest_books}}</div>
+  </section>
+
+  <!-- Category sections -->
+  {{category_sections}}
+
+</main>
 
   /* Book card */
   .bc-card {
