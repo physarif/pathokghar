@@ -2,6 +2,16 @@ const admin = require('firebase-admin');
 const fs = require('fs');
 const path = require('path');
 
+// Firebase env var validation
+const REQUIRED_ENV = ['FIREBASE_PROJECT_ID', 'FIREBASE_CLIENT_EMAIL', 'FIREBASE_PRIVATE_KEY', 'FIREBASE_DATABASE_URL'];
+for (const key of REQUIRED_ENV) {
+  if (!process.env[key]) {
+    console.error(`❌ Missing required environment variable: ${key}`);
+    console.error('GitHub Secrets সঠিকভাবে set করা আছে কিনা চেক করুন।');
+    process.exit(1);
+  }
+}
+
 // Firebase init
 admin.initializeApp({
   credential: admin.credential.cert({
@@ -9,7 +19,7 @@ admin.initializeApp({
     clientEmail: process.env.FIREBASE_CLIENT_EMAIL.trim(),
     privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n').trim(),
   }),
-  databaseURL: 'https://pathokghar-default-rtdb.asia-southeast1.firebasedatabase.app',
+  databaseURL: process.env.FIREBASE_DATABASE_URL.trim(),
 });
 
 const db = admin.database();
@@ -50,7 +60,7 @@ async function generateBookPages() {
 
   if (!booksRaw) {
     console.log('কোনো book data পাওয়া যায়নি।');
-    return [];
+    return { bookList: [], authorsRaw: {} };
   }
 
   const bookList = Object.values(booksRaw).map(book => {
