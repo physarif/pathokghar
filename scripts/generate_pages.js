@@ -12,9 +12,9 @@ for (const key of REQUIRED_ENV) {
   }
 }
 
-// Firebase init (firebase-admin v12+ এ admin.credential.cert → admin.cert)
+// Firebase init
 admin.initializeApp({
-  credential: admin.cert({
+  credential: admin.credential.cert({
     projectId: process.env.FIREBASE_PROJECT_ID.trim(),
     clientEmail: process.env.FIREBASE_CLIENT_EMAIL.trim(),
     privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n').trim(),
