@@ -1,31 +1,50 @@
 <!-- components/index.html — homepage content + সব styling এখানে -->
 <style>
   /* Section */
-  .book-section { padding: 0.25rem 0; margin-bottom: 0.25rem; }
-  @media (min-width: 768px) { .book-section { border-radius: 0.75rem; margin-left: 0.5rem; margin-right: 0.5rem; } }
+  .book-section { padding: 0.75rem 0; margin-bottom: 0.5rem; }
+  @media (min-width: 768px) { .book-section { margin-left: 0.5rem; margin-right: 0.5rem; } }
 
-  .bc-section-header { background: #fff;
+  /* Section header */
+  .bc-section-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     padding: 0 1rem;
   }
-  @media (min-width: 768px) { .bc-section-header { background: #fff; padding: 0 1.5rem; } }
+  @media (min-width: 768px) { .bc-section-header { padding: 0 1.5rem; } }
 
-  .bc-section-title { font-size: 0.875rem; font-weight: 700; color: #1f2937; }
+  /* Title with red bottom border */
+  .bc-section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1f2937;
+    padding-bottom: 0.3rem;
+    border-bottom: 2.5px solid #c0392b;
+    display: inline-block;
+  }
   .dark .bc-section-title { color: #f3f4f6; }
-  
 
-  .bc-section-link { font-size: 0.75rem; color: #2563eb; text-decoration: none; }
-  .dark .bc-section-link { color: #60a5fa; }
-  
-  .bc-section-link:hover { text-decoration: underline; }
+  /* "সব দেখুন" pill button */
+  .bc-section-link {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #fff;
+    background: #7a3b1e;
+    text-decoration: none;
+    padding: 0.3rem 0.75rem;
+    border-radius: 0.25rem;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .bc-section-link:hover { background: #5c2b14; }
+  .dark .bc-section-link { background: #92400e; }
+  .dark .bc-section-link:hover { background: #78350f; }
 
   /* Scroll container */
   .bc-scroll {
     display: flex;
-    gap: 0.75rem;
+    gap: 0.6rem;
     overflow-x: auto;
     padding: 0 1rem 0.75rem;
     scrollbar-width: none;
@@ -37,21 +56,22 @@
   /* Book card */
   .bc-card {
     flex-shrink: 0;
-    width: calc(50% - 2rem);
+    width: 7rem;
     display: flex;
     flex-direction: column;
     text-decoration: none;
   }
-  @media (min-width: 768px) { .bc-card { width: 6.5rem; } }
+  @media (min-width: 768px) { .bc-card { width: 7.5rem; } }
 
   /* Cover — 2:3 */
   .bc-img-wrap {
     width: 100%;
     aspect-ratio: 2/3;
-    border-radius: 0 0.4rem 0.4rem 0;
+    border-radius: 0.3rem;
     overflow: hidden;
     background: #e5e7eb;
     position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.13);
   }
   .dark .bc-img-wrap { background: #374151; }
 
@@ -60,47 +80,57 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.2s;
   }
+  .bc-card:hover .bc-img { transform: scale(1.03); }
 
-  /* Author name — cover এর ভেতরে নিচে, white bg */
-  .bc-author-overlay {
+  /* No overlay — removed author overlay */
+
+  /* Number badge */
+  .bc-num {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
-    background: rgba(255,255,255,0.92);
-    text-align: center;
-    padding: 0.25rem 0.3rem;
-    font-size: 0.58rem;
-    font-weight: 500;
-    color: #374151;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    top: 0.3rem;
+    left: 0.3rem;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 700;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
   }
 
-  /* Title নিচে */
+  /* Title below cover */
   .bc-meta {
-    margin-top: 0.35rem;
-    padding: 0.3rem 0.35rem 0.35rem;
-    text-align: center;
-    font-size: 0.65rem;
+    margin-top: 0.4rem;
+    padding: 0 0.1rem;
+    font-size: 0.7rem;
     font-weight: 700;
-    line-height: 1.35;
-    color: #374151;
+    line-height: 1.3;
+    color: #1f2937;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    background: #fff;
-    border-radius: 0.35rem;
-    transition: color 0.15s;
   }
-  .dark .bc-meta { color: #d1d5db; background: #1f2937; }
-  .bc-meta:hover { color: #2563eb; }
-  .dark .bc-meta:hover { color: #60a5fa; }
+  .dark .bc-meta { color: #e5e7eb; }
+  .bc-card:hover .bc-meta { color: #c0392b; }
 
+  /* Author below title */
+  .bc-author {
+    margin-top: 0.15rem;
+    padding: 0 0.1rem;
+    font-size: 0.62rem;
+    color: #6b7280;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .dark .bc-author { color: #9ca3af; }
 </style>
 
 <main class="flex-1 py-4 md:py-6 min-h-[calc(100vh-3.5rem)] min-w-0 overflow-hidden">
@@ -109,7 +139,7 @@
   <section class="book-section">
     <div class="bc-section-header">
       <h2 class="bc-section-title">সর্বশেষ বই</h2>
-      <a href="new.html" class="bc-section-link">সব দেখুন →</a>
+      <a href="new.html" class="bc-section-link">সব দেখুন</a>
     </div>
     <div class="bc-scroll">{{latest_books}}</div>
   </section>
