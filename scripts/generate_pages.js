@@ -1,4 +1,5 @@
-const admin = require('firebase-admin');
+const { initializeApp, cert, getApp } = require('firebase-admin/app');
+const { getDatabase } = require('firebase-admin/database');
 const fs = require('fs');
 const path = require('path');
 
@@ -12,9 +13,9 @@ for (const key of REQUIRED_ENV) {
   }
 }
 
-// Firebase init
-admin.initializeApp({
-  credential: admin.credential.cert({
+// Firebase init (firebase-admin v12+ modular import)
+initializeApp({
+  credential: cert({
     projectId: process.env.FIREBASE_PROJECT_ID.trim(),
     clientEmail: process.env.FIREBASE_CLIENT_EMAIL.trim(),
     privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n').trim(),
@@ -22,8 +23,7 @@ admin.initializeApp({
   databaseURL: process.env.FIREBASE_DATABASE_URL.trim(),
 });
 
-const db = admin.database();
-
+const db = getDatabase();
 
 // Template load
 const layout = fs.readFileSync('components/layout.html', 'utf8');
@@ -322,11 +322,11 @@ async function generateCategoryPages(bookList) {
     await generateDownloadPages(bookList);
     await generateCategoryPages(bookList);
     console.log('\n🎉 সব pages generate হয়েছে!');
-    await admin.app().delete();
+    await getApp().delete();
     process.exit(0);
   } catch (err) {
     console.error('❌ Error:', err);
-    await admin.app().delete().catch(() => {});
+    await getApp().delete().catch(() => {});
     process.exit(1);
   }
 })();
