@@ -41,7 +41,7 @@ async function generateBookPages() {
   console.log('📚 Firebase থেকে data fetch করছি...');
 
   const [booksSnap, authorsSnap, categoriesSnap] = await Promise.all([
-    db.ref('/books').once('value'),
+    db.ref('/books').orderByKey().once('value'),
     db.ref('/authors').once('value'),
     db.ref('/categories').once('value'),
   ]);
@@ -63,11 +63,18 @@ async function generateBookPages() {
     return { bookList: [], authorsRaw: {} };
   }
 
-  const bookList = Object.entries(booksRaw).map(([firebaseKey, book]) => {
+  const bookList = Object.entries(booksRaw)
+    .sort(([keyA], [keyB]) => {
+      const numA = parseInt(keyA, 10);
+      const numB = parseInt(keyB, 10);
+      if (!isNaN(numA) && !isNaN(numB)) return numA - numB;
+      return keyA.localeCompare(keyB);
+    })
+    .map(([firebaseKey, book]) => {
     const author = authorsRaw[book.author] || {};
     const category = categoriesRaw[book.category] || {};
     return {
-      id: isNaN(firebaseKey) ? firebaseKey : Number(firebaseKey),
+      id: parseInt(firebaseKey, 10) || firebaseKey,
       slug: book.slug,
       title: book.title,
       description: book.desc || '',
