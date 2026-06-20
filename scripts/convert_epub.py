@@ -70,20 +70,6 @@ def epub_to_html(epub_path):
                             text_node.replace_with(BeautifulSoup(new_html, 'html.parser'))
 
                 full_html += str(body)[6:-7]
-    
-    # প্রথম h1/h2 এর আগের সব content কেটে দাও
-    if full_html:
-        soup2 = BeautifulSoup(full_html, 'html.parser')
-        first_heading = soup2.find(['h1', 'h2'])
-        if first_heading:
-            # heading এর আগের সব sibling remove করো
-            for sibling in list(first_heading.previous_siblings):
-                if hasattr(sibling, 'decompose'):
-                    sibling.decompose()
-                else:
-                    sibling.extract()
-            full_html = str(soup2)
-
     return full_html
 
 
