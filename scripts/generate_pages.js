@@ -37,6 +37,35 @@ function render(template, data) {
 // Folder তৈরি
 if (!fs.existsSync('books')) fs.mkdirSync('books');
 
+// Sidebar HTML builder
+function buildSidebarHTML(bookList, authorsRaw, categoriesRaw) {
+  // Categories
+  const catSeen = new Set();
+  const catItems = [];
+  for (const book of bookList) {
+    if (book.category_slug && !catSeen.has(book.category_slug)) {
+      catSeen.add(book.category_slug);
+      catItems.push(`<li><a href="/category/${book.category_slug}/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i>${book.category_name}</a></li>`);
+    }
+  }
+
+  // Authors — name alphabetically
+  const authorMap = {};
+  for (const book of bookList) {
+    if (book.author_slug && !authorMap[book.author_slug]) {
+      authorMap[book.author_slug] = book.author_name;
+    }
+  }
+  const authorItems = Object.entries(authorMap)
+    .sort(([,a],[,b]) => a.localeCompare(b, 'bn'))
+    .map(([slug, name]) => `<li><a href="/author/${slug}.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i>${name}</a></li>`);
+
+  return {
+    sidebar_categories: catItems.join('\n                '),
+    sidebar_authors: authorItems.join('\n                '),
+  };
+}
+
 async function generateBookPages() {
   console.log('📚 Firebase থেকে data fetch করছি...');
 
@@ -105,10 +134,13 @@ async function generateBookPages() {
       book_slug: book.slug,
     });
 
+    const { sidebar_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
     const fullPage = render(layout, {
       page_title: `${book.title} - ${book.author_name}`,
       page_description: book.description?.slice(0, 160) || '',
       content: bookContent,
+      sidebar_categories,
+      sidebar_authors,
     });
 
     const outputPath = `books/${book.slug}.html`;
@@ -116,10 +148,10 @@ async function generateBookPages() {
     console.log(`  ✓ ${outputPath}`);
   }
 
-  return { bookList, authorsRaw };
+  return { bookList, authorsRaw, categoriesRaw };
 }
 
-async function generateHomepage(bookList) {
+async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
   console.log('\n🏠 Homepage generate করছি...');
 
   const indexTemplate = fs.readFileSync('components/index.html', 'utf8');
@@ -174,17 +206,20 @@ async function generateHomepage(bookList) {
     category_sections: categorySectionsHTML,
   });
 
+  const { sidebar_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
   const fullPage = render(layout, {
     page_title: 'পাঠক ঘর - বাংলা বইয়ের ডিজিটাল পাঠাগার',
     page_description: 'বাংলা ও ইংরেজি বইয়ের ডিজিটাল পাঠাগার - পড়ুন, ডাউনলোড করুন',
     content: indexContent,
+    sidebar_categories,
+    sidebar_authors,
   });
 
   fs.writeFileSync('index.html', fullPage, 'utf8');
   console.log('  ✓ index.html');
 }
 
-async function generateAuthorPages(bookList, authorsRaw) {
+async function generateAuthorPages(bookList, authorsRaw, categoriesRaw) {
   console.log('\n👤 Author pages generate করছি...');
   const authorTemplate = fs.readFileSync('components/author.html', 'utf8');
   if (!fs.existsSync('author')) fs.mkdirSync('author');
@@ -222,10 +257,13 @@ async function generateAuthorPages(bookList, authorsRaw) {
       author_book_count: data.books.length,
       author_books_grid: booksGrid,
     });
+    const { sidebar_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
     const fullPage = render(layout, {
       page_title: data.name,
       page_description: '',
       content: authorContent,
+      sidebar_categories,
+      sidebar_authors,
     });
 
     fs.writeFileSync(`author/${slug}.html`, fullPage, 'utf8');
@@ -233,7 +271,7 @@ async function generateAuthorPages(bookList, authorsRaw) {
   }
 }
 
-async function generateDownloadPages(bookList) {
+async function generateDownloadPages(bookList, authorsRaw, categoriesRaw) {
   console.log('\n📥 Download pages generate করছি...');
   const downloadTemplate = fs.readFileSync('components/download.html', 'utf8');
   if (!fs.existsSync('download')) fs.mkdirSync('download');
@@ -249,10 +287,13 @@ async function generateDownloadPages(bookList) {
       book_author_slug: book.author_slug,
       book_category_slug: book.category_slug,
     });
+    const { sidebar_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
     const fullPage = render(layout, {
       page_title: book.title,
       page_description: '',
       content: downloadContent,
+      sidebar_categories,
+      sidebar_authors,
     });
 
     fs.writeFileSync(`download/${book.slug}.html`, fullPage, 'utf8');
@@ -260,7 +301,7 @@ async function generateDownloadPages(bookList) {
   }
 }
 
-async function generateCategoryPages(bookList) {
+async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
   console.log('\n📂 Category pages generate করছি...');
   const categoryTemplate = fs.readFileSync('components/category.html', 'utf8');
 
@@ -312,10 +353,13 @@ async function generateCategoryPages(bookList) {
         category_books_grid: booksGrid,
         category_pagination: paginationHTML,
       });
+      const { sidebar_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
       const fullPage = render(layout, {
         page_title: data.name,
         page_description: '',
         content: categoryContent,
+        sidebar_categories,
+        sidebar_authors,
       });
 
       const pageDir = `${dir}/${page}`;
@@ -331,11 +375,11 @@ async function generateCategoryPages(bookList) {
 (async () => {
   try {
     console.log('🚀 Script শুরু হয়েছে...');
-    const { bookList, authorsRaw } = await generateBookPages();
-    await generateHomepage(bookList);
-    await generateAuthorPages(bookList, authorsRaw);
-    await generateDownloadPages(bookList);
-    await generateCategoryPages(bookList);
+    const { bookList, authorsRaw, categoriesRaw } = await generateBookPages();
+    await generateHomepage(bookList, authorsRaw, categoriesRaw);
+    await generateAuthorPages(bookList, authorsRaw, categoriesRaw);
+    await generateDownloadPages(bookList, authorsRaw, categoriesRaw);
+    await generateCategoryPages(bookList, authorsRaw, categoriesRaw);
     console.log('\n🎉 সব pages generate হয়েছে!');
     await getApp().delete();
     process.exit(0);
