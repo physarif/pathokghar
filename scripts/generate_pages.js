@@ -39,26 +39,33 @@ if (!fs.existsSync('books')) fs.mkdirSync('books');
 
 // Sidebar HTML builder
 function buildSidebarHTML(bookList, authorsRaw, categoriesRaw) {
-  // Categories
+  // Categories — count per category
+  const catCount = {};
+  for (const book of bookList) {
+    if (book.category_slug) catCount[book.category_slug] = (catCount[book.category_slug] || 0) + 1;
+  }
   const catSeen = new Set();
   const catItems = [];
   for (const book of bookList) {
     if (book.category_slug && !catSeen.has(book.category_slug)) {
       catSeen.add(book.category_slug);
-      catItems.push(`<li><a href="/category/${book.category_slug}/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i>${book.category_name}</a></li>`);
+      const count = catCount[book.category_slug] || 0;
+      catItems.push(`<li><a href="/category/${book.category_slug}/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">${book.category_name}</span><span class="text-[11px] text-gray-400 dark:text-gray-500">${count}</span></a></li>`);
     }
   }
 
-  // Authors — name alphabetically
+  // Authors — count per author
   const authorMap = {};
+  const authorCount = {};
   for (const book of bookList) {
-    if (book.author_slug && !authorMap[book.author_slug]) {
-      authorMap[book.author_slug] = book.author_name;
+    if (book.author_slug) {
+      if (!authorMap[book.author_slug]) authorMap[book.author_slug] = book.author_name;
+      authorCount[book.author_slug] = (authorCount[book.author_slug] || 0) + 1;
     }
   }
   const authorItems = Object.entries(authorMap)
     .sort(([,a],[,b]) => a.localeCompare(b, 'bn'))
-    .map(([slug, name]) => `<li><a href="/author/${slug}.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i>${name}</a></li>`);
+    .map(([slug, name]) => `<li><a href="/author/${slug}.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">${name}</span><span class="text-[11px] text-gray-400 dark:text-gray-500">${authorCount[slug] || 0}</span></a></li>`);
 
   return {
     sidebar_categories: catItems.join('\n                '),
