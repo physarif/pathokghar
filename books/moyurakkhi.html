@@ -40,6 +40,7 @@
             z-index: 200;
             overflow-y: auto;
             scrollbar-width: none;
+            border-top: 5px solid #fff5f5;
         }
         #sidebar.open { transform: translateX(0); }
         #sidebar::-webkit-scrollbar { display: none; }
@@ -53,6 +54,7 @@
             transition: opacity 0.28s;
         }
         #sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+        #sb-google-login:active i { color: white; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
@@ -79,7 +81,7 @@
                             <p class="text-[11px] text-gray-400 dark:text-gray-500">data sync করুন</p>
                         </div>
                     </div>
-                    <button id="sb-google-login" class="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] hover:bg-gray-50 dark:hover:bg-[#333] transition text-xs font-medium text-gray-700 dark:text-gray-200 shadow-sm shrink-0">
+                    <button id="sb-google-login" class="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] hover:bg-gray-50 dark:hover:bg-[#333] active:bg-[#c0392b] active:border-[#c0392b] active:text-white transition text-xs font-medium text-gray-700 dark:text-gray-200 shadow-sm shrink-0">
                         <i class="fas fa-sign-in-alt text-gray-500 dark:text-gray-400"></i>
                         লগইন
                     </button>
@@ -326,17 +328,20 @@
         const html = document.documentElement;
 
         const header = document.querySelector('header');
+        const sidebar = document.getElementById('sidebar');
         function applyTheme(dark) {
             if (dark) {
                 html.classList.add('dark');
                 themeIcon.classList.replace('fa-moon', 'fa-sun');
                 localStorage.theme = 'dark';
                 header.style.borderTopColor = '#7a3b1e';
+                sidebar.style.borderTopColor = '#7a3b1e';
             } else {
                 html.classList.remove('dark');
                 themeIcon.classList.replace('fa-sun', 'fa-moon');
                 localStorage.theme = 'light';
                 header.style.borderTopColor = '#fff5f5';
+                sidebar.style.borderTopColor = '#fff5f5';
             }
         }
 
@@ -397,7 +402,6 @@
 
         // Sidebar
         const sidebarBtn = document.getElementById('sidebar-btn');
-        const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('sidebar-overlay');
 
         function openSidebar() {
