@@ -40,6 +40,19 @@ def epub_to_html(epub_path):
                 for div in body.find_all('div'):
                     div.name = 'p'
 
+                # Internal epub link গুলো fix করো
+                for a_tag in body.find_all('a', href=True):
+                    href = a_tag.get('href', '')
+                    # বাহ্যিক URL রাখো, internal epub links (#id রাখো, বাকি সরাও)
+                    if href.startswith('http://') or href.startswith('https://'):
+                        a_tag['target'] = '_blank'
+                        a_tag['rel'] = 'noopener'
+                    elif href.startswith('#'):
+                        pass  # anchor link — রাখো
+                    else:
+                        # Internal .html/.xhtml file link — unwrap করো
+                        a_tag.unwrap()
+
                 # বাকি unknown tags unwrap করো
                 for tag in body.find_all(True):
                     if tag.name not in ['h1', 'h2', 'h3', 'p', 'br', 'img', 'a']:
