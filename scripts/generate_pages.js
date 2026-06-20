@@ -63,10 +63,11 @@ async function generateBookPages() {
     return { bookList: [], authorsRaw: {} };
   }
 
-  const bookList = Object.values(booksRaw).map(book => {
+  const bookList = Object.entries(booksRaw).map(([firebaseKey, book]) => {
     const author = authorsRaw[book.author] || {};
     const category = categoriesRaw[book.category] || {};
     return {
+      id: isNaN(firebaseKey) ? firebaseKey : Number(firebaseKey),
       slug: book.slug,
       title: book.title,
       description: book.desc || '',
@@ -121,18 +122,23 @@ async function generateHomepage(bookList) {
     .sort((a, b) => (b.created_at || 0) - (a.created_at || 0))
     .slice(0, 12);
 
-  // Category অনুযায়ী group করা
+  // Category অনুযায়ী group করা — id অনুসারে sort
   const byCategory = {};
   for (const book of bookList) {
     const cat = book.category_slug;
     if (!byCategory[cat]) byCategory[cat] = { name: book.category_name, books: [] };
     byCategory[cat].books.push(book);
   }
+  // প্রতিটি category-র books id অনুসারে ascending sort
+  for (const cat of Object.values(byCategory)) {
+    cat.books.sort((a, b) => {
+      if (typeof a.id === 'number' && typeof b.id === 'number') return a.id - b.id;
+      return String(a.id).localeCompare(String(b.id));
+    });
+  }
 
   // Book card — styling সব components/index.html এ
-  let cardIndex = 0;
   function bookCard(book) {
-    cardIndex++;
     return `<a href="books/${book.slug}.html" class="bc-card">
       <div class="bc-img-wrap">
         <img src="${book.cover}" alt="${book.title}" class="bc-img" loading="lazy">
@@ -146,7 +152,6 @@ async function generateHomepage(bookList) {
   let categorySectionsHTML = '';
   for (const [slug, data] of Object.entries(byCategory)) {
     const catBooks = data.books.slice(0, 12);
-    cardIndex = 0; // প্রতি section এ নতুন করে নম্বর শুরু
     categorySectionsHTML += `
   <section class="book-section">
     <div class="bc-section-header">
@@ -157,7 +162,6 @@ async function generateHomepage(bookList) {
   </section>`;
   }
 
-  cardIndex = 0;
   const indexContent = render(indexTemplate, {
     latest_books: latest.map(bookCard).join(''),
     category_sections: categorySectionsHTML,
@@ -262,6 +266,11 @@ async function generateCategoryPages(bookList) {
   }
 
   for (const [slug, data] of Object.entries(byCategory)) {
+    // id অনুসারে ascending sort
+    data.books.sort((a, b) => {
+      if (typeof a.id === 'number' && typeof b.id === 'number') return a.id - b.id;
+      return String(a.id).localeCompare(String(b.id));
+    });
     const BOOKS_PER_PAGE = 24;
     const totalPages = Math.ceil(data.books.length / BOOKS_PER_PAGE);
     const dir = `category/${slug}`;
