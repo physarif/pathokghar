@@ -42,8 +42,19 @@ def epub_to_html(epub_path):
 
                 # বাকি unknown tags unwrap করো
                 for tag in body.find_all(True):
-                    if tag.name not in ['h1', 'h2', 'h3', 'p', 'br', 'img']:
+                    if tag.name not in ['h1', 'h2', 'h3', 'p', 'br', 'img', 'a']:
                         tag.unwrap()
+
+                # Plain text URL গুলো <a> tag এ wrap করো
+                url_pattern = re.compile(r'(https?://[^\s<>"\']+)')
+                for p_tag in body.find_all(['p', 'h1', 'h2', 'h3']):
+                    for text_node in p_tag.find_all(string=True):
+                        if url_pattern.search(text_node):
+                            new_html = url_pattern.sub(
+                                r'<a href="\1" target="_blank" rel="noopener">\1</a>',
+                                str(text_node)
+                            )
+                            text_node.replace_with(BeautifulSoup(new_html, 'html.parser'))
 
                 full_html += str(body)[6:-7]
     return full_html
