@@ -47,7 +47,6 @@ jobs:
       - name: Detect changed files
         id: changes
         run: |
-          # repository_dispatch বা workflow_dispatch হলে সব rebuild
           if [ "${{ github.event_name }}" != "push" ]; then
             echo "layout_only=false" >> $GITHUB_OUTPUT
             exit 0
@@ -56,7 +55,6 @@ jobs:
           CHANGED=$(git diff --name-only HEAD~1 HEAD)
           echo "Changed files: $CHANGED"
 
-          # শুধু components/ বদলেছে কিনা দেখো (layout.html সহ, কিন্তু read.html ও download.html বাদে)
           LAYOUT_CHANGED=$(echo "$CHANGED" | grep '^components/' | grep -v 'read\.html\|download\.html' || true)
           OTHER_CHANGED=$(echo "$CHANGED" | grep -v '^components/' || true)
 
@@ -66,7 +64,7 @@ jobs:
             echo "layout_only=false" >> $GITHUB_OUTPUT
           fi
 
-      # ৬. Firebase থেকে data fetch + সব pages generate (read/ ছাড়া)
+      # ৬. Firebase থেকে data fetch + সব pages generate
       - name: Generate static pages
         env:
           FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
@@ -75,10 +73,13 @@ jobs:
           FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
         run: node scripts/generate_pages.js
 
-      # ৭. epub convert — শুধু full rebuild এ (layout_only হলে skip)
-      - name: Convert epub to html
+      # ৭. ZIP → epub তৈরি + GitHub Release upload + read page generate
+      - name: Convert books & upload epub
         if: steps.changes.outputs.layout_only != 'true'
-        run: python scripts/convert_epub.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python scripts/convert_zip.py
 
       # ৮. sitemap.xml generate
       - name: Generate sitemap
