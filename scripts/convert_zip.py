@@ -1,7 +1,7 @@
 import os
 import json
 import urllib.request
-import base64
+import base64  # epub legacy flow এর জন্য রাখা হয়েছে
 import re
 import zipfile
 import tempfile
@@ -176,31 +176,35 @@ def zip_to_epub(zip_path, slug, title, author='অজানা', desc=''):
 
 
 # ─── HTML content extractor (read page এর জন্য) ───────────────────────────────
-def zip_to_html(zip_path):
-    """ZIP → merged HTML string (read page এর জন্য)"""
+def zip_to_html(zip_path, slug):
+    """ZIP → merged HTML string (read page এর জন্য), images → assets/images/{slug}/"""
     tmp_dir = tempfile.mkdtemp()
     try:
         with zipfile.ZipFile(zip_path, 'r') as z:
             z.extractall(tmp_dir)
 
+        # assets/images/{slug}/ folder তৈরি করো
+        img_out_dir = os.path.join('assets', 'images', slug)
+        os.makedirs(img_out_dir, exist_ok=True)
+
+        # Image গুলো copy করো ও URL map তৈরি করো
         images = {}
         for root, _, files in os.walk(tmp_dir):
             for fname in files:
                 ext = fname.lower().rsplit('.', 1)[-1]
                 if ext in ('jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'):
-                    fpath = os.path.join(root, fname)
-                    with open(fpath, 'rb') as f:
-                        raw = f.read()
-                    mime = {
-                        'jpg': 'image/jpeg', 'jpeg': 'image/jpeg',
-                        'png': 'image/png', 'gif': 'image/gif',
-                        'webp': 'image/webp', 'svg': 'image/svg+xml'
-                    }.get(ext, 'image/jpeg')
-                    b64 = base64.b64encode(raw).decode('utf-8')
-                    uri = f"data:{mime};base64,{b64}"
-                    images[fname] = uri
-                    rel = os.path.relpath(fpath, tmp_dir).replace('\\', '/')
-                    images[rel] = uri
+                    src_path = os.path.join(root, fname)
+                    # safe filename
+                    safe_name = re.sub(r'[^a-zA-Z0-9._-]', '_', fname)
+                    dest_path = os.path.join(img_out_dir, safe_name)
+                    shutil.copy2(src_path, dest_path)
+                    # Cloudflare Pages এ যে URL হবে
+                    public_url = f'/assets/images/{slug}/{safe_name}'
+                    images[fname] = public_url
+                    rel = os.path.relpath(src_path, tmp_dir).replace('\\', '/')
+                    images[rel] = public_url
+
+        print(f'  🖼 {len(images)} image → assets/images/{slug}/')
 
         html_files = []
         for root, _, files in os.walk(tmp_dir):
@@ -324,7 +328,7 @@ for uid, book in books.items():
             if is_zip:
                 # ১. read page এর জন্য HTML content
                 print(f'  🔄 {slug} HTML content তৈরি করছি...')
-                html_content = zip_to_html(local_file)
+                html_content = zip_to_html(local_file, slug)
                 with open(content_path, 'w', encoding='utf-8') as f:
                     f.write(html_content)
                 print(f'  ✓ content/{slug}.html')
