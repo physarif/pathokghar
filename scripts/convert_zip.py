@@ -175,8 +175,9 @@ def zip_to_epub(zip_path, slug, book_meta):
 
                     epub_images[fname] = epub_img_path
                     rel = os.path.relpath(src_path, tmp_dir).replace('\\', '/')
-                    img_map[fname] = epub_img_path
-                    img_map[rel]   = epub_img_path
+                    img_map[fname]      = epub_img_path   # original filename
+                    img_map[safe_name]  = epub_img_path   # sanitized filename
+                    img_map[rel]        = epub_img_path   # relative path (e.g. images/page1.jpg)
 
         print(f'  🖼 {len(epub_images)} image EPUB এ embed হয়েছে')
 
@@ -250,16 +251,16 @@ img { max-width: 100%; height: auto; display: block; margin: 0.5em auto; }
             with open(fpath, 'rb') as f:
                 raw = f.read()
 
-            chapter_html = process_epub_fragment(raw, img_map)
-
-            fname_base = os.path.splitext(os.path.basename(fpath))[0]
+            # ── heading raw HTML থেকে নাও (process করার আগে) ──
+            soup_raw = BeautifulSoup(raw, 'html.parser')
             chapter_title = f'অধ্যায় {idx + 1}'
+            heading = soup_raw.find(['h1', 'h2', 'h3'])
+            if heading:
+                heading_text = heading.get_text(strip=True)
+                if heading_text:
+                    chapter_title = heading_text[:80]
 
-            # h1 বা h2 থেকে title নেওয়ার চেষ্টা
-            soup_check = BeautifulSoup(chapter_html, 'html.parser')
-            heading = soup_check.find(['h1', 'h2'])
-            if heading and heading.get_text(strip=True):
-                chapter_title = heading.get_text(strip=True)[:80]
+            chapter_html = process_epub_fragment(raw, img_map)
 
             chapter_file = f'chap_{idx + 1:03d}.xhtml'
 
@@ -387,10 +388,18 @@ def process_epub_fragment(raw_html, img_map):
     # img src → EPUB internal path (relative to chapter file)
     for img in body.find_all('img'):
         src = img.get('src', '')
-        src_name = src.split('/')[-1].split('?')[0]
-        epub_path = img_map.get(src_name) or img_map.get(src)
+        if not src:
+            continue
+        src_clean = src.split('?')[0]                      # query string বাদ
+        src_name  = src_clean.split('/')[-1]               # শুধু filename
+        safe_name = re.sub(r'[^a-zA-Z0-9._-]', '_', src_name)  # sanitized filename
+
+        epub_path = (
+            img_map.get(src_clean)   # exact relative path (e.g. images/page1.jpg)
+            or img_map.get(src_name) # original filename
+            or img_map.get(safe_name) # sanitized filename
+        )
         if epub_path:
-            # chapter file থেকে images/ folder relative path
             img['src'] = '../' + epub_path
         if not img.get('alt'):
             img['alt'] = ''
