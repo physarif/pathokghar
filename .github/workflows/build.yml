@@ -73,12 +73,9 @@ jobs:
           FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
         run: node scripts/generate_pages.js
 
-      # ৭. ZIP → epub তৈরি + GitHub Release upload + read page generate
-      - name: Convert books & upload epub
+      # ৭. ZIP → HTML convert + read page generate
+      - name: Convert books
         if: steps.changes.outputs.layout_only != 'true'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
         run: python scripts/convert_zip.py
 
       # ৮. sitemap.xml generate
