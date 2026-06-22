@@ -11,6 +11,14 @@ os.makedirs('content', exist_ok=True)
 os.makedirs('read', exist_ok=True)
 
 
+# ─── numeric sort helper ───────────────────────────────────────────────────────
+def natural_sort_key(path):
+    """1.html → 1, 2.html → 2, 10.html → 10 (lexicographic নয়, numeric sort)"""
+    fname = os.path.basename(path)
+    parts = re.split(r'(\d+)', fname)
+    return [int(p) if p.isdigit() else p.lower() for p in parts]
+
+
 # ─── ZIP → HTML (read page এর জন্য) ───────────────────────────────────────────
 def zip_to_html(zip_path, slug):
     """ZIP এর HTML files merge করে একটা HTML string বানাও।
@@ -57,18 +65,23 @@ def zip_to_html(zip_path, slug):
                     rel = os.path.relpath(src_path, tmp_dir).replace('\\', '/')
                     images[rel] = public_url
 
-        print(f'  🖼 {len(images)} image → assets/images/{slug}/')
+        print(f'  🖼 {len(images)//2} image → assets/images/{slug}/')
 
-        # HTML files খোঁজো ও sort করো
+        # HTML files খোঁজো ও numeric sort করো (1, 2, 3 ... 10, 11 ক্রমে)
         html_files = []
         for root, _, files in os.walk(tmp_dir):
-            for fname in sorted(files):
+            for fname in files:
                 if fname.lower().endswith(('.html', '.htm', '.xhtml')):
                     html_files.append(os.path.join(root, fname))
-        html_files.sort()
+
+        # ✅ FIX: natural/numeric sort — 1 → 2 → 3 → 10 (lexicographic নয়)
+        html_files.sort(key=natural_sort_key)
 
         if not html_files:
             raise ValueError('ZIP এ কোনো HTML file নেই')
+
+        print(f'  📄 {len(html_files)} HTML file পাওয়া গেছে: '
+              f'{[os.path.basename(p) for p in html_files[:5]]}{"..." if len(html_files) > 5 else ""}')
 
         full_html = ''
         for fpath in html_files:
@@ -82,55 +95,87 @@ def zip_to_html(zip_path, slug):
 
 
 # ─── HTML cleaner ──────────────────────────────────────────────────────────────
+
+# রাখার যোগ্য tags — structure ও formatting উভয়ই preserve হবে
+ALLOWED_TAGS = {
+    # headings
+    'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+    # block
+    'p', 'div', 'section', 'article', 'blockquote', 'pre', 'hr', 'br',
+    # inline text
+    'span', 'strong', 'b', 'em', 'i', 'u', 's', 'mark', 'small', 'sub', 'sup',
+    'code', 'kbd', 'abbr',
+    # list
+    'ul', 'ol', 'li', 'dl', 'dt', 'dd',
+    # table
+    'table', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td', 'caption', 'colgroup', 'col',
+    # media
+    'img', 'figure', 'figcaption', 'picture', 'source',
+    # link
+    'a',
+    # ruby (বাংলা / CJK annotation)
+    'ruby', 'rt', 'rp',
+}
+
+
 def process_html_fragment(raw_html, images):
     soup = BeautifulSoup(raw_html, 'html.parser')
+
+    # ── script / style / meta / link ইত্যাদি সম্পূর্ণ মুছে ফেলো ──
+    for tag in soup.find_all(['script', 'style', 'meta', 'link',
+                              'noscript', 'head', 'title', 'iframe',
+                              'form', 'input', 'button', 'select', 'textarea']):
+        tag.decompose()
+
     body = soup.find('body') or soup
 
-    # img src → assets URL
+    # ── img src → assets URL ──
     for img in body.find_all('img'):
         src = img.get('src', '')
-        src_name = src.split('/')[-1]
+        src_name = src.split('/')[-1].split('?')[0]   # query string বাদ দাও
         if src_name in images:
             img['src'] = images[src_name]
         elif src in images:
             img['src'] = images[src]
+        # alt না থাকলে খালি alt যোগ করো (accessibility)
+        if not img.get('alt'):
+            img['alt'] = ''
 
-    # div → p
-    for div in body.find_all('div'):
-        div.name = 'p'
-
-    # link fix
+    # ── link fix ──
     for a_tag in body.find_all('a', href=True):
         href = a_tag.get('href', '')
-        if href.startswith('http://') or href.startswith('https://'):
+        if href.startswith(('http://', 'https://')):
             a_tag['target'] = '_blank'
-            a_tag['rel'] = 'noopener'
+            a_tag['rel'] = 'noopener noreferrer'
         elif href.startswith('#'):
-            pass
+            pass   # internal anchor — ঠিক আছে
+        elif href.lower().endswith(('.html', '.htm', '.xhtml')):
+            a_tag.unwrap()   # internal HTML page link — unwrap
         else:
             a_tag.unwrap()
 
-    # অপ্রয়োজনীয় tags unwrap
+    # ── অপ্রয়োজনীয় tags unwrap (decompose নয়, content রাখো) ──
+    # ✅ FIX: ALLOWED_TAGS এর বাইরের tag গুলো unwrap করো,
+    #         কিন্তু list/table/inline tags ঠিক রাখো
     for tag in body.find_all(True):
-        if tag.name not in ['h1', 'h2', 'h3', 'p', 'br', 'img', 'a']:
+        if tag.name not in ALLOWED_TAGS:
             tag.unwrap()
 
-    # plain URL → <a>
+    # ── plain URL → <a> (শুধু text node এ, already-linked নয়) ──
     url_pattern = re.compile(r'(https?://[^\s<>"\']+)')
-    for p_tag in body.find_all(['p', 'h1', 'h2', 'h3']):
-        for text_node in p_tag.find_all(string=True):
-            if url_pattern.search(text_node):
-                new_html = url_pattern.sub(
-                    r'<a href="\1" target="_blank" rel="noopener">\1</a>',
-                    str(text_node)
-                )
-                text_node.replace_with(BeautifulSoup(new_html, 'html.parser'))
+    for text_node in body.find_all(string=True):
+        if text_node.parent and text_node.parent.name == 'a':
+            continue   # already inside <a>
+        if url_pattern.search(text_node):
+            new_html = url_pattern.sub(
+                r'<a href="\1" target="_blank" rel="noopener noreferrer">\1</a>',
+                str(text_node)
+            )
+            text_node.replace_with(BeautifulSoup(new_html, 'html.parser'))
 
-    inner = str(body)
-    inner = re.sub(r'^<(?:body)[^>]*>', '', inner, count=1).rstrip()
-    if inner.endswith('</body>'):
-        inner = inner[:-7]
-    return inner
+    # body tag নিজে বাদ দিয়ে inner content নাও
+    inner = body.decode_contents()
+    return inner.strip() + '\n'
 
 
 # ─── helpers ───────────────────────────────────────────────────────────────────
