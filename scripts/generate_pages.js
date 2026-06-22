@@ -96,7 +96,7 @@ async function generateBookPages() {
 
   if (!booksRaw) {
     console.log('কোনো book data পাওয়া যায়নি।');
-    return { bookList: [], authorsRaw: {} };
+    return { bookList: [], authorsRaw: {}, categoriesRaw: {} };
   }
 
   const bookList = Object.entries(booksRaw)
@@ -311,22 +311,35 @@ async function generateDownloadPages(bookList, authorsRaw, categoriesRaw) {
   const downloadTemplate = fs.readFileSync('components/download.html', 'utf8');
   if (!fs.existsSync('download')) fs.mkdirSync('download');
 
+  // epub_urls.json থেকে EPUB URL map load করো
+  // (convert_zip.py এর পরে এই file তৈরি হয়)
+  let epubUrls = {};
+  if (fs.existsSync('epub_urls.json')) {
+    epubUrls = JSON.parse(fs.readFileSync('epub_urls.json', 'utf8'));
+    console.log(`  📚 epub_urls.json loaded: ${Object.keys(epubUrls).length} entries`);
+  } else {
+    console.log('  ⚠ epub_urls.json নেই — original ZIP URL ব্যবহার হবে');
+  }
+
   for (const book of bookList) {
+    // EPUB URL থাকলে সেটা, না হলে original file URL
+    const downloadUrl = epubUrls[book.slug] || book.download_url || '';
+
     const downloadContent = render(downloadTemplate, {
-      book_title: book.title,
-      book_author: book.author_name,
-      book_cover: book.cover,
-      book_category: book.category_name,
-      book_download_url: book.download_url || '',
-      book_slug: book.slug,
-      book_author_slug: book.author_slug,
+      book_title        : book.title,
+      book_author       : book.author_name,
+      book_cover        : book.cover,
+      book_category     : book.category_name,
+      book_download_url : downloadUrl,
+      book_slug         : book.slug,
+      book_author_slug  : book.author_slug,
       book_category_slug: book.category_slug,
     });
     const { sidebar_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
     const fullPage = render(layout, {
-      page_title: book.title,
+      page_title      : book.title,
       page_description: '',
-      content: downloadContent,
+      content         : downloadContent,
       sidebar_categories,
       sidebar_authors,
     });
@@ -410,6 +423,20 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
 (async () => {
   try {
     console.log('🚀 Script শুরু হয়েছে...');
+
+    const downloadOnly = process.argv.includes('--download-only');
+
+    if (downloadOnly) {
+      // শুধু download pages regenerate — epub_urls.json দিয়ে
+      console.log('📥 --download-only mode: শুধু download pages update হবে');
+      const { bookList, authorsRaw, categoriesRaw } = await generateBookPages();
+      await generateDownloadPages(bookList, authorsRaw, categoriesRaw);
+      console.log('\n🎉 Download pages update সম্পন্ন!');
+      await getApp().delete();
+      process.exit(0);
+    }
+
+    // Full build
     const { bookList, authorsRaw, categoriesRaw } = await generateBookPages();
     await generateHomepage(bookList, authorsRaw, categoriesRaw);
     await generateAuthorPages(bookList, authorsRaw, categoriesRaw);
@@ -425,47 +452,3 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
     process.exit(1);
   }
 })();
-// generate_pages.js এর generateDownloadPages function টা এটা দিয়ে replace করো
-
-async function generateDownloadPages(bookList, authorsRaw, categoriesRaw) {
-  console.log('\n📥 Download pages generate করছি...');
-  const downloadTemplate = fs.readFileSync('components/download.html', 'utf8');
-  if (!fs.existsSync('download')) fs.mkdirSync('download');
-
-  // epub_urls.json থেকে EPUB URL map load করো
-  // (convert_zip.py এর পরে এই file তৈরি হয়)
-  let epubUrls = {};
-  if (fs.existsSync('epub_urls.json')) {
-    epubUrls = JSON.parse(fs.readFileSync('epub_urls.json', 'utf8'));
-    console.log(`  📚 epub_urls.json loaded: ${Object.keys(epubUrls).length} entries`);
-  } else {
-    console.log('  ⚠ epub_urls.json নেই — original ZIP URL ব্যবহার হবে');
-  }
-
-  for (const book of bookList) {
-    // EPUB URL থাকলে সেটা, না হলে original file URL
-    const downloadUrl = epubUrls[book.slug] || book.download_url || '';
-
-    const downloadContent = render(downloadTemplate, {
-      book_title        : book.title,
-      book_author       : book.author_name,
-      book_cover        : book.cover,
-      book_category     : book.category_name,
-      book_download_url : downloadUrl,
-      book_slug         : book.slug,
-      book_author_slug  : book.author_slug,
-      book_category_slug: book.category_slug,
-    });
-    const { sidebar_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
-    const fullPage = render(layout, {
-      page_title      : book.title,
-      page_description: '',
-      content         : downloadContent,
-      sidebar_categories,
-      sidebar_authors,
-    });
-
-    fs.writeFileSync(`download/${book.slug}.html`, fullPage, 'utf8');
-    console.log(`  ✓ download/${book.slug}.html`);
-  }
-}
