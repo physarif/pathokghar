@@ -1,12 +1,203 @@
 <!DOCTYPE html>
 <html lang="bn">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>রূপসী বাংলা পড়ুন - পাঠক ঘর - পাঠক ঘর</title>
+    <meta name="description" content="রূপসী বাংলা বাংলা ভাষার অন্যতম প্রধান কবি জীবনানন্দ দাশের সর্বাধিক জনপ্রিয় কাব্যগ্রন্থ। এটি তাঁর সপ্তম কাব্যগ্রন্থ। কবি জীবদ্দশায় এ গ্রন্থটি বা এর অন্তর্ভুক্ত">
+    <meta property="og:title" content="রূপসী বাংলা পড়ুন - পাঠক ঘর - পাঠক ঘর">
+    <meta property="og:description" content="রূপসী বাংলা বাংলা ভাষার অন্যতম প্রধান কবি জীবনানন্দ দাশের সর্বাধিক জনপ্রিয় কাব্যগ্রন্থ। এটি তাঁর সপ্তম কাব্যগ্রন্থ। কবি জীবদ্দশায় এ গ্রন্থটি বা এর অন্তর্ভুক্ত">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50:  '#fff5f5',
+                            100: '#fde8e6',
+                            500: '#c0392b',
+                            600: '#a93226'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        header { border-top: 5px solid #fff5f5; }
+        /* Sidebar */
+        #sidebar {
+            position: fixed;
+            top: 0; left: 0;
+            height: 100%;
+            width: 280px;
+            transform: translateX(-100%);
+            transition: transform 0.28s cubic-bezier(.4,0,.2,1);
+            z-index: 200;
+            overflow-y: auto;
+            scrollbar-width: none;
+            border-top: 5px solid #fff5f5;
+        }
+        #sidebar.open { transform: translateX(0); }
+        #sidebar::-webkit-scrollbar { display: none; }
+        #sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            z-index: 199;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.28s;
+        }
+        #sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+        #sb-google-login:active i { color: #c0392b; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
+
+    <!-- SIDEBAR OVERLAY -->
+    <div id="sidebar-overlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="bg-white dark:bg-[#1a1a1b] shadow-2xl border-r border-gray-200 dark:border-gray-700">
+
+        <!-- Login section -->
+        <div class="px-4 pt-5 pb-4 border-b border-gray-100 dark:border-gray-700">
+
+            <!-- Logged OUT state -->
+            <div id="sb-logged-out">
+                <div class="flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <!-- Google logo -->
+                        <div class="w-11 h-11 rounded-full bg-white dark:bg-[#2a2a2a] border border-gray-200 dark:border-gray-700 flex items-center justify-center shrink-0 shadow-sm">
+                            <svg width="22" height="22" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.59-13.46-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-sm text-gray-800 dark:text-gray-100">লগইন</p>
+                            <p class="text-[11px] text-gray-400 dark:text-gray-500">data sync করুন</p>
+                        </div>
+                    </div>
+                    <button id="sb-google-login" class="flex items-center justify-center w-9 h-9 rounded-xl border border-[#c0392b] bg-[#c0392b] active:bg-white active:border-white transition shadow-sm shrink-0">
+                        <i class="fas fa-sign-in-alt text-white"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Logged IN state (hidden by default) -->
+            <div id="sb-logged-in" class="hidden">
+                <div class="flex items-center gap-3">
+                    <img id="sb-user-photo" src="" alt="User" class="w-11 h-11 rounded-full object-cover shrink-0 border-2 border-[#c0392b]/30">
+                    <div class="flex-1 min-w-0">
+                        <p id="sb-user-name" class="font-semibold text-sm text-gray-800 dark:text-gray-100 truncate"></p>
+                        <p id="sb-user-email" class="text-[11px] text-gray-400 dark:text-gray-500 truncate"></p>
+                    </div>
+                    <button id="sb-logout" title="লগআউট" class="p-1.5 text-gray-400 hover:text-[#c0392b] hover:bg-red-50 dark:hover:bg-[#2d1a0e] rounded-lg transition shrink-0">
+                        <i class="fas fa-sign-out-alt text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Categories -->
+        <div class="px-4 pt-5 pb-3">
+            <p class="text-[11px] uppercase font-bold tracking-widest text-gray-400 dark:text-gray-500 mb-3 pl-1">ক্যাটাগরি</p>
+            <ul class="space-y-0.5">
+                <li><a href="/category/kobita/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">কবিতা</span><span class="text-[11px] text-gray-400 dark:text-gray-500">2</span></a></li>
+                <li><a href="/category/probondho/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">প্রবন্ধ</span><span class="text-[11px] text-gray-400 dark:text-gray-500">2</span></a></li>
+                <li><a href="/category/uponyas/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">উপন্যাস</span><span class="text-[11px] text-gray-400 dark:text-gray-500">3</span></a></li>
+                <li><a href="/category/productivity/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">Productivity</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
+            </ul>
+        </div>
+
+        <div class="mx-4 border-t border-gray-100 dark:border-gray-700"></div>
+
+        <!-- Authors -->
+        <div class="px-4 pt-4 pb-6">
+            <p class="text-[11px] uppercase font-bold tracking-widest text-gray-400 dark:text-gray-500 mb-3 pl-1">লেখক</p>
+            <ul class="space-y-0.5">
+                <li><a href="/author/jibanananda-das.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">জীবনানন্দ দাশ</span><span class="text-[11px] text-gray-400 dark:text-gray-500">3</span></a></li>
+                <li><a href="/author/rabindranath-tagore.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">রবীন্দ্রনাথ ঠাকুর</span><span class="text-[11px] text-gray-400 dark:text-gray-500">2</span></a></li>
+                <li><a href="/author/hymayun-azad.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">হুমায়ুন আজাদ</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
+                <li><a href="/author/hymayun-ahmed.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">হুমায়ূন আহমেদ</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
+                <li><a href="/author/cal-newport.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">Cal Newport</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
+            </ul>
+        </div>
+
+    </aside>
+
+    <!-- HEADER -->
+    <header class="bg-white dark:bg-[#1a1a1b] fixed top-0 w-full h-16 z-[100] border-b border-gray-200 dark:border-gray-700 shadow-sm transition-transform duration-300 flex">
+        <div class="w-full px-4 h-full flex items-center justify-between gap-3">
+
+            <!-- Hamburger -->
+            <button id="sidebar-btn" class="p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition shrink-0" title="মেনু">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+
+            <!-- Logo -->
+            <a href="https://pathokghar.pages.dev" class="text-2xl font-extrabold tracking-tighter hover:bg-gray-100 dark:hover:bg-gray-800 px-2 py-1 rounded transition-colors duration-200 shrink-0 mr-auto md:mr-0">
+                পাঠক <span class="font-light text-gray-400">ঘর</span>
+            </a>
+
+            <!-- Search (desktop) -->
+            <div class="hidden md:flex flex-1">
+                <div class="relative flex-1 flex items-center">
+                    <i class="fas fa-search absolute left-4 text-gray-400 dark:text-gray-500 text-sm pointer-events-none"></i>
+                    <input id="desktop-search-input" type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
+                        class="w-full bg-gray-100 dark:bg-[#2d2d2d] border-0 rounded-full py-2 pl-10 pr-16 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white dark:focus:bg-[#3a3a3a] transition-all">
+                    <button id="desktop-search-btn" class="absolute right-1 bg-brand-500 hover:bg-brand-600 text-white px-4 py-1.5 rounded-full text-sm transition-colors shrink-0">
+                        খুঁজুন
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right side actions -->
+            <div class="flex items-center space-x-2 shrink-0">
+
+                <!-- Mobile search button -->
+                <button id="mobile-search-btn" class="md:hidden p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition" title="খুঁজুন">
+                    <i class="fas fa-search text-xl"></i>
+                </button>
+
+                <!-- Day/Night toggle -->
+                <button id="theme-btn" class="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition text-gray-600 dark:text-gray-300" title="ডার্ক মোড">
+                    <i id="theme-icon" class="fas fa-moon text-lg"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Mobile search bar (dropdown) -->
+        <div id="mobile-search-bar" class="absolute top-16 left-0 w-full bg-white dark:bg-[#1a1a1b] border-b dark:border-gray-700 px-4 py-3 hidden shadow-lg">
+            <div class="relative flex items-center">
+                <i class="fas fa-search absolute left-4 text-gray-400 dark:text-gray-500 text-sm pointer-events-none"></i>
+                <input id="mobile-search-input" type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
+                    class="w-full bg-gray-100 dark:bg-[#2d2d2d] border-0 rounded-full py-2 pl-10 pr-16 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
+                <button id="mobile-search-submit" class="absolute right-1 bg-brand-500 hover:bg-brand-600 text-white px-4 py-1.5 rounded-full text-sm transition-colors shrink-0">
+                    খুঁজুন
+                </button>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 min-w-0 pt-16">
+        <!DOCTYPE html>
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>রূপসী বাংলা - পড়ুন - পাঠক ঘর</title>
-    <meta name="description" content="রূপসী বাংলা বাংলা ভাষার অন্যতম প্রধান কবি জীবনানন্দ দাশের সর্বাধিক জনপ্রিয় কাব্যগ্রন্থ। এটি তাঁর সপ্তম কাব্যগ্রন্থ। কবি জীবদ্দশায় এ গ্রন্থটি বা এর অন্তর্ভুক্ত">
+    <meta name="description" content="রূপসী বাংলা বাংলা ভাষার অন্যতম প্রধান কবি জীবনানন্দ দাশের সর্বাধিক জনপ্রিয় কাব্যগ্রন্থ। এটি তাঁর সপ্তম কাব্যগ্রন্থ। কবি জীবদ্দশায় এ গ্রন্থটি বা এর অন্তর্ভুক্ত কোন কবিতা প্রকাশ করেন নি। ১৯৫৪ খ্রিষ্টাব্দে দুঘর্টনায় অকালমৃত্যুর পর এর পাণ্ডুলিপির খাতাটি আবিষ্কৃত হয়। কবি এ গ্রন্থটির প্রচ্ছদনাম নির্বাচন করেছিলেন বাংলার ত্রস্ত নীলিমা। জীবনানন্দ কেন স্বীয় জীবদ্দশায় এ কাব্যগন্থটি প্রকাশ করেননি তা অদ্যাবধি এক পরম বিস্ময় হয়ে আছে। বাংলাদেশের মুক্তিযুদ্ধে এ কাব্যের কবিতাগুলি বাঙালিদের বিশেষভাবে অনুপ্রেরণা যুগিয়েছিল।">
     <meta property="og:title" content="রূপসী বাংলা - পড়ুন - পাঠক ঘর">
-    <meta property="og:description" content="রূপসী বাংলা বাংলা ভাষার অন্যতম প্রধান কবি জীবনানন্দ দাশের সর্বাধিক জনপ্রিয় কাব্যগ্রন্থ। এটি তাঁর সপ্তম কাব্যগ্রন্থ। কবি জীবদ্দশায় এ গ্রন্থটি বা এর অন্তর্ভুক্ত">
+    <meta property="og:description" content="রূপসী বাংলা বাংলা ভাষার অন্যতম প্রধান কবি জীবনানন্দ দাশের সর্বাধিক জনপ্রিয় কাব্যগ্রন্থ। এটি তাঁর সপ্তম কাব্যগ্রন্থ। কবি জীবদ্দশায় এ গ্রন্থটি বা এর অন্তর্ভুক্ত কোন কবিতা প্রকাশ করেন নি। ১৯৫৪ খ্রিষ্টাব্দে দুঘর্টনায় অকালমৃত্যুর পর এর পাণ্ডুলিপির খাতাটি আবিষ্কৃত হয়। কবি এ গ্রন্থটির প্রচ্ছদনাম নির্বাচন করেছিলেন বাংলার ত্রস্ত নীলিমা। জীবনানন্দ কেন স্বীয় জীবদ্দশায় এ কাব্যগন্থটি প্রকাশ করেননি তা অদ্যাবধি এক পরম বিস্ময় হয়ে আছে। বাংলাদেশের মুক্তিযুদ্ধে এ কাব্যের কবিতাগুলি বাঙালিদের বিশেষভাবে অনুপ্রেরণা যুগিয়েছিল।">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,6 +222,7 @@
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     </style>
+    
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
 
@@ -81,12 +273,6 @@
         display: block;
     }
 
-    /* ── Font size variants ── */
-    #book-content.fs-sm p { font-size: 0.875rem; }
-    #book-content.fs-md p { font-size: 1rem; }
-    #book-content.fs-lg p { font-size: 1.125rem; }
-    #book-content.fs-xl p { font-size: 1.25rem; }
-
     /* ── TOC active ── */
     .toc-link.active {
         color: #c0392b;
@@ -105,176 +291,129 @@
         body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
         body.theme-light #mobile-reader-bg { background: #ffffff; }
 
-        /* book-content theme handled globally below */
-
-        /* Fixed top bar */
-        #mobile-topbar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            height: 52px;
-            z-index: 200;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            padding: 0 10px;
-            padding-top: env(safe-area-inset-top);
-            transition: transform 0.28s ease, background 0.3s;
-            border-bottom-left-radius: 14px;
-            border-bottom-right-radius: 14px;
-            background: #ffffff;
-        }
-        #mobile-topbar.hide { transform: translateY(-100%); }
-
-            
-        .theme-btn.active { border-color: #c0392b; }
-        .theme-btn i { font-size: 14px; display: none; }
-        .theme-btn.active i { display: block; }
-
-        body.theme-dark  #mobile-topbar i   { color: #ccc; }
-        body.theme-sepia #mobile-topbar i   { color: #5a4535; }
-        body.theme-light #mobile-topbar i   { color: #444; }
-
-        body.theme-dark  #mobile-topbar .title-text { color: #e8e8e8; }
-        body.theme-sepia #mobile-topbar .title-text { color: #3b2f20; }
-        body.theme-light #mobile-topbar .title-text { color: #111; }
-
-        /* main content padding */
-        #read-main-content {
-            padding-top: calc(52px + env(safe-area-inset-top) + 16px);
-            padding-bottom: 32px;
-        }
         #mobile-reader-bg {
             min-height: 100vh;
             transition: background 0.3s;
         }
     }
 
-    /* ══════════════════════════════
-       DESKTOP LEFT sidebar — book info
-    ══════════════════════════════ */
-    @media (min-width: 1024px) {
-        #desktop-left-sidebar {
-            position: fixed;
-            top: 0; left: 0;
-            width: 15rem;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid rgba(128,128,128,0.15);
-            background: inherit;
-            z-index: 50;
-            overflow: hidden;
-        }
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
 
-        /* ══════════════════════════════
-           DESKTOP RIGHT sidebar — controls + TOC
-        ══════════════════════════════ */
-        #toc-sidebar {
-            position: fixed;
-            top: 0; right: 0;
-            width: 14rem;
-            height: 100vh;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-        #toc-sidebar::-webkit-scrollbar { display: none; }
-
-        /* push main content between both sidebars */
-        #read-layout {
-            padding-left: 15rem;
-            padding-right: 14rem;
-        }
-    }
-    #toc-controls-bar {
-        position: sticky; top: 0; z-index: 10;
-    }
-
-    /* ── MOBILE: right TOC drawer ── */
-    #mobile-toc-drawer {
+    /* ── TOC unit (toggle + drawer together) ── */
+    #toc-unit {
         position: fixed;
-        top: 0; right: 0; bottom: 0;
-        width: 82vw; max-width: 320px;
+        top: 0;
+        right: 0;
+        height: 100vh;
         z-index: 500;
-        display: flex; flex-direction: column;
-        transform: translateX(105%);
-        transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
-        border-radius: 0;
+        display: flex;
+        align-items: flex-start;
+        padding-top: 33vh;
+        pointer-events: none;
     }
-    #mobile-toc-drawer.open { transform: translateX(0); }
+
+    /* Toggle tab */
+    #toc-toggle-btn {
+        width: 28px;
+        height: 90px;
+        flex-shrink: 0;
+        align-self: center;
+        background: #c0392b;
+        border: none;
+        border-radius: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: -2px 0 8px rgba(0,0,0,0.15);
+        padding: 10px 0;
+        pointer-events: auto;
+        transition: height 0.3s cubic-bezier(0.4,0,0.2,1),
+                    border-radius 0.3s cubic-bezier(0.4,0,0.2,1),
+                    align-self 0.1s;
+    }
+    #toc-unit.open {
+        align-items: stretch;
+    }
+    #toc-unit.open #toc-toggle-btn {
+        height: 100%;
+        align-self: stretch;
+        border-radius: 0;
+        pointer-events: auto;
+    }
+    #toc-toggle-btn:active { background: #a93226; }
+    #toc-toggle-btn.scrolling { opacity: 0.5; }
+    #toc-toggle-btn { transition: opacity 0.3s ease; }
+    #toc-toggle-btn .toc-toggle-label {
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1;
+    }
+
+    /* Drawer panel */
+    #mobile-toc-drawer {
+        width: 0;
+        max-width: 175px;
+        height: 100%;
+        display: flex; flex-direction: column;
+        background: #fafafa;
+        border-radius: 0;
+        box-shadow: -4px 4px 24px rgba(0,0,0,0.15);
+        overflow: hidden;
+        transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+        pointer-events: auto;
+    }
+    #toc-unit.open #mobile-toc-drawer {
+        width: 48vw;
+    }
+
 
     #mobile-toc-overlay {
         position: fixed; inset: 0;
         z-index: 499;
-        background: rgba(0,0,0,0.35);
+        background: rgba(0,0,0,0.25);
         opacity: 0; pointer-events: none;
-        transition: opacity 0.32s ease;
+        transition: opacity 0.3s ease;
+
     }
     #mobile-toc-overlay.open { opacity: 1; pointer-events: auto; }
 
-    /* Drawer theme colors */
-    body.theme-dark  #mobile-toc-drawer { background: #18181a; border-left: 1px solid #2c2c30; }
-    body.theme-sepia #mobile-toc-drawer { background: #f5efe6; border-left: 1px solid #d9ccbe; }
-    body.theme-light #mobile-toc-drawer { background: #fafafa; border-left: 1px solid #e8eaed; }
-
-    /* Drawer header */
+    /* Header */
     #toc-drawer-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 16px;
-        height: 56px;
-        shrink: 0;
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
+        padding: 20px 20px 12px;
     }
-    body.theme-dark  #toc-drawer-header { border-bottom-color: #2c2c30; }
-    body.theme-sepia #toc-drawer-header { border-bottom-color: #d9ccbe; }
-    body.theme-light #toc-drawer-header { border-bottom-color: #e8eaed; }
-
     #toc-drawer-header .drawer-title {
-        font-size: 0.8125rem;
+        font-size: 0.7rem;
         font-weight: 700;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
+        color: #c0392b;
     }
-    body.theme-dark  #toc-drawer-header .drawer-title { color: #9ca3af; }
-    body.theme-sepia #toc-drawer-header .drawer-title { color: #8a7060; }
-    body.theme-light #toc-drawer-header .drawer-title { color: #9ca3af; }
-
     #mobile-toc-close {
-        width: 32px; height: 32px;
+        width: 28px; height: 28px;
         border-radius: 50%;
         display: flex; align-items: center; justify-content: center;
         border: none; cursor: pointer;
+        background: rgba(0,0,0,0.06);
+        color: #888;
         transition: background 0.15s;
     }
-    body.theme-dark  #mobile-toc-close { background: rgba(255,255,255,0.08); color: #aaa; }
-    body.theme-sepia #mobile-toc-close { background: rgba(0,0,0,0.07);       color: #6b5443; }
-    body.theme-light #mobile-toc-close { background: rgba(0,0,0,0.06);       color: #555; }
+    #mobile-toc-close:active { background: rgba(0,0,0,0.12); }
 
-    /* Back to book link */
-    #toc-drawer-back {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 16px;
-        font-size: 0.75rem;
-        font-weight: 500;
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
-        text-decoration: none;
-        transition: opacity 0.15s;
-    }
-    #toc-drawer-back:active { opacity: 0.6; }
-    body.theme-dark  #toc-drawer-back { color: #5b9cf6; border-bottom-color: #2c2c30; }
-    body.theme-sepia #toc-drawer-back { color: #c0392b; border-bottom-color: #d9ccbe; }
-    body.theme-light #toc-drawer-back { color: #c0392b; border-bottom-color: #e8eaed; }
-
-    /* TOC nav items */
+    /* TOC nav */
     #toc-nav-mobile {
         flex: 1;
         overflow-y: auto;
-        padding: 8px 10px 24px;
+        padding: 4px 8px 24px;
         scrollbar-width: none;
         -ms-overflow-style: none;
     }
@@ -282,55 +421,23 @@
 
     #toc-nav-mobile .toc-link {
         display: block;
-        padding: 9px 12px;
-        border-radius: 8px;
+        padding: 10px 6px;
         font-size: 0.8125rem;
-        line-height: 1.4;
+        line-height: 1.45;
         text-decoration: none;
-        transition: background 0.15s, color 0.15s;
-        margin-bottom: 1px;
+        color: #444;
+        border-bottom: 1px solid #ececec;
+        transition: color 0.15s;
     }
-    #toc-nav-mobile .toc-link.h1-link {
-        font-size: 0.875rem;
-        font-weight: 600;
-        margin-top: 4px;
-    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+
     #toc-nav-mobile .toc-link.h2-link {
-        padding-left: 24px;
-        font-size: 0.8rem;
-        font-weight: 400;
+        padding-left: 14px;
+        font-size: 0.78rem;
+        color: #666;
     }
+    #toc-nav-mobile .toc-link.active { color: #c0392b; }
 
-    body.theme-dark  #toc-nav-mobile .toc-link         { color: #9ca3af; }
-    body.theme-dark  #toc-nav-mobile .toc-link.h1-link { color: #d1d5db; }
-    body.theme-dark  #toc-nav-mobile .toc-link:hover   { background: rgba(255,255,255,0.06); color: #e5e7eb; }
-    body.theme-dark  #toc-nav-mobile .toc-link.active  { background: rgba(91,156,246,0.15); color: #5b9cf6; }
-
-    body.theme-sepia #toc-nav-mobile .toc-link         { color: #7a6355; }
-    body.theme-sepia #toc-nav-mobile .toc-link.h1-link { color: #3b2f20; }
-    body.theme-sepia #toc-nav-mobile .toc-link:hover   { background: rgba(0,0,0,0.05); color: #3b2f20; }
-    body.theme-sepia #toc-nav-mobile .toc-link.active  { background: rgba(192,57,43,0.1); color: #c0392b; }
-
-    body.theme-light #toc-nav-mobile .toc-link         { color: #6b7280; }
-    body.theme-light #toc-nav-mobile .toc-link.h1-link { color: #111827; }
-    body.theme-light #toc-nav-mobile .toc-link:hover   { background: rgba(0,0,0,0.04); color: #111827; }
-    body.theme-light #toc-nav-mobile .toc-link.active  { background: rgba(192,57,43,0.08); color: #c0392b; }
-
-
-    /* ── Line spacing variants ── */
-    #book-content.ls-compact p  { line-height: 1.6; }
-    #book-content.ls-normal p   { line-height: 2; }
-    #book-content.ls-relaxed p  { line-height: 2.4; }
-
-    /* ── Font family variants ── */
-    #book-content.ff-sans    { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    #book-content.ff-serif   { font-family: 'Noto Serif Bengali', 'Noto Serif', Georgia, serif; }
-    #book-content.ff-system  { font-family: system-ui, -apple-system, sans-serif; }
-
-    /* ── Reading width variants ── */
-    #read-main-content.rw-narrow { max-width: 36rem; }
-    #read-main-content.rw-medium { max-width: 42rem; }
-    #read-main-content.rw-wide   { max-width: 56rem; }
 
     /* ── Estimated time badge ── */
     #est-time-badge {
@@ -341,235 +448,10 @@
         color: #6b7280;
     }
 
-    /* ══════════════════════════════
-       MOBILE bottom customization bar
-    ══════════════════════════════ */
-    @media (max-width: 767px) {
-        #mobile-bottom-bar {
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            z-index: 190;
-            padding-bottom: env(safe-area-inset-bottom);
-            transition: transform 0.28s ease, background 0.3s;
-            border-top-left-radius: 14px;
-            border-top-right-radius: 14px;
-            background: #ffffff;
-        }
-        #mobile-bottom-bar.hide { transform: translateY(100%); }
-
-        /* tabs row */
-        #mob-cust-tabs {
-            display: flex;
-            border-top-width: 1px;
-            border-top-style: solid;
-            height: 48px;
-        }
-        .mob-tab-btn {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2px;
-            font-size: 9px;
-            font-weight: 500;
-            cursor: pointer;
-            border: none;
-            background: transparent;
-            transition: color 0.15s;
-        }
-        .mob-tab-btn i { font-size: 13px; }
-        .mob-tab-btn.active { color: #c0392b; }
-
-        /* panel */
-        #mob-cust-panel {
-            overflow: hidden;
-            max-height: 0;
-            transition: max-height 0.32s cubic-bezier(0.4,0,0.2,1);
-        }
-        #mob-cust-panel.open { max-height: 320px; }
-
-        .mob-panel-section {
-            display: none;
-            padding: 12px 16px 4px;
-        }
-        .mob-panel-section.active { display: block; }
-
-        /* theme buttons mobile */
-        #mob-cust-panel .theme-btn {
-            height: 32px;
-            border-radius: 10px;
-            border-width: 2px;
-            font-size: 11px;
-            font-weight: 500;
-            padding: 0 10px;
-            flex: none;
-        }
-
-        /* ls/ff/rw buttons mobile */
-        #mob-cust-panel .ls-btn,
-        #mob-cust-panel .rw-btn {
-            flex: 1;
-            height: 36px;
-            border-radius: 10px;
-            border-width: 2px;
-            font-size: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
-            cursor: pointer;
-            transition: border-color 0.15s;
-        }
-        #mob-cust-panel .ff-btn {
-            width: 100%;
-            height: 36px;
-            border-radius: 10px;
-            border-width: 2px;
-            font-size: 12px;
-            text-align: left;
-            padding: 0 12px;
-            cursor: pointer;
-            transition: border-color 0.15s;
-        }
-
-        /* theme colors for bottom bar */
-                            body.theme-dark  #mob-cust-panel .ls-btn,
-        body.theme-dark  #mob-cust-panel .rw-btn,
-        body.theme-dark  #mob-cust-panel .ff-btn { background: #1e1e20; color: #ccc; border-color: #333; }
-
-                            body.theme-sepia #mob-cust-panel .ls-btn,
-        body.theme-sepia #mob-cust-panel .rw-btn,
-        body.theme-sepia #mob-cust-panel .ff-btn { background: #f5efe6; color: #5a4535; border-color: #d4c8b8; }
-
-                            body.theme-light #mob-cust-panel .ls-btn,
-        body.theme-light #mob-cust-panel .rw-btn,
-        body.theme-light #mob-cust-panel .ff-btn { background: #f9fafb; color: #374151; border-color: #e5e7eb; }
-
-        /* bottom bar visible — push content up */
-        #read-main-content {
-            padding-bottom: calc(48px + env(safe-area-inset-bottom) + 16px);
-        }
-    }
-
-    /* ── Text alignment variants ── */
-    #book-content.ta-justify p { text-align: justify; }
-    #book-content.ta-center  p { text-align: center; }
-    #book-content.ta-default p { text-align: left; }
-
-    /* ── New theme variants ── */
-    body.theme-black  #mobile-reader-bg,
-    body.theme-black  #read-main-content { background: #000000; }
-    body.theme-black  #book-content { color: #d0d0d0; }
-    body.theme-black  #book-content h1,
-    body.theme-black  #book-content h2 { color: #e8e8e8; }
-    body.theme-black  #book-content h2 { border-top-color: #222; }
-
-    body.theme-green  #mobile-reader-bg,
-    body.theme-green  #read-main-content { background: #0d1f0f; }
-    body.theme-green  #book-content { color: #b8d4ba; }
-    body.theme-green  #book-content h1,
-    body.theme-green  #book-content h2 { color: #d4e8d4; }
-    body.theme-green  #book-content h2 { border-top-color: #1a3a1c; }
-    body.theme-green  .mob-tab-btn { color: #4a7a4c; }
-    body.theme-green  .mob-tab-btn.active { color: #6fcf72; }
-
-    body.theme-blue   #mobile-reader-bg,
-    body.theme-blue   #read-main-content { background: #0d1b2e; }
-    body.theme-blue   #book-content { color: #b8ccdf; }
-    body.theme-blue   #book-content h1,
-    body.theme-blue   #book-content h2 { color: #d0e4f4; }
-    body.theme-blue   #book-content h2 { border-top-color: #1a2f4a; }
-    body.theme-light  #mobile-topbar { background: #ffffff; border-bottom-color: #e5e7eb; }
-    body.theme-light  #mobile-bottom-bar { background: #ffffff; }
-    body.theme-sepia  #mobile-topbar { background: #f5efe6; border-bottom-color: #d9ccbe; }
-    body.theme-sepia  #mobile-bottom-bar { background: #f5efe6; }
-    body.theme-dark   #mobile-topbar { background: #1c1c1e; border-bottom-color: #2c2c30; }
-    body.theme-dark   #mobile-bottom-bar { background: #1c1c1e; }
-    body.theme-blue   #mobile-topbar { background: #0a1520; border-bottom-color: #1a2f4a; }
-    body.theme-blue   #mobile-bottom-bar { background: #0a1520; }
-    body.theme-blue   #mob-cust-tabs { border-top-color: #1a2f4a; }
-    body.theme-blue   #mob-cust-panel { background: #0a1520; border-top-color: #1a2f4a; }
-    body.theme-blue   .mob-tab-btn { color: #3a5a7a; }
-    body.theme-blue   .mob-tab-btn.active { color: #5b9cf6; }
-    body.theme-blue   #mob-cust-panel .ls-btn,
-    body.theme-blue   #mob-cust-panel .rw-btn,
-    body.theme-blue   #mob-cust-panel .ff-btn { background: #0d1b2e; color: #7aaac8; border-color: #1a2f4a; }
-    body.theme-blue   #desktop-left-sidebar,
-    body.theme-blue   #toc-sidebar { background: #0a1520 !important; border-color: #1a2f4a !important; }
-
-    body.theme-gray   #mobile-reader-bg,
-    body.theme-gray   #read-main-content { background: #2a2a2e; }
-    body.theme-gray   #book-content { color: #c8c8cc; }
-    body.theme-gray   #book-content h1,
-    body.theme-gray   #book-content h2 { color: #e0e0e4; }
-    body.theme-gray   #book-content h2 { border-top-color: #3a3a3e; }
-    body.theme-gray   #mobile-topbar { background: #222226; border-bottom-color: #3a3a3e; }
-    body.theme-gray   #mobile-bottom-bar { background: #222226; }
-    body.theme-gray   #mob-cust-tabs { border-top-color: #3a3a3e; }
-    body.theme-gray   #mob-cust-panel { background: #222226; border-top-color: #3a3a3e; }
-    body.theme-gray   .mob-tab-btn { color: #666; }
-    body.theme-gray   .mob-tab-btn.active { color: #5b9cf6; }
-    body.theme-gray   #mob-cust-panel .ls-btn,
-    body.theme-gray   #mob-cust-panel .rw-btn,
-    body.theme-gray   #mob-cust-panel .ff-btn { background: #2a2a2e; color: #aaa; border-color: #3a3a3e; }
-    body.theme-gray   #desktop-left-sidebar,
-    body.theme-gray   #toc-sidebar { background: #222226 !important; border-color: #3a3a3e !important; }
-
-    /* ── Active theme button indicator ── */
-    .theme-btn { position: relative; overflow: hidden; }
-    .theme-btn.active { border-color: #c0392b !important; }
-
-    /* ── Active theme button: filled ring ── */
-    .theme-btn { transition: box-shadow 0.15s, border-color 0.15s; }
-    .theme-btn.active { border-color: #c0392b !important; box-shadow: inset 0 0 0 2px #c0392b; }
     html { scroll-behavior: smooth; }
     /* ── Hide browser scrollbar (page level) ── */
     html { scrollbar-width: none; -ms-overflow-style: none; }
     html::-webkit-scrollbar { display: none; }
-
-    /* ══ Global theme rules (mobile + desktop) ══ */
-    body.theme-dark  #mobile-reader-bg,
-    body.theme-dark  #read-main-content { background: #1c1c1e; }
-    body.theme-sepia #mobile-reader-bg,
-    body.theme-sepia #read-main-content { background: #f5efe6; }
-    body.theme-light #mobile-reader-bg,
-    body.theme-light #read-main-content { background: #ffffff; }
-
-    body.theme-dark  #book-content { color: #e0e0e0; }
-    body.theme-sepia #book-content { color: #3b2f20; }
-    body.theme-light #book-content { color: #1a1a1a; }
-
-    body.theme-dark  #book-content h1,
-    body.theme-dark  #book-content h2 { color: #f0f0f0; }
-    body.theme-sepia #book-content h1,
-    body.theme-sepia #book-content h2 { color: #2a1f14; }
-    body.theme-light #book-content h1,
-    body.theme-light #book-content h2 { color: #111111; }
-
-    body.theme-dark  #book-content h2 { border-top-color: #333; }
-    body.theme-sepia #book-content h2 { border-top-color: #d9ccc0; }
-    body.theme-light #book-content h2 { border-top-color: rgba(128,128,128,0.2); }
-
-    /* sidebars follow theme too */
-
-    body.theme-dark  #desktop-left-sidebar *,
-    body.theme-dark  #toc-sidebar * { --tw-text-opacity: 1; }
-
-    /* progress bar color stays brand */
-    body.theme-sepia #read-progress-bar { background: #8b5e3c; }
-
-    /* ══ Desktop left sidebar theme colors ══ */
-
-
-    /* Active theme button */
-    .theme-btn.active { border-color: #c0392b !important; box-shadow: 0 0 0 1px #c0392b; }
-
-    /* Hide main content bottom back-link on desktop since left sidebar has it */
-    @media (min-width: 1024px) {
-        #desktop-bottom-backnav { display: none; }
-    }
 
 </style>
 
@@ -580,159 +462,18 @@
      MOBILE ONLY chrome (hidden on md+)
 ══════════════════════════════════════════ -->
 
-<!-- Top bar -->
-<div id="mobile-topbar" class="md:hidden">
-    <a href="/books/ruposhi-bangla.html"
-       class="w-9 h-9 flex items-center justify-center rounded-full shrink-0">
-        <i class="fas fa-chevron-left text-base"></i>
-    </a>
-    <div class="flex-1 min-w-0 px-1">
-        <p class="title-text text-sm font-semibold truncate leading-tight">রূপসী বাংলা</p>
-    </div>
-    <button id="mob-toc-btn-top" class="w-9 h-9 flex items-center justify-center rounded-full shrink-0" aria-label="সূচিপত্র">
-        <i class="fas fa-list-ul text-sm"></i>
+<!-- TOC unit: toggle + drawer together -->
+<div id="toc-unit">
+    <button id="toc-toggle-btn" aria-label="সূচিপত্র">
+        <span class="toc-toggle-label">সূচিপত্র</span>
     </button>
-</div>
+    <div id="mobile-toc-drawer">
 
-<!-- ── MOBILE: right TOC drawer + overlay ── -->
-<div id="mobile-toc-overlay" class="md:hidden"></div>
-<div id="mobile-toc-drawer" class="md:hidden">
-
-    <!-- Header -->
-    <div id="toc-drawer-header" class="shrink-0">
-        <span class="drawer-title">সূচিপত্র</span>
-        <button id="mobile-toc-close" aria-label="বন্ধ করুন">
-            <i class="fas fa-times" style="font-size:13px;"></i>
-        </button>
-    </div>
-
-    <!-- TOC nav -->
-    <nav id="toc-nav-mobile"></nav>
-
-</div>
-
-<!-- ══════════════════════════════════════════
-     MOBILE bottom customization bar
-══════════════════════════════════════════ -->
-<div id="mobile-bottom-bar" class="md:hidden">
-
-    <!-- Expandable panel -->
-    <div id="mob-cust-panel">
-
-        <!-- থিম -->
-        <div id="mob-panel-theme" class="mob-panel-section">
-            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">থিম</p>
-            <div class="flex gap-2">
-                <button data-theme="light" class="theme-btn flex-1" style="background:#fff;color:#333;border-color:#e5e7eb;">আলো</button>
-                <button data-theme="sepia" class="theme-btn flex-1" style="background:#f5efe6;color:#5a4535;border-color:#d9ccbe;">সেপিয়া</button>
-                <button data-theme="dark"  class="theme-btn flex-1" style="background:#1c1c1e;color:#ccc;border-color:#333;">অন্ধকার</button>
-            </div>
-        </div>
-
-        <!-- লেখার আকার -->
-        <div id="mob-panel-font" class="mob-panel-section">
-            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">লেখার আকার ও ফন্ট</p>
-            <div class="flex gap-2 mb-2">
-                <button id="m-font-decrease"
-                    class="flex-1 h-9 rounded-xl border-2 border-gray-200 bg-gray-50 text-[13px] font-bold text-gray-600">A−</button>
-                <div class="flex-1 flex justify-center gap-1.5 items-center">
-                    <span id="m-font-dot-0" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
-                    <span id="m-font-dot-1" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
-                    <span id="m-font-dot-2" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
-                    <span id="m-font-dot-3" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
-                </div>
-                <button id="m-font-increase"
-                    class="flex-1 h-9 rounded-xl border-2 border-gray-200 bg-gray-50 text-[13px] font-bold text-gray-600">A+</button>
-            </div>
-            <div class="flex flex-col gap-1.5">
-                <button data-ff="ff-sans"  class="ff-btn border-2 border-gray-200 bg-gray-50" style="font-family:'Segoe UI',sans-serif;">সাধারণ (Sans)</button>
-                <button data-ff="ff-serif" class="ff-btn border-2 border-gray-200 bg-gray-50" style="font-family:'Noto Serif Bengali',serif;">বইয়ের ফন্ট (Serif)</button>
-            </div>
-        </div>
-
-        <!-- লাইনের ফাঁক -->
-        <div id="mob-panel-spacing" class="mob-panel-section">
-            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">লাইনের ফাঁক, প্রস্থ ও সারিবদ্ধতা</p>
-            <div class="flex gap-2 mb-2">
-                <button data-ls="ls-compact" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="flex flex-col gap-[2px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span>আঁটো</span>
-                </button>
-                <button data-ls="ls-normal" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="flex flex-col gap-[4px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span>স্বাভাবিক</span>
-                </button>
-                <button data-ls="ls-relaxed" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="flex flex-col gap-[6px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span>প্রশস্ত</span>
-                </button>
-            </div>
-            <div class="flex gap-2">
-                <button data-rw="rw-narrow" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="w-[3px] h-4 bg-current rounded-sm opacity-80"></span><span>সরু</span>
-                </button>
-                <button data-rw="rw-medium" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="w-[5px] h-4 bg-current rounded-sm opacity-80"></span><span>মাঝারি</span>
-                </button>
-                <button data-rw="rw-wide" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="w-[8px] h-4 bg-current rounded-sm opacity-80"></span><span>চওড়া</span>
-                </button>
-            </div>
-        </div>
-
-
-    </div>
-
-    <!-- Tab buttons row -->
-    <div id="mob-cust-tabs">
-        <button class="mob-tab-btn" id="mob-tab-theme" data-panel="mob-panel-theme">
-            <i class="fas fa-circle-half-stroke"></i>
-            <span>থিম</span>
-        </button>
-        <button class="mob-tab-btn" id="mob-tab-font" data-panel="mob-panel-font">
-            <i class="fas fa-font"></i>
-            <span>ফন্ট</span>
-        </button>
-        <button class="mob-tab-btn" id="mob-tab-spacing" data-panel="mob-panel-spacing">
-            <i class="fas fa-text-height"></i>
-            <span>ফাঁক/প্রস্থ</span>
-        </button>
+        <nav id="toc-nav-mobile"></nav>
     </div>
 </div>
+<div id="mobile-toc-overlay"></div>
 
-<!-- ══════════════════════════════════════════
-     DESKTOP LEFT sidebar (book info + nav)
-══════════════════════════════════════════ -->
-<aside id="desktop-left-sidebar"
-    class="hidden lg:flex flex-col bg-white dark:bg-[#1a1a1b]">
-
-    <!-- Back button + Book name -->
-    <div class="px-4 pt-5 pb-4 border-b border-gray-100 dark:border-gray-800 shrink-0 flex items-center gap-2.5">
-        <a href="/books/ruposhi-bangla.html"
-           class="w-7 h-7 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-brand-100 dark:hover:bg-[#7a3b1e] flex items-center justify-center shrink-0 transition-colors">
-            <i class="fas fa-arrow-left text-[11px] text-gray-500 dark:text-gray-400 hover:text-[#c0392b] transition-colors"></i>
-        </a>
-        <div class="min-w-0">
-            <p id="left-book-title"
-               class="text-[13px] font-bold leading-snug text-gray-900 dark:text-gray-100 line-clamp-2">
-                রূপসী বাংলা
-            </p>
-            <p id="left-book-subtitle"
-               class="text-[10px] text-gray-400 dark:text-gray-500 mt-0.5 line-clamp-1">
-                
-            </p>
-        </div>
-    </div>
-
-    <!-- TOC label -->
-    <div class="px-5 pt-4 pb-1.5 shrink-0">
-        <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600">সূচিপত্র</p>
-    </div>
-
-    <!-- TOC nav (populated by JS alongside desktop nav) -->
-    <nav id="toc-nav-left" class="flex flex-col px-3 pb-8 gap-0.5 text-[12px] overflow-y-auto flex-1"
-         style="scrollbar-width:none;-ms-overflow-style:none;"></nav>
-</aside>
 
 <!-- ══════════════════════════════════════════
      Main layout wrapper
@@ -742,1375 +483,41 @@
 
     <!-- Reading column -->
     <div class="flex-1 min-w-0">
-        <div id="read-main-content" class="px-5 md:px-10 lg:px-16 py-7 max-w-2xl">
-            <div id="book-content" class="fs-md text-gray-800 dark:text-gray-200">
-                <h2>তোমরা যেখানে সাধ</h2>
-<p>তোমরা যেখানে সাধ চ’লে যাও-আমি এই বাংলার পারে</p>
-<p>র’য়ে যাব; দেখিবে কাঁঠালপাতা ঝরিতেছে ভোরের বাতাসে;</p>
-<p>দেখিবে খয়েরি ডানা শালিখের সন্ধ্যায় হিম হয়ে আসা</p>
-<p>ধবল রোমের নিচে তাহার হলুদ ঠ্যাং ঘাসে অন্ধকারে</p>
-<p>নেচে চলে-একবার-দুইবার-তারপর হঠাৎ তাহারে</p>
-<p>বনের হিজল গাছ ডাক দিয়ে নিয়ে যায় হৃদয়ের পাশে;</p>
-<p>দেখিবে মেয়েলি হাত সকরুণ-সাদা শাঁখা ধূসর বাতাসে</p>
-<p>শঙ্খের মতো কাঁদে : সন্ধ্যায় দাঁড়াল সে পুকুরের ধারে,</p>
-<p> </p>
-<p>খইরঙা হাঁসটিরে নিয়ে যাবে যেন কোন্ কাহিনীর দেশে-</p>
-<p>‘পরণ-কথা’র গন্ধ লেগে আছে যেন তার নরম শরীরে,</p>
-<p>কলমীদামের থেকে জন্মেছে সে যেন এই পুকুরের নীড়ে-</p>
-<p>নীরবে পা ধোয় জলে একবার- তারপর দূরে নিরুদ্দেশে</p>
-<p>চ’লে যায় কুয়াশায়,- তবু জানি কোনোদিন পৃথিবীর ভিড়ে</p>
-<p>হারাব না তারে আমি- সে যে আছে আমার এ বাংলার তীরে</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_1"/>
-</p>
-<h2>বাংলার মুখ আমি </h2>
-<p>বাংলার মুখ আমি দেখিয়াছি, তাই আমি পৃথিবীর রূপ</p>
-<p>খুঁজিতে যাই না আর : অন্ধকারে জেগে উঠে ডুমুরের গাছে</p>
-<p>চেয়ে দেখি ছাতার মতন বড়ো পাতাটির নিচে ব’সে আছে</p>
-<p>ভোরের দয়েলপাখি-চারিদিকে চেয়ে দেখি পল্লবের স্তূপ</p>
-<p>জাম-বট-কাঁঠাল-হিজলের-অশথের ক’রে আছে চুপ;</p>
-<p>ফণীমনসার ঝোঁপে শটিবনে তাহাদের ছায়া পড়িয়াছে!</p>
-<p>মধুকর ডিঙ্গা থেকে না জানি সে কবে চাঁদ চম্পার কাছে</p>
-<p>এমনই হিজল-বট-তমালের নীল ছায়া বাংলার অপরূপ রূপ</p>
-<p> </p>
-<p>দেখেছিল : বেহুলাও একদিন গাঙুড়ের জলে ভেলা নিয়ে-</p>
-<p>কৃষ্ণা দ্বাদশীর জ্যোৎস্না যখন মরিয়া গেছে নদীর চড়ায়-</p>
-<p>সোনালি ধানের পাশে অসংখ্য অশ্বত্থ বট দেখেছিল, হায়,</p>
-<p>শ্যামার নরম গান শুনেছিল-একদিন অমরায় গিয়ে</p>
-<p>ছিন্ন খঞ্জনার মতো যখন সে নেচেছিল ইন্দ্রের সভায়</p>
-<p>বাংলার নদী মাঠ ভাঁটফুল ঘুঙুরের মতো তার কেঁদেছিল পায়।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_2"/>
-</p>
-<h2>যতদিন বেঁচে আছি</h2>
-<p>যতদিন বেঁচে আছি আকাশ চলিয়া গেছে কোথায় আকাশে</p>
-<p>অপরাজিতার মতো নীল হয়ে- আরো নীল- আরো নীল হয়ে</p>
-<p>আমি যে দেখিতে চাই;- সে আকাশ পাখনায় নিঙড়ায়ে লয়ে</p>
-<p>কোথায় ভোরের বক মাছরাঙা উড়ে যায় আশ্বিনের মাসে;</p>
-<p>আমি যে দেখিতে চাই,-আমি যে বসিতে চাই বাংলার ঘাসে;</p>
-<p>পৃথিবীর পথে ঘুরে বহুদিন অনেক বেদনা প্রাণে স’য়ে</p>
-<p>ধানসিড়িটির পথে বাংলার শ্মশানের দিকে যাব ব’য়ে,</p>
-<p>যেইখানে এলোচুলে রামপ্রসাদের সেই শ্যামা আজো আসে,</p>
-<p> </p>
-<p>যেইখানে কল্কাপেড়ে শাড়ি প’রে কোন এক সুন্দরীর শব</p>
-<p>চন্দন চিতায় চড়ে- আমের শাখায় শুক ভুলে যায় কথা;</p>
-<p>যেইখানে সবচেয়ে বেশি রূপ- সবচেয়ে গাঢ় বিষণ্ণতা;</p>
-<p>যেখানে শুকায় পদ্ম- বহু দিন বিশালাক্ষী যেখানে নীরব;</p>
-<p>যেইখানে একদিন শঙ্খমালা চন্দ্রমালা মানিককুমার</p>
-<p>কাঁকন বাজিত, আহা, কোনোদিন বাজিবে কি আর !</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_3"/>
-</p>
-<h2>একদিন জলসিড়ি নদীটির</h2>
-<p>একদিন জলসিড়ি নদীটির পারে এই বাংলার মাঠে</p>
-<p>বিশীর্ণ বটের নিচে শুয়ে রবো; পশমের মতো লাল ফল</p>
-<p>ঝরিবে বিজন ঘাসে,- বাঁকা চাঁদ জেগে র’বে- নদীটির জল</p>
-<p>বাঙালি মেয়ের মতো বিশালাক্ষী মন্দিরের ধূসর কপাটে</p>
-<p>আঘাত করিয়া যাবে ভয়ে ভয়ে- তারপর যেই ভাঙা ঘাটে</p>
-<p>রূপসীরা আজ আর আসে নাকো, পাট শুধু পচে অবিরল,</p>
-<p>সেইখানে কলমীর দামে বেঁধে প্রেতিনীর মতন কেবল</p>
-<p>কাঁদিবে সে সারা রাত,- দেখিবে কখন কারা এসে আমকাঠে</p>
-<p> </p>
-<p>সাজায়ে রেখেছে চিতা; বাংলার শ্রাবণের বিস্মিত আকাশ</p>
-<p>চেয়ে র’বে; ভিজে পেঁচা শান্ত স্নিগ্ধ চোখ মেলে কদমের বনে</p>
-<p>শোনাবে লক্ষ্ণীর গল্প- ভাসানের গান নদী শোনাবে নির্জনে;</p>
-<p>চারিদিকে বাংলার ধানী শাড়ি- শাদা শাঁখা- বাংলার ঘাস</p>
-<p>আকন্দ বাসকলতা ঘেরা এক নীল মঠ-আপনার মনে</p>
-<p>ভাঙিতেছে ধীরে ধীরে;- চারিদিকে এইসব আশ্চর্য উচ্ছ্বাস-</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_4"/>
-</p>
-<h2>আকাশে সাতটি তারা</h2>
-<p>আকাশে সাতটি তারা যখন উঠেছে ফুটে আমি এই ঘাসে</p>
-<p>বসে থাকি; কামরাঙা- লাল মেঘ যেন মৃত মনিয়ার মতো</p>
-<p>গঙ্গাসাগরের ঢেউয়ে ডুবে গেছে- আসিয়াছে শান্ত অনুগত</p>
-<p>বাংলার নীল সন্ধ্যা- কেশবতী কন্যা যেন এসেছে আকাশে :</p>
-<p>আমার চোখের ’পরে আমার মুখের ’পরে চুল তার ভাসে;</p>
-<p>পৃথিবীর কোনো পথ এ কন্যারে দেখেনিকো- দেখি নাই অত</p>
-<p>অজস্র চুলের চুমা হিজলে কাঁঠালে জামে ঝরে অবিরত,</p>
-<p>জানি নাই এত স্নিগ্ধ গন্ধ ঝরে রূপসীর চুলের বিন্যাসে</p>
-<p> </p>
-<p>পৃথিবীর কোনো পথে : নরম ধানের গন্ধ- কলমীর ঘ্রাণ,</p>
-<p>হাঁসের পালক, শর, পুকুরের জল, চাঁদা সরপুঁটিদের</p>
-<p>মৃদু ঘ্রাণ, কিশোরীর চাল-ধোয়া ভিজে হাত- শীত হাতখান,</p>
-<p>ব্যথিত গন্ধের ক্লান্ত নীরবতা- এরি মাঝে বাংলার প্রাণ :</p>
-<p>আকাশে সাতটি তারা যখন উঠেছে ফুটে আমি পাই টের। </p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_5"/>
-</p>
-<h2>কোথাও দেখিনি</h2>
-<p>কোথাও দেখিনি, আহা, এমন বিজন ঘাস- প্রান্তরের পারে</p>
-<p>নরম বিমর্ষ চোখে চেয়ে আছে- নীল বুকে আছে তাহাদের</p>
-<p>গঙ্গাফড়িংয়ের নীড়, কাঁচপোকা, প্রজাপতি, শ্যামাপোকা ঢের,</p>
-<p>হিজলের ক্লান্ত পাতা- বটের অজস্র ফল ঝরে বারেবারে</p>
-<p>তাহাদের শ্যাম বুকে;- পাড়াগাঁর কিশোরেরা যখন কান্তারে</p>
-<p>বেতের নরম ফল, নাটাফল খেতে আসে ধুন্দল বীজের</p>
-<p>খোঁজ করে ঘাসে ঘাসে, - বক তাহা জানে নাকো, পায় নাকো টের</p>
-<p>শালিখ খঞ্জনা তাহা;- লক্ষ লক্ষ ঘাস এই নদীর দু’ধারে</p>
-<p> </p>
-<p>নরম কান্তারে এই পাড়াগাঁর বুকে শুয়ে সে কোন্ দিনের</p>
-<p>কথা ভাবে; তখন এ জলসিড়ি শুকায়নি, মজেনি আকাশ,</p>
-<p>বল্লাল সেনের ঘোড়া- ঘোড়ার কেশর ঘেরা ঘুঙুর জিনের</p>
-<p>শব্দ হ’ত এই পথে- আরো আগে রাজপুত্র কত দিন রাশ</p>
-<p>টেনে টেনে এই পথে- কি যেন খুঁজেছে, আহা, হয়েছে উদাস;</p>
-<p>আজ আর খোঁজাখুঁজি নাই কিছু- নাটাফলে মিটিতেছে আশ-</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_6"/>
-</p>
-<h2>হায় পাখি, একদিন</h2>
-<p>হায় পাখি, একদিন কালীদহে ছিলে না কি- দহের বাতাসে</p>
-<p>আষাঢ়ের দু’- পহরে কলরব করনি কি এই বাংলায়!</p>
-<p>আজ সারাদিন এই বাদলের কোলাহলে মেঘের ছায়ায়</p>
-<p>চাঁদ সদাগর : তার মধুকর ডিঙাটির কথা মনে আসে,</p>
-<p>কালীদহে কবে তারা পড়েছিল একদিন ঝড়ের আকাশে,-</p>
-<p>সেদিনো অসংখ্য পাখি উড়েছিল না কি কালো বাতাসের গায়,</p>
-<p>আজ সারাদিন এই বাদলের জলে ধলেশ্বরীর চড়ায়</p>
-<p>গাংশালিখের ঝাঁক, মনে হয়, যেন সেই কালীদহে ভাসে :</p>
-<p> </p>
-<p>এইসব পাখিগুলো কিছুতেই আজিকার নয় যেন- নয়-</p>
-<p>এ নদীও ধলেশ্বরী নয় যেন- এ আকাশ নয় আজিকার :</p>
-<p>ফনীমনসার বনে মনসা রয়েছে না কি?- আছে; মনে হয়,</p>
-<p>এই নদী কি কালীদহ নয়? আহা, ঐ ঘাটে এলানো খোঁপার</p>
-<p>সনকার মুখ আমি দেখি না কি ? বিষণ্ণ মলিন ক্লান্ত কি যে</p>
-<p>সত্য সব;- তোমার এ স্বপ্ন সত্য, মনসা বলিয়া গেল নিজে।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_7"/>
-</p>
-<h2>জীবন অথবা মৃত্যু</h2>
-<p>জীবন অথবা মৃত্যু চোখে র’বে- আর এই বাংলার ঘাস</p>
-<p>র’বে বুকে; এই ঘাস : সীতারাম রাজারাম রামনাথ রায়-</p>
-<p>ইহাদের ঘোড়া আজো অন্ধকারে এই ঘাস ভেঙে চ’লে যায়-</p>
-<p>এই ঘাস : এরি নিচে কঙ্কাবতী শঙ্খমালা করিতেছে বাস:</p>
-<p>তাদের দেহের গন্ধ, চাঁপাফুল-মাখা ম্লান চুলের বিন্যাস</p>
-<p>ঘাস আজো ঢেকে আছে; যখন হেমন্ত আসে গৌড় বাংলায়</p>
-<p>কার্তিকের অপরাহ্ণে হিজলের পাতা শাদা উঠানের গায়</p>
-<p>ঝ’রে পড়ে, পুকুরের ক্লান্ত জল ছেড়ে দিয়ে চ’লে যায় হাঁস,</p>
-<p> </p>
-<p>আমি এ ঘাসের বুকে শুয়ে থাকি- শালিখ নিয়েছে নিঙড়ায়ে</p>
-<p>নরম হলুদ পায়ে এই ঘাস; এ সবুজ ঘাসের ভিতরে</p>
-<p>সোঁদা ধুলো শুয়ে আছে- কাঁচের মতন পাখা এ ঘাসের গায়ে</p>
-<p>ভেরেন্ডাফুলের নীল ভোমরারা বুলাতেছে- শাদা স্তন ঝরে</p>
-<p>করবীর : কোন এক কিশোরী এসে ছিঁড়ে নিয়ে চ’লে গেছে ফুল,</p>
-<p>তাই দুধ ঝরিতেছে করবীর ঘাসে ঘাসে : নরম ব্যাকুল। </p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_8"/>
-</p>
-<h2>যেদিন সরিয়া যাব</h2>
-<p>যেদিন সরিয়া যাব তোমাদের কাছ থেকে- দূর কুয়াশায়</p>
-<p>চ’লে যাব, সেদিন মরণ এসে অন্ধকারে আমার শরীর</p>
-<p>ভিক্ষা ক’রে লয়ে যাবে;- সেদিন দু’দণ্ড এই বাংলার তীর-</p>
-<p>এই নীল বাংলার তীরে শুয়ে একা একা কি ভাবিব, হায়;-</p>
-<p>সেদিন র’বে না কোনো ক্ষোভ মনে- এই সোঁদা ঘাসের ধূলায়</p>
-<p>জীবন যে কাটিয়াছে বাংলায়- চারিদিকে বাঙালির ভিড়</p>
-<p>বহু দিন কীর্তন ভাসান গান রূপকথা যাত্রা পাঁচালীর</p>
-<p>নরম নিবিড় ছন্দে যারা আজো শ্রাবণের জীবন গোঙায়,</p>
-<p> </p>
-<p>আমারে দিয়েছে তৃপ্তি; কোনো দিন রূপহীন প্রবাসের পথে</p>
-<p>বাংলার মুখ ভুলে খাঁচার ভিতরে নষ্ট শুকের মতন</p>
-<p>কাটাইনি দিন মাস, বেহুলার লহনার মধুর জগতে </p>
-<p>তাদের পায়ের ধুলো-মাখা পথে বিকায়ে দিয়েছি আমি মন</p>
-<p>বাঙালি নারীর কাছে– চাল-ধোয়া স্নিগ্ধ হাত, ধান-মাখা চুল,</p>
-<p>হাতে তার শাড়িটির কস্তা পাড়;-ডাঁশা আম কামরাঙা কুল।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_9"/>
-</p>
-<h2>পৃথিবী রয়েছে ব্যস্ত</h2>
-<p>পৃথিবী রয়েছে ব্যস্ত কোন্‌খানে সফলতা শক্তির ভিতর,</p>
-<p>কোন্‌খানে আকাশের গায়ে রূঢ় মনুমেন্ট উঠিতেছে জেগে,</p>
-<p>কোথায় মাস্তল তুলে জাহাজের ভিড় সব লেগে আছে মেঘে,</p>
-<p>জানি নাকো, আমি এই বাংলার পাড়াগাঁয়ে বাধিঁয়াছি ঘর:</p>
-<p>সন্ধ্যায় যে দাঁড়কাক উড়ে যায় তালবনে- মুখে দুটো খড়</p>
-<p>নিয়ে যায়-সকালে যে নিমপাখি উড়ে আসে কাতর আবেগে</p>
-<p>নীল তেঁতুলের বনে- তেমনি করুণা এক বুকে আছে লেগে;</p>
-<p>বঁইচির বনে আমি জোনাকির রূপ দেখে হয়েছি কাতর;</p>
-<p> </p>
-<p>কদমের ডালে আমি শুনেছি যে লক্ষ্মীপেঁচা গেয়ে গেছে গান</p>
-<p>নিশুতি জ্যোৎস্নার রাতে, -টুপ টুপ টুপ টুপ্‌ সারারাত ঝরে</p>
-<p>শুনেছি শিশিরগুলো –ম্লান মুখে গড় এসে করেছে আহ্বান</p>
-<p>ভাঙা সোঁদা ইটগুলো,– তারি বুকে নদী এসে কি কথা মর্মরে;</p>
-<p>কেউ নাই কোনোদিকে- তবু যদি জ্যোৎস্নায় পেতে থাক কান</p>
-<p>শুনিবে বাতাসে শব্দ : ‘ঘোড়া চড়ে কই যাও হে রায়রায়ান –’</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_10"/>
-</p>
-<h2>ঘুমায়ে পড়িব আমি</h2>
-<p>ঘুমায়ে পড়িব আমি একদিন তোমাদের নক্ষত্রের রাতে</p>
-<p>শিয়রে বৈশাখ মেঘ-শাদা-শাদা যেন কড়ি-শঙ্খের পাহাড়</p>
-<p>নদীর ওপার থেকে চেয়ে রবে- কোনো এক শঙ্খবালিকার</p>
-<p>ধূসর রূপের কথা মনে হবে-এই আম জামের ছায়াতে</p>
-<p>কবে যেন তারে আমি দেখিয়াছি-কবে যেন রাখিয়াছে হাতে</p>
-<p>তার হাত- কবে যেন তারপর শ্মশান্ত চিতায় তার হাড়</p>
-<p>ঝরে গেছে, কবে যেন; এ জনমে নয় যেন-এই পাড়াগাঁর</p>
-<p>পথে তবু তিন শো বছর আগে হয়তো বা- আমি তার সাথে</p>
-<p> </p>
-<p>কাটায়েছি; পাঁচশো বছর আগে হয়তো বা — সাতশো বছর</p>
-<p>কেটে গেছে তারপর তোমাদের আম জাম কাঁঠালের দেশে;</p>
-<p>ধান কাটা হয়ে গেলে মাঠে-মাঠে কতোবার কুড়ালাম খড়;</p>
-<p>বাঁধিলাম ঘর এই শ্যামা আর খঞ্জনার দেশ ভালোবেসে,</p>
-<p>ভাসানের গান গুনে কত বার ঘর আর খড় গেল ভেসে</p>
-<p>মাথুরের পালা বেঁধে কত বার ফাঁকা হল খর আর ঘর। </p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_11"/>
-</p>
-<h2>ঘুমায়ে পড়িব আমি একদিন</h2>
-<p>ঘুমায়ে পড়িব আমি একদিন তোমাদের নক্ষত্রের রাতে;</p>
-<p>তখনো যৌবন প্রাণে লেগে আছে হয়তো বা — আমার তরুণ দিন</p>
-<p>তখনো হয়নি শেষ- সেই ভালো — ঘুম আসে-বাংলার তৃণ</p>
-<p>আমার বুকের নিচে চোখ বুজে-বাংলার আমের পাতাতে</p>
-<p>কাঁচপোকা ঘুমায়েছে — আমিও ঘুমায়ে রবো তাহাদের সাথে,</p>
-<p>ঘুমাব প্রাণের সাধে এই মাঠে — এই ঘাসে — কথাভাষাহীন</p>
-<p>আমার প্রাণের গল্প ধীরে-ধীরে যাবে-অনেক নবীন</p>
-<p>নতুন উৎসব রবে উজানের-জীবনের মধুর আঘাতে</p>
-<p> </p>
-<p>তোমাদের ব্যস্ত মনে; — তবুও, কিশোর, তুমি নখের আঁচড়ে</p>
-<p>যখন এ ঘাস ছিঁড়ে চলে যাবে — যখন মানিকমালা ভোরে</p>
-<p>লাল-লাল বটফল কামরাঙা কুড়াতে আসিবে এই পথে–</p>
-<p>যখন হলুদ বোঁটা শেফালি কোনো এক নরম শরতে</p>
-<p>ঝরিবে ঘাসের পরে, — শালিখ খঞ্জনা আজ কতদূর ওড়ে–</p>
-<p>কতখানি রোদ-মেঘ — টের পাবে শুয়ে শুয়ে মরণের ঘোরে।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_12"/>
-</p>
-<h2>যখন মৃত্যুর ঘুমে</h2>
-<p>যখন মৃত্যুর ঘুমে শুয়ে রবো — অন্ধকারে নক্ষত্রের নিচে</p>
-<p>কাঁঠাল গাছের তলে হয়তো বা ধলেশ্বরী চিলাইয়ের পাশে –</p>
-<p>দিনমানে কোনো মুখ হয়তো সে শ্মশানের কাছে নাহি আসে –</p>
-<p>তবুও কাঁঠাল জাম বাংলার- তাহাদের ছায়া যে পড়িছে</p>
-<p>আমার বুকের ’পরে — আমার মুখের ’পরে নীরবে ঝরিছে</p>
-<p>খয়েরী অশথপাতা — বইচি, শেয়ালকাঁটা আমার এ দেহ ভালোবাসে,</p>
-<p>নিবিড় হয়েছে তাই আমার চিতার ছাইয়ে — বাংলার ঘাসে</p>
-<p>গভীর ঘাসের গুচ্ছে রয়েছি ঘুমায়ে আমি, — নক্ষত্র নড়িছে</p>
-<p> </p>
-<p>আকাশের থেকে দূর-আরো দূর-আরো দূর-নির্জন আকাশে</p>
-<p>বাংলার-তারপর অকারণ ঘুমে আমি পড়ে যাই ঢুলে।</p>
-<p>আবার যখন জাগি, আমার শ্মশান্তচিতা বাংলার ঘাসে</p>
-<p>ভরে আছে, চেয়ে দেখি,-বাসকের গন্ধ পাই-আনারস ফুলে</p>
-<p>ভোমরা উড়িছে,শুনি-গুবরে পোকার ক্ষীণ গুমরানি ভাসিছে বাতাসে</p>
-<p>রোদের দুপুর ভ’রে-শুনি আমি; ইহারা আমারে ভালোবাসে-</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_13"/>
-</p>
-<h2>আবার আসিব ফিরে</h2>
-<p>আবার আসিব ফিরে ধানসিড়িটির তীরে — এই বাংলায়</p>
-<p>হয়তো মানুষ নয় — হয়তো বা শঙ্খচিল শালিখের বেশে;</p>
-<p>হয়তো ভোরের কাক হয়ে এই কার্তিকের নবান্নের দেশে</p>
-<p>কুয়াশার বুকে ভেসে একদিন আসিব এ কাঠাঁলছায়ায়;</p>
-<p>হয়তো বা হাঁস হব — কিশোরীর — ঘুঙুর রহিবে লাল পায়,</p>
-<p>সারা দিন কেটে যাবে কলমীর গন্ধ ভরা জলে ভেসে-ভেসে;</p>
-<p>আবার আসিব আমি বাংলার নদী মাঠ ক্ষেত ভালোবেসে</p>
-<p>জলাঙ্গীর ঢেউয়ে ভেজা বাংলার এ সবুজ করুণ ডাঙায়;</p>
-<p> </p>
-<p>হয়তো দেখিবে চেয়ে সুদর্শন উড়িতেছে সন্ধ্যার বাতাসে;</p>
-<p>হয়তো শুনিবে এক লক্ষ্মীপেঁচা ডাকিতেছে শিমুলের ডালে;</p>
-<p>হয়তো খইয়ের ধান ছড়াতেছে শিশু এক উঠানের ঘাসে;</p>
-<p>রূপসার ঘোলা জলে হয়তো কিশোর এক শাদা ছেঁড়া পালে</p>
-<p>ডিঙা বায় — রাঙা মেঘ সাঁতরায়ে অন্ধকারে আসিতেছে নীড়ে</p>
-<p>দেখিবে ধবল বক: আমারেই পাবে তুমি ইহাদের ভিড়ে – </p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_14"/>
-</p>
-<h2>যদি আমি ঝ’রে যাই</h2>
-<p>যদি আমি ঝ’রে যাই একদিন কার্তিকের নীল কুয়াশায়</p>
-<p>যখন ঝরিছে ধান বাংলার ক্ষেতে-ক্ষেতে ম্লান চোখ বুজে,</p>
-<p>যখন চড়াই পাখি কাঁঠালীচাঁপার নীড়ে ঠোঁট আছে গুঁজে,</p>
-<p>যখন হলুদ পাতা মিশিতেছে উঠানের খয়েরি পাতায়,</p>
-<p>যখন পুকুরে হাঁস সোঁদা জলে শিশিরের গন্ধ শুধু পায়,</p>
-<p>শামুক গুগলিগুলো প’ড়ে আছে শ্যাওলার মলিন সবুজে-</p>
-<p>তখন আমারে যদি পাও নাকো লালশাক-ছাওয়া মাঠে খুঁজে,</p>
-<p>ঠেস্‌ দিয়ে ব’সে আর থাকি নাকো যদি বুনো চালতার গায়ে,</p>
-<p> </p>
-<p>তা ‘লে জানিও তুমি আসিয়াছে অন্ধকার মৃত্যুর আহ্বান-</p>
-<p>যার ডাক শুনে রাঙা রৌদ্রেরো চিল আর শালিখের ভিড়</p>
-<p>একদিন ছেড়ে যাবে আম জাম বনে নীল বাংলার তীর,</p>
-<p>যার ডাক শুনে আজ ক্ষেতে-ক্ষেতে ঝরিতেছে খই আর মৌরির ধান;-</p>
-<p>কবে যে আসিবে মৃত্যু : বাসমতী চালে-ভেজা শাদা হাতখান-</p>
-<p>রাখো বুকে, হে কিশোরী, গোরোচনারূপে আমি করিব যে স্নান-</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_15"/>
-</p>
-<h2>মনে হয় একদিন</h2>
-<p>মনে হয় একদিন আকাশের শুকতারা দেখিব না আর;</p>
-<p>দেখিব না হেলেঞ্চার ঝোপ থেকে এক ঝাড় জোনাকি কখন</p>
-<p>নিভে যায়; দেখিব না আর আমি পরিচিত এই বাঁশবন,</p>
-<p>শুকনো বাঁশের পাতা-ছাওয়া মাটি হয়ে যাবে গভীর আঁধার</p>
-<p>আমার চোখের কাছে; লক্ষ্মীপূর্ণিমার রাতে সে কবে আবার</p>
-<p>পেঁচা ডাকে জ্যোৎস্নায়; হিজলের বাঁকা ডাল করে গুঞ্জরণ;</p>
-<p>সারা রাত কিশোরীর লাল পাড় চাঁদে ভাসে-হাতের কাঁকন</p>
-<p>বেজে ওঠে : বুঝিব না-গঙ্গাজল, নারকোলনাডুগুলো তার</p>
-<p> </p>
-<p>জানি না সে কারে দেবে- জানি না সে চিনি আর শাদা তালশাঁস</p>
-<p>হাতে লয়ে পলাশের দিকে চেয়ে দুয়ারে দাঁড়ায়ে র’বে কি না…</p>
-<p>আবার কাহার সাথে ভালোবাসা হবে তার-আমি তা জানি না-</p>
-<p>মৃত্যুরে কে মনে রাখে?-কীর্তিনাশা খুঁড়ে খুঁড়ে চলে বারো মাস</p>
-<p>নতুন ডাঙার দিকে-পিছনের অবিরল মৃত চর বিনা</p>
-<p>দিন তার কেটে যায়- শুকতারা নিভে গেলে কাঁদে কি আকাশ?</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_16"/>
-</p>
-<h2>যে শালিখ মরে যায়</h2>
-<p>যে শালিখ মরে যায় কুয়াশায়— সে তো আর ফিরে নাহি আসে :</p>
-<p>কাঞ্চনমালা যে কবে ঝরে গেছে;— বনে আজো কলমীর ফুল</p>
-<p>ফুটে যায়— সে তবু ফেরে না, হায়;-বিশালাক্ষ্মী : সেও তো রাতুল</p>
-<p>চরণ মুছিয়া নিয়া চলে গেছে;— মাঝপথে জলের উচ্ছ্বাসে</p>
-<p>বাধা পেয়ে নদীরা মজিয়া গেছে দিকে দিকে— শ্মশানের পাশে</p>
-<p>আর তারা আসে নাকো; সুন্দরীর বনে বাঘ ভিজে জুল-জুল</p>
-<p>চোখ তুলে চেয়ে থাকে-কতো পাটরানীদের গাঢ় এলোচুল</p>
-<p>এই গৌড় বাংলায়— প’ড়ে আছে তাহার পায়ের তলে ঘাসে</p>
-<p> </p>
-<p>জানে সে কি! দেখে নাকি তারাবনে প’ড়ে আছে বিচূর্ণ দেউল,</p>
-<p>বিশুষ্ক পদ্মের দীঘি-ফোঁপড়া মহলা ঘাট, হাজার মহাল</p>
-<p>মৃত সব রূপসীরা; বুকে আজ ভেরেন্ডার ফুলে ভীমরুল</p>
-<p>গান গায়— পাশ দিয়ে খল্‌ খল্‌ খল্‌ খল্‌ বয়ে যায় খাল,</p>
-<p>তবু ঘুম ভাঙে নাকো-একবার ঘুমালে কে উঠে আসে আর</p>
-<p>যদিও ডুকারি যায় শঙ্খচিল-মর্মরিয়া মরে গো মাদার। </p>
-<p><br class="calibre1" id="calibre_pb_17"/>
-</p>
-<h2>কোথাও চলিয়া যাব</h2>
-<p>কোথাও চলিয়া যাব একদিন;— তারপর রাত্রির আকাশ</p>
-<p>অসংখ্য নক্ষত্র নিয়ে ঘুরে যাবে কতকাল জানিব না আমি;</p>
-<p>জানিব না কতকাল উঠানে ঝরিবে এই হলুদ বাদামী</p>
-<p>পাতাগুলো— মাদারের ডুমুরের— সোঁদা গন্ধ-বাংলার শ্বাস</p>
-<p>বুকে নিয়ে তাহাদের;— জানিব না পরথুপী মধুকূপী ঘাস</p>
-<p>কত কাল প্রান্তরে ছড়ায়ে র’বে— কাঁঠাল-শাখার থেকে নামি</p>
-<p>পাখনা ডলিবে পেঁচা এই ঘাসে— বাংলার সবুজ বালামী</p>
-<p>ধানী শাল পশমিনা বুকে তার— শরতের রোদের বিলাস</p>
-<p> </p>
-<p>কতো কাল নিঙড়াবে;— আচলে নাটার কথা ভুলে গিয়ে বুঝি</p>
-<p>কিশোরের মুখে চেয়ে কিশোরী করিবে তার মৃদু মাথা নিচু;</p>
-<p>আসন্ন সন্ধ্যার কাক— করুণ কাকের দল খোড়ো নীড় খুঁজি</p>
-<p>উড়ে যাবে;— দুপুরে ঘাসের বুকে সিঁদুরের মতো রাঙা লিচু</p>
-<p>মুখে গুঁজে পড়ে র’বে-আমিও ঘাসের বুকে রবো মুখ গুঁজি;</p>
-<p>মৃদু কাঁকনের শব্দ— গোরোচনা জিনি রং চিনিব না কিছু-</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_18"/>
-</p>
-<h2>তোমার বুকের থেকে</h2>
-<p>তোমার বুকের থেকে একদিন চ’লে যাবে তোমার সন্তান</p>
-<p>বাংলার বুক ছেড়ে চ’লে যাবে; যে ইঙ্গিতে নক্ষত্রও ঝরে,</p>
-<p>আকাশের নীলাভ নরম বুক ছেড়ে দিয়ে হিমের ভিতরে</p>
-<p>ডুবে যায়,— কুয়াশায় ঝ’রে পড়ে দিকে দিকে রপশালী ধান</p>
-<p>একদিন;— হয়তো বা নিমপেঁচা অন্ধকারে গা’বে তার গান,</p>
-<p>আমারে কুড়ায়ে নেবে মেঠো ইঁদুরের মতো মরণের ঘরে –</p>
-<p>হ্নদয়ে ক্ষুদের গন্ধ লেগে আছে আকাঙক্ষার তবুও তো চোখের উপরে</p>
-<p>নীল, মৃত্যু উজাগর— বাঁকা চাঁদ, শূন্য মাঠ, শিশিরের ঘ্রাণ -</p>
-<p> </p>
-<p>কখন মরণ আসে কে বা জানে – কালীদহে কখন যে ঝড়</p>
-<p>কমলের নাল ভাঙে— ছিঁড়ে ফেলে গাংচিল শালিকের প্রাণ</p>
-<p>জানি নাকো;- তবু যেন মরি আমি এই মাঠ-ঘাটের ভিতর,</p>
-<p>কৃষ্ণা যমুনায় নয়— যেন এই গাঙুড়ের ডেউয়ের আঘ্রাণ</p>
-<p>লেগে থাকে চোখে মুখে— রুপসী বাংলা যেন বুকের উপর</p>
-<p>জেগে থাকে; তারি নিচে শুয়ে থাকি যেন আমি অর্ধনারীশ্বর।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_19"/>
-</p>
-<h2>গোলপাতা ছাউনির</h2>
-<p>গোলপাতা ছাউনির বুক চুমে নীল ধোঁয়া সকালে সন্ধ্যায়</p>
-<p>উড়ে যায়—মিশে যায় আমবনে কার্তিকের কুয়াশার সাথে;</p>
-<p>পুকুরের লাল সর ক্ষীণ ঢেউয়ে বার—বার চায় যে জড়াতে</p>
-<p>করবীর কচি ডাল; চুমো খেতে চায় মাছরাঙাটির পায়;</p>
-<p>এক-একটি ইট ধ্বসে—ডুবজলে ডুব দিয়ে কোথায় হারায়</p>
-<p>ভাঙা ঘাটলায় এই—আজ আর কেউ এসে চাল—ধোয়া হাতে</p>
-<p>বিনুনি খসায় নাকো—শুকনো পাতা সারা দিন থাকে যে গড়াতে;</p>
-<p>কড়ি খেলিবার ঘর মজে গিয়ে গোখুরার ফাটলে হারায়;</p>
-<p> </p>
-<p>ডাইনীর মতো হাত তুলে-তুলে ভাঁট আঁসশ্যাওড়ার বন</p>
-<p>বাতাসে কি কথা কয় বুঝি নাকো, —বুঝি নাকো চিল কেন কাঁদে</p>
-<p>পৃথিবীর কোনো পথে দেখি নই আমি, হায়, এমন বিজন</p>
-<p>শাদা পথ—সোঁদা পথ—বাঁশের ঘোমটা মুখে বিধবার ছাঁদে</p>
-<p>চ’লে গেছে শ্মশানের পারে বুঝি;-সন্ধ্যা আসে সহসা কখন;</p>
-<p>সজিনার ডালে পেঁচা কাঁদে নিম—নিম—নিম কার্তিকের চাঁদে। </p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_20"/>
-</p>
-<h2>অশ্বত্থে সন্ধ্যার হাওয়া</h2>
-<p>অশ্বত্থে সন্ধ্যার হাওয়া যখন লেগেছে নীল বাংলার বনে</p>
-<p>মাঠে মাঠে ফিরি একা : মনে হয় বাংলার জীবনে সঙ্কট</p>
-<p>শেষ হয়ে গেছে আজ; — চেয়ে দেখ কতো শত শতাব্দীর বট</p>
-<p>হাজার সবুজ পাতা লাল ফল বুকে লয়ে শাখার ব্যজনে</p>
-<p>আকাঙক্ষার গান গায় — অশ্বত্থেরও কি যেন কামনা জাগে মনে :</p>
-<p>সতীর শীতল শব বহু দিন কোলে লয়ে যেন অকপট</p>
-<p>উমার প্রেমের গল্প পেয়েছে সে, চন্দ্রশেখরের মতো তার জট</p>
-<p>উজ্জ্বল হতেছে তাই সপ্তমীর চাঁদে আজ পুনরাগমনে;</p>
-<p> </p>
-<p>মধুকূপী ঘাস-ছাওয়া ধলেশ্বরীটির পাড়ে গৌরী বাংলার</p>
-<p>এবার বল্লাল সেন আসিবে না জানি আমি — রায়গুণাকর</p>
-<p>আসিবে না — দেশবন্ধু আসিয়াছে খরধার পদ্মায় এবার,</p>
-<p>কালীদহে ক্লান্ত গাংশালিখের ভিড়ে যেন আসিয়াছে ঝড়,</p>
-<p>আসিয়াছে চণ্ডীদাস — রামপ্রসাদের শ্যামা সাথে সাথে তার;</p>
-<p>শঙ্খমালা, চন্দ্রমালা : মৃত শত কিশোরীর কঙ্কণের স্বর।</p>
-<p> </p>
-<p> </p>
-<p>(দেশবন্ধু : ১৩২৬-১৩৩২ এর স্মরণে)</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_21"/>
-</p>
-<h2>ভিজে হয়ে আসে মেঘে</h2>
-<p>ভিজে হয়ে আসে মেঘে এ-দুপুর — চিল একা নদীটির পাশে</p>
-<p>জারুল গাছের ডালে বসে বসে চেয়ে থাকে ওপারের দিকে;</p>
-<p>পায়রা গিয়েছে উড়ে তবু চরে, খোপে তার; — শসালতাটিকে,</p>
-<p>ছেড়ে গেছে মৌমাছি; — কালো মঘে জমিয়াছে মাঘের আকাশে,</p>
-<p>মরা প্রজাতিটির পাখার নরম রেণু ফেলে দিয়ে ঘাসে</p>
-<p>পিঁপড়েরা চলে যায়; — দুই দণ্ড আম গাছে শালিখে — শালিখে</p>
-<p>ঝুঁটোপুটি, কোলাহল — বউকথাকও আর রাঙা বউটিকে</p>
-<p>ডাকে নাকো-হলুদ পাখনা তার কোন যেন কাঁঠালে পলাশে</p>
-<p> </p>
-<p>হারায়েছে; বউ উঠানে নাই — প’ড়ে আছে একখানা ঢেঁকি;</p>
-<p>ধান কে কুটবে বলো-কত দিন সে তো আর কোটে নাকো ধান,</p>
-<p>রোদেও শুকাতে সে যে আসে নাকো চুল তার — করে নাকো স্নান</p>
-<p>এ-পুকুরে — ভাঁড়ারে ধানের বীজ কলায়ে গিয়েছে তার দেখি,</p>
-<p>তবুও সে আসে নাকো : আজ এ দুপুরে এসে খই ভাজিবে কি?</p>
-<p>হে চিল, সোনালি চিল, রাঙা রাজকন্যা আর পাবে না কি প্রাণ?</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_22"/>
-</p>
-<h2>খুঁজে তারে মরো মিছে</h2>
-<p>খুঁজে তারে মরো মিছে — পাড়াগাঁর পথে তারে পাবে নাকো আর;</p>
-<p>রয়েছে অনেক কাক এ উঠানে — তবু সেই ক্লান্ত দাঁড়কাক</p>
-<p>নাই আর; — অনেক বছর আগে আমে জামে হৃষ্ট এক ঝাঁক</p>
-<p>দাঁড়কাক দেখা যেত দিন রাত, — সে আমার ছেলেবেলাকার</p>
-<p>কবেকার কথা সব; আসিবে না পৃথিবীতে সেদিন আবার:</p>
-<p>রাত না ফুরাতে সে যে কদমের ডাল থেকে দিয়ে যেত ডাক, —</p>
-<p>এখনো কাকের শব্দে অন্ধকার ভোরে আমি বিমনা, অবাক</p>
-<p>তার কথা ভাবি শুধু; এত দিনে কোথায় সে? কি যে হলো তার</p>
-<p> </p>
-<p>কোথায় সে নিয়ে গেছে সঙ্গে করে সেই নদী, ক্ষেত, মাঠ, ঘাস,</p>
-<p>সেই দিন, সেই রাত্রি, সেই সব ম্লান চুল, ভিজে শাদা হাত</p>
-<p>সেইসব নোনা গাছ, করমচা, শামুক, গুগলি, কচি তালশাঁস</p>
-<p>সেইসব ভিজে ধুলো, বেলকুঁড়ি-ছাওয়া পথ, ধোয়া ওঠা ভাত,</p>
-<p>কোথায় গিয়েছে সব? — অসংখ্য কাকের শব্দে ভরিছে আকাশ</p>
-<p>ভোর রাতে — নবান্নের ভোরে আজ বুকে যেন কিসের আঘাত! </p>
-<p><br class="calibre1" id="calibre_pb_23"/>
-</p>
-<h2>পাড়াগাঁর দু’-পহর</h2>
-<p>পাড়াগাঁর দু’-পহর ভালোবাসি — রৌদ্রে যেন গন্ধ লেগে আছে</p>
-<p>স্বপনের; — কোন গল্প, কি কাহিনী, কি স্বপ্ন যে বাঁধিয়াছে ঘর</p>
-<p>আমার হৃদয়ে, আহা, কেউ তাহা জানে নাকো — কেবল প্রান্তর</p>
-<p>জানে তাহা, আর ওই প্রান্তরের শঙ্খচিল; তাহাদের কাছে</p>
-<p>যেন এ-জনমে নয় — যেন ঢের যুগ ধরে কথা শিখিয়াছে</p>
-<p>এ হৃদয় — স্বপ্নে যে বেদনা আছে : শুষ্ক পাতা — শালিখের স্বর,</p>
-<p>ভাঙা মঠ — নক্সাপেড়ে শাড়িখানা মেযেটির রৌদ্রের ভিতর</p>
-<p>হলুদ পাতার মতো স’রে যায়, জলসিড়িটির পাশে ঘাসে</p>
-<p> </p>
-<p>শাখাগুলো নুয়ে আছে বহু দিন ছন্দহীন বুনো চালতার :</p>
-<p>জলে তার মুখখানা দেখা যায় — ডিঙিও ভাসিছে কার জলে,</p>
-<p>মালিক কোথাও নাই, কোনোদিন এই দিকে আসিবেনা আর,</p>
-<p>ঝাঁঝরা ফোঁপরা, আহা ডিঙিটিরে বেঁধে রেখে গিয়েছে হিজলে;</p>
-<p>পাড়াগাঁর দু-পহর ভালোবাসি — রৌদ্রে যেন ভিজে বেদনার</p>
-<p>গন্ধ লেগে আছে, আহা, কেঁদে কেঁদে ভাসিতেছে আকাশের তলে।</p>
-<p><br class="calibre1" id="calibre_pb_24"/>
-</p>
-<h2>কখন সোনার রোদ</h2>
-<p>কখন সোনার রোদ নিভে গেছে — অবিরল শুপুরির সারি</p>
-<p>আঁধারে যেতেছে ডুবে — প্রান্তরের পার থেকে গরম বাতাস</p>
-<p>ক্ষুধিত চিলের মতো চৈত্রের এ-অন্ধকার ফেলিতেছে শ্বাস;</p>
-<p>কোন চৈত্রে চলে গেছে সেই মেয়ে — আসিবে না, ক’রে গেছে আড়ি :</p>
-<p>ক্ষীরুই গাছের পাশে একাকী দাঁড়িয়ে আজ বলিতে কি পারি</p>
-<p>কোথাও সে নাই এই পৃথিবীতে — তাহার শরীর থেকে শ্বাস</p>
-<p>ঝরে গেছে বলে তারে ভুলে গেছে নক্ষত্রের অসীম আকাশ,</p>
-<p>কোথাও সে নাই আর — পাব নাকো তারে কোনো পৃথিবী নিঙাড়ি?</p>
-<p> </p>
-<p>এই মাঠে — এই ঘাসে ফল্‌সা এ-ক্ষীরুয়ে যে গন্ধ লেগে আছে</p>
-<p>আজও তার; যখন তুলিতে যাই ঢেঁকিশাক — দুপুরের রোদে</p>
-<p>সর্ষের ক্ষেতের দিকে চেয়ে থাকি — অঘ্রাণে যে ধান ঝরিয়াছে</p>
-<p>তাহার দু-এক গুচ্ছ তুলে নিই, চেয়ে দেখি নির্জন আমোদে</p>
-<p>পৃথিবীর রাঙা রোদে চড়িতেছে আকাঙ্ক্ষায় চিনিচাঁপা গাছে —</p>
-<p>জানি সে আমার কাছে আছে আজো — আজো সে আমার কাছে কাছে।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_25"/>
-</p>
-<h2>এই পৃথিবীতে এক</h2>
-<p>এই পৃথিবীতে এক স্থান আছে – সবচেয়ে সুন্দর করুণ :</p>
-<p>সেখানে সবুজ ডাঙা ভ’রে আছে মধুকূপী ঘাসে অবিরল;</p>
-<p>সেখানে গাছের নাম : কাঁঠাল, অশ্বত্থ, বট, জারুল, হিজল;</p>
-<p>সেখানে ভোরের মেঘে নাটার রঙের মতো জাগিছে অরুণ;</p>
-<p>সেখানে বারুণী থাকে গঙ্গাসাগরের বুকে, - সেখানে বরুণ</p>
-<p>কর্ণফুলী ধলেশ্বরী পদ্মা জলাঙ্গীরে দেয় অবিরল জল;</p>
-<p>সেইখানে শঙ্খচিল পানের বনের মতো হাওয়ায় চঞ্চল,</p>
-<p>সেইখানে লক্ষ্ণীপেঁচা ধানের গন্ধের মতো অস্ফুট, তরুণ;</p>
-<p> </p>
-<p>সেখানে লেবুর শাখা নুয়ে থাকে অন্ধকারে ঘাসের উপর;</p>
-<p>সুদর্শন উড়ে যায় ঘরে তার অন্ধকার সন্ধ্যার বাতাসে;</p>
-<p>সেখানে হলুদ শাড়ি লেগে থাকে রূপসীর শরীরের ’পর –</p>
-<p>শঙ্খমালা নাম তার : এ- বিশাল পৃথিবীর কোনো নদী ঘাসে</p>
-<p>তারে আর খুঁজে তুমি পাবে নাকো বিশালাক্ষী দিয়েছিল বর,</p>
-<p>তাই সে জন্মেছে নীল বাংলার ঘাস আর ধানের ভিতর। </p>
-<p><br class="calibre1" id="calibre_pb_26"/>
-</p>
-<h2>কত ভোরে- দু’-পহরে</h2>
-<p>কত ভোরে- দু’-পহরে – সন্ধ্যায় দেখি নীল শুপুরির বন</p>
-<p>বাতাসে কাঁপিছে ধীরে;- খাঁচার শুকের মতো গাহিতেছে গান</p>
-<p>কোন এক রাজকন্যা- পরনে ঘাসের শাড়ি- কালো চুলে ধান</p>
-<p>বাংলার শালিধান- আঙিনায় ইহাদের করেছে বরণ,</p>
-<p>হৃদয়ে জলের গন্ধ কন্যার- ঘুম নাই, নাইকো মরণ</p>
-<p>তার আর কোনোদিন- পালঙ্কে সে শোয় নাকো, হয় নাকো ম্লান,</p>
-<p>লক্ষ্ণীপেঁচা শ্যামা আর শালিখের গানে তার জাগিতেছে প্রাণ-</p>
-<p>সারাদিন- সারারাত বুকে ক’রে আছে তারে শুপুরির বন;</p>
-<p> </p>
-<p>সকালে কাকের ডাকে আলো আসে, চেয়ে দেখি কালো দাঁড়কাক</p>
-<p>সবুজ জঙ্গল ছেয়ে শুপুরির- শ্রীমন্তও দেখেছে এমন :</p>
-<p>যখন ময়ূরপঙ্খী ভোরের সিন্ধুর মেঘে হয়েছে অবাক,</p>
-<p>সুদূর প্রবাস থেকে ফিরে এসে বাংলার শুপুরির বন</p>
-<p>দেখিয়াছে- অকস্মাৎ গাঢ় নীল : করুণ কাকের ক্লান্ত ডাক</p>
-<p>শুনিয়াছে- সে কত শতাব্দী আগে ডেকেছিল তাহারা যখন।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_27"/>
-</p>
-<h2>এই ডাঙা ছেড়ে হায়</h2>
-<p>এই ডাঙা ছেড়ে হায় রূপ কে খুঁজিতে যায় পৃথিবীর পথে।</p>
-<p>বটের শুকনো পাতা যেন এক যুগান্তের গল্প ডেকে আনে:</p>
-<p>ছড়ায়ে রয়েছে তারা প্রান্তরের পথে পথে নির্জন অঘ্রানে;-</p>
-<p>তাদের উপেক্ষা ক’রে কে যাবে বিদেশে বলো- আমি কোনো-মতে</p>
-<p>বাসমতী ধানক্ষেত ছেড়ে দিয়ে মালাবারে- উটির পর্বতে</p>
-<p>যাব নাকো, দেখিব না পামগাছ মাথা নাড়ে সমুদ্রের গানে</p>
-<p>কোন দেশে,- কোথায় এলাচিফুল দারুচিনি বারুণীর প্রাণে</p>
-<p>বিনুনী খসায়ে ব’সে থাকিবার স্বপ্ন আনে;- পৃথিবীর পথে</p>
-<p> </p>
-<p>যাব নাকো : অশ্বত্থের ঝরাপাতা ম্লান শাদা ধুলোর ভিতর,</p>
-<p>যখন এ- দু’-পহরে কেউ নাই কোনো দিকে- পাখিটিও নাই,</p>
-<p>অবিরল ঘাস শুধু ছড়ায়ে র’য়েছে মাটি কাঁকরের ’পর,</p>
-<p>খড়কুটো উল্টায়ে ফিরিতেছে দু’একটা বিষণ্ণ চড়াই,</p>
-<p>অশ্বত্থের পাতাগুলো প’ড়ে আছে ম্লান শাদা ধুলোর ভিতর;</p>
-<p>এই পথ ছেড়ে দিয়ে এ-জীবন কোনোখানে গেল নাকো তাই।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_28"/>
-</p>
-<h2>এখানে আকাশ নীল</h2>
-<p>এখানে আকাশ নীল- নীলাভ আকাশ জুড়ে সজিনার ফুল</p>
-<p>ফুটে থাকে হিম শাদা- রং তার আশ্বিনের আলোর মতন;</p>
-<p>আকন্দফুলের কালো ভীমরুল এইখানে করে গুঞ্জরণ</p>
-<p>রৌদ্রের দুপুর ভ’রে;- বারবার রোদ তার সুচিক্বণ চুল</p>
-<p>কাঁঠাল জামের বুকে নিঙড়ায়;- দহে বিলে চঞ্চল আঙুল</p>
-<p>বুলায়ে বুলায়ে ফেরে এইখানে জাম লিচু কাঁঠালের বন,</p>
-<p>ধনপতি, শ্রীমন্তের, বেহুলার, লহনার ছুঁয়েছে চরণ;</p>
-<p>মেঠো পথে মিশে আছে কাক আর কোকিলের শরীরের ধূল,</p>
-<p> </p>
-<p>কবেকার কোকিলের জানো কি তা? যখন মুকুন্দরাম, হায়,</p>
-<p>লিখিতেছিলেন ব’সে দু’পহরে সাধের সে চণ্ডিকামঙ্গল,</p>
-<p>কোকিলের ডাক শুনে লেখা তাঁর বাধা পায়- থেমে থেমে যায়;-</p>
-<p>অথবা বেহুলা একা যখন চলেছে ভেঙে গাঙুড়ের জল</p>
-<p>সন্ধ্যার অন্ধকারে, ধানক্ষেতে, আমবনে, অস্পষ্ট শাখায়</p>
-<p>কোকিলের ডাক শুনে চোখে তার ফুটেছিল কুয়াশা কেবল। </p>
-<p><br class="calibre1" id="calibre_pb_29"/>
-</p>
-<h2>কোথাও মঠের কাছে</h2>
-<p>কোথাও মঠের কাছে — যেইখানে ভাঙা মঠ নীল হয়ে আছে</p>
-<p>শ্যাওলায় — অনেক গভীর ঘাস জমে গেছে বুকের ভিতর,</p>
-<p>পাশে দীঘি মজে আছে — রূপালী মাছের কন্ঠে কামনার স্বর</p>
-<p>যেইখানে পাটরানী আর তার রূপসী সখীরা শুনিয়াছে</p>
-<p>বহু বহু দিন আগে — যেইখানে শঙ্খমালা কাঁথা বুনিয়াছে</p>
-<p>সে কত শতাব্দী আগে মাছরাঙা — ঝিলমিল — কড়ি-খেলা ঘর;</p>
-<p>কোন্‌ যেন কুহকীর ঝাঁড়ফুঁকে ডুবে গেছে সব তারপর</p>
-<p>একদিন আমি যাব দু-প্রহরে সেই দূর প্রান্তরের কাছে,</p>
-<p> </p>
-<p>সেখানে মানুষ কেউ যায় নাকো — দেখা যায় বাঘিনীর ডোরা</p>
-<p>বেতের বনের ফাঁকে — জারুল গাছের তলে রৌদ্র পোহায়</p>
-<p>রূপসী মৃগীর মুখ দেখা যায়, — শাদা ভাঁটপুষ্পের তোড়া</p>
-<p>আলোকলতার পাশে গন্ধ ঢালে দ্রোণফুল বাসকের গায়;</p>
-<p>তবুও সেখানে আমি নিয়ে যাবো একদিন পাটকিলে ঘোড়া</p>
-<p>যার রূপ জন্মে জন্মে কাঁদায়েছে আমি তারে খুঁজিব সেথায়।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_30"/>
-</p>
-<h2>চ’লে যাব শুকনো পাতা-ছাওয়া</h2>
-<p>চ’লে যাব শুকনো পাতা-ছাওয়া ঘাসে — জামরুল হিজলের বনে;</p>
-<p>তলতা বাঁশের ছিপ হাতে রবে — মাছ আমি ধরিব না কিছু; —</p>
-<p>দীঘির জলের গন্ধে রূপালি চিতল আর রূপসীর পিছু</p>
-<p>জামের গভীর পাতা-মাখা শান্ত — নীল জলে খেলিছে গোপনে;</p>
-<p>আনারস ঝোপে ওই মাছরাঙা তার মাছরাঙাটির মনে</p>
-<p>অস্পষ্ট আলোয় যেন মুছে যায় — সিঁদুরের মতো রাঙা লিচু</p>
-<p>ঝ’রে পড়ে পাতা ঘাসে, — চেয়ে দেখি কিশোরী করেছে মাথা নিচু —</p>
-<p>এসেছে সে দুপুরের অবসরে জামরুল লিচু আহরণে —</p>
-<p> </p>
-<p>চলে যায়; নীলাম্বরী স’রে যায় কোকিলের পাখনার মতো</p>
-<p>ক্ষীরুয়ের শাখা ছুঁয়ে চালতার ডাল ছেড়ে বাঁশের পিছনে</p>
-<p>কোনো দূর আকাঙক্ষার ক্ষেতে মাঠে চলে যায় যেন অব্যাহত,</p>
-<p>যদি তার পিছে যাও দেখিবে সে আকন্দের করবীর বনে</p>
-<p>ভোমরার ভয়ে ভীরু — বহু ক্ষণ পায়চারি করে আনমনে</p>
-<p>তারপর চলে গেল — উড়ে গেল যেন নীল ভোমরার সনে।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_31"/>
-</p>
-<h2>এখানে ঘুঘুর ডাকে</h2>
-<p>এখানে ঘুঘুর ডাকে অপরাহ্নে শান্তি আসে মানুষের মনে;</p>
-<p>এখানে সবুজ শাখা আঁকাবাঁকা হলুদ পাখিরে রাখে ঢেকে;</p>
-<p>জামের আড়ালে সেই বউকথাকওটিরে যদি ফেল দেখে</p>
-<p>একবার — একবার দু’-পহর অপরাহ্নে যদি এই ঘুঘুর গুঞ্জনে</p>
-<p>ধরা দাও — তাহলে অনন্তকাল থাকিতে যে হবে এই বনে;</p>
-<p>মৌরির গন্ধমাখা ঘাসের শরীরে ক্লান্ত দেহটিরে রেখে</p>
-<p>আশ্বিনের ক্ষেতঝরা কচি কচি শ্যামা পোকাদের কাছে ডেকে</p>
-<p>র’ব আমি চকোরীর সাথে যেন চকোরের মতন মিলনে;</p>
-<p> </p>
-<p>উঠানে কে রূপবতী খেলা করে — ছাড়ায়ে দিতেছে বুঝি ধান</p>
-<p>শালিখেরে; ঘাস থেকে ঘাসে ঘাসে খুঁটে খুঁটে খেতেছে সে তাই;</p>
-<p>হলুদ নরম পায়ে খয়েরি শালিখগুলো ডলিছে উঠান;</p>
-<p>চেয়ে দ্যাখো সুন্দরীরে : গোরোচনা রূপ নিয়ে এসেছে কি রাই!</p>
-<p>নীলনদে — গাঢ় রৌদ্রে — কবে আমি দেখিয়াছি — করেছিল স্নান — </p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_32"/>
-</p>
-<h2>শ্মশানের দেশে তুমি</h2>
-<p>শ্মশানের দেশে তুমি আসিয়াছ — বহুকাল গেয়ে গেছ গান</p>
-<p>সোনালি চিলের মতো উড়ে উড়ে আকাশের রৌদ্র আর মেঘে, —</p>
-<p>লক্ষ্মীর বাহন যেই স্নিগ্ধ পাখি আশ্বিনের জ্যোৎস্নার আবেগে</p>
-<p>গান গায় — শুনিয়াছি রাখিপূর্ণিমার রাতে তোমার আহ্বান</p>
-<p>তার মতো; আম চাঁপা কদমের গাছ থেকে গাহে অফুরান</p>
-<p>যেন স্নিগ্ধ ধান ঝরে... অনন্ত — সবুজ শালি আছে যেন লেগে</p>
-<p>বুকে তব; বল্লালের বাংলায় কবে যে উঠলে তুমি জেগে;</p>
-<p>পদ্মা, মেঘনা, ইছামতী নয় শুধু — তুমি কবি করিয়াছ স্নান</p>
-<p> </p>
-<p>সাত সমুদ্রের জলে, — ঘোড়া নিয়ে গেছ তুমি ধূম্র নারীবেশে</p>
-<p>অর্জুনের মতো, আহা, — আরো দূর ম্লান নীল রূপের কুয়াশা</p>
-<p>ফুঁড়েছ সুপর্ণ তুমি — দূর রং আরো দূর রেখা ভালোবেসে;</p>
-<p>আমাদের কালীদহ — গাঙুড় — গাঙের চিল তবু ভালোবাসা</p>
-<p>চায় যে তোমার কাছে — চায়, তুমি ঢেলে দাও নিজেরে নিঃশেষে</p>
-<p>এই দহে — এই চূর্ণ মঠে মঠে — এই জীর্ণ বটে বাঁধো বাসা।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_33"/>
-</p>
-<h2>তবু তাহা ভুল জানি</h2>
-<p>তবু তাহা ভুল জানি — রাজবল্লভের কীর্তি ভাঙে কীর্তিনাশা;</p>
-<p>তবুও পদ্মার রূপ একুশরত্নের চেয়ে আরো ঢের গাঢ় —</p>
-<p>আরো ঢের প্রাণ তার, বেগ তার, আরো ঢের জল, জল আরো;</p>
-<p>তোমারো পৃথিবী পথ; নক্ষত্রের সাথে তুমি খেলিতেছ পাশা :</p>
-<p>শঙ্খমালা নয় শুধু : অনুরাধা রোহিনীরও চাও ভালোবাসা,</p>
-<p>না জানি সে কতো আশা — কতো ভালোবাসা তুমি বাসিতে যে পার!</p>
-<p>এখানে নদীর ধারে বাসমতী ধানগুলো ঝরিছে আরো;</p>
-<p>প্রান্তরের কুয়াশায় এখানে বাদুড়ের যাওয়া আর আসা —</p>
-<p> </p>
-<p>এসেছে সন্ধ্যার কাক ঘরে ফিরে, — দাঁড়ায়ে রয়েছে জীর্ণ মঠ,</p>
-<p>মাঠের আঁধার পথে শিশু কাঁদে — লালপেড়ে পুরানো শাড়ির</p>
-<p>ছবিটি মুছিয়া যায় ধীরে ধীরে — কে এসেছে আমার নিকট?</p>
-<p>‘কার শিশু? বলো তুমি’ : শুধালাম, উত্তর দিলো না কিছু বট;</p>
-<p>কেউ নাই কোনোদিকে — মাঠে পথে কুয়াশার ভিড়;</p>
-<p>তোমারে শুধাই কবি : তুমিও কি জানো কিছু এই শিশুটির।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_34"/>
-</p>
-<h2>সোনার খাঁচার বুকে</h2>
-<p>সোনার খাঁচার বুকে রহিব না আমি আর শুকের মতন;</p>
-<p>কি গল্প শুনিতে চাও তোমরা আমার কাছে — কোন্‌ কোন্‌ গান, বলো,</p>
-<p>তাহ’লে এ-দেউলের খিলানের গল্প ছেড়ে চলো, উড়ে চলো, —</p>
-<p>যেখানে গভীর ভোরে নোনাফল পাকিয়াছে, — আছে আতাবন,</p>
-<p>পউষের ভিজে ভোরে, আজ হায় মন যেন করিছে কেমন; —</p>
-<p>চন্দ্রমালা, রাজকন্যা, মুখ তুলে চেয়ে দেখ — শুধাই , শুন লো,</p>
-<p>কি গল্প শুনিতে চাও তোমরা আমার কাছে, — কোন্‌ গান বলো,</p>
-<p>আমার সোনার খাঁচা খুলে দাও, আমি যে বনের হীরামন;</p>
-<p> </p>
-<p>রাজকন্যা শোনে নাকো — আজ ভোরে আরসীতে দেখে নাকো মুখ,</p>
-<p>কোথায় পাহাড় দূরে শাদা হয়ে আছে যেন কড়ির মতন, —</p>
-<p>সেই দিকে চেয়ে — চেয়ে দিনভোর ফেটে যায় রূপসীর বুক,</p>
-<p>তবুও সে বোঝে না কি আমারো যে সাধ আছে—আছে আনমন</p>
-<p>আমারো যে — চন্দ্রমালা, রাজকন্যা, শোনো শোনো তোলো তো চিবুক।</p>
-<p>হাড়পাহাড়ের দিকে চেয়ে চেয়ে হিম হয়ে গেছে তার স্তন। </p>
-<p><br class="calibre1" id="calibre_pb_35"/>
-</p>
-<h2>কত দিন সন্ধ্যার</h2>
-<p>কত দিন সন্ধ্যার অন্ধকারে মিলিয়াছি আমরা দুজনে;</p>
-<p>আকাশ প্রদীপ জ্বেলে তখন কাহারা যেন কার্তিকের মাস</p>
-<p>সাজায়েছে, — মাঠ থেকে গাজন গানের স্নান ধোঁয়াটে উচ্ছ্বাস</p>
-<p>ভেসে আসে; ডানা তুলে সাপমাসী উড়ে যায় আপনার মনে</p>
-<p>আকন্দ বনের দিকে; একদল দাঁড়কাক ম্লান গুঞ্জরণে</p>
-<p>নাটার মতন রাঙা মেঘ নিঙড়ায়ে নিয়ে সন্ধ্যার আকাশ</p>
-<p>দু’মুহূর্ত ভরে রাখে — তারপর মৌরির গন্ধমাখা ঘাস</p>
-<p>পড়ে থাকে : লক্ষ্মীপেঁচা ডাল থেকে ডালে শুধু উড়ে চলে বনে</p>
-<p> </p>
-<p>আধো ফোটা জ্যোৎস্নায়; তখন ঘাসের পাশে কতদিন তুমি</p>
-<p>হলুদ শাড়িটি বুকে অন্ধকারে ফিঙ্গার পাখনার মতো</p>
-<p>বসেছ আমার কাছে এইখানে — আসিয়াছে শটিবন চুমি</p>
-<p>গভীর আঁধার আরো — দেখিয়াছি বাদুড়ের মৃদু অবিরত</p>
-<p>আসা-যাওয়া আমরা দুজনে বসে-বলিয়াছি ছেঁড়াফাঁড়া কত</p>
-<p>মাঠ ও চাঁদের কথা! ম্লান চোখে একদিন সব শুনেছ তো।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_36"/>
-</p>
-<h2>এ-সব কবিতা আমি</h2>
-<p>এ-সব কবিতা আমি যখন লিখেছি বসে নিজ মনে একা;</p>
-<p>চালতার পাতা থেকে টুপ টুপ জ্যোৎস্নায় ঝরেছে শিশির;</p>
-<p>কুয়াশায় স্থি’র হয়ে ছিল ম্লান ধানসিড়ি নদীটির তীর;</p>
-<p>বাদুড় আধাঁর ডানা মেলে হিম জ্যোৎস্নায় কাটিয়াছে রেখা</p>
-<p>আকাঙক্ষার; নিভু দীপ আগলায়ে মনোরমা দিয়ে গেছে দেখা</p>
-<p>সঙ্গে তার কবেকার মৌমাছির…. কিশোরীর ভিড়</p>
-<p>আমের বউল দিল শীতরাতে; — আনিল আতার হিম ক্ষীর;</p>
-<p>মলিন আলোয় আমি তাহাদের দেখিলাম, — এ কবিতা লেখা</p>
-<p> </p>
-<p>তাহাদের ম্লান চুল মনে ক’রে, তাহাদের কড়ির মতন</p>
-<p>ধূসর হাতের রূপ মনে করে; তাহাদের হৃদয়ের তরে।</p>
-<p>সে কত শতাব্দী আগে তাহাদের করুণ শঙ্খের মতো স্তন</p>
-<p>তাহাদের হলুদ শাড়ি — ক্ষীর দেহ — তাহাদের অপরূপ মন</p>
-<p>চলে গেছে পৃথিবীর সব চেয়ে শান্ত হিম সান্ত্বনার ঘরে :</p>
-<p>আমার বিষণ্ন স্বপ্নে থেকে থেকে তাহাদের ঘুম ভেঙে পড়ে।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_37"/>
-</p>
-<h2>কত দিন তুমি আমি</h2>
-<p>কত দিন তুমি আমি এসে এইখানে বসিয়াছি ঘরের ভিতর</p>
-<p>খড়ের চালের নিচে, অন্ধকারে; — সন্ধ্যার ধূসর সজল</p>
-<p>মৃদু হাত খেলিতেছে হিজল জামের ডালে — বাদুড় কেবল</p>
-<p>করিতেছে আসা-যাওয়া আকাশের মৃদু পথে; — ছিন্ন ভিজে খড়</p>
-<p>বুকে নিয়ে সনকার মতো যেন পড়ে আছে নরম প্রান্তর;</p>
-<p>বাঁকা চাঁদ চেয়ে আছে;—কুয়াশায় গা ভাসায়ে দেয় অবিরল</p>
-<p>নিঃশব্দ গুবরে পোকা—সাপমাসী — ধানী শ্যামাপোকাদের দল;</p>
-<p>দিকে দিকে চালধোয়া গন্ধ মৃদু — ধূসর শাড়ির ক্ষীণ স্বর</p>
-<p> </p>
-<p>শোনা যায়;— মানুষের হৃদয়ের পুরোনো নীরব</p>
-<p>বেদনার গন্ধ ভাসে;—খড়ের চালের নিচে তুমি আর আমি</p>
-<p>কতদিন মলিন আলোয় বসে দেখেছি বুঝেছি এই সব;</p>
-<p>সময়ের হাত থেকে ছুটি পেয়ে স্বপনের গোধূলিতে নামি</p>
-<p>খড়ের চালের নিচে মুখোমুখি বসে থেকে তুমি আর আমি</p>
-<p>ধূসর আলোয় বসে কতদিন দেখেছি বুঝেছি এইসব। </p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_38"/>
-</p>
-<h2>এখানে প্রাণের স্রোত</h2>
-<p>এখানে প্রাণের স্রোত আসে যায় — সন্ধ্যায় ঘুমায় নীরবে</p>
-<p>মাটির ভিটের ‘পরে — লেগে থাকে অন্ধকারে ধুলোর আঘ্রাণ</p>
-<p>তাহাদের চোখেমুখে;-কদমের ডালে পেঁচা গেয়ে যায় গান;</p>
-<p>মনে হয় পৃথিবীতে হয়তো এ-জ্যোৎস্না শুধু র’বে</p>
-<p>এই শীত র’বে শুধু; রাত্রী ভ’রে এই লক্ষীপেঁচা কথা ক’বে-</p>
-<p>র’বেকাঁঠালের ডাল থেকে হিজলের ডালে গিয়ে করিবে আহ্বান</p>
-<p>সাপমাসী পোকাটিরে… সেই দিন আঁধারে উঠিবে ন’ড়ে ধান</p>
-<p>ইঁদুরের ঠোঁটে-চোখে; বাদুড়ের কালো ডানা করমচা পল্লবে</p>
-<p> </p>
-<p>কুয়াশারে নিঙড়ায়ে উড়ে যাবে আরো দূর নীল কুয়াশায়,</p>
-<p>কেউ তাহা দেখিবে না; — সেদিন এ পাড়াগাঁর পথের বিস্ময়</p>
-<p>দেখিতে পাবো না আর — ঘুমায়ে রহিবে সব; যেমন ঘুমায়</p>
-<p>আজ রাতে মৃত যারা; যেমন হতেছে ঘুমে ক্ষয়</p>
-<p>অশ্বত্থ ঝাউয়ের পাতা চুপে চুপে আজ রাতে, হায়;</p>
-<p>যেমন ঘুমায় মৃতা, — তাহার বুকের শাড়ি যেমন ঘুমায়।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_39"/>
-</p>
-<h2>একদিন যদি আমি</h2>
-<p>একদিন যদি আমি কোনো দূর বিদেশের সমুদ্রের জলে</p>
-<p>ফেনার মতন ভাসি শীত রাতে — আসি নাকো তোমাদের মাঝে</p>
-<p>ফিরে আর — লিচুর পাতার ‘পরে বহুদিন সাঁঝে</p>
-<p>যেই পথে আসা-যাওয়া করিয়াছি, — একদিন নক্ষত্রের তলে</p>
-<p>কয়েকটা নাটাফল তুলে নিয়ে আনারসী শাড়ির আচঁলে</p>
-<p>ফিঙার মতন তুমি লঘু চোখে চলে যাও জীবনের কাজে,</p>
-<p>এই শুধু… বেজির পায়ের শব্দ পাতার উপড়ে যদি বাজে</p>
-<p>সারারাত… ডানার অস্পষ্ট ছায়া বাদুড়ের ক্লান্ত হয়ে চলে</p>
-<p> </p>
-<p>যদি সে পাতার ‘পরে, — শেষ রাতে পৃথিবীর অন্ধকারে শীতে</p>
-<p>তোমার ক্ষীরের মতো মৃদু দেহ — ধূসর চিবুক, বাম হাত</p>
-<p>চালতা গাছের পাশে খোড়ো ঘরে স্নিগ্ধ হয়ে ঘুমায় নিভৃতে,</p>
-<p>তবুও তোমার ঘুম ভেঙে যাবে একদিন চুপে অকস্মাৎ,</p>
-<p>তুমি যে কড়ির মালা দিয়েছিলে — সে-হার ফিরাযে দিয়ে দিতে</p>
-<p>যখন কে এক ছায়া এসেছিল… দরজায় করেনি আঘাত।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_40"/>
-</p>
-<h2>দূর পৃথিবীর গন্ধে</h2>
-<p>দূর পৃথিবীর গন্ধে ভরে ওঠে আমার এ বাঙালির মন</p>
-<p>আজ রাতে; একদিন মৃত্যু এসে যদি দূর নক্ষত্রের তলে</p>
-<p>অচেনা ঘাসের বুকে আমারে ঘুমায়ে যেতে বলে</p>
-<p>তবুও সে ঘাস এই বাংলার অবিরল ঘাসের মতন</p>
-<p>মউরীর মৃদু গন্ধে ভরে রবে, — কিশোরীর স্তন</p>
-<p>প্রথম জননী হয়ে যেমন ননীর ঢেউয়ে গলে</p>
-<p>পৃথিবীর সব দেশে–সবচেয়ে ঢের দূর নক্ষত্রের তলে</p>
-<p>সব পথে এইসব শান্তি — আছে: ঘাস — চোখ — শাদা হাত — স্তন —</p>
-<p> </p>
-<p>কোথাও আসিবে মৃত্যু — কোথাও সবুজ মৃদু ঘাস</p>
-<p>আমারে রাখিবে ঢেকে — ভোরে, রাতে, দু’-পহরে পাখির হৃদয়</p>
-<p>ঘাসের মতন সাধে ছেয়ে র’বে রাতের আকাশ</p>
-<p>নক্ষত্রের নীল ফুলে ফুটে র’বে — বাংলার নক্ষত্র কি নয়?</p>
-<p>জানি নাকো; তবুও তাদের বুকে স্থির শান্তি– শান্তি লেগে যায়;</p>
-<p>আকাশের বুকে তারা যেন চোখ — শাদা হাত-যেন স্তন — ঘাস — । </p>
-<p><br class="calibre1" id="calibre_pb_41"/>
-</p>
-<h2>অশ্বত্থ বটের পথে</h2>
-<p>অশ্বত্থ বটের পথে অনেক হয়েছি আমি তোমাদের সাথী;</p>
-<p>ছড়ায়েছি খই ধান বহুদিন উঠানের শালিখের তরে;</p>
-<p>সন্ধ্যায় পুকুর থেকে হাঁসটিরে নিয়ে আমি তোমাদের ঘরে</p>
-<p>গিয়েছি অনেক দিন, — দেখিয়াছি ধূপ জ্বালো, ধরো সন্ধ্যাবাতি</p>
-<p>থোড়ের মতন শাদা ভিজে হাতে, — এখুনি আসিবে কিনা রাতি</p>
-<p>বিনুনি বেঁধেছ তাই — কাঁচপোকাটিপ তুমি কপারে ’পরে</p>
-<p>পড়িয়াছ… তারপর ঘুমায়েছ: কল্কাপাড় আঁচলটি ঝরে</p>
-<p>পানের বাটার ’পরে; নোনার মতন নম্র শরীরটি পাতি</p>
-<p> </p>
-<p>নির্জন পালঙ্কে তুমি ঘুমায়েছ, — বউকথাকওটির ছানা</p>
-<p>নীল জামরুল নীড়ে — জ্যোৎস্নায় — ঘুমায়ে রয়েছে যেন, হায়,</p>
-<p>আর রাত্রি মাতাপাখিটির মতো ছড়ায়ে রয়েছে তার ডানা।...</p>
-<p>আজ আমি ক্লান্ত চোখে ব্যবহৃত জীবনের ধুলোয় কাঁটায়</p>
-<p>চলে গেছে বহু দূরে; — দেখোনিকো, বোঝানিকো, করোনিকো মানা</p>
-<p>রূপসী শঙ্খের কৌটা তুমি যে গো প্রাণহীন — পানের বাটায়।</p>
-<p> </p>
-<p> </p>
-<p>(১৩২৬ -এর কতকগুলো দিনের স্মরণে) </p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_42"/>
-</p>
-<h2>ঘাসের বুকের থেকে</h2>
-<p>ঘাসের বুকের থেকে কবে আমি পেয়েছি যে আমার শরীর –</p>
-<p>সবুজ ঘাসের থেকে; তাই রোদ ভালো লাগে — তাই নীলাকাশ</p>
-<p>মৃদু ভিজে সকরুণ মনে হয়; — পথে পথে তাই এই ঘাস</p>
-<p>জলের মতন স্নিগ্ধ মনে হয়, — মৌউমাছিদের যেন নীড়</p>
-<p>এই ঘাস; — যত দূর যাই আমি আরো যত দূর পৃথিবীর</p>
-<p>নরম পায়ের তলে যেন কত কুমারীর বুকের নিঃশ্বাস</p>
-<p>কথা কয় — তাহাদের শান্ত হাত খেলা করে — তাদের খোঁপায় এলো ফাঁস</p>
-<p>খুলে যায় — ধূসর শাড়ির গন্ধে আসে তারা — অনেক নিবিড়</p>
-<p>পুরোনো প্রাণের কথা কয়ে যায় — হৃদয়ের বেদনার কথা –</p>
-<p>সান্ত্বনার নিভৃত নরম কথা — মাঠের চাঁদের গল্প করে –</p>
-<p>আকাশের নক্ষত্রের কথা কয়; — শিশিরের শীত সরলতা</p>
-<p>তাহাদের ভালো লাগে, — কুয়াশারে ভালো লাগে চোখের উপরে;</p>
-<p>গরম বৃষ্টির ফোঁটা ভালো লাগে; শীত রাতে — পেঁচার নম্রতা;</p>
-<p>ভালো লাগে এই যে অশ্বথ পাতা আমপাতা সারারাত ঝরে।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_43"/>
-</p>
-<h2>এই জল ভালো লাগে</h2>
-<p>এই জল ভালো লাগে; বৃষ্টির রূপালি জল কত দিন এসে</p>
-<p>ধুয়েছে আমার দেহ — বুলায়ে দিয়েছে চুল — চোখের উপরে</p>
-<p>তার শান্ত স্নিগ্ধ হাত রেখে কত খেলিয়াছে, — আবেগের ভরে</p>
-<p>ঠোঁটে এসে চুমা দিয়ে চ’লে গেছে কুমারীর মতো ভালোবেসে;</p>
-<p>এই জল ভালো লাগে; — নীলপাতা মৃদু ঘাস রৌদ্রের দেশে</p>
-<p>ফিঙ্গা যেমন তার দিনগুলো ভালোবাসে — বনের ভিতরে</p>
-<p>বারবার উড়ে যায়, — তেমনি গোপন প্রেমে এই জল ঝরে</p>
-<p>আমার দেহের ’পরে আমার চোখের ’পরে ধানের আবেশে</p>
-<p> </p>
-<p>ঝ’রে পড়ে; — যখন অঘ্রাণ রাতে ভরা ক্ষেত হয়েছে হলুদ,</p>
-<p>যখন জামের ডালে পেঁচার নরম হিম গান শোনা যায়,</p>
-<p>বনের কিনারে ঝরে যেই ধান বুকে ক’রে শান্ত — শালিক্ষুদ,</p>
-<p>তেমনি ঝরিছে জল আমার ঠোঁটের পরে-চোখের পাতায় –</p>
-<p>আমার চুলের ’পরে, — অপরাহ্নে রাঙা রোদে সবুজ আতায়</p>
-<p>রেখেছে নরম হাত যেন তার — ঢালিছে বুকের থেকে দুধ। </p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_44"/>
-</p>
-<h2>একদিন পৃথিবীর পথে</h2>
-<p>একদিন পৃথিবীর পথে আমি ফেলিয়াছি, আমার শরীর</p>
-<p>নরম ঘাসের পথে হাঁটিয়াছে; বসিয়াছে ঘাসে</p>
-<p>দেখিয়াছে নক্ষত্রের জোনাকিপোকার মতো কৌতুকের অমেয় আকাশে</p>
-<p>খেলা করে; নদীর জলের গন্ধে ভরে যায় ভিজে স্নিগ্ধ তীর</p>
-<p>অন্ধকারে; পথে পথে শব্দ পাই কাহাদের নরম শাড়ির,</p>
-<p>ম্লান চুল দেখা যায়; সান্ত্বনার কথা নিয়ে কারা আসে –</p>
-<p>ধূসর কড়ির মতো হাতগুলো — নগ্ন হাত সন্ধ্যার বাতাসে</p>
-<p>দেখা যায় : হলুদ ঘাসের কাছে মরা হিম প্রজাপতিটির</p>
-<p> </p>
-<p>সুন্দর করুণ পাখা পড়ে আছে — দেখি আমি; — চুপে থেমে থাকি;</p>
-<p>আকাশে কমলা রঙ ফুটে ওঠে সন্ধ্যায় — কাকগুলো নীল মনে হয়;</p>
-<p>অনেক লোকের ভিড়ে ডুবে যাই — কথা কই — হাতে হাত রাখি;</p>
-<p>করুণ বিষণ্ন চুলে কার যেন কোথাকার গভীর বিস্ময়</p>
-<p>লুকায়ে রয়েছে বুঝি… নক্ষত্রের নিচে আমি ঘুমাই একাকী;</p>
-<p>পেঁচার ধূসর ডানা সারারাত জোনাকির সাথে কথা কয়।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_45"/>
-</p>
-<h2>পৃথিবীর পথে আমি</h2>
-<p>পৃথিবীর পথে আমি বহুদিন বাস করে হৃদয়ের নরম কাতর</p>
-<p>অনেক নিভৃত কথা জানিয়াছি; পৃথিবীতে আমি বহুদিন</p>
-<p>কাটায়েছি; বনে বনে ডালপালা উড়িতেছে — যেন পরী জিন্</p>
-<p>কথা কয়; ধূসর সন্ধ্যায় আমি ইহাদের শরীরের ’পর</p>
-<p>খইয়ের ধানের মতো দেখিয়াছি ঝরে ঝর্ ঝর</p>
-<p>দু-ফোঁটা মেঘের বৃষ্টি, — শাদা ধুলো জলে ভিজে হয়েছে মলিন,</p>
-<p>ম্লান গন্ধ মাঠে ক্ষেতে… গুবরে পোকার তুচ্ছ বুক থেকে ক্ষীণ</p>
-<p>অস্পষ্ট করুণ শব্দ ডুবিতেছে অন্ধকারে নদীর ভিতর :</p>
-<p> </p>
-<p>এই সব দেখিয়াছি; — দেখিয়াছি নদীটিরে — মজিতেছে ঢালু অন্ধকারে;</p>
-<p>সাপমাসী উড়ে যায়; দাঁড়কাক অশ্বখে’র নীড়ের ভিতর</p>
-<p>পাখনার শব্দ করে অবিরাম; কুয়াশায় একাকী মাঠের ঐ ধারে</p>
-<p>কে যেন দাঁড়ায়ে আছে : আরো দূরে দ’একটা স্তব্ধ খোড়ো ঘর</p>
-<p>প’ড়ে আছে; — খাগড়ার বনে ব্যাং ডাকে কেন — থামিতে কি পারে;</p>
-<p>কাকের তরুণ ডিম পিছলায়ে পড়ে যায় শ্যাওড়ার ঝাড়ে।)</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_46"/>
-</p>
-<h2>মানুষের ব্যথা আমি</h2>
-<p>মানুষের ব্যথা আমি পেয়ে গেছি পৃথিবীর পথে এসে — হাসির আস্বাদ</p>
-<p>পেয়ে গেছি; দেখেছি আকাশে দূরে কড়ির মতন শাদা মেঘের পাহাড়ে</p>
-<p>সূর্যের রাঙা ঘোড়া: পক্ষিরাজের মতো কমলা রঙের পাখা ঝাড়ে</p>
-<p>রাতের কুয়াশা ছিঁড়ে; দেখেছি শরের বনে শাদা রাজহাঁসদের সাধ</p>
-<p>উঠেছে আনন্দে জেগে — নদীর স্রোতের দিকে বাতাসের মতন অবাধ</p>
-<p>চ’লে গেছে কলরবে; — দেখেছি সবুজ ঘাস — যত দূর চোখ যেতে পারে;</p>
-<p>ঘাসের প্রকাশ আমি দেখিয়াছি অবিরল, — পৃথিবীর ক্লান্ত বেদনারে</p>
-<p>ঢেকে আছে; — দেখিয়াছি বাসমতী, কাশবন, আকাঙক্ষার রক্ত, অপরাধ</p>
-<p>মুছায়ে দিতেছে যেন বারবার-কোন এক রহস্যের কুয়াশার ঢেকে</p>
-<p>যেখানে জন্মে না কেউ, যেখানে মরে না কেউ, সেই কুহকের থেকে এসে</p>
-<p>রাঙা রোদ, শালিধান, ঘাস, কাশ, মরালেরা বারবার রাখিতেছে ঢেকে</p>
-<p>আমাদের রুক্ষ প্রশ্ন, ক্লান্ত ক্ষুধা, স্ফুট মৃত্যু — আমাদের বিস্মিত নীরব</p>
-<p>রেখে দেয় — পৃথিবীর পথে আমি কেটেছি আচঁড় ঢের, অশ্রু গেছি রেখে</p>
-<p>তবু ঐ মরালীরা কাশ ধান রোদ ঘাস এসে এসে মুছে দেয় সব। </p>
-<p><br class="calibre1" id="calibre_pb_47"/>
-</p>
-<h2>তুমি কেন বহু দূরে</h2>
-<p>তুমি কেন বহু দূরে — ঢের দূরে — আরো দূরে — নক্ষত্রের অস্পষ্ট আকাশ</p>
-<p>তুমি কেন কোনদিন পৃথিবীর ভিড়ে এসে বলো নাকো একটিও কথা;</p>
-<p>আমরা মিনার গড়ি — ভেঙে পড়ে দু’দিনেই — স্বপনের ডানা ছিঁড়ে ব্যথা</p>
-<p>রক্ত হয়ে ঝরে শুধু এইখানে — ক্ষুধা হয়ে ব্যথা দেয় — নীল নাভিশ্বাস;</p>
-<p>ফেনায়ে তুলিছে শুধু পৃথিবীতে পিরামিডযুগ থেকে আজো বারোমাস;</p>
-<p>আমাদের সত্য, আহা, রক্ত হযে ঝরে শুধু; — আমাদের প্রাণের মমতা</p>
-<p>ফড়িঙের ডানা নিয়ে ওড়ে, আহা : চেয়ে দেখে অন্ধকার কঠিন ক্ষমতা</p>
-<p>ক্ষমাহীন — বারবার পথ আটকায়ে ফেলে বারবার করে তারে গ্রাস;</p>
-<p> </p>
-<p>তারপর চোখ তুলে দেখি ওই কোন দূর নক্ষত্রের ক্লান্ত আয়োজন</p>
-<p>ক্লান্তিরে ভুলিতে বলে — ঘিয়ের সোনার দীপে লাল নীল শিখা</p>
-<p>জ্বলিতেছে যেন দূর রহস্যের কুয়াশায়, — আবার স্বপ্নের গন্ধে মন</p>
-<p>কেঁদে ওঠে; —তবু জানি আমাদের স্বপ্ন হতে অশ্রু ক্লান্তি — রক্তের কণিকা</p>
-<p>ঝরে শুধু — স্বপ্ন কি দেখেনি বুদ্ধ — নিউসিডিয়ায় বসে দেখেনি মণিকা?</p>
-<p>স্বপ্ন কি দেখেনি রোম, এশিরিয়া, উজ্জয়িনী, গৌড়বাংলা, দিল্লী, বেবিলন?</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_48"/>
-</p>
-<h2>আমাদের রূঢ় কথা</h2>
-<p>আমাদের রূঢ় কথা শুনে তুমি সরে যাও আরো দূরে বুঝি নীলাকাশ;</p>
-<p>তোমার অনন্ত নীল সোনালি ভোমরা নিয়ে কোনো দূর শান্তির ভিতরে</p>
-<p>ডুবে যাবে? কত কাল কেটে গেল, তবু তার কুয়াশার পর্দা না সরে</p>
-<p>পিরামিড্‌ বেবিলন শেষ হ’ল — ঝরে গেল কতবার প্রান্তরের ঘাস;</p>
-<p>তবুও লুকায়ে আছে যেই রূপ নক্ষত্রে তা কোনোদিন হ’ল না প্রকাশ:</p>
-<p>যেই স্বপ্ন যেই সত্য নিয়ে আজ আমরা চলিয়া যাই ঘরে,</p>
-<p>কোনো এক অন্ধকারে হয়তো তা আকাশের যাযাবর মরালের স্বরে</p>
-<p>নতুন স্পন্দন পায়-নতুন আগ্রহে গন্ধে ভরে ওঠে পৃথিবীর শ্বাস;</p>
-<p>তখন আমরা ওই নক্ষত্রের দিকে চাই — মনে হয় সব অস্পষ্টতা</p>
-<p>ধীরে ধীরে ঝরিতেছে, — যেই রূপ কোনোদিন দেখি নাই পৃথিবীর পথে,</p>
-<p>যেই শান্তি মৃত জননীর মতো চেয়ে থাকে — কয় নাকো কথা,</p>
-<p>যেই স্বপ্ন বার বার নষ্ট হয় আমাদের এই সত্য রক্তের জগতে,</p>
-<p>আজ যাহা ক্লান্ত ক্ষীণ আজ যাহা নগ্ন চূর্ণ — অন্ধ মৃত হিম,</p>
-<p>একদিন নক্ষত্রের দেশে তারা হয়ে র’বে গোলাপের মতন রক্তিম।</p>
-<p><br class="calibre1" id="calibre_pb_49"/>
-</p>
-<h2>এই পৃথিবীতে আমি</h2>
-<p>এই পৃথিবীতে আমি অবসর নিয়ে শুধু আসিয়াছি — আমি হৃষ্ট কবি</p>
-<p>আমি এক; — ধুয়েছি আমার দেহ অন্ধকারে একা একা সমুদ্রের জলে;</p>
-<p>ভালোবাসিয়াছি আমি রাঙা রোদ, ক্ষান্ত কার্তিকের মাঠে — ঘাসের আঁচলে</p>
-<p>ফড়িঙের মতো আমি বেড়ায়েছি; — দেখেছি কিশোরী এসে হলুদ করবী</p>
-<p>ছিঁড়ে নেয় — বুকে তার লাল পেড়ে ভিজে শাড়ি করুণ শঙ্খের মতো ছবি</p>
-<p>ফুটাতেছে — ভোরের আকাশখানা রাজহাঁস ভরে গেছে নব কোলাহলে</p>
-<p>নব নব সূচনার : নদীর গোলাপী ঢেউ কথা বলে — তবু কথা বলে,</p>
-<p>তবু জানি তার কথা কুয়াশায় ফুরায় না — কেউ যেন শুনিতেছে সবি</p>
-<p> </p>
-<p>কোন্‌ রাঙা শাটিনের মেঘে বসে — অথবা শোনে না কেউ, শূন্য কুয়াশায়</p>
-<p>মুছে যায় সব তার; একদিন বর্ণচ্ছটা মুছে যাবো আমিও এমন;</p>
-<p>তবু আজ সবুজ ঘাসের ’পরে ব’সে থাকি; ভালোবাসি; প্রেমের আশায়</p>
-<p>পায়ের ধ্বনির দিকে কান পেতে থাকি চুপে; কাঁটাবহরের ফল করি আহরণ</p>
-<p>কারে যেন এইগুলো দেবো আমি; মৃদু ঘাসে একা — একা ব’সে থাকা যায়</p>
-<p>এইসব সাধ নিয়ে; যখন আসিবে ঘুম তারপর, ঘুমাব তখন। </p>
-<p><br class="calibre1" id="calibre_pb_50"/>
-</p>
-<h2>বাতাসে ধানের শব্দ</h2>
-<p>বাতাসে ধানের শব্দ শুনিয়াছি — ঝরিতেছে ধীরে ধীরে অপরাহ্ন ভ’রে;</p>
-<p>সোনালি রোদের রঙ দেখিয়াছি — দেহের প্রথম কোন প্রেমের মতন</p>
-<p>রূপ তার — এলোচুল ছড়ায়ে রেখেছ ঢেকে গূঢ় রূপ — আনারস বন;</p>
-<p>ঘাস আমি দেখিয়াছি; দেখেছি সজনে ফুল চুপে চুপে পড়িতেছে ঝ’রে</p>
-<p>মৃদু ঘাসে; শান্তি পায়; দেখেছি হলুদ পাখি বহুক্ষণ থাকে চুপ ক’রে,</p>
-<p>নির্জন আমের ডালে দুলে যায় — দুলে যায় — বাতাসের সাথে বহুক্ষণ,</p>
-<p>শুধু কথা, গান নয় — নীরবতা রচিতেছে আমাদের সবার জীবন</p>
-<p>বুঝিয়াছি; শুপুরীর সারিগুলো দিনরাত হাওয়ায় যে উঠিতেছে ন’ড়ে,</p>
-<p>দিনরাত কথা কয়, ক্ষীরের মতন ফুল বুকে ধরে, তাদের উৎসব</p>
-<p>ফুরায় না; মাছরাঙাটির সাথী ম’রে গেছে — দুপুরের নিঃসঙ্গ বাতাসে</p>
-<p>তবু ওই পাখিটির নীল লাল কমলা রঙের ডানা স্ফুট হয়ে ভাসে</p>
-<p>আম নিম জামরুলে; প্রসন্ন প্রাণের স্রোত — অশ্রু নাই — প্রশ্ন নাই কিছু,</p>
-<p>ঝিলমিল ডানা নিয়ে উড়ে যায় আকাশের থেকে দূর আকাশের পিছু,</p>
-<p>চেয়ে দেখি ঘুম নাই — অশ্রু নাই — প্রশ্ন নাই বটফলগন্ধমাখা ঘাসে।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_51"/>
-</p>
-<h2>একদিন এই দেহ</h2>
-<p>একদিন এই দেহ ঘাস থেকে ধানের আঘ্রাণ থেকে এই বাংলা</p>
-<p>জেগেছিল; বাঙালী নারীর মুখ দেখে রূপ চিনেছিলো দেহ একদিন;</p>
-<p>বাংলার পথে পথে হেঁটেছিলো গাংচিল শালিখের মতন স্বাধীন;</p>
-<p>বাংলার জল দিয়ে ধূয়েছিল ঘাসের মতন স্ফুট দেহখানি তার;</p>
-<p>একদিন দেখেছিল ধূসর বকের সাথে ঘরে চ’লে আসে অন্ধকার</p>
-<p>বাংলা; কাঁচা কাঠ জ্বলে ওঠে — নীল ধোঁয়া নরম মলিন</p>
-<p>বাতাসে ভাসিয়া যায় কুয়াশার করুণ নদীর মতো ক্ষীণ;</p>
-<p>ফেনসা ভাতের গন্ধে আমমুকুলের গন্ধ মিশে যায় যেন বারবার;</p>
-<p> </p>
-<p>এই সব দেখেছিল রূপ; যেই স্বপ্ন আনে — স্বপ্নে যেই রক্তাক্ততা আছে,</p>
-<p>শিখেছিল সেই সব একদিন বাংলার চন্দ্রমালা রূপসীর কাছে;</p>
-<p>তারপর বেতবনে, জোনাকি ঝিঝির পথে হিজল আমের অন্ধকারে</p>
-<p>ঘুরেছে সে সৌন্দর্যের নীল স্বপ্ন বুকে ক’রে, — রূঢ় কোলাহলে গিয়ে তারে –</p>
-<p>ঘুমন কন্যারে সেই — জাগাতে যায়নি আর — হয়তো সে কন্যার হৃদয়</p>
-<p>শঙ্খের মতন রুক্ষ, অথবা পদ্মের মতো — ঘুম তবু ভাঙিবার নয়।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_52"/>
-</p>
-<h2>আজ তারা কই সব ?</h2>
-<p>আজ তারা কই সব? ওখানে হিজল গাছ ছিল এক — পুকুরের জলে</p>
-<p>বহুদিন মুখ দেখে গেছে তার; তারপর কি যে তার মনে হ’ল কবে</p>
-<p>কখন সে ঝ’রে গেল, কখন ফুরাল, আহা, — চলে গেল কবে যে নীরবে,</p>
-<p>তাও আর জানি নাকো; ঠোঁট ভাঙা দাঁড়কাক ঐ বেলগাছটির তলে</p>
-<p>রোজ ভোরে দেখা দিত — অন্যসব কাক আর শালিখের হৃষ্ট কোলাহলে</p>
-<p>তারে আর দেখি নাকো — কতদিন দেখি নাই; সে আমার ছেলেবেলা হবে,</p>
-<p>জানালার কাছে এক বোলতার চাক ছিল — হৃদয়ের গভীর উৎসবে</p>
-<p>খেলা ক’রে গেছে তারা কত দিন — ফড়িঙ কীটের দিন যত দিন চলে</p>
-<p>তাহারা নিকটে ছিলো — রোদের আনন্দে মেতে — অন্ধকারে শান্ত ঘুম খুঁজে</p>
-<p>বহুদিন কাছে ছিলো; — অনেক কুকুর আজ পথে ঘাটে নড়াচড়া করে</p>
-<p>তবুও আঁধারে ঢের মৃত কুকুরের মুখ — মৃত বিড়ালের ছায়া ভাসে;</p>
-<p>কোথায় গিয়েছে তারা? ওই দূর আকাশের নীল লাল তারার ভিতরে</p>
-<p>অথবা মাটির বুকে মাটি হয়ে আছে শুধু — ঘাস হয়ে আছে শুধু ঘাসে?</p>
-<p>শুধালাম — উত্তর দিল না কেউ উদাসীন অসীম আকাশে। </p>
-<p><br class="calibre1" id="calibre_pb_53"/>
-</p>
-<h2>হৃদয়ে প্রেমের দিন</h2>
-<p>হৃদয়ে প্রেমের দিন কখন যে শেষ হয় — চিতা শুধু প’ড়ে থাকে তার,</p>
-<p>আমরা জানি না তাহা; — মনে হয় জীবনে যা আছে আজো তাই শালিধান</p>
-<p>রূপশালি ধান তাহা… রূপ, প্রেম… এই ভাবি… খোসার মতন নষ্ট ম্লান</p>
-<p>একদিন তাহাদের অসারতা ধরা পড়ে, — যখন সবুজ অন্ধকার,</p>
-<p>নরম রাত্রির দেশ নদীর জলের গন্ধ কোন এক নবীনাগতার</p>
-<p>মুখখানা নিয়ে আসে — মনে হয় কোনোদিন পৃথিবীতে প্রেমের আহ্বান</p>
-<p>এমন গভীর করে পেয়েছি কি? প্রেম যে নক্ষত্র আর নক্ষত্রের গান,</p>
-<p>প্রাণ যে ব্যাকুল রাত্রি প্রান্তরের গাঢ় নীল অমাবস্যার –</p>
-<p>চ’লে যায় আকাশের সেই দূর নক্ষত্রের লাল নীল শিখার সন্ধানে,</p>
-<p>প্রাণ যে আঁধার রাত্রি আমার এ, — আর তুমি স্বাতীর মতন</p>
-<p>রূপের বিচিত্র বাতি নিয়ে এলে, — তাই প্রেম ধুলায় কাঁটায় যেইখানে</p>
-<p>মৃত হয়ে পড়ে ছিল পৃথিবীর শূন্য পথে সে গভীর শিহরণ,</p>
-<p>তুমি সখী, ডুবে যাবে মুহূর্তেই রোমহর্ষে — অনিবার অরুণের স্নানে</p>
-<p>জানি আমি; প্রেম যে তবুও প্রেম; স্বপ্ন নিয়ে বেঁচে রবে, বাঁচিতে সে জানে।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_54"/>
-</p>
-<h2>কোনোদিন দেখিব না</h2>
-<p>কোনোদিন দেখিব না তারে আমি : হেমন্তে পাকিবে ধান, আষাঢ়ের রাতে</p>
-<p>কালো মেঘ নিঙড়ায়ে সবুজ বাঁশের বন গেয়ে যাবে উচ্ছ্বাসের গান</p>
-<p>সারারাত, — তবু আমি সাপচরা অন্ধ পথে — বেণুবনে তাহার সন্ধান</p>
-<p>পাবো নাকে : পুকুরের পাড়ে সে যে আসিবে না কোনোদিন হাঁসিনীর সাথে,</p>
-<p>সে কোনো জ্যোৎস্নায় আর আসিবে না — আসিবে না কখনো প্রভাতে,</p>
-<p>যখন দুপুরে রোদে অপরাজিতার মুখ হয়ে থাকে ম্লান,</p>
-<p>যখন মেঘের রঙে পথহারা দাঁড়কাক পেয়ে গেছে ঘরের সন্ধান,</p>
-<p>ধূসর সন্ধ্যায় সেই আসিবে না সে এখানে; — এইখানে ধুন্দুল লতাতে</p>
-<p>জোনাকি আসিবে শুধু : ঝিঁঝিঁ শুধু; সারারাত কথা কবে ঘাসে আর ঘাসে</p>
-<p>বাদুড় উড়িবে শুধু পাখনা ভিজায়ে নিয়ে শান্ত হয়ে রাতের বাতাসে;</p>
-<p>প্রতিটি নক্ষত্র তার স্থান খুঁজে জেগে রবে প্রতিটির পাশে</p>
-<p>নীরব ধূসর কণা লেগে র’বে তুচ্ছ অনূকণাটির শ্বাসে</p>
-<p>অন্ধকারে — তুমি, সখি, চলে গেলে দূরে তবু; — হৃদয়ের গভীর বিশ্বাসে</p>
-<p>অশ্বত্থের শাখা ঐ দুলিতেছে; আলো আসে, ভোর হয়ে আসে।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_55"/>
-</p>
-<h2>ঘাসের ভিতরে সেই</h2>
-<p>ঘাসের ভিতরে সেই চড়ায়ের শাদা ডিম ভেঙে আছে — আমি ভালোবাসি</p>
-<p>নিস্তব্ধ করুণ মুখ তার এই — কবে যেন ভেঙেছিল — ঢের ধুলো খড়</p>
-<p>লেগে আছে বুকে তার — বহুক্ষণ চেয়ে থাকি; — তারপর ঘাসের ভিতর</p>
-<p>শাদা শাদা ধুলোগুলো পড়ে আছে, দেখা যায় খইধান দেখি একরাশি</p>
-<p>ছড়ায়ে রয়েছে চুপে; নরম বিষণ্ন গন্ধ পুকুরের জল থেকে উঠিতেছে ভাসি;</p>
-<p>কান পেতে থাকি যদি, শোনা যায়, সরপুটি চিতলের উদ্ভাসিত স্বর</p>
-<p>মীনকন্যাদের মতো, সবুজ জলের ফাঁকে তাদের পাতালপুরী ঘর</p>
-<p>দেখা যায় — রহস্যের কুয়াশায় অপরূপ — রূপালি মাছের দেহ গভীর উদাসী</p>
-<p>চ’লে যায় মন্ত্রিকুমারের মতো, কোটাল ছেলের মতো রাজার ছেলের মতো মিলে</p>
-<p>কোন এক আকাঙ্ক্ষার উদঘাটনে কত দূরে; বহুক্ষণ চেয়ে থাকি একা;</p>
-<p>অপরাহ্ন এল বুঝি? — রাঙা রৌদ্রে মাছরাঙা উড়ে যায় — ডানা ঝিলমিলে;</p>
-<p>এক্ষুনি আসিবে সন্ধ্যা, — পৃথিবীতে ম্রিয়মাণ গোধূলি নামিলে</p>
-<p>নদীর নরম মুখ দেখা যাবে — মুখে তার দেহে তার কতো মৃদু রেখা</p>
-<p>তোমারি মুখের মতো; তবুও তোমার সাথে কোনোদিন হবে নাকো দেখা। </p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_56"/>
-</p>
-<h2>এইসব ভালো লাগে</h2>
-<p>(এই সব ভালো লাগে) : জানালার ফাঁক দিয়ে ভোরের সোনালি রোদ এসে</p>
-<p>আমার ঘুমুতে দেখে বিছানায়,- আমার কাতর চোখ, আমার বিমর্ষ ম্লান চুল-</p>
-<p>এই নিয়ে খেলা করে : জানে সে যে বহুদিন আগে আমি করেছি কি ভুল </p>
-<p>পৃথিবীর সবচেয়ে ক্ষমাহীন গাঢ় এক রূপসীর মুখ ভালোবেসে,</p>
-<p>পউষের শেষ রাতে আজো আমি দেখি চেয়ে আবার সে আমাদের দেশে </p>
-<p>ফিরে এল; রং তার কেমন তা জানে ওই টসটসে ভিজে জামরুল,</p>
-<p>নরম জামের মতো চুল তার, ঘুঘুর বুকের মতো অস্ফুট আঙুল;-</p>
-<p>পউষের শেষ রাতে নিমপেঁচাটির সাথে আসে সে যে ভেসে</p>
-<p>কবেকার মৃত কাক : পৃথিবীর পথে আজ নাই সে যে আর;</p>
-<p>তবুও সে ম্লান জানালার পাশে উড়ে আসে নীরব সোহাগে,</p>
-<p>মলিন পাখনা তার খড়ের চালের হিম শিশিরে মাখায়;</p>
-<p>তখন এ পৃথিবীতে কোনো পাখি জেগে এসে বসেনি শাখায়;</p>
-<p>পৃথিবীও নাই আর;- দাঁড়কাক একা একা সারারাত জাগে;</p>
-<p>‘কি বা, হায়, আসে যায়, তারে যদি কোনোদিন পাই আবার।’</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_57"/>
-</p>
-<h2>সন্ধ্যা হয়- চারিদিকে</h2>
-<p>সন্ধ্যা হয়-চারিদিকে শান্ত নীরবতা;</p>
-<p>খড় মুখে নিয়ে এক শালিক যেতেছে উড়ে চুপে;</p>
-<p>গোরুর গাড়িটি যায় মেঠো পথ বেয়ে ধীরে ধীরে;</p>
-<p>আঙিনা ভরিয়া আছে সোনালি খড়ের ঘন স্তূপে;</p>
-<p> </p>
-<p>পৃথিবীর সব ঘুঘু ডাকিতেছে হিজলের বনে;</p>
-<p>পৃথিবীর সব রূপ লেগে আছে ঘাসে;</p>
-<p>পৃথিবীর সব প্রেম আমাদের দু’জনার মনে;</p>
-<p>আকাশ ছড়ায়ে আছে শান্তি হয়ে আকাশে আকাশে।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_58"/>
-</p>
-<h2>একদিন কুয়াশার</h2>
-<p>একদিন কুয়াশার এই মাঠে আমারে পাবে না কেউ খুঁজে আর, জানি;</p>
-<p>হৃদয়ের পথ-চলা শেষ হল সেই দিন- গিয়েছে সে শান্ত হিম ঘরে,</p>
-<p>অথবা সান্ত্বনা পেতে দেরি হবে কিছু কার-পৃথিবীর এই মাঠখানি</p>
-<p>ভুলিতে বিলম্ব হবে কিছু দিন; এ মাঠের কয়েকটা শালিকের তরে</p>
-<p>আশ্চর্য বিস্ময়ে আমি চেয়ে রবো কিছু কাল অন্ধকার বিছানার কোলে,</p>
-<p>আর সে সোনালি চিল ডানা মেলে দূর থেকে আজো কি মাঠের কুয়াশায়</p>
-<p>ভেসে আসে?সেই ন্যাড়া অশ্বত্থের পানে আজো চ’লে যায়</p>
-<p>                              সন্ধ্যা সোনার মতো হলে?</p>
-<p>ধানের নরম শিষে মেঠো ইঁদুরের চোখ নক্ষত্রের দিকে আজো চায়</p>
-<p> </p>
-<p>সন্ধ্যা হলে? মউমাছি চাক আজো বাঁধে না জামের নিবিড় ঘন ডালে,</p>
-<p>মউ খাওয়া হয়ে গেলে আজো তারা উড়ে যায় কুয়াশায় সন্ধ্যার বাতাসে-</p>
-<p>কত দূরে যায়, আহা... অথবা হয়তো কেউ চালতার ঝরাপাতা জ্বলে</p>
-<p>মধুর চাকের নিচে-মাছিগুলো উড়ে যায়...ঝ’ড়ে পড়ে...ম’রে থাকে ঘাসে-</p>
-<p><br class="calibre1" id="calibre_pb_59"/>
-</p>
-<h2>ভেবে ভেবে ব্যথা পাব</h2>
-<p>ভেবে ভেবে ব্যথা পাব;-মনে হবে, পৃথিবীর পথে যদি থাকিতাম বেঁচে</p>
-<p>দেখিতাম সেই লক্ষীপেঁচাটির মুখ যারে কোনোদিন ভালো ক’রে দেখি নাই আমি-</p>
-<p>এমনি লাজুক পাখি,-ধূসর ডানা কি কুয়াশার ঢেউয়ে ওঠে নেচে;</p>
-<p>যখন সাতটি তারা ফুটে ওঠে অন্ধকারে গাবের নিবিড় বুকে আসে সে কি নামি?</p>
-<p> </p>
-<p>জউলির বাবলার আঁধার গলির ফাঁকে জোনাকির কুহকের আলো</p>
-<p>ঝরে না কি? ঝিঁঝিঁর সবুজ মাংসে ছোটো ছোটো ছেলেমেয়ে বউদের প্রাণ</p>
-<p>ভুলে যায়; অন্ধকারে খুঁজে তারে আকন্দবনের ভিড়ে কোথায় হারালো</p>
-<p>মকাল লতার তলে শিশিরের নীল জলে কেউ তার পাবে না সন্ধান।</p>
-<p> </p>
-<p>আর সেই সোনালি চিলের ডানা- ডানা তার আজো কি মাঠের কুয়াশায়</p>
-<p>ভেসে আসে?- সেই ন্যাড়া অশ্বত্থের পানে আজো চ’লে যায়</p>
-<p>                              সন্ধ্যা সোনার মতো হলে?</p>
-<p>ধানের নরম শিষে মেঠো ইঁদুরের চোখ নক্ষত্রের দিকে আজো চায়?</p>
-<p>আশ্চর্য বিস্ময়ে আমি চেয়ে রবো কিছু কাল অন্ধকার বিছানার কোলে।</p>
-<p><br class="calibre1" id="calibre_pb_60"/>
-</p>
-<h2>সমুদ্রের জলে আমি</h2>
-<p>সমুদ্রের জলে আমি দেহ ধুয়ে চেয়ে থাকি নক্ষত্রের আকাশের পানে</p>
-<p>চারিদিকে অন্ধকার : নারী মতন হাত, কালো চোখ, ম্লান চুল ঝরে</p>
-<p>যতদূর চোখ যায় নীলজল হৃষ্ট মরালের মতো কলরব করে</p>
-<p>রাত্রিরে ডাকিতে চায়-বুকে তার, প্রেমমূঢ় পরুষের মতন আহ্বানে</p>
-<p>পৃথিবীর কত প্রেম শেষ হ’ল- তবু এই সমুদ্রের আকাঙ্ক্ষার গানে</p>
-<p>বাধা নাই, ভয় নাই, ক্লান্তি নাই, অশ্রু নাই-মালাবার ঢেউয়ের ভিতরে</p>
-<p>চারিদিকে নীল নারিকেল বন সোনালি ফুলের গন্ধে, বিস্ময়ের ভরে</p>
-<p>জানে তাহা-কত দিন থেকে ওই মলয়ালি আর তার শিশু তাহা জানে</p>
-<p> </p>
-<p>জানি না মান্দ্রাজ নাকি এই দেশ? জানি না মলয় নাকি? কিংবা মালাবার?</p>
-<p>জানি না এ পৃথিবীর কোন্ পথ- কোন ভাষা কোন্ মুখে এখানে বাতাসে</p>
-<p>জানি না যৌবন কবে শেষ হয়ে গেছে কোন্ পৃথিবীর ধুলোতে আমার </p>
-<p>তবুও আমার প্রাণ তামিলের কিশোরের মতো ওই কিশোরীর পাশে</p>
-<p>আবার নতুন জন্ম পায় আজ; কেউ নাই অন্ধকারে কবেকার ঘাসে</p>
-<p>কত যে মউরি খই ঝ’রে গেছে-চারিদিকে ফুটে সব উঠিছে আবার।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_61"/>
-</p>
-<h2>তোমরা স্বপ্নের হাতে</h2>
-<p>তোমরা স্বপ্নের হাতে ধরা দাও-আকাশের রৌদ্র ধুলো ধোঁয়া থেকে স’রে</p>
-<p>এইখানে চ’লে এসো; পৃথিবীর পথে আমি বহুদিন তোমার কথা</p>
-<p>শুনিয়াছি- তোমাদের ম্লান মুখ দেখিয়াছি-তোমাদের ক্লান্ত রক্তাক্ততা</p>
-<p>দেখিয়াছি কত দিন-ব্যথিত ধানের মতো বুক থেকে পড়িতেছে ঝরে</p>
-<p>তোমাদের আশা শান্তি, ম্লান মেঘে সোনালি চিলের মতো কলরব ক’রে</p>
-<p>মিছে কেন ফেরো, আহা,-পৃথিবীর পথ থেকে হে বিষণ্ন, হে ক্লান্ত জনতা</p>
-<p>তোমরা স্বপ্নের ঘরে চ’লে এসো- এখানে মুছিয়া যাবে হৃদয়ের ব্যথা</p>
-<p>সন্ধ্যার বকের মতো চ’লে এসো ধূসর স্তনের মতো [শান্ত পথ ধরে]</p>
-<p> </p>
-<p>চারিদিকে রাত্রিদিন কলরব ক’রে যায় দাঁড়কাক বাদুড়ের মতো</p>
-<p>পৃথিবীর পথে ওই- সেখানে কি ক’রে তবে শান্তি পাবে মানুষ বলো তো?</p>
-<p>এখানে গোধূলি নষ্ট হয় নাকো কোনদিন;-কয়লার মতো রং-ম্লান</p>
-<p>পশ্চিমের মেঘে ওই লেগে আছে চিরদিন; কড়ির মতন শাদা করুণ উঠান</p>
-<p>প’ড়ে আছে চিরকাল; গোধূলি নদীর জলে রূপসীর মতো তার মুখখানা দেখে</p>
-<p>ধীরে-ধীরে-আরো ধীরে শান্তি ঝরে, স্বপ্ন ঝরে আকাশের থেকে।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_62"/>
-</p>
-<h2>গুবরে ফড়িং শুধু</h2>
-<p>গুবরে ফড়িং শুধু উড়ে যায় আজ এই সন্ধ্যার বাতাসে</p>
-<p>খড়কুটা ঝরে শুধু শালিখেল মুখ থেকে চুপে</p>
-<p>আবার শালিখ, আহা, খড়গুলো কুড়ায় নিশ্চুপে। </p>
-<p>সন্ধ্যার লাল শিরা মৃদু চোখে ঘরে ফিরে আসে</p>
-<p>ঘুঘুর নরম ডাকে- নীরব আকাশে</p>
-<p>নক্ষত্রেরা শান্তি পায়- পউষের কুয়াশায় ধূপে</p>
-<p>পুঁয়ের সবুজ রাঙা লতা আছে ডুবে।</p>
-<p>এ কোমল স্নিগ্ধ হিম সান্ত্বনার মাসে</p>
-<p> </p>
-<p>চোখে তার শান্তি শুধু- লাল লাল ফলে বুক আছে দেখ ভ’রে।</p>
-<p>গুবরে ফড়িং কই উড়ে যায় আজ এ সিন্ধ্যার বাতাসে</p>
-<p>খড়কুটা ঝরে শুধু শালিখের মুখ থেকে চুপে</p>
-<p>আবার শালিখ ওই খড়গুলো কুড়ায় নিশ্চুপে।</p>
-<p>সন্ধ্যার লাল শিরা মৃদু চোখে ঘরে ফিরে আসে</p>
-<p>তবুও তোমারে আমি কোনোদিন পাবো নাকো অসীম আকাশে।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_63"/>
-</p>
-<h2>অনন্ত জীবন যদি</h2>
-<p>অনন্ত জীবন যদি পাই আমি- তাহ’লে অনন্তকাল একা </p>
-<p>পৃথিবীর পথে আমি ফিরি যদি দেখিব সবুজ ঘাস</p>
-<p>ফুটে ওঠে- দেখিব হলুদ ঘাস ঝরে যায়- দেখিব আকাশ</p>
-<p>শাদা হয়ে ওঠে ভোরে-ছেঁড়া মুনিয়ার মতো রাঙা রক্ত-রেখা</p>
-<p>লেগে থাকে বুকে তার সন্ধ্যায়- বারবার নক্ষত্রের দেখা</p>
-<p>পাব আমি; দেখিব অচেনা নারী আলগা খোঁপার ফাঁস</p>
-<p>খুলে ফেলে চ’লে যায়-মুখে তার নাই আহা গোধূলির নরম আভাস।</p>
-<p> </p>
-<p>অনন্ত জীবন যদি পাই আমি-তাহ’লে অসীমকাল একা </p>
-<p>পৃথিবীর পথে যদি ফিরি আমি- ট্রাম বাস ধুলো</p>
-<p>দেখিব অনেক আমি- দেখিব অনেকগুলো</p>
-<p>বস্তি, হাট-এঁদো গলি, ভাঙা কলকী হাঁড়ি</p>
-<p>মারামারি, গালাগালি, ট্যারা চোখ পচা চিংড়ি-কত কি দেখিব নাহি লেখা</p>
-<p>তবুও তোমার সাথে অনন্তকালেও আর হবে নাকো দেখা।</p>
-<p> </p>
-<p><br class="calibre1" id="calibre_pb_64"/>
-</p>
-<h2>ঘরের ভিতর দীপ</h2>
-<p>ঘরের ভিতর দীপ জ্বলে ওঠে- ধীরে ধীরে বৃষ্টি ক্ষান্ত হয় সন্ধ্যায়</p>
-<p>যখন ঘরের দীপ জ্বলে ওঠে সন্ধ্যায়- ধীরে ধীরে বৃষ্টি ক্ষান্ত হয়</p>
-<p>ভিজে চালে ডুমুরের পাতা ঝরে-শালিক বসিয়ে থাকে মুহূর্ত সময়</p>
-<p>জানালার কাছে এসে, ভিজে জানালার কাছে-মৌমাছি বহুক্ষণ মৃদু গুমরায়</p>
-<p>এইসব ভালো লাগে; এইসব ম্লান গন্ধ মৃদু স্বাদ চায়</p>
-<p>পৃথিবীর পথে ঘুরে আমার হৃদয়</p>
-<p>ডুমুরের পাতা ঝরে ভিজে চালে-ধীরে ধীরে বৃষ্টি ক্ষান্ত হয়</p>
-<p>মলিন শাড়ির ঘ্রাণ ধূপ হাতে দুয়ারে দাঁড়ায়।</p>
-<p> </p>
-<p>এইসব ভালোবাসি- জীবনের পথে ঘুরে এইসব ভালোবাসে আমার হৃদয়</p>
-<p>ঘরে আলো, বৃষ্টি ক্ষান্ত হ’ল সন্ধ্যায়</p>
-<p>ঘরের নরম দীপ জ্বলে ওঠে, ধীরে ধীরে বৃষ্টি ক্ষান্ত হয়</p>
-<p>ভিজে চালে কদমের পাতা ঝরে-শালিখ বসিয়া থাকে মুহূর্ত সময়</p>
-<p>মলিন শাড়ির ঘ্রাণ ধূপ হাতে দুয়ারে দাঁড়ায়</p>
-<p>মৃদু আরো মৃদু হয়ে অবিরল বাতাসে হারায়।</p>
-<p style="text-align: center; padding: 0pt; margin: 0pt;">
+        <div id="read-main-content" class="px-5 md:px-10 py-7 max-w-2xl">
 
-
-
-</p>
-
+            <!-- Book cover + info -->
+            <div class="flex items-center gap-4 mb-5">
+                <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780239429326_tgzvn2excdg.webp" alt="রূপসী বাংলা"
+                     class="w-16 rounded-lg shadow-md flex-shrink-0 object-cover aspect-[2/3]">
+                <div class="min-w-0">
+                    <h1 class="text-base font-bold text-gray-900 dark:text-gray-100 leading-snug line-clamp-2 mb-1">রূপসী বাংলা</h1>
+                    <a href="/author/jibanananda-das.html"
+                       class="text-sm text-[#c0392b] hover:underline font-medium">জীবনানন্দ দাশ</a>
+                </div>
             </div>
 
-            <!-- Bottom nav -->
-            <div class="mt-12 pt-6 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
+            <!-- Top action buttons -->
+            <div class="flex gap-3 mb-6">
                 <a href="/books/ruposhi-bangla.html"
-                   class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#c0392b] transition">
-                    <i class="fas fa-arrow-left text-xs"></i> বইয়ের তথ্য
+                   class="flex-1 flex items-center justify-center gap-2 text-sm border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:border-[#c0392b] hover:text-[#c0392b] rounded-xl py-2.5 transition">
+                    <i class="fas fa-circle-info text-xs"></i> বইয়ের তথ্য
                 </a>
                 <a href="/download/ruposhi-bangla.html"
-                   class="flex items-center gap-2 text-sm bg-[#c0392b] hover:bg-[#a93226] text-white px-4 py-2 rounded-lg transition">
-                    <i class="fas fa-download text-xs"></i> ডাউনলোড করুন
+                   class="flex-1 flex items-center justify-center gap-2 text-sm bg-[#c0392b] hover:bg-[#a93226] text-white rounded-xl py-2.5 transition">
+                    <i class="fas fa-download text-xs"></i> ডাউনলোড
                 </a>
             </div>
+
+            <hr class="border-gray-200 dark:border-gray-700 mb-6">
+            <div id="book-content" class="text-gray-800 dark:text-gray-200">
+                
+            </div>
+
         </div>
     </div>
 
-    <!-- Desktop RIGHT sidebar: customization controls -->
-    <aside id="toc-sidebar"
-        class="hidden lg:flex flex-col w-56 shrink-0 border-l border-gray-100 dark:border-gray-800 bg-white dark:bg-[#1a1a1b] overflow-y-auto">
-
-        <!-- Reading progress -->
-        <div class="px-4 pt-6 pb-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-3">অগ্রগতি</p>
-            <div class="flex items-center gap-3">
-                <div class="relative w-12 h-12 shrink-0">
-                    <svg class="w-full h-full -rotate-90" viewBox="0 0 36 36">
-                        <circle cx="18" cy="18" r="14" fill="none" stroke="currentColor"
-                            class="text-gray-100 dark:text-gray-800" stroke-width="3"/>
-                        <circle id="progress-ring-circle" cx="18" cy="18" r="14" fill="none"
-                            stroke="#c0392b" stroke-width="3"
-                            stroke-dasharray="87.96" stroke-dashoffset="87.96"
-                            stroke-linecap="round"/>
-                    </svg>
-                    <span id="progress-pct"
-                        class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-gray-700 dark:text-gray-300 tabular-nums leading-none">০%</span>
-                </div>
-                <div>
-                    <p class="text-[12px] font-semibold text-gray-700 dark:text-gray-300">পড়া হয়েছে</p>
-                    <p class="text-[11px] text-gray-400 dark:text-gray-500 mt-0.5">স্ক্রোল করুন</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Font size -->
-        <div class="px-4 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">লেখার আকার</p>
-            <div class="flex items-center gap-2">
-                <button id="font-decrease"
-                    class="w-9 h-9 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-[13px] font-bold transition text-gray-600 dark:text-gray-300 flex items-center justify-center">A−</button>
-                <div class="flex-1 flex justify-center gap-1.5 items-center">
-                    <span id="font-dot-0" class="w-2 h-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></span>
-                    <span id="font-dot-1" class="w-2 h-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></span>
-                    <span id="font-dot-2" class="w-2 h-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></span>
-                    <span id="font-dot-3" class="w-2 h-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></span>
-                </div>
-                <button id="font-increase"
-                    class="w-9 h-9 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-[13px] font-bold transition text-gray-600 dark:text-gray-300 flex items-center justify-center">A+</button>
-            </div>
-            <p class="text-center text-[10px] text-gray-400 dark:text-gray-600 mt-2">
-                স্তর: <span id="font-label" class="font-semibold text-gray-600 dark:text-gray-400">২</span> / ৪
-            </p>
-        </div>
-
-        <!-- Theme selector -->
-        <div class="px-4 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">থিম</p>
-            <div class="flex gap-1.5">
-                <button data-theme="light" class="theme-btn flex-1 h-10 rounded-lg border-2 text-[11px] font-medium transition-all" style="background:#fff;color:#333;border-color:#e5e7eb;">আলো</button>
-                <button data-theme="sepia" class="theme-btn flex-1 h-10 rounded-lg border-2 text-[11px] font-medium transition-all" style="background:#f5efe6;color:#5a4535;border-color:#d9ccbe;">সেপিয়া</button>
-                <button data-theme="dark"  class="theme-btn flex-1 h-10 rounded-lg border-2 text-[11px] font-medium transition-all" style="background:#1c1c1e;color:#ccc;border-color:#333;">অন্ধকার</button>
-            </div>
-        </div>
-
-        <!-- Line spacing -->
-        <div class="px-4 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">লাইনের ফাঁক</p>
-            <div class="flex gap-1.5">
-                <button data-ls="ls-compact"
-                    class="ls-btn flex-1 h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[11px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center justify-center gap-0.5">
-                    <span class="flex flex-col gap-[2px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span class="text-[9px]">আঁটো</span>
-                </button>
-                <button data-ls="ls-normal"
-                    class="ls-btn flex-1 h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[11px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center justify-center gap-0.5">
-                    <span class="flex flex-col gap-[4px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span class="text-[9px]">স্বাভাবিক</span>
-                </button>
-                <button data-ls="ls-relaxed"
-                    class="ls-btn flex-1 h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[11px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center justify-center gap-0.5">
-                    <span class="flex flex-col gap-[6px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span class="text-[9px]">প্রশস্ত</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Font family -->
-        <div class="px-4 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">ফন্ট</p>
-            <div class="flex flex-col gap-1.5">
-                <button data-ff="ff-sans"
-                    class="ff-btn w-full h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[12px] transition-all text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 px-3 text-left"
-                    style="font-family: 'Segoe UI', sans-serif;">সাধারণ (Sans)</button>
-                <button data-ff="ff-serif"
-                    class="ff-btn w-full h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[12px] transition-all text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 px-3 text-left"
-                    style="font-family: 'Noto Serif Bengali', serif;">বইয়ের ফন্ট (Serif)</button>
-            </div>
-        </div>
-
-        <!-- Reading width -->
-        <div class="px-4 py-4 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">পড়ার প্রস্থ</p>
-            <div class="flex gap-1.5">
-                <button data-rw="rw-narrow"
-                    class="rw-btn flex-1 py-1.5 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[10px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center gap-1">
-                    <span class="flex gap-0.5 items-end h-3"><span class="w-[3px] h-3 bg-current rounded-sm opacity-80"></span></span>
-                    <span>সরু</span>
-                </button>
-                <button data-rw="rw-medium"
-                    class="rw-btn flex-1 py-1.5 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[10px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center gap-1">
-                    <span class="flex gap-0.5 items-end h-3"><span class="w-[5px] h-3 bg-current rounded-sm opacity-80"></span></span>
-                    <span>মাঝারি</span>
-                </button>
-                <button data-rw="rw-wide"
-                    class="rw-btn flex-1 py-1.5 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[10px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center gap-1">
-                    <span class="flex gap-0.5 items-end h-3"><span class="w-[8px] h-3 bg-current rounded-sm opacity-80"></span></span>
-                    <span>চওড়া</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Text alignment -->
-        <div class="px-4 py-4 border-t border-gray-100 dark:border-gray-800 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">টেক্সট সারিবদ্ধতা</p>
-            <div class="flex gap-1.5">
-                <button data-ta="ta-default"
-                    class="ta-btn flex-1 h-9 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 flex flex-col items-center justify-center gap-1 transition-all">
-                    <i class="fas fa-align-left text-[11px]"></i>
-                    <span class="text-[9px]">বাম</span>
-                </button>
-                <button data-ta="ta-center"
-                    class="ta-btn flex-1 h-9 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 flex flex-col items-center justify-center gap-1 transition-all">
-                    <i class="fas fa-align-center text-[11px]"></i>
-                    <span class="text-[9px]">মাঝ</span>
-                </button>
-                <button data-ta="ta-justify"
-                    class="ta-btn flex-1 h-9 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 flex flex-col items-center justify-center gap-1 transition-all">
-                    <i class="fas fa-align-justify text-[11px]"></i>
-                    <span class="text-[9px]">জাস্টিফাই</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Hidden nav (TOC moved to left sidebar) -->
+        <!-- TOC nav for mobile -->
         <nav id="toc-nav-desktop" class="hidden"></nav>
-    </aside>
 </div>
 </div>
 
@@ -2121,93 +528,52 @@
     const progressPct  = document.getElementById('progress-pct');
     const tocDesktop   = document.getElementById('toc-nav-desktop');
     const tocMobile    = document.getElementById('toc-nav-mobile');
-    const tocLeft      = document.getElementById('toc-nav-left');
     const progressRing = document.getElementById('progress-ring-circle');
-    const mobileTopbar  = document.getElementById('mobile-topbar');
-    const mobileBottomBar = document.getElementById('mobile-bottom-bar');
-    const fontPopup    = document.getElementById('font-popup');
-    const fontLabel    = document.getElementById('font-label');
+
+    const tocUnit      = document.getElementById('toc-unit');
+    const tocToggleBtn = document.getElementById('toc-toggle-btn');
+    const tocOverlay   = document.getElementById('mobile-toc-overlay');
 
     const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
     function toBN(n) {
         return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
     }
 
-    // ── Default theme ──
-    let currentTheme = localStorage.getItem('pg-theme') || 'light';
-    applyTheme(currentTheme);
 
-    function applyTheme(t) {
-        ['light','sepia','dark'].forEach(th => document.body.classList.remove('theme-'+th));
-        document.body.classList.add('theme-'+t);
-        currentTheme = t;
-        localStorage.setItem('pg-theme', t);
-
-        // sync Tailwind dark: variants with theme
-        if (t === 'dark') {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-
-        document.querySelectorAll('.theme-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.theme === t);
-        });
-        const bgMap = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e' };
-        const bdMap = { light:'#e5e7eb', sepia:'#d4c8b8', dark:'#2a2a2e' };
-        const clMap = { light:'#111', sepia:'#3b2f20', dark:'#e0e0e0' };
-        if (fontPopup) {
-            fontPopup.style.background = bgMap[t];
-            fontPopup.style.borderColor = bdMap[t];
-            fontPopup.style.color = clMap[t];
-        }
-    }
-
-    // Wire ALL theme buttons including desktop right sidebar
-    document.querySelectorAll('.theme-btn').forEach(btn => {
-        btn.addEventListener('click', () => applyTheme(btn.dataset.theme));
-    });
-
-    // ── Hide-on-scroll ──
-    let lastScrollY = window.scrollY;
-    let ticking = false;
-
+    // ── Toggle opacity on scroll ──
+    let scrollTimer;
     window.addEventListener('scroll', () => {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                const currentY = window.scrollY;
-                const delta    = currentY - lastScrollY;
-                const docH     = document.documentElement.scrollHeight - window.innerHeight;
-                const pct      = docH > 0 ? (currentY / docH) * 100 : 0;
-
-                if (delta > 6 && currentY > 80) {
-                    mobileTopbar?.classList.add('hide');
-                    mobileBottomBar?.classList.add('hide');
-                } else if (delta < -6) {
-                    mobileTopbar?.classList.remove('hide');
-                    mobileBottomBar?.classList.remove('hide');
-                }
-
-                lastScrollY = currentY;
-                progressBar.style.width = pct + '%';
-                if (progressPct) progressPct.textContent = toBN(pct) + '%';
-                // animate ring (circumference 87.96)
-                if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
-                ticking = false;
-            });
-            ticking = true;
+        if (tocToggleBtn && !tocUnit.classList.contains('open')) {
+            tocToggleBtn.classList.add('scrolling');
+            clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => tocToggleBtn.classList.remove('scrolling'), 800);
         }
     }, { passive: true });
 
+    // ── Progress bar on scroll ──
+    window.addEventListener('scroll', () => {
+        const docH = document.documentElement.scrollHeight - window.innerHeight;
+        const pct  = docH > 0 ? (window.scrollY / docH) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        if (progressPct) progressPct.textContent = toBN(pct) + '%';
+        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
+    }, { passive: true });
+
     // ── Build TOC ──
-    const headings = bookContent.querySelectorAll('h1, h2');
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    // Hide toggle if no headings
+    if (headings.length === 0 && tocToggleBtn) {
+        tocToggleBtn.style.display = 'none';
+    }
 
     function buildToc(nav, isMobile) {
         headings.forEach((h, i) => {
             h.id = h.id || ('sec-' + i);
             const a = document.createElement('a');
             a.href = '#' + h.id;
-            a.textContent = h.textContent;
+            a.textContent = h.textContent.trim();
             a.dataset.idx = i;
             const isH1 = h.tagName === 'H1';
             if (isMobile) {
@@ -2222,7 +588,6 @@
     }
     buildToc(tocDesktop, false);
     buildToc(tocMobile, true);
-    if (tocLeft) buildToc(tocLeft, false);
 
     // ── TOC active ──
     const allTocLinks = document.querySelectorAll('.toc-link');
@@ -2236,220 +601,194 @@
         });
     }, { passive: true });
 
-    // ── Font size ──
-    const fontSizes = ['fs-sm', 'fs-md', 'fs-lg', 'fs-xl'];
-    let currentSize = parseInt(localStorage.getItem('pg-font-size') || '1');
-    bookContent.classList.add(fontSizes[currentSize]);
-    if (fontLabel) fontLabel.textContent = currentSize + 1;
-    updateFontDots(currentSize);
 
-    function updateFontDots(size) {
-        for (let i = 0; i < 4; i++) {
-            ['font-dot-', 'm-font-dot-'].forEach(prefix => {
-                const dot = document.getElementById(prefix + i);
-                if (dot) dot.style.background = i <= size ? '#c0392b' : '';
-            });
-        }
-    }
-
-    function changeFont(delta) {
-        const next = Math.max(0, Math.min(fontSizes.length - 1, currentSize + delta));
-        if (next === currentSize) return;
-        bookContent.classList.replace(fontSizes[currentSize], fontSizes[next]);
-        currentSize = next;
-        localStorage.setItem('pg-font-size', currentSize);
-        if (fontLabel) fontLabel.textContent = currentSize + 1;
-        updateFontDots(currentSize);
-    }
-
-    document.getElementById('font-increase')?.addEventListener('click', () => changeFont(1));
-    document.getElementById('font-decrease')?.addEventListener('click', () => changeFont(-1));
-    document.getElementById('m-font-increase')?.addEventListener('click', () => changeFont(1));
-    document.getElementById('m-font-decrease')?.addEventListener('click', () => changeFont(-1));
-
-    document.getElementById('mob-font-btn')?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        fontPopup?.classList.toggle('hidden');
-    });
-    document.addEventListener('click', () => fontPopup?.classList.add('hidden'));
-    fontPopup?.addEventListener('click', e => e.stopPropagation());
-
-    // ── Mobile right TOC drawer ──
-    const tocDrawer  = document.getElementById('mobile-toc-drawer');
-    const tocOverlay = document.getElementById('mobile-toc-overlay');
+    let touchStartX = 0;
 
     function openTocDrawer() {
-        tocDrawer.classList.add('open');
+        tocUnit.classList.add('open');
         tocOverlay.classList.add('open');
         document.body.style.overflow = 'hidden';
     }
     function closeTocDrawer() {
-        tocDrawer.classList.remove('open');
+        tocUnit.classList.remove('open');
         tocOverlay.classList.remove('open');
         document.body.style.overflow = '';
     }
 
-    document.getElementById('mob-toc-btn')?.addEventListener('click', openTocDrawer);
-    document.getElementById('mob-toc-btn-top')?.addEventListener('click', openTocDrawer);
-    document.getElementById('mobile-toc-close')?.addEventListener('click', closeTocDrawer);
+    document.getElementById('toc-toggle-btn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        tocUnit.classList.contains('open') ? closeTocDrawer() : openTocDrawer();
+    });
     tocOverlay?.addEventListener('click', closeTocDrawer);
-
-
-    // ── Line spacing ──
-    const lsClasses = ['ls-compact', 'ls-normal', 'ls-relaxed'];
-    let currentLS = localStorage.getItem('pg-ls') || 'ls-normal';
-    bookContent.classList.add(currentLS);
-
-    function applyLS(ls) {
-        lsClasses.forEach(c => bookContent.classList.remove(c));
-        bookContent.classList.add(ls);
-        currentLS = ls;
-        localStorage.setItem('pg-ls', ls);
-        document.querySelectorAll('.ls-btn').forEach(b => {
-            b.classList.toggle('border-[#c0392b]', b.dataset.ls === ls);
-            b.classList.toggle('border-gray-200', b.dataset.ls !== ls);
-            b.classList.toggle('dark:border-gray-700', b.dataset.ls !== ls);
-        });
-    }
-    applyLS(currentLS);
-    document.querySelectorAll('.ls-btn').forEach(b => {
-        b.addEventListener('click', () => applyLS(b.dataset.ls));
-    });
-
-    // ── Font family ──
-    const ffClasses = ['ff-sans', 'ff-serif', 'ff-system'];
-    let currentFF = localStorage.getItem('pg-ff') || 'ff-sans';
-    bookContent.classList.add(currentFF);
-
-    function applyFF(ff) {
-        ffClasses.forEach(c => bookContent.classList.remove(c));
-        bookContent.classList.add(ff);
-        currentFF = ff;
-        localStorage.setItem('pg-ff', ff);
-        document.querySelectorAll('.ff-btn').forEach(b => {
-            b.classList.toggle('border-[#c0392b]', b.dataset.ff === ff);
-            b.classList.toggle('border-gray-200', b.dataset.ff !== ff);
-            b.classList.toggle('dark:border-gray-700', b.dataset.ff !== ff);
-        });
-    }
-    applyFF(currentFF);
-    document.querySelectorAll('.ff-btn').forEach(b => {
-        b.addEventListener('click', () => applyFF(b.dataset.ff));
-    });
-
-    // ── Reading width ──
-    const mainContent = document.getElementById('read-main-content');
-    const rwClasses   = ['rw-narrow', 'rw-medium', 'rw-wide'];
-    let currentRW = localStorage.getItem('pg-rw') || 'rw-medium';
-
-    function applyRW(rw) {
-        rwClasses.forEach(c => mainContent?.classList.remove(c));
-        mainContent?.classList.add(rw);
-        currentRW = rw;
-        localStorage.setItem('pg-rw', rw);
-        document.querySelectorAll('.rw-btn').forEach(b => {
-            b.classList.toggle('border-[#c0392b]', b.dataset.rw === rw);
-            b.classList.toggle('border-gray-200', b.dataset.rw !== rw);
-            b.classList.toggle('dark:border-gray-700', b.dataset.rw !== rw);
-        });
-    }
-    // remove existing max-w-2xl from classList and apply saved width
-    mainContent?.classList.remove('max-w-2xl');
-    applyRW(currentRW);
-    document.querySelectorAll('.rw-btn').forEach(b => {
-        b.addEventListener('click', () => applyRW(b.dataset.rw));
-    });
-
-
-    // ── Mobile bottom customization bar ──
-    const mobPanel    = document.getElementById('mob-cust-panel');
-    let activeTab     = null;
-
-    document.querySelectorAll('.mob-tab-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const panelId = btn.dataset.panel;
-            const isActive = btn.classList.contains('active');
-
-            // deactivate all
-            document.querySelectorAll('.mob-tab-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.mob-panel-section').forEach(s => s.classList.remove('active'));
-
-            if (isActive) {
-                // toggle off
-                mobPanel.classList.remove('open');
-                activeTab = null;
-            } else {
-                // open this panel
-                btn.classList.add('active');
-                document.getElementById(panelId)?.classList.add('active');
-                mobPanel.classList.add('open');
-                activeTab = panelId;
-            }
-        });
-    });
-
-    // sync mobile ff-btn active state
-    function syncMobileFF(ff) {
-        document.querySelectorAll('#mob-cust-panel .ff-btn').forEach(b => {
-            b.style.borderColor = b.dataset.ff === ff ? '#c0392b' : '';
-        });
-    }
-    document.querySelectorAll('#mob-cust-panel .ff-btn').forEach(b => {
-        b.addEventListener('click', () => { applyFF(b.dataset.ff); syncMobileFF(b.dataset.ff); });
-    });
-
-    // sync mobile ls-btn active state
-    function syncMobileLS(ls) {
-        document.querySelectorAll('#mob-cust-panel .ls-btn').forEach(b => {
-            b.style.borderColor = b.dataset.ls === ls ? '#c0392b' : '';
-        });
-    }
-    document.querySelectorAll('#mob-cust-panel .ls-btn').forEach(b => {
-        b.addEventListener('click', () => { applyLS(b.dataset.ls); syncMobileLS(b.dataset.ls); });
-    });
-
-    // sync mobile rw-btn active state
-    function syncMobileRW(rw) {
-        document.querySelectorAll('#mob-cust-panel .rw-btn').forEach(b => {
-            b.style.borderColor = b.dataset.rw === rw ? '#c0392b' : '';
-        });
-    }
-    document.querySelectorAll('#mob-cust-panel .rw-btn').forEach(b => {
-        b.addEventListener('click', () => { applyRW(b.dataset.rw); syncMobileRW(b.dataset.rw); });
-    });
-
-    // init active states on mobile
-    syncMobileFF(currentFF);
-    syncMobileLS(currentLS);
-    syncMobileRW(currentRW);
-
-
-    // ── Text alignment ──
-    const taClasses = ['ta-default', 'ta-center', 'ta-justify'];
-    let currentTA = localStorage.getItem('pg-ta') || 'ta-default';
-
-    function applyTA(ta) {
-        taClasses.forEach(c => bookContent.classList.remove(c));
-        bookContent.classList.add(ta);
-        currentTA = ta;
-        localStorage.setItem('pg-ta', ta);
-        document.querySelectorAll('.ta-btn').forEach(b => {
-            b.style.borderColor = b.dataset.ta === ta ? '#c0392b' : '';
-        });
-    }
-    applyTA(currentTA);
-    document.querySelectorAll('.ta-btn').forEach(b => {
-        b.addEventListener('click', () => applyTA(b.dataset.ta));
-    });
-
-
-    let touchStartX = 0;
-    tocDrawer?.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-    tocDrawer?.addEventListener('touchend', e => {
-        if (e.changedTouches[0].clientX - touchStartX > 60) closeTocDrawer();
-    }, { passive: true });
 })();
 </script>
 
+</body>
+</html>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 dark:bg-black border-t border-gray-800">
+
+        <!-- Mobile: 3 row stack | Desktop: 1 row -->
+        <div class="max-w-6xl mx-auto px-6 py-8">
+            <!-- Desktop: single row | Mobile: column -->
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+
+                <!-- Logo -->
+                <a href="/" class="text-2xl md:text-3xl font-extrabold tracking-tight text-white hover:text-[#c0392b] transition-colors text-center md:text-left shrink-0">
+                    পাঠক <span class="font-light text-gray-400">ঘর</span>
+                </a>
+
+                <!-- Description — mobile: center, desktop: flex-1 center -->
+                <p class="text-sm text-gray-400 leading-relaxed text-center md:flex-1 md:px-8">
+                    বাংলা সাহিত্যের এক ডিজিটাল পাঠাগার। বিনামূল্যে পড়ুন, ডাউনলোড করুন — যেকোনো সময়, যেকোনো জায়গা থেকে।
+                </p>
+
+                <!-- Social icons -->
+                <div class="flex items-center justify-center md:justify-end gap-2 shrink-0">
+                    <a href="#" aria-label="Twitter" class="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
+                        <i class="fab fa-twitter text-sm"></i>
+                    </a>
+                    <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
+                        <i class="fab fa-facebook-f text-sm"></i>
+                    </a>
+                    <a href="#" aria-label="YouTube" class="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
+                        <i class="fab fa-youtube text-sm"></i>
+                    </a>
+                    <a href="mailto:pathokghar@gmail.com" aria-label="Email" class="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
+                        <i class="fas fa-envelope text-sm"></i>
+                    </a>
+                    <a href="#" aria-label="RSS" class="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
+                        <i class="fas fa-rss text-sm"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="border-t border-gray-800">
+            <div class="max-w-6xl mx-auto px-6 py-3 pb-6 md:pb-3 flex flex-col md:flex-row items-center justify-between gap-2 text-[12px] text-gray-500">
+                <div class="flex items-center gap-4">
+                    <a href="#" class="hover:text-[#c0392b] transition-colors">সম্পর্কে</a>
+                    <span class="text-gray-700">|</span>
+                    <a href="#" class="hover:text-[#c0392b] transition-colors">যোগাযোগ</a>
+                    <span class="text-gray-700">|</span>
+                    <a href="#" class="hover:text-[#c0392b] transition-colors">গোপনীয়তা নীতি</a>
+                </div>
+                <p class="hidden md:block">
+                    © Crafted by <a href="https://github.com/physarif" target="_blank" rel="noopener" class="text-[#c0392b] hover:text-[#a93226] transition-colors font-medium">Arif</a>
+                    <span class="mx-1">·</span>
+                    github.com/physarif
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode
+        const themeBtn = document.getElementById('theme-btn');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
+
+        const header = document.querySelector('header');
+        const sidebar = document.getElementById('sidebar');
+        function applyTheme(dark) {
+            if (dark) {
+                html.classList.add('dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.theme = 'dark';
+                header.style.borderTopColor = '#7a3b1e';
+                sidebar.style.borderTopColor = '#7a3b1e';
+            } else {
+                html.classList.remove('dark');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.theme = 'light';
+                header.style.borderTopColor = '#fff5f5';
+                sidebar.style.borderTopColor = '#fff5f5';
+            }
+        }
+
+        applyTheme(localStorage.theme === 'dark');
+
+        themeBtn.addEventListener('click', () => {
+            applyTheme(!html.classList.contains('dark'));
+        });
+
+        // Mobile search
+        const mobileSearchBtn = document.getElementById('mobile-search-btn');
+        const mobileSearchBar = document.getElementById('mobile-search-bar');
+
+        mobileSearchBtn.addEventListener('click', () => {
+            mobileSearchBar.classList.toggle('hidden');
+            if (!mobileSearchBar.classList.contains('hidden')) {
+                mobileSearchBar.querySelector('input').focus();
+            }
+        });
+
+        // Search functionality
+        function doSearch(query) {
+            if (query.trim()) {
+                window.location.href = '/search.html?q=' + encodeURIComponent(query.trim());
+            }
+        }
+
+        const desktopInput = document.getElementById('desktop-search-input');
+        const desktopBtn = document.getElementById('desktop-search-btn');
+        const mobileInput = document.getElementById('mobile-search-input');
+        const mobileSubmit = document.getElementById('mobile-search-submit');
+
+        desktopBtn.addEventListener('click', () => doSearch(desktopInput.value));
+        desktopInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(desktopInput.value); });
+
+        mobileSubmit.addEventListener('click', () => doSearch(mobileInput.value));
+        mobileInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(mobileInput.value); });
+
+        // Hide header on scroll down, show on scroll up (mobile only)
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                const currentScrollY = window.scrollY;
+                    if (currentScrollY > lastScrollY && currentScrollY > 56) {
+                        header.style.transform = 'translateY(-100%)';
+                    } else {
+                        header.style.transform = 'translateY(0)';
+                    }
+                    lastScrollY = currentScrollY;
+                ticking = false;
+            });
+        });
+
+
+        // Sidebar
+        const sidebarBtn = document.getElementById('sidebar-btn');
+        const overlay = document.getElementById('sidebar-overlay');
+
+        function openSidebar() {
+            sidebar.classList.add('open');
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        sidebarBtn.addEventListener('click', openSidebar);
+        overlay.addEventListener('click', closeSidebar);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
+
+    </script>
+
+
+
+    <script type="module" src="/firebase.js"></script>
 </body>
 </html>

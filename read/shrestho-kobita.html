@@ -1,12 +1,203 @@
 <!DOCTYPE html>
 <html lang="bn">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>শ্রেষ্ঠ কবিতা পড়ুন - পাঠক ঘর - পাঠক ঘর</title>
+    <meta name="description" content="ভালো কবিতা যাচাই করবার বিশেষ শক্তি সংকলকের থাকলেও আদি নির্বাচন অনেক সময়ই কবির মৃত্যুর পরে খাঁটি সংকলনে গিয়া দাঁড়াবার সুযোগ পায়। কিন্তু কোনো-কোনো সংকলনে প্রথ">
+    <meta property="og:title" content="শ্রেষ্ঠ কবিতা পড়ুন - পাঠক ঘর - পাঠক ঘর">
+    <meta property="og:description" content="ভালো কবিতা যাচাই করবার বিশেষ শক্তি সংকলকের থাকলেও আদি নির্বাচন অনেক সময়ই কবির মৃত্যুর পরে খাঁটি সংকলনে গিয়া দাঁড়াবার সুযোগ পায়। কিন্তু কোনো-কোনো সংকলনে প্রথ">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50:  '#fff5f5',
+                            100: '#fde8e6',
+                            500: '#c0392b',
+                            600: '#a93226'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        header { border-top: 5px solid #fff5f5; }
+        /* Sidebar */
+        #sidebar {
+            position: fixed;
+            top: 0; left: 0;
+            height: 100%;
+            width: 280px;
+            transform: translateX(-100%);
+            transition: transform 0.28s cubic-bezier(.4,0,.2,1);
+            z-index: 200;
+            overflow-y: auto;
+            scrollbar-width: none;
+            border-top: 5px solid #fff5f5;
+        }
+        #sidebar.open { transform: translateX(0); }
+        #sidebar::-webkit-scrollbar { display: none; }
+        #sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            z-index: 199;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.28s;
+        }
+        #sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+        #sb-google-login:active i { color: #c0392b; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
+
+    <!-- SIDEBAR OVERLAY -->
+    <div id="sidebar-overlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="bg-white dark:bg-[#1a1a1b] shadow-2xl border-r border-gray-200 dark:border-gray-700">
+
+        <!-- Login section -->
+        <div class="px-4 pt-5 pb-4 border-b border-gray-100 dark:border-gray-700">
+
+            <!-- Logged OUT state -->
+            <div id="sb-logged-out">
+                <div class="flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <!-- Google logo -->
+                        <div class="w-11 h-11 rounded-full bg-white dark:bg-[#2a2a2a] border border-gray-200 dark:border-gray-700 flex items-center justify-center shrink-0 shadow-sm">
+                            <svg width="22" height="22" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.59-13.46-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-sm text-gray-800 dark:text-gray-100">লগইন</p>
+                            <p class="text-[11px] text-gray-400 dark:text-gray-500">data sync করুন</p>
+                        </div>
+                    </div>
+                    <button id="sb-google-login" class="flex items-center justify-center w-9 h-9 rounded-xl border border-[#c0392b] bg-[#c0392b] active:bg-white active:border-white transition shadow-sm shrink-0">
+                        <i class="fas fa-sign-in-alt text-white"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Logged IN state (hidden by default) -->
+            <div id="sb-logged-in" class="hidden">
+                <div class="flex items-center gap-3">
+                    <img id="sb-user-photo" src="" alt="User" class="w-11 h-11 rounded-full object-cover shrink-0 border-2 border-[#c0392b]/30">
+                    <div class="flex-1 min-w-0">
+                        <p id="sb-user-name" class="font-semibold text-sm text-gray-800 dark:text-gray-100 truncate"></p>
+                        <p id="sb-user-email" class="text-[11px] text-gray-400 dark:text-gray-500 truncate"></p>
+                    </div>
+                    <button id="sb-logout" title="লগআউট" class="p-1.5 text-gray-400 hover:text-[#c0392b] hover:bg-red-50 dark:hover:bg-[#2d1a0e] rounded-lg transition shrink-0">
+                        <i class="fas fa-sign-out-alt text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Categories -->
+        <div class="px-4 pt-5 pb-3">
+            <p class="text-[11px] uppercase font-bold tracking-widest text-gray-400 dark:text-gray-500 mb-3 pl-1">ক্যাটাগরি</p>
+            <ul class="space-y-0.5">
+                <li><a href="/category/kobita/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">কবিতা</span><span class="text-[11px] text-gray-400 dark:text-gray-500">2</span></a></li>
+                <li><a href="/category/probondho/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">প্রবন্ধ</span><span class="text-[11px] text-gray-400 dark:text-gray-500">2</span></a></li>
+                <li><a href="/category/uponyas/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">উপন্যাস</span><span class="text-[11px] text-gray-400 dark:text-gray-500">3</span></a></li>
+                <li><a href="/category/productivity/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">Productivity</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
+            </ul>
+        </div>
+
+        <div class="mx-4 border-t border-gray-100 dark:border-gray-700"></div>
+
+        <!-- Authors -->
+        <div class="px-4 pt-4 pb-6">
+            <p class="text-[11px] uppercase font-bold tracking-widest text-gray-400 dark:text-gray-500 mb-3 pl-1">লেখক</p>
+            <ul class="space-y-0.5">
+                <li><a href="/author/jibanananda-das.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">জীবনানন্দ দাশ</span><span class="text-[11px] text-gray-400 dark:text-gray-500">3</span></a></li>
+                <li><a href="/author/rabindranath-tagore.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">রবীন্দ্রনাথ ঠাকুর</span><span class="text-[11px] text-gray-400 dark:text-gray-500">2</span></a></li>
+                <li><a href="/author/hymayun-azad.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">হুমায়ুন আজাদ</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
+                <li><a href="/author/hymayun-ahmed.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">হুমায়ূন আহমেদ</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
+                <li><a href="/author/cal-newport.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">Cal Newport</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
+            </ul>
+        </div>
+
+    </aside>
+
+    <!-- HEADER -->
+    <header class="bg-white dark:bg-[#1a1a1b] fixed top-0 w-full h-16 z-[100] border-b border-gray-200 dark:border-gray-700 shadow-sm transition-transform duration-300 flex">
+        <div class="w-full px-4 h-full flex items-center justify-between gap-3">
+
+            <!-- Hamburger -->
+            <button id="sidebar-btn" class="p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition shrink-0" title="মেনু">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+
+            <!-- Logo -->
+            <a href="https://pathokghar.pages.dev" class="text-2xl font-extrabold tracking-tighter hover:bg-gray-100 dark:hover:bg-gray-800 px-2 py-1 rounded transition-colors duration-200 shrink-0 mr-auto md:mr-0">
+                পাঠক <span class="font-light text-gray-400">ঘর</span>
+            </a>
+
+            <!-- Search (desktop) -->
+            <div class="hidden md:flex flex-1">
+                <div class="relative flex-1 flex items-center">
+                    <i class="fas fa-search absolute left-4 text-gray-400 dark:text-gray-500 text-sm pointer-events-none"></i>
+                    <input id="desktop-search-input" type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
+                        class="w-full bg-gray-100 dark:bg-[#2d2d2d] border-0 rounded-full py-2 pl-10 pr-16 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white dark:focus:bg-[#3a3a3a] transition-all">
+                    <button id="desktop-search-btn" class="absolute right-1 bg-brand-500 hover:bg-brand-600 text-white px-4 py-1.5 rounded-full text-sm transition-colors shrink-0">
+                        খুঁজুন
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right side actions -->
+            <div class="flex items-center space-x-2 shrink-0">
+
+                <!-- Mobile search button -->
+                <button id="mobile-search-btn" class="md:hidden p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition" title="খুঁজুন">
+                    <i class="fas fa-search text-xl"></i>
+                </button>
+
+                <!-- Day/Night toggle -->
+                <button id="theme-btn" class="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition text-gray-600 dark:text-gray-300" title="ডার্ক মোড">
+                    <i id="theme-icon" class="fas fa-moon text-lg"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Mobile search bar (dropdown) -->
+        <div id="mobile-search-bar" class="absolute top-16 left-0 w-full bg-white dark:bg-[#1a1a1b] border-b dark:border-gray-700 px-4 py-3 hidden shadow-lg">
+            <div class="relative flex items-center">
+                <i class="fas fa-search absolute left-4 text-gray-400 dark:text-gray-500 text-sm pointer-events-none"></i>
+                <input id="mobile-search-input" type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
+                    class="w-full bg-gray-100 dark:bg-[#2d2d2d] border-0 rounded-full py-2 pl-10 pr-16 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
+                <button id="mobile-search-submit" class="absolute right-1 bg-brand-500 hover:bg-brand-600 text-white px-4 py-1.5 rounded-full text-sm transition-colors shrink-0">
+                    খুঁজুন
+                </button>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 min-w-0 pt-16">
+        <!DOCTYPE html>
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>শ্রেষ্ঠ কবিতা - পড়ুন - পাঠক ঘর</title>
-    <meta name="description" content="ভালো কবিতা যাচাই করবার বিশেষ শক্তি সংকলকের থাকলেও আদি নির্বাচন অনেক সময়ই কবির মৃত্যুর পরে খাঁটি সংকলনে গিয়া দাঁড়াবার সুযোগ পায়। কিন্তু কোনো-কোনো সংকলনে প্রথ">
+    <meta name="description" content="ভালো কবিতা যাচাই করবার বিশেষ শক্তি সংকলকের থাকলেও আদি নির্বাচন অনেক সময়ই কবির মৃত্যুর পরে খাঁটি সংকলনে গিয়া দাঁড়াবার সুযোগ পায়। কিন্তু কোনো-কোনো সংকলনে প্রথম থেকেই যথেষ্ট নির্ভুল চেতনার প্রয়োগ দেখা যায়। পাঠকের সঙ্গে বিশেষভাবে যোগ-স্থাপনের দিক দিয়ে এ-ধরনের প্রাথমিক সংকলনের মূল্য আমাদের দেশেও লেখক পাঠক ও প্রকাশকদের কাছে ক্রমেই বেশি স্বীকৃত হচ্ছে হয়তো। যিনি কবিতা লেখা ছেড়ে দেননি তাঁর কবিতার এ-রকম সংগ্রহ থেকে পাঠক ও সমালোচক এ-কাব্যের যথেষ্ট সংগত পরিচয় পেতে পারেন ; যদিও শেষ পরিচয়লাভ সমসাময়িকদের পক্ষে নানা কারণেই দুঃসাধ্য।">
     <meta property="og:title" content="শ্রেষ্ঠ কবিতা - পড়ুন - পাঠক ঘর">
-    <meta property="og:description" content="ভালো কবিতা যাচাই করবার বিশেষ শক্তি সংকলকের থাকলেও আদি নির্বাচন অনেক সময়ই কবির মৃত্যুর পরে খাঁটি সংকলনে গিয়া দাঁড়াবার সুযোগ পায়। কিন্তু কোনো-কোনো সংকলনে প্রথ">
+    <meta property="og:description" content="ভালো কবিতা যাচাই করবার বিশেষ শক্তি সংকলকের থাকলেও আদি নির্বাচন অনেক সময়ই কবির মৃত্যুর পরে খাঁটি সংকলনে গিয়া দাঁড়াবার সুযোগ পায়। কিন্তু কোনো-কোনো সংকলনে প্রথম থেকেই যথেষ্ট নির্ভুল চেতনার প্রয়োগ দেখা যায়। পাঠকের সঙ্গে বিশেষভাবে যোগ-স্থাপনের দিক দিয়ে এ-ধরনের প্রাথমিক সংকলনের মূল্য আমাদের দেশেও লেখক পাঠক ও প্রকাশকদের কাছে ক্রমেই বেশি স্বীকৃত হচ্ছে হয়তো। যিনি কবিতা লেখা ছেড়ে দেননি তাঁর কবিতার এ-রকম সংগ্রহ থেকে পাঠক ও সমালোচক এ-কাব্যের যথেষ্ট সংগত পরিচয় পেতে পারেন ; যদিও শেষ পরিচয়লাভ সমসাময়িকদের পক্ষে নানা কারণেই দুঃসাধ্য।">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,6 +222,7 @@
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     </style>
+    
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
 
@@ -81,12 +273,6 @@
         display: block;
     }
 
-    /* ── Font size variants ── */
-    #book-content.fs-sm p { font-size: 0.875rem; }
-    #book-content.fs-md p { font-size: 1rem; }
-    #book-content.fs-lg p { font-size: 1.125rem; }
-    #book-content.fs-xl p { font-size: 1.25rem; }
-
     /* ── TOC active ── */
     .toc-link.active {
         color: #c0392b;
@@ -105,176 +291,129 @@
         body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
         body.theme-light #mobile-reader-bg { background: #ffffff; }
 
-        /* book-content theme handled globally below */
-
-        /* Fixed top bar */
-        #mobile-topbar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            height: 52px;
-            z-index: 200;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            padding: 0 10px;
-            padding-top: env(safe-area-inset-top);
-            transition: transform 0.28s ease, background 0.3s;
-            border-bottom-left-radius: 14px;
-            border-bottom-right-radius: 14px;
-            background: #ffffff;
-        }
-        #mobile-topbar.hide { transform: translateY(-100%); }
-
-            
-        .theme-btn.active { border-color: #c0392b; }
-        .theme-btn i { font-size: 14px; display: none; }
-        .theme-btn.active i { display: block; }
-
-        body.theme-dark  #mobile-topbar i   { color: #ccc; }
-        body.theme-sepia #mobile-topbar i   { color: #5a4535; }
-        body.theme-light #mobile-topbar i   { color: #444; }
-
-        body.theme-dark  #mobile-topbar .title-text { color: #e8e8e8; }
-        body.theme-sepia #mobile-topbar .title-text { color: #3b2f20; }
-        body.theme-light #mobile-topbar .title-text { color: #111; }
-
-        /* main content padding */
-        #read-main-content {
-            padding-top: calc(52px + env(safe-area-inset-top) + 16px);
-            padding-bottom: 32px;
-        }
         #mobile-reader-bg {
             min-height: 100vh;
             transition: background 0.3s;
         }
     }
 
-    /* ══════════════════════════════
-       DESKTOP LEFT sidebar — book info
-    ══════════════════════════════ */
-    @media (min-width: 1024px) {
-        #desktop-left-sidebar {
-            position: fixed;
-            top: 0; left: 0;
-            width: 15rem;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid rgba(128,128,128,0.15);
-            background: inherit;
-            z-index: 50;
-            overflow: hidden;
-        }
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
 
-        /* ══════════════════════════════
-           DESKTOP RIGHT sidebar — controls + TOC
-        ══════════════════════════════ */
-        #toc-sidebar {
-            position: fixed;
-            top: 0; right: 0;
-            width: 14rem;
-            height: 100vh;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-        #toc-sidebar::-webkit-scrollbar { display: none; }
-
-        /* push main content between both sidebars */
-        #read-layout {
-            padding-left: 15rem;
-            padding-right: 14rem;
-        }
-    }
-    #toc-controls-bar {
-        position: sticky; top: 0; z-index: 10;
-    }
-
-    /* ── MOBILE: right TOC drawer ── */
-    #mobile-toc-drawer {
+    /* ── TOC unit (toggle + drawer together) ── */
+    #toc-unit {
         position: fixed;
-        top: 0; right: 0; bottom: 0;
-        width: 82vw; max-width: 320px;
+        top: 0;
+        right: 0;
+        height: 100vh;
         z-index: 500;
-        display: flex; flex-direction: column;
-        transform: translateX(105%);
-        transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
-        border-radius: 0;
+        display: flex;
+        align-items: flex-start;
+        padding-top: 33vh;
+        pointer-events: none;
     }
-    #mobile-toc-drawer.open { transform: translateX(0); }
+
+    /* Toggle tab */
+    #toc-toggle-btn {
+        width: 28px;
+        height: 90px;
+        flex-shrink: 0;
+        align-self: center;
+        background: #c0392b;
+        border: none;
+        border-radius: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: -2px 0 8px rgba(0,0,0,0.15);
+        padding: 10px 0;
+        pointer-events: auto;
+        transition: height 0.3s cubic-bezier(0.4,0,0.2,1),
+                    border-radius 0.3s cubic-bezier(0.4,0,0.2,1),
+                    align-self 0.1s;
+    }
+    #toc-unit.open {
+        align-items: stretch;
+    }
+    #toc-unit.open #toc-toggle-btn {
+        height: 100%;
+        align-self: stretch;
+        border-radius: 0;
+        pointer-events: auto;
+    }
+    #toc-toggle-btn:active { background: #a93226; }
+    #toc-toggle-btn.scrolling { opacity: 0.5; }
+    #toc-toggle-btn { transition: opacity 0.3s ease; }
+    #toc-toggle-btn .toc-toggle-label {
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1;
+    }
+
+    /* Drawer panel */
+    #mobile-toc-drawer {
+        width: 0;
+        max-width: 175px;
+        height: 100%;
+        display: flex; flex-direction: column;
+        background: #fafafa;
+        border-radius: 0;
+        box-shadow: -4px 4px 24px rgba(0,0,0,0.15);
+        overflow: hidden;
+        transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+        pointer-events: auto;
+    }
+    #toc-unit.open #mobile-toc-drawer {
+        width: 48vw;
+    }
+
 
     #mobile-toc-overlay {
         position: fixed; inset: 0;
         z-index: 499;
-        background: rgba(0,0,0,0.35);
+        background: rgba(0,0,0,0.25);
         opacity: 0; pointer-events: none;
-        transition: opacity 0.32s ease;
+        transition: opacity 0.3s ease;
+
     }
     #mobile-toc-overlay.open { opacity: 1; pointer-events: auto; }
 
-    /* Drawer theme colors */
-    body.theme-dark  #mobile-toc-drawer { background: #18181a; border-left: 1px solid #2c2c30; }
-    body.theme-sepia #mobile-toc-drawer { background: #f5efe6; border-left: 1px solid #d9ccbe; }
-    body.theme-light #mobile-toc-drawer { background: #fafafa; border-left: 1px solid #e8eaed; }
-
-    /* Drawer header */
+    /* Header */
     #toc-drawer-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 16px;
-        height: 56px;
-        shrink: 0;
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
+        padding: 20px 20px 12px;
     }
-    body.theme-dark  #toc-drawer-header { border-bottom-color: #2c2c30; }
-    body.theme-sepia #toc-drawer-header { border-bottom-color: #d9ccbe; }
-    body.theme-light #toc-drawer-header { border-bottom-color: #e8eaed; }
-
     #toc-drawer-header .drawer-title {
-        font-size: 0.8125rem;
+        font-size: 0.7rem;
         font-weight: 700;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
+        color: #c0392b;
     }
-    body.theme-dark  #toc-drawer-header .drawer-title { color: #9ca3af; }
-    body.theme-sepia #toc-drawer-header .drawer-title { color: #8a7060; }
-    body.theme-light #toc-drawer-header .drawer-title { color: #9ca3af; }
-
     #mobile-toc-close {
-        width: 32px; height: 32px;
+        width: 28px; height: 28px;
         border-radius: 50%;
         display: flex; align-items: center; justify-content: center;
         border: none; cursor: pointer;
+        background: rgba(0,0,0,0.06);
+        color: #888;
         transition: background 0.15s;
     }
-    body.theme-dark  #mobile-toc-close { background: rgba(255,255,255,0.08); color: #aaa; }
-    body.theme-sepia #mobile-toc-close { background: rgba(0,0,0,0.07);       color: #6b5443; }
-    body.theme-light #mobile-toc-close { background: rgba(0,0,0,0.06);       color: #555; }
+    #mobile-toc-close:active { background: rgba(0,0,0,0.12); }
 
-    /* Back to book link */
-    #toc-drawer-back {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 16px;
-        font-size: 0.75rem;
-        font-weight: 500;
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
-        text-decoration: none;
-        transition: opacity 0.15s;
-    }
-    #toc-drawer-back:active { opacity: 0.6; }
-    body.theme-dark  #toc-drawer-back { color: #5b9cf6; border-bottom-color: #2c2c30; }
-    body.theme-sepia #toc-drawer-back { color: #c0392b; border-bottom-color: #d9ccbe; }
-    body.theme-light #toc-drawer-back { color: #c0392b; border-bottom-color: #e8eaed; }
-
-    /* TOC nav items */
+    /* TOC nav */
     #toc-nav-mobile {
         flex: 1;
         overflow-y: auto;
-        padding: 8px 10px 24px;
+        padding: 4px 8px 24px;
         scrollbar-width: none;
         -ms-overflow-style: none;
     }
@@ -282,55 +421,23 @@
 
     #toc-nav-mobile .toc-link {
         display: block;
-        padding: 9px 12px;
-        border-radius: 8px;
+        padding: 10px 6px;
         font-size: 0.8125rem;
-        line-height: 1.4;
+        line-height: 1.45;
         text-decoration: none;
-        transition: background 0.15s, color 0.15s;
-        margin-bottom: 1px;
+        color: #444;
+        border-bottom: 1px solid #ececec;
+        transition: color 0.15s;
     }
-    #toc-nav-mobile .toc-link.h1-link {
-        font-size: 0.875rem;
-        font-weight: 600;
-        margin-top: 4px;
-    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+
     #toc-nav-mobile .toc-link.h2-link {
-        padding-left: 24px;
-        font-size: 0.8rem;
-        font-weight: 400;
+        padding-left: 14px;
+        font-size: 0.78rem;
+        color: #666;
     }
+    #toc-nav-mobile .toc-link.active { color: #c0392b; }
 
-    body.theme-dark  #toc-nav-mobile .toc-link         { color: #9ca3af; }
-    body.theme-dark  #toc-nav-mobile .toc-link.h1-link { color: #d1d5db; }
-    body.theme-dark  #toc-nav-mobile .toc-link:hover   { background: rgba(255,255,255,0.06); color: #e5e7eb; }
-    body.theme-dark  #toc-nav-mobile .toc-link.active  { background: rgba(91,156,246,0.15); color: #5b9cf6; }
-
-    body.theme-sepia #toc-nav-mobile .toc-link         { color: #7a6355; }
-    body.theme-sepia #toc-nav-mobile .toc-link.h1-link { color: #3b2f20; }
-    body.theme-sepia #toc-nav-mobile .toc-link:hover   { background: rgba(0,0,0,0.05); color: #3b2f20; }
-    body.theme-sepia #toc-nav-mobile .toc-link.active  { background: rgba(192,57,43,0.1); color: #c0392b; }
-
-    body.theme-light #toc-nav-mobile .toc-link         { color: #6b7280; }
-    body.theme-light #toc-nav-mobile .toc-link.h1-link { color: #111827; }
-    body.theme-light #toc-nav-mobile .toc-link:hover   { background: rgba(0,0,0,0.04); color: #111827; }
-    body.theme-light #toc-nav-mobile .toc-link.active  { background: rgba(192,57,43,0.08); color: #c0392b; }
-
-
-    /* ── Line spacing variants ── */
-    #book-content.ls-compact p  { line-height: 1.6; }
-    #book-content.ls-normal p   { line-height: 2; }
-    #book-content.ls-relaxed p  { line-height: 2.4; }
-
-    /* ── Font family variants ── */
-    #book-content.ff-sans    { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    #book-content.ff-serif   { font-family: 'Noto Serif Bengali', 'Noto Serif', Georgia, serif; }
-    #book-content.ff-system  { font-family: system-ui, -apple-system, sans-serif; }
-
-    /* ── Reading width variants ── */
-    #read-main-content.rw-narrow { max-width: 36rem; }
-    #read-main-content.rw-medium { max-width: 42rem; }
-    #read-main-content.rw-wide   { max-width: 56rem; }
 
     /* ── Estimated time badge ── */
     #est-time-badge {
@@ -341,235 +448,10 @@
         color: #6b7280;
     }
 
-    /* ══════════════════════════════
-       MOBILE bottom customization bar
-    ══════════════════════════════ */
-    @media (max-width: 767px) {
-        #mobile-bottom-bar {
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            z-index: 190;
-            padding-bottom: env(safe-area-inset-bottom);
-            transition: transform 0.28s ease, background 0.3s;
-            border-top-left-radius: 14px;
-            border-top-right-radius: 14px;
-            background: #ffffff;
-        }
-        #mobile-bottom-bar.hide { transform: translateY(100%); }
-
-        /* tabs row */
-        #mob-cust-tabs {
-            display: flex;
-            border-top-width: 1px;
-            border-top-style: solid;
-            height: 48px;
-        }
-        .mob-tab-btn {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2px;
-            font-size: 9px;
-            font-weight: 500;
-            cursor: pointer;
-            border: none;
-            background: transparent;
-            transition: color 0.15s;
-        }
-        .mob-tab-btn i { font-size: 13px; }
-        .mob-tab-btn.active { color: #c0392b; }
-
-        /* panel */
-        #mob-cust-panel {
-            overflow: hidden;
-            max-height: 0;
-            transition: max-height 0.32s cubic-bezier(0.4,0,0.2,1);
-        }
-        #mob-cust-panel.open { max-height: 320px; }
-
-        .mob-panel-section {
-            display: none;
-            padding: 12px 16px 4px;
-        }
-        .mob-panel-section.active { display: block; }
-
-        /* theme buttons mobile */
-        #mob-cust-panel .theme-btn {
-            height: 32px;
-            border-radius: 10px;
-            border-width: 2px;
-            font-size: 11px;
-            font-weight: 500;
-            padding: 0 10px;
-            flex: none;
-        }
-
-        /* ls/ff/rw buttons mobile */
-        #mob-cust-panel .ls-btn,
-        #mob-cust-panel .rw-btn {
-            flex: 1;
-            height: 36px;
-            border-radius: 10px;
-            border-width: 2px;
-            font-size: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
-            cursor: pointer;
-            transition: border-color 0.15s;
-        }
-        #mob-cust-panel .ff-btn {
-            width: 100%;
-            height: 36px;
-            border-radius: 10px;
-            border-width: 2px;
-            font-size: 12px;
-            text-align: left;
-            padding: 0 12px;
-            cursor: pointer;
-            transition: border-color 0.15s;
-        }
-
-        /* theme colors for bottom bar */
-                            body.theme-dark  #mob-cust-panel .ls-btn,
-        body.theme-dark  #mob-cust-panel .rw-btn,
-        body.theme-dark  #mob-cust-panel .ff-btn { background: #1e1e20; color: #ccc; border-color: #333; }
-
-                            body.theme-sepia #mob-cust-panel .ls-btn,
-        body.theme-sepia #mob-cust-panel .rw-btn,
-        body.theme-sepia #mob-cust-panel .ff-btn { background: #f5efe6; color: #5a4535; border-color: #d4c8b8; }
-
-                            body.theme-light #mob-cust-panel .ls-btn,
-        body.theme-light #mob-cust-panel .rw-btn,
-        body.theme-light #mob-cust-panel .ff-btn { background: #f9fafb; color: #374151; border-color: #e5e7eb; }
-
-        /* bottom bar visible — push content up */
-        #read-main-content {
-            padding-bottom: calc(48px + env(safe-area-inset-bottom) + 16px);
-        }
-    }
-
-    /* ── Text alignment variants ── */
-    #book-content.ta-justify p { text-align: justify; }
-    #book-content.ta-center  p { text-align: center; }
-    #book-content.ta-default p { text-align: left; }
-
-    /* ── New theme variants ── */
-    body.theme-black  #mobile-reader-bg,
-    body.theme-black  #read-main-content { background: #000000; }
-    body.theme-black  #book-content { color: #d0d0d0; }
-    body.theme-black  #book-content h1,
-    body.theme-black  #book-content h2 { color: #e8e8e8; }
-    body.theme-black  #book-content h2 { border-top-color: #222; }
-
-    body.theme-green  #mobile-reader-bg,
-    body.theme-green  #read-main-content { background: #0d1f0f; }
-    body.theme-green  #book-content { color: #b8d4ba; }
-    body.theme-green  #book-content h1,
-    body.theme-green  #book-content h2 { color: #d4e8d4; }
-    body.theme-green  #book-content h2 { border-top-color: #1a3a1c; }
-    body.theme-green  .mob-tab-btn { color: #4a7a4c; }
-    body.theme-green  .mob-tab-btn.active { color: #6fcf72; }
-
-    body.theme-blue   #mobile-reader-bg,
-    body.theme-blue   #read-main-content { background: #0d1b2e; }
-    body.theme-blue   #book-content { color: #b8ccdf; }
-    body.theme-blue   #book-content h1,
-    body.theme-blue   #book-content h2 { color: #d0e4f4; }
-    body.theme-blue   #book-content h2 { border-top-color: #1a2f4a; }
-    body.theme-light  #mobile-topbar { background: #ffffff; border-bottom-color: #e5e7eb; }
-    body.theme-light  #mobile-bottom-bar { background: #ffffff; }
-    body.theme-sepia  #mobile-topbar { background: #f5efe6; border-bottom-color: #d9ccbe; }
-    body.theme-sepia  #mobile-bottom-bar { background: #f5efe6; }
-    body.theme-dark   #mobile-topbar { background: #1c1c1e; border-bottom-color: #2c2c30; }
-    body.theme-dark   #mobile-bottom-bar { background: #1c1c1e; }
-    body.theme-blue   #mobile-topbar { background: #0a1520; border-bottom-color: #1a2f4a; }
-    body.theme-blue   #mobile-bottom-bar { background: #0a1520; }
-    body.theme-blue   #mob-cust-tabs { border-top-color: #1a2f4a; }
-    body.theme-blue   #mob-cust-panel { background: #0a1520; border-top-color: #1a2f4a; }
-    body.theme-blue   .mob-tab-btn { color: #3a5a7a; }
-    body.theme-blue   .mob-tab-btn.active { color: #5b9cf6; }
-    body.theme-blue   #mob-cust-panel .ls-btn,
-    body.theme-blue   #mob-cust-panel .rw-btn,
-    body.theme-blue   #mob-cust-panel .ff-btn { background: #0d1b2e; color: #7aaac8; border-color: #1a2f4a; }
-    body.theme-blue   #desktop-left-sidebar,
-    body.theme-blue   #toc-sidebar { background: #0a1520 !important; border-color: #1a2f4a !important; }
-
-    body.theme-gray   #mobile-reader-bg,
-    body.theme-gray   #read-main-content { background: #2a2a2e; }
-    body.theme-gray   #book-content { color: #c8c8cc; }
-    body.theme-gray   #book-content h1,
-    body.theme-gray   #book-content h2 { color: #e0e0e4; }
-    body.theme-gray   #book-content h2 { border-top-color: #3a3a3e; }
-    body.theme-gray   #mobile-topbar { background: #222226; border-bottom-color: #3a3a3e; }
-    body.theme-gray   #mobile-bottom-bar { background: #222226; }
-    body.theme-gray   #mob-cust-tabs { border-top-color: #3a3a3e; }
-    body.theme-gray   #mob-cust-panel { background: #222226; border-top-color: #3a3a3e; }
-    body.theme-gray   .mob-tab-btn { color: #666; }
-    body.theme-gray   .mob-tab-btn.active { color: #5b9cf6; }
-    body.theme-gray   #mob-cust-panel .ls-btn,
-    body.theme-gray   #mob-cust-panel .rw-btn,
-    body.theme-gray   #mob-cust-panel .ff-btn { background: #2a2a2e; color: #aaa; border-color: #3a3a3e; }
-    body.theme-gray   #desktop-left-sidebar,
-    body.theme-gray   #toc-sidebar { background: #222226 !important; border-color: #3a3a3e !important; }
-
-    /* ── Active theme button indicator ── */
-    .theme-btn { position: relative; overflow: hidden; }
-    .theme-btn.active { border-color: #c0392b !important; }
-
-    /* ── Active theme button: filled ring ── */
-    .theme-btn { transition: box-shadow 0.15s, border-color 0.15s; }
-    .theme-btn.active { border-color: #c0392b !important; box-shadow: inset 0 0 0 2px #c0392b; }
     html { scroll-behavior: smooth; }
     /* ── Hide browser scrollbar (page level) ── */
     html { scrollbar-width: none; -ms-overflow-style: none; }
     html::-webkit-scrollbar { display: none; }
-
-    /* ══ Global theme rules (mobile + desktop) ══ */
-    body.theme-dark  #mobile-reader-bg,
-    body.theme-dark  #read-main-content { background: #1c1c1e; }
-    body.theme-sepia #mobile-reader-bg,
-    body.theme-sepia #read-main-content { background: #f5efe6; }
-    body.theme-light #mobile-reader-bg,
-    body.theme-light #read-main-content { background: #ffffff; }
-
-    body.theme-dark  #book-content { color: #e0e0e0; }
-    body.theme-sepia #book-content { color: #3b2f20; }
-    body.theme-light #book-content { color: #1a1a1a; }
-
-    body.theme-dark  #book-content h1,
-    body.theme-dark  #book-content h2 { color: #f0f0f0; }
-    body.theme-sepia #book-content h1,
-    body.theme-sepia #book-content h2 { color: #2a1f14; }
-    body.theme-light #book-content h1,
-    body.theme-light #book-content h2 { color: #111111; }
-
-    body.theme-dark  #book-content h2 { border-top-color: #333; }
-    body.theme-sepia #book-content h2 { border-top-color: #d9ccc0; }
-    body.theme-light #book-content h2 { border-top-color: rgba(128,128,128,0.2); }
-
-    /* sidebars follow theme too */
-
-    body.theme-dark  #desktop-left-sidebar *,
-    body.theme-dark  #toc-sidebar * { --tw-text-opacity: 1; }
-
-    /* progress bar color stays brand */
-    body.theme-sepia #read-progress-bar { background: #8b5e3c; }
-
-    /* ══ Desktop left sidebar theme colors ══ */
-
-
-    /* Active theme button */
-    .theme-btn.active { border-color: #c0392b !important; box-shadow: 0 0 0 1px #c0392b; }
-
-    /* Hide main content bottom back-link on desktop since left sidebar has it */
-    @media (min-width: 1024px) {
-        #desktop-bottom-backnav { display: none; }
-    }
 
 </style>
 
@@ -580,159 +462,18 @@
      MOBILE ONLY chrome (hidden on md+)
 ══════════════════════════════════════════ -->
 
-<!-- Top bar -->
-<div id="mobile-topbar" class="md:hidden">
-    <a href="/books/shrestho-kobita.html"
-       class="w-9 h-9 flex items-center justify-center rounded-full shrink-0">
-        <i class="fas fa-chevron-left text-base"></i>
-    </a>
-    <div class="flex-1 min-w-0 px-1">
-        <p class="title-text text-sm font-semibold truncate leading-tight">শ্রেষ্ঠ কবিতা</p>
-    </div>
-    <button id="mob-toc-btn-top" class="w-9 h-9 flex items-center justify-center rounded-full shrink-0" aria-label="সূচিপত্র">
-        <i class="fas fa-list-ul text-sm"></i>
+<!-- TOC unit: toggle + drawer together -->
+<div id="toc-unit">
+    <button id="toc-toggle-btn" aria-label="সূচিপত্র">
+        <span class="toc-toggle-label">সূচিপত্র</span>
     </button>
-</div>
+    <div id="mobile-toc-drawer">
 
-<!-- ── MOBILE: right TOC drawer + overlay ── -->
-<div id="mobile-toc-overlay" class="md:hidden"></div>
-<div id="mobile-toc-drawer" class="md:hidden">
-
-    <!-- Header -->
-    <div id="toc-drawer-header" class="shrink-0">
-        <span class="drawer-title">সূচিপত্র</span>
-        <button id="mobile-toc-close" aria-label="বন্ধ করুন">
-            <i class="fas fa-times" style="font-size:13px;"></i>
-        </button>
-    </div>
-
-    <!-- TOC nav -->
-    <nav id="toc-nav-mobile"></nav>
-
-</div>
-
-<!-- ══════════════════════════════════════════
-     MOBILE bottom customization bar
-══════════════════════════════════════════ -->
-<div id="mobile-bottom-bar" class="md:hidden">
-
-    <!-- Expandable panel -->
-    <div id="mob-cust-panel">
-
-        <!-- থিম -->
-        <div id="mob-panel-theme" class="mob-panel-section">
-            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">থিম</p>
-            <div class="flex gap-2">
-                <button data-theme="light" class="theme-btn flex-1" style="background:#fff;color:#333;border-color:#e5e7eb;">আলো</button>
-                <button data-theme="sepia" class="theme-btn flex-1" style="background:#f5efe6;color:#5a4535;border-color:#d9ccbe;">সেপিয়া</button>
-                <button data-theme="dark"  class="theme-btn flex-1" style="background:#1c1c1e;color:#ccc;border-color:#333;">অন্ধকার</button>
-            </div>
-        </div>
-
-        <!-- লেখার আকার -->
-        <div id="mob-panel-font" class="mob-panel-section">
-            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">লেখার আকার ও ফন্ট</p>
-            <div class="flex gap-2 mb-2">
-                <button id="m-font-decrease"
-                    class="flex-1 h-9 rounded-xl border-2 border-gray-200 bg-gray-50 text-[13px] font-bold text-gray-600">A−</button>
-                <div class="flex-1 flex justify-center gap-1.5 items-center">
-                    <span id="m-font-dot-0" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
-                    <span id="m-font-dot-1" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
-                    <span id="m-font-dot-2" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
-                    <span id="m-font-dot-3" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
-                </div>
-                <button id="m-font-increase"
-                    class="flex-1 h-9 rounded-xl border-2 border-gray-200 bg-gray-50 text-[13px] font-bold text-gray-600">A+</button>
-            </div>
-            <div class="flex flex-col gap-1.5">
-                <button data-ff="ff-sans"  class="ff-btn border-2 border-gray-200 bg-gray-50" style="font-family:'Segoe UI',sans-serif;">সাধারণ (Sans)</button>
-                <button data-ff="ff-serif" class="ff-btn border-2 border-gray-200 bg-gray-50" style="font-family:'Noto Serif Bengali',serif;">বইয়ের ফন্ট (Serif)</button>
-            </div>
-        </div>
-
-        <!-- লাইনের ফাঁক -->
-        <div id="mob-panel-spacing" class="mob-panel-section">
-            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">লাইনের ফাঁক, প্রস্থ ও সারিবদ্ধতা</p>
-            <div class="flex gap-2 mb-2">
-                <button data-ls="ls-compact" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="flex flex-col gap-[2px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span>আঁটো</span>
-                </button>
-                <button data-ls="ls-normal" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="flex flex-col gap-[4px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span>স্বাভাবিক</span>
-                </button>
-                <button data-ls="ls-relaxed" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="flex flex-col gap-[6px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span>প্রশস্ত</span>
-                </button>
-            </div>
-            <div class="flex gap-2">
-                <button data-rw="rw-narrow" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="w-[3px] h-4 bg-current rounded-sm opacity-80"></span><span>সরু</span>
-                </button>
-                <button data-rw="rw-medium" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="w-[5px] h-4 bg-current rounded-sm opacity-80"></span><span>মাঝারি</span>
-                </button>
-                <button data-rw="rw-wide" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="w-[8px] h-4 bg-current rounded-sm opacity-80"></span><span>চওড়া</span>
-                </button>
-            </div>
-        </div>
-
-
-    </div>
-
-    <!-- Tab buttons row -->
-    <div id="mob-cust-tabs">
-        <button class="mob-tab-btn" id="mob-tab-theme" data-panel="mob-panel-theme">
-            <i class="fas fa-circle-half-stroke"></i>
-            <span>থিম</span>
-        </button>
-        <button class="mob-tab-btn" id="mob-tab-font" data-panel="mob-panel-font">
-            <i class="fas fa-font"></i>
-            <span>ফন্ট</span>
-        </button>
-        <button class="mob-tab-btn" id="mob-tab-spacing" data-panel="mob-panel-spacing">
-            <i class="fas fa-text-height"></i>
-            <span>ফাঁক/প্রস্থ</span>
-        </button>
+        <nav id="toc-nav-mobile"></nav>
     </div>
 </div>
+<div id="mobile-toc-overlay"></div>
 
-<!-- ══════════════════════════════════════════
-     DESKTOP LEFT sidebar (book info + nav)
-══════════════════════════════════════════ -->
-<aside id="desktop-left-sidebar"
-    class="hidden lg:flex flex-col bg-white dark:bg-[#1a1a1b]">
-
-    <!-- Back button + Book name -->
-    <div class="px-4 pt-5 pb-4 border-b border-gray-100 dark:border-gray-800 shrink-0 flex items-center gap-2.5">
-        <a href="/books/shrestho-kobita.html"
-           class="w-7 h-7 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-brand-100 dark:hover:bg-[#7a3b1e] flex items-center justify-center shrink-0 transition-colors">
-            <i class="fas fa-arrow-left text-[11px] text-gray-500 dark:text-gray-400 hover:text-[#c0392b] transition-colors"></i>
-        </a>
-        <div class="min-w-0">
-            <p id="left-book-title"
-               class="text-[13px] font-bold leading-snug text-gray-900 dark:text-gray-100 line-clamp-2">
-                শ্রেষ্ঠ কবিতা
-            </p>
-            <p id="left-book-subtitle"
-               class="text-[10px] text-gray-400 dark:text-gray-500 mt-0.5 line-clamp-1">
-                
-            </p>
-        </div>
-    </div>
-
-    <!-- TOC label -->
-    <div class="px-5 pt-4 pb-1.5 shrink-0">
-        <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600">সূচিপত্র</p>
-    </div>
-
-    <!-- TOC nav (populated by JS alongside desktop nav) -->
-    <nav id="toc-nav-left" class="flex flex-col px-3 pb-8 gap-0.5 text-[12px] overflow-y-auto flex-1"
-         style="scrollbar-width:none;-ms-overflow-style:none;"></nav>
-</aside>
 
 <!-- ══════════════════════════════════════════
      Main layout wrapper
@@ -742,861 +483,41 @@
 
     <!-- Reading column -->
     <div class="flex-1 min-w-0">
-        <div id="read-main-content" class="px-5 md:px-10 lg:px-16 py-7 max-w-2xl">
-            <div id="book-content" class="fs-md text-gray-800 dark:text-gray-200">
-                <h2 style="text-align: center;">ভূমিকা</h2>
-<p>কবিতা কী এ জিজ্ঞাসার কোনো আবছা উত্তর দেওয়ার আগে এটুকু অন্তত স্পষ্টভাবে বলতে পারা যায় যে কবিতা অনেক রকম। হোমরও কবিতা লিখেছিলেন, মালার্মে র‍্যাঁবো ও রিলকেও। শেক্সপীয়র বদ‍্লেয়র রবীন্দ্রনাথ ও এলিয়টও কবিতা রচনা করে গেছেন। কেউ-কেউ কবিকে সবের ওপরে সংস্কারকের ভূমিকায় দেখেন; কারো কারো ঝোক একান্তই রসের দিকে। কবিতা রসেরই ব্যাপার, কিন্তু এক ধরনের উৎকৃষ্ট চিত্তের বিশেষ সব অভিজ্ঞতা ও চেতনার জিনিস – শুদ্ধ কল্পনা বা একান্ত বুদ্ধির রস নয়।</p>
-<p><br/></p>
-<p>বিভিন্ন অভিজ্ঞ পাঠকের বিচার ও রুচির সঙ্গে যুক্ত থাকা দরকার কবির; কবিতার সম্পর্কে পাঠক ও সমালোচকেরা কীভাবে দায়িত্ব সম্পন্ন করেছেন - এবং কীভাবে তা করা উচিত সেইসব চেতনার উপর কবির ভবিষ্যৎ কাব্য, আমার মনে হয়, আরো স্পষ্ট ভাবে দাঁড়াবার সুযোগ পেতে পারে। কাব্য চেনবার আস্বাদ করবার ও বিচার করবার নানারকম স্বভাব ও পদ্ধতির বিচিত্র সত্যমিথ্যার পথে আধুনিক কাব্যের আধুনিক সমালোচককে প্রায়ই চলতে দেখা যায়, কিন্তু সেই কাব্যের মোটামুটি সত্যও অনেক সময়ই তাকে এড়িয়ে যায়।</p>
-<p><br/></p>
-<p>আমার কবিতাকে বা এ কাব্যের কবিকে নির্জন বা নির্জনতম ব্যাখ্যা দেওয়া হয়েছে; কেউ বলেছেন, এ কবিতা প্রধানত প্রকৃতির বা প্রধানত ইতিহাস ও সমাজ চেতনার, অন্যমতে নিশ্চেতনার; কারো মীমাংসায় এ কাব্য একান্তই প্রতীকী; সম্পূর্ণ অবচেতনার, সুররিয়ালিস্ট। আরো নানারকম আখ্যা চোখে পড়েছে। প্রায় সবই আংশিক সত্য- কোনো কোনো কবিতা বা কাব্যের কোনো কোনো অধ্যায় সম্বন্ধে খাটে; সমগ্র কাব্যের ব্যাখ্যা হিসেবে নয়। কিন্তু কবিতাসৃষ্টি ও কাব্যপাঠ দুই-ই শেষ পর্যন্ত ব্যক্তি-মনের ব্যাপার; কাজেই পাঠক ও সমালোচকদের উপলব্ধি ও মীমাংসায় এত তারতম্য। একটা সীমারেখা আছে এ তারতম্যের; সেটা ছাড়িয়ে গেলে বড়ো সমালোচককে অবহিত হতে হয়।</p>
-<p><br/></p>
-<p>নানা দেশে অনেকদিন থেকেই কাব্য সংগ্রহ বেরুচ্ছে। বাংলায় কবিতার সঞ্চয়ন খুবই কম। নানা শতকের অক্সফোর্ড বুক অফ ভর্সের সংকলকদের মধ্যে বড়ো কবি প্রায়ই কেউ নেই; কিন্তু সংকলনগুলো ভালো হয়েছে; ঢের পুরোনো কাব্যের বাছবিচারে বেশি সার্থকতা বেশি সহজ, নতুন কবি ও কবিতার খাঁটি বিচার বেশি কঠিন। অনেক কবির সমাবেশে একটি সংগ্রহ; একজন কবির প্রায় সমস্ত উল্লেখ্য কবিতা নিয়ে আর এক জাতীয় সংকলন; পশ্চিমে এধরনের অনেক বই আছে; তাদের মধ্যে কয়কটি তাৎপর্যে- এমনকি মাহাত্ম্যে প্রায় অক্ষুণ্ন। আমাদের দেশে দু-একজন পূর্বজ (উনিশ-বিশ শতকের) কবির নির্বাচিত কাব্যাংশ প্রকাশিত হয়েছিল; কতদূর সফল হয়েছে এখনো ঠিক বলতে পারছি না। ভালো কবিতা যাচাই করবার বিশেষ শক্তি সংকলকের থাকলেও আদি নির্বাচন অনেক সময়ই কবির মৃত্যুর পরে খাটি সংকলনে গিয়ে দাড়াবার সুযোগ পায়। কিন্তু কোনো কোনো সংকলনে প্রথম থেকেই যথেষ্ট নির্ভুল চেতনার প্রয়োগ দেখা যায়। পাঠকদের সঙ্গে বিশেষভাবে যোগ স্থাপনের দিক দিয়ে এ ধরনের প্রাথমিক সংকলনের মূল্য আমাদের দেশেও লেখক পাঠক ও প্রকাশকদের কাছে ক্রমেই বেশি স্বীকৃত হচ্ছে হয়ত। যিনি কবিতা লেখা ছেড়ে দেননি তার কবিতার এ-রকম সংগ্রহ থেকে পাঠক ও সমালোচক এ কাব্যের যথেষ্ট সংগত পরিচয় পেতে পারেন; যদিও শেষ পরিচয়লাভ সমসাময়িকদের পক্ষে নানা কারণেই দুঃসাধ্য।</p>
-<p><br/></p>
-<p><br/></p>
-<p>এই সংকলনের কবিতাগুলো শ্রীযুক্ত বিরাম মুখোপাধ্যায় আমার পাঁচখানা কবিতার বই এবং অন্যান্য প্রকাশিত ও অপ্রকাশিত রচনা থেকে সঞ্চয় করেছেন, তার নির্বাচনে বিশেষ শুদ্ধতার পরিচয় পেয়েছি। বিন্যাস-সাধনে মোটামুটিভাবে রচনা-কালক্রম অনুসরণ করা হয়েছে।</p>
-<p><br/></p>
-<p>কলকাতা                                                          জীবনানন্দ দাশ</p>
-<p>২০।০৪।১৯৫৪</p>
-<h2>তবু</h2>
-<p>সে অনেক রাজনীতি রুগ্ন নীতি মারী<br/></p>
-<p>মন্বন্তর যুদ্ধ ঋণ সময়ের থেকে</p>
-<p>উঠে এসে এই পৃথিবীর পথে আড়াই হাজার</p>
-<p>বছরে বয়সী আমি;</p>
-<p>বুদ্ধকে স্বচক্ষে মহানির্বাণের আশ্চর্য শান্তিতে</p>
-<p>চ’লে যেতে দেখে—তবু—অবিরল অশান্তির দীপ্তি ভিক্ষা ক’রে</p>
-<p>এখানে তোমার কাছে দাঁড়ায়ে রয়েছি;</p>
-<p>আজ ভোরে বাংলার তেরোশো চুয়ান্ন সাল এই</p>
-<p>কোথাও নদীর জলে নিজেকে গণনা করে নিতে ভুলে গিয়ে</p>
-<p>আগামী লোকের দিকে অগ্রসর হয়ে যায়; আমি</p>
-<p>তবুও নিজেকে রোধ করে আজ থেমে যেতে চাই</p>
-<p>তোমার জ্যোতির কাছে; আড়াই হাজার</p>
-<p>বছর তা হলে আজ এই খানে শেষ হয়ে গেছে।</p>
-<p><br/></p>
-<p>নদীর জলের পথে মাছরাঙা ডানা বাড়াতেই</p>
-<p>আলো ঠিকরায়ে গেছে—যারা পথে চলে যায় তাদের হৃদয়ে;</p>
-<p>সৃষ্টির প্রথম আলোর কাছে; আহা,</p>
-<p>অন্তিম আভার কাছে; জীবনের যতিহীন প্রগতিশীলতা</p>
-<p>নিখিলের স্মরণীয় সত্য বলে প্রমাণিত হয়ে গেছে; দেখ</p>
-<p>পাখি চলে, তারা চলে, সূর্য মেঘে জ্বলে যায়, আমি</p>
-<p>তবুও মধ্যম পথে দাঁড়ায়ে রয়েছি—তবু দাঁড়াতে বলো নি।</p>
-<p>আমাকে দেখ নি তুমি; দেখবার মতো</p>
-<p>অপব্যয়ী কল্পনায় ইন্দ্রত্বের আসনে আমাকে</p>
-<p>বসালে চকিত হয়ে দেখে যেতে যদি—তবু, সে আসলে আমি</p>
-<p>যুগে যুগে সাময়িক শত্রুদের বসিয়েছি, নারী,</p>
-<p>ভালোবেসে ধ্বংস হয়ে গেছে তারা সব।</p>
-<p>এ রকম অন্তহীন পটভূমিকায়—প্রেমে—</p>
-<p>নতুন ঈশ্বরদের বারবার লুপ্ত হতে দেখে</p>
-<p>আমারও হৃদয় থেকে তরুণতা হারায়ে গিয়েছে;</p>
-<p>অথচ নবীন তুমি।</p>
-<p><br/></p>
-<p>নারী, তুমি সকালের জল উজ্জ্বলতা ছাড়া পৃথিবীর কোনো নদীকেই</p>
-<p>বিকেলে অপর ঢেউয়ে খরশান হতে</p>
-<p>দিতে ভুলে গিয়েছিলে; রাতের প্রখর জলে নিয়তির দিকে</p>
-<p>বহে যেতে দিতে মনে ছিল কি তোমার?</p>
-<p>এখনও কি মনে নেই?</p>
-<p><br/></p>
-<p>আজ এই পৃথিবীর অন্ধকারে মানুষের হৃদয়ে বিশ্বাস</p>
-<p>কেবলই শিথিল হয়ে যায়; তবু তুমি</p>
-<p>সেই শিথিলতা নও, জানি, তবু ইতিহাসরীতিপ্রতিভার</p>
-<p>মুখোমুখি আবছায়া দেয়ালের মতো নীল আকাশের দিকে</p>
-<p>ঊর্ধ্বে উঠে যেতে চেয়ে তুমি</p>
-<p>আমাদের দেশে কোনো বিশ্বাসের দীর্ঘ তরু নও।</p>
-<p><br/></p>
-<p>তবু</p>
-<p>কী যে উদয়ের সাগরের প্রতিবিম্ব জ্বলে ওঠে রোদে।</p>
-<p>উদয় সমাপ্ত হয়ে গেছে নাকি সে অনেক আগে?</p>
-<p>কোথাও বাতাস নেই, তবু</p>
-<p>মর্মরিত হয়ে ওঠে উদয়ের সমুদ্রের পারে।</p>
-<p>কোনো পাখি</p>
-<p>কালের ফোকরে আজ নেই, তবু, নব সৃষ্টিমরালের মতো কলস্বরে</p>
-<p>কেন কথা বলি; কোনো নারী</p>
-<p>নেই, তবু আকাশহংসীর কণ্ঠে ভোরের সাগর উতরোল।</p>
-<h2>এই সব দিনরাত্রি</h2>
-<p><br/></p>
-<p>মনে হয় এর চেয়ে অন্ধকারে ডুবে যাওয়া ভালো।</p>
-<p>এইখানে</p>
-<p>পৃথিবীর এই ক্লান্ত এ অশান্ত কিনারা দেশে</p>
-<p>এখানে আশ্চর্য সব মানুষ রয়েছে।</p>
-<p>তাদের সম্রাট নেই, সেনাপতি নেই;</p>
-<p>তাদের হৃদয়ে কোনো সভাপতি নেই;</p>
-<p>শরীর বিবশ হলে অবশেষে ট্রেড-ইউনিয়নের</p>
-<p>কংগ্রেসের মতো কোনো আশা-হতাশার</p>
-<p>কোলাহল নেই।</p>
-<p><br/></p>
-<p>অনেক শ্রমিক আছে এইখানে।</p>
-<p>আরো ঢের লোক আছে</p>
-<p>সঠিক শ্রমিক নয় তারা।</p>
-<p>স্বাভাবিক মধ্যশ্রেণী নিম্নশ্রেণী মধ্যবিত্ত শ্রেনীর পরিধি থেকে ঝ’রে</p>
-<p>এরা তবু মৃত নয়; অন্তবিহীন কাল মৃতবৎ ঘোরে।</p>
-<p>নামগুলো কুশ্রী নয়, পৃথিবীর চেনা-জানা নাম এই সব।</p>
-<p>আমরা অনেক দিন এ-সব নামের সাথে পরিচিত; তবু,</p>
-<p>গৃহ নীড় নির্দেশ সকলই হারায়ে ফেলে ওরা</p>
-<p>জানে না কোথায় গেলে মানুষের সমাজের পারিশ্রমিকের</p>
-<p>মতন নির্দিষ্ট কোনো শ্রমের বিধান পাওয়া যাবে;</p>
-<p>জানে না কোথায় গেলে জল তেল খাদ্য পাওয়া যাবে;</p>
-<p>অথবা কোথায় মুক্ত পরিচ্ছন্ন বাতাসের সিন্ধুতীর আছে।</p>
-<p><br/></p>
-<p>মেডিকেল ক্যাম্বেলের বেলগাছিয়ার</p>
-<p>যাদবপুরের বেড কাঁচড়াপাড়ার বেড সব মিলে কতগুলো সব?</p>
-<p>ওরা নয়—সহসা ওদের হয়ে আমি</p>
-<p>কাউকে শুধায়ে কোনো ঠিকমতো জবাব পাইনি।</p>
-<p>বেড আছে, বেশি নেই—সকলের প্রয়োজনে নেই।</p>
-<p>যাদের আস্তানা ঘর তল্পিতল্পা নেই</p>
-<p>হাসপাতালের বেড হয়তো তাদের তরে নয়।</p>
-<p>বটতলা মুচিপাড়া তালতলা জোড়াসাঁকো—আরো ঢের ব্যার্থ অন্ধকারে</p>
-<p>যারা ফুটপাত ধ’রে অথবা ট্রামের লাইন মাড়িয়ে চলছে</p>
-<p>তাদের আকাশ কোন্‌ দিকে?</p>
-<p>জানু ভেঙে পড়ে গেলে হাত কিছুক্ষন আশাশীল</p>
-<p>হয়ে কিছু চায়ে—কিছু খোঁজে;</p>
-<p>এ ছাড়া আকাশ আর নেই।</p>
-<p>তাদের আকাশ সর্বদাই ফুটপাতে;</p>
-<p>মাঝে মাঝে এম্বুলেন্‌স্‌ গাড়ির ভিতরে</p>
-<p>রণক্লান্ত নাবিকেরা ঘরে</p>
-<p>ফিরে আসে</p>
-<p>যেন এক অসীম আকাশে।</p>
-<p><br/></p>
-<p>এ-রকম ভাবে চ’লে দিন যদি রাত হয়, রাত যদি হয়ে যায় দিন,</p>
-<p>পদচিহ্নময় পথ হয় যদি দিকচিহ্নহীন,</p>
-<p>কেবলই পাথুরেঘাটা নিমতলা চিৎপুরে—</p>
-<p>খালের এপার-ওপার রাজাবাজারের অস্পষ্ট নির্দেশে</p>
-<p>হাঘরে হাভাতেদের তবে</p>
-<p>অনেক বেডের প্রয়োজন;</p>
-<p>বিশ্রামের প্রয়োজন আছে;</p>
-<p>বিচিত্র মৃত্যুর আগে শান্তির কিছুটা প্রয়োজন।</p>
-<p>হাসপাতালের জন্য যাদের অমূল্য দাদন,</p>
-<p>কিংবা যারা মরণের আগে মৃতদের</p>
-<p>জাতিধর্ম নির্বিচারে সকলকে—সব তুচ্ছতম আর্তকেও</p>
-<p>শরীরের সান্ত্বনা এনে দিতে চায়,</p>
-<p>কিংবা যারা এইসব মৃত্যু রোধ করে এক সাহসী পৃথিবী</p>
-<p>সুবাতাস সমুজ্জ্বল সমাজ চেয়েছে—</p>
-<p>তাদের ও তাদের প্রতিভা প্রেম সংকল্পকে ধন্যবাদ দিয়ে</p>
-<p>মানুষকে ধন্যবাদ দিয়ে যেতে হয়।</p>
-<p>মানুষের অনিঃশেষ কাজ চিন্তা কথা</p>
-<p>রক্তের নদীর মতো ভেসে গেলে, তারপর, তবু, এক অমূল্য মুগ্ধতা</p>
-<p>অধিকার করে নিয়ে ক্রমেই নির্মল হতে পারে।</p>
-<p><br/></p>
-<p>ইতিহাস অর্ধসত্যে কামাচ্ছন্ন এখনো কালের কিনারায়;</p>
-<p>তবুও মানুষ এই জীবনকে ভালোবাসে; মানুষের মন</p>
-<p>জানে জীবনের মানে : সকলের ভালো ক’রে জীবনযাপন।</p>
-<p>কিন্তু সেই শুভ রাষ্ট্র ঢের দূরে আজ।</p>
-<p>চারি দিকে বিকলাঙ্গ অন্ধ ভিড়—অলীক প্রয়াণ।</p>
-<p>মন্বন্তর শেষ হলে পুনরায় নব মন্বন্তর;</p>
-<p>যুদ্ধ শেষ হয়ে গেলে নতুন যুদ্ধের নান্দীরোল;</p>
-<p>মানুষের লালসার শেষ নেই;</p>
-<p>উত্তেজনা ছাড়া কোনো দিন ঋতু ক্ষণ</p>
-<p>অবৈধ সংগম ছাড়া সুখ</p>
-<p>অপরের সুখ ম্লান করে দেওয়া ছাড়া প্রিয় সাধ নেই।</p>
-<p>কেবলই আসন থেকে বড়ো, নবতর</p>
-<p>সিংহাসনে যাওয়া ছাড়া গতি নেই কোনো।</p>
-<p>মানুষের দুঃখ কষ্ট মিথ্যা নিষ্ফলতা বেড়ে যায়।</p>
-<p><br/></p>
-<p>মনে পড়ে কবে এক রাত্রির স্বপ্নের ভিতরে</p>
-<p>শুনেছি একটি কুষ্ঠকলঙ্কিত নারী</p>
-<p>কেমন আশ্চর্য গান গায়;</p>
-<p>বোবা কালা পাগল মিনসে এক অপরূপ বেহালা বাজায়;</p>
-<p>গানের ঝংকারে যেন সে এক একান্ত শ্যাম দেবদারুগাছে</p>
-<p>রাত্রির বর্ণের মতো কালো কালো শিকারী বেড়াল</p>
-<p>প্রেম নিবেদন করে আলোর রঙের মতো অগণন পাখিদের কাছে;</p>
-<p>ঝর্‌ ঝর্‌ ঝর্‌</p>
-<p>সারারাত শ্রাবণের নির্গলিত ক্লেদরক্ত বৃষ্টির ভিতর</p>
-<p>এ পৃথিবী ঘুম স্বপ্ন রুদ্ধশ্বাস</p>
-<p>শঠতা রিরংসা মৃত্যু নিয়ে</p>
-<p>কেমন প্রদত্ত কালো গণিকার উল্লোল সংগীতে</p>
-<p>মুখের ব্যাদান সাধ দুর্দান্ত গণিকালয়ে—নরক শ্মশান হল সব।</p>
-<p>জেগে উঠে আমাদের আজকের পৃথিবীকে এ-রকম ভাবে অনুভব</p>
-<p>আমিও করেছি রোজ সকালের আলোর ভিতরে</p>
-<p>বিকেলে-রাত্রির পথে হেঁটে;</p>
-<p>দেখেছি রজনীগন্ধা নারীর শরীর অন্ন মুখে দিতে গিয়ে</p>
-<p>আমরা অঙ্গার রক্ত: শতাব্দীর অন্তহীন আগুনের ভিতরে দাঁড়িয়ে।</p>
-<p><br/></p>
-<p>এ আগুন এত রক্ত মধ্যযুগ দেখেছে কখনও?</p>
-<p>তবুও সকল কাল শতাব্দীকে হিসেব নিকেশ করে আজ</p>
-<p>শুভ কাজ সূচনার আগে এই পৃথিবীর মানবহৃদয়</p>
-<p>স্নিগ্ধ হয়-বীতশোক হয়?</p>
-<p>মানুষের সব গুণ শান্ত নীলিমার মতো ভালো?</p>
-<p>দীনতা; অন্তিম গুণ, অন্তহীন নক্ষত্রের আলো।</p>
-<p><br/></p>
-<p>চতুরঙ্গ ॥ কার্তিক-পৌষ ১৩৫৬</p>
-<h2>১৯৪৬-৪৭</h2>
-<p>দিনের আলোয় অই চারি দিকে মানুষের অস্পষ্ট ব্যস্ততা:</p>
-<p>পথে-ঘাটে ট্রাক ট্রামলাইনে ফুটপাতে;</p>
-<p>কোথায় পরের বাড়ি এখুনি নিলেম হবে—মনে হয়,</p>
-<p>জলের মতন দামে।</p>
-<p>সকলকে ফাঁকি দিয়ে স্বর্গে পৌঁছুবে</p>
-<p>সকলের আগে সকলেই তাই।</p>
-<p><br/></p>
-<p>অনেকেরই ঊর্ধশ্বাসে যেতে হয়, তবু</p>
-<p>নিলেমের ঘরবাড়ি আসবাব—অথবা যা নিলেমের নয়</p>
-<p>সে সব জিনিস</p>
-<p>বহুকে বঞ্চিত ক’রে দু জন কি একজন কিনে নিতে পারে।</p>
-<p>পৃথিবীতে সুদ খাটে: সকলের জন্যে নয়।</p>
-<p>অনির্বচনীয় হুণ্ডি একজন দু জনের হাতে।</p>
-<p>পৃথিবীর এইসব উঁচু লোকদের দাবি এসে</p>
-<p>সবই নেয়, নারীকেও নিয়ে যায়।</p>
-<p>বাকি সব মানুষেরা অন্ধকারে হেমন্তের অবিরল পাতার মতন</p>
-<p>কোথাও নদীর পানে উড়ে যেতে চায়,</p>
-<p>অথবা মাটির দিকে—পৃথিবীর কোনো পুনঃপ্রবাহের বীজের ভিতরে</p>
-<p>মিশে গিয়ে। পৃথিবীতে ঢের জন্ম নষ্ট হয়ে গেছে জেনে, তবু</p>
-<p>আবার সূর্যের গন্ধে ফিরে এসে ধুলো ঘাস কুসুমের অমৃতত্বে</p>
-<p>কবে পরিচিত জল, আলো আধো অধিকারিণীকে অধিকার করে নিতে হবে:</p>
-<p>ভেবে তারা অন্ধকারে লীন হয়ে যায়।</p>
-<p>লীন হয়ে গেলে তারা তখন তো—মৃত।</p>
-<p>মৃতেরা এ পৃথিবীতে ফেরে না কখনও</p>
-<p>মৃতেরা কোথাও নেই; আছে?</p>
-<p>কোনো কোনো অঘ্রানের পথে পায়চারি-করা শান্ত মানুষের</p>
-<p>হৃদয়ের পথে ছাড়া মৃতেরা কোথাও নেই বলে মনে হয়;</p>
-<p>তা হলে মৃত্যুর আগে আলো অন্ন আকাশ নারীকে</p>
-<p>কিছুটা সুস্থিরভাবে পেলে ভালো হত।</p>
-<p><br/></p>
-<p>বাংলার লক্ষ গ্রাম নিরাশায় আলোহীনতায় ডুবে নিস্তব্ধ নিস্তেজ।</p>
-<p>সূর্য অস্তে চলে গেলে কেমন সুকেশী অন্ধকার</p>
-<p>খোঁপা বেঁধে নিতে আসে—কিন্তু কার হাতে?</p>
-<p>আলুলায়িত হয়ে চেয়ে থাকে—কিন্তু কার তরে?</p>
-<p>হাত নেই—কোথাও মানুষ নেই; বাংলার লক্ষ গ্রামরাত্রি একদিন</p>
-<p>আলপনার, পটের ছবির মতো সুহাস্যা, পটলচেরা চোখের মানুষী</p>
-<p>হতে পেরেছিল প্রায়; নিভে গেছে সব।</p>
-<p><br/></p>
-<p>এইখানে নবান্নের ঘ্রাণ ওরা সেদিনও পেয়েছে;</p>
-<p>নতুন চালের রসে রৌদ্রে কতো কাক</p>
-<p>এ-পাড়ার বড়ো...ও-পাড়ার দুলে বোয়েদের</p>
-<p>ডাকশাঁখে উড়ে এসে সুধা খেয়ে যেত;</p>
-<p>এখন টুঁ শব্দ নেই সেই সব কাকপাখিদেরও;</p>
-<p>মানুষের হাড় খুলি মানুষের গণনার সংখ্যাধীন নয়;</p>
-<p>সময়ের হাতে অন্তহীন।</p>
-<p><br/></p>
-<p>ওখানে চাঁদের রাতে প্রান্তরে চাষার নাচ হত</p>
-<p>ধানের অদ্ভুত রস খেয়ে ফেলে মাঝি-বাগ্‌দির</p>
-<p>ঈশ্বরী মেয়ের সাথে</p>
-<p>বিবাহের কিছু আগে-বিবাহের কিছু পরে-সন্তানের জন্মাবার আগে।</p>
-<p>সে সব সন্তান আজ এ যুগের কুরাষ্ট্রের মূঢ়</p>
-<p>ক্লান্ত লোকসমাজের ভীড়ে চাপা পড়ে</p>
-<p>মৃতপ্রায়; আজকের এই সব গ্রাম্য সন্ততির</p>
-<p>প্রপিতামহের দল হেসে খেলে ভালোবেসে-অন্ধকারে জমিদারদের</p>
-<p>চিরস্থায়ী ব্যবস্থাকে চড়কের গাছে তুলে ঘুমায়ে গিয়েছে।</p>
-<p>ওরা খুব বেশি ভালো ছিল না; তবুও</p>
-<p>আজকের মন্বন্তর দাঙ্গা দুঃখ নিরক্ষরতায়</p>
-<p>অন্ধ শতচ্ছিন্ন গ্রাম্য প্রাণীদের চেয়ে</p>
-<p>পৃথক আর-এক স্পষ্ট জগতের অধিবাসী ছিল।</p>
-<p><br/></p>
-<p>আজকে অস্পষ্ট সব? ভালো করে কথা ভাবা এখন কঠিন;</p>
-<p>অন্ধকারে অর্ধসত্য সকলকে জানিয়ে দেবার</p>
-<p>নিয়ম এখন আছে; তারপর একা অন্ধকারে</p>
-<p>বাকি সত্য আঁচ করে নেওয়ার রেওয়াজ</p>
-<p>রয়ে গেছে; সকলেই আড়চোখে সকলকে দেখে।</p>
-<p><br/></p>
-<p>সৃষ্টির মনের কথা মনে হয়—দ্বেষ।</p>
-<p>সৃষ্টির মনের কথা; আমাদেরই আন্তরিকতাতে</p>
-<p>আমাদেরই সন্দেহের ছায়াপাত টেনে এনে ব্যাথা</p>
-<p>খুঁজে আনা। প্রকৃতির পাহাড়ে পাথরে সমুচ্ছল</p>
-<p>ঝর্নার জল দেখে তারপর হৃদয়ে তাকিয়ে</p>
-<p>দেখেছি প্রথম জল নিহত প্রাণীর রক্তে লাল</p>
-<p>হয়ে আছে ব’লে বাঘ হরিণের পিছু আজও ধায়;</p>
-<p>মানুষ মেরেছি আমি—তার রক্তে আমার শরীর</p>
-<p>ভরে গেছে; পৃথিবীর পথে এই নিহত ভ্রাতার</p>
-<p>ভাই আমি; আমাকে সে কনিষ্ঠের মতো জেনে তবু</p>
-<p>হৃদয়ে কঠিন হয়ে বধ করে গেল, আমি রক্তাক্ত নদীর</p>
-<p>কল্লোলের কাছে শুয়ে অগ্রজপ্রতিম বিমূঢ়কে</p>
-<p>বধ করে ঘুমাতেছি—তাহার অপরিসর বুকের ভিতরে</p>
-<p>মুখ রেখে মনে হয় জীবনের স্নেহশীল ব্রতী</p>
-<p>সকলকে আলো দেবে মনে করে অগ্রসর হয়ে</p>
-<p>তবুও কোথাও কোনো আলো নেই বলে ঘুমাতেছে।</p>
-<p><br/></p>
-<p>ঘুমাতেছে।</p>
-<p>যদি ডাকি রক্তের নদীর থেকে কল্লোলিত হয়ে</p>
-<p>বলে যাবে কাছে এসে, 'ইয়াসিন আমি,</p>
-<p>হানিফ মহম্মদ মকবুল করিম আজিজ—</p>
-<p>আর তুমি?' আমার বুকের 'পরে হাত রেখে মৃত মুখ থেকে</p>
-<p>চোখ তুলে শুধাবে সে—রক্তনদী উদ্বেলিত হয়ে</p>
-<p>ব’লে যাবে, 'গগন, বিপিন, শশী,পাথুরেঘাটার;</p>
-<p>মানিকতলার, শ্যামবাজারের, গ্যালিফ স্ট্রীটের, এন্টালির-'</p>
-<p>কোথাকার কেবা জানে; জীবনের ইতর শ্রেণীর</p>
-<p>মানুষ তো এরা সব; ছেঁড়া জুতো পায়ে</p>
-<p>বাজারের পোকাকাটা জিনিসের কেনাকাটা করে;</p>
-<p>সৃষ্টির অপরিক্লান্ত চারণার বেগে</p>
-<p>এইসব প্রাণকণা জেগেছিল—বিকেলের সূর্যের রশ্মিতে</p>
-<p>সহসা সুন্দর বলে মনে হয়েছিল কোনো উজ্জ্বল চোখের</p>
-<p>মনীষী লোকের কাছে এই সব অণুর মতন</p>
-<p>উদ্ভাসিত পৃথিবীর উপেক্ষিত জীবনগুলোকে।</p>
-<p>সূর্যের আলোর ঢলে রোমাঞ্চিত রেণুর শরীরে</p>
-<p>রেণুর সংঘর্ষে যেই শব্দ জেগে ওঠে</p>
-<p>সেখানে তার অনুপম কণ্ঠের সংগীতে</p>
-<p>কথা বলে; কাকে বলে? ইয়াসিন মকবুল শশী</p>
-<p>সহসা নিকটে এসে কোনো-কিছু বলবার আগে</p>
-<p>আধ-খণ্ড অনন্তের অন্তরের থেকে যেন ঢের</p>
-<p>কথা বলে গিয়েছিল; তবু—</p>
-<p>অনন্ত তো খণ্ড নয়; তাই সেই স্বপ্ন, কাজ, কথা</p>
-<p>অখণ্ডে অনন্তে অন্তর্হিত হয়ে গেছে;</p>
-<p>কেউ নেই, কিছু নেই-সূর্য নিভে গেছে।</p>
-<p><br/></p>
-<p>এ যুগে এখন ঢের কম আলো সব দিকে, তবে।</p>
-<p>আমরা এ পৃথিবীর বহুদিনকার</p>
-<p>কথা কাজ ব্যথা ভুল সংকল্প চিন্তার</p>
-<p>মর্যাদায় গড়া কাহিনীর মূল্য নিংড়ে এখন</p>
-<p>সঞ্চয় করেছি বাক্য শব্দ ভাষা অনুপম বাচনের রীতি।</p>
-<p>মানুষের ভাষা তবু অনুভূতিদেশ থেকে আলো</p>
-<p>না পেলে নিছক ক্রিয়া; বিশেষণ; এলোমেলো নিরাশ্রয় শব্দের কঙ্কাল</p>
-<p>জ্ঞানের নিকট থেকে ঢের দূরে থাকে।</p>
-<p>অনেক বিদ্যার দান উত্তরাধিকারে পেয়ে তবু</p>
-<p>আমাদের এই শতকের</p>
-<p>বিজ্ঞান তো সংকলিত জিনিসের ভিড় শুধু—বেড়ে যায় শুধু;</p>
-<p>তবুও কোথাও তার প্রাণ নেই বলে অর্থময়</p>
-<p>জ্ঞান নেই আজ এই পৃথিবীতে; জ্ঞানের বিহনে প্রেম নেই।</p>
-<p><br/></p>
-<p>এ-যুগে কোথাও কোনো আলো—কোনো কান্তিময় আলো</p>
-<p>চোখের সুমুখে নেই যাত্রিকের; নেই তো নিঃসৃত অন্ধকার</p>
-<p>রাত্রির মায়ের মতো: মানুষের বিহ্বল দেহের</p>
-<p>সব দোষ প্রক্ষালিত করে দেয়—মানুষের মানুষের বিহ্বল আত্মাকে</p>
-<p>লোকসমাগমহীন একান্তের অন্ধকারে অন্তঃশীল ক’রে</p>
-<p>তাকে আর শুধায় না—অতীতের শুধানো</p>
-<p>প্রশ্নের উত্তর চায় না আর—শুধু শব্দহীন মৃত্যুহীন</p>
-<p>অন্ধকারে ঘিরে রাখে, সব অপরাধ ক্লান্তি ভয় ভুল পাপ</p>
-<p>বীতকাম হয় যাতে—এ জীবন ধীরে ধীরে বীতশোক হয়,</p>
-<p>স্নিগ্ধতা হৃদয়ে জাগে; যেন দিকচিহ্নময় সমুদ্রের পারে</p>
-<p>কয়েকটি দেবদারুগাছের ভিতরে অবলীন</p>
-<p>বাতাসের প্রিয়কণ্ঠ কাছে আসে—মানুষের রক্তাক্ত আত্মায়</p>
-<p>সে-হাওয়া অনবচ্ছিন্ন সুগমের—মানুষের জীবন নির্মল।</p>
-<p>আজ এই পৃথিবীতে এমন মহানুভব ব্যাপ্ত অন্ধকার</p>
-<p>নেই আর? সুবাতাস গভীরতা পবিত্রতা নেই?</p>
-<p>তবুও মানুষ অন্ধ দুর্দশার থেকে স্নিগ্ধ আঁধারের দিকে</p>
-<p>অন্ধকার হ’তে তার নবীন নগরী গ্রাম উৎসবের পানে</p>
-<p>যে অনবনমনে চলেছে আজও—তার হৃদয়ের</p>
-<p>ভুলের পাপের উৎস অতিক্রম ক’রে চেতনার</p>
-<p>বলয়ের নিজ গুণ রয়ে গেছে বলে মনে হয়।</p>
-<p><br/></p>
-<p>পূর্বাশা ॥ কার্তিক ১৩৫৫</p>
-<h2>পৃথিবীতে</h2>
-<p>শস্যের ভিতরে পৃথিবীর সকালবেলায়</p>
-<p>কোনো-এক কবি বসে আছে;</p>
-<p>অথবা সে কারাগারে ক্যাম্পে অন্ধকারে;</p>
-<p>তবুও সে প্রীত অবহিত হয়ে আছে</p>
-<p><br/></p>
-<p>এই পৃথিবীর রোদে—এখানে রাত্রির গন্ধে—নক্ষত্রের তরে।</p>
-<p>তাই সে এখানকার ক্লান্ত মানবীয় পরিবেশ</p>
-<p>সুস্থ করে নিতে চায় পরিচ্ছন্ন মানুষের মতো,</p>
-<p>সব ভবিতব্যতার অন্ধকারে দেশ</p>
-<p><br/></p>
-<p>মিশে গেলে; জীবনকে সকলের তরে ভালো ক’রে</p>
-<p>পেতে হলে এই অবসন্ন ম্লান পৃথিবীর মতো</p>
-<p>অম্লান; অক্লান্ত হয়ে বেঁচে থাকা চাই।</p>
-<p>একদিন স্বর্গে যেতে হত।</p>
-<p><br/></p>
-<p>আজকাল ॥ শারদীয় ১৩৫২</p>
-<h2>লোকেন বোসের জর্নাল</h2>
-<p>সুজাতাকে ভালোবাসতাম আমি—</p>
-<p>এখন কি ভালোবাসি?</p>
-<p>সেটা অবসরে ভাববার কথা,</p>
-<p>অবসর তবু নেই;</p>
-<p>তবু একদিন হেমন্ত এলে অবকাশ পাওয়া যাবে;</p>
-<p>এখন শেল্‌ফে চার্বাক ফ্রয়েড প্লেটো পাভ্‌লভ্‌ ভাবে</p>
-<p>সুজাতাকে আমি ভালোবাসি কিনা।</p>
-<p><br/></p>
-<p>পুরোনো চিঠির ফাইল কিছু আছে:</p>
-<p>সুজাতা লিখেছে আমার কাছে,</p>
-<p>বারো তেরো কুড়ি বছর আগের সে-সব কথা;</p>
-<p>ফাইল নাড়া কী যে মিহি কেরানির কাজ;</p>
-<p>নাড়বো না আমি,</p>
-<p>নেড়ে কার কী সে লাভ;</p>
-<p>মনে হয় যেন অমিতা সেনের সাথে সুবলের ভাব,</p>
-<p>সুবলেরই শুধু? অবশ্য আমি</p>
-<p>তাকে মানে—এই অমিতা বলছি যাকে—</p>
-<p>কিন্তু কথাটা থাক;</p>
-<p>কিন্তু তবুও-</p>
-<p>আজকে হৃদয় পথিক নয় তো আর,</p>
-<p>নারী যদি মৃগতৃষ্ণার মতো—তবে</p>
-<p>এখন কী করে মন ক্যারাভান হবে।</p>
-<p><br/></p>
-<p>প্রৌঢ় হৃদয়, তুমি</p>
-<p>সেই সব মৃগতৃষ্ণিকাতালে ঈষৎ সিমুমে</p>
-<p>হয়তো কখনো বৈতাল মরুভূমি,</p>
-<p>হৃদয়, হৃদয় তুমি!</p>
-<p>তারপর তুমি নিজের ভিতরে এসে তবু চুপে</p>
-<p>মরীচিকা জয় করেছ বিনয়ী যে ভীষণ নামরূপে—</p>
-<p>সেখানে বালির সৎ নীরবতা ধু ধু</p>
-<p>প্রেম নয় তবু প্রেমেরই মতন শুধু।</p>
-<p><br/></p>
-<p>অমিতা সেনকে সুবল কি ভালোবাসে?</p>
-<p>অমিতা নিজে কি তাকে?</p>
-<p>অবসরমতো কথা ভাবা যাবে,</p>
-<p>ঢের অবসর চাই;</p>
-<p>দূর ব্রহ্মাণ্ডকে তিলে টেনে এনে সমাহিত হওয়া চাই;</p>
-<p>এখুনি টেনিসে যেতে হবে তবু,</p>
-<p>ফিরে এসে রাতে ক্লাবে;</p>
-<p>কখন সময় হবে।</p>
-<p><br/></p>
-<p>হেমন্তে ঘাসে নীল ফুল ফোটেে—</p>
-<p>হৃদয় কেন যে কাঁপে,</p>
-<p>“ভালোবাসতাম”—স্মৃতি—অঙ্গার—পাপে</p>
-<p>তর্কিত কেন রয়েছে বর্তমান।</p>
-<p>সে-ও কি আমায়—সুজাতা আমায় ভালোবেসে ফেলেছিল।</p>
-<p>আজও ভালোবাসে না কি?</p>
-<p>ইলেক্‌ট্রনেরা নিজ দোষগুণে বলয়িত হয়ে রবে;</p>
-<p>কোনো অন্তিম ক্ষালিত আকাশে এর উত্তর হবে?</p>
-<p><br/></p>
-<p>সুজাতা এখন ভুবনেশ্বরে;</p>
-<p>অমিতা কি মিহিজামে?</p>
-<p>বহুদিন থেকে ঠিকানা না জেনে ভালোই হয়েছে-সবই।</p>
-<p>ঘাসের ভিতরে নীল শাদা ফুল ফোটে হেমন্তরাগে;</p>
-<p>সময়ের এই স্থির এক দিক,</p>
-<p>তবু স্থিরতর নয়;</p>
-<p>প্রতিটি দিনের নতুন জীবাণু আবার স্থাপিত হয়।</p>
-<p><br/></p>
-<p>পূর্বাশা। কার্তিক ১৩৫৭</p>
-<h2>মানুষের মৃত্যু হলে</h2>
-<p>মানুষের মৃত্যু হলে তবুও মানব</p>
-<p>থেকে যায়; অতীতের থেকে উঠে আজকের মানুষের কাছে</p>
-<p>প্রথমত চেতনার পরিমাপ নিতে আসে।</p>
-<p><br/></p>
-<p>আজকের আগে যেই জীবনের ভিড় জমেছিল</p>
-<p>তারা মরে গেছে;</p>
-<p>প্রতিটি মানুষ তার নিজের স্বতন্ত্র সত্তা নিয়ে</p>
-<p>অন্ধকারে হারায়েছে;</p>
-<p>    তবু তারা আজকের আলোর ভিতরে</p>
-<p>সঞ্চারিত হয়ে উঠে আজকের মানুষের সুরে</p>
-<p>যখন প্রেমের কথা বলে</p>
-<p>অথবা জ্ঞানের কথা–</p>
-<p>অনন্ত যাত্রার কথা মনে হয় সে-সময়</p>
-<p><p>দীপংকর শ্রীজ্ঞানের;</p>
-<p>চলেছে-চলেছে-</p>
-<p><br/></p>
-<p>একদিন বুদ্ধকে সে চেয়েছিল বলে ভেবেছিল।</p>
-<p>একদিন ধূসর পাতায় যেই জ্ঞান থাকে—তাকে।</p>
-<p>একদিন নগরীর দুরোনো সিড়ির পথ বেয়ে</p>
-<p>বিজ্ঞানে প্রবীণ হয়ে—তবু— কেন অম্বাপালীকে</p>
-<p>চেয়েছিল প্রণয়ে নিবিড় হয়ে উঠে।</p>
-<p><br/></p>
-<p>চেয়েছিল–</p>
-<p>পেয়েছিল শ্ৰীমতীকে কম্প্র প্রাসাদে;</p>
-<p>সেই সিড়ি ঘুরে প্রায় নীলিমার গায়ে গিয়ে লাগে;</p>
-<p>সিড়ি উদ্ভাসিত করে রোদ;</p>
-<p>সিড়ি ধরে ওপরে ওঠার পথে আরেকরকম</p>
-<p>বাতাস ও আলোকের আসাযাওয়া স্থির করে কী অসাধারণ</p>
-<p>প্রেমের প্রয়াণ। তবু-এই শেষ অনিমেষ পথে</p>
-<p>দেখেছে সে কোনো-এক মহীয়সী আর তার শিশু;</p>
-<p>দু-জনেই মৃত।</p>
-<p>অথবা কেউ কি নেই।</p>
-<p>ওইখানে কেউ নেই।</p>
-<p>মৃত্যু আজ নারীনৰ্দামার ক্বাথে;</p>
-<p>অন্তহীন শিশুফুটপাতে;</p>
-<p>আর সেই শিশুদের জনিতার ক্লীবতায়।</p>
-<p><br/></p>
-<p>সকল রৌদ্রের মতো ব্যাপ্ত আশা যদি</p>
-<p>গোলকধাঁধায় ঘুরে আবার প্রথম স্থানে ফিরে আসে</p>
-<p>শ্রীজ্ঞান কী তবে চেয়েছিল?</p>
-</p>
-<p><p>সূর্য যদি কেবলই দিনের জন্ম দিয়ে যায়,</p>
-<p>রাত্রি যদি শুধু নক্ষত্রের,</p>
-<p>মানুষ কেবলই যদি সমাজের জন্ম দেয়,</p>
-<p>সমাজ অস্পষ্ট বিপ্লবের,</p>
-<p>বিপ্লব নির্মম আবেশের,</p>
-<p>তা হলে শ্রীজ্ঞান কিছু চেয়েছিল?</p>
-<p><br/></p>
-<p>নগরীর সিড়ি প্রায় নীলিমার গায়ে লেগে আছে;</p>
-<p>অথচ নগরী মৃত।</p>
-<p>সে সিড়ির আশ্চর্য নির্জন</p>
-<p>দিগন্তরে এক মহীয়সী,</p>
-<p>আর তার শিশু;</p>
-<p>তবু কেউ নেই।</p>
-<p><br/></p>
-<p>ঢের ভারতীয় কাল-পৃথিবীর আয়ু-শেষ করে</p>
-<p>জীবনের বঙ্গাব্দ পর্বের প্রান্তে ঠেকে,</p>
-<p>পুনরুদ‍্‍যাপনের মতন আরেকবার এই</p>
-<p>তেরোশো পঞ্চাশ সাল থেকে শুরু করে ঢের দিন</p>
-<p>আমারও হৃদয় এই সব কথা ভেবে</p>
-<p>সৃষ্টির উৎস আর উৎসারিত মানুষকে তবু</p>
-<p>ধন্যবাদ দিয়ে যায়।</p>
-<p>কেননা সৃষ্টির নিহিত ছলনা ছেলে-ভুলোবার মতো তবু নয়;</p>
-<p>মানুষও ঘুমের আগে কথা ভেবে সব সমাধান</p>
-<p>ক'রে নিতে চায়।</p>
-<p>কথা ভেবে হৃদয় শুকায় জেনে কাজ করে।</p>
-</p>
-<p><p>সময় এখন শাদা জলের বদলে বোনভায়ের</p>
-<p>নিয়ত বিপন্ন রক্ত রোজ</p>
-<p>মানুষকে দিয়ে যায়;</p>
-<p>ফসলের পরিবর্তে মানুষের শরীরে মানুষ</p>
-<p>গোলাবাড়ি উচু করে রেখে নিয়তির</p>
-<p>অন্ধকারে অমানব;</p>
-<p>তবুও গ্লানির মতো মানুষের মনের ভিতরে</p>
-<p>এইসব জেগে থাকে ব'লে</p>
-<p>শতকের আয়ু-আধো আয়ু-আজ ফুরিয়ে গেলেও এই শতাব্দীকে তারা</p>
-<p>কঠিন নিস্পৃহভাবে আলোচনা করে</p>
-<p>আশায় উজ্জ্বল রাখে; না হলে এ ছাড়া</p>
-<p>কোথাও অন্য কোন প্রতি নেই।</p>
-<p>মানুষের মৃত্যু হলে তবুও মানব</p>
-<p>থেকে যায়; অতীতের থেকে উঠে আজকের মানুষের কাছে</p>
-<p>আরো ভালো-আরো স্থির দিকনির্ণয়ের মতো চেতনার</p>
-<p>পরিমাপে নিয়ন্ত্রিত কাজ</p>
-<p>কতদূর অগ্রসর হয়ে গেল জেনে নিতে আসে।</p>
-<p><br/></p>
-<p>পূর্বাশা বৈশাখ ১৩৫৭</p>
-</p>
-<h2>অনন্দা</h2>
-<p>এই পৃথিবীর এ এক শতচ্ছিদ্র নগরী।</p>
-<p>দিন ফুরুলে তারার আলো ক্ষণিক নেমে আসে।</p>
-<p>গ্যাসের বাতি দাড়িয়ে থাকে রাতের বাতাসে।</p>
-<p>দ্রুতগতি নরনারীর ক্ষণিক শরীর থেকে</p>
-<p>উৎসারিত ছায়ার কালো ভারে</p>
-<p><p>আঁধার আলোয় মনে হতে পারে</p>
-<p>এ-সব দেয়াল যে-কোনো নগরীর;</p>
-<p>সন্দেহ ভয় অপ্রেম দ্বেষ অবক্ষয়ের ভিড়</p>
-<p>সূর্য-তারার আলোয় অঢেল রক্ত হতে পারে</p>
-<p>যে-কোনো দিন; সে কতবার আঁধার বেশি শানিত হয়েছে;</p>
-<p>বাহক নেই –দুরন্ত কাল নিজেই বয়েছে</p>
-<p>নিজেরই শব নিজে মানুষ,</p>
-<p>মানবপ্রাণের রহস্যময় গভীর গুহার থেকে</p>
-<p>সিংহ শকুন শেয়াল নেউল সৰ্পদন্ত ডেকে।</p>
-<p><br/></p>
-<p>হৃদয় আছে বলেই মানুষ দেখ, কেমন বিচলিত হয়ে</p>
-<p>বোনভায়েকে খুন ক'রে সেই রক্ত দেখে আঁশটে হৃদয়ে</p>
-<p>জেগে উঠে ইতিহাসের অধম স্থূলতাকে</p>
-<p>ঘুচিয়ে দিতে জ্ঞানপ্রতিভা আকাশ প্ৰেম নক্ষত্রকে ডাকে।</p>
-<p>এই নগরী যে-কোনো দেশ; যে-কোনো পরিচয়ে</p>
-<p>আজ পৃথিবীর মানবজাতির ক্ষয়ের বলয়ে</p>
-<p>অন্তবিহীন ফ্যাক্টরি ক্রেন ট্রাকের শব্দে ট্রাফিক কোলাহলে</p>
-<p>হৃদয়ে যা হারিয়ে গেছে মেশিনকণ্ঠে তাকে</p>
-<p>শূন্য অবলেহন থেকে ডাকে।</p>
-<p><br/></p>
-<p>‘তুমি কি গ্রীস পোল্যাণ্ড চেক প্যারিস মিউনিক</p>
-<p>টোকিও রোম নুইয়র্ক ক্রেমলিন আটলান্টিক</p>
-<p>লণ্ডন চীন দিল্লী মিশর করাচী প্যালেস্টাইন?</p>
-<p>একটি মৃত্যু, এক ভূমিকা, একটি শুধু আইন।</p>
-<p>বলছে মেশিন। মেশিনপ্রতিম অধিনায়ক বলে;</p>
-<p>সকল ভূগোল নিতে হবে নতুন করে গড়ে</p>
-<p>আমার হাতে গড়া ইতিহাসের ভেতরে,</p>
-</p>
-<p><p>নতুন সময় সীমাবলয় সবই তো আজ আমি;</p>
-<p>ওদের ছোয়া বাচিয়ে আমার স্বত্বাধিকারকামী;</p>
-<p>আমি সংঘ জাতি রীতি রক্ত হলুদ নীল</p>
-<p>সবুজ শাদা মেরুন অশ্লীল</p>
-<p>নিয়মগুলো বাতিল করি; কালো কোর্তা দিয়ে</p>
-<p>ওদের ধূসর পাটকিলে বফ্ কোর্তা তাড়িয়ে</p>
-<p>আমার অনুচরের বৃন্দ অন্ধকারের বার</p>
-<p>আলোক ক'রে কী অবিনাশ দ্বৈপ-পরিবার।</p>
-<p><br/></p>
-<p>এই দ্বীপই দেশ; এ-দ্বীপ নিখিল তবে।</p>
-<p>অন্য সকল দ্বীপের হতে হবে</p>
-<p>আমার মতো—আমার অনুচরের মতো ধ্রুব।</p>
-<p>হে রক্তবীজ, তুমি হবে আমার আঘাত পেয়ে</p>
-<p>অনবতুল আমির মতো শুভ।</p>
-<p><br/></p>
-<p>সবাই তো আজ যে যার অন্তরঙ্গ জিনিস খুঁজে</p>
-<p>মানবভ্রাতাবোনকে বুকে টেনে নেবার ছলে</p>
-<p>তাদের নিকেশ করে অনির্বচন রক্তে এই পৃথিবীর জলে</p>
-<p>নানারকম নতুন নামের বৃহৎ ভীষণ নদী হয়ে গেল;</p>
-<p>এই পৃথিবীর সব নগরী পরিক্রম করে</p>
-<p>নতুন অভিধানের শব্দে ছন্দে জেগে সুপরিসর ভোরে</p>
-<p>এ-সব নদী গভীরতর মানে পেতে চায়—</p>
-<p>দিকসময়ের আতল রক্ত ক্ষালন করে অনুতপ্ততায়;</p>
-<p>বাস্তবিকই জল কি জলের নিকটতম মানে?</p>
-<p>অথবা কি মানবরক্ত বহন করি নির্মম অজ্ঞানে?</p>
-<p>কি আন্তরিক অর্থ কোথায় আছে?</p>
-<p>এই পৃথিবীর গোষ্ঠীরা কি পরস্পরের কাছে</p>
-</p>
-<p>ভাইয়ের মতো; সৎ প্রকৃতির স্পষ্ট উৎস থেকে</p>
-<p>মানবসভ্যতার এই মলিন ব্যতিক্রমে জেগে উঠে?</p>
-<p>যে যার দেহ আত্মা ভালোবেসে অমল জলকণার মতন সমুদ্রকে এক মুঠে</p>
-<p>ধ'রে আছে?</p>
-<p>ভালো করে বেচে থাকার বিশদ নির্দেশে</p>
-<p>সূর্যকরোজ্জ্বল প্রভাতে এসে</p>
-<p>হিংসা গ্লানি মৃত্যুকে শেষ করে</p>
-<p>জেগে আছে?</p>
-<p><br/></p>
-<p>জেগে উঠে সময়সাগরতীরে সূর্যস্রোতে</p>
-<p>তবুও ক্লান্ত পতিত মলিন হতে</p>
-<p>কী আবেদন আসছে মানুষ প্রতিদিনই –</p>
-<p>কোথার থেকে শুকুনক্রান্তি বলে;</p>
-<p>জলের নদী? জেগে উঠুক আপামরের রক্তকোলাহলে !</p>
-<p><br/></p>
-<p>এ-সুর শুরু হয়েছিলো কুরুবর্ষে-বেবিলনে ট্রয়ে;</p>
-<p>মানুষ মানী জ্ঞানী প্রধান হয়ে গেছে; তবুও হৃদয়ে</p>
-<p>ভালোবাসার যৌনকুয়াশা কেটে</p>
-<p>যে-প্রেম আসে সেটা কি তার নিজের ছায়ার প্রতি?</p>
-<p>জলের কলরোলের পাশে এই নগরীর অন্ধকারে আজ</p>
-<p>আধার আরো গভীরতর করে ফেলে সভ্যতার এই অপার আত্মরতি;</p>
-<p>চারি দিকে নীল নরকে প্রবেশ করার চাবি</p>
-<p>অসীম স্বৰ্গ খুলে দিয়ে লক্ষ কোটি নরককীটের দাবি</p>
-<p>জাগিয়ে তবু সে-কীট ধ্বংস করার মতো হয়ে</p>
-<p>ইতিহাসের গভীরতর শক্তি ও প্রেম রেখেছে কিছু হয়তো হৃদয়ে।</p>
-<h2>আছে</h2>
-<p>এখন চৈত্রের দিন নিভে আসে –আরো নিভে আসে;</p>
-<p>           এখানে মাঠের পরে শুয়ে আছি ঘাসে;</p>
-<p>এসে শেষ হয়ে যায় মানুষের ইচ্ছা কাজ পৃথিবীর পথে,</p>
-<p>         দু-চারটে-বড়ো জোর একশো শরতে;</p>
-<p><br/></p>
-<p>উর ময় চীন ভারতের গল্প বহিঃপৃথিবীর শর্তে হয়ে গেছে শেষ;</p>
-<p>         জীবনের রূপ আর রক্তের নির্দেশ</p>
-<p>পৃথিবীর কাম আর বিচ্ছেদের ভূমি-মনে হয়—এক তিলের সমান;</p>
-<p>         কিন্তু এই চেয়ে থাকা, স্থিতি, রাত্রি, শান্তি– অফুরান।</p>
-<p>চারিদিকে বড়ো বড়ো আকাশ ও গাছের শরীরে</p>
-<p>         সময় এসেছে তার নীড়ে।</p>
-<p>ভালো লাগে পৃথিবীর রূঢ় নষ্ট সভ্যতার দিনের ব্যত্যয়;</p>
-<p>         অন্ধকার সনাতনে মিশে যাওয়া-কিন্তু মরণের ঘুম নয়;</p>
-<p>জেগে থাকা; নক্ষত্রের বাগীশ্বরী দ্যোতনার থেকে কিছু দূরে;</p>
-<p>         পৃথিবীর অবলুপ্ত জ্ঞানী বন্ধুরে</p>
-<p>এই স্তব্ধ মাটিতেই মিশে যেতে হল জেনে তবু চোখ রেখে নীলাকাশে</p>
-<p>         শুয়ে থাকা পৃথিবীর মাধুরীর অন্ধকার ঘাসে।</p>
-<p><br/></p>
-<p>কবিতা। আশ্বিন ১৩৫৯</p>
-<h2>যাত্রী</h2>
-<p><p>মনে হয় প্রাণ এক দূর স্বচ্ছ সাগরের কূলে</p>
-<p>জন্ম নিয়েছিল কবে;</p>
-<p>পিছে মৃত্যুহীন জন্মহীন চিহ্নহীন</p>
-</p>
-<p><p>কুয়াশার যে-ইঙ্গিত ছিল</p>
-<p>সেই সব ধীরে ধীরে ভুলে গিয়ে অন্য এক মানে</p>
-<p>পেয়েছিল এখানে ভূমিষ্ঠ হয়ে—আলো জল আকাশের টানে;</p>
-<p>কেন যেন কাকে ভালোবেসে।</p>
-<p><br/></p>
-<p>মৃত্যু আর জীবনের কালো আর শাদা</p>
-<p>হৃদয়ে জড়িয়ে নিয়ে যাত্রী মানুষ</p>
-<p>এসেছে এ-পৃথিবীর দেশে;</p>
-<p>কঙ্কাল অঙ্গার কালি-চারিদিকে রক্তের ভিতরে</p>
-<p>অন্তহীন করুণ ইচ্ছার চিহ্ন দেখে</p>
-<p>পথ চিনে এ-ধুলোয় নিজের জন্মের চিহ্ন চেনাতে এলাম;</p>
-<p>কাকে তবু?</p>
-<p>পৃথিবীকে আকাশকে আকাশে যে-সূর্য জ্বলে তাকে?</p>
-<p>ধুলোর কণিকা অণুপরমাণু ছায়া বৃষ্টি জলকণিকাকে?</p>
-<p>নগর বন্দর রাষ্ট্র জ্ঞান অজ্ঞানের পৃথিবীকে?</p>
-<p><br/></p>
-<p>যেই কুজ্ঝটিকা ছিল জন্মসৃষ্টির আগে, আর</p>
-<p>যে-সব কুয়াশা রবে শেষে একদিন</p>
-<p>তার অন্ধকার আজ আলোর বলয়ে এসে পড়ে পলে-পলে;</p>
-<p>নীলিমার দিকে মন যেতে চায় প্রেমে;</p>
-<p>সনাতন কালো মহাসাগরের দিকে যেতে বলে।</p>
-<p>তবু আলো পৃথিবীর দিকে</p>
-<p>সূর্য রোজ সঙ্গে করে আনে</p>
-<p>যেই ঋতু যেই তিথি যে-জীবন যেই মৃত্যুরীতি</p>
-<p>মহাইতিহাস এসে এখনও জানে নি যার মানে;</p>
-<p><br/></p>
-<p>সেদিকে যেতেছে লোক গ্লানি প্ৰেম ক্ষয়</p>
-</p>
-<p><p>নিত্য পদচিহ্নের মতো সঙ্গে করে;</p>
-<p>নদী আর মানুষের ধাবমান ধূসর হৃদয়</p>
-<p>রাত্রি পোহালো ভোরে –কাহিনীর কত শত ভোরে</p>
-<p>নব সূর্য নব পাখি নব চিহ্ন নগরে নিবাসে;</p>
-<p>নব-নব যাত্রীদের সাথে মিশে যায়</p>
-<p>প্রাণলোকযাত্রীদের ভিড়;</p>
-<p>হৃদয়ে চলার গতি গান আলো রয়েছে, অকূলে</p>
-<p>মানুষের পটভূমি হয়তো বা শাশ্বত যাত্রীর।</p>
-<p><br/></p>
-<p>আনন্দবাজার পত্রিকা। শারদীয় ১৩৬০</p>
-</p>
-<h2>স্থান থেকে</h2>
-<p>স্থান থেকে স্থানচ্যুত হয়ে</p>
-<p>চিহ্ন ছেড়ে অন্য চিহ্নে গিয়ে</p>
-<p>ঘড়ির কাঁটার থেকে সময়ের স্নায়ুর স্পন্দন</p>
-<p>খসিয়ে বিমুক্ত করে তাকে</p>
-<p>দেখা যায় অবিরল শাদা-কালো সময়ের ফাঁকে</p>
-<p>সৈকত কেবলই দূরে সৈকতে ফুরায়;</p>
-<p>পটভূমি বারবার পটভূমিচ্ছেদ</p>
-<p>করে ফেলে আঁধারকে আলোর বিলয়</p>
-<p>আলোককে আঁধারের ক্ষয়</p>
-<p>শেখায় শুক্ল সূর্যে; গ্লানি রক্তসাগরের জয়</p>
-<p>দেখায় কৃষ্ণ সূর্যে; ক্রমেই গভীর কৃষ্ণ হয়।</p>
-<h2>দিনরাত</h2>
-<p>সারাদিন মিছে কেটে গেলো;</p>
-<p>সারারাত বড্ডো খারাপ</p>
-<p>নিরাশায় ব্যর্থতায় কাটবে; জীবন</p>
-<p>দিনরাত দিনগতপাপ</p>
-<p>ক্ষয় করবার মতো ব্যবহার শুধু।</p>
-<p>ফণীমনসার কাঁটা তবুও তো স্নিগ্ধ শিশিরে</p>
-<p>মেখে আছে;</p>
-<p>একটিও পাখি শূন্যে নেই;</p>
-<p>সব জ্ঞানপাপী পাখি ফিরে গেছে নীড়ে।</p>
-<h2>পৃথিবীতে এই</h2>
-<p>পৃথিবীতে এই জন্মলাভ তবু ভালো;</p>
-<p>ভূমিষ্ঠ হবার পরে যদিও ক্রমেই মনে হয়</p>
-<p>কোনো-এক অন্ধকার স্তন্ধ সৈকতের</p>
-<p>বিন্দুর ভেতর থেকে কোনো</p>
-<p>অন্য দূর স্থির বলয়ের</p>
-<p>চিহ্ন লক্ষ্য করে দুই শব্দহীন শেষ সাগরের</p>
-<p>মাঝখানে কয়েক মুহূর্ত এই সূর্যের আলো।</p>
-<p><br/></p>
-<p>কেন আলো? মাছিদের ওড়াউড়ি?</p>
-<p>কেবলই ভঙ্গুর চিহ্ন মুখে নিয়ে জল</p>
-<p>সুয়েজ হেলেস‍্পন্ট প্রশান্ত লোহিতে</p>
-<p>পরিণতি চায় এই মাছি মাছরাঙা</p>
-<p>প্রেমিক নাবিক নষ্ট নাসপাতি মুখ</p>
-<p>ঠোঁট চোখ নাক করোটির গন্ধ</p>
-<p>স্পষ্ট এক নিরসনে স্থির করে রেখে দেবে বলে;</p>
-<p>চলেছে– চলেছে–</p>
-<p><p>শিশির কুয়াশা বৃষ্টি ঝড়ের বিহ্বল আলোড়ন</p>
-<p>সমুদ্রের শত মৃত্যুশীল ফাঁকি</p>
-<p>ডানে-বায়ে সারা দিন আবছা মরণ</p>
-<p>ঝেড়ে ফেলে –ঝাপসায় বিপদের ঘন্টা বাজিয়ে</p>
-<p>আমাদের আশা ভালোবাসা ব্যথা রণঘড়ি সূর্যের ঘড়ি</p>
-<p>চিন্তা বুদ্ধি চাকার ঘুরুনি গ্লানি দাঁতালো ইস্পাত</p>
-<p>খানিকটা আলো উজ্জ্বলতা শান্তি চায়;</p>
-<p><br/></p>
-<p>জলের মরণশীল চ্ছলচ্ছল শুনে</p>
-<p>কম্পাসের চেতনাকে সর্বদাই উত্তরের দিকে রেখে</p>
-<p>সমুদ্রকে সর্বদাই শান্ত হতে বলে</p>
-<p>আমরা অন্তিম মূল্য পেতে চাই– প্রেমে;</p>
-<p>পৃথিবীর ভরাট বাজার ভরা লোকসান</p>
-<p>লোভ পঁচা উদ্ভিদ কুষ্ঠ মৃত গলিত আমিষ গন্ধ ঠেলে</p>
-<p>সময়ের সমুদ্রকে বারবার মৃত্যু থেকে জীবনের দিকে যেতে ব'লে।</p>
-</p>
-<p style="text-align: center; padding: 0pt; margin: 0pt;">
+        <div id="read-main-content" class="px-5 md:px-10 py-7 max-w-2xl">
 
-
-
-</p>
-
+            <!-- Book cover + info -->
+            <div class="flex items-center gap-4 mb-5">
+                <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780239348488_r7qnw9el19q.webp" alt="শ্রেষ্ঠ কবিতা"
+                     class="w-16 rounded-lg shadow-md flex-shrink-0 object-cover aspect-[2/3]">
+                <div class="min-w-0">
+                    <h1 class="text-base font-bold text-gray-900 dark:text-gray-100 leading-snug line-clamp-2 mb-1">শ্রেষ্ঠ কবিতা</h1>
+                    <a href="/author/jibanananda-das.html"
+                       class="text-sm text-[#c0392b] hover:underline font-medium">জীবনানন্দ দাশ</a>
+                </div>
             </div>
 
-            <!-- Bottom nav -->
-            <div class="mt-12 pt-6 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
+            <!-- Top action buttons -->
+            <div class="flex gap-3 mb-6">
                 <a href="/books/shrestho-kobita.html"
-                   class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#c0392b] transition">
-                    <i class="fas fa-arrow-left text-xs"></i> বইয়ের তথ্য
+                   class="flex-1 flex items-center justify-center gap-2 text-sm border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:border-[#c0392b] hover:text-[#c0392b] rounded-xl py-2.5 transition">
+                    <i class="fas fa-circle-info text-xs"></i> বইয়ের তথ্য
                 </a>
                 <a href="/download/shrestho-kobita.html"
-                   class="flex items-center gap-2 text-sm bg-[#c0392b] hover:bg-[#a93226] text-white px-4 py-2 rounded-lg transition">
-                    <i class="fas fa-download text-xs"></i> ডাউনলোড করুন
+                   class="flex-1 flex items-center justify-center gap-2 text-sm bg-[#c0392b] hover:bg-[#a93226] text-white rounded-xl py-2.5 transition">
+                    <i class="fas fa-download text-xs"></i> ডাউনলোড
                 </a>
             </div>
+
+            <hr class="border-gray-200 dark:border-gray-700 mb-6">
+            <div id="book-content" class="text-gray-800 dark:text-gray-200">
+                
+            </div>
+
         </div>
     </div>
 
-    <!-- Desktop RIGHT sidebar: customization controls -->
-    <aside id="toc-sidebar"
-        class="hidden lg:flex flex-col w-56 shrink-0 border-l border-gray-100 dark:border-gray-800 bg-white dark:bg-[#1a1a1b] overflow-y-auto">
-
-        <!-- Reading progress -->
-        <div class="px-4 pt-6 pb-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-3">অগ্রগতি</p>
-            <div class="flex items-center gap-3">
-                <div class="relative w-12 h-12 shrink-0">
-                    <svg class="w-full h-full -rotate-90" viewBox="0 0 36 36">
-                        <circle cx="18" cy="18" r="14" fill="none" stroke="currentColor"
-                            class="text-gray-100 dark:text-gray-800" stroke-width="3"/>
-                        <circle id="progress-ring-circle" cx="18" cy="18" r="14" fill="none"
-                            stroke="#c0392b" stroke-width="3"
-                            stroke-dasharray="87.96" stroke-dashoffset="87.96"
-                            stroke-linecap="round"/>
-                    </svg>
-                    <span id="progress-pct"
-                        class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-gray-700 dark:text-gray-300 tabular-nums leading-none">০%</span>
-                </div>
-                <div>
-                    <p class="text-[12px] font-semibold text-gray-700 dark:text-gray-300">পড়া হয়েছে</p>
-                    <p class="text-[11px] text-gray-400 dark:text-gray-500 mt-0.5">স্ক্রোল করুন</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Font size -->
-        <div class="px-4 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">লেখার আকার</p>
-            <div class="flex items-center gap-2">
-                <button id="font-decrease"
-                    class="w-9 h-9 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-[13px] font-bold transition text-gray-600 dark:text-gray-300 flex items-center justify-center">A−</button>
-                <div class="flex-1 flex justify-center gap-1.5 items-center">
-                    <span id="font-dot-0" class="w-2 h-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></span>
-                    <span id="font-dot-1" class="w-2 h-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></span>
-                    <span id="font-dot-2" class="w-2 h-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></span>
-                    <span id="font-dot-3" class="w-2 h-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></span>
-                </div>
-                <button id="font-increase"
-                    class="w-9 h-9 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-[13px] font-bold transition text-gray-600 dark:text-gray-300 flex items-center justify-center">A+</button>
-            </div>
-            <p class="text-center text-[10px] text-gray-400 dark:text-gray-600 mt-2">
-                স্তর: <span id="font-label" class="font-semibold text-gray-600 dark:text-gray-400">২</span> / ৪
-            </p>
-        </div>
-
-        <!-- Theme selector -->
-        <div class="px-4 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">থিম</p>
-            <div class="flex gap-1.5">
-                <button data-theme="light" class="theme-btn flex-1 h-10 rounded-lg border-2 text-[11px] font-medium transition-all" style="background:#fff;color:#333;border-color:#e5e7eb;">আলো</button>
-                <button data-theme="sepia" class="theme-btn flex-1 h-10 rounded-lg border-2 text-[11px] font-medium transition-all" style="background:#f5efe6;color:#5a4535;border-color:#d9ccbe;">সেপিয়া</button>
-                <button data-theme="dark"  class="theme-btn flex-1 h-10 rounded-lg border-2 text-[11px] font-medium transition-all" style="background:#1c1c1e;color:#ccc;border-color:#333;">অন্ধকার</button>
-            </div>
-        </div>
-
-        <!-- Line spacing -->
-        <div class="px-4 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">লাইনের ফাঁক</p>
-            <div class="flex gap-1.5">
-                <button data-ls="ls-compact"
-                    class="ls-btn flex-1 h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[11px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center justify-center gap-0.5">
-                    <span class="flex flex-col gap-[2px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span class="text-[9px]">আঁটো</span>
-                </button>
-                <button data-ls="ls-normal"
-                    class="ls-btn flex-1 h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[11px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center justify-center gap-0.5">
-                    <span class="flex flex-col gap-[4px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span class="text-[9px]">স্বাভাবিক</span>
-                </button>
-                <button data-ls="ls-relaxed"
-                    class="ls-btn flex-1 h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[11px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center justify-center gap-0.5">
-                    <span class="flex flex-col gap-[6px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span class="text-[9px]">প্রশস্ত</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Font family -->
-        <div class="px-4 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">ফন্ট</p>
-            <div class="flex flex-col gap-1.5">
-                <button data-ff="ff-sans"
-                    class="ff-btn w-full h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[12px] transition-all text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 px-3 text-left"
-                    style="font-family: 'Segoe UI', sans-serif;">সাধারণ (Sans)</button>
-                <button data-ff="ff-serif"
-                    class="ff-btn w-full h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[12px] transition-all text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 px-3 text-left"
-                    style="font-family: 'Noto Serif Bengali', serif;">বইয়ের ফন্ট (Serif)</button>
-            </div>
-        </div>
-
-        <!-- Reading width -->
-        <div class="px-4 py-4 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">পড়ার প্রস্থ</p>
-            <div class="flex gap-1.5">
-                <button data-rw="rw-narrow"
-                    class="rw-btn flex-1 py-1.5 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[10px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center gap-1">
-                    <span class="flex gap-0.5 items-end h-3"><span class="w-[3px] h-3 bg-current rounded-sm opacity-80"></span></span>
-                    <span>সরু</span>
-                </button>
-                <button data-rw="rw-medium"
-                    class="rw-btn flex-1 py-1.5 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[10px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center gap-1">
-                    <span class="flex gap-0.5 items-end h-3"><span class="w-[5px] h-3 bg-current rounded-sm opacity-80"></span></span>
-                    <span>মাঝারি</span>
-                </button>
-                <button data-rw="rw-wide"
-                    class="rw-btn flex-1 py-1.5 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[10px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center gap-1">
-                    <span class="flex gap-0.5 items-end h-3"><span class="w-[8px] h-3 bg-current rounded-sm opacity-80"></span></span>
-                    <span>চওড়া</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Text alignment -->
-        <div class="px-4 py-4 border-t border-gray-100 dark:border-gray-800 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">টেক্সট সারিবদ্ধতা</p>
-            <div class="flex gap-1.5">
-                <button data-ta="ta-default"
-                    class="ta-btn flex-1 h-9 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 flex flex-col items-center justify-center gap-1 transition-all">
-                    <i class="fas fa-align-left text-[11px]"></i>
-                    <span class="text-[9px]">বাম</span>
-                </button>
-                <button data-ta="ta-center"
-                    class="ta-btn flex-1 h-9 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 flex flex-col items-center justify-center gap-1 transition-all">
-                    <i class="fas fa-align-center text-[11px]"></i>
-                    <span class="text-[9px]">মাঝ</span>
-                </button>
-                <button data-ta="ta-justify"
-                    class="ta-btn flex-1 h-9 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 flex flex-col items-center justify-center gap-1 transition-all">
-                    <i class="fas fa-align-justify text-[11px]"></i>
-                    <span class="text-[9px]">জাস্টিফাই</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Hidden nav (TOC moved to left sidebar) -->
+        <!-- TOC nav for mobile -->
         <nav id="toc-nav-desktop" class="hidden"></nav>
-    </aside>
 </div>
 </div>
 
@@ -1607,93 +528,52 @@
     const progressPct  = document.getElementById('progress-pct');
     const tocDesktop   = document.getElementById('toc-nav-desktop');
     const tocMobile    = document.getElementById('toc-nav-mobile');
-    const tocLeft      = document.getElementById('toc-nav-left');
     const progressRing = document.getElementById('progress-ring-circle');
-    const mobileTopbar  = document.getElementById('mobile-topbar');
-    const mobileBottomBar = document.getElementById('mobile-bottom-bar');
-    const fontPopup    = document.getElementById('font-popup');
-    const fontLabel    = document.getElementById('font-label');
+
+    const tocUnit      = document.getElementById('toc-unit');
+    const tocToggleBtn = document.getElementById('toc-toggle-btn');
+    const tocOverlay   = document.getElementById('mobile-toc-overlay');
 
     const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
     function toBN(n) {
         return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
     }
 
-    // ── Default theme ──
-    let currentTheme = localStorage.getItem('pg-theme') || 'light';
-    applyTheme(currentTheme);
 
-    function applyTheme(t) {
-        ['light','sepia','dark'].forEach(th => document.body.classList.remove('theme-'+th));
-        document.body.classList.add('theme-'+t);
-        currentTheme = t;
-        localStorage.setItem('pg-theme', t);
-
-        // sync Tailwind dark: variants with theme
-        if (t === 'dark') {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-
-        document.querySelectorAll('.theme-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.theme === t);
-        });
-        const bgMap = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e' };
-        const bdMap = { light:'#e5e7eb', sepia:'#d4c8b8', dark:'#2a2a2e' };
-        const clMap = { light:'#111', sepia:'#3b2f20', dark:'#e0e0e0' };
-        if (fontPopup) {
-            fontPopup.style.background = bgMap[t];
-            fontPopup.style.borderColor = bdMap[t];
-            fontPopup.style.color = clMap[t];
-        }
-    }
-
-    // Wire ALL theme buttons including desktop right sidebar
-    document.querySelectorAll('.theme-btn').forEach(btn => {
-        btn.addEventListener('click', () => applyTheme(btn.dataset.theme));
-    });
-
-    // ── Hide-on-scroll ──
-    let lastScrollY = window.scrollY;
-    let ticking = false;
-
+    // ── Toggle opacity on scroll ──
+    let scrollTimer;
     window.addEventListener('scroll', () => {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                const currentY = window.scrollY;
-                const delta    = currentY - lastScrollY;
-                const docH     = document.documentElement.scrollHeight - window.innerHeight;
-                const pct      = docH > 0 ? (currentY / docH) * 100 : 0;
-
-                if (delta > 6 && currentY > 80) {
-                    mobileTopbar?.classList.add('hide');
-                    mobileBottomBar?.classList.add('hide');
-                } else if (delta < -6) {
-                    mobileTopbar?.classList.remove('hide');
-                    mobileBottomBar?.classList.remove('hide');
-                }
-
-                lastScrollY = currentY;
-                progressBar.style.width = pct + '%';
-                if (progressPct) progressPct.textContent = toBN(pct) + '%';
-                // animate ring (circumference 87.96)
-                if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
-                ticking = false;
-            });
-            ticking = true;
+        if (tocToggleBtn && !tocUnit.classList.contains('open')) {
+            tocToggleBtn.classList.add('scrolling');
+            clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => tocToggleBtn.classList.remove('scrolling'), 800);
         }
     }, { passive: true });
 
+    // ── Progress bar on scroll ──
+    window.addEventListener('scroll', () => {
+        const docH = document.documentElement.scrollHeight - window.innerHeight;
+        const pct  = docH > 0 ? (window.scrollY / docH) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        if (progressPct) progressPct.textContent = toBN(pct) + '%';
+        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
+    }, { passive: true });
+
     // ── Build TOC ──
-    const headings = bookContent.querySelectorAll('h1, h2');
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    // Hide toggle if no headings
+    if (headings.length === 0 && tocToggleBtn) {
+        tocToggleBtn.style.display = 'none';
+    }
 
     function buildToc(nav, isMobile) {
         headings.forEach((h, i) => {
             h.id = h.id || ('sec-' + i);
             const a = document.createElement('a');
             a.href = '#' + h.id;
-            a.textContent = h.textContent;
+            a.textContent = h.textContent.trim();
             a.dataset.idx = i;
             const isH1 = h.tagName === 'H1';
             if (isMobile) {
@@ -1708,7 +588,6 @@
     }
     buildToc(tocDesktop, false);
     buildToc(tocMobile, true);
-    if (tocLeft) buildToc(tocLeft, false);
 
     // ── TOC active ──
     const allTocLinks = document.querySelectorAll('.toc-link');
@@ -1722,220 +601,194 @@
         });
     }, { passive: true });
 
-    // ── Font size ──
-    const fontSizes = ['fs-sm', 'fs-md', 'fs-lg', 'fs-xl'];
-    let currentSize = parseInt(localStorage.getItem('pg-font-size') || '1');
-    bookContent.classList.add(fontSizes[currentSize]);
-    if (fontLabel) fontLabel.textContent = currentSize + 1;
-    updateFontDots(currentSize);
 
-    function updateFontDots(size) {
-        for (let i = 0; i < 4; i++) {
-            ['font-dot-', 'm-font-dot-'].forEach(prefix => {
-                const dot = document.getElementById(prefix + i);
-                if (dot) dot.style.background = i <= size ? '#c0392b' : '';
-            });
-        }
-    }
-
-    function changeFont(delta) {
-        const next = Math.max(0, Math.min(fontSizes.length - 1, currentSize + delta));
-        if (next === currentSize) return;
-        bookContent.classList.replace(fontSizes[currentSize], fontSizes[next]);
-        currentSize = next;
-        localStorage.setItem('pg-font-size', currentSize);
-        if (fontLabel) fontLabel.textContent = currentSize + 1;
-        updateFontDots(currentSize);
-    }
-
-    document.getElementById('font-increase')?.addEventListener('click', () => changeFont(1));
-    document.getElementById('font-decrease')?.addEventListener('click', () => changeFont(-1));
-    document.getElementById('m-font-increase')?.addEventListener('click', () => changeFont(1));
-    document.getElementById('m-font-decrease')?.addEventListener('click', () => changeFont(-1));
-
-    document.getElementById('mob-font-btn')?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        fontPopup?.classList.toggle('hidden');
-    });
-    document.addEventListener('click', () => fontPopup?.classList.add('hidden'));
-    fontPopup?.addEventListener('click', e => e.stopPropagation());
-
-    // ── Mobile right TOC drawer ──
-    const tocDrawer  = document.getElementById('mobile-toc-drawer');
-    const tocOverlay = document.getElementById('mobile-toc-overlay');
+    let touchStartX = 0;
 
     function openTocDrawer() {
-        tocDrawer.classList.add('open');
+        tocUnit.classList.add('open');
         tocOverlay.classList.add('open');
         document.body.style.overflow = 'hidden';
     }
     function closeTocDrawer() {
-        tocDrawer.classList.remove('open');
+        tocUnit.classList.remove('open');
         tocOverlay.classList.remove('open');
         document.body.style.overflow = '';
     }
 
-    document.getElementById('mob-toc-btn')?.addEventListener('click', openTocDrawer);
-    document.getElementById('mob-toc-btn-top')?.addEventListener('click', openTocDrawer);
-    document.getElementById('mobile-toc-close')?.addEventListener('click', closeTocDrawer);
+    document.getElementById('toc-toggle-btn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        tocUnit.classList.contains('open') ? closeTocDrawer() : openTocDrawer();
+    });
     tocOverlay?.addEventListener('click', closeTocDrawer);
-
-
-    // ── Line spacing ──
-    const lsClasses = ['ls-compact', 'ls-normal', 'ls-relaxed'];
-    let currentLS = localStorage.getItem('pg-ls') || 'ls-normal';
-    bookContent.classList.add(currentLS);
-
-    function applyLS(ls) {
-        lsClasses.forEach(c => bookContent.classList.remove(c));
-        bookContent.classList.add(ls);
-        currentLS = ls;
-        localStorage.setItem('pg-ls', ls);
-        document.querySelectorAll('.ls-btn').forEach(b => {
-            b.classList.toggle('border-[#c0392b]', b.dataset.ls === ls);
-            b.classList.toggle('border-gray-200', b.dataset.ls !== ls);
-            b.classList.toggle('dark:border-gray-700', b.dataset.ls !== ls);
-        });
-    }
-    applyLS(currentLS);
-    document.querySelectorAll('.ls-btn').forEach(b => {
-        b.addEventListener('click', () => applyLS(b.dataset.ls));
-    });
-
-    // ── Font family ──
-    const ffClasses = ['ff-sans', 'ff-serif', 'ff-system'];
-    let currentFF = localStorage.getItem('pg-ff') || 'ff-sans';
-    bookContent.classList.add(currentFF);
-
-    function applyFF(ff) {
-        ffClasses.forEach(c => bookContent.classList.remove(c));
-        bookContent.classList.add(ff);
-        currentFF = ff;
-        localStorage.setItem('pg-ff', ff);
-        document.querySelectorAll('.ff-btn').forEach(b => {
-            b.classList.toggle('border-[#c0392b]', b.dataset.ff === ff);
-            b.classList.toggle('border-gray-200', b.dataset.ff !== ff);
-            b.classList.toggle('dark:border-gray-700', b.dataset.ff !== ff);
-        });
-    }
-    applyFF(currentFF);
-    document.querySelectorAll('.ff-btn').forEach(b => {
-        b.addEventListener('click', () => applyFF(b.dataset.ff));
-    });
-
-    // ── Reading width ──
-    const mainContent = document.getElementById('read-main-content');
-    const rwClasses   = ['rw-narrow', 'rw-medium', 'rw-wide'];
-    let currentRW = localStorage.getItem('pg-rw') || 'rw-medium';
-
-    function applyRW(rw) {
-        rwClasses.forEach(c => mainContent?.classList.remove(c));
-        mainContent?.classList.add(rw);
-        currentRW = rw;
-        localStorage.setItem('pg-rw', rw);
-        document.querySelectorAll('.rw-btn').forEach(b => {
-            b.classList.toggle('border-[#c0392b]', b.dataset.rw === rw);
-            b.classList.toggle('border-gray-200', b.dataset.rw !== rw);
-            b.classList.toggle('dark:border-gray-700', b.dataset.rw !== rw);
-        });
-    }
-    // remove existing max-w-2xl from classList and apply saved width
-    mainContent?.classList.remove('max-w-2xl');
-    applyRW(currentRW);
-    document.querySelectorAll('.rw-btn').forEach(b => {
-        b.addEventListener('click', () => applyRW(b.dataset.rw));
-    });
-
-
-    // ── Mobile bottom customization bar ──
-    const mobPanel    = document.getElementById('mob-cust-panel');
-    let activeTab     = null;
-
-    document.querySelectorAll('.mob-tab-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const panelId = btn.dataset.panel;
-            const isActive = btn.classList.contains('active');
-
-            // deactivate all
-            document.querySelectorAll('.mob-tab-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.mob-panel-section').forEach(s => s.classList.remove('active'));
-
-            if (isActive) {
-                // toggle off
-                mobPanel.classList.remove('open');
-                activeTab = null;
-            } else {
-                // open this panel
-                btn.classList.add('active');
-                document.getElementById(panelId)?.classList.add('active');
-                mobPanel.classList.add('open');
-                activeTab = panelId;
-            }
-        });
-    });
-
-    // sync mobile ff-btn active state
-    function syncMobileFF(ff) {
-        document.querySelectorAll('#mob-cust-panel .ff-btn').forEach(b => {
-            b.style.borderColor = b.dataset.ff === ff ? '#c0392b' : '';
-        });
-    }
-    document.querySelectorAll('#mob-cust-panel .ff-btn').forEach(b => {
-        b.addEventListener('click', () => { applyFF(b.dataset.ff); syncMobileFF(b.dataset.ff); });
-    });
-
-    // sync mobile ls-btn active state
-    function syncMobileLS(ls) {
-        document.querySelectorAll('#mob-cust-panel .ls-btn').forEach(b => {
-            b.style.borderColor = b.dataset.ls === ls ? '#c0392b' : '';
-        });
-    }
-    document.querySelectorAll('#mob-cust-panel .ls-btn').forEach(b => {
-        b.addEventListener('click', () => { applyLS(b.dataset.ls); syncMobileLS(b.dataset.ls); });
-    });
-
-    // sync mobile rw-btn active state
-    function syncMobileRW(rw) {
-        document.querySelectorAll('#mob-cust-panel .rw-btn').forEach(b => {
-            b.style.borderColor = b.dataset.rw === rw ? '#c0392b' : '';
-        });
-    }
-    document.querySelectorAll('#mob-cust-panel .rw-btn').forEach(b => {
-        b.addEventListener('click', () => { applyRW(b.dataset.rw); syncMobileRW(b.dataset.rw); });
-    });
-
-    // init active states on mobile
-    syncMobileFF(currentFF);
-    syncMobileLS(currentLS);
-    syncMobileRW(currentRW);
-
-
-    // ── Text alignment ──
-    const taClasses = ['ta-default', 'ta-center', 'ta-justify'];
-    let currentTA = localStorage.getItem('pg-ta') || 'ta-default';
-
-    function applyTA(ta) {
-        taClasses.forEach(c => bookContent.classList.remove(c));
-        bookContent.classList.add(ta);
-        currentTA = ta;
-        localStorage.setItem('pg-ta', ta);
-        document.querySelectorAll('.ta-btn').forEach(b => {
-            b.style.borderColor = b.dataset.ta === ta ? '#c0392b' : '';
-        });
-    }
-    applyTA(currentTA);
-    document.querySelectorAll('.ta-btn').forEach(b => {
-        b.addEventListener('click', () => applyTA(b.dataset.ta));
-    });
-
-
-    let touchStartX = 0;
-    tocDrawer?.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-    tocDrawer?.addEventListener('touchend', e => {
-        if (e.changedTouches[0].clientX - touchStartX > 60) closeTocDrawer();
-    }, { passive: true });
 })();
 </script>
 
+</body>
+</html>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 dark:bg-black border-t border-gray-800">
+
+        <!-- Mobile: 3 row stack | Desktop: 1 row -->
+        <div class="max-w-6xl mx-auto px-6 py-8">
+            <!-- Desktop: single row | Mobile: column -->
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+
+                <!-- Logo -->
+                <a href="/" class="text-2xl md:text-3xl font-extrabold tracking-tight text-white hover:text-[#c0392b] transition-colors text-center md:text-left shrink-0">
+                    পাঠক <span class="font-light text-gray-400">ঘর</span>
+                </a>
+
+                <!-- Description — mobile: center, desktop: flex-1 center -->
+                <p class="text-sm text-gray-400 leading-relaxed text-center md:flex-1 md:px-8">
+                    বাংলা সাহিত্যের এক ডিজিটাল পাঠাগার। বিনামূল্যে পড়ুন, ডাউনলোড করুন — যেকোনো সময়, যেকোনো জায়গা থেকে।
+                </p>
+
+                <!-- Social icons -->
+                <div class="flex items-center justify-center md:justify-end gap-2 shrink-0">
+                    <a href="#" aria-label="Twitter" class="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
+                        <i class="fab fa-twitter text-sm"></i>
+                    </a>
+                    <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
+                        <i class="fab fa-facebook-f text-sm"></i>
+                    </a>
+                    <a href="#" aria-label="YouTube" class="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
+                        <i class="fab fa-youtube text-sm"></i>
+                    </a>
+                    <a href="mailto:pathokghar@gmail.com" aria-label="Email" class="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
+                        <i class="fas fa-envelope text-sm"></i>
+                    </a>
+                    <a href="#" aria-label="RSS" class="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
+                        <i class="fas fa-rss text-sm"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="border-t border-gray-800">
+            <div class="max-w-6xl mx-auto px-6 py-3 pb-6 md:pb-3 flex flex-col md:flex-row items-center justify-between gap-2 text-[12px] text-gray-500">
+                <div class="flex items-center gap-4">
+                    <a href="#" class="hover:text-[#c0392b] transition-colors">সম্পর্কে</a>
+                    <span class="text-gray-700">|</span>
+                    <a href="#" class="hover:text-[#c0392b] transition-colors">যোগাযোগ</a>
+                    <span class="text-gray-700">|</span>
+                    <a href="#" class="hover:text-[#c0392b] transition-colors">গোপনীয়তা নীতি</a>
+                </div>
+                <p class="hidden md:block">
+                    © Crafted by <a href="https://github.com/physarif" target="_blank" rel="noopener" class="text-[#c0392b] hover:text-[#a93226] transition-colors font-medium">Arif</a>
+                    <span class="mx-1">·</span>
+                    github.com/physarif
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode
+        const themeBtn = document.getElementById('theme-btn');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
+
+        const header = document.querySelector('header');
+        const sidebar = document.getElementById('sidebar');
+        function applyTheme(dark) {
+            if (dark) {
+                html.classList.add('dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.theme = 'dark';
+                header.style.borderTopColor = '#7a3b1e';
+                sidebar.style.borderTopColor = '#7a3b1e';
+            } else {
+                html.classList.remove('dark');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.theme = 'light';
+                header.style.borderTopColor = '#fff5f5';
+                sidebar.style.borderTopColor = '#fff5f5';
+            }
+        }
+
+        applyTheme(localStorage.theme === 'dark');
+
+        themeBtn.addEventListener('click', () => {
+            applyTheme(!html.classList.contains('dark'));
+        });
+
+        // Mobile search
+        const mobileSearchBtn = document.getElementById('mobile-search-btn');
+        const mobileSearchBar = document.getElementById('mobile-search-bar');
+
+        mobileSearchBtn.addEventListener('click', () => {
+            mobileSearchBar.classList.toggle('hidden');
+            if (!mobileSearchBar.classList.contains('hidden')) {
+                mobileSearchBar.querySelector('input').focus();
+            }
+        });
+
+        // Search functionality
+        function doSearch(query) {
+            if (query.trim()) {
+                window.location.href = '/search.html?q=' + encodeURIComponent(query.trim());
+            }
+        }
+
+        const desktopInput = document.getElementById('desktop-search-input');
+        const desktopBtn = document.getElementById('desktop-search-btn');
+        const mobileInput = document.getElementById('mobile-search-input');
+        const mobileSubmit = document.getElementById('mobile-search-submit');
+
+        desktopBtn.addEventListener('click', () => doSearch(desktopInput.value));
+        desktopInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(desktopInput.value); });
+
+        mobileSubmit.addEventListener('click', () => doSearch(mobileInput.value));
+        mobileInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(mobileInput.value); });
+
+        // Hide header on scroll down, show on scroll up (mobile only)
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                const currentScrollY = window.scrollY;
+                    if (currentScrollY > lastScrollY && currentScrollY > 56) {
+                        header.style.transform = 'translateY(-100%)';
+                    } else {
+                        header.style.transform = 'translateY(0)';
+                    }
+                    lastScrollY = currentScrollY;
+                ticking = false;
+            });
+        });
+
+
+        // Sidebar
+        const sidebarBtn = document.getElementById('sidebar-btn');
+        const overlay = document.getElementById('sidebar-overlay');
+
+        function openSidebar() {
+            sidebar.classList.add('open');
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        sidebarBtn.addEventListener('click', openSidebar);
+        overlay.addEventListener('click', closeSidebar);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
+
+    </script>
+
+
+
+    <script type="module" src="/firebase.js"></script>
 </body>
 </html>
