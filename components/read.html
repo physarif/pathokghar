@@ -108,213 +108,42 @@
 
         /* book-content theme handled globally below */
 
-        /* Fixed top bar — hidden on mobile */
+        /* Fixed top bar */
         #mobile-topbar {
-            display: none !important;
-        }
-
-        /* main content padding — no topbar offset needed */
-        #read-main-content {
-            padding-top: calc(env(safe-area-inset-top) + 20px);
-            padding-bottom: 32px;
-        }
-
-        /* ── Floating TOC toggle button (top-left) ── */
-        #mob-toc-float-btn {
             position: fixed;
-            top: calc(env(safe-area-inset-top) + 12px);
-            left: 14px;
-            z-index: 300;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
+            top: 0; left: 0; right: 0;
+            height: 52px;
+            z-index: 200;
             display: flex;
             align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.18);
-            transition: background 0.25s, box-shadow 0.2s, transform 0.2s;
+            gap: 4px;
+            padding: 0 10px;
+            padding-top: env(safe-area-inset-top);
+            transition: transform 0.28s ease, background 0.3s;
+            border-bottom-left-radius: 14px;
+            border-bottom-right-radius: 14px;
+            background: #ffffff;
         }
-        #mob-toc-float-btn:active { transform: scale(0.92); }
+        #mobile-topbar.hide { transform: translateY(-100%); }
 
-        body.theme-light  #mob-toc-float-btn { background: #ffffff; color: #333; }
-        body.theme-sepia  #mob-toc-float-btn { background: #f5efe6; color: #5a4535; }
-        body.theme-dark   #mob-toc-float-btn { background: #2c2c30; color: #ddd; }
-        body.theme-black  #mob-toc-float-btn { background: #1a1a1a; color: #ccc; }
-        body.theme-green  #mob-toc-float-btn { background: #0d2010; color: #6fcf72; }
-        body.theme-blue   #mob-toc-float-btn { background: #0a1520; color: #5b9cf6; }
-        body.theme-gray   #mob-toc-float-btn { background: #222226; color: #aaa; }
-
-        /* Default fallback if no theme class */
-        #mob-toc-float-btn { background: #ffffff; color: #333; }
-
-        /* ── Mobile LEFT TOC drawer ── */
-        #mobile-toc-left-drawer {
-            position: fixed;
-            top: 0; left: 0; bottom: 0;
-            width: 82vw; max-width: 300px;
-            z-index: 500;
-            display: flex; flex-direction: column;
-            transform: translateX(-105%);
-            transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
-        }
-        #mobile-toc-left-drawer.open { transform: translateX(0); }
-
-        body.theme-dark   #mobile-toc-left-drawer { background: #18181a; border-right: 1px solid #2c2c30; }
-        body.theme-sepia  #mobile-toc-left-drawer { background: #f5efe6; border-right: 1px solid #d9ccbe; }
-        body.theme-light  #mobile-toc-left-drawer { background: #fafafa; border-right: 1px solid #e8eaed; }
-        body.theme-black  #mobile-toc-left-drawer { background: #0a0a0a; border-right: 1px solid #1a1a1a; }
-        body.theme-green  #mobile-toc-left-drawer { background: #0d1f0f; border-right: 1px solid #1a3a1c; }
-        body.theme-blue   #mobile-toc-left-drawer { background: #0a1520; border-right: 1px solid #1a2f4a; }
-        body.theme-gray   #mobile-toc-left-drawer { background: #222226; border-right: 1px solid #3a3a3e; }
-        /* Default */
-        #mobile-toc-left-drawer { background: #fafafa; border-right: 1px solid #e8eaed; }
-
-        /* Left drawer header */
-        #toc-left-drawer-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 16px;
-            height: 56px;
-            shrink: 0;
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-        }
-        body.theme-dark   #toc-left-drawer-header { border-bottom-color: #2c2c30; }
-        body.theme-sepia  #toc-left-drawer-header { border-bottom-color: #d9ccbe; }
-        body.theme-light  #toc-left-drawer-header { border-bottom-color: #e8eaed; }
-        body.theme-black  #toc-left-drawer-header { border-bottom-color: #1a1a1a; }
-        body.theme-green  #toc-left-drawer-header { border-bottom-color: #1a3a1c; }
-        body.theme-blue   #toc-left-drawer-header { border-bottom-color: #1a2f4a; }
-        body.theme-gray   #toc-left-drawer-header { border-bottom-color: #3a3a3e; }
-        #toc-left-drawer-header { border-bottom-color: #e8eaed; }
-
-        #toc-left-drawer-header .drawer-title {
-            font-size: 0.8125rem;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-        }
-        body.theme-dark   #toc-left-drawer-header .drawer-title { color: #9ca3af; }
-        body.theme-sepia  #toc-left-drawer-header .drawer-title { color: #8a7060; }
-        body.theme-light  #toc-left-drawer-header .drawer-title { color: #9ca3af; }
-        body.theme-black  #toc-left-drawer-header .drawer-title { color: #666; }
-        body.theme-green  #toc-left-drawer-header .drawer-title { color: #4a7a4c; }
-        body.theme-blue   #toc-left-drawer-header .drawer-title { color: #3a5a7a; }
-        body.theme-gray   #toc-left-drawer-header .drawer-title { color: #666; }
-        #toc-left-drawer-header .drawer-title { color: #9ca3af; }
-
-        /* Left drawer back link */
-        #toc-left-drawer-back {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 16px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            text-decoration: none;
-            transition: opacity 0.15s;
-        }
-        #toc-left-drawer-back:active { opacity: 0.6; }
-        body.theme-dark   #toc-left-drawer-back { color: #5b9cf6; border-bottom-color: #2c2c30; }
-        body.theme-sepia  #toc-left-drawer-back { color: #c0392b; border-bottom-color: #d9ccbe; }
-        body.theme-light  #toc-left-drawer-back { color: #c0392b; border-bottom-color: #e8eaed; }
-        body.theme-black  #toc-left-drawer-back { color: #888; border-bottom-color: #1a1a1a; }
-        body.theme-green  #toc-left-drawer-back { color: #6fcf72; border-bottom-color: #1a3a1c; }
-        body.theme-blue   #toc-left-drawer-back { color: #5b9cf6; border-bottom-color: #1a2f4a; }
-        body.theme-gray   #toc-left-drawer-back { color: #aaa; border-bottom-color: #3a3a3e; }
-        #toc-left-drawer-back { color: #c0392b; border-bottom-color: #e8eaed; }
-
-        /* Left drawer TOC nav */
-        #toc-nav-left-mobile {
-            flex: 1;
-            overflow-y: auto;
-            padding: 8px 10px 24px;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-        #toc-nav-left-mobile::-webkit-scrollbar { display: none; }
-
-        #toc-nav-left-mobile .toc-link {
-            display: block;
-            padding: 9px 12px;
-            border-radius: 8px;
-            font-size: 0.8125rem;
-            line-height: 1.4;
-            text-decoration: none;
-            transition: background 0.15s, color 0.15s;
-            margin-bottom: 1px;
-        }
-        #toc-nav-left-mobile .toc-link.h1-link {
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-top: 4px;
-        }
-        #toc-nav-left-mobile .toc-link.h2-link {
-            padding-left: 24px;
-            font-size: 0.8rem;
-            font-weight: 400;
-        }
-
-        body.theme-dark   #toc-nav-left-mobile .toc-link         { color: #9ca3af; }
-        body.theme-dark   #toc-nav-left-mobile .toc-link.h1-link { color: #d1d5db; }
-        body.theme-dark   #toc-nav-left-mobile .toc-link:hover   { background: rgba(255,255,255,0.06); color: #e5e7eb; }
-        body.theme-dark   #toc-nav-left-mobile .toc-link.active  { background: rgba(91,156,246,0.15); color: #5b9cf6; }
-
-        body.theme-sepia  #toc-nav-left-mobile .toc-link         { color: #7a6355; }
-        body.theme-sepia  #toc-nav-left-mobile .toc-link.h1-link { color: #3b2f20; }
-        body.theme-sepia  #toc-nav-left-mobile .toc-link:hover   { background: rgba(0,0,0,0.05); color: #3b2f20; }
-        body.theme-sepia  #toc-nav-left-mobile .toc-link.active  { background: rgba(192,57,43,0.1); color: #c0392b; }
-
-        body.theme-light  #toc-nav-left-mobile .toc-link         { color: #6b7280; }
-        body.theme-light  #toc-nav-left-mobile .toc-link.h1-link { color: #111827; }
-        body.theme-light  #toc-nav-left-mobile .toc-link:hover   { background: rgba(0,0,0,0.04); color: #111827; }
-        body.theme-light  #toc-nav-left-mobile .toc-link.active  { background: rgba(192,57,43,0.08); color: #c0392b; }
-
-        body.theme-blue   #toc-nav-left-mobile .toc-link         { color: #3a5a7a; }
-        body.theme-blue   #toc-nav-left-mobile .toc-link.h1-link { color: #b8ccdf; }
-        body.theme-blue   #toc-nav-left-mobile .toc-link.active  { background: rgba(91,156,246,0.15); color: #5b9cf6; }
-
-        body.theme-gray   #toc-nav-left-mobile .toc-link         { color: #666; }
-        body.theme-gray   #toc-nav-left-mobile .toc-link.h1-link { color: #c8c8cc; }
-        body.theme-gray   #toc-nav-left-mobile .toc-link.active  { background: rgba(91,156,246,0.1); color: #5b9cf6; }
-
-        /* Default */
-        #toc-nav-left-mobile .toc-link         { color: #6b7280; }
-        #toc-nav-left-mobile .toc-link.h1-link { color: #111827; }
-
-        /* close btn */
-        #mobile-toc-left-close {
-            width: 32px; height: 32px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            border: none; cursor: pointer;
-            transition: background 0.15s;
-        }
-        body.theme-dark   #mobile-toc-left-close { background: rgba(255,255,255,0.08); color: #aaa; }
-        body.theme-sepia  #mobile-toc-left-close { background: rgba(0,0,0,0.07); color: #6b5443; }
-        body.theme-light  #mobile-toc-left-close { background: rgba(0,0,0,0.06); color: #555; }
-        body.theme-blue   #mobile-toc-left-close { background: rgba(91,156,246,0.12); color: #5b9cf6; }
-        body.theme-gray   #mobile-toc-left-close { background: rgba(255,255,255,0.06); color: #aaa; }
-        #mobile-toc-left-close { background: rgba(0,0,0,0.06); color: #555; }
-
-        /* Left overlay (same style as right) */
-        #mobile-toc-left-overlay {
-            position: fixed; inset: 0;
-            z-index: 499;
-            background: rgba(0,0,0,0.35);
-            opacity: 0; pointer-events: none;
-            transition: opacity 0.32s ease;
-        }
-        #mobile-toc-left-overlay.open { opacity: 1; pointer-events: auto; }
-
+            
         .theme-btn.active { border-color: #c0392b; }
         .theme-btn i { font-size: 14px; display: none; }
         .theme-btn.active i { display: block; }
+
+        body.theme-dark  #mobile-topbar i   { color: #ccc; }
+        body.theme-sepia #mobile-topbar i   { color: #5a4535; }
+        body.theme-light #mobile-topbar i   { color: #444; }
+
+        body.theme-dark  #mobile-topbar .title-text { color: #e8e8e8; }
+        body.theme-sepia #mobile-topbar .title-text { color: #3b2f20; }
+        body.theme-light #mobile-topbar .title-text { color: #111; }
+
+        /* main content padding */
+        #read-main-content {
+            padding-top: calc(52px + env(safe-area-inset-top) + 16px);
+            padding-bottom: 32px;
+        }
         #mobile-reader-bg {
             min-height: 100vh;
             transition: background 0.3s;
@@ -514,116 +343,216 @@
     }
 
     /* ══════════════════════════════
-       MOBILE bottom customization bar
+       MOBILE — FAB + Customization Modal
     ══════════════════════════════ */
     @media (max-width: 767px) {
-        #mobile-bottom-bar {
+
+        /* FAB button */
+        #mob-fab {
+            position: fixed;
+            bottom: calc(24px + env(safe-area-inset-bottom));
+            right: 18px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #c0392b;
+            color: white;
+            border: none;
+            cursor: pointer;
+            z-index: 300;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(192,57,43,0.45), 0 2px 6px rgba(0,0,0,0.2);
+            transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), background 0.2s, opacity 0.28s;
+        }
+        #mob-fab i { font-size: 17px; transition: transform 0.22s; }
+        #mob-fab.open i { transform: rotate(45deg); }
+        #mob-fab.hide { opacity: 0; pointer-events: none; transform: scale(0.7); }
+
+        /* Overlay */
+        #mob-modal-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 390;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+        #mob-modal-overlay.open { opacity: 1; pointer-events: auto; }
+
+        /* Modal sheet — slides up from bottom */
+        #mob-cust-modal {
             position: fixed;
             bottom: 0; left: 0; right: 0;
-            z-index: 190;
+            z-index: 400;
+            border-top-left-radius: 22px;
+            border-top-right-radius: 22px;
             padding-bottom: env(safe-area-inset-bottom);
-            transition: transform 0.28s ease, background 0.3s;
-            border-top-left-radius: 14px;
-            border-top-right-radius: 14px;
-            background: #ffffff;
+            transform: translateY(110%);
+            transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
+            overflow-y: auto;
+            max-height: 82vh;
         }
-        #mobile-bottom-bar.hide { transform: translateY(100%); }
+        #mob-cust-modal.open { transform: translateY(0); }
 
-        /* tabs row */
-        #mob-cust-tabs {
-            display: flex;
-            border-top-width: 1px;
-            border-top-style: solid;
-            height: 48px;
+        /* Modal drag handle */
+        #mob-modal-handle {
+            width: 36px; height: 4px;
+            border-radius: 2px;
+            margin: 10px auto 14px;
         }
-        .mob-tab-btn {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2px;
+
+        /* Section label */
+        .mob-section-label {
             font-size: 9px;
-            font-weight: 500;
-            cursor: pointer;
-            border: none;
-            background: transparent;
-            transition: color 0.15s;
-        }
-        .mob-tab-btn i { font-size: 13px; }
-        .mob-tab-btn.active { color: #c0392b; }
-
-        /* panel */
-        #mob-cust-panel {
-            overflow: hidden;
-            max-height: 0;
-            transition: max-height 0.32s cubic-bezier(0.4,0,0.2,1);
-        }
-        #mob-cust-panel.open { max-height: 320px; }
-
-        .mob-panel-section {
-            display: none;
-            padding: 12px 16px 4px;
-        }
-        .mob-panel-section.active { display: block; }
-
-        /* theme buttons mobile */
-        #mob-cust-panel .theme-btn {
-            height: 32px;
-            border-radius: 10px;
-            border-width: 2px;
-            font-size: 11px;
-            font-weight: 500;
-            padding: 0 10px;
-            flex: none;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0 16px;
+            margin-bottom: 8px;
         }
 
-        /* ls/ff/rw buttons mobile */
-        #mob-cust-panel .ls-btn,
-        #mob-cust-panel .rw-btn {
-            flex: 1;
-            height: 36px;
-            border-radius: 10px;
-            border-width: 2px;
-            font-size: 10px;
+        /* 2-col grid for options */
+        .mob-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding: 0 12px 16px;
+        }
+        .mob-grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            padding: 0 12px 16px;
+        }
+
+        /* Grid card button */
+        .mob-card-btn {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 3px;
+            gap: 6px;
+            border-radius: 14px;
+            border: 2px solid transparent;
+            padding: 14px 8px;
             cursor: pointer;
-            transition: border-color 0.15s;
-        }
-        #mob-cust-panel .ff-btn {
-            width: 100%;
-            height: 36px;
-            border-radius: 10px;
-            border-width: 2px;
+            transition: border-color 0.15s, background 0.15s;
             font-size: 12px;
-            text-align: left;
-            padding: 0 12px;
+            font-weight: 500;
+        }
+        .mob-card-btn i { font-size: 22px; }
+        .mob-card-btn.active { border-color: #c0392b !important; }
+
+        /* Font size row */
+        .mob-font-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 12px 16px;
+        }
+        .mob-font-btn {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 15px; font-weight: 700;
             cursor: pointer;
             transition: border-color 0.15s;
+            flex-shrink: 0;
+        }
+        .mob-font-dots {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            align-items: center;
+        }
+        .mob-font-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            transition: background 0.15s;
         }
 
-        /* theme colors for bottom bar */
-                            body.theme-dark  #mob-cust-panel .ls-btn,
-        body.theme-dark  #mob-cust-panel .rw-btn,
-        body.theme-dark  #mob-cust-panel .ff-btn { background: #1e1e20; color: #ccc; border-color: #333; }
+        /* section divider */
+        .mob-divider {
+            height: 1px;
+            margin: 4px 12px 14px;
+        }
 
-                            body.theme-sepia #mob-cust-panel .ls-btn,
-        body.theme-sepia #mob-cust-panel .rw-btn,
-        body.theme-sepia #mob-cust-panel .ff-btn { background: #f5efe6; color: #5a4535; border-color: #d4c8b8; }
+        /* Theme color swatches */
+        .mob-theme-swatch {
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            border: 2.5px solid transparent;
+            flex-shrink: 0;
+        }
 
-                            body.theme-light #mob-cust-panel .ls-btn,
-        body.theme-light #mob-cust-panel .rw-btn,
-        body.theme-light #mob-cust-panel .ff-btn { background: #f9fafb; color: #374151; border-color: #e5e7eb; }
+        /* bottom bar compat — hide old bottom bar */
+        #mobile-bottom-bar { display: none !important; }
 
-        /* bottom bar visible — push content up */
+        /* push main content — no bottom bar, just FAB clearance */
         #read-main-content {
-            padding-bottom: calc(48px + env(safe-area-inset-bottom) + 16px);
+            padding-bottom: calc(80px + env(safe-area-inset-bottom));
         }
     }
+
+    /* Theme-aware modal colors */
+    body.theme-light #mob-cust-modal  { background: #ffffff; }
+    body.theme-sepia #mob-cust-modal  { background: #f5efe6; }
+    body.theme-dark  #mob-cust-modal  { background: #1c1c1e; }
+    body.theme-black #mob-cust-modal  { background: #111111; }
+    body.theme-green #mob-cust-modal  { background: #0d1f0f; }
+    body.theme-blue  #mob-cust-modal  { background: #0a1520; }
+    body.theme-gray  #mob-cust-modal  { background: #222226; }
+
+    body.theme-light #mob-modal-handle { background: #ddd; }
+    body.theme-sepia #mob-modal-handle { background: #c8b8a0; }
+    body.theme-dark  #mob-modal-handle,
+    body.theme-black #mob-modal-handle,
+    body.theme-green #mob-modal-handle,
+    body.theme-blue  #mob-modal-handle,
+    body.theme-gray  #mob-modal-handle { background: #444; }
+
+    body.theme-light .mob-section-label { color: #999; }
+    body.theme-sepia .mob-section-label { color: #9a8070; }
+    body.theme-dark  .mob-section-label,
+    body.theme-black .mob-section-label,
+    body.theme-green .mob-section-label,
+    body.theme-blue  .mob-section-label,
+    body.theme-gray  .mob-section-label { color: #666; }
+
+    body.theme-light .mob-divider { background: #f0f0f0; }
+    body.theme-sepia .mob-divider { background: #e0d0be; }
+    body.theme-dark  .mob-divider,
+    body.theme-black .mob-divider,
+    body.theme-green .mob-divider,
+    body.theme-blue  .mob-divider,
+    body.theme-gray  .mob-divider { background: #2e2e2e; }
+
+    body.theme-light .mob-card-btn { background: #f5f5f7; color: #333; border-color: #ebebeb; }
+    body.theme-sepia .mob-card-btn { background: #ede4d8; color: #4a3828; border-color: #d8ccbe; }
+    body.theme-dark  .mob-card-btn { background: #2a2a2e; color: #ccc; border-color: #333; }
+    body.theme-black .mob-card-btn { background: #1a1a1a; color: #bbb; border-color: #2a2a2a; }
+    body.theme-green .mob-card-btn { background: #102412; color: #8aaa8c; border-color: #1a3a1c; }
+    body.theme-blue  .mob-card-btn { background: #0d1b2e; color: #7aaac8; border-color: #1a2f4a; }
+    body.theme-gray  .mob-card-btn { background: #2e2e32; color: #aaa; border-color: #3a3a3e; }
+
+    body.theme-light .mob-font-btn { background: #f5f5f7; color: #333; border-color: #ebebeb; }
+    body.theme-sepia .mob-font-btn { background: #ede4d8; color: #4a3828; border-color: #d8ccbe; }
+    body.theme-dark  .mob-font-btn { background: #2a2a2e; color: #ccc; border-color: #333; }
+    body.theme-black .mob-font-btn { background: #1a1a1a; color: #bbb; border-color: #2a2a2a; }
+    body.theme-green .mob-font-btn { background: #102412; color: #8aaa8c; border-color: #1a3a1c; }
+    body.theme-blue  .mob-font-btn { background: #0d1b2e; color: #7aaac8; border-color: #1a2f4a; }
+    body.theme-gray  .mob-font-btn { background: #2e2e32; color: #aaa; border-color: #3a3a3e; }
+
+    body.theme-light .mob-font-dot { background: #ddd; }
+    body.theme-sepia .mob-font-dot { background: #c8b8a0; }
+    body.theme-dark  .mob-font-dot,
+    body.theme-black .mob-font-dot,
+    body.theme-green .mob-font-dot,
+    body.theme-blue  .mob-font-dot,
+    body.theme-gray  .mob-font-dot { background: #444; }
 
     /* ── Text alignment variants ── */
     #book-content.ta-justify p { text-align: justify; }
@@ -752,132 +681,179 @@
      MOBILE ONLY chrome (hidden on md+)
 ══════════════════════════════════════════ -->
 
-<!-- ── MOBILE: floating TOC button (top-left) ── -->
-<button id="mob-toc-float-btn" class="md:hidden" aria-label="সূচিপত্র">
-    <i class="fas fa-bars" style="font-size:15px;"></i>
-</button>
+<!-- Top bar -->
+<div id="mobile-topbar" class="md:hidden">
+    <a href="/books/{{book_slug}}.html"
+       class="w-9 h-9 flex items-center justify-center rounded-full shrink-0">
+        <i class="fas fa-chevron-left text-base"></i>
+    </a>
+    <div class="flex-1 min-w-0 px-1">
+        <p class="title-text text-sm font-semibold truncate leading-tight">{{book_title}}</p>
+    </div>
+    <button id="mob-toc-btn-top" class="w-9 h-9 flex items-center justify-center rounded-full shrink-0" aria-label="সূচিপত্র">
+        <i class="fas fa-list-ul text-sm"></i>
+    </button>
+</div>
 
-<!-- ── MOBILE: left TOC drawer + overlay ── -->
-<div id="mobile-toc-left-overlay" class="md:hidden"></div>
-<div id="mobile-toc-left-drawer" class="md:hidden">
+<!-- ── MOBILE: right TOC drawer + overlay ── -->
+<div id="mobile-toc-overlay" class="md:hidden"></div>
+<div id="mobile-toc-drawer" class="md:hidden">
 
     <!-- Header -->
-    <div id="toc-left-drawer-header" class="shrink-0">
+    <div id="toc-drawer-header" class="shrink-0">
         <span class="drawer-title">সূচিপত্র</span>
-        <button id="mobile-toc-left-close" aria-label="বন্ধ করুন">
+        <button id="mobile-toc-close" aria-label="বন্ধ করুন">
             <i class="fas fa-times" style="font-size:13px;"></i>
         </button>
     </div>
 
-    <!-- Back to book link -->
-    <a id="toc-left-drawer-back" href="/books/{{book_slug}}.html">
-        <i class="fas fa-arrow-left" style="font-size:11px;"></i>
-        <span>বইয়ের তথ্যে ফিরুন</span>
-    </a>
-
     <!-- TOC nav -->
-    <nav id="toc-nav-left-mobile"></nav>
-
-</div>
-
-<!-- ── MOBILE: old right TOC drawer (kept for JS compat, hidden) ── -->
-<div id="mobile-toc-overlay" class="md:hidden" style="display:none!important;"></div>
-<div id="mobile-toc-drawer" class="md:hidden" style="display:none!important;">
-    <div id="toc-drawer-header" class="shrink-0">
-        <span class="drawer-title">সূচিপত্র</span>
-        <button id="mobile-toc-close"><i class="fas fa-times" style="font-size:13px;"></i></button>
-    </div>
     <nav id="toc-nav-mobile"></nav>
+
 </div>
 
 <!-- ══════════════════════════════════════════
-     MOBILE bottom customization bar
+     MOBILE — FAB button
 ══════════════════════════════════════════ -->
-<div id="mobile-bottom-bar" class="md:hidden">
+<button id="mob-fab" class="md:hidden" aria-label="কাস্টমাইজ করুন">
+    <i class="fas fa-sliders"></i>
+</button>
 
-    <!-- Expandable panel -->
-    <div id="mob-cust-panel">
+<!-- Overlay -->
+<div id="mob-modal-overlay" class="md:hidden"></div>
 
-        <!-- থিম -->
-        <div id="mob-panel-theme" class="mob-panel-section">
-            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">থিম</p>
-            <div class="flex gap-2">
-                <button data-theme="light" class="theme-btn flex-1" style="background:#fff;color:#333;border-color:#e5e7eb;">আলো</button>
-                <button data-theme="sepia" class="theme-btn flex-1" style="background:#f5efe6;color:#5a4535;border-color:#d9ccbe;">সেপিয়া</button>
-                <button data-theme="dark"  class="theme-btn flex-1" style="background:#1c1c1e;color:#ccc;border-color:#333;">অন্ধকার</button>
-            </div>
-        </div>
+<!-- ══════════════════════════════════════════
+     MOBILE — Customization modal sheet
+══════════════════════════════════════════ -->
+<div id="mob-cust-modal" class="md:hidden">
+    <div id="mob-modal-handle"></div>
 
-        <!-- লেখার আকার -->
-        <div id="mob-panel-font" class="mob-panel-section">
-            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">লেখার আকার ও ফন্ট</p>
-            <div class="flex gap-2 mb-2">
-                <button id="m-font-decrease"
-                    class="flex-1 h-9 rounded-xl border-2 border-gray-200 bg-gray-50 text-[13px] font-bold text-gray-600">A−</button>
-                <div class="flex-1 flex justify-center gap-1.5 items-center">
-                    <span id="m-font-dot-0" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
-                    <span id="m-font-dot-1" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
-                    <span id="m-font-dot-2" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
-                    <span id="m-font-dot-3" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
-                </div>
-                <button id="m-font-increase"
-                    class="flex-1 h-9 rounded-xl border-2 border-gray-200 bg-gray-50 text-[13px] font-bold text-gray-600">A+</button>
-            </div>
-            <div class="flex flex-col gap-1.5">
-                <button data-ff="ff-sans"  class="ff-btn border-2 border-gray-200 bg-gray-50" style="font-family:'Segoe UI',sans-serif;">সাধারণ (Sans)</button>
-                <button data-ff="ff-serif" class="ff-btn border-2 border-gray-200 bg-gray-50" style="font-family:'Noto Serif Bengali',serif;">বইয়ের ফন্ট (Serif)</button>
-            </div>
-        </div>
-
-        <!-- লাইনের ফাঁক -->
-        <div id="mob-panel-spacing" class="mob-panel-section">
-            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">লাইনের ফাঁক, প্রস্থ ও সারিবদ্ধতা</p>
-            <div class="flex gap-2 mb-2">
-                <button data-ls="ls-compact" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="flex flex-col gap-[2px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span>আঁটো</span>
-                </button>
-                <button data-ls="ls-normal" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="flex flex-col gap-[4px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span>স্বাভাবিক</span>
-                </button>
-                <button data-ls="ls-relaxed" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="flex flex-col gap-[6px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span>প্রশস্ত</span>
-                </button>
-            </div>
-            <div class="flex gap-2">
-                <button data-rw="rw-narrow" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="w-[3px] h-4 bg-current rounded-sm opacity-80"></span><span>সরু</span>
-                </button>
-                <button data-rw="rw-medium" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="w-[5px] h-4 bg-current rounded-sm opacity-80"></span><span>মাঝারি</span>
-                </button>
-                <button data-rw="rw-wide" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="w-[8px] h-4 bg-current rounded-sm opacity-80"></span><span>চওড়া</span>
-                </button>
-            </div>
-        </div>
-
-
-    </div>
-
-    <!-- Tab buttons row -->
-    <div id="mob-cust-tabs">
-        <button class="mob-tab-btn" id="mob-tab-theme" data-panel="mob-panel-theme">
-            <i class="fas fa-circle-half-stroke"></i>
-            <span>থিম</span>
+    <!-- ── থিম ── -->
+    <p class="mob-section-label">থিম</p>
+    <div class="mob-grid" style="grid-template-columns:1fr 1fr 1fr;">
+        <button data-theme="light" class="mob-card-btn theme-btn" style="background:#fff;color:#333;border-color:#ebebeb;">
+            <i class="fas fa-sun" style="font-size:20px;color:#f59e0b;"></i>
+            <span>আলো</span>
         </button>
-        <button class="mob-tab-btn" id="mob-tab-font" data-panel="mob-panel-font">
-            <i class="fas fa-font"></i>
-            <span>ফন্ট</span>
+        <button data-theme="sepia" class="mob-card-btn theme-btn" style="background:#f5efe6;color:#5a4535;border-color:#d9ccbe;">
+            <i class="fas fa-book-open" style="font-size:20px;color:#a0784a;"></i>
+            <span>সেপিয়া</span>
         </button>
-        <button class="mob-tab-btn" id="mob-tab-spacing" data-panel="mob-panel-spacing">
-            <i class="fas fa-text-height"></i>
-            <span>ফাঁক/প্রস্থ</span>
+        <button data-theme="dark" class="mob-card-btn theme-btn" style="background:#1c1c1e;color:#ccc;border-color:#333;">
+            <i class="fas fa-moon" style="font-size:20px;color:#818cf8;"></i>
+            <span>অন্ধকার</span>
         </button>
     </div>
+
+    <div class="mob-divider"></div>
+
+    <!-- ── লেখার আকার ── -->
+    <p class="mob-section-label">লেখার আকার</p>
+    <div class="mob-font-row">
+        <button id="m-font-decrease" class="mob-font-btn">A−</button>
+        <div class="mob-font-dots">
+            <span id="m-font-dot-0" class="mob-font-dot"></span>
+            <span id="m-font-dot-1" class="mob-font-dot"></span>
+            <span id="m-font-dot-2" class="mob-font-dot"></span>
+            <span id="m-font-dot-3" class="mob-font-dot"></span>
+        </div>
+        <button id="m-font-increase" class="mob-font-btn">A+</button>
+    </div>
+
+    <div class="mob-divider"></div>
+
+    <!-- ── ফন্ট ── -->
+    <p class="mob-section-label">ফন্ট</p>
+    <div class="mob-grid">
+        <button data-ff="ff-sans" class="mob-card-btn ff-btn" style="font-family:'Segoe UI',sans-serif;">
+            <span style="font-size:22px;font-weight:700;line-height:1;">Aa</span>
+            <span>সাধারণ</span>
+        </button>
+        <button data-ff="ff-serif" class="mob-card-btn ff-btn" style="font-family:'Noto Serif Bengali',serif;">
+            <span style="font-size:22px;font-weight:700;line-height:1;">Aa</span>
+            <span>বইয়ের ফন্ট</span>
+        </button>
+    </div>
+
+    <div class="mob-divider"></div>
+
+    <!-- ── লাইনের ফাঁক ── -->
+    <p class="mob-section-label">লাইনের ফাঁক</p>
+    <div class="mob-grid-3">
+        <button data-ls="ls-compact" class="mob-card-btn ls-btn">
+            <span class="flex flex-col gap-[3px]">
+                <span class="block w-5 h-[2px] bg-current rounded"></span>
+                <span class="block w-5 h-[2px] bg-current rounded"></span>
+                <span class="block w-5 h-[2px] bg-current rounded"></span>
+            </span>
+            <span>আঁটো</span>
+        </button>
+        <button data-ls="ls-normal" class="mob-card-btn ls-btn">
+            <span class="flex flex-col gap-[5px]">
+                <span class="block w-5 h-[2px] bg-current rounded"></span>
+                <span class="block w-5 h-[2px] bg-current rounded"></span>
+                <span class="block w-5 h-[2px] bg-current rounded"></span>
+            </span>
+            <span>স্বাভাবিক</span>
+        </button>
+        <button data-ls="ls-relaxed" class="mob-card-btn ls-btn">
+            <span class="flex flex-col gap-[8px]">
+                <span class="block w-5 h-[2px] bg-current rounded"></span>
+                <span class="block w-5 h-[2px] bg-current rounded"></span>
+                <span class="block w-5 h-[2px] bg-current rounded"></span>
+            </span>
+            <span>প্রশস্ত</span>
+        </button>
+    </div>
+
+    <div class="mob-divider"></div>
+
+    <!-- ── পড়ার প্রস্থ ── -->
+    <p class="mob-section-label">পড়ার প্রস্থ</p>
+    <div class="mob-grid-3">
+        <button data-rw="rw-narrow" class="mob-card-btn rw-btn">
+            <span style="display:flex;gap:2px;align-items:flex-end;height:20px;">
+                <span style="width:3px;height:100%;background:currentColor;border-radius:2px;opacity:0.7;"></span>
+            </span>
+            <span>সরু</span>
+        </button>
+        <button data-rw="rw-medium" class="mob-card-btn rw-btn">
+            <span style="display:flex;gap:2px;align-items:flex-end;height:20px;">
+                <span style="width:5px;height:100%;background:currentColor;border-radius:2px;opacity:0.7;"></span>
+            </span>
+            <span>মাঝারি</span>
+        </button>
+        <button data-rw="rw-wide" class="mob-card-btn rw-btn">
+            <span style="display:flex;gap:2px;align-items:flex-end;height:20px;">
+                <span style="width:9px;height:100%;background:currentColor;border-radius:2px;opacity:0.7;"></span>
+            </span>
+            <span>চওড়া</span>
+        </button>
+    </div>
+
+    <div class="mob-divider"></div>
+
+    <!-- ── সারিবদ্ধতা ── -->
+    <p class="mob-section-label">সারিবদ্ধতা</p>
+    <div class="mob-grid-3" style="padding-bottom:20px;">
+        <button data-ta="ta-default" class="mob-card-btn ta-btn">
+            <i class="fas fa-align-left"></i>
+            <span>বাম</span>
+        </button>
+        <button data-ta="ta-center" class="mob-card-btn ta-btn">
+            <i class="fas fa-align-center"></i>
+            <span>মাঝ</span>
+        </button>
+        <button data-ta="ta-justify" class="mob-card-btn ta-btn">
+            <i class="fas fa-align-justify"></i>
+            <span>জাস্টিফাই</span>
+        </button>
+    </div>
+
 </div>
+
+<!-- keep old element alive for JS references (hidden) -->
+<div id="mobile-bottom-bar" style="display:none!important;"></div>
 
 <!-- ══════════════════════════════════════════
      DESKTOP LEFT sidebar (book info + nav)
@@ -1090,7 +1066,6 @@
     const tocDesktop   = document.getElementById('toc-nav-desktop');
     const tocMobile    = document.getElementById('toc-nav-mobile');
     const tocLeft      = document.getElementById('toc-nav-left');
-    const tocLeftMobile = document.getElementById('toc-nav-left-mobile');
     const progressRing = document.getElementById('progress-ring-circle');
     const mobileTopbar  = document.getElementById('mobile-topbar');
     const mobileBottomBar = document.getElementById('mobile-bottom-bar');
@@ -1149,12 +1124,15 @@
                 const docH     = document.documentElement.scrollHeight - window.innerHeight;
                 const pct      = docH > 0 ? (currentY / docH) * 100 : 0;
 
+                const fab = document.getElementById('mob-fab');
                 if (delta > 6 && currentY > 80) {
                     mobileTopbar?.classList.add('hide');
-                    mobileBottomBar?.classList.add('hide');
+                    if (!document.getElementById('mob-cust-modal')?.classList.contains('open')) {
+                        fab?.classList.add('hide');
+                    }
                 } else if (delta < -6) {
                     mobileTopbar?.classList.remove('hide');
-                    mobileBottomBar?.classList.remove('hide');
+                    fab?.classList.remove('hide');
                 }
 
                 lastScrollY = currentY;
@@ -1171,7 +1149,7 @@
     // ── Build TOC ──
     const headings = bookContent.querySelectorAll('h1, h2');
 
-    function buildToc(nav, isMobile, closeHandler) {
+    function buildToc(nav, isMobile) {
         headings.forEach((h, i) => {
             h.id = h.id || ('sec-' + i);
             const a = document.createElement('a');
@@ -1181,7 +1159,7 @@
             const isH1 = h.tagName === 'H1';
             if (isMobile) {
                 a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
-                if (closeHandler) a.addEventListener('click', closeHandler);
+                a.addEventListener('click', closeTocDrawer);
             } else {
                 a.className = 'toc-link block px-3 py-1.5 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors ' +
                     (isH1 ? 'font-semibold text-[13px] text-gray-800 dark:text-gray-100' : 'pl-5 text-[11px]');
@@ -1190,9 +1168,8 @@
         });
     }
     buildToc(tocDesktop, false);
-    buildToc(tocMobile, true, closeTocDrawer);
+    buildToc(tocMobile, true);
     if (tocLeft) buildToc(tocLeft, false);
-    if (tocLeftMobile) buildToc(tocLeftMobile, true, closeLeftTocDrawer);
 
     // ── TOC active ──
     const allTocLinks = document.querySelectorAll('.toc-link');
@@ -1249,13 +1226,13 @@
     const tocOverlay = document.getElementById('mobile-toc-overlay');
 
     function openTocDrawer() {
-        tocDrawer?.classList.add('open');
-        tocOverlay?.classList.add('open');
+        tocDrawer.classList.add('open');
+        tocOverlay.classList.add('open');
         document.body.style.overflow = 'hidden';
     }
     function closeTocDrawer() {
-        tocDrawer?.classList.remove('open');
-        tocOverlay?.classList.remove('open');
+        tocDrawer.classList.remove('open');
+        tocOverlay.classList.remove('open');
         document.body.style.overflow = '';
     }
 
@@ -1263,32 +1240,6 @@
     document.getElementById('mob-toc-btn-top')?.addEventListener('click', openTocDrawer);
     document.getElementById('mobile-toc-close')?.addEventListener('click', closeTocDrawer);
     tocOverlay?.addEventListener('click', closeTocDrawer);
-
-    // ── Mobile LEFT TOC drawer ──
-    const tocLeftDrawer   = document.getElementById('mobile-toc-left-drawer');
-    const tocLeftOverlay  = document.getElementById('mobile-toc-left-overlay');
-
-    function openLeftTocDrawer() {
-        tocLeftDrawer?.classList.add('open');
-        tocLeftOverlay?.classList.add('open');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeLeftTocDrawer() {
-        tocLeftDrawer?.classList.remove('open');
-        tocLeftOverlay?.classList.remove('open');
-        document.body.style.overflow = '';
-    }
-
-    document.getElementById('mob-toc-float-btn')?.addEventListener('click', openLeftTocDrawer);
-    document.getElementById('mobile-toc-left-close')?.addEventListener('click', closeLeftTocDrawer);
-    tocLeftOverlay?.addEventListener('click', closeLeftTocDrawer);
-
-    // Swipe right to close left drawer
-    let leftTouchStartX = 0;
-    tocLeftDrawer?.addEventListener('touchstart', e => { leftTouchStartX = e.touches[0].clientX; }, { passive: true });
-    tocLeftDrawer?.addEventListener('touchend', e => {
-        if (leftTouchStartX - e.changedTouches[0].clientX > 60) closeLeftTocDrawer();
-    }, { passive: true });
 
 
     // ── Line spacing ──
@@ -1357,67 +1308,101 @@
     });
 
 
-    // ── Mobile bottom customization bar ──
-    const mobPanel    = document.getElementById('mob-cust-panel');
-    let activeTab     = null;
+    // ── Mobile FAB + Customization Modal ──
+    const mobFab       = document.getElementById('mob-fab');
+    const mobModal     = document.getElementById('mob-cust-modal');
+    const mobOverlay   = document.getElementById('mob-modal-overlay');
 
-    document.querySelectorAll('.mob-tab-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const panelId = btn.dataset.panel;
-            const isActive = btn.classList.contains('active');
+    function openMobModal() {
+        mobModal?.classList.add('open');
+        mobOverlay?.classList.add('open');
+        mobFab?.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        syncAllMobile();
+    }
+    function closeMobModal() {
+        mobModal?.classList.remove('open');
+        mobOverlay?.classList.remove('open');
+        mobFab?.classList.remove('open');
+        document.body.style.overflow = '';
+    }
 
-            // deactivate all
-            document.querySelectorAll('.mob-tab-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.mob-panel-section').forEach(s => s.classList.remove('active'));
-
-            if (isActive) {
-                // toggle off
-                mobPanel.classList.remove('open');
-                activeTab = null;
-            } else {
-                // open this panel
-                btn.classList.add('active');
-                document.getElementById(panelId)?.classList.add('active');
-                mobPanel.classList.add('open');
-                activeTab = panelId;
-            }
-        });
+    mobFab?.addEventListener('click', () => {
+        mobModal?.classList.contains('open') ? closeMobModal() : openMobModal();
     });
+    mobOverlay?.addEventListener('click', closeMobModal);
 
     // sync mobile ff-btn active state
     function syncMobileFF(ff) {
-        document.querySelectorAll('#mob-cust-panel .ff-btn').forEach(b => {
-            b.style.borderColor = b.dataset.ff === ff ? '#c0392b' : '';
+        document.querySelectorAll('#mob-cust-modal .ff-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.ff === ff);
         });
     }
-    document.querySelectorAll('#mob-cust-panel .ff-btn').forEach(b => {
+    document.querySelectorAll('#mob-cust-modal .ff-btn').forEach(b => {
         b.addEventListener('click', () => { applyFF(b.dataset.ff); syncMobileFF(b.dataset.ff); });
     });
 
     // sync mobile ls-btn active state
     function syncMobileLS(ls) {
-        document.querySelectorAll('#mob-cust-panel .ls-btn').forEach(b => {
-            b.style.borderColor = b.dataset.ls === ls ? '#c0392b' : '';
+        document.querySelectorAll('#mob-cust-modal .ls-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.ls === ls);
         });
     }
-    document.querySelectorAll('#mob-cust-panel .ls-btn').forEach(b => {
+    document.querySelectorAll('#mob-cust-modal .ls-btn').forEach(b => {
         b.addEventListener('click', () => { applyLS(b.dataset.ls); syncMobileLS(b.dataset.ls); });
     });
 
     // sync mobile rw-btn active state
     function syncMobileRW(rw) {
-        document.querySelectorAll('#mob-cust-panel .rw-btn').forEach(b => {
-            b.style.borderColor = b.dataset.rw === rw ? '#c0392b' : '';
+        document.querySelectorAll('#mob-cust-modal .rw-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.rw === rw);
         });
     }
-    document.querySelectorAll('#mob-cust-panel .rw-btn').forEach(b => {
+    document.querySelectorAll('#mob-cust-modal .rw-btn').forEach(b => {
         b.addEventListener('click', () => { applyRW(b.dataset.rw); syncMobileRW(b.dataset.rw); });
     });
 
-    // init active states on mobile
-    syncMobileFF(currentFF);
-    syncMobileLS(currentLS);
-    syncMobileRW(currentRW);
+    // sync mobile ta-btn active state
+    function syncMobileTA(ta) {
+        document.querySelectorAll('#mob-cust-modal .ta-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.ta === ta);
+        });
+    }
+    document.querySelectorAll('#mob-cust-modal .ta-btn').forEach(b => {
+        b.addEventListener('click', () => { applyTA(b.dataset.ta); syncMobileTA(b.dataset.ta); });
+    });
+
+    // font dots in modal
+    function updateMobFontDots(size) {
+        for (let i = 0; i < 4; i++) {
+            const dot = document.getElementById('m-font-dot-' + i);
+            if (dot) dot.style.background = i <= size ? '#c0392b' : '';
+        }
+    }
+
+    function syncAllMobile() {
+        syncMobileFF(currentFF);
+        syncMobileLS(currentLS);
+        syncMobileRW(currentRW);
+        syncMobileTA(currentTA);
+        updateMobFontDots(currentSize);
+        // also sync theme buttons in modal
+        document.querySelectorAll('#mob-cust-modal .theme-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.theme === currentTheme);
+        });
+    }
+
+    // hide/show FAB on scroll (same as topbar)
+    // (reuse existing scroll listener — add FAB to it)
+    const origScroll = window.onscroll;
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 80 && !mobModal?.classList.contains('open')) {
+            // fab hides together with topbar
+        }
+    }, { passive: true });
+
+    // init
+    syncAllMobile();
 
 
     // ── Text alignment ──
@@ -1431,6 +1416,7 @@
         localStorage.setItem('pg-ta', ta);
         document.querySelectorAll('.ta-btn').forEach(b => {
             b.style.borderColor = b.dataset.ta === ta ? '#c0392b' : '';
+            b.classList.toggle('active', b.dataset.ta === ta);
         });
     }
     applyTA(currentTA);
