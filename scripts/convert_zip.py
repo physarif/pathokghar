@@ -20,9 +20,27 @@ def zip_to_html(zip_path, slug):
         with zipfile.ZipFile(zip_path, 'r') as z:
             z.extractall(tmp_dir)
 
-        # assets/images/{slug}/ folder তৈরি করো
+        # assets folder তৈরি করো
         img_out_dir = os.path.join('assets', 'images', slug)
         os.makedirs(img_out_dir, exist_ok=True)
+        os.makedirs(os.path.join('assets', 'css'), exist_ok=True)
+
+        # CSS files merge করে assets/css/{slug}.css এ save করো
+        css_parts = []
+        for root, _, files in os.walk(tmp_dir):
+            for fname in sorted(files):
+                if fname.lower().endswith('.css'):
+                    fpath = os.path.join(root, fname)
+                    with open(fpath, 'r', encoding='utf-8', errors='ignore') as f:
+                        css_parts.append('/* ' + fname + ' */\n' + f.read())
+
+        css_link_tag = ''
+        if css_parts:
+            css_out = os.path.join('assets', 'css', f'{slug}.css')
+            with open(css_out, 'w', encoding='utf-8') as f:
+                f.write('\n\n'.join(css_parts))
+            css_link_tag = f'<link rel="stylesheet" href="/assets/css/{slug}.css">'
+            print(f'  🎨 {len(css_parts)} CSS file → assets/css/{slug}.css')
 
         # Image গুলো copy করো ও URL map তৈরি করো
         images = {}
@@ -58,7 +76,7 @@ def zip_to_html(zip_path, slug):
                 raw = f.read()
             full_html += process_html_fragment(raw, images)
 
-        return full_html
+        return full_html, css_link_tag
     finally:
         shutil.rmtree(tmp_dir, ignore_errors=True)
 
@@ -152,6 +170,10 @@ for uid, book in books.items():
         print(f'  ⏭ {slug} — ZIP নয়, skip')
         continue
 
+    # CSS link tag — already converted হলেও দরকার
+    css_file = os.path.join('assets', 'css', f'{slug}.css')
+    css_link_tag = f'<link rel="stylesheet" href="/assets/css/{slug}.css">' if os.path.exists(css_file) else ''
+
     if os.path.exists(content_path):
         print(f'  ⏭ {slug} — already converted, skip')
     else:
@@ -161,7 +183,7 @@ for uid, book in books.items():
             download_file(file_url, local_file)
 
             print(f'  🔄 {slug} HTML তৈরি করছি...')
-            html_content = zip_to_html(local_file, slug)
+            html_content, css_link_tag = zip_to_html(local_file, slug)
 
             with open(content_path, 'w', encoding='utf-8') as f:
                 f.write(html_content)
@@ -182,6 +204,7 @@ for uid, book in books.items():
             'book_slug': slug,
             'book_description': desc[:160] if desc else '',
             'book_content': book_content_html,
+            'book_css': css_link_tag,
         })
 
         with open(read_path, 'w', encoding='utf-8') as f:
