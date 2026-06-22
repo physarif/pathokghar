@@ -150,6 +150,8 @@
         pointer-events: auto;
     }
     #toc-toggle-btn:active { background: #a93226; }
+    #toc-toggle-btn.scrolling { opacity: 0.5; }
+    #toc-toggle-btn { transition: opacity 0.3s ease; }
     #toc-toggle-btn .toc-toggle-label {
         color: #fff;
         font-size: 11px;
@@ -165,7 +167,7 @@
     /* Drawer panel */
     #mobile-toc-drawer {
         width: 0;
-        max-width: 145px;
+        max-width: 175px;
         height: 100%;
         display: flex; flex-direction: column;
         background: #fafafa;
@@ -176,7 +178,7 @@
         pointer-events: auto;
     }
     #toc-unit.open #mobile-toc-drawer {
-        width: 40vw;
+        width: 48vw;
     }
 
 
@@ -324,11 +326,25 @@
     const tocMobile    = document.getElementById('toc-nav-mobile');
     const progressRing = document.getElementById('progress-ring-circle');
 
+    const tocUnit      = document.getElementById('toc-unit');
+    const tocToggleBtn = document.getElementById('toc-toggle-btn');
+    const tocOverlay   = document.getElementById('mobile-toc-overlay');
+
     const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
     function toBN(n) {
         return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
     }
 
+
+    // ── Toggle opacity on scroll ──
+    let scrollTimer;
+    window.addEventListener('scroll', () => {
+        if (tocToggleBtn && !tocUnit.classList.contains('open')) {
+            tocToggleBtn.classList.add('scrolling');
+            clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => tocToggleBtn.classList.remove('scrolling'), 800);
+        }
+    }, { passive: true });
 
     // ── Progress bar on scroll ──
     window.addEventListener('scroll', () => {
@@ -344,7 +360,6 @@
         .filter(h => h.textContent.trim() !== '');
 
     // Hide toggle if no headings
-    const tocToggleBtn = document.getElementById('toc-toggle-btn');
     if (headings.length === 0 && tocToggleBtn) {
         tocToggleBtn.style.display = 'none';
     }
@@ -384,8 +399,6 @@
 
 
     let touchStartX = 0;
-    const tocUnit    = document.getElementById('toc-unit');
-    const tocOverlay = document.getElementById('mobile-toc-overlay');
 
     function openTocDrawer() {
         tocUnit.classList.add('open');
