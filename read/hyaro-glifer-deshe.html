@@ -82,12 +82,6 @@
         display: block;
     }
 
-    /* ── Font size variants ── */
-    #book-content.fs-sm p { font-size: 0.875rem; }
-    #book-content.fs-md p { font-size: 1rem; }
-    #book-content.fs-lg p { font-size: 1.125rem; }
-    #book-content.fs-xl p { font-size: 1.25rem; }
-
     /* ── TOC active ── */
     .toc-link.active {
         color: #c0392b;
@@ -106,86 +100,35 @@
         body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
         body.theme-light #mobile-reader-bg { background: #ffffff; }
 
-        /* book-content theme handled globally below */
-
-        /* Fixed top bar */
-        #mobile-topbar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            height: 52px;
-            z-index: 200;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            padding: 0 10px;
-            padding-top: env(safe-area-inset-top);
-            transition: transform 0.28s ease, background 0.3s;
-            border-bottom-left-radius: 14px;
-            border-bottom-right-radius: 14px;
-            background: #ffffff;
-        }
-        #mobile-topbar.hide { transform: translateY(-100%); }
-
-            
-        .theme-btn.active { border-color: #c0392b; }
-        .theme-btn i { font-size: 14px; display: none; }
-        .theme-btn.active i { display: block; }
-
-        body.theme-dark  #mobile-topbar i   { color: #ccc; }
-        body.theme-sepia #mobile-topbar i   { color: #5a4535; }
-        body.theme-light #mobile-topbar i   { color: #444; }
-
-        body.theme-dark  #mobile-topbar .title-text { color: #e8e8e8; }
-        body.theme-sepia #mobile-topbar .title-text { color: #3b2f20; }
-        body.theme-light #mobile-topbar .title-text { color: #111; }
-
-        /* main content padding */
-        #read-main-content {
-            padding-top: calc(52px + env(safe-area-inset-top) + 16px);
-            padding-bottom: 32px;
-        }
         #mobile-reader-bg {
             min-height: 100vh;
             transition: background 0.3s;
         }
     }
 
-    /* ══════════════════════════════
-       DESKTOP LEFT sidebar — book info
-    ══════════════════════════════ */
-    @media (min-width: 1024px) {
-        #desktop-left-sidebar {
-            position: fixed;
-            top: 0; left: 0;
-            width: 15rem;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid rgba(128,128,128,0.15);
-            background: inherit;
-            z-index: 50;
-            overflow: hidden;
-        }
-
-        /* ══════════════════════════════
-           DESKTOP RIGHT sidebar — controls + TOC
-        ══════════════════════════════ */
-        #toc-sidebar {
-            position: fixed;
-            top: 0; right: 0;
-            width: 14rem;
-            height: 100vh;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-        #toc-sidebar::-webkit-scrollbar { display: none; }
-
-        /* push main content between both sidebars */
-        #read-layout {
-            padding-left: 15rem;
-            padding-right: 14rem;
-        }
+    /* ── Floating TOC toggle button ── */
+    #toc-toggle-btn {
+        position: fixed;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 300;
+        width: 28px;
+        height: 56px;
+        background: #c0392b;
+        border: none;
+        border-radius: 10px 0 0 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: -2px 0 8px rgba(0,0,0,0.15);
+        transition: width 0.2s ease, background 0.2s;
     }
+    #toc-toggle-btn:active { background: #a93226; }
+    #toc-toggle-btn i { color: #fff; font-size: 12px; }
+
+
     #toc-controls-bar {
         position: sticky; top: 0; z-index: 10;
     }
@@ -318,20 +261,6 @@
     body.theme-light #toc-nav-mobile .toc-link.active  { background: rgba(192,57,43,0.08); color: #c0392b; }
 
 
-    /* ── Line spacing variants ── */
-    #book-content.ls-compact p  { line-height: 1.6; }
-    #book-content.ls-normal p   { line-height: 2; }
-    #book-content.ls-relaxed p  { line-height: 2.4; }
-
-    /* ── Font family variants ── */
-    #book-content.ff-sans    { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    #book-content.ff-serif   { font-family: 'Noto Serif Bengali', 'Noto Serif', Georgia, serif; }
-    #book-content.ff-system  { font-family: system-ui, -apple-system, sans-serif; }
-
-    /* ── Reading width variants ── */
-    #read-main-content.rw-narrow { max-width: 36rem; }
-    #read-main-content.rw-medium { max-width: 42rem; }
-    #read-main-content.rw-wide   { max-width: 56rem; }
 
     /* ── Estimated time badge ── */
     #est-time-badge {
@@ -342,235 +271,10 @@
         color: #6b7280;
     }
 
-    /* ══════════════════════════════
-       MOBILE bottom customization bar
-    ══════════════════════════════ */
-    @media (max-width: 767px) {
-        #mobile-bottom-bar {
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            z-index: 190;
-            padding-bottom: env(safe-area-inset-bottom);
-            transition: transform 0.28s ease, background 0.3s;
-            border-top-left-radius: 14px;
-            border-top-right-radius: 14px;
-            background: #ffffff;
-        }
-        #mobile-bottom-bar.hide { transform: translateY(100%); }
-
-        /* tabs row */
-        #mob-cust-tabs {
-            display: flex;
-            border-top-width: 1px;
-            border-top-style: solid;
-            height: 48px;
-        }
-        .mob-tab-btn {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2px;
-            font-size: 9px;
-            font-weight: 500;
-            cursor: pointer;
-            border: none;
-            background: transparent;
-            transition: color 0.15s;
-        }
-        .mob-tab-btn i { font-size: 13px; }
-        .mob-tab-btn.active { color: #c0392b; }
-
-        /* panel */
-        #mob-cust-panel {
-            overflow: hidden;
-            max-height: 0;
-            transition: max-height 0.32s cubic-bezier(0.4,0,0.2,1);
-        }
-        #mob-cust-panel.open { max-height: 320px; }
-
-        .mob-panel-section {
-            display: none;
-            padding: 12px 16px 4px;
-        }
-        .mob-panel-section.active { display: block; }
-
-        /* theme buttons mobile */
-        #mob-cust-panel .theme-btn {
-            height: 32px;
-            border-radius: 10px;
-            border-width: 2px;
-            font-size: 11px;
-            font-weight: 500;
-            padding: 0 10px;
-            flex: none;
-        }
-
-        /* ls/ff/rw buttons mobile */
-        #mob-cust-panel .ls-btn,
-        #mob-cust-panel .rw-btn {
-            flex: 1;
-            height: 36px;
-            border-radius: 10px;
-            border-width: 2px;
-            font-size: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
-            cursor: pointer;
-            transition: border-color 0.15s;
-        }
-        #mob-cust-panel .ff-btn {
-            width: 100%;
-            height: 36px;
-            border-radius: 10px;
-            border-width: 2px;
-            font-size: 12px;
-            text-align: left;
-            padding: 0 12px;
-            cursor: pointer;
-            transition: border-color 0.15s;
-        }
-
-        /* theme colors for bottom bar */
-                            body.theme-dark  #mob-cust-panel .ls-btn,
-        body.theme-dark  #mob-cust-panel .rw-btn,
-        body.theme-dark  #mob-cust-panel .ff-btn { background: #1e1e20; color: #ccc; border-color: #333; }
-
-                            body.theme-sepia #mob-cust-panel .ls-btn,
-        body.theme-sepia #mob-cust-panel .rw-btn,
-        body.theme-sepia #mob-cust-panel .ff-btn { background: #f5efe6; color: #5a4535; border-color: #d4c8b8; }
-
-                            body.theme-light #mob-cust-panel .ls-btn,
-        body.theme-light #mob-cust-panel .rw-btn,
-        body.theme-light #mob-cust-panel .ff-btn { background: #f9fafb; color: #374151; border-color: #e5e7eb; }
-
-        /* bottom bar visible — push content up */
-        #read-main-content {
-            padding-bottom: calc(48px + env(safe-area-inset-bottom) + 16px);
-        }
-    }
-
-    /* ── Text alignment variants ── */
-    #book-content.ta-justify p { text-align: justify; }
-    #book-content.ta-center  p { text-align: center; }
-    #book-content.ta-default p { text-align: left; }
-
-    /* ── New theme variants ── */
-    body.theme-black  #mobile-reader-bg,
-    body.theme-black  #read-main-content { background: #000000; }
-    body.theme-black  #book-content { color: #d0d0d0; }
-    body.theme-black  #book-content h1,
-    body.theme-black  #book-content h2 { color: #e8e8e8; }
-    body.theme-black  #book-content h2 { border-top-color: #222; }
-
-    body.theme-green  #mobile-reader-bg,
-    body.theme-green  #read-main-content { background: #0d1f0f; }
-    body.theme-green  #book-content { color: #b8d4ba; }
-    body.theme-green  #book-content h1,
-    body.theme-green  #book-content h2 { color: #d4e8d4; }
-    body.theme-green  #book-content h2 { border-top-color: #1a3a1c; }
-    body.theme-green  .mob-tab-btn { color: #4a7a4c; }
-    body.theme-green  .mob-tab-btn.active { color: #6fcf72; }
-
-    body.theme-blue   #mobile-reader-bg,
-    body.theme-blue   #read-main-content { background: #0d1b2e; }
-    body.theme-blue   #book-content { color: #b8ccdf; }
-    body.theme-blue   #book-content h1,
-    body.theme-blue   #book-content h2 { color: #d0e4f4; }
-    body.theme-blue   #book-content h2 { border-top-color: #1a2f4a; }
-    body.theme-light  #mobile-topbar { background: #ffffff; border-bottom-color: #e5e7eb; }
-    body.theme-light  #mobile-bottom-bar { background: #ffffff; }
-    body.theme-sepia  #mobile-topbar { background: #f5efe6; border-bottom-color: #d9ccbe; }
-    body.theme-sepia  #mobile-bottom-bar { background: #f5efe6; }
-    body.theme-dark   #mobile-topbar { background: #1c1c1e; border-bottom-color: #2c2c30; }
-    body.theme-dark   #mobile-bottom-bar { background: #1c1c1e; }
-    body.theme-blue   #mobile-topbar { background: #0a1520; border-bottom-color: #1a2f4a; }
-    body.theme-blue   #mobile-bottom-bar { background: #0a1520; }
-    body.theme-blue   #mob-cust-tabs { border-top-color: #1a2f4a; }
-    body.theme-blue   #mob-cust-panel { background: #0a1520; border-top-color: #1a2f4a; }
-    body.theme-blue   .mob-tab-btn { color: #3a5a7a; }
-    body.theme-blue   .mob-tab-btn.active { color: #5b9cf6; }
-    body.theme-blue   #mob-cust-panel .ls-btn,
-    body.theme-blue   #mob-cust-panel .rw-btn,
-    body.theme-blue   #mob-cust-panel .ff-btn { background: #0d1b2e; color: #7aaac8; border-color: #1a2f4a; }
-    body.theme-blue   #desktop-left-sidebar,
-    body.theme-blue   #toc-sidebar { background: #0a1520 !important; border-color: #1a2f4a !important; }
-
-    body.theme-gray   #mobile-reader-bg,
-    body.theme-gray   #read-main-content { background: #2a2a2e; }
-    body.theme-gray   #book-content { color: #c8c8cc; }
-    body.theme-gray   #book-content h1,
-    body.theme-gray   #book-content h2 { color: #e0e0e4; }
-    body.theme-gray   #book-content h2 { border-top-color: #3a3a3e; }
-    body.theme-gray   #mobile-topbar { background: #222226; border-bottom-color: #3a3a3e; }
-    body.theme-gray   #mobile-bottom-bar { background: #222226; }
-    body.theme-gray   #mob-cust-tabs { border-top-color: #3a3a3e; }
-    body.theme-gray   #mob-cust-panel { background: #222226; border-top-color: #3a3a3e; }
-    body.theme-gray   .mob-tab-btn { color: #666; }
-    body.theme-gray   .mob-tab-btn.active { color: #5b9cf6; }
-    body.theme-gray   #mob-cust-panel .ls-btn,
-    body.theme-gray   #mob-cust-panel .rw-btn,
-    body.theme-gray   #mob-cust-panel .ff-btn { background: #2a2a2e; color: #aaa; border-color: #3a3a3e; }
-    body.theme-gray   #desktop-left-sidebar,
-    body.theme-gray   #toc-sidebar { background: #222226 !important; border-color: #3a3a3e !important; }
-
-    /* ── Active theme button indicator ── */
-    .theme-btn { position: relative; overflow: hidden; }
-    .theme-btn.active { border-color: #c0392b !important; }
-
-    /* ── Active theme button: filled ring ── */
-    .theme-btn { transition: box-shadow 0.15s, border-color 0.15s; }
-    .theme-btn.active { border-color: #c0392b !important; box-shadow: inset 0 0 0 2px #c0392b; }
     html { scroll-behavior: smooth; }
     /* ── Hide browser scrollbar (page level) ── */
     html { scrollbar-width: none; -ms-overflow-style: none; }
     html::-webkit-scrollbar { display: none; }
-
-    /* ══ Global theme rules (mobile + desktop) ══ */
-    body.theme-dark  #mobile-reader-bg,
-    body.theme-dark  #read-main-content { background: #1c1c1e; }
-    body.theme-sepia #mobile-reader-bg,
-    body.theme-sepia #read-main-content { background: #f5efe6; }
-    body.theme-light #mobile-reader-bg,
-    body.theme-light #read-main-content { background: #ffffff; }
-
-    body.theme-dark  #book-content { color: #e0e0e0; }
-    body.theme-sepia #book-content { color: #3b2f20; }
-    body.theme-light #book-content { color: #1a1a1a; }
-
-    body.theme-dark  #book-content h1,
-    body.theme-dark  #book-content h2 { color: #f0f0f0; }
-    body.theme-sepia #book-content h1,
-    body.theme-sepia #book-content h2 { color: #2a1f14; }
-    body.theme-light #book-content h1,
-    body.theme-light #book-content h2 { color: #111111; }
-
-    body.theme-dark  #book-content h2 { border-top-color: #333; }
-    body.theme-sepia #book-content h2 { border-top-color: #d9ccc0; }
-    body.theme-light #book-content h2 { border-top-color: rgba(128,128,128,0.2); }
-
-    /* sidebars follow theme too */
-
-    body.theme-dark  #desktop-left-sidebar *,
-    body.theme-dark  #toc-sidebar * { --tw-text-opacity: 1; }
-
-    /* progress bar color stays brand */
-    body.theme-sepia #read-progress-bar { background: #8b5e3c; }
-
-    /* ══ Desktop left sidebar theme colors ══ */
-
-
-    /* Active theme button */
-    .theme-btn.active { border-color: #c0392b !important; box-shadow: 0 0 0 1px #c0392b; }
-
-    /* Hide main content bottom back-link on desktop since left sidebar has it */
-    @media (min-width: 1024px) {
-        #desktop-bottom-backnav { display: none; }
-    }
 
 </style>
 
@@ -581,19 +285,10 @@
      MOBILE ONLY chrome (hidden on md+)
 ══════════════════════════════════════════ -->
 
-<!-- Top bar -->
-<div id="mobile-topbar" class="md:hidden">
-    <a href="/books/hyaro-glifer-deshe.html"
-       class="w-9 h-9 flex items-center justify-center rounded-full shrink-0">
-        <i class="fas fa-chevron-left text-base"></i>
-    </a>
-    <div class="flex-1 min-w-0 px-1">
-        <p class="title-text text-sm font-semibold truncate leading-tight">হায়ারোগ্লিফের দেশে</p>
-    </div>
-    <button id="mob-toc-btn-top" class="w-9 h-9 flex items-center justify-center rounded-full shrink-0" aria-label="সূচিপত্র">
-        <i class="fas fa-list-ul text-sm"></i>
-    </button>
-</div>
+<!-- Floating TOC toggle button -->
+<button id="toc-toggle-btn" aria-label="সূচিপত্র">
+    <i class="fas fa-list-ul"></i>
+</button>
 
 <!-- ── MOBILE: right TOC drawer + overlay ── -->
 <div id="mobile-toc-overlay" class="md:hidden"></div>
@@ -612,128 +307,6 @@
 
 </div>
 
-<!-- ══════════════════════════════════════════
-     MOBILE bottom customization bar
-══════════════════════════════════════════ -->
-<div id="mobile-bottom-bar" class="md:hidden">
-
-    <!-- Expandable panel -->
-    <div id="mob-cust-panel">
-
-        <!-- থিম -->
-        <div id="mob-panel-theme" class="mob-panel-section">
-            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">থিম</p>
-            <div class="flex gap-2">
-                <button data-theme="light" class="theme-btn flex-1" style="background:#fff;color:#333;border-color:#e5e7eb;">আলো</button>
-                <button data-theme="sepia" class="theme-btn flex-1" style="background:#f5efe6;color:#5a4535;border-color:#d9ccbe;">সেপিয়া</button>
-                <button data-theme="dark"  class="theme-btn flex-1" style="background:#1c1c1e;color:#ccc;border-color:#333;">অন্ধকার</button>
-            </div>
-        </div>
-
-        <!-- লেখার আকার -->
-        <div id="mob-panel-font" class="mob-panel-section">
-            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">লেখার আকার ও ফন্ট</p>
-            <div class="flex gap-2 mb-2">
-                <button id="m-font-decrease"
-                    class="flex-1 h-9 rounded-xl border-2 border-gray-200 bg-gray-50 text-[13px] font-bold text-gray-600">A−</button>
-                <div class="flex-1 flex justify-center gap-1.5 items-center">
-                    <span id="m-font-dot-0" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
-                    <span id="m-font-dot-1" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
-                    <span id="m-font-dot-2" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
-                    <span id="m-font-dot-3" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
-                </div>
-                <button id="m-font-increase"
-                    class="flex-1 h-9 rounded-xl border-2 border-gray-200 bg-gray-50 text-[13px] font-bold text-gray-600">A+</button>
-            </div>
-            <div class="flex flex-col gap-1.5">
-                <button data-ff="ff-sans"  class="ff-btn border-2 border-gray-200 bg-gray-50" style="font-family:'Segoe UI',sans-serif;">সাধারণ (Sans)</button>
-                <button data-ff="ff-serif" class="ff-btn border-2 border-gray-200 bg-gray-50" style="font-family:'Noto Serif Bengali',serif;">বইয়ের ফন্ট (Serif)</button>
-            </div>
-        </div>
-
-        <!-- লাইনের ফাঁক -->
-        <div id="mob-panel-spacing" class="mob-panel-section">
-            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">লাইনের ফাঁক, প্রস্থ ও সারিবদ্ধতা</p>
-            <div class="flex gap-2 mb-2">
-                <button data-ls="ls-compact" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="flex flex-col gap-[2px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span>আঁটো</span>
-                </button>
-                <button data-ls="ls-normal" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="flex flex-col gap-[4px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span>স্বাভাবিক</span>
-                </button>
-                <button data-ls="ls-relaxed" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="flex flex-col gap-[6px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span>প্রশস্ত</span>
-                </button>
-            </div>
-            <div class="flex gap-2">
-                <button data-rw="rw-narrow" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="w-[3px] h-4 bg-current rounded-sm opacity-80"></span><span>সরু</span>
-                </button>
-                <button data-rw="rw-medium" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="w-[5px] h-4 bg-current rounded-sm opacity-80"></span><span>মাঝারি</span>
-                </button>
-                <button data-rw="rw-wide" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
-                    <span class="w-[8px] h-4 bg-current rounded-sm opacity-80"></span><span>চওড়া</span>
-                </button>
-            </div>
-        </div>
-
-
-    </div>
-
-    <!-- Tab buttons row -->
-    <div id="mob-cust-tabs">
-        <button class="mob-tab-btn" id="mob-tab-theme" data-panel="mob-panel-theme">
-            <i class="fas fa-circle-half-stroke"></i>
-            <span>থিম</span>
-        </button>
-        <button class="mob-tab-btn" id="mob-tab-font" data-panel="mob-panel-font">
-            <i class="fas fa-font"></i>
-            <span>ফন্ট</span>
-        </button>
-        <button class="mob-tab-btn" id="mob-tab-spacing" data-panel="mob-panel-spacing">
-            <i class="fas fa-text-height"></i>
-            <span>ফাঁক/প্রস্থ</span>
-        </button>
-    </div>
-</div>
-
-<!-- ══════════════════════════════════════════
-     DESKTOP LEFT sidebar (book info + nav)
-══════════════════════════════════════════ -->
-<aside id="desktop-left-sidebar"
-    class="hidden lg:flex flex-col bg-white dark:bg-[#1a1a1b]">
-
-    <!-- Back button + Book name -->
-    <div class="px-4 pt-5 pb-4 border-b border-gray-100 dark:border-gray-800 shrink-0 flex items-center gap-2.5">
-        <a href="/books/hyaro-glifer-deshe.html"
-           class="w-7 h-7 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-brand-100 dark:hover:bg-[#7a3b1e] flex items-center justify-center shrink-0 transition-colors">
-            <i class="fas fa-arrow-left text-[11px] text-gray-500 dark:text-gray-400 hover:text-[#c0392b] transition-colors"></i>
-        </a>
-        <div class="min-w-0">
-            <p id="left-book-title"
-               class="text-[13px] font-bold leading-snug text-gray-900 dark:text-gray-100 line-clamp-2">
-                হায়ারোগ্লিফের দেশে
-            </p>
-            <p id="left-book-subtitle"
-               class="text-[10px] text-gray-400 dark:text-gray-500 mt-0.5 line-clamp-1">
-                
-            </p>
-        </div>
-    </div>
-
-    <!-- TOC label -->
-    <div class="px-5 pt-4 pb-1.5 shrink-0">
-        <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600">সূচিপত্র</p>
-    </div>
-
-    <!-- TOC nav (populated by JS alongside desktop nav) -->
-    <nav id="toc-nav-left" class="flex flex-col px-3 pb-8 gap-0.5 text-[12px] overflow-y-auto flex-1"
-         style="scrollbar-width:none;-ms-overflow-style:none;"></nav>
-</aside>
 
 <!-- ══════════════════════════════════════════
      Main layout wrapper
@@ -743,8 +316,8 @@
 
     <!-- Reading column -->
     <div class="flex-1 min-w-0">
-        <div id="read-main-content" class="px-5 md:px-10 lg:px-16 py-7 max-w-2xl">
-            <div id="book-content" class="fs-md text-gray-800 dark:text-gray-200">
+        <div id="read-main-content" class="px-5 md:px-10 py-7 max-w-2xl">
+            <div id="book-content" class="text-gray-800 dark:text-gray-200">
                 
 <p style="text-align:center; width:100%;">
 <h1 class="P_Heading_1__And__Centre_Alignment" style=" width: 451px; max-width: 100%; display:inline-block;"><img alt="" src="/assets/images/hyaro-glifer-deshe/image11.jpg" style=" width: 100%;"/></h1>
@@ -3957,159 +3530,11 @@
 
             </div>
 
-            <!-- Bottom nav -->
-            <div class="mt-12 pt-6 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
-                <a href="/books/hyaro-glifer-deshe.html"
-                   class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#c0392b] transition">
-                    <i class="fas fa-arrow-left text-xs"></i> বইয়ের তথ্য
-                </a>
-                <a href="/download/hyaro-glifer-deshe.html"
-                   class="flex items-center gap-2 text-sm bg-[#c0392b] hover:bg-[#a93226] text-white px-4 py-2 rounded-lg transition">
-                    <i class="fas fa-download text-xs"></i> ডাউনলোড করুন
-                </a>
-            </div>
         </div>
     </div>
 
-    <!-- Desktop RIGHT sidebar: customization controls -->
-    <aside id="toc-sidebar"
-        class="hidden lg:flex flex-col w-56 shrink-0 border-l border-gray-100 dark:border-gray-800 bg-white dark:bg-[#1a1a1b] overflow-y-auto">
-
-        <!-- Reading progress -->
-        <div class="px-4 pt-6 pb-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-3">অগ্রগতি</p>
-            <div class="flex items-center gap-3">
-                <div class="relative w-12 h-12 shrink-0">
-                    <svg class="w-full h-full -rotate-90" viewBox="0 0 36 36">
-                        <circle cx="18" cy="18" r="14" fill="none" stroke="currentColor"
-                            class="text-gray-100 dark:text-gray-800" stroke-width="3"/>
-                        <circle id="progress-ring-circle" cx="18" cy="18" r="14" fill="none"
-                            stroke="#c0392b" stroke-width="3"
-                            stroke-dasharray="87.96" stroke-dashoffset="87.96"
-                            stroke-linecap="round"/>
-                    </svg>
-                    <span id="progress-pct"
-                        class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-gray-700 dark:text-gray-300 tabular-nums leading-none">০%</span>
-                </div>
-                <div>
-                    <p class="text-[12px] font-semibold text-gray-700 dark:text-gray-300">পড়া হয়েছে</p>
-                    <p class="text-[11px] text-gray-400 dark:text-gray-500 mt-0.5">স্ক্রোল করুন</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Font size -->
-        <div class="px-4 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">লেখার আকার</p>
-            <div class="flex items-center gap-2">
-                <button id="font-decrease"
-                    class="w-9 h-9 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-[13px] font-bold transition text-gray-600 dark:text-gray-300 flex items-center justify-center">A−</button>
-                <div class="flex-1 flex justify-center gap-1.5 items-center">
-                    <span id="font-dot-0" class="w-2 h-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></span>
-                    <span id="font-dot-1" class="w-2 h-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></span>
-                    <span id="font-dot-2" class="w-2 h-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></span>
-                    <span id="font-dot-3" class="w-2 h-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors"></span>
-                </div>
-                <button id="font-increase"
-                    class="w-9 h-9 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-[13px] font-bold transition text-gray-600 dark:text-gray-300 flex items-center justify-center">A+</button>
-            </div>
-            <p class="text-center text-[10px] text-gray-400 dark:text-gray-600 mt-2">
-                স্তর: <span id="font-label" class="font-semibold text-gray-600 dark:text-gray-400">২</span> / ৪
-            </p>
-        </div>
-
-        <!-- Theme selector -->
-        <div class="px-4 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">থিম</p>
-            <div class="flex gap-1.5">
-                <button data-theme="light" class="theme-btn flex-1 h-10 rounded-lg border-2 text-[11px] font-medium transition-all" style="background:#fff;color:#333;border-color:#e5e7eb;">আলো</button>
-                <button data-theme="sepia" class="theme-btn flex-1 h-10 rounded-lg border-2 text-[11px] font-medium transition-all" style="background:#f5efe6;color:#5a4535;border-color:#d9ccbe;">সেপিয়া</button>
-                <button data-theme="dark"  class="theme-btn flex-1 h-10 rounded-lg border-2 text-[11px] font-medium transition-all" style="background:#1c1c1e;color:#ccc;border-color:#333;">অন্ধকার</button>
-            </div>
-        </div>
-
-        <!-- Line spacing -->
-        <div class="px-4 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">লাইনের ফাঁক</p>
-            <div class="flex gap-1.5">
-                <button data-ls="ls-compact"
-                    class="ls-btn flex-1 h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[11px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center justify-center gap-0.5">
-                    <span class="flex flex-col gap-[2px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span class="text-[9px]">আঁটো</span>
-                </button>
-                <button data-ls="ls-normal"
-                    class="ls-btn flex-1 h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[11px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center justify-center gap-0.5">
-                    <span class="flex flex-col gap-[4px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span class="text-[9px]">স্বাভাবিক</span>
-                </button>
-                <button data-ls="ls-relaxed"
-                    class="ls-btn flex-1 h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[11px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center justify-center gap-0.5">
-                    <span class="flex flex-col gap-[6px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
-                    <span class="text-[9px]">প্রশস্ত</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Font family -->
-        <div class="px-4 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">ফন্ট</p>
-            <div class="flex flex-col gap-1.5">
-                <button data-ff="ff-sans"
-                    class="ff-btn w-full h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[12px] transition-all text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 px-3 text-left"
-                    style="font-family: 'Segoe UI', sans-serif;">সাধারণ (Sans)</button>
-                <button data-ff="ff-serif"
-                    class="ff-btn w-full h-8 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[12px] transition-all text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 px-3 text-left"
-                    style="font-family: 'Noto Serif Bengali', serif;">বইয়ের ফন্ট (Serif)</button>
-            </div>
-        </div>
-
-        <!-- Reading width -->
-        <div class="px-4 py-4 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">পড়ার প্রস্থ</p>
-            <div class="flex gap-1.5">
-                <button data-rw="rw-narrow"
-                    class="rw-btn flex-1 py-1.5 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[10px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center gap-1">
-                    <span class="flex gap-0.5 items-end h-3"><span class="w-[3px] h-3 bg-current rounded-sm opacity-80"></span></span>
-                    <span>সরু</span>
-                </button>
-                <button data-rw="rw-medium"
-                    class="rw-btn flex-1 py-1.5 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[10px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center gap-1">
-                    <span class="flex gap-0.5 items-end h-3"><span class="w-[5px] h-3 bg-current rounded-sm opacity-80"></span></span>
-                    <span>মাঝারি</span>
-                </button>
-                <button data-rw="rw-wide"
-                    class="rw-btn flex-1 py-1.5 rounded-lg border-2 border-gray-200 dark:border-gray-700 text-[10px] font-medium transition-all text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 flex flex-col items-center gap-1">
-                    <span class="flex gap-0.5 items-end h-3"><span class="w-[8px] h-3 bg-current rounded-sm opacity-80"></span></span>
-                    <span>চওড়া</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Text alignment -->
-        <div class="px-4 py-4 border-t border-gray-100 dark:border-gray-800 shrink-0">
-            <p class="text-[10px] uppercase font-semibold tracking-widest text-gray-400 dark:text-gray-600 mb-2.5">টেক্সট সারিবদ্ধতা</p>
-            <div class="flex gap-1.5">
-                <button data-ta="ta-default"
-                    class="ta-btn flex-1 h-9 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 flex flex-col items-center justify-center gap-1 transition-all">
-                    <i class="fas fa-align-left text-[11px]"></i>
-                    <span class="text-[9px]">বাম</span>
-                </button>
-                <button data-ta="ta-center"
-                    class="ta-btn flex-1 h-9 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 flex flex-col items-center justify-center gap-1 transition-all">
-                    <i class="fas fa-align-center text-[11px]"></i>
-                    <span class="text-[9px]">মাঝ</span>
-                </button>
-                <button data-ta="ta-justify"
-                    class="ta-btn flex-1 h-9 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 flex flex-col items-center justify-center gap-1 transition-all">
-                    <i class="fas fa-align-justify text-[11px]"></i>
-                    <span class="text-[9px]">জাস্টিফাই</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Hidden nav (TOC moved to left sidebar) -->
+        <!-- TOC nav for mobile -->
         <nav id="toc-nav-desktop" class="hidden"></nav>
-    </aside>
 </div>
 </div>
 
@@ -4120,82 +3545,21 @@
     const progressPct  = document.getElementById('progress-pct');
     const tocDesktop   = document.getElementById('toc-nav-desktop');
     const tocMobile    = document.getElementById('toc-nav-mobile');
-    const tocLeft      = document.getElementById('toc-nav-left');
     const progressRing = document.getElementById('progress-ring-circle');
-    const mobileTopbar  = document.getElementById('mobile-topbar');
-    const mobileBottomBar = document.getElementById('mobile-bottom-bar');
-    const fontPopup    = document.getElementById('font-popup');
-    const fontLabel    = document.getElementById('font-label');
 
     const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
     function toBN(n) {
         return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
     }
 
-    // ── Default theme ──
-    let currentTheme = localStorage.getItem('pg-theme') || 'light';
-    applyTheme(currentTheme);
 
-    function applyTheme(t) {
-        ['light','sepia','dark'].forEach(th => document.body.classList.remove('theme-'+th));
-        document.body.classList.add('theme-'+t);
-        currentTheme = t;
-        localStorage.setItem('pg-theme', t);
-
-        // sync Tailwind dark: variants with theme
-        if (t === 'dark') {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-
-        document.querySelectorAll('.theme-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.theme === t);
-        });
-        const bgMap = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e' };
-        const bdMap = { light:'#e5e7eb', sepia:'#d4c8b8', dark:'#2a2a2e' };
-        const clMap = { light:'#111', sepia:'#3b2f20', dark:'#e0e0e0' };
-        if (fontPopup) {
-            fontPopup.style.background = bgMap[t];
-            fontPopup.style.borderColor = bdMap[t];
-            fontPopup.style.color = clMap[t];
-        }
-    }
-
-    // Wire ALL theme buttons including desktop right sidebar
-    document.querySelectorAll('.theme-btn').forEach(btn => {
-        btn.addEventListener('click', () => applyTheme(btn.dataset.theme));
-    });
-
-    // ── Hide-on-scroll ──
-    let lastScrollY = window.scrollY;
-    let ticking = false;
-
+    // ── Progress bar on scroll ──
     window.addEventListener('scroll', () => {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                const currentY = window.scrollY;
-                const delta    = currentY - lastScrollY;
-                const docH     = document.documentElement.scrollHeight - window.innerHeight;
-                const pct      = docH > 0 ? (currentY / docH) * 100 : 0;
-
-                if (delta > 6 && currentY > 80) {
-                    mobileTopbar?.classList.add('hide');
-                    mobileBottomBar?.classList.add('hide');
-                } else if (delta < -6) {
-                    mobileTopbar?.classList.remove('hide');
-                    mobileBottomBar?.classList.remove('hide');
-                }
-
-                lastScrollY = currentY;
-                progressBar.style.width = pct + '%';
-                if (progressPct) progressPct.textContent = toBN(pct) + '%';
-                // animate ring (circumference 87.96)
-                if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
-                ticking = false;
-            });
-            ticking = true;
-        }
+        const docH = document.documentElement.scrollHeight - window.innerHeight;
+        const pct  = docH > 0 ? (window.scrollY / docH) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        if (progressPct) progressPct.textContent = toBN(pct) + '%';
+        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
     }, { passive: true });
 
     // ── Build TOC ──
@@ -4221,7 +3585,6 @@
     }
     buildToc(tocDesktop, false);
     buildToc(tocMobile, true);
-    if (tocLeft) buildToc(tocLeft, false);
 
     // ── TOC active ──
     const allTocLinks = document.querySelectorAll('.toc-link');
@@ -4235,45 +3598,8 @@
         });
     }, { passive: true });
 
-    // ── Font size ──
-    const fontSizes = ['fs-sm', 'fs-md', 'fs-lg', 'fs-xl'];
-    let currentSize = parseInt(localStorage.getItem('pg-font-size') || '1');
-    bookContent.classList.add(fontSizes[currentSize]);
-    if (fontLabel) fontLabel.textContent = currentSize + 1;
-    updateFontDots(currentSize);
 
-    function updateFontDots(size) {
-        for (let i = 0; i < 4; i++) {
-            ['font-dot-', 'm-font-dot-'].forEach(prefix => {
-                const dot = document.getElementById(prefix + i);
-                if (dot) dot.style.background = i <= size ? '#c0392b' : '';
-            });
-        }
-    }
-
-    function changeFont(delta) {
-        const next = Math.max(0, Math.min(fontSizes.length - 1, currentSize + delta));
-        if (next === currentSize) return;
-        bookContent.classList.replace(fontSizes[currentSize], fontSizes[next]);
-        currentSize = next;
-        localStorage.setItem('pg-font-size', currentSize);
-        if (fontLabel) fontLabel.textContent = currentSize + 1;
-        updateFontDots(currentSize);
-    }
-
-    document.getElementById('font-increase')?.addEventListener('click', () => changeFont(1));
-    document.getElementById('font-decrease')?.addEventListener('click', () => changeFont(-1));
-    document.getElementById('m-font-increase')?.addEventListener('click', () => changeFont(1));
-    document.getElementById('m-font-decrease')?.addEventListener('click', () => changeFont(-1));
-
-    document.getElementById('mob-font-btn')?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        fontPopup?.classList.toggle('hidden');
-    });
-    document.addEventListener('click', () => fontPopup?.classList.add('hidden'));
-    fontPopup?.addEventListener('click', e => e.stopPropagation());
-
-    // ── Mobile right TOC drawer ──
+    let touchStartX = 0;
     const tocDrawer  = document.getElementById('mobile-toc-drawer');
     const tocOverlay = document.getElementById('mobile-toc-overlay');
 
@@ -4288,161 +3614,10 @@
         document.body.style.overflow = '';
     }
 
-    document.getElementById('mob-toc-btn')?.addEventListener('click', openTocDrawer);
-    document.getElementById('mob-toc-btn-top')?.addEventListener('click', openTocDrawer);
+    document.getElementById('toc-toggle-btn')?.addEventListener('click', openTocDrawer);
     document.getElementById('mobile-toc-close')?.addEventListener('click', closeTocDrawer);
     tocOverlay?.addEventListener('click', closeTocDrawer);
 
-
-    // ── Line spacing ──
-    const lsClasses = ['ls-compact', 'ls-normal', 'ls-relaxed'];
-    let currentLS = localStorage.getItem('pg-ls') || 'ls-normal';
-    bookContent.classList.add(currentLS);
-
-    function applyLS(ls) {
-        lsClasses.forEach(c => bookContent.classList.remove(c));
-        bookContent.classList.add(ls);
-        currentLS = ls;
-        localStorage.setItem('pg-ls', ls);
-        document.querySelectorAll('.ls-btn').forEach(b => {
-            b.classList.toggle('border-[#c0392b]', b.dataset.ls === ls);
-            b.classList.toggle('border-gray-200', b.dataset.ls !== ls);
-            b.classList.toggle('dark:border-gray-700', b.dataset.ls !== ls);
-        });
-    }
-    applyLS(currentLS);
-    document.querySelectorAll('.ls-btn').forEach(b => {
-        b.addEventListener('click', () => applyLS(b.dataset.ls));
-    });
-
-    // ── Font family ──
-    const ffClasses = ['ff-sans', 'ff-serif', 'ff-system'];
-    let currentFF = localStorage.getItem('pg-ff') || 'ff-sans';
-    bookContent.classList.add(currentFF);
-
-    function applyFF(ff) {
-        ffClasses.forEach(c => bookContent.classList.remove(c));
-        bookContent.classList.add(ff);
-        currentFF = ff;
-        localStorage.setItem('pg-ff', ff);
-        document.querySelectorAll('.ff-btn').forEach(b => {
-            b.classList.toggle('border-[#c0392b]', b.dataset.ff === ff);
-            b.classList.toggle('border-gray-200', b.dataset.ff !== ff);
-            b.classList.toggle('dark:border-gray-700', b.dataset.ff !== ff);
-        });
-    }
-    applyFF(currentFF);
-    document.querySelectorAll('.ff-btn').forEach(b => {
-        b.addEventListener('click', () => applyFF(b.dataset.ff));
-    });
-
-    // ── Reading width ──
-    const mainContent = document.getElementById('read-main-content');
-    const rwClasses   = ['rw-narrow', 'rw-medium', 'rw-wide'];
-    let currentRW = localStorage.getItem('pg-rw') || 'rw-medium';
-
-    function applyRW(rw) {
-        rwClasses.forEach(c => mainContent?.classList.remove(c));
-        mainContent?.classList.add(rw);
-        currentRW = rw;
-        localStorage.setItem('pg-rw', rw);
-        document.querySelectorAll('.rw-btn').forEach(b => {
-            b.classList.toggle('border-[#c0392b]', b.dataset.rw === rw);
-            b.classList.toggle('border-gray-200', b.dataset.rw !== rw);
-            b.classList.toggle('dark:border-gray-700', b.dataset.rw !== rw);
-        });
-    }
-    // remove existing max-w-2xl from classList and apply saved width
-    mainContent?.classList.remove('max-w-2xl');
-    applyRW(currentRW);
-    document.querySelectorAll('.rw-btn').forEach(b => {
-        b.addEventListener('click', () => applyRW(b.dataset.rw));
-    });
-
-
-    // ── Mobile bottom customization bar ──
-    const mobPanel    = document.getElementById('mob-cust-panel');
-    let activeTab     = null;
-
-    document.querySelectorAll('.mob-tab-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const panelId = btn.dataset.panel;
-            const isActive = btn.classList.contains('active');
-
-            // deactivate all
-            document.querySelectorAll('.mob-tab-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.mob-panel-section').forEach(s => s.classList.remove('active'));
-
-            if (isActive) {
-                // toggle off
-                mobPanel.classList.remove('open');
-                activeTab = null;
-            } else {
-                // open this panel
-                btn.classList.add('active');
-                document.getElementById(panelId)?.classList.add('active');
-                mobPanel.classList.add('open');
-                activeTab = panelId;
-            }
-        });
-    });
-
-    // sync mobile ff-btn active state
-    function syncMobileFF(ff) {
-        document.querySelectorAll('#mob-cust-panel .ff-btn').forEach(b => {
-            b.style.borderColor = b.dataset.ff === ff ? '#c0392b' : '';
-        });
-    }
-    document.querySelectorAll('#mob-cust-panel .ff-btn').forEach(b => {
-        b.addEventListener('click', () => { applyFF(b.dataset.ff); syncMobileFF(b.dataset.ff); });
-    });
-
-    // sync mobile ls-btn active state
-    function syncMobileLS(ls) {
-        document.querySelectorAll('#mob-cust-panel .ls-btn').forEach(b => {
-            b.style.borderColor = b.dataset.ls === ls ? '#c0392b' : '';
-        });
-    }
-    document.querySelectorAll('#mob-cust-panel .ls-btn').forEach(b => {
-        b.addEventListener('click', () => { applyLS(b.dataset.ls); syncMobileLS(b.dataset.ls); });
-    });
-
-    // sync mobile rw-btn active state
-    function syncMobileRW(rw) {
-        document.querySelectorAll('#mob-cust-panel .rw-btn').forEach(b => {
-            b.style.borderColor = b.dataset.rw === rw ? '#c0392b' : '';
-        });
-    }
-    document.querySelectorAll('#mob-cust-panel .rw-btn').forEach(b => {
-        b.addEventListener('click', () => { applyRW(b.dataset.rw); syncMobileRW(b.dataset.rw); });
-    });
-
-    // init active states on mobile
-    syncMobileFF(currentFF);
-    syncMobileLS(currentLS);
-    syncMobileRW(currentRW);
-
-
-    // ── Text alignment ──
-    const taClasses = ['ta-default', 'ta-center', 'ta-justify'];
-    let currentTA = localStorage.getItem('pg-ta') || 'ta-default';
-
-    function applyTA(ta) {
-        taClasses.forEach(c => bookContent.classList.remove(c));
-        bookContent.classList.add(ta);
-        currentTA = ta;
-        localStorage.setItem('pg-ta', ta);
-        document.querySelectorAll('.ta-btn').forEach(b => {
-            b.style.borderColor = b.dataset.ta === ta ? '#c0392b' : '';
-        });
-    }
-    applyTA(currentTA);
-    document.querySelectorAll('.ta-btn').forEach(b => {
-        b.addEventListener('click', () => applyTA(b.dataset.ta));
-    });
-
-
-    let touchStartX = 0;
     tocDrawer?.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
     tocDrawer?.addEventListener('touchend', e => {
         if (e.changedTouches[0].clientX - touchStartX > 60) closeTocDrawer();
