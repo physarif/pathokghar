@@ -343,216 +343,116 @@
     }
 
     /* ══════════════════════════════
-       MOBILE — FAB + Customization Modal
+       MOBILE bottom customization bar
     ══════════════════════════════ */
     @media (max-width: 767px) {
-
-        /* FAB button */
-        #mob-fab {
-            position: fixed;
-            bottom: calc(24px + env(safe-area-inset-bottom));
-            right: 18px;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: #c0392b;
-            color: white;
-            border: none;
-            cursor: pointer;
-            z-index: 300;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 16px rgba(192,57,43,0.45), 0 2px 6px rgba(0,0,0,0.2);
-            transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), background 0.2s, opacity 0.28s;
-        }
-        #mob-fab i { font-size: 17px; transition: transform 0.22s; }
-        #mob-fab.open i { transform: rotate(45deg); }
-        #mob-fab.hide { opacity: 0; pointer-events: none; transform: scale(0.7); }
-
-        /* Overlay */
-        #mob-modal-overlay {
-            position: fixed; inset: 0;
-            background: rgba(0,0,0,0.4);
-            z-index: 390;
-            opacity: 0; pointer-events: none;
-            transition: opacity 0.25s ease;
-        }
-        #mob-modal-overlay.open { opacity: 1; pointer-events: auto; }
-
-        /* Modal sheet — slides up from bottom */
-        #mob-cust-modal {
+        #mobile-bottom-bar {
             position: fixed;
             bottom: 0; left: 0; right: 0;
-            z-index: 400;
-            border-top-left-radius: 22px;
-            border-top-right-radius: 22px;
+            z-index: 190;
             padding-bottom: env(safe-area-inset-bottom);
-            transform: translateY(110%);
-            transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
-            overflow-y: auto;
-            max-height: 82vh;
+            transition: transform 0.28s ease, background 0.3s;
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
+            background: #ffffff;
         }
-        #mob-cust-modal.open { transform: translateY(0); }
+        #mobile-bottom-bar.hide { transform: translateY(100%); }
 
-        /* Modal drag handle */
-        #mob-modal-handle {
-            width: 36px; height: 4px;
-            border-radius: 2px;
-            margin: 10px auto 14px;
+        /* tabs row */
+        #mob-cust-tabs {
+            display: flex;
+            border-top-width: 1px;
+            border-top-style: solid;
+            height: 48px;
         }
-
-        /* Section label */
-        .mob-section-label {
-            font-size: 9px;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 0 16px;
-            margin-bottom: 8px;
-        }
-
-        /* 2-col grid for options */
-        .mob-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            padding: 0 12px 16px;
-        }
-        .mob-grid-3 {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 8px;
-            padding: 0 12px 16px;
-        }
-
-        /* Grid card button */
-        .mob-card-btn {
+        .mob-tab-btn {
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            border-radius: 14px;
-            border: 2px solid transparent;
-            padding: 14px 8px;
-            cursor: pointer;
-            transition: border-color 0.15s, background 0.15s;
-            font-size: 12px;
+            gap: 2px;
+            font-size: 9px;
             font-weight: 500;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            transition: color 0.15s;
         }
-        .mob-card-btn i { font-size: 22px; }
-        .mob-card-btn.active { border-color: #c0392b !important; }
+        .mob-tab-btn i { font-size: 13px; }
+        .mob-tab-btn.active { color: #c0392b; }
 
-        /* Font size row */
-        .mob-font-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0 12px 16px;
+        /* panel */
+        #mob-cust-panel {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.32s cubic-bezier(0.4,0,0.2,1);
         }
-        .mob-font-btn {
-            width: 44px; height: 44px;
-            border-radius: 12px;
-            border: 2px solid transparent;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 15px; font-weight: 700;
+        #mob-cust-panel.open { max-height: 320px; }
+
+        .mob-panel-section {
+            display: none;
+            padding: 12px 16px 4px;
+        }
+        .mob-panel-section.active { display: block; }
+
+        /* theme buttons mobile */
+        #mob-cust-panel .theme-btn {
+            height: 32px;
+            border-radius: 10px;
+            border-width: 2px;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 0 10px;
+            flex: none;
+        }
+
+        /* ls/ff/rw buttons mobile */
+        #mob-cust-panel .ls-btn,
+        #mob-cust-panel .rw-btn {
+            flex: 1;
+            height: 36px;
+            border-radius: 10px;
+            border-width: 2px;
+            font-size: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
             cursor: pointer;
             transition: border-color 0.15s;
-            flex-shrink: 0;
         }
-        .mob-font-dots {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            gap: 6px;
-            align-items: center;
-        }
-        .mob-font-dot {
-            width: 8px; height: 8px;
-            border-radius: 50%;
-            transition: background 0.15s;
+        #mob-cust-panel .ff-btn {
+            width: 100%;
+            height: 36px;
+            border-radius: 10px;
+            border-width: 2px;
+            font-size: 12px;
+            text-align: left;
+            padding: 0 12px;
+            cursor: pointer;
+            transition: border-color 0.15s;
         }
 
-        /* section divider */
-        .mob-divider {
-            height: 1px;
-            margin: 4px 12px 14px;
-        }
+        /* theme colors for bottom bar */
+                            body.theme-dark  #mob-cust-panel .ls-btn,
+        body.theme-dark  #mob-cust-panel .rw-btn,
+        body.theme-dark  #mob-cust-panel .ff-btn { background: #1e1e20; color: #ccc; border-color: #333; }
 
-        /* Theme color swatches */
-        .mob-theme-swatch {
-            width: 24px; height: 24px;
-            border-radius: 50%;
-            border: 2.5px solid transparent;
-            flex-shrink: 0;
-        }
+                            body.theme-sepia #mob-cust-panel .ls-btn,
+        body.theme-sepia #mob-cust-panel .rw-btn,
+        body.theme-sepia #mob-cust-panel .ff-btn { background: #f5efe6; color: #5a4535; border-color: #d4c8b8; }
 
-        /* bottom bar compat — hide old bottom bar */
-        #mobile-bottom-bar { display: none !important; }
+                            body.theme-light #mob-cust-panel .ls-btn,
+        body.theme-light #mob-cust-panel .rw-btn,
+        body.theme-light #mob-cust-panel .ff-btn { background: #f9fafb; color: #374151; border-color: #e5e7eb; }
 
-        /* push main content — no bottom bar, just FAB clearance */
+        /* bottom bar visible — push content up */
         #read-main-content {
-            padding-bottom: calc(80px + env(safe-area-inset-bottom));
+            padding-bottom: calc(48px + env(safe-area-inset-bottom) + 16px);
         }
     }
-
-    /* Theme-aware modal colors */
-    body.theme-light #mob-cust-modal  { background: #ffffff; }
-    body.theme-sepia #mob-cust-modal  { background: #f5efe6; }
-    body.theme-dark  #mob-cust-modal  { background: #1c1c1e; }
-    body.theme-black #mob-cust-modal  { background: #111111; }
-    body.theme-green #mob-cust-modal  { background: #0d1f0f; }
-    body.theme-blue  #mob-cust-modal  { background: #0a1520; }
-    body.theme-gray  #mob-cust-modal  { background: #222226; }
-
-    body.theme-light #mob-modal-handle { background: #ddd; }
-    body.theme-sepia #mob-modal-handle { background: #c8b8a0; }
-    body.theme-dark  #mob-modal-handle,
-    body.theme-black #mob-modal-handle,
-    body.theme-green #mob-modal-handle,
-    body.theme-blue  #mob-modal-handle,
-    body.theme-gray  #mob-modal-handle { background: #444; }
-
-    body.theme-light .mob-section-label { color: #999; }
-    body.theme-sepia .mob-section-label { color: #9a8070; }
-    body.theme-dark  .mob-section-label,
-    body.theme-black .mob-section-label,
-    body.theme-green .mob-section-label,
-    body.theme-blue  .mob-section-label,
-    body.theme-gray  .mob-section-label { color: #666; }
-
-    body.theme-light .mob-divider { background: #f0f0f0; }
-    body.theme-sepia .mob-divider { background: #e0d0be; }
-    body.theme-dark  .mob-divider,
-    body.theme-black .mob-divider,
-    body.theme-green .mob-divider,
-    body.theme-blue  .mob-divider,
-    body.theme-gray  .mob-divider { background: #2e2e2e; }
-
-    body.theme-light .mob-card-btn { background: #f5f5f7; color: #333; border-color: #ebebeb; }
-    body.theme-sepia .mob-card-btn { background: #ede4d8; color: #4a3828; border-color: #d8ccbe; }
-    body.theme-dark  .mob-card-btn { background: #2a2a2e; color: #ccc; border-color: #333; }
-    body.theme-black .mob-card-btn { background: #1a1a1a; color: #bbb; border-color: #2a2a2a; }
-    body.theme-green .mob-card-btn { background: #102412; color: #8aaa8c; border-color: #1a3a1c; }
-    body.theme-blue  .mob-card-btn { background: #0d1b2e; color: #7aaac8; border-color: #1a2f4a; }
-    body.theme-gray  .mob-card-btn { background: #2e2e32; color: #aaa; border-color: #3a3a3e; }
-
-    body.theme-light .mob-font-btn { background: #f5f5f7; color: #333; border-color: #ebebeb; }
-    body.theme-sepia .mob-font-btn { background: #ede4d8; color: #4a3828; border-color: #d8ccbe; }
-    body.theme-dark  .mob-font-btn { background: #2a2a2e; color: #ccc; border-color: #333; }
-    body.theme-black .mob-font-btn { background: #1a1a1a; color: #bbb; border-color: #2a2a2a; }
-    body.theme-green .mob-font-btn { background: #102412; color: #8aaa8c; border-color: #1a3a1c; }
-    body.theme-blue  .mob-font-btn { background: #0d1b2e; color: #7aaac8; border-color: #1a2f4a; }
-    body.theme-gray  .mob-font-btn { background: #2e2e32; color: #aaa; border-color: #3a3a3e; }
-
-    body.theme-light .mob-font-dot { background: #ddd; }
-    body.theme-sepia .mob-font-dot { background: #c8b8a0; }
-    body.theme-dark  .mob-font-dot,
-    body.theme-black .mob-font-dot,
-    body.theme-green .mob-font-dot,
-    body.theme-blue  .mob-font-dot,
-    body.theme-gray  .mob-font-dot { background: #444; }
 
     /* ── Text alignment variants ── */
     #book-content.ta-justify p { text-align: justify; }
@@ -713,147 +613,93 @@
 </div>
 
 <!-- ══════════════════════════════════════════
-     MOBILE — FAB button
+     MOBILE bottom customization bar
 ══════════════════════════════════════════ -->
-<button id="mob-fab" class="md:hidden" aria-label="কাস্টমাইজ করুন">
-    <i class="fas fa-sliders"></i>
-</button>
+<div id="mobile-bottom-bar" class="md:hidden">
 
-<!-- Overlay -->
-<div id="mob-modal-overlay" class="md:hidden"></div>
+    <!-- Expandable panel -->
+    <div id="mob-cust-panel">
 
-<!-- ══════════════════════════════════════════
-     MOBILE — Customization modal sheet
-══════════════════════════════════════════ -->
-<div id="mob-cust-modal" class="md:hidden">
-    <div id="mob-modal-handle"></div>
-
-    <!-- ── থিম ── -->
-    <p class="mob-section-label">থিম</p>
-    <div class="mob-grid" style="grid-template-columns:1fr 1fr 1fr;">
-        <button data-theme="light" class="mob-card-btn theme-btn" style="background:#fff;color:#333;border-color:#ebebeb;">
-            <i class="fas fa-sun" style="font-size:20px;color:#f59e0b;"></i>
-            <span>আলো</span>
-        </button>
-        <button data-theme="sepia" class="mob-card-btn theme-btn" style="background:#f5efe6;color:#5a4535;border-color:#d9ccbe;">
-            <i class="fas fa-book-open" style="font-size:20px;color:#a0784a;"></i>
-            <span>সেপিয়া</span>
-        </button>
-        <button data-theme="dark" class="mob-card-btn theme-btn" style="background:#1c1c1e;color:#ccc;border-color:#333;">
-            <i class="fas fa-moon" style="font-size:20px;color:#818cf8;"></i>
-            <span>অন্ধকার</span>
-        </button>
-    </div>
-
-    <div class="mob-divider"></div>
-
-    <!-- ── লেখার আকার ── -->
-    <p class="mob-section-label">লেখার আকার</p>
-    <div class="mob-font-row">
-        <button id="m-font-decrease" class="mob-font-btn">A−</button>
-        <div class="mob-font-dots">
-            <span id="m-font-dot-0" class="mob-font-dot"></span>
-            <span id="m-font-dot-1" class="mob-font-dot"></span>
-            <span id="m-font-dot-2" class="mob-font-dot"></span>
-            <span id="m-font-dot-3" class="mob-font-dot"></span>
+        <!-- থিম -->
+        <div id="mob-panel-theme" class="mob-panel-section">
+            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">থিম</p>
+            <div class="flex gap-2">
+                <button data-theme="light" class="theme-btn flex-1" style="background:#fff;color:#333;border-color:#e5e7eb;">আলো</button>
+                <button data-theme="sepia" class="theme-btn flex-1" style="background:#f5efe6;color:#5a4535;border-color:#d9ccbe;">সেপিয়া</button>
+                <button data-theme="dark"  class="theme-btn flex-1" style="background:#1c1c1e;color:#ccc;border-color:#333;">অন্ধকার</button>
+            </div>
         </div>
-        <button id="m-font-increase" class="mob-font-btn">A+</button>
+
+        <!-- লেখার আকার -->
+        <div id="mob-panel-font" class="mob-panel-section">
+            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">লেখার আকার ও ফন্ট</p>
+            <div class="flex gap-2 mb-2">
+                <button id="m-font-decrease"
+                    class="flex-1 h-9 rounded-xl border-2 border-gray-200 bg-gray-50 text-[13px] font-bold text-gray-600">A−</button>
+                <div class="flex-1 flex justify-center gap-1.5 items-center">
+                    <span id="m-font-dot-0" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
+                    <span id="m-font-dot-1" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
+                    <span id="m-font-dot-2" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
+                    <span id="m-font-dot-3" class="w-2 h-2 rounded-full bg-gray-200 transition-colors"></span>
+                </div>
+                <button id="m-font-increase"
+                    class="flex-1 h-9 rounded-xl border-2 border-gray-200 bg-gray-50 text-[13px] font-bold text-gray-600">A+</button>
+            </div>
+            <div class="flex flex-col gap-1.5">
+                <button data-ff="ff-sans"  class="ff-btn border-2 border-gray-200 bg-gray-50" style="font-family:'Segoe UI',sans-serif;">সাধারণ (Sans)</button>
+                <button data-ff="ff-serif" class="ff-btn border-2 border-gray-200 bg-gray-50" style="font-family:'Noto Serif Bengali',serif;">বইয়ের ফন্ট (Serif)</button>
+            </div>
+        </div>
+
+        <!-- লাইনের ফাঁক -->
+        <div id="mob-panel-spacing" class="mob-panel-section">
+            <p class="text-[9px] uppercase font-semibold tracking-widest text-gray-400 mb-2">লাইনের ফাঁক, প্রস্থ ও সারিবদ্ধতা</p>
+            <div class="flex gap-2 mb-2">
+                <button data-ls="ls-compact" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
+                    <span class="flex flex-col gap-[2px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
+                    <span>আঁটো</span>
+                </button>
+                <button data-ls="ls-normal" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
+                    <span class="flex flex-col gap-[4px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
+                    <span>স্বাভাবিক</span>
+                </button>
+                <button data-ls="ls-relaxed" class="ls-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
+                    <span class="flex flex-col gap-[6px]"><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span><span class="block w-4 h-[2px] bg-current rounded"></span></span>
+                    <span>প্রশস্ত</span>
+                </button>
+            </div>
+            <div class="flex gap-2">
+                <button data-rw="rw-narrow" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
+                    <span class="w-[3px] h-4 bg-current rounded-sm opacity-80"></span><span>সরু</span>
+                </button>
+                <button data-rw="rw-medium" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
+                    <span class="w-[5px] h-4 bg-current rounded-sm opacity-80"></span><span>মাঝারি</span>
+                </button>
+                <button data-rw="rw-wide" class="rw-btn border-2 border-gray-200 bg-gray-50 text-gray-600">
+                    <span class="w-[8px] h-4 bg-current rounded-sm opacity-80"></span><span>চওড়া</span>
+                </button>
+            </div>
+        </div>
+
+
     </div>
 
-    <div class="mob-divider"></div>
-
-    <!-- ── ফন্ট ── -->
-    <p class="mob-section-label">ফন্ট</p>
-    <div class="mob-grid">
-        <button data-ff="ff-sans" class="mob-card-btn ff-btn" style="font-family:'Segoe UI',sans-serif;">
-            <span style="font-size:22px;font-weight:700;line-height:1;">Aa</span>
-            <span>সাধারণ</span>
+    <!-- Tab buttons row -->
+    <div id="mob-cust-tabs">
+        <button class="mob-tab-btn" id="mob-tab-theme" data-panel="mob-panel-theme">
+            <i class="fas fa-circle-half-stroke"></i>
+            <span>থিম</span>
         </button>
-        <button data-ff="ff-serif" class="mob-card-btn ff-btn" style="font-family:'Noto Serif Bengali',serif;">
-            <span style="font-size:22px;font-weight:700;line-height:1;">Aa</span>
-            <span>বইয়ের ফন্ট</span>
+        <button class="mob-tab-btn" id="mob-tab-font" data-panel="mob-panel-font">
+            <i class="fas fa-font"></i>
+            <span>ফন্ট</span>
         </button>
-    </div>
-
-    <div class="mob-divider"></div>
-
-    <!-- ── লাইনের ফাঁক ── -->
-    <p class="mob-section-label">লাইনের ফাঁক</p>
-    <div class="mob-grid-3">
-        <button data-ls="ls-compact" class="mob-card-btn ls-btn">
-            <span class="flex flex-col gap-[3px]">
-                <span class="block w-5 h-[2px] bg-current rounded"></span>
-                <span class="block w-5 h-[2px] bg-current rounded"></span>
-                <span class="block w-5 h-[2px] bg-current rounded"></span>
-            </span>
-            <span>আঁটো</span>
-        </button>
-        <button data-ls="ls-normal" class="mob-card-btn ls-btn">
-            <span class="flex flex-col gap-[5px]">
-                <span class="block w-5 h-[2px] bg-current rounded"></span>
-                <span class="block w-5 h-[2px] bg-current rounded"></span>
-                <span class="block w-5 h-[2px] bg-current rounded"></span>
-            </span>
-            <span>স্বাভাবিক</span>
-        </button>
-        <button data-ls="ls-relaxed" class="mob-card-btn ls-btn">
-            <span class="flex flex-col gap-[8px]">
-                <span class="block w-5 h-[2px] bg-current rounded"></span>
-                <span class="block w-5 h-[2px] bg-current rounded"></span>
-                <span class="block w-5 h-[2px] bg-current rounded"></span>
-            </span>
-            <span>প্রশস্ত</span>
+        <button class="mob-tab-btn" id="mob-tab-spacing" data-panel="mob-panel-spacing">
+            <i class="fas fa-text-height"></i>
+            <span>ফাঁক/প্রস্থ</span>
         </button>
     </div>
-
-    <div class="mob-divider"></div>
-
-    <!-- ── পড়ার প্রস্থ ── -->
-    <p class="mob-section-label">পড়ার প্রস্থ</p>
-    <div class="mob-grid-3">
-        <button data-rw="rw-narrow" class="mob-card-btn rw-btn">
-            <span style="display:flex;gap:2px;align-items:flex-end;height:20px;">
-                <span style="width:3px;height:100%;background:currentColor;border-radius:2px;opacity:0.7;"></span>
-            </span>
-            <span>সরু</span>
-        </button>
-        <button data-rw="rw-medium" class="mob-card-btn rw-btn">
-            <span style="display:flex;gap:2px;align-items:flex-end;height:20px;">
-                <span style="width:5px;height:100%;background:currentColor;border-radius:2px;opacity:0.7;"></span>
-            </span>
-            <span>মাঝারি</span>
-        </button>
-        <button data-rw="rw-wide" class="mob-card-btn rw-btn">
-            <span style="display:flex;gap:2px;align-items:flex-end;height:20px;">
-                <span style="width:9px;height:100%;background:currentColor;border-radius:2px;opacity:0.7;"></span>
-            </span>
-            <span>চওড়া</span>
-        </button>
-    </div>
-
-    <div class="mob-divider"></div>
-
-    <!-- ── সারিবদ্ধতা ── -->
-    <p class="mob-section-label">সারিবদ্ধতা</p>
-    <div class="mob-grid-3" style="padding-bottom:20px;">
-        <button data-ta="ta-default" class="mob-card-btn ta-btn">
-            <i class="fas fa-align-left"></i>
-            <span>বাম</span>
-        </button>
-        <button data-ta="ta-center" class="mob-card-btn ta-btn">
-            <i class="fas fa-align-center"></i>
-            <span>মাঝ</span>
-        </button>
-        <button data-ta="ta-justify" class="mob-card-btn ta-btn">
-            <i class="fas fa-align-justify"></i>
-            <span>জাস্টিফাই</span>
-        </button>
-    </div>
-
 </div>
-
-<!-- keep old element alive for JS references (hidden) -->
-<div id="mobile-bottom-bar" style="display:none!important;"></div>
 
 <!-- ══════════════════════════════════════════
      DESKTOP LEFT sidebar (book info + nav)
@@ -1124,15 +970,12 @@
                 const docH     = document.documentElement.scrollHeight - window.innerHeight;
                 const pct      = docH > 0 ? (currentY / docH) * 100 : 0;
 
-                const fab = document.getElementById('mob-fab');
                 if (delta > 6 && currentY > 80) {
                     mobileTopbar?.classList.add('hide');
-                    if (!document.getElementById('mob-cust-modal')?.classList.contains('open')) {
-                        fab?.classList.add('hide');
-                    }
+                    mobileBottomBar?.classList.add('hide');
                 } else if (delta < -6) {
                     mobileTopbar?.classList.remove('hide');
-                    fab?.classList.remove('hide');
+                    mobileBottomBar?.classList.remove('hide');
                 }
 
                 lastScrollY = currentY;
@@ -1308,101 +1151,67 @@
     });
 
 
-    // ── Mobile FAB + Customization Modal ──
-    const mobFab       = document.getElementById('mob-fab');
-    const mobModal     = document.getElementById('mob-cust-modal');
-    const mobOverlay   = document.getElementById('mob-modal-overlay');
+    // ── Mobile bottom customization bar ──
+    const mobPanel    = document.getElementById('mob-cust-panel');
+    let activeTab     = null;
 
-    function openMobModal() {
-        mobModal?.classList.add('open');
-        mobOverlay?.classList.add('open');
-        mobFab?.classList.add('open');
-        document.body.style.overflow = 'hidden';
-        syncAllMobile();
-    }
-    function closeMobModal() {
-        mobModal?.classList.remove('open');
-        mobOverlay?.classList.remove('open');
-        mobFab?.classList.remove('open');
-        document.body.style.overflow = '';
-    }
+    document.querySelectorAll('.mob-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const panelId = btn.dataset.panel;
+            const isActive = btn.classList.contains('active');
 
-    mobFab?.addEventListener('click', () => {
-        mobModal?.classList.contains('open') ? closeMobModal() : openMobModal();
+            // deactivate all
+            document.querySelectorAll('.mob-tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.mob-panel-section').forEach(s => s.classList.remove('active'));
+
+            if (isActive) {
+                // toggle off
+                mobPanel.classList.remove('open');
+                activeTab = null;
+            } else {
+                // open this panel
+                btn.classList.add('active');
+                document.getElementById(panelId)?.classList.add('active');
+                mobPanel.classList.add('open');
+                activeTab = panelId;
+            }
+        });
     });
-    mobOverlay?.addEventListener('click', closeMobModal);
 
     // sync mobile ff-btn active state
     function syncMobileFF(ff) {
-        document.querySelectorAll('#mob-cust-modal .ff-btn').forEach(b => {
-            b.classList.toggle('active', b.dataset.ff === ff);
+        document.querySelectorAll('#mob-cust-panel .ff-btn').forEach(b => {
+            b.style.borderColor = b.dataset.ff === ff ? '#c0392b' : '';
         });
     }
-    document.querySelectorAll('#mob-cust-modal .ff-btn').forEach(b => {
+    document.querySelectorAll('#mob-cust-panel .ff-btn').forEach(b => {
         b.addEventListener('click', () => { applyFF(b.dataset.ff); syncMobileFF(b.dataset.ff); });
     });
 
     // sync mobile ls-btn active state
     function syncMobileLS(ls) {
-        document.querySelectorAll('#mob-cust-modal .ls-btn').forEach(b => {
-            b.classList.toggle('active', b.dataset.ls === ls);
+        document.querySelectorAll('#mob-cust-panel .ls-btn').forEach(b => {
+            b.style.borderColor = b.dataset.ls === ls ? '#c0392b' : '';
         });
     }
-    document.querySelectorAll('#mob-cust-modal .ls-btn').forEach(b => {
+    document.querySelectorAll('#mob-cust-panel .ls-btn').forEach(b => {
         b.addEventListener('click', () => { applyLS(b.dataset.ls); syncMobileLS(b.dataset.ls); });
     });
 
     // sync mobile rw-btn active state
     function syncMobileRW(rw) {
-        document.querySelectorAll('#mob-cust-modal .rw-btn').forEach(b => {
-            b.classList.toggle('active', b.dataset.rw === rw);
+        document.querySelectorAll('#mob-cust-panel .rw-btn').forEach(b => {
+            b.style.borderColor = b.dataset.rw === rw ? '#c0392b' : '';
         });
     }
-    document.querySelectorAll('#mob-cust-modal .rw-btn').forEach(b => {
+    document.querySelectorAll('#mob-cust-panel .rw-btn').forEach(b => {
         b.addEventListener('click', () => { applyRW(b.dataset.rw); syncMobileRW(b.dataset.rw); });
     });
 
-    // sync mobile ta-btn active state
-    function syncMobileTA(ta) {
-        document.querySelectorAll('#mob-cust-modal .ta-btn').forEach(b => {
-            b.classList.toggle('active', b.dataset.ta === ta);
-        });
-    }
-    document.querySelectorAll('#mob-cust-modal .ta-btn').forEach(b => {
-        b.addEventListener('click', () => { applyTA(b.dataset.ta); syncMobileTA(b.dataset.ta); });
-    });
-
-    // font dots in modal
-    function updateMobFontDots(size) {
-        for (let i = 0; i < 4; i++) {
-            const dot = document.getElementById('m-font-dot-' + i);
-            if (dot) dot.style.background = i <= size ? '#c0392b' : '';
-        }
-    }
-
-    function syncAllMobile() {
-        syncMobileFF(currentFF);
-        syncMobileLS(currentLS);
-        syncMobileRW(currentRW);
-        syncMobileTA(currentTA);
-        updateMobFontDots(currentSize);
-        // also sync theme buttons in modal
-        document.querySelectorAll('#mob-cust-modal .theme-btn').forEach(b => {
-            b.classList.toggle('active', b.dataset.theme === currentTheme);
-        });
-    }
-
-    // hide/show FAB on scroll (same as topbar)
-    // (reuse existing scroll listener — add FAB to it)
-    const origScroll = window.onscroll;
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 80 && !mobModal?.classList.contains('open')) {
-            // fab hides together with topbar
-        }
-    }, { passive: true });
-
-    // init
-    syncAllMobile();
+    // init active states on mobile
+    syncMobileFF(currentFF);
+    syncMobileLS(currentLS);
+    syncMobileRW(currentRW);
 
 
     // ── Text alignment ──
@@ -1416,7 +1225,6 @@
         localStorage.setItem('pg-ta', ta);
         document.querySelectorAll('.ta-btn').forEach(b => {
             b.style.borderColor = b.dataset.ta === ta ? '#c0392b' : '';
-            b.classList.toggle('active', b.dataset.ta === ta);
         });
     }
     applyTA(currentTA);
