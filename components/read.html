@@ -143,6 +143,8 @@
         transform: translateX(105%);
         transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
         border-radius: 0;
+        background: #ffffff;
+        border-left: 1px solid #e8eaed;
     }
     #mobile-toc-drawer.open { transform: translateX(0); }
 
@@ -155,11 +157,6 @@
     }
     #mobile-toc-overlay.open { opacity: 1; pointer-events: auto; }
 
-    /* Drawer theme colors */
-    body.theme-dark  #mobile-toc-drawer { background: #18181a; border-left: 1px solid #2c2c30; }
-    body.theme-sepia #mobile-toc-drawer { background: #f5efe6; border-left: 1px solid #d9ccbe; }
-    body.theme-light #mobile-toc-drawer { background: #fafafa; border-left: 1px solid #e8eaed; }
-
     /* Drawer header */
     #toc-drawer-header {
         display: flex;
@@ -168,12 +165,10 @@
         padding: 0 16px;
         height: 56px;
         shrink: 0;
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
+        border-bottom: 1px solid #e8eaed;
     }
     body.theme-dark  #toc-drawer-header { border-bottom-color: #2c2c30; }
     body.theme-sepia #toc-drawer-header { border-bottom-color: #d9ccbe; }
-    body.theme-light #toc-drawer-header { border-bottom-color: #e8eaed; }
 
     #toc-drawer-header .drawer-title {
         font-size: 0.8125rem;
@@ -317,6 +312,19 @@
     <!-- Reading column -->
     <div class="flex-1 min-w-0">
         <div id="read-main-content" class="px-5 md:px-10 py-7 max-w-2xl">
+
+            <!-- Top action buttons -->
+            <div class="flex gap-3 mb-6">
+                <a href="/books/{{book_slug}}.html"
+                   class="flex-1 flex items-center justify-center gap-2 text-sm border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:border-[#c0392b] hover:text-[#c0392b] rounded-xl py-2.5 transition">
+                    <i class="fas fa-circle-info text-xs"></i> বইয়ের তথ্য
+                </a>
+                <a href="/download/{{book_slug}}.html"
+                   class="flex-1 flex items-center justify-center gap-2 text-sm bg-[#c0392b] hover:bg-[#a93226] text-white rounded-xl py-2.5 transition">
+                    <i class="fas fa-download text-xs"></i> ডাউনলোড
+                </a>
+            </div>
+
             <div id="book-content" class="text-gray-800 dark:text-gray-200">
                 {{book_content}}
             </div>
