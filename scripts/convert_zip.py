@@ -1,18 +1,14 @@
 import os
 import json
-import uuid
 import urllib.request
 import re
 import zipfile
 import tempfile
 import shutil
-from datetime import datetime
 from bs4 import BeautifulSoup
-from ebooklib import epub
 
 os.makedirs('content', exist_ok=True)
 os.makedirs('read', exist_ok=True)
-os.makedirs(os.path.join('assets', 'epub'), exist_ok=True)
 
 
 # ─── numeric sort helper ───────────────────────────────────────────────────────
@@ -65,9 +61,10 @@ def zip_to_html(zip_path, slug):
                     dest_path = os.path.join(img_out_dir, safe_name)
                     shutil.copy2(src_path, dest_path)
                     public_url = f'/assets/images/{slug}/{safe_name}'
-                    images[fname] = public_url
+                    images[fname]     = public_url   # original filename
+                    images[safe_name] = public_url   # sanitized filename
                     rel = os.path.relpath(src_path, tmp_dir).replace('\\', '/')
-                    images[rel] = public_url
+                    images[rel]       = public_url   # relative path
 
         print(f'  🖼 {len(images)//2} image → assets/images/{slug}/')
 
@@ -78,6 +75,7 @@ def zip_to_html(zip_path, slug):
                 if fname.lower().endswith(('.html', '.htm', '.xhtml')):
                     html_files.append(os.path.join(root, fname))
 
+        # ✅ FIX: natural/numeric sort — 1 → 2 → 3 → 10 (lexicographic নয়)
         html_files.sort(key=natural_sort_key)
 
         if not html_files:
@@ -92,240 +90,39 @@ def zip_to_html(zip_path, slug):
                 raw = f.read()
             full_html += process_html_fragment(raw, images)
 
-        return full_html, css_link_tag, tmp_dir, html_files, images
-    except Exception:
-        shutil.rmtree(tmp_dir, ignore_errors=True)
-        raise
-
-
-# ─── ZIP → EPUB (পূর্ণাঙ্গ) ──────────────────────────────────────────────────
-def zip_to_epub(zip_path, slug, book_meta):
-    """
-    ZIP থেকে পূর্ণাঙ্গ EPUB তৈরি করো।
-    book_meta = { title, author, desc, cover_url, language, category, created_at }
-    Output: assets/epub/{slug}.epub
-    """
-    tmp_dir = tempfile.mkdtemp()
-    try:
-        with zipfile.ZipFile(zip_path, 'r') as z:
-            z.extractall(tmp_dir)
-
-        # ── EPUB object তৈরি ──
-        book = epub.EpubBook()
-
-        # ── Metadata ──
-        book_uid = str(uuid.uuid5(uuid.NAMESPACE_URL, f'pathokghar/{slug}'))
-        book.set_identifier(book_uid)
-        book.set_title(book_meta.get('title', slug))
-        book.set_language('bn')  # Bengali
-
-        author = book_meta.get('author', '')
-        if author:
-            book.add_author(author)
-
-        desc = book_meta.get('desc', '')
-        if desc:
-            book.add_metadata('DC', 'description', desc)
-
-        category = book_meta.get('category', '')
-        if category:
-            book.add_metadata('DC', 'subject', category)
-
-        book.add_metadata('DC', 'publisher', 'পাঠক ঘর')
-        book.add_metadata('DC', 'rights', 'All rights reserved')
-
-        created_at = book_meta.get('created_at', 0)
-        if created_at:
-            try:
-                dt = datetime.fromtimestamp(created_at / 1000).strftime('%Y-%m-%d')
-                book.add_metadata('DC', 'date', dt)
-            except Exception:
-                pass
-
-        print(f'  📋 Metadata set: "{book_meta.get("title", slug)}" — {author}')
-
-        # ── Images ZIP থেকে collect ──
-        epub_images = {}   # fname → EpubImage object
-        img_map = {}       # original path → epub internal path
-
-        IMAGE_EXTS = ('jpg', 'jpeg', 'png', 'gif', 'webp', 'svg')
-        MIME_MAP = {
-            'jpg': 'image/jpeg', 'jpeg': 'image/jpeg',
-            'png': 'image/png',  'gif': 'image/gif',
-            'webp': 'image/webp', 'svg': 'image/svg+xml',
-        }
-
-        for root, _, files in os.walk(tmp_dir):
-            for fname in files:
-                ext = fname.lower().rsplit('.', 1)[-1]
-                if ext in IMAGE_EXTS:
-                    src_path = os.path.join(root, fname)
-                    safe_name = re.sub(r'[^a-zA-Z0-9._-]', '_', fname)
-                    epub_img_path = f'images/{safe_name}'
-                    mime = MIME_MAP.get(ext, 'image/jpeg')
-
-                    with open(src_path, 'rb') as f:
-                        img_data = f.read()
-
-                    img_item = epub.EpubImage()
-                    img_item.file_name = epub_img_path
-                    img_item.media_type = mime
-                    img_item.content = img_data
-                    book.add_item(img_item)
-
-                    epub_images[fname] = epub_img_path
-                    rel = os.path.relpath(src_path, tmp_dir).replace('\\', '/')
-                    img_map[fname]      = epub_img_path   # original filename
-                    img_map[safe_name]  = epub_img_path   # sanitized filename
-                    img_map[rel]        = epub_img_path   # relative path (e.g. images/page1.jpg)
-
-        print(f'  🖼 {len(epub_images)} image EPUB এ embed হয়েছে')
-
-        # ── Cover image ──
-        cover_url = book_meta.get('cover_url', '')
-        if cover_url:
-            try:
-                req = urllib.request.Request(cover_url, headers={'User-Agent': 'Mozilla/5.0'})
-                with urllib.request.urlopen(req, timeout=15) as resp:
-                    cover_data = resp.read()
-                ext = cover_url.split('?')[0].rsplit('.', 1)[-1].lower()
-                cover_mime = MIME_MAP.get(ext, 'image/jpeg')
-                book.set_cover('cover.' + (ext if ext in IMAGE_EXTS else 'jpg'), cover_data)
-                print(f'  🖼 Cover image download ও set হয়েছে')
-            except Exception as e:
-                print(f'  ⚠ Cover download ব্যর্থ: {e}')
-
-        # ── CSS collect ──
-        css_content = ''
-        for root, _, files in os.walk(tmp_dir):
-            for fname in sorted(files):
-                if fname.lower().endswith('.css'):
-                    fpath = os.path.join(root, fname)
-                    with open(fpath, 'r', encoding='utf-8', errors='ignore') as f:
-                        css_content += f'/* {fname} */\n' + f.read() + '\n\n'
-
-        # বাংলা font ও base styling যোগ করো
-        base_css = """
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;700&display=swap');
-
-body {
-    font-family: 'Noto Serif Bengali', 'SolaimanLipi', serif;
-    font-size: 1em;
-    line-height: 1.8;
-    color: #1a1a1a;
-    margin: 1em 1.5em;
-}
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    line-height: 1.4;
-    margin: 1em 0 0.5em;
-}
-p { margin: 0.5em 0; text-align: justify; }
-img { max-width: 100%; height: auto; display: block; margin: 0.5em auto; }
-"""
-        full_css = base_css + css_content
-
-        epub_css = epub.EpubItem(
-            uid='book-style',
-            file_name='style/book.css',
-            media_type='text/css',
-            content=full_css.encode('utf-8'),
-        )
-        book.add_item(epub_css)
-
-        # ── HTML files → EPUB chapters ──
-        html_files = []
-        for root, _, files in os.walk(tmp_dir):
-            for fname in files:
-                if fname.lower().endswith(('.html', '.htm', '.xhtml')):
-                    html_files.append(os.path.join(root, fname))
-        html_files.sort(key=natural_sort_key)
-
-        if not html_files:
-            raise ValueError('ZIP এ কোনো HTML file নেই')
-
-        chapters = []
-        toc = []
-
-        for idx, fpath in enumerate(html_files):
-            with open(fpath, 'rb') as f:
-                raw = f.read()
-
-            # ── heading raw HTML থেকে নাও (process করার আগে) ──
-            soup_raw = BeautifulSoup(raw, 'html.parser')
-            chapter_title = f'অধ্যায় {idx + 1}'
-            heading = soup_raw.find(['h1', 'h2', 'h3'])
-            if heading:
-                heading_text = heading.get_text(strip=True)
-                if heading_text:
-                    chapter_title = heading_text[:80]
-
-            chapter_html = process_epub_fragment(raw, img_map)
-
-            chapter_file = f'chap_{idx + 1:03d}.xhtml'
-
-            full_chapter = f'''<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="bn" lang="bn">
-<head>
-  <meta charset="utf-8"/>
-  <title>{chapter_title}</title>
-  <link rel="stylesheet" type="text/css" href="../style/book.css"/>
-</head>
-<body>
-{chapter_html}
-</body>
-</html>'''
-
-            chap = epub.EpubHtml(
-                title=chapter_title,
-                file_name=chapter_file,
-                lang='bn',
-            )
-            chap.content = full_chapter.encode('utf-8')
-            chap.add_item(epub_css)
-            book.add_item(chap)
-            chapters.append(chap)
-            toc.append(epub.Link(chapter_file, chapter_title, f'chap-{idx + 1}'))
-
-        print(f'  📑 {len(chapters)} chapter EPUB এ যোগ হয়েছে')
-
-        # ── TOC ও Spine ──
-        book.toc = toc
-        book.add_item(epub.EpubNcx())
-        book.add_item(epub.EpubNav())
-        book.spine = ['nav'] + chapters
-
-        # ── EPUB লেখো ──
-        epub_out = os.path.join('assets', 'epub', f'{slug}.epub')
-        epub.write_epub(epub_out, book, {})
-        size_mb = os.path.getsize(epub_out) / (1024 * 1024)
-        print(f'  ✅ EPUB → {epub_out} ({size_mb:.1f} MB)')
-
-        return epub_out
-
+        return full_html, css_link_tag
     finally:
         shutil.rmtree(tmp_dir, ignore_errors=True)
 
 
-# ─── HTML cleaner (read page এর জন্য) ────────────────────────────────────────
+# ─── HTML cleaner ──────────────────────────────────────────────────────────────
+
+# রাখার যোগ্য tags — structure ও formatting উভয়ই preserve হবে
 ALLOWED_TAGS = {
+    # headings
     'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+    # block
     'p', 'div', 'section', 'article', 'blockquote', 'pre', 'hr', 'br',
+    # inline text
     'span', 'strong', 'b', 'em', 'i', 'u', 's', 'mark', 'small', 'sub', 'sup',
     'code', 'kbd', 'abbr',
+    # list
     'ul', 'ol', 'li', 'dl', 'dt', 'dd',
+    # table
     'table', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td', 'caption', 'colgroup', 'col',
+    # media
     'img', 'figure', 'figcaption', 'picture', 'source',
+    # link
     'a',
+    # ruby (বাংলা / CJK annotation)
     'ruby', 'rt', 'rp',
 }
 
 
 def process_html_fragment(raw_html, images):
-    """Read page এর জন্য HTML clean করো — img src → assets URL।"""
     soup = BeautifulSoup(raw_html, 'html.parser')
 
+    # ── script / style / meta / link ইত্যাদি সম্পূর্ণ মুছে ফেলো ──
     for tag in soup.find_all(['script', 'style', 'meta', 'link',
                               'noscript', 'head', 'title', 'iframe',
                               'form', 'input', 'button', 'select', 'textarea']):
@@ -333,36 +130,51 @@ def process_html_fragment(raw_html, images):
 
     body = soup.find('body') or soup
 
+    # ── img src → assets URL ──
     for img in body.find_all('img'):
         src = img.get('src', '')
-        src_name = src.split('/')[-1].split('?')[0]
-        if src_name in images:
-            img['src'] = images[src_name]
-        elif src in images:
-            img['src'] = images[src]
+        if not src:
+            continue
+        src_clean = src.split('?')[0]
+        src_name  = src_clean.split('/')[-1]
+        safe_name = re.sub(r'[^a-zA-Z0-9._-]', '_', src_name)
+
+        new_src = (
+            images.get(src_clean)    # exact relative path
+            or images.get(src_name)  # original filename
+            or images.get(safe_name) # sanitized filename
+        )
+        if new_src:
+            img['src'] = new_src
+        # alt না থাকলে খালি alt যোগ করো (accessibility)
         if not img.get('alt'):
             img['alt'] = ''
 
+    # ── link fix ──
     for a_tag in body.find_all('a', href=True):
         href = a_tag.get('href', '')
         if href.startswith(('http://', 'https://')):
             a_tag['target'] = '_blank'
             a_tag['rel'] = 'noopener noreferrer'
         elif href.startswith('#'):
-            pass
+            pass   # internal anchor — ঠিক আছে
         elif href.lower().endswith(('.html', '.htm', '.xhtml')):
-            a_tag.unwrap()
+            a_tag.unwrap()   # internal HTML page link — unwrap
         else:
             a_tag.unwrap()
 
+    # ── অপ্রয়োজনীয় tags unwrap (decompose নয়, content রাখো) ──
+    # ✅ FIX: ALLOWED_TAGS এর বাইরের tag গুলো unwrap করো,
+    #         কিন্তু list/table/inline tags ঠিক রাখো
     for tag in body.find_all(True):
         if tag.name not in ALLOWED_TAGS:
             tag.unwrap()
 
+    # ── plain URL → <a> (শুধু text node এ, already-linked নয়) ──
     url_pattern = re.compile(r'(https?://[^\s<>"\']+)')
     for text_node in body.find_all(string=True):
         if text_node.parent and text_node.parent.name == 'a':
-            continue
+            continue   # already inside <a>
         if url_pattern.search(text_node):
             new_html = url_pattern.sub(
                 r'<a href="\1" target="_blank" rel="noopener noreferrer">\1</a>',
@@ -370,56 +182,9 @@ def process_html_fragment(raw_html, images):
             )
             text_node.replace_with(BeautifulSoup(new_html, 'html.parser'))
 
+    # body tag নিজে বাদ দিয়ে inner content নাও
     inner = body.decode_contents()
     return inner.strip() + '\n'
-
-
-def process_epub_fragment(raw_html, img_map):
-    """EPUB chapter এর জন্য HTML clean করো — img src → EPUB internal path।"""
-    soup = BeautifulSoup(raw_html, 'html.parser')
-
-    for tag in soup.find_all(['script', 'style', 'meta', 'link',
-                              'noscript', 'head', 'title', 'iframe',
-                              'form', 'input', 'button', 'select', 'textarea']):
-        tag.decompose()
-
-    body = soup.find('body') or soup
-
-    # img src → EPUB internal path (relative to chapter file)
-    for img in body.find_all('img'):
-        src = img.get('src', '')
-        if not src:
-            continue
-        src_clean = src.split('?')[0]                      # query string বাদ
-        src_name  = src_clean.split('/')[-1]               # শুধু filename
-        safe_name = re.sub(r'[^a-zA-Z0-9._-]', '_', src_name)  # sanitized filename
-
-        epub_path = (
-            img_map.get(src_clean)   # exact relative path (e.g. images/page1.jpg)
-            or img_map.get(src_name) # original filename
-            or img_map.get(safe_name) # sanitized filename
-        )
-        if epub_path:
-            img['src'] = '../' + epub_path
-        if not img.get('alt'):
-            img['alt'] = ''
-
-    # external link এ target blank যোগ করো
-    for a_tag in body.find_all('a', href=True):
-        href = a_tag.get('href', '')
-        if href.startswith(('http://', 'https://')):
-            pass   # EPUB এ target blank support নেই, তবে href রাখো
-        elif href.lower().endswith(('.html', '.htm', '.xhtml')):
-            a_tag.unwrap()
-        else:
-            a_tag.unwrap()
-
-    # অপ্রয়োজনীয় tags unwrap
-    for tag in body.find_all(True):
-        if tag.name not in ALLOWED_TAGS:
-            tag.unwrap()
-
-    return body.decode_contents().strip()
 
 
 # ─── helpers ───────────────────────────────────────────────────────────────────
@@ -441,12 +206,7 @@ with open('components/read.html', 'r', encoding='utf-8') as f:
 with open('firebase_data.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
-books     = data.get('books', {})
-authors   = data.get('authors', {})
-categories = data.get('categories', {})
-
-# EPUB URL map — generate_pages.js এর পরে download page আপডেটের জন্য
-epub_urls = {}
+books = data.get('books', {})
 
 for uid, book in books.items():
     slug         = book.get('slug', '')
@@ -464,78 +224,41 @@ for uid, book in books.items():
         print(f'  ⏭ {slug} — ZIP নয়, skip')
         continue
 
-    # author ও category resolve
-    author_data   = authors.get(str(book.get('author', '')), {})
-    category_data = categories.get(str(book.get('category', '')), {})
-
-    book_meta = {
-        'title'      : title,
-        'author'     : author_data.get('title', ''),
-        'desc'       : desc,
-        'cover_url'  : book.get('img', ''),
-        'category'   : category_data.get('title', ''),
-        'created_at' : book.get('createdAt', 0),
-    }
-
     # CSS link tag — already converted হলেও দরকার
     css_file = os.path.join('assets', 'css', f'{slug}.css')
     css_link_tag = f'<link rel="stylesheet" href="/assets/css/{slug}.css">' if os.path.exists(css_file) else ''
 
-    epub_path = os.path.join('assets', 'epub', f'{slug}.epub')
-    epub_public_url = f'/assets/epub/{slug}.epub'
-
-    # ── HTML content (read page) ──
     if os.path.exists(content_path):
-        print(f'  ⏭ {slug} — HTML already converted, skip')
+        print(f'  ⏭ {slug} — already converted, skip')
     else:
         local_file = f'/tmp/{slug}.zip'
-        print(f'\n📥 {slug} download করছি...')
+        print(f'  📥 {slug} download করছি...')
         try:
             download_file(file_url, local_file)
+
             print(f'  🔄 {slug} HTML তৈরি করছি...')
-            html_content, css_link_tag, _, _, _ = zip_to_html(local_file, slug)
+            html_content, css_link_tag = zip_to_html(local_file, slug)
 
             with open(content_path, 'w', encoding='utf-8') as f:
                 f.write(html_content)
             print(f'  ✓ content/{slug}.html')
+            os.remove(local_file)
+
         except Exception as e:
-            print(f'  ❌ {slug} HTML error: {e}')
-            if os.path.exists(f'/tmp/{slug}.zip'):
-                os.remove(f'/tmp/{slug}.zip')
+            print(f'  ❌ {slug} error: {e}')
             continue
 
-        # ── EPUB ──
-        if os.path.exists(epub_path):
-            print(f'  ⏭ {slug} — EPUB already exists, skip')
-        else:
-            try:
-                print(f'  📚 {slug} EPUB তৈরি করছি...')
-                # ZIP আবার download করতে হবে না — local_file এখনো আছে
-                zip_to_epub(local_file, slug, book_meta)
-            except Exception as e:
-                print(f'  ❌ {slug} EPUB error: {e}')
-
-        if os.path.exists(f'/tmp/{slug}.zip'):
-            os.remove(f'/tmp/{slug}.zip')
-
-    # EPUB আলাদা করে skip হলেও URL track করো
-    if os.path.exists(epub_path):
-        epub_urls[slug] = epub_public_url
-    else:
-        # EPUB নেই — original ZIP URL fallback
-        epub_urls[slug] = file_url
-
-    # ── read page generate ──
+    # read page generate
     try:
         with open(content_path, 'r', encoding='utf-8') as f:
             book_content_html = f.read()
 
         full_page = render(read_template, {
-            'book_title'      : title,
-            'book_slug'       : slug,
+            'book_title': title,
+            'book_slug': slug,
             'book_description': desc[:160] if desc else '',
-            'book_content'    : book_content_html,
-            'book_css'        : css_link_tag,
+            'book_content': book_content_html,
+            'book_css': css_link_tag,
         })
 
         with open(read_path, 'w', encoding='utf-8') as f:
@@ -544,9 +267,4 @@ for uid, book in books.items():
     except Exception as e:
         print(f'  ❌ {slug} read page error: {e}')
 
-# ── EPUB URL map save করো (generate_pages.js পড়বে) ──
-with open('epub_urls.json', 'w', encoding='utf-8') as f:
-    json.dump(epub_urls, f, ensure_ascii=False, indent=2)
-print(f'\n✓ epub_urls.json saved ({len(epub_urls)} entries)')
-
-print('\n✅ ZIP convert, EPUB তৈরি ও read page generation সম্পন্ন!')
+print('✅ ZIP convert ও read page generation সম্পন্ন!')
