@@ -106,15 +106,27 @@
         }
     }
 
-    /* ── Floating TOC toggle button ── */
-    #toc-toggle-btn {
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── TOC unit (toggle + drawer together) ── */
+    #toc-unit {
         position: fixed;
-        right: 0;
         top: 50%;
-        transform: translateY(-50%);
-        z-index: 300;
+        right: 0;
+        transform: translateY(-50%) translateX(calc(100% - 28px));
+        transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+        z-index: 500;
+        display: flex;
+        align-items: stretch;
+    }
+    #toc-unit.open {
+        transform: translateY(-50%) translateX(0);
+    }
+
+    /* Toggle tab */
+    #toc-toggle-btn {
         width: 28px;
-        height: 56px;
+        flex-shrink: 0;
         background: #c0392b;
         border: none;
         border-radius: 10px 0 0 10px;
@@ -123,30 +135,20 @@
         align-items: center;
         justify-content: center;
         box-shadow: -2px 0 8px rgba(0,0,0,0.15);
-        transition: width 0.2s ease, background 0.2s;
     }
     #toc-toggle-btn:active { background: #a93226; }
     #toc-toggle-btn i { color: #fff; font-size: 12px; }
 
-
-    #toc-controls-bar {
-        position: sticky; top: 0; z-index: 10;
-    }
-
-    /* ── TOC Drawer ── */
+    /* Drawer panel */
     #mobile-toc-drawer {
-        position: fixed;
-        top: 48px; right: 12px; bottom: 48px;
         width: 40vw; max-width: 145px;
-        z-index: 500;
+        height: calc(100vh - 96px);
         display: flex; flex-direction: column;
-        transform: translateX(calc(100% + 24px));
-        transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
         background: #fafafa;
-        border-radius: 16px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+        border-radius: 0 0 0 16px;
+        box-shadow: -4px 4px 24px rgba(0,0,0,0.15);
+        overflow: hidden;
     }
-    #mobile-toc-drawer.open { transform: translateX(0); }
 
     #mobile-toc-overlay {
         position: fixed; inset: 0;
@@ -236,19 +238,19 @@
      MOBILE ONLY chrome (hidden on md+)
 ══════════════════════════════════════════ -->
 
-<!-- Floating TOC toggle button -->
-<button id="toc-toggle-btn" aria-label="সূচিপত্র">
-    <i class="fas fa-list-ul"></i>
-</button>
-
-<!-- ── TOC drawer + overlay ── -->
-<div id="mobile-toc-overlay"></div>
-<div id="mobile-toc-drawer">
-    <div id="toc-drawer-header">
-        <span class="drawer-title">সূচিপত্র</span>
+<!-- TOC unit: toggle + drawer together -->
+<div id="toc-unit">
+    <button id="toc-toggle-btn" aria-label="সূচিপত্র">
+        <i class="fas fa-list-ul"></i>
+    </button>
+    <div id="mobile-toc-drawer">
+        <div id="toc-drawer-header">
+            <span class="drawer-title">সূচিপত্র</span>
+        </div>
+        <nav id="toc-nav-mobile"></nav>
     </div>
-    <nav id="toc-nav-mobile"></nav>
 </div>
+<div id="mobile-toc-overlay"></div>
 
 
 <!-- ══════════════════════════════════════════
@@ -347,28 +349,23 @@
 
 
     let touchStartX = 0;
-    const tocDrawer  = document.getElementById('mobile-toc-drawer');
+    const tocUnit    = document.getElementById('toc-unit');
     const tocOverlay = document.getElementById('mobile-toc-overlay');
 
     function openTocDrawer() {
-        tocDrawer.classList.add('open');
+        tocUnit.classList.add('open');
         tocOverlay.classList.add('open');
-        document.body.style.overflow = 'hidden';
     }
     function closeTocDrawer() {
-        tocDrawer.classList.remove('open');
+        tocUnit.classList.remove('open');
         tocOverlay.classList.remove('open');
-        document.body.style.overflow = '';
     }
 
-    document.getElementById('toc-toggle-btn')?.addEventListener('click', openTocDrawer);
-    document.getElementById('mobile-toc-close')?.addEventListener('click', closeTocDrawer);
+    document.getElementById('toc-toggle-btn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        tocUnit.classList.contains('open') ? closeTocDrawer() : openTocDrawer();
+    });
     tocOverlay?.addEventListener('click', closeTocDrawer);
-
-    tocDrawer?.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-    tocDrawer?.addEventListener('touchend', e => {
-        if (e.changedTouches[0].clientX - touchStartX > 60) closeTocDrawer();
-    }, { passive: true });
 })();
 </script>
 
