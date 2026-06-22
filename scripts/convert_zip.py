@@ -1,183 +1,20 @@
 import os
 import json
 import urllib.request
-import base64  # epub legacy flow এর জন্য রাখা হয়েছে
 import re
 import zipfile
 import tempfile
 import shutil
-import subprocess
-from pathlib import Path
 from bs4 import BeautifulSoup
-
-try:
-    from ebooklib import epub as ebooklib_epub
-    EBOOKLIB_AVAILABLE = True
-except ImportError:
-    EBOOKLIB_AVAILABLE = False
 
 os.makedirs('content', exist_ok=True)
 os.makedirs('read', exist_ok=True)
 
-GITHUB_TOKEN = os.environ.get('GITHUB_TOKEN', '')
-GITHUB_REPO  = os.environ.get('GITHUB_REPOSITORY', '')  # "owner/repo"
-RELEASE_TAG  = 'books-epub'
 
-
-# ─── GitHub Release helper ─────────────────────────────────────────────────────
-def ensure_release():
-    """books-epub release না থাকলে তৈরি করো"""
-    result = subprocess.run(
-        ['gh', 'release', 'view', RELEASE_TAG],
-        capture_output=True, text=True
-    )
-    if result.returncode != 0:
-        print(f'  📦 Release "{RELEASE_TAG}" তৈরি করছি...')
-        subprocess.run([
-            'gh', 'release', 'create', RELEASE_TAG,
-            '--title', 'Pathok Ghar — epub Files',
-            '--notes', 'Auto-generated epub files from ZIP source',
-            '--latest=false'
-        ], check=True)
-        print(f'  ✓ Release তৈরি হয়েছে')
-
-
-def upload_epub_to_release(epub_path, slug):
-    """epub file টি GitHub Release এ upload করো, আগে থাকলে replace করো"""
-    fname = f'{slug}.epub'
-
-    # আগে থাকলে delete করো
-    subprocess.run(
-        ['gh', 'release', 'delete-asset', RELEASE_TAG, fname, '--yes'],
-        capture_output=True
-    )
-
-    # Upload
-    result = subprocess.run(
-        ['gh', 'release', 'upload', RELEASE_TAG, epub_path, '--clobber'],
-        capture_output=True, text=True
-    )
-    if result.returncode != 0:
-        raise RuntimeError(f'Upload failed: {result.stderr}')
-
-    url = f'https://github.com/{GITHUB_REPO}/releases/download/{RELEASE_TAG}/{fname}'
-    print(f'  ✓ epub uploaded → {url}')
-    return url
-
-
-# ─── ZIP → epub converter ──────────────────────────────────────────────────────
-def zip_to_epub(zip_path, slug, title, author='অজানা', desc=''):
-    """ZIP এর HTML files থেকে epub তৈরি করো"""
-    if not EBOOKLIB_AVAILABLE:
-        raise ImportError('ebooklib install করা নেই')
-
-    tmp_dir = tempfile.mkdtemp()
-    try:
-        with zipfile.ZipFile(zip_path, 'r') as z:
-            z.extractall(tmp_dir)
-
-        # Image map তৈরি করো
-        images = {}
-        for root, _, files in os.walk(tmp_dir):
-            for fname in files:
-                ext = fname.lower().rsplit('.', 1)[-1]
-                if ext in ('jpg', 'jpeg', 'png', 'gif', 'webp'):
-                    fpath = os.path.join(root, fname)
-                    with open(fpath, 'rb') as f:
-                        raw = f.read()
-                    mime = {
-                        'jpg': 'image/jpeg', 'jpeg': 'image/jpeg',
-                        'png': 'image/png', 'gif': 'image/gif',
-                        'webp': 'image/webp'
-                    }.get(ext, 'image/jpeg')
-                    images[fname] = (raw, mime)
-                    rel = os.path.relpath(fpath, tmp_dir).replace('\\', '/')
-                    images[rel] = (raw, mime)
-
-        # HTML files sort করো
-        html_files = []
-        for root, _, files in os.walk(tmp_dir):
-            for fname in sorted(files):
-                if fname.lower().endswith(('.html', '.htm', '.xhtml')):
-                    html_files.append(os.path.join(root, fname))
-        html_files.sort()
-
-        if not html_files:
-            raise ValueError('ZIP এ কোনো HTML file নেই')
-
-        # epub তৈরি
-        book = ebooklib_epub.EpubBook()
-        book.set_identifier(slug)
-        book.set_title(title)
-        book.set_language('bn')
-        book.add_author(author)
-        if desc:
-            book.add_metadata('DC', 'description', desc)
-
-        # Image গুলো epub এ add করো
-        epub_images = {}
-        for img_name, (raw, mime) in images.items():
-            safe_name = re.sub(r'[^a-zA-Z0-9._-]', '_', os.path.basename(img_name))
-            if safe_name in epub_images:
-                continue
-            img_item = ebooklib_epub.EpubImage()
-            img_item.file_name = f'images/{safe_name}'
-            img_item.media_type = mime
-            img_item.content = raw
-            book.add_item(img_item)
-            epub_images[img_name] = f'images/{safe_name}'
-            epub_images[os.path.basename(img_name)] = f'images/{safe_name}'
-
-        # Chapter গুলো add করো
-        chapters = []
-        spine = ['nav']
-        for i, fpath in enumerate(html_files):
-            with open(fpath, 'rb') as f:
-                raw = f.read()
-
-            soup = BeautifulSoup(raw, 'html.parser')
-            body = soup.find('body') or soup
-
-            # img src → epub path
-            for img in body.find_all('img'):
-                src = img.get('src', '')
-                src_name = src.split('/')[-1]
-                if src_name in epub_images:
-                    img['src'] = f'../images/{os.path.basename(epub_images[src_name])}'
-
-            chapter_num = i + 1
-            fname_base = Path(fpath).stem
-            chapter_title = fname_base.replace('_', ' ').replace('-', ' ')
-
-            chapter = ebooklib_epub.EpubHtml(
-                title=chapter_title,
-                file_name=f'chap_{chapter_num:03d}.xhtml',
-                lang='bn'
-            )
-            chapter.content = f'<html><body>{body}</body></html>'.encode('utf-8')
-            book.add_item(chapter)
-            chapters.append(chapter)
-            spine.append(chapter)
-
-        # TOC ও spine
-        book.toc = chapters
-        book.spine = spine
-        book.add_item(ebooklib_epub.EpubNcx())
-        book.add_item(ebooklib_epub.EpubNav())
-
-        # Save
-        epub_out = f'/tmp/{slug}.epub'
-        ebooklib_epub.write_epub(epub_out, book)
-        print(f'  ✓ epub তৈরি: {epub_out}')
-        return epub_out
-
-    finally:
-        shutil.rmtree(tmp_dir, ignore_errors=True)
-
-
-# ─── HTML content extractor (read page এর জন্য) ───────────────────────────────
+# ─── ZIP → HTML (read page এর জন্য) ───────────────────────────────────────────
 def zip_to_html(zip_path, slug):
-    """ZIP → merged HTML string (read page এর জন্য), images → assets/images/{slug}/"""
+    """ZIP এর HTML files merge করে একটা HTML string বানাও।
+    Images → assets/images/{slug}/ এ copy করো।"""
     tmp_dir = tempfile.mkdtemp()
     try:
         with zipfile.ZipFile(zip_path, 'r') as z:
@@ -194,11 +31,9 @@ def zip_to_html(zip_path, slug):
                 ext = fname.lower().rsplit('.', 1)[-1]
                 if ext in ('jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'):
                     src_path = os.path.join(root, fname)
-                    # safe filename
                     safe_name = re.sub(r'[^a-zA-Z0-9._-]', '_', fname)
                     dest_path = os.path.join(img_out_dir, safe_name)
                     shutil.copy2(src_path, dest_path)
-                    # Cloudflare Pages এ যে URL হবে
                     public_url = f'/assets/images/{slug}/{safe_name}'
                     images[fname] = public_url
                     rel = os.path.relpath(src_path, tmp_dir).replace('\\', '/')
@@ -206,6 +41,7 @@ def zip_to_html(zip_path, slug):
 
         print(f'  🖼 {len(images)} image → assets/images/{slug}/')
 
+        # HTML files খোঁজো ও sort করো
         html_files = []
         for root, _, files in os.walk(tmp_dir):
             for fname in sorted(files):
@@ -227,11 +63,12 @@ def zip_to_html(zip_path, slug):
         shutil.rmtree(tmp_dir, ignore_errors=True)
 
 
-# ─── shared HTML cleaner ───────────────────────────────────────────────────────
+# ─── HTML cleaner ──────────────────────────────────────────────────────────────
 def process_html_fragment(raw_html, images):
     soup = BeautifulSoup(raw_html, 'html.parser')
     body = soup.find('body') or soup
 
+    # img src → assets URL
     for img in body.find_all('img'):
         src = img.get('src', '')
         src_name = src.split('/')[-1]
@@ -240,9 +77,11 @@ def process_html_fragment(raw_html, images):
         elif src in images:
             img['src'] = images[src]
 
+    # div → p
     for div in body.find_all('div'):
         div.name = 'p'
 
+    # link fix
     for a_tag in body.find_all('a', href=True):
         href = a_tag.get('href', '')
         if href.startswith('http://') or href.startswith('https://'):
@@ -253,10 +92,12 @@ def process_html_fragment(raw_html, images):
         else:
             a_tag.unwrap()
 
+    # অপ্রয়োজনীয় tags unwrap
     for tag in body.find_all(True):
         if tag.name not in ['h1', 'h2', 'h3', 'p', 'br', 'img', 'a']:
             tag.unwrap()
 
+    # plain URL → <a>
     url_pattern = re.compile(r'(https?://[^\s<>"\']+)')
     for p_tag in body.find_all(['p', 'h1', 'h2', 'h3']):
         for text_node in p_tag.find_all(string=True):
@@ -295,16 +136,11 @@ with open('firebase_data.json', 'r', encoding='utf-8') as f:
 
 books = data.get('books', {})
 
-# GitHub Release নিশ্চিত করো (GITHUB_TOKEN থাকলে)
-if GITHUB_TOKEN and GITHUB_REPO:
-    ensure_release()
-
 for uid, book in books.items():
-    slug     = book.get('slug', '')
-    file_url = book.get('file', '')
-    title    = book.get('title', slug)
-    author   = book.get('author', 'অজানা')
-    desc     = book.get('desc', '')
+    slug         = book.get('slug', '')
+    file_url     = book.get('file', '')
+    title        = book.get('title', slug)
+    desc         = book.get('desc', '')
     content_path = f'content/{slug}.html'
     read_path    = f'read/{slug}.html'
 
@@ -312,63 +148,24 @@ for uid, book in books.items():
         print(f'  ⏭ {slug} — file url নেই, skip')
         continue
 
-    # ZIP file কিনা চেক করো
-    is_zip = file_url.split('?')[0].lower().endswith('.zip')
+    if not file_url.split('?')[0].lower().endswith('.zip'):
+        print(f'  ⏭ {slug} — ZIP নয়, skip')
+        continue
 
     if os.path.exists(content_path):
         print(f'  ⏭ {slug} — already converted, skip')
     else:
-        ext = 'zip' if is_zip else 'epub'
-        local_file = f'/tmp/{slug}.{ext}'
-
-        print(f'  📥 {slug} ({ext}) download করছি...')
+        local_file = f'/tmp/{slug}.zip'
+        print(f'  📥 {slug} download করছি...')
         try:
             download_file(file_url, local_file)
 
-            if is_zip:
-                # ১. read page এর জন্য HTML content
-                print(f'  🔄 {slug} HTML content তৈরি করছি...')
-                html_content = zip_to_html(local_file, slug)
-                with open(content_path, 'w', encoding='utf-8') as f:
-                    f.write(html_content)
-                print(f'  ✓ content/{slug}.html')
+            print(f'  🔄 {slug} HTML তৈরি করছি...')
+            html_content = zip_to_html(local_file, slug)
 
-                # ২. epub তৈরি করো ও Release এ upload করো
-                if GITHUB_TOKEN and GITHUB_REPO:
-                    print(f'  📖 {slug} epub তৈরি করছি...')
-                    epub_path = zip_to_epub(local_file, slug, title, author, desc)
-                    epub_url = upload_epub_to_release(epub_path, slug)
-                    os.remove(epub_path)
-                    # Firebase এ epub URL save করার জন্য log করো
-                    print(f'  🔗 epub URL: {epub_url}')
-                else:
-                    print(f'  ⚠ GITHUB_TOKEN নেই — epub upload skip')
-            else:
-                # পুরনো epub flow
-                from ebooklib import epub as ebooklib_epub2
-                import ebooklib
-
-                def epub_to_html_legacy(epub_path):
-                    book = ebooklib_epub2.read_epub(epub_path)
-                    imgs = {}
-                    for item in book.get_items():
-                        if item.get_type() == ebooklib.ITEM_IMAGE:
-                            img_data = base64.b64encode(item.get_content()).decode('utf-8')
-                            mime = item.media_type or 'image/jpeg'
-                            imgs[item.get_name()] = f"data:{mime};base64,{img_data}"
-                            imgs[item.get_name().split('/')[-1]] = f"data:{mime};base64,{img_data}"
-                    full = ''
-                    for item in book.get_items():
-                        if item.get_type() == ebooklib.ITEM_DOCUMENT:
-                            full += process_html_fragment(item.get_content(), imgs)
-                    return full
-
-                print(f'  🔄 {slug} epub convert করছি...')
-                html_content = epub_to_html_legacy(local_file)
-                with open(content_path, 'w', encoding='utf-8') as f:
-                    f.write(html_content)
-                print(f'  ✓ content/{slug}.html')
-
+            with open(content_path, 'w', encoding='utf-8') as f:
+                f.write(html_content)
+            print(f'  ✓ content/{slug}.html')
             os.remove(local_file)
 
         except Exception as e:
@@ -393,4 +190,4 @@ for uid, book in books.items():
     except Exception as e:
         print(f'  ❌ {slug} read page error: {e}')
 
-print('✅ convert ও read page generation সম্পন্ন!')
+print('✅ ZIP convert ও read page generation সম্পন্ন!')
