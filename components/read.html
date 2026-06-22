@@ -111,44 +111,74 @@
     /* ── TOC unit (toggle + drawer together) ── */
     #toc-unit {
         position: fixed;
-        top: 50%;
+        top: 0;
         right: 0;
-        transform: translateY(-50%) translateX(calc(100% - 28px));
-        transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+        height: 100vh;
         z-index: 500;
         display: flex;
-        align-items: stretch;
-    }
-    #toc-unit.open {
-        transform: translateY(-50%) translateX(0);
+        align-items: center;
+        pointer-events: none;
     }
 
     /* Toggle tab */
     #toc-toggle-btn {
         width: 28px;
+        height: 90px;
         flex-shrink: 0;
+        align-self: center;
         background: #c0392b;
         border: none;
-        border-radius: 10px 0 0 10px;
+        border-radius: 0;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
         box-shadow: -2px 0 8px rgba(0,0,0,0.15);
+        padding: 10px 0;
+        pointer-events: auto;
+        transition: height 0.3s cubic-bezier(0.4,0,0.2,1),
+                    border-radius 0.3s cubic-bezier(0.4,0,0.2,1),
+                    align-self 0.1s;
+    }
+    #toc-unit.open {
+        align-items: stretch;
+    }
+    #toc-unit.open #toc-toggle-btn {
+        height: 100%;
+        align-self: stretch;
+        border-radius: 0;
+        pointer-events: auto;
     }
     #toc-toggle-btn:active { background: #a93226; }
-    #toc-toggle-btn i { color: #fff; font-size: 12px; }
+    #toc-toggle-btn .toc-toggle-label {
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1;
+    }
 
     /* Drawer panel */
     #mobile-toc-drawer {
-        width: 40vw; max-width: 145px;
-        height: calc(100vh - 96px);
+        width: 0;
+        max-width: 145px;
+        height: 100%;
         display: flex; flex-direction: column;
         background: #fafafa;
-        border-radius: 0 0 0 16px;
+        border-radius: 0;
         box-shadow: -4px 4px 24px rgba(0,0,0,0.15);
         overflow: hidden;
+        transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+        pointer-events: auto;
     }
+    #toc-unit.open #mobile-toc-drawer {
+        width: 40vw;
+    }
+
 
     #mobile-toc-overlay {
         position: fixed; inset: 0;
@@ -241,12 +271,10 @@
 <!-- TOC unit: toggle + drawer together -->
 <div id="toc-unit">
     <button id="toc-toggle-btn" aria-label="সূচিপত্র">
-        <i class="fas fa-list-ul"></i>
+        <span class="toc-toggle-label">সূচিপত্র</span>
     </button>
     <div id="mobile-toc-drawer">
-        <div id="toc-drawer-header">
-            <span class="drawer-title">সূচিপত্র</span>
-        </div>
+
         <nav id="toc-nav-mobile"></nav>
     </div>
 </div>
@@ -312,14 +340,21 @@
     }, { passive: true });
 
     // ── Build TOC ──
-    const headings = bookContent.querySelectorAll('h1, h2');
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    // Hide toggle if no headings
+    const tocToggleBtn = document.getElementById('toc-toggle-btn');
+    if (headings.length === 0 && tocToggleBtn) {
+        tocToggleBtn.style.display = 'none';
+    }
 
     function buildToc(nav, isMobile) {
         headings.forEach((h, i) => {
             h.id = h.id || ('sec-' + i);
             const a = document.createElement('a');
             a.href = '#' + h.id;
-            a.textContent = h.textContent;
+            a.textContent = h.textContent.trim();
             a.dataset.idx = i;
             const isH1 = h.tagName === 'H1';
             if (isMobile) {
@@ -355,10 +390,12 @@
     function openTocDrawer() {
         tocUnit.classList.add('open');
         tocOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
     }
     function closeTocDrawer() {
         tocUnit.classList.remove('open');
         tocOverlay.classList.remove('open');
+        document.body.style.overflow = '';
     }
 
     document.getElementById('toc-toggle-btn')?.addEventListener('click', (e) => {
