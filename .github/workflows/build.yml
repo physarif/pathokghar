@@ -73,36 +73,26 @@ jobs:
           FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
         run: node scripts/generate_pages.js
 
-      # ৭. ZIP → HTML + EPUB তৈরি করো (epub_urls.json লেখে)
-      - name: Convert books & generate EPUB
+      # ৭. ZIP → epub তৈরি + GitHub Release upload + read page generate
+      - name: Convert books & upload epub
         if: steps.changes.outputs.layout_only != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: python scripts/convert_zip.py
 
-      # ৮. epub_urls.json দিয়ে download pages আবার generate করো
-      - name: Regenerate download pages with EPUB links
-        if: steps.changes.outputs.layout_only != 'true'
-        env:
-          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
-          FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
-          FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
-          FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
-        run: node scripts/generate_pages.js --download-only
-
-      # ৯. sitemap.xml generate
+      # ৮. sitemap.xml generate
       - name: Generate sitemap
         run: node scripts/generate_sitemap.js
 
-      # ১০. Cloudflare Pages এ deploy
+      # ৯. Cloudflare Pages এ deploy
       - name: Deploy to Cloudflare Pages
         run: npx wrangler pages deploy . --project-name=pathokghar --commit-dirty=true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
-      # ১১. Generated files commit & push
+      # ১০. Generated files commit & push
       - name: Commit generated files
         run: |
           git config user.name "github-actions[bot]"
@@ -110,5 +100,4 @@ jobs:
           git add books/ index.html sitemap.xml || true
           git add author/ download/ category/ || true
           git add read/ || true
-          git add epub_urls.json || true
           git diff --staged --quiet || git commit -m "build: auto-generate pages [skip ci]" && git push
