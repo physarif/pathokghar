@@ -279,7 +279,7 @@
         z-index: 500;
         display: flex;
         align-items: flex-start;
-        padding-top: calc(44px + 33vh); /* gear icon height + original offset */
+        padding-top: 33vh;
         pointer-events: none;
     }
 
@@ -461,10 +461,11 @@
     html { scrollbar-width: none; -ms-overflow-style: none; }
     html::-webkit-scrollbar { display: none; }
 
-    /* ── Settings unit (right side, top-এ, content height) ── */
+    /* ── Settings unit (right side, TOC এর নিচে) ── */
     #settings-drawer-wrap {
         position: fixed;
-        top: 0; right: 0;
+        top: calc(44px + 33vh + 90px + 6px); /* gear offset + TOC tab height + gap */
+        right: 0;
         z-index: 498;
         display: flex;
         align-items: flex-start;
@@ -502,7 +503,7 @@
         box-shadow: -4px 4px 24px rgba(0,0,0,0.15);
         overflow: hidden;
         pointer-events: auto;
-        border-radius: 0 0 0 10px;
+        border-radius: 0;
         transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
     }
     #settings-drawer-wrap.open #settings-drawer { width: 54vw; }
