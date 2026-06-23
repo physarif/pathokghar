@@ -299,6 +299,9 @@ async function generateReadPages(bookList, authorsRaw, categoriesRaw) {
       content: readContent,
       sidebar_categories,
       sidebar_authors,
+      book_title: book.title,
+      book_author: book.author_name,
+      book_slug: book.slug,
     });
 
     fs.writeFileSync(`read/${book.slug}.html`, fullPage, 'utf8');
