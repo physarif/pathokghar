@@ -459,6 +459,49 @@
     html { scrollbar-width: none; -ms-overflow-style: none; }
     html::-webkit-scrollbar { display: none; }
 
+    /* ── Book read header hero ── */
+    .book-read-header {
+        background: #c0392b;
+        margin-left: -1.25rem;
+        margin-right: -1.25rem;
+        margin-top: -1.75rem;
+        padding: 2rem 1.5rem 1.75rem;
+        position: relative;
+    }
+    @media (min-width: 768px) {
+        .book-read-header {
+            margin-left: -2.5rem;
+            margin-right: -2.5rem;
+        }
+    }
+    .book-read-header::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0; right: 0;
+        height: 10px;
+        background: #c0392b;
+        clip-path: ellipse(50% 100% at 50% 0%);
+        opacity: 0.18;
+    }
+    .book-read-author {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.75);
+        letter-spacing: 0.06em;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+    }
+    .book-read-title {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.65rem;
+        font-weight: 700;
+        color: #ffffff;
+        line-height: 1.35;
+        margin: 0;
+    }
+
 </style>
 
 <!-- Progress bar -->
@@ -491,19 +534,11 @@
     <div class="flex-1 min-w-0">
         <div id="read-main-content" class="px-5 md:px-10 py-7 max-w-2xl">
 
-            <!-- Action buttons -->
-            <div class="flex gap-3 mb-6">
-                <a href="/books/ruposhi-bangla.html"
-                   class="flex-1 flex items-center justify-center gap-2 text-sm border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:border-[#c0392b] hover:text-[#c0392b] rounded-xl py-2.5 transition">
-                    <i class="fas fa-circle-info text-xs"></i> বইয়ের তথ্য
-                </a>
-                <a href="/download/ruposhi-bangla.html"
-                   class="flex-1 flex items-center justify-center gap-2 text-sm bg-[#c0392b] hover:bg-[#a93226] text-white rounded-xl py-2.5 transition">
-                    <i class="fas fa-download text-xs"></i> ডাউনলোড
-                </a>
+            <!-- Book header hero -->
+            <div class="book-read-header mb-6">
+                <p class="book-read-author">জীবনানন্দ দাশ</p>
+                <h1 class="book-read-title">রূপসী বাংলা</h1>
             </div>
-
-            <hr class="border-gray-200 dark:border-gray-700 mb-6">
             <div id="book-content" class="text-gray-800 dark:text-gray-200">
                 
             </div>
