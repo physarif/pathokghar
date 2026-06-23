@@ -359,40 +359,6 @@
     html { scrollbar-width: none; -ms-overflow-style: none; }
     html::-webkit-scrollbar { display: none; }
 
-    /* ── Day/Night toggle button ── */
-    #theme-toggle-btn {
-        width: 28px;
-        height: 38px;
-        flex-shrink: 0;
-        background: #1a1a2e;
-        border: none;
-        border-radius: 0 0 6px 0;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: -2px 2px 8px rgba(0,0,0,0.2);
-        pointer-events: auto;
-        transition: background 0.3s ease;
-        margin-top: 3px;
-        align-self: flex-start;
-        position: relative;
-        z-index: 501;
-    }
-    #theme-toggle-btn:active { opacity: 0.75; }
-    #theme-toggle-btn #theme-icon {
-        font-size: 13px;
-        color: #f0c040;
-        transition: color 0.3s, transform 0.4s;
-    }
-    body.day-mode #theme-toggle-btn {
-        background: #e8b400;
-    }
-    body.day-mode #theme-toggle-btn #theme-icon {
-        color: #fff;
-        transform: rotate(180deg);
-    }
-
 </style>
 
 <!-- Progress bar -->
@@ -406,9 +372,6 @@
 <div id="toc-unit">
     <button id="toc-toggle-btn" aria-label="সূচিপত্র">
         <span class="toc-toggle-label">সূচিপত্র</span>
-    </button>
-    <button id="theme-toggle-btn" aria-label="থিম পরিবর্তন">
-        <i id="theme-icon" class="fas fa-moon"></i>
     </button>
     <div id="mobile-toc-drawer">
 
@@ -542,33 +505,6 @@
         tocUnit.classList.contains('open') ? closeTocDrawer() : openTocDrawer();
     });
     tocOverlay?.addEventListener('click', closeTocDrawer);
-
-    // ── Day / Night toggle ──
-    const themeBtn  = document.getElementById('theme-toggle-btn');
-    const themeIcon = document.getElementById('theme-icon');
-    const htmlEl    = document.documentElement;
-
-    // Init: read saved preference
-    const savedTheme = localStorage.getItem('pg-theme') || 'day';
-    applyTheme(savedTheme);
-
-    themeBtn?.addEventListener('click', () => {
-        const isNight = htmlEl.classList.contains('dark');
-        applyTheme(isNight ? 'day' : 'night');
-    });
-
-    function applyTheme(mode) {
-        if (mode === 'day') {
-            htmlEl.classList.remove('dark');
-            document.body.classList.add('day-mode');
-            themeIcon.className = 'fas fa-sun';
-        } else {
-            htmlEl.classList.add('dark');
-            document.body.classList.remove('day-mode');
-            themeIcon.className = 'fas fa-moon';
-        }
-        localStorage.setItem('pg-theme', mode);
-    }
 })();
 </script>
 
