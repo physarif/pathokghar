@@ -13,16 +13,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50:  '#fff5f5',
-                            100: '#fde8e6',
-                            500: '#c0392b',
-                            600: '#a93226'
+        if (typeof tailwind !== 'undefined') {
+            tailwind.config = {
+                darkMode: 'class',
+                theme: {
+                    extend: {
+                        colors: {
+                            brand: {
+                                50:  '#fff5f5',
+                                100: '#fde8e6',
+                                500: '#c0392b',
+                                600: '#a93226'
+                            }
                         }
                     }
                 }
@@ -460,7 +462,7 @@
     /* ── Settings unit (right side, TOC এর নিচে) ── */
     #settings-drawer-wrap {
         position: fixed;
-        top: calc(44px + 33vh + 90px + 6px); /* gear offset + TOC tab height + gap */
+        top: calc(33vh + 90px + 8px); /* TOC position + TOC height + gap */
         right: 0;
         z-index: 498;
         display: flex;
@@ -491,7 +493,7 @@
     /* Drawer panel */
     #settings-drawer {
         width: 0;
-        max-width: 220px;
+        max-width: 200px;
         max-height: 90vh;
         display: flex;
         flex-direction: column;
@@ -619,13 +621,8 @@
 </div>
 <div id="mobile-toc-overlay"></div>
 
-<!-- Settings unit: gear tab + drawer (TOC-এর মতো, right side top) -->
+<!-- Settings unit: gear tab + drawer (TOC-এর মতো, right side) -->
 <div id="settings-drawer-wrap">
-    <button id="settings-toggle-btn" aria-label="সেটিংস">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-        </svg>
-    </button>
     <div id="settings-drawer">
         <div id="settings-drawer-inner">
             <!-- Theme -->
@@ -690,6 +687,11 @@
             </div>
         </div>
     </div>
+    <button id="settings-toggle-btn" aria-label="সেটিংস">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+    </button>
 </div>
 <div id="settings-overlay"></div>
 
@@ -3740,13 +3742,17 @@
     let currentAlign= 'left';
     let currentTheme= 'light';
 
+    const tocUnit = document.getElementById('toc-unit');
+
     function openSettings() {
         settingsWrap.classList.add('open');
         settingsOverlay.classList.add('open');
+        if (tocUnit) tocUnit.style.visibility = 'hidden';
     }
     function closeSettings() {
         settingsWrap.classList.remove('open');
         settingsOverlay.classList.remove('open');
+        if (tocUnit) tocUnit.style.visibility = '';
     }
 
     settingsToggle.addEventListener('click', (e) => {
