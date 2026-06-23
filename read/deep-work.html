@@ -313,6 +313,38 @@
     #toc-nav-mobile .toc-link.active { color: #c0392b; }
 
 
+    /* ── TOC book info (title – author) ── */
+    #toc-book-info {
+        padding: 14px 12px 10px;
+        border-bottom: 1px solid #e5e7eb;
+        flex-shrink: 0;
+    }
+    #toc-book-info {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #toc-book-title-link {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.78rem;
+        font-weight: 400;
+        color: #1a1a1b;
+        text-decoration: none;
+    }
+    #toc-book-title-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+    #toc-book-sep {
+        font-size: 0.78rem;
+        color: #9ca3af;
+    }
+    #toc-book-author-link {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.78rem;
+        font-weight: 400;
+        color: #c0392b;
+        text-decoration: none;
+    }
+    #toc-book-author-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
     /* ── Estimated time badge ── */
     #est-time-badge {
         display: inline-flex;
@@ -343,6 +375,12 @@
     </button>
     <div id="mobile-toc-drawer">
 
+        <div id="toc-book-info">
+            <a href="/books/deep-work.html" id="toc-book-title-link">Deep Work</a>
+            <span id="toc-book-sep"> – </span>
+            <a href="/author/cal-newport.html" id="toc-book-author-link">Cal Newport</a>
+        </div>
+
         <nav id="toc-nav-mobile"></nav>
     </div>
 </div>
@@ -359,22 +397,7 @@
     <div class="flex-1 min-w-0">
         <div id="read-main-content" class="px-5 md:px-10 py-7 max-w-2xl">
 
-            <!-- Book header hero -->
-            <div class="book-read-header">
-                <div class="book-read-box">
-                    <div class="book-read-cover">
-                        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1781951699130_91xp6nvz1ca.jpg" alt="Deep Work" style="width:100%;height:100%;object-fit:cover;"
-                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                        <svg style="display:none" width="28" height="28" viewBox="0 0 24 24" fill="#9ca3af"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
-                    </div>
-                    <a href="/books/deep-work.html" class="book-read-title-link">
-                        <h1 class="book-read-title">Deep Work</h1>
-                    </a>
-                    <a href="/author/cal-newport.html" class="book-read-author-link">
-                        <p class="book-read-author">Cal Newport</p>
-                    </a>
-                </div>
-            </div>
+
             <div id="book-content" class="text-gray-800 dark:text-gray-200">
                 <h1 class="appendix-title1">Introduction</h1>
 <p class="noindent"><a id="page_1"></a>In the Swiss canton of St. Gallen, near the northern banks of Lake Zurich, is a village named Bollingen. In 1922, the psychiatrist Carl Jung chose this spot to begin building a retreat. He began with a basic two-story stone house he called the Tower. After returning from a trip to India, where he observed the practice of adding meditation rooms to homes, he expanded the complex to include a private office. “In my retiring room I am by myself,” Jung said of the space. “I keep the key with me all the time; no one else is allowed in there except with my permission.”</p>
@@ -1608,10 +1631,6 @@
     const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
         .filter(h => h.textContent.trim() !== '');
 
-    // Hide toggle if no headings
-    if (headings.length === 0 && tocToggleBtn) {
-        tocToggleBtn.style.display = 'none';
-    }
 
     function buildToc(nav, isMobile) {
         headings.forEach((h, i) => {
