@@ -234,7 +234,7 @@
     #mobile-toc-drawer {
         width: 0;
         max-width: 200px;
-        height: 100vh;
+        height: 100%;
         display: flex; flex-direction: column;
         background: #fafafa;
         border-radius: 0;
@@ -287,7 +287,7 @@
     #toc-nav-mobile {
         flex: 1;
         overflow-y: auto;
-        padding: 4px 8px 0;
+        padding: 4px 8px 24px;
         scrollbar-width: none;
         -ms-overflow-style: none;
     }
@@ -359,148 +359,6 @@
     html { scrollbar-width: none; -ms-overflow-style: none; }
     html::-webkit-scrollbar { display: none; }
 
-    /* ── Customization button & panel ── */
-    #toc-custom-btn {
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        width: 100%;
-        min-width: 0;
-        padding: 11px 14px;
-        border: none;
-        border-top: 1px solid #e5e7eb;
-        background: #fafafa;
-        color: #555;
-        font-size: 0.78rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 0.15s;
-        letter-spacing: 0.03em;
-        white-space: nowrap;
-        overflow: hidden;
-    }
-    #toc-custom-btn:active { background: #f0f0f0; }
-    #toc-custom-btn i { color: #c0392b; font-size: 0.85rem; }
-
-    /* Customization panel (slides up inside drawer) */
-    #toc-custom-panel {
-        flex-shrink: 0;
-        overflow: hidden;
-        max-height: 0;
-        transition: max-height 0.3s cubic-bezier(0.4,0,0.2,1);
-        background: #f7f7f7;
-        border-top: 1px solid #e5e7eb;
-    }
-    #toc-custom-panel.open { max-height: 260px; }
-
-    .custom-panel-inner {
-        padding: 12px 14px 14px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .custom-row-label {
-        font-size: 0.65rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: #999;
-        margin-bottom: 5px;
-    }
-
-    /* Theme swatches */
-    .theme-swatches {
-        display: flex;
-        gap: 8px;
-    }
-    .theme-swatch {
-        width: 32px; height: 32px;
-        border-radius: 50%;
-        border: 2px solid transparent;
-        cursor: pointer;
-        transition: border-color 0.15s, transform 0.15s;
-        position: relative;
-    }
-    .theme-swatch:active { transform: scale(0.9); }
-    .theme-swatch.active { border-color: #c0392b; }
-    .theme-swatch[data-theme="light"]  { background: #ffffff; box-shadow: inset 0 0 0 1px #ddd; }
-    .theme-swatch[data-theme="sepia"]  { background: #f5efe6; box-shadow: inset 0 0 0 1px #d4c5a9; }
-    .theme-swatch[data-theme="dark"]   { background: #1c1c1e; box-shadow: inset 0 0 0 1px #444; }
-
-    /* Font size buttons */
-    .font-size-btns {
-        display: flex;
-        gap: 6px;
-    }
-    .font-size-btn {
-        flex: 1;
-        padding: 6px 4px;
-        border: 1px solid #e0e0e0;
-        border-radius: 6px;
-        background: #fff;
-        cursor: pointer;
-        font-family: 'Noto Serif Bengali', serif;
-        color: #444;
-        transition: background 0.15s, border-color 0.15s, color 0.15s;
-        line-height: 1;
-    }
-    .font-size-btn:active { background: #f0f0f0; }
-    .font-size-btn.active { background: #c0392b; border-color: #c0392b; color: #fff; }
-    .font-size-btn.sz-sm  { font-size: 12px; }
-    .font-size-btn.sz-md  { font-size: 15px; }
-    .font-size-btn.sz-lg  { font-size: 18px; }
-
-    /* Align buttons */
-    .align-btns {
-        display: flex;
-        gap: 6px;
-    }
-    .align-btn {
-        flex: 1;
-        padding: 7px 4px;
-        border: 1px solid #e0e0e0;
-        border-radius: 6px;
-        background: #fff;
-        cursor: pointer;
-        color: #555;
-        font-size: 14px;
-        transition: background 0.15s, border-color 0.15s, color 0.15s;
-    }
-    .align-btn:active { background: #f0f0f0; }
-    .align-btn.active { background: #c0392b; border-color: #c0392b; color: #fff; }
-
-    /* ── Reading themes applied to body ── */
-    body.reader-sepia { background: #f5efe6 !important; color: #3d2b1f !important; }
-    body.reader-sepia #book-content { color: #3d2b1f !important; }
-    body.reader-sepia #mobile-reader-bg { background: #f5efe6 !important; }
-
-    body.reader-dark { background: #1c1c1e !important; color: #e0e0e0 !important; }
-    body.reader-dark #book-content { color: #e0e0e0 !important; }
-    body.reader-dark #mobile-reader-bg { background: #1c1c1e !important; }
-    body.reader-dark #mobile-toc-drawer { background: #2a2a2b; }
-    body.reader-dark #toc-custom-btn { background: #2a2a2b; color: #aaa; border-color: #3a3a3b; }
-    body.reader-dark #toc-custom-panel { background: #232325; border-color: #3a3a3b; }
-    body.reader-dark .font-size-btn,
-    body.reader-dark .align-btn { background: #333; border-color: #444; color: #ccc; }
-    body.reader-dark .custom-row-label { color: #666; }
-    body.reader-dark #toc-book-info { border-color: #3a3a3b; }
-    body.reader-dark .toc-link { color: #bbb; border-color: #333; }
-
-    body.reader-light { background: #ffffff !important; }
-    body.reader-light #mobile-reader-bg { background: #ffffff !important; }
-
-    /* Font sizes */
-    body.fz-sm #book-content { font-size: 0.875rem; }
-    body.fz-md #book-content { font-size: 1rem; }
-    body.fz-lg #book-content { font-size: 1.125rem; }
-
-    /* Text align */
-    body.align-left    #book-content p { text-align: left; }
-    body.align-center  #book-content p { text-align: center; }
-    body.align-justify #book-content p { text-align: justify; }
-
 </style>
 
 <!-- Progress bar -->
@@ -524,51 +382,6 @@
         </div>
 
         <nav id="toc-nav-mobile"></nav>
-
-        <!-- Customization panel -->
-        <div id="toc-custom-panel">
-            <div class="custom-panel-inner">
-
-                <!-- Theme -->
-                <div>
-                    <div class="custom-row-label">থিম</div>
-                    <div class="theme-swatches">
-                        <button class="theme-swatch active" data-theme="light" title="সাদা" aria-label="সাদা থিম"></button>
-                        <button class="theme-swatch" data-theme="sepia" title="সেপিয়া" aria-label="সেপিয়া থিম"></button>
-                        <button class="theme-swatch" data-theme="dark" title="ডার্ক" aria-label="ডার্ক থিম"></button>
-                    </div>
-                </div>
-
-                <!-- Font size -->
-                <div>
-                    <div class="custom-row-label">টেক্সট সাইজ</div>
-                    <div class="font-size-btns">
-                        <button class="font-size-btn sz-sm" data-size="sm">অ</button>
-                        <button class="font-size-btn sz-md active" data-size="md">অ</button>
-                        <button class="font-size-btn sz-lg" data-size="lg">অ</button>
-                    </div>
-                </div>
-
-                <!-- Align -->
-                <div>
-                    <div class="custom-row-label">সারিবদ্ধতা</div>
-                    <div class="align-btns">
-                        <button class="align-btn" data-align="left" title="বাম"><i class="fa fa-align-left"></i></button>
-                        <button class="align-btn" data-align="center" title="মাঝখান"><i class="fa fa-align-center"></i></button>
-                        <button class="align-btn active" data-align="justify" title="জাস্টিফাই"><i class="fa fa-align-justify"></i></button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Customization toggle button -->
-        <button id="toc-custom-btn" aria-expanded="false" aria-controls="toc-custom-panel">
-            <i class="fa fa-sliders-h"></i>
-            <span>কাস্টমাইজ</span>
-            <i class="fa fa-chevron-up" id="toc-custom-chevron" style="margin-left:auto;font-size:0.7rem;transition:transform 0.3s;"></i>
-        </button>
-
     </div>
 </div>
 <div id="mobile-toc-overlay"></div>
@@ -1638,76 +1451,6 @@
         tocUnit.classList.contains('open') ? closeTocDrawer() : openTocDrawer();
     });
     tocOverlay?.addEventListener('click', closeTocDrawer);
-
-    // ── Customization panel ──
-    const customBtn   = document.getElementById('toc-custom-btn');
-    const customPanel = document.getElementById('toc-custom-panel');
-    const customChev  = document.getElementById('toc-custom-chevron');
-
-    customBtn?.addEventListener('click', () => {
-        const isOpen = customPanel.classList.toggle('open');
-        customBtn.setAttribute('aria-expanded', isOpen);
-        customChev.style.transform = isOpen ? 'rotate(180deg)' : '';
-    });
-
-    // saved prefs
-    const PREFS_KEY = 'pathokghar_reader_prefs';
-    function loadPrefs() {
-        try { return JSON.parse(localStorage.getItem(PREFS_KEY)) || {}; } catch { return {}; }
-    }
-    function savePrefs(p) {
-        try { localStorage.setItem(PREFS_KEY, JSON.stringify(p)); } catch {}
-    }
-
-    // ── Theme ──
-    const themeClasses = ['reader-light', 'reader-sepia', 'reader-dark'];
-    function applyTheme(theme) {
-        document.body.classList.remove(...themeClasses);
-        if (theme !== 'light') document.body.classList.add('reader-' + theme);
-        // also handle dark-mode class for Tailwind dark:
-        document.documentElement.classList.toggle('dark', theme === 'dark');
-        document.querySelectorAll('.theme-swatch').forEach(s =>
-            s.classList.toggle('active', s.dataset.theme === theme));
-        const p = loadPrefs(); p.theme = theme; savePrefs(p);
-    }
-    document.querySelectorAll('.theme-swatch').forEach(btn => {
-        btn.addEventListener('click', () => applyTheme(btn.dataset.theme));
-    });
-
-    // ── Font size ──
-    const sizeClasses = ['fz-sm', 'fz-md', 'fz-lg'];
-    function applyFontSize(size) {
-        document.body.classList.remove(...sizeClasses);
-        document.body.classList.add('fz-' + size);
-        document.querySelectorAll('.font-size-btn').forEach(b =>
-            b.classList.toggle('active', b.dataset.size === size));
-        const p = loadPrefs(); p.fontSize = size; savePrefs(p);
-    }
-    document.querySelectorAll('.font-size-btn').forEach(btn => {
-        btn.addEventListener('click', () => applyFontSize(btn.dataset.size));
-    });
-
-    // ── Text align ──
-    const alignClasses = ['align-left', 'align-center', 'align-justify'];
-    function applyAlign(align) {
-        document.body.classList.remove(...alignClasses);
-        document.body.classList.add('align-' + align);
-        document.querySelectorAll('.align-btn').forEach(b =>
-            b.classList.toggle('active', b.dataset.align === align));
-        const p = loadPrefs(); p.align = align; savePrefs(p);
-    }
-    document.querySelectorAll('.align-btn').forEach(btn => {
-        btn.addEventListener('click', () => applyAlign(btn.dataset.align));
-    });
-
-    // ── Restore saved prefs on load ──
-    (function restorePrefs() {
-        const p = loadPrefs();
-        applyTheme(p.theme || 'light');
-        applyFontSize(p.fontSize || 'md');
-        applyAlign(p.align || 'justify');
-    })();
-
 })();
 </script>
 
