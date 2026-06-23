@@ -213,6 +213,7 @@ for uid, book in books.items():
     file_url     = book.get('file', '')
     title        = book.get('title', slug)
     desc         = book.get('desc', '')
+    cover        = book.get('img', '')
     content_path = f'content/{slug}.html'
     read_path    = f'read/{slug}.html'
 
@@ -267,6 +268,7 @@ for uid, book in books.items():
             'book_css': css_link_tag,
             'book_author': author_name,
             'book_author_slug': author_slug,
+            'book_cover': cover,
         })
 
         with open(read_path, 'w', encoding='utf-8') as f:
