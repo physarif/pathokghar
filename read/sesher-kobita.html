@@ -662,25 +662,13 @@
     html { scrollbar-width: none; -ms-overflow-style: none; }
     html::-webkit-scrollbar { display: none; }
 
-    /* ── Settings unit (left side, mirror of TOC) ── */
-    #settings-unit {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        z-index: 500;
-        display: flex;
-        align-items: flex-start;
-        padding-top: 50vh;
-        pointer-events: none;
-    }
+    /* ── Settings gear btn (fixed, above TOC tab) ── */
     #settings-toggle-btn {
         width: 28px;
-        height: 60px;
+        height: 44px;
         flex-shrink: 0;
-        order: 2;
         align-self: center;
-        background: #c0392b;
+        background: #a93226;
         border: none;
         border-radius: 0;
         cursor: pointer;
@@ -688,21 +676,32 @@
         align-items: center;
         justify-content: center;
         box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+        color: #fff;
         pointer-events: auto;
         transition: height 0.3s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
-        color: #fff;
     }
-    #settings-toggle-btn.scrolling { opacity: 0.5; }
-    #settings-toggle-btn:active { background: #a93226; }
-    #settings-unit.open { align-items: stretch; }
-    #settings-unit.open #settings-toggle-btn {
+    #settings-drawer-wrap.open #settings-toggle-btn {
         height: 100%;
         align-self: stretch;
     }
+    #settings-toggle-btn:active { background: #922b21; }
+    #settings-toggle-btn.scrolling { opacity: 0.5; }
 
     /* Settings drawer */
+    #settings-drawer-wrap {
+        position: fixed;
+        top: 0; left: 0;
+        height: 100vh;
+        z-index: 498;
+        display: flex;
+        align-items: flex-start;
+        padding-top: 50vh;
+        pointer-events: none;
+    }
+    #settings-drawer-wrap.open {
+        align-items: stretch;
+    }
     #settings-drawer {
-        order: 1;
         width: 0;
         max-width: 220px;
         height: 100%;
@@ -714,11 +713,11 @@
         transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
         pointer-events: auto;
     }
-    #settings-unit.open #settings-drawer { width: 60vw; }
+    #settings-drawer-wrap.open #settings-drawer { width: 54vw; }
 
     #settings-overlay {
         position: fixed; inset: 0;
-        z-index: 499;
+        z-index: 497;
         background: rgba(0,0,0,0.25);
         opacity: 0; pointer-events: none;
         transition: opacity 0.3s ease;
@@ -826,14 +825,13 @@
         <span class="toc-toggle-label">সূচিপত্র</span>
     </button>
     <div id="mobile-toc-drawer">
-
         <nav id="toc-nav-mobile"></nav>
     </div>
 </div>
 <div id="mobile-toc-overlay"></div>
 
-<!-- Settings unit (left side) -->
-<div id="settings-unit">
+<!-- Settings unit (left, like TOC) -->
+<div id="settings-drawer-wrap">
     <button id="settings-toggle-btn" aria-label="সেটিংস">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
@@ -906,6 +904,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 <div id="settings-overlay"></div>
 
@@ -1047,7 +1046,7 @@
 
 <script>
 (function () {
-    const settingsUnit   = document.getElementById('settings-unit');
+    const settingsWrap   = document.getElementById('settings-drawer-wrap');
     const settingsToggle = document.getElementById('settings-toggle-btn');
     const settingsOverlay= document.getElementById('settings-overlay');
     const bookContent    = document.getElementById('book-content');
@@ -1060,19 +1059,19 @@
     let currentTheme= 'light';
 
     function openSettings() {
-        settingsUnit.classList.add('open');
+        settingsWrap.classList.add('open');
         settingsOverlay.classList.add('open');
         document.body.style.overflow = 'hidden';
     }
     function closeSettings() {
-        settingsUnit.classList.remove('open');
+        settingsWrap.classList.remove('open');
         settingsOverlay.classList.remove('open');
         document.body.style.overflow = '';
     }
 
     settingsToggle.addEventListener('click', (e) => {
         e.stopPropagation();
-        settingsUnit.classList.contains('open') ? closeSettings() : openSettings();
+        settingsWrap.classList.contains('open') ? closeSettings() : openSettings();
     });
     settingsOverlay.addEventListener('click', closeSettings);
 
