@@ -320,17 +320,29 @@
     #book-content h1 {
         font-size: 1.4rem;
         font-weight: 800;
-        margin-bottom: 1.25rem;
+        margin-top: 2rem;
+        margin-bottom: 0.5rem;
         line-height: 1.35;
+        text-align: center;
         color: inherit;
+    }
+    #book-content h1::after {
+        content: '';
+        display: block;
+        width: 3rem;
+        height: 2px;
+        background: #c0392b;
+        margin: 0.5rem auto 1rem;
+        border-radius: 2px;
     }
     #book-content h2 {
         font-size: 1.05rem;
         font-weight: 700;
         margin-top: 2rem;
         margin-bottom: 0.75rem;
-        padding-top: 1rem;
-        border-top: 1px solid rgba(128,128,128,0.2);
+        text-align: center;
+        padding-bottom: 0.4rem;
+        border-bottom: 1px solid rgba(128,128,128,0.2);
     }
     #book-content p {
         margin-bottom: 1.1rem;
@@ -344,11 +356,79 @@
         overflow-wrap: anywhere;
         text-decoration: underline;
     }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
     #book-content img {
         max-width: 100%;
         border-radius: 0.5rem;
-        margin: 1rem auto;
+        margin: 1.25rem auto;
         display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #c0392b;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(192,57,43,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    .dark #book-content blockquote {
+        background: rgba(192,57,43,0.08);
+        color: #bbb;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #c0392b;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    .dark #book-content td { border-color: #3a3a3b; }
+    .dark #book-content tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(192,57,43,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2 {
+        scroll-margin-top: 1.5rem;
     }
 
     /* ── TOC active ── */
