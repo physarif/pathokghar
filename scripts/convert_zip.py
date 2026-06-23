@@ -253,12 +253,20 @@ for uid, book in books.items():
         with open(content_path, 'r', encoding='utf-8') as f:
             book_content_html = f.read()
 
+        authors = data.get('authors', {})
+        author_key = book.get('author', '')
+        author_data = authors.get(str(author_key), {})
+        author_name = author_data.get('title', '')
+        author_slug = author_data.get('slug', '')
+
         full_page = render(read_template, {
             'book_title': title,
             'book_slug': slug,
             'book_description': desc[:160] if desc else '',
             'book_content': book_content_html,
             'book_css': css_link_tag,
+            'book_author': author_name,
+            'book_author_slug': author_slug,
         })
 
         with open(read_path, 'w', encoding='utf-8') as f:
