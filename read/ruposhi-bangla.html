@@ -271,13 +271,12 @@
     /* ── TOC unit (toggle + drawer together) ── */
     #toc-unit {
         position: fixed;
-        top: 0;
+        top: 50vh;
         right: 0;
-        height: 100vh;
+        height: 50vh;
         z-index: 500;
         display: flex;
         align-items: flex-start;
-        padding-top: 33vh;
         pointer-events: none;
     }
 
@@ -459,10 +458,10 @@
     html { scrollbar-width: none; -ms-overflow-style: none; }
     html::-webkit-scrollbar { display: none; }
 
-    /* ── Settings unit (right side, TOC এর নিচে) ── */
+    /* ── Settings unit (right side, top) ── */
     #settings-drawer-wrap {
         position: fixed;
-        top: calc(33vh + 90px + 8px); /* TOC position + TOC height + gap */
+        top: 0;
         right: 0;
         z-index: 498;
         display: flex;
@@ -494,7 +493,7 @@
     #settings-drawer {
         width: 0;
         max-width: 200px;
-        max-height: 90vh;
+        max-height: 50vh;
         display: flex;
         flex-direction: column;
         background: #fafafa;
@@ -2051,17 +2050,13 @@
     let currentAlign= 'left';
     let currentTheme= 'light';
 
-    const tocUnit = document.getElementById('toc-unit');
-
     function openSettings() {
         settingsWrap.classList.add('open');
         settingsOverlay.classList.add('open');
-        if (tocUnit) tocUnit.style.visibility = 'hidden';
     }
     function closeSettings() {
         settingsWrap.classList.remove('open');
         settingsOverlay.classList.remove('open');
-        if (tocUnit) tocUnit.style.visibility = '';
     }
 
     settingsToggle.addEventListener('click', (e) => {
