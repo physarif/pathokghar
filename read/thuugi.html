@@ -457,6 +457,155 @@
     html { scrollbar-width: none; -ms-overflow-style: none; }
     html::-webkit-scrollbar { display: none; }
 
+    /* ── Settings unit (left side, mirror of TOC) ── */
+    #settings-unit {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        z-index: 500;
+        display: flex;
+        align-items: flex-start;
+        padding-top: 50vh;
+        pointer-events: none;
+    }
+    #settings-toggle-btn {
+        width: 28px;
+        height: 60px;
+        flex-shrink: 0;
+        order: 2;
+        align-self: center;
+        background: #c0392b;
+        border: none;
+        border-radius: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+        pointer-events: auto;
+        transition: height 0.3s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
+        color: #fff;
+    }
+    #settings-toggle-btn.scrolling { opacity: 0.5; }
+    #settings-toggle-btn:active { background: #a93226; }
+    #settings-unit.open { align-items: stretch; }
+    #settings-unit.open #settings-toggle-btn {
+        height: 100%;
+        align-self: stretch;
+    }
+
+    /* Settings drawer */
+    #settings-drawer {
+        order: 1;
+        width: 0;
+        max-width: 220px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background: #fafafa;
+        box-shadow: 4px 4px 24px rgba(0,0,0,0.15);
+        overflow: hidden;
+        transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+        pointer-events: auto;
+    }
+    #settings-unit.open #settings-drawer { width: 60vw; }
+
+    #settings-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #settings-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 20px 16px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+        height: 100%;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #c0392b;
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #1a1a1b;
+        margin-bottom: 8px;
+        margin-top: 16px;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    .theme-circle {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        flex-shrink: 0;
+    }
+    .theme-circle.active { border-color: #c0392b; }
+    .theme-circle svg { display: none; }
+    .theme-circle.active svg { display: block; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.82rem; color: #1a1a1b; }
+    .settings-row-val { font-size: 0.72rem; color: #9ca3af; margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 6px; }
+    .settings-btn {
+        width: 30px; height: 30px;
+        border-radius: 50%;
+        border: 1.5px solid #e5e7eb;
+        background: #fff;
+        color: #444;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: #fde8e6; border-color: #c0392b; color: #c0392b; }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; }
+    .align-btn {
+        width: 30px; height: 30px;
+        border-radius: 6px;
+        border: 1.5px solid #e5e7eb;
+        background: #fff;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s;
+    }
+    .align-btn.active, .align-btn:active { background: #fde8e6; border-color: #c0392b; }
+
 </style>
 
 <!-- Progress bar -->
@@ -477,6 +626,83 @@
     </div>
 </div>
 <div id="mobile-toc-overlay"></div>
+
+<!-- Settings unit (left side) -->
+<div id="settings-unit">
+    <button id="settings-toggle-btn" aria-label="সেটিংস">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+    </button>
+    <div id="settings-drawer">
+        <div id="settings-drawer-inner">
+            <div class="settings-drawer-title">থিম</div>
+
+            <!-- Theme -->
+            <div class="theme-circles">
+                <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                </button>
+                <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
+                <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
+                <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
+            </div>
+
+            <!-- Text size -->
+            <div class="settings-row" style="margin-top:14px;">
+                <div>
+                    <div class="settings-row-label">টেক্সট সাইজ</div>
+                    <div class="settings-row-val" id="font-size-val">100%</div>
+                </div>
+                <div class="settings-row-controls">
+                    <button class="settings-btn" id="font-dec">−</button>
+                    <button class="settings-btn" id="font-inc">+</button>
+                </div>
+            </div>
+
+            <!-- Text align -->
+            <div class="settings-row">
+                <div>
+                    <div class="settings-row-label">অ্যালাইন</div>
+                    <div class="settings-row-val" id="align-val">অরিজিনাল</div>
+                </div>
+                <div class="align-btns">
+                    <button class="align-btn active" id="align-left" title="বাম">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                    </button>
+                    <button class="align-btn" id="align-justify" title="জাস্টিফাই">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Margin -->
+            <div class="settings-row">
+                <div>
+                    <div class="settings-row-label">মার্জিন</div>
+                    <div class="settings-row-val" id="margin-val">5%</div>
+                </div>
+                <div class="settings-row-controls">
+                    <button class="settings-btn" id="margin-dec">−</button>
+                    <button class="settings-btn" id="margin-inc">+</button>
+                </div>
+            </div>
+
+            <!-- Line spacing -->
+            <div class="settings-row">
+                <div>
+                    <div class="settings-row-label">লাইন স্পেসিং</div>
+                    <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                </div>
+                <div class="settings-row-controls">
+                    <button class="settings-btn" id="ls-dec">−</button>
+                    <button class="settings-btn" id="ls-inc">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="settings-overlay"></div>
 
 
 <!-- ══════════════════════════════════════════
@@ -617,6 +843,100 @@
         tocUnit.classList.contains('open') ? closeTocDrawer() : openTocDrawer();
     });
     tocOverlay?.addEventListener('click', closeTocDrawer);
+})();
+</script>
+
+<script>
+(function () {
+    const settingsUnit   = document.getElementById('settings-unit');
+    const settingsToggle = document.getElementById('settings-toggle-btn');
+    const settingsOverlay= document.getElementById('settings-overlay');
+    const bookContent    = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+
+    let fontScale   = 100;   // %
+    let marginScale = 5;     // %
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+
+    function openSettings() {
+        settingsUnit.classList.add('open');
+        settingsOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeSettings() {
+        settingsUnit.classList.remove('open');
+        settingsOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    settingsToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        settingsUnit.classList.contains('open') ? closeSettings() : openSettings();
+    });
+    settingsOverlay.addEventListener('click', closeSettings);
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignJustify = document.getElementById('align-justify');
+    const alignVal     = document.getElementById('align-val');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        alignVal.textContent = a === 'justify' ? 'জাস্টিফাই' : 'অরিজিনাল';
+        alignLeft.classList.toggle('active', a === 'left');
+        alignJustify.classList.toggle('active', a === 'justify');
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ──
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b', drawerBg: '#fafafa' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb', drawerBg: '#2a2a2b' },
+        black: { bg: '#000',     text: '#d1d5db', drawerBg: '#111'    },
+        sepia: { bg: '#f5efe6',  text: '#3b2f1e', drawerBg: '#ede4d3' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+            document.getElementById('settings-drawer').style.background = m.drawerBg;
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? '#c0392b' : 'transparent';
+            });
+        });
+    });
 })();
 </script>
 
