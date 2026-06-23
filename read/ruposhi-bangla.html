@@ -275,7 +275,7 @@
         z-index: 500;
         display: flex;
         align-items: flex-start;
-        padding-top: 33vh;
+        padding-top: calc(44px + 33vh); /* gear icon height + original offset */
         pointer-events: none;
     }
 
@@ -457,12 +457,21 @@
     html { scrollbar-width: none; -ms-overflow-style: none; }
     html::-webkit-scrollbar { display: none; }
 
-    /* ── Settings gear btn (fixed, above TOC tab) ── */
+    /* ── Settings unit (right side, top-এ, content height) ── */
+    #settings-drawer-wrap {
+        position: fixed;
+        top: 0; right: 0;
+        z-index: 498;
+        display: flex;
+        align-items: flex-start;
+        pointer-events: none;
+    }
+
+    /* Toggle tab (gear icon) */
     #settings-toggle-btn {
         width: 28px;
         height: 44px;
         flex-shrink: 0;
-        align-self: center;
         background: #a93226;
         border: none;
         border-radius: 0;
@@ -470,43 +479,27 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+        box-shadow: -2px 0 8px rgba(0,0,0,0.15);
         color: #fff;
         pointer-events: auto;
-        transition: height 0.3s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
-    }
-    #settings-drawer-wrap.open #settings-toggle-btn {
-        height: 100%;
-        align-self: stretch;
+        transition: opacity 0.3s ease;
     }
     #settings-toggle-btn:active { background: #922b21; }
     #settings-toggle-btn.scrolling { opacity: 0.5; }
 
-    /* Settings drawer */
-    #settings-drawer-wrap {
-        position: fixed;
-        top: 0; left: 0;
-        height: 100vh;
-        z-index: 498;
-        display: flex;
-        align-items: flex-start;
-        padding-top: 50vh;
-        pointer-events: none;
-    }
-    #settings-drawer-wrap.open {
-        align-items: stretch;
-    }
+    /* Drawer panel */
     #settings-drawer {
         width: 0;
         max-width: 220px;
-        height: 100%;
+        max-height: 90vh;
         display: flex;
         flex-direction: column;
         background: #fafafa;
-        box-shadow: 4px 4px 24px rgba(0,0,0,0.15);
+        box-shadow: -4px 4px 24px rgba(0,0,0,0.15);
         overflow: hidden;
-        transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
         pointer-events: auto;
+        border-radius: 0 0 0 10px;
+        transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
     }
     #settings-drawer-wrap.open #settings-drawer { width: 54vw; }
 
@@ -550,7 +543,7 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
     }
     .theme-circle {
         width: 32px; height: 32px;
@@ -595,7 +588,7 @@
     /* Text align btns */
     .align-btns { display: flex; gap: 6px; }
     .align-btn {
-        width: 30px; height: 30px;
+        width: 38px; height: 38px;
         border-radius: 6px;
         border: 1.5px solid #e5e7eb;
         background: #fff;
@@ -625,7 +618,7 @@
 </div>
 <div id="mobile-toc-overlay"></div>
 
-<!-- Settings unit (left, like TOC) -->
+<!-- Settings unit: gear tab + drawer (TOC-এর মতো, right side top) -->
 <div id="settings-drawer-wrap">
     <button id="settings-toggle-btn" aria-label="সেটিংস">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -634,8 +627,6 @@
     </button>
     <div id="settings-drawer">
         <div id="settings-drawer-inner">
-            <div class="settings-drawer-title">থিম</div>
-
             <!-- Theme -->
             <div class="theme-circles">
                 <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
@@ -646,8 +637,23 @@
                 <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
             </div>
 
-            <!-- Text size -->
+            <!-- Text align -->
             <div class="settings-row" style="margin-top:14px;">
+                <div class="align-btns" style="width:100%; justify-content:space-between;">
+                    <button class="align-btn active" id="align-left" title="বাম">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                    </button>
+                    <button class="align-btn" id="align-center" title="সেন্টার">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                    </button>
+                    <button class="align-btn" id="align-justify" title="জাস্টিফাই">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Text size -->
+            <div class="settings-row">
                 <div>
                     <div class="settings-row-label">টেক্সট সাইজ</div>
                     <div class="settings-row-val" id="font-size-val">100%</div>
@@ -655,22 +661,6 @@
                 <div class="settings-row-controls">
                     <button class="settings-btn" id="font-dec">−</button>
                     <button class="settings-btn" id="font-inc">+</button>
-                </div>
-            </div>
-
-            <!-- Text align -->
-            <div class="settings-row">
-                <div>
-                    <div class="settings-row-label">অ্যালাইন</div>
-                    <div class="settings-row-val" id="align-val">অরিজিনাল</div>
-                </div>
-                <div class="align-btns">
-                    <button class="align-btn active" id="align-left" title="বাম">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
-                    </button>
-                    <button class="align-btn" id="align-justify" title="জাস্টিফাই">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-                    </button>
                 </div>
             </div>
 
@@ -699,7 +689,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 <div id="settings-overlay"></div>
 
@@ -2062,12 +2051,10 @@
     function openSettings() {
         settingsWrap.classList.add('open');
         settingsOverlay.classList.add('open');
-        document.body.style.overflow = 'hidden';
     }
     function closeSettings() {
         settingsWrap.classList.remove('open');
         settingsOverlay.classList.remove('open');
-        document.body.style.overflow = '';
     }
 
     settingsToggle.addEventListener('click', (e) => {
@@ -2086,16 +2073,17 @@
 
     // ── Text align ──
     const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
     const alignJustify = document.getElementById('align-justify');
-    const alignVal     = document.getElementById('align-val');
     function setAlign(a) {
         currentAlign = a;
         bookContent.style.textAlign = a;
-        alignVal.textContent = a === 'justify' ? 'জাস্টিফাই' : 'অরিজিনাল';
         alignLeft.classList.toggle('active', a === 'left');
+        alignCenter.classList.toggle('active', a === 'center');
         alignJustify.classList.toggle('active', a === 'justify');
     }
     alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
     alignJustify.addEventListener('click', () => setAlign('justify'));
 
     // ── Margin ──
