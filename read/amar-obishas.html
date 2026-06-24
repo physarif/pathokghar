@@ -268,10 +268,11 @@
 
     #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
 
-    /* ── TOC unit (toggle + drawer together) ── */
-    #toc-unit {
+
+    /* ══ Unified drawer ══ */
+    #unified-wrap {
         position: fixed;
-        top: 50vh;
+        top: 25vh;
         right: 0;
         width: 28px;
         height: 50vh;
@@ -279,223 +280,20 @@
         pointer-events: none;
         transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
     }
-
-    /* Toggle tab */
-    #toc-toggle-btn {
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 28px;
-        height: 90px;
-        flex-shrink: 0;
-        background: #c0392b;
-        border: none;
-        border-radius: 0;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: -2px 0 8px rgba(0,0,0,0.15);
-        padding: 10px 0;
-        pointer-events: auto;
-        transition: height 0.3s cubic-bezier(0.4,0,0.2,1),
-                    top 0.3s cubic-bezier(0.4,0,0.2,1),
-                    transform 0.3s cubic-bezier(0.4,0,0.2,1),
-                    border-radius 0.3s cubic-bezier(0.4,0,0.2,1),
-                    opacity 0.3s ease;
-    }
-    #toc-unit.open {
-        width: 60vw;
-        pointer-events: auto;
-        transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
-    }
-    #toc-unit.open #toc-toggle-btn {
-        top: 0;
-        transform: translateY(0);
-        height: 50vh;
-        border-radius: 0;
-        pointer-events: auto;
-    }
-    #toc-toggle-btn:active { background: #c0392b; }
-    #toc-toggle-btn.scrolling { opacity: 0.5; }
-    #toc-toggle-btn .toc-toggle-label {
-        color: #fff;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        writing-mode: vertical-rl;
-        text-orientation: mixed;
-        transform: rotate(180deg);
-        font-family: 'Noto Serif Bengali', serif;
-        line-height: 1;
-    }
-
-    /* Drawer panel */
-    #mobile-toc-drawer {
-        position: absolute;
-        top: 0;
-        right: 28px;
-        width: 0;
-        max-width: calc(60vw - 28px);
-        height: 50vh;
-        display: flex; flex-direction: column;
-        background: #fafafa;
-        border-radius: 0;
-        box-shadow: -4px 4px 24px rgba(0,0,0,0.15);
-        overflow: hidden;
-        transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
-        pointer-events: auto;
-    }
-    #toc-unit.open #mobile-toc-drawer {
-        width: calc(60vw - 28px);
-    }
-
-
-    #mobile-toc-overlay {
-        position: fixed; inset: 0;
-        z-index: 499;
-        background: rgba(0,0,0,0.25);
-        opacity: 0; pointer-events: none;
-        transition: opacity 0.3s ease;
-
-    }
-    #mobile-toc-overlay.open { opacity: 1; pointer-events: auto; }
-
-    /* Header */
-    #toc-drawer-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 20px 20px 12px;
-    }
-    #toc-drawer-header .drawer-title {
-        font-size: 0.7rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: #c0392b;
-    }
-    #mobile-toc-close {
-        width: 28px; height: 28px;
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        border: none; cursor: pointer;
-        background: rgba(0,0,0,0.06);
-        color: #888;
-        transition: background 0.15s;
-    }
-    #mobile-toc-close:active { background: rgba(0,0,0,0.12); }
-
-    /* TOC nav */
-    #toc-nav-mobile {
-        flex: 1;
-        overflow-y: auto;
-        padding: 4px 8px 24px;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-    #toc-nav-mobile::-webkit-scrollbar { display: none; }
-
-    #toc-nav-mobile .toc-link {
-        display: block;
-        padding: 10px 6px;
-        font-size: 0.8125rem;
-        line-height: 1.45;
-        text-decoration: none;
-        color: #444;
-        border-bottom: 1px solid #ececec;
-        transition: color 0.15s;
-    }
-    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
-
-    #toc-nav-mobile .toc-link.h2-link {
-        padding-left: 14px;
-        font-size: 0.78rem;
-        color: #666;
-    }
-    #toc-nav-mobile .toc-link.active { color: #c0392b; }
-
-
-    /* ── TOC book info (title – author) ── */
-    #toc-book-info {
-        padding: 14px 12px 10px;
-        border-bottom: 1px solid #e5e7eb;
-        flex-shrink: 0;
-    }
-    #toc-book-info {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    #toc-book-title-link {
-        font-family: 'Noto Serif Bengali', serif;
-        font-size: 0.875rem;
-        font-weight: 400;
-        color: #1a1a1b;
-        text-decoration: none;
-    }
-    #toc-book-title-link:hover { text-decoration: underline; text-underline-offset: 3px; }
-    #toc-book-sep {
-        font-size: 0.875rem;
-        color: #9ca3af;
-    }
-    #toc-book-author-link {
-        font-family: 'Noto Serif Bengali', serif;
-        font-size: 0.875rem;
-        font-weight: 400;
-        color: #c0392b;
-        text-decoration: none;
-    }
-    #toc-book-author-link:hover { text-decoration: underline; text-underline-offset: 3px; }
-
-    /* ── Estimated time badge ── */
-    #est-time-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        font-size: 11px;
-        color: #6b7280;
-    }
-
-    /* ── Breadcrumb dark mode ── */
-    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
-    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
-    .dark #read-breadcrumb li > span { color: #4b5563; }
-
-    html { scroll-behavior: smooth; }
-    /* ── Hide browser scrollbar (page level) ── */
-    html { scrollbar-width: none; -ms-overflow-style: none; }
-    html::-webkit-scrollbar { display: none; }
-
-    /* ── Settings unit (right side, top) ── */
-    #settings-drawer-wrap {
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 28px;
-        height: 50vh;
-        z-index: 498;
-        pointer-events: none;
-    }
-
-    /* Toggle tab (gear icon) */
-    #settings-toggle-btn {
+    #unified-toggle-btn {
         position: absolute;
         right: 0;
         top: 50%;
         transform: translateY(-50%);
         width: 28px;
         height: 44px;
-        flex-shrink: 0;
         background: #c0392b;
         border: none;
-        border-radius: 0;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: -2px 0 8px rgba(0,0,0,0.15);
+        box-shadow: -2px 0 8px rgba(0,0,0,0.18);
         color: #fff;
         pointer-events: auto;
         transition: height 0.3s cubic-bezier(0.4,0,0.2,1),
@@ -503,16 +301,15 @@
                     transform 0.3s cubic-bezier(0.4,0,0.2,1),
                     opacity 0.3s ease;
     }
-    #settings-toggle-btn:active { background: #a93226; }
-    #settings-toggle-btn.scrolling { opacity: 0.5; }
+    #unified-toggle-btn:active { background: #a93226; }
+    #unified-toggle-btn.scrolling { opacity: 0.5; }
 
     /* Drawer panel */
-    #settings-drawer {
+    #unified-drawer {
         position: absolute;
         top: 0;
         right: 28px;
         width: 0;
-        max-width: calc(100vw - 28px);
         height: 50vh;
         display: flex;
         flex-direction: column;
@@ -520,28 +317,73 @@
         box-shadow: -4px 4px 24px rgba(0,0,0,0.15);
         overflow: hidden;
         pointer-events: auto;
-        border-radius: 0;
         transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
     }
-    #settings-drawer-wrap.open {
-        width: 60vw;
+    #unified-wrap.open {
+        width: 65vw;
         pointer-events: auto;
     }
-    #settings-drawer-wrap.open #settings-drawer { width: calc(60vw - 28px); }
-    #settings-drawer-wrap.open #settings-toggle-btn {
+    #unified-wrap.open #unified-drawer { width: calc(65vw - 28px); }
+    #unified-wrap.open #unified-toggle-btn {
         top: 0;
         transform: translateY(0);
         height: 50vh;
     }
 
-    #settings-overlay {
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 10px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #888;
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: #c0392b;
+        border-bottom-color: #c0392b;
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
         position: fixed; inset: 0;
-        z-index: 497;
+        z-index: 499;
         background: rgba(0,0,0,0.25);
         opacity: 0; pointer-events: none;
         transition: opacity 0.3s ease;
     }
-    #settings-overlay.open { opacity: 1; pointer-events: auto; }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ── Breadcrumb dark mode ── */
+    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
+    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
+    .dark #read-breadcrumb li > span { color: #4b5563; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
 
     /* Drawer inner */
     #settings-drawer-inner {
@@ -638,90 +480,79 @@
      MOBILE ONLY chrome (hidden on md+)
 ══════════════════════════════════════════ -->
 
-<!-- TOC unit: toggle + drawer together -->
-<div id="toc-unit">
-    <button id="toc-toggle-btn" aria-label="সূচিপত্র">
-        <span class="toc-toggle-label">সূচিপত্র</span>
-    </button>
-    <div id="mobile-toc-drawer">
-        <nav id="toc-nav-mobile"></nav>
-    </div>
-</div>
-<div id="mobile-toc-overlay"></div>
-
-<!-- Settings unit: gear tab + drawer (TOC-এর মতো, right side) -->
-<div id="settings-drawer-wrap">
-    <div id="settings-drawer">
-        <div id="settings-drawer-inner">
-            <!-- Theme -->
-            <div class="theme-circles">
-                <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                </button>
-                <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
-                <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
-                <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
-            </div>
-
-            <!-- Text align -->
-            <div class="settings-row" style="margin-top:14px;">
-                <div class="align-btns" style="width:100%; justify-content:space-between;">
-                    <button class="align-btn active" id="align-left" title="বাম">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
-                    </button>
-                    <button class="align-btn" id="align-center" title="সেন্টার">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
-                    </button>
-                    <button class="align-btn" id="align-justify" title="জাস্টিফাই">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Text size -->
-            <div class="settings-row">
-                <div>
-                    <div class="settings-row-label">টেক্সট সাইজ</div>
-                    <div class="settings-row-val" id="font-size-val">100%</div>
-                </div>
-                <div class="settings-row-controls">
-                    <button class="settings-btn" id="font-dec">−</button>
-                    <button class="settings-btn" id="font-inc">+</button>
-                </div>
-            </div>
-
-            <!-- Margin -->
-            <div class="settings-row">
-                <div>
-                    <div class="settings-row-label">মার্জিন</div>
-                    <div class="settings-row-val" id="margin-val">5%</div>
-                </div>
-                <div class="settings-row-controls">
-                    <button class="settings-btn" id="margin-dec">−</button>
-                    <button class="settings-btn" id="margin-inc">+</button>
-                </div>
-            </div>
-
-            <!-- Line spacing -->
-            <div class="settings-row">
-                <div>
-                    <div class="settings-row-label">লাইন স্পেসিং</div>
-                    <div class="settings-row-val" id="line-spacing-val">1.5</div>
-                </div>
-                <div class="settings-row-controls">
-                    <button class="settings-btn" id="ls-dec">−</button>
-                    <button class="settings-btn" id="ls-inc">+</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <button id="settings-toggle-btn" aria-label="সেটিংস">
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <button id="unified-toggle-btn" aria-label="মেনু">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
         </svg>
     </button>
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="theme-circles">
+                    <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                    <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
+                    <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
+                    <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
+                </div>
+                <div class="settings-row" style="margin-top:14px;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn active" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-justify" title="জাস্টিফাই">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">100%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div id="settings-overlay"></div>
+<div id="unified-overlay"></div>
 
 
 <!-- ══════════════════════════════════════════
@@ -1427,31 +1258,23 @@ Philosophy will clip an Angel’s Wings.</p>
     const tocMobile    = document.getElementById('toc-nav-mobile');
     const progressRing = document.getElementById('progress-ring-circle');
 
-    const tocUnit      = document.getElementById('toc-unit');
-    const tocToggleBtn = document.getElementById('toc-toggle-btn');
-    const tocOverlay   = document.getElementById('mobile-toc-overlay');
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
 
     const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
     function toBN(n) {
         return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
     }
 
-
     // ── Toggle opacity on scroll ──
-    let tocScrollTimer;
-    let settingsScrollTimer;
-    const settingsWrapEl = document.getElementById('settings-drawer-wrap');
-    const settingsBtnEl  = document.getElementById('settings-toggle-btn');
+    let unifiedScrollTimer;
     window.addEventListener('scroll', () => {
-        if (tocToggleBtn && !tocUnit.classList.contains('open')) {
-            tocToggleBtn.classList.add('scrolling');
-            clearTimeout(tocScrollTimer);
-            tocScrollTimer = setTimeout(() => tocToggleBtn.classList.remove('scrolling'), 800);
-        }
-        if (settingsBtnEl && settingsWrapEl && !settingsWrapEl.classList.contains('open')) {
-            settingsBtnEl.classList.add('scrolling');
-            clearTimeout(settingsScrollTimer);
-            settingsScrollTimer = setTimeout(() => settingsBtnEl.classList.remove('scrolling'), 800);
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
         }
     }, { passive: true });
 
@@ -1468,6 +1291,7 @@ Philosophy will clip an Angel’s Wings.</p>
     const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
         .filter(h => h.textContent.trim() !== '');
 
+    function closeTocDrawer() { closeDrawer(); }
 
     function buildToc(nav, isMobile) {
         headings.forEach((h, i) => {
@@ -1479,7 +1303,7 @@ Philosophy will clip an Angel’s Wings.</p>
             const isH1 = h.tagName === 'H1';
             if (isMobile) {
                 a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
-                a.addEventListener('click', closeTocDrawer);
+                a.addEventListener('click', closeDrawer);
             } else {
                 a.className = 'toc-link block px-3 py-1.5 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors ' +
                     (isH1 ? 'font-semibold text-[13px] text-gray-800 dark:text-gray-100' : 'pl-5 text-[11px]');
@@ -1502,96 +1326,42 @@ Philosophy will clip an Angel’s Wings.</p>
         });
     }, { passive: true });
 
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        document.body.style.touchAction = 'none';
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+        document.body.style.touchAction = '';
+    }
+
+    unifiedToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+    });
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
 
     let touchStartX = 0;
-
-    function openTocDrawer() {
-        tocUnit.classList.add('open');
-        tocOverlay.classList.add('open');
-        document.body.style.overflow = 'hidden';
-        document.body.style.touchAction = 'none';
-        document.getElementById('settings-drawer-wrap').style.visibility = 'hidden';
-        document.getElementById('settings-drawer-wrap').style.pointerEvents = 'none';
-    }
-    function closeTocDrawer() {
-        tocUnit.classList.remove('open');
-        tocOverlay.classList.remove('open');
-        document.body.style.overflow = '';
-        document.body.style.touchAction = '';
-        document.getElementById('settings-drawer-wrap').style.visibility = '';
-        document.getElementById('settings-drawer-wrap').style.pointerEvents = '';
-    }
-
-    document.getElementById('toc-toggle-btn')?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        tocUnit.classList.contains('open') ? closeTocDrawer() : openTocDrawer();
-    });
-    tocOverlay?.addEventListener('click', closeTocDrawer);
-})();
-</script>
-
-<script>
-(function () {
-    const settingsWrap   = document.getElementById('settings-drawer-wrap');
-    const settingsToggle = document.getElementById('settings-toggle-btn');
-    const settingsOverlay= document.getElementById('settings-overlay');
-    const bookContent    = document.getElementById('book-content');
-    const mobileReaderBg = document.getElementById('mobile-reader-bg');
-
-    let fontScale   = 100;
-    let marginScale = 5;
-    let lineSpacing = 1.5;
-    let currentAlign= 'left';
-    let currentTheme= 'light';
-
-    // ── Save / Load ──
-    const STORAGE_KEY = 'pathakghar_reader_prefs';
-    function savePrefs() {
-        try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme }));
-        } catch(e) {}
-    }
-    function loadPrefs() {
-        try {
-            const raw = localStorage.getItem(STORAGE_KEY);
-            if (!raw) return;
-            const p = JSON.parse(raw);
-            if (p.fontScale)    fontScale    = p.fontScale;
-            if (p.marginScale !== undefined) marginScale = p.marginScale;
-            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
-            if (p.currentAlign) currentAlign = p.currentAlign;
-            if (p.currentTheme) currentTheme = p.currentTheme;
-        } catch(e) {}
-    }
-    loadPrefs();
-
-    function openSettings() {
-        settingsWrap.classList.add('open');
-        settingsOverlay.classList.add('open');
-        document.body.style.overflow = 'hidden';
-        document.body.style.touchAction = 'none';
-        document.getElementById('toc-unit').style.visibility = 'hidden';
-        document.getElementById('toc-unit').style.pointerEvents = 'none';
-    }
-    function closeSettings() {
-        settingsWrap.classList.remove('open');
-        settingsOverlay.classList.remove('open');
-        document.body.style.overflow = '';
-        document.body.style.touchAction = '';
-        document.getElementById('toc-unit').style.visibility = '';
-        document.getElementById('toc-unit').style.pointerEvents = '';
-    }
-
-    settingsToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        settingsWrap.classList.contains('open') ? closeSettings() : openSettings();
-    });
-    settingsOverlay.addEventListener('click', closeSettings);
-    settingsOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
-    settingsWrap.addEventListener('touchmove', (e) => {
-        const drawer = document.getElementById('settings-drawer-inner');
-        if (!drawer || !drawer.contains(e.target)) e.preventDefault();
-    }, { passive: false });
 
     // ── Font size ──
     function applyFont() {
@@ -1664,10 +1434,18 @@ Philosophy will clip an Angel’s Wings.</p>
             if (bcDash)  { bcDash.style.color  = m.bcDash;  }
             if (bcNav)   { bcNav.style.borderColor = m.drawerBorder; }
 
-            // Settings drawer
-            const sDr = document.getElementById('settings-drawer');
-            sDr.style.background = m.drawerBg;
-            sDr.querySelectorAll('.settings-drawer-title').forEach(el => el.style.color = '#c0392b');
+            // Unified drawer background
+            const uDr = document.getElementById('unified-drawer');
+            uDr.style.background = m.drawerBg;
+
+            // Tab bar
+            document.getElementById('unified-tabs').style.borderColor = m.drawerBorder;
+            document.querySelectorAll('.unified-tab').forEach(el => {
+                if (!el.classList.contains('active')) el.style.color = m.drawerSub;
+            });
+
+            // Settings panel
+            const sDr = document.getElementById('settings-drawer-inner');
             sDr.querySelectorAll('.settings-row-label').forEach(el => el.style.color = m.drawerText);
             sDr.querySelectorAll('.settings-row-val').forEach(el => el.style.color = m.drawerSub);
             sDr.querySelectorAll('.settings-btn').forEach(el => {
@@ -1675,21 +1453,14 @@ Philosophy will clip an Angel’s Wings.</p>
                 el.style.color = m.drawerText;
             });
             sDr.querySelectorAll('.settings-row').forEach(el => el.style.borderColor = m.drawerBorder);
-
-            // TOC drawer
-            const tDr = document.getElementById('mobile-toc-drawer');
-            tDr.style.background = m.drawerBg;
-            tDr.querySelectorAll('.drawer-title').forEach(el => el.style.color = '#c0392b');
-            tDr.querySelectorAll('.toc-link').forEach(el => {
-                el.style.color = m.drawerText;
+            sDr.querySelectorAll('.align-btn').forEach(el => {
+                el.style.background = m.drawerBg;
+                el.style.borderColor = m.drawerBorder;
             });
-            const tocClose = document.getElementById('mobile-toc-close');
-            if (tocClose) {
-                tocClose.style.background = m.drawerBorder;
-                tocClose.style.color = m.drawerSub;
-            }
-            const tocHeader = document.getElementById('toc-drawer-header');
-            if (tocHeader) tocHeader.style.borderColor = m.drawerBorder;
+
+            // TOC panel
+            document.querySelectorAll('#toc-nav-mobile .toc-link').forEach(el => el.style.color = m.drawerText);
+            document.querySelectorAll('#toc-nav-mobile .toc-link').forEach(el => el.style.borderColor = m.drawerBorder);
 
             document.querySelectorAll('.theme-circle').forEach(b => {
                 b.classList.toggle('active', b.dataset.theme === t);
