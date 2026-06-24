@@ -249,6 +249,23 @@
         background: rgba(192,57,43,0.1);
         border-radius: 0.375rem;
     }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 10px 10px;
+        font-size: 0.8125rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: #444;
+        border-bottom: 1px solid #ececec;
+        transition: color 0.15s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 20px;
+        font-size: 0.77rem;
+        color: #777;
+    }
 
     /* ══════════════════════════════
        MOBILE reader chrome
@@ -601,11 +618,39 @@
 <script>
 (function () {
     const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
     const progressBar  = document.getElementById('read-progress-bar');
     const progressPct  = document.getElementById('progress-pct');
     const tocDesktop   = document.getElementById('toc-nav-desktop');
     const tocMobile    = document.getElementById('toc-nav-mobile');
     const progressRing = document.getElementById('progress-ring-circle');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = p.currentTheme;
+        } catch(e) {}
+    }
+    loadPrefs();
 
     const unifiedWrap   = document.getElementById('unified-wrap');
     const unifiedToggle = document.getElementById('unified-toggle-btn');
@@ -728,9 +773,12 @@
     function setAlign(a) {
         currentAlign = a;
         bookContent.style.textAlign = a;
-        alignLeft.classList.toggle('active', a === 'left');
-        alignCenter.classList.toggle('active', a === 'center');
-        alignJustify.classList.toggle('active', a === 'justify');
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            const isActive = btn.id === 'align-' + a;
+            btn.classList.toggle('active', isActive);
+            btn.style.background   = isActive ? '#fde8e6' : '';
+            btn.style.borderColor  = isActive ? '#c0392b' : '';
+        });
         savePrefs();
     }
     alignLeft.addEventListener('click',    () => setAlign('left'));
@@ -803,8 +851,14 @@
             });
             sDr.querySelectorAll('.settings-row').forEach(el => el.style.borderColor = m.drawerBorder);
             sDr.querySelectorAll('.align-btn').forEach(el => {
-                el.style.background = m.drawerBg;
-                el.style.borderColor = m.drawerBorder;
+                if (!el.classList.contains('active')) {
+                    el.style.background = m.drawerBg;
+                    el.style.borderColor = m.drawerBorder;
+                } else {
+                    el.style.background = '#fde8e6';
+                    el.style.borderColor = '#c0392b';
+                }
+                el.style.color = m.drawerText;
             });
 
             // TOC panel
