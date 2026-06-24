@@ -1122,16 +1122,21 @@
             savePrefs();
 
             // Ad bar theme sync
-            const adBar = document.getElementById('ad-bar');
-            const adContent = document.getElementById('ad-bar-content');
-            const adDatetime = document.getElementById('ad-bar-datetime');
-            const adNotice = document.getElementById('ad-bar-notice');
-            if (adBar) adBar.style.background = m.bg;
-            if (adContent) adContent.style.background = m.bg;
-            if (adDatetime) adDatetime.style.color = m.text;
-            if (adNotice) adNotice.style.color = m.text;
+            applyAdBarTheme(m);
         });
     });
+
+    // ── Ad bar theme sync function ──
+    function applyAdBarTheme(m) {
+        const adBar     = document.getElementById('ad-bar');
+        const adContent = document.getElementById('ad-bar-content');
+        const adDatetime= document.getElementById('ad-bar-datetime');
+        const adNotice  = document.getElementById('ad-bar-notice');
+        if (adBar)      adBar.style.background     = m.bg;
+        if (adContent)  adContent.style.background = m.bg;
+        if (adDatetime) adDatetime.style.color      = m.text;
+        if (adNotice)   adNotice.style.color        = m.text;
+    }
 
     // ── Restore saved prefs on load ──
     (function restoreAll() {
@@ -1141,6 +1146,9 @@
         setAlign(currentAlign);
         const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
         if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+        // Ad bar may render after main script — apply theme again after DOM settles
+        const m = themeMap[currentTheme];
+        if (m) setTimeout(() => applyAdBarTheme(m), 0);
     })();
 })();
 </script>
@@ -1208,10 +1216,21 @@
     var bar = document.getElementById('ad-bar');
     var content = document.getElementById('ad-bar-content');
     var icon = document.getElementById('ad-bar-icon');
-    var collapsed = false;
+    var collapsed = true;
+
+    // Start collapsed — apply collapsed state immediately
+    content.style.maxHeight = '0';
+    content.style.padding = '0';
+    if (document.getElementById('ad-bar-notice')) document.getElementById('ad-bar-notice').style.display = 'none';
+    if (document.getElementById('ad-bar-datetime')) { document.getElementById('ad-bar-datetime').style.display = 'inline'; }
+    document.getElementById('ad-bar-icon').innerHTML = '<polyline points="6 9 12 15 18 9"></polyline>';
+    document.getElementById('ad-bar-label').textContent = 'Show Ad';
     bar.style.transform = 'translateY(0)';
 
-    // Show bar after 10 seconds
+    // Auto-open after 30 seconds
+    setTimeout(function() {
+        if (collapsed) toggleAdBar();
+    }, 30000);
 
     var label = document.getElementById('ad-bar-label');
 
