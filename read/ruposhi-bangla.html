@@ -431,6 +431,8 @@
     .settings-section-label:first-of-type { margin-top: 0; }
     .theme-circles {
         display: flex;
+        justify-content: space-between;
+        width: 100%;
         align-items: center;
         gap: 10px;
         flex-wrap: nowrap;
@@ -481,12 +483,18 @@
         width: 38px; height: 38px;
         border-radius: 6px;
         border: 1.5px solid #e5e7eb;
-        background: #fff;
+        background: transparent;
+        color: #444;
         cursor: pointer;
         display: flex; align-items: center; justify-content: center;
-        transition: background 0.12s, border-color 0.12s;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
     }
-    .align-btn.active, .align-btn:active { background: #fde8e6; border-color: #c0392b; }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: #fde8e6 !important;
+        border-color: #c0392b !important;
+        color: #c0392b !important;
+    }
 
 </style>
 
@@ -518,9 +526,9 @@
                     <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
                     </button>
+                    <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
                     <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
                     <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
-                    <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
                 </div>
                 <div class="settings-row" style="margin-top:14px;">
                     <div class="align-btns" style="width:100%; justify-content:space-between;">
@@ -1976,8 +1984,9 @@
         [alignLeft, alignCenter, alignJustify].forEach(btn => {
             const isActive = btn.id === 'align-' + a;
             btn.classList.toggle('active', isActive);
-            btn.style.background   = isActive ? '#fde8e6' : '';
-            btn.style.borderColor  = isActive ? '#c0392b' : '';
+            btn.style.background  = isActive ? '#fde8e6' : '';
+            btn.style.borderColor = isActive ? '#c0392b' : '';
+            btn.style.color       = isActive ? '#c0392b' : '';
         });
         savePrefs();
     }
@@ -2052,13 +2061,14 @@
             sDr.querySelectorAll('.settings-row').forEach(el => el.style.borderColor = m.drawerBorder);
             sDr.querySelectorAll('.align-btn').forEach(el => {
                 if (!el.classList.contains('active')) {
-                    el.style.background = m.drawerBg;
-                    el.style.borderColor = m.drawerBorder;
+                    el.style.background   = 'transparent';
+                    el.style.borderColor  = m.drawerBorder;
+                    el.style.color        = m.drawerText;
                 } else {
-                    el.style.background = '#fde8e6';
-                    el.style.borderColor = '#c0392b';
+                    el.style.background   = '#fde8e6';
+                    el.style.borderColor  = '#c0392b';
+                    el.style.color        = '#c0392b';
                 }
-                el.style.color = m.drawerText;
             });
 
             // TOC panel
