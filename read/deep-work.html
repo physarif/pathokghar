@@ -271,7 +271,7 @@
     /* ── TOC unit (toggle + drawer together) ── */
     #toc-unit {
         position: fixed;
-        top: 50vh;
+        top: 75vh;
         right: 0;
         height: 50vh;
         z-index: 500;
@@ -463,6 +463,7 @@
         position: fixed;
         top: 0;
         right: 0;
+        height: 50vh;
         z-index: 498;
         display: flex;
         align-items: flex-start;
@@ -484,7 +485,10 @@
         box-shadow: -2px 0 8px rgba(0,0,0,0.15);
         color: #fff;
         pointer-events: auto;
-        transition: opacity 0.3s ease;
+        transition: height 0.3s cubic-bezier(0.4,0,0.2,1),
+                    transform 0.3s cubic-bezier(0.4,0,0.2,1),
+                    opacity 0.3s ease;
+        transform: translateY(25vh);
     }
     #settings-toggle-btn:active { background: #922b21; }
     #settings-toggle-btn.scrolling { opacity: 0.5; }
@@ -504,6 +508,14 @@
         transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
     }
     #settings-drawer-wrap.open #settings-drawer { width: 54vw; }
+    #settings-drawer-wrap.open #settings-toggle-btn {
+        height: 50vh;
+        transform: translateY(0);
+        align-self: flex-start;
+        transition: height 0.3s cubic-bezier(0.4,0,0.2,1),
+                    transform 0.3s cubic-bezier(0.4,0,0.2,1),
+                    opacity 0.3s ease;
+    }
 
     #settings-overlay {
         position: fixed; inset: 0;
