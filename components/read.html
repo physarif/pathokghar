@@ -103,7 +103,11 @@
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
 
 <style>
-    /* ── Progress bar ── */
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
     #read-progress-bar {
         position: fixed;
         top: 0; left: 0;
@@ -955,7 +959,7 @@
     box-shadow: 0 -3px 16px rgba(0,0,0,0.18);
 ">
     <!-- Toggle Button top-left -->
-    <div style="display:flex;">
+    <div style="display:flex; align-items:stretch;">
         <button id="ad-bar-toggle" onclick="toggleAdBar()" style="
             background: #c0392b;
             border: none;
@@ -966,7 +970,7 @@
             padding: 3px 10px;
             font-size: 11px;
             color: #fff;
-            border-radius: 0 0 0 0;
+            flex-shrink: 0;
             transition: background 0.2s;
         " title="বিজ্ঞাপন লুকান / দেখান">
             <svg id="ad-bar-icon" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -974,6 +978,10 @@
             </svg>
             <span id="ad-bar-label">Hide Ad</span>
         </button>
+        <!-- Scrolling Notice -->
+        <div id="ad-bar-notice" style="overflow:hidden; white-space:nowrap; font-size:11px; display:flex; align-items:center; align-self:stretch; flex:1;">
+            <span style="display:inline-block; animation: marquee-scroll 18s linear infinite;">&nbsp;&nbsp;Ad টি বন্ধ করতে <strong>Hide Ad</strong> এর উপর ক্লিক করুন।&nbsp;&nbsp;<strong>পাঠক</strong> <span style="color:#9ca3af;">ঘর</span> এর সাথেই থাকুন, ধন্যবাদ।&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </div>
     </div>
 
     <!-- Ad Content -->
@@ -1005,16 +1013,20 @@
 
     var label = document.getElementById('ad-bar-label');
 
+    var notice = document.getElementById('ad-bar-notice');
+
     window.toggleAdBar = function() {
         collapsed = !collapsed;
         if (collapsed) {
             content.style.maxHeight = '0';
             content.style.padding = '0';
+            if (notice) notice.style.display = 'none';
             icon.innerHTML = '<polyline points="6 9 12 15 18 9"></polyline>';
             label.textContent = 'Show Ad';
         } else {
             content.style.maxHeight = '500px';
             content.style.padding = '6px 10px';
+            if (notice) notice.style.display = 'flex';
             icon.innerHTML = '<polyline points="18 15 12 9 6 15"></polyline>';
             label.textContent = 'Hide Ad';
         }
