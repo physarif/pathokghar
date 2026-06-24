@@ -200,9 +200,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ময়ূরাক্ষী - পড়ুন - পাঠক ঘর</title>
+    <title>ময়ূরাক্ষী - পাঠক ঘর</title>
     <meta name="description" content="">
-    <meta property="og:title" content="ময়ূরাক্ষী - পড়ুন - পাঠক ঘর">
+    <meta property="og:title" content="ময়ূরাক্ষী - পাঠক ঘর">
     <meta property="og:description" content="">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -514,7 +514,7 @@
         border-radius: 0;
         pointer-events: auto;
     }
-    #toc-toggle-btn:active { background: #a93226; }
+    #toc-toggle-btn:active { background: #c0392b; }
     #toc-toggle-btn.scrolling { opacity: 0.5; }
     #toc-toggle-btn .toc-toggle-label {
         color: #fff;
@@ -685,7 +685,7 @@
         width: 28px;
         height: 44px;
         flex-shrink: 0;
-        background: #a93226;
+        background: #c0392b;
         border: none;
         border-radius: 0;
         cursor: pointer;
@@ -700,7 +700,7 @@
                     transform 0.3s cubic-bezier(0.4,0,0.2,1),
                     opacity 0.3s ease;
     }
-    #settings-toggle-btn:active { background: #922b21; }
+    #settings-toggle-btn:active { background: #a93226; }
     #settings-toggle-btn.scrolling { opacity: 0.5; }
 
     /* Drawer panel */
@@ -935,12 +935,12 @@
             <nav id="read-breadcrumb" aria-label="breadcrumb" style="margin-bottom:1.1rem;">
                 <ol style="display:flex;align-items:center;flex-wrap:wrap;gap:0 2px;list-style:none;margin:0;padding:0;font-size:0.875rem;line-height:1.5;">
                     <li>
-                        <a href="/" style="color:#6b7280;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#c0392b'" onmouseout="this.style.color='#6b7280'">পাঠক ঘর</a>
+                        <a id="bc-home" href="/" style="color:#6b7280;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#c0392b'" onmouseout="this.style.color=this.dataset.color||'#6b7280'">পাঠক ঘর</a>
                     </li>
-                    <li style="color:#d1d5db;padding:0 5px;">›</li>
+                    <li id="bc-sep1" style="color:#d1d5db;padding:0 5px;">›</li>
                     <li style="display:inline-flex;align-items:center;gap:5px;max-width:65vw;overflow:hidden;">
-                        <a href="/books/moyurakkhi.html" style="font-family:'Noto Serif Bengali',serif;font-weight:600;color:#1a1a1b;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:38vw;transition:color .15s;" onmouseover="this.style.color='#c0392b'" onmouseout="this.style.color='#1a1a1b'">ময়ূরাক্ষী</a>
-                        <span style="color:#9ca3af;">–</span>
+                        <a id="bc-title" href="/books/moyurakkhi.html" style="font-family:'Noto Serif Bengali',serif;font-weight:600;color:#1a1a1b;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:38vw;transition:color .15s;" onmouseover="this.style.color='#c0392b'" onmouseout="this.style.color=this.dataset.color||'#1a1a1b'">ময়ূরাক্ষী</a>
+                        <span id="bc-dash" style="color:#9ca3af;">–</span>
                         <a href="/author/hymayun-ahmed.html" style="color:#c0392b;font-family:'Noto Serif Bengali',serif;font-weight:500;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:22vw;transition:opacity .15s;" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">হুমায়ূন আহমেদ</a>
                     </li>
                 </ol>
@@ -984,6 +984,13 @@
             tocToggleBtn.classList.add('scrolling');
             clearTimeout(scrollTimer);
             scrollTimer = setTimeout(() => tocToggleBtn.classList.remove('scrolling'), 800);
+        }
+        const settingsWrap = document.getElementById('settings-drawer-wrap');
+        const settingsBtn  = document.getElementById('settings-toggle-btn');
+        if (settingsBtn && settingsWrap && !settingsWrap.classList.contains('open')) {
+            settingsBtn.classList.add('scrolling');
+            clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => settingsBtn.classList.remove('scrolling'), 800);
         }
     }, { passive: true });
 
@@ -1041,11 +1048,17 @@
         tocUnit.classList.add('open');
         tocOverlay.classList.add('open');
         document.body.style.overflow = 'hidden';
+        document.body.style.touchAction = 'none';
+        document.getElementById('settings-drawer-wrap').style.visibility = 'hidden';
+        document.getElementById('settings-drawer-wrap').style.pointerEvents = 'none';
     }
     function closeTocDrawer() {
         tocUnit.classList.remove('open');
         tocOverlay.classList.remove('open');
         document.body.style.overflow = '';
+        document.body.style.touchAction = '';
+        document.getElementById('settings-drawer-wrap').style.visibility = '';
+        document.getElementById('settings-drawer-wrap').style.pointerEvents = '';
     }
 
     document.getElementById('toc-toggle-btn')?.addEventListener('click', (e) => {
@@ -1064,19 +1077,48 @@
     const bookContent    = document.getElementById('book-content');
     const mobileReaderBg = document.getElementById('mobile-reader-bg');
 
-    let fontScale   = 100;   // %
-    let marginScale = 5;     // %
+    let fontScale   = 100;
+    let marginScale = 5;
     let lineSpacing = 1.5;
     let currentAlign= 'left';
     let currentTheme= 'light';
 
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = p.currentTheme;
+        } catch(e) {}
+    }
+    loadPrefs();
+
     function openSettings() {
         settingsWrap.classList.add('open');
         settingsOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        document.body.style.touchAction = 'none';
+        document.getElementById('toc-unit').style.visibility = 'hidden';
+        document.getElementById('toc-unit').style.pointerEvents = 'none';
     }
     function closeSettings() {
         settingsWrap.classList.remove('open');
         settingsOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+        document.body.style.touchAction = '';
+        document.getElementById('toc-unit').style.visibility = '';
+        document.getElementById('toc-unit').style.pointerEvents = '';
     }
 
     settingsToggle.addEventListener('click', (e) => {
@@ -1084,11 +1126,17 @@
         settingsWrap.classList.contains('open') ? closeSettings() : openSettings();
     });
     settingsOverlay.addEventListener('click', closeSettings);
+    settingsOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    settingsWrap.addEventListener('touchmove', (e) => {
+        const drawer = document.getElementById('settings-drawer-inner');
+        if (!drawer || !drawer.contains(e.target)) e.preventDefault();
+    }, { passive: false });
 
     // ── Font size ──
     function applyFont() {
         bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
         document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
     }
     document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
     document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
@@ -1103,6 +1151,7 @@
         alignLeft.classList.toggle('active', a === 'left');
         alignCenter.classList.toggle('active', a === 'center');
         alignJustify.classList.toggle('active', a === 'justify');
+        savePrefs();
     }
     alignLeft.addEventListener('click',    () => setAlign('left'));
     alignCenter.addEventListener('click',  () => setAlign('center'));
@@ -1113,6 +1162,7 @@
         document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
         document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
         document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
     }
     document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
     document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
@@ -1121,16 +1171,17 @@
     function applyLineSpacing() {
         bookContent.style.lineHeight = lineSpacing;
         document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
     }
     document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
     document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
 
     // ── Theme ──
     const themeMap = {
-        light: { bg: '#fff',     text: '#1a1a1b', drawerBg: '#fafafa' },
-        dark:  { bg: '#1c1c1e',  text: '#e5e7eb', drawerBg: '#2a2a2b' },
-        black: { bg: '#000',     text: '#d1d5db', drawerBg: '#111'    },
-        sepia: { bg: '#f5efe6',  text: '#3b2f1e', drawerBg: '#ede4d3' },
+        light: { bg: '#fff',     text: '#1a1a1b', drawerBg: '#fafafa', drawerText: '#1a1a1b', drawerSub: '#6b7280', drawerBorder: '#e5e7eb', bcHome: '#6b7280', bcSep: '#d1d5db', bcTitle: '#1a1a1b', bcDash: '#9ca3af' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb', drawerBg: '#2a2a2b', drawerText: '#e5e7eb', drawerSub: '#9ca3af', drawerBorder: '#3a3a3c', bcHome: '#9ca3af', bcSep: '#4b5563', bcTitle: '#e5e7eb', bcDash: '#6b7280' },
+        black: { bg: '#000',     text: '#d1d5db', drawerBg: '#111',    drawerText: '#d1d5db', drawerSub: '#6b7280', drawerBorder: '#222',    bcHome: '#6b7280', bcSep: '#333',    bcTitle: '#d1d5db', bcDash: '#444'    },
+        sepia: { bg: '#f5efe6',  text: '#3b2f1e', drawerBg: '#ede4d3', drawerText: '#3b2f1e', drawerSub: '#7a6248', drawerBorder: '#d6c9b0', bcHome: '#7a6248', bcSep: '#c4b49a', bcTitle: '#3b2f1e', bcDash: '#a08060' },
     };
     document.querySelectorAll('.theme-circle').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -1139,13 +1190,61 @@
             const m = themeMap[t];
             mobileReaderBg.style.background = m.bg;
             bookContent.style.color = m.text;
-            document.getElementById('settings-drawer').style.background = m.drawerBg;
+
+            // Breadcrumb
+            const bcHome  = document.getElementById('bc-home');
+            const bcSep1  = document.getElementById('bc-sep1');
+            const bcTitle = document.getElementById('bc-title');
+            const bcDash  = document.getElementById('bc-dash');
+            if (bcHome)  { bcHome.style.color  = m.bcHome;  bcHome.dataset.color  = m.bcHome;  }
+            if (bcSep1)  { bcSep1.style.color  = m.bcSep;  }
+            if (bcTitle) { bcTitle.style.color = m.bcTitle; bcTitle.dataset.color = m.bcTitle; }
+            if (bcDash)  { bcDash.style.color  = m.bcDash;  }
+
+            // Settings drawer
+            const sDr = document.getElementById('settings-drawer');
+            sDr.style.background = m.drawerBg;
+            sDr.querySelectorAll('.settings-drawer-title').forEach(el => el.style.color = '#c0392b');
+            sDr.querySelectorAll('.settings-row-label').forEach(el => el.style.color = m.drawerText);
+            sDr.querySelectorAll('.settings-row-val').forEach(el => el.style.color = m.drawerSub);
+            sDr.querySelectorAll('.settings-btn').forEach(el => {
+                el.style.background = m.drawerBorder;
+                el.style.color = m.drawerText;
+            });
+            sDr.querySelectorAll('.settings-row').forEach(el => el.style.borderColor = m.drawerBorder);
+
+            // TOC drawer
+            const tDr = document.getElementById('mobile-toc-drawer');
+            tDr.style.background = m.drawerBg;
+            tDr.querySelectorAll('.drawer-title').forEach(el => el.style.color = '#c0392b');
+            tDr.querySelectorAll('.toc-link').forEach(el => {
+                el.style.color = m.drawerText;
+            });
+            const tocClose = document.getElementById('mobile-toc-close');
+            if (tocClose) {
+                tocClose.style.background = m.drawerBorder;
+                tocClose.style.color = m.drawerSub;
+            }
+            const tocHeader = document.getElementById('toc-drawer-header');
+            if (tocHeader) tocHeader.style.borderColor = m.drawerBorder;
+
             document.querySelectorAll('.theme-circle').forEach(b => {
                 b.classList.toggle('active', b.dataset.theme === t);
                 b.style.borderColor = b.dataset.theme === t ? '#c0392b' : 'transparent';
             });
+            savePrefs();
         });
     });
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+    })();
 })();
 </script>
 
