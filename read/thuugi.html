@@ -532,10 +532,69 @@
         color: #c0392b !important;
     }
 
+    /* ── Reading info bar ── */
+    #read-info-bar {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 999;
+        height: 26px;
+        display: flex;
+        align-items: center;
+        padding: 0 14px;
+        gap: 6px;
+        font-size: 11px;
+        background: rgba(255,255,255,0.92);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid #e5e7eb;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease, background 0.3s, border-color 0.3s, color 0.3s;
+        pointer-events: none;
+    }
+    #read-info-bar.visible {
+        transform: translateY(0);
+    }
+    #read-info-bar .rib-pct {
+        font-family: 'Segoe UI', sans-serif;
+        font-weight: 700;
+        color: #c0392b;
+        font-size: 11px;
+        min-width: 30px;
+    }
+    #read-info-bar .rib-sep {
+        color: #d1d5db;
+        font-size: 10px;
+    }
+    #read-info-bar .rib-timer {
+        font-weight: 700;
+        color: inherit;
+        font-size: 11px;
+    }
+    #read-info-bar .rib-label {
+        color: #9ca3af;
+        font-size: 10.5px;
+    }
+    #read-info-bar .rib-line {
+        position: absolute;
+        bottom: 0; left: 0;
+        height: 2px;
+        width: 0%;
+        background: #c0392b;
+        transition: width 0.15s linear;
+    }
+
 </style>
 
 <!-- Progress bar -->
 <div id="read-progress-bar"></div>
+
+<!-- Reading info bar -->
+<div id="read-info-bar">
+    <span class="rib-pct" id="rib-pct">০%</span>
+    <span class="rib-sep">|</span>
+    <span class="rib-timer" id="rib-timer">০০:০০</span>
+    <span class="rib-label">ধরে পড়ছেন</span>
+    <div class="rib-line" id="rib-line"></div>
+</div>
 
 <!-- ══════════════════════════════════════════
      MOBILE ONLY chrome (hidden on md+)
@@ -730,6 +789,27 @@
         }
     }, { passive: true });
 
+    // ── Reading info bar ──
+    const ribEl    = document.getElementById('read-info-bar');
+    const ribPct   = document.getElementById('rib-pct');
+    const ribTimer = document.getElementById('rib-timer');
+    const ribLine  = document.getElementById('rib-line');
+    const readStart = Date.now();
+
+    function padBN(n) {
+        return toBN(n).padStart ? String(n).padStart(2,'0').replace(/[0-9]/g, d => '০১২৩৪৫৬৭৮৯'[d]) : toBN(n);
+    }
+    function updateRibTimer() {
+        const elapsed = Math.floor((Date.now() - readStart) / 1000);
+        const m = Math.floor(elapsed / 60);
+        const s = elapsed % 60;
+        const mm = String(m).replace(/[0-9]/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+        const ss = String(s).padStart(2,'0').replace(/[0-9]/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+        if (ribTimer) ribTimer.textContent = mm + ':' + ss;
+    }
+    setInterval(updateRibTimer, 1000);
+    updateRibTimer();
+
     // ── Progress bar on scroll ──
     window.addEventListener('scroll', () => {
         const docH = document.documentElement.scrollHeight - window.innerHeight;
@@ -737,6 +817,13 @@
         progressBar.style.width = pct + '%';
         if (progressPct) progressPct.textContent = toBN(pct) + '%';
         if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
+        // update info bar
+        if (ribPct)  ribPct.textContent = toBN(pct) + '%';
+        if (ribLine) ribLine.style.width = pct + '%';
+        if (ribEl) {
+            if (window.scrollY > 80) ribEl.classList.add('visible');
+            else ribEl.classList.remove('visible');
+        }
     }, { passive: true });
 
     // ── Build TOC ──
@@ -949,6 +1036,11 @@
         if (adContent)  adContent.style.background = m.bg;
         if (adDatetime) adDatetime.style.color      = m.text;
         if (adNotice)   adNotice.style.color        = m.text;
+        // Reading info bar theme sync
+        const rib = document.getElementById('read-info-bar');
+        if (rib) { rib.style.background = m.bg.replace(')', ',0.92)').replace('rgb','rgba'); rib.style.borderColor = m.drawerBorder; rib.style.color = m.text; }
+        const ribTimerEl = document.getElementById('rib-timer');
+        if (ribTimerEl) ribTimerEl.style.color = m.text;
     };
 
     // ── Restore saved prefs on load ──
