@@ -476,21 +476,24 @@
     /* ── TOC unit (toggle + drawer together) ── */
     #toc-unit {
         position: fixed;
-        top: 75vh;
+        top: 50vh;
         right: 0;
+        width: 28px;
         height: 50vh;
         z-index: 500;
-        display: flex;
-        align-items: flex-start;
         pointer-events: none;
+        transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
     }
 
     /* Toggle tab */
     #toc-toggle-btn {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
         width: 28px;
         height: 90px;
         flex-shrink: 0;
-        align-self: center;
         background: #c0392b;
         border: none;
         border-radius: 0;
@@ -502,21 +505,25 @@
         padding: 10px 0;
         pointer-events: auto;
         transition: height 0.3s cubic-bezier(0.4,0,0.2,1),
+                    top 0.3s cubic-bezier(0.4,0,0.2,1),
+                    transform 0.3s cubic-bezier(0.4,0,0.2,1),
                     border-radius 0.3s cubic-bezier(0.4,0,0.2,1),
-                    align-self 0.1s;
+                    opacity 0.3s ease;
     }
     #toc-unit.open {
-        align-items: stretch;
+        width: 60vw;
+        pointer-events: auto;
+        transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
     }
     #toc-unit.open #toc-toggle-btn {
-        height: 100%;
-        align-self: stretch;
+        top: 0;
+        transform: translateY(0);
+        height: 50vh;
         border-radius: 0;
         pointer-events: auto;
     }
     #toc-toggle-btn:active { background: #a93226; }
     #toc-toggle-btn.scrolling { opacity: 0.5; }
-    #toc-toggle-btn { transition: opacity 0.3s ease; }
     #toc-toggle-btn .toc-toggle-label {
         color: #fff;
         font-size: 11px;
@@ -531,9 +538,12 @@
 
     /* Drawer panel */
     #mobile-toc-drawer {
+        position: absolute;
+        top: 0;
+        right: 28px;
         width: 0;
-        max-width: 200px;
-        height: 100%;
+        max-width: calc(60vw - 28px);
+        height: 50vh;
         display: flex; flex-direction: column;
         background: #fafafa;
         border-radius: 0;
@@ -543,7 +553,7 @@
         pointer-events: auto;
     }
     #toc-unit.open #mobile-toc-drawer {
-        width: 54vw;
+        width: calc(60vw - 28px);
     }
 
 
@@ -668,15 +678,18 @@
         position: fixed;
         top: 0;
         right: 0;
+        width: 28px;
         height: 50vh;
         z-index: 498;
-        display: flex;
-        align-items: flex-start;
         pointer-events: none;
     }
 
     /* Toggle tab (gear icon) */
     #settings-toggle-btn {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
         width: 28px;
         height: 44px;
         flex-shrink: 0;
@@ -691,18 +704,21 @@
         color: #fff;
         pointer-events: auto;
         transition: height 0.3s cubic-bezier(0.4,0,0.2,1),
+                    top 0.3s cubic-bezier(0.4,0,0.2,1),
                     transform 0.3s cubic-bezier(0.4,0,0.2,1),
                     opacity 0.3s ease;
-        transform: translateY(25vh);
     }
     #settings-toggle-btn:active { background: #922b21; }
     #settings-toggle-btn.scrolling { opacity: 0.5; }
 
     /* Drawer panel */
     #settings-drawer {
+        position: absolute;
+        top: 0;
+        right: 28px;
         width: 0;
-        max-width: 200px;
-        max-height: 50vh;
+        max-width: calc(100vw - 28px);
+        height: 50vh;
         display: flex;
         flex-direction: column;
         background: #fafafa;
@@ -712,14 +728,15 @@
         border-radius: 0;
         transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
     }
-    #settings-drawer-wrap.open #settings-drawer { width: 54vw; }
+    #settings-drawer-wrap.open {
+        width: 60vw;
+        pointer-events: auto;
+    }
+    #settings-drawer-wrap.open #settings-drawer { width: calc(60vw - 28px); }
     #settings-drawer-wrap.open #settings-toggle-btn {
-        height: 50vh;
+        top: 0;
         transform: translateY(0);
-        align-self: flex-start;
-        transition: height 0.3s cubic-bezier(0.4,0,0.2,1),
-                    transform 0.3s cubic-bezier(0.4,0,0.2,1),
-                    opacity 0.3s ease;
+        height: 50vh;
     }
 
     #settings-overlay {
