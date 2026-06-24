@@ -2098,6 +2098,12 @@
                 b.style.borderColor = b.dataset.theme === t ? '#c0392b' : 'transparent';
             });
             savePrefs();
+
+            // Ad bar theme sync
+            const adBar = document.getElementById('ad-bar');
+            const adContent = document.getElementById('ad-bar-content');
+            if (adBar) adBar.style.background = m.bg;
+            if (adContent) adContent.style.background = m.bg;
         });
     });
 
@@ -2110,6 +2116,85 @@
         const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
         if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
     })();
+})();
+</script>
+
+<!-- ── Sticky Ad Bar ── -->
+<div id="ad-bar" style="
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 -3px 16px rgba(0,0,0,0.18);
+">
+    <!-- Toggle Button top-left -->
+    <div style="display:flex;">
+        <button id="ad-bar-toggle" onclick="toggleAdBar()" style="
+            background: #c0392b;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 10px;
+            font-size: 11px;
+            color: #fff;
+            border-radius: 0 0 0 0;
+            transition: background 0.2s;
+        " title="বিজ্ঞাপন লুকান / দেখান">
+            <svg id="ad-bar-icon" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+            <span id="ad-bar-label">Hide Ad</span>
+        </button>
+    </div>
+
+    <!-- Ad Content -->
+    <div id="ad-bar-content" style="
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s;
+        max-height: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 10px;
+    ">
+        <script async="async" data-cfasync="false" src="https://pl29879678.effectivecpmnetwork.com/1ba5ec58502e6eb05148bf0c6aab709b/invoke.js"></script>
+        <div id="container-1ba5ec58502e6eb05148bf0c6aab709b"></div>
+    </div>
+</div>
+
+<script>
+(function() {
+    var bar = document.getElementById('ad-bar');
+    var content = document.getElementById('ad-bar-content');
+    var icon = document.getElementById('ad-bar-icon');
+    var collapsed = false;
+    bar.style.transform = 'translateY(0)';
+
+    // Show bar after 10 seconds
+
+    var label = document.getElementById('ad-bar-label');
+
+    window.toggleAdBar = function() {
+        collapsed = !collapsed;
+        if (collapsed) {
+            content.style.maxHeight = '0';
+            content.style.padding = '0';
+            icon.innerHTML = '<polyline points="6 9 12 15 18 9"></polyline>';
+            label.textContent = 'Show Ad';
+        } else {
+            content.style.maxHeight = '500px';
+            content.style.padding = '6px 10px';
+            icon.innerHTML = '<polyline points="18 15 12 9 6 15"></polyline>';
+            label.textContent = 'Hide Ad';
+        }
+    };
 })();
 </script>
 
