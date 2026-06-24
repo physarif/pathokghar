@@ -286,13 +286,44 @@
     #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
 
 
+    /* ══ Desktop: unified drawer always visible as right sidebar ══ */
+    @media (min-width: 768px) {
+        body { overflow: hidden; height: 100vh; }
+        #mobile-reader-bg { height: 100vh; overflow: hidden; }
+        #read-layout {
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+        }
+        #read-layout > .flex-1 {
+            overflow-y: auto;
+            height: 100vh;
+        }
+        #unified-wrap {
+            top: 0;
+            width: 260px;
+            height: 60vh;
+            pointer-events: auto;
+        }
+        #unified-toggle-btn { display: none; }
+        #unified-drawer {
+            position: static;
+            width: 260px !important;
+            height: 60vh;
+            box-shadow: -2px 0 12px rgba(0,0,0,0.08);
+            border-left: 1px solid #e5e7eb;
+        }
+        #unified-overlay { display: none !important; }
+        #unified-wrap.open #unified-toggle-btn { display: none; }
+    }
+
     /* ══ Unified drawer ══ */
     #unified-wrap {
         position: fixed;
         top: 25vh;
         right: 0;
         width: 28px;
-        height: 50vh;
+        height: 60vh;
         z-index: 500;
         pointer-events: none;
         transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
@@ -327,7 +358,7 @@
         top: 0;
         right: 28px;
         width: 0;
-        height: 50vh;
+        height: 60vh;
         display: flex;
         flex-direction: column;
         background: #fafafa;
@@ -344,7 +375,7 @@
     #unified-wrap.open #unified-toggle-btn {
         top: 0;
         transform: translateY(0);
-        height: 50vh;
+        height: 60vh;
     }
 
     /* Tab bar */
