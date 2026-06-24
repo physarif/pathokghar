@@ -986,19 +986,20 @@
 
 
     // ── Toggle opacity on scroll ──
-    let scrollTimer;
+    let tocScrollTimer;
+    let settingsScrollTimer;
+    const settingsWrapEl = document.getElementById('settings-drawer-wrap');
+    const settingsBtnEl  = document.getElementById('settings-toggle-btn');
     window.addEventListener('scroll', () => {
         if (tocToggleBtn && !tocUnit.classList.contains('open')) {
             tocToggleBtn.classList.add('scrolling');
-            clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(() => tocToggleBtn.classList.remove('scrolling'), 800);
+            clearTimeout(tocScrollTimer);
+            tocScrollTimer = setTimeout(() => tocToggleBtn.classList.remove('scrolling'), 800);
         }
-        const settingsWrap = document.getElementById('settings-drawer-wrap');
-        const settingsBtn  = document.getElementById('settings-toggle-btn');
-        if (settingsBtn && settingsWrap && !settingsWrap.classList.contains('open')) {
-            settingsBtn.classList.add('scrolling');
-            clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(() => settingsBtn.classList.remove('scrolling'), 800);
+        if (settingsBtnEl && settingsWrapEl && !settingsWrapEl.classList.contains('open')) {
+            settingsBtnEl.classList.add('scrolling');
+            clearTimeout(settingsScrollTimer);
+            settingsScrollTimer = setTimeout(() => settingsBtnEl.classList.remove('scrolling'), 800);
         }
     }, { passive: true });
 
