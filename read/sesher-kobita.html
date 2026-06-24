@@ -525,10 +525,10 @@
     /* ══ Unified drawer ══ */
     #unified-wrap {
         position: fixed;
-        top: 25vh;
+        top: 0;
         right: 0;
         width: 28px;
-        height: 60vh;
+        height: 44px;
         z-index: 500;
         pointer-events: none;
         transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
@@ -536,8 +536,8 @@
     #unified-toggle-btn {
         position: absolute;
         right: 0;
-        top: 10%;
-        transform: translateY(-50%);
+        top: 0;
+        transform: translateY(0);
         width: 28px;
         height: 44px;
         background: #c0392b;
@@ -574,6 +574,7 @@
     }
     #unified-wrap.open {
         width: 65vw;
+        height: 60vh;
         pointer-events: auto;
     }
     #unified-wrap.open #unified-drawer { width: calc(65vw - 28px); }
@@ -977,13 +978,11 @@
         unifiedWrap.classList.add('open');
         unifiedOverlay.classList.add('open');
         document.body.style.overflow = 'hidden';
-        document.body.style.touchAction = 'none';
     }
     function closeDrawer() {
         unifiedWrap.classList.remove('open');
         unifiedOverlay.classList.remove('open');
         document.body.style.overflow = '';
-        document.body.style.touchAction = '';
     }
 
     unifiedToggle.addEventListener('click', (e) => {
@@ -991,6 +990,7 @@
         unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
     });
     unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
     unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
     unifiedDrawer.addEventListener('touchmove', (e) => {
         const panel = unifiedDrawer.querySelector('.unified-panel.active');
