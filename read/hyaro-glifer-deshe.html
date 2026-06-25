@@ -47,7 +47,7 @@
             border-top: none;
             border-radius: 0 0 12px 0;
         }
-        #sidebar.open { transform: translateX(0); top: 0; height: 100%; }
+        #sidebar.open { transform: translateX(0); }
         #sidebar::-webkit-scrollbar { display: none; }
         #sidebar-overlay {
             position: fixed;
@@ -59,13 +59,27 @@
             pointer-events: none;
             transition: opacity 0.28s;
         }
-        #sidebar-overlay.open { opacity: 1; pointer-events: auto; top: 0; }
+        #sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+        #header-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            right: 0;
+            height: 64px;
+            background: rgba(0,0,0,0.45);
+            z-index: 99;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.28s;
+        }
+        #header-overlay.open { opacity: 1; pointer-events: auto; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
 
     <!-- SIDEBAR OVERLAY -->
     <div id="sidebar-overlay"></div>
+    <!-- HEADER DIM OVERLAY -->
+    <div id="header-overlay"></div>
 
     <!-- SIDEBAR -->
     <aside id="sidebar" class="bg-white dark:bg-[#1a1a1b] shadow-2xl border-r border-gray-200 dark:border-gray-700">
@@ -1558,24 +1572,27 @@
         // Sidebar
         const sidebarBtn = document.getElementById('sidebar-btn');
         const overlay = document.getElementById('sidebar-overlay');
+        const headerOverlay = document.getElementById('header-overlay');
 
         function openSidebar() {
             sidebar.classList.add('open');
             overlay.classList.add('open');
+            headerOverlay.classList.add('open');
             document.body.style.overflow = 'hidden';
-            header.style.transform = 'translateY(-100%)';
+            header.style.transform = 'translateY(0)';
         }
         function closeSidebar() {
             sidebar.classList.remove('open');
             overlay.classList.remove('open');
+            headerOverlay.classList.remove('open');
             document.body.style.overflow = '';
-            header.style.transform = 'translateY(0)';
         }
 
         sidebarBtn.addEventListener('click', () => {
             sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
         });
         overlay.addEventListener('click', closeSidebar);
+        headerOverlay.addEventListener('click', closeSidebar);
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
 
     </script>
