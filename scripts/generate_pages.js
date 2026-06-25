@@ -365,22 +365,22 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
       const pageBooks = data.books.slice((page - 1) * BOOKS_PER_PAGE, page * BOOKS_PER_PAGE);
 
       const booksGrid = pageBooks.map(book => `
-      <a href="/books/${book.slug}.html" class="group">
-        <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
-          <img src="${book.cover}" alt="${book.title}" class="w-full aspect-[2/3] object-cover">
+      <a href="/books/${book.slug}.html" class="cat-card">
+        <div class="cat-img-wrap">
+          <img src="${book.cover}" alt="${book.title}" class="cat-img" loading="lazy">
         </div>
-        <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">${book.title}</p>
-        <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">${book.author_name}</p>
+        <p class="cat-title">${book.title}</p>
+        <p class="cat-author">${book.author_name}</p>
       </a>`).join('');
 
       // Pagination HTML
-      let paginationHTML = '<div class="px-4 md:px-6 flex items-center justify-center gap-1 flex-wrap">';
-      if (page > 1) paginationHTML += `<a href="/category/${slug}/${page - 1}/" class="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"><i class="fas fa-chevron-left text-xs"></i> আগের</a>`;
+      let paginationHTML = '<div class="cat-pagination">';
+      if (page > 1) paginationHTML += `<a href="/category/${slug}/${page - 1}/" class="cat-page-nav"><i class="fas fa-chevron-left text-xs"></i> আগের</a>`;
       for (let i = 1; i <= totalPages; i++) {
-        if (i === page) paginationHTML += `<span class="w-9 h-9 flex items-center justify-center rounded-lg text-sm bg-[#0056b3] text-white font-semibold">${i}</span>`;
-        else paginationHTML += `<a href="/category/${slug}/${i}/" class="w-9 h-9 flex items-center justify-center rounded-lg text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">${i}</a>`;
+        if (i === page) paginationHTML += `<span class="cat-page-btn active">${i}</span>`;
+        else paginationHTML += `<a href="/category/${slug}/${i}/" class="cat-page-btn">${i}</a>`;
       }
-      if (page < totalPages) paginationHTML += `<a href="/category/${slug}/${page + 1}/" class="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">পরের <i class="fas fa-chevron-right text-xs"></i></a>`;
+      if (page < totalPages) paginationHTML += `<a href="/category/${slug}/${page + 1}/" class="cat-page-nav">পরের <i class="fas fa-chevron-right text-xs"></i></a>`;
       paginationHTML += '</div>';
 
       const categoryContent = render(categoryTemplate, {
