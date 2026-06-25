@@ -18,44 +18,28 @@ const app      = initializeApp(firebaseConfig);
 const auth     = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-// UI elements
-const loggedOut   = document.getElementById('sb-logged-out');
-const loggedIn    = document.getElementById('sb-logged-in');
-const userPhoto   = document.getElementById('sb-user-photo');
-const userName    = document.getElementById('sb-user-name');
-const userEmail   = document.getElementById('sb-user-email');
-const loginBtn    = document.getElementById('sb-google-login');
-const logoutBtn   = document.getElementById('sb-logout');
-
-// Auth state
+// Auth state — layout.html এর callbacks call করে
 onAuthStateChanged(auth, user => {
   if (user) {
-    userPhoto.src    = user.photoURL || '';
-    userName.textContent  = user.displayName || 'ব্যবহারকারী';
-    userEmail.textContent = user.email || '';
-    loggedOut.classList.add('hidden');
-    loggedIn.classList.remove('hidden');
+    window.onAuthLogin?.(user);
   } else {
-    loggedOut.classList.remove('hidden');
-    loggedIn.classList.add('hidden');
+    window.onAuthLogout?.();
   }
 });
 
-// Login
-loginBtn?.addEventListener('click', async () => {
+// Global functions — layout.html থেকে call হয়
+window.googleLogin = async () => {
   try {
     await signInWithPopup(auth, provider);
   } catch (e) {
     console.error('Login error:', e.message);
   }
-});
+};
 
-// Logout
-logoutBtn?.addEventListener('click', async () => {
+window.doLogout = async () => {
   try {
     await signOut(auth);
   } catch (e) {
     console.error('Logout error:', e.message);
   }
-});
-  
+};
