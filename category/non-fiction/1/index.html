@@ -35,6 +35,9 @@
     <!-- HERO SECTION (Wikipedia-style) -->
     <div class="flex flex-col items-center justify-center pt-12 pb-6 px-4 text-center">
 
+        <!-- Date & Time -->
+        <p id="datetime-display" class="text-sm text-gray-400 dark:text-gray-500 mb-4 tracking-wide"></p>
+
         <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 leading-tight">
             <a href="https://pathokghar.pages.dev" class="hover:text-brand-500 active:text-brand-500 transition-colors">পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span></a>
         </h1>
@@ -283,6 +286,27 @@
     </footer>
 
     <script>
+        // Date & Time
+        const bnDays = ['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
+        const bnMonths = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+        function toBnNum(n) {
+            return String(n).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+        }
+        function updateDateTime() {
+            const now = new Date();
+            const day = bnDays[now.getDay()];
+            const date = toBnNum(now.getDate());
+            const month = bnMonths[now.getMonth()];
+            const year = toBnNum(now.getFullYear());
+            const h = toBnNum(String(now.getHours()).padStart(2,'0'));
+            const m = toBnNum(String(now.getMinutes()).padStart(2,'0'));
+            const s = toBnNum(String(now.getSeconds()).padStart(2,'0'));
+            const el = document.getElementById('datetime-display');
+            if (el) el.textContent = `${day}, ${date} ${month} ${year} | ${h}:${m}:${s}`;
+        }
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
         // Search
         function doSearch(query) {
             if (query.trim()) {
