@@ -33,14 +33,82 @@
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         header { }
-
+        /* Sidebar */
+        #sidebar {
+            position: fixed;
+            top: 0; left: 0;
+            height: 100%;
+            width: 280px;
+            transform: translateX(-100%);
+            transition: transform 0.28s cubic-bezier(.4,0,.2,1);
+            z-index: 200;
+            overflow-y: auto;
+            scrollbar-width: none;
+            border-top: none;
+        }
+        #sidebar.open { transform: translateX(0); }
+        #sidebar::-webkit-scrollbar { display: none; }
+        #sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            z-index: 199;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.28s;
+        }
+        #sidebar-overlay.open { opacity: 1; pointer-events: auto; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
 
+    <!-- SIDEBAR OVERLAY -->
+    <div id="sidebar-overlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="bg-white dark:bg-[#1a1a1b] shadow-2xl border-r border-gray-200 dark:border-gray-700">
+
+        <!-- Categories -->
+        <div class="px-4 pt-5 pb-3">
+            <p class="text-[11px] uppercase font-bold tracking-widest text-gray-400 dark:text-gray-500 mb-3 pl-1">ক্যাটাগরি</p>
+            <ul class="space-y-0.5">
+                <li><a href="/category/kobita/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">কবিতা</span><span class="text-[11px] text-gray-400 dark:text-gray-500">2</span></a></li>
+                <li><a href="/category/productivity/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">আত্ম-উন্নয়ন</span><span class="text-[11px] text-gray-400 dark:text-gray-500">2</span></a></li>
+                <li><a href="/category/itihas/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">ইতিহাস</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
+                <li><a href="/category/probondho/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">প্রবন্ধ</span><span class="text-[11px] text-gray-400 dark:text-gray-500">3</span></a></li>
+                <li><a href="/category/non-fiction/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">নন ফিকশন</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
+                <li><a href="/category/uponyas/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">উপন্যাস</span><span class="text-[11px] text-gray-400 dark:text-gray-500">3</span></a></li>
+            </ul>
+        </div>
+
+        <div class="mx-4 border-t border-gray-100 dark:border-gray-700"></div>
+
+        <!-- Authors -->
+        <div class="px-4 pt-4 pb-6">
+            <p class="text-[11px] uppercase font-bold tracking-widest text-gray-400 dark:text-gray-500 mb-3 pl-1">লেখক</p>
+            <ul class="space-y-0.5">
+                <li><a href="/author/anirban-ghosh.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">অনির্বাণ ঘোষ</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
+                <li><a href="/author/kaushik-majumdar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">কৌশিক মজুমদার</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
+                <li><a href="/author/jibanananda-das.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">জীবনানন্দ দাশ</span><span class="text-[11px] text-gray-400 dark:text-gray-500">2</span></a></li>
+                <li><a href="/author/rabindranath-tagore.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">রবীন্দ্রনাথ ঠাকুর</span><span class="text-[11px] text-gray-400 dark:text-gray-500">2</span></a></li>
+                <li><a href="/author/sreepantha.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">শ্রীপান্থ</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
+                <li><a href="/author/hymayun-azad.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">হুমায়ুন আজাদ</span><span class="text-[11px] text-gray-400 dark:text-gray-500">2</span></a></li>
+                <li><a href="/author/hymayun-ahmed.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">হুমায়ূন আহমেদ</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
+                <li><a href="/author/cal-newport.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">Cal Newport</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
+                <li><a href="/author/james-clear.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">James Clear</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
+            </ul>
+        </div>
+
+    </aside>
+
     <!-- HEADER -->
     <header class="bg-white dark:bg-[#1a1a1b] fixed top-0 w-full h-16 z-[100] border-b border-gray-200 dark:border-gray-700 shadow-sm transition-transform duration-300 flex">
         <div class="w-full px-4 h-full flex items-center justify-between gap-3">
+
+            <!-- Hamburger -->
+            <button id="sidebar-btn" class="p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition shrink-0" title="মেনু">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
 
             <!-- Logo -->
             <a href="https://pathokghar.pages.dev" class="text-2xl font-extrabold tracking-tighter hover:bg-gray-100 dark:hover:bg-gray-800 px-2 py-1 rounded transition-colors duration-200 shrink-0 mr-auto md:mr-0">
@@ -1350,39 +1418,38 @@
     <!-- FOOTER -->
     <footer class="bg-white dark:bg-[#1a1a1b] border-t border-gray-200 dark:border-gray-700">
 
-        <!-- Categories & Authors -->
+        <!-- Mobile: 3 row stack | Desktop: 1 row -->
         <div class="max-w-6xl mx-auto px-6 py-8">
-            <div class="flex flex-col md:flex-row gap-8">
+            <!-- Desktop: single row | Mobile: column -->
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
 
-                <!-- Categories -->
-                <div class="flex-1">
-                    <p class="text-[11px] uppercase font-bold tracking-widest text-gray-400 dark:text-gray-500 mb-4">ক্যাটাগরি</p>
-                    <ul class="flex flex-wrap gap-2">
-                        <li><a href="/category/kobita/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">কবিতা</span><span class="text-[11px] text-gray-400 dark:text-gray-500">2</span></a></li>
-                <li><a href="/category/productivity/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">আত্ম-উন্নয়ন</span><span class="text-[11px] text-gray-400 dark:text-gray-500">2</span></a></li>
-                <li><a href="/category/itihas/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">ইতিহাস</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
-                <li><a href="/category/probondho/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">প্রবন্ধ</span><span class="text-[11px] text-gray-400 dark:text-gray-500">3</span></a></li>
-                <li><a href="/category/non-fiction/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">নন ফিকশন</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
-                <li><a href="/category/uponyas/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">উপন্যাস</span><span class="text-[11px] text-gray-400 dark:text-gray-500">3</span></a></li>
-                    </ul>
-                </div>
+                <!-- Logo -->
+                <span class="text-2xl md:text-3xl font-extrabold tracking-tight text-gray-800 dark:text-gray-100 text-center md:text-left shrink-0">
+                    পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span>
+                </span>
 
-                <div class="hidden md:block w-px bg-gray-100 dark:bg-gray-700"></div>
+                <!-- Description — mobile: center, desktop: flex-1 center -->
+                <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed text-center md:flex-1 md:px-8">
+                    বাংলা সাহিত্যের এক ডিজিটাল পাঠাগার। বিনামূল্যে পড়ুন, ডাউনলোড করুন — যেকোনো সময়, যেকোনো জায়গা থেকে।
+                </p>
 
-                <!-- Authors -->
-                <div class="flex-1">
-                    <p class="text-[11px] uppercase font-bold tracking-widest text-gray-400 dark:text-gray-500 mb-4">লেখক</p>
-                    <ul class="flex flex-wrap gap-2">
-                        <li><a href="/author/anirban-ghosh.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">অনির্বাণ ঘোষ</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
-                <li><a href="/author/kaushik-majumdar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">কৌশিক মজুমদার</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
-                <li><a href="/author/jibanananda-das.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">জীবনানন্দ দাশ</span><span class="text-[11px] text-gray-400 dark:text-gray-500">2</span></a></li>
-                <li><a href="/author/rabindranath-tagore.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">রবীন্দ্রনাথ ঠাকুর</span><span class="text-[11px] text-gray-400 dark:text-gray-500">2</span></a></li>
-                <li><a href="/author/sreepantha.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">শ্রীপান্থ</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
-                <li><a href="/author/hymayun-azad.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">হুমায়ুন আজাদ</span><span class="text-[11px] text-gray-400 dark:text-gray-500">2</span></a></li>
-                <li><a href="/author/hymayun-ahmed.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">হুমায়ূন আহমেদ</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
-                <li><a href="/author/cal-newport.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">Cal Newport</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
-                <li><a href="/author/james-clear.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">James Clear</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
-                    </ul>
+                <!-- Social icons -->
+                <div class="flex items-center justify-center md:justify-end gap-2 shrink-0">
+                    <a href="#" aria-label="Twitter" class="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
+                        <i class="fab fa-twitter text-sm"></i>
+                    </a>
+                    <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
+                        <i class="fab fa-facebook-f text-sm"></i>
+                    </a>
+                    <a href="#" aria-label="YouTube" class="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
+                        <i class="fab fa-youtube text-sm"></i>
+                    </a>
+                    <a href="mailto:pathokghar@gmail.com" aria-label="Email" class="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
+                        <i class="fas fa-envelope text-sm"></i>
+                    </a>
+                    <a href="#" aria-label="RSS" class="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
+                        <i class="fas fa-rss text-sm"></i>
+                    </a>
                 </div>
 
             </div>
@@ -1414,15 +1481,20 @@
         const html = document.documentElement;
 
         const header = document.querySelector('header');
+        const sidebar = document.getElementById('sidebar');
         function applyTheme(dark) {
             if (dark) {
                 html.classList.add('dark');
                 themeIcon.classList.replace('fa-moon', 'fa-sun');
                 localStorage.theme = 'dark';
+                header.style.borderTopColor = '';
+                sidebar.style.borderTopColor = '';
             } else {
                 html.classList.remove('dark');
                 themeIcon.classList.replace('fa-sun', 'fa-moon');
                 localStorage.theme = 'light';
+                header.style.borderTopColor = '';
+                sidebar.style.borderTopColor = '';
             }
         }
 
@@ -1481,7 +1553,24 @@
         });
 
 
+        // Sidebar
+        const sidebarBtn = document.getElementById('sidebar-btn');
+        const overlay = document.getElementById('sidebar-overlay');
 
+        function openSidebar() {
+            sidebar.classList.add('open');
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        sidebarBtn.addEventListener('click', openSidebar);
+        overlay.addEventListener('click', closeSidebar);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
 
     </script>
 
