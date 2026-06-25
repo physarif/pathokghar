@@ -41,6 +41,7 @@
     </div>
     <!-- Book grid — card HTML/CSS এখানেই, generate_pages.js শুধু data inject করে -->
     <div id="author-books-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4"></div>
+    <script type="application/json" id="author-books-json">{{author_books_data}}</script>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════
@@ -132,7 +133,7 @@
     if (descEl) descEl.innerHTML = marked.parse(rawDesc);
 
     // ── Book grid render ──
-    var books = JSON.parse(`{{author_books_data}}`);
+    var books = JSON.parse(document.getElementById('author-books-json').textContent);
     var grid  = document.getElementById('author-books-grid');
     if (grid && books.length) {
         grid.innerHTML = books.map(function(book) {
