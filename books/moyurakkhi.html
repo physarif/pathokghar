@@ -199,17 +199,37 @@
 <main class="flex-1 p-4 md:p-6 min-h-[calc(100vh-3.5rem)]">
     <div class="max-w-3xl mx-auto">
 
-        <!-- Book Info Card -->
-        <div class="bg-white dark:bg-[#2d2d2d] rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
-            <!-- Mobile: cover full-width gradient top -->
-            <div class="flex justify-center pt-6 pb-3 md:hidden">
-                <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780155625111_gppwilns44.jpg"
-                    alt="ময়ূরাক্ষী"
-                    class="w-40 rounded object-cover aspect-[2/3]">
-            </div>
+        <!-- Mobile Breadcrumb -->
+        <nav class="md:hidden flex items-center flex-wrap gap-1 text-xs text-gray-500 dark:text-gray-400 mb-3 px-1">
+            <a href="/" class="hover:text-red-600 dark:hover:text-red-400 transition-colors">পাঠক ঘর</a>
+            <i class="fas fa-chevron-right text-[9px] text-gray-400"></i>
+            <a href="/category/uponyas/1/" class="hover:text-red-600 dark:hover:text-red-400 transition-colors">উপন্যাস</a>
+            <i class="fas fa-chevron-right text-[9px] text-gray-400"></i>
+            <span class="text-gray-700 dark:text-gray-300 font-medium truncate max-w-[140px]">ময়ূরাক্ষী</span>
+            <span class="text-gray-400">–</span>
+            <a href="/author/hymayun-ahmed.html" class="text-red-600 dark:text-red-400 hover:underline truncate max-w-[100px]">হুমায়ূন আহমেদ</a>
+        </nav>
 
-            <!-- Desktop: full card left-to-right gradient -->
-            <div class="hidden md:flex flex-row gap-7" style="border-radius:inherit;">
+        <!-- Mobile: Cover left + Description right -->
+        <div class="md:hidden bg-white dark:bg-[#2d2d2d] rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4">
+            <div class="flex gap-4 items-start">
+                <!-- Cover -->
+                <div class="shrink-0">
+                    <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780155625111_gppwilns44.jpg"
+                        alt="ময়ূরাক্ষী"
+                        class="w-28 rounded object-cover aspect-[2/3]">
+                </div>
+                <!-- Description -->
+                <div class="flex-1 min-w-0">
+                    <h2 class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2">বইয়ের বিবরণ</h2>
+                    <div id="book-description-mobile" class="prose-book text-xs leading-relaxed text-gray-700 dark:text-gray-300"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Book Info Card (Desktop only) -->
+        <div class="hidden md:block bg-white dark:bg-[#2d2d2d] rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+            <div class="flex flex-row gap-7" style="border-radius:inherit;">
                 <!-- Cover -->
                 <div class="flex justify-start shrink-0 p-6">
                     <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780155625111_gppwilns44.jpg"
@@ -248,26 +268,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Mobile: info below cover -->
-            <div class="flex flex-col md:hidden pt-2 pb-5 px-5">
-                <div>
-                    <h1 class="text-xl font-bold text-gray-900 dark:text-gray-100 leading-snug text-center">
-                        ময়ূরাক্ষী
-                    </h1>
-                    <a href="/author/hymayun-ahmed.html"
-                        class="inline-block mt-1.5 text-sm text-red-600 dark:text-red-400 hover:underline w-full text-center">
-                        হুমায়ূন আহমেদ
-                    </a>
-                    <div class="flex flex-wrap gap-2 mt-3 justify-center">
-                        <a href="/category/uponyas/1/"
-                            class="text-xs bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 px-2.5 py-1 rounded-full hover:bg-red-100 transition-colors">
-                            উপন্যাস
-                        </a>
-                    </div>
-                </div>
-
-            </div>
         </div>
 
         <!-- Mobile Sticky Bottom Bar -->
@@ -285,8 +285,8 @@
         <!-- Mobile bottom spacing so sticky bar doesn't overlap content -->
         <div class="md:hidden h-16"></div>
 
-        <!-- Description -->
-        <div class="mt-4 bg-white dark:bg-[#2d2d2d] rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-5 md:p-6">
+        <!-- Description (Desktop only) -->
+        <div class="hidden md:block mt-4 bg-white dark:bg-[#2d2d2d] rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-5 md:p-6">
             <h2 class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3">বইয়ের বিবরণ</h2>
             <div id="book-description" class="prose-book text-sm leading-relaxed text-gray-700 dark:text-gray-300"></div>
         </div>
@@ -300,7 +300,11 @@
                 gfm: true,
             });
 
-            document.getElementById('book-description').innerHTML = marked.parse(raw);
+            const parsed = marked.parse(raw);
+            const desktopEl = document.getElementById('book-description');
+            const mobileEl = document.getElementById('book-description-mobile');
+            if (desktopEl) desktopEl.innerHTML = parsed;
+            if (mobileEl) mobileEl.innerHTML = parsed;
         </script>
 
         <style>
