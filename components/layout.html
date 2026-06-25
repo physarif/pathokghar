@@ -32,8 +32,8 @@
         /* Sidebar */
         #sidebar {
             position: fixed;
-            top: 0; left: 0;
-            height: 100%;
+            top: 64px; left: 0;
+            height: calc(100% - 64px);
             width: 280px;
             transform: translateX(-100%);
             transition: transform 0.28s cubic-bezier(.4,0,.2,1);
@@ -41,12 +41,14 @@
             overflow-y: auto;
             scrollbar-width: none;
             border-top: none;
+            border-radius: 0 0 12px 0;
         }
         #sidebar.open { transform: translateX(0); }
         #sidebar::-webkit-scrollbar { display: none; }
         #sidebar-overlay {
             position: fixed;
-            inset: 0;
+            top: 64px; left: 0;
+            right: 0; bottom: 0;
             background: rgba(0,0,0,0.45);
             z-index: 199;
             opacity: 0;
