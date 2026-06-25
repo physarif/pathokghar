@@ -28,57 +28,76 @@
     </script>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        header { }
+
         /* Sidebar */
         #sidebar {
             position: fixed;
-            top: 64px; left: 0;
-            height: calc(100% - 64px);
+            top: 0; left: 0;
+            height: 100%;
             width: 240px;
             transform: translateX(-100%);
             transition: transform 0.28s cubic-bezier(.4,0,.2,1);
-            z-index: 200;
+            z-index: 300;
             overflow-y: auto;
             scrollbar-width: none;
-            border-top: none;
-            border-radius: 0 0 12px 0;
+            border-radius: 0 12px 12px 0;
         }
         #sidebar.open { transform: translateX(0); }
         #sidebar::-webkit-scrollbar { display: none; }
+
+        /* Full-screen overlay */
         #sidebar-overlay {
             position: fixed;
-            top: 64px; left: 0;
-            right: 0; bottom: 0;
+            inset: 0;
             background: rgba(0,0,0,0.45);
-            z-index: 199;
+            z-index: 299;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.28s;
         }
         #sidebar-overlay.open { opacity: 1; pointer-events: auto; }
-        #header-overlay {
+
+        /* Floating top bar (hamburger + theme toggle only) */
+        #topbar {
             position: fixed;
-            top: 0; left: 0;
-            right: 0;
-            height: 64px;
-            background: rgba(0,0,0,0.45);
-            z-index: 99;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.28s;
+            top: 0; left: 0; right: 0;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 12px;
+            z-index: 200;
+            background: transparent;
+            transition: background 0.2s;
         }
-        #header-overlay.open { opacity: 1; pointer-events: auto; }
+        body.scrolled #topbar {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #e5e7eb;
+        }
+        html.dark body.scrolled #topbar {
+            background: rgba(26,26,27,0.95);
+            border-bottom: 1px solid #374151;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
 
     <!-- SIDEBAR OVERLAY -->
     <div id="sidebar-overlay"></div>
-    <!-- HEADER DIM OVERLAY -->
-    <div id="header-overlay"></div>
 
     <!-- SIDEBAR -->
-    <aside id="sidebar" class="bg-white dark:bg-[#1a1a1b] shadow-2xl border-r border-gray-200 dark:border-gray-700">
+    <aside id="sidebar" class="bg-white dark:bg-[#242424] shadow-2xl border-r border-gray-200 dark:border-gray-700">
+
+        <!-- Sidebar header -->
+        <div class="flex items-center justify-between px-4 py-4 border-b border-gray-100 dark:border-gray-700">
+            <a href="https://pathokghar.pages.dev" class="text-xl font-extrabold tracking-tighter">
+                পাঠক <span class="font-light text-gray-400">ঘর</span>
+            </a>
+            <button id="sidebar-close-btn" class="p-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 transition">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+        </div>
 
         <!-- Categories -->
         <div class="px-4 pt-5 pb-3">
@@ -113,64 +132,38 @@
 
     </aside>
 
-    <!-- HEADER -->
-    <header class="bg-white dark:bg-[#1a1a1b] fixed top-0 w-full h-16 z-[100] border-b border-gray-200 dark:border-gray-700 shadow-sm transition-transform duration-300 flex">
-        <div class="w-full px-4 h-full flex items-center justify-between gap-3">
+    <!-- FLOATING TOPBAR -->
+    <div id="topbar">
+        <button id="sidebar-btn" class="p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition" title="মেনু">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
+        <button id="theme-btn" class="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition text-gray-600 dark:text-gray-300" title="ডার্ক মোড">
+            <i id="theme-icon" class="fas fa-moon text-lg"></i>
+        </button>
+    </div>
 
-            <!-- Hamburger -->
-            <button id="sidebar-btn" class="p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition shrink-0" title="মেনু">
-                <i class="fas fa-bars text-xl"></i>
+    <!-- HERO SECTION (Wikipedia-style) -->
+    <div class="flex flex-col items-center justify-center pt-24 pb-10 px-4 text-center">
+
+        <!-- Logo / Title -->
+        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tighter mb-2 leading-tight">
+            পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span>
+        </h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mb-8">বাংলা সাহিত্যের ডিজিটাল পাঠাগার</p>
+
+        <!-- Search box -->
+        <div class="w-full max-w-xl relative flex items-center shadow-sm">
+            <input id="main-search-input" type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
+                class="w-full bg-white dark:bg-[#2d2d2d] border border-gray-300 dark:border-gray-600 rounded-l-full py-3 pl-5 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
+            <button id="main-search-btn" class="bg-brand-500 hover:bg-brand-600 text-white px-6 py-3 rounded-r-full text-sm font-medium transition-colors shrink-0 flex items-center gap-2">
+                <i class="fas fa-search text-xs"></i> খুঁজুন
             </button>
-
-            <!-- Logo -->
-            <a href="https://pathokghar.pages.dev" class="text-2xl font-extrabold tracking-tighter hover:bg-gray-100 dark:hover:bg-gray-800 px-2 py-1 rounded transition-colors duration-200 shrink-0 mr-auto md:mr-0">
-                পাঠক <span class="font-light text-gray-400">ঘর</span>
-            </a>
-
-            <!-- Search (desktop) -->
-            <div class="hidden md:flex flex-1">
-                <div class="relative flex-1 flex items-center">
-                    <i class="fas fa-search absolute left-4 text-gray-400 dark:text-gray-500 text-sm pointer-events-none"></i>
-                    <input id="desktop-search-input" type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
-                        class="w-full bg-gray-100 dark:bg-[#2d2d2d] border-0 rounded-full py-2 pl-10 pr-16 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white dark:focus:bg-[#3a3a3a] transition-all">
-                    <button id="desktop-search-btn" class="absolute right-1 bg-brand-500 hover:bg-brand-600 text-white px-4 py-1.5 rounded-full text-sm transition-colors shrink-0">
-                        খুঁজুন
-                    </button>
-                </div>
-            </div>
-
-            <!-- Right side actions -->
-            <div class="flex items-center space-x-2 shrink-0">
-
-                <!-- Mobile search button -->
-                <button id="mobile-search-btn" class="md:hidden p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition" title="খুঁজুন">
-                    <i class="fas fa-search text-xl"></i>
-                </button>
-
-                <!-- Day/Night toggle -->
-                <button id="theme-btn" class="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition text-gray-600 dark:text-gray-300" title="ডার্ক মোড">
-                    <i id="theme-icon" class="fas fa-moon text-lg"></i>
-                </button>
-
-            </div><!-- end right actions -->
-        </div><!-- end header inner -->
-
-        <!-- Mobile search bar (dropdown) -->
-        <div id="mobile-search-bar" class="absolute top-16 left-0 w-full bg-white dark:bg-[#1a1a1b] border-b dark:border-gray-700 px-4 py-3 hidden shadow-lg">
-            <div class="relative flex items-center">
-                <i class="fas fa-search absolute left-4 text-gray-400 dark:text-gray-500 text-sm pointer-events-none"></i>
-                <input id="mobile-search-input" type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
-                    class="w-full bg-gray-100 dark:bg-[#2d2d2d] border-0 rounded-full py-2 pl-10 pr-16 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
-                <button id="mobile-search-submit" class="absolute right-1 bg-brand-500 hover:bg-brand-600 text-white px-4 py-1.5 rounded-full text-sm transition-colors shrink-0">
-                    খুঁজুন
-                </button>
-            </div>
         </div>
 
-    </header>
+    </div>
 
     <!-- MAIN CONTENT -->
-    <main class="flex-1 min-w-0 pt-16">
+    <main class="flex-1 min-w-0">
         <!-- templates/book.html — শুধু content, layout.html এ inject হবে -->
 <main class="flex-1 p-0 md:p-6 min-h-[calc(100vh-3.5rem)]">
     <div class="max-w-3xl mx-auto">
@@ -374,24 +367,43 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-white dark:bg-[#1a1a1b] border-t border-gray-200 dark:border-gray-700">
+    <footer class="bg-white dark:bg-[#1a1a1b] border-t border-gray-200 dark:border-gray-700 mt-8">
 
-        <!-- Mobile: 3 row stack | Desktop: 1 row -->
-        <div class="max-w-6xl mx-auto px-6 py-8">
-            <!-- Desktop: single row | Mobile: column -->
+        <!-- Categories + Authors -->
+        <div class="max-w-6xl mx-auto px-6 pt-8 pb-4 grid grid-cols-2 md:grid-cols-4 gap-6">
+
+            <!-- Categories -->
+            <div class="col-span-1 md:col-span-2">
+                <p class="text-[11px] uppercase font-bold tracking-widest text-gray-400 dark:text-gray-500 mb-3">ক্যাটাগরি</p>
+                <ul class="flex flex-wrap gap-2">
+                    
+                </ul>
+            </div>
+
+            <!-- Authors -->
+            <div class="col-span-1 md:col-span-2">
+                <p class="text-[11px] uppercase font-bold tracking-widest text-gray-400 dark:text-gray-500 mb-3">লেখক</p>
+                <ul class="flex flex-wrap gap-2">
+                    
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="border-t border-gray-100 dark:border-gray-800"></div>
+
+        <!-- Logo + description + socials -->
+        <div class="max-w-6xl mx-auto px-6 py-6">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
 
-                <!-- Logo -->
                 <span class="text-2xl md:text-3xl font-extrabold tracking-tight text-gray-800 dark:text-gray-100 text-center md:text-left shrink-0">
                     পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span>
                 </span>
 
-                <!-- Description — mobile: center, desktop: flex-1 center -->
                 <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed text-center md:flex-1 md:px-8">
                     বাংলা সাহিত্যের এক ডিজিটাল পাঠাগার। বিনামূল্যে পড়ুন, ডাউনলোড করুন — যেকোনো সময়, যেকোনো জায়গা থেকে।
                 </p>
 
-                <!-- Social icons -->
                 <div class="flex items-center justify-center md:justify-end gap-2 shrink-0">
                     <a href="#" aria-label="Twitter" class="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
                         <i class="fab fa-twitter text-sm"></i>
@@ -437,106 +449,57 @@
         const themeBtn = document.getElementById('theme-btn');
         const themeIcon = document.getElementById('theme-icon');
         const html = document.documentElement;
-
-        const header = document.querySelector('header');
         const sidebar = document.getElementById('sidebar');
+
         function applyTheme(dark) {
             if (dark) {
                 html.classList.add('dark');
                 themeIcon.classList.replace('fa-moon', 'fa-sun');
                 localStorage.theme = 'dark';
-                header.style.borderTopColor = '';
-                sidebar.style.borderTopColor = '';
             } else {
                 html.classList.remove('dark');
                 themeIcon.classList.replace('fa-sun', 'fa-moon');
                 localStorage.theme = 'light';
-                header.style.borderTopColor = '';
-                sidebar.style.borderTopColor = '';
             }
         }
-
         applyTheme(localStorage.theme === 'dark');
+        themeBtn.addEventListener('click', () => applyTheme(!html.classList.contains('dark')));
 
-        themeBtn.addEventListener('click', () => {
-            applyTheme(!html.classList.contains('dark'));
+        // Topbar scroll effect
+        window.addEventListener('scroll', () => {
+            document.body.classList.toggle('scrolled', window.scrollY > 10);
         });
 
-        // Mobile search
-        const mobileSearchBtn = document.getElementById('mobile-search-btn');
-        const mobileSearchBar = document.getElementById('mobile-search-bar');
-
-        mobileSearchBtn.addEventListener('click', () => {
-            mobileSearchBar.classList.toggle('hidden');
-            if (!mobileSearchBar.classList.contains('hidden')) {
-                mobileSearchBar.querySelector('input').focus();
-            }
-        });
-
-        // Search functionality
+        // Search
         function doSearch(query) {
             if (query.trim()) {
                 window.location.href = '/search.html?q=' + encodeURIComponent(query.trim());
             }
         }
-
-        const desktopInput = document.getElementById('desktop-search-input');
-        const desktopBtn = document.getElementById('desktop-search-btn');
-        const mobileInput = document.getElementById('mobile-search-input');
-        const mobileSubmit = document.getElementById('mobile-search-submit');
-
-        desktopBtn.addEventListener('click', () => doSearch(desktopInput.value));
-        desktopInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(desktopInput.value); });
-
-        mobileSubmit.addEventListener('click', () => doSearch(mobileInput.value));
-        mobileInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(mobileInput.value); });
-
-        // Hide header on scroll down, show on scroll up (mobile only)
-        let lastScrollY = window.scrollY;
-        let ticking = false;
-
-        window.addEventListener('scroll', () => {
-            if (ticking) return;
-            ticking = true;
-            requestAnimationFrame(() => {
-                const currentScrollY = window.scrollY;
-                    if (currentScrollY > lastScrollY && currentScrollY > 56) {
-                        header.style.transform = 'translateY(-100%)';
-                    } else {
-                        header.style.transform = 'translateY(0)';
-                    }
-                    lastScrollY = currentScrollY;
-                ticking = false;
-            });
-        });
-
+        const mainInput = document.getElementById('main-search-input');
+        document.getElementById('main-search-btn').addEventListener('click', () => doSearch(mainInput.value));
+        mainInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(mainInput.value); });
 
         // Sidebar
         const sidebarBtn = document.getElementById('sidebar-btn');
+        const sidebarCloseBtn = document.getElementById('sidebar-close-btn');
         const overlay = document.getElementById('sidebar-overlay');
-        const headerOverlay = document.getElementById('header-overlay');
 
         function openSidebar() {
             sidebar.classList.add('open');
             overlay.classList.add('open');
-            headerOverlay.classList.add('open');
             document.body.style.overflow = 'hidden';
-            header.style.transform = 'translateY(0)';
         }
         function closeSidebar() {
             sidebar.classList.remove('open');
             overlay.classList.remove('open');
-            headerOverlay.classList.remove('open');
             document.body.style.overflow = '';
         }
 
-        sidebarBtn.addEventListener('click', () => {
-            sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
-        });
+        sidebarBtn.addEventListener('click', openSidebar);
+        sidebarCloseBtn.addEventListener('click', closeSidebar);
         overlay.addEventListener('click', closeSidebar);
-        headerOverlay.addEventListener('click', closeSidebar);
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
-
     </script>
 
 </body>
