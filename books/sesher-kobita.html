@@ -32,21 +32,23 @@
         /* Sidebar */
         #sidebar {
             position: fixed;
-            top: 0; left: 0;
-            height: 100%;
-            width: 280px;
+            top: 64px; left: 0;
+            height: calc(100% - 64px);
+            width: 240px;
             transform: translateX(-100%);
             transition: transform 0.28s cubic-bezier(.4,0,.2,1);
             z-index: 200;
             overflow-y: auto;
             scrollbar-width: none;
             border-top: none;
+            border-radius: 0 0 12px 0;
         }
         #sidebar.open { transform: translateX(0); }
         #sidebar::-webkit-scrollbar { display: none; }
         #sidebar-overlay {
             position: fixed;
-            inset: 0;
+            top: 64px; left: 0;
+            right: 0; bottom: 0;
             background: rgba(0,0,0,0.45);
             z-index: 199;
             opacity: 0;
@@ -503,18 +505,32 @@
         const sidebarBtn = document.getElementById('sidebar-btn');
         const overlay = document.getElementById('sidebar-overlay');
 
+        const sidebarIcon = sidebarBtn.querySelector('i');
+
         function openSidebar() {
             sidebar.classList.add('open');
             overlay.classList.add('open');
             document.body.style.overflow = 'hidden';
+            sidebarIcon.classList.replace('fa-bars', 'fa-times');
+            // header এর সব elements disable (sidebar-btn বাদে)
+            header.querySelectorAll('a, button, input').forEach(el => {
+                if (el !== sidebarBtn) el.style.pointerEvents = 'none';
+            });
         }
         function closeSidebar() {
             sidebar.classList.remove('open');
             overlay.classList.remove('open');
             document.body.style.overflow = '';
+            sidebarIcon.classList.replace('fa-times', 'fa-bars');
+            // header restore
+            header.querySelectorAll('a, button, input').forEach(el => {
+                el.style.pointerEvents = '';
+            });
         }
 
-        sidebarBtn.addEventListener('click', openSidebar);
+        sidebarBtn.addEventListener('click', () => {
+            sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+        });
         overlay.addEventListener('click', closeSidebar);
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
 
