@@ -43,7 +43,7 @@
             border-top: none;
             border-radius: 0 0 12px 0;
         }
-        #sidebar.open { transform: translateX(0); }
+        #sidebar.open { transform: translateX(0); top: 0; height: 100%; }
         #sidebar::-webkit-scrollbar { display: none; }
         #sidebar-overlay {
             position: fixed;
@@ -55,7 +55,7 @@
             pointer-events: none;
             transition: opacity 0.28s;
         }
-        #sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+        #sidebar-overlay.open { opacity: 1; pointer-events: auto; top: 0; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
@@ -447,27 +447,17 @@
         const sidebarBtn = document.getElementById('sidebar-btn');
         const overlay = document.getElementById('sidebar-overlay');
 
-        const sidebarIcon = sidebarBtn.querySelector('i');
-
         function openSidebar() {
             sidebar.classList.add('open');
             overlay.classList.add('open');
             document.body.style.overflow = 'hidden';
-            sidebarIcon.classList.replace('fa-bars', 'fa-times');
-            // header এর সব elements disable (sidebar-btn বাদে)
-            header.querySelectorAll('a, button, input').forEach(el => {
-                if (el !== sidebarBtn) el.style.pointerEvents = 'none';
-            });
+            header.style.transform = 'translateY(-100%)';
         }
         function closeSidebar() {
             sidebar.classList.remove('open');
             overlay.classList.remove('open');
             document.body.style.overflow = '';
-            sidebarIcon.classList.replace('fa-times', 'fa-bars');
-            // header restore
-            header.querySelectorAll('a, button, input').forEach(el => {
-                el.style.pointerEvents = '';
-            });
+            header.style.transform = 'translateY(0)';
         }
 
         sidebarBtn.addEventListener('click', () => {
