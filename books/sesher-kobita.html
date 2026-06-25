@@ -229,6 +229,9 @@
 
         <!-- Book Card -->
         <div class="bg-white dark:bg-[#2d2d2d] p-4">
+            <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780242158760_3rivje7ps4o.webp"
+                alt="শেষের কবিতা"
+                class="float-left w-28 rounded object-cover aspect-[2/3] mr-4">
             <div class="flex gap-2 mb-3">
                 <a href="/read/sesher-kobita.html"
                     class="flex-1 flex items-center justify-center bg-[#c0392b] hover:bg-[#a93226] text-white text-sm font-medium py-2 rounded transition-colors">
@@ -239,11 +242,7 @@
                     ডাউনলোড
                 </a>
             </div>
-            <div id="book-description-mobile" class="prose-book text-lg leading-relaxed text-gray-700 dark:text-gray-300 text-justify">
-                <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780242158760_3rivje7ps4o.webp"
-                    alt="শেষের কবিতা"
-                    class="float-left w-28 rounded object-cover aspect-[2/3] mr-4 mb-0">
-            </div>
+            <div id="book-description-mobile" class="prose-book text-lg leading-relaxed text-gray-700 dark:text-gray-300 text-justify"></div>
             <div class="clear-both"></div>
         </div>
 
@@ -262,15 +261,7 @@
 
             const parsed = marked.parse(raw);
             const mobileEl = document.getElementById('book-description-mobile');
-            if (mobileEl) {
-                const img = mobileEl.querySelector('img');
-                const temp = document.createElement('div');
-                temp.innerHTML = parsed;
-                // Insert parsed content after the image
-                while (temp.firstChild) {
-                    mobileEl.appendChild(temp.firstChild);
-                }
-            }
+            if (mobileEl) mobileEl.innerHTML = parsed;
         </script>
 
         <style>
