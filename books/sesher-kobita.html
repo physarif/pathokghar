@@ -196,7 +196,7 @@
     <!-- MAIN CONTENT -->
     <main class="flex-1 min-w-0 pt-16">
         <!-- templates/book.html — শুধু content, layout.html এ inject হবে -->
-<main class="flex-1 p-4 md:p-6 min-h-[calc(100vh-3.5rem)]">
+<main class="flex-1 px-0 py-4 md:p-6 min-h-[calc(100vh-3.5rem)]">
     <div class="max-w-3xl mx-auto">
 
         <!-- Mobile Breadcrumb -->
@@ -228,9 +228,7 @@
                         <i class="fas fa-download text-xs"></i> ডাউনলোড
                     </a>
                 </div>
-                <div id="book-description-mobile" class="prose-book text-sm leading-relaxed text-gray-700 dark:text-gray-300 text-justify">
-                    <span class="font-semibold text-gray-500 dark:text-gray-400">বইয়ের বিবরণঃ </span>
-                </div>
+                <div id="book-description-mobile" class="prose-book text-sm leading-relaxed text-gray-700 dark:text-gray-300 text-justify"></div>
             </div>
         </div>
 
@@ -315,21 +313,7 @@
             const desktopEl = document.getElementById('book-description');
             const mobileEl = document.getElementById('book-description-mobile');
             if (desktopEl) desktopEl.innerHTML = parsed;
-            if (mobileEl) {
-                const span = mobileEl.querySelector('span');
-                const temp = document.createElement('div');
-                temp.innerHTML = parsed;
-                // Prepend label into first paragraph if exists, else just append
-                const firstP = temp.querySelector('p');
-                if (firstP && span) {
-                    firstP.prepend(span);
-                    mobileEl.innerHTML = temp.innerHTML;
-                } else {
-                    mobileEl.innerHTML = '';
-                    if (span) mobileEl.appendChild(span);
-                    mobileEl.innerHTML += parsed;
-                }
-            }
+            if (mobileEl) mobileEl.innerHTML = parsed;
         </script>
 
         <style>
