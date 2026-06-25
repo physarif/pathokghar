@@ -73,20 +73,6 @@ function buildSidebarHTML(bookList, authorsRaw, categoriesRaw) {
   };
 }
 
-// ── Author page book card ──────────────────────────────────────────────────
-// Card design পরিবর্তন করতে হলে শুধু এই function টা edit করো
-function authorBookCard(book) {
-  return `
-    <a href="/books/${book.slug}.html" class="group">
-      <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
-        <img src="${book.cover}" alt="${book.title}" class="w-full aspect-[2/3] object-cover" loading="lazy">
-      </div>
-      <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">${book.title}</p>
-      <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">${book.category_name}</p>
-    </a>`;
-}
-// ───────────────────────────────────────────────────────────────────────────
-
 async function generateBookPages() {
   console.log('📚 Firebase থেকে data fetch করছি...');
 
@@ -262,14 +248,19 @@ async function generateAuthorPages(bookList, authorsRaw, categoriesRaw) {
   }
 
   for (const [slug, data] of Object.entries(byAuthor)) {
-    const booksGrid = data.books.map(authorBookCard).join('');
+    const booksData = JSON.stringify(data.books.map(b => ({
+      slug: b.slug,
+      title: b.title,
+      cover: b.cover,
+      category_name: b.category_name,
+    }))).replace(/\/g, '\\').replace(/`/g, '\`');
 
     const authorContent = render(authorTemplate, {
       author_name: data.name,
       author_img: data.img,
       author_desc: data.desc,
       author_book_count: data.books.length,
-      author_books_grid: booksGrid,
+      author_books_data: booksData,
     });
     const { sidebar_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
     const fullPage = render(layout, {
