@@ -253,7 +253,7 @@ async function generateAuthorPages(bookList, authorsRaw, categoriesRaw) {
       title: b.title,
       cover: b.cover,
       category_name: b.category_name,
-    }))).replace(/\/g, '\\').replace(/`/g, '\`');
+    })));
 
     const authorContent = render(authorTemplate, {
       author_name: data.name,
