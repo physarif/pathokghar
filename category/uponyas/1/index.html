@@ -55,9 +55,9 @@
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
 
     <!-- TOP AD BAR -->
-    <div id="top-ad-bar" class="bg-white dark:bg-[#242424] border-b border-gray-200 dark:border-gray-700 shadow-sm flex items-center justify-center py-2 px-4 min-h-[60px]">
+    <div id="top-ad-bar" class="bg-white dark:bg-[#242424] border-b border-gray-200 dark:border-gray-700 shadow-sm w-full">
         <script async="async" data-cfasync="false" src="https://pl29879678.effectivecpmnetwork.com/1ba5ec58502e6eb05148bf0c6aab709b/invoke.js"></script>
-        <div id="container-1ba5ec58502e6eb05148bf0c6aab709b"></div>
+        <div id="container-1ba5ec58502e6eb05148bf0c6aab709b" style="width:100%;display:block;"></div>
     </div>
     <!-- TOGGLE BUTTON -->
     <div id="top-ad-toggle" title="বিজ্ঞাপন লুকাও">
@@ -393,7 +393,11 @@
             topAdToggle.style.top = h + 'px';
         }
 
-        topAdBar.addEventListener('transitionend', updateTogglePos);
+        // Ad load হলে height update করো
+        const adObserver = new MutationObserver(updateTogglePos);
+        adObserver.observe(topAdBar, { childList: true, subtree: true, attributes: true });
+        window.addEventListener('resize', updateTogglePos);
+        setTimeout(updateTogglePos, 2000); // fallback
         updateTogglePos();
 
         topAdToggle.addEventListener('click', () => {
