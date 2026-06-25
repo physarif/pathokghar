@@ -236,17 +236,62 @@
         <h2 class="text-base font-bold text-gray-800 dark:text-gray-100">লেখকের বইসমূহ</h2>
         <span class="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2.5 py-1 rounded-full">মোট 1</span>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-        
-    <a href="/books/hyaro-glifer-deshe.html" class="group">
-      <div class="rounded-lg overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2d2d2d] group-hover:shadow-md transition-shadow">
-        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782121390866_v3a354vbap.webp" alt="হায়ারোগ্লিফের দেশে" class="w-full aspect-[2/3] object-cover" loading="lazy">
-      </div>
-      <p class="mt-1.5 text-xs font-medium text-gray-800 dark:text-gray-200 line-clamp-2 leading-snug">হায়ারোগ্লিফের দেশে</p>
-      <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">ইতিহাস</p>
-    </a>
-    </div>
+    <!-- Book grid — card HTML/CSS এখানেই, generate_pages.js শুধু data inject করে -->
+    <div id="author-books-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4"></div>
+    <script type="application/json" id="author-books-json">[{"slug":"hyaro-glifer-deshe","title":"হায়ারোগ্লিফের দেশে","cover":"https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782121390866_v3a354vbap.webp","category_name":"ইতিহাস"}]</script>
 </div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     AUTHOR BOOK CARD — design এখানে পরিবর্তন করো
+     ═══════════════════════════════════════════════════════════ -->
+<style>
+/* Book card */
+.ab-card {
+    display: block;
+    text-decoration: none;
+}
+.ab-card:hover .ab-img-wrap {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.ab-img-wrap {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    transition: box-shadow 0.2s;
+}
+.dark .ab-img-wrap {
+    border-color: #374151;
+    background: #2d2d2d;
+}
+.ab-img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    display: block;
+}
+.ab-title {
+    margin-top: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #1f2937;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+    text-align: center;
+}
+.dark .ab-title { color: #e5e7eb; }
+.ab-category {
+    font-size: 0.6875rem;
+    color: #6b7280;
+    margin-top: 2px;
+    text-align: center;
+}
+.dark .ab-category { color: #9ca3af; }
+</style>
 
 <!-- Markdown styles for author description -->
 <style>
@@ -278,12 +323,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
 <script>
 (function () {
+    // ── Description markdown render ──
     var rawDesc = ``;
-
     marked.setOptions({ breaks: true, gfm: true });
+    var descEl = document.getElementById('author-desc-md');
+    if (descEl) descEl.innerHTML = marked.parse(rawDesc);
 
-    var el = document.getElementById('author-desc-md');
-    if (el) el.innerHTML = marked.parse(rawDesc);
+    // ── Book grid render ──
+    var books = JSON.parse(document.getElementById('author-books-json').textContent);
+    var grid  = document.getElementById('author-books-grid');
+    if (grid && books.length) {
+        grid.innerHTML = books.map(function(book) {
+            return '<a href="/books/' + book.slug + '.html" class="ab-card">'
+                + '<div class="ab-img-wrap">'
+                + '<img src="' + book.cover + '" alt="' + book.title + '" class="ab-img" loading="lazy">'
+                + '</div>'
+                + '<p class="ab-title">' + book.title + '</p>'
+                + '<p class="ab-category">' + book.category_name + '</p>'
+                + '</a>';
+        }).join('');
+    }
 })();
 </script>
 
