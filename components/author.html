@@ -1,13 +1,17 @@
-<div class="px-4 md:px-6 mb-6">
-    <div class="bg-white dark:bg-[#2d2d2d] rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5 md:p-6">
-        <div class="flex flex-col md:flex-row gap-5 md:gap-7 items-center md:items-start">
+<div class="md:px-6 mb-6">
+    <div class="bg-white dark:bg-[#2d2d2d] md:rounded-xl shadow-sm md:border border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
+        <!-- Mobile: image left + name right, desc full width below -->
+        <div class="flex flex-wrap md:flex-nowrap gap-4 md:gap-7 md:items-start">
             <div class="shrink-0">
-                <img src="{{author_img}}" alt="{{author_name}}" class="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-4 border-gray-100 dark:border-gray-700 shadow-md">
+                <img src="{{author_img}}" alt="{{author_name}}" class="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-4 border-gray-100 dark:border-gray-700 shadow-md">
             </div>
-            <div class="flex-1 text-center md:text-left">
-                <h1 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1">{{author_name}}</h1>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mb-3 leading-relaxed">{{author_desc}}</p>
+            <div class="flex-1 min-w-0 md:text-left">
+                <h1 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1 leading-snug">{{author_name}}</h1>
+                <!-- Desktop description -->
+                <div id="author-desc-desktop" class="hidden md:block author-desc-md text-sm text-gray-500 dark:text-gray-400 mb-3 leading-relaxed"></div>
             </div>
+            <!-- Mobile description: full width below image+name row -->
+            <div id="author-desc-mobile" class="md:hidden w-full author-desc-md text-sm text-gray-500 dark:text-gray-400 leading-relaxed -mt-1"></div>
         </div>
     </div>
 </div>
@@ -20,4 +24,51 @@
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
         {{author_books_grid}}
     </div>
-</div
+</div>
+
+<!-- Markdown styles for author description -->
+<style>
+.author-desc-md p { margin-bottom: 0.5rem; }
+.author-desc-md p:last-child { margin-bottom: 0; }
+.author-desc-md strong { font-weight: 600; color: inherit; }
+.author-desc-md em { font-style: italic; }
+.author-desc-md a { color: #6366f1; text-decoration: underline; }
+.author-desc-md a:hover { color: #4f46e5; }
+.author-desc-md ul { list-style: disc; padding-left: 1.25rem; margin-bottom: 0.5rem; }
+.author-desc-md ol { list-style: decimal; padding-left: 1.25rem; margin-bottom: 0.5rem; }
+.author-desc-md li { margin-bottom: 0.2rem; }
+.author-desc-md h1,.author-desc-md h2,.author-desc-md h3 { font-weight: 700; margin-bottom: 0.4rem; color: inherit; }
+.author-desc-md h1 { font-size: 1rem; }
+.author-desc-md h2 { font-size: 0.95rem; }
+.author-desc-md h3 { font-size: 0.875rem; }
+.author-desc-md blockquote { border-left: 3px solid #d1d5db; padding-left: 0.75rem; color: #9ca3af; margin: 0.5rem 0; font-style: italic; }
+.dark .author-desc-md blockquote { border-left-color: #4b5563; color: #6b7280; }
+.author-desc-md code { background: #f3f4f6; border-radius: 3px; padding: 0.1rem 0.3rem; font-size: 0.8rem; font-family: monospace; }
+.dark .author-desc-md code { background: #374151; }
+.author-desc-md pre { background: #f3f4f6; border-radius: 6px; padding: 0.75rem; overflow-x: auto; margin: 0.5rem 0; }
+.dark .author-desc-md pre { background: #1f2937; }
+.author-desc-md pre code { background: none; padding: 0; }
+.author-desc-md hr { border: none; border-top: 1px solid #e5e7eb; margin: 0.75rem 0; }
+.dark .author-desc-md hr { border-top-color: #374151; }
+</style>
+
+<!-- marked.js for markdown rendering -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+<script>
+(function () {
+    var rawDesc = `{{author_desc}}`;
+
+    // Configure marked
+    marked.setOptions({
+        breaks: true,   // \n → <br>
+        gfm: true       // GitHub Flavored Markdown
+    });
+
+    var html = marked.parse(rawDesc);
+
+    var desktop = document.getElementById('author-desc-desktop');
+    var mobile  = document.getElementById('author-desc-mobile');
+    if (desktop) desktop.innerHTML = html;
+    if (mobile)  mobile.innerHTML  = html;
+})();
+</script>
