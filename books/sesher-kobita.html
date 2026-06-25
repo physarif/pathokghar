@@ -54,7 +54,6 @@
             transition: opacity 0.28s;
         }
         #sidebar-overlay.open { opacity: 1; pointer-events: auto; }
-        #sb-google-login:active i { color: #c0392b; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
@@ -136,32 +135,6 @@
                 <button id="theme-btn" class="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition text-gray-600 dark:text-gray-300" title="ডার্ক মোড">
                     <i id="theme-icon" class="fas fa-moon text-lg"></i>
                 </button>
-
-                <!-- Login / Profile -->
-                <div class="relative">
-                    <!-- Logged OUT: Login button -->
-                    <button id="header-login-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-                        <i class="fas fa-sign-in-alt text-base"></i>
-                        <span>Login</span>
-                    </button>
-
-                    <!-- Logged IN: Profile picture -->
-                    <button id="header-profile-btn" class="hidden w-9 h-9 rounded-xl overflow-hidden border-2 border-[#c0392b]/40 hover:border-[#c0392b] transition shrink-0">
-                        <img id="header-user-photo" src="" alt="User" class="w-full h-full object-cover">
-                    </button>
-
-                    <!-- Profile dropdown -->
-                    <div id="profile-dropdown" class="hidden absolute right-0 top-12 w-56 bg-white dark:bg-[#242424] rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 z-50 overflow-hidden">
-                        <div class="px-4 py-3 border-b border-gray-100 dark:border-gray-700">
-                            <p id="dropdown-user-name" class="font-semibold text-sm text-gray-800 dark:text-gray-100 truncate"></p>
-                            <p id="dropdown-user-email" class="text-[11px] text-gray-400 dark:text-gray-500 truncate mt-0.5"></p>
-                        </div>
-                        <button id="header-logout-btn" class="w-full flex items-center gap-2 px-4 py-3 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-[#2d1a0e] transition">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span>লগআউট</span>
-                        </button>
-                    </div>
-                </div>
 
             </div><!-- end right actions -->
         </div><!-- end header inner -->
@@ -545,55 +518,7 @@
         overlay.addEventListener('click', closeSidebar);
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
 
-        // Header Login / Profile
-        const headerLoginBtn   = document.getElementById('header-login-btn');
-        const headerProfileBtn = document.getElementById('header-profile-btn');
-        const headerUserPhoto  = document.getElementById('header-user-photo');
-        const profileDropdown  = document.getElementById('profile-dropdown');
-        const dropdownUserName = document.getElementById('dropdown-user-name');
-        const dropdownUserEmail= document.getElementById('dropdown-user-email');
-        const headerLogoutBtn  = document.getElementById('header-logout-btn');
-
-        function setLoggedIn(user) {
-            headerLoginBtn.classList.add('hidden');
-            headerProfileBtn.classList.remove('hidden');
-            headerUserPhoto.src = user.photoURL || '';
-            dropdownUserName.textContent  = user.displayName || '';
-            dropdownUserEmail.textContent = user.email || '';
-        }
-
-        function setLoggedOut() {
-            headerLoginBtn.classList.remove('hidden');
-            headerProfileBtn.classList.add('hidden');
-            profileDropdown.classList.add('hidden');
-        }
-
-        headerLoginBtn.addEventListener('click', () => {
-            if (typeof googleLogin === 'function') googleLogin();
-        });
-
-        headerProfileBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            profileDropdown.classList.toggle('hidden');
-        });
-
-        headerLogoutBtn.addEventListener('click', () => {
-            profileDropdown.classList.add('hidden');
-            if (typeof doLogout === 'function') doLogout();
-        });
-
-        document.addEventListener('click', () => {
-            profileDropdown.classList.add('hidden');
-        });
-
-        // Expose for firebase.js
-        window.onAuthLogin  = setLoggedIn;
-        window.onAuthLogout = setLoggedOut;
-
     </script>
 
-
-
-    <script type="module" src="/firebase.js"></script>
 </body>
 </html>
