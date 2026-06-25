@@ -197,18 +197,15 @@
     <main class="flex-1 min-w-0 pt-16">
         <div class="md:px-6 mb-6">
     <div class="bg-white dark:bg-[#2d2d2d] md:rounded-xl shadow-sm md:border border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
-        <!-- Mobile: image left + name right, desc full width below -->
-        <div class="flex flex-wrap md:flex-nowrap gap-4 md:gap-7 md:items-start">
+        <div class="flex gap-4 md:gap-7 items-start">
             <div class="shrink-0">
                 <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1779968813055_fq7m4h9bb8.jpg" alt="হুমায়ুন আজাদ" class="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-4 border-gray-100 dark:border-gray-700 shadow-md">
             </div>
-            <div class="flex-1 min-w-0 md:text-left">
-                <h1 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1 leading-snug">হুমায়ুন আজাদ</h1>
-                <!-- Desktop description -->
-                <div id="author-desc-desktop" class="hidden md:block author-desc-md text-sm text-gray-500 dark:text-gray-400 mb-3 leading-relaxed"></div>
+            <div class="flex-1 min-w-0">
+                <h1 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2 leading-snug">হুমায়ুন আজাদ</h1>
+                <!-- Description: starts right below name, expands full width -->
+                <div id="author-desc-md" class="author-desc-md text-base text-gray-500 dark:text-gray-400 leading-relaxed"></div>
             </div>
-            <!-- Mobile description: full width below image+name row -->
-            <div id="author-desc-mobile" class="md:hidden w-full author-desc-md text-sm text-gray-500 dark:text-gray-400 leading-relaxed -mt-1"></div>
         </div>
     </div>
 </div>
@@ -249,12 +246,12 @@
 .author-desc-md ol { list-style: decimal; padding-left: 1.25rem; margin-bottom: 0.5rem; }
 .author-desc-md li { margin-bottom: 0.2rem; }
 .author-desc-md h1,.author-desc-md h2,.author-desc-md h3 { font-weight: 700; margin-bottom: 0.4rem; color: inherit; }
-.author-desc-md h1 { font-size: 1rem; }
-.author-desc-md h2 { font-size: 0.95rem; }
-.author-desc-md h3 { font-size: 0.875rem; }
+.author-desc-md h1 { font-size: 1.1rem; }
+.author-desc-md h2 { font-size: 1rem; }
+.author-desc-md h3 { font-size: 0.95rem; }
 .author-desc-md blockquote { border-left: 3px solid #d1d5db; padding-left: 0.75rem; color: #9ca3af; margin: 0.5rem 0; font-style: italic; }
 .dark .author-desc-md blockquote { border-left-color: #4b5563; color: #6b7280; }
-.author-desc-md code { background: #f3f4f6; border-radius: 3px; padding: 0.1rem 0.3rem; font-size: 0.8rem; font-family: monospace; }
+.author-desc-md code { background: #f3f4f6; border-radius: 3px; padding: 0.1rem 0.3rem; font-size: 0.85rem; font-family: monospace; }
 .dark .author-desc-md code { background: #374151; }
 .author-desc-md pre { background: #f3f4f6; border-radius: 6px; padding: 0.75rem; overflow-x: auto; margin: 0.5rem 0; }
 .dark .author-desc-md pre { background: #1f2937; }
@@ -269,18 +266,10 @@
 (function () {
     var rawDesc = ``;
 
-    // Configure marked
-    marked.setOptions({
-        breaks: true,   // \n → <br>
-        gfm: true       // GitHub Flavored Markdown
-    });
+    marked.setOptions({ breaks: true, gfm: true });
 
-    var html = marked.parse(rawDesc);
-
-    var desktop = document.getElementById('author-desc-desktop');
-    var mobile  = document.getElementById('author-desc-mobile');
-    if (desktop) desktop.innerHTML = html;
-    if (mobile)  mobile.innerHTML  = html;
+    var el = document.getElementById('author-desc-md');
+    if (el) el.innerHTML = marked.parse(rawDesc);
 })();
 </script>
 
