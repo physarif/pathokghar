@@ -35,12 +35,12 @@
     <!-- HERO SECTION (Wikipedia-style) -->
     <div class="flex flex-col items-center justify-center pt-12 pb-6 px-4 text-center">
 
-        <!-- Date & Time -->
-        <p id="datetime-display" class="text-sm text-gray-400 dark:text-gray-500 mb-4 tracking-wide"></p>
-
-        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 leading-tight">
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-2 leading-tight">
             <a href="https://pathokghar.pages.dev" class="hover:text-brand-500 active:text-brand-500 transition-colors">পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span></a>
         </h1>
+
+        <!-- Date & Time -->
+        <p id="datetime-display" class="text-sm text-gray-400 dark:text-gray-500 mb-4 tracking-wide"></p>
 
         <!-- Search box -->
         <div class="w-full max-w-xl relative flex items-center bg-white dark:bg-[#2d2d2d] border border-gray-200 dark:border-gray-600 rounded-full shadow-md focus-within:ring-2 focus-within:ring-brand-500 focus-within:border-transparent transition-all">
@@ -470,23 +470,57 @@
     </footer>
 
     <script>
-        // Date & Time
+        // Date & Time (বঙ্গাব্দ)
         const bnDays = ['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
-        const bnMonths = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+        const bnMonths = ['বৈশাখ','জ্যৈষ্ঠ','আষাঢ়','শ্রাবণ','ভাদ্র','আশ্বিন','কার্তিক','অগ্রহায়ণ','পৌষ','মাঘ','ফাল্গুন','চৈত্র'];
+        // Bangla month start dates (approximate, Gregorian)
+        const bnMonthStarts = [
+            [4,14],[5,15],[6,15],[7,16],[8,16],[9,16],
+            [10,16],[11,15],[12,15],[1,14],[2,13],[3,14]
+        ];
         function toBnNum(n) {
             return String(n).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+        }
+        function getBanglaDate(now) {
+            const gMonth = now.getMonth() + 1;
+            const gDay = now.getDate();
+            const gYear = now.getFullYear();
+            let bnMonth, bnDay, bnYear;
+            // find current bangla month
+            for (let i = 0; i < 12; i++) {
+                const [m, d] = bnMonthStarts[i];
+                const [nm, nd] = bnMonthStarts[(i + 1) % 12];
+                const start = new Date(gYear, m - 1, d);
+                let endYear = gYear;
+                if (nm < m || (nm === m && nd < d)) endYear = gYear + 1;
+                const end = new Date(endYear, nm - 1, nd);
+                const cur = new Date(gYear, gMonth - 1, gDay);
+                if (cur >= start && cur < end) {
+                    bnMonth = i;
+                    bnDay = Math.floor((cur - start) / 86400000) + 1;
+                    // Bangla year = Gregorian year - 593 or 594
+                    bnYear = (m >= 4) ? gYear - 593 : gYear - 594;
+                    break;
+                }
+            }
+            return { bnDay, bnMonth, bnYear };
         }
         function updateDateTime() {
             const now = new Date();
             const day = bnDays[now.getDay()];
-            const date = toBnNum(now.getDate());
-            const month = bnMonths[now.getMonth()];
-            const year = toBnNum(now.getFullYear());
+            const { bnDay, bnMonth, bnYear } = getBanglaDate(now);
+            const month = bnMonths[bnMonth];
             const h = toBnNum(String(now.getHours()).padStart(2,'0'));
             const m = toBnNum(String(now.getMinutes()).padStart(2,'0'));
             const s = toBnNum(String(now.getSeconds()).padStart(2,'0'));
             const el = document.getElementById('datetime-display');
-            if (el) el.textContent = `${day}, ${date} ${month} ${year} | ${h}:${m}:${s}`;
+            if (el) el.innerHTML =
+                `<span class="text-gray-400 dark:text-gray-500">${day}, </span>` +
+                `<span class="font-bold text-gray-600 dark:text-gray-300">${toBnNum(bnDay)}</span>` +
+                `<span class="text-gray-400 dark:text-gray-500"> ${month} </span>` +
+                `<span class="font-bold text-gray-600 dark:text-gray-300">${toBnNum(bnYear)}</span>` +
+                `<span class="text-gray-400 dark:text-gray-500"> | </span>` +
+                `<span class="font-bold text-gray-600 dark:text-gray-300">${h}:${m}:${s}</span>`;
         }
         updateDateTime();
         setInterval(updateDateTime, 1000);
