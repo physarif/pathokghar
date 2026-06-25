@@ -26,25 +26,51 @@
             }
         }
     </script>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { font-family: 'Hind Siliguri', 'Segoe UI', sans-serif; }
+        .hero-wrap {
+            background: radial-gradient(ellipse at 50% 0%, rgba(192,57,43,0.07) 0%, transparent 70%);
+        }
+        html.dark .hero-wrap {
+            background: radial-gradient(ellipse at 50% 0%, rgba(192,57,43,0.11) 0%, transparent 70%);
+        }
+        .hero-divider {
+            width: 44px; height: 3px;
+            background: linear-gradient(90deg, #c0392b, #e74c3c);
+            border-radius: 2px;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
 
-    <!-- HERO SECTION (Wikipedia-style) -->
-    <div class="flex flex-col items-center justify-center pt-20 pb-10 px-4 text-center">
+    <!-- HERO SECTION -->
+    <div class="hero-wrap flex flex-col items-center justify-center pt-20 pb-12 px-4 text-center">
 
-        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tighter mb-2 leading-tight">
-            <a href="https://pathokghar.pages.dev" class="hover:text-brand-500 active:text-brand-500 transition-colors">পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span></a>
+        <!-- Icon -->
+        <div class="w-14 h-14 rounded-2xl bg-brand-500 flex items-center justify-center mb-5 shadow-lg">
+            <i class="fas fa-book-open text-white text-2xl"></i>
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-3 leading-tight">
+            <a href="https://pathokghar.pages.dev" class="hover:text-brand-500 active:text-brand-500 transition-colors">
+                পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span>
+            </a>
         </h1>
-        <p class="text-sm text-gray-500 dark:text-gray-400 mb-8">বাংলা সাহিত্যের ডিজিটাল পাঠাগার</p>
+
+        <!-- Divider -->
+        <div class="hero-divider mb-4"></div>
+
+        <!-- Tagline -->
+        <p class="text-base text-gray-500 dark:text-gray-400 mb-8 font-light tracking-wide">বাংলা বইয়ের ডিজিটাল পাঠাগার</p>
 
         <!-- Search box -->
-        <div class="w-full max-w-xl relative flex items-center shadow-sm">
+        <div class="w-full max-w-xl relative flex items-center shadow-md rounded-full">
             <input id="main-search-input" type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
-                class="w-full bg-white dark:bg-[#2d2d2d] border border-gray-300 dark:border-gray-600 rounded-l-full py-3 pl-5 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
-            <button id="main-search-btn" class="bg-brand-500 hover:bg-brand-600 text-white px-6 py-3 rounded-r-full text-sm font-medium transition-colors shrink-0 flex items-center gap-2">
+                class="w-full bg-white dark:bg-[#2d2d2d] border border-gray-200 dark:border-gray-600 rounded-l-full py-3.5 pl-6 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
+            <button id="main-search-btn" class="bg-brand-500 hover:bg-brand-600 text-white px-6 py-3.5 rounded-r-full text-sm font-semibold transition-colors shrink-0 flex items-center gap-2">
                 <i class="fas fa-search text-xs"></i> খুঁজুন
             </button>
         </div>
