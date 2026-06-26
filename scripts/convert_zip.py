@@ -130,6 +130,17 @@ def process_html_fragment(raw_html, images):
 
     body = soup.find('body') or soup
 
+    # ── <pre> → <p> (newline → <br>) ──
+    for pre in body.find_all('pre'):
+        p = soup.new_tag('p')
+        text = pre.get_text()
+        lines = text.split('\n')
+        for i, line in enumerate(lines):
+            p.append(line)
+            if i < len(lines) - 1:
+                p.append(soup.new_tag('br'))
+        pre.replace_with(p)
+
     # ── img src → assets URL ──
     for img in body.find_all('img'):
         src = img.get('src', '')
@@ -169,34 +180,6 @@ def process_html_fragment(raw_html, images):
     for tag in body.find_all(True):
         if tag.name not in ALLOWED_TAGS:
             tag.unwrap()
-
-    # ── leading &nbsp; indent → CSS padding-left (কবিতা/indented text fix) ──
-    # প্রতিটা block tag এর শুরুতে &nbsp; বা space দিয়ে indent করা থাকলে
-    # সেটা padding-left এ convert করো, text flow ভাঙবে না
-    NBSP = '\u00a0'
-    BLOCK_TAGS = {'p', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li', 'blockquote'}
-    for tag in body.find_all(BLOCK_TAGS):
-        # প্রথম child যদি text node হয়
-        first = next(tag.children, None)
-        if first is None or not isinstance(first, str):
-            continue
-        # leading &nbsp; count করো
-        stripped = first.lstrip(NBSP)
-        count = len(first) - len(stripped)
-        if count > 0:
-            # প্রতি &nbsp; ≈ 0.6em indent
-            indent_em = round(count * 0.6, 1)
-            existing_style = tag.get('style', '')
-            tag['style'] = f'padding-left:{indent_em}em;text-indent:0;{existing_style}'
-            # leading &nbsp; গুলো text থেকে সরিয়ে দাও
-            first.replace_with(stripped)
-
-    # ── <p> এর ভেতরে <br> থাকলে কবিতার লাইন — poem-line class যোগ করো ──
-    for p in body.find_all('p'):
-        if p.find('br'):
-            existing = p.get('class', [])
-            if 'poem-line' not in existing:
-                p['class'] = existing + ['poem-line']
 
     # ── consecutive <br> → একটা <br> ──
     for br in body.find_all('br'):
