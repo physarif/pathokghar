@@ -151,24 +151,29 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
 
   const indexTemplate = fs.readFileSync('components/index.html', 'utf8');
 
+  // index.html এর HTML comment থেকে card template extract করো
+  const cardTemplateMatch = indexTemplate.match(/<!--\s*\n\s*Book card template[\s\S]*?(<a[\s\S]*?<\/a>)\s*\n-->/);
+  if (!cardTemplateMatch) {
+    console.error('❌ components/index.html এ book card template comment পাওয়া যায়নি।');
+    process.exit(1);
+  }
+  const cardTemplate = cardTemplateMatch[1].trim();
+
   // সর্বশেষ ১২টা বই (created_at দিয়ে sort)
   const latest = [...bookList]
     .sort((a, b) => (b.created_at || 0) - (a.created_at || 0))
     .slice(0, 12);
 
-  // Book card — horizontal list style (ছবির মতো)
+  // Book card — card template ব্যবহার করে render করো
   function bookCard(book) {
     const desc = (book.description || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    return `<a href="books/${book.slug}.html" class="bc-card">
-      <div class="bc-img-wrap">
-        <img src="${book.cover}" alt="${book.title}" class="bc-img" loading="lazy">
-      </div>
-      <div class="bc-body">
-        <span class="bc-meta">${book.title}</span>
-        <span class="bc-author">${book.author_name}</span>
-        <p class="bc-desc">${desc}</p>
-      </div>
-    </a>`;
+    return render(cardTemplate, {
+      book_slug: book.slug,
+      book_cover: book.cover,
+      book_title: book.title,
+      book_author: book.author_name,
+      book_desc: desc,
+    });
   }
 
   const indexContent = render(indexTemplate, {
