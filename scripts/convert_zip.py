@@ -170,6 +170,22 @@ def process_html_fragment(raw_html, images):
         if tag.name not in ALLOWED_TAGS:
             tag.unwrap()
 
+    # ── consecutive <br> → একটা <br> ──
+    for br in body.find_all('br'):
+        next_sib = br.next_sibling
+        while next_sib:
+            # whitespace-only text node skip করো
+            if isinstance(next_sib, str) and not next_sib.strip():
+                next_sib = next_sib.next_sibling
+                continue
+            # পরেরটাও <br> হলে সেটা মুছো, আবার check করো
+            if getattr(next_sib, 'name', None) == 'br':
+                to_remove = next_sib
+                next_sib = next_sib.next_sibling
+                to_remove.decompose()
+            else:
+                break
+
     # ── plain URL → <a> (শুধু text node এ, already-linked নয়) ──
     url_pattern = re.compile(r'(https?://[^\s<>"\']+)')
     for text_node in body.find_all(string=True):
