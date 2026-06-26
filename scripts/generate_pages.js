@@ -159,12 +159,13 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
   }
   const cardTemplate = cardTemplateMatch[1].trim();
 
-  // সর্বশেষ ১২টা বই (created_at দিয়ে sort)
-  const latest = [...bookList]
-    .sort((a, b) => (b.created_at || 0) - (a.created_at || 0))
-    .slice(0, 12);
+  // created_at দিয়ে sort (নতুন আগে)
+  const sorted = [...bookList].sort((a, b) => (b.created_at || 0) - (a.created_at || 0));
 
-  // Book card — card template ব্যবহার করে render করো
+  const BOOKS_PER_PAGE = 12;
+  const totalPages = Math.ceil(sorted.length / BOOKS_PER_PAGE);
+
+  // Book card render helper
   function bookCard(book) {
     const desc = (book.description || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     return render(cardTemplate, {
@@ -176,21 +177,57 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
     });
   }
 
-  const indexContent = render(indexTemplate, {
-    latest_books: latest.map(bookCard).join(''),
-  });
+  // Pagination HTML builder
+  function buildPagination(currentPage) {
+    if (totalPages <= 1) return '';
+    let html = '<div class="bc-pagination">';
+    if (currentPage > 1) {
+      const prev = currentPage === 2 ? '/' : `/latest/${currentPage - 1}/`;
+      html += `<a href="${prev}" class="bc-page-nav"><i class="fas fa-chevron-left text-xs"></i> আগের</a>`;
+    }
+    for (let i = 1; i <= totalPages; i++) {
+      const href = i === 1 ? '/' : `/latest/${i}/`;
+      if (i === currentPage) html += `<span class="bc-page-btn active">${i}</span>`;
+      else html += `<a href="${href}" class="bc-page-btn">${i}</a>`;
+    }
+    if (currentPage < totalPages) {
+      html += `<a href="/latest/${currentPage + 1}/" class="bc-page-nav">পরের <i class="fas fa-chevron-right text-xs"></i></a>`;
+    }
+    html += '</div>';
+    return html;
+  }
 
   const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
-  const fullPage = render(layout, {
-    page_title: 'পাঠক ঘর - বাংলা বইয়ের ডিজিটাল পাঠাগার',
-    page_description: 'বাংলা ও ইংরেজি বইয়ের ডিজিটাল পাঠাগার - পড়ুন, ডাউনলোড করুন',
-    content: indexContent,
-    hero_categories,
-    sidebar_authors,
-  });
 
-  fs.writeFileSync('index.html', fullPage, 'utf8');
-  console.log('  ✓ index.html');
+  for (let page = 1; page <= totalPages; page++) {
+    const pageBooks = sorted.slice((page - 1) * BOOKS_PER_PAGE, page * BOOKS_PER_PAGE);
+
+    const indexContent = render(indexTemplate, {
+      latest_books: pageBooks.map(bookCard).join(''),
+      pagination: buildPagination(page),
+    });
+
+    const fullPage = render(layout, {
+      page_title: page === 1
+        ? 'পাঠক ঘর - বাংলা বইয়ের ডিজিটাল পাঠাগার'
+        : `পাঠক ঘর - পাতা ${page}`,
+      page_description: 'বাংলা ও ইংরেজি বইয়ের ডিজিটাল পাঠাগার - পড়ুন, ডাউনলোড করুন',
+      content: indexContent,
+      hero_categories,
+      sidebar_authors,
+    });
+
+    if (page === 1) {
+      fs.writeFileSync('index.html', fullPage, 'utf8');
+      console.log('  ✓ index.html');
+    } else {
+      const dir = `latest/${page}`;
+      if (!fs.existsSync('latest')) fs.mkdirSync('latest');
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(`${dir}/index.html`, fullPage, 'utf8');
+      console.log(`  ✓ latest/${page}/index.html`);
+    }
+  }
 }
 
 async function generateAuthorPages(bookList, authorsRaw, categoriesRaw) {
