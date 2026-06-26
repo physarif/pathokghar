@@ -82,14 +82,6 @@ async function generateBookPages() {
   const authorsRaw = authorsSnap.val() || {};
   const categoriesRaw = categoriesSnap.val() || {};
 
-  // Python script এর জন্য raw data save করো
-  fs.writeFileSync('firebase_data.json', JSON.stringify({
-    books: booksRaw || {},
-    authors: authorsRaw,
-    categories: categoriesRaw,
-  }, null, 2), 'utf8');
-  console.log('  ✓ firebase_data.json saved');
-
   if (!booksRaw) {
     console.log('কোনো book data পাওয়া যায়নি।');
     return { bookList: [], authorsRaw: {} };
@@ -272,39 +264,6 @@ async function generateAuthorPages(bookList, authorsRaw, categoriesRaw) {
   }
 }
 
-async function generateReadPages(bookList, authorsRaw, categoriesRaw) {
-  console.log('\n📖 Read pages generate করছি...');
-  const readTemplate = fs.readFileSync('components/read.html', 'utf8');
-  if (!fs.existsSync('read')) fs.mkdirSync('read');
-
-  for (const book of bookList) {
-    const readContent = render(readTemplate, {
-      book_title: book.title,
-      book_author: book.author_name,
-      book_author_slug: book.author_slug,
-      book_cover: book.cover,
-      book_slug: book.slug,
-      book_description: book.description,
-      book_category: book.category_name,
-      book_category_slug: book.category_slug,
-    });
-    const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
-    const fullPage = render(layout, {
-      page_title: `${book.title} পড়ুন - পাঠক ঘর`,
-      page_description: book.description?.slice(0, 160) || '',
-      content: readContent,
-      hero_categories,
-      sidebar_authors,
-      book_title: book.title,
-      book_author: book.author_name,
-      book_slug: book.slug,
-    });
-
-    fs.writeFileSync(`read/${book.slug}.html`, fullPage, 'utf8');
-    console.log(`  ✓ read/${book.slug}.html`);
-  }
-}
-
 async function generateDownloadPages(bookList, authorsRaw, categoriesRaw) {
   console.log('\n📥 Download pages generate করছি...');
   const downloadTemplate = fs.readFileSync('components/download.html', 'utf8');
@@ -412,7 +371,6 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
     const { bookList, authorsRaw, categoriesRaw } = await generateBookPages();
     await generateHomepage(bookList, authorsRaw, categoriesRaw);
     await generateAuthorPages(bookList, authorsRaw, categoriesRaw);
-    await generateReadPages(bookList, authorsRaw, categoriesRaw);
     await generateDownloadPages(bookList, authorsRaw, categoriesRaw);
     await generateCategoryPages(bookList, authorsRaw, categoriesRaw);
     console.log('\n🎉 সব pages generate হয়েছে!');
