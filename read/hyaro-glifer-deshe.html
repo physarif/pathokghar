@@ -59,18 +59,22 @@
         .dark .category-underline-list a { color: #9ca3af; }
         .dark .category-underline-list a:hover { color: #f87171; border-bottom-color: #c0392b; }
 
-        /* Footer links */
-        .footer-link {
-            display: block;
-            color: #e5e5e5;
-            font-size: 15px;
-            font-weight: 500;
+        /* Footer dot-separated links */
+        .footer-dot-link {
+            font-size: 14px;
+            color: #3366cc;
             text-decoration: none;
-            border-bottom: 1px solid #444;
-            padding: 10px 0;
             transition: color 0.15s;
         }
-        .footer-link:hover { color: #e57373; }
+        .footer-dot-link:hover { color: #c0392b; text-decoration: underline; }
+        .dark .footer-dot-link { color: #7ab3f0; }
+        .dark .footer-dot-link:hover { color: #f87171; }
+        .footer-dot {
+            color: #999;
+            font-size: 16px;
+            margin: 0 6px;
+            line-height: 1;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
@@ -1368,38 +1372,47 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-[#2b2b2b] mt-8">
+    <footer class="bg-gray-100 dark:bg-[#1f1f1f] border-t border-gray-300 dark:border-gray-700 mt-8">
 
-        <!-- Main footer links — 2 column grid like the reference -->
-        <div class="max-w-3xl mx-auto px-6 pt-8 pb-4 grid grid-cols-2 gap-x-8 gap-y-1">
-
-            <!-- Col 1 -->
-            <a href="/category/" class="footer-link">বিভাগ</a>
-            <a href="/author/"   class="footer-link">লেখক</a>
-            <a href="#"          class="footer-link">ব্লগ</a>
-            <a href="#"          class="footer-link">সংবাদ</a>
-            <a href="https://castfm.pages.dev" target="_blank" rel="noopener" class="footer-link">CastFM</a>
-            <a href="#"          class="footer-link">App</a>
-            <a href="#"          class="footer-link">Join with us</a>
-
+        <!-- Brand row: name left, social icons right -->
+        <div class="max-w-3xl mx-auto px-5 pt-6 pb-4 flex items-center justify-between">
+            <span class="text-3xl font-extrabold tracking-tight text-gray-800 dark:text-gray-100">
+                পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span>
+            </span>
+            <div class="flex items-center gap-2">
+                <a href="#" aria-label="Facebook"
+                   class="w-14 h-14 rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] flex items-center justify-center text-[#1877f2] hover:border-[#1877f2] transition-all">
+                    <i class="fab fa-facebook-f text-xl"></i>
+                </a>
+                <a href="#" aria-label="Telegram"
+                   class="w-14 h-14 rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] flex items-center justify-center text-[#229ed9] hover:border-[#229ed9] transition-all">
+                    <i class="fab fa-telegram-plane text-xl"></i>
+                </a>
+            </div>
         </div>
 
         <!-- Divider -->
-        <div class="max-w-3xl mx-auto px-6">
-            <div class="border-t border-gray-600"></div>
+        <div class="max-w-3xl mx-auto px-5">
+            <div class="border-t border-gray-300 dark:border-gray-700"></div>
         </div>
 
-        <!-- Bottom: brand + copyright -->
-        <div class="max-w-3xl mx-auto px-6 py-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
-            <div>
-                <p class="text-white font-extrabold text-lg tracking-tight leading-tight">
-                    পাঠক <span class="font-light text-gray-400">ঘর</span>
-                </p>
-                <p class="text-gray-500 text-[11px] mt-0.5">বাংলা সাহিত্যের ডিজিটাল পাঠাগার</p>
-            </div>
-            <p class="text-gray-600 text-[11px]">
-                © Crafted by <a href="https://github.com/physarif" target="_blank" rel="noopener" class="text-[#c0392b] hover:text-[#e57373] transition-colors">Arif</a>
-            </p>
+        <!-- Dot-separated links -->
+        <div class="max-w-3xl mx-auto px-5 py-4 flex flex-wrap items-center gap-y-2">
+            <a href="/category/" class="footer-dot-link">বিভাগ</a>
+            <span class="footer-dot">·</span>
+            <a href="/author/" class="footer-dot-link">লেখক</a>
+            <span class="footer-dot">·</span>
+            <a href="#" class="footer-dot-link">ব্লগ</a>
+            <span class="footer-dot">·</span>
+            <a href="#" class="footer-dot-link">সংবাদ</a>
+            <span class="footer-dot">·</span>
+            <a href="https://castfm.pages.dev" target="_blank" rel="noopener" class="footer-dot-link">CastFM</a>
+            <span class="footer-dot">·</span>
+            <a href="#" class="footer-dot-link">App</a>
+            <span class="footer-dot">·</span>
+            <a href="#" class="footer-dot-link">Join with us</a>
+            <span class="footer-dot">·</span>
+            <a href="#" class="footer-dot-link">© Arif</a>
         </div>
 
     </footer>
