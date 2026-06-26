@@ -177,26 +177,6 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
     });
   }
 
-  // Pagination HTML builder
-  function buildPagination(currentPage) {
-    if (totalPages <= 1) return '';
-    let html = '<div class="bc-pagination">';
-    if (currentPage > 1) {
-      const prev = currentPage === 2 ? '/' : `/latest/${currentPage - 1}/`;
-      html += `<a href="${prev}" class="bc-page-nav"><i class="fas fa-chevron-left text-xs"></i> আগের</a>`;
-    }
-    for (let i = 1; i <= totalPages; i++) {
-      const href = i === 1 ? '/' : `/latest/${i}/`;
-      if (i === currentPage) html += `<span class="bc-page-btn active">${i}</span>`;
-      else html += `<a href="${href}" class="bc-page-btn">${i}</a>`;
-    }
-    if (currentPage < totalPages) {
-      html += `<a href="/latest/${currentPage + 1}/" class="bc-page-nav">পরের <i class="fas fa-chevron-right text-xs"></i></a>`;
-    }
-    html += '</div>';
-    return html;
-  }
-
   const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
 
   for (let page = 1; page <= totalPages; page++) {
@@ -204,7 +184,8 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
 
     const indexContent = render(indexTemplate, {
       latest_books: pageBooks.map(bookCard).join(''),
-      pagination: buildPagination(page),
+      current_page: page,
+      total_pages: totalPages,
     });
 
     const fullPage = render(layout, {
