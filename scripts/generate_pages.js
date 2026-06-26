@@ -39,15 +39,16 @@ if (!fs.existsSync('books')) fs.mkdirSync('books');
 
 // Sidebar HTML builder
 function buildSidebarHTML(bookList, authorsRaw, categoriesRaw) {
-  // Categories — Firebase id অনুসারে sort করে প্রথম ১০টা
+  // Categories — Firebase numeric key অনুসারে sort করে প্রথম ১০টা
   const catItems = Object.entries(categoriesRaw)
-    .sort(([idA], [idB]) => {
-      const nA = parseInt(idA, 10), nB = parseInt(idB, 10);
-      if (!isNaN(nA) && !isNaN(nB)) return nA - nB;
-      return idA.localeCompare(idB);
+    .map(([id, cat]) => ({ id, cat, num: parseInt(id, 10) }))
+    .filter(({ cat }) => cat && cat.slug && cat.title)
+    .sort((a, b) => {
+      if (!isNaN(a.num) && !isNaN(b.num)) return a.num - b.num;
+      return a.id.localeCompare(b.id);
     })
     .slice(0, 10)
-    .map(([, cat]) => `<li><a href="/category/${cat.slug}/1/">${cat.title}</a></li>`);
+    .map(({ cat }) => `<li><a href="/category/${cat.slug}/1/">${cat.title}</a></li>`);
 
   // Authors — count per author
   const authorMap = {};
