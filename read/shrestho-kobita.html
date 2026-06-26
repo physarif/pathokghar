@@ -54,6 +54,19 @@
         }
         .dark .category-underline-list a { color: #9ca3af; }
         .dark .category-underline-list a:hover { color: #f87171; border-bottom-color: #c0392b; }
+
+        /* Footer links */
+        .footer-link {
+            display: block;
+            color: #e5e5e5;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px solid #444;
+            padding: 10px 0;
+            transition: color 0.15s;
+        }
+        .footer-link:hover { color: #e57373; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
@@ -1271,58 +1284,40 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-gray-50 dark:bg-[#1a1a1b] border-t border-gray-200 dark:border-gray-700 mt-8 pt-2">
+    <footer class="bg-[#2b2b2b] mt-8">
 
+        <!-- Main footer links — 2 column grid like the reference -->
+        <div class="max-w-3xl mx-auto px-6 pt-8 pb-4 grid grid-cols-2 gap-x-8 gap-y-1">
 
-        <div class="max-w-6xl mx-auto px-6 py-6">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+            <!-- Col 1 -->
+            <a href="/category/" class="footer-link">বিভাগ</a>
+            <a href="/author/"   class="footer-link">লেখক</a>
+            <a href="#"          class="footer-link">ব্লগ</a>
+            <a href="#"          class="footer-link">সংবাদ</a>
+            <a href="https://castfm.pages.dev" target="_blank" rel="noopener" class="footer-link">CastFM</a>
+            <a href="#"          class="footer-link">App</a>
+            <a href="#"          class="footer-link">Join with us</a>
 
-                <span class="text-2xl md:text-3xl font-extrabold tracking-tight text-gray-800 dark:text-gray-100 text-center md:text-left shrink-0">
-                    পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span>
-                </span>
-
-                <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed text-center md:flex-1 md:px-8">
-                    বাংলা সাহিত্যের এক ডিজিটাল পাঠাগার। বিনামূল্যে পড়ুন, ডাউনলোড করুন — যেকোনো সময়, যেকোনো জায়গা থেকে।
-                </p>
-
-                <div class="flex items-center justify-center md:justify-end gap-2 shrink-0">
-                    <a href="#" aria-label="Twitter" class="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
-                        <i class="fab fa-twitter text-sm"></i>
-                    </a>
-                    <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
-                        <i class="fab fa-facebook-f text-sm"></i>
-                    </a>
-                    <a href="#" aria-label="YouTube" class="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
-                        <i class="fab fa-youtube text-sm"></i>
-                    </a>
-                    <a href="mailto:pathokghar@gmail.com" aria-label="Email" class="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
-                        <i class="fas fa-envelope text-sm"></i>
-                    </a>
-                    <a href="#" aria-label="RSS" class="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-[#c0392b] hover:text-white transition-all">
-                        <i class="fas fa-rss text-sm"></i>
-                    </a>
-                </div>
-
-            </div>
         </div>
 
-        <!-- Bottom bar -->
-        <div class="border-t border-gray-200 dark:border-gray-700">
-            <div class="max-w-6xl mx-auto px-6 py-3 pb-6 md:pb-3 flex flex-col md:flex-row items-center justify-between gap-2 text-[12px] text-gray-500 dark:text-gray-400">
-                <div class="flex items-center gap-4">
-                    <a href="#" class="hover:text-[#c0392b] transition-colors">সম্পর্কে</a>
-                    <span class="text-gray-300 dark:text-gray-600">|</span>
-                    <a href="#" class="hover:text-[#c0392b] transition-colors">যোগাযোগ</a>
-                    <span class="text-gray-300 dark:text-gray-600">|</span>
-                    <a href="#" class="hover:text-[#c0392b] transition-colors">গোপনীয়তা নীতি</a>
-                </div>
-                <p class="hidden md:block">
-                    © Crafted by <a href="https://github.com/physarif" target="_blank" rel="noopener" class="text-[#c0392b] hover:text-[#a93226] transition-colors font-medium">Arif</a>
-                    <span class="mx-1">·</span>
-                    github.com/physarif
-                </p>
-            </div>
+        <!-- Divider -->
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="border-t border-gray-600"></div>
         </div>
+
+        <!-- Bottom: brand + copyright -->
+        <div class="max-w-3xl mx-auto px-6 py-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+            <div>
+                <p class="text-white font-extrabold text-lg tracking-tight leading-tight">
+                    পাঠক <span class="font-light text-gray-400">ঘর</span>
+                </p>
+                <p class="text-gray-500 text-[11px] mt-0.5">বাংলা সাহিত্যের ডিজিটাল পাঠাগার</p>
+            </div>
+            <p class="text-gray-600 text-[11px]">
+                © Crafted by <a href="https://github.com/physarif" target="_blank" rel="noopener" class="text-[#c0392b] hover:text-[#e57373] transition-colors">Arif</a>
+            </p>
+        </div>
+
     </footer>
 
     <script>
