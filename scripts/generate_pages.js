@@ -285,6 +285,8 @@ async function generateReadPages(bookList, authorsRaw, categoriesRaw) {
       book_cover: book.cover,
       book_slug: book.slug,
       book_description: book.description,
+      book_category: book.category_name,
+      book_category_slug: book.category_slug,
     });
     const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
     const fullPage = render(layout, {
