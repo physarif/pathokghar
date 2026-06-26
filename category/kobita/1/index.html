@@ -356,18 +356,18 @@
         setTimeout(function() {
             if (collapsed) {
                 toggleAdBar();
+                // After 15 seconds, close only if ad-bar is currently visible
+                setTimeout(function() {
+                    if (!collapsed) {
+                        var rect = bar.getBoundingClientRect();
+                        var isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                        if (isVisible) toggleAdBar();
+                    }
+                }, 15000);
             }
         }, 1000);
 
-        // Close when user scrolls back up and ad-bar is visible
-        var observer = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting && !collapsed) {
-                    toggleAdBar();
-                }
-            });
-        }, { threshold: 0.8 });
-        observer.observe(bar);
+
 
         var label = document.getElementById('ad-bar-label');
         var notice = document.getElementById('ad-bar-notice');
