@@ -308,6 +308,8 @@
             width: 260px;
             height: 60vh;
             pointer-events: auto;
+            transform: none;
+            transition: none;
         }
         #unified-toggle-btn { display: none; }
         #unified-drawer {
@@ -324,19 +326,21 @@
     /* ══ Unified drawer ══ */
     #unified-wrap {
         position: fixed;
-        top: 0;
+        top: 50%;
+        transform: translateY(-50%);
         right: 0;
         width: 28px;
         height: 44px;
         z-index: 500;
         pointer-events: none;
-        transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+        transition: width 0.32s cubic-bezier(0.4,0,0.2,1),
+                    height 0.32s cubic-bezier(0.4,0,0.2,1);
     }
     #unified-toggle-btn {
         position: absolute;
         right: 0;
-        top: 0;
-        transform: translateY(0);
+        top: 50%;
+        transform: translateY(-50%);
         width: 28px;
         height: 44px;
         background: #c0392b;
@@ -348,9 +352,7 @@
         box-shadow: -2px 0 8px rgba(0,0,0,0.18);
         color: #fff;
         pointer-events: auto;
-        transition: height 0.3s cubic-bezier(0.4,0,0.2,1),
-                    top 0.3s cubic-bezier(0.4,0,0.2,1),
-                    transform 0.3s cubic-bezier(0.4,0,0.2,1),
+        transition: height 0.32s cubic-bezier(0.4,0,0.2,1),
                     opacity 0.3s ease;
     }
     #unified-toggle-btn:active { background: #a93226; }
@@ -362,14 +364,14 @@
         top: 0;
         right: 28px;
         width: 0;
-        height: 60vh;
+        height: 100%;
         display: flex;
         flex-direction: column;
         background: #fafafa;
         box-shadow: -4px 4px 24px rgba(0,0,0,0.15);
         overflow: hidden;
         pointer-events: auto;
-        transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+        transition: width 0.32s cubic-bezier(0.4,0,0.2,1);
     }
     #unified-wrap.open {
         width: 65vw;
@@ -378,9 +380,9 @@
     }
     #unified-wrap.open #unified-drawer { width: calc(65vw - 28px); }
     #unified-wrap.open #unified-toggle-btn {
+        height: 100%;
         top: 0;
-        transform: translateY(0);
-        height: 60vh;
+        transform: none;
     }
 
     /* Tab bar */
