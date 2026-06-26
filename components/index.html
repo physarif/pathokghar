@@ -102,28 +102,31 @@
     gap: 0.1rem;
   }
 
-  /* Title */
-  .bc-meta {
-    font-size: 0.88rem;
-    font-weight: 700;
-    line-height: 1.35;
-    color: #c0392b;
+  /* Headline: title – author একই লাইনে, একই size */
+  .bc-headline {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin: 0;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  .dark .bc-meta { color: #f87171; }
-  .bc-card:hover .bc-meta { color: #991b1b; }
-  .dark .bc-card:hover .bc-meta { color: #fca5a5; }
+  .bc-title {
+    font-weight: 700;
+    color: #c0392b;
+  }
+  .dark .bc-title { color: #f87171; }
+  .bc-card:hover .bc-title { color: #991b1b; }
+  .dark .bc-card:hover .bc-title { color: #fca5a5; }
 
-  /* Author */
+  .bc-sep {
+    color: #9ca3af;
+    font-weight: 400;
+  }
   .bc-author {
-    font-size: 0.72rem;
+    font-weight: 500;
     color: #6b7280;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
   .dark .bc-author { color: #9ca3af; }
 
@@ -148,8 +151,7 @@
       <img src="{{book_cover}}" alt="{{book_title}}" class="bc-img" loading="lazy">
     </div>
     <div class="bc-body">
-      <span class="bc-meta">{{book_title}}</span>
-      <span class="bc-author">{{book_author}}</span>
+      <p class="bc-headline"><span class="bc-title">{{book_title}}</span><span class="bc-sep"> – </span><span class="bc-author">{{book_author}}</span></p>
       <p class="bc-desc">{{book_desc}}</p>
     </div>
   </a>
