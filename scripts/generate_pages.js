@@ -50,7 +50,7 @@ function buildSidebarHTML(bookList, authorsRaw, categoriesRaw) {
     if (book.category_slug && !catSeen.has(book.category_slug)) {
       catSeen.add(book.category_slug);
       const count = catCount[book.category_slug] || 0;
-      catItems.push(`<li><a href="/category/${book.category_slug}/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">${book.category_name}</span><span class="text-[11px] text-gray-400 dark:text-gray-500">${count}</span></a></li>`);
+      catItems.push(`<li><a href="/category/${book.category_slug}/1/">${book.category_name}</a></li>`);
     }
   }
 
@@ -68,7 +68,7 @@ function buildSidebarHTML(bookList, authorsRaw, categoriesRaw) {
     .map(([slug, name]) => `<li><a href="/author/${slug}.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">${name}</span><span class="text-[11px] text-gray-400 dark:text-gray-500">${authorCount[slug] || 0}</span></a></li>`);
 
   return {
-    sidebar_categories: catItems.join('\n                '),
+    hero_categories: catItems.join('\n                '),
     sidebar_authors: authorItems.join('\n                '),
   };
 }
@@ -141,12 +141,12 @@ async function generateBookPages() {
       book_slug: book.slug,
     });
 
-    const { sidebar_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+    const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
     const fullPage = render(layout, {
       page_title: `${book.title} - ${book.author_name}`,
       page_description: book.description?.slice(0, 160) || '',
       content: bookContent,
-      sidebar_categories,
+      hero_categories,
       sidebar_authors,
     });
 
@@ -213,12 +213,12 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
     category_sections: categorySectionsHTML,
   });
 
-  const { sidebar_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+  const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
   const fullPage = render(layout, {
     page_title: 'পাঠক ঘর - বাংলা বইয়ের ডিজিটাল পাঠাগার',
     page_description: 'বাংলা ও ইংরেজি বইয়ের ডিজিটাল পাঠাগার - পড়ুন, ডাউনলোড করুন',
     content: indexContent,
-    sidebar_categories,
+    hero_categories,
     sidebar_authors,
   });
 
@@ -262,12 +262,12 @@ async function generateAuthorPages(bookList, authorsRaw, categoriesRaw) {
       author_book_count: data.books.length,
       author_books_data: booksData,
     });
-    const { sidebar_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+    const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
     const fullPage = render(layout, {
       page_title: data.name,
       page_description: '',
       content: authorContent,
-      sidebar_categories,
+      hero_categories,
       sidebar_authors,
     });
 
@@ -290,12 +290,12 @@ async function generateReadPages(bookList, authorsRaw, categoriesRaw) {
       book_slug: book.slug,
       book_description: book.description,
     });
-    const { sidebar_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+    const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
     const fullPage = render(layout, {
       page_title: `${book.title} পড়ুন - পাঠক ঘর`,
       page_description: book.description?.slice(0, 160) || '',
       content: readContent,
-      sidebar_categories,
+      hero_categories,
       sidebar_authors,
       book_title: book.title,
       book_author: book.author_name,
@@ -323,12 +323,12 @@ async function generateDownloadPages(bookList, authorsRaw, categoriesRaw) {
       book_author_slug: book.author_slug,
       book_category_slug: book.category_slug,
     });
-    const { sidebar_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+    const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
     const fullPage = render(layout, {
       page_title: book.title,
       page_description: '',
       content: downloadContent,
-      sidebar_categories,
+      hero_categories,
       sidebar_authors,
     });
 
@@ -389,12 +389,12 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
         category_books_grid: booksGrid,
         category_pagination: paginationHTML,
       });
-      const { sidebar_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+      const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
       const fullPage = render(layout, {
         page_title: data.name,
         page_description: '',
         content: categoryContent,
-        sidebar_categories,
+        hero_categories,
         sidebar_authors,
       });
 
