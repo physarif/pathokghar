@@ -203,19 +203,9 @@ def download_file(url, dest):
 with open('components/read.html', 'r', encoding='utf-8') as f:
     read_template = f.read()
 
-db_url = os.environ.get('FIREBASE_DATABASE_URL', '').rstrip('/')
-if not db_url:
-    raise RuntimeError('FIREBASE_DATABASE_URL environment variable set করা নেই')
+with open('firebase_data.json', 'r', encoding='utf-8') as f:
+    data = json.load(f)
 
-print('🔥 Firebase থেকে data fetch করছি...')
-with urllib.request.urlopen(f'{db_url}/books.json') as r:
-    books_raw = json.load(r)
-with urllib.request.urlopen(f'{db_url}/authors.json') as r:
-    authors_raw = json.load(r) or {}
-with urllib.request.urlopen(f'{db_url}/categories.json') as r:
-    categories_raw = json.load(r) or {}
-
-data = {'books': books_raw or {}, 'authors': authors_raw, 'categories': categories_raw}
 books = data.get('books', {})
 
 for uid, book in books.items():
@@ -270,6 +260,12 @@ for uid, book in books.items():
         author_name = author_data.get('title', '')
         author_slug = author_data.get('slug', '')
 
+        categories = data.get('categories', {})
+        category_key = book.get('category', '')
+        category_data = categories.get(str(category_key), {})
+        category_name = category_data.get('title', '')
+        category_slug = category_data.get('slug', '')
+
         full_page = render(read_template, {
             'book_title': title,
             'book_slug': slug,
@@ -279,6 +275,8 @@ for uid, book in books.items():
             'book_author': author_name,
             'book_author_slug': author_slug,
             'book_cover': cover,
+            'book_category': category_name,
+            'book_category_slug': category_slug,
         })
 
         with open(read_path, 'w', encoding='utf-8') as f:
