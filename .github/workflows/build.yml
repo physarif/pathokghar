@@ -76,6 +76,8 @@ jobs:
       # ৭. ZIP → HTML convert + read page generate
       - name: Convert books
         if: steps.changes.outputs.layout_only != 'true'
+        env:
+          FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
         run: python scripts/convert_zip.py
 
       # ৮. sitemap.xml generate
