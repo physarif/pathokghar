@@ -115,7 +115,7 @@
         <div id="ad-bar-content" style="
             overflow: hidden;
             background: #f9fafb;
-            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s;
+            transition: max-height 0.9s cubic-bezier(0.4, 0, 0.2, 1), padding 0.7s;
             max-height: 0;
             display: flex;
             align-items: center;
@@ -381,10 +381,16 @@
             setTimeout(function() { updateDatetime(); dtInterval = setInterval(updateDatetime, 1000); }, 0);
         }
 
-        // Auto-open after 10 seconds
+        // Auto-open after 3 seconds
         setTimeout(function() {
-            if (collapsed) toggleAdBar();
-        }, 10000);
+            if (collapsed) {
+                toggleAdBar();
+                // Auto-close after 30 seconds if user hasn't closed it
+                setTimeout(function() {
+                    if (!collapsed) toggleAdBar();
+                }, 45000);
+            }
+        }, 3000);
 
         var label = document.getElementById('ad-bar-label');
         var notice = document.getElementById('ad-bar-notice');
