@@ -191,6 +191,13 @@ def process_html_fragment(raw_html, images):
             # leading &nbsp; গুলো text থেকে সরিয়ে দাও
             first.replace_with(stripped)
 
+    # ── <p> এর ভেতরে <br> থাকলে কবিতার লাইন — poem-line class যোগ করো ──
+    for p in body.find_all('p'):
+        if p.find('br'):
+            existing = p.get('class', [])
+            if 'poem-line' not in existing:
+                p['class'] = existing + ['poem-line']
+
     # ── consecutive <br> → একটা <br> ──
     for br in body.find_all('br'):
         next_sib = br.next_sibling
