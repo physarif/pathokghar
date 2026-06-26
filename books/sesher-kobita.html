@@ -28,44 +28,35 @@
     </script>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        #top-ad-bar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 999;
-            transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+
+        /* Category underline links — Style D */
+        .category-underline-list li { display: inline-flex; align-items: center; }
+        .category-underline-list li + li::before {
+            content: '·';
+            color: #d1d5db;
+            font-size: 14px;
+            margin: 0 6px;
+            line-height: 1;
         }
-        #top-ad-bar.hidden-bar { transform: translateY(-100%); }
-        #top-ad-toggle {
-            position: fixed;
-            top: 0; left: 0;
-            z-index: 1000;
-            width: 56px;
-            height: 20px;
-            background: #ffffff;
-            border-radius: 0 0 12px 0;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer;
-            transition: top 0.3s cubic-bezier(.4,0,.2,1), background 0.2s;
-            border-right: 1px solid rgba(0,0,0,0.10);
-            border-bottom: 1px solid rgba(0,0,0,0.10);
-            box-shadow: 2px 2px 6px rgba(0,0,0,0.08);
+        .dark .category-underline-list li + li::before { color: #4b5563; }
+        .category-underline-list a {
+            font-size: 13px;
+            font-weight: 500;
+            color: #6b7280;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 1px;
+            transition: color 0.18s, border-color 0.18s;
         }
-        #top-ad-toggle:hover { background: #f5f5f5; }
-        #top-ad-toggle i { color: #555; font-size: 10px; transition: transform 0.3s; }
-        #top-ad-toggle.collapsed i { transform: rotate(180deg); }
+        .category-underline-list a:hover {
+            color: #c0392b;
+            border-bottom-color: #c0392b;
+        }
+        .dark .category-underline-list a { color: #9ca3af; }
+        .dark .category-underline-list a:hover { color: #f87171; border-bottom-color: #c0392b; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
-
-    <!-- TOP AD BAR -->
-    <div id="top-ad-bar" class="hidden-bar bg-white dark:bg-[#242424] border-b border-gray-200 dark:border-gray-700 shadow-sm w-full">
-        <script async="async" data-cfasync="false" src="https://pl29879678.effectivecpmnetwork.com/1ba5ec58502e6eb05148bf0c6aab709b/invoke.js"></script>
-        <div id="container-1ba5ec58502e6eb05148bf0c6aab709b" style="width:100%;display:block;"></div>
-    </div>
-    <!-- TOGGLE BUTTON -->
-    <div id="top-ad-toggle" class="collapsed" title="বিজ্ঞাপন দেখাও">
-        <i class="fas fa-chevron-up"></i>
-    </div>
 
     <!-- HERO SECTION (Wikipedia-style) -->
     <div class="flex flex-col items-center justify-center pt-12 pb-6 px-4 text-center">
@@ -87,15 +78,8 @@
         </div>
 
         <!-- Category Quick Links -->
-        <div class="w-full max-w-2xl mt-5">
-            <div class="flex items-center gap-3 mb-3">
-                <span class="h-px flex-1 bg-gray-200 dark:bg-gray-700"></span>
-                <span class="text-[11px] uppercase font-bold tracking-widest text-gray-400 dark:text-gray-500 flex items-center gap-1.5">
-                    <i class="fas fa-tags text-[10px] text-brand-500"></i> বিষয়শ্রেণী
-                </span>
-                <span class="h-px flex-1 bg-gray-200 dark:bg-gray-700"></span>
-            </div>
-            <ul class="flex flex-wrap justify-center gap-2">
+        <div class="w-full max-w-2xl mt-4">
+            <ul class="category-underline-list flex flex-wrap justify-center items-center gap-y-2">
                 <li><a href="/category/kobita/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">কবিতা</span><span class="text-[11px] text-gray-400 dark:text-gray-500">2</span></a></li>
                 <li><a href="/category/productivity/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">আত্ম-উন্নয়ন</span><span class="text-[11px] text-gray-400 dark:text-gray-500">2</span></a></li>
                 <li><a href="/category/itihas/1/" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-chevron-right text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">ইতিহাস</span><span class="text-[11px] text-gray-400 dark:text-gray-500">1</span></a></li>
@@ -425,37 +409,6 @@
         }
         updateDateTime();
         setInterval(updateDateTime, 1000);
-
-        // Top Ad Toggle
-        const topAdBar = document.getElementById('top-ad-bar');
-        const topAdToggle = document.getElementById('top-ad-toggle');
-        let adVisible = false; // শুরুতে লুকানো
-
-        function updateTogglePos() {
-            const h = adVisible ? topAdBar.offsetHeight : 0;
-            topAdToggle.style.top = h + 'px';
-        }
-
-        // Ad load হলে height update করো
-        const adObserver = new MutationObserver(updateTogglePos);
-        adObserver.observe(topAdBar, { childList: true, subtree: true, attributes: true });
-        window.addEventListener('resize', updateTogglePos);
-        updateTogglePos();
-
-        // ১০ সেকেন্ড পর ad দেখাও
-        setTimeout(() => {
-            adVisible = true;
-            topAdBar.classList.remove('hidden-bar');
-            topAdToggle.classList.remove('collapsed');
-            setTimeout(updateTogglePos, 300);
-        }, 10000);
-
-        topAdToggle.addEventListener('click', () => {
-            adVisible = !adVisible;
-            topAdBar.classList.toggle('hidden-bar', !adVisible);
-            topAdToggle.classList.toggle('collapsed', !adVisible);
-            setTimeout(updateTogglePos, 300);
-        });
 
         // Search
         function doSearch(query) {
