@@ -205,18 +205,27 @@
   }
   @media (min-width: 768px) { .bc-section-header { padding: 0 1.5rem; } }
 
-  /* Title with red left border */
+  /* Title + extending line */
   .bc-section-title {
-    font-size: 1rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: #1f2937;
-    padding-left: 0.6rem;
-    border-left: 3.5px solid #c0392b;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
     letter-spacing: 0.02em;
     line-height: 1.2;
   }
+  .bc-section-title::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: #c0392b;
+    border-radius: 1px;
+  }
   .dark .bc-section-title { color: #f3f4f6; }
+  .dark .bc-section-title::after { background: #f87171; }
 
   /* "সব দেখুন" pill button */
   .bc-section-link {
