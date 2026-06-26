@@ -156,49 +156,23 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
     .sort((a, b) => (b.created_at || 0) - (a.created_at || 0))
     .slice(0, 12);
 
-  // Category অনুযায়ী group করা — id অনুসারে sort
-  const byCategory = {};
-  for (const book of bookList) {
-    const cat = book.category_slug;
-    if (!byCategory[cat]) byCategory[cat] = { name: book.category_name, books: [] };
-    byCategory[cat].books.push(book);
-  }
-  // প্রতিটি category-র books id অনুসারে ascending sort
-  for (const cat of Object.values(byCategory)) {
-    cat.books.sort((a, b) => {
-      if (typeof a.id === 'number' && typeof b.id === 'number') return a.id - b.id;
-      return String(a.id).localeCompare(String(b.id));
-    });
-  }
-
-  // Book card — styling সব components/index.html এ
+  // Book card — horizontal list style (ছবির মতো)
   function bookCard(book) {
+    const desc = (book.description || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     return `<a href="books/${book.slug}.html" class="bc-card">
       <div class="bc-img-wrap">
         <img src="${book.cover}" alt="${book.title}" class="bc-img" loading="lazy">
       </div>
-      <span class="bc-meta">${book.title}</span>
-      <span class="bc-author">${book.author_name}</span>
+      <div class="bc-body">
+        <span class="bc-meta">${book.title}</span>
+        <span class="bc-author">${book.author_name}</span>
+        <p class="bc-desc">${desc}</p>
+      </div>
     </a>`;
-  }
-
-  // Category section HTML — structure সব components/index.html এ
-  let categorySectionsHTML = '';
-  for (const [slug, data] of Object.entries(byCategory)) {
-    const catBooks = data.books.slice(0, 12);
-    categorySectionsHTML += `
-  <section class="book-section">
-    <div class="bc-section-header">
-      <h2 class="bc-section-title">${data.name}</h2>
-      <a href="category/${slug}/1/" class="bc-section-link">সব দেখুন →</a>
-    </div>
-    <div class="bc-scroll">${catBooks.map(bookCard).join('')}</div>
-  </section>`;
   }
 
   const indexContent = render(indexTemplate, {
     latest_books: latest.map(bookCard).join(''),
-    category_sections: categorySectionsHTML,
   });
 
   const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
