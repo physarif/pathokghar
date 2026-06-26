@@ -206,15 +206,15 @@
     font-weight: 600;
     text-decoration: none;
     color: #fff;
-    background: #7a3b1e;
+    background: #c0392b;
     transition: background 0.15s;
   }
-  .bc-page-nav:hover { background: #5c2b14; }
+  .bc-page-nav:hover { background: #991b1b; }
   .dark .bc-page-btn { background: #1f2937; color: #d1d5db; }
   .dark .bc-page-btn:hover { background: #374151; color: #f9fafb; }
   .dark .bc-page-btn.active { background: #f87171; color: #111827; }
-  .dark .bc-page-nav { background: #92400e; }
-  .dark .bc-page-nav:hover { background: #78350f; }
+  .dark .bc-page-nav { background: #f87171; color: #111827; }
+  .dark .bc-page-nav:hover { background: #ef4444; }
 </style>
 
 <!--
@@ -240,6 +240,29 @@
     <div class="bc-list">{{latest_books}}</div>
   </section>
 
-  {{pagination}}
+  <div id="bc-pagination"></div>
+  <script>
+    (function() {
+      const current = parseInt('{{current_page}}', 10);
+      const total = parseInt('{{total_pages}}', 10);
+      if (!current || !total || total <= 1) return;
+      const el = document.getElementById('bc-pagination');
+      let html = '<div class="bc-pagination">';
+      if (current > 1) {
+        const prev = current === 2 ? '/' : '/latest/' + (current - 1) + '/';
+        html += '<a href="' + prev + '" class="bc-page-nav"><i class="fas fa-chevron-left text-xs"></i> পূর্ববর্তী</a>';
+      }
+      for (let i = 1; i <= total; i++) {
+        const href = i === 1 ? '/' : '/latest/' + i + '/';
+        if (i === current) html += '<span class="bc-page-btn active">' + i + '</span>';
+        else html += '<a href="' + href + '" class="bc-page-btn">' + i + '</a>';
+      }
+      if (current < total) {
+        html += '<a href="/latest/' + (current + 1) + '/" class="bc-page-nav">পরবর্তী <i class="fas fa-chevron-right text-xs"></i></a>';
+      }
+      html += '</div>';
+      el.innerHTML = html;
+    })();
+  </script>
 
 </main>
