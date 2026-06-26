@@ -203,9 +203,19 @@ def download_file(url, dest):
 with open('components/read.html', 'r', encoding='utf-8') as f:
     read_template = f.read()
 
-with open('firebase_data.json', 'r', encoding='utf-8') as f:
-    data = json.load(f)
+db_url = os.environ.get('FIREBASE_DATABASE_URL', '').rstrip('/')
+if not db_url:
+    raise RuntimeError('FIREBASE_DATABASE_URL environment variable set করা নেই')
 
+print('🔥 Firebase থেকে data fetch করছি...')
+with urllib.request.urlopen(f'{db_url}/books.json') as r:
+    books_raw = json.load(r)
+with urllib.request.urlopen(f'{db_url}/authors.json') as r:
+    authors_raw = json.load(r) or {}
+with urllib.request.urlopen(f'{db_url}/categories.json') as r:
+    categories_raw = json.load(r) or {}
+
+data = {'books': books_raw or {}, 'authors': authors_raw, 'categories': categories_raw}
 books = data.get('books', {})
 
 for uid, book in books.items():
