@@ -1,30 +1,25 @@
 <!DOCTYPE html>
 <html lang="bn">
-<head>
+<head> 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title> - পাঠক ঘর</title>
-    <meta name="description" content="">
-    <meta property="og:title" content=" - পাঠক ঘর">
-    <meta property="og:description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>পাঠক ঘর - বাংলা বইয়ের ডিজিটাল পাঠাগার - পাঠক ঘর</title>
+    <meta name="description" content="বাংলা ও ইংরেজি বইয়ের ডিজিটাল পাঠাগার - পড়ুন, ডাউনলোড করুন">
+    <meta property="og:title" content="পাঠক ঘর - বাংলা বইয়ের ডিজিটাল পাঠাগার - পাঠক ঘর">
+    <meta property="og:description" content="বাংলা ও ইংরেজি বইয়ের ডিজিটাল পাঠাগার - পড়ুন, ডাউনলোড করুন">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
     <script>
-        if (typeof tailwind !== 'undefined') {
-            tailwind.config = {
-                darkMode: 'class',
-                theme: {
-                    extend: {
-                        colors: {
-                            brand: {
-                                50:  '#fff5f5',
-                                100: '#fde8e6',
-                                500: '#c0392b',
-                                600: '#a93226'
-                            }
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50:  '#fff5f5',
+                            100: '#fde8e6',
+                            500: '#c0392b',
+                            600: '#a93226'
                         }
                     }
                 }
@@ -33,925 +28,657 @@
     </script>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    
-    /* ── Book read header hero ── */
-    .book-read-header {
-        margin-bottom: 1.5rem;
-    }
-    .book-read-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 0.65rem;
-        background: #fff;
-        border: 1px solid #e5e7eb;
-        border-radius: 14px;
-        padding: 1.4rem 1.25rem 1.2rem;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    }
-    .dark .book-read-box {
-        background: #2a2a2b;
-        border-color: #3a3a3b;
-    }
-    .book-read-cover {
-        width: 100px;
-        height: 136px;
-        border-radius: 8px;
-        flex-shrink: 0;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.18);
-        object-fit: cover;
-        background: #e5e7eb;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-    }
-    .book-read-cover svg { opacity: 0.35; }
-    .book-read-title-link {
-        text-decoration: none;
-        display: block;
-    }
-    .book-read-title-link:hover .book-read-title { text-decoration: underline; text-underline-offset: 3px; }
-    .book-read-title-link:active .book-read-title { opacity: 0.7; }
-    .book-read-title {
-        font-family: 'Noto Serif Bengali', serif;
-        font-size: 1.15rem;
-        font-weight: 700;
-        color: #1a1a1b;
-        line-height: 1.4;
-        margin: 0;
-        transition: opacity 0.15s;
-    }
-    .dark .book-read-title { color: #f3f4f6; }
-    .book-read-author-link {
-        text-decoration: none;
-        display: inline-block;
-    }
-    .book-read-author-link:hover .book-read-author { text-decoration: underline; text-underline-offset: 3px; }
-    .book-read-author-link:active .book-read-author { opacity: 0.6; }
-    .book-read-author {
-        font-family: 'Noto Serif Bengali', serif;
-        font-size: 0.82rem;
-        font-weight: 600;
-        color: #c0392b;
-        margin: 0;
-        transition: opacity 0.15s;
-    }
-</style>
+
+        /* Category links — footer style, larger */
+        .category-underline-list li { display: inline-flex; align-items: center; }
+        .category-underline-list li + li::before {
+            content: '·';
+            color: #9ca3af;
+            font-size: 16px;
+            margin: 0 5px;
+            line-height: 1;
+        }
+        .dark .category-underline-list li + li::before { color: #4b5563; }
+        .category-underline-list a {
+            font-size: 17px;
+            font-weight: 400;
+            color: #c0392b;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .category-underline-list a:hover { color: #a93226; text-decoration: underline; }
+        .category-underline-list a:active,
+        .category-underline-list a:focus { text-decoration: underline; outline: none; }
+        .dark .category-underline-list a { color: #e57373; }
+        .dark .category-underline-list a:hover,
+        .dark .category-underline-list a:active { color: #f87171; text-decoration: underline; }
+
+        /* Footer dot-separated links */
+        .footer-dot-link {
+            font-size: 14px;
+            color: #c0392b;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .footer-dot-link:hover { color: #a93226; text-decoration: underline; }
+        .footer-dot-link:active,
+        .footer-dot-link:focus { text-decoration: underline; outline: none; }
+        .dark .footer-dot-link { color: #e57373; }
+        .dark .footer-dot-link:hover,
+        .dark .footer-dot-link:active { color: #f87171; text-decoration: underline; }
+        .footer-dot {
+            color: #999;
+            font-size: 16px;
+            margin: 0 6px;
+            line-height: 1;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
 
-<style>
-    @keyframes marquee-scroll {
-        0%   { transform: translateX(100vw); }
-        100% { transform: translateX(-100%); }
-    }
-
-    #read-progress-bar {
-        position: fixed;
-        top: 0; left: 0;
-        height: 2px;
-        width: 0%;
-        background: #c0392b;
-        z-index: 1000;
-        transition: width 0.1s linear;
-    }
-
-    /* ── Book content typography ── */
-    #book-content {
-        font-family: 'Noto Serif Bengali', 'Lora', serif;
-        font-size: 1.05rem;
-    }
-    #book-content h1 {
-        font-size: 1.4rem;
-        font-weight: 800;
-        margin-top: 2rem;
-        margin-bottom: 0.5rem;
-        line-height: 1.35;
-        text-align: center;
-        color: inherit;
-    }
-    #book-content h1::after {
-        content: '';
-        display: block;
-        width: 3rem;
-        height: 2px;
-        background: #c0392b;
-        margin: 0.5rem auto 1rem;
-        border-radius: 2px;
-    }
-    #book-content h2 {
-        font-size: 1.05rem;
-        font-weight: 700;
-        margin-top: 2rem;
-        margin-bottom: 0.75rem;
-        text-align: center;
-        padding-bottom: 0.4rem;
-        border-bottom: 1px solid rgba(128,128,128,0.2);
-    }
-    #book-content p {
-        margin-bottom: 1.1rem;
-        line-height: 2;
-        word-break: break-word;
-        overflow-wrap: break-word;
-    }
-    #book-content a {
-        color: #c0392b;
-        word-break: break-all;
-        overflow-wrap: anywhere;
-        text-decoration: underline;
-    }
-    /* External link icon */
-    #book-content a[href^="http"]::after,
-    #book-content a[href^="https"]::after {
-        content: ' ↗';
-        font-size: 0.75em;
-        opacity: 0.7;
-    }
-    #book-content img {
-        max-width: 100%;
-        border-radius: 0.5rem;
-        margin: 1.25rem auto;
-        display: block;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
-    }
-    /* ── Blockquote ── */
-    #book-content blockquote {
-        border-left: 3px solid #c0392b;
-        margin: 1.5rem 0;
-        padding: 0.75rem 1rem;
-        background: rgba(192,57,43,0.05);
-        border-radius: 0 6px 6px 0;
-        font-style: italic;
-        color: #555;
-    }
-    .dark #book-content blockquote {
-        background: rgba(192,57,43,0.08);
-        color: #bbb;
-    }
-    /* ── HR stylish divider ── */
-    #book-content hr {
-        border: none;
-        text-align: center;
-        margin: 2rem 0;
-        color: #9ca3af;
-        font-size: 1rem;
-        letter-spacing: 0.5rem;
-    }
-    #book-content hr::before {
-        content: '✦ ✦ ✦';
-    }
-    /* ── Table ── */
-    #book-content table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 1.5rem 0;
-        font-size: 0.875rem;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
-    }
-    #book-content th {
-        background: #c0392b;
-        color: #fff;
-        padding: 0.6rem 0.85rem;
-        text-align: left;
-        font-weight: 600;
-    }
-    #book-content td {
-        padding: 0.55rem 0.85rem;
+    <!-- ── Ad Bar (hero-এর উপরে) ── -->
+    <div id="ad-bar" style="
+        display: flex;
+        flex-direction: column-reverse;
+        background: #f9fafb;
         border-bottom: 1px solid #e5e7eb;
-    }
-    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
-    #book-content tr:last-child td { border-bottom: none; }
-    .dark #book-content td { border-color: #3a3a3b; }
-    .dark #book-content tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
-    /* ── Figcaption ── */
-    #book-content figcaption {
-        text-align: center;
-        font-style: italic;
-        font-size: 0.78rem;
-        color: #9ca3af;
-        margin-top: -0.5rem;
-        margin-bottom: 1.25rem;
-    }
-    /* ── Text selection ── */
-    #book-content ::selection {
-        background: rgba(192,57,43,0.25);
-        color: inherit;
-    }
-    /* ── Smooth scroll offset ── */
-    #book-content h1, #book-content h2 {
-        scroll-margin-top: 1.5rem;
-    }
+        width: 100%;
+    ">
+        <!-- Toggle Button -->
+        <div style="display:flex; align-items:stretch;">
+            <button id="ad-bar-toggle" onclick="toggleAdBar()" style="
+                background: #c0392b;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                padding: 3px 10px;
+                font-size: 11px;
+                color: #fff;
+                flex-shrink: 0;
+                transition: background 0.2s;
+            " title="বিজ্ঞাপন লুকান / দেখান">
+                <svg id="ad-bar-icon" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+                <span id="ad-bar-label">Show Ad</span>
+            </button>
+            <span id="ad-bar-datetime" style="display:none; font-size:11px; margin-left:auto; padding:3px 10px; white-space:nowrap;"></span>
 
-    /* ── TOC active ── */
-    .toc-link.active {
-        color: #c0392b;
-        font-weight: 600;
-        background: rgba(192,57,43,0.1);
-        border-radius: 0.375rem;
-    }
-    #toc-nav-mobile .toc-link {
-        display: block;
-        padding: 10px 10px;
-        font-size: 0.8125rem;
-        font-family: 'Noto Serif Bengali', serif;
-        line-height: 1.5;
-        text-decoration: none;
-        color: #444;
-        border-bottom: 1px solid #ececec;
-        transition: color 0.15s;
-    }
-    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
-    #toc-nav-mobile .toc-link.h2-link {
-        padding-left: 20px;
-        font-size: 0.77rem;
-        color: #777;
-    }
+            <div id="ad-bar-notice" style="overflow:hidden; white-space:nowrap; font-size:11px; display:none; align-items:center; align-self:stretch; flex:1; padding:0 8px;">
+                <span>Ad টি বন্ধ করতে <strong>Hide Ad</strong> এর উপর ক্লিক করুন।</span>
+            </div>
+        </div>
 
-    /* ══════════════════════════════
-       MOBILE reader chrome
-    ══════════════════════════════ */
-    @media (max-width: 767px) {
-
-        /* Reading background themes */
-        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
-        body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
-        body.theme-light #mobile-reader-bg { background: #ffffff; }
-
-        #mobile-reader-bg {
-            min-height: 100vh;
-            transition: background 0.3s;
-        }
-    }
-
-    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
-
-
-    /* ══ Desktop: unified drawer always visible as right sidebar ══ */
-    @media (min-width: 768px) {
-        body { overflow: hidden; height: 100vh; }
-        #mobile-reader-bg { height: 100vh; overflow: hidden; }
-        #read-layout {
-            height: 100vh;
-            overflow: hidden;
+        <!-- Ad Content -->
+        <div id="ad-bar-content" style="
+            overflow: auto;
+            background: #f9fafb;
+            transition: max-height 0.9s cubic-bezier(0.4, 0, 0.2, 1), padding 0.7s;
+            max-height: 0;
             display: flex;
-        }
-        #read-layout > .flex-1 {
-            overflow-y: auto;
-            height: 100vh;
-        }
-        #unified-wrap {
-            top: 0;
-            width: 260px;
-            height: 60vh;
-            pointer-events: auto;
-            transform: none;
-            transition: none;
-        }
-        #unified-toggle-btn { display: none; }
-        #unified-drawer {
-            position: static;
-            width: 260px !important;
-            height: 60vh;
-            box-shadow: -2px 0 12px rgba(0,0,0,0.08);
-            border-left: 1px solid #e5e7eb;
-        }
-        #unified-overlay { display: none !important; }
-        #unified-wrap.open #unified-toggle-btn { display: none; }
-    }
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 0;
+        ">
+            <div id="ad-desktop" style="display:none;">
+              <script>
+                atOptions = {
+                  'key' : '14c1e503bb59b27671d1051f187909da',
+                  'format' : 'iframe',
+                  'height' : 90,
+                  'width' : 728,
+                  'params' : {}
+                };
+              </script>
+              <script src="https://www.highperformanceformat.com/14c1e503bb59b27671d1051f187909da/invoke.js"></script>
+            </div>
+            <div id="ad-mobile" style="display:none;">
+              <script>
+                atOptions = {
+                  'key' : 'bdb924698aea49a4aceb9cbc92d09488',
+                  'format' : 'iframe',
+                  'height' : 50,
+                  'width' : 320,
+                  'params' : {}
+                };
+              </script>
+              <script src="https://www.highperformanceformat.com/bdb924698aea49a4aceb9cbc92d09488/invoke.js"></script>
+            </div>
+            <script>
+              if (window.innerWidth >= 728) {
+                document.getElementById('ad-desktop').style.display = 'block';
+              } else {
+                document.getElementById('ad-mobile').style.display = 'block';
+              }
+            </script>
+        </div>
+    </div>
 
-    /* ══ Unified drawer ══ */
-    #unified-wrap {
-        position: fixed;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 0;
-        width: 28px;
-        height: 44px;
-        z-index: 500;
-        pointer-events: none;
-        transition: width 0.32s cubic-bezier(0.4,0,0.2,1),
-                    height 0.32s cubic-bezier(0.4,0,0.2,1);
-    }
-    #unified-toggle-btn {
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 28px;
-        height: 44px;
-        background: #c0392b;
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: -2px 0 8px rgba(0,0,0,0.18);
-        color: #fff;
-        pointer-events: auto;
-        transition: height 0.32s cubic-bezier(0.4,0,0.2,1),
-                    opacity 0.3s ease;
-    }
-    #unified-toggle-btn:active { background: #a93226; }
-    #unified-toggle-btn.scrolling { opacity: 0.5; }
+    <!-- HERO SECTION (Wikipedia-style) -->
+    <div class="flex flex-col items-center justify-center pt-12 pb-6 px-4 text-center">
 
-    /* Drawer panel */
-    #unified-drawer {
-        position: absolute;
-        top: 0;
-        right: 28px;
-        width: 0;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        background: #fafafa;
-        box-shadow: -4px 4px 24px rgba(0,0,0,0.15);
-        overflow: hidden;
-        pointer-events: auto;
-        transition: width 0.32s cubic-bezier(0.4,0,0.2,1);
-    }
-    #unified-wrap.open {
-        width: 65vw;
-        height: 60vh;
-        pointer-events: auto;
-    }
-    #unified-wrap.open #unified-drawer { width: calc(65vw - 28px); }
-    #unified-wrap.open #unified-toggle-btn {
-        height: 100%;
-        top: 0;
-        transform: none;
-    }
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-2 leading-tight">
+            <a href="https://pathokghar.pages.dev" class="hover:text-brand-500 active:text-brand-500 transition-colors">পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span></a>
+        </h1>
 
-    /* Tab bar */
-    #unified-tabs {
-        display: flex;
-        flex-shrink: 0;
-        border-bottom: 1px solid #e5e7eb;
-    }
-    .unified-tab {
-        flex: 1;
-        padding: 10px 0;
-        font-family: 'Noto Serif Bengali', serif;
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: #888;
-        background: none;
-        border: none;
-        border-bottom: 2px solid transparent;
-        cursor: pointer;
-        transition: color 0.15s, border-color 0.15s;
-        letter-spacing: 0.04em;
-    }
-    .unified-tab.active {
-        color: #c0392b;
-        border-bottom-color: #c0392b;
-    }
+        <!-- Search box -->
+        <div class="w-full max-w-xl relative flex items-center bg-white dark:bg-[#2d2d2d] border border-gray-200 dark:border-gray-600 rounded-full focus-within:ring-2 focus-within:ring-brand-500 focus-within:border-transparent transition-all">
+            <input id="main-search-input" type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
+                class="flex-1 bg-transparent py-3 pl-5 pr-2 text-sm focus:outline-none text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 min-w-0">
+            <button id="main-search-btn" class="bg-brand-500 hover:bg-brand-600 active:bg-brand-600 text-white px-5 py-2 rounded-full text-sm font-medium transition-colors shrink-0 mr-1">
+                খুঁজুন
+            </button>
+        </div>
 
-    /* Panels */
-    .unified-panel {
-        display: none;
-        flex: 1;
-        overflow-y: auto;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-    .unified-panel::-webkit-scrollbar { display: none; }
-    .unified-panel.active { display: flex; flex-direction: column; }
+        <!-- Category Quick Links -->
+        <div class="w-full max-w-2xl mt-2">
+            <ul class="category-underline-list flex flex-wrap justify-center items-center gap-y-1">
+                <li><a href="/category/productivity/1/">আত্ম-উন্নয়ন</a></li>
+                <li><a href="/category/non-fiction/1/">নন ফিকশন</a></li>
+                <li><a href="/category/probondho/1/">প্রবন্ধ</a></li>
+                <li><a href="/category/itihas/1/">ইতিহাস</a></li>
+                <li><a href="/category/kobita/1/">কবিতা</a></li>
+                <li><a href="/category/uponyas/1/">উপন্যাস</a></li>
+            </ul>
+        </div>
 
-    /* Overlay */
-    #unified-overlay {
-        position: fixed; inset: 0;
-        z-index: 499;
-        background: rgba(0,0,0,0.25);
-        opacity: 0; pointer-events: none;
-        transition: opacity 0.3s ease;
-    }
-    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+    </div>
 
-    /* ── Breadcrumb dark mode ── */
-    .read-breadcrumb-full { margin-left: -1.25rem; margin-right: -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
-    @media (min-width: 768px) { .read-breadcrumb-full { margin-left: -2.5rem; margin-right: -2.5rem; padding-left: 2.5rem; padding-right: 2.5rem; } }
-    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
-    .dark #bc-category { color: #9ca3af !important; }
-    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
-    .dark #read-breadcrumb li > span { color: #4b5563; }
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 min-w-0">
+        <!-- components/index.html — homepage content + সব styling এখানে -->
+<style>
+  /* Section */
+  .book-section { padding: 0.75rem 0; margin-bottom: 0.5rem; }
+  @media (min-width: 768px) { .book-section { margin-left: 0.5rem; margin-right: 0.5rem; } }
 
-    html { scroll-behavior: smooth; }
-    html { scrollbar-width: none; -ms-overflow-style: none; }
-    html::-webkit-scrollbar { display: none; }
+  /* Section header */
+  .bc-section-header {
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    padding: 0 1rem;
+  }
+  @media (min-width: 768px) { .bc-section-header { padding: 0 1.5rem; } }
 
-    /* Drawer inner */
-    #settings-drawer-inner {
-        padding: 20px 16px 24px;
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-        overflow-y: auto;
-        height: 100%;
-    }
-    .settings-drawer-title {
-        font-size: 0.7rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: #c0392b;
-        margin-bottom: 16px;
-        flex-shrink: 0;
-    }
-    /* Theme circles */
-    .settings-section-label {
-        font-size: 0.82rem;
-        font-weight: 600;
-        color: #1a1a1b;
-        margin-bottom: 8px;
-        margin-top: 16px;
-    }
-    .settings-section-label:first-of-type { margin-top: 0; }
-    .theme-circles {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        align-items: center;
-        gap: 10px;
-        flex-wrap: nowrap;
-    }
-    .theme-circle {
-        width: 32px; height: 32px;
-        border-radius: 50%;
-        border: 2px solid transparent;
-        cursor: pointer;
-        display: flex; align-items: center; justify-content: center;
-        transition: border-color 0.15s;
-        flex-shrink: 0;
-    }
-    .theme-circle.active { border-color: #c0392b; }
-    .theme-circle svg { display: none; }
-    .theme-circle.active svg { display: block; }
+  /* Title with red bottom border */
+  .bc-section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1f2937;
+    padding-bottom: 0.3rem;
+    border-bottom: 2.5px solid #c0392b;
+    display: inline-block;
+  }
+  .dark .bc-section-title { color: #f3f4f6; }
 
-    /* +/- rows */
-    .settings-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 0;
-        border-bottom: 1px solid #f0f0f0;
-    }
-    .settings-row:last-child { border-bottom: none; }
-    .settings-row-label { font-size: 0.82rem; color: #1a1a1b; }
-    .settings-row-val { font-size: 0.72rem; color: #9ca3af; margin-top: 1px; }
-    .settings-row-controls { display: flex; align-items: center; gap: 6px; }
-    .settings-btn {
-        width: 30px; height: 30px;
-        border-radius: 50%;
-        border: 1.5px solid #e5e7eb;
-        background: #fff;
-        color: #444;
-        font-size: 1.1rem;
-        cursor: pointer;
-        display: flex; align-items: center; justify-content: center;
-        line-height: 1;
-        transition: background 0.12s, border-color 0.12s;
-        flex-shrink: 0;
-    }
-    .settings-btn:active { background: #fde8e6; border-color: #c0392b; color: #c0392b; }
+  /* "সব দেখুন" pill button */
+  .bc-section-link {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #fff;
+    background: #7a3b1e;
+    text-decoration: none;
+    padding: 0.3rem 0.75rem;
+    border-radius: 0.25rem;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .bc-section-link:hover { background: #5c2b14; }
+  .dark .bc-section-link { background: #92400e; }
+  .dark .bc-section-link:hover { background: #78350f; }
 
-    /* Text align btns */
-    .align-btns { display: flex; gap: 6px; }
-    .align-btn {
-        width: 38px; height: 38px;
-        border-radius: 6px;
-        border: 1.5px solid #e5e7eb;
-        background: transparent;
-        color: #444;
-        cursor: pointer;
-        display: flex; align-items: center; justify-content: center;
-        transition: background 0.12s, border-color 0.12s, color 0.12s;
-    }
-    .align-btn svg { stroke: currentColor; }
-    .align-btn.active, .align-btn:active {
-        background: #fde8e6 !important;
-        border-color: #c0392b !important;
-        color: #c0392b !important;
-    }
+  /* Scroll container */
+  .bc-scroll {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 0 1rem 0.75rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  @media (min-width: 768px) { .bc-scroll { padding: 0 1.5rem 0.75rem; } }
+  .bc-scroll::-webkit-scrollbar { display: none; }
 
+  /* Book card */
+  .bc-card {
+    flex-shrink: 0;
+    width: 8.5rem;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+  }
+  @media (min-width: 768px) { .bc-card { width: 10rem; } }
+
+  /* Cover — 2:3 */
+  .bc-img-wrap {
+    width: 100%;
+    aspect-ratio: 2/3;
+    border-radius: 0.3rem;
+    overflow: hidden;
+    background: #e5e7eb;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.13);
+  }
+  .dark .bc-img-wrap { background: #374151; }
+
+  .bc-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.2s;
+  }
+  .bc-card:hover .bc-img { transform: scale(1.03); }
+
+  /* No overlay — removed author overlay */
+
+
+
+  /* Title below cover */
+  .bc-meta {
+    margin-top: 0.4rem;
+    padding: 0 0.1rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #1f2937;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-align: center;
+  }
+  .dark .bc-meta { color: #e5e7eb; }
+  .bc-card:hover .bc-meta { color: #c0392b; }
+
+  /* Author below title */
+  .bc-author {
+    margin-top: 0.15rem;
+    padding: 0 0.1rem;
+    font-size: 0.7rem;
+    color: #6b7280;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+  }
+  .dark .bc-author { color: #9ca3af; }
 </style>
 
-<!-- Progress bar -->
-<div id="read-progress-bar"></div>
+<main class="flex-1 py-4 md:py-6 md:px-8 lg:px-16 min-h-[calc(100vh-3.5rem)] min-w-0 overflow-hidden">
 
-<!-- ══════════════════════════════════════════
-     MOBILE ONLY chrome (hidden on md+)
-══════════════════════════════════════════ -->
-
-<!-- ══ Unified drawer ══ -->
-<div id="unified-wrap">
-    <button id="unified-toggle-btn" aria-label="মেনু">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-        </svg>
-    </button>
-    <div id="unified-drawer">
-        <div id="unified-tabs">
-            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
-            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
-        </div>
-        <div class="unified-panel active" id="panel-toc">
-            <nav id="toc-nav-mobile"></nav>
-        </div>
-        <div class="unified-panel" id="panel-customize">
-            <div id="settings-drawer-inner">
-                <div class="theme-circles">
-                    <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                    </button>
-                    <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
-                    <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
-                    <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
-                </div>
-                <div class="settings-row" style="margin-top:14px;">
-                    <div class="align-btns" style="width:100%; justify-content:space-between;">
-                        <button class="align-btn active" id="align-left" title="বাম">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
-                        </button>
-                        <button class="align-btn" id="align-center" title="সেন্টার">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
-                        </button>
-                        <button class="align-btn" id="align-justify" title="জাস্টিফাই">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="settings-row">
-                    <div>
-                        <div class="settings-row-label">টেক্সট সাইজ</div>
-                        <div class="settings-row-val" id="font-size-val">100%</div>
-                    </div>
-                    <div class="settings-row-controls">
-                        <button class="settings-btn" id="font-dec">−</button>
-                        <button class="settings-btn" id="font-inc">+</button>
-                    </div>
-                </div>
-                <div class="settings-row">
-                    <div>
-                        <div class="settings-row-label">মার্জিন</div>
-                        <div class="settings-row-val" id="margin-val">5%</div>
-                    </div>
-                    <div class="settings-row-controls">
-                        <button class="settings-btn" id="margin-dec">−</button>
-                        <button class="settings-btn" id="margin-inc">+</button>
-                    </div>
-                </div>
-                <div class="settings-row">
-                    <div>
-                        <div class="settings-row-label">লাইন স্পেসিং</div>
-                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
-                    </div>
-                    <div class="settings-row-controls">
-                        <button class="settings-btn" id="ls-dec">−</button>
-                        <button class="settings-btn" id="ls-inc">+</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!-- সর্বশেষ বই -->
+  <section class="book-section">
+    <div class="bc-section-header">
+      <h2 class="bc-section-title">সর্বশেষ বই</h2>
+      <a href="new.html" class="bc-section-link">সব দেখুন</a>
     </div>
-</div>
-<div id="unified-overlay"></div>
+    <div class="bc-scroll"><a href="books/sesher-kobita.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780242158760_3rivje7ps4o.webp" alt="শেষের কবিতা" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">শেষের কবিতা</span>
+      <span class="bc-author">রবীন্দ্রনাথ ঠাকুর</span>
+    </a><a href="books/amar-obishas.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780049973280_skqw4ksgug.jpg" alt="আমার অবিশ্বাস" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">আমার অবিশ্বাস</span>
+      <span class="bc-author">হুমায়ুন আজাদ</span>
+    </a><a href="books/lal-nil-dipaboli.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782237910538_av69id9dxcj.jpeg" alt="লাল নীল দীপাবলি" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">লাল নীল দীপাবলি</span>
+      <span class="bc-author">হুমায়ুন আজাদ</span>
+    </a><a href="books/ruposhi-bangla.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780239429326_tgzvn2excdg.webp" alt="রূপসী বাংলা" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">রূপসী বাংলা</span>
+      <span class="bc-author">জীবনানন্দ দাশ</span>
+    </a><a href="books/atomic-habits.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782198664764_ahq3dsyl0v.jpg" alt="Atomic Habits" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">Atomic Habits</span>
+      <span class="bc-author">James Clear</span>
+    </a><a href="books/nola.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782193899546_29hx8xwkt02.jpg" alt="নোলা" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">নোলা</span>
+      <span class="bc-author">কৌশিক মজুমদার</span>
+    </a><a href="books/thuugi.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782129595184_lv0ja8sb57k.jpeg" alt="ঠগী" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">ঠগী</span>
+      <span class="bc-author">শ্রীপান্থ</span>
+    </a><a href="books/deep-work.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1781951699130_91xp6nvz1ca.jpg" alt="Deep Work" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">Deep Work</span>
+      <span class="bc-author">Cal Newport</span>
+    </a><a href="books/hyaro-glifer-deshe.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782121390866_v3a354vbap.webp" alt="হায়ারোগ্লিফের দেশে" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">হায়ারোগ্লিফের দেশে</span>
+      <span class="bc-author">অনির্বাণ ঘোষ</span>
+    </a><a href="books/jogajog.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780243146714_coszcjbobmg.webp" alt="যোগাযোগ" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">যোগাযোগ</span>
+      <span class="bc-author">রবীন্দ্রনাথ ঠাকুর</span>
+    </a><a href="books/shrestho-kobita.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780239348488_r7qnw9el19q.webp" alt="শ্রেষ্ঠ কবিতা" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">শ্রেষ্ঠ কবিতা</span>
+      <span class="bc-author">জীবনানন্দ দাশ</span>
+    </a><a href="books/moyurakkhi.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780155625111_gppwilns44.jpg" alt="ময়ূরাক্ষী" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">ময়ূরাক্ষী</span>
+      <span class="bc-author">হুমায়ূন আহমেদ</span>
+    </a></div>
+  </section>
 
-
-<!-- ══════════════════════════════════════════
-     Main layout wrapper
-══════════════════════════════════════════ -->
-<div id="mobile-reader-bg" class="md:block">
-<div class="flex gap-0 min-h-screen w-full" id="read-layout">
-
-    <!-- Reading column -->
-    <div class="flex-1 min-w-0">
-        <div id="read-main-content" class="px-5 md:px-10 pt-0 pb-7 max-w-2xl">
-
-            <!-- Breadcrumb -->
-            <nav id="read-breadcrumb" aria-label="breadcrumb" style="margin-bottom:1.1rem; border-bottom:1px solid #e5e7eb; padding-top:0.5rem; padding-bottom:0.5rem;" class="read-breadcrumb-full">
-                <ol style="display:flex;align-items:center;flex-wrap:wrap;gap:0 2px;list-style:none;margin:0;padding:0;font-size:0.875rem;line-height:1.5;">
-                    <li>
-                        <a id="bc-home" href="/" style="color:#6b7280;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#c0392b';this.style.textDecoration='underline'" onmouseout="this.style.color=this.dataset.color||'#6b7280';this.style.textDecoration='none'" ontouchstart="this.style.color='#c0392b';this.style.textDecoration='underline'" ontouchend="this.style.color=this.dataset.color||'#6b7280';this.style.textDecoration='none'"><strong style="font-weight:700;">পাঠক</strong> <span style="color:#9ca3af;font-weight:400;">ঘর</span></a>
-                    </li>
-                    <li id="bc-sep0" style="color:#d1d5db;padding:0 5px;">›</li>
-                    <li><a id="bc-category" href="/category//1/" style="color:#6b7280;text-decoration:none;transition:color .15s;white-space:nowrap;" onmouseover="this.style.color='#c0392b';this.style.textDecoration='underline'" onmouseout="this.style.color='#6b7280';this.style.textDecoration='none'" ontouchstart="this.style.color='#c0392b';this.style.textDecoration='underline'" ontouchend="this.style.color='#6b7280';this.style.textDecoration='none'"></a></li>
-                    <li id="bc-sep1" style="color:#d1d5db;padding:0 5px;">›</li>
-                    <li style="display:inline-flex;align-items:center;gap:5px;max-width:65vw;overflow:hidden;">
-                        <a id="bc-title" href="/books/.html" style="font-family:'Noto Serif Bengali',serif;font-weight:600;color:#1a1a1b;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:38vw;transition:color .15s;" onmouseover="this.style.color='#c0392b';this.style.textDecoration='underline'" onmouseout="this.style.color=this.dataset.color||'#1a1a1b';this.style.textDecoration='none'" ontouchstart="this.style.color='#c0392b';this.style.textDecoration='underline'" ontouchend="this.style.color=this.dataset.color||'#1a1a1b';this.style.textDecoration='none'"></a>
-                        <span id="bc-dash" style="color:#9ca3af;">–</span>
-                        <a href="/author/.html" style="color:#c0392b;font-family:'Noto Serif Bengali',serif;font-weight:500;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:22vw;transition:opacity .15s;" onmouseover="this.style.opacity='.7';this.style.textDecoration='underline'" onmouseout="this.style.opacity='1';this.style.textDecoration='none'" ontouchstart="this.style.opacity='.7';this.style.textDecoration='underline'" ontouchend="this.style.opacity='1';this.style.textDecoration='none'"></a>
-                    </li>
-                </ol>
-            </nav>
-
-            <div id="book-content" class="text-gray-800 dark:text-gray-200">
-                
-            </div>
-
-        </div>
+  <!-- Category sections -->
+  
+  <section class="book-section">
+    <div class="bc-section-header">
+      <h2 class="bc-section-title">কবিতা</h2>
+      <a href="category/kobita/1/" class="bc-section-link">সব দেখুন →</a>
     </div>
+    <div class="bc-scroll"><a href="books/shrestho-kobita.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780239348488_r7qnw9el19q.webp" alt="শ্রেষ্ঠ কবিতা" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">শ্রেষ্ঠ কবিতা</span>
+      <span class="bc-author">জীবনানন্দ দাশ</span>
+    </a><a href="books/ruposhi-bangla.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780239429326_tgzvn2excdg.webp" alt="রূপসী বাংলা" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">রূপসী বাংলা</span>
+      <span class="bc-author">জীবনানন্দ দাশ</span>
+    </a></div>
+  </section>
+  <section class="book-section">
+    <div class="bc-section-header">
+      <h2 class="bc-section-title">আত্ম-উন্নয়ন</h2>
+      <a href="category/productivity/1/" class="bc-section-link">সব দেখুন →</a>
+    </div>
+    <div class="bc-scroll"><a href="books/atomic-habits.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782198664764_ahq3dsyl0v.jpg" alt="Atomic Habits" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">Atomic Habits</span>
+      <span class="bc-author">James Clear</span>
+    </a><a href="books/deep-work.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1781951699130_91xp6nvz1ca.jpg" alt="Deep Work" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">Deep Work</span>
+      <span class="bc-author">Cal Newport</span>
+    </a></div>
+  </section>
+  <section class="book-section">
+    <div class="bc-section-header">
+      <h2 class="bc-section-title">ইতিহাস</h2>
+      <a href="category/itihas/1/" class="bc-section-link">সব দেখুন →</a>
+    </div>
+    <div class="bc-scroll"><a href="books/hyaro-glifer-deshe.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782121390866_v3a354vbap.webp" alt="হায়ারোগ্লিফের দেশে" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">হায়ারোগ্লিফের দেশে</span>
+      <span class="bc-author">অনির্বাণ ঘোষ</span>
+    </a></div>
+  </section>
+  <section class="book-section">
+    <div class="bc-section-header">
+      <h2 class="bc-section-title">প্রবন্ধ</h2>
+      <a href="category/probondho/1/" class="bc-section-link">সব দেখুন →</a>
+    </div>
+    <div class="bc-scroll"><a href="books/nola.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782193899546_29hx8xwkt02.jpg" alt="নোলা" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">নোলা</span>
+      <span class="bc-author">কৌশিক মজুমদার</span>
+    </a><a href="books/amar-obishas.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780049973280_skqw4ksgug.jpg" alt="আমার অবিশ্বাস" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">আমার অবিশ্বাস</span>
+      <span class="bc-author">হুমায়ুন আজাদ</span>
+    </a><a href="books/lal-nil-dipaboli.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782237910538_av69id9dxcj.jpeg" alt="লাল নীল দীপাবলি" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">লাল নীল দীপাবলি</span>
+      <span class="bc-author">হুমায়ুন আজাদ</span>
+    </a></div>
+  </section>
+  <section class="book-section">
+    <div class="bc-section-header">
+      <h2 class="bc-section-title">নন ফিকশন</h2>
+      <a href="category/non-fiction/1/" class="bc-section-link">সব দেখুন →</a>
+    </div>
+    <div class="bc-scroll"><a href="books/thuugi.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782129595184_lv0ja8sb57k.jpeg" alt="ঠগী" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">ঠগী</span>
+      <span class="bc-author">শ্রীপান্থ</span>
+    </a></div>
+  </section>
+  <section class="book-section">
+    <div class="bc-section-header">
+      <h2 class="bc-section-title">উপন্যাস</h2>
+      <a href="category/uponyas/1/" class="bc-section-link">সব দেখুন →</a>
+    </div>
+    <div class="bc-scroll"><a href="books/moyurakkhi.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780155625111_gppwilns44.jpg" alt="ময়ূরাক্ষী" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">ময়ূরাক্ষী</span>
+      <span class="bc-author">হুমায়ূন আহমেদ</span>
+    </a><a href="books/jogajog.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780243146714_coszcjbobmg.webp" alt="যোগাযোগ" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">যোগাযোগ</span>
+      <span class="bc-author">রবীন্দ্রনাথ ঠাকুর</span>
+    </a><a href="books/sesher-kobita.html" class="bc-card">
+      <div class="bc-img-wrap">
+        <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780242158760_3rivje7ps4o.webp" alt="শেষের কবিতা" class="bc-img" loading="lazy">
+      </div>
+      <span class="bc-meta">শেষের কবিতা</span>
+      <span class="bc-author">রবীন্দ্রনাথ ঠাকুর</span>
+    </a></div>
+  </section>
 
-        <!-- TOC nav for mobile -->
-        <nav id="toc-nav-desktop" class="hidden"></nav>
-</div>
-</div>
+</main>
 
-<script>
-(function () {
-    const bookContent  = document.getElementById('book-content');
-    const mobileReaderBg = document.getElementById('mobile-reader-bg');
-    const progressBar  = document.getElementById('read-progress-bar');
-    const progressPct  = document.getElementById('progress-pct');
-    const tocDesktop   = document.getElementById('toc-nav-desktop');
-    const tocMobile    = document.getElementById('toc-nav-mobile');
-    const progressRing = document.getElementById('progress-ring-circle');
+    </main>
 
-    let fontScale   = 100;
-    let marginScale = 5;
-    let lineSpacing = 1.5;
-    let currentAlign= 'left';
-    let currentTheme= 'light';
+    <script>
+    (function() {
+        var bar = document.getElementById('ad-bar');
+        var content = document.getElementById('ad-bar-content');
+        var icon = document.getElementById('ad-bar-icon');
+        var collapsed = true;
+        var dtInterval = null;
 
-    // ── Save / Load ──
-    const STORAGE_KEY = 'pathakghar_reader_prefs';
-    function savePrefs() {
-        try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme }));
-        } catch(e) {}
-    }
-    function loadPrefs() {
-        try {
-            const raw = localStorage.getItem(STORAGE_KEY);
-            if (!raw) return;
-            const p = JSON.parse(raw);
-            if (p.fontScale)    fontScale    = p.fontScale;
-            if (p.marginScale !== undefined) marginScale = p.marginScale;
-            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
-            if (p.currentAlign) currentAlign = p.currentAlign;
-            if (p.currentTheme) currentTheme = p.currentTheme;
-        } catch(e) {}
-    }
-    loadPrefs();
-
-    const unifiedWrap   = document.getElementById('unified-wrap');
-    const unifiedToggle = document.getElementById('unified-toggle-btn');
-    const unifiedOverlay= document.getElementById('unified-overlay');
-    const unifiedDrawer = document.getElementById('unified-drawer');
-
-    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
-    function toBN(n) {
-        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
-    }
-
-    // ── Toggle opacity on scroll ──
-    let unifiedScrollTimer;
-    window.addEventListener('scroll', () => {
-        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
-            unifiedToggle.classList.add('scrolling');
-            clearTimeout(unifiedScrollTimer);
-            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        // Start collapsed — state already set in HTML/CSS
+        // Show datetime immediately since bar starts collapsed
+        if (document.getElementById('ad-bar-datetime')) {
+            document.getElementById('ad-bar-datetime').style.display = 'inline';
+            setTimeout(function() { updateDatetime(); dtInterval = setInterval(updateDatetime, 1000); }, 0);
         }
-    }, { passive: true });
 
-    // ── Progress bar on scroll ──
-    window.addEventListener('scroll', () => {
-        const docH = document.documentElement.scrollHeight - window.innerHeight;
-        const pct  = docH > 0 ? (window.scrollY / docH) * 100 : 0;
-        progressBar.style.width = pct + '%';
-        if (progressPct) progressPct.textContent = toBN(pct) + '%';
-        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
-    }, { passive: true });
+        // Auto-open after 2 seconds, then auto-close after 15 seconds
+        setTimeout(function() {
+            if (collapsed) {
+                toggleAdBar();
+                setTimeout(function() {
+                    if (!collapsed) toggleAdBar();
+                }, 15000);
+            }
+        }, 1500);
 
-    // ── Build TOC ──
-    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
-        .filter(h => h.textContent.trim() !== '');
 
-    function closeTocDrawer() { closeDrawer(); }
 
-    function buildToc(nav, isMobile) {
-        headings.forEach((h, i) => {
-            h.id = h.id || ('sec-' + i);
-            const a = document.createElement('a');
-            a.href = '#' + h.id;
-            a.textContent = h.textContent.trim();
-            a.dataset.idx = i;
-            const isH1 = h.tagName === 'H1';
-            if (isMobile) {
-                a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
-                a.addEventListener('click', closeDrawer);
+        var label = document.getElementById('ad-bar-label');
+        var notice = document.getElementById('ad-bar-notice');
+        var datetime = document.getElementById('ad-bar-datetime');
+
+        // ── Bengali helpers ──
+        function toBnDigits(n) {
+            return String(n).replace(/[0-9]/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+        }
+        var bnDays   = ['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
+        var bnBoshontoMonths = ['বৈশাখ','জ্যৈষ্ঠ','আষাঢ়','শ্রাবণ','ভাদ্র','আশ্বিন','কার্তিক','অগ্রহায়ণ','পৌষ','মাঘ','ফাল্গুন','চৈত্র'];
+
+        // Bangabda conversion (Bangladesh calendar)
+        function toBangabda(now) {
+            var gYear  = now.getFullYear();
+            var gMonth = now.getMonth() + 1;
+            var gDay   = now.getDate();
+            var bnMonth, bnDay, bnYear;
+            var monthMap = [
+                [1,  14, 9,  14],[2,  13, 10, 13],[3,  14, 11, 14],[4,  14, 0,  14],
+                [5,  15, 1,  15],[6,  15, 2,  15],[7,  16, 3,  16],[8,  16, 4,  16],
+                [9,  16, 5,  16],[10, 16, 6,  16],[11, 15, 7,  15],[12, 15, 8,  15],
+            ];
+            var idx = gMonth - 1;
+            var startDay = monthMap[idx][3];
+            if (gDay >= startDay) {
+                bnMonth = monthMap[idx][2];
+                bnDay   = gDay - startDay + 1;
             } else {
-                a.className = 'toc-link block px-3 py-1.5 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors ' +
-                    (isH1 ? 'font-semibold text-[13px] text-gray-800 dark:text-gray-100' : 'pl-5 text-[11px]');
+                bnMonth = (monthMap[idx][2] - 1 + 12) % 12;
+                var prevGMonth = gMonth === 1 ? 12 : gMonth - 1;
+                var prevStart  = monthMap[prevGMonth - 1][3];
+                var daysInPrevGMonth = new Date(gYear, gMonth - 1, 0).getDate();
+                bnDay = daysInPrevGMonth - prevStart + gDay + 1;
             }
-            nav.appendChild(a);
-        });
-    }
-    buildToc(tocDesktop, false);
-    buildToc(tocMobile, true);
+            bnYear = (bnMonth <= 4) ? gYear - 593 : gYear - 594;
+            return { day: bnDay, month: bnMonth, year: bnYear };
+        }
 
-    // ── TOC active ──
-    const allTocLinks = document.querySelectorAll('.toc-link');
-    window.addEventListener('scroll', () => {
-        let current = 0;
-        headings.forEach((h, i) => {
-            if (window.scrollY >= h.offsetTop - 120) current = i;
-        });
-        allTocLinks.forEach(a => {
-            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
-        });
-    }, { passive: true });
+        function updateDatetime() {
+            if (!datetime) return;
+            var now  = new Date();
+            var day  = bnDays[now.getDay()];
+            var h    = now.getHours();
+            var m    = now.getMinutes();
+            var s    = now.getSeconds();
+            var h12  = h % 12 || 12;
+            var bn   = toBangabda(now);
+            datetime.innerHTML =
+                '<span style="color:#9ca3af;font-weight:400;">' + day + ', </span>' +
+                '<strong style="color:inherit;font-weight:700;">' + toBnDigits(bn.day) + '</strong>' +
+                '<span style="color:#9ca3af;font-weight:400;"> ' + bnBoshontoMonths[bn.month] + ' </span>' +
+                '<strong style="color:inherit;font-weight:700;">' + toBnDigits(bn.year) + '</strong>' +
+                '<span style="color:#9ca3af;font-weight:400;">  |  </span>' +
+                '<strong style="color:inherit;font-weight:700;">' +
+                    toBnDigits(h12) + ':' + toBnDigits(String(m).padStart(2,'0')) + ':' + toBnDigits(String(s).padStart(2,'0')) +
+                '</strong>';
+        }
 
-    // ── Unified drawer open/close ──
-    function openDrawer() {
-        unifiedWrap.classList.add('open');
-        unifiedOverlay.classList.add('open');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeDrawer() {
-        unifiedWrap.classList.remove('open');
-        unifiedOverlay.classList.remove('open');
-        document.body.style.overflow = '';
-    }
-
-    unifiedToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
-    });
-    unifiedOverlay.addEventListener('click', closeDrawer);
-    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
-    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
-    unifiedDrawer.addEventListener('touchmove', (e) => {
-        const panel = unifiedDrawer.querySelector('.unified-panel.active');
-        if (!panel || !panel.contains(e.target)) e.preventDefault();
-    }, { passive: false });
-
-    // ── Tab switching ──
-    document.querySelectorAll('.unified-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
-            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
-            tab.classList.add('active');
-            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
-        });
-    });
-
-    let touchStartX = 0;
-
-    // ── Font size ──
-    function applyFont() {
-        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
-        document.getElementById('font-size-val').textContent = fontScale + '%';
-        savePrefs();
-    }
-    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
-    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
-
-    // ── Text align ──
-    const alignLeft    = document.getElementById('align-left');
-    const alignCenter  = document.getElementById('align-center');
-    const alignJustify = document.getElementById('align-justify');
-    function setAlign(a) {
-        currentAlign = a;
-        bookContent.style.textAlign = a;
-        [alignLeft, alignCenter, alignJustify].forEach(btn => {
-            const isActive = btn.id === 'align-' + a;
-            btn.classList.toggle('active', isActive);
-            btn.style.background  = isActive ? '#fde8e6' : '';
-            btn.style.borderColor = isActive ? '#c0392b' : '';
-            btn.style.color       = isActive ? '#c0392b' : '';
-        });
-        savePrefs();
-    }
-    alignLeft.addEventListener('click',    () => setAlign('left'));
-    alignCenter.addEventListener('click',  () => setAlign('center'));
-    alignJustify.addEventListener('click', () => setAlign('justify'));
-
-    // ── Margin ──
-    function applyMargin() {
-        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
-        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
-        document.getElementById('margin-val').textContent = marginScale + '%';
-        savePrefs();
-    }
-    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
-    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
-
-    // ── Line spacing ──
-    function applyLineSpacing() {
-        bookContent.style.lineHeight = lineSpacing;
-        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
-        savePrefs();
-    }
-    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
-    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
-
-    // ── Theme ──
-    const themeMap = {
-        light: { bg: '#fff',     text: '#1a1a1b', drawerBg: '#fafafa', drawerText: '#1a1a1b', drawerSub: '#6b7280', drawerBorder: '#e5e7eb', bcHome: '#6b7280', bcSep: '#d1d5db', bcTitle: '#1a1a1b', bcDash: '#9ca3af' },
-        dark:  { bg: '#1c1c1e',  text: '#e5e7eb', drawerBg: '#2a2a2b', drawerText: '#e5e7eb', drawerSub: '#9ca3af', drawerBorder: '#3a3a3c', bcHome: '#9ca3af', bcSep: '#4b5563', bcTitle: '#e5e7eb', bcDash: '#6b7280' },
-        black: { bg: '#000',     text: '#d1d5db', drawerBg: '#111',    drawerText: '#d1d5db', drawerSub: '#6b7280', drawerBorder: '#222',    bcHome: '#6b7280', bcSep: '#333',    bcTitle: '#d1d5db', bcDash: '#444'    },
-        sepia: { bg: '#f5efe6',  text: '#3b2f1e', drawerBg: '#ede4d3', drawerText: '#3b2f1e', drawerSub: '#7a6248', drawerBorder: '#d6c9b0', bcHome: '#7a6248', bcSep: '#c4b49a', bcTitle: '#3b2f1e', bcDash: '#a08060' },
-    };
-    document.querySelectorAll('.theme-circle').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const t = btn.dataset.theme;
-            currentTheme = t;
-            const m = themeMap[t];
-            mobileReaderBg.style.background = m.bg;
-            bookContent.style.color = m.text;
-
-            // Breadcrumb
-            const bcHome  = document.getElementById('bc-home');
-            const bcSep1  = document.getElementById('bc-sep1');
-            const bcTitle = document.getElementById('bc-title');
-            const bcDash  = document.getElementById('bc-dash');
-            const bcNav   = document.getElementById('read-breadcrumb');
-            if (bcHome)  {
-                bcHome.style.color  = m.bcHome;  bcHome.dataset.color  = m.bcHome;
-                const bcStrong = bcHome.querySelector('strong');
-                if (bcStrong) bcStrong.style.color = m.bcTitle;
+        window.toggleAdBar = function() {
+            collapsed = !collapsed;
+            if (collapsed) {
+                content.style.maxHeight = '0';
+                content.style.padding = '0';
+                if (notice) notice.style.display = 'none';
+                if (datetime) { datetime.style.display = 'inline'; updateDatetime(); dtInterval = setInterval(updateDatetime, 1000); }
+                icon.innerHTML = '<polyline points="18 15 12 9 6 15"></polyline>';
+                label.textContent = 'Show Ad';
+            } else {
+                content.style.maxHeight = '500px';
+                content.style.padding = '6px 10px';
+                if (notice) notice.style.display = 'flex';
+                if (datetime) { datetime.style.display = 'none'; clearInterval(dtInterval); }
+                icon.innerHTML = '<polyline points="6 9 12 15 18 9"></polyline>';
+                label.textContent = 'Hide Ad';
             }
-            if (bcSep1)  { bcSep1.style.color  = m.bcSep;  }
-            if (bcTitle) { bcTitle.style.color = m.bcTitle; bcTitle.dataset.color = m.bcTitle; }
-            if (bcDash)  { bcDash.style.color  = m.bcDash;  }
-            if (bcNav)   { bcNav.style.borderColor = m.drawerBorder; }
-
-            // Unified drawer background
-            const uDr = document.getElementById('unified-drawer');
-            uDr.style.background = m.drawerBg;
-
-            // Tab bar
-            document.getElementById('unified-tabs').style.borderColor = m.drawerBorder;
-            document.querySelectorAll('.unified-tab').forEach(el => {
-                if (!el.classList.contains('active')) el.style.color = m.drawerSub;
-            });
-
-            // Settings panel
-            const sDr = document.getElementById('settings-drawer-inner');
-            sDr.querySelectorAll('.settings-row-label').forEach(el => el.style.color = m.drawerText);
-            sDr.querySelectorAll('.settings-row-val').forEach(el => el.style.color = m.drawerSub);
-            sDr.querySelectorAll('.settings-btn').forEach(el => {
-                el.style.background = m.drawerBorder;
-                el.style.color = m.drawerText;
-            });
-            sDr.querySelectorAll('.settings-row').forEach(el => el.style.borderColor = m.drawerBorder);
-            sDr.querySelectorAll('.align-btn').forEach(el => {
-                if (!el.classList.contains('active')) {
-                    el.style.background   = 'transparent';
-                    el.style.borderColor  = m.drawerBorder;
-                    el.style.color        = m.drawerText;
-                } else {
-                    el.style.background   = '#fde8e6';
-                    el.style.borderColor  = '#c0392b';
-                    el.style.color        = '#c0392b';
-                }
-            });
-
-            // TOC panel
-            document.querySelectorAll('#toc-nav-mobile .toc-link').forEach(el => el.style.color = m.drawerText);
-            document.querySelectorAll('#toc-nav-mobile .toc-link').forEach(el => el.style.borderColor = m.drawerBorder);
-
-            document.querySelectorAll('.theme-circle').forEach(b => {
-                b.classList.toggle('active', b.dataset.theme === t);
-                b.style.borderColor = b.dataset.theme === t ? '#c0392b' : 'transparent';
-            });
-            savePrefs();
-
-            // Ad bar theme sync
-            window._pathakAdBarTheme && window._pathakAdBarTheme(m);
-        });
-    });
-
-    // ── Ad bar theme sync function (exposed globally) ──
-    window._pathakAdBarTheme = function(m) {
-        const adBar     = document.getElementById('ad-bar');
-        const adContent = document.getElementById('ad-bar-content');
-        const adDatetime= document.getElementById('ad-bar-datetime');
-        const adNotice  = document.getElementById('ad-bar-notice');
-        if (adBar)      adBar.style.background     = m.bg;
-        if (adContent)  adContent.style.background = m.bg;
-        if (adDatetime) adDatetime.style.color      = m.text;
-        if (adNotice)   adNotice.style.color        = m.text;
-    };
-
-    // ── Restore saved prefs on load ──
-    (function restoreAll() {
-        applyFont();
-        applyMargin();
-        applyLineSpacing();
-        setAlign(currentAlign);
-        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
-        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
-        // Ad bar HTML is below — expose theme for ad bar script to pick up
-        window._pathakCurrentTheme = currentTheme;
-        window._pathakThemeMap = themeMap;
+        };
     })();
-})();
-</script>
+    </script>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-100 dark:bg-[#1f1f1f] border-t border-gray-300 dark:border-gray-700 mt-8">
+
+        <!-- Brand row: always visible on mobile, hidden on desktop (icons move to bottom row) -->
+        <div class="max-w-3xl mx-auto px-5 pt-6 pb-4 flex items-center justify-between">
+            <div>
+                <span class="text-3xl font-extrabold tracking-tight text-gray-800 dark:text-gray-100">
+                    পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span>
+                </span>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">বাংলা বইয়ের ডিজিটাল পাঠাগার।</p>
+            </div>
+            <!-- Social icons -->
+            <div class="flex items-center gap-2">
+                <a href="#" aria-label="Facebook"
+                   class="w-12 h-12 rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] flex items-center justify-center text-[#1877f2] hover:border-[#1877f2] transition-all">
+                    <i class="fab fa-facebook-f text-lg"></i>
+                </a>
+                <a href="#" aria-label="Telegram"
+                   class="w-12 h-12 rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] flex items-center justify-center text-[#229ed9] hover:border-[#229ed9] transition-all">
+                    <i class="fab fa-telegram-plane text-lg"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="max-w-3xl mx-auto px-5">
+            <div class="border-t border-gray-300 dark:border-gray-700"></div>
+        </div>
+
+        <!-- Dot-separated links — mobile: wrap, desktop: single row -->
+        <div class="max-w-3xl mx-auto px-5 py-3 flex flex-wrap md:flex-nowrap items-center justify-between gap-y-2">
+            <!-- Links -->
+            <div class="flex flex-wrap md:flex-nowrap items-center gap-y-1">
+                <a href="/category/" class="footer-dot-link">বিভাগ</a>
+                <span class="footer-dot">·</span>
+                <a href="/author/" class="footer-dot-link">লেখক</a>
+                <span class="footer-dot">·</span>
+                <a href="#" class="footer-dot-link">ব্লগ</a>
+                <span class="footer-dot">·</span>
+                <a href="#" class="footer-dot-link">সংবাদ</a>
+                <span class="footer-dot">·</span>
+                <a href="#" class="footer-dot-link">App</a>
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script>
+        // Search
+        function doSearch(query) {
+            if (query.trim()) {
+                window.location.href = '/search.html?q=' + encodeURIComponent(query.trim());
+            }
+        }
+        const mainInput = document.getElementById('main-search-input');
+        document.getElementById('main-search-btn').addEventListener('click', () => doSearch(mainInput.value));
+        mainInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(mainInput.value); });
+    </script>
 
 
 </body>
