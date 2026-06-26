@@ -564,20 +564,15 @@
             setTimeout(function() { updateDatetime(); dtInterval = setInterval(updateDatetime, 1000); }, 0);
         }
 
-        // Auto-open after 1 second
+        // Auto-open after 2 seconds, then auto-close after 15 seconds
         setTimeout(function() {
             if (collapsed) {
                 toggleAdBar();
-                // After 15 seconds, close only if ad-bar is currently visible
                 setTimeout(function() {
-                    if (!collapsed) {
-                        var rect = bar.getBoundingClientRect();
-                        var isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-                        if (isVisible) toggleAdBar();
-                    }
+                    if (!collapsed) toggleAdBar();
                 }, 15000);
             }
-        }, 1000);
+        }, 2000);
 
 
 
