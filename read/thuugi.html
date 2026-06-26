@@ -714,23 +714,42 @@
     }
 
     // ── Toggle opacity on scroll ──
+    const desktopScroller = document.querySelector('#read-layout > .flex-1');
     let unifiedScrollTimer;
-    window.addEventListener('scroll', () => {
+    function onScrollFade() {
         if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
             unifiedToggle.classList.add('scrolling');
             clearTimeout(unifiedScrollTimer);
             unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
         }
-    }, { passive: true });
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+    if (desktopScroller) {
+        desktopScroller.addEventListener('scroll', onScrollFade, { passive: true });
+    }
 
     // ── Progress bar on scroll ──
-    window.addEventListener('scroll', () => {
-        const docH = document.documentElement.scrollHeight - window.innerHeight;
-        const pct  = docH > 0 ? (window.scrollY / docH) * 100 : 0;
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
         progressBar.style.width = pct + '%';
         if (progressPct) progressPct.textContent = toBN(pct) + '%';
         if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
-    }, { passive: true });
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+    if (desktopScroller) {
+        desktopScroller.addEventListener('scroll', () => updateProgress(desktopScroller), { passive: true });
+    }
 
     // ── Build TOC ──
     const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
@@ -761,15 +780,19 @@
 
     // ── TOC active ──
     const allTocLinks = document.querySelectorAll('.toc-link');
-    window.addEventListener('scroll', () => {
+    function updateTocActive(scrollTop) {
         let current = 0;
         headings.forEach((h, i) => {
-            if (window.scrollY >= h.offsetTop - 120) current = i;
+            if (scrollTop >= h.offsetTop - 120) current = i;
         });
         allTocLinks.forEach(a => {
             a.classList.toggle('active', parseInt(a.dataset.idx) === current);
         });
-    }, { passive: true });
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    if (desktopScroller) {
+        desktopScroller.addEventListener('scroll', () => updateTocActive(desktopScroller.scrollTop), { passive: true });
+    }
 
     // ── Unified drawer open/close ──
     function openDrawer() {
