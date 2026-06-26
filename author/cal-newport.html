@@ -58,13 +58,16 @@
         /* Footer dot-separated links */
         .footer-dot-link {
             font-size: 14px;
-            color: #3366cc;
+            color: #c0392b;
             text-decoration: none;
             transition: color 0.15s;
         }
-        .footer-dot-link:hover { color: #c0392b; text-decoration: underline; }
-        .dark .footer-dot-link { color: #7ab3f0; }
-        .dark .footer-dot-link:hover { color: #f87171; }
+        .footer-dot-link:hover { color: #a93226; text-decoration: underline; }
+        .footer-dot-link:active,
+        .footer-dot-link:focus { text-decoration: underline; outline: none; }
+        .dark .footer-dot-link { color: #e57373; }
+        .dark .footer-dot-link:hover,
+        .dark .footer-dot-link:active { color: #f87171; text-decoration: underline; }
         .footer-dot {
             color: #999;
             font-size: 16px;
@@ -297,19 +300,20 @@
     <!-- FOOTER -->
     <footer class="bg-gray-100 dark:bg-[#1f1f1f] border-t border-gray-300 dark:border-gray-700 mt-8">
 
-        <!-- Brand row: name left, social icons right -->
+        <!-- Brand row: always visible on mobile, hidden on desktop (icons move to bottom row) -->
         <div class="max-w-3xl mx-auto px-5 pt-6 pb-4 flex items-center justify-between">
             <span class="text-3xl font-extrabold tracking-tight text-gray-800 dark:text-gray-100">
                 পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span>
             </span>
-            <div class="flex items-center gap-2">
+            <!-- Mobile only icons -->
+            <div class="flex md:hidden items-center gap-2">
                 <a href="#" aria-label="Facebook"
-                   class="w-14 h-14 rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] flex items-center justify-center text-[#1877f2] hover:border-[#1877f2] transition-all">
-                    <i class="fab fa-facebook-f text-xl"></i>
+                   class="w-12 h-12 rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] flex items-center justify-center text-[#1877f2] hover:border-[#1877f2] transition-all">
+                    <i class="fab fa-facebook-f text-lg"></i>
                 </a>
                 <a href="#" aria-label="Telegram"
-                   class="w-14 h-14 rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] flex items-center justify-center text-[#229ed9] hover:border-[#229ed9] transition-all">
-                    <i class="fab fa-telegram-plane text-xl"></i>
+                   class="w-12 h-12 rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] flex items-center justify-center text-[#229ed9] hover:border-[#229ed9] transition-all">
+                    <i class="fab fa-telegram-plane text-lg"></i>
                 </a>
             </div>
         </div>
@@ -319,23 +323,33 @@
             <div class="border-t border-gray-300 dark:border-gray-700"></div>
         </div>
 
-        <!-- Dot-separated links -->
-        <div class="max-w-3xl mx-auto px-5 py-4 flex flex-wrap items-center gap-y-2">
-            <a href="/category/" class="footer-dot-link">বিভাগ</a>
-            <span class="footer-dot">·</span>
-            <a href="/author/" class="footer-dot-link">লেখক</a>
-            <span class="footer-dot">·</span>
-            <a href="#" class="footer-dot-link">ব্লগ</a>
-            <span class="footer-dot">·</span>
-            <a href="#" class="footer-dot-link">সংবাদ</a>
-            <span class="footer-dot">·</span>
-            <a href="https://castfm.pages.dev" target="_blank" rel="noopener" class="footer-dot-link">CastFM</a>
-            <span class="footer-dot">·</span>
-            <a href="#" class="footer-dot-link">App</a>
-            <span class="footer-dot">·</span>
-            <a href="#" class="footer-dot-link">Join with us</a>
-            <span class="footer-dot">·</span>
-            <a href="#" class="footer-dot-link">© Arif</a>
+        <!-- Dot-separated links — mobile: wrap, desktop: single row -->
+        <div class="max-w-3xl mx-auto px-5 py-3 flex flex-wrap md:flex-nowrap items-center justify-between gap-y-2">
+            <!-- Links -->
+            <div class="flex flex-wrap md:flex-nowrap items-center gap-y-1">
+                <a href="/category/" class="footer-dot-link">বিভাগ</a>
+                <span class="footer-dot">·</span>
+                <a href="/author/" class="footer-dot-link">লেখক</a>
+                <span class="footer-dot">·</span>
+                <a href="#" class="footer-dot-link">ব্লগ</a>
+                <span class="footer-dot">·</span>
+                <a href="#" class="footer-dot-link">সংবাদ</a>
+                <span class="footer-dot">·</span>
+                <a href="#" class="footer-dot-link">App</a>
+            </div>
+            <!-- Social icons — desktop: inline right, mobile: hidden (shown in brand row) -->
+            <div class="hidden md:flex items-center gap-2 shrink-0 ml-4">
+                <a href="#" aria-label="Facebook"
+                   class="w-12 h-10 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] flex items-center justify-center gap-1.5 text-[#1877f2] hover:border-[#1877f2] transition-all text-xs font-semibold px-2">
+                    <i class="fab fa-facebook-f text-sm"></i>
+                    <span class="text-[10px] text-gray-500 dark:text-gray-400 leading-tight hidden lg:block">WIKIMEDIA<br>project</span>
+                </a>
+                <a href="#" aria-label="Telegram"
+                   class="w-12 h-10 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] flex items-center justify-center gap-1.5 text-[#229ed9] hover:border-[#229ed9] transition-all text-xs font-semibold px-2">
+                    <i class="fab fa-telegram-plane text-sm"></i>
+                    <span class="text-[10px] text-gray-500 dark:text-gray-400 leading-tight hidden lg:block">Powered by<br>MediaWiki</span>
+                </a>
+            </div>
         </div>
 
     </footer>
