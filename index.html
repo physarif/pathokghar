@@ -249,7 +249,14 @@
     flex-direction: column;
     padding: 0 1rem;
   }
-  @media (min-width: 768px) { .bc-list { padding: 0 1.5rem; } }
+  @media (min-width: 768px) {
+    .bc-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      padding: 0 1.5rem;
+    }
+  }
 
   /* Separator line between cards */
   .bc-card + .bc-card {
@@ -257,6 +264,15 @@
   }
   .dark .bc-card + .bc-card {
     border-top-color: #374151;
+  }
+  @media (min-width: 768px) {
+    .bc-card + .bc-card { border-top: none; }
+    .bc-card { border-top: 1px solid #e5e7eb; }
+    .bc-card:nth-child(-n+2) { border-top: none; }
+    .bc-card:nth-child(odd) { border-right: 1px solid #e5e7eb; padding-right: 1rem; }
+    .bc-card:nth-child(even) { padding-left: 1rem; }
+    .dark .bc-card { border-top-color: #374151; }
+    .dark .bc-card:nth-child(odd) { border-right-color: #374151; }
   }
 
   /* Book card — horizontal list style */
