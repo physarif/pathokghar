@@ -529,16 +529,26 @@
             setTimeout(function() { updateDatetime(); dtInterval = setInterval(updateDatetime, 1000); }, 0);
         }
 
-        // Auto-open after 3 seconds
+        // Auto-open after 1 second
         setTimeout(function() {
             if (collapsed) {
                 toggleAdBar();
-                // Auto-close after 30 seconds if user hasn't closed it
+                // Auto-close after 15 seconds if user hasn't closed it
                 setTimeout(function() {
                     if (!collapsed) toggleAdBar();
-                }, 45000);
+                }, 15000);
             }
-        }, 3000);
+        }, 1000);
+
+        // Close when user scrolls back up and ad-bar is visible
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting && !collapsed) {
+                    toggleAdBar();
+                }
+            });
+        }, { threshold: 0.8 });
+        observer.observe(bar);
 
         var label = document.getElementById('ad-bar-label');
         var notice = document.getElementById('ad-bar-notice');
