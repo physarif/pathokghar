@@ -76,54 +76,15 @@
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
 
-    <!-- HERO SECTION (Wikipedia-style) -->
-    <div class="flex flex-col items-center justify-center pt-12 pb-6 px-4 text-center">
-
-        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-2 leading-tight">
-            <a href="https://pathokghar.pages.dev" class="hover:text-brand-500 active:text-brand-500 transition-colors">পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span></a>
-        </h1>
-
-        <!-- Date & Time -->
-        <p id="datetime-display" class="text-sm text-gray-400 dark:text-gray-500 mb-4 tracking-wide"></p>
-
-        <!-- Search box -->
-        <div class="w-full max-w-xl relative flex items-center bg-white dark:bg-[#2d2d2d] border border-gray-200 dark:border-gray-600 rounded-full shadow-md focus-within:ring-2 focus-within:ring-brand-500 focus-within:border-transparent transition-all">
-            <input id="main-search-input" type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
-                class="flex-1 bg-transparent py-3 pl-5 pr-2 text-sm focus:outline-none text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 min-w-0">
-            <button id="main-search-btn" class="bg-brand-500 hover:bg-brand-600 active:bg-brand-600 text-white px-5 py-2 rounded-full text-sm font-medium transition-colors shrink-0 mr-1">
-                খুঁজুন
-            </button>
-        </div>
-
-        <!-- Category Quick Links -->
-        <div class="w-full max-w-2xl mt-2">
-            <ul class="category-underline-list flex flex-wrap justify-center items-center gap-y-1">
-                {{hero_categories}}
-            </ul>
-        </div>
-
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <main class="flex-1 min-w-0">
-        {{content}}
-    </main>
-
-    <!-- ── Sticky Ad Bar ── -->
+    <!-- ── Ad Bar (hero-এর উপরে) ── -->
     <div id="ad-bar" style="
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 9999;
-        background: #fff;
-        transform: translateY(-100%);
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         display: flex;
         flex-direction: column-reverse;
-        box-shadow: 0 3px 16px rgba(0,0,0,0.18);
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+        width: 100%;
     ">
-        <!-- Toggle Button top-left -->
+        <!-- Toggle Button -->
         <div style="display:flex; align-items:stretch;">
             <button id="ad-bar-toggle" onclick="toggleAdBar()" style="
                 background: #c0392b;
@@ -167,6 +128,39 @@
         </div>
     </div>
 
+    <!-- HERO SECTION (Wikipedia-style) -->
+    <div class="flex flex-col items-center justify-center pt-12 pb-6 px-4 text-center">
+
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-2 leading-tight">
+            <a href="https://pathokghar.pages.dev" class="hover:text-brand-500 active:text-brand-500 transition-colors">পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span></a>
+        </h1>
+
+        <!-- Date & Time -->
+        <p id="datetime-display" class="text-sm text-gray-400 dark:text-gray-500 mb-4 tracking-wide"></p>
+
+        <!-- Search box -->
+        <div class="w-full max-w-xl relative flex items-center bg-white dark:bg-[#2d2d2d] border border-gray-200 dark:border-gray-600 rounded-full shadow-md focus-within:ring-2 focus-within:ring-brand-500 focus-within:border-transparent transition-all">
+            <input id="main-search-input" type="text" placeholder="বই, লেখক বা বিষয় খুঁজুন..."
+                class="flex-1 bg-transparent py-3 pl-5 pr-2 text-sm focus:outline-none text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 min-w-0">
+            <button id="main-search-btn" class="bg-brand-500 hover:bg-brand-600 active:bg-brand-600 text-white px-5 py-2 rounded-full text-sm font-medium transition-colors shrink-0 mr-1">
+                খুঁজুন
+            </button>
+        </div>
+
+        <!-- Category Quick Links -->
+        <div class="w-full max-w-2xl mt-2">
+            <ul class="category-underline-list flex flex-wrap justify-center items-center gap-y-1">
+                {{hero_categories}}
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 min-w-0">
+        {{content}}
+    </main>
+
     <script>
     (function() {
         var bar = document.getElementById('ad-bar');
@@ -181,7 +175,6 @@
         if (document.getElementById('ad-bar-datetime')) { document.getElementById('ad-bar-datetime').style.display = 'inline'; setTimeout(function(){ updateDatetime(); dtInterval = setInterval(updateDatetime, 1000); }, 0); }
         document.getElementById('ad-bar-icon').innerHTML = '<polyline points="18 15 12 9 6 15"></polyline>';
         document.getElementById('ad-bar-label').textContent = 'Show Ad';
-        bar.style.transform = 'translateY(0)';
 
         // Auto-open after 10 seconds
         setTimeout(function() {
