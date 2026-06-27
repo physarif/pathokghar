@@ -161,7 +161,7 @@
     #book-content h1::after {
         content: '';
         display: block;
-        width: 56px;
+        width: 2.8em;
         height: 3px;
         background: #c0392b;
         border-radius: 2px;
@@ -178,7 +178,7 @@
     #book-content h2::after {
         content: '';
         display: block;
-        width: 40px;
+        width: 2.8em;
         height: 3px;
         background: #c0392b;
         border-radius: 2px;
@@ -705,7 +705,7 @@
 
             <!-- Book Title -->
             <div id="read-title-bar" style="text-align:center;padding:0.9rem 1rem;background:#1a1a1b;margin-top:1.2rem;margin-bottom:1.1rem;">
-                <h1 id="read-book-title" style="margin:0;"><a href="/book/{{book_slug}}.html" class="read-title-link" style="font-family:'Noto Serif Bengali',serif;font-size:1.3rem;font-weight:800;color:#fff;line-height:1.4;text-decoration:none;">{{book_title}}</a></h1>
+                <h1 id="read-book-title" style="margin:0;overflow:hidden;"><a href="/book/{{book_slug}}.html" class="read-title-link" id="read-title-anchor" style="font-family:'Noto Serif Bengali',serif;font-size:1.3rem;font-weight:800;color:#fff;line-height:1.4;text-decoration:none;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color 0.2s;">{{book_title}}</a></h1>
             </div>
 
             <div id="book-content" class="text-gray-800 dark:text-gray-200">
@@ -1030,6 +1030,20 @@
         if (adDatetime) adDatetime.style.color      = m.text;
         if (adNotice)   adNotice.style.color        = m.text;
     };
+
+    // ── Title tap: red color on press ──
+    (function() {
+        const anchor = document.getElementById('read-title-anchor');
+        if (!anchor) return;
+        function setRed()   { anchor.style.color = '#c0392b'; }
+        function setWhite() { anchor.style.color = '#fff'; }
+        anchor.addEventListener('touchstart', setRed,   { passive: true });
+        anchor.addEventListener('touchend',   setWhite, { passive: true });
+        anchor.addEventListener('touchcancel',setWhite, { passive: true });
+        anchor.addEventListener('mousedown',  setRed);
+        anchor.addEventListener('mouseup',    setWhite);
+        anchor.addEventListener('mouseleave', setWhite);
+    })();
 
     // ── Restore saved prefs on load ──
     (function restoreAll() {
