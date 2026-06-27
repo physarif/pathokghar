@@ -150,13 +150,19 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
 
   const indexTemplate = fs.readFileSync('components/index.html', 'utf8');
 
-  // index.html এর HTML comment থেকে card template extract করো
-  const cardTemplateMatch = indexTemplate.match(/<!--\s*\n\s*Book card template[\s\S]*?(<a[\s\S]*?<\/a>)\s*\n-->/);
-  if (!cardTemplateMatch) {
-    console.error('❌ components/index.html এ book card template comment পাওয়া যায়নি।');
-    process.exit(1);
-  }
-  const cardTemplate = cardTemplateMatch[1].trim();
+  // Book card template — সরাসরি define, index.html comment এর উপর নির্ভর নয়
+  const cardTemplate = [
+    '<a href="/book/{{book_slug}}.html" class="bc-card">',
+    '  <div class="bc-img-wrap">',
+    '    <img src="{{book_cover}}" alt="{{book_title}}" class="bc-img" loading="lazy">',
+    '  </div>',
+    '  <div class="bc-body">',
+    '    <p class="bc-headline"><span class="bc-title">{{book_title}}</span><span class="bc-sep"> – </span><span class="bc-author">{{book_author}}</span></p>',
+    '    <p class="bc-desc">{{book_desc}}</p>',
+    '  </div>',
+    '</a>',
+  ].join('
+');
 
   // created_at দিয়ে sort (নতুন আগে)
   const sorted = [...bookList].sort((a, b) => (b.created_at || 0) - (a.created_at || 0));
