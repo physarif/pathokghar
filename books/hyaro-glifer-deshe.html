@@ -204,12 +204,29 @@
         <!-- Page Nav Links -->
         <div class="w-full max-w-2xl mt-4">
             <div class="bg-gray-100 dark:bg-gray-800 rounded-xl px-4 py-3 flex justify-center gap-6">
-                <a href="/" class="text-base font-semibold text-brand-500">হোম</a>
-                <a href="/categories/" class="text-base text-gray-400 hover:text-brand-500 transition-colors">বিভাগ</a>
-                <a href="/authors/" class="text-base text-gray-400 hover:text-brand-500 transition-colors">লেখক</a>
-                <a href="/blogs/" class="text-base text-gray-400 hover:text-brand-500 transition-colors">ব্লগ</a>
+                <a href="/" id="nav-home" class="text-base transition-colors">হোম</a>
+                <a href="/categories/" id="nav-category" class="text-base transition-colors">বিভাগ</a>
+                <a href="/authors/" id="nav-author" class="text-base transition-colors">লেখক</a>
+                <a href="/blogs/" id="nav-blog" class="text-base transition-colors">ব্লগ</a>
             </div>
         </div>
+        <script>
+        (function() {
+            var path = window.location.pathname;
+            var map = {
+                'nav-home':     /^\/$|^\/index|^\/book(s)?\//i,
+                'nav-category': /^\/categor/i,
+                'nav-author':   /^\/author/i,
+                'nav-blog':     /^\/blog/i
+            };
+            var active = 'text-base font-semibold text-brand-500';
+            var inactive = 'text-base text-gray-400 hover:text-brand-500';
+            Object.keys(map).forEach(function(id) {
+                var el = document.getElementById(id);
+                if (el) el.className = map[id].test(path) ? active : inactive;
+            });
+        })();
+        </script>
 
     </div>
 
