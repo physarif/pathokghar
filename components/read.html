@@ -151,7 +151,7 @@
         font-size: 1.05rem;
     }
     #book-content h1 {
-        font-size: 1.05rem;
+        font-size: 1.3rem;
         font-weight: 800;
         color: #9ca3af;
         text-align: center;
@@ -168,7 +168,7 @@
         margin: 0.3rem auto 0;
     }
     #book-content h2 {
-        font-size: 0.95rem;
+        font-size: 1.15rem;
         font-weight: 800;
         color: #9ca3af;
         text-align: center;
@@ -184,6 +184,19 @@
         border-radius: 2px;
         margin: 0.3rem auto 0;
     }
+    /* Night mode heading adjust */
+    body.theme-dark  #book-content h1,
+    body.theme-black #book-content h1,
+    body.theme-dark  #book-content h2,
+    body.theme-black #book-content h2 { color: #6b7280; }
+    body.theme-dark  #book-content h1::after,
+    body.theme-dark  #book-content h2::after { background: #3a3a3c; }
+    body.theme-black #book-content h1::after,
+    body.theme-black #book-content h2::after { background: #222; }
+    body.theme-sepia #book-content h1,
+    body.theme-sepia #book-content h2 { color: #a08060; }
+    body.theme-sepia #book-content h1::after,
+    body.theme-sepia #book-content h2::after { background: #d6c9b0; }
     #book-content p {
         margin-bottom: 1.1rem;
         line-height: 2;
@@ -907,6 +920,8 @@
             const t = btn.dataset.theme;
             currentTheme = t;
             const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
             mobileReaderBg.style.background = m.bg;
             bookContent.style.color = m.text;
 
