@@ -1,787 +1,380 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head> 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/webp" href="https://pathokghar.pages.dev/assets/photos/pathokghar-logo.webp">
-    <link rel="apple-touch-icon" href="https://pathokghar.pages.dev/assets/photos/pathokghar-logo.webp">
-    <title>পাঠক ঘর - বাংলা বইয়ের ডিজিটাল পাঠাগার - পাঠক ঘর</title>
-    <meta name="description" content="বাংলা ও ইংরেজি বইয়ের ডিজিটাল পাঠাগার - পড়ুন, ডাউনলোড করুন">
-    <meta property="og:title" content="পাঠক ঘর - বাংলা বইয়ের ডিজিটাল পাঠাগার - পাঠক ঘর">
-    <meta property="og:description" content="বাংলা ও ইংরেজি বইয়ের ডিজিটাল পাঠাগার - পড়ুন, ডাউনলোড করুন">
-    <meta property="og:image" content="https://pathokghar.pages.dev/assets/photos/og-banner.webp">
-    <meta property="og:url" content="">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="পাঠক ঘর">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="পাঠক ঘর - বাংলা বইয়ের ডিজিটাল পাঠাগার - পাঠক ঘর">
-    <meta name="twitter:description" content="বাংলা ও ইংরেজি বইয়ের ডিজিটাল পাঠাগার - পড়ুন, ডাউনলোড করুন">
-    <meta name="twitter:image" content="https://pathokghar.pages.dev/assets/photos/og-banner.webp">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50:  '#fff5f5',
-                            100: '#fde8e6',
-                            500: '#c0392b',
-                            600: '#a93226'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+const { initializeApp, cert, getApp } = require('firebase-admin/app');
+const { getDatabase } = require('firebase-admin/database');
+const fs = require('fs');
+const path = require('path');
 
-        /* Category links — footer style, larger */
-        .category-underline-list li { display: inline-flex; align-items: center; }
-        .category-underline-list li + li::before {
-            content: '·';
-            color: #9ca3af;
-            font-size: 16px;
-            margin: 0 5px;
-            line-height: 1;
-        }
-        .dark .category-underline-list li + li::before { color: #4b5563; }
-        .category-underline-list a {
-            font-size: 17px;
-            font-weight: 400;
-            color: #c0392b;
-            text-decoration: none;
-            transition: color 0.15s;
-        }
-        .category-underline-list a:hover { color: #a93226; text-decoration: underline; }
-        .category-underline-list a:active,
-        .category-underline-list a:focus { text-decoration: underline; outline: none; }
-        .dark .category-underline-list a { color: #e57373; }
-        .dark .category-underline-list a:hover,
-        .dark .category-underline-list a:active { color: #f87171; text-decoration: underline; }
-
-        /* Footer dot-separated links */
-        .footer-dot-link {
-            font-size: 14px;
-            color: #c0392b;
-            text-decoration: none;
-            transition: color 0.15s;
-        }
-        .footer-dot-link:hover { color: #a93226; text-decoration: underline; }
-        .footer-dot-link:active,
-        .footer-dot-link:focus { text-decoration: underline; outline: none; }
-        .dark .footer-dot-link { color: #e57373; }
-        .dark .footer-dot-link:hover,
-        .dark .footer-dot-link:active { color: #f87171; text-decoration: underline; }
-        .footer-dot {
-            color: #999;
-            font-size: 16px;
-            margin: 0 6px;
-            line-height: 1;
-        }
-    </style>
-</head>
-<body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
-
-    <!-- ── Ad Bar (hero-এর উপরে) ── -->
-    <div id="ad-bar" style="
-        display: flex;
-        flex-direction: column-reverse;
-        background: #f9fafb;
-        border-bottom: 1px solid #e5e7eb;
-        width: 100%;
-    ">
-        <!-- Toggle Button -->
-        <div style="display:flex; align-items:stretch;">
-            <button id="ad-bar-toggle" onclick="toggleAdBar()" style="
-                background: #c0392b;
-                border: none;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                padding: 3px 10px;
-                font-size: 11px;
-                color: #fff;
-                flex-shrink: 0;
-                transition: background 0.2s;
-            " title="বিজ্ঞাপন লুকান / দেখান">
-                <svg id="ad-bar-icon" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-                <span id="ad-bar-label">Show Ad</span>
-            </button>
-            <span id="ad-bar-datetime" style="display:none; font-size:11px; margin-left:auto; padding:3px 10px; white-space:nowrap;"></span>
-
-            <div id="ad-bar-notice" style="overflow:hidden; white-space:nowrap; font-size:11px; display:none; align-items:center; align-self:stretch; flex:1; padding:0 8px;">
-                <span>Ad টি বন্ধ করতে <strong>Hide Ad</strong> এর উপর ক্লিক করুন।</span>
-            </div>
-        </div>
-
-        <!-- Ad Content -->
-        <div id="ad-bar-content" style="
-            overflow: auto;
-            background: #f9fafb;
-            transition: max-height 0.9s cubic-bezier(0.4, 0, 0.2, 1), padding 0.7s;
-            max-height: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 0;
-        ">
-            <div id="ad-desktop" style="display:none;">
-              <script>
-                atOptions = {
-                  'key' : '14c1e503bb59b27671d1051f187909da',
-                  'format' : 'iframe',
-                  'height' : 90,
-                  'width' : 728,
-                  'params' : {}
-                };
-              </script>
-              <script src="https://www.highperformanceformat.com/14c1e503bb59b27671d1051f187909da/invoke.js"></script>
-            </div>
-            <div id="ad-mobile" style="display:none;">
-              <script>
-                atOptions = {
-                  'key' : 'bdb924698aea49a4aceb9cbc92d09488',
-                  'format' : 'iframe',
-                  'height' : 50,
-                  'width' : 320,
-                  'params' : {}
-                };
-              </script>
-              <script src="https://www.highperformanceformat.com/bdb924698aea49a4aceb9cbc92d09488/invoke.js"></script>
-            </div>
-            <script>
-              if (window.innerWidth >= 728) {
-                document.getElementById('ad-desktop').style.display = 'block';
-              } else {
-                document.getElementById('ad-mobile').style.display = 'block';
-              }
-            </script>
-        </div>
-    </div>
-
-    <!-- HERO SECTION (Wikipedia-style) -->
-    <div class="flex flex-col items-center justify-center pt-12 pb-6 px-4 text-center">
-
-        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-2 leading-tight">
-            <a href="https://pathokghar.pages.dev" class="hover:text-brand-500 active:text-brand-500 transition-colors">পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span></a>
-        </h1>
-
-        <!-- Search box -->
-        <div class="w-full max-w-xl relative flex items-center bg-white dark:bg-[#2d2d2d] border border-gray-200 dark:border-gray-600 rounded-full focus-within:ring-2 focus-within:ring-brand-500 focus-within:border-transparent transition-all">
-            <input id="main-search-input" type="text" placeholder="বই, লেখক বা বিভাগ খুঁজুন..."
-                class="flex-1 bg-transparent py-3 pl-5 pr-2 text-sm focus:outline-none text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 min-w-0">
-            <button id="main-search-btn" class="bg-brand-500 hover:bg-brand-600 active:bg-brand-600 text-white px-5 py-2 rounded-full text-sm font-medium transition-colors shrink-0 mr-1">
-                খুঁজুন
-            </button>
-        </div>
-
-        <!-- Category Quick Links -->
-        <div class="w-full max-w-2xl mt-2">
-            <ul class="category-underline-list flex flex-wrap justify-center items-center gap-y-1">
-                <li><a href="/category/productivity/1/">আত্ম-উন্নয়ন</a></li>
-                <li><a href="/category/non-fiction/1/">নন ফিকশন</a></li>
-                <li><a href="/category/probondho/1/">প্রবন্ধ</a></li>
-                <li><a href="/category/itihas/1/">ইতিহাস</a></li>
-                <li><a href="/category/kobita/1/">কবিতা</a></li>
-                <li><a href="/category/uponyas/1/">উপন্যাস</a></li>
-            </ul>
-        </div>
-
-        <!-- Page Nav Links -->
-        <div class="w-full mt-4">
-            <div class="flex bg-white dark:bg-[#1e1e1e] shadow-[0_-1px_0_0_#f0f0f0] dark:shadow-[0_-1px_0_0_#2a2a2a]">
-                <a href="/" id="nav-home" class="flex-1 text-center py-2 text-base transition-all">হোম</a>
-                <a href="/books" id="nav-books" class="flex-1 text-center py-2 text-base transition-all">বই</a>
-                <a href="/authors/" id="nav-author" class="flex-1 text-center py-2 text-base transition-all">লেখক</a>
-                <a href="/categories/" id="nav-category" class="flex-1 text-center py-2 text-base transition-all">বিভাগ</a>
-                <a href="/blogs/" id="nav-blog" class="flex-1 text-center py-2 text-base transition-all">ব্লগ</a>
-            </div>
-        </div>
-        <script>
-        (function() {
-            var path = window.location.pathname;
-            var map = {
-                'nav-home':     /^\/$|^\/index/i,
-                'nav-books':    /^\/books/i,
-                'nav-category': /^\/categor/i,
-                'nav-author':   /^\/author/i,
-                'nav-blog':     /^\/blog/i
-            };
-            var active = 'flex-1 text-center py-2 text-base font-semibold text-brand-500 bg-red-50 dark:bg-red-950';
-            var inactive = 'flex-1 text-center py-2 text-base text-gray-400 hover:text-brand-500 hover:bg-red-50 dark:hover:bg-red-950';
-            Object.keys(map).forEach(function(id) {
-                var el = document.getElementById(id);
-                if (el) el.className = map[id].test(path) ? active : inactive;
-            });
-        })();
-        </script>
-
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <main class="flex-1 min-w-0">
-        <!-- components/index.html — homepage content + সব styling এখানে -->
-<style>
-  /* Section */
-  .book-section { padding: 0.75rem 0; margin-bottom: 0.5rem; }
-  @media (min-width: 768px) { .book-section { margin-left: 0.5rem; margin-right: 0.5rem; } }
-
-  /* Section header */
-  .bc-section-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.75rem;
-    padding: 0 1rem;
+// Firebase env var validation
+const REQUIRED_ENV = ['FIREBASE_PROJECT_ID', 'FIREBASE_CLIENT_EMAIL', 'FIREBASE_PRIVATE_KEY', 'FIREBASE_DATABASE_URL'];
+for (const key of REQUIRED_ENV) {
+  if (!process.env[key]) {
+    console.error(`❌ Missing required environment variable: ${key}`);
+    console.error('GitHub Secrets সঠিকভাবে set করা আছে কিনা চেক করুন।');
+    process.exit(1);
   }
-  @media (min-width: 768px) { .bc-section-header { padding: 0 1.5rem; } }
+}
 
-  /* Title + extending line */
-  .bc-section-title {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #1f2937;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    width: 100%;
-    letter-spacing: 0.02em;
-    line-height: 1.2;
-  }
-  .bc-section-title::after {
-    content: '';
-    flex: 1;
-    height: 2px;
-    background: #c0392b;
-    border-radius: 1px;
-  }
-  .dark .bc-section-title { color: #f3f4f6; }
-  .dark .bc-section-title::after { background: #f87171; }
+// Firebase init (firebase-admin v12+ modular import)
+initializeApp({
+  credential: cert({
+    projectId: process.env.FIREBASE_PROJECT_ID.trim(),
+    clientEmail: process.env.FIREBASE_CLIENT_EMAIL.trim(),
+    privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n').trim(),
+  }),
+  databaseURL: process.env.FIREBASE_DATABASE_URL.trim(),
+});
 
-  /* "সব দেখুন" pill button */
-  .bc-section-link {
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: #fff;
-    background: #7a3b1e;
-    text-decoration: none;
-    padding: 0.3rem 0.75rem;
-    border-radius: 0.25rem;
-    white-space: nowrap;
-    transition: background 0.15s;
-  }
-  .bc-section-link:hover { background: #5c2b14; }
-  .dark .bc-section-link { background: #92400e; }
-  .dark .bc-section-link:hover { background: #78350f; }
+const db = getDatabase();
 
-  /* List container */
-  .bc-list {
-    display: flex;
-    flex-direction: column;
-    padding: 0 1rem;
-  }
-  @media (min-width: 768px) {
-    .bc-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      padding: 0 1.5rem;
+// Template load
+const layout = fs.readFileSync('components/layout.html', 'utf8');
+const bookTemplate = fs.readFileSync('components/book.html', 'utf8');
+
+// Placeholder replace helper
+function render(template, data) {
+  return template.replace(/\{\{(\w+)\}\}/g, (_, key) => data[key] || '');
+}
+
+// Folder তৈরি
+if (!fs.existsSync('books')) fs.mkdirSync('books');
+
+// Sidebar HTML builder
+function buildSidebarHTML(bookList, authorsRaw, categoriesRaw) {
+  // Categories — Firebase numeric key অনুসারে sort করে প্রথম ১০টা
+  const catItems = Object.entries(categoriesRaw)
+    .map(([id, cat]) => ({ id, cat, num: parseInt(id, 10) }))
+    .filter(({ cat }) => cat && cat.slug && cat.title)
+    .sort((a, b) => {
+      if (!isNaN(a.num) && !isNaN(b.num)) return a.num - b.num;
+      return a.id.localeCompare(b.id);
+    })
+    .map(({ cat }) => `<li><a href="/category/${cat.slug}/1/">${cat.title}</a></li>`);
+
+  // Authors — count per author
+  const authorMap = {};
+  const authorCount = {};
+  for (const book of bookList) {
+    if (book.author_slug) {
+      if (!authorMap[book.author_slug]) authorMap[book.author_slug] = book.author_name;
+      authorCount[book.author_slug] = (authorCount[book.author_slug] || 0) + 1;
     }
   }
+  const authorItems = Object.entries(authorMap)
+    .sort(([,a],[,b]) => a.localeCompare(b, 'bn'))
+    .map(([slug, name]) => `<li><a href="/author/${slug}.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">${name}</span><span class="text-[11px] text-gray-400 dark:text-gray-500">${authorCount[slug] || 0}</span></a></li>`);
 
-  /* Separator line between cards */
-  .bc-card + .bc-card {
-    border-top: 1px solid #e5e7eb;
-  }
-  .dark .bc-card + .bc-card {
-    border-top-color: #374151;
-  }
-  @media (min-width: 768px) {
-    .bc-card + .bc-card { border-top: none; }
-    .bc-card { border-top: 1px solid #e5e7eb; }
-    .bc-card:nth-child(1),
-    .bc-card:nth-child(2) { border-top: none; }
-    .bc-card:nth-child(odd) { border-right: 1px solid #e5e7eb; padding-right: 1rem; }
-    .bc-card:nth-child(even) { padding-left: 1rem; }
-    .dark .bc-card { border-top-color: #374151; }
-    .dark .bc-card:nth-child(odd) { border-right-color: #374151; }
-  }
+  return {
+    hero_categories: catItems.join('\n                '),
+    sidebar_authors: authorItems.join('\n                '),
+  };
+}
 
-  /* Book card — horizontal list style */
-  .bc-card {
-    display: flex;
-    flex-direction: row;
-    gap: 0.85rem;
-    align-items: flex-start;
-    text-decoration: none;
-    padding: 0.75rem 0;
-    transition: background 0.1s;
-  }
-  .bc-card:hover { background: transparent; }
+async function generateBookPages() {
+  console.log('📚 Firebase থেকে data fetch করছি...');
 
-  /* Cover — left side, fixed size 2:3 ratio */
-  .bc-img-wrap {
-    flex-shrink: 0;
-    width: 5.5rem;
-    aspect-ratio: 2/3;
-    border-radius: 0.25rem;
-    overflow: hidden;
-    background: #e5e7eb;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  }
-  @media (min-width: 768px) { .bc-img-wrap { width: 6.5rem; } }
-  .dark .bc-img-wrap { background: #374151; }
+  const [booksSnap, authorsSnap, categoriesSnap] = await Promise.all([
+    db.ref('/books').orderByKey().once('value'),
+    db.ref('/authors').once('value'),
+    db.ref('/categories').once('value'),
+  ]);
 
-  .bc-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  const booksRaw = booksSnap.val();
+  const authorsRaw = authorsSnap.val() || {};
+  const categoriesRaw = categoriesSnap.val() || {};
+
+  if (!booksRaw) {
+    console.log('কোনো book data পাওয়া যায়নি।');
+    return { bookList: [], authorsRaw: {} };
   }
 
-  /* Right side text */
-  .bc-body {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
+  const bookList = Object.entries(booksRaw)
+    .sort(([keyA], [keyB]) => {
+      const numA = parseInt(keyA, 10);
+      const numB = parseInt(keyB, 10);
+      if (!isNaN(numA) && !isNaN(numB)) return numA - numB;
+      return keyA.localeCompare(keyB);
+    })
+    .map(([firebaseKey, book]) => {
+    const author = authorsRaw[book.author] || {};
+    const category = categoriesRaw[book.category] || {};
+    return {
+      id: parseInt(firebaseKey, 10) || firebaseKey,
+      slug: book.slug,
+      title: book.title,
+      description: book.desc || '',
+      cover: book.img || '',
+      download_url: book.file || '',
+      language: 'বাংলা',
+      created_at: book.createdAt || 0,
+      author_name: author.title || '',
+      author_slug: author.slug || '',
+      author_img: author.img || '',
+      category_name: category.title || '',
+      category_slug: category.slug || '',
+    };
+  });
+
+  console.log(`✅ ${bookList.length}টা বই পাওয়া গেছে।`);
+
+  for (const book of bookList) {
+    const bookContent = render(bookTemplate, {
+      book_title: book.title,
+      book_author: book.author_name,
+      book_author_slug: book.author_slug,
+      book_cover: book.cover,
+      book_category: book.category_name,
+      book_category_slug: book.category_slug,
+      book_language: book.language,
+      book_description: book.description,
+      book_slug: book.slug,
+    });
+
+    const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+    const fullPage = render(layout, {
+      page_title: `${book.title} - ${book.author_name}`,
+      page_description: book.description?.slice(0, 160) || '',
+      content: bookContent,
+      hero_categories,
+      sidebar_authors,
+    });
+
+    const outputPath = `books/${book.slug}.html`;
+    fs.writeFileSync(outputPath, fullPage, 'utf8');
+    console.log(`  ✓ ${outputPath}`);
   }
 
-  /* Headline: title . author একই লাইনে, একই size */
-  .bc-headline {
-    font-size: 1rem;
-    line-height: 1.4;
-    margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  return { bookList, authorsRaw, categoriesRaw };
+}
+
+async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
+  console.log('\n🏠 Homepage generate করছি...');
+
+  const indexTemplate = fs.readFileSync('components/index.html', 'utf8');
+
+  // index.html এর HTML comment থেকে card template extract করো
+  const cardTemplateMatch = indexTemplate.match(/<!--\s*\n\s*Book card template[\s\S]*?(<a[\s\S]*?<\/a>)\s*\n-->/);
+  if (!cardTemplateMatch) {
+    console.error('❌ components/index.html এ book card template comment পাওয়া যায়নি।');
+    process.exit(1);
   }
-  .bc-title {
-    font-weight: 700;
-    color: #c0392b;
+  const cardTemplate = cardTemplateMatch[1].trim();
+
+  // created_at দিয়ে sort (নতুন আগে)
+  const sorted = [...bookList].sort((a, b) => (b.created_at || 0) - (a.created_at || 0));
+
+  const BOOKS_PER_PAGE = 12;
+  const totalPages = Math.ceil(sorted.length / BOOKS_PER_PAGE);
+
+  // Book card render helper
+  function bookCard(book) {
+    const desc = (book.description || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return render(cardTemplate, {
+      book_slug: book.slug,
+      book_cover: book.cover,
+      book_title: book.title,
+      book_author: book.author_name,
+      book_desc: desc,
+    });
   }
-  .dark .bc-title { color: #f87171; }
-  .bc-card:hover .bc-title { text-decoration: underline; }
-  .dark .bc-card:hover .bc-title { text-decoration: underline; }
 
-  .bc-sep {
-    color: #9ca3af;
-    font-weight: 400;
-    vertical-align: middle;
+  const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+
+  for (let page = 1; page <= totalPages; page++) {
+    const pageBooks = sorted.slice((page - 1) * BOOKS_PER_PAGE, page * BOOKS_PER_PAGE);
+
+    const indexContent = render(indexTemplate, {
+      latest_books: pageBooks.map(bookCard).join(''),
+      current_page: page,
+      total_pages: totalPages,
+    });
+
+    const fullPage = render(layout, {
+      page_title: page === 1
+        ? 'পাঠক ঘর - বাংলা বইয়ের ডিজিটাল পাঠাগার'
+        : `পাঠক ঘর - পাতা ${page}`,
+      page_description: 'বাংলা ও ইংরেজি বইয়ের ডিজিটাল পাঠাগার - পড়ুন, ডাউনলোড করুন',
+      content: indexContent,
+      hero_categories,
+      sidebar_authors,
+    });
+
+    if (page === 1) {
+      fs.writeFileSync('index.html', fullPage, 'utf8');
+      console.log('  ✓ index.html');
+    } else {
+      const dir = `latest/${page}`;
+      if (!fs.existsSync('latest')) fs.mkdirSync('latest');
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(`${dir}/index.html`, fullPage, 'utf8');
+      console.log(`  ✓ latest/${page}/index.html`);
+    }
   }
-  .bc-author {
-    font-weight: 500;
-    color: #6b7280;
+}
+
+async function generateAuthorPages(bookList, authorsRaw, categoriesRaw) {
+  console.log('\n👤 Author pages generate করছি...');
+  const authorTemplate = fs.readFileSync('components/author.html', 'utf8');
+  if (!fs.existsSync('author')) fs.mkdirSync('author');
+
+  // author অনুযায়ী group
+  const byAuthor = {};
+  for (const book of bookList) {
+    if (!byAuthor[book.author_slug]) {
+      // Firebase থেকে সরাসরি author data নাও
+      const authorData = Object.values(authorsRaw).find(a => a.slug === book.author_slug) || {};
+      byAuthor[book.author_slug] = {
+        name: book.author_name,
+        img: book.author_img || '',
+        desc: authorData.desc || '',
+        books: [],
+      };
+    }
+    byAuthor[book.author_slug].books.push(book);
   }
-  .dark .bc-author { color: #9ca3af; }
 
-  /* Description — 3 lines */
-  .bc-desc {
-    margin-top: 0.3rem;
-    font-size: 0.92rem;
-    color: #4b5563;
-    line-height: 1.6;
-    text-align: justify;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  for (const [slug, data] of Object.entries(byAuthor)) {
+    const booksData = JSON.stringify(data.books.map(b => ({
+      slug: b.slug,
+      title: b.title,
+      cover: b.cover,
+      category_name: b.category_name,
+    })));
+
+    const authorContent = render(authorTemplate, {
+      author_name: data.name,
+      author_img: data.img,
+      author_desc: data.desc,
+      author_book_count: data.books.length,
+      author_books_data: booksData,
+    });
+    const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+    const fullPage = render(layout, {
+      page_title: data.name,
+      page_description: '',
+      content: authorContent,
+      hero_categories,
+      sidebar_authors,
+    });
+
+    fs.writeFileSync(`author/${slug}.html`, fullPage, 'utf8');
+    console.log(`  ✓ author/${slug}.html`);
   }
-  .dark .bc-desc { color: #9ca3af; }
+}
 
-  /* Pagination */
-  .bc-pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 1.5rem 1rem 0.5rem;
-    flex-wrap: wrap;
+async function generateDownloadPages(bookList, authorsRaw, categoriesRaw) {
+  console.log('\n📥 Download pages generate করছি...');
+  const downloadTemplate = fs.readFileSync('components/download.html', 'utf8');
+  if (!fs.existsSync('download')) fs.mkdirSync('download');
+
+  for (const book of bookList) {
+    const downloadContent = render(downloadTemplate, {
+      book_title: book.title,
+      book_author: book.author_name,
+      book_cover: book.cover,
+      book_category: book.category_name,
+      book_download_url: book.download_url || '',
+      book_slug: book.slug,
+      book_author_slug: book.author_slug,
+      book_category_slug: book.category_slug,
+    });
+    const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+    const fullPage = render(layout, {
+      page_title: book.title,
+      page_description: '',
+      content: downloadContent,
+      hero_categories,
+      sidebar_authors,
+    });
+
+    fs.writeFileSync(`download/${book.slug}.html`, fullPage, 'utf8');
+    console.log(`  ✓ download/${book.slug}.html`);
   }
-  .bc-page-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 2.1rem;
-    height: 2.1rem;
-    padding: 0 0.5rem;
-    border-radius: 0.3rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-decoration: none;
-    color: #374151;
-    background: #f3f4f6;
-    transition: background 0.15s, color 0.15s;
+}
+
+async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
+  console.log('\n📂 Category pages generate করছি...');
+  const categoryTemplate = fs.readFileSync('components/category.html', 'utf8');
+
+  const byCategory = {};
+  for (const book of bookList) {
+    if (!byCategory[book.category_slug]) {
+      byCategory[book.category_slug] = { name: book.category_name, books: [] };
+    }
+    byCategory[book.category_slug].books.push(book);
   }
-  .bc-page-btn:hover { background: #e5e7eb; color: #111827; }
-  .bc-page-btn.active { background: #c0392b; color: #fff; pointer-events: none; }
-  .bc-page-nav {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    padding: 0 0.75rem;
-    height: 2.1rem;
-    border-radius: 0.3rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-decoration: none;
-    color: #fff;
-    background: #c0392b;
-    transition: background 0.15s;
-  }
-  .bc-page-nav:hover { background: #991b1b; }
-  .dark .bc-page-btn { background: #1f2937; color: #d1d5db; }
-  .dark .bc-page-btn:hover { background: #374151; color: #f9fafb; }
-  .dark .bc-page-btn.active { background: #f87171; color: #111827; }
-  .dark .bc-page-nav { background: #f87171; color: #111827; }
-  .dark .bc-page-nav:hover { background: #ef4444; }
-</style>
 
-<!--
-  Book card template (reference — generate_pages.js এ ব্যবহার হয়):
-  <a href="books/.html" class="bc-card">
-    <div class="bc-img-wrap">
-      <img src="" alt="" class="bc-img" loading="lazy">
-    </div>
-    <div class="bc-body">
-      <p class="bc-headline"><span class="bc-title"></span><span class="bc-sep"> – </span><span class="bc-author"></span></p>
-      <p class="bc-desc"></p>
-    </div>
-  </a>
--->
+  for (const [slug, data] of Object.entries(byCategory)) {
+    // id অনুসারে ascending sort
+    data.books.sort((a, b) => {
+      if (typeof a.id === 'number' && typeof b.id === 'number') return a.id - b.id;
+      return String(a.id).localeCompare(String(b.id));
+    });
+    const BOOKS_PER_PAGE = 24;
+    const totalPages = Math.ceil(data.books.length / BOOKS_PER_PAGE);
+    const dir = `category/${slug}`;
+    if (!fs.existsSync('category')) fs.mkdirSync('category');
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
-<main class="flex-1 py-4 md:py-6 md:px-8 lg:px-16 min-h-[calc(100vh-3.5rem)] min-w-0 overflow-hidden">
+    for (let page = 1; page <= totalPages; page++) {
+      const pageBooks = data.books.slice((page - 1) * BOOKS_PER_PAGE, page * BOOKS_PER_PAGE);
 
-  <!-- সর্বশেষ বই -->
-  <section class="book-section">
-    <div class="bc-section-header">
-      <h2 class="bc-section-title">সর্বশেষ বই</h2>
-    </div>
-    <div class="bc-list"><a href="books/parapar.html" class="bc-card">
-    <div class="bc-img-wrap">
-      <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782548521030_tn81umhps6j.jpg" alt="পারাপার" class="bc-img" loading="lazy">
-    </div>
-    <div class="bc-body">
-      <p class="bc-headline"><span class="bc-title">পারাপার</span><span class="bc-sep"> – </span><span class="bc-author">হুমায়ূন আহমেদ</span></p>
-      <p class="bc-desc">হিমু সিরিজের অন্যতম গভীর ও মনস্তাত্ত্বিক উপন্যাস ‘পারাপার’। এই বইটিতে হিমু চরিত্রের রহস্যময়তা এবং তার চিরচেনা ‘অ্যান্টি-লজিক’ বা যুক্তিহীনতার দর্শন এক ভিন্ন মাত্রায় ধরা দিয়েছে। জীবনের চেনা-অচেনা সম্পর্কের টানাপোড়েন এবং মানুষের ভেতরের বিচিত্র রূপকে হুমায়ূন আহমেদ হিমুর চোখ দিয়ে খুব সূক্ষ্মভাবে দেখিয়েছেন। বইটির প্রতিটি পাতায় ছড়িয়ে আছে লেখকের স্বভাবসুলভ রসবোধ ও চমৎকার সংলাপ, যা পাঠককে এক মুহূর্তের জন্যও বিরক্ত হতে দেয় না। আপাতদৃষ্টিতে হিমুর খামখেয়ালিপনা মনে হলেও, কাহিনীর গভীরে লুকিয়ে থাকা জীবনবোধ ও এক অদ্ভুত একাকীত্বের সুর পাঠকের মনে গভীর দাগ কেটে যায়। হিমুপ্রেমীদের জন্য তো বটেই, যেকোনো সাধারণ পাঠকের জন্যও বইটি এক দারুণ এবং স্মরণীয় অভিজ্ঞতা।</p>
-    </div>
-  </a><a href="books/aaj-himur-biye.html" class="bc-card">
-    <div class="bc-img-wrap">
-      <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782548140332_v6n9jqkefr.png" alt="আজ হিমুর বিয়ে" class="bc-img" loading="lazy">
-    </div>
-    <div class="bc-body">
-      <p class="bc-headline"><span class="bc-title">আজ হিমুর বিয়ে</span><span class="bc-sep"> – </span><span class="bc-author">হুমায়ূন আহমেদ</span></p>
-      <p class="bc-desc">হিমু সিরিজের অন্যতম চমৎকার ও তুমুল পাঠকপ্রিয় উপন্যাস ‘আজ হিমুর বিয়ে’। বইটির নাম শুনেই পাঠকদের মনে যে তুমুল কৌতূহল আর হাসির খোরাক তৈরি হয়, পুরো গল্পজুড়ে হুমায়ূন আহমেদ সেই আমেজ ধরে রেখেছেন দারুণভাবে। চিরকাল ছন্নছাড়া, হলুদ পাঞ্জাবি পরা আর নিয়ম-কানুনের তোয়াক্কা না করা হিমুর বিয়ে কি আদেও সম্ভব? —এই মূল ভাবনাকে কেন্দ্র করেই আবর্তিত হয়েছে এর গল্প। বরাবরের মতোই হিমুর অ্যান্টি-লজিক, অদ্ভুত সব কাণ্ডকারখানা আর তীক্ষ্ণ রসবোধে ভরপুর এই উপন্যাসটি। হাস্যরসের আড়ালে মানুষের মনস্তত্ত্ব ও সম্পর্কের টানাপোড়েন লেখক যেভাবে ফুটিয়ে তুলেছেন, তা এককথায় অনবদ্য। হিমুর চিরচেনা রূপের পাশাপাশি একটি জমজমাট ও মজাদার কাহিনীর স্বাদ পেতে এই বইটি যেকোনো বইপ্রেমীর জন্য একটি দারুণ পছন্দ।</p>
-    </div>
-  </a><a href="books/dorjar-opashe.html" class="bc-card">
-    <div class="bc-img-wrap">
-      <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782547787988_ho42l4beyjb.jpeg" alt="দরজার ওপাশে" class="bc-img" loading="lazy">
-    </div>
-    <div class="bc-body">
-      <p class="bc-headline"><span class="bc-title">দরজার ওপাশে</span><span class="bc-sep"> – </span><span class="bc-author">হুমায়ূন আহমেদ</span></p>
-      <p class="bc-desc">হুমায়ূন আহমেদের তুমুল জনপ্রিয় হিমু সিরিজের দ্বিতীয় উপন্যাস ‘দরজার ওপাশে’ মূলত যুক্তি আর অ্যান্টি-লজিকের এক অদ্ভুত মনস্তাত্ত্বিক খেলা। প্রথম বই ‘ময়ূরাক্ষী’র ঘোর কাটার আগেই এই বইটিতে পাঠক আবারও মুখোমুখি হন হলুদ পাঞ্জাবি পরা, পকেটবিহীন, খালি পায়ের সেই রহস্যময় যুবক হিমুর। গল্পে হিমুর চারপাশের চেনা জগৎ, তার খামখেয়ালিপনা এবং আপাতদৃষ্টিতে উদ্দেশ্যহীন সব কর্মকাণ্ডের আড়ালে লুকিয়ে থাকা গভীর জীবনদর্শন এক ভিন্ন মাত্রায় ধরা দেয়। হুমায়ূন আহমেদের স্বভাবসুলভ সহজ-সরল ও রসবোধপূর্ণ লেখনী যেমন পাঠককে হাসায়, ঠিক তেমনি দরজার ওপাশের এক অদৃশ্য, অজানা জগতের রহস্যময়তা মনের ভেতর এক অদ্ভুত হাহাকার ও মুগ্ধতার জন্ম দেয়। এক বসায় পড়ে শেষ করার মতো এবং হিমুপ্রেমীদের জন্য এটি আজীবন সংগ্রহে রাখার মতো একটি অনবদ্য সৃষ্টি।</p>
-    </div>
-  </a><a href="books/himur-hate-koekti-nil-padmo.html" class="bc-card">
-    <div class="bc-img-wrap">
-      <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782548854212_q83zg3nx66.jpg" alt="হিমুর হাতে কয়েকটি নীলপদ্ম" class="bc-img" loading="lazy">
-    </div>
-    <div class="bc-body">
-      <p class="bc-headline"><span class="bc-title">হিমুর হাতে কয়েকটি নীলপদ্ম</span><span class="bc-sep"> – </span><span class="bc-author">হুমায়ূন আহমেদ</span></p>
-      <p class="bc-desc">হিমু সিরিজের সবচেয়ে জনপ্রিয় ও আবেগঘন উপন্যাসগুলোর একটি ‘হিমুর হাতে কয়েকটি নীলপদ্ম’। এই বইটিতে হিমুর চিরচেনা রহস্যময় ও খামখেয়ালি রূপের পাশাপাশি তার ভেতরের এক অদ্ভুত মানবিক ও সংবেদনশীল দিক উন্মোচিত হয়েছে। কাহিনীর পরতে পরতে ছড়িয়ে থাকা তীব্র কৌতূহল, চমৎকার হিউমার এবং নিখুঁত সংলাপ পাঠককে শুরু থেকে শেষ পর্যন্ত মলাটবন্দী করে রাখে। হলুদ পাঞ্জাবি পরা এই ছন্নছাড়া যুবকের যুক্তিহীন দর্শনের আড়ালে যে গভীর জীবনবোধ লুকিয়ে থাকে, তা এই উপন্যাসে খুব সূক্ষ্মভাবে ফুটিয়ে তুলেছেন হুমায়ূন আহমেদ। বইটির শেষদিকের কিছু দৃশ্য এবং নীলপদ্মের প্রতীকী আবেদন পাঠকের মনে এক অদ্ভুত মুগ্ধতা আর একাকীত্বের হাহাকার সৃষ্টি করে, যা বই শেষ করার পরও দীর্ঘক্ষণ তাড়া করে বেড়ায়।</p>
-    </div>
-  </a><a href="books/deep-work.html" class="bc-card">
-    <div class="bc-img-wrap">
-      <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1781951699130_91xp6nvz1ca.jpg" alt="Deep Work" class="bc-img" loading="lazy">
-    </div>
-    <div class="bc-body">
-      <p class="bc-headline"><span class="bc-title">Deep Work</span><span class="bc-sep"> – </span><span class="bc-author">Cal Newport</span></p>
-      <p class="bc-desc">**"Deep Work" by Cal Newport** is an indispensable and thought-provoking guide for anyone striving to thrive in an increasingly distracted, digital world. Newport argues that the ability to master **"deep work"**—the capacity to focus without distraction on a cognitively demanding task—is becoming a rare and exceptionally valuable skill in today's economy. The book brilliantly contrasts this with "shallow work" (like mindlessly checking emails or scrolling social media) and provides a highly practical blueprint to cultivate intense concentration. Through compelling anecdotes and actionable strategies—such as embracing boredom, quitting non-essential social media, and scheduling every minute of your day—Newport teaches readers how to re-wire their brains for maximum productivity. It is a vital read for professionals and students alike who want to escape the trap of constant busyness and produce work of genuine value and impact.</p>
-    </div>
-  </a><a href="books/atomic-habits.html" class="bc-card">
-    <div class="bc-img-wrap">
-      <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782198664764_ahq3dsyl0v.jpg" alt="Atomic Habits" class="bc-img" loading="lazy">
-    </div>
-    <div class="bc-body">
-      <p class="bc-headline"><span class="bc-title">Atomic Habits</span><span class="bc-sep"> – </span><span class="bc-author">James Clear</span></p>
-      <p class="bc-desc">**"Atomic Habits" by James Clear** is an exceptional and highly practical guide to self-improvement that shifts the focus from setting overwhelming goals to mastering the systems behind them. Clear beautifully argues that massive success doesn't require drastic changes; instead, it is the result of compounding **1% daily improvements**—the "atomic" habits. Built around the four core laws of behavior change (**Make it Obvious, Attractive, Easy, and Satisfying**), the book provides actionable, science-backed strategies to break bad routines and effortlessly build good ones. What makes this book truly transformative is its emphasis on **identity-based habits**, teaching readers that true change comes not from what you want to achieve, but from who you wish to become. It is an absolute must-read for anyone looking to unlock their full potential and design a more productive, intentional life.</p>
-    </div>
-  </a><a href="books/moyurakkhi.html" class="bc-card">
-    <div class="bc-img-wrap">
-      <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780155625111_gppwilns44.jpg" alt="ময়ূরাক্ষী" class="bc-img" loading="lazy">
-    </div>
-    <div class="bc-body">
-      <p class="bc-headline"><span class="bc-title">ময়ূরাক্ষী</span><span class="bc-sep"> – </span><span class="bc-author">হুমায়ূন আহমেদ</span></p>
-      <p class="bc-desc">**ময়ূরাক্ষী** হুমায়ুন আহমেদ এর অমর সৃষ্টি হিমু সিরিজের প্রথম উপন্যাস। উপন্যাসের কেন্দ্রীয় চরিত্র হিমু এক বিস্ময়কর ও রহস্যময় তরুণ, যার জীবন অন্যরকম। সে চাকরি করে না, পকেটবিহীন পাঞ্জাবি পরে, মানুষের ভবিষ্যত বলে, কিন্তু আসলে সে নিজের জীবনকেই রাস্তায় অলিগলিতে খুঁজে ফিরে।
-
-গল্পের শুরু হিমুর শৈশব থেকে। তার বাবা এক মহাপুরুষ তৈরি করতে চেয়েছিলেন, যে নিয়মমাফিক মানবিক আবেগের ঊর্ধ্বে থাকবে। সেই পরীক্ষার ফলেই হিমুর মাঝে তৈরি হয় এক বিকল্প মানসিক জগৎ। বাস্তবতা, নৈতিকতা আর প্রেম—সব কিছুই তার নিজের মতো করে বোঝে। হিমু যেমন রূপাকে ভালোবাসে, তেমনি ভালোবাসাকে ত্যাগও করে।
-
-হিমু চরিত্র টা একটু ব্যাতিক্রমী চরিত্র। সে আত্মবিশ্বাসী, উদাসীন, আবার ভীষণ অন্তর্মুখী। অন্যদিকে রুপা হিমুর প্রতি মুগ্ধ, কিন্তু তার অবোধ্য মনোভাবের কারণে দোটানায় থাকে।
-অন্যান্য পার্শ্বচরিত্রগুলিও হিমুর দর্শনের বিপরীতে অবস্থান করে, ফলে চিন্তার সংঘর্ষ তৈরি হয়।
-
-ময়ূরাক্ষী উপন্যাসে হুমায়ূন আহমেদের সহজ ও সংলাপনির্ভর লেখার ধারা  মুগ্ধ করে। তিনি কৌতুক, তীক্ষ্ণ পর্যবেক্ষণ আর গভীর জীবনদর্শন একত্রে মিশিয়েছেন অত্যন্ত নিপুণভাবে।যারা জীবনকে ভিন্নভাবে দেখতে ভালোবাসে, তাদের জন্য এটা একটি চমৎকার উপন্যাস। হিমুর রহস্যময় মন এবং হুমায়ূনের জাদুকরী ভাষা সব মিলে এই বইটা দারুণ</p>
-    </div>
-  </a><a href="books/deyal.html" class="bc-card">
-    <div class="bc-img-wrap">
-      <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782500101937_imhf123lo0j.jpg" alt="দেয়াল" class="bc-img" loading="lazy">
-    </div>
-    <div class="bc-body">
-      <p class="bc-headline"><span class="bc-title">দেয়াল</span><span class="bc-sep"> – </span><span class="bc-author">হুমায়ূন আহমেদ</span></p>
-      <p class="bc-desc">ভাদ্র মাসের সন্ধা। আকাশে মেঘ আছে। লালচে রঙের মেঘ। যে মেঘে বৃষ্টি হয় না, তবে দেকায় অপূর্ব। এই গাঢ় লাল, এই হালকা হলুদ, আবার চোখের নিমিষে লালের সঙ্গে খয়েরি মিশে সম্পূর্ণ অন্য রঙ। রঙের খেলা যিনি খেলছেন মনে হয় তিনি সিদ্ধান্তহীনতায় ভুগছেন।’
-
-এভাবেই সূচনা ঘটেছে হুমাযূন আহমেদের চার দশকের বর্ণময় লেখকজীবনের শেষ উপন্যাস ‘দেয়াল’- এর। ২০১১ সালের মাঝামাঝিতে ‘দেয়াল’ রচনা শুরু করেছিলেন তিনি। সে-সময় উপন্যাসের পাঁচটি পর্ব ধারাবাহিকভাবে ‘অন্যদিন’-এর প্রকাশিত হয়। এরপর বেশ কিছুদিন বিরতির পর যুক্তরাষ্ট্রে তাঁর ক্যানসার চিকিৎসা চলাকালে নতুন করে ‘দেয়াল’ রচনায় মনোনিবেশ করেন তিনি, যদিও শেষ পর্যন্ত উপন্যাসটির চূড়ান্ত রূপ দেয়ার সুযোগ পান নি।
-
-সূচনা-অনুচ্ছেদে আকাশের রঙবদলের খেয়ায় যে সিদ্ধান্তহীনতার কথা বলা হচ্ছে তা বিশেষ ইঙ্গিতবহ। যে সময়কে উপজীব্য করা হয়েছে ‘দেয়াল’-এ, তা একটি সদ্যস্বাধীন জাতির ভাগ্যকাশের চরম অনিশ্চয়তার কাল। উপন্যাসের কিছু চরিত্র বাস্তব থেকে নেওয়া, নাম-ধাম সবই বাস্তব, ঘটনা-পরস্পরাও বাস্তবেরই অংশ। লেখক যেহেতু উপন্যাস লিখেছেন, তাই আছে কিছু কাল্পনিক চরিত্র। গল্প আবর্তিত হয়েছে এদের ঘিরেও।
-
-নানা ঘটনার ঘনঘটায় ঢাকা পড়ে নি জীবনসৌন্দর্য আর জীবন-সত্যের সন্ধান। ইতিহাসের সত্য আর লেখকের সৃজনী ভাবন্য-দুইয়ে মিলে ‘দেয়াল’ পরিণত হয়েছে একটি হৃদয়গ্রাহী উপাখ্যানে।</p>
-    </div>
-  </a><a href="books/sesher-kobita.html" class="bc-card">
-    <div class="bc-img-wrap">
-      <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780242158760_3rivje7ps4o.webp" alt="শেষের কবিতা" class="bc-img" loading="lazy">
-    </div>
-    <div class="bc-body">
-      <p class="bc-headline"><span class="bc-title">শেষের কবিতা</span><span class="bc-sep"> – </span><span class="bc-author">রবীন্দ্রনাথ ঠাকুর</span></p>
-      <p class="bc-desc">শেষের কবিতা রবীন্দ্রনাথ ঠাকুর রচিত একটি উপন্যাস। রবীন্দ্রনাথের চিত্রসৃষ্টি পর্যায়ের দ্বিতীয় উপন্যাস (প্রথমটি যোগাযোগ) এটা। ১৯২৭ সালের (১৩৩৪ বঙ্গাব্দের ভাদ্র) থেকে ১৯২৮ সাল (১৩৩৪ বঙ্গাব্দের চৈত্র) পর্যন্ত প্রবাসীতে ধারাবাহিকভাবে রচনাটি প্রকাশিত হয়।
-.
-শেষের কবিতা বিংশ শতকের বাংলার নবশিক্ষিত অভিজাত সমাজের জীবনকথা। ব্যক্তি মানুষের মূল্যচেতনার উপাদান যদি অন্তর থেকে শুধুই বার হয়ে আসতে থাকে - যার সমুন্নতি ও দীপ্তি বিদ্যার বৃহৎ পরিমার্জনায়, তারও একটা চরিত্র আছে। বাস্তব চেনাশোনার চলা বাহ্যিক অভিজ্ঞতার জগৎ থেকে তা একেবারে অন্তর অভিমুখী। এই নবতর চেতনার অদ্ভুত আবিষ্কার এই উপন্যাস রচনার কাছাকাছি সময়ে। রবীন্দ্রনাথের অঙ্কিত এই পর্বের দু-একটি মুখাবয়বে কল্পনার প্রাধান্য লক্ষণীয়।
-
-লেখা ও প্রকাশের দিক থেকে শেষের কবিতা রবীন্দ্রনাথ ঠাকুরের দশম উপন্যাস। রবীন্দ্রনাথ ঠাকুর এটি লেখেন ১৯২৮ সালে ব্যাঙ্গালোরে, স্বাস্থ্য উদ্ধারের প্রয়াসে সেখানে থাকবার সময়ে। শেষের কবিতা প্রথম প্রকাশিত হয় প্রবাসী’তে, ধারাবাহিকভাবে ভাদ্র থেকে চৈত্র পর্যন্ত। অনেকে একে কবিতার বই ভেবে ভুল করে। আদতে এটি রবীন্দ্রনাথ ঠাকুরের অন্যতম রোমান্টিক উপন্যাস ।</p>
-    </div>
-  </a><a href="books/amar-obishas.html" class="bc-card">
-    <div class="bc-img-wrap">
-      <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780049973280_skqw4ksgug.jpg" alt="আমার অবিশ্বাস" class="bc-img" loading="lazy">
-    </div>
-    <div class="bc-body">
-      <p class="bc-headline"><span class="bc-title">আমার অবিশ্বাস</span><span class="bc-sep"> – </span><span class="bc-author">হুমায়ুন আজাদ</span></p>
-      <p class="bc-desc">প্রয়াত কথাসাহিত্যিক ও চিন্তাবিদ হুমায়ুন আজাদের বহুল আলোচিত এবং বিতর্কিত একটি মননশীল প্রবন্ধগ্রন্থ ‘আমার অবিশ্বাস’। এটি মূলত প্রথা, অন্ধবিশ্বাস, ধর্ম, এবং গোঁড়ামির বিরুদ্ধে এক সাহসী মুক্তচিন্তামূলক দলিল। ১৯৯৭ সালে প্রকাশিত এই বইটিতে লেখক ৭টি ভিন্ন প্রবন্ধে প্রচলিত বিশ্বাস ও রাষ্ট্রীয় ব্যবস্থার বিরুদ্ধে তার ব্যক্তিগত অবিশ্বাসের দর্শন তুলে ধরেছেন।</p>
-    </div>
-  </a><a href="books/lal-nil-dipaboli.html" class="bc-card">
-    <div class="bc-img-wrap">
-      <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782237910538_av69id9dxcj.jpeg" alt="লাল নীল দীপাবলি" class="bc-img" loading="lazy">
-    </div>
-    <div class="bc-body">
-      <p class="bc-headline"><span class="bc-title">লাল নীল দীপাবলি</span><span class="bc-sep"> – </span><span class="bc-author">হুমায়ুন আজাদ</span></p>
-      <p class="bc-desc">যে-রকম বোধ আমাকে কবিতা লিখতে উৎসাহ দেয়, সে-রকম বোধে অনুপ্রাণিত হয়েই, দু-দশক আগে, লিখেছিলাম লাল নীল দীপাবলি। একটি দীর্ঘ কবিতার মতোই কয়েক দিনের মধ্যে লাল নীল দীপাবলি রচিত হয়ে উঠেছিলো। আজ আর আমার পক্ষে এ-বই লেখা সম্ভব নয়। এ-বইয়ের পাঠক হিশেবে আমার কল্পনায় ছিলো স্বপ্নকাতর সে-কিশোরকিশোরীরা তরুণতরুণীরা, যারা আছে কোমল কৈশোরের শেষ রেখায়, বা যারা কৈশোর পেরিয়ে ঢুকেছে এক বিস্ময়কর আলোতে, যাদের সৌরলোক ভ’রে গেছে সাহিত্যের স্বর্ণশস্যে। একদা আমি সবুজ বাল্যকাল পেরিয়ে সাহিত্যের মধ্যে মহাজগৎকে দেখেছিলাম, লাল নীল দীপাবলি তাদেরই জন্যে যারা আজ একদা আমার মতো। তবে তারা কি আজ আছে? শুনতে পাই সময় তাদেরও নষ্ট করেছে, তারা আর সাহিত্যের স্বর্ণশস্যে বুক ভরিয়ে তোলে না। অন্য নানা সোনায় তাদের বুক পরিপূর্ণ। বাঙলা সাহিত্যের দিকে তাকালে এক সময় আমার চোখে শুধু লাল নীল প্রদীপমালার রূপ ভেসে উঠতো, দেখতে পেতাম হাজার বছর ধরে জ্বেলে দেয়া ঝাড়লণ্ঠনের মালা। দীপ জ্বেলেছেন কাহ্নপাদ, দীপ জ্বেলেছেন বড়ু চণ্ডীদাস; হাজার বছর ধরে দীপ জ্বেলেছেন মুকুন্দরাম, চণ্ডীদাস, বিদ্যাপতি, বিদ্যাসাগর, মধুসূদন, বিহারীলাল, বঙ্কিমচন্দ্র, রবীন্দ্রনাথ, ও আরো অনেকে। লাল নীল দীপাবলিতে আমি স্বপ্ননীল কিশোরকিশোরী তরুণতরুণীদের চোখের সামনে বাঙলা সাহিত্যের হাজার বছরকে আলোকমালার মতো জ্বেলে দিতে চেয়েছিলাম। কয়েক বছর আগে আরেকটি বই লিখেছি আমি : কতো নদী সরোবর বা বাঙলা ভাষার জীবনী। এ-দুটি যুগল বই। আমি চাই এ-দুটি একসাথে থাকুক কিশোরকিশোরী তরুণতরুণীদের টেবিলে; একটি বলুক সাহিত্যের কথা, আরেকটি বলুক ভাষার কথা। লাল নীল দীপাবলির প্রথম প্রকাশের সময় বিদেশে ছিলাম, তাই রয়ে গিয়েছিলো মুদ্রণত্রুটি। সংশোধন করতে গিয়ে এবার বইটি নতুন করে লিখেছি, কোনো কোনো পরিচ্ছেদ হয়েছে আগের থেকে অনেক বড়ো। লাল নীল দীপাবলি ১৯৭৩-এ ধারাবাহিকভাবে বেরিয়েছিলো ‘দৈনিক বাংলা’র ‘সাতভাই চম্পা’য়। এটিকে আমি কতো নদী সরোবর বা বাঙলা ভাষার জীবনীর যুগল বই বলে মনে করি বলে এবার এর নামে যোগ হলো বা বাঙলা সাহিত্যের জীবনী। আশা করি এবারও লাল নীল দীপাবলি পাবে কিশোরতরুণদের ভালোবাসা।</p>
-    </div>
-  </a><a href="books/ruposhi-bangla.html" class="bc-card">
-    <div class="bc-img-wrap">
-      <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780239429326_tgzvn2excdg.webp" alt="রূপসী বাংলা" class="bc-img" loading="lazy">
-    </div>
-    <div class="bc-body">
-      <p class="bc-headline"><span class="bc-title">রূপসী বাংলা</span><span class="bc-sep"> – </span><span class="bc-author">জীবনানন্দ দাশ</span></p>
-      <p class="bc-desc">রূপসী বাংলা বাংলা ভাষার অন্যতম প্রধান কবি জীবনানন্দ দাশের সর্বাধিক জনপ্রিয় কাব্যগ্রন্থ। এটি তাঁর সপ্তম কাব্যগ্রন্থ। কবি জীবদ্দশায় এ গ্রন্থটি বা এর অন্তর্ভুক্ত কোন কবিতা প্রকাশ করেন নি। ১৯৫৪ খ্রিষ্টাব্দে দুঘর্টনায় অকালমৃত্যুর পর এর পাণ্ডুলিপির খাতাটি আবিষ্কৃত হয়। কবি এ গ্রন্থটির প্রচ্ছদনাম নির্বাচন করেছিলেন বাংলার ত্রস্ত নীলিমা। জীবনানন্দ কেন স্বীয় জীবদ্দশায় এ কাব্যগন্থটি প্রকাশ করেননি তা অদ্যাবধি এক পরম বিস্ময় হয়ে আছে। বাংলাদেশের মুক্তিযুদ্ধে এ কাব্যের কবিতাগুলি বাঙালিদের বিশেষভাবে অনুপ্রেরণা যুগিয়েছিল।</p>
-    </div>
-  </a></div>
-  </section>
-
-  <div id="bc-pagination"></div>
-  <script>
-    (function() {
-      const current = parseInt('1', 10);
-      const total = parseInt('2', 10);
-      if (!current || !total || total <= 1) return;
-      const el = document.getElementById('bc-pagination');
-      let html = '<div class="bc-pagination">';
-      if (current > 1) {
-        const prev = current === 2 ? '/' : '/latest/' + (current - 1) + '/';
-        html += '<a href="' + prev + '" class="bc-page-nav"><i class="fas fa-chevron-left text-xs"></i> পূর্ববর্তী</a>';
-      }
-      for (let i = 1; i <= total; i++) {
-        const href = i === 1 ? '/' : '/latest/' + i + '/';
-        if (i === current) html += '<span class="bc-page-btn active">' + i + '</span>';
-        else html += '<a href="' + href + '" class="bc-page-btn">' + i + '</a>';
-      }
-      if (current < total) {
-        html += '<a href="/latest/' + (current + 1) + '/" class="bc-page-nav">পরবর্তী <i class="fas fa-chevron-right text-xs"></i></a>';
-      }
-      html += '</div>';
-      el.innerHTML = html;
-    })();
-  </script>
-
-</main>
-
-    </main>
-
-    <script>
-    (function() {
-        var bar = document.getElementById('ad-bar');
-        var content = document.getElementById('ad-bar-content');
-        var icon = document.getElementById('ad-bar-icon');
-        var collapsed = true;
-        var dtInterval = null;
-
-        // Start collapsed — state already set in HTML/CSS
-        // Show datetime immediately since bar starts collapsed
-        if (document.getElementById('ad-bar-datetime')) {
-            document.getElementById('ad-bar-datetime').style.display = 'inline';
-            setTimeout(function() { updateDatetime(); dtInterval = setInterval(updateDatetime, 1000); }, 0);
-        }
-
-        // Auto-open after 2 seconds, then auto-close after 15 seconds
-        setTimeout(function() {
-            if (collapsed) {
-                toggleAdBar();
-                setTimeout(function() {
-                    if (!collapsed) toggleAdBar();
-                }, 15000);
-            }
-        }, 1500);
-
-
-
-        var label = document.getElementById('ad-bar-label');
-        var notice = document.getElementById('ad-bar-notice');
-        var datetime = document.getElementById('ad-bar-datetime');
-
-        // ── Bengali helpers ──
-        function toBnDigits(n) {
-            return String(n).replace(/[0-9]/g, d => '০১২৩৪৫৬৭৮৯'[d]);
-        }
-        var bnDays   = ['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
-        var bnBoshontoMonths = ['বৈশাখ','জ্যৈষ্ঠ','আষাঢ়','শ্রাবণ','ভাদ্র','আশ্বিন','কার্তিক','অগ্রহায়ণ','পৌষ','মাঘ','ফাল্গুন','চৈত্র'];
-
-        // Bangabda conversion (Bangladesh calendar)
-        function toBangabda(now) {
-            var gYear  = now.getFullYear();
-            var gMonth = now.getMonth() + 1;
-            var gDay   = now.getDate();
-            var bnMonth, bnDay, bnYear;
-            var monthMap = [
-                [1,  14, 9,  14],[2,  13, 10, 13],[3,  14, 11, 14],[4,  14, 0,  14],
-                [5,  15, 1,  15],[6,  15, 2,  15],[7,  16, 3,  16],[8,  16, 4,  16],
-                [9,  16, 5,  16],[10, 16, 6,  16],[11, 15, 7,  15],[12, 15, 8,  15],
-            ];
-            var idx = gMonth - 1;
-            var startDay = monthMap[idx][3];
-            if (gDay >= startDay) {
-                bnMonth = monthMap[idx][2];
-                bnDay   = gDay - startDay + 1;
-            } else {
-                bnMonth = (monthMap[idx][2] - 1 + 12) % 12;
-                var prevGMonth = gMonth === 1 ? 12 : gMonth - 1;
-                var prevStart  = monthMap[prevGMonth - 1][3];
-                var daysInPrevGMonth = new Date(gYear, gMonth - 1, 0).getDate();
-                bnDay = daysInPrevGMonth - prevStart + gDay + 1;
-            }
-            bnYear = (bnMonth <= 4) ? gYear - 593 : gYear - 594;
-            return { day: bnDay, month: bnMonth, year: bnYear };
-        }
-
-        function updateDatetime() {
-            if (!datetime) return;
-            var now  = new Date();
-            var day  = bnDays[now.getDay()];
-            var h    = now.getHours();
-            var m    = now.getMinutes();
-            var s    = now.getSeconds();
-            var h12  = h % 12 || 12;
-            var bn   = toBangabda(now);
-            datetime.innerHTML =
-                '<span style="color:#9ca3af;font-weight:400;">' + day + ', </span>' +
-                '<strong style="color:inherit;font-weight:700;">' + toBnDigits(bn.day) + '</strong>' +
-                '<span style="color:#9ca3af;font-weight:400;"> ' + bnBoshontoMonths[bn.month] + ' </span>' +
-                '<strong style="color:inherit;font-weight:700;">' + toBnDigits(bn.year) + '</strong>' +
-                '<span style="color:#9ca3af;font-weight:400;">  |  </span>' +
-                '<strong style="color:inherit;font-weight:700;">' +
-                    toBnDigits(h12) + ':' + toBnDigits(String(m).padStart(2,'0')) + ':' + toBnDigits(String(s).padStart(2,'0')) +
-                '</strong>';
-        }
-
-        window.toggleAdBar = function() {
-            collapsed = !collapsed;
-            if (collapsed) {
-                content.style.maxHeight = '0';
-                content.style.padding = '0';
-                if (notice) notice.style.display = 'none';
-                if (datetime) { datetime.style.display = 'inline'; updateDatetime(); dtInterval = setInterval(updateDatetime, 1000); }
-                icon.innerHTML = '<polyline points="18 15 12 9 6 15"></polyline>';
-                label.textContent = 'Show Ad';
-            } else {
-                content.style.maxHeight = '500px';
-                content.style.padding = '6px 10px';
-                if (notice) notice.style.display = 'flex';
-                if (datetime) { datetime.style.display = 'none'; clearInterval(dtInterval); }
-                icon.innerHTML = '<polyline points="6 9 12 15 18 9"></polyline>';
-                label.textContent = 'Hide Ad';
-            }
-        };
-    })();
-    </script>
-
-    <!-- FOOTER -->
-    <footer class="bg-gray-100 dark:bg-[#1f1f1f] border-t border-gray-300 dark:border-gray-700 mt-8">
-
-        <!-- Brand row: always visible on mobile, hidden on desktop (icons move to bottom row) -->
-        <div class="max-w-3xl mx-auto px-5 pt-6 pb-4 flex items-center justify-between">
-            <div>
-                <a href="https://pathokghar.pages.dev"
-                   class="text-3xl font-extrabold tracking-tight text-gray-800 dark:text-gray-100 active:text-brand-500 transition-colors group">
-                    <span class="group-active:text-brand-500 transition-colors">পাঠক</span> <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span>
-                </a>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">বাংলা বইয়ের ডিজিটাল পাঠাগার।</p>
-            </div>
-            <!-- Social icons -->
-            <div class="flex items-center gap-2">
-                <a href="https://facebook.com/pathokghar" target="_blank" rel="noopener" aria-label="Facebook"
-                   class="w-12 h-12 rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] flex items-center justify-center text-[#1877f2] hover:border-[#1877f2] transition-all">
-                    <i class="fab fa-facebook-f text-lg"></i>
-                </a>
-                <a href="https://t.me/pathokghar" target="_blank" rel="noopener" aria-label="Telegram"
-                   class="w-12 h-12 rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] flex items-center justify-center text-[#229ed9] hover:border-[#229ed9] transition-all">
-                    <i class="fab fa-telegram-plane text-lg"></i>
-                </a>
-            </div>
+      const booksGrid = pageBooks.map(book => `
+      <a href="/books/${book.slug}.html" class="cat-card">
+        <div class="cat-img-wrap">
+          <img src="${book.cover}" alt="${book.title}" class="cat-img" loading="lazy">
         </div>
+        <p class="cat-title">${book.title}</p>
+        <p class="cat-author">${book.author_name}</p>
+      </a>`).join('');
 
-        <!-- Divider -->
-        <div class="max-w-3xl mx-auto px-5">
-            <div class="border-t border-gray-300 dark:border-gray-700"></div>
-        </div>
+      // Pagination HTML
+      let paginationHTML = '<div class="cat-pagination">';
+      if (page > 1) paginationHTML += `<a href="/category/${slug}/${page - 1}/" class="cat-page-nav"><i class="fas fa-chevron-left text-xs"></i> আগের</a>`;
+      for (let i = 1; i <= totalPages; i++) {
+        if (i === page) paginationHTML += `<span class="cat-page-btn active">${i}</span>`;
+        else paginationHTML += `<a href="/category/${slug}/${i}/" class="cat-page-btn">${i}</a>`;
+      }
+      if (page < totalPages) paginationHTML += `<a href="/category/${slug}/${page + 1}/" class="cat-page-nav">পরের <i class="fas fa-chevron-right text-xs"></i></a>`;
+      paginationHTML += '</div>';
 
-        <!-- Dot-separated links — mobile: wrap, desktop: single row -->
-        <div class="max-w-3xl mx-auto px-5 py-3 flex flex-wrap md:flex-nowrap items-center justify-between gap-y-2">
-            <!-- Links -->
-            <div class="flex flex-wrap md:flex-nowrap items-center gap-y-1">
-                <a href="/categories/" class="footer-dot-link">বিভাগ</a>
-                <span class="footer-dot">·</span>
-                <a href="/authors/" class="footer-dot-link">লেখক</a>
-                <span class="footer-dot">·</span>
-                <a href="/blogs/" class="footer-dot-link">ব্লগ</a>
-                <span class="footer-dot">·</span>
-                <a href="/app/" class="footer-dot-link">App</a>
-            </div>
-            <!-- Crafted by -->
-            <span class="text-xs text-gray-400 dark:text-gray-500 whitespace-nowrap">
-                crafted by <a href="https://facebook.com/physarif" target="_blank" rel="noopener"
-                class="font-semibold text-brand-500 hover:underline">Arif</a>
-            </span>
+      const categoryContent = render(categoryTemplate, {
+        category_name: data.name,
+        category_book_count: data.books.length,
+        category_books_grid: booksGrid,
+        category_pagination: paginationHTML,
+      });
+      const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+      const fullPage = render(layout, {
+        page_title: data.name,
+        page_description: '',
+        content: categoryContent,
+        hero_categories,
+        sidebar_authors,
+      });
 
-        </div>
-
-    </footer>
-
-    <script>
-        // Search
-        function doSearch(query) {
-            if (query.trim()) {
-                window.location.href = '/search.html?q=' + encodeURIComponent(query.trim());
-            }
-        }
-        const mainInput = document.getElementById('main-search-input');
-        document.getElementById('main-search-btn').addEventListener('click', () => doSearch(mainInput.value));
-        mainInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(mainInput.value); });
-    </script>
+      const pageDir = `${dir}/${page}`;
+      if (!fs.existsSync(pageDir)) fs.mkdirSync(pageDir, { recursive: true });
+      fs.writeFileSync(`${pageDir}/index.html`, fullPage, 'utf8');
+      console.log(`  ✓ category/${slug}/${page}/index.html`);
+    }
+  }
+}
 
 
-</body>
-</html>
+// Main
+(async () => {
+  try {
+    console.log('🚀 Script শুরু হয়েছে...');
+    const { bookList, authorsRaw, categoriesRaw } = await generateBookPages();
+    await generateHomepage(bookList, authorsRaw, categoriesRaw);
+    await generateAuthorPages(bookList, authorsRaw, categoriesRaw);
+    await generateDownloadPages(bookList, authorsRaw, categoriesRaw);
+    await generateCategoryPages(bookList, authorsRaw, categoriesRaw);
+    console.log('\n🎉 সব pages generate হয়েছে!');
+    await getApp().delete();
+    process.exit(0);
+  } catch (err) {
+    console.error('❌ Error:', err);
+    await getApp().delete().catch(() => {});
+    process.exit(1);
+  }
+})();

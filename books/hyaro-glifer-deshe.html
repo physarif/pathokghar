@@ -1,693 +1,380 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head> 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/webp" href="https://pathokghar.pages.dev/assets/photos/pathokghar-logo.webp">
-    <link rel="apple-touch-icon" href="https://pathokghar.pages.dev/assets/photos/pathokghar-logo.webp">
-    <title>হায়ারোগ্লিফের দেশে - অনির্বাণ ঘোষ - পাঠক ঘর</title>
-    <meta name="description" content="সব শুরুর আগে আরও একটা শুরু থাকে।
+const { initializeApp, cert, getApp } = require('firebase-admin/app');
+const { getDatabase } = require('firebase-admin/database');
+const fs = require('fs');
+const path = require('path');
 
-২০০১ সালের একটা দুপুর বেলার কথা। ষোলো আর পনেরো বছর বয়সি পিঠো-পিঠি দুই ভাই সদ্য সিনেমা দেখে বেরিয়েছে৷ হাওড়ার শ্যামাশ্রী সিনে">
-    <meta property="og:title" content="হায়ারোগ্লিফের দেশে - অনির্বাণ ঘোষ - পাঠক ঘর">
-    <meta property="og:description" content="সব শুরুর আগে আরও একটা শুরু থাকে।
+// Firebase env var validation
+const REQUIRED_ENV = ['FIREBASE_PROJECT_ID', 'FIREBASE_CLIENT_EMAIL', 'FIREBASE_PRIVATE_KEY', 'FIREBASE_DATABASE_URL'];
+for (const key of REQUIRED_ENV) {
+  if (!process.env[key]) {
+    console.error(`❌ Missing required environment variable: ${key}`);
+    console.error('GitHub Secrets সঠিকভাবে set করা আছে কিনা চেক করুন।');
+    process.exit(1);
+  }
+}
 
-২০০১ সালের একটা দুপুর বেলার কথা। ষোলো আর পনেরো বছর বয়সি পিঠো-পিঠি দুই ভাই সদ্য সিনেমা দেখে বেরিয়েছে৷ হাওড়ার শ্যামাশ্রী সিনে">
-    <meta property="og:image" content="https://pathokghar.pages.dev/assets/photos/og-banner.webp">
-    <meta property="og:url" content="">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="পাঠক ঘর">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="হায়ারোগ্লিফের দেশে - অনির্বাণ ঘোষ - পাঠক ঘর">
-    <meta name="twitter:description" content="সব শুরুর আগে আরও একটা শুরু থাকে।
+// Firebase init (firebase-admin v12+ modular import)
+initializeApp({
+  credential: cert({
+    projectId: process.env.FIREBASE_PROJECT_ID.trim(),
+    clientEmail: process.env.FIREBASE_CLIENT_EMAIL.trim(),
+    privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n').trim(),
+  }),
+  databaseURL: process.env.FIREBASE_DATABASE_URL.trim(),
+});
 
-২০০১ সালের একটা দুপুর বেলার কথা। ষোলো আর পনেরো বছর বয়সি পিঠো-পিঠি দুই ভাই সদ্য সিনেমা দেখে বেরিয়েছে৷ হাওড়ার শ্যামাশ্রী সিনে">
-    <meta name="twitter:image" content="https://pathokghar.pages.dev/assets/photos/og-banner.webp">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50:  '#fff5f5',
-                            100: '#fde8e6',
-                            500: '#c0392b',
-                            600: '#a93226'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+const db = getDatabase();
 
-        /* Category links — footer style, larger */
-        .category-underline-list li { display: inline-flex; align-items: center; }
-        .category-underline-list li + li::before {
-            content: '·';
-            color: #9ca3af;
-            font-size: 16px;
-            margin: 0 5px;
-            line-height: 1;
-        }
-        .dark .category-underline-list li + li::before { color: #4b5563; }
-        .category-underline-list a {
-            font-size: 17px;
-            font-weight: 400;
-            color: #c0392b;
-            text-decoration: none;
-            transition: color 0.15s;
-        }
-        .category-underline-list a:hover { color: #a93226; text-decoration: underline; }
-        .category-underline-list a:active,
-        .category-underline-list a:focus { text-decoration: underline; outline: none; }
-        .dark .category-underline-list a { color: #e57373; }
-        .dark .category-underline-list a:hover,
-        .dark .category-underline-list a:active { color: #f87171; text-decoration: underline; }
+// Template load
+const layout = fs.readFileSync('components/layout.html', 'utf8');
+const bookTemplate = fs.readFileSync('components/book.html', 'utf8');
 
-        /* Footer dot-separated links */
-        .footer-dot-link {
-            font-size: 14px;
-            color: #c0392b;
-            text-decoration: none;
-            transition: color 0.15s;
-        }
-        .footer-dot-link:hover { color: #a93226; text-decoration: underline; }
-        .footer-dot-link:active,
-        .footer-dot-link:focus { text-decoration: underline; outline: none; }
-        .dark .footer-dot-link { color: #e57373; }
-        .dark .footer-dot-link:hover,
-        .dark .footer-dot-link:active { color: #f87171; text-decoration: underline; }
-        .footer-dot {
-            color: #999;
-            font-size: 16px;
-            margin: 0 6px;
-            line-height: 1;
-        }
-    </style>
-</head>
-<body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
+// Placeholder replace helper
+function render(template, data) {
+  return template.replace(/\{\{(\w+)\}\}/g, (_, key) => data[key] || '');
+}
 
-    <!-- ── Ad Bar (hero-এর উপরে) ── -->
-    <div id="ad-bar" style="
-        display: flex;
-        flex-direction: column-reverse;
-        background: #f9fafb;
-        border-bottom: 1px solid #e5e7eb;
-        width: 100%;
-    ">
-        <!-- Toggle Button -->
-        <div style="display:flex; align-items:stretch;">
-            <button id="ad-bar-toggle" onclick="toggleAdBar()" style="
-                background: #c0392b;
-                border: none;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                padding: 3px 10px;
-                font-size: 11px;
-                color: #fff;
-                flex-shrink: 0;
-                transition: background 0.2s;
-            " title="বিজ্ঞাপন লুকান / দেখান">
-                <svg id="ad-bar-icon" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-                <span id="ad-bar-label">Show Ad</span>
-            </button>
-            <span id="ad-bar-datetime" style="display:none; font-size:11px; margin-left:auto; padding:3px 10px; white-space:nowrap;"></span>
+// Folder তৈরি
+if (!fs.existsSync('books')) fs.mkdirSync('books');
 
-            <div id="ad-bar-notice" style="overflow:hidden; white-space:nowrap; font-size:11px; display:none; align-items:center; align-self:stretch; flex:1; padding:0 8px;">
-                <span>Ad টি বন্ধ করতে <strong>Hide Ad</strong> এর উপর ক্লিক করুন।</span>
-            </div>
+// Sidebar HTML builder
+function buildSidebarHTML(bookList, authorsRaw, categoriesRaw) {
+  // Categories — Firebase numeric key অনুসারে sort করে প্রথম ১০টা
+  const catItems = Object.entries(categoriesRaw)
+    .map(([id, cat]) => ({ id, cat, num: parseInt(id, 10) }))
+    .filter(({ cat }) => cat && cat.slug && cat.title)
+    .sort((a, b) => {
+      if (!isNaN(a.num) && !isNaN(b.num)) return a.num - b.num;
+      return a.id.localeCompare(b.id);
+    })
+    .map(({ cat }) => `<li><a href="/category/${cat.slug}/1/">${cat.title}</a></li>`);
+
+  // Authors — count per author
+  const authorMap = {};
+  const authorCount = {};
+  for (const book of bookList) {
+    if (book.author_slug) {
+      if (!authorMap[book.author_slug]) authorMap[book.author_slug] = book.author_name;
+      authorCount[book.author_slug] = (authorCount[book.author_slug] || 0) + 1;
+    }
+  }
+  const authorItems = Object.entries(authorMap)
+    .sort(([,a],[,b]) => a.localeCompare(b, 'bn'))
+    .map(([slug, name]) => `<li><a href="/author/${slug}.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">${name}</span><span class="text-[11px] text-gray-400 dark:text-gray-500">${authorCount[slug] || 0}</span></a></li>`);
+
+  return {
+    hero_categories: catItems.join('\n                '),
+    sidebar_authors: authorItems.join('\n                '),
+  };
+}
+
+async function generateBookPages() {
+  console.log('📚 Firebase থেকে data fetch করছি...');
+
+  const [booksSnap, authorsSnap, categoriesSnap] = await Promise.all([
+    db.ref('/books').orderByKey().once('value'),
+    db.ref('/authors').once('value'),
+    db.ref('/categories').once('value'),
+  ]);
+
+  const booksRaw = booksSnap.val();
+  const authorsRaw = authorsSnap.val() || {};
+  const categoriesRaw = categoriesSnap.val() || {};
+
+  if (!booksRaw) {
+    console.log('কোনো book data পাওয়া যায়নি।');
+    return { bookList: [], authorsRaw: {} };
+  }
+
+  const bookList = Object.entries(booksRaw)
+    .sort(([keyA], [keyB]) => {
+      const numA = parseInt(keyA, 10);
+      const numB = parseInt(keyB, 10);
+      if (!isNaN(numA) && !isNaN(numB)) return numA - numB;
+      return keyA.localeCompare(keyB);
+    })
+    .map(([firebaseKey, book]) => {
+    const author = authorsRaw[book.author] || {};
+    const category = categoriesRaw[book.category] || {};
+    return {
+      id: parseInt(firebaseKey, 10) || firebaseKey,
+      slug: book.slug,
+      title: book.title,
+      description: book.desc || '',
+      cover: book.img || '',
+      download_url: book.file || '',
+      language: 'বাংলা',
+      created_at: book.createdAt || 0,
+      author_name: author.title || '',
+      author_slug: author.slug || '',
+      author_img: author.img || '',
+      category_name: category.title || '',
+      category_slug: category.slug || '',
+    };
+  });
+
+  console.log(`✅ ${bookList.length}টা বই পাওয়া গেছে।`);
+
+  for (const book of bookList) {
+    const bookContent = render(bookTemplate, {
+      book_title: book.title,
+      book_author: book.author_name,
+      book_author_slug: book.author_slug,
+      book_cover: book.cover,
+      book_category: book.category_name,
+      book_category_slug: book.category_slug,
+      book_language: book.language,
+      book_description: book.description,
+      book_slug: book.slug,
+    });
+
+    const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+    const fullPage = render(layout, {
+      page_title: `${book.title} - ${book.author_name}`,
+      page_description: book.description?.slice(0, 160) || '',
+      content: bookContent,
+      hero_categories,
+      sidebar_authors,
+    });
+
+    const outputPath = `books/${book.slug}.html`;
+    fs.writeFileSync(outputPath, fullPage, 'utf8');
+    console.log(`  ✓ ${outputPath}`);
+  }
+
+  return { bookList, authorsRaw, categoriesRaw };
+}
+
+async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
+  console.log('\n🏠 Homepage generate করছি...');
+
+  const indexTemplate = fs.readFileSync('components/index.html', 'utf8');
+
+  // index.html এর HTML comment থেকে card template extract করো
+  const cardTemplateMatch = indexTemplate.match(/<!--\s*\n\s*Book card template[\s\S]*?(<a[\s\S]*?<\/a>)\s*\n-->/);
+  if (!cardTemplateMatch) {
+    console.error('❌ components/index.html এ book card template comment পাওয়া যায়নি।');
+    process.exit(1);
+  }
+  const cardTemplate = cardTemplateMatch[1].trim();
+
+  // created_at দিয়ে sort (নতুন আগে)
+  const sorted = [...bookList].sort((a, b) => (b.created_at || 0) - (a.created_at || 0));
+
+  const BOOKS_PER_PAGE = 12;
+  const totalPages = Math.ceil(sorted.length / BOOKS_PER_PAGE);
+
+  // Book card render helper
+  function bookCard(book) {
+    const desc = (book.description || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return render(cardTemplate, {
+      book_slug: book.slug,
+      book_cover: book.cover,
+      book_title: book.title,
+      book_author: book.author_name,
+      book_desc: desc,
+    });
+  }
+
+  const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+
+  for (let page = 1; page <= totalPages; page++) {
+    const pageBooks = sorted.slice((page - 1) * BOOKS_PER_PAGE, page * BOOKS_PER_PAGE);
+
+    const indexContent = render(indexTemplate, {
+      latest_books: pageBooks.map(bookCard).join(''),
+      current_page: page,
+      total_pages: totalPages,
+    });
+
+    const fullPage = render(layout, {
+      page_title: page === 1
+        ? 'পাঠক ঘর - বাংলা বইয়ের ডিজিটাল পাঠাগার'
+        : `পাঠক ঘর - পাতা ${page}`,
+      page_description: 'বাংলা ও ইংরেজি বইয়ের ডিজিটাল পাঠাগার - পড়ুন, ডাউনলোড করুন',
+      content: indexContent,
+      hero_categories,
+      sidebar_authors,
+    });
+
+    if (page === 1) {
+      fs.writeFileSync('index.html', fullPage, 'utf8');
+      console.log('  ✓ index.html');
+    } else {
+      const dir = `latest/${page}`;
+      if (!fs.existsSync('latest')) fs.mkdirSync('latest');
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(`${dir}/index.html`, fullPage, 'utf8');
+      console.log(`  ✓ latest/${page}/index.html`);
+    }
+  }
+}
+
+async function generateAuthorPages(bookList, authorsRaw, categoriesRaw) {
+  console.log('\n👤 Author pages generate করছি...');
+  const authorTemplate = fs.readFileSync('components/author.html', 'utf8');
+  if (!fs.existsSync('author')) fs.mkdirSync('author');
+
+  // author অনুযায়ী group
+  const byAuthor = {};
+  for (const book of bookList) {
+    if (!byAuthor[book.author_slug]) {
+      // Firebase থেকে সরাসরি author data নাও
+      const authorData = Object.values(authorsRaw).find(a => a.slug === book.author_slug) || {};
+      byAuthor[book.author_slug] = {
+        name: book.author_name,
+        img: book.author_img || '',
+        desc: authorData.desc || '',
+        books: [],
+      };
+    }
+    byAuthor[book.author_slug].books.push(book);
+  }
+
+  for (const [slug, data] of Object.entries(byAuthor)) {
+    const booksData = JSON.stringify(data.books.map(b => ({
+      slug: b.slug,
+      title: b.title,
+      cover: b.cover,
+      category_name: b.category_name,
+    })));
+
+    const authorContent = render(authorTemplate, {
+      author_name: data.name,
+      author_img: data.img,
+      author_desc: data.desc,
+      author_book_count: data.books.length,
+      author_books_data: booksData,
+    });
+    const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+    const fullPage = render(layout, {
+      page_title: data.name,
+      page_description: '',
+      content: authorContent,
+      hero_categories,
+      sidebar_authors,
+    });
+
+    fs.writeFileSync(`author/${slug}.html`, fullPage, 'utf8');
+    console.log(`  ✓ author/${slug}.html`);
+  }
+}
+
+async function generateDownloadPages(bookList, authorsRaw, categoriesRaw) {
+  console.log('\n📥 Download pages generate করছি...');
+  const downloadTemplate = fs.readFileSync('components/download.html', 'utf8');
+  if (!fs.existsSync('download')) fs.mkdirSync('download');
+
+  for (const book of bookList) {
+    const downloadContent = render(downloadTemplate, {
+      book_title: book.title,
+      book_author: book.author_name,
+      book_cover: book.cover,
+      book_category: book.category_name,
+      book_download_url: book.download_url || '',
+      book_slug: book.slug,
+      book_author_slug: book.author_slug,
+      book_category_slug: book.category_slug,
+    });
+    const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+    const fullPage = render(layout, {
+      page_title: book.title,
+      page_description: '',
+      content: downloadContent,
+      hero_categories,
+      sidebar_authors,
+    });
+
+    fs.writeFileSync(`download/${book.slug}.html`, fullPage, 'utf8');
+    console.log(`  ✓ download/${book.slug}.html`);
+  }
+}
+
+async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
+  console.log('\n📂 Category pages generate করছি...');
+  const categoryTemplate = fs.readFileSync('components/category.html', 'utf8');
+
+  const byCategory = {};
+  for (const book of bookList) {
+    if (!byCategory[book.category_slug]) {
+      byCategory[book.category_slug] = { name: book.category_name, books: [] };
+    }
+    byCategory[book.category_slug].books.push(book);
+  }
+
+  for (const [slug, data] of Object.entries(byCategory)) {
+    // id অনুসারে ascending sort
+    data.books.sort((a, b) => {
+      if (typeof a.id === 'number' && typeof b.id === 'number') return a.id - b.id;
+      return String(a.id).localeCompare(String(b.id));
+    });
+    const BOOKS_PER_PAGE = 24;
+    const totalPages = Math.ceil(data.books.length / BOOKS_PER_PAGE);
+    const dir = `category/${slug}`;
+    if (!fs.existsSync('category')) fs.mkdirSync('category');
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+
+    for (let page = 1; page <= totalPages; page++) {
+      const pageBooks = data.books.slice((page - 1) * BOOKS_PER_PAGE, page * BOOKS_PER_PAGE);
+
+      const booksGrid = pageBooks.map(book => `
+      <a href="/books/${book.slug}.html" class="cat-card">
+        <div class="cat-img-wrap">
+          <img src="${book.cover}" alt="${book.title}" class="cat-img" loading="lazy">
         </div>
-
-        <!-- Ad Content -->
-        <div id="ad-bar-content" style="
-            overflow: auto;
-            background: #f9fafb;
-            transition: max-height 0.9s cubic-bezier(0.4, 0, 0.2, 1), padding 0.7s;
-            max-height: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 0;
-        ">
-            <div id="ad-desktop" style="display:none;">
-              <script>
-                atOptions = {
-                  'key' : '14c1e503bb59b27671d1051f187909da',
-                  'format' : 'iframe',
-                  'height' : 90,
-                  'width' : 728,
-                  'params' : {}
-                };
-              </script>
-              <script src="https://www.highperformanceformat.com/14c1e503bb59b27671d1051f187909da/invoke.js"></script>
-            </div>
-            <div id="ad-mobile" style="display:none;">
-              <script>
-                atOptions = {
-                  'key' : 'bdb924698aea49a4aceb9cbc92d09488',
-                  'format' : 'iframe',
-                  'height' : 50,
-                  'width' : 320,
-                  'params' : {}
-                };
-              </script>
-              <script src="https://www.highperformanceformat.com/bdb924698aea49a4aceb9cbc92d09488/invoke.js"></script>
-            </div>
-            <script>
-              if (window.innerWidth >= 728) {
-                document.getElementById('ad-desktop').style.display = 'block';
-              } else {
-                document.getElementById('ad-mobile').style.display = 'block';
-              }
-            </script>
-        </div>
-    </div>
-
-    <!-- HERO SECTION (Wikipedia-style) -->
-    <div class="flex flex-col items-center justify-center pt-12 pb-6 px-4 text-center">
-
-        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-2 leading-tight">
-            <a href="https://pathokghar.pages.dev" class="hover:text-brand-500 active:text-brand-500 transition-colors">পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span></a>
-        </h1>
-
-        <!-- Search box -->
-        <div class="w-full max-w-xl relative flex items-center bg-white dark:bg-[#2d2d2d] border border-gray-200 dark:border-gray-600 rounded-full focus-within:ring-2 focus-within:ring-brand-500 focus-within:border-transparent transition-all">
-            <input id="main-search-input" type="text" placeholder="বই, লেখক বা বিভাগ খুঁজুন..."
-                class="flex-1 bg-transparent py-3 pl-5 pr-2 text-sm focus:outline-none text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 min-w-0">
-            <button id="main-search-btn" class="bg-brand-500 hover:bg-brand-600 active:bg-brand-600 text-white px-5 py-2 rounded-full text-sm font-medium transition-colors shrink-0 mr-1">
-                খুঁজুন
-            </button>
-        </div>
-
-        <!-- Category Quick Links -->
-        <div class="w-full max-w-2xl mt-2">
-            <ul class="category-underline-list flex flex-wrap justify-center items-center gap-y-1">
-                <li><a href="/category/productivity/1/">আত্ম-উন্নয়ন</a></li>
-                <li><a href="/category/non-fiction/1/">নন ফিকশন</a></li>
-                <li><a href="/category/probondho/1/">প্রবন্ধ</a></li>
-                <li><a href="/category/itihas/1/">ইতিহাস</a></li>
-                <li><a href="/category/kobita/1/">কবিতা</a></li>
-                <li><a href="/category/uponyas/1/">উপন্যাস</a></li>
-            </ul>
-        </div>
-
-        <!-- Page Nav Links -->
-        <div class="w-full mt-4">
-            <div class="flex bg-white dark:bg-[#1e1e1e] shadow-[0_-1px_0_0_#f0f0f0] dark:shadow-[0_-1px_0_0_#2a2a2a]">
-                <a href="/" id="nav-home" class="flex-1 text-center py-2 text-base transition-all">হোম</a>
-                <a href="/books" id="nav-books" class="flex-1 text-center py-2 text-base transition-all">বই</a>
-                <a href="/authors/" id="nav-author" class="flex-1 text-center py-2 text-base transition-all">লেখক</a>
-                <a href="/categories/" id="nav-category" class="flex-1 text-center py-2 text-base transition-all">বিভাগ</a>
-                <a href="/blogs/" id="nav-blog" class="flex-1 text-center py-2 text-base transition-all">ব্লগ</a>
-            </div>
-        </div>
-        <script>
-        (function() {
-            var path = window.location.pathname;
-            var map = {
-                'nav-home':     /^\/$|^\/index/i,
-                'nav-books':    /^\/books/i,
-                'nav-category': /^\/categor/i,
-                'nav-author':   /^\/author/i,
-                'nav-blog':     /^\/blog/i
-            };
-            var active = 'flex-1 text-center py-2 text-base font-semibold text-brand-500 bg-red-50 dark:bg-red-950';
-            var inactive = 'flex-1 text-center py-2 text-base text-gray-400 hover:text-brand-500 hover:bg-red-50 dark:hover:bg-red-950';
-            Object.keys(map).forEach(function(id) {
-                var el = document.getElementById(id);
-                if (el) el.className = map[id].test(path) ? active : inactive;
-            });
-        })();
-        </script>
-
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <main class="flex-1 min-w-0">
-        <!-- templates/book.html — শুধু content, layout.html এ inject হবে -->
-<main class="flex-1 p-0 md:p-6 min-h-[calc(100vh-3.5rem)]">
-    <div class="max-w-3xl mx-auto">
-
-        <!-- Breadcrumb -->
-        <hr class="border-t border-gray-200 dark:border-gray-700">
-        <nav id="read-breadcrumb" aria-label="breadcrumb" style="padding-top:0.5rem; padding-bottom:0.5rem; padding-left:1rem; padding-right:1rem; border-bottom:1px solid #e5e7eb;">
-            <ol style="display:flex;align-items:center;flex-wrap:wrap;gap:0 2px;list-style:none;margin:0;padding:0;font-size:0.875rem;line-height:1.5;">
-                <li>
-                    <a href="/" style="color:#6b7280;text-decoration:none;transition:color .15s;" onmouseover="this.style.color='#c0392b';this.style.textDecoration='underline'" onmouseout="this.style.color='#6b7280';this.style.textDecoration='none'" ontouchstart="this.style.color='#c0392b';this.style.textDecoration='underline'" ontouchend="this.style.color='#6b7280';this.style.textDecoration='none'"><strong style="font-weight:700;">পাঠক</strong> <span style="color:#9ca3af;font-weight:400;">ঘর</span></a>
-                </li>
-                <li style="color:#d1d5db;padding:0 5px;">›</li>
-                <li><a href="/category/itihas/1/" style="color:#6b7280;text-decoration:none;transition:color .15s;white-space:nowrap;" onmouseover="this.style.color='#c0392b';this.style.textDecoration='underline'" onmouseout="this.style.color='#6b7280';this.style.textDecoration='none'" ontouchstart="this.style.color='#c0392b';this.style.textDecoration='underline'" ontouchend="this.style.color='#6b7280';this.style.textDecoration='none'">ইতিহাস</a></li>
-                <li style="color:#d1d5db;padding:0 5px;">›</li>
-                <li style="display:inline-flex;align-items:center;gap:5px;max-width:65vw;overflow:hidden;">
-                    <a href="/books/hyaro-glifer-deshe.html" style="font-family:'Noto Serif Bengali',serif;font-weight:600;color:#1a1a1b;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:38vw;transition:color .15s;" onmouseover="this.style.color='#c0392b';this.style.textDecoration='underline'" onmouseout="this.style.color='#1a1a1b';this.style.textDecoration='none'" ontouchstart="this.style.color='#c0392b';this.style.textDecoration='underline'" ontouchend="this.style.color='#1a1a1b';this.style.textDecoration='none'">হায়ারোগ্লিফের দেশে</a>
-                    <span style="color:#9ca3af;">–</span>
-                    <a href="/author/anirban-ghosh.html" style="color:#c0392b;font-family:'Noto Serif Bengali',serif;font-weight:500;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:22vw;transition:opacity .15s;" onmouseover="this.style.opacity='.7';this.style.textDecoration='underline'" onmouseout="this.style.opacity='1';this.style.textDecoration='none'" ontouchstart="this.style.opacity='.7';this.style.textDecoration='underline'" ontouchend="this.style.opacity='1';this.style.textDecoration='none'">অনির্বাণ ঘোষ</a>
-                </li>
-            </ol>
-        </nav>
-
-
-        <!-- Book Card -->
-        <div class="bg-white dark:bg-[#2d2d2d] p-4">
-            <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782121390866_v3a354vbap.webp"
-                alt="হায়ারোগ্লিফের দেশে"
-                class="float-left w-28 rounded object-cover aspect-[2/3] mr-4">
-            <div class="flex gap-2 mb-3">
-                <a href="/read/hyaro-glifer-deshe.html"
-                    class="flex-1 flex items-center justify-center bg-[#c0392b] hover:bg-[#a93226] text-white text-sm font-medium py-2 rounded transition-colors">
-                    পড়ুন
-                </a>
-                <a href="/download/hyaro-glifer-deshe.html"
-                    class="flex-1 flex items-center justify-center bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 text-sm font-medium py-2 rounded transition-colors">
-                    ডাউনলোড
-                </a>
-            </div>
-            <div id="book-description-mobile" class="prose-book text-lg leading-normal text-gray-700 dark:text-gray-300 text-justify"></div>
-            <div class="clear-both"></div>
-
-            <!-- Share Section -->
-            <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                <div class="flex gap-2 flex-wrap items-center">
-                    <!-- General Share -->
-                    <button onclick="if(navigator.share){navigator.share({title:'হায়ারোগ্লিফের দেশে – অনির্বাণ ঘোষ',url:'https://pathokghar.pages.dev/book/hyaro-glifer-deshe.html'})}else{navigator.clipboard.writeText('https://pathokghar.pages.dev/book/hyaro-glifer-deshe.html');alert('লিংক কপি হয়েছে!')}"
-                        class="w-10 h-10 flex items-center justify-center border-2 border-gray-300 dark:border-gray-600 hover:border-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400 transition-all"
-                        style="border-radius:28%" title="শেয়ার">
-                        <i class="fas fa-share-alt text-sm"></i>
-                    </button>
-
-                    <!-- Facebook -->
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://pathokghar.pages.dev/book/hyaro-glifer-deshe.html&quote=হায়ারোগ্লিফের দেশে%20–%20অনির্বাণ ঘোষ%0Ahttps://pathokghar.pages.dev/book/hyaro-glifer-deshe.html"
-                        target="_blank" rel="noopener"
-                        class="w-10 h-10 flex items-center justify-center border-2 border-[#1877f2] hover:bg-[#1877f2] text-[#1877f2] hover:text-white transition-all"
-                        style="border-radius:28%" title="Facebook এ শেয়ার করুন">
-                        <i class="fab fa-facebook-f text-sm"></i>
-                    </a>
-
-                    <!-- Twitter -->
-                    <a href="https://twitter.com/intent/tweet?text=হায়ারোগ্লিফের দেশে%20–%20অনির্বাণ ঘোষ%0Ahttps://pathokghar.pages.dev/book/hyaro-glifer-deshe.html"
-                        target="_blank" rel="noopener"
-                        class="w-10 h-10 flex items-center justify-center border-2 border-[#1da1f2] hover:bg-[#1da1f2] text-[#1da1f2] hover:text-white transition-all"
-                        style="border-radius:28%" title="Twitter এ শেয়ার করুন">
-                        <i class="fab fa-twitter text-sm"></i>
-                    </a>
-
-                    <!-- WhatsApp -->
-                    <a href="https://wa.me/?text=হায়ারোগ্লিফের দেশে%20–%20অনির্বাণ ঘোষ%0Ahttps://pathokghar.pages.dev/book/hyaro-glifer-deshe.html"
-                        target="_blank" rel="noopener"
-                        class="w-10 h-10 flex items-center justify-center border-2 border-[#25d366] hover:bg-[#25d366] text-[#25d366] hover:text-white transition-all"
-                        style="border-radius:28%" title="WhatsApp এ শেয়ার করুন">
-                        <i class="fab fa-whatsapp text-sm"></i>
-                    </a>
-
-                    <!-- Telegram -->
-                    <a href="https://t.me/share/url?url=https://pathokghar.pages.dev/book/hyaro-glifer-deshe.html&text=হায়ারোগ্লিফের দেশে%20–%20অনির্বাণ ঘোষ"
-                        target="_blank" rel="noopener"
-                        class="w-10 h-10 flex items-center justify-center border-2 border-[#229ed9] hover:bg-[#229ed9] text-[#229ed9] hover:text-white transition-all"
-                        style="border-radius:28%" title="Telegram এ শেয়ার করুন">
-                        <i class="fab fa-telegram-plane text-sm"></i>
-                    </a>
-
-                    <!-- Copy Link -->
-                    <button onclick="navigator.clipboard.writeText('https://pathokghar.pages.dev/book/hyaro-glifer-deshe.html').then(()=>{this.innerHTML='<i class=\'fas fa-check text-sm\'></i>';setTimeout(()=>{this.innerHTML='<i class=\'fas fa-link text-sm\'></i>'},2000)})"
-                        class="w-10 h-10 flex items-center justify-center border-2 border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400 transition-all"
-                        style="border-radius:28%" title="লিংক কপি করুন">
-                        <i class="fas fa-link text-sm"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
-        <script>
-            const raw = `সব শুরুর আগে আরও একটা শুরু থাকে।
-
-২০০১ সালের একটা দুপুর বেলার কথা। ষোলো আর পনেরো বছর বয়সি পিঠো-পিঠি দুই ভাই সদ্য সিনেমা দেখে বেরিয়েছে৷ হাওড়ার শ্যামাশ্রী সিনেমা হলের বাইরে তখন দাঁড়িয়ে দু-জনে। হলের গায়ে সিনেমার বিশাল বড়ো পোস্টার। ‘দ্য মামি রিটার্নস’। দু-জনের চোখেই তখন অদ্ভুত বিস্ময়। ছোটোভাই বড়োভাইকে বলল, ‘এ দেশটায় একদিন যেতেই হবে দাদা, বুঝলি।’ বড়োভাইও মাথা নেড়ে বলল, ‘হ্যাঁ যেতেই হবে, মাস্ট।’
-
-আমার এই বইয়ের প্রথম শব্দটি লিখি এক বছর আগে৷ কিন্তু বইটার জন্ম বোধ হয় সতেরো বছর আগের সেই দুপুরেই হয়ে গিয়েছিল। ওই এক সিনেমা দিয়েই প্রথম এক দেশের সঙ্গে পরিচয় হয় আমার আর ভাইয়ের।
-
-মিশর।
-
-তারপরে কৌতূহলের আর অন্ত ছিল না। সেই সময়ে তো আর আন্তর্জালের সুবিধা পাইনি। তাই ভরসা ছিল বইই। ‘আনন্দমেলা’তে বেরোনো মিশর নিয়ে ছোটো ছোটো লেখা বার বার পড়েছি। কাকাবাবু, ফেলুদা, অ্যাস্টেরিক্সে দেশটার কথা পড়ে বার বার শিহরিত হয়েছি। আর দু-জনেই নিজেদের মনে একটা স্বপ্নকে লালন করে গেছি,
-
-এই দেশটায় যেতেই হবে, মাস্ট!
-
-মধ্যবিত্ত পরিবারের সন্তান আমি, স্কুলে পড়াকালীন একটাই লক্ষ্য ছিল। জয়েন্টে চান্স পেতে হবে, নিজের পায়ে দাঁড়াতে হবে। খেটেখুটে ডাক্তারি পড়ার সুযোগ পেলাম। তারপর নিজের ভালোলাগার বিষয়টা নিয়ে স্নাতকোত্তরের পড়াশোনাও করলাম। সাহেবদের কাছে পরীক্ষা দিয়ে পাশ করে ইংল্যান্ডের ‘রয়াল কলেজ অফ সার্জনস’-এর মেম্বারও হলাম। তার পরের বছরই বিলেতে পাড়ি দিলাম। কিন্তু কখনো ভাবিনি বই লিখব। একটা গোটা বই!
-
-ছোটোবেলা থেকেই আমি মুখচোরা, খুব একটা মিশুকে প্রকৃতির নয়। আমার নিজের বন্ধুদের সংখ্যাও ছিল হাতে-গোনা। বেশির ভাগ অবসর সময়টাই কাটত বই মুখে নিয়ে। যখন যা বই হাতের কাছে পেয়েছি, গোগ্রাসে গিলেছি। পাড়ার লাইব্রেরিতে কাটিয়েছি ঘণ্টার পর ঘণ্টা। আমার বাবা মা-ও এই নেশাকে প্রশ্রয় দিয়ে গেছেন। বয়স বাড়ার সঙ্গে সঙ্গে পরিচয় হয়েছে আরও আরও নতুন নতুন বইয়ের সঙ্গে। হয়তো এতদিন ধরে পড়া শব্দগুলোই আমার অবচেতনে রয়ে গিয়েছিল।
-
-২০১৫ সালের অগাস্ট মাসের কথা। হঠাৎ মনে হল আমার যা কিছু পরিচিতি তা ওই ডাক্তার বলে। আর কিছু তো নেই। নতুন একটা কিছু করতে হবে, এই ভেবে আমি আর অরিজিৎ গাঙ্গুলি মিলে বানিয়ে ফেললাম একটা ব্লগ, ‘আনাড়ি মাইন্ডস’। অরিজিৎ আমার হাফপ্যান্ট পরা বয়সের বন্ধু। আমার কৈশোর, যৌবনের সাক্ষী। বন্ধু না বলে ভাই বলাই যায়। ‘আনাড়ি মাইন্ডস’-এ দু-জনে মিলে প্রথমে লিখতে শুরু করলাম ইংরেজিতে। মাস তিনেকের মধ্যে বুঝলাম আমাদের ইংরেজির হাল বেশ খারাপ। ভাগ্যিস বুঝেছিলাম! তাই মাতৃভাষাতেই লেখালিখি শুরু হল। নিজেদের ছোটোবেলার মজার গল্প, আমার ইউরোপ ঘোরার গল্প, এইসব আর কি। দু-জনেই দু-জনের পিঠ চাপড়াতাম। ফেসবুকে দিতাম সেইসব লেখা। গোটা তিরিশ লাইক পেলে বুক চওড়া হয়ে যেত।
-
-তারপরে এল ‘আত্মপ্রকাশ’। একটা নতুন ফেসবুক গ্রুপ যেখানে বেশ কয়েকজন মানুষ গান গায়, গল্প কবিতা লেখে, ছবি আঁকে। একটা পরিবারের মতো পরিবেশ সেখানে। ‘আত্মপ্রকাশ’ আমাকে আর অরিজিৎকে বুকে টেনে নিল। আমাদের অতি রদ্দি লেখাগুলোকেও বাহবা দিয়ে সাহস জোগাল বুকে। তখন মনে হল তাহলে তো আরও লিখতে হয়! কিন্তু কী লিখি? ইতিহাস আমাকে বরাবর টানে। ইউরোপের রেনেসাঁর সময়ের ইতিহাস নিয়ে একটা সিরিজ লেখা শুরু করলাম, নাম দিলাম ‘হিস্ট্রির মিস্ট্রি’। ‘আত্মপ্রকাশ’-এ সপ্তাহে একটা করে পর্ব লিখতাম। ধীরে ধীরে পরিচিতি বাড়ল, খেয়াল করলাম কয়েকশো মানুষ আমাদেরকে ভালোবাসছেন। আমার পেশাগত পরিচয়ের বাইরেও মানুষ আমাকে চিনছেন।
-
-এরই মধ্যে ২০১৭-র নভেম্বরে ঘুরে এলাম আমার স্বপ্নের দেশে, মিশরে। এত বছর ধরে আমি যেখানে যেখানে মিশরের ইতিহাস নিয়ে যতটুকু জানতে পেরেছি ততটুকুই শুষে নিয়েছি। কিন্তু বাংলা ভাষায় তেমন কোনো বই পাইনি কখনো। ইংল্যান্ডে আসার পরে পিপাসা মেটানোর কাজটা একটু সহজ হয়ে গেল। খেয়াল করলাম সাহেবরা মিশর, মিশরের পুরাণ নিয়ে অজস্র বই লিখেছেন। টপাটপ বেশ কয়েকটা কিনে ফেললাম। ডুবে গেলাম তাতে। যত পড়লাম তত অবাক হলাম। বেশি অবাক হলাম এই ভেবে যে এতদিন আমি কত কিছু ভুল জানতাম। কত কম জানতাম। তখনই মনে হল আমি যে ঐশ্বর্যের সন্ধান পেলাম তার হদিশ বাকিদের দেব না?
-
-ইংল্যান্ডে আসার পরেও এমন দিন খুব কমই গেছে যেদিন অরিজিতের সঙ্গে ফোনে কথা হয়নি। এমনই এক সন্ধেয় ফোনে আড্ডা দেওয়ার সময় ওকে বললাম আমার ইচ্ছার কথা। মিশরের ইতিহাস নিয়ে লেখবার কথা ভাবছি। কিন্তু ‘হিস্ট্রির মিস্ট্রি’-র সঙ্গে রাখব না এই লেখাগুলোকে। অন্য আরেকটা সিরিজ করব। আর ইতিহাসটাও বলব গল্পের মতো করে। অরিজিৎ বলল, ‘তুই কীরকম করে লিখবি ভাবছিস, বল।’ আমি বললাম, ‘ধর, বইপাড়ার একটা দোকানের একজন মালিক, কোনো গোপন কারণে মিশর নিয়ে তার অগাধ জ্ঞান। সে গল্প বলে মেডিক্যাল কলেজের দু-জন স্টুডেন্টকে।’ অরিজিৎকে বললাম, ‘আমি প্রথমদিকটা লিখে তোকে দেখাব।’ শুরু করলাম লেখা, যেদিন এই লেখায় হাত দিয়েছি সেদিন ‘আত্মপ্রকাশ’-এর এক দাদা সারাদিন ধরে খুঁজে খুঁজে আমার একটার পর একটা লেখা পড়ছেন, নাম ভবেশ দাস। তাই আমার গল্প-বলা চরিত্রের নাম দিয়ে দিলাম দাদার নামেই। পদবিটা শুধু বদলালাম, কেন জানি না। জন্ম হল ভবেশ সামন্তর। এবারে আসবে সেই দু-জন যারা গল্প শুনবে। স্পন্দন ছিল ‘আত্মপ্রকাশ’ গ্রুপেই, আর জি করের ডাক্তারির ছাত্র, নিয়ে নিলাম ওর নাম। আর নিলাম আমার নিজের কলেজের বন্ধু প্রদীপ্ত ঘোষকে। ওকে কলেজে আমরা পিজি বলে ডাকতাম। লেখাতেও নাম পিজিই থাকল। পিজিকে আমি ছয় বছর খুব কাছ থেকে দেখেছি। তাই বইয়ের পিজির আদবকায়দা, কথা বলার ধরন সব আমার বন্ধু প্রদীপ্তর থেকেই নেওয়া।
-
-যেকোনো নতুন লেখার শুরুটা সবচেয়ে মুশকিলের। সেটাই আকর্ষণীয় না হলে পাঠক বাকিটা পড়তে চাইবেন কেন? এই লেখার শুরুর হাজার দেড়েক শব্দ লিখে অরিজিৎকে পড়ালাম। আমার নিজেরই খুব একটা ভালো লাগছিল না। অরিজিৎ বলল, ‘আমাকে একটা দিন সময় দে।’ তারপরে ও নিজে শুরুটা লিখে আমায় দিল। পড়েই বুঝলাম, আরে! এটাই তো আমি চাইছিলাম। অরিজিৎই ভবেশদা, স্পন্দন আর পিজির চরিত্রকে হাঁটতে শিখিয়েছে। আমার এই বইয়ের শুরুর পাঁচশোটা শব্দ আমার লেখা নয় আদৌ, ওর লেখা।
-
-কয়েকদিনের মধ্যেই লিখে ফেললাম প্রথম পর্ব, ‘আত্মপ্রকাশ’-এ দেওয়ার আগে আবার ফোন করলাম অরিজিৎকে। কী নাম দেওয়া যায় এই নতুন সিরিজের? পাঁচ ছ-টা নাম নিয়ে লোফালুফি খেলতে খেলতে একটা নাম দু-জনেরই ভালো লাগল। জন্ম হল ‘হায়রোগ্লিফের দেশে’-র। কয়েকটা পর্ব ‘আত্মপ্রকাশ’-এ বেরোবার পরেই রাজাদার মেসেজ একদিন।
-
-রাজা পোদ্দারদাকে আমি বেশ কয়েক বছর ধরে চিনি ফেসবুকের দৌলতেই। মানুষের কাজেই মানুষের পরিচয় পাওয়া যায়। এই মানুষটাও তেমনই। সৎ, সরল, পরিশ্রমী, পরোপকারী। এহেন রাজাদা যখন বলল ‘খোয়াবনামা’ আমার এই সিরিজটাকে নিয়ে বই করতে চায় তখন না বলি কী করে?
-
-মিশরের ইতিহাস লেখাটা খুব একটা সহজ ব্যাপার ছিল না। এর বিস্তার সাড়ে পাঁচ হাজার বছরের। বইয়ের দু-মলাটের মধ্যে তাদেরকে আনাটাই একটা বড়ো চ্যালেঞ্জ। আবার শুধু শুকনো ইতিহাস লিখলে কারোরই পড়তে ভালো লাগত না। হায়রোগ্লিফের দেশে যাতে ইতিহাসের একঘেয়ে রেফারেন্স বই হয়ে না দাঁড়ায় সে-ব্যাপারে সচেতনভাবে চেষ্টা করেছি। বইটার যেকোনো পর্ব নিজের খুশি মতো পড়তে পারেন। তবে পর পর পড়লে বুঝতে পারবেন একটা অন্য রহস্য ধীরে ধীরে দানা বাঁধছে, যার কেন্দ্রবিন্দুতে আছে এই বইয়ের মুখ্য চরিত্ররা। ভূমিকাতেই সব বলে দিলে মুশকিল। আপনারা না হয় নিজেরাই আবিষ্কার করুন।
-
-বইয়ের প্রথম দুই সংস্করণ প্রকাশ পায় ‘খোয়াবনামা’ থেকে। বর্তমান সংস্করণটি প্রকাশ পেতে চলেছে ‘বুক ফার্ম’ থেকে। বেশ কিছু ভুল সংশোধন করা হয়েছে। পরিবেশনাতে আমূল পরিবর্তন আনা হয়েছে। যোগ হয়েছে শিল্পী শুভ্র চক্রবর্তীর ‘রোসেট্টা স্টোন’ গ্রািফক স্টোরি সহ অজস্র নতুন ছবি।
-
-সবশেষে বলি, এই বই আমার একার নয়। এই বই অরিজিতের, রাজাদার, ‘বুক ফার্ম’-এর শান্তনুদা, কৌশিকদার। এ বই অনিকেতের, যে প্রচ্ছদ তৈরি করেছে। সৌমিকের, যে অলংকরণ করেছে। সলমাদির আর শুভদীপের, যারা প্রুফ রিড করেছে। আর এই বই আজ থেকে আপনারও। একে নিজের করে নিন। ভুল ত্রুটি কিছু থাকলে সঙ্গেসঙ্গে আমাকে জানান। আমি শুধরে নেওয়ার চেষ্টা করব।
-
-আর ভালো লাগলে একটু পিঠ চাপড়ে দেবেন, প্লিজ।
-
-অনির্বাণ ঘোষ
-লন্ডন
-অগাস্ট’২০১৯`;
-
-            marked.setOptions({
-                breaks: true,
-                gfm: true,
-            });
-
-            const parsed = marked.parse(raw);
-            const mobileEl = document.getElementById('book-description-mobile');
-            if (mobileEl) mobileEl.innerHTML = parsed;
-        </script>
-
-        <style>
-            .prose-book h1, .prose-book h2, .prose-book h3,
-            .prose-book h4, .prose-book h5, .prose-book h6 {
-                font-weight: 700;
-                line-height: 1.3;
-                margin-top: 1.25em;
-                margin-bottom: 0.4em;
-                color: #111827;
-            }
-            .dark .prose-book h1, .dark .prose-book h2, .dark .prose-book h3,
-            .dark .prose-book h4, .dark .prose-book h5, .dark .prose-book h6 {
-                color: #f3f4f6;
-            }
-            .prose-book h1 { font-size: 1.4em; }
-            .prose-book h2 { font-size: 1.2em; }
-            .prose-book h3 { font-size: 1.05em; }
-            .prose-book h4, .prose-book h5, .prose-book h6 { font-size: 0.95em; }
-
-            .prose-book p { margin-bottom: 0.75em; }
-
-            .prose-book a {
-                color: #c0392b;
-                text-decoration: underline;
-            }
-            .dark .prose-book a { color: #f87171; }
-
-            .prose-book strong { font-weight: 700; color: #111827; }
-            .dark .prose-book strong { color: #f9fafb; }
-
-            .prose-book em { font-style: italic; }
-
-            .prose-book ul, .prose-book ol {
-                padding-left: 1.5em;
-                margin-bottom: 0.75em;
-            }
-            .prose-book ul { list-style-type: disc; }
-            .prose-book ol { list-style-type: decimal; }
-            .prose-book li { margin-bottom: 0.25em; }
-
-            .prose-book blockquote {
-                border-left: 3px solid #c0392b;
-                padding: 0.4em 0.9em;
-                margin: 0.75em 0;
-                color: #6b7280;
-                font-style: italic;
-                background: #fef2f2;
-                border-radius: 0 4px 4px 0;
-            }
-            .dark .prose-book blockquote {
-                background: #3b1f1f;
-                color: #d1d5db;
-                border-left-color: #f87171;
-            }
-
-            .prose-book code {
-                background: #f3f4f6;
-                color: #c0392b;
-                padding: 0.1em 0.35em;
-                border-radius: 3px;
-                font-size: 0.88em;
-                font-family: monospace;
-            }
-            .dark .prose-book code {
-                background: #374151;
-                color: #fca5a5;
-            }
-
-            .prose-book pre {
-                background: #1f2937;
-                color: #e5e7eb;
-                padding: 1em;
-                border-radius: 6px;
-                overflow-x: auto;
-                margin-bottom: 0.75em;
-                font-size: 0.85em;
-                font-family: monospace;
-            }
-            .prose-book pre code {
-                background: none;
-                color: inherit;
-                padding: 0;
-                font-size: inherit;
-            }
-
-            .prose-book table {
-                width: 100%;
-                border-collapse: collapse;
-                margin-bottom: 0.75em;
-                font-size: 0.9em;
-            }
-            .prose-book th {
-                background: #f9fafb;
-                font-weight: 600;
-                text-align: left;
-                padding: 0.5em 0.75em;
-                border: 1px solid #e5e7eb;
-                color: #374151;
-            }
-            .dark .prose-book th {
-                background: #374151;
-                border-color: #4b5563;
-                color: #f3f4f6;
-            }
-            .prose-book td {
-                padding: 0.45em 0.75em;
-                border: 1px solid #e5e7eb;
-            }
-            .dark .prose-book td { border-color: #4b5563; }
-            .prose-book tr:nth-child(even) { background: #f9fafb; }
-            .dark .prose-book tr:nth-child(even) { background: #2d3748; }
-
-            .prose-book hr {
-                border: none;
-                border-top: 1px solid #e5e7eb;
-                margin: 1.25em 0;
-            }
-            .dark .prose-book hr { border-top-color: #4b5563; }
-
-            .prose-book img {
-                max-width: 100%;
-                border-radius: 6px;
-                margin: 0.5em 0;
-            }
-
-            .prose-book del { text-decoration: line-through; color: #9ca3af; }
-
-            .prose-book input[type="checkbox"] {
-                margin-right: 0.4em;
-                accent-color: #c0392b;
-            }
-        </style>
-
-    </div>
-</main>
-
-    </main>
-
-    <script>
-    (function() {
-        var bar = document.getElementById('ad-bar');
-        var content = document.getElementById('ad-bar-content');
-        var icon = document.getElementById('ad-bar-icon');
-        var collapsed = true;
-        var dtInterval = null;
-
-        // Start collapsed — state already set in HTML/CSS
-        // Show datetime immediately since bar starts collapsed
-        if (document.getElementById('ad-bar-datetime')) {
-            document.getElementById('ad-bar-datetime').style.display = 'inline';
-            setTimeout(function() { updateDatetime(); dtInterval = setInterval(updateDatetime, 1000); }, 0);
-        }
-
-        // Auto-open after 2 seconds, then auto-close after 15 seconds
-        setTimeout(function() {
-            if (collapsed) {
-                toggleAdBar();
-                setTimeout(function() {
-                    if (!collapsed) toggleAdBar();
-                }, 15000);
-            }
-        }, 1500);
-
-
-
-        var label = document.getElementById('ad-bar-label');
-        var notice = document.getElementById('ad-bar-notice');
-        var datetime = document.getElementById('ad-bar-datetime');
-
-        // ── Bengali helpers ──
-        function toBnDigits(n) {
-            return String(n).replace(/[0-9]/g, d => '০১২৩৪৫৬৭৮৯'[d]);
-        }
-        var bnDays   = ['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
-        var bnBoshontoMonths = ['বৈশাখ','জ্যৈষ্ঠ','আষাঢ়','শ্রাবণ','ভাদ্র','আশ্বিন','কার্তিক','অগ্রহায়ণ','পৌষ','মাঘ','ফাল্গুন','চৈত্র'];
-
-        // Bangabda conversion (Bangladesh calendar)
-        function toBangabda(now) {
-            var gYear  = now.getFullYear();
-            var gMonth = now.getMonth() + 1;
-            var gDay   = now.getDate();
-            var bnMonth, bnDay, bnYear;
-            var monthMap = [
-                [1,  14, 9,  14],[2,  13, 10, 13],[3,  14, 11, 14],[4,  14, 0,  14],
-                [5,  15, 1,  15],[6,  15, 2,  15],[7,  16, 3,  16],[8,  16, 4,  16],
-                [9,  16, 5,  16],[10, 16, 6,  16],[11, 15, 7,  15],[12, 15, 8,  15],
-            ];
-            var idx = gMonth - 1;
-            var startDay = monthMap[idx][3];
-            if (gDay >= startDay) {
-                bnMonth = monthMap[idx][2];
-                bnDay   = gDay - startDay + 1;
-            } else {
-                bnMonth = (monthMap[idx][2] - 1 + 12) % 12;
-                var prevGMonth = gMonth === 1 ? 12 : gMonth - 1;
-                var prevStart  = monthMap[prevGMonth - 1][3];
-                var daysInPrevGMonth = new Date(gYear, gMonth - 1, 0).getDate();
-                bnDay = daysInPrevGMonth - prevStart + gDay + 1;
-            }
-            bnYear = (bnMonth <= 4) ? gYear - 593 : gYear - 594;
-            return { day: bnDay, month: bnMonth, year: bnYear };
-        }
-
-        function updateDatetime() {
-            if (!datetime) return;
-            var now  = new Date();
-            var day  = bnDays[now.getDay()];
-            var h    = now.getHours();
-            var m    = now.getMinutes();
-            var s    = now.getSeconds();
-            var h12  = h % 12 || 12;
-            var bn   = toBangabda(now);
-            datetime.innerHTML =
-                '<span style="color:#9ca3af;font-weight:400;">' + day + ', </span>' +
-                '<strong style="color:inherit;font-weight:700;">' + toBnDigits(bn.day) + '</strong>' +
-                '<span style="color:#9ca3af;font-weight:400;"> ' + bnBoshontoMonths[bn.month] + ' </span>' +
-                '<strong style="color:inherit;font-weight:700;">' + toBnDigits(bn.year) + '</strong>' +
-                '<span style="color:#9ca3af;font-weight:400;">  |  </span>' +
-                '<strong style="color:inherit;font-weight:700;">' +
-                    toBnDigits(h12) + ':' + toBnDigits(String(m).padStart(2,'0')) + ':' + toBnDigits(String(s).padStart(2,'0')) +
-                '</strong>';
-        }
-
-        window.toggleAdBar = function() {
-            collapsed = !collapsed;
-            if (collapsed) {
-                content.style.maxHeight = '0';
-                content.style.padding = '0';
-                if (notice) notice.style.display = 'none';
-                if (datetime) { datetime.style.display = 'inline'; updateDatetime(); dtInterval = setInterval(updateDatetime, 1000); }
-                icon.innerHTML = '<polyline points="18 15 12 9 6 15"></polyline>';
-                label.textContent = 'Show Ad';
-            } else {
-                content.style.maxHeight = '500px';
-                content.style.padding = '6px 10px';
-                if (notice) notice.style.display = 'flex';
-                if (datetime) { datetime.style.display = 'none'; clearInterval(dtInterval); }
-                icon.innerHTML = '<polyline points="6 9 12 15 18 9"></polyline>';
-                label.textContent = 'Hide Ad';
-            }
-        };
-    })();
-    </script>
-
-    <!-- FOOTER -->
-    <footer class="bg-gray-100 dark:bg-[#1f1f1f] border-t border-gray-300 dark:border-gray-700 mt-8">
-
-        <!-- Brand row: always visible on mobile, hidden on desktop (icons move to bottom row) -->
-        <div class="max-w-3xl mx-auto px-5 pt-6 pb-4 flex items-center justify-between">
-            <div>
-                <a href="https://pathokghar.pages.dev"
-                   class="text-3xl font-extrabold tracking-tight text-gray-800 dark:text-gray-100 active:text-brand-500 transition-colors group">
-                    <span class="group-active:text-brand-500 transition-colors">পাঠক</span> <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span>
-                </a>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">বাংলা বইয়ের ডিজিটাল পাঠাগার।</p>
-            </div>
-            <!-- Social icons -->
-            <div class="flex items-center gap-2">
-                <a href="https://facebook.com/pathokghar" target="_blank" rel="noopener" aria-label="Facebook"
-                   class="w-12 h-12 rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] flex items-center justify-center text-[#1877f2] hover:border-[#1877f2] transition-all">
-                    <i class="fab fa-facebook-f text-lg"></i>
-                </a>
-                <a href="https://t.me/pathokghar" target="_blank" rel="noopener" aria-label="Telegram"
-                   class="w-12 h-12 rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] flex items-center justify-center text-[#229ed9] hover:border-[#229ed9] transition-all">
-                    <i class="fab fa-telegram-plane text-lg"></i>
-                </a>
-            </div>
-        </div>
-
-        <!-- Divider -->
-        <div class="max-w-3xl mx-auto px-5">
-            <div class="border-t border-gray-300 dark:border-gray-700"></div>
-        </div>
-
-        <!-- Dot-separated links — mobile: wrap, desktop: single row -->
-        <div class="max-w-3xl mx-auto px-5 py-3 flex flex-wrap md:flex-nowrap items-center justify-between gap-y-2">
-            <!-- Links -->
-            <div class="flex flex-wrap md:flex-nowrap items-center gap-y-1">
-                <a href="/categories/" class="footer-dot-link">বিভাগ</a>
-                <span class="footer-dot">·</span>
-                <a href="/authors/" class="footer-dot-link">লেখক</a>
-                <span class="footer-dot">·</span>
-                <a href="/blogs/" class="footer-dot-link">ব্লগ</a>
-                <span class="footer-dot">·</span>
-                <a href="/app/" class="footer-dot-link">App</a>
-            </div>
-            <!-- Crafted by -->
-            <span class="text-xs text-gray-400 dark:text-gray-500 whitespace-nowrap">
-                crafted by <a href="https://facebook.com/physarif" target="_blank" rel="noopener"
-                class="font-semibold text-brand-500 hover:underline">Arif</a>
-            </span>
-
-        </div>
-
-    </footer>
-
-    <script>
-        // Search
-        function doSearch(query) {
-            if (query.trim()) {
-                window.location.href = '/search.html?q=' + encodeURIComponent(query.trim());
-            }
-        }
-        const mainInput = document.getElementById('main-search-input');
-        document.getElementById('main-search-btn').addEventListener('click', () => doSearch(mainInput.value));
-        mainInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(mainInput.value); });
-    </script>
-
-
-</body>
-</html>
+        <p class="cat-title">${book.title}</p>
+        <p class="cat-author">${book.author_name}</p>
+      </a>`).join('');
+
+      // Pagination HTML
+      let paginationHTML = '<div class="cat-pagination">';
+      if (page > 1) paginationHTML += `<a href="/category/${slug}/${page - 1}/" class="cat-page-nav"><i class="fas fa-chevron-left text-xs"></i> আগের</a>`;
+      for (let i = 1; i <= totalPages; i++) {
+        if (i === page) paginationHTML += `<span class="cat-page-btn active">${i}</span>`;
+        else paginationHTML += `<a href="/category/${slug}/${i}/" class="cat-page-btn">${i}</a>`;
+      }
+      if (page < totalPages) paginationHTML += `<a href="/category/${slug}/${page + 1}/" class="cat-page-nav">পরের <i class="fas fa-chevron-right text-xs"></i></a>`;
+      paginationHTML += '</div>';
+
+      const categoryContent = render(categoryTemplate, {
+        category_name: data.name,
+        category_book_count: data.books.length,
+        category_books_grid: booksGrid,
+        category_pagination: paginationHTML,
+      });
+      const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+      const fullPage = render(layout, {
+        page_title: data.name,
+        page_description: '',
+        content: categoryContent,
+        hero_categories,
+        sidebar_authors,
+      });
+
+      const pageDir = `${dir}/${page}`;
+      if (!fs.existsSync(pageDir)) fs.mkdirSync(pageDir, { recursive: true });
+      fs.writeFileSync(`${pageDir}/index.html`, fullPage, 'utf8');
+      console.log(`  ✓ category/${slug}/${page}/index.html`);
+    }
+  }
+}
+
+
+// Main
+(async () => {
+  try {
+    console.log('🚀 Script শুরু হয়েছে...');
+    const { bookList, authorsRaw, categoriesRaw } = await generateBookPages();
+    await generateHomepage(bookList, authorsRaw, categoriesRaw);
+    await generateAuthorPages(bookList, authorsRaw, categoriesRaw);
+    await generateDownloadPages(bookList, authorsRaw, categoriesRaw);
+    await generateCategoryPages(bookList, authorsRaw, categoriesRaw);
+    console.log('\n🎉 সব pages generate হয়েছে!');
+    await getApp().delete();
+    process.exit(0);
+  } catch (err) {
+    console.error('❌ Error:', err);
+    await getApp().delete().catch(() => {});
+    process.exit(1);
+  }
+})();
