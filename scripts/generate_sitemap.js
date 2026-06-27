@@ -11,7 +11,7 @@ urls.push(`${BASE_URL}/`);
 // Book pages
 if (fs.existsSync('books')) {
   const bookFiles = fs.readdirSync('books').filter(f => f.endsWith('.html'));
-  bookFiles.forEach(f => urls.push(`${BASE_URL}/books/${f}`));
+  bookFiles.forEach(f => urls.push(`${BASE_URL}/book/${f}`));
 }
 
 // Read pages
