@@ -55,6 +55,7 @@
             line-height: 1;
         }
         .dark .category-underline-list li + li::before { color: #4b5563; }
+        .category-underline-list li.line-start::before { display: none !important; }
         .category-underline-list a {
             font-size: 17px;
             font-weight: 400;
@@ -212,6 +213,18 @@
                 ul.appendChild(items[j]);
                 items.splice(j, 1);
             }
+            // প্রতিটা নতুন লাইনের প্রথম li থেকে ডট সরাও
+            function markLineStarts() {
+                var lis = ul.querySelectorAll('li');
+                var lastTop = -1;
+                lis.forEach(function(li) {
+                    li.classList.remove('line-start');
+                    var top = li.getBoundingClientRect().top;
+                    if (top > lastTop + 2) { li.classList.add('line-start'); lastTop = top; }
+                });
+            }
+            markLineStarts();
+            window.addEventListener('resize', markLineStarts);
         })();
         </script>
 
