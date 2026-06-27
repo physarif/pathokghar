@@ -682,8 +682,8 @@
         <div id="read-main-content" class="px-5 md:px-10 pt-0 pb-7 max-w-2xl">
 
             <!-- Book Title -->
-            <div id="read-title-bar" style="text-align:center;padding:1rem 0 1.1rem;border-bottom:1px solid #e5e7eb;margin-bottom:1.1rem;">
-                <h1 id="read-book-title" style="margin:0;"><a href="/book/{{book_slug}}.html" class="read-title-link" style="font-family:'Noto Serif Bengali',serif;font-size:1.4rem;font-weight:800;color:#c0392b;line-height:1.4;text-decoration:none;">{{book_title}}</a></h1>
+            <div id="read-title-bar" style="text-align:center;padding:0.9rem 1rem;background:#1a1a1b;margin-bottom:1.1rem;">
+                <h1 id="read-book-title" style="margin:0;"><a href="/book/{{book_slug}}.html" class="read-title-link" style="font-family:'Noto Serif Bengali',serif;font-size:1.3rem;font-weight:800;color:#fff;line-height:1.4;text-decoration:none;">{{book_title}}</a></h1>
             </div>
 
             <div id="book-content" class="text-gray-800 dark:text-gray-200">
@@ -927,9 +927,12 @@
             mobileReaderBg.style.background = m.bg;
             bookContent.style.color = m.text;
 
-            // Title bar border
+            // Title bar
             const titleBar = document.getElementById('read-title-bar');
-            if (titleBar) titleBar.style.borderColor = m.drawerBorder;
+            const titleLink = titleBar && titleBar.querySelector('a');
+            if (titleBar) titleBar.style.background = m.bg === '#fff' || m.bg === '#f5efe6' ? '#1a1a1b' : m.bg;
+            if (titleLink) titleLink.style.color = '#fff';
+
 
             // Unified drawer background
             const uDr = document.getElementById('unified-drawer');
