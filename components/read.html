@@ -338,6 +338,28 @@
 
     #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
 
+    /* ── Title bar theme adjustments ── */
+    #read-title-bar {
+        border-radius: 6px;
+        border-left: 4px solid #c0392b !important;
+        border-right: 4px solid #c0392b !important;
+        transition: background 0.3s, border-color 0.3s;
+    }
+    body.theme-dark  #read-title-bar {
+        background: #111012 !important;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.45);
+    }
+    body.theme-black #read-title-bar {
+        background: #1a1a1a !important;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.7);
+    }
+    body.theme-sepia #read-title-bar {
+        background: #3b2510 !important;
+    }
+    body.theme-light #read-title-bar {
+        background: #1a1a1b !important;
+    }
+
 
     /* ══ Desktop: unified drawer always visible as right sidebar ══ */
     @media (min-width: 768px) {
@@ -930,7 +952,24 @@
             // Title bar
             const titleBar = document.getElementById('read-title-bar');
             const titleLink = titleBar && titleBar.querySelector('a');
-            if (titleBar) titleBar.style.background = m.bg === '#fff' || m.bg === '#f5efe6' ? '#1a1a1b' : m.bg;
+            const titleBarBg = {
+                light: '#1a1a1b',
+                sepia: '#3b2510',
+                dark:  '#111012',
+                black: '#1a1a1a'
+            }[t] || '#1a1a1b';
+            const titleBorderColor = {
+                light: 'transparent',
+                sepia: 'transparent',
+                dark:  '#c0392b',
+                black: '#c0392b'
+            }[t] || 'transparent';
+            if (titleBar) {
+                titleBar.style.background   = titleBarBg;
+                titleBar.style.borderLeft   = '4px solid #c0392b';
+                titleBar.style.borderRight  = '4px solid #c0392b';
+                titleBar.style.borderRadius = '6px';
+            }
             if (titleLink) titleLink.style.color = '#fff';
 
 
