@@ -91,15 +91,13 @@
     flex-direction: row;
     gap: 0.85rem;
     align-items: flex-start;
+    text-decoration: none;
     padding: 0.75rem 0;
+    transition: background 0.1s;
   }
   .bc-card:first-child { padding-top: 0; }
-  .bc-headline {
-    text-decoration: none;
-  }
-  .bc-img-wrap {
-    cursor: pointer;
-  }
+  .bc-card:last-child { padding-bottom: 0; }
+  .bc-card:hover { background: transparent; }
 
   /* Cover — left side, fixed size 2:3 ratio */
   .bc-img-wrap {
@@ -223,15 +221,15 @@
 
 <!--
   Book card template (reference — generate_pages.js এ ব্যবহার হয়):
-  <div class="bc-card">
-    <a href="/books/{{book_slug}}.html" class="bc-img-wrap">
+  <a href="/books/{{book_slug}}.html" class="bc-card">
+    <div class="bc-img-wrap">
       <img src="{{book_cover}}" alt="{{book_title}}" class="bc-img" loading="lazy">
-    </a>
+    </div>
     <div class="bc-body">
-      <a href="/books/{{book_slug}}.html" class="bc-headline"><span class="bc-title">{{book_title}}</span><span class="bc-sep"> – </span><span class="bc-author">{{book_author}}</span></a>
+      <p class="bc-headline"><span class="bc-title">{{book_title}}</span><span class="bc-sep"> – </span><span class="bc-author">{{book_author}}</span></p>
       <p class="bc-desc">{{book_desc}}</p>
     </div>
-  </div>
+  </a>
 -->
 
 <main class="flex-1 py-4 md:py-6 md:px-8 lg:px-16 min-h-[calc(100vh-3.5rem)] min-w-0 overflow-hidden">
