@@ -201,11 +201,11 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
       fs.writeFileSync('index.html', fullPage, 'utf8');
       console.log('  ✓ index.html');
     } else {
-      const dir = `latest/${page}`;
-      if (!fs.existsSync('latest')) fs.mkdirSync('latest');
+      const dir = `books/${page}`;
+      if (!fs.existsSync('books')) fs.mkdirSync('books');
       if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
       fs.writeFileSync(`${dir}/index.html`, fullPage, 'utf8');
-      console.log(`  ✓ latest/${page}/index.html`);
+      console.log(`  ✓ books/${page}/index.html`);
     }
   }
 }
