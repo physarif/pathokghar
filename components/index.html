@@ -234,9 +234,6 @@
 
   <!-- সর্বশেষ বই -->
   <section class="book-section">
-    <div class="bc-section-header">
-      <h2 class="bc-section-title">সর্বশেষ বই</h2>
-    </div>
     <div class="bc-list">{{latest_books}}</div>
   </section>
 
@@ -249,16 +246,16 @@
       const el = document.getElementById('bc-pagination');
       let html = '<div class="bc-pagination">';
       if (current > 1) {
-        const prev = current === 2 ? '/' : '/latest/' + (current - 1) + '/';
+        const prev = current === 2 ? '/' : '/books/' + (current - 1) + '/';
         html += '<a href="' + prev + '" class="bc-page-nav"><i class="fas fa-chevron-left text-xs"></i> পূর্ববর্তী</a>';
       }
       for (let i = 1; i <= total; i++) {
-        const href = i === 1 ? '/' : '/latest/' + i + '/';
+        const href = i === 1 ? '/' : '/books/' + i + '/';
         if (i === current) html += '<span class="bc-page-btn active">' + i + '</span>';
         else html += '<a href="' + href + '" class="bc-page-btn">' + i + '</a>';
       }
       if (current < total) {
-        html += '<a href="/latest/' + (current + 1) + '/" class="bc-page-nav">পরবর্তী <i class="fas fa-chevron-right text-xs"></i></a>';
+        html += '<a href="/books/' + (current + 1) + '/" class="bc-page-nav">পরবর্তী <i class="fas fa-chevron-right text-xs"></i></a>';
       }
       html += '</div>';
       el.innerHTML = html;
