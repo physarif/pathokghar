@@ -35,7 +35,7 @@ function render(template, data) {
 }
 
 // Folder তৈরি
-if (!fs.existsSync('books')) fs.mkdirSync('books');
+if (!fs.existsSync('book')) fs.mkdirSync('book');
 
 // Sidebar HTML builder
 function buildSidebarHTML(bookList, authorsRaw, categoriesRaw) {
@@ -137,7 +137,7 @@ async function generateBookPages() {
       sidebar_authors,
     });
 
-    const outputPath = `books/${book.slug}.html`;
+    const outputPath = `book/${book.slug}.html`;
     fs.writeFileSync(outputPath, fullPage, 'utf8');
     console.log(`  ✓ ${outputPath}`);
   }
@@ -318,7 +318,7 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
       const pageBooks = data.books.slice((page - 1) * BOOKS_PER_PAGE, page * BOOKS_PER_PAGE);
 
       const booksGrid = pageBooks.map(book => `
-      <a href="/books/${book.slug}.html" class="cat-card">
+      <a href="/book/${book.slug}.html" class="cat-card">
         <div class="cat-img-wrap">
           <img src="${book.cover}" alt="${book.title}" class="cat-img" loading="lazy">
         </div>
