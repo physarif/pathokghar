@@ -24,12 +24,18 @@
         var mg = p.marginScale !== undefined ? p.marginScale : 5;
         var align = p.currentAlign || 'justify';
         var style = document.createElement('style');
+        style.id = 'fouc-shield';
         style.textContent =
             'html,body{background:' + bg + '!important}' +
             '#mobile-reader-bg{background:' + bg + '!important}' +
             '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important}' +
             '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
         document.head.appendChild(style);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
     } catch(e) {}
 })();
 </script>
@@ -460,6 +466,7 @@
     .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
     .dark #read-breadcrumb li > span { color: #4b5563; }
 
+    .read-title-link:hover { text-decoration: underline; }
     html { scroll-behavior: smooth; }
     html { scrollbar-width: none; -ms-overflow-style: none; }
     html::-webkit-scrollbar { display: none; }
@@ -654,7 +661,7 @@
 
             <!-- Book Title -->
             <div id="read-title-bar" style="text-align:center;padding:1rem 0 1.1rem;border-bottom:1px solid #e5e7eb;margin-bottom:1.1rem;">
-                <h1 id="read-book-title" style="margin:0;"><a href="/book/{{book_slug}}.html" style="font-family:'Noto Serif Bengali',serif;font-size:1.4rem;font-weight:800;color:#c0392b;line-height:1.4;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">{{book_title}}</a></h1>
+                <h1 id="read-book-title" style="margin:0;"><a href="/book/{{book_slug}}.html" class="read-title-link" style="font-family:'Noto Serif Bengali',serif;font-size:1.4rem;font-weight:800;color:#c0392b;line-height:1.4;text-decoration:none;">{{book_title}}</a></h1>
             </div>
 
             <div id="book-content" class="text-gray-800 dark:text-gray-200">
