@@ -151,7 +151,7 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
   const indexTemplate = fs.readFileSync('components/index.html', 'utf8');
 
   // index.html এর HTML comment থেকে card template extract করো
-  const cardTemplateMatch = indexTemplate.match(/<!--\s*\n\s*Book card template[\s\S]*?(<a[\s\S]*?<\/a>)\s*\n-->/);
+  const cardTemplateMatch = indexTemplate.match(/<!--\s*\n\s*Book card template[^\n]*\n([\s\S]*?)\n-->/);
   if (!cardTemplateMatch) {
     console.error('❌ components/index.html এ book card template comment পাওয়া যায়নি।');
     process.exit(1);
