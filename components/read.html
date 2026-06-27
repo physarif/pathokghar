@@ -13,6 +13,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
     <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e', black:'#000' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', sepia:'#3b2f1e', dark:'#e5e7eb', black:'#d1d5db' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.20 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'justify';
+        var style = document.createElement('style');
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+    } catch(e) {}
+})();
+</script>
+    <script>
         if (typeof tailwind !== 'undefined') {
             tailwind.config = {
                 darkMode: 'class',
@@ -573,13 +594,13 @@
                 </div>
                 <div class="settings-row" style="margin-top:14px;">
                     <div class="align-btns" style="width:100%; justify-content:space-between;">
-                        <button class="align-btn active" id="align-left" title="বাম">
+                        <button class="align-btn" id="align-left" title="বাম">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
                         </button>
                         <button class="align-btn" id="align-center" title="সেন্টার">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
                         </button>
-                        <button class="align-btn" id="align-justify" title="জাস্টিফাই">
+                        <button class="align-btn active" id="align-justify" title="জাস্টিফাই" style="background:#fde8e6;border-color:#c0392b;color:#c0392b;">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
                         </button>
                     </div>
@@ -587,7 +608,7 @@
                 <div class="settings-row">
                     <div>
                         <div class="settings-row-label">টেক্সট সাইজ</div>
-                        <div class="settings-row-val" id="font-size-val">100%</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
                     </div>
                     <div class="settings-row-controls">
                         <button class="settings-btn" id="font-dec">−</button>
@@ -633,7 +654,7 @@
 
             <!-- Book Title -->
             <div id="read-title-bar" style="text-align:center;padding:1rem 0 1.1rem;border-bottom:1px solid #e5e7eb;margin-bottom:1.1rem;">
-                <h1 id="read-book-title" style="font-family:'Noto Serif Bengali',serif;font-size:1.4rem;font-weight:800;color:#c0392b;line-height:1.4;margin:0;">{{book_title}}</h1>
+                <h1 id="read-book-title" style="margin:0;"><a href="/book/{{book_slug}}.html" style="font-family:'Noto Serif Bengali',serif;font-size:1.4rem;font-weight:800;color:#c0392b;line-height:1.4;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">{{book_title}}</a></h1>
             </div>
 
             <div id="book-content" class="text-gray-800 dark:text-gray-200">
@@ -658,10 +679,10 @@
     const tocMobile    = document.getElementById('toc-nav-mobile');
     const progressRing = document.getElementById('progress-ring-circle');
 
-    let fontScale   = 100;
+    let fontScale   = 120;
     let marginScale = 5;
     let lineSpacing = 1.5;
-    let currentAlign= 'left';
+    let currentAlign= 'justify';
     let currentTheme= 'light';
 
     // ── Save / Load ──
