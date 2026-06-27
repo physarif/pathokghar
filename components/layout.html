@@ -212,6 +212,9 @@
         <!-- Category Quick Links -->
         <div class="w-full max-w-2xl mt-2" style="max-height:5.4em;overflow:hidden;">
             <ul id="hero-cat-list" class="category-underline-list flex flex-wrap justify-center items-center gap-y-1">
+                <li class="line-start"><a href="/authors/">লেখক</a></li>
+                <li><a href="/categories/">বিভাগ</a></li>
+                <li><a href="/blogs/">ব্লগ</a></li>
                 {{hero_categories}}
             </ul>
         </div>
@@ -219,12 +222,15 @@
         (function() {
             var ul = document.getElementById('hero-cat-list');
             if (!ul) return;
-            var items = Array.from(ul.querySelectorAll('li'));
-            for (var i = items.length - 1; i > 0; i--) {
+            // প্রথম ৩টি fixed, বাকিগুলো shuffle
+            var allLis = Array.from(ul.querySelectorAll('li'));
+            var fixed = allLis.slice(0, 3);
+            var dynamic = allLis.slice(3);
+            for (var i = dynamic.length - 1; i > 0; i--) {
                 var j = Math.floor(Math.random() * (i + 1));
-                ul.appendChild(items[j]);
-                items.splice(j, 1);
+                var tmp = dynamic[i]; dynamic[i] = dynamic[j]; dynamic[j] = tmp;
             }
+            dynamic.forEach(function(li) { ul.appendChild(li); });
             // প্রতিটা নতুন লাইনের প্রথম li থেকে ডট সরাও
             function markLineStarts() {
                 var lis = ul.querySelectorAll('li');
@@ -240,34 +246,6 @@
         })();
         </script>
 
-        <!-- Page Nav Links -->
-        <div class="w-full max-w-2xl mt-4">
-            <div class="flex bg-white dark:bg-[#1e1e1e]" style="border:2px solid #c0392b;overflow:hidden;">
-                <a href="/" id="nav-home" class="flex-1 text-center py-2 text-base transition-all">হোম</a>
-                <a href="/books" id="nav-books" class="flex-1 text-center py-2 text-base transition-all">বই</a>
-                <a href="/authors/" id="nav-author" class="flex-1 text-center py-2 text-base transition-all">লেখক</a>
-                <a href="/categories/" id="nav-category" class="flex-1 text-center py-2 text-base transition-all">বিভাগ</a>
-                <a href="/blogs/" id="nav-blog" class="flex-1 text-center py-2 text-base transition-all">ব্লগ</a>
-            </div>
-        </div>
-        <script>
-        (function() {
-            var path = window.location.pathname;
-            var map = {
-                'nav-home':     /^\/$|^\/index/i,
-                'nav-books':    /^\/books/i,
-                'nav-category': /^\/categor/i,
-                'nav-author':   /^\/author/i,
-                'nav-blog':     /^\/blog/i
-            };
-            var active = 'flex-1 text-center py-2 text-base font-semibold text-brand-500 bg-red-50 dark:bg-red-950';
-            var inactive = 'flex-1 text-center py-2 text-base text-gray-400 hover:text-brand-500 hover:bg-red-50 dark:hover:bg-red-950';
-            Object.keys(map).forEach(function(id) {
-                var el = document.getElementById(id);
-                if (el) el.className = map[id].test(path) ? active : inactive;
-            });
-        })();
-        </script>
 
     </div>
 
