@@ -47,7 +47,6 @@ function buildSidebarHTML(bookList, authorsRaw, categoriesRaw) {
       if (!isNaN(a.num) && !isNaN(b.num)) return a.num - b.num;
       return a.id.localeCompare(b.id);
     })
-    .slice(0, 10)
     .map(({ cat }) => `<li><a href="/category/${cat.slug}/1/">${cat.title}</a></li>`);
 
   // Authors — count per author
