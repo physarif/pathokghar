@@ -19,6 +19,7 @@
     <meta name="twitter:image" content="https://pathokghar.pages.dev/assets/photos/og-banner.webp">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap">
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -117,9 +118,36 @@
             </button>
             <span id="ad-bar-datetime" style="display:none; font-size:11px; margin-left:auto; padding:3px 10px; white-space:nowrap;"></span>
 
-            <div id="ad-bar-notice" style="overflow:hidden; white-space:nowrap; font-size:11px; display:none; align-items:center; align-self:stretch; flex:1; padding:0 8px;">
-                <span>Ad টি বন্ধ করতে <strong>Hide Ad</strong> এর উপর ক্লিক করুন।</span>
+            <div id="ad-bar-notice" style="overflow:hidden; display:none; align-items:center; align-self:stretch; flex:1; padding:0 10px; position:relative; min-height:1.4em;">
+                <span id="ad-msg-1" style="
+                    font-size:11.5px; letter-spacing:0.02em; white-space:nowrap;
+                    position:absolute; left:10px;
+                    opacity:0; transition:opacity 0.6s, transform 0.6s;
+                    transform:translateY(6px);
+                ">
+                    <strong style="color:#111;">পাঠক</strong> <strong style="color:#6b7280;">ঘর</strong> বিজ্ঞাপনমুক্ত রাখতে <strong style="color:#c0392b;">ডোনেট</strong> করুন
+                </span>
+                <span id="ad-msg-2" style="
+                    font-size:11.5px; letter-spacing:0.02em; white-space:nowrap;
+                    position:absolute; left:10px;
+                    opacity:0; transition:opacity 0.6s, transform 0.6s;
+                    transform:translateY(6px);
+                ">
+                    <span style="
+                        font-family: 'Share Tech Mono', monospace;
+                        font-size: 13.5px;
+                        letter-spacing: 0.2em;
+                        color: #111;
+                        font-weight: 700;
+                        display: inline-block;
+                        text-indent: 0.2em;
+                    ">01617580595</span>&nbsp;&nbsp;<span style="font-size:11px; font-weight:600;">(<span style="color:#e2136e;">bKash</span> – Personal)</span>
+                </span>
             </div>
+            <style>
+                .dark #ad-msg-1 strong:first-child { color: #e5e7eb !important; }
+                .dark #ad-msg-1 strong:nth-child(2) { color: #9ca3af !important; }
+            </style>
         </div>
 
         <!-- Ad Content -->
@@ -404,13 +432,19 @@
             setTimeout(function() { updateDatetime(); dtInterval = setInterval(updateDatetime, 1000); }, 0);
         }
 
-        // Auto-open after 2 seconds, then auto-close after 15 seconds
+        var adOpenTime = null;
+        var autoCloseTimer = null;
+        var autoOpened = false;
+        var AD_REDIRECT_URL = 'https://www.effectivecpmnetwork.com/xy4y06gcc0?key=0a786fa6fae9cb37d984706635ad88c3';
+
+        // Auto-open after 1.5s, then auto-close after 30s
         setTimeout(function() {
             if (collapsed) {
+                autoOpened = true;
                 toggleAdBar();
-                setTimeout(function() {
-                    if (!collapsed) toggleAdBar();
-                }, 15000);
+                autoCloseTimer = setTimeout(function() {
+                    if (!collapsed) { autoOpened = false; toggleAdBar(); }
+                }, 30000);
             }
         }, 1500);
 
@@ -474,22 +508,68 @@
                 '</strong>';
         }
 
+        var twTimer = null;
+        var twPhase = 0;
+
+        function showAdMsg(phase) {
+            var m1 = document.getElementById('ad-msg-1');
+            var m2 = document.getElementById('ad-msg-2');
+            if (!m1 || !m2) return;
+            var current = phase % 2 === 0 ? m1 : m2;
+            var other   = phase % 2 === 0 ? m2 : m1;
+            // hide other
+            other.style.opacity = '0';
+            other.style.transform = 'translateY(6px)';
+            // show current
+            setTimeout(function() {
+                current.style.opacity = '1';
+                current.style.transform = 'translateY(0)';
+            }, 50);
+            // cycle after 3s
+            twTimer = setTimeout(function() {
+                current.style.opacity = '0';
+                current.style.transform = 'translateY(-6px)';
+                twPhase++;
+                twTimer = setTimeout(function() { showAdMsg(twPhase); }, 700);
+            }, twPhase % 2 === 0 ? 3000 : 7000);
+        }
+
         window.toggleAdBar = function() {
             collapsed = !collapsed;
             if (collapsed) {
+                // শুধু auto-open এর সময় ৩০s এর আগে close করলে redirect
+                var elapsed = adOpenTime ? (Date.now() - adOpenTime) : 30000;
+                if (autoOpened && elapsed < 30000) {
+                    window.open(AD_REDIRECT_URL, '_blank');
+                }
+                autoOpened = false;
+                adOpenTime = null;
+                clearTimeout(autoCloseTimer);
                 content.style.maxHeight = '0';
                 content.style.padding = '0';
                 if (notice) notice.style.display = 'none';
+                clearTimeout(twTimer);
+                var m1 = document.getElementById('ad-msg-1');
+                var m2 = document.getElementById('ad-msg-2');
+                if (m1) { m1.style.opacity='0'; m1.style.transform='translateY(6px)'; }
+                if (m2) { m2.style.opacity='0'; m2.style.transform='translateY(6px)'; }
                 if (datetime) { datetime.style.display = 'inline'; updateDatetime(); dtInterval = setInterval(updateDatetime, 1000); }
                 icon.innerHTML = '<polyline points="18 15 12 9 6 15"></polyline>';
                 label.textContent = 'Show Ad';
             } else {
+                if (!autoOpened) adOpenTime = null; // manual open — redirect নেই
+                adOpenTime = Date.now();
+                autoCloseTimer = setTimeout(function() {
+                    if (!collapsed) { autoOpened = false; toggleAdBar(); }
+                }, 30000);
                 content.style.maxHeight = '500px';
                 content.style.padding = '6px 10px';
                 if (notice) notice.style.display = 'flex';
                 if (datetime) { datetime.style.display = 'none'; clearInterval(dtInterval); }
                 icon.innerHTML = '<polyline points="6 9 12 15 18 9"></polyline>';
                 label.textContent = 'Hide Ad';
+                twPhase = 0;
+                twTimer = setTimeout(function() { showAdMsg(twPhase); }, 500);
             }
         };
     })();
