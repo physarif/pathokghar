@@ -1,267 +1,380 @@
-<!-- components/index.html — homepage content + সব styling এখানে -->
-<style>
-  /* Section */
-  .book-section { padding: 0.75rem 0; margin-bottom: 0.5rem; }
-  @media (min-width: 768px) { .book-section { margin-left: 0.5rem; margin-right: 0.5rem; } }
+const { initializeApp, cert, getApp } = require('firebase-admin/app');
+const { getDatabase } = require('firebase-admin/database');
+const fs = require('fs');
+const path = require('path');
 
-  /* Section header */
-  .bc-section-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.75rem;
-    padding: 0 1rem;
+// Firebase env var validation
+const REQUIRED_ENV = ['FIREBASE_PROJECT_ID', 'FIREBASE_CLIENT_EMAIL', 'FIREBASE_PRIVATE_KEY', 'FIREBASE_DATABASE_URL'];
+for (const key of REQUIRED_ENV) {
+  if (!process.env[key]) {
+    console.error(`❌ Missing required environment variable: ${key}`);
+    console.error('GitHub Secrets সঠিকভাবে set করা আছে কিনা চেক করুন।');
+    process.exit(1);
   }
-  @media (min-width: 768px) { .bc-section-header { padding: 0 1.5rem; } }
+}
 
-  /* Title + extending line */
-  .bc-section-title {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #1f2937;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    width: 100%;
-    letter-spacing: 0.02em;
-    line-height: 1.2;
-  }
-  .bc-section-title::after {
-    content: '';
-    flex: 1;
-    height: 2px;
-    background: #c0392b;
-    border-radius: 1px;
-  }
-  .dark .bc-section-title { color: #f3f4f6; }
-  .dark .bc-section-title::after { background: #f87171; }
+// Firebase init (firebase-admin v12+ modular import)
+initializeApp({
+  credential: cert({
+    projectId: process.env.FIREBASE_PROJECT_ID.trim(),
+    clientEmail: process.env.FIREBASE_CLIENT_EMAIL.trim(),
+    privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n').trim(),
+  }),
+  databaseURL: process.env.FIREBASE_DATABASE_URL.trim(),
+});
 
-  /* "সব দেখুন" pill button */
-  .bc-section-link {
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: #fff;
-    background: #7a3b1e;
-    text-decoration: none;
-    padding: 0.3rem 0.75rem;
-    border-radius: 0.25rem;
-    white-space: nowrap;
-    transition: background 0.15s;
-  }
-  .bc-section-link:hover { background: #5c2b14; }
-  .dark .bc-section-link { background: #92400e; }
-  .dark .bc-section-link:hover { background: #78350f; }
+const db = getDatabase();
 
-  /* List container */
-  .bc-list {
-    display: flex;
-    flex-direction: column;
-    padding: 0 1rem;
-  }
-  @media (min-width: 768px) {
-    .bc-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      padding: 0 1.5rem;
+// Template load
+const layout = fs.readFileSync('components/layout.html', 'utf8');
+const bookTemplate = fs.readFileSync('components/book.html', 'utf8');
+
+// Placeholder replace helper
+function render(template, data) {
+  return template.replace(/\{\{(\w+)\}\}/g, (_, key) => data[key] || '');
+}
+
+// Folder তৈরি
+if (!fs.existsSync('book')) fs.mkdirSync('book');
+
+// Sidebar HTML builder
+function buildSidebarHTML(bookList, authorsRaw, categoriesRaw) {
+  // Categories — Firebase numeric key অনুসারে sort করে প্রথম ১০টা
+  const catItems = Object.entries(categoriesRaw)
+    .map(([id, cat]) => ({ id, cat, num: parseInt(id, 10) }))
+    .filter(({ cat }) => cat && cat.slug && cat.title)
+    .sort((a, b) => {
+      if (!isNaN(a.num) && !isNaN(b.num)) return a.num - b.num;
+      return a.id.localeCompare(b.id);
+    })
+    .map(({ cat }) => `<li><a href="/category/${cat.slug}/1/">${cat.title}</a></li>`);
+
+  // Authors — count per author
+  const authorMap = {};
+  const authorCount = {};
+  for (const book of bookList) {
+    if (book.author_slug) {
+      if (!authorMap[book.author_slug]) authorMap[book.author_slug] = book.author_name;
+      authorCount[book.author_slug] = (authorCount[book.author_slug] || 0) + 1;
     }
   }
+  const authorItems = Object.entries(authorMap)
+    .sort(([,a],[,b]) => a.localeCompare(b, 'bn'))
+    .map(([slug, name]) => `<li><a href="/author/${slug}.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">${name}</span><span class="text-[11px] text-gray-400 dark:text-gray-500">${authorCount[slug] || 0}</span></a></li>`);
 
-  /* Separator line between cards */
-  .bc-card + .bc-card {
-    border-top: 1px solid #e5e7eb;
-  }
-  .dark .bc-card + .bc-card {
-    border-top-color: #374151;
-  }
-  @media (min-width: 768px) {
-    .bc-card + .bc-card { border-top: none; }
-    .bc-card { border-top: 1px solid #e5e7eb; }
-    .bc-card:nth-child(1),
-    .bc-card:nth-child(2) { border-top: none; }
-    .bc-card:nth-child(odd) { border-right: 1px solid #e5e7eb; padding-right: 1rem; }
-    .bc-card:nth-child(even) { padding-left: 1rem; }
-    .dark .bc-card { border-top-color: #374151; }
-    .dark .bc-card:nth-child(odd) { border-right-color: #374151; }
-  }
+  return {
+    hero_categories: catItems.join('\n                '),
+    sidebar_authors: authorItems.join('\n                '),
+  };
+}
 
-  /* Book card — horizontal list style */
-  .bc-card {
-    display: flex;
-    flex-direction: row;
-    gap: 0.85rem;
-    align-items: flex-start;
-    text-decoration: none;
-    padding: 0.75rem 0;
-    transition: background 0.1s;
-  }
-  .bc-card:first-child { padding-top: 0; }
-  .bc-card:last-child { padding-bottom: 0; }
-  .bc-card:hover { background: transparent; }
+async function generateBookPages() {
+  console.log('📚 Firebase থেকে data fetch করছি...');
 
-  /* Cover — left side, fixed size 2:3 ratio */
-  .bc-img-wrap {
-    flex-shrink: 0;
-    width: 5.5rem;
-    aspect-ratio: 2/3;
-    border-radius: 0.25rem;
-    overflow: hidden;
-    background: #e5e7eb;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  }
-  @media (min-width: 768px) { .bc-img-wrap { width: 6.5rem; } }
-  .dark .bc-img-wrap { background: #374151; }
+  const [booksSnap, authorsSnap, categoriesSnap] = await Promise.all([
+    db.ref('/books').orderByKey().once('value'),
+    db.ref('/authors').once('value'),
+    db.ref('/categories').once('value'),
+  ]);
 
-  .bc-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  const booksRaw = booksSnap.val();
+  const authorsRaw = authorsSnap.val() || {};
+  const categoriesRaw = categoriesSnap.val() || {};
+
+  if (!booksRaw) {
+    console.log('কোনো book data পাওয়া যায়নি।');
+    return { bookList: [], authorsRaw: {} };
   }
 
-  /* Right side text */
-  .bc-body {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
+  const bookList = Object.entries(booksRaw)
+    .sort(([keyA], [keyB]) => {
+      const numA = parseInt(keyA, 10);
+      const numB = parseInt(keyB, 10);
+      if (!isNaN(numA) && !isNaN(numB)) return numA - numB;
+      return keyA.localeCompare(keyB);
+    })
+    .map(([firebaseKey, book]) => {
+    const author = authorsRaw[book.author] || {};
+    const category = categoriesRaw[book.category] || {};
+    return {
+      id: parseInt(firebaseKey, 10) || firebaseKey,
+      slug: book.slug,
+      title: book.title,
+      description: book.desc || '',
+      cover: book.img || '',
+      download_url: book.file || '',
+      language: 'বাংলা',
+      created_at: book.createdAt || 0,
+      author_name: author.title || '',
+      author_slug: author.slug || '',
+      author_img: author.img || '',
+      category_name: category.title || '',
+      category_slug: category.slug || '',
+    };
+  });
+
+  console.log(`✅ ${bookList.length}টা বই পাওয়া গেছে।`);
+
+  for (const book of bookList) {
+    const bookContent = render(bookTemplate, {
+      book_title: book.title,
+      book_author: book.author_name,
+      book_author_slug: book.author_slug,
+      book_cover: book.cover,
+      book_category: book.category_name,
+      book_category_slug: book.category_slug,
+      book_language: book.language,
+      book_description: book.description,
+      book_slug: book.slug,
+    });
+
+    const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+    const fullPage = render(layout, {
+      page_title: `${book.title} - ${book.author_name}`,
+      page_description: book.description?.slice(0, 160) || '',
+      content: bookContent,
+      hero_categories,
+      sidebar_authors,
+    });
+
+    const outputPath = `book/${book.slug}.html`;
+    fs.writeFileSync(outputPath, fullPage, 'utf8');
+    console.log(`  ✓ ${outputPath}`);
   }
 
-  /* Headline: title . author একই লাইনে, একই size */
-  .bc-headline {
-    font-size: 1rem;
-    line-height: 1.4;
-    margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .bc-title {
-    font-weight: 700;
-    color: #c0392b;
-  }
-  .dark .bc-title { color: #f87171; }
-  .bc-card:hover .bc-title { text-decoration: underline; }
-  .dark .bc-card:hover .bc-title { text-decoration: underline; }
+  return { bookList, authorsRaw, categoriesRaw };
+}
 
-  .bc-sep {
-    color: #9ca3af;
-    font-weight: 400;
-    vertical-align: middle;
-  }
-  .bc-author {
-    font-weight: 500;
-    color: #6b7280;
-  }
-  .dark .bc-author { color: #9ca3af; }
+async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
+  console.log('\n🏠 Homepage generate করছি...');
 
-  /* Description — 3 lines */
-  .bc-desc {
-    margin-top: 0.3rem;
-    font-size: 0.92rem;
-    color: #4b5563;
-    line-height: 1.6;
-    text-align: justify;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  const indexTemplate = fs.readFileSync('components/index.html', 'utf8');
+
+  // index.html এর HTML comment থেকে card template extract করো
+  const cardTemplateMatch = indexTemplate.match(/<!--\s*\n\s*Book card template[\s\S]*?(<a[\s\S]*?<\/a>)\s*\n-->/);
+  if (!cardTemplateMatch) {
+    console.error('❌ components/index.html এ book card template comment পাওয়া যায়নি।');
+    process.exit(1);
   }
-  .dark .bc-desc { color: #9ca3af; }
+  const cardTemplate = cardTemplateMatch[1].trim();
 
-  /* Pagination */
-  .bc-pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 1.5rem 1rem 0.5rem;
-    flex-wrap: wrap;
+  // created_at দিয়ে sort (নতুন আগে)
+  const sorted = [...bookList].sort((a, b) => (b.created_at || 0) - (a.created_at || 0));
+
+  const BOOKS_PER_PAGE = 12;
+  const totalPages = Math.ceil(sorted.length / BOOKS_PER_PAGE);
+
+  // Book card render helper
+  function bookCard(book) {
+    const desc = (book.description || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return render(cardTemplate, {
+      book_slug: book.slug,
+      book_cover: book.cover,
+      book_title: book.title,
+      book_author: book.author_name,
+      book_desc: desc,
+    });
   }
-  .bc-page-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 2.1rem;
-    height: 2.1rem;
-    padding: 0 0.5rem;
-    border-radius: 0.3rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-decoration: none;
-    color: #374151;
-    background: #f3f4f6;
-    transition: background 0.15s, color 0.15s;
+
+  const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+
+  for (let page = 1; page <= totalPages; page++) {
+    const pageBooks = sorted.slice((page - 1) * BOOKS_PER_PAGE, page * BOOKS_PER_PAGE);
+
+    const indexContent = render(indexTemplate, {
+      latest_books: pageBooks.map(bookCard).join(''),
+      current_page: page,
+      total_pages: totalPages,
+    });
+
+    const fullPage = render(layout, {
+      page_title: page === 1
+        ? 'পাঠক ঘর - বাংলা বইয়ের ডিজিটাল পাঠাগার'
+        : `পাঠক ঘর - পাতা ${page}`,
+      page_description: 'বাংলা ও ইংরেজি বইয়ের ডিজিটাল পাঠাগার - পড়ুন, ডাউনলোড করুন',
+      content: indexContent,
+      hero_categories,
+      sidebar_authors,
+    });
+
+    if (page === 1) {
+      fs.writeFileSync('index.html', fullPage, 'utf8');
+      console.log('  ✓ index.html');
+    } else {
+      const dir = `books/${page}`;
+      if (!fs.existsSync('books')) fs.mkdirSync('books');
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(`${dir}/index.html`, fullPage, 'utf8');
+      console.log(`  ✓ books/${page}/index.html`);
+    }
   }
-  .bc-page-btn:hover { background: #e5e7eb; color: #111827; }
-  .bc-page-btn.active { background: #c0392b; color: #fff; pointer-events: none; }
-  .bc-page-nav {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    padding: 0 0.75rem;
-    height: 2.1rem;
-    border-radius: 0.3rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-decoration: none;
-    color: #fff;
-    background: #c0392b;
-    transition: background 0.15s;
+}
+
+async function generateAuthorPages(bookList, authorsRaw, categoriesRaw) {
+  console.log('\n👤 Author pages generate করছি...');
+  const authorTemplate = fs.readFileSync('components/author.html', 'utf8');
+  if (!fs.existsSync('author')) fs.mkdirSync('author');
+
+  // author অনুযায়ী group
+  const byAuthor = {};
+  for (const book of bookList) {
+    if (!byAuthor[book.author_slug]) {
+      // Firebase থেকে সরাসরি author data নাও
+      const authorData = Object.values(authorsRaw).find(a => a.slug === book.author_slug) || {};
+      byAuthor[book.author_slug] = {
+        name: book.author_name,
+        img: book.author_img || '',
+        desc: authorData.desc || '',
+        books: [],
+      };
+    }
+    byAuthor[book.author_slug].books.push(book);
   }
-  .bc-page-nav:hover { background: #991b1b; }
-  .dark .bc-page-btn { background: #1f2937; color: #d1d5db; }
-  .dark .bc-page-btn:hover { background: #374151; color: #f9fafb; }
-  .dark .bc-page-btn.active { background: #f87171; color: #111827; }
-  .dark .bc-page-nav { background: #f87171; color: #111827; }
-  .dark .bc-page-nav:hover { background: #ef4444; }
-</style>
 
-<!--
-  Book card template (reference — generate_pages.js এ ব্যবহার হয়):
-  <a href="/books/{{book_slug}}.html" class="bc-card">
-    <div class="bc-img-wrap">
-      <img src="{{book_cover}}" alt="{{book_title}}" class="bc-img" loading="lazy">
-    </div>
-    <div class="bc-body">
-      <p class="bc-headline"><span class="bc-title">{{book_title}}</span><span class="bc-sep"> – </span><span class="bc-author">{{book_author}}</span></p>
-      <p class="bc-desc">{{book_desc}}</p>
-    </div>
-  </a>
--->
+  for (const [slug, data] of Object.entries(byAuthor)) {
+    const booksData = JSON.stringify(data.books.map(b => ({
+      slug: b.slug,
+      title: b.title,
+      cover: b.cover,
+      category_name: b.category_name,
+    })));
 
-<main class="flex-1 py-4 md:py-6 md:px-8 lg:px-16 min-h-[calc(100vh-3.5rem)] min-w-0 overflow-hidden">
+    const authorContent = render(authorTemplate, {
+      author_name: data.name,
+      author_img: data.img,
+      author_desc: data.desc,
+      author_book_count: data.books.length,
+      author_books_data: booksData,
+    });
+    const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+    const fullPage = render(layout, {
+      page_title: data.name,
+      page_description: '',
+      content: authorContent,
+      hero_categories,
+      sidebar_authors,
+    });
 
-  <!-- সর্বশেষ বই -->
-  <section class="book-section">
-    <div class="bc-list">{{latest_books}}</div>
-  </section>
+    fs.writeFileSync(`author/${slug}.html`, fullPage, 'utf8');
+    console.log(`  ✓ author/${slug}.html`);
+  }
+}
 
-  <div id="bc-pagination"></div>
-  <script>
-    (function() {
-      const current = parseInt('{{current_page}}', 10);
-      const total = parseInt('{{total_pages}}', 10);
-      if (!current || !total || total <= 1) return;
-      const el = document.getElementById('bc-pagination');
-      let html = '<div class="bc-pagination">';
-      if (current > 1) {
-        const prev = current === 2 ? '/' : '/books/' + (current - 1) + '/';
-        html += '<a href="' + prev + '" class="bc-page-nav"><i class="fas fa-chevron-left text-xs"></i> পূর্ববর্তী</a>';
+async function generateDownloadPages(bookList, authorsRaw, categoriesRaw) {
+  console.log('\n📥 Download pages generate করছি...');
+  const downloadTemplate = fs.readFileSync('components/download.html', 'utf8');
+  if (!fs.existsSync('download')) fs.mkdirSync('download');
+
+  for (const book of bookList) {
+    const downloadContent = render(downloadTemplate, {
+      book_title: book.title,
+      book_author: book.author_name,
+      book_cover: book.cover,
+      book_category: book.category_name,
+      book_download_url: book.download_url || '',
+      book_slug: book.slug,
+      book_author_slug: book.author_slug,
+      book_category_slug: book.category_slug,
+    });
+    const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+    const fullPage = render(layout, {
+      page_title: book.title,
+      page_description: '',
+      content: downloadContent,
+      hero_categories,
+      sidebar_authors,
+    });
+
+    fs.writeFileSync(`download/${book.slug}.html`, fullPage, 'utf8');
+    console.log(`  ✓ download/${book.slug}.html`);
+  }
+}
+
+async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
+  console.log('\n📂 Category pages generate করছি...');
+  const categoryTemplate = fs.readFileSync('components/category.html', 'utf8');
+
+  const byCategory = {};
+  for (const book of bookList) {
+    if (!byCategory[book.category_slug]) {
+      byCategory[book.category_slug] = { name: book.category_name, books: [] };
+    }
+    byCategory[book.category_slug].books.push(book);
+  }
+
+  for (const [slug, data] of Object.entries(byCategory)) {
+    // id অনুসারে ascending sort
+    data.books.sort((a, b) => {
+      if (typeof a.id === 'number' && typeof b.id === 'number') return a.id - b.id;
+      return String(a.id).localeCompare(String(b.id));
+    });
+    const BOOKS_PER_PAGE = 24;
+    const totalPages = Math.ceil(data.books.length / BOOKS_PER_PAGE);
+    const dir = `category/${slug}`;
+    if (!fs.existsSync('category')) fs.mkdirSync('category');
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+
+    for (let page = 1; page <= totalPages; page++) {
+      const pageBooks = data.books.slice((page - 1) * BOOKS_PER_PAGE, page * BOOKS_PER_PAGE);
+
+      const booksGrid = pageBooks.map(book => `
+      <a href="/book/${book.slug}.html" class="cat-card">
+        <div class="cat-img-wrap">
+          <img src="${book.cover}" alt="${book.title}" class="cat-img" loading="lazy">
+        </div>
+        <p class="cat-title">${book.title}</p>
+        <p class="cat-author">${book.author_name}</p>
+      </a>`).join('');
+
+      // Pagination HTML
+      let paginationHTML = '<div class="cat-pagination">';
+      if (page > 1) paginationHTML += `<a href="/category/${slug}/${page - 1}/" class="cat-page-nav"><i class="fas fa-chevron-left text-xs"></i> আগের</a>`;
+      for (let i = 1; i <= totalPages; i++) {
+        if (i === page) paginationHTML += `<span class="cat-page-btn active">${i}</span>`;
+        else paginationHTML += `<a href="/category/${slug}/${i}/" class="cat-page-btn">${i}</a>`;
       }
-      for (let i = 1; i <= total; i++) {
-        const href = i === 1 ? '/' : '/books/' + i + '/';
-        if (i === current) html += '<span class="bc-page-btn active">' + i + '</span>';
-        else html += '<a href="' + href + '" class="bc-page-btn">' + i + '</a>';
-      }
-      if (current < total) {
-        html += '<a href="/books/' + (current + 1) + '/" class="bc-page-nav">পরবর্তী <i class="fas fa-chevron-right text-xs"></i></a>';
-      }
-      html += '</div>';
-      el.innerHTML = html;
-    })();
-  </script>
+      if (page < totalPages) paginationHTML += `<a href="/category/${slug}/${page + 1}/" class="cat-page-nav">পরের <i class="fas fa-chevron-right text-xs"></i></a>`;
+      paginationHTML += '</div>';
 
-</main>
+      const categoryContent = render(categoryTemplate, {
+        category_name: data.name,
+        category_book_count: data.books.length,
+        category_books_grid: booksGrid,
+        category_pagination: paginationHTML,
+      });
+      const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+      const fullPage = render(layout, {
+        page_title: data.name,
+        page_description: '',
+        content: categoryContent,
+        hero_categories,
+        sidebar_authors,
+      });
+
+      const pageDir = `${dir}/${page}`;
+      if (!fs.existsSync(pageDir)) fs.mkdirSync(pageDir, { recursive: true });
+      fs.writeFileSync(`${pageDir}/index.html`, fullPage, 'utf8');
+      console.log(`  ✓ category/${slug}/${page}/index.html`);
+    }
+  }
+}
+
+
+// Main
+(async () => {
+  try {
+    console.log('🚀 Script শুরু হয়েছে...');
+    const { bookList, authorsRaw, categoriesRaw } = await generateBookPages();
+    await generateHomepage(bookList, authorsRaw, categoriesRaw);
+    await generateAuthorPages(bookList, authorsRaw, categoriesRaw);
+    await generateDownloadPages(bookList, authorsRaw, categoriesRaw);
+    await generateCategoryPages(bookList, authorsRaw, categoriesRaw);
+    console.log('\n🎉 সব pages generate হয়েছে!');
+    await getApp().delete();
+    process.exit(0);
+  } catch (err) {
+    console.error('❌ Error:', err);
+    await getApp().delete().catch(() => {});
+    process.exit(1);
+  }
+})();
