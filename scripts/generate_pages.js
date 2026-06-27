@@ -161,8 +161,7 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
     '    <p class="bc-desc">{{book_desc}}</p>',
     '  </div>',
     '</a>',
-  ].join('
-');
+  ].join('\n');
 
   // created_at দিয়ে sort (নতুন আগে)
   const sorted = [...bookList].sort((a, b) => (b.created_at || 0) - (a.created_at || 0));
