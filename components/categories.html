@@ -113,10 +113,10 @@
   box-shadow: 0 4px 14px rgba(192,57,43,0.1);
 }
 .cat-card:active {
-  background: #2d3450;
+  background: #2e1a1a;
 }
 :not(.dark) .cat-card:active {
-  background: #d8ddf0;
+  background: #fde8e6;
 }
 
 .cat-card-name {
@@ -130,15 +130,13 @@
 }
 
 .cat-card-count {
-  display: block;
-  font-size: 0.72rem;
-  color: #64748b;
-  margin-top: 0.2rem;
+  display: inline;
+  font-size: 0.78rem;
   font-weight: 400;
 }
 .cat-card-count strong {
   color: #c0392b;
-  font-weight: 600;
+  font-weight: 700;
 }
 .dark .cat-card-count strong { color: #e57373; }
 </style>
@@ -178,8 +176,7 @@
     var cards = groups[letter].map(function(cat) {
       return '<a href="/category/' + cat.slug + '/1/" class="cat-card">'
         + '<div>'
-        + '<span class="cat-card-name">' + cat.name + '</span>'
-        + '<span class="cat-card-count"><strong>' + toBn(cat.count) + '</strong> টি বই</span>'
+        + '<span class="cat-card-name"><span class="cat-card-count"><strong>' + toBn(cat.count) + '</strong></span> ' + cat.name + '</span>'
         + '</div>'
         + '</a>';
     }).join('');
