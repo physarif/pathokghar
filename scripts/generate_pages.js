@@ -376,6 +376,77 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
 }
 
 
+async function generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw) {
+  console.log('\n👥 Authors index page generate করছি...');
+
+  const authorsTemplate = fs.readFileSync('components/authors.html', 'utf8');
+
+  // Author → book count map
+  const authorCount = {};
+  for (const book of bookList) {
+    if (book.author_slug) {
+      authorCount[book.author_slug] = (authorCount[book.author_slug] || 0) + 1;
+    }
+  }
+
+  // Collect unique authors (from authorsRaw, fallback from bookList)
+  const authorMap = {};
+  for (const book of bookList) {
+    if (book.author_slug && !authorMap[book.author_slug]) {
+      authorMap[book.author_slug] = {
+        slug: book.author_slug,
+        name: book.author_name,
+        img: book.author_img || '',
+      };
+    }
+  }
+
+  // Sort: বাংলা নাম অনুসারে
+  const authors = Object.values(authorMap).sort((a, b) =>
+    a.name.localeCompare(b.name, 'bn')
+  );
+
+  function getInitial(name) {
+    return name ? name[0] : '?';
+  }
+
+  function authorCard(author) {
+    const count = authorCount[author.slug] || 0;
+    const countBn = toBanglaNum(count);
+    const photoInner = author.img
+      ? `<img src="${author.img}" alt="${author.name}" loading="lazy" onerror="this.parentNode.innerHTML='<div class=\\"author-photo-fallback\\">${getInitial(author.name)}</div>'">`
+      : `<div class="author-photo-fallback">${getInitial(author.name)}</div>`;
+
+    return `<a href="/author/${author.slug}.html" class="author-card" data-name="${author.name}">
+  <div class="author-photo-wrap">${photoInner}</div>
+  <span class="author-card-name">${author.name}</span>
+  <span class="author-book-count"><strong>${countBn}</strong> টি বই</span>
+</a>`;
+  }
+
+  const authorsCards = authors.map(authorCard).join('\n');
+
+  const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+
+  const content = render(authorsTemplate, {
+    total_authors_bn: toBanglaNum(authors.length),
+    authors_cards: authorsCards,
+  });
+
+  const fullPage = render(layout, {
+    page_title: 'লেখকগণ - পাঠক ঘর',
+    page_description: 'পাঠক ঘরের সকল বাংলা সাহিত্যিক ও লেখকদের তালিকা',
+    content,
+    hero_categories,
+    sidebar_authors,
+  });
+
+  if (!fs.existsSync('authors')) fs.mkdirSync('authors');
+  fs.writeFileSync('authors/index.html', fullPage, 'utf8');
+  console.log('  ✓ authors/index.html');
+}
+
+
 // Main
 (async () => {
   try {
@@ -383,6 +454,7 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
     const { bookList, authorsRaw, categoriesRaw } = await generateBookPages();
     await generateHomepage(bookList, authorsRaw, categoriesRaw);
     await generateAuthorPages(bookList, authorsRaw, categoriesRaw);
+    await generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw);
     await generateDownloadPages(bookList, authorsRaw, categoriesRaw);
     await generateCategoryPages(bookList, authorsRaw, categoriesRaw);
     console.log('\n🎉 সব pages generate হয়েছে!');
