@@ -6,21 +6,82 @@
     <span id="cat-count" style="background:rgba(255,255,255,0.18);color:#fff;font-weight:600;font-size:0.78rem;padding:0.15rem 0.6rem;"></span>
   </div>
 
-  <!-- Grid -->
-  <div id="cat-grid" class="cat-grid px-4"></div>
+  <!-- Body: letter sidebar + groups -->
+  <div class="cg-body">
+    <nav class="cg-letter-nav" id="cg-letter-nav"></nav>
+    <div class="cg-groups" id="cg-groups"></div>
+  </div>
 
 </div>
 
 <script type="application/json" id="categories-json">{{categories_json}}</script>
 
 <style>
-.cat-grid {
+.cg-body {
+  display: flex;
+  align-items: flex-start;
+}
+.cg-letter-nav {
+  position: sticky;
+  top: 1rem;
+  flex-shrink: 0;
+  width: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 0.25rem 0;
+}
+.cg-letter-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #c0392b;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.12s, color 0.12s;
+  line-height: 1;
+}
+.cg-letter-link:hover, .cg-letter-link.active {
+  background: #c0392b;
+  color: #fff;
+}
+.dark .cg-letter-link { color: #e57373; }
+.dark .cg-letter-link:hover, .dark .cg-letter-link.active { background: #c0392b; color: #fff; }
+
+.cg-groups { flex: 1; min-width: 0; padding-left: 0.5rem; }
+
+.cg-group { margin-bottom: 1.5rem; }
+.cg-group-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+  padding-left: 0.25rem;
+}
+.cg-group-letter {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #c0392b;
+  line-height: 1;
+  width: 2.2rem;
+  flex-shrink: 0;
+}
+.dark .cg-group-letter { color: #f87171; }
+.cg-group-line { flex: 1; height: 1px; background: #e5e7eb; }
+.dark .cg-group-line { background: #374151; }
+
+.cg-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.6rem;
 }
-@media (min-width: 640px) { .cat-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (min-width: 1024px) { .cat-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 640px) { .cg-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1024px) { .cg-grid { grid-template-columns: repeat(4, 1fr); } }
 
 .cat-card {
   display: flex;
@@ -32,7 +93,6 @@
   min-height: 5rem;
   background: #1e2235;
   border: 1px solid #2a2f45;
-  border-radius: 10px;
   transition: background 0.15s, box-shadow 0.15s;
   -webkit-tap-highlight-color: transparent;
 }
@@ -40,7 +100,6 @@
   background: #1e2235;
   border-color: #2a2f45;
 }
-/* light mode */
 :not(.dark) .cat-card {
   background: #f1f3f8;
   border-color: #e2e6f0;
@@ -95,14 +154,58 @@
   var countEl = document.getElementById('cat-count');
   if (countEl) countEl.textContent = toBn(data.length) + 'টি বিভাগ';
 
-  var grid = document.getElementById('cat-grid');
-  grid.innerHTML = data.map(function(cat) {
-    return '<a href="/category/' + cat.slug + '/1/" class="cat-card">'
-      + '<div>'
-      + '<span class="cat-card-name">' + cat.name + '</span>'
-      + '<span class="cat-card-count"><strong>' + toBn(cat.count) + '</strong> টি বই</span>'
-      + '</div>'
-      + '</a>';
+  // বর্ণানুসারে sort
+  data.sort(function(a, b) { return a.name.localeCompare(b.name, 'bn'); });
+
+  // Group by first letter
+  var groups = {};
+  var letters = [];
+  data.forEach(function(cat) {
+    var letter = cat.name ? cat.name[0] : '?';
+    if (!groups[letter]) { groups[letter] = []; letters.push(letter); }
+    groups[letter].push(cat);
+  });
+
+  // Build letter nav
+  var nav = document.getElementById('cg-letter-nav');
+  nav.innerHTML = letters.map(function(l) {
+    return '<a href="#cg-' + encodeURIComponent(l) + '" class="cg-letter-link" data-letter="' + l + '">' + l + '</a>';
   }).join('');
+
+  // Build groups
+  var groupsEl = document.getElementById('cg-groups');
+  groupsEl.innerHTML = letters.map(function(letter) {
+    var cards = groups[letter].map(function(cat) {
+      return '<a href="/category/' + cat.slug + '/1/" class="cat-card">'
+        + '<div>'
+        + '<span class="cat-card-name">' + cat.name + '</span>'
+        + '<span class="cat-card-count"><strong>' + toBn(cat.count) + '</strong> টি বই</span>'
+        + '</div>'
+        + '</a>';
+    }).join('');
+
+    return '<div class="cg-group" id="cg-' + encodeURIComponent(letter) + '" data-letter="' + letter + '">'
+      + '<div class="cg-group-header">'
+      + '<span class="cg-group-letter">' + letter + '</span>'
+      + '<div class="cg-group-line"></div>'
+      + '</div>'
+      + '<div class="cg-grid">' + cards + '</div>'
+      + '</div>';
+  }).join('');
+
+  // Active letter on scroll
+  var links = nav.querySelectorAll('.cg-letter-link');
+  var groupEls = groupsEl.querySelectorAll('.cg-group');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var letter = entry.target.dataset.letter;
+        links.forEach(function(l) {
+          l.classList.toggle('active', l.dataset.letter === letter);
+        });
+      }
+    });
+  }, { rootMargin: '-10% 0px -80% 0px' });
+  groupEls.forEach(function(g) { observer.observe(g); });
 })();
 </script>
