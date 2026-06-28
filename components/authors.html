@@ -1,18 +1,9 @@
 <div class="max-w-5xl mx-auto px-4 py-6">
 
   <!-- Page header -->
-  <div class="flex items-center justify-between mb-5">
-    <div>
-      <h2 class="text-2xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">লেখকগণ</h2>
-      <p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{{total_authors_bn}} জন লেখক</p>
-    </div>
-    <!-- Search filter -->
-    <div class="relative">
-      <input id="author-filter" type="text" placeholder="লেখক খুঁজুন..."
-        oninput="filterAuthors(this.value)"
-        class="pl-4 pr-9 py-2 text-sm rounded-full border border-gray-200 dark:border-gray-600 bg-white dark:bg-[#2d2d2d] text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#c0392b] focus:border-transparent transition-all w-44">
-      <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    </div>
+  <div class="mb-5">
+    <h2 class="text-2xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">লেখকগণ</h2>
+    <p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{{total_authors_bn}} জন লেখক</p>
   </div>
 
   <!-- Red accent divider -->
@@ -21,12 +12,6 @@
   <!-- Authors grid -->
   <div id="authors-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-5">
     {{authors_cards}}
-  </div>
-
-  <!-- Empty state (hidden by default) -->
-  <div id="authors-empty" class="hidden text-center py-16 text-gray-400 dark:text-gray-600">
-    <svg class="w-12 h-12 mx-auto mb-3 opacity-40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
-    <p class="text-sm">কোনো লেখক পাওয়া যায়নি</p>
   </div>
 
 </div>
@@ -71,6 +56,7 @@
 
 /* Photo circle */
 .author-photo-wrap {
+  position: relative;
   width: 88px;
   height: 88px;
   border-radius: 50%;
@@ -97,12 +83,14 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  position: relative;
+  z-index: 1;
 }
 
-/* Fallback avatar */
+/* Fallback avatar — shows behind img, visible when img fails */
 .author-photo-fallback {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,10 +98,15 @@
   font-weight: 700;
   color: #c0392b;
   background: #fde8e6;
+  z-index: 0;
 }
 .dark .author-photo-fallback {
   color: #f87171;
   background: #3d1f1f;
+}
+/* When img errors, hide it so fallback shows */
+.author-photo-wrap img.img-error {
+  display: none;
 }
 
 /* Author name */
@@ -132,7 +125,7 @@
   color: #e5e7eb;
 }
 
-/* Book count badge */
+/* Book count */
 .author-book-count {
   font-size: 0.75rem;
   color: #9ca3af;
@@ -152,19 +145,11 @@
 
 <script>
 (function() {
-  // Client-side filter
-  window.filterAuthors = function(query) {
-    var q = query.trim().toLowerCase();
-    var cards = document.querySelectorAll('.author-card');
-    var visible = 0;
-    cards.forEach(function(card) {
-      var name = (card.dataset.name || '').toLowerCase();
-      var show = !q || name.includes(q);
-      card.style.display = show ? '' : 'none';
-      if (show) visible++;
+  // img error → hide img, show fallback underneath
+  document.querySelectorAll('.author-photo-wrap img').forEach(function(img) {
+    img.addEventListener('error', function() {
+      this.classList.add('img-error');
     });
-    var empty = document.getElementById('authors-empty');
-    if (empty) empty.classList.toggle('hidden', visible > 0);
-  };
+  });
 })();
 </script>
