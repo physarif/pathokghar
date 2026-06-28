@@ -1,86 +1,69 @@
-<div class="max-w-2xl mx-auto px-4 py-20 flex flex-col items-center text-center">
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>পাতা খুঁজে পাওয়া যায়নি - পাঠক ঘর</title>
+  <meta name="description" content="আপনি যে পাতাটি খুঁজছেন সেটি পাওয়া যাচ্ছে না।">
+  <link rel="icon" type="image/webp" href="https://pathokghar.pages.dev/assets/photos/pathokghar-logo.webp">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { brand: { 500: '#c0392b', 600: '#a93226' } } } }
+    }
+    // layout.html এর মতো dark mode sync
+    (function() {
+      if (localStorage.getItem('theme') === 'dark' ||
+        (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    .not-found-num {
+      font-size: 6rem;
+      font-weight: 900;
+      line-height: 1;
+      color: #c0392b;
+      letter-spacing: -0.04em;
+      opacity: 0.15;
+      user-select: none;
+    }
+    .dark .not-found-num { opacity: 0.12; }
+    .nf-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.6rem 1.4rem;
+      background: #c0392b;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .nf-btn-primary:hover { background: #a93226; }
+    .nf-btn-primary:active { background: #922b21; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 min-h-screen">
 
-  <!-- ৪০৪ number -->
-  <div class="not-found-num">৪০৪</div>
+  <div class="max-w-2xl mx-auto px-4 py-20">
 
-  <!-- Icon -->
-  <div class="not-found-book">📚</div>
+    <div class="not-found-num">৪০৪</div>
 
-  <!-- Message -->
-  <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mt-4 mb-2">
-    পাতাটি খুঁজে পাওয়া যাচ্ছে না
-  </h1>
-  <p class="text-gray-500 dark:text-gray-400 text-base mb-8 max-w-sm">
-    আপনি যে পাতাটি খুঁজছেন সেটি সরানো হয়েছে, নামবদল হয়েছে, অথবা আদৌ ছিল না।
-  </p>
+    <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mt-4 mb-2">
+      পাতাটি খুঁজে পাওয়া যাচ্ছে না...
+    </h1>
+    <p class="text-gray-500 dark:text-gray-400 text-base mb-8 max-w-sm">
+      আপনি যে পাতাটি খুঁজছেন সেটি সরানো হয়েছে, নামবদল হয়েছে, অথবা আদৌ ছিল না।
+    </p>
 
-  <!-- Buttons -->
-  <div class="flex flex-wrap gap-3 justify-center">
-    <a href="/" class="nf-btn-primary">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-        <polyline points="9 22 9 12 15 12 15 22"></polyline>
-      </svg>
-      হোমপেজে যান
-    </a>
-    <a href="/categories/" class="nf-btn-secondary">
-      সব বিভাগ
-    </a>
+    <a href="/" class="nf-btn-primary">হোমপেজে যান</a>
+
   </div>
 
-</div>
-
-<style>
-.not-found-num {
-  font-size: 6rem;
-  font-weight: 900;
-  line-height: 1;
-  color: #c0392b;
-  letter-spacing: -0.04em;
-  opacity: 0.15;
-  user-select: none;
-}
-.dark .not-found-num { opacity: 0.12; }
-
-.not-found-book {
-  font-size: 3.5rem;
-  margin-top: -2.5rem;
-  line-height: 1;
-}
-
-.nf-btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.6rem 1.4rem;
-  background: #c0392b;
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.95rem;
-  text-decoration: none;
-  transition: background 0.15s;
-  -webkit-tap-highlight-color: transparent;
-}
-.nf-btn-primary:hover { background: #a93226; }
-.nf-btn-primary:active { background: #922b21; }
-
-.nf-btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.6rem 1.4rem;
-  background: transparent;
-  color: #c0392b;
-  font-weight: 600;
-  font-size: 0.95rem;
-  text-decoration: none;
-  border: 2px solid #c0392b;
-  transition: background 0.15s, color 0.15s;
-  -webkit-tap-highlight-color: transparent;
-}
-.nf-btn-secondary:hover { background: #fde8e6; }
-.nf-btn-secondary:active { background: #fbd5d1; }
-.dark .nf-btn-secondary { color: #e57373; border-color: #e57373; }
-.dark .nf-btn-secondary:hover { background: #2e1a1a; }
-.dark .nf-btn-secondary:active { background: #3d1f1f; }
-</style>
+</body>
+</html>
