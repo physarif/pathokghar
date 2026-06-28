@@ -248,6 +248,7 @@ async function generateAuthorPages(bookList, authorsRaw, categoriesRaw) {
       cover: b.cover,
       category_name: b.category_name,
       desc: b.description || '',
+      author_name: b.author_name || '',
     })));
 
     const authorContent = render(authorTemplate, {
