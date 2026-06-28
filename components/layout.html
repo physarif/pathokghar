@@ -89,14 +89,10 @@
 
     <!-- ── Ad Bar (hero-এর উপরে) ── -->
     <div id="ad-bar" style="
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 9999;
         display: flex;
         flex-direction: column-reverse;
         background: #f9fafb;
+        border-bottom: 1px solid #e5e7eb;
         width: 100%;
     ">
         <!-- Toggle Button -->
@@ -108,41 +104,41 @@
                 display: flex;
                 align-items: center;
                 gap: 5px;
-                padding: 3px 10px;
-                font-size: 11px;
+                padding: 5px 12px;
+                font-size: 13px;
                 color: #fff;
                 flex-shrink: 0;
                 transition: background 0.2s;
             " title="বিজ্ঞাপন লুকান / দেখান">
-                <svg id="ad-bar-icon" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg id="ad-bar-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
                 <span id="ad-bar-label">Show Ad</span>
             </button>
-            <span id="ad-bar-datetime" style="display:none; font-size:11px; margin-left:auto; padding:3px 10px; white-space:nowrap;"></span>
+            <span id="ad-bar-datetime" style="display:none; font-size:13px; margin-left:auto; padding:0 12px; white-space:nowrap; align-self:center;"></span>
 
-            <div id="ad-bar-notice" style="overflow:hidden; display:none; align-items:center; align-self:stretch; flex:1; padding:0 10px; position:relative; min-height:1.4em;">
+            <div id="ad-bar-notice" style="overflow:hidden; display:none; align-items:center; align-self:stretch; flex:1; padding:0 12px; position:relative; min-height:1.4em;">
                 <span id="ad-msg-1" style="
-                    font-size:11.5px; letter-spacing:0.02em; white-space:nowrap;
-                    position:absolute; left:10px;
+                    font-size:13px; letter-spacing:0.02em; white-space:nowrap;
+                    position:absolute; left:12px;
                     opacity:0; transition:opacity 0.6s, transform 0.6s;
                     transform:translateY(6px);
                 ">
                     <strong style="color:#111;">পাঠক</strong> <strong style="color:#6b7280;">ঘর</strong> বিজ্ঞাপনমুক্ত রাখতে <strong style="color:#c0392b;">ডোনেট</strong> করুন
                 </span>
                 <span id="ad-msg-2" style="
-                    font-size:11.5px; letter-spacing:0.02em; white-space:nowrap;
-                    position:absolute; left:10px;
+                    font-size:13px; letter-spacing:0.02em; white-space:nowrap;
+                    position:absolute; left:12px;
                     opacity:0; transition:opacity 0.6s, transform 0.6s;
                     transform:translateY(6px);
                 ">
                     <span style="
                         font-family: 'Courier New', Courier, monospace;
-                        font-size: 14px;
+                        font-size: 15px;
                         letter-spacing: 0.15em;
                         color: #1a1a1a;
                         font-weight: 800;
-                    ">01617580595</span>&nbsp;&nbsp;<span style="font-size:11px; font-weight:600;">(<span style="color:#e2136e;">bKash</span> – Personal)</span>
+                    ">01617580595</span>&nbsp;&nbsp;<span style="font-size:13px; font-weight:600;">(<span style="color:#e2136e;">bKash</span> – Personal)</span>
                 </span>
             </div>
             <style>
@@ -235,16 +231,10 @@
         var collapsed = true;
         var dtInterval = null;
 
-        // ad-bar-content খালি থাকলে auto-open বন্ধ, border নেই
-        var hasAd = content && content.children.length > 0;
-        if (!hasAd) {
-            bar.style.borderBottom = 'none';
-        }
-
         // Start collapsed — state already set in HTML/CSS
         // Show datetime immediately since bar starts collapsed
         if (document.getElementById('ad-bar-datetime')) {
-            document.getElementById('ad-bar-datetime').style.display = 'inline';
+            document.getElementById('ad-bar-datetime').style.display = 'flex';
             setTimeout(function() { updateDatetime(); dtInterval = setInterval(updateDatetime, 1000); }, 0);
         }
 
@@ -254,7 +244,7 @@
         var AD_REDIRECT_URL = 'https://www.effectivecpmnetwork.com/xy4y06gcc0?key=0a786fa6fae9cb37d984706635ad88c3';
 
         // Auto-open after 1.5s, then auto-close after 30s
-        if (hasAd) setTimeout(function() {
+        setTimeout(function() {
             if (collapsed) {
                 autoOpened = true;
                 toggleAdBar();
@@ -369,7 +359,7 @@
                 var m2 = document.getElementById('ad-msg-2');
                 if (m1) { m1.style.opacity='0'; m1.style.transform='translateY(6px)'; }
                 if (m2) { m2.style.opacity='0'; m2.style.transform='translateY(6px)'; }
-                if (datetime) { datetime.style.display = 'inline'; updateDatetime(); dtInterval = setInterval(updateDatetime, 1000); }
+                if (datetime) { datetime.style.display = 'flex'; updateDatetime(); dtInterval = setInterval(updateDatetime, 1000); }
                 icon.innerHTML = '<polyline points="18 15 12 9 6 15"></polyline>';
                 label.textContent = 'Show Ad';
             } else {
