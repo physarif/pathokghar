@@ -247,13 +247,14 @@ async function generateAuthorPages(bookList, authorsRaw, categoriesRaw) {
       title: b.title,
       cover: b.cover,
       category_name: b.category_name,
+      desc: b.description || '',
     })));
 
     const authorContent = render(authorTemplate, {
       author_name: data.name,
       author_img: data.img,
       author_desc: data.desc,
-      author_book_count: data.books.length,
+      author_book_count: toBanglaNum(data.books.length),
       author_books_data: booksData,
     });
     const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
