@@ -349,6 +349,7 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
       const categoryContent = render(categoryTemplate, {
         category_name: data.name,
         category_book_count: data.books.length,
+        category_book_count_bn: toBanglaNum(data.books.length),
         category_books_grid: booksGrid,
         category_pagination: paginationHTML,
       });
