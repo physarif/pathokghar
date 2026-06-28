@@ -91,54 +91,33 @@
   text-decoration: none;
   padding: 1.3rem 0.75rem;
   min-height: 5rem;
-  background: #1e2235;
-  border: 1px solid #2a2f45;
+  background: #ffffff;
+  border: 1px solid #f0f0f0;
   transition: background 0.15s, box-shadow 0.15s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
   -webkit-tap-highlight-color: transparent;
 }
-.dark .cat-card {
-  background: #1e2235;
-  border-color: #2a2f45;
-}
-:not(.dark) .cat-card {
-  background: #f1f3f8;
-  border-color: #e2e6f0;
-}
-.cat-card:hover {
-  background: #252b42;
-  box-shadow: 0 4px 14px rgba(192,57,43,0.15);
-}
-:not(.dark) .cat-card:hover {
-  background: #e4e8f4;
-  box-shadow: 0 4px 14px rgba(192,57,43,0.1);
-}
-.cat-card:active {
-  background: #2e1a1a;
-}
-:not(.dark) .cat-card:active {
-  background: #fde8e6;
-}
+.dark .cat-card { background: #23232a; border-color: #2e2e36; box-shadow: 0 1px 4px rgba(0,0,0,0.3); }
+.cat-card:hover { background: #fff5f5; box-shadow: 0 4px 12px rgba(192,57,43,0.1); }
+.dark .cat-card:hover { background: #2a1f1f; }
+.cat-card:active { background: #fde8e6; }
+.dark .cat-card:active { background: #2e1a1a; }
 
 .cat-card-name {
   font-size: 1rem;
   font-weight: 700;
-  color: #e2e8f0;
+  color: #1f2937;
   line-height: 1.4;
 }
-:not(.dark) .cat-card-name {
-  color: #1e2235;
-}
+.dark .cat-card-name { color: #e5e7eb; }
 
 .cat-card-count {
   display: inline;
-  font-size: 0.78rem;
-  font-weight: 400;
-}
-.cat-card-count strong {
-  color: #c0392b;
+  font-size: 1rem;
   font-weight: 700;
+  color: #c0392b;
 }
-.dark .cat-card-count strong { color: #e57373; }
+.dark .cat-card-count { color: #e57373; }
 </style>
 
 <script>
@@ -150,7 +129,7 @@
   }
 
   var countEl = document.getElementById('cat-count');
-  if (countEl) countEl.textContent = toBn(data.length) + 'টি বিভাগ';
+  if (countEl) countEl.textContent = toBn(data.length) + ' টি বিভাগ';
 
   // বর্ণানুসারে sort
   data.sort(function(a, b) { return a.name.localeCompare(b.name, 'bn'); });
@@ -176,7 +155,7 @@
     var cards = groups[letter].map(function(cat) {
       return '<a href="/category/' + cat.slug + '/1/" class="cat-card">'
         + '<div>'
-        + '<span class="cat-card-name"><span class="cat-card-count"><strong>' + toBn(cat.count) + '</strong></span> ' + cat.name + '</span>'
+        + '<span class="cat-card-name">' + cat.name + ' <span class="cat-card-count">(' + toBn(cat.count) + ')</span></span>'
         + '</div>'
         + '</a>';
     }).join('');
