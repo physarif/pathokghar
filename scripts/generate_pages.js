@@ -145,6 +145,10 @@ async function generateBookPages() {
   return { bookList, authorsRaw, categoriesRaw };
 }
 
+function toBanglaNum(n) {
+  return String(n).replace(/[0-9]/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+}
+
 async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
   console.log('\n🏠 Homepage generate করছি...');
 
@@ -190,7 +194,7 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
       latest_books: pageBooks.map(bookCard).join(''),
       current_page: page,
       total_pages: totalPages,
-      total_books: sorted.length,
+      total_books_bn: toBanglaNum(sorted.length),
     });
 
     const fullPage = render(layout, {
