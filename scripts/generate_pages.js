@@ -468,6 +468,21 @@ async function generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw) {
 }
 
 
+async function generate404Page(bookList, authorsRaw, categoriesRaw) {
+  console.log('\n🔍 404 page generate করছি...');
+  const template404 = fs.readFileSync('components/404.html', 'utf8');
+  const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+  const fullPage = render(layout, {
+    page_title: 'পাতা খুঁজে পাওয়া যায়নি - পাঠক ঘর',
+    page_description: 'আপনি যে পাতাটি খুঁজছেন সেটি পাওয়া যাচ্ছে না।',
+    content: template404,
+    hero_categories,
+    sidebar_authors,
+  });
+  fs.writeFileSync('404.html', fullPage, 'utf8');
+  console.log('  ✓ 404.html');
+}
+
 // Main
 (async () => {
   try {
@@ -479,6 +494,7 @@ async function generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw) {
     await generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw);
     await generateDownloadPages(bookList, authorsRaw, categoriesRaw);
     await generateCategoryPages(bookList, authorsRaw, categoriesRaw);
+    await generate404Page(bookList, authorsRaw, categoriesRaw);
     console.log('\n🎉 সব pages generate হয়েছে!');
     await getApp().delete();
     process.exit(0);
