@@ -413,17 +413,17 @@ async function generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw) {
   function authorCard(author) {
     const count = authorCount[author.slug] || 0;
     const countBn = toBanglaNum(count);
+    const initial = getInitial(author.name);
     const photoInner = author.img
-      ? `<img src="${author.img}" alt="${author.name}" loading="lazy" onerror="this.parentNode.innerHTML='<div class=\\"author-photo-fallback\\">${getInitial(author.name)}</div>'">`
-      : `<div class="author-photo-fallback">${getInitial(author.name)}</div>`;
+      ? `<div class="author-photo-fallback">${initial}</div><img src="${author.img}" alt="${author.name}" loading="lazy">`
+      : `<div class="author-photo-fallback">${initial}</div>`;
 
-    return `<a href="/author/${author.slug}.html" class="author-card" data-name="${author.name}">
+    return `<a href="/author/${author.slug}.html" class="author-card">
   <div class="author-photo-wrap">${photoInner}</div>
   <span class="author-card-name">${author.name}</span>
   <span class="author-book-count"><strong>${countBn}</strong> টি বই</span>
 </a>`;
   }
-
   const authorsCards = authors.map(authorCard).join('\n');
 
   const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
