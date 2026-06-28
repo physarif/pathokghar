@@ -1,19 +1,88 @@
 <div class="max-w-5xl mx-auto py-6">
 
-  <!-- Section label — index.html style -->
+  <!-- Section label -->
   <div style="padding:0.45rem 1rem;background:#c0392b;font-size:1rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
     <span style="color:#fff;font-weight:700;letter-spacing:0.01em;">লেখকগণ</span>
-    <span style="background:rgba(255,255,255,0.18);color:#fff;font-weight:600;font-size:0.78rem;padding:0.15rem 0.6rem;">{{total_authors_bn}} জন লেখক</span>
+    <span id="ag-count" style="background:rgba(255,255,255,0.18);color:#fff;font-weight:600;font-size:0.78rem;padding:0.15rem 0.6rem;"></span>
   </div>
 
-  <!-- Authors grid -->
-  <div id="authors-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-5 px-4">
-    {{authors_cards}}
+  <!-- Body: letter sidebar + groups -->
+  <div class="ag-body">
+    <nav class="ag-letter-nav" id="ag-letter-nav"></nav>
+    <div class="ag-groups" id="ag-groups"></div>
   </div>
 
 </div>
 
+<!-- Raw data injected by generate_pages.js -->
+<script type="application/json" id="authors-json">{{authors_json}}</script>
+
 <style>
+.ag-body {
+  display: flex;
+  align-items: flex-start;
+}
+.ag-letter-nav {
+  position: sticky;
+  top: 1rem;
+  flex-shrink: 0;
+  width: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 0.25rem 0;
+}
+.ag-letter-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #c0392b;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.12s, color 0.12s;
+  line-height: 1;
+}
+.ag-letter-link:hover, .ag-letter-link.active {
+  background: #c0392b;
+  color: #fff;
+}
+.dark .ag-letter-link { color: #e57373; }
+.dark .ag-letter-link:hover, .dark .ag-letter-link.active { background: #c0392b; color: #fff; }
+
+.ag-groups { flex: 1; min-width: 0; padding-left: 0.5rem; }
+
+.ag-group { margin-bottom: 1.5rem; }
+.ag-group-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+  padding-left: 0.25rem;
+}
+.ag-group-letter {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #c0392b;
+  line-height: 1;
+  width: 2.2rem;
+  flex-shrink: 0;
+}
+.dark .ag-group-letter { color: #f87171; }
+.ag-group-line { flex: 1; height: 1px; background: #e5e7eb; }
+.dark .ag-group-line { background: #374151; }
+
+.ag-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+@media (min-width: 640px) { .ag-grid { grid-template-columns: repeat(4, 1fr); } }
+
 /* Author card */
 .author-card {
   display: flex;
@@ -21,129 +90,129 @@
   align-items: center;
   text-align: center;
   text-decoration: none;
-  padding: 1.1rem 0.75rem 1rem;
-  
+  padding: 0.85rem 0.5rem 0.75rem;
   background: #ffffff;
   border: 1px solid #f0f0f0;
   transition: background 0.15s, box-shadow 0.15s;
   box-shadow: 0 1px 3px rgba(0,0,0,0.06);
   -webkit-tap-highlight-color: transparent;
 }
-.dark .author-card {
-  background: #23232a;
-  border-color: #2e2e36;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
-}
-.author-card:hover {
-  background: #fff5f5;
-  box-shadow: 0 6px 18px rgba(192,57,43,0.12);
-}
-.dark .author-card:hover {
-  background: #2a1f1f;
-  box-shadow: 0 6px 18px rgba(192,57,43,0.2);
-}
-.author-card:active {
-  background: #fde8e6;
-}
-.dark .author-card:active {
-  background: #2e1a1a;
-}
+.dark .author-card { background: #23232a; border-color: #2e2e36; box-shadow: 0 1px 4px rgba(0,0,0,0.3); }
+.author-card:hover { background: #fff5f5; box-shadow: 0 4px 12px rgba(192,57,43,0.1); }
+.dark .author-card:hover { background: #2a1f1f; }
+.author-card:active { background: #fde8e6; }
+.dark .author-card:active { background: #2e1a1a; }
 
-/* Photo circle */
 .author-photo-wrap {
   position: relative;
-  width: 88px;
-  height: 88px;
+  width: 72px; height: 72px;
+  border-radius: 50%;
   overflow: hidden;
-  border: 3px solid #e5e7eb;
+  border: 2px solid #e5e7eb;
   background: #f3f4f6;
   flex-shrink: 0;
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.55rem;
   transition: border-color 0.15s;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
 }
-.dark .author-photo-wrap {
-  border-color: #374151;
-  background: #374151;
-}
-.author-card:hover .author-photo-wrap {
-  border-color: #c0392b;
-}
-@media (min-width: 640px) {
-  .author-photo-wrap { width: 100px; height: 100px; }
-}
-.author-photo-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  position: relative;
-  z-index: 1;
-}
-
-/* Fallback avatar — shows behind img, visible when img fails */
+.dark .author-photo-wrap { border-color: #374151; background: #374151; }
+.author-card:hover .author-photo-wrap { border-color: #c0392b; }
+@media (min-width: 480px) { .author-photo-wrap { width: 80px; height: 80px; } }
+.author-photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; position: relative; z-index: 1; }
 .author-photo-fallback {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #c0392b;
-  background: #fde8e6;
-  z-index: 0;
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; font-weight: 700;
+  color: #c0392b; background: #fde8e6; z-index: 0;
 }
-.dark .author-photo-fallback {
-  color: #f87171;
-  background: #3d1f1f;
-}
-/* When img errors, hide it so fallback shows */
-.author-photo-wrap img.img-error {
-  display: none;
-}
+.dark .author-photo-fallback { color: #f87171; background: #3d1f1f; }
+.author-photo-wrap img.img-error { display: none; }
 
-/* Author name */
 .author-card-name {
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: #1f2937;
-  line-height: 1.3;
-  margin-bottom: 0.25rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  font-size: 0.8rem; font-weight: 700;
+  color: #1f2937; line-height: 1.3; margin-bottom: 0.2rem;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
-.dark .author-card-name {
-  color: #e5e7eb;
-}
-
-/* Book count */
-.author-book-count {
-  font-size: 0.75rem;
-  color: #9ca3af;
-  font-weight: 400;
-}
-.dark .author-book-count {
-  color: #6b7280;
-}
-.author-book-count strong {
-  color: #c0392b;
-  font-weight: 600;
-}
-.dark .author-book-count strong {
-  color: #e57373;
-}
+.dark .author-card-name { color: #e5e7eb; }
+.author-book-count { font-size: 0.7rem; color: #9ca3af; }
+.dark .author-book-count { color: #6b7280; }
+.author-book-count strong { color: #c0392b; font-weight: 600; }
+.dark .author-book-count strong { color: #e57373; }
 </style>
 
 <script>
 (function() {
-  // img error → hide img, show fallback underneath
-  document.querySelectorAll('.author-photo-wrap img').forEach(function(img) {
-    img.addEventListener('error', function() {
-      this.classList.add('img-error');
-    });
+  var data = JSON.parse(document.getElementById('authors-json').textContent);
+
+  // বাংলা সংখ্যা
+  function toBn(n) {
+    return String(n).replace(/[0-9]/g, function(d) { return '০১২৩৪৫৬৭৮৯'[d]; });
+  }
+
+  // Count label
+  var countEl = document.getElementById('ag-count');
+  if (countEl) countEl.textContent = toBn(data.length) + ' জন লেখক';
+
+  // Sort বাংলা নাম অনুসারে
+  data.sort(function(a, b) { return a.name.localeCompare(b.name, 'bn'); });
+
+  // Group by first letter
+  var groups = {};
+  var letters = [];
+  data.forEach(function(author) {
+    var letter = author.name ? author.name[0] : '?';
+    if (!groups[letter]) { groups[letter] = []; letters.push(letter); }
+    groups[letter].push(author);
   });
+
+  // Build letter nav
+  var nav = document.getElementById('ag-letter-nav');
+  nav.innerHTML = letters.map(function(l) {
+    return '<a href="#ag-' + encodeURIComponent(l) + '" class="ag-letter-link" data-letter="' + l + '">' + l + '</a>';
+  }).join('');
+
+  // Build groups
+  var groupsEl = document.getElementById('ag-groups');
+  groupsEl.innerHTML = letters.map(function(letter) {
+    var cards = groups[letter].map(function(author) {
+      var initial = author.name ? author.name[0] : '?';
+      var photoInner = author.img
+        ? '<div class="author-photo-fallback">' + initial + '</div><img src="' + author.img + '" alt="' + author.name + '" loading="lazy">'
+        : '<div class="author-photo-fallback">' + initial + '</div>';
+      return '<a href="/author/' + author.slug + '.html" class="author-card">'
+        + '<div class="author-photo-wrap">' + photoInner + '</div>'
+        + '<span class="author-card-name">' + author.name + '</span>'
+        + '<span class="author-book-count"><strong>' + toBn(author.count) + '</strong> টি বই</span>'
+        + '</a>';
+    }).join('');
+
+    return '<div class="ag-group" id="ag-' + encodeURIComponent(letter) + '" data-letter="' + letter + '">'
+      + '<div class="ag-group-header">'
+      + '<span class="ag-group-letter">' + letter + '</span>'
+      + '<div class="ag-group-line"></div>'
+      + '</div>'
+      + '<div class="ag-grid">' + cards + '</div>'
+      + '</div>';
+  }).join('');
+
+  // img error fallback
+  groupsEl.querySelectorAll('.author-photo-wrap img').forEach(function(img) {
+    img.addEventListener('error', function() { this.classList.add('img-error'); });
+  });
+
+  // Active letter on scroll
+  var links = nav.querySelectorAll('.ag-letter-link');
+  var groupEls = groupsEl.querySelectorAll('.ag-group');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var letter = entry.target.dataset.letter;
+        links.forEach(function(l) {
+          l.classList.toggle('active', l.dataset.letter === letter);
+        });
+      }
+    });
+  }, { rootMargin: '-10% 0px -80% 0px' });
+  groupEls.forEach(function(g) { observer.observe(g); });
 })();
 </script>
