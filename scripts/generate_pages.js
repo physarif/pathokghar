@@ -377,11 +377,10 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
 
 
 async function generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw) {
-  console.log('\n👥 Authors index page generate করছি...');
+  console.log('\n\u{1F465} Authors index page generate \u0995\u09B0\u099B\u09BF...');
 
   const authorsTemplate = fs.readFileSync('components/authors.html', 'utf8');
 
-  // Author → book count map
   const authorCount = {};
   for (const book of bookList) {
     if (book.author_slug) {
@@ -389,7 +388,6 @@ async function generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw) {
     }
   }
 
-  // Collect unique authors (from authorsRaw, fallback from bookList)
   const authorMap = {};
   for (const book of bookList) {
     if (book.author_slug && !authorMap[book.author_slug]) {
@@ -401,41 +399,20 @@ async function generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw) {
     }
   }
 
-  // Sort: বাংলা নাম অনুসারে
-  const authors = Object.values(authorMap).sort((a, b) =>
-    a.name.localeCompare(b.name, 'bn')
+  const authorsJson = JSON.stringify(
+    Object.values(authorMap).map(a => ({
+      slug: a.slug,
+      name: a.name,
+      img: a.img,
+      count: authorCount[a.slug] || 0,
+    }))
   );
 
-  function getInitial(name) {
-    return name ? name[0] : '?';
-  }
-
-  function authorCard(author) {
-    const count = authorCount[author.slug] || 0;
-    const countBn = toBanglaNum(count);
-    const initial = getInitial(author.name);
-    const photoInner = author.img
-      ? `<div class="author-photo-fallback">${initial}</div><img src="${author.img}" alt="${author.name}" loading="lazy">`
-      : `<div class="author-photo-fallback">${initial}</div>`;
-
-    return `<a href="/author/${author.slug}.html" class="author-card">
-  <div class="author-photo-wrap">${photoInner}</div>
-  <span class="author-card-name">${author.name}</span>
-  <span class="author-book-count"><strong>${countBn}</strong> টি বই</span>
-</a>`;
-  }
-  const authorsCards = authors.map(authorCard).join('\n');
-
   const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
-
-  const content = render(authorsTemplate, {
-    total_authors_bn: toBanglaNum(authors.length),
-    authors_cards: authorsCards,
-  });
-
+  const content = render(authorsTemplate, { authors_json: authorsJson });
   const fullPage = render(layout, {
-    page_title: 'লেখকগণ - পাঠক ঘর',
-    page_description: 'পাঠক ঘরের সকল বাংলা সাহিত্যিক ও লেখকদের তালিকা',
+    page_title: '\u09B2\u09C7\u0996\u0995\u0997\u09A3 - \u09AA\u09BE\u09A0\u0995 \u0998\u09B0',
+    page_description: '\u09AA\u09BE\u09A0\u0995 \u0998\u09B0\u09C7\u09B0 \u09B8\u0995\u09B2 \u09B2\u09C7\u0996\u0995\u09A6\u09C7\u09B0 \u09A4\u09BE\u09B2\u09BF\u0995\u09BE',
     content,
     hero_categories,
     sidebar_authors,
@@ -443,7 +420,7 @@ async function generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw) {
 
   if (!fs.existsSync('authors')) fs.mkdirSync('authors');
   fs.writeFileSync('authors/index.html', fullPage, 'utf8');
-  console.log('  ✓ authors/index.html');
+  console.log('  \u2713 authors/index.html');
 }
 
 
