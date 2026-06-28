@@ -92,7 +92,6 @@
         display: flex;
         flex-direction: column-reverse;
         background: #f9fafb;
-        border-bottom: 1px solid #e5e7eb;
         width: 100%;
     ">
         <!-- Toggle Button -->
@@ -231,6 +230,12 @@
         var collapsed = true;
         var dtInterval = null;
 
+        // ad-bar-content খালি থাকলে auto-open বন্ধ, border নেই
+        var hasAd = content && content.children.length > 0;
+        if (!hasAd) {
+            bar.style.borderBottom = 'none';
+        }
+
         // Start collapsed — state already set in HTML/CSS
         // Show datetime immediately since bar starts collapsed
         if (document.getElementById('ad-bar-datetime')) {
@@ -244,7 +249,7 @@
         var AD_REDIRECT_URL = 'https://www.effectivecpmnetwork.com/xy4y06gcc0?key=0a786fa6fae9cb37d984706635ad88c3';
 
         // Auto-open after 1.5s, then auto-close after 30s
-        setTimeout(function() {
+        if (hasAd) setTimeout(function() {
             if (collapsed) {
                 autoOpened = true;
                 toggleAdBar();
