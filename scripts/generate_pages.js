@@ -327,13 +327,16 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
     for (let page = 1; page <= totalPages; page++) {
       const pageBooks = data.books.slice((page - 1) * BOOKS_PER_PAGE, page * BOOKS_PER_PAGE);
 
+      const desc = book => (book.description || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
       const booksGrid = pageBooks.map(book => `
-      <a href="/book/${book.slug}.html" class="cat-card">
-        <div class="cat-img-wrap">
-          <img src="${book.cover}" alt="${book.title}" class="cat-img" loading="lazy">
+      <a href="/book/${book.slug}.html" class="bc-card">
+        <div class="bc-img-wrap">
+          <img src="${book.cover}" alt="${book.title}" class="bc-img" loading="lazy">
         </div>
-        <p class="cat-title">${book.title}</p>
-        <p class="cat-author">${book.author_name}</p>
+        <div class="bc-body">
+          <p class="bc-headline"><span class="bc-title">${book.title}</span><span class="bc-sep"> – </span><span class="bc-author">${book.author_name}</span></p>
+          <p class="bc-desc">${desc(book)}</p>
+        </div>
       </a>`).join('');
 
       // Pagination HTML
