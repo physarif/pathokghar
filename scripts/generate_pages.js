@@ -190,6 +190,7 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
       latest_books: pageBooks.map(bookCard).join(''),
       current_page: page,
       total_pages: totalPages,
+      total_books: sorted.length,
     });
 
     const fullPage = render(layout, {
