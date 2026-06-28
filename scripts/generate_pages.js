@@ -468,20 +468,6 @@ async function generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw) {
 }
 
 
-async function generate404Page() {
-  console.log('\n🔍 404 page generate করছি...');
-  const template404 = fs.readFileSync('components/404.html', 'utf8');
-  fs.writeFileSync('404.html', template404, 'utf8');
-  console.log('  ✓ 404.html');
-}
-
-async function generateRobotsTxt() {
-  console.log('\n🤖 robots.txt generate করছি...');
-  const robots = fs.readFileSync('components/robots.txt', 'utf8');
-  fs.writeFileSync('robots.txt', robots, 'utf8');
-  console.log('  ✓ robots.txt');
-}
-
 // Main
 (async () => {
   try {
@@ -493,8 +479,6 @@ async function generateRobotsTxt() {
     await generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw);
     await generateDownloadPages(bookList, authorsRaw, categoriesRaw);
     await generateCategoryPages(bookList, authorsRaw, categoriesRaw);
-    await generate404Page();
-    await generateRobotsTxt();
     console.log('\n🎉 সব pages generate হয়েছে!');
     await getApp().delete();
     process.exit(0);
