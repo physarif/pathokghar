@@ -376,6 +376,50 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
 }
 
 
+async function generateCategoriesIndexPage(bookList, authorsRaw, categoriesRaw) {
+  console.log('\n\u{1F4C2} Categories index page generate \u0995\u09B0\u099B\u09BF...');
+
+  const categoriesTemplate = fs.readFileSync('components/categories.html', 'utf8');
+
+  // category → book count
+  const catCount = {};
+  for (const book of bookList) {
+    if (book.category_slug) {
+      catCount[book.category_slug] = (catCount[book.category_slug] || 0) + 1;
+    }
+  }
+
+  // Firebase key order অনুসারে sort (numeric key = original order)
+  const cats = Object.entries(categoriesRaw)
+    .map(([id, cat]) => ({ id, cat, num: parseInt(id, 10) }))
+    .filter(({ cat }) => cat && cat.slug && cat.title)
+    .sort((a, b) => {
+      if (!isNaN(a.num) && !isNaN(b.num)) return a.num - b.num;
+      return a.id.localeCompare(b.id);
+    })
+    .map(({ cat }) => ({
+      slug: cat.slug,
+      name: cat.title,
+      count: catCount[cat.slug] || 0,
+    }));
+
+  const categoriesJson = JSON.stringify(cats);
+
+  const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+  const content = render(categoriesTemplate, { categories_json: categoriesJson });
+  const fullPage = render(layout, {
+    page_title: '\u09AC\u09BF\u09AD\u09BE\u0997\u09B8\u09AE\u09C2\u09B9 - \u09AA\u09BE\u09A0\u0995 \u0998\u09B0',
+    page_description: '\u09AA\u09BE\u09A0\u0995 \u0998\u09B0\u09C7\u09B0 \u09B8\u0995\u09B2 \u09AC\u09BF\u09AD\u09BE\u0997\u09C7\u09B0 \u09A4\u09BE\u09B2\u09BF\u0995\u09BE',
+    content,
+    hero_categories,
+    sidebar_authors,
+  });
+
+  if (!fs.existsSync('categories')) fs.mkdirSync('categories');
+  fs.writeFileSync('categories/index.html', fullPage, 'utf8');
+  console.log('  \u2713 categories/index.html');
+}
+
 async function generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw) {
   console.log('\n\u{1F465} Authors index page generate \u0995\u09B0\u099B\u09BF...');
 
@@ -431,6 +475,7 @@ async function generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw) {
     const { bookList, authorsRaw, categoriesRaw } = await generateBookPages();
     await generateHomepage(bookList, authorsRaw, categoriesRaw);
     await generateAuthorPages(bookList, authorsRaw, categoriesRaw);
+    await generateCategoriesIndexPage(bookList, authorsRaw, categoriesRaw);
     await generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw);
     await generateDownloadPages(bookList, authorsRaw, categoriesRaw);
     await generateCategoryPages(bookList, authorsRaw, categoriesRaw);
