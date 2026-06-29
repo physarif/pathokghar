@@ -31,7 +31,10 @@ const bookTemplate = fs.readFileSync('components/book.html', 'utf8');
 
 // Placeholder replace helper
 function render(template, data) {
-  return template.replace(/\{\{(\w+)\}\}/g, (_, key) => data[key] || '');
+  return template.replace(/\{\{(\w+)\}\}/g, (_, key) => {
+    const val = data[key] != null ? String(data[key]) : '';
+    return val.replace(/\$/g, '$$$$');
+  });
 }
 
 // Folder তৈরি
@@ -125,6 +128,7 @@ async function generateBookPages() {
       book_category_slug: book.category_slug,
       book_language: book.language,
       book_description: book.description,
+      book_description_json: JSON.stringify(book.description || ""),
       book_slug: book.slug,
     });
 
