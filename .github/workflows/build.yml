@@ -1,6 +1,8 @@
 name: Build & Deploy Pathok Ghar
 
 on:
+  schedule:
+    - cron: '*/3 * * * *'  # প্রতি ৩ মিনিটে auto deploy
   repository_dispatch:
     types: [firebase-update]
   push:
@@ -10,6 +12,11 @@ on:
       - 'scripts/**'
   workflow_dispatch:
 
+
+# একসাথে একাধিক trigger আসলে চলমান build বাতিল করে নতুনটা চালাবে
+concurrency:
+  group: deploy
+  cancel-in-progress: true
 
 jobs:
   build:
