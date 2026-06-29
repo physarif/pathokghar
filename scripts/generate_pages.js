@@ -100,7 +100,7 @@ async function generateBookPages() {
       id: parseInt(firebaseKey, 10) || firebaseKey,
       slug: book.slug,
       title: book.title,
-      description: book.desc || '',
+      description: book.description || book.desc || '',
       cover: book.img || '',
       download_url: book.file || '',
       language: 'বাংলা',
