@@ -89,6 +89,16 @@ jobs:
       - name: Generate sitemap
         run: node scripts/generate_sitemap.js
 
+      # ৮.৫. sitemap lastmod state file commit করো, যাতে পরের build-এ
+      #       content অপরিবর্তিত URL গুলোর lastmod ঠিক থাকে (আজকের তারিখ না বসে)
+      - name: Commit sitemap lastmod state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add sitemap-lastmod.json
+          git diff --staged --quiet || git commit -m "chore: update sitemap lastmod state"
+          git push || true
+
       # ৯. Cloudflare Pages এ deploy
       - name: Deploy to Cloudflare Pages
         run: npx wrangler pages deploy . --project-name=pathokghar --commit-dirty=true
