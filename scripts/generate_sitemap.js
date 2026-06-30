@@ -1,22 +1,53 @@
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const BASE_URL = 'https://pathokghar.pages.dev';
 const today = new Date().toISOString().split('T')[0];
 
+// lastmod state file — git এ commit থাকবে, content আসলে না বদলালে পুরনো তারিখ ধরে রাখে
+const STATE_FILE = 'sitemap-lastmod.json';
+let state = {};
+if (fs.existsSync(STATE_FILE)) {
+  try {
+    state = JSON.parse(fs.readFileSync(STATE_FILE, 'utf8'));
+  } catch (e) {
+    state = {};
+  }
+}
+const newState = {};
+
 // { loc, changefreq, priority, lastmod }
 let urls = [];
 
-function getLastmod(filePath) {
+function hashFile(filePath) {
   try {
-    return fs.statSync(filePath).mtime.toISOString().split('T')[0];
+    const content = fs.readFileSync(filePath);
+    return crypto.createHash('md5').update(content).digest('hex');
   } catch (e) {
-    return today;
+    return null;
   }
 }
 
+// content আসলে বদলেছে কিনা চেক করে lastmod ঠিক করে —
+// বদলালে আজকের তারিখ, না বদলালে আগের lastmod-ই থাকে
+function getLastmod(loc, filePath) {
+  const hash = hashFile(filePath);
+  const prev = state[loc];
+
+  let lastmod;
+  if (prev && prev.hash === hash) {
+    lastmod = prev.lastmod; // content অপরিবর্তিত — পুরনো তারিখ রাখো
+  } else {
+    lastmod = today; // নতুন বা পরিবর্তিত content — আজকের তারিখ
+  }
+
+  newState[loc] = { hash, lastmod };
+  return lastmod;
+}
+
 function addUrl(loc, changefreq, priority, filePath) {
-  urls.push({ loc, changefreq, priority, lastmod: getLastmod(filePath) });
+  urls.push({ loc, changefreq, priority, lastmod: getLastmod(loc, filePath) });
 }
 
 // ── Homepage ──
@@ -98,4 +129,5 @@ ${urls.map(({ loc, changefreq, priority, lastmod }) => `  <url>
 </urlset>`;
 
 fs.writeFileSync('sitemap.xml', sitemap, 'utf8');
+fs.writeFileSync(STATE_FILE, JSON.stringify(newState, null, 0), 'utf8');
 console.log(`✅ sitemap.xml generate হয়েছে — ${urls.length}টা URL`);
