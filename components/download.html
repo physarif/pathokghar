@@ -108,7 +108,31 @@
 
 <script>
 (function () {
-    const DOWNLOAD_URL = '{{book_download_url}}';
+    const RAW_DOWNLOAD_URL = '{{book_download_url}}';
+
+    // Google Drive শেয়ার লিংক হলে direct-download লিংকে convert করো
+    function toDirectDownloadUrl(url) {
+        if (!url) return url;
+        try {
+            const u = new URL(url);
+            if (u.hostname.includes('drive.google.com')) {
+                // /file/d/FILE_ID/view  বা  /open?id=FILE_ID  বা  /uc?id=FILE_ID
+                let fileId = '';
+                const fileMatch = u.pathname.match(/\/file\/d\/([^/]+)/);
+                if (fileMatch) {
+                    fileId = fileMatch[1];
+                } else if (u.searchParams.get('id')) {
+                    fileId = u.searchParams.get('id');
+                }
+                if (fileId) {
+                    return `https://drive.usercontent.google.com/download?id=${fileId}&export=download&confirm=t`;
+                }
+            }
+        } catch (e) {}
+        return url;
+    }
+
+    const DOWNLOAD_URL = toDirectDownloadUrl(RAW_DOWNLOAD_URL);
     const COUNTDOWN_SECONDS = 5;
 
     // Generic countdown runner
@@ -175,13 +199,15 @@
     const mRestart = document.getElementById('m-restart-btn');
     if (mRestart) mRestart.addEventListener('click', () => showStep('m-', 1));
 
-    // প্রথমবার "ডাউনলোড করুন" বাটনে ক্লিক করলে external ad লিংক নতুন ট্যাবে খুলবে
+    // প্রথমবার "ডাউনলোড করুন" বাটনে ক্লিক করলে শুধু external ad লিংক নতুন ট্যাবে খুলবে।
+    // ads থেকে ফিরে আবার ক্লিক করলে আসল ডাউনলোড শুরু হবে।
     const AD_URL = 'https://www.effectivecpmnetwork.com/xy4y06gcc0?key=0a786fa6fae9cb37d984706635ad88c3';
     let adOpened = false;
     const mDownloadBtn = document.getElementById('m-download-btn');
     if (mDownloadBtn) {
-        mDownloadBtn.addEventListener('click', () => {
+        mDownloadBtn.addEventListener('click', (e) => {
             if (!adOpened) {
+                e.preventDefault();
                 adOpened = true;
                 window.open(AD_URL, '_blank');
             }
