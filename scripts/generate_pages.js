@@ -155,10 +155,10 @@ async function generateBookPages() {
       book_description_json: JSON.stringify(book.description || ""),
       book_slug: book.slug,
       book_read_href: book.zip_url ? `/read/${book.slug}.html` : 'javascript:void(0)',
-      book_read_disabled: book.zip_url ? '' : 'pointer-events-none opacity-50 cursor-not-allowed',
+      book_read_disabled: book.zip_url ? '' : 'btn-unclick',
       book_read_aria_disabled: book.zip_url ? 'false' : 'true',
       book_download_href: book.download_url ? `/download/${book.slug}.html` : 'javascript:void(0)',
-      book_download_disabled: book.download_url ? '' : 'pointer-events-none opacity-50 cursor-not-allowed',
+      book_download_disabled: book.download_url ? '' : 'btn-unclick',
       book_download_aria_disabled: book.download_url ? 'false' : 'true',
     });
 
