@@ -58,10 +58,6 @@
             <div class="flex flex-col gap-5">
                 <p id="m-waiting-text" class="text-xs text-gray-500 dark:text-gray-400 text-center">কয়েক সেকেন্ড অপেক্ষা করুন...</p>
                 <div class="w-full bg-gray-50 dark:bg-gray-800 rounded-lg border border-dashed border-gray-200 dark:border-gray-700 px-4 py-3 flex flex-col items-center gap-2 text-center">
-                    <div class="flex items-center gap-1.5 text-[#c0392b] dark:text-red-400">
-                        <i class="fas fa-circle-info text-[11px]"></i>
-                        <span class="text-[11px] font-semibold">লক্ষ্য করুন</span>
-                    </div>
                     <p class="text-[11px] text-gray-500 dark:text-gray-400 leading-relaxed">
                         ডাউনলোড লিংকে ক্লিক করলে ২/৩ বার ads এ নিয়ে যেতে পারে। back করে আবার ক্লিক করুন।
                     </p>
@@ -85,7 +81,7 @@
                     </div>
                 </div>
                 <!-- countdown শেষে দেখাবে -->
-                <a id="m-download-btn" href="#"
+                <a id="m-download-btn" href="#" target="_blank" rel="noopener noreferrer"
                     class="hidden w-full bg-green-500 hover:bg-green-600 active:scale-95 text-white font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2 text-sm shadow-sm step-fade">
                     <i class="fas fa-download text-sm"></i> ডাউনলোড করুন
                 </a>
@@ -108,31 +104,7 @@
 
 <script>
 (function () {
-    const RAW_DOWNLOAD_URL = '{{book_download_url}}';
-
-    // Google Drive শেয়ার লিংক হলে direct-download লিংকে convert করো
-    function toDirectDownloadUrl(url) {
-        if (!url) return url;
-        try {
-            const u = new URL(url);
-            if (u.hostname.includes('drive.google.com')) {
-                // /file/d/FILE_ID/view  বা  /open?id=FILE_ID  বা  /uc?id=FILE_ID
-                let fileId = '';
-                const fileMatch = u.pathname.match(/\/file\/d\/([^/]+)/);
-                if (fileMatch) {
-                    fileId = fileMatch[1];
-                } else if (u.searchParams.get('id')) {
-                    fileId = u.searchParams.get('id');
-                }
-                if (fileId) {
-                    return `https://drive.usercontent.google.com/download?id=${fileId}&export=download&confirm=t`;
-                }
-            }
-        } catch (e) {}
-        return url;
-    }
-
-    const DOWNLOAD_URL = toDirectDownloadUrl(RAW_DOWNLOAD_URL);
+    const DOWNLOAD_URL = '{{book_download_url}}';
     const COUNTDOWN_SECONDS = 5;
 
     // Generic countdown runner
