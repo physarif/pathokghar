@@ -233,8 +233,8 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
 
     const fullPage = render(layout, {
       page_title: page === 1
-        ? 'পাঠক ঘর - বাংলা বইয়ের ডিজিটাল পাঠাগার'
-        : `পাঠক ঘর - পাতা ${page}`,
+        ? 'বাংলা বইয়ের ডিজিটাল পাঠাগার'
+        : `পাতা ${page}`,
       page_description: 'বাংলা ও ইংরেজি বইয়ের ডিজিটাল পাঠাগার - পড়ুন, ডাউনলোড করুন',
       content: indexContent,
       hero_categories,
@@ -442,7 +442,7 @@ async function generateCategoriesIndexPage(bookList, authorsRaw, categoriesRaw) 
   const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
   const content = render(categoriesTemplate, { categories_json: categoriesJson });
   const fullPage = render(layout, {
-    page_title: '\u09AC\u09BF\u09AD\u09BE\u0997\u09B8\u09AE\u09C2\u09B9 - \u09AA\u09BE\u09A0\u0995 \u0998\u09B0',
+    page_title: '\u09AC\u09BF\u09AD\u09BE\u0997\u09B8\u09AE\u09C2\u09B9',
     page_description: '\u09AA\u09BE\u09A0\u0995 \u0998\u09B0\u09C7\u09B0 \u09B8\u0995\u09B2 \u09AC\u09BF\u09AD\u09BE\u0997\u09C7\u09B0 \u09A4\u09BE\u09B2\u09BF\u0995\u09BE',
     content,
     hero_categories,
@@ -489,7 +489,7 @@ async function generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw) {
   const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
   const content = render(authorsTemplate, { authors_json: authorsJson });
   const fullPage = render(layout, {
-    page_title: '\u09B2\u09C7\u0996\u0995\u0997\u09A3 - \u09AA\u09BE\u09A0\u0995 \u0998\u09B0',
+    page_title: '\u09B2\u09C7\u0996\u0995\u0997\u09A3',
     page_description: '\u09AA\u09BE\u09A0\u0995 \u0998\u09B0\u09C7\u09B0 \u09B8\u0995\u09B2 \u09B2\u09C7\u0996\u0995\u09A6\u09C7\u09B0 \u09A4\u09BE\u09B2\u09BF\u0995\u09BE',
     content,
     hero_categories,
