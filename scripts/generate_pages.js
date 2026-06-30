@@ -239,7 +239,7 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
       full_title: page === 1
         ? 'পাঠক ঘর – বাংলা বইয়ের ডিজিটাল পাঠাগার'
         : `পাতা ${page} - পাঠক ঘর`,
-      page_description: 'উপন্যাস, গল্প, কবিতাসহ হাজারো বাংলা বই পড়ুন বা ডাউনলোড করুন – সম্পূর্ণ ফ্রিতে!',
+      page_description: 'উপন্যাস, গল্প, কবিতাসহ অসংখ্য বই পড়ুন বা ডাউনলোড করুন – সম্পূর্ণ ফ্রিতে!',
       content: indexContent,
       hero_categories,
       sidebar_authors,
