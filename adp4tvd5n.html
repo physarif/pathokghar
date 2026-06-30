@@ -512,8 +512,7 @@
           <div class="field">
             <label>UID <span style="font-weight:300;text-transform:none;letter-spacing:0;">(alphanumeric)</span></label>
             <div style="display:flex;gap:0.4rem;align-items:center;">
-              <input type="text" id="vi-fUid" placeholder="e.g. bk_a1b2" style="flex:1;font-family:monospace;font-size:0.82rem;"/>
-              <button type="button" onclick="VI_genUidBtn()" style="padding:0.45rem 0.6rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:0.75rem;color:var(--muted);cursor:pointer;white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Gen</button>
+              <input type="text" id="vi-fUid" placeholder="e.g. bk_a1b2" readonly style="flex:1;font-family:monospace;font-size:0.82rem;background:var(--bg);color:var(--muted);"/>
             </div>
           </div>
           <div class="field">
@@ -521,16 +520,16 @@
             <input type="number" id="vi-fId" placeholder="e.g. 101" min="1" step="1"/>
           </div>
         </div>
+        <div class="field">
+          <label>Title</label>
+          <input type="text" id="vi-fTitle" placeholder="Book title"/>
+        </div>
+
         <div class="field-row">
           <div class="field" style="grid-column:1/-1;">
             <label>Slug</label>
             <input type="text" id="vi-fSlug" placeholder="e.g. my-book-title"/>
           </div>
-        </div>
-
-        <div class="field">
-          <label>Title</label>
-          <input type="text" id="vi-fTitle" placeholder="Book title"/>
         </div>
 
         <div class="field-row">
@@ -553,7 +552,12 @@
         </div>
 
         <div class="field">
-          <label>Book File URL (PDF/EPUB)</label>
+          <label>ZIP URL (HTML, XHTML)</label>
+          <input type="text" id="vi-fZip" placeholder="https://..."/>
+        </div>
+
+        <div class="field">
+          <label>Download URL</label>
           <input type="text" id="vi-fFile" placeholder="https://..."/>
         </div>
 
@@ -629,8 +633,7 @@
           <div class="field">
             <label>UID <span style="font-weight:300;text-transform:none;letter-spacing:0;">(alphanumeric)</span></label>
             <div style="display:flex;gap:0.4rem;align-items:center;">
-              <input type="text" id="ep-fUid" placeholder="e.g. auth_a1b2" style="flex:1;font-family:monospace;font-size:0.82rem;"/>
-              <button type="button" onclick="EP_genUid()" style="padding:0.45rem 0.6rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:0.75rem;color:var(--muted);cursor:pointer;white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Gen</button>
+              <input type="text" id="ep-fUid" placeholder="e.g. auth_a1b2" readonly style="flex:1;font-family:monospace;font-size:0.82rem;background:var(--bg);color:var(--muted);"/>
             </div>
           </div>
           <div class="field">
@@ -724,8 +727,7 @@
           <div class="field">
             <label>UID <span style="font-weight:300;text-transform:none;letter-spacing:0;">(alphanumeric)</span></label>
             <div style="display:flex;gap:0.4rem;align-items:center;">
-              <input type="text" id="ct-fUid" placeholder="e.g. cat_a1b2" style="flex:1;font-family:monospace;font-size:0.82rem;"/>
-              <button type="button" onclick="CT_genUid()" style="padding:0.45rem 0.6rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:0.75rem;color:var(--muted);cursor:pointer;white-space:nowrap;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Gen</button>
+              <input type="text" id="ct-fUid" placeholder="e.g. cat_a1b2" readonly style="flex:1;font-family:monospace;font-size:0.82rem;background:var(--bg);color:var(--muted);"/>
             </div>
           </div>
           <div class="field">
@@ -1722,6 +1724,9 @@ x-amz-date:${amzDate}
           const snap = await get(child(ref(db), 'books'));
           allBooks = snap.exists() ? snap.val() : {};
           VI_renderItems();
+          if (!VI_editingKey && !document.getElementById("vi-fUid").value) {
+            document.getElementById("vi-fUid").value = VI_makeUid();
+          }
         } catch(e) {
           showToast("Failed to load: " + e.message, "error-t");
         }
@@ -1735,6 +1740,7 @@ x-amz-date:${amzDate}
         let entries = Object.entries(allBooks).filter(([,b]) =>
           !q || (b.title||"").toLowerCase().includes(q) || (b.author||"").toLowerCase().includes(q)
         );
+        entries.sort((a, b) => (b[1].id || 0) - (a[1].id || 0));
         document.getElementById("vi-itemCount").textContent = entries.length + " book" + (entries.length !== 1 ? "s" : "");
         createPager(entries, list, "vi-sentinel",
           ([key, b]) => {
@@ -1742,8 +1748,7 @@ x-amz-date:${amzDate}
               ? `<img class="li-thumb" src="${VI_esc(b.img)}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/><div class="li-thumb-placeholder" style="display:none;">📖</div>`
               : `<div class="li-thumb-placeholder">📖</div>`;
             const authorName = VI_authors[b.author]?.title || VI_authors[b.author]?.name || b.author || '—';
-            const catName    = VI_categories[b.category]?.title || VI_categories[b.category]?.name || b.category || '—';
-            return `<div class="list-item">${imgTag}<div class="li-info"><div class="li-name">${VI_esc(b.title || key)}</div><div class="li-meta"><span class="li-id">#${VI_esc(String(b.id||'—'))}</span><span class="li-cat">${VI_esc(authorName)}</span><span class="cat-badge">${VI_esc(catName)}</span></div></div><div class="li-actions"><button class="si-btn edit" onclick="VI_editItem('${key}')">Edit</button><button class="si-btn del" style="color:#e53e3e;border-color:#e53e3e;" onclick="VI_deleteItem('${key}')">Delete</button></div></div>`;
+            return `<div class="list-item">${imgTag}<div class="li-info"><div class="li-name">${VI_esc(b.title || key)}</div><div class="li-meta"><span class="li-id">#${VI_esc(String(b.id||'—'))}</span><span class="li-cat">${VI_esc(authorName)}</span></div></div><div class="li-actions"><button class="si-btn edit" onclick="VI_editItem('${key}')">Edit</button><button class="si-btn del" style="color:#e53e3e;border-color:#e53e3e;" onclick="VI_deleteItem('${key}')">Delete</button></div></div>`;
           },
           `<div class="empty-state"><div class="empty-icon">📚</div>No books yet. Add one above!</div>`
         );
@@ -1759,6 +1764,7 @@ x-amz-date:${amzDate}
         const slug     = document.getElementById("vi-fSlug").value.trim() || VI_genSlug(title);
         const img      = document.getElementById("vi-fImg").value.trim();
         const file     = document.getElementById("vi-fFile").value.trim();
+        const zip      = document.getElementById("vi-fZip").value.trim();
         const author   = document.getElementById("vi-fAuthor").value;
         const category = document.getElementById("vi-fCategory").value;
         const desc     = document.getElementById("vi-fDesc").value.trim();
@@ -1772,8 +1778,8 @@ x-amz-date:${amzDate}
         btn.disabled = true; btn.textContent = "Saving...";
 
         try {
-          const key  = VI_editingKey || (uid + '_' + Date.now().toString(36));
-          const data = { uid, id, title, slug, img, file, author, category, desc, tags, createdAt: Date.now() };
+          const key  = VI_editingKey || uid;
+          const data = { uid, id, title, slug, img, file, zip, author, category, desc, tags, createdAt: Date.now() };
           await set(ref(db, 'books/' + key), data);
           allBooks[key] = data;
           showToast(VI_editingKey ? "Book updated!" : "Book added!", "success");
@@ -1797,6 +1803,7 @@ x-amz-date:${amzDate}
         document.getElementById("vi-fSlug").value  = b.slug    || "";
         document.getElementById("vi-fImg").value   = b.img     || "";
         document.getElementById("vi-fFile").value  = b.file    || "";
+        document.getElementById("vi-fZip").value   = b.zip     || "";
         document.getElementById("vi-fDesc").value  = b.desc    || "";
         document.getElementById("vi-fTags").value  = Array.isArray(b.tags) ? b.tags.join(", ") : (b.tags || "");
         VI_populateDropdowns(b.author || '', b.category || '');
@@ -1812,7 +1819,8 @@ x-amz-date:${amzDate}
       window.VI_cancelEdit = function() { VI_editingKey = null; VI_clearForm(); };
 
       function VI_clearForm() {
-        ["vi-fUid","vi-fId","vi-fTitle","vi-fSlug","vi-fImg","vi-fFile","vi-fDesc","vi-fTags"].forEach(id => document.getElementById(id).value = "");
+        ["vi-fUid","vi-fId","vi-fTitle","vi-fSlug","vi-fImg","vi-fFile","vi-fZip","vi-fDesc","vi-fTags"].forEach(id => document.getElementById(id).value = "");
+        document.getElementById("vi-fUid").value = VI_makeUid();
         VI_populateDropdowns();
         document.getElementById('vi-imgPreview').style.display = 'none';
         document.getElementById("vi-formTitle").textContent = "Add New Book";
@@ -2028,6 +2036,9 @@ x-amz-date:${amzDate}
           const snap = await get(child(ref(db), 'authors'));
           EP_allEpisodes = snap.exists() ? snap.val() : {};
           EP_renderItems(EP_allEpisodes);
+          if (!EP_editingKey && !document.getElementById("ep-fUid").value) {
+            document.getElementById("ep-fUid").value = EP_makeUid();
+          }
         } catch(e) {
           showToast("Failed to load: " + e.message, "error-t");
         }
@@ -2041,17 +2052,14 @@ x-amz-date:${amzDate}
         let entries = Object.entries(data).filter(([,a]) =>
           !q || (a.title||"").toLowerCase().includes(q) || (a.desc||"").toLowerCase().includes(q) ||
           (Array.isArray(a.tags) ? a.tags.join(" ") : (a.tags||"")).toLowerCase().includes(q)
-        ).sort((a,b) => (parseInt(a[1].id)||0) - (parseInt(b[1].id)||0));
+        ).sort((a,b) => (parseInt(b[1].id)||0) - (parseInt(a[1].id)||0));
         document.getElementById("ep-itemCount").textContent = entries.length + " author" + (entries.length !== 1 ? "s" : "");
         createPager(entries, list, "ep-sentinel",
           ([key, a]) => {
             const imgTag = a.img
               ? `<img class="li-thumb" src="${EP_esc(a.img)}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt=""/><div class="li-thumb-placeholder" style="display:none;">✍️</div>`
               : `<div class="li-thumb-placeholder">✍️</div>`;
-            const tagsHtml = Array.isArray(a.tags) && a.tags.length
-              ? a.tags.map(t => `<span class="cat-badge">${EP_esc(t)}</span>`).join("")
-              : "";
-            return `<div class="list-item">${imgTag}<div class="li-info"><div class="li-name">${EP_esc(a.title || key)}</div><div class="li-meta"><span class="li-id">#${EP_esc(String(a.id||"—"))}</span>${a.slug ? `<span class="li-cat">${EP_esc(a.slug)}</span>` : ""}${tagsHtml}</div></div><div class="li-actions"><button class="si-btn edit" onclick="EP_editItem('${EP_esc(key)}')">Edit</button><button class="si-btn del" style="color:#e53e3e;border-color:#e53e3e;" onclick="EP_deleteItem('${EP_esc(key)}')">Delete</button></div></div>`;
+            return `<div class="list-item">${imgTag}<div class="li-info"><div class="li-name">${EP_esc(a.title || key)}</div><div class="li-meta"><span class="li-id">#${EP_esc(String(a.id||"—"))}</span>${a.slug ? `<span class="li-cat">${EP_esc(a.slug)}</span>` : ""}</div></div><div class="li-actions"><button class="si-btn edit" onclick="EP_editItem('${EP_esc(key)}')">Edit</button><button class="si-btn del" style="color:#e53e3e;border-color:#e53e3e;" onclick="EP_deleteItem('${EP_esc(key)}')">Delete</button></div></div>`;
           },
           `<div class="empty-state"><div class="empty-icon">✍️</div>No authors yet. Add one above!</div>`
         );
@@ -2122,6 +2130,7 @@ x-amz-date:${amzDate}
         document.getElementById("ep-formTitle").textContent = "Add New Author";
         document.getElementById("ep-submitBtn").innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Author`;
         EP_editingKey = null;
+        document.getElementById("ep-fUid").value = EP_makeUid();
       }
 
       // ─── DELETE ────────────────────────────────────────────
@@ -2174,6 +2183,9 @@ x-amz-date:${amzDate}
           const snap = await get(child(ref(db), 'categories'));
           CT_allItems = snap.exists() ? snap.val() : {};
           CT_renderItems(CT_allItems);
+          if (!CT_editingKey && !document.getElementById("ct-fUid").value) {
+            document.getElementById("ct-fUid").value = CT_makeUid();
+          }
         } catch(e) {
           showToast("Failed to load: " + e.message, "error-t");
         }
@@ -2188,7 +2200,7 @@ x-amz-date:${amzDate}
           !q || (c.title||"").toLowerCase().includes(q) || (c.slug||"").toLowerCase().includes(q) ||
           (c.desc||"").toLowerCase().includes(q) ||
           (Array.isArray(c.tags) ? c.tags.join(" ") : (c.tags||"")).toLowerCase().includes(q)
-        ).sort((a,b) => (parseInt(a[1].id)||0) - (parseInt(b[1].id)||0));
+        ).sort((a,b) => (parseInt(b[1].id)||0) - (parseInt(a[1].id)||0));
         document.getElementById("ct-itemCount").textContent = entries.length + " categor" + (entries.length !== 1 ? "ies" : "y");
         createPager(entries, list, "ct-sentinel",
           ([key, c]) => {
@@ -2269,6 +2281,7 @@ x-amz-date:${amzDate}
         document.getElementById("ct-formTitle").textContent = "Add New Category";
         document.getElementById("ct-submitBtn").innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Category`;
         CT_editingKey = null;
+        document.getElementById("ct-fUid").value = CT_makeUid();
       }
 
       // ─── DELETE ────────────────────────────────────────────
