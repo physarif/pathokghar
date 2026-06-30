@@ -29,7 +29,9 @@
 
 <!-- Book Header Bar -->
 <div style="padding:0.6rem 1rem;border-bottom:1px solid #e5e7eb;background:#fff;font-family:'Noto Serif Bengali',serif;font-size:1.1rem;font-weight:800;line-height:1.4;" class="dark:bg-[#2d2d2d] dark:border-gray-700">
-    <a href="/category/{{book_category_slug}}/1/" style="color:#9ca3af;font-weight:600;text-decoration:none;" onmouseover="this.style.color='#c0392b'" onmouseout="this.style.color='#9ca3af'">{{book_category}}</a><span style="color:#9ca3af;font-weight:400;"> › </span><span style="color:#1a1a1b;" class="dark:text-gray-100"><a href="/book/{{book_slug}}.html" style="color:inherit;text-decoration:none;" onmouseover="this.style.color='#c0392b'" onmouseout="this.style.color=''">{{book_title}}</a></span><span style="color:#9ca3af;font-weight:400;"> – </span><a href="/author/{{book_author_slug}}.html" style="color:#c0392b;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">{{book_author}}</a>
+    <div class="max-w-lg mx-auto">
+        <a href="/category/{{book_category_slug}}/1/" style="color:#9ca3af;font-weight:600;text-decoration:none;" onmouseover="this.style.color='#c0392b'" onmouseout="this.style.color='#9ca3af'">{{book_category}}</a><span style="color:#9ca3af;font-weight:400;"> › </span><span style="color:#1a1a1b;" class="dark:text-gray-100"><a href="/book/{{book_slug}}.html" style="color:inherit;text-decoration:none;" onmouseover="this.style.color='#c0392b'" onmouseout="this.style.color=''">{{book_title}}</a></span><span style="color:#9ca3af;font-weight:400;"> – </span><a href="/author/{{book_author_slug}}.html" style="color:#c0392b;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">{{book_author}}</a>
+    </div>
 </div>
 
 <!-- ─── Download page (single layout) ─── -->
@@ -55,8 +57,22 @@
         <div id="m-step-2" class="hidden step-fade">
             <div class="flex flex-col gap-5">
                 <p id="m-waiting-text" class="text-xs text-gray-500 dark:text-gray-400 text-center">কয়েক সেকেন্ড অপেক্ষা করুন...</p>
-                <div class="w-full h-20 bg-gray-50 dark:bg-gray-800 rounded-lg flex items-center justify-center border border-dashed border-gray-200 dark:border-gray-700">
-                    <span class="text-xs text-gray-300 dark:text-gray-600">বিজ্ঞাপন</span>
+                <div class="w-full bg-gray-50 dark:bg-gray-800 rounded-lg border border-dashed border-gray-200 dark:border-gray-700 px-4 py-3 flex flex-col items-center gap-2 text-center">
+                    <div class="flex items-center gap-1.5 text-[#c0392b] dark:text-red-400">
+                        <i class="fas fa-circle-info text-[11px]"></i>
+                        <span class="text-[11px] font-semibold">লক্ষ্য করুন</span>
+                    </div>
+                    <p class="text-[11px] text-gray-500 dark:text-gray-400 leading-relaxed">
+                        ডাউনলোড লিংকে ক্লিক করলে ২/৩ বার ads এ নিয়ে যেতে পারে। back করে আবার ক্লিক করুন।
+                    </p>
+                    <div class="w-10 h-px bg-gray-200 dark:bg-gray-600"></div>
+                    <p class="text-[11px] text-gray-500 dark:text-gray-400 leading-relaxed">
+                        <strong class="text-gray-800 dark:text-gray-200">পাঠক</strong> <strong class="text-gray-400 dark:text-gray-500">ঘর</strong> বিজ্ঞাপনমুক্ত রাখতে <strong class="text-[#c0392b] dark:text-red-400">ডোনেট</strong> করুন।
+                    </p>
+                    <div class="flex items-center gap-2">
+                        <span class="font-mono text-sm font-extrabold tracking-wider text-gray-900 dark:text-gray-100">01617580595</span>
+                        <span class="text-[11px] font-semibold text-[#e2136e]">(bKash)</span>
+                    </div>
                 </div>
                 <!-- Progress bar -->
                 <div id="m-progress-wrap" class="flex flex-col gap-2">
@@ -158,5 +174,18 @@
     if (mBtn) mBtn.addEventListener('click', () => { showStep('m-', 2); startCountdown('m-'); });
     const mRestart = document.getElementById('m-restart-btn');
     if (mRestart) mRestart.addEventListener('click', () => showStep('m-', 1));
+
+    // প্রথমবার "ডাউনলোড করুন" বাটনে ক্লিক করলে external ad লিংক নতুন ট্যাবে খুলবে
+    const AD_URL = 'https://www.effectivecpmnetwork.com/xy4y06gcc0?key=0a786fa6fae9cb37d984706635ad88c3';
+    let adOpened = false;
+    const mDownloadBtn = document.getElementById('m-download-btn');
+    if (mDownloadBtn) {
+        mDownloadBtn.addEventListener('click', () => {
+            if (!adOpened) {
+                adOpened = true;
+                window.open(AD_URL, '_blank');
+            }
+        });
+    }
 })();
 </script>
