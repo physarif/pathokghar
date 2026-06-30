@@ -25,6 +25,29 @@ initializeApp({
 
 const db = getDatabase();
 
+// HTML escape (XSS-safe ground truth)
+function escapeHtml(str) {
+  return (str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+// Card preview description: escape first, then apply ONLY inline markdown
+// (bold **text**, italic *text*/_text_). Headings, lists, links, blockquotes,
+// code blocks ইত্যাদি block-level markdown card preview-এ ignore করা হয় —
+// কারণ line-clamp এর সাথে block elements ভেঙে দেখায়।
+function inlineMarkdownDesc(str) {
+  let escaped = escapeHtml(str);
+  // bold: **text** or __text__
+  escaped = escaped.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  escaped = escaped.replace(/__(.+?)__/g, '<strong>$1</strong>');
+  // italic: *text* or _text_ (single, not matching already-replaced strong tags)
+  escaped = escaped.replace(/(^|[^*])\*([^*\n]+?)\*([^*]|$)/g, '$1<em>$2</em>$3');
+  escaped = escaped.replace(/(^|[^_])_([^_\n]+?)_([^_]|$)/g, '$1<em>$2</em>$3');
+  return escaped;
+}
+
 // Template load
 const layout = fs.readFileSync('components/layout.html', 'utf8');
 const bookTemplate = fs.readFileSync('components/book.html', 'utf8');
@@ -179,7 +202,7 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
 
   // Book card render helper
   function bookCard(book) {
-    const desc = (book.description || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const desc = inlineMarkdownDesc(book.description || '');
     return render(cardTemplate, {
       book_slug: book.slug,
       book_cover: book.cover,
@@ -333,7 +356,7 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
     for (let page = 1; page <= totalPages; page++) {
       const pageBooks = data.books.slice((page - 1) * BOOKS_PER_PAGE, page * BOOKS_PER_PAGE);
 
-      const desc = book => (book.description || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const desc = book => inlineMarkdownDesc(book.description || '');
       const booksGrid = pageBooks.map(book => `
       <a href="/book/${book.slug}.html" class="bc-card">
         <div class="bc-img-wrap">
