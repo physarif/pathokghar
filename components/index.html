@@ -152,7 +152,7 @@
   }
   .dark .bc-author { color: #9ca3af; }
 
-  /* Description — 3 lines */
+  /* Description — default 4 lines; reduced to 3 via JS when headline wraps to 2 lines */
   .bc-desc {
     margin-top: 0.3rem;
     font-size: 0.92rem;
@@ -163,6 +163,9 @@
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+  .bc-desc.bc-desc-3 {
+    -webkit-line-clamp: 3;
   }
   .dark .bc-desc { color: #9ca3af; }
 
@@ -260,6 +263,27 @@
       }
       html += '</div>';
       el.innerHTML = html;
+    })();
+  </script>
+
+  <script>
+    (function() {
+      function adjustDescClamp() {
+        document.querySelectorAll('.bc-card').forEach(function(card) {
+          const headline = card.querySelector('.bc-headline');
+          const desc = card.querySelector('.bc-desc');
+          if (!headline || !desc) return;
+          const lineHeight = parseFloat(getComputedStyle(headline).lineHeight);
+          const headlineLines = Math.round(headline.scrollHeight / lineHeight);
+          if (headlineLines >= 2) {
+            desc.classList.add('bc-desc-3');
+          } else {
+            desc.classList.remove('bc-desc-3');
+          }
+        });
+      }
+      adjustDescClamp();
+      window.addEventListener('resize', adjustDescClamp);
     })();
   </script>
 
