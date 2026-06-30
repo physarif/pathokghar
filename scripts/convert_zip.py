@@ -247,7 +247,7 @@ books = data.get('books', {})
 
 for uid, book in books.items():
     slug         = book.get('slug', '')
-    file_url     = book.get('file', '')
+    file_url     = book.get('zip', '')
     title        = book.get('title', slug)
     desc         = book.get('desc', '')
     cover        = book.get('img', '')
@@ -255,7 +255,7 @@ for uid, book in books.items():
     read_path    = f'read/{slug}.html'
 
     if not file_url:
-        print(f'  ⏭ {slug} — file url নেই, skip')
+        print(f'  ⏭ {slug} — zip url নেই, skip')
         continue
 
     if not file_url.split('?')[0].lower().endswith('.zip'):
