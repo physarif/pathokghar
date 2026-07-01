@@ -196,7 +196,7 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
     '    <img src="{{book_cover}}" alt="{{book_title}}" class="bc-img" loading="lazy">',
     '  </div>',
     '  <div class="bc-body">',
-    '    <p class="bc-headline"><span class="bc-title">{{book_title}}</span><span class="bc-sep"> – </span><span class="bc-author">{{book_author}}</span></p>',
+    '    <p class="bc-headline"><span class="bc-title">{{book_title}}</span></p>',
     '    <p class="bc-desc">{{book_desc}}</p>',
     '  </div>',
     '</a>',
@@ -215,7 +215,6 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
       book_slug: book.slug,
       book_cover: book.cover,
       book_title: book.title,
-      book_author: book.author_name,
       book_desc: desc,
     });
   }
