@@ -73,9 +73,12 @@
 .bc-title { font-weight: 700; color: #c0392b; }
 .dark .bc-title { color: #f87171; }
 .bc-card:hover .bc-title { text-decoration: none; }
-.bc-sep { color: #9ca3af; font-weight: 400; }
-.bc-author { font-weight: 500; color: #6b7280; }
-.dark .bc-author { color: #9ca3af; }
+.bc-meta {
+  font-size: 0.82rem;
+  color: #9ca3af;
+  margin: 0;
+}
+.dark .bc-meta { color: #6b7280; }
 .bc-desc {
   margin-top: 0.3rem;
   font-size: 1.02rem;
@@ -83,12 +86,9 @@
   line-height: 1.6;
   text-align: justify;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-.bc-desc.bc-desc-3 {
-  -webkit-line-clamp: 3;
 }
 .dark .bc-desc { color: #9ca3af; }
 
@@ -140,23 +140,3 @@
 .dark .cat-page-nav:hover { background: #374151; }
 </style>
 
-<script>
-  (function() {
-    function adjustDescClamp() {
-      document.querySelectorAll('.bc-card').forEach(function(card) {
-        const headline = card.querySelector('.bc-headline');
-        const desc = card.querySelector('.bc-desc');
-        if (!headline || !desc) return;
-        const lineHeight = parseFloat(getComputedStyle(headline).lineHeight);
-        const headlineLines = Math.round(headline.scrollHeight / lineHeight);
-        if (headlineLines >= 2) {
-          desc.classList.add('bc-desc-3');
-        } else {
-          desc.classList.remove('bc-desc-3');
-        }
-      });
-    }
-    adjustDescClamp();
-    window.addEventListener('resize', adjustDescClamp);
-  })();
-</script>
