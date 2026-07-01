@@ -522,6 +522,41 @@ async function generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw) {
 }
 
 
+async function generateSearchPage(bookList, authorsRaw, categoriesRaw) {
+  console.log('\n🔍 Search page generate করছি...');
+
+  const searchTemplate = fs.readFileSync('components/search.html', 'utf8');
+
+  // Lightweight search index — build-time এ Firebase data থেকে বানানো, client-side
+  // এ Fuse.js দিয়ে filter করা হয় (কোনো runtime Firebase call নেই)
+  const searchIndex = bookList.map(book => ({
+    slug: book.slug,
+    title: book.title,
+    author: book.author_name,
+    category: book.category_name,
+    cover: book.cover,
+    desc: stripMarkdownDesc(book.description || '').slice(0, 200),
+  }));
+
+  const content = render(searchTemplate, {
+    search_index_json: JSON.stringify(searchIndex),
+  });
+
+  const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
+  const fullPage = render(layout, {
+    page_title: 'অনুসন্ধান',
+    full_title: 'অনুসন্ধান - পাঠক ঘর',
+    page_description: 'পাঠক ঘরে বই, লেখক বা বিভাগের নাম দিয়ে খুঁজুন।',
+    content,
+    hero_categories,
+    sidebar_authors,
+  });
+
+  fs.writeFileSync('search.html', fullPage, 'utf8');
+  console.log('  ✓ search.html');
+}
+
+
 // Main
 (async () => {
   try {
@@ -533,6 +568,7 @@ async function generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw) {
     await generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw);
     await generateDownloadPages(bookList, authorsRaw, categoriesRaw);
     await generateCategoryPages(bookList, authorsRaw, categoriesRaw);
+    await generateSearchPage(bookList, authorsRaw, categoriesRaw);
     console.log('\n🎉 সব pages generate হয়েছে!');
     await getApp().delete();
     process.exit(0);
