@@ -209,6 +209,7 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
     '  </div>',
     '  <div class="bc-body">',
     '    <p class="bc-headline"><span class="bc-title">{{book_title}}</span></p>',
+    '    {{book_meta_html}}',
     '    <p class="bc-desc">{{book_desc}}</p>',
     '  </div>',
     '</a>',
@@ -223,10 +224,12 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
   // Book card render helper
   function bookCard(book) {
     const desc = stripMarkdownDesc(book.description || '');
+    const meta = [book.author_name, book.category_name].filter(Boolean).join(' · ');
     return render(cardTemplate, {
       book_slug: book.slug,
       book_cover: book.cover,
       book_title: book.title,
+      book_meta_html: meta ? `<p class="bc-meta">${meta}</p>` : '',
       book_desc: desc,
     });
   }
