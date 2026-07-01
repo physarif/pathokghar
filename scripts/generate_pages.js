@@ -390,7 +390,8 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
           <img src="${book.cover}" alt="${book.title}" class="bc-img" loading="lazy">
         </div>
         <div class="bc-body">
-          <p class="bc-headline"><span class="bc-title">${book.title}</span><span class="bc-sep"> – </span><span class="bc-author">${book.author_name}</span></p>
+          <p class="bc-headline"><span class="bc-title">${book.title}</span></p>
+          ${book.author_name ? `<p class="bc-meta">${book.author_name}</p>` : ''}
           <p class="bc-desc">${desc(book)}</p>
         </div>
       </a>`).join('');
