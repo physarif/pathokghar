@@ -141,7 +141,14 @@
   .bc-card:hover .bc-title { text-decoration: none; }
   .dark .bc-card:hover .bc-title { text-decoration: none; }
 
-  /* Description — default 4 lines; reduced to 3 via JS when headline wraps to 2 lines */
+  .bc-meta {
+    font-size: 0.82rem;
+    color: #9ca3af;
+    margin: 0;
+  }
+  .dark .bc-meta { color: #6b7280; }
+
+  /* Description */
   .bc-desc {
     margin-top: 0.3rem;
     font-size: 1.02rem;
@@ -149,12 +156,9 @@
     line-height: 1.6;
     text-align: justify;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-  }
-  .bc-desc.bc-desc-3 {
-    -webkit-line-clamp: 3;
   }
   .dark .bc-desc { color: #9ca3af; }
 
@@ -214,6 +218,7 @@
     </div>
     <div class="bc-body">
       <p class="bc-headline"><span class="bc-title">{{book_title}}</span></p>
+      {{book_meta_html}}
       <p class="bc-desc">{{book_desc}}</p>
     </div>
   </a>
@@ -255,25 +260,5 @@
     })();
   </script>
 
-  <script>
-    (function() {
-      function adjustDescClamp() {
-        document.querySelectorAll('.bc-card').forEach(function(card) {
-          const headline = card.querySelector('.bc-headline');
-          const desc = card.querySelector('.bc-desc');
-          if (!headline || !desc) return;
-          const lineHeight = parseFloat(getComputedStyle(headline).lineHeight);
-          const headlineLines = Math.round(headline.scrollHeight / lineHeight);
-          if (headlineLines >= 2) {
-            desc.classList.add('bc-desc-3');
-          } else {
-            desc.classList.remove('bc-desc-3');
-          }
-        });
-      }
-      adjustDescClamp();
-      window.addEventListener('resize', adjustDescClamp);
-    })();
-  </script>
 
-</main>
+
