@@ -48,6 +48,18 @@ function inlineMarkdownDesc(str) {
   return escaped;
 }
 
+// Homepage card preview description: markdown ব্যবহার না করে শুধু plain text
+// দেখানো হয় — markdown sign (** __ * _) সরিয়ে ফেলা হয়, HTML tag হিসেবে
+// render করা হয় না।
+function stripMarkdownDesc(str) {
+  let escaped = escapeHtml(str);
+  escaped = escaped.replace(/\*\*(.+?)\*\*/g, '$1');
+  escaped = escaped.replace(/__(.+?)__/g, '$1');
+  escaped = escaped.replace(/(^|[^*])\*([^*\n]+?)\*([^*]|$)/g, '$1$2$3');
+  escaped = escaped.replace(/(^|[^_])_([^_\n]+?)_([^_]|$)/g, '$1$2$3');
+  return escaped;
+}
+
 // Template load
 const layout = fs.readFileSync('components/layout.html', 'utf8');
 const bookTemplate = fs.readFileSync('components/book.html', 'utf8');
@@ -210,7 +222,7 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
 
   // Book card render helper
   function bookCard(book) {
-    const desc = inlineMarkdownDesc(book.description || '');
+    const desc = stripMarkdownDesc(book.description || '');
     return render(cardTemplate, {
       book_slug: book.slug,
       book_cover: book.cover,
