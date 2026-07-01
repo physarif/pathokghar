@@ -25,6 +25,10 @@ initializeApp({
 
 const db = getDatabase();
 
+// Social sharing defaults
+const SITE_URL = 'https://pathokghar.pages.dev';
+const DEFAULT_OG_IMAGE = `${SITE_URL}/assets/photos/og-banner.webp`;
+
 // HTML escape (XSS-safe ground truth)
 function escapeHtml(str) {
   return (str || '')
@@ -179,6 +183,8 @@ async function generateBookPages() {
       page_title: `${book.title} - ${book.author_name}`,
       full_title: `${book.title} - ${book.author_name} - পাঠক ঘর`,
       page_description: book.description?.slice(0, 160) || '',
+      page_image: book.cover || DEFAULT_OG_IMAGE,
+      page_url: `${SITE_URL}/book/${book.slug}.html`,
       content: bookContent,
       hero_categories,
       sidebar_authors,
@@ -254,6 +260,8 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
         ? 'পাঠক ঘর – বাংলা বইয়ের ডিজিটাল পাঠাগার'
         : `পাতা ${page} - পাঠক ঘর`,
       page_description: 'উপন্যাস, গল্প, কবিতাসহ অসংখ্য বই পড়ুন বা ডাউনলোড করুন – সম্পূর্ণ ফ্রিতে!',
+      page_image: DEFAULT_OG_IMAGE,
+      page_url: page === 1 ? SITE_URL : `${SITE_URL}/books/${page}/`,
       content: indexContent,
       hero_categories,
       sidebar_authors,
@@ -315,6 +323,8 @@ async function generateAuthorPages(bookList, authorsRaw, categoriesRaw) {
       page_title: data.name,
       full_title: `${data.name} - পাঠক ঘর`,
       page_description: '',
+      page_image: data.img || DEFAULT_OG_IMAGE,
+      page_url: `${SITE_URL}/author/${slug}.html`,
       content: authorContent,
       hero_categories,
       sidebar_authors,
@@ -346,6 +356,8 @@ async function generateDownloadPages(bookList, authorsRaw, categoriesRaw) {
       page_title: book.title,
       full_title: `${book.title} - পাঠক ঘর`,
       page_description: '',
+      page_image: book.cover || DEFAULT_OG_IMAGE,
+      page_url: `${SITE_URL}/download/${book.slug}.html`,
       content: downloadContent,
       hero_categories,
       sidebar_authors,
@@ -418,6 +430,8 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
         page_title: data.name,
         full_title: `${data.name} - পাঠক ঘর`,
         page_description: '',
+        page_image: pageBooks[0]?.cover || DEFAULT_OG_IMAGE,
+        page_url: `${SITE_URL}/category/${slug}/${page}/`,
         content: categoryContent,
         hero_categories,
         sidebar_authors,
@@ -467,6 +481,8 @@ async function generateCategoriesIndexPage(bookList, authorsRaw, categoriesRaw) 
     page_title: '\u09AC\u09BF\u09AD\u09BE\u0997\u09B8\u09AE\u09C2\u09B9',
     full_title: '\u09AC\u09BF\u09AD\u09BE\u0997\u09B8\u09AE\u09C2\u09B9 - \u09AA\u09BE\u09A0\u0995 \u0998\u09B0',
     page_description: '\u09AA\u09BE\u09A0\u0995 \u0998\u09B0\u09C7\u09B0 \u09B8\u0995\u09B2 \u09AC\u09BF\u09AD\u09BE\u0997\u09C7\u09B0 \u09A4\u09BE\u09B2\u09BF\u0995\u09BE',
+    page_image: DEFAULT_OG_IMAGE,
+    page_url: `${SITE_URL}/categories/`,
     content,
     hero_categories,
     sidebar_authors,
@@ -515,6 +531,8 @@ async function generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw) {
     page_title: '\u09B2\u09C7\u0996\u0995\u0997\u09A3',
     full_title: '\u09B2\u09C7\u0996\u0995\u0997\u09A3 - \u09AA\u09BE\u09A0\u0995 \u0998\u09B0',
     page_description: '\u09AA\u09BE\u09A0\u0995 \u0998\u09B0\u09C7\u09B0 \u09B8\u0995\u09B2 \u09B2\u09C7\u0996\u0995\u09A6\u09C7\u09B0 \u09A4\u09BE\u09B2\u09BF\u0995\u09BE',
+    page_image: DEFAULT_OG_IMAGE,
+    page_url: `${SITE_URL}/authors/`,
     content,
     hero_categories,
     sidebar_authors,
@@ -551,6 +569,8 @@ async function generateSearchPage(bookList, authorsRaw, categoriesRaw) {
     page_title: 'অনুসন্ধান',
     full_title: 'অনুসন্ধান - পাঠক ঘর',
     page_description: 'পাঠক ঘরে বই, লেখক বা বিভাগের নাম দিয়ে খুঁজুন।',
+    page_image: DEFAULT_OG_IMAGE,
+    page_url: `${SITE_URL}/search.html`,
     content,
     hero_categories,
     sidebar_authors,
