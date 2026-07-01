@@ -141,7 +141,7 @@
   .bc-card:hover .bc-title { text-decoration: none; }
   .dark .bc-card:hover .bc-title { text-decoration: none; }
 
-  /* Description — default 5 lines; reduced to 4 via JS when headline wraps to 2 lines */
+  /* Description — default 4 lines; reduced to 3 via JS when headline wraps to 2 lines */
   .bc-desc {
     margin-top: 0.3rem;
     font-size: 1.02rem;
@@ -149,12 +149,12 @@
     line-height: 1.6;
     text-align: justify;
     display: -webkit-box;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  .bc-desc.bc-desc-4 {
-    -webkit-line-clamp: 4;
+  .bc-desc.bc-desc-3 {
+    -webkit-line-clamp: 3;
   }
   .dark .bc-desc { color: #9ca3af; }
 
@@ -265,9 +265,9 @@
           const lineHeight = parseFloat(getComputedStyle(headline).lineHeight);
           const headlineLines = Math.round(headline.scrollHeight / lineHeight);
           if (headlineLines >= 2) {
-            desc.classList.add('bc-desc-4');
+            desc.classList.add('bc-desc-3');
           } else {
-            desc.classList.remove('bc-desc-4');
+            desc.classList.remove('bc-desc-3');
           }
         });
       }
