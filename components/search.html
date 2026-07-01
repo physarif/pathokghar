@@ -24,7 +24,7 @@
 </div>
 
 <script type="application/json" id="search-index-json">{{search_index_json}}</script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.4.1"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
 
 <style>
   .bc-list {
@@ -148,6 +148,13 @@
   }
 
   titleEl.textContent = '"' + query + '" এর ফলাফল';
+
+  if (typeof Fuse === 'undefined') {
+    countEl.textContent = '';
+    emptyEl.querySelector('p').textContent = 'সার্চ লোড করতে সমস্যা হয়েছে, একটু পর আবার চেষ্টা করুন।';
+    emptyEl.style.display = 'block';
+    return;
+  }
 
   var data = JSON.parse(document.getElementById('search-index-json').textContent);
 
