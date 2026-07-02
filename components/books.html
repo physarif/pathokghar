@@ -1,0 +1,264 @@
+<!-- components/books.html — pagination page (/books/{page}/) content + সব styling এখানে -->
+<style>
+  /* Section */
+  .book-section { padding: 0.75rem 0; margin-bottom: 0.5rem; }
+  @media (min-width: 768px) { .book-section { margin-left: 0.5rem; margin-right: 0.5rem; padding: 0.75rem 0.4rem; } }
+
+  /* Section header */
+  .bc-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    padding: 0 1rem;
+  }
+  @media (min-width: 768px) { .bc-section-header { padding: 0 1.5rem; } }
+
+  /* Title + extending line */
+  .bc-section-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1f2937;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+  .bc-section-title::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: #c0392b;
+    border-radius: 1px;
+  }
+  .dark .bc-section-title { color: #f3f4f6; }
+  .dark .bc-section-title::after { background: #f87171; }
+
+  /* "সব দেখুন" pill button */
+  .bc-section-link {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #fff;
+    background: #7a3b1e;
+    text-decoration: none;
+    padding: 0.3rem 0.75rem;
+    border-radius: 0.25rem;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .bc-section-link:hover { background: #5c2b14; }
+  .dark .bc-section-link { background: #92400e; }
+  .dark .bc-section-link:hover { background: #78350f; }
+
+  /* List container */
+  .bc-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 0.4rem;
+  }
+  @media (min-width: 768px) {
+    .bc-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.4rem;
+      padding: 0;
+    }
+  }
+
+  /* Separator line between cards */
+  .bc-card + .bc-card { border-top: none; }
+  .dark .bc-card + .bc-card { border-top: none; }
+  @media (min-width: 768px) {
+    .bc-card + .bc-card { border-top: none; }
+    .bc-card { border-top: none; }
+    .bc-card:nth-child(odd) { border-right: none; padding-right: 0.75rem; }
+    .bc-card:nth-child(even) { padding-left: 0.75rem; }
+  }
+
+  /* Book card — horizontal list style */
+  .bc-card {
+    display: flex;
+    flex-direction: row;
+    gap: 0.85rem;
+    align-items: flex-start;
+    text-decoration: none;
+    padding: 0.75rem;
+    transition: background 0.1s;
+    background: #fff;
+  }
+  .dark .bc-card { background: #23232a; }
+  .bc-card:first-child { padding-top: 0.75rem; }
+  .bc-card:last-child { padding-bottom: 0.75rem; }
+  .bc-card:hover { background: #fef2f2; }
+  .dark .bc-card:hover { background: #2a2020; }
+
+  /* Cover — left side, fixed size 2:3 ratio */
+  .bc-img-wrap {
+    flex-shrink: 0;
+    width: 5.5rem;
+    aspect-ratio: 2/3;
+    overflow: hidden;
+    background: #e5e7eb;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+  @media (min-width: 768px) { .bc-img-wrap { width: 6.5rem; } }
+  .dark .bc-img-wrap { background: #374151; }
+
+  .bc-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Right side text */
+  .bc-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  /* Headline: শুধু title */
+  .bc-headline {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .bc-title {
+    font-weight: 700;
+    color: #c0392b;
+  }
+  .dark .bc-title { color: #f87171; }
+  .bc-card:hover .bc-title { text-decoration: none; }
+  .dark .bc-card:hover .bc-title { text-decoration: none; }
+
+  .bc-meta {
+    font-size: 0.82rem;
+    color: #9ca3af;
+    margin: 0;
+  }
+  .dark .bc-meta { color: #6b7280; }
+
+  /* Description */
+  .bc-desc {
+    margin-top: 0.3rem;
+    font-size: 1.02rem;
+    color: #4b5563;
+    line-height: 1.6;
+    text-align: justify;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .dark .bc-desc { color: #9ca3af; }
+
+  /* Pagination */
+  .bc-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.6rem 1rem 0.2rem;
+    flex-wrap: wrap;
+  }
+  .bc-page-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.1rem;
+    height: 2.1rem;
+    padding: 0 0.5rem;
+    border-radius: 0.3rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: #374151;
+    background: #f3f4f6;
+    transition: background 0.15s, color 0.15s;
+  }
+  .bc-page-btn:hover { background: #e5e7eb; color: #111827; }
+  .bc-page-btn.active { background: #c0392b; color: #fff; pointer-events: none; }
+  .bc-page-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0 0.75rem;
+    height: 2.1rem;
+    border-radius: 0.3rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #fff;
+    background: #c0392b;
+    transition: background 0.15s;
+  }
+  .bc-page-nav:hover { background: #991b1b; }
+  .dark .bc-page-btn { background: #1f2937; color: #d1d5db; }
+  .dark .bc-page-btn:hover { background: #374151; color: #f9fafb; }
+  .dark .bc-page-btn.active { background: #f87171; color: #111827; }
+  .dark .bc-page-nav { background: #f87171; color: #111827; }
+  .dark .bc-page-nav:hover { background: #ef4444; }
+</style>
+
+<!--
+  Book card template (reference — generate_pages.js এ ব্যবহার হয়):
+  <a href="/book/{{book_slug}}.html" class="bc-card">
+    <div class="bc-img-wrap">
+      <img src="{{book_cover}}" alt="{{book_title}}" class="bc-img" loading="lazy">
+    </div>
+    <div class="bc-body">
+      <p class="bc-headline"><span class="bc-title">{{book_title}}</span></p>
+      {{book_meta_html}}
+      <p class="bc-desc">{{book_desc}}</p>
+    </div>
+  </a>
+-->
+
+<main class="flex-1 py-4 md:py-6 md:px-8 lg:px-16 min-h-[calc(100vh-3.5rem)] min-w-0 overflow-hidden">
+
+  <!-- সর্বশেষ বই -->
+  <section class="book-section">
+    <div style="padding:0.45rem 1rem;background:#c0392b;font-size:1rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
+      <span style="color:#fff;font-weight:700;letter-spacing:0.01em;">সর্বশেষ বই</span>
+      <span style="background:rgba(255,255,255,0.18);color:#fff;font-weight:600;font-size:0.78rem;padding:0.15rem 0.6rem;">{{total_books_bn}} টি বই</span>
+    </div>
+    <div class="bc-list">{{latest_books}}</div>
+  </section>
+
+  <div id="bc-pagination"></div>
+  <script>
+    (function() {
+      const current = parseInt('{{current_page}}', 10);
+      const total = parseInt('{{total_pages}}', 10);
+      if (!current || !total || total <= 1) return;
+      const el = document.getElementById('bc-pagination');
+      let html = '<div class="bc-pagination">';
+      if (current > 1) {
+        const prev = current === 2 ? '/' : '/books/' + (current - 1) + '/';
+        html += '<a href="' + prev + '" class="bc-page-nav"><i class="fas fa-chevron-left text-xs"></i> পূর্ববর্তী</a>';
+      }
+      for (let i = 1; i <= total; i++) {
+        const href = i === 1 ? '/' : '/books/' + i + '/';
+        if (i === current) html += '<span class="bc-page-btn active">' + i + '</span>';
+        else html += '<a href="' + href + '" class="bc-page-btn">' + i + '</a>';
+      }
+      if (current < total) {
+        html += '<a href="/books/' + (current + 1) + '/" class="bc-page-nav">পরবর্তী <i class="fas fa-chevron-right text-xs"></i></a>';
+      }
+      html += '</div>';
+      el.innerHTML = html;
+    })();
+  </script>
+
+
+
