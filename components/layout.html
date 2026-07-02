@@ -209,6 +209,33 @@
             </button>
         </div>
 
+        <!-- Tab Bar -->
+        <div class="w-full max-w-xl mt-4 flex items-center justify-center gap-2 flex-wrap">
+            <a href="/" data-tab-path="/" class="hero-tab-btn px-5 py-2 rounded-md text-sm font-semibold bg-gray-100 dark:bg-[#2d2d2d] text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-[#3a3a3a] transition-colors">হোম</a>
+            <a href="/authors/" data-tab-path="/authors/" class="hero-tab-btn px-5 py-2 rounded-md text-sm font-semibold bg-gray-100 dark:bg-[#2d2d2d] text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-[#3a3a3a] transition-colors">লেখক</a>
+            <a href="/categories/" data-tab-path="/categories/" class="hero-tab-btn px-5 py-2 rounded-md text-sm font-semibold bg-gray-100 dark:bg-[#2d2d2d] text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-[#3a3a3a] transition-colors">বিভাগ</a>
+            <a href="/blogs/" data-tab-path="/blogs/" class="hero-tab-btn px-5 py-2 rounded-md text-sm font-semibold bg-gray-100 dark:bg-[#2d2d2d] text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-[#3a3a3a] transition-colors">ব্লগ</a>
+        </div>
+        <script>
+        (function() {
+            var path = window.location.pathname;
+            var rules = {
+                '/': /^\/(books\/\d+\/?)?$/,
+                '/authors/': /^\/authors(\/.*)?$/,
+                '/categories/': /^\/categories(\/.*)?$/,
+                '/blogs/': /^\/blogs(\/.*)?$/
+            };
+            document.querySelectorAll('.hero-tab-btn').forEach(function(btn) {
+                var tabPath = btn.getAttribute('data-tab-path');
+                var re = rules[tabPath];
+                if (re && re.test(path)) {
+                    btn.classList.add('bg-brand-500', 'text-white', 'hover:bg-brand-600');
+                    btn.classList.remove('bg-gray-100', 'dark:bg-[#2d2d2d]', 'text-gray-700', 'dark:text-gray-200', 'hover:bg-gray-200', 'dark:hover:bg-[#3a3a3a]');
+                }
+            });
+        })();
+        </script>
+
     </div>
 
     <!-- MAIN CONTENT -->
