@@ -47,6 +47,36 @@
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
+        /* Hero tab bar — segmented control */
+        .segment-track {
+            background: #f3f4f6;
+            border-radius: 999px;
+            padding: 4px;
+            display: inline-flex;
+            gap: 2px;
+        }
+        .dark .segment-track { background: #232323; }
+        .segment-item {
+            padding: 0.5rem 1.25rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #6b7280;
+            text-decoration: none;
+            transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+        }
+        .dark .segment-item { color: #9ca3af; }
+        .segment-item:hover { color: #374151; }
+        .dark .segment-item:hover { color: #e5e7eb; }
+        .segment-item.active {
+            background: #c0392b;
+            color: #fff;
+            box-shadow: 0 2px 6px rgba(192,57,43,0.35);
+        }
+        .segment-item.active:hover { color: #fff; }
+        .dark .segment-item.active { background: #f87171; color: #1a1a1b; box-shadow: 0 2px 6px rgba(248,113,113,0.3); }
+        .dark .segment-item.active:hover { color: #1a1a1b; }
+
         /* Category links — footer style, larger */
         .category-underline-list li { display: inline-flex; align-items: center; white-space: nowrap; }
         .category-underline-list li + li::before {
@@ -209,12 +239,12 @@
             </button>
         </div>
 
-        <!-- Tab Bar -->
-        <div class="w-full max-w-xl mt-4 flex items-center justify-center gap-2 flex-wrap">
-            <a href="/" data-tab-path="/" class="hero-tab-btn px-5 py-2 rounded-md text-sm font-semibold bg-gray-100 dark:bg-[#2d2d2d] text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-[#3a3a3a] transition-colors">হোম</a>
-            <a href="/authors/" data-tab-path="/authors/" class="hero-tab-btn px-5 py-2 rounded-md text-sm font-semibold bg-gray-100 dark:bg-[#2d2d2d] text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-[#3a3a3a] transition-colors">লেখক</a>
-            <a href="/categories/" data-tab-path="/categories/" class="hero-tab-btn px-5 py-2 rounded-md text-sm font-semibold bg-gray-100 dark:bg-[#2d2d2d] text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-[#3a3a3a] transition-colors">বিভাগ</a>
-            <a href="/blogs/" data-tab-path="/blogs/" class="hero-tab-btn px-5 py-2 rounded-md text-sm font-semibold bg-gray-100 dark:bg-[#2d2d2d] text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-[#3a3a3a] transition-colors">ব্লগ</a>
+        <!-- Tab Bar (segmented control) -->
+        <div class="segment-track mt-4">
+            <a href="/" data-tab-path="/" class="hero-tab-btn segment-item">হোম</a>
+            <a href="/authors/" data-tab-path="/authors/" class="hero-tab-btn segment-item">লেখক</a>
+            <a href="/categories/" data-tab-path="/categories/" class="hero-tab-btn segment-item">বিভাগ</a>
+            <a href="/blogs/" data-tab-path="/blogs/" class="hero-tab-btn segment-item">ব্লগ</a>
         </div>
         <script>
         (function() {
@@ -228,10 +258,7 @@
             document.querySelectorAll('.hero-tab-btn').forEach(function(btn) {
                 var tabPath = btn.getAttribute('data-tab-path');
                 var re = rules[tabPath];
-                if (re && re.test(path)) {
-                    btn.classList.add('bg-brand-500', 'text-white', 'hover:bg-brand-600');
-                    btn.classList.remove('bg-gray-100', 'dark:bg-[#2d2d2d]', 'text-gray-700', 'dark:text-gray-200', 'hover:bg-gray-200', 'dark:hover:bg-[#3a3a3a]');
-                }
+                if (re && re.test(path)) btn.classList.add('active');
             });
         })();
         </script>
