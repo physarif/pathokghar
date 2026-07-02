@@ -95,15 +95,22 @@
             #ad-bar > div:first-child { padding: 0 2rem; }
         }
 
-        /* Visit counter — শুধু সংখ্যা, মিনিমাল */
+        /* Visit counter — red rectangle badge, eye icon, monospace numbers */
         .pg-visit-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            background: #c0392b;
+            color: #fff;
+            border-radius: 0.25rem;
+            padding: 0.3rem 0.65rem;
             font-size: 0.78rem;
-            color: #9ca3af;
-            font-variant-numeric: tabular-nums;
+            font-family: 'Courier New', Consolas, monospace;
             white-space: nowrap;
             letter-spacing: 0.02em;
         }
-        .dark .pg-visit-pill { color: #6b7280; }
+        .pg-visit-pill i { font-size: 0.72rem; }
+        .dark .pg-visit-pill { background: #92400e; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
@@ -444,7 +451,7 @@
             </div>
 
             <!-- Visit counter -->
-            <span id="pg-visit-counter" class="pg-visit-pill"><b>**</b> · <b>**</b></span>
+            <span id="pg-visit-counter" class="pg-visit-pill"><i class="fa-solid fa-eye"></i> <b>**</b> · <b>**</b></span>
 
         </div>
 
@@ -458,13 +465,12 @@
             const nums = el.querySelectorAll('b');
             const alreadyCounted = sessionStorage.getItem('pg_counted');
             const endpoint = '/api/visits' + (alreadyCounted ? '?count=0' : '');
-            const toBangla = n => String(n).replace(/[0-9]/g, d => '০১২৩৪৫৬৭৮৯'[d]);
             fetch(endpoint)
                 .then(r => r.json())
                 .then(data => {
                     if (!alreadyCounted) sessionStorage.setItem('pg_counted', '1');
-                    nums[0].textContent = toBangla(data.today);
-                    nums[1].textContent = toBangla(data.total);
+                    nums[0].textContent = data.today;
+                    nums[1].textContent = data.total;
                 })
                 .catch(() => { el.style.display = 'none'; });
         })();
