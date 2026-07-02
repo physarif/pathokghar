@@ -461,17 +461,14 @@
     </footer>
 
     <script>
-        // Visit counter — একই সেশনে দ্বিতীয়বার count না বাড়িয়ে শুধু দেখাবে
+        // Visit counter — প্রতি পেজ লোড/রিফ্রেশে count বাড়বে
         (function () {
             const el = document.getElementById('pg-visit-counter');
             if (!el) return;
             const nums = el.querySelectorAll('b');
-            const alreadyCounted = sessionStorage.getItem('pg_counted');
-            const endpoint = '/api/visits' + (alreadyCounted ? '?count=0' : '');
-            fetch(endpoint)
+            fetch('/api/visits')
                 .then(r => r.json())
                 .then(data => {
-                    if (!alreadyCounted) sessionStorage.setItem('pg_counted', '1');
                     nums[0].textContent = data.today;
                     nums[1].textContent = data.total;
                 })
