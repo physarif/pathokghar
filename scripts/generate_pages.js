@@ -229,7 +229,7 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
 
   // Book card render helper
   function bookCard(book) {
-    const desc = stripMarkdownDesc(book.description || '');
+    const desc = stripMarkdownDesc(book.description || '').slice(0, 200);
     const meta = [book.author_name, book.category_name].filter(Boolean).join(' · ');
     return render(cardTemplate, {
       book_slug: book.slug,
@@ -307,7 +307,7 @@ async function generateAuthorPages(bookList, authorsRaw, categoriesRaw) {
       title: b.title,
       cover: b.cover,
       category_name: b.category_name,
-      desc: b.description || '',
+      desc: stripMarkdownDesc(b.description || '').slice(0, 200),
       author_name: b.author_name || '',
     })));
 
@@ -395,7 +395,7 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
     for (let page = 1; page <= totalPages; page++) {
       const pageBooks = data.books.slice((page - 1) * BOOKS_PER_PAGE, page * BOOKS_PER_PAGE);
 
-      const desc = book => inlineMarkdownDesc(book.description || '');
+      const desc = book => inlineMarkdownDesc((book.description || '').slice(0, 200));
       const booksGrid = pageBooks.map(book => `
       <a href="/book/${book.slug}.html" class="bc-card">
         <div class="bc-img-wrap">
