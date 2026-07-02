@@ -181,6 +181,11 @@ def process_html_fragment(raw_html, images):
         if tag.name not in ALLOWED_TAGS:
             tag.unwrap()
 
+    # ── <p> ট্যাগের সব attribute (style, class ইত্যাদি) মুছে ফেলো ──
+    # ফলাফল: <p style="..." class="...">টেক্সট</p> → <p>টেক্সট</p>
+    for p_tag in body.find_all('p'):
+        p_tag.attrs = {}
+
     # ── consecutive <br> → একটা <br> ──
     for br in body.find_all('br'):
         next_sib = br.next_sibling
