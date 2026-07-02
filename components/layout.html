@@ -435,10 +435,30 @@
                 <a href="/app/" class="footer-dot-link">App</a>
             </div>
 
+            <!-- Visit counter -->
+            <span id="pg-visit-counter" class="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">আজ ** | ** সর্বমোট</span>
 
         </div>
 
     </footer>
+
+    <script>
+        // Visit counter — একই সেশনে দ্বিতীয়বার count না বাড়িয়ে শুধু দেখাবে
+        (function () {
+            const el = document.getElementById('pg-visit-counter');
+            if (!el) return;
+            const alreadyCounted = sessionStorage.getItem('pg_counted');
+            const endpoint = '/api/visits' + (alreadyCounted ? '?count=0' : '');
+            const toBangla = n => String(n).replace(/[0-9]/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+            fetch(endpoint)
+                .then(r => r.json())
+                .then(data => {
+                    if (!alreadyCounted) sessionStorage.setItem('pg_counted', '1');
+                    el.textContent = 'আজ ' + toBangla(data.today) + ' | ' + toBangla(data.total) + ' সর্বমোট';
+                })
+                .catch(() => { el.style.display = 'none'; });
+        })();
+    </script>
 
     <script>
         // Search
