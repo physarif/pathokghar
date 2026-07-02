@@ -206,6 +206,7 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
   console.log('\n🏠 Homepage generate করছি...');
 
   const indexTemplate = fs.readFileSync('components/index.html', 'utf8');
+  const booksTemplate = fs.readFileSync('components/books.html', 'utf8');
 
   // Book card template — সরাসরি define, index.html comment এর উপর নির্ভর নয়
   const cardTemplate = [
@@ -245,7 +246,9 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
   for (let page = 1; page <= totalPages; page++) {
     const pageBooks = sorted.slice((page - 1) * BOOKS_PER_PAGE, page * BOOKS_PER_PAGE);
 
-    const indexContent = render(indexTemplate, {
+    const template = page === 1 ? indexTemplate : booksTemplate;
+
+    const indexContent = render(template, {
       latest_books: pageBooks.map(bookCard).join(''),
       current_page: page,
       total_pages: totalPages,
