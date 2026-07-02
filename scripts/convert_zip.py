@@ -5,7 +5,7 @@ import re
 import zipfile
 import tempfile
 import shutil
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Comment
 
 os.makedirs('content', exist_ok=True)
 os.makedirs('read', exist_ok=True)
@@ -118,6 +118,17 @@ ALLOWED_TAGS = {
     'ruby', 'rt', 'rp',
 }
 
+# প্রতিটা tag এ শুধু এই attribute গুলো রাখা হবে — বাকি সব (class, style,
+# id, lang, dir, data-*, MS Word এর mso-* ইত্যাদি) মুছে ফেলা হবে
+ATTR_WHITELIST = {
+    'a':   {'href', 'target', 'rel'},
+    'img': {'src', 'alt'},
+    'td':  {'colspan', 'rowspan'},
+    'th':  {'colspan', 'rowspan'},
+    'col': {'span'},
+    'ol':  {'start'},
+}
+
 
 def process_html_fragment(raw_html, images):
     soup = BeautifulSoup(raw_html, 'html.parser')
@@ -129,6 +140,10 @@ def process_html_fragment(raw_html, images):
         tag.decompose()
 
     body = soup.find('body') or soup
+
+    # ── HTML comment (<!-- ... -->) মুছে ফেলো ──
+    for comment in body.find_all(string=lambda s: isinstance(s, Comment)):
+        comment.extract()
 
     # ── <pre> → <p> (newline → <br>) ──
     for pre in body.find_all('pre'):
@@ -181,10 +196,33 @@ def process_html_fragment(raw_html, images):
         if tag.name not in ALLOWED_TAGS:
             tag.unwrap()
 
-    # ── <p> ট্যাগের সব attribute (style, class ইত্যাদি) মুছে ফেলো ──
-    # ফলাফল: <p style="..." class="...">টেক্সট</p> → <p>টেক্সট</p>
-    for p_tag in body.find_all('p'):
-        p_tag.attrs = {}
+    # ── সব ট্যাগ থেকে অপ্রয়োজনীয় attribute (class, style, id, lang, dir,
+    #    data-*, mso-* ইত্যাদি) মুছে ফেলো — শুধু ATTR_WHITELIST এ থাকা
+    #    attribute গুলো রাখা হবে (যেমন a এর href, img এর src/alt)
+    for tag in body.find_all(True):
+        allowed_attrs = ATTR_WHITELIST.get(tag.name, set())
+        tag.attrs = {k: v for k, v in tag.attrs.items() if k in allowed_attrs}
+
+    # ── &nbsp; → সাধারণ স্পেস, ও extra whitespace পরিষ্কার করো ──
+    for text_node in body.find_all(string=True):
+        cleaned = text_node.replace('\xa0', ' ')
+        cleaned = re.sub(r'[ \t]+', ' ', cleaned)
+        if cleaned != text_node:
+            text_node.replace_with(cleaned)
+
+    # ── খালি ট্যাগ মুছে ফেলো (যেমন <span></span>, <p> </p>) ──
+    # img/br/hr এর মতো self-closing/void ট্যাগ বাদে; একাধিকবার loop করা হয়
+    # কারণ একটা খালি ট্যাগ মুছলে তার parent ও খালি হয়ে যেতে পারে
+    VOID_TAGS = {'br', 'hr', 'img', 'col', 'source'}
+    changed = True
+    while changed:
+        changed = False
+        for tag in body.find_all(True):
+            if tag.name in VOID_TAGS:
+                continue
+            if not tag.get_text(strip=True) and not tag.find(True, recursive=False):
+                tag.decompose()
+                changed = True
 
     # ── consecutive <br> → একটা <br> ──
     for br in body.find_all('br'):
