@@ -47,35 +47,47 @@
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
-        /* Hero tab bar — segmented control */
+        /* Hero tab bar — Library Card Stamp */
         .segment-track {
-            background: #f3f4f6;
-            border-radius: 999px;
-            padding: 4px;
             display: inline-flex;
-            gap: 2px;
+            gap: 10px;
+            padding: 4px;
         }
-        .dark .segment-track { background: #232323; }
         .segment-item {
-            padding: 0.5rem 1.25rem;
-            border-radius: 999px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #6b7280;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: 'Courier New', Consolas, monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            color: #8a7a6d;
             text-decoration: none;
-            transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+            background: #fffdf8;
+            border: 1.5px dashed #c9b48f;
+            transition: border-color 0.15s, color 0.15s, transform 0.15s, box-shadow 0.15s;
         }
-        .dark .segment-item { color: #9ca3af; }
-        .segment-item:hover { color: #374151; }
-        .dark .segment-item:hover { color: #e5e7eb; }
+        .dark .segment-item {
+            color: #a89786;
+            background: #232323;
+            border-color: #4b4038;
+        }
+        .segment-item:hover { border-color: #b8843c; color: #a93226; }
+        .dark .segment-item:hover { border-color: #b8843c; color: #f87171; }
         .segment-item.active {
-            background: #c0392b;
-            color: #fff;
-            box-shadow: 0 2px 6px rgba(192,57,43,0.35);
+            color: #a93226;
+            border: 1.5px solid #c0392b;
+            background: #fdf1ee;
+            transform: rotate(-2deg);
+            box-shadow: 1px 2px 0 #c0392b;
         }
-        .segment-item.active:hover { color: #fff; }
-        .dark .segment-item.active { background: #f87171; color: #1a1a1b; box-shadow: 0 2px 6px rgba(248,113,113,0.3); }
-        .dark .segment-item.active:hover { color: #1a1a1b; }
+        .segment-item.active:hover { color: #a93226; }
+        .dark .segment-item.active {
+            color: #f87171;
+            border: 1.5px solid #f87171;
+            background: #2a201f;
+            box-shadow: 1px 2px 0 #f87171;
+        }
+        .dark .segment-item.active:hover { color: #f87171; }
 
         /* Category links — footer style, larger */
         .category-underline-list li { display: inline-flex; align-items: center; white-space: nowrap; }
