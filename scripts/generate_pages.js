@@ -252,6 +252,8 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
       latest_books: pageBooks.map(bookCard).join(''),
       current_page: page,
       total_pages: totalPages,
+      current_page_bn: toBanglaNum(page),
+      total_pages_bn: toBanglaNum(totalPages),
       total_books_bn: toBanglaNum(sorted.length),
     });
 
