@@ -74,13 +74,9 @@ if (fs.existsSync('book')) {
 }
 
 // ── Read pages ──
-if (fs.existsSync('read')) {
-  const readFiles = fs.readdirSync('read').filter(f => f.endsWith('.html'));
-  readFiles.forEach(f => {
-    const filePath = path.join('read', f);
-    addUrl(`${BASE_URL}/read/${f}`, 'weekly', '0.9', filePath);
-  });
-}
+// বাদ দেওয়া হয়েছে: /read/ পেজগুলো এখন noindex (thin/duplicate content,
+// আসল বই পেজ /book/slug.html-ই index হয়)। noindex পেজ sitemap-এ রাখলে
+// Google-কে ভুল/দ্বন্দ্বমূলক সিগন্যাল যায়।
 
 // ── Author listing page ──
 if (fs.existsSync('authors')) {
