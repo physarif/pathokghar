@@ -64,6 +64,16 @@
                 gfm: true,
             });
 
+            // বইয়ের বর্ণনায় কেউ "# হেডিং" লিখলে সেটা যেন আসল <h1>/<h2> না
+            // হয় — পেজের একমাত্র H1 তো বইয়ের নাম (উপরে)। heading level ২
+            // ধাপ নামিয়ে দেওয়া হচ্ছে (marked 9.x renderer API)।
+            const headingSafeRenderer = new marked.Renderer();
+            headingSafeRenderer.heading = function (text, level) {
+                const newLevel = Math.min(level + 2, 6);
+                return `<h${newLevel}>${text}</h${newLevel}>\n`;
+            };
+            marked.setOptions({ renderer: headingSafeRenderer });
+
             const parsed = marked.parse(raw);
             const mobileEl = document.getElementById('book-description-mobile');
             if (mobileEl) mobileEl.innerHTML = parsed;
