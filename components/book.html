@@ -3,15 +3,22 @@
     <div class="max-w-3xl mx-auto">
 
         <!-- Book Header Bar -->
-        <div style="padding:0.6rem 1rem;border-bottom:1px solid #e5e7eb;background:#fff;font-family:'Noto Serif Bengali',serif;font-size:1.1rem;font-weight:800;line-height:1.4;" class="dark:bg-[#2d2d2d] dark:border-gray-700">
-            <a href="/category/{{book_category_slug}}/1/" style="color:#9ca3af;font-weight:600;text-decoration:none;" onmouseover="this.style.color='#c0392b'" onmouseout="this.style.color='#9ca3af'">{{book_category}}</a><span style="color:#9ca3af;font-weight:400;"> › </span><span style="color:#1a1a1b;" class="dark:text-gray-100">{{book_title}}</span><span style="color:#9ca3af;font-weight:400;"> – </span><a href="/author/{{book_author_slug}}.html" style="color:#c0392b;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">{{book_author}}</a>
+        <div style="padding:0.6rem 1rem;border-bottom:1px solid #e5e7eb;background:#fff;font-family:'Noto Serif Bengali',serif;" class="dark:bg-[#2d2d2d] dark:border-gray-700">
+            <!-- পেজের আসল H1: বইয়ের নাম। এটাই এই পেজের মূল বিষয়, তাই SEO-এর
+                 জন্য H1 হিসেবে থাকা জরুরি (সাইটের ব্র্যান্ড-নাম না)। -->
+            <h1 style="font-size:1.1rem;font-weight:800;line-height:1.4;color:#1a1a1b;margin:0;" class="dark:text-gray-100">{{book_title}}</h1>
+            <nav aria-label="breadcrumb" style="font-size:0.95rem;font-weight:600;line-height:1.4;margin-top:0.15rem;">
+                <a href="/category/{{book_category_slug}}/1/" style="color:#9ca3af;text-decoration:none;" onmouseover="this.style.color='#c0392b'" onmouseout="this.style.color='#9ca3af'">{{book_category}}</a><span style="color:#9ca3af;font-weight:400;"> – </span><a href="/author/{{book_author_slug}}.html" style="color:#c0392b;font-weight:600;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">{{book_author}}</a>
+            </nav>
         </div>
 
 
         <!-- Book Card -->
         <div class="bg-white dark:bg-[#2d2d2d] p-4">
             <img src="{{book_cover}}"
-                alt="{{book_title}}"
+                alt="{{book_title}} বই এর কভার - লেখক {{book_author}}"
+                fetchpriority="high"
+                width="200" height="300"
                 class="float-left w-28 rounded object-cover aspect-[2/3] mr-4">
             <div class="flex gap-2 mb-3">
                 <a href="{{book_read_href}}"
@@ -30,6 +37,25 @@
 
 
         </div>
+
+        <!-- Structured data: Google-কে বইয়ের নাম, লেখক, কভার স্পষ্টভাবে বুঝিয়ে
+             দেয়, rich snippet পাওয়ার সম্ভাবনা বাড়ায় -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Book",
+            "name": {{book_title_json}},
+            "author": {
+                "@type": "Person",
+                "name": {{book_author_json}}
+            },
+            "image": {{book_cover_json}},
+            "url": {{book_url_json}},
+            "genre": {{book_category_json}},
+            "description": {{book_schema_description_json}},
+            "inLanguage": "bn"
+        }
+        </script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
         <script>
