@@ -222,8 +222,11 @@ async function generateBookPages() {
 
     const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
     const fullPage = render(layout, {
-      page_title: `${book.title} - ${book.author_name}`,
-      full_title: escapeAttr(`${book.title} - ${book.author_name} - পাঠক ঘর`),
+      page_title: `${book.title} – ${book.author_name}`,
+      // সোশ্যাল শেয়ার প্রিভিউতে (WhatsApp/FB) ডোমেইন এমনিতেই আলাদাভাবে দেখায়,
+      // তাই title-এর ভেতর "পাঠক ঘর" আর দরকার নেই — og:site_name ট্যাগেই
+      // ব্র্যান্ডিং থেকে যাচ্ছে
+      full_title: escapeAttr(`${book.title} – ${book.author_name}`),
       // heading/list/blockquote markdown চিহ্নসহ পুরোপুরি strip করে, নতুন
       // লাইনগুলো স্পেস দিয়ে একলাইন করা হচ্ছে — যাতে meta/og description
       // ঝকঝকে এক-লাইন প্লেইন টেক্সট হয়
