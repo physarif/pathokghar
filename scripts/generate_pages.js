@@ -99,6 +99,7 @@ const bookTemplate = fs.readFileSync('components/book.html', 'utf8');
 const DEFAULT_RENDER_DATA = {
   hero_tag: 'div',
   page_type: 'website',
+  robots_meta: 'index, follow',
 };
 
 function render(template, data) {
@@ -416,7 +417,10 @@ async function generateDownloadPages(bookList, authorsRaw, categoriesRaw) {
       full_title: `${book.title} - পাঠক ঘর`,
       page_description: '',
       page_image: book.cover || DEFAULT_OG_IMAGE,
-      page_url: `${SITE_URL}/download/${book.slug}.html`,
+      // thin/duplicate content — index না করে canonical বই পেজের দিকে
+      // পাঠানো হচ্ছে, যাতে ranking signal ভাগ না হয়
+      page_url: `${SITE_URL}/book/${book.slug}.html`,
+      robots_meta: 'noindex, follow',
       content: downloadContent,
       hero_categories,
       sidebar_authors,
