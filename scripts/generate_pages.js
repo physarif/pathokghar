@@ -2,6 +2,11 @@ const { initializeApp, cert, getApp } = require('firebase-admin/app');
 const { getDatabase } = require('firebase-admin/database');
 const fs = require('fs');
 const path = require('path');
+const { marked } = require('marked');
+
+// ক্লায়েন্ট-সাইড marked.js (book.html/author.html-এ ব্যবহৃত) এর মতোই
+// options — output identical থাকার জন্য
+marked.setOptions({ breaks: true, gfm: true });
 
 // Firebase env var validation
 const REQUIRED_ENV = ['FIREBASE_PROJECT_ID', 'FIREBASE_CLIENT_EMAIL', 'FIREBASE_PRIVATE_KEY', 'FIREBASE_DATABASE_URL'];
@@ -85,6 +90,22 @@ function stripMarkdownPlain(str) {
   out = out.replace(/^>\s?/gm, '');
   out = out.replace(/^[-*+]\s+/gm, '');
   return out.trim();
+}
+
+// Author পেজের বই-কার্ড — আগে client-side JS দিয়ে বানানো হতো (JSON blob
+// থেকে), এখন build time-এ সরাসরি HTML হিসেবে বসানো হয় যাতে crawler
+// প্রথম লোডেই পুরো বইয়ের লিস্ট (এই পেজের মূল content) দেখতে পায়।
+function renderAuthorBookCard(book) {
+  const title = escapeHtml(book.title || '');
+  return (
+    `<a href="/book/${book.slug}.html" class="bc-card">` +
+    `<div class="bc-img-wrap"><img src="${book.cover}" alt="${title} বই কভার" class="bc-img" loading="lazy"></div>` +
+    `<div class="bc-body">` +
+    `<p class="bc-headline"><span class="bc-title">${title}</span></p>` +
+    (book.category_name ? `<p class="bc-meta">${escapeHtml(book.category_name)}</p>` : '') +
+    (book.desc ? `<p class="bc-desc">${book.desc}</p>` : '') +
+    `</div></a>`
+  );
 }
 
 // Template load
@@ -365,29 +386,48 @@ async function generateAuthorPages(bookList, authorsRaw, categoriesRaw) {
   }
 
   for (const [slug, data] of Object.entries(byAuthor)) {
-    const booksData = JSON.stringify(data.books.map(b => ({
+    const booksForCards = data.books.map(b => ({
       slug: b.slug,
       title: b.title,
       cover: b.cover,
       category_name: b.category_name,
       desc: stripMarkdownDesc(b.description || '').slice(0, 200),
-      author_name: b.author_name || '',
-    })));
+    }));
+    // বইয়ের লিস্ট এখন build time-এই আসল HTML হিসেবে বসছে — client-side
+    // JS এর উপর নির্ভর করছে না, তাই crawler প্রথম লোডেই পুরো লিস্ট পাবে
+    const authorBooksHtml = booksForCards.map(renderAuthorBookCard).join('\n');
+
+    // author bio markdown build time-এই HTML-এ convert — client-side
+    // marked.parse() এর উপর নির্ভরতা বাদ
+    const authorDescHtml = data.desc ? marked.parse(data.desc) : '';
+
+    // meta description: bio থাকলে সেটার plain-text সামারি, না থাকলে
+    // book-count দিয়ে auto-generate
+    const authorMetaDesc = data.desc
+      ? escapeAttr(escapeHtml(stripMarkdownPlain(data.desc)).replace(/\s+/g, ' ').trim().slice(0, 160))
+      : escapeAttr(`লেখক ${data.name}-এর ${data.books.length}টি বই পড়ুন ও ডাউনলোড করুন পাঠক ঘরে।`);
 
     const authorContent = render(authorTemplate, {
       author_name: data.name,
+      author_name_json: JSON.stringify(data.name || ''),
       author_img: data.img,
-      author_desc: data.desc,
+      author_img_json: JSON.stringify(data.img || ''),
+      author_desc_html: authorDescHtml,
+      author_desc_json: JSON.stringify(stripMarkdownPlain(data.desc || '').slice(0, 300)),
       author_book_count: toBanglaNum(data.books.length),
-      author_books_data: booksData,
+      author_books_html: authorBooksHtml,
+      author_url_json: JSON.stringify(`${SITE_URL}/author/${slug}.html`),
     });
     const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
     const fullPage = render(layout, {
       page_title: data.name,
-      full_title: `${data.name} - পাঠক ঘর`,
-      page_description: '',
+      // সাইটের নাম বাদ — বই পেজের মতোই শুধু মূল entity-র নাম
+      full_title: escapeAttr(data.name),
+      page_description: authorMetaDesc,
       page_image: data.img || DEFAULT_OG_IMAGE,
       page_url: `${SITE_URL}/author/${slug}.html`,
+      // ব্যক্তি/লেখক পেজের জন্য "profile" বেশি প্রাসঙ্গিক og:type "website" এর চেয়ে
+      page_type: 'profile',
       content: authorContent,
       hero_categories,
       sidebar_authors,
