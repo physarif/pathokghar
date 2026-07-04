@@ -8,6 +8,17 @@ const { marked } = require('marked');
 // options — output identical থাকার জন্য
 marked.setOptions({ breaks: true, gfm: true });
 
+// Author bio/description-এর ভেতরে কেউ যদি "# হেডিং" টাইপ markdown লেখে,
+// সেটা যেন আসল <h1>/<h2> ট্যাগ তৈরি না করে (পেজে ইতিমধ্যে একটা H1 আছে —
+// লেখকের নাম)। heading level ২ ধাপ নামিয়ে দেওয়া হচ্ছে যাতে সেগুলো h3+ হয়।
+const headingSafeRenderer = new marked.Renderer();
+headingSafeRenderer.heading = function ({ tokens, depth }) {
+  const newDepth = Math.min(depth + 2, 6);
+  const text = this.parser.parseInline(tokens);
+  return `<h${newDepth}>${text}</h${newDepth}>\n`;
+};
+marked.use({ renderer: headingSafeRenderer });
+
 // Firebase env var validation
 const REQUIRED_ENV = ['FIREBASE_PROJECT_ID', 'FIREBASE_CLIENT_EMAIL', 'FIREBASE_PRIVATE_KEY', 'FIREBASE_DATABASE_URL'];
 for (const key of REQUIRED_ENV) {
