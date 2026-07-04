@@ -37,6 +37,15 @@ function escapeHtml(str) {
     .replace(/>/g, '&gt;');
 }
 
+// meta/og attribute-এর জন্য quote-safe escape। ইনপুট আগে থেকেই escapeHtml
+// (stripMarkdownDesc) হয়ে থাকে বলে এখানে শুধু quote escape করা হয়, যাতে
+// & দুইবার escape (&amp;amp;) না হয়ে যায়।
+function escapeAttr(str) {
+  return (str || '')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 // Card preview description: escape first, then apply ONLY inline markdown
 // (bold **text**, italic *text*/_text_). Headings, lists, links, blockquotes,
 // code blocks ইত্যাদি block-level markdown card preview-এ ignore করা হয় —
@@ -64,14 +73,38 @@ function stripMarkdownDesc(str) {
   return escaped;
 }
 
+// JSON-LD / meta description-এর জন্য plain-text markdown-strip (HTML-escape
+// ছাড়া, কারণ JSON.stringify নিজেই quote/special char সামলে নেয়)
+function stripMarkdownPlain(str) {
+  let out = String(str || '');
+  out = out.replace(/\*\*(.+?)\*\*/g, '$1');
+  out = out.replace(/__(.+?)__/g, '$1');
+  out = out.replace(/(^|[^*])\*([^*\n]+?)\*([^*]|$)/g, '$1$2$3');
+  out = out.replace(/(^|[^_])_([^_\n]+?)_([^_]|$)/g, '$1$2$3');
+  out = out.replace(/^#{1,6}\s*/gm, '');
+  out = out.replace(/^>\s?/gm, '');
+  out = out.replace(/^[-*+]\s+/gm, '');
+  return out.trim();
+}
+
 // Template load
 const layout = fs.readFileSync('components/layout.html', 'utf8');
 const bookTemplate = fs.readFileSync('components/book.html', 'utf8');
 
 // Placeholder replace helper
+// hero_tag / page_type এর জন্য site-wide default দেওয়া হয়েছে, যাতে প্রতিটা
+// render(layout, ...) কলে আলাদা করে না দিলেও ভুল/ফাঁকা মার্কআপ তৈরি না হয়।
+// হোমপেজ ছাড়া বাকি সব পেজে হিরো ব্র্যান্ড-নাম H1 না হয়ে div হবে — কারণ
+// প্রতিটা পেজের নিজস্ব মূল বিষয় (বইয়ের নাম, লেখকের নাম ইত্যাদি) H1 হওয়া উচিত।
+const DEFAULT_RENDER_DATA = {
+  hero_tag: 'div',
+  page_type: 'website',
+};
+
 function render(template, data) {
+  const merged = Object.assign({}, DEFAULT_RENDER_DATA, data);
   return template.replace(/\{\{(\w+)\}\}/g, (_, key) => {
-    const val = data[key] != null ? String(data[key]) : '';
+    const val = merged[key] != null ? String(merged[key]) : '';
     return val.replace(/\$/g, '$$$$');
   });
 }
@@ -161,14 +194,22 @@ async function generateBookPages() {
   for (const book of bookList) {
     const bookContent = render(bookTemplate, {
       book_title: book.title,
+      book_title_json: JSON.stringify(book.title || ''),
       book_author: book.author_name,
+      book_author_json: JSON.stringify(book.author_name || ''),
       book_author_slug: book.author_slug,
       book_cover: book.cover,
       book_category: book.category_name,
+      book_category_json: JSON.stringify(book.category_name || ''),
       book_category_slug: book.category_slug,
       book_language: book.language,
       book_description: book.description,
       book_description_json: JSON.stringify(book.description || ""),
+      // JSON-LD structured data-এর জন্য markdown-strip করা প্লেইন টেক্সট
+      book_schema_description_json: JSON.stringify(stripMarkdownPlain(book.description || '').slice(0, 300)),
+      book_url: `${SITE_URL}/book/${book.slug}.html`,
+      book_url_json: JSON.stringify(`${SITE_URL}/book/${book.slug}.html`),
+      book_cover_json: JSON.stringify(book.cover || ''),
       book_slug: book.slug,
       book_read_href: book.zip_url ? `/read/${book.slug}.html` : 'javascript:void(0)',
       book_read_disabled: book.zip_url ? '' : 'btn-unclick',
@@ -181,10 +222,19 @@ async function generateBookPages() {
     const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
     const fullPage = render(layout, {
       page_title: `${book.title} - ${book.author_name}`,
-      full_title: `${book.title} - ${book.author_name} - পাঠক ঘর`,
-      page_description: book.description?.slice(0, 160) || '',
+      full_title: escapeAttr(`${book.title} - ${book.author_name} - পাঠক ঘর`),
+      // heading/list/blockquote markdown চিহ্নসহ পুরোপুরি strip করে, নতুন
+      // লাইনগুলো স্পেস দিয়ে একলাইন করা হচ্ছে — যাতে meta/og description
+      // ঝকঝকে এক-লাইন প্লেইন টেক্সট হয়
+      page_description: escapeAttr(
+        escapeHtml(stripMarkdownPlain(book.description || ''))
+          .replace(/\s+/g, ' ')
+          .trim()
+          .slice(0, 160)
+      ),
       page_image: book.cover || DEFAULT_OG_IMAGE,
       page_url: `${SITE_URL}/book/${book.slug}.html`,
+      page_type: 'book',
       content: bookContent,
       hero_categories,
       sidebar_authors,
@@ -267,6 +317,10 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
       page_description: 'উপন্যাস, গল্প, কবিতাসহ অসংখ্য বই পড়ুন বা ডাউনলোড করুন – সম্পূর্ণ ফ্রিতে!',
       page_image: DEFAULT_OG_IMAGE,
       page_url: page === 1 ? SITE_URL : `${SITE_URL}/books/${page}/`,
+      // শুধু আসল হোমপেজে (page 1) ব্র্যান্ড-নাম H1 হবে। বাকি সব পেজে (book,
+      // author, category, /books/2/... ইত্যাদি) এটা div — কারণ সেসব পেজের
+      // নিজস্ব বিষয় (বইয়ের নাম ইত্যাদি) H1 হওয়া উচিত, ব্র্যান্ড-নাম নয়।
+      hero_tag: page === 1 ? 'h1' : 'div',
       content: indexContent,
       hero_categories,
       sidebar_authors,
