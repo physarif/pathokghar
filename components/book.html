@@ -66,13 +66,17 @@
 
             // বইয়ের বর্ণনায় কেউ "# হেডিং" লিখলে সেটা যেন আসল <h1>/<h2> না
             // হয় — পেজের একমাত্র H1 তো বইয়ের নাম (উপরে)। heading level ২
-            // ধাপ নামিয়ে দেওয়া হচ্ছে (marked 9.x renderer API)।
-            const headingSafeRenderer = new marked.Renderer();
-            headingSafeRenderer.heading = function (text, level) {
-                const newLevel = Math.min(level + 2, 6);
-                return `<h${newLevel}>${text}</h${newLevel}>\n`;
-            };
-            marked.setOptions({ renderer: headingSafeRenderer });
+            // ধাপ নামিয়ে দেওয়া হচ্ছে। renderer.heading override marked 9.x-এ
+            // সঠিকভাবে কাজ করছিল না (ভুল সাইজ/লেভেল দেখাচ্ছিল), তাই এখন
+            // walkTokens দিয়ে সরাসরি token.depth পরিবর্তন করা হচ্ছে — এটা
+            // marked-এর ভার্সন-নির্বিশেষে নির্ভরযোগ্য।
+            marked.use({
+                walkTokens(token) {
+                    if (token.type === 'heading') {
+                        token.depth = Math.min(token.depth + 2, 6);
+                    }
+                }
+            });
 
             const parsed = marked.parse(raw);
             const mobileEl = document.getElementById('book-description-mobile');
