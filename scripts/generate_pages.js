@@ -525,14 +525,14 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
         </div>
       </a>`).join('');
 
-      // Pagination HTML
-      let paginationHTML = '<div class="cat-pagination">';
-      if (page > 1) paginationHTML += `<a href="/category/${slug}/${page - 1}/" class="cat-page-nav"><i class="fas fa-chevron-left text-xs"></i> আগের</a>`;
+      // Pagination HTML (books.html এর bc-pagination style অনুসরণ করা হচ্ছে)
+      let paginationHTML = '<div class="bc-pagination">';
+      if (page > 1) paginationHTML += `<a href="/category/${slug}/${page - 1}/" class="bc-page-nav"><i class="fas fa-chevron-left text-xs"></i> পূর্ববর্তী</a>`;
       for (let i = 1; i <= totalPages; i++) {
-        if (i === page) paginationHTML += `<span class="cat-page-btn active">${i}</span>`;
-        else paginationHTML += `<a href="/category/${slug}/${i}/" class="cat-page-btn">${i}</a>`;
+        if (i === page) paginationHTML += `<span class="bc-page-btn active">${toBanglaNum(i)}</span>`;
+        else paginationHTML += `<a href="/category/${slug}/${i}/" class="bc-page-btn">${toBanglaNum(i)}</a>`;
       }
-      if (page < totalPages) paginationHTML += `<a href="/category/${slug}/${page + 1}/" class="cat-page-nav">পরের <i class="fas fa-chevron-right text-xs"></i></a>`;
+      if (page < totalPages) paginationHTML += `<a href="/category/${slug}/${page + 1}/" class="bc-page-nav">পরবর্তী <i class="fas fa-chevron-right text-xs"></i></a>`;
       paginationHTML += '</div>';
 
       const categoryContent = render(categoryTemplate, {
