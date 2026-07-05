@@ -241,7 +241,7 @@
             padding: 0;
         ">
             <a href="https://castfm.pages.dev/app" target="_blank" rel="noopener" style="display:flex; align-items:center; justify-content:center; width:100%;">
-                <img src="https://pub-c6c60724cf8d4c88ae54272eba79dcf0.r2.dev/castfm_ads_250_50_1783246240185.png" alt="CastFM" style="max-width:250px; width:100%; height:auto; display:block;">
+                <img src="https://pub-c6c60724cf8d4c88ae54272eba79dcf0.r2.dev/castfm_banner_ads_1783247773295.webp" alt="CastFM" style="width:100%; height:auto; display:block;">
             </a>
         </div>
     </div>
@@ -314,14 +314,11 @@
         var autoOpened = false;
         var AD_REDIRECT_URL = 'https://www.effectivecpmnetwork.com/xy4y06gcc0?key=0a786fa6fae9cb37d984706635ad88c3';
 
-        // Auto-open after 1.5s, then auto-close after 30s
+        // Auto-open after 1.5s
         setTimeout(function() {
             if (collapsed) {
                 autoOpened = true;
                 toggleAdBar();
-                autoCloseTimer = setTimeout(function() {
-                    if (!collapsed) { autoOpened = false; toggleAdBar(); }
-                }, 30000);
             }
         }, 0);
 
@@ -436,9 +433,6 @@
             } else {
                 if (!autoOpened) adOpenTime = null; // manual open — redirect নেই
                 adOpenTime = Date.now();
-                autoCloseTimer = setTimeout(function() {
-                    if (!collapsed) { autoOpened = false; toggleAdBar(); }
-                }, 30000);
                 content.style.maxHeight = '500px';
                 content.style.padding = '6px 10px';
                 if (notice) notice.style.display = 'flex';
