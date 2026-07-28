@@ -12,25 +12,27 @@
                 width="200" height="300"
                 class="book-hero-cover">
 
-            <a href="/category/{{book_category_slug}}/1/" class="book-hero-category">{{book_category}}</a>
+            <div class="book-hero-body">
+                <a href="/category/{{book_category_slug}}/1/" class="book-hero-category">{{book_category}}</a>
 
-            <h1 class="book-hero-title">{{book_title}}</h1>
+                <h1 class="book-hero-title">{{book_title}}</h1>
 
-            <a href="/author/{{book_author_slug}}.html" class="book-hero-author">
-                <i class="fa-solid fa-feather-pointed"></i> {{book_author}}
-            </a>
+                <a href="/author/{{book_author_slug}}.html" class="book-hero-author">{{book_author}}</a>
 
-            <div class="book-hero-actions">
-                <a href="{{book_read_href}}"
-                    class="book-hero-btn {{book_read_disabled}}"
-                    aria-disabled="{{book_read_aria_disabled}}">
-                    <i class="fa-solid fa-book-open"></i> পড়ুন
-                </a>
-                <a href="{{book_download_href}}"
-                    class="book-hero-btn book-hero-btn-outline {{book_download_disabled}}"
-                    aria-disabled="{{book_download_aria_disabled}}">
-                    <i class="fa-solid fa-download"></i> ডাউনলোড
-                </a>
+                <hr class="book-hero-rule">
+
+                <div class="book-hero-actions">
+                    <a href="{{book_read_href}}"
+                        class="book-hero-link {{book_read_disabled}}"
+                        aria-disabled="{{book_read_aria_disabled}}">
+                        <i class="fa-solid fa-book-open"></i> পড়ুন
+                    </a>
+                    <a href="{{book_download_href}}"
+                        class="book-hero-link {{book_download_disabled}}"
+                        aria-disabled="{{book_download_aria_disabled}}">
+                        <i class="fa-solid fa-download"></i> ডাউনলোড
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -88,17 +90,16 @@
         </script>
 
         <style>
-            /* ── Book Hero Card ── */
+            /* ── Book Hero Card (Editorial Horizontal) ── */
             .book-hero-card {
                 display: flex;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                gap: 0.55rem;
+                align-items: flex-start;
+                gap: 1.1rem;
+                text-align: left;
                 background: #fff;
                 border: 1px solid #e5e7eb;
                 border-radius: 16px;
-                padding: 1.5rem 1.25rem 1.35rem;
+                padding: 1.25rem;
                 box-shadow: 0 2px 14px rgba(0,0,0,0.06);
                 margin-bottom: 1.25rem;
             }
@@ -107,16 +108,23 @@
                 border-color: #3a3a3b;
             }
             .book-hero-cover {
-                width: 132px;
-                height: 192px;
-                border-radius: 10px;
+                width: 100px;
+                height: 148px;
+                border-radius: 8px;
                 object-fit: cover;
                 background: #e5e7eb;
-                box-shadow: 0 10px 26px rgba(0,0,0,0.2);
-                margin-bottom: 0.15rem;
+                flex-shrink: 0;
+                box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+            }
+            .book-hero-body {
+                display: flex;
+                flex-direction: column;
+                gap: 0.4rem;
+                min-width: 0;
             }
             .book-hero-category {
                 display: inline-block;
+                width: fit-content;
                 font-family: 'Noto Serif Bengali', serif;
                 font-size: 0.72rem;
                 font-weight: 700;
@@ -133,64 +141,52 @@
             .dark .book-hero-category:hover { background: #c0392b; color: #fff; }
             .book-hero-title {
                 font-family: 'Noto Serif Bengali', serif;
-                font-size: 1.3rem;
+                font-size: 1.15rem;
                 font-weight: 800;
                 color: #1a1a1b;
-                line-height: 1.45;
-                margin: 0.15rem 0 0;
+                line-height: 1.4;
+                margin: 0;
             }
             .dark .book-hero-title { color: #f3f4f6; }
             .book-hero-author {
-                display: inline-flex;
-                align-items: center;
-                gap: 0.35rem;
                 font-family: 'Noto Serif Bengali', serif;
-                font-size: 0.88rem;
+                font-size: 0.85rem;
                 font-weight: 600;
                 color: #6b7280;
                 text-decoration: none;
                 transition: color 0.15s;
             }
-            .book-hero-author i { font-size: 0.75rem; color: #c0392b; }
             .book-hero-author:hover { color: #c0392b; text-decoration: underline; text-underline-offset: 3px; }
             .dark .book-hero-author { color: #9ca3af; }
             .dark .book-hero-author:hover { color: #f2938a; }
+            .book-hero-rule {
+                border: none;
+                border-top: 1px dashed #f0d3d0;
+                margin: 0.25rem 0;
+            }
+            .dark .book-hero-rule { border-top-color: #4a3232; }
             .book-hero-actions {
                 display: flex;
                 gap: 0.6rem;
-                width: 100%;
-                max-width: 320px;
-                margin-top: 0.65rem;
+                margin-top: 0.15rem;
             }
-            .book-hero-btn {
-                flex: 1;
-                display: flex;
+            .book-hero-link {
+                display: inline-flex;
                 align-items: center;
-                justify-content: center;
-                gap: 0.4rem;
-                background: #c0392b;
+                gap: 0.35rem;
+                font-size: 0.8rem;
+                font-weight: 700;
                 color: #fff;
-                font-size: 0.875rem;
-                font-weight: 600;
-                padding: 0.6rem 0.5rem;
-                border-radius: 9px;
+                background: #c0392b;
                 text-decoration: none;
+                padding: 0.45rem 0.95rem;
+                border-radius: 999px;
                 transition: background 0.15s, transform 0.1s;
             }
-            .book-hero-btn:hover { background: #a93226; }
-            .book-hero-btn:active { transform: scale(0.97); }
-            .book-hero-btn-outline {
-                background: #fff;
-                color: #c0392b;
-                border: 1.5px solid #c0392b;
-            }
-            .book-hero-btn-outline:hover { background: #fde8e6; }
-            .dark .book-hero-btn-outline {
-                background: transparent;
-                color: #f2938a;
-                border-color: #a93226;
-            }
-            .dark .book-hero-btn-outline:hover { background: rgba(192,57,43,0.15); }
+            .book-hero-link:hover { background: #a93226; }
+            .book-hero-link:active { transform: scale(0.96); }
+            .dark .book-hero-link { background: #c0392b; color: #fff; }
+            .dark .book-hero-link:hover { background: #a93226; }
 
             /* ── Description Card ── */
             .book-desc-card {
