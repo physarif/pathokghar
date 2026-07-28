@@ -1,39 +1,43 @@
 <!-- templates/book.html — শুধু content, layout.html এ inject হবে --> 
-<main class="flex-1 pt-4 md:pt-6 p-0 md:p-6 min-h-[calc(100vh-3.5rem)]">
+<main class="flex-1 pt-4 md:pt-6 p-3 md:p-6 min-h-[calc(100vh-3.5rem)]">
     <div class="max-w-3xl mx-auto">
 
-        <!-- Book Header Bar -->
-        <!-- বইয়ের নাম এখানে সিমান্টিকভাবে H1 (SEO-এর জন্য জরুরি — এটাই পেজের
-             মূল বিষয়), কিন্তু display:inline + font:inherit দিয়ে ভিজ্যুয়ালি
-             আগের এক-লাইন breadcrumb style-ই বজায় রাখা হয়েছে। -->
-        <div style="padding:0.6rem 1rem;border-bottom:1px solid #e5e7eb;background:#fff;font-family:'Noto Serif Bengali',serif;font-size:1.1rem;font-weight:800;line-height:1.4;" class="dark:bg-[#2d2d2d] dark:border-gray-700">
-            <a href="/category/{{book_category_slug}}/1/" style="color:#9ca3af;font-weight:600;text-decoration:none;" onmouseover="this.style.color='#c0392b'" onmouseout="this.style.color='#9ca3af'">{{book_category}}</a><span style="color:#9ca3af;font-weight:400;"> › </span><h1 style="display:inline;margin:0;padding:0;font:inherit;color:#1a1a1b;" class="dark:text-gray-100">{{book_title}}</h1><span style="color:#9ca3af;font-weight:400;"> – </span><a href="/author/{{book_author_slug}}.html" style="color:#c0392b;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">{{book_author}}</a>
-        </div>
-
-
-        <!-- Book Card -->
-        <div class="bg-white dark:bg-[#2d2d2d] p-4">
+        <!-- Book Hero Card: cover, title, author, category, read ও download
+             সবকিছু একত্রে একটা কার্ডে সুন্দরভাবে সাজানো। H1 সিমান্টিকভাবে
+             বইয়ের নাম-ই থাকছে (SEO-এর জন্য জরুরি — এটাই পেজের মূল বিষয়)। -->
+        <div class="book-hero-card">
             <img src="{{book_cover}}"
                 alt="{{book_title}} বই এর কভার - লেখক {{book_author}}"
                 fetchpriority="high"
                 width="200" height="300"
-                class="float-left w-28 rounded object-cover aspect-[2/3] mr-4">
-            <div class="flex gap-2 mb-3">
+                class="book-hero-cover">
+
+            <a href="/category/{{book_category_slug}}/1/" class="book-hero-category">{{book_category}}</a>
+
+            <h1 class="book-hero-title">{{book_title}}</h1>
+
+            <a href="/author/{{book_author_slug}}.html" class="book-hero-author">
+                <i class="fa-solid fa-feather-pointed"></i> {{book_author}}
+            </a>
+
+            <div class="book-hero-actions">
                 <a href="{{book_read_href}}"
-                    class="flex-1 flex items-center justify-center bg-[#c0392b] hover:bg-[#a93226] text-white text-sm font-medium py-2 rounded transition-colors relative overflow-hidden {{book_read_disabled}}"
+                    class="book-hero-btn {{book_read_disabled}}"
                     aria-disabled="{{book_read_aria_disabled}}">
-                    পড়ুন
+                    <i class="fa-solid fa-book-open"></i> পড়ুন
                 </a>
                 <a href="{{book_download_href}}"
-                    class="flex-1 flex items-center justify-center bg-[#c0392b] hover:bg-[#a93226] text-white text-sm font-medium py-2 rounded transition-colors relative overflow-hidden {{book_download_disabled}}"
+                    class="book-hero-btn book-hero-btn-outline {{book_download_disabled}}"
                     aria-disabled="{{book_download_aria_disabled}}">
-                    ডাউনলোড
+                    <i class="fa-solid fa-download"></i> ডাউনলোড
                 </a>
             </div>
-            <div id="book-description-mobile" class="prose-book text-lg leading-normal text-gray-700 dark:text-gray-300 text-justify"></div>
-            <div class="clear-both"></div>
+        </div>
 
-
+        <!-- Description: hero কার্ড থেকে আলাদা, নিজস্ব কার্ডে নিচে -->
+        <div class="book-desc-card">
+            <h2 class="book-desc-heading">বইয়ের বিবরণ</h2>
+            <div id="book-description-mobile" class="prose-book text-base leading-relaxed text-gray-700 dark:text-gray-300 text-justify"></div>
         </div>
 
         <!-- Structured data: Google-কে বইয়ের নাম, লেখক, কভার স্পষ্টভাবে বুঝিয়ে
@@ -82,6 +86,138 @@
             const mobileEl = document.getElementById('book-description-mobile');
             if (mobileEl) mobileEl.innerHTML = parsed;
         </script>
+
+        <style>
+            /* ── Book Hero Card ── */
+            .book-hero-card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 0.55rem;
+                background: #fff;
+                border: 1px solid #e5e7eb;
+                border-radius: 16px;
+                padding: 1.5rem 1.25rem 1.35rem;
+                box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+                margin-bottom: 1.25rem;
+            }
+            .dark .book-hero-card {
+                background: #2a2a2b;
+                border-color: #3a3a3b;
+            }
+            .book-hero-cover {
+                width: 132px;
+                height: 192px;
+                border-radius: 10px;
+                object-fit: cover;
+                background: #e5e7eb;
+                box-shadow: 0 10px 26px rgba(0,0,0,0.2);
+                margin-bottom: 0.15rem;
+            }
+            .book-hero-category {
+                display: inline-block;
+                font-family: 'Noto Serif Bengali', serif;
+                font-size: 0.72rem;
+                font-weight: 700;
+                letter-spacing: 0.02em;
+                color: #c0392b;
+                background: #fde8e6;
+                padding: 0.28rem 0.85rem;
+                border-radius: 999px;
+                text-decoration: none;
+                transition: background 0.15s, color 0.15s;
+            }
+            .book-hero-category:hover { background: #c0392b; color: #fff; }
+            .dark .book-hero-category { background: rgba(192,57,43,0.18); color: #f2938a; }
+            .dark .book-hero-category:hover { background: #c0392b; color: #fff; }
+            .book-hero-title {
+                font-family: 'Noto Serif Bengali', serif;
+                font-size: 1.3rem;
+                font-weight: 800;
+                color: #1a1a1b;
+                line-height: 1.45;
+                margin: 0.15rem 0 0;
+            }
+            .dark .book-hero-title { color: #f3f4f6; }
+            .book-hero-author {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.35rem;
+                font-family: 'Noto Serif Bengali', serif;
+                font-size: 0.88rem;
+                font-weight: 600;
+                color: #6b7280;
+                text-decoration: none;
+                transition: color 0.15s;
+            }
+            .book-hero-author i { font-size: 0.75rem; color: #c0392b; }
+            .book-hero-author:hover { color: #c0392b; text-decoration: underline; text-underline-offset: 3px; }
+            .dark .book-hero-author { color: #9ca3af; }
+            .dark .book-hero-author:hover { color: #f2938a; }
+            .book-hero-actions {
+                display: flex;
+                gap: 0.6rem;
+                width: 100%;
+                max-width: 320px;
+                margin-top: 0.65rem;
+            }
+            .book-hero-btn {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.4rem;
+                background: #c0392b;
+                color: #fff;
+                font-size: 0.875rem;
+                font-weight: 600;
+                padding: 0.6rem 0.5rem;
+                border-radius: 9px;
+                text-decoration: none;
+                transition: background 0.15s, transform 0.1s;
+            }
+            .book-hero-btn:hover { background: #a93226; }
+            .book-hero-btn:active { transform: scale(0.97); }
+            .book-hero-btn-outline {
+                background: #fff;
+                color: #c0392b;
+                border: 1.5px solid #c0392b;
+            }
+            .book-hero-btn-outline:hover { background: #fde8e6; }
+            .dark .book-hero-btn-outline {
+                background: transparent;
+                color: #f2938a;
+                border-color: #a93226;
+            }
+            .dark .book-hero-btn-outline:hover { background: rgba(192,57,43,0.15); }
+
+            /* ── Description Card ── */
+            .book-desc-card {
+                background: #fff;
+                border: 1px solid #e5e7eb;
+                border-radius: 16px;
+                padding: 1.1rem 1.25rem 1.3rem;
+                box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+            }
+            .dark .book-desc-card {
+                background: #2a2a2b;
+                border-color: #3a3a3b;
+            }
+            .book-desc-heading {
+                font-family: 'Noto Serif Bengali', serif;
+                font-size: 1rem;
+                font-weight: 800;
+                color: #1a1a1b;
+                margin: 0 0 0.75rem;
+                padding-bottom: 0.6rem;
+                border-bottom: 1px solid #f0f0f0;
+            }
+            .dark .book-desc-heading {
+                color: #f3f4f6;
+                border-bottom-color: #3a3a3b;
+            }
+        </style>
 
         <style>
             .btn-unclick {
