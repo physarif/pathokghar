@@ -12,12 +12,12 @@
 }
 </script>
 
-<div class="md:px-6 mb-6">
-    <div class="bg-white dark:bg-[#2d2d2d] shadow-sm border-b border-gray-200 dark:border-gray-700 p-5 md:p-6">
-        <!-- Image floated left, name + description flow around it -->
-        <div class="clearfix">
-            <img src="{{author_img}}" alt="{{author_name}}" class="float-left mr-4 md:mr-7 mb-2 w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-4 border-gray-100 dark:border-gray-700 shadow-md">
-            <h1 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100 leading-snug mb-2">{{author_name}}</h1>
+<div class="md:px-6 author-hero-wrap">
+    <div class="author-hero-card">
+        <img src="{{author_img}}" alt="{{author_name}}" class="author-hero-avatar">
+        <div class="author-hero-body">
+            <h1 class="author-hero-name">{{author_name}}</h1>
+            <hr class="author-hero-rule">
             <!-- build time-এই markdown থেকে HTML — crawler-এর জন্য প্রথম
                  লোডেই লেখক পরিচিতি পাওয়া যায়, JS-এর উপর নির্ভরতা নেই -->
             <div class="author-desc-md text-base text-gray-500 dark:text-gray-400 leading-6 text-justify">{{author_desc_html}}</div>
@@ -39,6 +39,64 @@
 </div>
 
 </div><!-- /md:px-8 lg:px-16 -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     AUTHOR PROFILE HERO — design এখানে পরিবর্তন করো
+     ═══════════════════════════════════════════════════════════ -->
+<style>
+.author-hero-wrap {
+    margin-bottom: 1.75rem;
+}
+.author-hero-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.1rem;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 1.25rem;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+}
+.dark .author-hero-card {
+    background: #2a2a2b;
+    border-color: #3a3a3b;
+}
+.author-hero-avatar {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 3px solid #fde8e6;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+@media (min-width: 768px) {
+    .author-hero-avatar { width: 104px; height: 104px; }
+}
+.dark .author-hero-avatar { border-color: rgba(192,57,43,0.25); }
+.author-hero-body {
+    flex: 1;
+    min-width: 0;
+}
+.author-hero-name {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #1a1a1b;
+    line-height: 1.4;
+    margin: 0;
+}
+@media (min-width: 768px) {
+    .author-hero-name { font-size: 1.4rem; }
+}
+.dark .author-hero-name { color: #f3f4f6; }
+.author-hero-rule {
+    border: none;
+    border-top: 1px dashed #f0d3d0;
+    margin: 0.5rem 0;
+}
+.dark .author-hero-rule { border-top-color: #4a3232; }
+</style>
 
 <!-- ═══════════════════════════════════════════════════════════
      AUTHOR BOOK CARD — design এখানে পরিবর্তন করো
