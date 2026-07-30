@@ -175,7 +175,7 @@
     #book-content h2 {
         font-size: 1.15rem;
         font-weight: 800;
-        color: #9ca3af;
+        color: #c0392b;
         text-align: center;
         margin: 0.5rem 0 0.25rem;
         letter-spacing: 0.04em;
@@ -191,17 +191,39 @@
     }
     /* Night mode heading adjust */
     body.theme-dark  #book-content h1,
-    body.theme-black #book-content h1,
+    body.theme-black #book-content h1 { color: #6b7280; }
     body.theme-dark  #book-content h2,
-    body.theme-black #book-content h2 { color: #6b7280; }
+    body.theme-black #book-content h2 { color: #f2938a; }
     body.theme-dark  #book-content h1::after,
     body.theme-dark  #book-content h2::after { background: #a93226; }
     body.theme-black #book-content h1::after,
     body.theme-black #book-content h2::after { background: #922b21; }
-    body.theme-sepia #book-content h1,
-    body.theme-sepia #book-content h2 { color: #a08060; }
+    body.theme-sepia #book-content h1 { color: #a08060; }
+    body.theme-sepia #book-content h2 { color: #a04030; }
     body.theme-sepia #book-content h1::after,
     body.theme-sepia #book-content h2::after { background: #a04030; }
+
+    /* ── H2 Section Box: প্রতিটা h2 থেকে পরের হেডিং (h1/h2) পর্যন্ত
+         অংশ একটা আলাদা bg-বক্সে থাকবে, h2-এর style অপরিবর্তিত ── */
+    #book-content .book-h2-section {
+        background: rgba(192,57,43,0.05);
+        border: 1px solid rgba(192,57,43,0.15);
+        border-radius: 10px;
+        padding: 1rem 1.1rem 1.2rem;
+        margin: 1.75rem 0;
+    }
+    #book-content .book-h2-section > h2:first-child {
+        margin-top: 0;
+    }
+    body.theme-dark  #book-content .book-h2-section,
+    body.theme-black #book-content .book-h2-section {
+        background: rgba(169,50,38,0.1);
+        border-color: rgba(169,50,38,0.25);
+    }
+    body.theme-sepia #book-content .book-h2-section {
+        background: rgba(160,64,48,0.08);
+        border-color: rgba(160,64,48,0.2);
+    }
     #book-content p {
         margin-bottom: 1.1rem;
         line-height: 2;
@@ -996,6 +1018,33 @@
     if (desktopScroller) {
         desktopScroller.addEventListener('scroll', () => updateProgress(desktopScroller), { passive: true });
     }
+
+    // ── প্রতিটা h2 থেকে পরের হেডিং (h1/h2) পর্যন্ত অংশ একটা আলাদা
+    // bg-বক্সে মুড়ে দেওয়া হচ্ছে — h2-এর নিজের style অপরিবর্তিত থাকছে
+    function wrapH2Sections(container) {
+        const allHeadings = Array.from(container.querySelectorAll('h1, h2'));
+        const h2s = allHeadings.filter(h => h.tagName === 'H2');
+        if (!h2s.length) return;
+
+        h2s.forEach(h2 => {
+            const idx = allHeadings.indexOf(h2);
+            const stopAt = (idx !== -1 && idx + 1 < allHeadings.length)
+                ? allHeadings[idx + 1]
+                : null;
+
+            const box = document.createElement('div');
+            box.className = 'book-h2-section';
+            h2.parentNode.insertBefore(box, h2);
+
+            let n = h2;
+            while (n && n !== stopAt) {
+                const next = n.nextSibling;
+                box.appendChild(n);
+                n = next;
+            }
+        });
+    }
+    wrapH2Sections(bookContent);
 
     // ── Build TOC ──
     const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
