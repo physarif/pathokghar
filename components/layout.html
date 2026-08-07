@@ -1,1064 +1,278 @@
 <!DOCTYPE html>
 <html lang="bn">
-<head> 
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
-         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
-         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
-    <meta name="robots" content="noindex, follow">
-    <link rel="canonical" href="https://pathokghar.pages.dev/book/{{book_slug}}.html">
-    <title>{{book_title}} - পাঠক ঘর</title>
-    <meta name="description" content="{{book_description}}">
-    <meta property="og:title" content="{{book_title}} - পাঠক ঘর">
-    <meta property="og:description" content="{{book_description}}">
-    <link rel="stylesheet" href="/assets/css/tailwind.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFBP0HJMJV"></script>
     <script>
-(function(){
-    try {
-        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
-        var theme = p.currentTheme || 'light';
-        var bg = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e', black:'#000' }[theme] || '#fff';
-        var color = { light:'#1a1a1b', sepia:'#3b2f1e', dark:'#e5e7eb', black:'#d1d5db' }[theme] || '#1a1a1b';
-        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
-        var ls = p.lineSpacing || 1.5;
-        var mg = p.marginScale !== undefined ? p.marginScale : 5;
-        var align = p.currentAlign || 'left';
-        var style = document.createElement('style');
-        style.id = 'fouc-shield';
-        style.textContent =
-            'html,body{background:' + bg + '!important}' +
-            '#mobile-reader-bg{background:' + bg + '!important}' +
-            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important}' +
-            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
-        document.head.appendChild(style);
-        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
-        document.addEventListener('DOMContentLoaded', function() {
-            var el = document.getElementById('fouc-shield');
-            if (el) el.remove();
-        });
-    } catch(e) {}
-})();
-</script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WFBP0HJMJV');
+    </script>
+    <link rel="icon" type="image/webp" href="https://pathokghar.pages.dev/assets/photos/pathokghar-logo.webp">
+    <link rel="apple-touch-icon" href="https://pathokghar.pages.dev/assets/photos/pathokghar-logo.webp">
+    <title>{{full_title}}</title>
+    <meta name="description" content="{{page_description}}">
+    <meta name="robots" content="{{robots_meta}}">
+    <link rel="canonical" href="{{page_url}}">
+    <meta property="og:title" content="{{full_title}}">
+    <meta property="og:description" content="{{page_description}}">
+    <meta property="og:image" content="{{page_image}}">
+    <meta property="og:url" content="{{page_url}}">
+    <meta property="og:type" content="{{page_type}}">
+    <meta property="og:site_name" content="পাঠক ঘর">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{full_title}}">
+    <meta name="twitter:description" content="{{page_description}}">
+    <meta name="twitter:image" content="{{page_image}}">
+    <!-- আগে cdn.tailwindcss.com (runtime JIT) ব্যবহার হতো, যেটা FOUC/layout-shift
+         করত। এখন GitHub Actions বিল্ড টাইমে precompile হওয়া static CSS। -->
+    <link rel="stylesheet" href="/assets/css/tailwind.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    
-    /* ── Book read header hero ── */
-    .book-read-header {
-        margin-bottom: 1.5rem;
-    }
-    .book-read-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 0.65rem;
-        background: #fff;
-        border: 1px solid #e5e7eb;
-        border-radius: 14px;
-        padding: 1.4rem 1.25rem 1.2rem;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    }
-    .dark .book-read-box {
-        background: #2a2a2b;
-        border-color: #3a3a3b;
-    }
-    .book-read-cover {
-        width: 100px;
-        height: 136px;
-        border-radius: 8px;
-        flex-shrink: 0;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.18);
-        object-fit: cover;
-        background: #e5e7eb;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-    }
-    .book-read-cover svg { opacity: 0.35; }
-    .book-read-title-link {
-        text-decoration: none;
-        display: block;
-    }
-    .book-read-title-link:hover .book-read-title { text-decoration: underline; text-underline-offset: 3px; }
-    .book-read-title-link:active .book-read-title { opacity: 0.7; }
-    .book-read-title {
-        font-family: 'Noto Serif Bengali', serif;
-        font-size: 1.15rem;
-        font-weight: 700;
-        color: #1a1a1b;
-        line-height: 1.4;
-        margin: 0;
-        transition: opacity 0.15s;
-    }
-    .dark .book-read-title { color: #f3f4f6; }
-    .book-read-author-link {
-        text-decoration: none;
-        display: inline-block;
-    }
-    .book-read-author-link:hover .book-read-author { text-decoration: underline; text-underline-offset: 3px; }
-    .book-read-author-link:active .book-read-author { opacity: 0.6; }
-    .book-read-author {
-        font-family: 'Noto Serif Bengali', serif;
-        font-size: 0.82rem;
-        font-weight: 600;
-        color: #c0392b;
-        margin: 0;
-        transition: opacity 0.15s;
-    }
-</style>
+
+        /* Hero tab bar — solid pill buttons */
+        .segment-track {
+            display: flex;
+            width: 100%;
+            gap: 8px;
+        }
+        .segment-item {
+            flex: 1;
+            text-align: center;
+            padding: 0.35rem 0.5rem;
+            border-radius: 0;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #6b7280;
+            text-decoration: none;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            transition: background 0.15s, color 0.15s, border-color 0.15s;
+        }
+        .dark .segment-item {
+            color: #9ca3af;
+            background: #2d2d2d;
+            border-color: #4b5563;
+        }
+        .segment-item:active {
+            background: #a93226;
+            color: #ffffff;
+            border-color: #a93226;
+        }
+        .dark .segment-item:active {
+            background: #a93226;
+            color: #ffffff;
+            border-color: #a93226;
+        }
+        .segment-item.active {
+            color: #ffffff;
+            font-weight: 700;
+            background: #c0392b;
+            border-color: #c0392b;
+        }
+        .segment-item.active:hover { color: #ffffff; }
+        .dark .segment-item.active {
+            color: #ffffff;
+            background: #c0392b;
+            border-color: #c0392b;
+        }
+        .dark .segment-item.active:hover { color: #ffffff; }
+
+        /* Category links — footer style, larger */
+        .category-underline-list li { display: inline-flex; align-items: center; white-space: nowrap; }
+        .category-underline-list li + li::before {
+            content: '·';
+            color: #9ca3af;
+            font-size: 16px;
+            margin: 0 5px;
+            line-height: 1;
+        }
+        .dark .category-underline-list li + li::before { color: #4b5563; }
+        .category-underline-list li.line-start::before { display: none !important; }
+        .category-underline-list a {
+            font-size: 17px;
+            font-weight: 400;
+            color: #c0392b;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .category-underline-list a:hover { color: #a93226; text-decoration: underline; }
+        .category-underline-list a:active,
+        .category-underline-list a:focus { text-decoration: underline; outline: none; }
+        .dark .category-underline-list a { color: #e57373; }
+        .dark .category-underline-list a:hover,
+        .dark .category-underline-list a:active { color: #f87171; text-decoration: underline; }
+
+        /* Footer dot-separated links */
+        .footer-dot-link {
+            font-size: 14px;
+            color: #c0392b;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .footer-dot-link:hover { color: #a93226; text-decoration: underline; }
+        .footer-dot-link:active,
+        .footer-dot-link:focus { text-decoration: underline; outline: none; }
+        .dark .footer-dot-link { color: #e57373; }
+        .dark .footer-dot-link:hover,
+        .dark .footer-dot-link:active { color: #f87171; text-decoration: underline; }
+        .footer-dot {
+            color: #999;
+            font-size: 16px;
+            margin: 0 6px;
+            line-height: 1;
+        }
+        /* Visit counter — retro LCD display */
+        .pg-visit-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #1a0e0e;
+            border-radius: 0;
+            padding: 0.15rem 0.7rem;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
+            font-family: 'Courier New', Consolas, monospace;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            color: #ff3b30;
+            text-shadow: 0 0 8px rgba(255,59,48,0.75);
+            white-space: nowrap;
+        }
+        .pg-visit-pill i { font-size: 0.7rem; color: #ff3b30; opacity: 0.85; }
+        .pg-visit-pill .pg-sep { color: #ff3b30; margin: 0 0.05rem; }
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
 
-<style>
-    @keyframes marquee-scroll {
-        0%   { transform: translateX(100vw); }
-        100% { transform: translateX(-100%); }
-    }
+    <!-- HERO SECTION (Wikipedia-style) -->
+    <div class="flex flex-col items-center justify-center pt-12 pb-2 px-4 text-center">
 
-    #read-progress-bar {
-        position: fixed;
-        top: 0; left: 0;
-        height: 2px;
-        width: 0%;
-        background: #c0392b;
-        z-index: 1000;
-        transition: width 0.1s linear;
-    }
+        <{{hero_tag}} class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-2 leading-tight">
+            <a href="https://pathokghar.pages.dev" class="hover:text-brand-500 active:text-brand-500 transition-colors">পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span></a>
+        </{{hero_tag}}>
 
-    /* ── Go to top button ── */
-    #go-top-btn {
-        position: fixed;
-        right: 16px;
-        bottom: 20px;
-        width: 42px;
-        height: 42px;
-        border-radius: 10px;
-        background: #c0392b;
-        color: #fff;
-        border: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1rem;
-        box-shadow: 0 4px 14px rgba(0,0,0,0.25);
-        cursor: pointer;
-        z-index: 400;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(10px);
-        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
-    }
-    #go-top-btn.visible {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-    }
-    #go-top-btn:active { transform: scale(0.92); }
-
-    /* ── Book content typography ── */
-    #book-content {
-        font-family: 'Noto Serif Bengali', 'Lora', serif;
-        font-size: 1.05rem;
-    }
-    #book-content h1 {
-        font-size: 1.3rem;
-        font-weight: 800;
-        color: #9ca3af;
-        text-align: center;
-        margin: 0.5rem 0 0.25rem;
-        letter-spacing: 0.04em;
-    }
-    #book-content h1::after {
-        content: '';
-        display: block;
-        width: 2.8em;
-        height: 3px;
-        background: #c0392b;
-        border-radius: 2px;
-        margin: 0.4rem auto 0;
-    }
-    #book-content h2 {
-        font-size: 1.05rem;
-        font-weight: 700;
-        color: #7a2115;
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-        margin: 1.75rem 0 0.75rem;
-        padding: 0.5rem 0;
-        border-top: 1px solid #d9a5a0;
-        border-bottom: 1px solid #d9a5a0;
-    }
-    /* Night mode heading adjust */
-    body.theme-dark  #book-content h1,
-    body.theme-black #book-content h1 { color: #6b7280; }
-    body.theme-dark  #book-content h2,
-    body.theme-black #book-content h2 { color: #f2938a; border-color: rgba(169,50,38,0.4); }
-    body.theme-dark  #book-content h1::after { background: #a93226; }
-    body.theme-black #book-content h1::after { background: #922b21; }
-    body.theme-sepia #book-content h1 { color: #a08060; }
-    body.theme-sepia #book-content h2 { color: #7a2115; border-color: rgba(160,64,48,0.35); }
-    body.theme-sepia #book-content h1::after { background: #a04030; }
-
-    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
-    #book-content p {
-        background: rgba(192,57,43,0.05);
-        border: 1px solid rgba(192,57,43,0.15);
-        border-radius: 10px;
-        padding: 0.6rem 1.1rem;
-        margin-bottom: 0.7rem;
-        line-height: 2;
-        word-break: break-word;
-        overflow-wrap: break-word;
-    }
-    body.theme-dark  #book-content p,
-    body.theme-black #book-content p {
-        background: rgba(169,50,38,0.1);
-        border-color: rgba(169,50,38,0.25);
-    }
-    body.theme-sepia #book-content p {
-        background: rgba(160,64,48,0.08);
-        border-color: rgba(160,64,48,0.2);
-    }
-    #book-content p:empty { display: none; }
-    #book-content p:blank { display: none; }
-    #book-content a {
-        color: #c0392b;
-        word-break: break-all;
-        overflow-wrap: anywhere;
-        text-decoration: underline;
-    }
-    /* External link icon */
-    #book-content a[href^="http"]::after,
-    #book-content a[href^="https"]::after {
-        content: ' ↗';
-        font-size: 0.75em;
-        opacity: 0.7;
-    }
-    #book-content img {
-        max-width: 100%;
-        border-radius: 0.5rem;
-        margin: 1.25rem auto;
-        display: block;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
-    }
-    /* ── Blockquote ── */
-    #book-content blockquote {
-        border-left: 3px solid #c0392b;
-        margin: 1.5rem 0;
-        padding: 0.75rem 1rem;
-        background: rgba(192,57,43,0.05);
-        border-radius: 0 6px 6px 0;
-        font-style: italic;
-        color: #555;
-    }
-    .dark #book-content blockquote {
-        background: rgba(192,57,43,0.08);
-        color: #bbb;
-    }
-    /* ── HR stylish divider ── */
-    #book-content hr {
-        border: none;
-        text-align: center;
-        margin: 2rem 0;
-        color: #9ca3af;
-        font-size: 1rem;
-        letter-spacing: 0.5rem;
-    }
-    #book-content hr::before {
-        content: '✦ ✦ ✦';
-    }
-    /* ── Table ── */
-    #book-content table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 1.5rem 0;
-        font-size: 0.875rem;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
-    }
-    #book-content th {
-        background: #c0392b;
-        color: #fff;
-        padding: 0.6rem 0.85rem;
-        text-align: left;
-        font-weight: 600;
-    }
-    #book-content td {
-        padding: 0.55rem 0.85rem;
-        border-bottom: 1px solid #e5e7eb;
-    }
-    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
-    #book-content tr:last-child td { border-bottom: none; }
-    .dark #book-content td { border-color: #3a3a3b; }
-    .dark #book-content tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
-    /* ── Figcaption ── */
-    #book-content figcaption {
-        text-align: center;
-        font-style: italic;
-        font-size: 0.78rem;
-        color: #9ca3af;
-        margin-top: -0.5rem;
-        margin-bottom: 1.25rem;
-    }
-    /* ── Text selection ── */
-    #book-content ::selection {
-        background: rgba(192,57,43,0.25);
-        color: inherit;
-    }
-    /* ── Smooth scroll offset ── */
-    #book-content h1, #book-content h2 {
-        scroll-margin-top: 1.5rem;
-    }
-
-    /* ── TOC active ── */
-    .toc-link.active {
-        color: #c0392b;
-        font-weight: 600;
-        background: rgba(192,57,43,0.1);
-        border-radius: 0.375rem;
-    }
-    #toc-nav-mobile .toc-link {
-        display: block;
-        padding: 10px 10px;
-        font-size: 0.8125rem;
-        font-family: 'Noto Serif Bengali', serif;
-        line-height: 1.5;
-        text-decoration: none;
-        color: #444;
-        border-bottom: 1px solid #ececec;
-        transition: color 0.15s;
-    }
-    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
-    #toc-nav-mobile .toc-link.h2-link {
-        padding-left: 20px;
-        font-size: 0.77rem;
-        color: #777;
-    }
-
-    /* ══════════════════════════════
-       MOBILE reader chrome
-    ══════════════════════════════ */
-    @media (max-width: 767px) {
-
-        /* Reading background themes */
-        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
-        body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
-        body.theme-light #mobile-reader-bg { background: #ffffff; }
-
-        #mobile-reader-bg {
-            min-height: 100vh;
-            transition: background 0.3s;
-        }
-    }
-
-    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
-
-    /* ── Title bar: ভাসমান back বৃত্ত + আলাদা পিল-কার্ড টাইটেল ── */
-    #read-title-bar {
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-    }
-    #read-title-back-btn {
-        width: 42px;
-        height: 42px;
-        flex-shrink: 0;
-        border-radius: 10px;
-        background: #1a1a1b;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.95rem;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-        text-decoration: none;
-        transition: background 0.3s, transform 0.15s;
-    }
-    #read-title-back-btn:active { transform: scale(0.9); }
-    #read-title-pill {
-        flex: 1;
-        min-width: 0;
-        background: #1a1a1b;
-        border-radius: 10px;
-        padding: 0.65rem 1rem;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        transition: background 0.3s;
-    }
-    #read-title-pill h1 {
-        margin: 0;
-        font-family: 'Noto Serif Bengali', serif;
-        font-size: 1.05rem;
-        font-weight: 800;
-        color: #fff;
-        line-height: 1.4;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    body.theme-dark  #read-title-back-btn,
-    body.theme-dark  #read-title-pill {
-        background: #111012;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.45);
-    }
-    body.theme-black #read-title-back-btn,
-    body.theme-black #read-title-pill {
-        background: #1a1a1a;
-        box-shadow: 0 2px 16px rgba(0,0,0,0.7);
-    }
-    body.theme-sepia #read-title-back-btn,
-    body.theme-sepia #read-title-pill {
-        background: #3b2510;
-    }
-
-
-    /* ══ Unified drawer ══ */
-    #unified-wrap {
-        position: fixed;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 0;
-        width: 28px;
-        height: 44px;
-        z-index: 500;
-        pointer-events: none;
-        transition: width 0.32s cubic-bezier(0.4,0,0.2,1),
-                    height 0.32s cubic-bezier(0.4,0,0.2,1);
-    }
-    #unified-toggle-btn {
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 28px;
-        height: 44px;
-        background: #c0392b;
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: -2px 0 8px rgba(0,0,0,0.18);
-        color: #fff;
-        pointer-events: auto;
-        transition: height 0.32s cubic-bezier(0.4,0,0.2,1),
-                    opacity 0.3s ease;
-    }
-    #unified-toggle-btn:active { background: #a93226; }
-    #unified-toggle-btn.scrolling { opacity: 0.5; }
-
-    /* Drawer panel */
-    #unified-drawer {
-        position: absolute;
-        top: 0;
-        right: 28px;
-        width: 0;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        background: #fafafa;
-        box-shadow: -4px 4px 24px rgba(0,0,0,0.15);
-        overflow: hidden;
-        pointer-events: auto;
-        transition: width 0.32s cubic-bezier(0.4,0,0.2,1);
-    }
-    #unified-wrap.open {
-        width: 65vw;
-        height: 60vh;
-        pointer-events: auto;
-    }
-    #unified-wrap.open #unified-drawer { width: calc(65vw - 28px); }
-    #unified-wrap.open #unified-toggle-btn {
-        height: 100%;
-        top: 0;
-        transform: none;
-    }
-
-    /* Tab bar */
-    #unified-tabs {
-        display: flex;
-        flex-shrink: 0;
-        border-bottom: 1px solid #e5e7eb;
-    }
-    .unified-tab {
-        flex: 1;
-        padding: 10px 0;
-        font-family: 'Noto Serif Bengali', serif;
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: #888;
-        background: none;
-        border: none;
-        border-bottom: 2px solid transparent;
-        cursor: pointer;
-        transition: color 0.15s, border-color 0.15s;
-        letter-spacing: 0.04em;
-    }
-    .unified-tab.active {
-        color: #c0392b;
-        border-bottom-color: #c0392b;
-    }
-
-    /* Panels */
-    .unified-panel {
-        display: none;
-        flex: 1;
-        overflow-y: auto;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-    .unified-panel::-webkit-scrollbar { display: none; }
-    .unified-panel.active { display: flex; flex-direction: column; }
-
-    /* Overlay */
-    #unified-overlay {
-        position: fixed; inset: 0;
-        z-index: 499;
-        background: rgba(0,0,0,0.25);
-        opacity: 0; pointer-events: none;
-        transition: opacity 0.3s ease;
-    }
-    #unified-overlay.open { opacity: 1; pointer-events: auto; }
-
-    /* ── Breadcrumb dark mode ── */
-    .read-breadcrumb-full { margin-left: -1.25rem; margin-right: -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
-    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
-    .dark #bc-category { color: #9ca3af !important; }
-    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
-    .dark #read-breadcrumb li > span { color: #4b5563; }
-
-    html { scroll-behavior: smooth; }
-    html { scrollbar-width: none; -ms-overflow-style: none; }
-    html::-webkit-scrollbar { display: none; }
-
-    /* Drawer inner */
-    #settings-drawer-inner {
-        padding: 20px 16px 24px;
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-        overflow-y: auto;
-        height: 100%;
-    }
-    .settings-drawer-title {
-        font-size: 0.7rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: #c0392b;
-        margin-bottom: 16px;
-        flex-shrink: 0;
-    }
-    /* Theme circles */
-    .settings-section-label {
-        font-size: 0.82rem;
-        font-weight: 600;
-        color: #1a1a1b;
-        margin-bottom: 8px;
-        margin-top: 16px;
-    }
-    .settings-section-label:first-of-type { margin-top: 0; }
-    .theme-circles {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        align-items: center;
-        gap: 10px;
-        flex-wrap: nowrap;
-    }
-    .theme-circle {
-        width: 32px; height: 32px;
-        border-radius: 50%;
-        border: 2px solid transparent;
-        cursor: pointer;
-        display: flex; align-items: center; justify-content: center;
-        transition: border-color 0.15s;
-        flex-shrink: 0;
-    }
-    .theme-circle.active { border-color: #c0392b; }
-    .theme-circle svg { display: none; }
-    .theme-circle.active svg { display: block; }
-
-    /* +/- rows */
-    .settings-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 0;
-        border-bottom: 1px solid #f0f0f0;
-    }
-    .settings-row:last-child { border-bottom: none; }
-    .settings-row-label { font-size: 0.82rem; color: #1a1a1b; }
-    .settings-row-val { font-size: 0.72rem; color: #9ca3af; margin-top: 1px; }
-    .settings-row-controls { display: flex; align-items: center; gap: 6px; }
-    .settings-btn {
-        width: 30px; height: 30px;
-        border-radius: 50%;
-        border: 1.5px solid #e5e7eb;
-        background: #fff;
-        color: #444;
-        font-size: 1.1rem;
-        cursor: pointer;
-        display: flex; align-items: center; justify-content: center;
-        line-height: 1;
-        transition: background 0.12s, border-color 0.12s;
-        flex-shrink: 0;
-    }
-    .settings-btn:active { background: #fde8e6; border-color: #c0392b; color: #c0392b; }
-
-    /* Text align btns */
-    .align-btns { display: flex; gap: 6px; }
-    .align-btn {
-        width: 38px; height: 38px;
-        border-radius: 6px;
-        border: 1.5px solid #e5e7eb;
-        background: transparent;
-        color: #444;
-        cursor: pointer;
-        display: flex; align-items: center; justify-content: center;
-        transition: background 0.12s, border-color 0.12s, color 0.12s;
-    }
-    .align-btn svg { stroke: currentColor; }
-    .align-btn.active, .align-btn:active {
-        background: #fde8e6 !important;
-        border-color: #c0392b !important;
-        color: #c0392b !important;
-    }
-
-</style>
-
-<!-- Progress bar -->
-<div id="read-progress-bar"></div>
-<button id="go-top-btn" aria-label="উপরে যান" title="উপরে যান">
-    <i class="fas fa-chevron-up"></i>
-</button>
-
-
-<!-- ══════════════════════════════════════════
-     MOBILE ONLY chrome (hidden on md+)
-══════════════════════════════════════════ -->
-
-<!-- ══ Unified drawer ══ -->
-<div id="unified-wrap">
-    <button id="unified-toggle-btn" aria-label="মেনু">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-        </svg>
-    </button>
-    <div id="unified-drawer">
-        <div id="unified-tabs">
-            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
-            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        <!-- Search box -->
+        <div class="w-full max-w-xl relative flex items-center bg-white dark:bg-[#2d2d2d] border border-gray-200 dark:border-gray-600 rounded-full focus-within:ring-2 focus-within:ring-brand-500 focus-within:border-transparent transition-all">
+            <input id="main-search-input" type="text" placeholder="বই, লেখক বা বিভাগ খুঁজুন..."
+                class="flex-1 bg-transparent py-3 pl-5 pr-2 text-sm focus:outline-none text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 min-w-0">
+            <button id="main-search-btn" class="bg-brand-500 hover:bg-brand-600 active:bg-brand-600 text-white px-5 py-2 rounded-full text-sm font-medium transition-colors shrink-0 mr-1">
+                খুঁজুন
+            </button>
         </div>
-        <div class="unified-panel active" id="panel-toc">
-            <nav id="toc-nav-mobile"></nav>
+
+        <!-- Tab Bar (segmented control) -->
+        <div class="segment-track mt-4 w-full max-w-xl">
+            <a href="/" data-tab-path="/" class="hero-tab-btn segment-item">বই</a>
+            <a href="/authors/" data-tab-path="/authors/" class="hero-tab-btn segment-item">লেখক</a>
+            <a href="/categories/" data-tab-path="/categories/" class="hero-tab-btn segment-item">বিভাগ</a>
+            <a href="/blogs/" data-tab-path="/blogs/" class="hero-tab-btn segment-item">ব্লগ</a>
         </div>
-        <div class="unified-panel" id="panel-customize">
-            <div id="settings-drawer-inner">
-                <div class="theme-circles">
-                    <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                    </button>
-                    <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
-                    <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
-                    <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
-                </div>
-                <div class="settings-row" style="margin-top:14px;">
-                    <div class="align-btns" style="width:100%; justify-content:space-between;">
-                        <button class="align-btn" id="align-left" title="বাম">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
-                        </button>
-                        <button class="align-btn" id="align-center" title="সেন্টার">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
-                        </button>
-                        <button class="align-btn active" id="align-justify" title="জাস্টিফাই" style="background:#fde8e6;border-color:#c0392b;color:#c0392b;">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="settings-row">
-                    <div>
-                        <div class="settings-row-label">টেক্সট সাইজ</div>
-                        <div class="settings-row-val" id="font-size-val">120%</div>
-                    </div>
-                    <div class="settings-row-controls">
-                        <button class="settings-btn" id="font-dec">−</button>
-                        <button class="settings-btn" id="font-inc">+</button>
-                    </div>
-                </div>
-                <div class="settings-row">
-                    <div>
-                        <div class="settings-row-label">মার্জিন</div>
-                        <div class="settings-row-val" id="margin-val">5%</div>
-                    </div>
-                    <div class="settings-row-controls">
-                        <button class="settings-btn" id="margin-dec">−</button>
-                        <button class="settings-btn" id="margin-inc">+</button>
-                    </div>
-                </div>
-                <div class="settings-row">
-                    <div>
-                        <div class="settings-row-label">লাইন স্পেসিং</div>
-                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
-                    </div>
-                    <div class="settings-row-controls">
-                        <button class="settings-btn" id="ls-dec">−</button>
-                        <button class="settings-btn" id="ls-inc">+</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <script>
+        (function() {
+            var path = window.location.pathname;
+            var rules = {
+                '/': /^\/((book|books)(\/.*)?)?$/,
+                '/authors/': /^\/(author|authors)(\/.*)?$/,
+                '/categories/': /^\/(category|categories)(\/.*)?$/,
+                '/blogs/': /^\/(blog|blogs)(\/.*)?$/
+            };
+            document.querySelectorAll('.hero-tab-btn').forEach(function(btn) {
+                var tabPath = btn.getAttribute('data-tab-path');
+                var re = rules[tabPath];
+                if (re && re.test(path)) btn.classList.add('active');
+            });
+        })();
+        </script>
+
     </div>
-</div>
-<div id="unified-overlay"></div>
 
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 min-w-0">
+        {{content}}
+    </main>
 
-<!-- ══════════════════════════════════════════
-     Main layout wrapper
-══════════════════════════════════════════ -->
-<div id="mobile-reader-bg">
-<div class="flex gap-0 min-h-screen w-full" id="read-layout">
+    <!-- FOOTER -->
+    <footer class="bg-gray-100 dark:bg-[#1f1f1f] border-t border-gray-300 dark:border-gray-700 mt-8">
 
-    <!-- Reading column -->
-    <div class="flex-1 min-w-0">
-        <div id="read-main-content" class="px-5 pt-0 pb-7 max-w-2xl">
-
-            <!-- Book Title -->
-            <div id="read-title-bar" style="margin-top:1.2rem;margin-bottom:1.1rem;">
-                <a href="/book/{{book_slug}}.html" id="read-title-back-btn" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
-                    <i class="fas fa-arrow-left"></i>
+        <!-- Brand row: always visible on mobile, hidden on desktop (icons move to bottom row) -->
+        <div class="max-w-3xl mx-auto px-5 pt-6 pb-4 flex items-center justify-between">
+            <div>
+                <a href="https://pathokghar.pages.dev"
+                   class="text-3xl font-extrabold tracking-tight text-gray-800 dark:text-gray-100 active:text-brand-500 transition-colors group">
+                    <span class="group-active:text-brand-500 transition-colors">পাঠক</span> <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span>
                 </a>
-                <div id="read-title-pill">
-                    <h1 id="read-book-title">{{book_title}}</h1>
-                </div>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">বাংলা বইয়ের ডিজিটাল পাঠাগার।</p>
+            </div>
+            <!-- Social icons -->
+            <div class="flex items-center gap-2">
+                <a href="https://facebook.com/pathokghar" target="_blank" rel="noopener" aria-label="Facebook"
+                   class="w-12 h-12 rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] flex items-center justify-center text-[#1877f2] hover:border-[#1877f2] transition-all">
+                    <i class="fab fa-facebook-f text-lg"></i>
+                </a>
+                <a href="https://t.me/pathokghar" target="_blank" rel="noopener" aria-label="Telegram"
+                   class="w-12 h-12 rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] flex items-center justify-center text-[#229ed9] hover:border-[#229ed9] transition-all">
+                    <i class="fab fa-telegram-plane text-lg"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="max-w-3xl mx-auto px-5">
+            <div class="border-t border-gray-300 dark:border-gray-700"></div>
+        </div>
+
+        <!-- Dot-separated links — mobile: wrap, desktop: single row -->
+        <div class="max-w-3xl mx-auto px-5 py-3 flex flex-wrap md:flex-nowrap items-center justify-between gap-y-2">
+            <!-- Links -->
+            <div class="flex flex-wrap md:flex-nowrap items-center gap-y-1">
+                <a href="/about" class="footer-dot-link">সম্পর্কে</a>
+                <span class="footer-dot">·</span>
+                <a href="/contact" class="footer-dot-link">যোগাযোগ</a>
+                <span class="footer-dot">·</span>
+                <a href="/policy" class="footer-dot-link">শর্তাবলী</a>
             </div>
 
-            <div id="book-content" class="text-gray-800 dark:text-gray-200">
-                {{book_content}}
-            </div>
+            <!-- Visit counter -->
+            <span id="pg-visit-counter" class="pg-visit-pill"><i class="fa-solid fa-arrow-trend-up"></i> <b>**</b> <span class="pg-sep">|</span> <b>**</b></span>
 
         </div>
-    </div>
 
-        <!-- TOC nav for mobile -->
-        <nav id="toc-nav-desktop" class="hidden"></nav>
-</div>
-</div>
+    </footer>
 
-<script>
-(function () {
-    const bookContent  = document.getElementById('book-content');
-    const mobileReaderBg = document.getElementById('mobile-reader-bg');
-    const progressBar  = document.getElementById('read-progress-bar');
-    const progressPct  = document.getElementById('progress-pct');
-    const tocDesktop   = document.getElementById('toc-nav-desktop');
-    const tocMobile    = document.getElementById('toc-nav-mobile');
-    const progressRing = document.getElementById('progress-ring-circle');
+    <script>
+        // Visit counter — প্রতি পেজ লোড/রিফ্রেশে count বাড়বে
+        (function () {
+            const el = document.getElementById('pg-visit-counter');
+            if (!el) return;
+            const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+            const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');
+            const nums = el.querySelectorAll('b');
+            fetch('/api/visits')
+                .then(r => r.json())
+                .then(data => {
+                    nums[0].textContent = toBn(data.today);
+                    nums[1].textContent = toBn(data.total);
+                })
+                .catch(() => { el.style.display = 'none'; });
+        })();
+    </script>
 
-    let fontScale   = 100;
-    let marginScale = 5;
-    let lineSpacing = 1.5;
-    let currentAlign= 'left';
-    let currentTheme= 'light';
-
-    // ── Save / Load ──
-    const STORAGE_KEY = 'pathakghar_reader_prefs';
-    function savePrefs() {
-        try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme }));
-        } catch(e) {}
-    }
-    function loadPrefs() {
-        try {
-            const raw = localStorage.getItem(STORAGE_KEY);
-            if (!raw) return;
-            const p = JSON.parse(raw);
-            if (p.fontScale)    fontScale    = p.fontScale;
-            if (p.marginScale !== undefined) marginScale = p.marginScale;
-            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
-            if (p.currentAlign) currentAlign = p.currentAlign;
-            if (p.currentTheme) currentTheme = p.currentTheme;
-        } catch(e) {}
-    }
-    loadPrefs();
-
-    const unifiedWrap   = document.getElementById('unified-wrap');
-    const unifiedToggle = document.getElementById('unified-toggle-btn');
-    const unifiedOverlay= document.getElementById('unified-overlay');
-    const unifiedDrawer = document.getElementById('unified-drawer');
-
-    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
-    function toBN(n) {
-        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
-    }
-
-    // ── Toggle opacity on scroll ──
-    let unifiedScrollTimer;
-    function onScrollFade() {
-        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
-            unifiedToggle.classList.add('scrolling');
-            clearTimeout(unifiedScrollTimer);
-            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
-        }
-    }
-    window.addEventListener('scroll', onScrollFade, { passive: true });
-
-    // ── Progress bar on scroll ──
-    function updateProgress(el) {
-        let scrollTop, scrollHeight, clientHeight;
-        if (el === window) {
-            scrollTop    = window.scrollY;
-            scrollHeight = document.documentElement.scrollHeight;
-            clientHeight = window.innerHeight;
-        } else {
-            scrollTop    = el.scrollTop;
-            scrollHeight = el.scrollHeight;
-            clientHeight = el.clientHeight;
-        }
-        const docH = scrollHeight - clientHeight;
-        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
-        progressBar.style.width = pct + '%';
-        if (progressPct) progressPct.textContent = toBN(pct) + '%';
-        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
-    }
-    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
-
-    // ── Go to top button ──
-    const goTopBtn = document.getElementById('go-top-btn');
-    if (goTopBtn) {
-        const TOP_THRESHOLD = 400;
-        function checkGoTop(scrollTop) {
-            goTopBtn.classList.toggle('visible', scrollTop > TOP_THRESHOLD);
-        }
-        window.addEventListener('scroll', () => checkGoTop(window.scrollY), { passive: true });
-        goTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
-
-    // ── Build TOC ──
-    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
-        .filter(h => h.textContent.trim() !== '');
-
-    function closeTocDrawer() { closeDrawer(); }
-
-    function buildToc(nav, isMobile) {
-        headings.forEach((h, i) => {
-            h.id = h.id || ('sec-' + i);
-            const a = document.createElement('a');
-            a.href = '#' + h.id;
-            a.textContent = h.textContent.trim();
-            a.dataset.idx = i;
-            const isH1 = h.tagName === 'H1';
-            if (isMobile) {
-                a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
-                a.addEventListener('click', closeDrawer);
-            } else {
-                a.className = 'toc-link block px-3 py-1.5 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors ' +
-                    (isH1 ? 'font-semibold text-[13px] text-gray-800 dark:text-gray-100' : 'pl-5 text-[11px]');
+    <script>
+        // Search
+        function doSearch(query) {
+            if (query.trim()) {
+                window.location.href = '/search.html?q=' + encodeURIComponent(query.trim());
             }
-            nav.appendChild(a);
-        });
-    }
-    buildToc(tocDesktop, false);
-    buildToc(tocMobile, true);
-
-    // ── TOC active ──
-    const allTocLinks = document.querySelectorAll('.toc-link');
-    function updateTocActive(scrollTop) {
-        let current = 0;
-        headings.forEach((h, i) => {
-            if (scrollTop >= h.offsetTop - 120) current = i;
-        });
-        allTocLinks.forEach(a => {
-            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
-        });
-    }
-    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
-
-    // ── Unified drawer open/close ──
-    function openDrawer() {
-        unifiedWrap.classList.add('open');
-        unifiedOverlay.classList.add('open');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeDrawer() {
-        unifiedWrap.classList.remove('open');
-        unifiedOverlay.classList.remove('open');
-        document.body.style.overflow = '';
-    }
-
-    unifiedToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
-    });
-    unifiedOverlay.addEventListener('click', closeDrawer);
-    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
-    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
-    unifiedDrawer.addEventListener('touchmove', (e) => {
-        const panel = unifiedDrawer.querySelector('.unified-panel.active');
-        if (!panel || !panel.contains(e.target)) e.preventDefault();
-    }, { passive: false });
-
-    // ── Tab switching ──
-    document.querySelectorAll('.unified-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
-            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
-            tab.classList.add('active');
-            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
-        });
-    });
-
-    let touchStartX = 0;
-
-    // ── Font size ──
-    function applyFont() {
-        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
-        document.getElementById('font-size-val').textContent = fontScale + '%';
-        savePrefs();
-    }
-    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
-    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
-
-    // ── Text align ──
-    const alignLeft    = document.getElementById('align-left');
-    const alignCenter  = document.getElementById('align-center');
-    const alignJustify = document.getElementById('align-justify');
-    function setAlign(a) {
-        currentAlign = a;
-        bookContent.style.textAlign = a;
-        [alignLeft, alignCenter, alignJustify].forEach(btn => {
-            const isActive = btn.id === 'align-' + a;
-            btn.classList.toggle('active', isActive);
-            btn.style.background  = isActive ? '#fde8e6' : '';
-            btn.style.borderColor = isActive ? '#c0392b' : '';
-            btn.style.color       = isActive ? '#c0392b' : '';
-        });
-        savePrefs();
-    }
-    alignLeft.addEventListener('click',    () => setAlign('left'));
-    alignCenter.addEventListener('click',  () => setAlign('center'));
-    alignJustify.addEventListener('click', () => setAlign('justify'));
-
-    // ── Margin ──
-    function applyMargin() {
-        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
-        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
-        document.getElementById('margin-val').textContent = marginScale + '%';
-        savePrefs();
-    }
-    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
-    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
-
-    // ── Line spacing ──
-    function applyLineSpacing() {
-        bookContent.style.lineHeight = lineSpacing;
-        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
-        savePrefs();
-    }
-    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
-    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
-
-    // ── Theme ──
-    const themeMap = {
-        light: { bg: '#fff',     text: '#1a1a1b', drawerBg: '#fafafa', drawerText: '#1a1a1b', drawerSub: '#6b7280', drawerBorder: '#e5e7eb', bcHome: '#6b7280', bcSep: '#d1d5db', bcTitle: '#1a1a1b', bcDash: '#9ca3af' },
-        dark:  { bg: '#1c1c1e',  text: '#e5e7eb', drawerBg: '#2a2a2b', drawerText: '#e5e7eb', drawerSub: '#9ca3af', drawerBorder: '#3a3a3c', bcHome: '#9ca3af', bcSep: '#4b5563', bcTitle: '#e5e7eb', bcDash: '#6b7280' },
-        black: { bg: '#000',     text: '#d1d5db', drawerBg: '#111',    drawerText: '#d1d5db', drawerSub: '#6b7280', drawerBorder: '#222',    bcHome: '#6b7280', bcSep: '#333',    bcTitle: '#d1d5db', bcDash: '#444'    },
-        sepia: { bg: '#f5efe6',  text: '#3b2f1e', drawerBg: '#ede4d3', drawerText: '#3b2f1e', drawerSub: '#7a6248', drawerBorder: '#d6c9b0', bcHome: '#7a6248', bcSep: '#c4b49a', bcTitle: '#3b2f1e', bcDash: '#a08060' },
-    };
-    document.querySelectorAll('.theme-circle').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const t = btn.dataset.theme;
-            currentTheme = t;
-            const m = themeMap[t];
-            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
-            document.body.classList.add('theme-' + t);
-            mobileReaderBg.style.background = m.bg;
-            bookContent.style.color = m.text;
-
-            // Title bar (back button + pill card colors handled via CSS theme classes)
-
-            // Unified drawer background
-            const uDr = document.getElementById('unified-drawer');
-            uDr.style.background = m.drawerBg;
-
-            // Tab bar
-            document.getElementById('unified-tabs').style.borderColor = m.drawerBorder;
-            document.querySelectorAll('.unified-tab').forEach(el => {
-                if (!el.classList.contains('active')) el.style.color = m.drawerSub;
-            });
-
-            // Settings panel
-            const sDr = document.getElementById('settings-drawer-inner');
-            sDr.querySelectorAll('.settings-row-label').forEach(el => el.style.color = m.drawerText);
-            sDr.querySelectorAll('.settings-row-val').forEach(el => el.style.color = m.drawerSub);
-            sDr.querySelectorAll('.settings-btn').forEach(el => {
-                el.style.background = m.drawerBorder;
-                el.style.color = m.drawerText;
-            });
-            sDr.querySelectorAll('.settings-row').forEach(el => el.style.borderColor = m.drawerBorder);
-            sDr.querySelectorAll('.align-btn').forEach(el => {
-                if (!el.classList.contains('active')) {
-                    el.style.background   = 'transparent';
-                    el.style.borderColor  = m.drawerBorder;
-                    el.style.color        = m.drawerText;
-                } else {
-                    el.style.background   = '#fde8e6';
-                    el.style.borderColor  = '#c0392b';
-                    el.style.color        = '#c0392b';
-                }
-            });
-
-            // TOC panel
-            document.querySelectorAll('#toc-nav-mobile .toc-link').forEach(el => el.style.color = m.drawerText);
-            document.querySelectorAll('#toc-nav-mobile .toc-link').forEach(el => el.style.borderColor = m.drawerBorder);
-
-            document.querySelectorAll('.theme-circle').forEach(b => {
-                b.classList.toggle('active', b.dataset.theme === t);
-                b.style.borderColor = b.dataset.theme === t ? '#c0392b' : 'transparent';
-            });
-            savePrefs();
-
-            // Ad bar theme sync
-            window._pathakAdBarTheme && window._pathakAdBarTheme(m);
-        });
-    });
-
-    // ── Ad bar theme sync function (exposed globally) ──
-    window._pathakAdBarTheme = function(m) {
-        const adBar     = document.getElementById('ad-bar');
-        const adContent = document.getElementById('ad-bar-content');
-        const adDatetime= document.getElementById('ad-bar-datetime');
-        const adNotice  = document.getElementById('ad-bar-notice');
-        if (adBar)      adBar.style.background     = m.bg;
-        if (adContent)  adContent.style.background = m.bg;
-        if (adDatetime) adDatetime.style.color      = m.text;
-        if (adNotice)   adNotice.style.color        = m.text;
-    };
-
-
-    // ── Restore saved prefs on load ──
-    (function restoreAll() {
-        applyFont();
-        applyMargin();
-        applyLineSpacing();
-        setAlign(currentAlign);
-        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
-        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
-        // Ad bar HTML is below — expose theme for ad bar script to pick up
-        window._pathakCurrentTheme = currentTheme;
-        window._pathakThemeMap = themeMap;
-    })();
-})();
-</script>
+        }
+        const mainInput = document.getElementById('main-search-input');
+        document.getElementById('main-search-btn').addEventListener('click', () => doSearch(mainInput.value));
+        mainInput.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(mainInput.value); });
+    </script>
 
 
 </body>
