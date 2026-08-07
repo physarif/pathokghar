@@ -1,266 +1,378 @@
-<!-- components/books.html — pagination page (/books/{page}/) content + সব styling এখানে -->
-<style>
-  /* Section */
-  .book-section { padding: 0.75rem 0; margin-bottom: 0.5rem; }
-  @media (min-width: 768px) { .book-section { margin-left: 0.5rem; margin-right: 0.5rem; padding: 0.75rem 0.4rem; } }
+<!-- templates/book.html — শুধু content, layout.html এ inject হবে -->
+<main class="flex-1 pt-4 md:pt-6 p-3 md:p-6 min-h-[calc(100vh-3.5rem)]">
+    <div class="max-w-3xl mx-auto">
 
-  /* Section header */
-  .bc-section-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.75rem;
-    padding: 0 1rem;
-  }
-  @media (min-width: 768px) { .bc-section-header { padding: 0 1.5rem; } }
+        <!-- Book Hero Card: cover, title, author, category, read ও download
+             সবকিছু একত্রে একটা কার্ডে সুন্দরভাবে সাজানো। H1 সিমান্টিকভাবে
+             বইয়ের নাম-ই থাকছে (SEO-এর জন্য জরুরি — এটাই পেজের মূল বিষয়)। -->
+        <div class="book-hero-card">
+            <img src="{{book_cover}}"
+                alt="{{book_title}} বই এর কভার - লেখক {{book_author}}"
+                fetchpriority="high"
+                width="100" height="148"
+                class="book-hero-cover">
 
-  /* Title + extending line */
-  .bc-section-title {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #1f2937;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    width: 100%;
-    letter-spacing: 0.02em;
-    line-height: 1.2;
-  }
-  .bc-section-title::after {
-    content: '';
-    flex: 1;
-    height: 2px;
-    background: #c0392b;
-    border-radius: 1px;
-  }
-  .dark .bc-section-title { color: #f3f4f6; }
-  .dark .bc-section-title::after { background: #f87171; }
+            <div class="book-hero-body">
+                <a href="/category/{{book_category_slug}}/1/" class="book-hero-category">{{book_category}}</a>
 
-  /* "সব দেখুন" pill button */
-  .bc-section-link {
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: #fff;
-    background: #7a3b1e;
-    text-decoration: none;
-    padding: 0.3rem 0.75rem;
-    border-radius: 0.25rem;
-    white-space: nowrap;
-    transition: background 0.15s;
-  }
-  .bc-section-link:hover { background: #5c2b14; }
-  .dark .bc-section-link { background: #92400e; }
-  .dark .bc-section-link:hover { background: #78350f; }
+                <h1 class="book-hero-title">{{book_title}}</h1>
 
-  /* List container */
-  .bc-list {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    gap: 0.4rem;
-  }
-  @media (min-width: 768px) {
-    .bc-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.4rem;
-      padding: 0;
-    }
-  }
+                <a href="/author/{{book_author_slug}}.html" class="book-hero-author">{{book_author}}</a>
 
-  /* Separator line between cards */
-  .bc-card + .bc-card { border-top: none; }
-  .dark .bc-card + .bc-card { border-top: none; }
-  @media (min-width: 768px) {
-    .bc-card + .bc-card { border-top: none; }
-    .bc-card { border-top: none; }
-    .bc-card:nth-child(odd) { border-right: none; padding-right: 0.75rem; }
-    .bc-card:nth-child(even) { padding-left: 0.75rem; }
-  }
+                <hr class="book-hero-rule">
 
-  /* Book card — horizontal list style */
-  .bc-card {
-    display: flex;
-    flex-direction: row;
-    gap: 0.85rem;
-    align-items: flex-start;
-    text-decoration: none;
-    padding: 0.75rem;
-    transition: background 0.1s;
-    background: #fff;
-  }
-  .dark .bc-card { background: #23232a; }
-  .bc-card:first-child { padding-top: 0.75rem; }
-  .bc-card:last-child { padding-bottom: 0.75rem; }
-  .bc-card:hover { background: #fef2f2; }
-  .dark .bc-card:hover { background: #2a2020; }
+                <div class="book-hero-actions">
+                    <a href="{{book_read_href}}"
+                        class="book-hero-link book-hero-link-solid {{book_read_disabled}}"
+                        aria-disabled="{{book_read_aria_disabled}}">
+                        পড়ুন
+                    </a>
+                    <a href="{{book_download_href}}"
+                        class="book-hero-link book-hero-link-outline {{book_download_disabled}}"
+                        aria-disabled="{{book_download_aria_disabled}}">
+                        ডাউনলোড
+                    </a>
+                </div>
+            </div>
+        </div>
 
-  /* Cover — left side, fixed size 2:3 ratio */
-  .bc-img-wrap {
-    flex-shrink: 0;
-    width: 5.5rem;
-    aspect-ratio: 2/3;
-    overflow: hidden;
-    background: #e5e7eb;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  }
-  @media (min-width: 768px) { .bc-img-wrap { width: 6.5rem; } }
-  .dark .bc-img-wrap { background: #374151; }
+        <!-- Description: hero কার্ড থেকে আলাদা, নিজস্ব কার্ডে নিচে -->
+        <div class="book-desc-card">
+            <h2 class="book-desc-heading">বইয়ের বিবরণ</h2>
+            <div id="book-description-mobile" class="prose-book text-base leading-relaxed text-gray-700 dark:text-gray-300 text-justify"></div>
+        </div>
 
-  .bc-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+        <!-- Structured data: Google-কে বইয়ের নাম, লেখক, কভার স্পষ্টভাবে বুঝিয়ে
+             দেয়, rich snippet পাওয়ার সম্ভাবনা বাড়ায় -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Book",
+            "name": {{book_title_json}},
+            "author": {
+                "@type": "Person",
+                "name": {{book_author_json}}
+            },
+            "image": {{book_cover_json}},
+            "url": {{book_url_json}},
+            "genre": {{book_category_json}},
+            "description": {{book_schema_description_json}},
+            "inLanguage": "bn"
+        }
+        </script>
 
-  /* Right side text */
-  .bc-body {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
-  }
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+        <script>
+            const raw = {{book_description_json}};
 
-  /* Headline: শুধু title */
-  .bc-headline {
-    font-size: 1.1rem;
-    line-height: 1.4;
-    margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .bc-title {
-    font-weight: 700;
-    color: #c0392b;
-  }
-  .dark .bc-title { color: #f87171; }
-  .bc-card:hover .bc-title { text-decoration: none; }
-  .dark .bc-card:hover .bc-title { text-decoration: none; }
+            marked.setOptions({
+                breaks: true,
+                gfm: true,
+            });
 
-  .bc-meta {
-    font-size: 0.82rem;
-    color: #9ca3af;
-    margin: 0;
-  }
-  .dark .bc-meta { color: #6b7280; }
+            // বইয়ের বর্ণনায় কেউ "# হেডিং" লিখলে সেটা যেন আসল <h1>/<h2> না
+            // হয় — পেজের একমাত্র H1 তো বইয়ের নাম (উপরে)। heading level ২
+            // ধাপ নামিয়ে দেওয়া হচ্ছে। renderer.heading override marked 9.x-এ
+            // সঠিকভাবে কাজ করছিল না (ভুল সাইজ/লেভেল দেখাচ্ছিল), তাই এখন
+            // walkTokens দিয়ে সরাসরি token.depth পরিবর্তন করা হচ্ছে — এটা
+            // marked-এর ভার্সন-নির্বিশেষে নির্ভরযোগ্য।
+            marked.use({
+                walkTokens(token) {
+                    if (token.type === 'heading') {
+                        token.depth = Math.min(token.depth + 2, 6);
+                    }
+                }
+            });
 
-  /* Description */
-  .bc-desc {
-    margin-top: 0.3rem;
-    font-size: 1.02rem;
-    color: #4b5563;
-    line-height: 1.6;
-    text-align: justify;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .dark .bc-desc { color: #9ca3af; }
+            const parsed = marked.parse(raw);
+            const mobileEl = document.getElementById('book-description-mobile');
+            if (mobileEl) mobileEl.innerHTML = parsed;
+        </script>
 
-  /* Pagination */
-  .bc-pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.6rem 1rem 0.2rem;
-    flex-wrap: wrap;
-  }
-  .bc-page-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 2.1rem;
-    height: 2.1rem;
-    padding: 0 0.5rem;
-    border-radius: 0.3rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-decoration: none;
-    color: #374151;
-    background: #f3f4f6;
-    transition: background 0.15s, color 0.15s;
-  }
-  .bc-page-btn:hover { background: #e5e7eb; color: #111827; }
-  .bc-page-btn.active { background: #c0392b; color: #fff; pointer-events: none; }
-  .bc-page-nav {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    padding: 0 0.75rem;
-    height: 2.1rem;
-    border-radius: 0.3rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-decoration: none;
-    color: #fff;
-    background: #c0392b;
-    transition: background 0.15s;
-  }
-  .bc-page-nav:hover { background: #991b1b; }
-  .dark .bc-page-btn { background: #1f2937; color: #d1d5db; }
-  .dark .bc-page-btn:hover { background: #374151; color: #f9fafb; }
-  .dark .bc-page-btn.active { background: #f87171; color: #111827; }
-  .dark .bc-page-nav { background: #f87171; color: #111827; }
-  .dark .bc-page-nav:hover { background: #ef4444; }
-</style>
+        <style>
+            /* ── Book Hero Card (Editorial Horizontal) ── */
+            .book-hero-card {
+                display: flex;
+                align-items: flex-start;
+                gap: 1.1rem;
+                text-align: left;
+                background: #fff;
+                border: 1px solid #e5e7eb;
+                border-radius: 10px;
+                padding: 1.25rem;
+                box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+                margin-bottom: 1.25rem;
+            }
+            .dark .book-hero-card {
+                background: #2a2a2b;
+                border-color: #3a3a3b;
+            }
+            .book-hero-cover {
+                width: 100px;
+                height: 148px;
+                border-radius: 4px;
+                object-fit: cover;
+                background: #e5e7eb;
+                flex-shrink: 0;
+                box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+            }
+            .book-hero-body {
+                display: flex;
+                flex-direction: column;
+                gap: 0.4rem;
+                min-width: 0;
+            }
+            .book-hero-category {
+                display: inline-block;
+                width: fit-content;
+                font-family: 'Noto Serif Bengali', serif;
+                font-size: 0.72rem;
+                font-weight: 700;
+                letter-spacing: 0.02em;
+                color: #c0392b;
+                background: #fde8e6;
+                padding: 0.28rem 0.85rem;
+                border-radius: 6px;
+                text-decoration: none;
+                transition: background 0.15s, color 0.15s;
+            }
+            .book-hero-category:hover { background: #c0392b; color: #fff; }
+            .dark .book-hero-category { background: rgba(192,57,43,0.18); color: #f2938a; }
+            .dark .book-hero-category:hover { background: #c0392b; color: #fff; }
+            .book-hero-title {
+                font-family: 'Noto Serif Bengali', serif;
+                font-size: 1.15rem;
+                font-weight: 800;
+                color: #1a1a1b;
+                line-height: 1.4;
+                margin: 0;
+            }
+            .dark .book-hero-title { color: #f3f4f6; }
+            .book-hero-author {
+                font-family: 'Noto Serif Bengali', serif;
+                font-size: 0.85rem;
+                font-weight: 600;
+                color: #6b7280;
+                text-decoration: none;
+                transition: color 0.15s;
+            }
+            .book-hero-author:hover { color: #c0392b; text-decoration: underline; text-underline-offset: 3px; }
+            .dark .book-hero-author { color: #9ca3af; }
+            .dark .book-hero-author:hover { color: #f2938a; }
+            .book-hero-rule {
+                border: none;
+                border-top: 1px dashed #f0d3d0;
+                margin: 0.25rem 0;
+            }
+            .dark .book-hero-rule { border-top-color: #4a3232; }
+            .book-hero-actions {
+                display: flex;
+                gap: 0.6rem;
+                margin-top: 0.15rem;
+            }
+            .book-hero-link {
+                display: inline-flex;
+                align-items: center;
+                font-size: 0.8rem;
+                font-weight: 700;
+                text-decoration: none;
+                padding: 0.45rem 1rem;
+                border-radius: 8px;
+                transition: background 0.15s, color 0.15s, transform 0.1s;
+            }
+            .book-hero-link:active { transform: scale(0.96); }
+            .book-hero-link-solid { background: #c0392b; color: #fff; }
+            .book-hero-link-solid:hover { background: #a93226; }
+            .dark .book-hero-link-solid { background: #c0392b; color: #fff; }
+            .dark .book-hero-link-solid:hover { background: #a93226; }
+            .book-hero-link-outline { background: #fff; color: #c0392b; border: 1.5px solid #c0392b; padding: 0.375rem 0.95rem; }
+            .book-hero-link-outline:hover { background: #fde8e6; }
+            .dark .book-hero-link-outline { background: transparent; color: #f2938a; border-color: #a93226; }
+            .dark .book-hero-link-outline:hover { background: rgba(192,57,43,0.15); }
 
-<!--
-  Book card template (reference — generate_pages.js এ ব্যবহার হয়):
-  <a href="/book/{{book_slug}}.html" class="bc-card">
-    <div class="bc-img-wrap">
-      <img src="{{book_cover}}" alt="{{book_title}}" class="bc-img" loading="lazy">
+            /* ── Description Card ── */
+            .book-desc-card {
+                background: #fff;
+                border: 1px solid #e5e7eb;
+                border-radius: 10px;
+                padding: 1.1rem 1.25rem 1.3rem;
+                box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+            }
+            .dark .book-desc-card {
+                background: #2a2a2b;
+                border-color: #3a3a3b;
+            }
+            .book-desc-heading {
+                font-family: 'Noto Serif Bengali', serif;
+                font-size: 1rem;
+                font-weight: 800;
+                color: #1a1a1b;
+                margin: 0 0 0.75rem;
+                padding-bottom: 0.6rem;
+                border-bottom: 1px solid #f0f0f0;
+            }
+            .dark .book-desc-heading {
+                color: #f3f4f6;
+                border-bottom-color: #3a3a3b;
+            }
+        </style>
+
+        <style>
+            .btn-unclick {
+                pointer-events: none;
+                cursor: not-allowed;
+                color: #9ca3af !important;
+                background: repeating-linear-gradient(
+                    -45deg,
+                    #e5e7eb,
+                    #e5e7eb 6px,
+                    #f3f4f6 6px,
+                    #f3f4f6 12px
+                ) !important;
+            }
+            .dark .btn-unclick {
+                color: #6b7280 !important;
+                background: repeating-linear-gradient(
+                    -45deg,
+                    #374151,
+                    #374151 6px,
+                    #4b5563 6px,
+                    #4b5563 12px
+                ) !important;
+            }
+        </style>
+
+        <style>
+            .prose-book h1, .prose-book h2, .prose-book h3,
+            .prose-book h4, .prose-book h5, .prose-book h6 {
+                font-weight: 700;
+                line-height: 1.3;
+                margin-top: 1.25em;
+                margin-bottom: 0.4em;
+                color: #111827;
+            }
+            .dark .prose-book h1, .dark .prose-book h2, .dark .prose-book h3,
+            .dark .prose-book h4, .dark .prose-book h5, .dark .prose-book h6 {
+                color: #f3f4f6;
+            }
+            .prose-book h1 { font-size: 1.4em; }
+            .prose-book h2 { font-size: 1.2em; }
+            .prose-book h3 { font-size: 1.05em; }
+            .prose-book h4, .prose-book h5, .prose-book h6 { font-size: 0.95em; }
+
+            .prose-book p { margin-bottom: 0.75em; }
+
+            .prose-book a {
+                color: #c0392b;
+                text-decoration: underline;
+            }
+            .dark .prose-book a { color: #f87171; }
+
+            .prose-book strong { font-weight: 700; color: #111827; }
+            .dark .prose-book strong { color: #f9fafb; }
+
+            .prose-book em { font-style: italic; }
+
+            .prose-book ul, .prose-book ol {
+                padding-left: 1.5em;
+                margin-bottom: 0.75em;
+            }
+            .prose-book ul { list-style-type: disc; }
+            .prose-book ol { list-style-type: decimal; }
+            .prose-book li { margin-bottom: 0.25em; }
+
+            .prose-book blockquote {
+                border-left: 3px solid #c0392b;
+                padding: 0.4em 0.9em;
+                margin: 0.75em 0;
+                color: #6b7280;
+                font-style: italic;
+                background: #fef2f2;
+                border-radius: 0 4px 4px 0;
+            }
+            .dark .prose-book blockquote {
+                background: #3b1f1f;
+                color: #d1d5db;
+                border-left-color: #f87171;
+            }
+
+            .prose-book code {
+                background: #f3f4f6;
+                color: #c0392b;
+                padding: 0.1em 0.35em;
+                border-radius: 3px;
+                font-size: 0.88em;
+                font-family: monospace;
+            }
+            .dark .prose-book code {
+                background: #374151;
+                color: #fca5a5;
+            }
+
+            .prose-book pre {
+                background: #1f2937;
+                color: #e5e7eb;
+                padding: 1em;
+                border-radius: 6px;
+                overflow-x: auto;
+                margin-bottom: 0.75em;
+                font-size: 0.85em;
+                font-family: monospace;
+            }
+            .prose-book pre code {
+                background: none;
+                color: inherit;
+                padding: 0;
+                font-size: inherit;
+            }
+
+            .prose-book table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 0.75em;
+                font-size: 0.9em;
+            }
+            .prose-book th {
+                background: #f9fafb;
+                font-weight: 600;
+                text-align: left;
+                padding: 0.5em 0.75em;
+                border: 1px solid #e5e7eb;
+                color: #374151;
+            }
+            .dark .prose-book th {
+                background: #374151;
+                border-color: #4b5563;
+                color: #f3f4f6;
+            }
+            .prose-book td {
+                padding: 0.45em 0.75em;
+                border: 1px solid #e5e7eb;
+            }
+            .dark .prose-book td { border-color: #4b5563; }
+            .prose-book tr:nth-child(even) { background: #f9fafb; }
+            .dark .prose-book tr:nth-child(even) { background: #2d3748; }
+
+            .prose-book hr {
+                border: none;
+                border-top: 1px solid #e5e7eb;
+                margin: 1.25em 0;
+            }
+            .dark .prose-book hr { border-top-color: #4b5563; }
+
+            .prose-book img {
+                max-width: 100%;
+                border-radius: 6px;
+                margin: 0.5em 0;
+            }
+
+            .prose-book del { text-decoration: line-through; color: #9ca3af; }
+
+            .prose-book input[type="checkbox"] {
+                margin-right: 0.4em;
+                accent-color: #c0392b;
+            }
+        </style>
+
     </div>
-    <div class="bc-body">
-      <p class="bc-headline"><span class="bc-title">{{book_title}}</span></p>
-      {{book_meta_html}}
-      <p class="bc-desc">{{book_desc}}</p>
-    </div>
-  </a>
--->
-
-<main class="flex-1 py-4 md:py-6 md:px-8 lg:px-16 min-h-[calc(100vh-3.5rem)] min-w-0 overflow-hidden">
-
-  <!-- সর্বশেষ বই -->
-  <section class="book-section">
-    <div style="padding:0.45rem 1rem;background:#c0392b;font-size:1rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
-      <span style="color:#fff;font-weight:600;font-size:0.95rem;padding:0.15rem 0.6rem;">পাতা নং {{current_page_bn}}/{{total_pages_bn}}</span>
-      <span style="background:rgba(255,255,255,0.18);color:#fff;font-weight:600;font-size:0.78rem;padding:0.15rem 0.6rem;">{{total_books_bn}} টি বই</span>
-    </div>
-    <div class="bc-list">{{latest_books}}</div>
-  </section>
-
-  <div id="bc-pagination"></div>
-  <script>
-    (function() {
-      const current = parseInt('{{current_page}}', 10);
-      const total = parseInt('{{total_pages}}', 10);
-      if (!current || !total || total <= 1) return;
-      const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
-      const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');
-      const el = document.getElementById('bc-pagination');
-      let html = '<div class="bc-pagination">';
-      if (current > 1) {
-        const prev = current === 2 ? '/' : '/books/' + (current - 1) + '/';
-        html += '<a href="' + prev + '" class="bc-page-nav"><i class="fas fa-chevron-left text-xs"></i> পূর্ববর্তী</a>';
-      }
-      for (let i = 1; i <= total; i++) {
-        const href = i === 1 ? '/' : '/books/' + i + '/';
-        if (i === current) html += '<span class="bc-page-btn active">' + toBn(i) + '</span>';
-        else html += '<a href="' + href + '" class="bc-page-btn">' + toBn(i) + '</a>';
-      }
-      if (current < total) {
-        html += '<a href="/books/' + (current + 1) + '/" class="bc-page-nav">পরবর্তী <i class="fas fa-chevron-right text-xs"></i></a>';
-      }
-      html += '</div>';
-      el.innerHTML = html;
-    })();
-  </script>
-
-
-
+</main>
