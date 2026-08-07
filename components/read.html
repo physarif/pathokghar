@@ -310,6 +310,7 @@
     #read-main-content {
         position: relative;
         border-left: 2px solid #c0392b;
+        border-right: 2px solid #c0392b;
     }
     #read-main-content::before {
         content: '';
@@ -320,18 +321,30 @@
         );
         pointer-events: none;
     }
+    #read-main-content::after {
+        content: '';
+        position: absolute;
+        right: -6px; top: 0; bottom: 0; width: 14px;
+        background: repeating-linear-gradient(
+            to bottom, transparent 0 32px, rgba(192,57,43,0.35) 32px 33px
+        );
+        pointer-events: none;
+    }
     @media (max-width: 767px) {
         /* মোবাইলে margin-rule padding-এর কারণে টেক্সট ঘেঁষে না, একটু ফাঁক দেওয়া হলো */
-        #read-main-content { padding-left: 1.1rem; }
+        #read-main-content { padding-left: 1.1rem; padding-right: 1.1rem; }
     }
     body.theme-dark  #read-main-content,
-    body.theme-black #read-main-content { border-left-color: #a93226; }
+    body.theme-black #read-main-content { border-left-color: #a93226; border-right-color: #a93226; }
     body.theme-dark  #read-main-content::before,
-    body.theme-black #read-main-content::before {
+    body.theme-dark  #read-main-content::after,
+    body.theme-black #read-main-content::before,
+    body.theme-black #read-main-content::after {
         background: repeating-linear-gradient(to bottom, transparent 0 32px, rgba(169,50,38,0.3) 32px 33px);
     }
-    body.theme-sepia #read-main-content { border-left-color: #a04030; }
-    body.theme-sepia #read-main-content::before {
+    body.theme-sepia #read-main-content { border-left-color: #a04030; border-right-color: #a04030; }
+    body.theme-sepia #read-main-content::before,
+    body.theme-sepia #read-main-content::after {
         background: repeating-linear-gradient(to bottom, transparent 0 32px, rgba(160,64,48,0.3) 32px 33px);
     }
     /* খাতার পাতার মতো হালকা অনুভূমিক রুল — শুধু light থিমে (কাগজের ফিল) */
