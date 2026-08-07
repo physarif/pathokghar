@@ -16,14 +16,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&family=Noto+Serif+Bengali:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@500;600&display=swap">
     <script>
 (function(){
     try {
         var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
         var theme = p.currentTheme || 'light';
-        var bg = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e', black:'#000' }[theme] || '#fff';
-        var color = { light:'#1a1a1b', sepia:'#3b2f1e', dark:'#e5e7eb', black:'#d1d5db' }[theme] || '#1a1a1b';
+        var bg = { light:'#F7F1E3', sepia:'#f5efe6', dark:'#1c1c1e', black:'#000' }[theme] || '#F7F1E3';
+        var color = { light:'#2B2118', sepia:'#3b2f1e', dark:'#e5e7eb', black:'#d1d5db' }[theme] || '#2B2118';
         var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.20 * 1.05) + 'rem';
         var ls = p.lineSpacing || 1.5;
         var mg = p.marginScale !== undefined ? p.marginScale : 5;
@@ -136,6 +136,7 @@
         font-family: 'Noto Serif Bengali', 'Lora', serif;
         font-size: 1.05rem;
     }
+    #book-content h1, #book-content h2 { font-family: 'Tiro Bangla', 'Noto Serif Bengali', serif; }
     #book-content h1 {
         font-size: 1.3rem;
         font-weight: 800;
@@ -303,6 +304,50 @@
         scroll-margin-top: 1.5rem;
     }
 
+    /* ══════════════════════════════
+       "খেরোখাতা" signature — ledger margin-rule + drop cap
+    ══════════════════════════════ */
+    #read-main-content {
+        position: relative;
+        border-left: 2px solid #c0392b;
+    }
+    #read-main-content::before {
+        content: '';
+        position: absolute;
+        left: -6px; top: 0; bottom: 0; width: 14px;
+        background: repeating-linear-gradient(
+            to bottom, transparent 0 32px, rgba(192,57,43,0.35) 32px 33px
+        );
+        pointer-events: none;
+    }
+    @media (max-width: 767px) {
+        /* মোবাইলে margin-rule padding-এর কারণে টেক্সট ঘেঁষে না, একটু ফাঁক দেওয়া হলো */
+        #read-main-content { padding-left: 1.1rem; }
+    }
+    body.theme-dark  #read-main-content,
+    body.theme-black #read-main-content { border-left-color: #a93226; }
+    body.theme-dark  #read-main-content::before,
+    body.theme-black #read-main-content::before {
+        background: repeating-linear-gradient(to bottom, transparent 0 32px, rgba(169,50,38,0.3) 32px 33px);
+    }
+    body.theme-sepia #read-main-content { border-left-color: #a04030; }
+    body.theme-sepia #read-main-content::before {
+        background: repeating-linear-gradient(to bottom, transparent 0 32px, rgba(160,64,48,0.3) 32px 33px);
+    }
+    /* খাতার পাতার মতো হালকা অনুভূমিক রুল — শুধু light থিমে (কাগজের ফিল) */
+    body.theme-light #mobile-reader-bg {
+        background-image: linear-gradient(rgba(192,57,43,0.045) 1px, transparent 1px);
+        background-size: 100% 34px;
+    }
+    /* প্রথম প্যারাগ্রাফের প্রথম অক্ষর — drop cap */
+    #book-content > p:first-of-type::first-letter {
+        font-family: 'Tiro Bangla', serif;
+        font-weight: 700;
+        font-size: 1.7em;
+        color: #c0392b;
+        line-height: 1;
+    }
+
     /* ── TOC active ── */
     .toc-link.active {
         color: #c0392b;
@@ -336,7 +381,7 @@
         /* Reading background themes */
         body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
         body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
-        body.theme-light #mobile-reader-bg { background: #ffffff; }
+        body.theme-light #mobile-reader-bg { background: #F7F1E3; }
 
         #mobile-reader-bg {
             min-height: 100vh;
@@ -970,7 +1015,7 @@
 
     // ── Theme ──
     const themeMap = {
-        light: { bg: '#fff',     text: '#1a1a1b', drawerBg: '#fafafa', drawerText: '#1a1a1b', drawerSub: '#6b7280', drawerBorder: '#e5e7eb', bcHome: '#6b7280', bcSep: '#d1d5db', bcTitle: '#1a1a1b', bcDash: '#9ca3af' },
+        light: { bg: '#F7F1E3', text: '#2B2118', drawerBg: '#F1EAD9', drawerText: '#2B2118', drawerSub: '#8B7355', drawerBorder: '#E3D9C0', bcHome: '#8B7355', bcSep: '#D9C9A8', bcTitle: '#2B2118', bcDash: '#9ca3af' },
         dark:  { bg: '#1c1c1e',  text: '#e5e7eb', drawerBg: '#2a2a2b', drawerText: '#e5e7eb', drawerSub: '#9ca3af', drawerBorder: '#3a3a3c', bcHome: '#9ca3af', bcSep: '#4b5563', bcTitle: '#e5e7eb', bcDash: '#6b7280' },
         black: { bg: '#000',     text: '#d1d5db', drawerBg: '#111',    drawerText: '#d1d5db', drawerSub: '#6b7280', drawerBorder: '#222',    bcHome: '#6b7280', bcSep: '#333',    bcTitle: '#d1d5db', bcDash: '#444'    },
         sepia: { bg: '#f5efe6',  text: '#3b2f1e', drawerBg: '#ede4d3', drawerText: '#3b2f1e', drawerSub: '#7a6248', drawerBorder: '#d6c9b0', bcHome: '#7a6248', bcSep: '#c4b49a', bcTitle: '#3b2f1e', bcDash: '#a08060' },
