@@ -138,7 +138,7 @@
         bottom: 20px;
         width: 42px;
         height: 42px;
-        border-radius: 50%;
+        border-radius: 10px;
         background: #c0392b;
         color: #fff;
         border: none;
@@ -361,26 +361,61 @@
 
     #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
 
-    /* ── Title bar theme adjustments ── */
+    /* ── Title bar: ভাসমান back বৃত্ত + আলাদা পিল-কার্ড টাইটেল ── */
     #read-title-bar {
-        border-radius: 6px;
-        border-left: 4px solid #c0392b !important;
-        border-right: 4px solid #c0392b !important;
-        transition: background 0.3s, border-color 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
     }
-    body.theme-dark  #read-title-bar {
-        background: #111012 !important;
+    #read-title-back-btn {
+        width: 42px;
+        height: 42px;
+        flex-shrink: 0;
+        border-radius: 10px;
+        background: #1a1a1b;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.95rem;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        text-decoration: none;
+        transition: background 0.3s, transform 0.15s;
+    }
+    #read-title-back-btn:active { transform: scale(0.9); }
+    #read-title-pill {
+        flex: 1;
+        min-width: 0;
+        background: #1a1a1b;
+        border-radius: 10px;
+        padding: 0.65rem 1rem;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        transition: background 0.3s;
+    }
+    #read-title-pill h1 {
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: #fff;
+        line-height: 1.4;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    body.theme-dark  #read-title-back-btn,
+    body.theme-dark  #read-title-pill {
+        background: #111012;
         box-shadow: 0 2px 12px rgba(0,0,0,0.45);
     }
-    body.theme-black #read-title-bar {
-        background: #1a1a1a !important;
+    body.theme-black #read-title-back-btn,
+    body.theme-black #read-title-pill {
+        background: #1a1a1a;
         box-shadow: 0 2px 16px rgba(0,0,0,0.7);
     }
-    body.theme-sepia #read-title-bar {
-        background: #3b2510 !important;
-    }
-    body.theme-light #read-title-bar {
-        background: #1a1a1b !important;
+    body.theme-sepia #read-title-back-btn,
+    body.theme-sepia #read-title-pill {
+        background: #3b2510;
     }
 
 
@@ -499,7 +534,6 @@
     .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
     .dark #read-breadcrumb li > span { color: #4b5563; }
 
-    .read-title-link:hover { text-decoration: underline; }
     html { scroll-behavior: smooth; }
     html { scrollbar-width: none; -ms-overflow-style: none; }
     html::-webkit-scrollbar { display: none; }
@@ -697,8 +731,13 @@
         <div id="read-main-content" class="px-5 pt-0 pb-7 max-w-2xl">
 
             <!-- Book Title -->
-            <div id="read-title-bar" style="text-align:center;padding:0.9rem 1rem;background:#1a1a1b;margin-top:1.2rem;margin-bottom:1.1rem;">
-                <h1 id="read-book-title" style="margin:0;overflow:hidden;"><a href="/book/{{book_slug}}.html" class="read-title-link" id="read-title-anchor" style="font-family:'Noto Serif Bengali',serif;font-size:1.3rem;font-weight:800;color:#fff;line-height:1.4;text-decoration:none;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color 0.2s;">{{book_title}}</a></h1>
+            <div id="read-title-bar" style="margin-top:1.2rem;margin-bottom:1.1rem;">
+                <a href="/book/{{book_slug}}.html" id="read-title-back-btn" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div id="read-title-pill">
+                    <h1 id="read-book-title">{{book_title}}</h1>
+                </div>
             </div>
 
             <div id="book-content" class="text-gray-800 dark:text-gray-200">
@@ -945,29 +984,7 @@
             mobileReaderBg.style.background = m.bg;
             bookContent.style.color = m.text;
 
-            // Title bar
-            const titleBar = document.getElementById('read-title-bar');
-            const titleLink = titleBar && titleBar.querySelector('a');
-            const titleBarBg = {
-                light: '#1a1a1b',
-                sepia: '#3b2510',
-                dark:  '#111012',
-                black: '#1a1a1a'
-            }[t] || '#1a1a1b';
-            const titleBorderColor = {
-                light: 'transparent',
-                sepia: 'transparent',
-                dark:  '#c0392b',
-                black: '#c0392b'
-            }[t] || 'transparent';
-            if (titleBar) {
-                titleBar.style.background   = titleBarBg;
-                titleBar.style.borderLeft   = '4px solid #c0392b';
-                titleBar.style.borderRight  = '4px solid #c0392b';
-                titleBar.style.borderRadius = '6px';
-            }
-            if (titleLink) titleLink.style.color = '#fff';
-
+            // Title bar (back button + pill card colors handled via CSS theme classes)
 
             // Unified drawer background
             const uDr = document.getElementById('unified-drawer');
@@ -1027,19 +1044,6 @@
         if (adNotice)   adNotice.style.color        = m.text;
     };
 
-    // ── Title tap: red color on press ──
-    (function() {
-        const anchor = document.getElementById('read-title-anchor');
-        if (!anchor) return;
-        function setRed()   { anchor.style.color = '#c0392b'; }
-        function setWhite() { anchor.style.color = '#fff'; }
-        anchor.addEventListener('touchstart', setRed,   { passive: true });
-        anchor.addEventListener('touchend',   setWhite, { passive: true });
-        anchor.addEventListener('touchcancel',setWhite, { passive: true });
-        anchor.addEventListener('mousedown',  setRed);
-        anchor.addEventListener('mouseup',    setWhite);
-        anchor.addEventListener('mouseleave', setWhite);
-    })();
 
     // ── Restore saved prefs on load ──
     (function restoreAll() {
