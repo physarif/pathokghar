@@ -24,10 +24,10 @@
         var theme = p.currentTheme || 'light';
         var bg = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e', black:'#000' }[theme] || '#fff';
         var color = { light:'#1a1a1b', sepia:'#3b2f1e', dark:'#e5e7eb', black:'#d1d5db' }[theme] || '#1a1a1b';
-        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.20 * 1.05) + 'rem';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
         var ls = p.lineSpacing || 1.5;
         var mg = p.marginScale !== undefined ? p.marginScale : 5;
-        var align = p.currentAlign || 'justify';
+        var align = p.currentAlign || 'left';
         var style = document.createElement('style');
         style.id = 'fouc-shield';
         style.textContent =
@@ -130,6 +130,36 @@
         z-index: 1000;
         transition: width 0.1s linear;
     }
+
+    /* ── Go to top button ── */
+    #go-top-btn {
+        position: fixed;
+        right: 16px;
+        bottom: 20px;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: #c0392b;
+        color: #fff;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+        cursor: pointer;
+        z-index: 400;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+    }
+    #go-top-btn.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    #go-top-btn:active { transform: scale(0.92); }
 
     /* ── Book content typography ── */
     #book-content {
@@ -354,39 +384,6 @@
     }
 
 
-    /* ══ Desktop: unified drawer always visible as right sidebar ══ */
-    @media (min-width: 768px) {
-        body { overflow: hidden; height: 100vh; }
-        #mobile-reader-bg { height: 100vh; overflow: hidden; }
-        #read-layout {
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-        }
-        #read-layout > .flex-1 {
-            overflow-y: auto;
-            height: 100vh;
-        }
-        #unified-wrap {
-            top: 0;
-            width: 260px;
-            height: 60vh;
-            pointer-events: auto;
-            transform: none;
-            transition: none;
-        }
-        #unified-toggle-btn { display: none; }
-        #unified-drawer {
-            position: static;
-            width: 260px !important;
-            height: 60vh;
-            box-shadow: -2px 0 12px rgba(0,0,0,0.08);
-            border-left: 1px solid #e5e7eb;
-        }
-        #unified-overlay { display: none !important; }
-        #unified-wrap.open #unified-toggle-btn { display: none; }
-    }
-
     /* ══ Unified drawer ══ */
     #unified-wrap {
         position: fixed;
@@ -497,7 +494,6 @@
 
     /* ── Breadcrumb dark mode ── */
     .read-breadcrumb-full { margin-left: -1.25rem; margin-right: -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
-    @media (min-width: 768px) { .read-breadcrumb-full { margin-left: -2.5rem; margin-right: -2.5rem; padding-left: 2.5rem; padding-right: 2.5rem; } }
     .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
     .dark #bc-category { color: #9ca3af !important; }
     .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
@@ -606,6 +602,9 @@
 
 <!-- Progress bar -->
 <div id="read-progress-bar"></div>
+<button id="go-top-btn" aria-label="উপরে যান" title="উপরে যান">
+    <i class="fas fa-chevron-up"></i>
+</button>
 
 
 <!-- ══════════════════════════════════════════
@@ -690,12 +689,12 @@
 <!-- ══════════════════════════════════════════
      Main layout wrapper
 ══════════════════════════════════════════ -->
-<div id="mobile-reader-bg" class="md:block">
+<div id="mobile-reader-bg">
 <div class="flex gap-0 min-h-screen w-full" id="read-layout">
 
     <!-- Reading column -->
     <div class="flex-1 min-w-0">
-        <div id="read-main-content" class="px-5 md:px-10 pt-0 pb-7 max-w-2xl">
+        <div id="read-main-content" class="px-5 pt-0 pb-7 max-w-2xl">
 
             <!-- Book Title -->
             <div id="read-title-bar" style="text-align:center;padding:0.9rem 1rem;background:#1a1a1b;margin-top:1.2rem;margin-bottom:1.1rem;">
@@ -724,10 +723,10 @@
     const tocMobile    = document.getElementById('toc-nav-mobile');
     const progressRing = document.getElementById('progress-ring-circle');
 
-    let fontScale   = 120;
+    let fontScale   = 100;
     let marginScale = 5;
     let lineSpacing = 1.5;
-    let currentAlign= 'justify';
+    let currentAlign= 'left';
     let currentTheme= 'light';
 
     // ── Save / Load ──
@@ -762,7 +761,6 @@
     }
 
     // ── Toggle opacity on scroll ──
-    const desktopScroller = document.querySelector('#read-layout > .flex-1');
     let unifiedScrollTimer;
     function onScrollFade() {
         if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
@@ -772,9 +770,6 @@
         }
     }
     window.addEventListener('scroll', onScrollFade, { passive: true });
-    if (desktopScroller) {
-        desktopScroller.addEventListener('scroll', onScrollFade, { passive: true });
-    }
 
     // ── Progress bar on scroll ──
     function updateProgress(el) {
@@ -795,8 +790,18 @@
         if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
     }
     window.addEventListener('scroll', () => updateProgress(window), { passive: true });
-    if (desktopScroller) {
-        desktopScroller.addEventListener('scroll', () => updateProgress(desktopScroller), { passive: true });
+
+    // ── Go to top button ──
+    const goTopBtn = document.getElementById('go-top-btn');
+    if (goTopBtn) {
+        const TOP_THRESHOLD = 400;
+        function checkGoTop(scrollTop) {
+            goTopBtn.classList.toggle('visible', scrollTop > TOP_THRESHOLD);
+        }
+        window.addEventListener('scroll', () => checkGoTop(window.scrollY), { passive: true });
+        goTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     }
 
     // ── Build TOC ──
@@ -838,9 +843,6 @@
         });
     }
     window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
-    if (desktopScroller) {
-        desktopScroller.addEventListener('scroll', () => updateTocActive(desktopScroller.scrollTop), { passive: true });
-    }
 
     // ── Unified drawer open/close ──
     function openDrawer() {
