@@ -27,25 +27,10 @@
     <meta name="twitter:title" content="{{full_title}}">
     <meta name="twitter:description" content="{{page_description}}">
     <meta name="twitter:image" content="{{page_image}}">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- আগে cdn.tailwindcss.com (runtime JIT) ব্যবহার হতো, যেটা FOUC/layout-shift
+         করত। এখন GitHub Actions বিল্ড টাইমে precompile হওয়া static CSS। -->
+    <link rel="stylesheet" href="/assets/css/tailwind.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50:  '#fff5f5',
-                            100: '#fde8e6',
-                            500: '#c0392b',
-                            600: '#a93226'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
