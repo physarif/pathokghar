@@ -248,8 +248,8 @@ async function generateBookPages() {
       book_read_disabled: book.zip_url ? '' : 'btn-unclick',
       book_read_aria_disabled: book.zip_url ? 'false' : 'true',
       book_download_href: book.download_url ? `/download/${book.slug}.html` : 'javascript:void(0)',
-      book_download_disabled: book.download_url ? '' : 'btn-unclick',
-      book_download_aria_disabled: book.download_url ? 'false' : 'true',
+      book_download_disabled: '',
+      book_download_aria_disabled: 'false',
     });
 
     const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
