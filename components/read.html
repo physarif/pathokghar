@@ -437,97 +437,39 @@
         text-overflow: ellipsis;
     }
     #rf-page { flex-shrink: 0; }
-    #rf-slider-wrap {
-        position: relative;
-        display: flex;
-        align-items: center;
-        height: 28px;
-    }
-    #rf-track {
-        position: absolute;
-        left: 0; right: 0;
-        top: 50%;
+    #rf-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
         height: 3px;
         border-radius: 2px;
         background: rgba(255,255,255,0.22);
-        transform: translateY(-50%);
-        z-index: 1;
-        pointer-events: none;
+        outline: none;
+        margin: 0;
+        cursor: pointer;
     }
-    #rf-track-fill {
-        position: absolute;
-        left: 0;
-        top: 50%;
-        height: 3px;
-        border-radius: 2px;
-        background: #c0392b;
-        transform: translateY(-50%);
-        width: 0%;
-        z-index: 2;
-        pointer-events: none;
-    }
-    #rf-chapter-ticks {
-        position: absolute;
-        left: 0; right: 0;
-        top: 50%;
-        height: 9px;
-        transform: translateY(-50%);
-        pointer-events: none;
-        z-index: 3;
-    }
-    .rf-tick {
-        position: absolute;
-        top: 0;
-        width: 2px;
-        height: 9px;
-        background: rgba(255,255,255,0.85);
-        border-radius: 1px;
-        transform: translateX(-1px);
-    }
-    body.theme-sepia .rf-tick { background: rgba(59,47,30,0.7); }
-    #rf-thumb {
-        position: absolute;
-        top: 50%;
-        left: 0%;
+    #rf-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
         width: 15px; height: 15px;
         border-radius: 50%;
         background: #c0392b;
         border: 2px solid #fff;
         box-shadow: 0 1px 4px rgba(0,0,0,0.4);
-        transform: translate(-50%, -50%);
-        z-index: 4;
-        pointer-events: none;
-    }
-    #rf-slider {
-        -webkit-appearance: none;
-        appearance: none;
-        position: absolute;
-        left: 0; right: 0; top: 0; bottom: 0;
-        width: 100%;
-        height: 100%;
-        background: transparent;
-        outline: none;
-        margin: 0;
         cursor: pointer;
-        opacity: 0;
-        z-index: 5;
-    }
-    #rf-slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 28px; height: 28px;
-        border-radius: 50%;
-        background: transparent;
-        border: none;
+        margin-top: -6px;
     }
     #rf-slider::-moz-range-thumb {
-        width: 28px; height: 28px;
+        width: 15px; height: 15px;
         border-radius: 50%;
-        background: transparent;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
         border: none;
     }
-    #rf-slider::-webkit-slider-runnable-track { background: transparent; }
-    #rf-slider::-moz-range-track { background: transparent; }
+    #rf-slider::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; }
+    #rf-slider::-moz-range-track { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.22); }
 
     /* Content needs bottom clearance so the fixed footer never covers text */
     #read-main-content { padding-bottom: 4.5rem; }
@@ -775,13 +717,7 @@
         <span id="rf-chapter"></span>
         <span id="rf-page">০%</span>
     </div>
-    <div id="rf-slider-wrap">
-        <div id="rf-track"></div>
-        <div id="rf-track-fill"></div>
-        <div id="rf-chapter-ticks"></div>
-        <div id="rf-thumb"></div>
-        <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
-    </div>
+    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
 </footer>
 
 
@@ -1021,36 +957,24 @@
         progressBar.style.width = pct + '%';
         if (progressPct) progressPct.textContent = toBN(pct) + '%';
         if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
-        if (rfSlider && !rfSliderDragging) {
-            rfSlider.value = Math.round(pct * 10);
-            updateSliderFill(pct);
-        }
+        if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
         if (rfPage) rfPage.textContent = toBN(pct) + '%';
     }
     window.addEventListener('scroll', () => updateProgress(window), { passive: true });
 
     // ── Footer: chapter label + seek slider ──
-    const rfSlider    = document.getElementById('rf-slider');
-    const rfPage      = document.getElementById('rf-page');
-    const rfChapter   = document.getElementById('rf-chapter');
-    const rfTrackFill = document.getElementById('rf-track-fill');
-    const rfThumb     = document.getElementById('rf-thumb');
+    const rfSlider  = document.getElementById('rf-slider');
+    const rfPage    = document.getElementById('rf-page');
+    const rfChapter = document.getElementById('rf-chapter');
     let rfSliderDragging = false;
-    function updateSliderFill(pct) {
-        pct = Math.max(0, Math.min(100, pct));
-        if (rfTrackFill) rfTrackFill.style.width = pct + '%';
-        if (rfThumb) rfThumb.style.left = pct + '%';
-    }
     if (rfSlider) {
         rfSlider.addEventListener('input', () => {
             rfSliderDragging = true;
             const docH = document.documentElement.scrollHeight - window.innerHeight;
             window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
-            updateSliderFill(rfSlider.value / 10);
         });
         rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
     }
-    updateProgress(window);
 
     // ── Build TOC ──
     const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
@@ -1078,31 +1002,6 @@
     }
     buildToc(tocDesktop, false);
     buildToc(tocMobile, true);
-
-    // ── Chapter tick marks on the progress slider ──
-    const chapterTicksEl = document.getElementById('rf-chapter-ticks');
-    function renderChapterTicks() {
-        if (!chapterTicksEl) return;
-        chapterTicksEl.innerHTML = '';
-        const docH = document.documentElement.scrollHeight - window.innerHeight;
-        if (docH <= 0) return;
-        headings.forEach(h => {
-            if (h.tagName !== 'H1') return;
-            const pct = (h.offsetTop / docH) * 100;
-            if (pct <= 0.5 || pct >= 99.5) return;
-            const tick = document.createElement('div');
-            tick.className = 'rf-tick';
-            tick.style.left = pct + '%';
-            chapterTicksEl.appendChild(tick);
-        });
-    }
-    renderChapterTicks();
-    window.addEventListener('load', renderChapterTicks);
-    let tickResizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(tickResizeTimer);
-        tickResizeTimer = setTimeout(renderChapterTicks, 200);
-    });
 
     // ── TOC active ──
     const allTocLinks = document.querySelectorAll('.toc-link');
@@ -1182,7 +1081,6 @@
         });
         updateFontPillColors();
         savePrefs();
-        setTimeout(renderChapterTicks, 50);
     }
     document.querySelectorAll('.font-pill').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -1196,7 +1094,6 @@
         bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
         document.getElementById('font-size-val').textContent = fontScale + '%';
         savePrefs();
-        setTimeout(renderChapterTicks, 50);
     }
     document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
     document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
@@ -1223,7 +1120,6 @@
         document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
         document.getElementById('margin-val').textContent = marginScale + '%';
         savePrefs();
-        setTimeout(renderChapterTicks, 50);
     }
     document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
     document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
@@ -1233,7 +1129,6 @@
         bookContent.style.lineHeight = lineSpacing;
         document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
         savePrefs();
-        setTimeout(renderChapterTicks, 50);
     }
     document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
     document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
