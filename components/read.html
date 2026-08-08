@@ -342,8 +342,8 @@
 
     /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
     #reader-header {
-        position: sticky;
-        top: 0;
+        position: fixed;
+        top: 0; left: 0; right: 0;
         z-index: 60;
         display: flex;
         align-items: center;
@@ -437,6 +437,29 @@
         text-overflow: ellipsis;
     }
     #rf-page { flex-shrink: 0; }
+    #rf-slider-wrap {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+    #rf-chapter-ticks {
+        position: absolute;
+        left: 8px; right: 8px;
+        top: 50%;
+        height: 9px;
+        transform: translateY(-50%);
+        pointer-events: none;
+        z-index: 1;
+    }
+    .rf-tick {
+        position: absolute;
+        top: 0;
+        width: 1px;
+        height: 9px;
+        background: rgba(255,255,255,0.5);
+        transform: translateX(-0.5px);
+    }
+    body.theme-sepia .rf-tick { background: rgba(59,47,30,0.45); }
     #rf-slider {
         -webkit-appearance: none;
         appearance: none;
@@ -447,6 +470,8 @@
         outline: none;
         margin: 0;
         cursor: pointer;
+        position: relative;
+        z-index: 2;
     }
     #rf-slider::-webkit-slider-thumb {
         -webkit-appearance: none;
@@ -717,8 +742,12 @@
         <span id="rf-chapter"></span>
         <span id="rf-page">০%</span>
     </div>
-    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
+    <div id="rf-slider-wrap">
+        <div id="rf-chapter-ticks"></div>
+        <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
+    </div>
 </footer>
+
 
 
 <!-- ══════════════════════════════════════════
@@ -812,7 +841,7 @@
 
     <!-- Reading column -->
     <div class="flex-1 min-w-0">
-        <div id="read-main-content" class="px-5 pt-0 pb-7 max-w-2xl">
+        <div id="read-main-content" class="px-5 pb-7 max-w-2xl" style="padding-top: 3.7rem;">
 
             <div id="book-content" class="text-gray-800 dark:text-gray-200">
                 {{book_content}}
@@ -1002,6 +1031,31 @@
     buildToc(tocDesktop, false);
     buildToc(tocMobile, true);
 
+    // ── Chapter tick marks on the progress slider ──
+    const chapterTicksEl = document.getElementById('rf-chapter-ticks');
+    function renderChapterTicks() {
+        if (!chapterTicksEl) return;
+        chapterTicksEl.innerHTML = '';
+        const docH = document.documentElement.scrollHeight - window.innerHeight;
+        if (docH <= 0) return;
+        headings.forEach(h => {
+            if (h.tagName !== 'H1') return;
+            const pct = (h.offsetTop / docH) * 100;
+            if (pct <= 0.5 || pct >= 99.5) return;
+            const tick = document.createElement('div');
+            tick.className = 'rf-tick';
+            tick.style.left = pct + '%';
+            chapterTicksEl.appendChild(tick);
+        });
+    }
+    renderChapterTicks();
+    window.addEventListener('load', renderChapterTicks);
+    let tickResizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(tickResizeTimer);
+        tickResizeTimer = setTimeout(renderChapterTicks, 200);
+    });
+
     // ── TOC active ──
     const allTocLinks = document.querySelectorAll('.toc-link');
     function updateTocActive(scrollTop) {
@@ -1080,6 +1134,7 @@
         });
         updateFontPillColors();
         savePrefs();
+        setTimeout(renderChapterTicks, 50);
     }
     document.querySelectorAll('.font-pill').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -1093,6 +1148,7 @@
         bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
         document.getElementById('font-size-val').textContent = fontScale + '%';
         savePrefs();
+        setTimeout(renderChapterTicks, 50);
     }
     document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
     document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
@@ -1119,6 +1175,7 @@
         document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
         document.getElementById('margin-val').textContent = marginScale + '%';
         savePrefs();
+        setTimeout(renderChapterTicks, 50);
     }
     document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
     document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
@@ -1128,6 +1185,7 @@
         bookContent.style.lineHeight = lineSpacing;
         document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
         savePrefs();
+        setTimeout(renderChapterTicks, 50);
     }
     document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
     document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
