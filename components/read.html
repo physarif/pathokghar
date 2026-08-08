@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
     <script>
 (function(){
     try {
@@ -28,12 +28,19 @@
         var ls = p.lineSpacing || 1.5;
         var mg = p.marginScale !== undefined ? p.marginScale : 5;
         var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
         var style = document.createElement('style');
         style.id = 'fouc-shield';
         style.textContent =
             'html,body{background:' + bg + '!important}' +
             '#mobile-reader-bg{background:' + bg + '!important}' +
-            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
             '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
         document.head.appendChild(style);
         // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
@@ -613,6 +620,38 @@
     }
     .settings-btn:active { background: #fde8e6; border-color: #c0392b; color: #c0392b; }
 
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -16px;
+        padding: 0 16px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid #e5e7eb;
+        background: #fff;
+        color: #444;
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: #fde8e6 !important;
+        border-color: #c0392b !important;
+        color: #c0392b !important;
+    }
+
     /* Text align btns */
     .align-btns { display: flex; gap: 6px; }
     .align-btn {
@@ -662,6 +701,7 @@
         </div>
         <div class="unified-panel" id="panel-customize">
             <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
                 <div class="theme-circles">
                     <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
@@ -670,7 +710,15 @@
                     <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
                     <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
                 </div>
-                <div class="settings-row" style="margin-top:14px;">
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
                     <div class="align-btns" style="width:100%; justify-content:space-between;">
                         <button class="align-btn" id="align-left" title="বাম">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
@@ -767,12 +815,20 @@
     let lineSpacing = 1.5;
     let currentAlign= 'left';
     let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
 
     // ── Save / Load ──
     const STORAGE_KEY = 'pathakghar_reader_prefs';
     function savePrefs() {
         try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme }));
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
         } catch(e) {}
     }
     function loadPrefs() {
@@ -785,6 +841,7 @@
             if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
             if (p.currentAlign) currentAlign = p.currentAlign;
             if (p.currentTheme) currentTheme = p.currentTheme;
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
         } catch(e) {}
     }
     loadPrefs();
@@ -919,6 +976,21 @@
 
     let touchStartX = 0;
 
+    // ── Font family ──
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
     // ── Font size ──
     function applyFont() {
         bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
@@ -1047,6 +1119,7 @@
 
     // ── Restore saved prefs on load ──
     (function restoreAll() {
+        applyFontFamily();
         applyFont();
         applyMargin();
         applyLineSpacing();
