@@ -138,36 +138,6 @@
         transition: width 0.1s linear;
     }
 
-    /* ── Go to top button ── */
-    #go-top-btn {
-        position: fixed;
-        right: 16px;
-        bottom: 20px;
-        width: 34px;
-        height: 34px;
-        border-radius: 6px;
-        background: #c0392b;
-        color: #fff;
-        border: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.85rem;
-        box-shadow: 0 4px 14px rgba(0,0,0,0.25);
-        cursor: pointer;
-        z-index: 400;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(10px);
-        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
-    }
-    #go-top-btn.visible {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-    }
-    #go-top-btn:active { transform: scale(0.92); }
-
     /* ── Book content typography ── */
     #book-content {
         font-family: 'Noto Serif Bengali', 'Lora', serif;
@@ -381,8 +351,9 @@
         padding: 0.6rem 0.5rem 0.6rem 0.35rem;
         background: #1a1a1b;
         box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        transition: background 0.3s;
+        transition: background 0.3s, transform 0.28s ease;
     }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
     #rh-back {
         width: 40px;
         height: 40px;
@@ -392,7 +363,7 @@
         align-items: center;
         justify-content: center;
         color: #fff;
-        font-size: 1rem;
+        font-size: 1.25rem;
         text-decoration: none;
         transition: background 0.15s;
     }
@@ -402,8 +373,8 @@
         min-width: 0;
         margin: 0;
         font-family: 'Noto Serif Bengali', serif;
-        font-size: 0.95rem;
-        font-weight: 700;
+        font-size: 1.1rem;
+        font-weight: 400;
         color: #fff;
         white-space: nowrap;
         overflow: hidden;
@@ -422,7 +393,7 @@
         background: transparent;
         color: #fff;
         border-radius: 8px;
-        font-size: 0.95rem;
+        font-size: 1.2rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -442,8 +413,9 @@
         background: #1a1a1b;
         padding: 0.5rem 1rem 0.65rem;
         box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
-        transition: background 0.3s;
+        transition: background 0.3s, transform 0.28s ease;
     }
+    body.bars-hidden #reader-footer { transform: translateY(100%); }
     body.theme-dark  #reader-footer,
     body.theme-black #reader-footer,
     body.theme-sepia #reader-footer { background: #141414; }
@@ -512,9 +484,6 @@
         transition: transform 0.16s cubic-bezier(0.2,0,0,1),
                     opacity 0.14s ease;
     }
-
-    /* Give the floating go-top button clearance above the new footer */
-    #go-top-btn { bottom: 76px !important; }
 
     /* Drawer panel */
     #unified-drawer {
@@ -733,10 +702,6 @@
     </div>
 </header>
 
-<button id="go-top-btn" aria-label="উপরে যান" title="উপরে যান">
-    <i class="fas fa-chevron-up"></i>
-</button>
-
 <!-- ══ Reader footer (chapter + page/percent + seek slider) ══ -->
 <footer id="reader-footer">
     <div id="rf-labels">
@@ -908,6 +873,38 @@
         return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
     }
 
+    // ── Top/bottom bar: tap-to-toggle with 5s auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 5000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
     // ── Toggle opacity on scroll ──
     let unifiedScrollTimer;
     function onScrollFade() {
@@ -953,19 +950,6 @@
             window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
         });
         rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
-    }
-
-    // ── Go to top button ──
-    const goTopBtn = document.getElementById('go-top-btn');
-    if (goTopBtn) {
-        const TOP_THRESHOLD = 400;
-        function checkGoTop(scrollTop) {
-            goTopBtn.classList.toggle('visible', scrollTop > TOP_THRESHOLD);
-        }
-        window.addEventListener('scroll', () => checkGoTop(window.scrollY), { passive: true });
-        goTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
     }
 
     // ── Build TOC ──
@@ -1014,11 +998,15 @@
         unifiedWrap.classList.add('open');
         unifiedOverlay.classList.add('open');
         document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
     }
     function closeDrawer() {
         unifiedWrap.classList.remove('open');
         unifiedOverlay.classList.remove('open');
         document.body.style.overflow = '';
+        if (window.__readerBars) window.__readerBars.show();
+        else document.body.classList.remove('bars-hidden');
     }
 
     if (unifiedToggle) {
