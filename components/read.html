@@ -985,7 +985,10 @@
         progressBar.style.width = pct + '%';
         if (progressPct) progressPct.textContent = toBN(pct) + '%';
         if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
-        if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
+        if (rfSlider && !rfSliderDragging) {
+            rfSlider.value = Math.round(pct * 10);
+            updateSliderFill(pct);
+        }
         if (rfPage) rfPage.textContent = toBN(pct) + '%';
     }
     window.addEventListener('scroll', () => updateProgress(window), { passive: true });
@@ -995,14 +998,21 @@
     const rfPage    = document.getElementById('rf-page');
     const rfChapter = document.getElementById('rf-chapter');
     let rfSliderDragging = false;
+    function updateSliderFill(pct) {
+        if (!rfSlider) return;
+        rfSlider.style.background =
+            'linear-gradient(to right, #c0392b 0%, #c0392b ' + pct + '%, rgba(255,255,255,0.22) ' + pct + '%, rgba(255,255,255,0.22) 100%)';
+    }
     if (rfSlider) {
         rfSlider.addEventListener('input', () => {
             rfSliderDragging = true;
             const docH = document.documentElement.scrollHeight - window.innerHeight;
             window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
+            updateSliderFill(rfSlider.value / 10);
         });
         rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
     }
+    updateProgress(window);
 
     // ── Build TOC ──
     const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
