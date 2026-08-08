@@ -423,11 +423,20 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: 0.5rem;
         font-family: 'Noto Serif Bengali', serif;
         font-size: 0.78rem;
         color: rgba(255,255,255,0.7);
         margin-bottom: 0.35rem;
     }
+    #rf-chapter {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #rf-page { flex-shrink: 0; }
     #rf-slider {
         -webkit-appearance: none;
         appearance: none;
@@ -705,7 +714,7 @@
 <!-- ══ Reader footer (chapter + page/percent + seek slider) ══ -->
 <footer id="reader-footer">
     <div id="rf-labels">
-        <span id="rf-chapter">১</span>
+        <span id="rf-chapter"></span>
         <span id="rf-page">০%</span>
     </div>
     <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
@@ -896,6 +905,10 @@
 
         window.__readerBars = { show: showBars, hide: hideBars };
 
+        window.addEventListener('scroll', () => {
+            if (!document.body.classList.contains('bars-hidden')) hideBars();
+        }, { passive: true });
+
         if (readMain) {
             readMain.addEventListener('click', (e) => {
                 if (e.target.closest('a, button, input, select, textarea, img')) return;
@@ -989,9 +1002,10 @@
         allTocLinks.forEach(a => {
             a.classList.toggle('active', parseInt(a.dataset.idx) === current);
         });
-        if (rfChapter) rfChapter.textContent = toBN(current + 1);
+        if (rfChapter && headings[current]) rfChapter.textContent = headings[current].textContent.trim();
     }
     window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
 
     // ── Unified drawer open/close ──
     function openDrawer() {
@@ -1005,8 +1019,6 @@
         unifiedWrap.classList.remove('open');
         unifiedOverlay.classList.remove('open');
         document.body.style.overflow = '';
-        if (window.__readerBars) window.__readerBars.show();
-        else document.body.classList.remove('bars-hidden');
     }
 
     if (unifiedToggle) {
