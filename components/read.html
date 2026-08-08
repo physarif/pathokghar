@@ -441,10 +441,34 @@
         position: relative;
         display: flex;
         align-items: center;
+        height: 28px;
+    }
+    #rf-track {
+        position: absolute;
+        left: 0; right: 0;
+        top: 50%;
+        height: 3px;
+        border-radius: 2px;
+        background: rgba(255,255,255,0.22);
+        transform: translateY(-50%);
+        z-index: 1;
+        pointer-events: none;
+    }
+    #rf-track-fill {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        height: 3px;
+        border-radius: 2px;
+        background: #c0392b;
+        transform: translateY(-50%);
+        width: 0%;
+        z-index: 2;
+        pointer-events: none;
     }
     #rf-chapter-ticks {
         position: absolute;
-        left: 8px; right: 8px;
+        left: 0; right: 0;
         top: 50%;
         height: 9px;
         transform: translateY(-50%);
@@ -461,41 +485,49 @@
         transform: translateX(-1px);
     }
     body.theme-sepia .rf-tick { background: rgba(59,47,30,0.7); }
+    #rf-thumb {
+        position: absolute;
+        top: 50%;
+        left: 0%;
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        transform: translate(-50%, -50%);
+        z-index: 4;
+        pointer-events: none;
+    }
     #rf-slider {
         -webkit-appearance: none;
         appearance: none;
+        position: absolute;
+        left: 0; right: 0; top: 0; bottom: 0;
         width: 100%;
-        height: 3px;
-        border-radius: 2px;
-        background: rgba(255,255,255,0.22);
+        height: 100%;
+        background: transparent;
         outline: none;
         margin: 0;
         cursor: pointer;
-        position: relative;
-        z-index: 1;
+        opacity: 0;
+        z-index: 5;
     }
     #rf-slider::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
-        width: 15px; height: 15px;
+        width: 28px; height: 28px;
         border-radius: 50%;
-        background: #c0392b;
-        border: 2px solid #fff;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
-        cursor: pointer;
-        margin-top: -6px;
-    }
-    #rf-slider::-moz-range-thumb {
-        width: 15px; height: 15px;
-        border-radius: 50%;
-        background: #c0392b;
-        border: 2px solid #fff;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
-        cursor: pointer;
+        background: transparent;
         border: none;
     }
-    #rf-slider::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; }
-    #rf-slider::-moz-range-track { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.22); }
+    #rf-slider::-moz-range-thumb {
+        width: 28px; height: 28px;
+        border-radius: 50%;
+        background: transparent;
+        border: none;
+    }
+    #rf-slider::-webkit-slider-runnable-track { background: transparent; }
+    #rf-slider::-moz-range-track { background: transparent; }
 
     /* Content needs bottom clearance so the fixed footer never covers text */
     #read-main-content { padding-bottom: 4.5rem; }
@@ -744,7 +776,10 @@
         <span id="rf-page">০%</span>
     </div>
     <div id="rf-slider-wrap">
+        <div id="rf-track"></div>
+        <div id="rf-track-fill"></div>
         <div id="rf-chapter-ticks"></div>
+        <div id="rf-thumb"></div>
         <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
     </div>
 </footer>
@@ -995,14 +1030,16 @@
     window.addEventListener('scroll', () => updateProgress(window), { passive: true });
 
     // ── Footer: chapter label + seek slider ──
-    const rfSlider  = document.getElementById('rf-slider');
-    const rfPage    = document.getElementById('rf-page');
-    const rfChapter = document.getElementById('rf-chapter');
+    const rfSlider    = document.getElementById('rf-slider');
+    const rfPage      = document.getElementById('rf-page');
+    const rfChapter   = document.getElementById('rf-chapter');
+    const rfTrackFill = document.getElementById('rf-track-fill');
+    const rfThumb     = document.getElementById('rf-thumb');
     let rfSliderDragging = false;
     function updateSliderFill(pct) {
-        if (!rfSlider) return;
-        rfSlider.style.background =
-            'linear-gradient(to right, #c0392b 0%, #c0392b ' + pct + '%, rgba(255,255,255,0.22) ' + pct + '%, rgba(255,255,255,0.22) 100%)';
+        pct = Math.max(0, Math.min(100, pct));
+        if (rfTrackFill) rfTrackFill.style.width = pct + '%';
+        if (rfThumb) rfThumb.style.left = pct + '%';
     }
     if (rfSlider) {
         rfSlider.addEventListener('input', () => {
