@@ -499,14 +499,18 @@
         position: fixed;
         top: 8px; right: 8px;
         width: 70%;
-        height: 0;
+        height: 74vh;
         overflow: hidden;
         z-index: 500;
         pointer-events: none;
         background: #303134;
-        border-radius: 16px;
+        border-radius: 5px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        transition: height 0.32s cubic-bezier(0.4,0,0.2,1);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease;
     }
 
     /* Give the floating go-top button clearance above the new footer */
@@ -519,10 +523,10 @@
         display: flex;
         flex-direction: column;
         overflow-y: auto;
-        pointer-events: auto;
     }
     #unified-wrap.open {
-        height: 74vh;
+        transform: scale(1) translateY(0);
+        opacity: 1;
         pointer-events: auto;
     }
 
