@@ -882,10 +882,11 @@
         return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
     }
 
-    // ── Top/bottom bar: tap-to-toggle with 5s auto-hide ──
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
     (function () {
         const readMain = document.getElementById('read-main-content');
         let autoHideTimer;
+        let lastY = window.scrollY;
 
         function showBars() {
             document.body.classList.remove('bars-hidden');
@@ -897,7 +898,7 @@
         }
         function scheduleAutoHide() {
             clearTimeout(autoHideTimer);
-            autoHideTimer = setTimeout(hideBars, 5000);
+            autoHideTimer = setTimeout(hideBars, 6000);
         }
         function toggleBars() {
             document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
@@ -906,7 +907,16 @@
         window.__readerBars = { show: showBars, hide: hideBars };
 
         window.addEventListener('scroll', () => {
-            if (!document.body.classList.contains('bars-hidden')) hideBars();
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
         }, { passive: true });
 
         if (readMain) {
