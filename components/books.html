@@ -208,25 +208,6 @@
   .dark .bc-page-btn.active { background: #f87171; color: #111827; }
   .dark .bc-page-nav { background: #f87171; color: #111827; }
   .dark .bc-page-nav:hover { background: #ef4444; }
-  /* Load more button — real <a> link, progressive enhancement */
-  .bc-load-more-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: #c0392b;
-    color: #fff;
-    font-weight: 600;
-    font-size: 0.95rem;
-    padding: 0.6rem 1.5rem;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background 0.15s;
-  }
-  .bc-load-more-btn:hover { background: #a93226; }
-  .dark .bc-load-more-btn { background: #c0392b; }
-  .dark .bc-load-more-btn:hover { background: #a93226; }
 </style>
 
 <!--
@@ -254,48 +235,34 @@
     <div class="bc-list">{{latest_books}}</div>
   </section>
 
-  <div id="bc-load-more-wrap" style="text-align:center;padding:1rem 0;">{{load_more_html}}</div>
+  <div id="bc-pagination"></div>
   <script>
     (function() {
-      const wrap = document.getElementById('bc-load-more-wrap');
-      const bcList = document.querySelector('.book-section .bc-list');
-      if (!wrap || !bcList) return;
-
-      wrap.addEventListener('click', function(e) {
-        const btn = e.target.closest('#bc-load-more-btn');
-        if (!btn) return;
-        e.preventDefault();
-        loadNextPage(btn);
-      });
-
-      function loadNextPage(btn) {
-        const url = btn.getAttribute('href');
-        btn.setAttribute('aria-disabled', 'true');
-        btn.style.pointerEvents = 'none';
-        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> লোড হচ্ছে...';
-
-        fetch(url)
-          .then(function(res) {
-            if (!res.ok) throw new Error('load failed');
-            return res.text();
-          })
-          .then(function(html) {
-            const doc = new DOMParser().parseFromString(html, 'text/html');
-            const nextList = doc.querySelector('.book-section .bc-list');
-            if (nextList) {
-              bcList.insertAdjacentHTML('beforeend', nextList.innerHTML);
-            }
-            const nextBtn = doc.querySelector('#bc-load-more-btn');
-            wrap.innerHTML = nextBtn ? nextBtn.outerHTML : '';
-          })
-          .catch(function() {
-            btn.removeAttribute('aria-disabled');
-            btn.style.pointerEvents = '';
-            btn.innerHTML = 'আবার চেষ্টা করুন <i class="fa-solid fa-rotate-right"></i>';
-          });
+      const current = parseInt('{{current_page}}', 10);
+      const total = parseInt('{{total_pages}}', 10);
+      if (!current || !total || total <= 1) return;
+      const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+      const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');
+      const el = document.getElementById('bc-pagination');
+      let html = '<div class="bc-pagination">';
+      if (current > 1) {
+        const prev = current === 2 ? '/' : '/books/' + (current - 1) + '/';
+        html += '<a href="' + prev + '" class="bc-page-nav"><i class="fas fa-chevron-left text-xs"></i> পূর্ববর্তী</a>';
       }
+      for (let i = 1; i <= total; i++) {
+        const href = i === 1 ? '/' : '/books/' + i + '/';
+        if (i === current) html += '<span class="bc-page-btn active">' + toBn(i) + '</span>';
+        else html += '<a href="' + href + '" class="bc-page-btn">' + toBn(i) + '</a>';
+      }
+      if (current < total) {
+        html += '<a href="/books/' + (current + 1) + '/" class="bc-page-nav">পরবর্তী <i class="fas fa-chevron-right text-xs"></i></a>';
+      }
+      html += '</div>';
+      el.innerHTML = html;
     })();
   </script>
+
+
 
 
 
