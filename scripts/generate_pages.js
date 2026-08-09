@@ -343,6 +343,14 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
 
     const template = page === 1 ? indexTemplate : booksTemplate;
 
+    // JS ছাড়া বা crawler-এর জন্য fallback — সরাসরি HTML-এ থাকা <a> লিঙ্ক,
+    // যাতে infinite-scroll (IntersectionObserver) না চললেও পরের পাতা খুঁজে
+    // পাওয়া যায়। JS চালু থাকলে scroll করলেই auto-load হয়ে যাবে; ততক্ষণ এই
+    // লিঙ্কটাই দেখা যাবে।
+    const loadMoreLinkHtml = page < totalPages
+      ? `<a href="/books/${page + 1}/" id="bc-fallback-link" style="display:inline-flex;align-items:center;gap:0.5rem;background:#c0392b;color:#fff;font-weight:600;font-size:0.95rem;padding:0.6rem 1.5rem;border-radius:5px;text-decoration:none;">আরও বই দেখুন <i class="fa-solid fa-angles-down"></i></a>`
+      : '';
+
     const indexContent = render(template, {
       latest_books: pageBooks.map(bookCard).join(''),
       current_page: page,
@@ -350,6 +358,7 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
       current_page_bn: toBanglaNum(page),
       total_pages_bn: toBanglaNum(totalPages),
       total_books_bn: toBanglaNum(sorted.length),
+      load_more_link: loadMoreLinkHtml,
     });
 
     const fullPage = render(layout, {
