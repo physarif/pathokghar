@@ -203,6 +203,25 @@
   .dark .bc-page-btn.active { background: #f87171; color: #111827; }
   .dark .bc-page-nav { background: #f87171; color: #111827; }
   .dark .bc-page-nav:hover { background: #ef4444; }
+  /* Load more button — real <a> link, progressive enhancement */
+  .bc-load-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #c0392b;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.6rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .bc-load-more-btn:hover { background: #a93226; }
+  .dark .bc-load-more-btn { background: #c0392b; }
+  .dark .bc-load-more-btn:hover { background: #a93226; }
 </style>
 
 <!--
@@ -230,28 +249,28 @@
     <div class="bc-list">{{latest_books}}</div>
   </section>
 
-  <div id="bc-load-more-wrap" style="text-align:center;padding:1rem 0;"></div>
+  <div id="bc-load-more-wrap" style="text-align:center;padding:1rem 0;">{{load_more_html}}</div>
   <script>
     (function() {
-      const total = parseInt('{{total_pages}}', 10);
-      let current = parseInt('{{current_page}}', 10);
-      if (!current || !total || total <= 1) return;
-
       const wrap = document.getElementById('bc-load-more-wrap');
       const bcList = document.querySelector('.book-section .bc-list');
+      if (!wrap || !bcList) return;
 
-      function renderButton() {
-        wrap.innerHTML = '<button id="bc-load-more-btn" type="button" style="display:inline-flex;align-items:center;gap:0.5rem;background:#c0392b;color:#fff;font-weight:600;font-size:0.95rem;padding:0.6rem 1.5rem;border:none;border-radius:5px;cursor:pointer;">আরও বই দেখুন <i class="fa-solid fa-angles-down"></i></button>';
-        document.getElementById('bc-load-more-btn').addEventListener('click', loadNextPage);
-      }
+      // Progressive enhancement: বাটনটা আসলে server-rendered real <a href>,
+      // JS না থাকলে/fail করলে এটা স্বাভাবিক লিংক হিসেবেই কাজ করবে এবং
+      // crawler-রা সহজেই পরের পাতা খুঁজে পাবে।
+      wrap.addEventListener('click', function(e) {
+        const btn = e.target.closest('#bc-load-more-btn');
+        if (!btn) return;
+        e.preventDefault();
+        loadNextPage(btn);
+      });
 
-      function loadNextPage() {
-        const btn = document.getElementById('bc-load-more-btn');
-        btn.disabled = true;
+      function loadNextPage(btn) {
+        const url = btn.getAttribute('href');
+        btn.setAttribute('aria-disabled', 'true');
+        btn.style.pointerEvents = 'none';
         btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> লোড হচ্ছে...';
-
-        const nextPage = current + 1;
-        const url = '/books/' + nextPage + '/';
 
         fetch(url)
           .then(function(res) {
@@ -264,19 +283,15 @@
             if (nextList) {
               bcList.insertAdjacentHTML('beforeend', nextList.innerHTML);
             }
-            current = nextPage;
-            if (current >= total) {
-              wrap.innerHTML = '';
-            } else {
-              renderButton();
-            }
+            // fetched পাতার নিজস্ব real next-link দিয়ে বাটনটা replace করা হচ্ছে
+            const nextBtn = doc.querySelector('#bc-load-more-btn');
+            wrap.innerHTML = nextBtn ? nextBtn.outerHTML : '';
           })
           .catch(function() {
-            btn.disabled = false;
+            btn.removeAttribute('aria-disabled');
+            btn.style.pointerEvents = '';
             btn.innerHTML = 'আবার চেষ্টা করুন <i class="fa-solid fa-rotate-right"></i>';
           });
       }
-
-      renderButton();
     })();
   </script>
