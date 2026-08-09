@@ -1,7 +1,7 @@
 <!-- components/books.html — pagination page (/books/{page}/) content + সব styling এখানে -->
 <style>
   /* Section */
-  .book-section { padding: 0.75rem 0; margin-bottom: 0.5rem; }
+  .book-section { padding: 0.75rem 0.5rem; margin-bottom: 0.5rem; }
   @media (min-width: 768px) { .book-section { margin-left: 0.5rem; margin-right: 0.5rem; padding: 0.75rem 0.4rem; } }
 
   /* Section header */
@@ -57,54 +57,46 @@
     display: flex;
     flex-direction: column;
     padding: 0;
-    gap: 0.4rem;
+    gap: 0.6rem;
   }
   @media (min-width: 768px) {
     .bc-list {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.4rem;
+      gap: 0.6rem;
       padding: 0;
     }
   }
 
-  /* Separator line between cards */
-  .bc-card + .bc-card { border-top: none; }
-  .dark .bc-card + .bc-card { border-top: none; }
-  @media (min-width: 768px) {
-    .bc-card + .bc-card { border-top: none; }
-    .bc-card { border-top: none; }
-    .bc-card:nth-child(odd) { border-right: none; padding-right: 0.75rem; }
-    .bc-card:nth-child(even) { padding-left: 0.75rem; }
-  }
-
-  /* Book card — horizontal list style */
+  /* Book card — dark themed, premium style */
   .bc-card {
     display: flex;
     flex-direction: row;
     gap: 0.85rem;
     align-items: flex-start;
     text-decoration: none;
-    padding: 0.75rem;
-    transition: background 0.1s;
+    padding: 0.85rem;
+    transition: background 0.15s;
     background: #fff;
+    border-radius: 5px;
   }
   .dark .bc-card { background: #23232a; }
-  .bc-card:first-child { padding-top: 0.75rem; }
-  .bc-card:last-child { padding-bottom: 0.75rem; }
+  .bc-card:first-child { padding-top: 0.85rem; }
+  .bc-card:last-child { padding-bottom: 0.85rem; }
   .bc-card:hover { background: #fef2f2; }
   .dark .bc-card:hover { background: #2a2020; }
 
   /* Cover — left side, fixed size 2:3 ratio */
   .bc-img-wrap {
     flex-shrink: 0;
-    width: 5.5rem;
+    width: 5rem;
     aspect-ratio: 2/3;
     overflow: hidden;
     background: #e5e7eb;
+    border-radius: 6px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   }
-  @media (min-width: 768px) { .bc-img-wrap { width: 6.5rem; } }
+  @media (min-width: 768px) { .bc-img-wrap { width: 6rem; } }
   .dark .bc-img-wrap { background: #374151; }
 
   .bc-img {
@@ -125,7 +117,7 @@
 
   /* Headline: শুধু title */
   .bc-headline {
-    font-size: 1.1rem;
+    font-size: 1.08rem;
     line-height: 1.4;
     margin: 0;
     display: -webkit-box;
@@ -142,21 +134,22 @@
   .dark .bc-card:hover .bc-title { text-decoration: none; }
 
   .bc-meta {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     color: #9ca3af;
-    margin: 0;
+    font-weight: 600;
+    margin: 0.15rem 0 0;
   }
   .dark .bc-meta { color: #6b7280; }
 
   /* Description */
   .bc-desc {
-    margin-top: 0.3rem;
-    font-size: 1.02rem;
+    margin-top: 0.35rem;
+    font-size: 0.9rem;
     color: #4b5563;
-    line-height: 1.6;
+    line-height: 1.55;
     text-align: justify;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
