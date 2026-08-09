@@ -286,6 +286,11 @@
             // fetched পাতার নিজস্ব real next-link দিয়ে বাটনটা replace করা হচ্ছে
             const nextBtn = doc.querySelector('#bc-load-more-btn');
             wrap.innerHTML = nextBtn ? nextBtn.outerHTML : '';
+
+            // address bar আপডেট, পেজ রিলোড ছাড়াই (back বাটনেও কাজ করবে)
+            if (window.history && window.history.pushState) {
+              window.history.pushState({ loadMoreUrl: url }, '', url);
+            }
           })
           .catch(function() {
             btn.removeAttribute('aria-disabled');
@@ -293,5 +298,12 @@
             btn.innerHTML = 'আবার চেষ্টা করুন <i class="fa-solid fa-rotate-right"></i>';
           });
       }
+
+      // Back/forward বাটনে address bar-এর সাথে content ঠিক রাখতে reload
+      window.addEventListener('popstate', function(e) {
+        if (e.state && e.state.loadMoreUrl) {
+          window.location.reload();
+        }
+      });
     })();
   </script>
