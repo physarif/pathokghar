@@ -341,9 +341,6 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
       current_page_bn: toBanglaNum(page),
       total_pages_bn: toBanglaNum(totalPages),
       total_books_bn: toBanglaNum(sorted.length),
-      load_more_html: page < totalPages
-        ? `<a href="/books/${page + 1}/" id="bc-load-more-btn" class="bc-load-more-btn">আরও বই দেখুন <i class="fa-solid fa-angles-down"></i></a>`
-        : '',
     });
 
     const fullPage = render(layout, {
