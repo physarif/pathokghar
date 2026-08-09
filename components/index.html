@@ -113,7 +113,7 @@
     <div class="bc-list">{{latest_books}}</div>
   </section>
 
-  <div id="bc-load-more-wrap" style="text-align:center;padding:1rem 0;"></div>
+  <div id="bc-load-more-wrap" style="text-align:center;padding:1rem 0;">{{load_more_link}}</div>
   <script>
     (function() {
       const total = parseInt('{{total_pages}}', 10);
@@ -124,6 +124,11 @@
       const bcList = document.querySelector('.book-section .bc-list');
       let loading = false;
       let observer = null;
+
+      // পেজ লোড হওয়ার সাথে সাথেই server-rendered fallback লিঙ্ক (<a href>)
+      // সরিয়ে ফাঁকা রাখা হচ্ছে — JS থাকলে scroll করলেই auto-load হবে।
+      // JS বন্ধ থাকলে এই replace-টাই হবে না, ফলে আসল লিঙ্কটা থেকে যাবে।
+      wrap.innerHTML = '';
 
       function renderLoading() {
         wrap.innerHTML = '<span style="display:inline-flex;align-items:center;gap:0.5rem;color:#c0392b;font-weight:600;font-size:0.95rem;"><i class="fa-solid fa-spinner fa-spin"></i> লোড হচ্ছে...</span>';
