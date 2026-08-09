@@ -338,49 +338,13 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
 
   const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
 
-  // ---- জনপ্রিয় বিভাগ: বই-সংখ্যা অনুযায়ী top categories, চিপ আকারে ----
-  const categoryBookCount = {};
-  for (const book of bookList) {
-    if (book.category_slug) {
-      categoryBookCount[book.category_slug] = (categoryBookCount[book.category_slug] || 0) + 1;
-    }
-  }
-  const popularCategories = Object.values(categoriesRaw)
-    .filter(cat => cat && cat.slug && cat.title && categoryBookCount[cat.slug])
-    .sort((a, b) => (categoryBookCount[b.slug] || 0) - (categoryBookCount[a.slug] || 0))
-    .slice(0, 12);
-  const popularCategoriesHtml = popularCategories.map(cat =>
-    `<a href="/category/${cat.slug}/1/" class="cat-card"><div><span class="cat-card-name">${cat.title} <span class="cat-card-count">(${toBanglaNum(categoryBookCount[cat.slug])})</span></span></div></a>`
-  ).join('');
-
-  // ---- জনপ্রিয় লেখক: সবচেয়ে বেশি বই আছে এমন লেখক, ছবিসহ carousel ----
+  // ---- স্ট্যাটস বার: মোট বই / লেখক / বিভাগ ----
   const authorBookCount = {};
-  const authorInfo = {};
   for (const book of bookList) {
     if (book.author_slug) {
       authorBookCount[book.author_slug] = (authorBookCount[book.author_slug] || 0) + 1;
-      if (!authorInfo[book.author_slug]) {
-        authorInfo[book.author_slug] = { name: book.author_name, img: book.author_img || '' };
-      }
     }
   }
-  const featuredAuthorSlugs = Object.keys(authorBookCount)
-    .sort((a, b) => authorBookCount[b] - authorBookCount[a])
-    .slice(0, 12);
-  const featuredAuthorsHtml = featuredAuthorSlugs.map(slug => {
-    const info = authorInfo[slug];
-    const initial = info.name ? info.name[0] : '?';
-    const photoInner = info.img
-      ? `<div class="author-photo-fallback">${initial}</div><img src="${info.img}" alt="${info.name}" loading="lazy">`
-      : `<div class="author-photo-fallback">${initial}</div>`;
-    return `<a href="/author/${slug}.html" class="author-card">` +
-      `<div class="author-photo-wrap">${photoInner}</div>` +
-      `<span class="author-card-name">${info.name}</span>` +
-      `<span class="author-book-count"><strong>${toBanglaNum(authorBookCount[slug])}</strong> টি বই</span>` +
-      `</a>`;
-  }).join('');
-
-  // ---- স্ট্যাটস বার: মোট বই / লেখক / বিভাগ ----
   const totalAuthorsCount = Object.keys(authorBookCount).length;
   const totalCategoriesCount = Object.values(categoriesRaw).filter(c => c && c.slug && c.title).length;
 
@@ -405,8 +369,6 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
       total_pages_bn: toBanglaNum(totalPages),
       total_books_bn: toBanglaNum(sorted.length),
       load_more_link: loadMoreLinkHtml,
-      popular_categories: popularCategoriesHtml,
-      featured_authors: featuredAuthorsHtml,
       total_authors_bn: toBanglaNum(totalAuthorsCount),
       total_categories_bn: toBanglaNum(totalCategoriesCount),
     });
