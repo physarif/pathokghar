@@ -338,16 +338,6 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
 
   const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
 
-  // ---- স্ট্যাটস বার: মোট বই / লেখক / বিভাগ ----
-  const authorBookCount = {};
-  for (const book of bookList) {
-    if (book.author_slug) {
-      authorBookCount[book.author_slug] = (authorBookCount[book.author_slug] || 0) + 1;
-    }
-  }
-  const totalAuthorsCount = Object.keys(authorBookCount).length;
-  const totalCategoriesCount = Object.values(categoriesRaw).filter(c => c && c.slug && c.title).length;
-
   for (let page = 1; page <= totalPages; page++) {
     const pageBooks = sorted.slice((page - 1) * BOOKS_PER_PAGE, page * BOOKS_PER_PAGE);
 
@@ -369,8 +359,6 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
       total_pages_bn: toBanglaNum(totalPages),
       total_books_bn: toBanglaNum(sorted.length),
       load_more_link: loadMoreLinkHtml,
-      total_authors_bn: toBanglaNum(totalAuthorsCount),
-      total_categories_bn: toBanglaNum(totalCategoriesCount),
     });
 
     const fullPage = render(layout, {
@@ -728,6 +716,23 @@ async function generateSearchPage(bookList, authorsRaw, categoriesRaw) {
 }
 
 
+// হেডার সার্চ বক্সের Google-স্টাইল অটোসাজেশনের জন্য lightweight static JSON —
+// search.html এর মতোই ডেটা, কিন্তু description বাদ দিয়ে ছোট রাখা হয়েছে যাতে
+// প্রতিটা পেজে fetch করলেও দ্রুত লোড হয়। layout.html এর JS এটা fetch করে।
+function generateSearchSuggestIndex(bookList) {
+  console.log('\n💡 Search suggestion index generate করছি...');
+  const suggestIndex = bookList.map(book => ({
+    slug: book.slug,
+    title: book.title,
+    author: book.author_name,
+    category: book.category_name,
+    cover: book.cover,
+  }));
+  fs.writeFileSync('search-index.json', JSON.stringify(suggestIndex), 'utf8');
+  console.log('  ✓ search-index.json');
+}
+
+
 // Main
 (async () => {
   try {
@@ -740,6 +745,7 @@ async function generateSearchPage(bookList, authorsRaw, categoriesRaw) {
     await generateDownloadPages(bookList, authorsRaw, categoriesRaw);
     await generateCategoryPages(bookList, authorsRaw, categoriesRaw);
     await generateSearchPage(bookList, authorsRaw, categoriesRaw);
+    generateSearchSuggestIndex(bookList);
     console.log('\n🎉 সব pages generate হয়েছে!');
     await getApp().delete();
     process.exit(0);
