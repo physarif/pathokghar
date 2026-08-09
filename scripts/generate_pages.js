@@ -123,6 +123,15 @@ function renderAuthorBookCard(book) {
 const layout = fs.readFileSync('components/layout.html', 'utf8');
 const bookTemplate = fs.readFileSync('components/book.html', 'utf8');
 
+// Common book-card design — index/books/author/category/search সবগুলো পেজেই
+// একই কার্ড ডিজাইন ব্যবহার হয়, তাই CSS একবারই এখানে লোড হয় এবং প্রতিটা
+// টেমপ্লেটে {{book_card_styles}} placeholder এর জায়গায় বসে। ডিজাইন পরিবর্তন
+// করতে চাইলে শুধু components/book-card1.html এডিট করলেই সব জায়গায় reflect হবে।
+const bookCardStyles = fs.readFileSync('components/book-card1.html', 'utf8');
+function injectBookCardStyles(html) {
+  return html.split('{{book_card_styles}}').join(bookCardStyles);
+}
+
 // Placeholder replace helper
 // hero_tag / page_type এর জন্য site-wide default দেওয়া হয়েছে, যাতে প্রতিটা
 // render(layout, ...) কলে আলাদা করে না দিলেও ভুল/ফাঁকা মার্কআপ তৈরি না হয়।
@@ -291,8 +300,8 @@ function toBanglaNum(n) {
 async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
   console.log('\n🏠 Homepage generate করছি...');
 
-  const indexTemplate = fs.readFileSync('components/index.html', 'utf8');
-  const booksTemplate = fs.readFileSync('components/books.html', 'utf8');
+  const indexTemplate = injectBookCardStyles(fs.readFileSync('components/index.html', 'utf8'));
+  const booksTemplate = injectBookCardStyles(fs.readFileSync('components/books.html', 'utf8'));
 
   // Book card template — সরাসরি define, index.html comment এর উপর নির্ভর নয়
   const cardTemplate = [
@@ -377,7 +386,7 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
 
 async function generateAuthorPages(bookList, authorsRaw, categoriesRaw) {
   console.log('\n👤 Author pages generate করছি...');
-  const authorTemplate = fs.readFileSync('components/author.html', 'utf8');
+  const authorTemplate = injectBookCardStyles(fs.readFileSync('components/author.html', 'utf8'));
   if (!fs.existsSync('author')) fs.mkdirSync('author');
 
   // author অনুযায়ী group
@@ -487,7 +496,7 @@ async function generateDownloadPages(bookList, authorsRaw, categoriesRaw) {
 
 async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
   console.log('\n📂 Category pages generate করছি...');
-  const categoryTemplate = fs.readFileSync('components/category.html', 'utf8');
+  const categoryTemplate = injectBookCardStyles(fs.readFileSync('components/category.html', 'utf8'));
 
   const byCategory = {};
   for (const book of bookList) {
@@ -664,7 +673,7 @@ async function generateAuthorsIndexPage(bookList, authorsRaw, categoriesRaw) {
 async function generateSearchPage(bookList, authorsRaw, categoriesRaw) {
   console.log('\n🔍 Search page generate করছি...');
 
-  const searchTemplate = fs.readFileSync('components/search.html', 'utf8');
+  const searchTemplate = injectBookCardStyles(fs.readFileSync('components/search.html', 'utf8'));
 
   // Lightweight search index — build-time এ Firebase data থেকে বানানো, client-side
   // এ Fuse.js দিয়ে filter করা হয় (কোনো runtime Firebase call নেই)
