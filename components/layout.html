@@ -105,7 +105,9 @@
             left: 28px;
             right: 28px;
             z-index: 200;
-            background: #ffffff;
+            background: rgba(255,255,255,0.72);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid #ebebeb;
             border-radius: 24px;
             display: flex;
@@ -115,7 +117,9 @@
             margin-bottom: env(safe-area-inset-bottom, 0px);
         }
         .dark .bottom-tab-bar {
-            background: #161b22;
+            background: rgba(22,27,34,0.72);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-color: #30363d;
             box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04);
         }
@@ -173,14 +177,20 @@
         #sidebar {
             position: fixed; top: 0; left: 0;
             height: 100%; width: 240px; max-width: 80%;
-            background: #ffffff;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             z-index: 250;
             transform: translateX(-100%);
             transition: transform 0.3s ease;
             box-shadow: 2px 0 12px rgba(0,0,0,0.15);
             overflow-y: auto;
         }
-        .dark #sidebar { background: #1f1f1f; }
+        .dark #sidebar {
+            background: rgba(31,31,31,0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
         #sidebar.open { transform: translateX(0); }
 
         /* Sidebar layout — নিচের সেকশন একেবারে বটমে বসানোর জন্য plain CSS
@@ -189,12 +199,29 @@
         #sidebar-bottom { margin-top: auto; }
         #sidebar-links { display: flex; align-items: center; gap: 14px; }
         #sidebar-social a { color: inherit; }
+
+        /* Floating (sticky) header — নিচে স্ক্রল করলে hide, উপরে স্ক্রল করলে show */
+        #site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 220;
+            transform: translateY(0);
+            transition: transform 0.28s ease;
+            will-change: transform;
+            background: rgba(255,255,255,0.75) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .dark #site-header { background: rgba(31,31,31,0.75) !important; }
+        #site-header.header-hidden { transform: translateY(-100%); }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
 
     <!-- TOP BAR -->
-    <header class="flex items-center justify-between px-5 py-3 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1f1f1f]">
+    <header id="site-header" class="flex items-center justify-between px-5 py-3 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1f1f1f]">
         <button id="menu-btn" type="button" aria-label="মেনু" class="text-gray-500 dark:text-gray-400">
             <i class="fa-solid fa-bars text-xl"></i>
         </button>
@@ -205,6 +232,8 @@
             <i class="fa-solid fa-magnifying-glass text-xl"></i>
         </a>
     </header>
+    <!-- header fixed হওয়ায় নিচের কনটেন্টের জন্য একই উচ্চতার একটি spacer -->
+    <div id="header-spacer"></div>
 
     <!-- SIDEBAR -->
     <div id="sidebar-overlay"></div>
@@ -269,6 +298,8 @@
         // মেনু খোলার সময় history-তে #sidebar hash push করা হয়, যাতে
         // Android back key চাপলে (browser popstate ট্রিগার করে) sidebar বন্ধ হয়ে যায়।
         function openSidebar() {
+            var siteHeader = document.getElementById('site-header');
+            if (siteHeader) siteHeader.classList.remove('header-hidden');
             showSidebarUI();
             if (location.hash !== '#sidebar') {
                 history.pushState({ sidebarOpen: true }, '', '#sidebar');
@@ -292,6 +323,55 @@
         menuBtn.addEventListener('click', openSidebar);
         closeBtn.addEventListener('click', closeSidebar);
         overlay.addEventListener('click', closeSidebar);
+    })();
+    </script>
+
+    <script>
+    (function() {
+        var header = document.getElementById('site-header');
+        var spacer = document.getElementById('header-spacer');
+
+        function setSpacerHeight() {
+            spacer.style.height = header.offsetHeight + 'px';
+        }
+        setSpacerHeight();
+        window.addEventListener('resize', setSpacerHeight);
+
+        var lastScrollY = window.pageYOffset;
+        var ticking = false;
+        var threshold = 8; // ছোটখাটো scroll jitter এড়াতে
+
+        function onScroll() {
+            var currentScrollY = window.pageYOffset;
+            var diff = currentScrollY - lastScrollY;
+
+            // একদম উপরে থাকলে সবসময় header দেখাও
+            if (currentScrollY <= header.offsetHeight) {
+                header.classList.remove('header-hidden');
+            } else if (Math.abs(diff) > threshold) {
+                if (diff > 0) {
+                    // নিচের দিকে স্ক্রল — hide
+                    header.classList.add('header-hidden');
+                } else {
+                    // উপরের দিকে স্ক্রল — show
+                    header.classList.remove('header-hidden');
+                }
+                lastScrollY = currentScrollY;
+            }
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(onScroll);
+                ticking = true;
+            }
+        }, { passive: true });
+
+        // sidebar খোলা থাকলে header hide না করা (menu icon দরকার হতে পারে)
+        window.addEventListener('popstate', function() {
+            header.classList.remove('header-hidden');
+        });
     })();
     </script>
 
