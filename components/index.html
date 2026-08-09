@@ -223,7 +223,7 @@
 
   <!-- সর্বশেষ বই -->
   <section class="book-section">
-    <div style="padding:0.45rem 1rem;background:#c0392b;font-size:1rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;border-radius:5px;">
+    <div style="display:none;padding:0.45rem 1rem;background:#c0392b;font-size:1rem;align-items:center;justify-content:space-between;margin-bottom:0.5rem;border-radius:5px;">
       <span style="color:#fff;font-weight:700;letter-spacing:0.01em;"><i class="fa-solid fa-clock-rotate-left"></i> সর্বশেষ বই</span>
       <span style="background:rgba(255,255,255,0.18);color:#fff;font-weight:600;font-size:0.78rem;padding:0.15rem 0.6rem;">{{total_books_bn}} টি বই</span>
     </div>
@@ -239,16 +239,22 @@
 
       const wrap = document.getElementById('bc-load-more-wrap');
       const bcList = document.querySelector('.book-section .bc-list');
+      let loading = false;
+      let observer = null;
 
-      function renderButton() {
-        wrap.innerHTML = '<button id="bc-load-more-btn" type="button" style="display:inline-flex;align-items:center;gap:0.5rem;background:#c0392b;color:#fff;font-weight:600;font-size:0.95rem;padding:0.6rem 1.5rem;border:none;border-radius:5px;cursor:pointer;">আরও বই দেখুন <i class="fa-solid fa-angles-down"></i></button>';
-        document.getElementById('bc-load-more-btn').addEventListener('click', loadNextPage);
+      function renderLoading() {
+        wrap.innerHTML = '<span style="display:inline-flex;align-items:center;gap:0.5rem;color:#c0392b;font-weight:600;font-size:0.95rem;"><i class="fa-solid fa-spinner fa-spin"></i> লোড হচ্ছে...</span>';
+      }
+
+      function renderRetry() {
+        wrap.innerHTML = '<button id="bc-retry-btn" type="button" style="display:inline-flex;align-items:center;gap:0.5rem;background:#c0392b;color:#fff;font-weight:600;font-size:0.95rem;padding:0.6rem 1.5rem;border:none;border-radius:5px;cursor:pointer;">আবার চেষ্টা করুন <i class="fa-solid fa-rotate-right"></i></button>';
+        document.getElementById('bc-retry-btn').addEventListener('click', loadNextPage);
       }
 
       function loadNextPage() {
-        const btn = document.getElementById('bc-load-more-btn');
-        btn.disabled = true;
-        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> লোড হচ্ছে...';
+        if (loading || current >= total) return;
+        loading = true;
+        renderLoading();
 
         const nextPage = current + 1;
         const url = '/books/' + nextPage + '/';
@@ -265,18 +271,33 @@
               bcList.insertAdjacentHTML('beforeend', nextList.innerHTML);
             }
             current = nextPage;
+            loading = false;
             if (current >= total) {
               wrap.innerHTML = '';
+              if (observer) observer.disconnect();
             } else {
-              renderButton();
+              wrap.innerHTML = '';
             }
           })
           .catch(function() {
-            btn.disabled = false;
-            btn.innerHTML = 'আবার চেষ্টা করুন <i class="fa-solid fa-rotate-right"></i>';
+            loading = false;
+            renderRetry();
           });
       }
 
-      renderButton();
+      if ('IntersectionObserver' in window) {
+        observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) loadNextPage();
+          });
+        }, { rootMargin: '400px 0px' });
+        observer.observe(wrap);
+      } else {
+        window.addEventListener('scroll', function() {
+          if (loading || current >= total) return;
+          const rect = wrap.getBoundingClientRect();
+          if (rect.top < window.innerHeight + 400) loadNextPage();
+        });
+      }
     })();
   </script>
