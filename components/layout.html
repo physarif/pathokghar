@@ -168,15 +168,53 @@
     <!-- TOP BAR -->
     <header class="flex items-center justify-between px-5 py-3">
         <button id="menu-btn" type="button" aria-label="মেনু" class="text-gray-500 dark:text-gray-400">
-            <i class="fa-solid fa-bars text-2xl"></i>
+            <i class="fa-solid fa-bars text-xl"></i>
         </button>
         <a href="https://pathokghar.com" aria-label="পাঠক ঘর" style="color:#c0392b;">
             <i class="fa-solid fa-swatchbook text-2xl"></i>
         </a>
         <a href="/search" aria-label="খুঁজুন" class="text-gray-500 dark:text-gray-400">
-            <i class="fa-solid fa-magnifying-glass text-2xl"></i>
+            <i class="fa-solid fa-magnifying-glass text-xl"></i>
         </a>
     </header>
+
+    <!-- SIDEBAR -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/40 z-40 hidden"></div>
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-[280px] max-w-[80%] bg-white dark:bg-[#1f1f1f] z-50 -translate-x-full transition-transform duration-300 shadow-xl overflow-y-auto">
+        <div class="flex items-center justify-between px-4 py-4 border-b border-gray-200 dark:border-gray-700">
+            <div class="flex items-center gap-2">
+                <span style="color:#c0392b;"><i class="fa-solid fa-swatchbook text-2xl"></i></span>
+                <span class="text-lg font-bold text-gray-800 dark:text-gray-100">পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span></span>
+            </div>
+            <button id="sidebar-close-btn" type="button" aria-label="বন্ধ করুন" class="text-gray-500 dark:text-gray-400">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+    </aside>
+
+    <script>
+    (function() {
+        var menuBtn = document.getElementById('menu-btn');
+        var closeBtn = document.getElementById('sidebar-close-btn');
+        var sidebar = document.getElementById('sidebar');
+        var overlay = document.getElementById('sidebar-overlay');
+
+        function openSidebar() {
+            sidebar.classList.remove('-translate-x-full');
+            overlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeSidebar() {
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        menuBtn.addEventListener('click', openSidebar);
+        closeBtn.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar);
+    })();
+    </script>
 
     <!-- MAIN CONTENT -->
     <main class="flex-1 min-w-0">
