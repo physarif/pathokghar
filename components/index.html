@@ -230,32 +230,53 @@
     <div class="bc-list">{{latest_books}}</div>
   </section>
 
-  <div id="bc-pagination"></div>
+  <div id="bc-load-more-wrap" style="text-align:center;padding:1rem 0;"></div>
   <script>
     (function() {
-      const current = parseInt('{{current_page}}', 10);
       const total = parseInt('{{total_pages}}', 10);
+      let current = parseInt('{{current_page}}', 10);
       if (!current || !total || total <= 1) return;
-      const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
-      const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');
-      const el = document.getElementById('bc-pagination');
-      let html = '<div class="bc-pagination">';
-      if (current > 1) {
-        const prev = current === 2 ? '/' : '/books/' + (current - 1) + '/';
-        html += '<a href="' + prev + '" class="bc-page-nav"><i class="fas fa-chevron-left text-xs"></i> পূর্ববর্তী</a>';
+
+      const wrap = document.getElementById('bc-load-more-wrap');
+      const bcList = document.querySelector('.book-section .bc-list');
+
+      function renderButton() {
+        wrap.innerHTML = '<button id="bc-load-more-btn" type="button" style="display:inline-flex;align-items:center;gap:0.5rem;background:#c0392b;color:#fff;font-weight:600;font-size:0.95rem;padding:0.6rem 1.5rem;border:none;border-radius:5px;cursor:pointer;">আরও বই দেখুন <i class="fa-solid fa-angles-down"></i></button>';
+        document.getElementById('bc-load-more-btn').addEventListener('click', loadNextPage);
       }
-      for (let i = 1; i <= total; i++) {
-        const href = i === 1 ? '/' : '/books/' + i + '/';
-        if (i === current) html += '<span class="bc-page-btn active">' + toBn(i) + '</span>';
-        else html += '<a href="' + href + '" class="bc-page-btn">' + toBn(i) + '</a>';
+
+      function loadNextPage() {
+        const btn = document.getElementById('bc-load-more-btn');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> লোড হচ্ছে...';
+
+        const nextPage = current + 1;
+        const url = '/books/' + nextPage + '/';
+
+        fetch(url)
+          .then(function(res) {
+            if (!res.ok) throw new Error('load failed');
+            return res.text();
+          })
+          .then(function(html) {
+            const doc = new DOMParser().parseFromString(html, 'text/html');
+            const nextList = doc.querySelector('.book-section .bc-list');
+            if (nextList) {
+              bcList.insertAdjacentHTML('beforeend', nextList.innerHTML);
+            }
+            current = nextPage;
+            if (current >= total) {
+              wrap.innerHTML = '';
+            } else {
+              renderButton();
+            }
+          })
+          .catch(function() {
+            btn.disabled = false;
+            btn.innerHTML = 'আবার চেষ্টা করুন <i class="fa-solid fa-rotate-right"></i>';
+          });
       }
-      if (current < total) {
-        html += '<a href="/books/' + (current + 1) + '/" class="bc-page-nav">পরবর্তী <i class="fas fa-chevron-right text-xs"></i></a>';
-      }
-      html += '</div>';
-      el.innerHTML = html;
+
+      renderButton();
     })();
   </script>
-
-
-
