@@ -34,54 +34,6 @@
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
-        /* Hero tab bar — solid pill buttons */
-        .segment-track {
-            display: flex;
-            width: 100%;
-            gap: 8px;
-        }
-        .segment-item {
-            flex: 1;
-            text-align: center;
-            padding: 0.35rem 0.5rem;
-            border-radius: 0;
-            font-size: 0.9rem;
-            font-weight: 400;
-            color: #6b7280;
-            text-decoration: none;
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            transition: background 0.15s, color 0.15s, border-color 0.15s;
-        }
-        .dark .segment-item {
-            color: #9ca3af;
-            background: #2d2d2d;
-            border-color: #4b5563;
-        }
-        .segment-item:active {
-            background: #a93226;
-            color: #ffffff;
-            border-color: #a93226;
-        }
-        .dark .segment-item:active {
-            background: #a93226;
-            color: #ffffff;
-            border-color: #a93226;
-        }
-        .segment-item.active {
-            color: #ffffff;
-            font-weight: 700;
-            background: #c0392b;
-            border-color: #c0392b;
-        }
-        .segment-item.active:hover { color: #ffffff; }
-        .dark .segment-item.active {
-            color: #ffffff;
-            background: #c0392b;
-            border-color: #c0392b;
-        }
-        .dark .segment-item.active:hover { color: #ffffff; }
-
         /* Category links — footer style, larger */
         .category-underline-list li { display: inline-flex; align-items: center; white-space: nowrap; }
         .category-underline-list li + li::before {
@@ -208,51 +160,23 @@
             .bottom-tab-bar { display: none; }
             body { padding-bottom: 0; }
         }
+
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
 
-    <!-- HERO SECTION (Wikipedia-style) -->
-    <div class="flex flex-col items-center justify-center pt-12 pb-2 px-4 text-center">
-
-        <{{hero_tag}} class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-2 leading-tight">
-            <a href="https://pathokghar.com" class="hover:text-brand-500 active:text-brand-500 transition-colors">পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span></a>
-        </{{hero_tag}}>
-
-        <!-- Search box -->
-        <div class="w-full max-w-xl relative flex items-center bg-white dark:bg-[#2d2d2d] border border-gray-200 dark:border-gray-600 rounded-full focus-within:ring-2 focus-within:ring-brand-500 focus-within:border-transparent transition-all">
-            <input id="main-search-input" type="text" placeholder="বই, লেখক বা বিভাগ খুঁজুন..."
-                class="flex-1 bg-transparent py-3 pl-5 pr-2 text-sm focus:outline-none text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 min-w-0">
-            <button id="main-search-btn" class="bg-brand-500 hover:bg-brand-600 active:bg-brand-600 text-white px-5 py-2 rounded-full text-sm font-medium transition-colors shrink-0 mr-1">
-                খুঁজুন
-            </button>
-        </div>
-
-        <!-- Tab Bar (segmented control) -->
-        <div class="segment-track mt-4 w-full max-w-xl">
-            <a href="/" data-tab-path="/" class="hero-tab-btn segment-item">বই</a>
-            <a href="/authors/" data-tab-path="/authors/" class="hero-tab-btn segment-item">লেখক</a>
-            <a href="/categories/" data-tab-path="/categories/" class="hero-tab-btn segment-item">বিভাগ</a>
-            <a href="/blogs/" data-tab-path="/blogs/" class="hero-tab-btn segment-item">ব্লগ</a>
-        </div>
-        <script>
-        (function() {
-            var path = window.location.pathname;
-            var rules = {
-                '/': /^\/((book|books)(\/.*)?)?$/,
-                '/authors/': /^\/(author|authors)(\/.*)?$/,
-                '/categories/': /^\/(category|categories)(\/.*)?$/,
-                '/blogs/': /^\/(blog|blogs)(\/.*)?$/
-            };
-            document.querySelectorAll('.hero-tab-btn').forEach(function(btn) {
-                var tabPath = btn.getAttribute('data-tab-path');
-                var re = rules[tabPath];
-                if (re && re.test(path)) btn.classList.add('active');
-            });
-        })();
-        </script>
-
-    </div>
+    <!-- TOP BAR -->
+    <header class="flex items-center justify-between px-5 py-4">
+        <button id="menu-btn" type="button" aria-label="মেনু" class="text-gray-700 dark:text-gray-200">
+            <i class="fa-solid fa-bars text-2xl"></i>
+        </button>
+        <a href="https://pathokghar.com" aria-label="পাঠক ঘর" class="text-brand-500">
+            <i class="fa-solid fa-swatchbook text-3xl"></i>
+        </a>
+        <a href="/search" aria-label="খুঁজুন" class="text-gray-700 dark:text-gray-200">
+            <i class="fa-solid fa-magnifying-glass text-2xl"></i>
+        </a>
+    </header>
 
     <!-- MAIN CONTENT -->
     <main class="flex-1 min-w-0">
