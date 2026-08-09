@@ -211,16 +211,26 @@
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
 
     <!-- TOP BAR -->
-    <header id="site-header" class="flex items-center justify-between px-5 py-3 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1f1f1f]">
-        <button id="menu-btn" type="button" aria-label="মেনু" class="text-gray-500 dark:text-gray-400">
-            <i class="fa-solid fa-bars text-xl"></i>
-        </button>
-        <a href="https://pathokghar.com" aria-label="পাঠক ঘর" style="color:#c0392b;">
-            <i class="fa-solid fa-swatchbook text-2xl"></i>
-        </a>
-        <a href="/search" aria-label="খুঁজুন" class="text-gray-500 dark:text-gray-400">
-            <i class="fa-solid fa-magnifying-glass text-xl"></i>
-        </a>
+    <header id="site-header" class="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1f1f1f]">
+        <div id="header-default" class="flex items-center justify-between px-5 py-3">
+            <button id="menu-btn" type="button" aria-label="মেনু" class="text-gray-500 dark:text-gray-400">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+            <a href="https://pathokghar.com" aria-label="পাঠক ঘর" style="color:#c0392b;">
+                <i class="fa-solid fa-swatchbook text-2xl"></i>
+            </a>
+            <button id="header-search-btn" type="button" aria-label="খুঁজুন" class="text-gray-500 dark:text-gray-400">
+                <i class="fa-solid fa-magnifying-glass text-xl"></i>
+            </button>
+        </div>
+        <div id="header-search-box" class="hidden items-center gap-3 px-5 py-3">
+            <i class="fa-solid fa-magnifying-glass text-gray-400 dark:text-gray-500"></i>
+            <input id="header-search-input" type="text" placeholder="বই, লেখক বা বিভাগ দিয়ে খুঁজুন..." autocomplete="off"
+                   class="flex-1 min-w-0 bg-transparent outline-none border-none text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
+            <button id="header-search-close-btn" type="button" aria-label="বন্ধ করুন" class="text-gray-500 dark:text-gray-400 shrink-0">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
     </header>
     <!-- header fixed হওয়ায় নিচের কনটেন্টের জন্য একই উচ্চতার একটি spacer -->
     <div id="header-spacer"></div>
@@ -313,6 +323,43 @@
         menuBtn.addEventListener('click', openSidebar);
         closeBtn.addEventListener('click', closeSidebar);
         overlay.addEventListener('click', closeSidebar);
+    })();
+    </script>
+
+    <script>
+    // Header-এর ভেতরে inline search box টগল করা
+    (function() {
+        var defaultRow = document.getElementById('header-default');
+        var searchBox = document.getElementById('header-search-box');
+        var searchBtn = document.getElementById('header-search-btn');
+        var closeBtn = document.getElementById('header-search-close-btn');
+        var searchInput = document.getElementById('header-search-input');
+
+        function openHeaderSearch() {
+            defaultRow.classList.add('hidden');
+            searchBox.classList.remove('hidden');
+            searchBox.classList.add('flex');
+            searchInput.value = '';
+            searchInput.focus();
+        }
+        function closeHeaderSearch() {
+            searchBox.classList.add('hidden');
+            searchBox.classList.remove('flex');
+            defaultRow.classList.remove('hidden');
+        }
+        function submitHeaderSearch() {
+            var q = searchInput.value.trim();
+            if (q) {
+                window.location.href = '/search.html?q=' + encodeURIComponent(q);
+            }
+        }
+
+        searchBtn.addEventListener('click', openHeaderSearch);
+        closeBtn.addEventListener('click', closeHeaderSearch);
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') submitHeaderSearch();
+            if (e.key === 'Escape') closeHeaderSearch();
+        });
     })();
     </script>
 
