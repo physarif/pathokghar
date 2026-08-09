@@ -194,7 +194,7 @@
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
 
     <!-- TOP BAR -->
-    <header class="flex items-center justify-between px-5 py-3 border-b border-gray-200 dark:border-gray-700">
+    <header class="flex items-center justify-between px-5 py-3 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1f1f1f]">
         <button id="menu-btn" type="button" aria-label="মেনু" class="text-gray-500 dark:text-gray-400">
             <i class="fa-solid fa-bars text-xl"></i>
         </button>
@@ -254,16 +254,40 @@
         var sidebar = document.getElementById('sidebar');
         var overlay = document.getElementById('sidebar-overlay');
 
-        function openSidebar() {
+        // Sidebar UI শুধু show/hide করে, history নিয়ে কিছু করে না
+        function showSidebarUI() {
             sidebar.classList.add('open');
             overlay.classList.add('open');
             document.body.classList.add('sidebar-locked');
         }
-        function closeSidebar() {
+        function hideSidebarUI() {
             sidebar.classList.remove('open');
             overlay.classList.remove('open');
             document.body.classList.remove('sidebar-locked');
         }
+
+        // মেনু খোলার সময় history-তে #sidebar hash push করা হয়, যাতে
+        // Android back key চাপলে (browser popstate ট্রিগার করে) sidebar বন্ধ হয়ে যায়।
+        function openSidebar() {
+            showSidebarUI();
+            if (location.hash !== '#sidebar') {
+                history.pushState({ sidebarOpen: true }, '', '#sidebar');
+            }
+        }
+        // X বা overlay ট্যাপ করলে history.back() কল হয় (যদি #sidebar hash থাকে),
+        // যাতে পরে ব্যবহারকারীকে সাইট থেকে বেরোতে extra একটা back press না লাগে।
+        function closeSidebar() {
+            if (location.hash === '#sidebar') {
+                history.back();
+            } else {
+                hideSidebarUI();
+            }
+        }
+
+        // Back key / browser back বাটনে popstate ফায়ার হয় — তখন sidebar বন্ধ করে দাও
+        window.addEventListener('popstate', function() {
+            hideSidebarUI();
+        });
 
         menuBtn.addEventListener('click', openSidebar);
         closeBtn.addEventListener('click', closeSidebar);
