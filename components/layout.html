@@ -161,6 +161,28 @@
             body { padding-bottom: 0; }
         }
 
+        /* Sidebar (plain CSS — precompiled tailwind.css এ এই ক্লাসগুলো নাও থাকতে পারে) */
+        #sidebar-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 40;
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.25s;
+        }
+        #sidebar-overlay.open { opacity: 1; visibility: visible; }
+        #sidebar {
+            position: fixed; top: 0; left: 0;
+            height: 100%; width: 280px; max-width: 80%;
+            background: #ffffff;
+            z-index: 50;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            box-shadow: 2px 0 12px rgba(0,0,0,0.15);
+            overflow-y: auto;
+        }
+        .dark #sidebar { background: #1f1f1f; }
+        #sidebar.open { transform: translateX(0); }
+        body.sidebar-locked { overflow: hidden; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
@@ -179,8 +201,8 @@
     </header>
 
     <!-- SIDEBAR -->
-    <div id="sidebar-overlay" class="fixed inset-0 bg-black/40 z-40 hidden"></div>
-    <aside id="sidebar" class="fixed top-0 left-0 h-full w-[280px] max-w-[80%] bg-white dark:bg-[#1f1f1f] z-50 -translate-x-full transition-transform duration-300 shadow-xl overflow-y-auto">
+    <div id="sidebar-overlay"></div>
+    <aside id="sidebar">
         <div class="flex items-center justify-between px-4 py-4 border-b border-gray-200 dark:border-gray-700">
             <div class="flex items-center gap-2">
                 <span style="color:#c0392b;"><i class="fa-solid fa-swatchbook text-2xl"></i></span>
@@ -200,14 +222,14 @@
         var overlay = document.getElementById('sidebar-overlay');
 
         function openSidebar() {
-            sidebar.classList.remove('-translate-x-full');
-            overlay.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
+            sidebar.classList.add('open');
+            overlay.classList.add('open');
+            document.body.classList.add('sidebar-locked');
         }
         function closeSidebar() {
-            sidebar.classList.add('-translate-x-full');
-            overlay.classList.add('hidden');
-            document.body.style.overflow = '';
+            sidebar.classList.remove('open');
+            overlay.classList.remove('open');
+            document.body.classList.remove('sidebar-locked');
         }
 
         menuBtn.addEventListener('click', openSidebar);
