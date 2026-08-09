@@ -375,4 +375,22 @@
         </style>
 
     </div>
+
+    <script>
+    (function() {
+      // সম্প্রতি দেখা বই — হোমপেজে "সম্প্রতি দেখেছেন" স্ট্রিপে দেখানোর জন্য
+      try {
+        var entry = {
+          slug: "{{book_slug}}",
+          title: {{book_title_json}},
+          cover: {{book_cover_json}}
+        };
+        var recent = JSON.parse(localStorage.getItem('pg-recent-books') || '[]');
+        recent = recent.filter(function(b) { return b.slug !== entry.slug; });
+        recent.unshift(entry);
+        recent = recent.slice(0, 12);
+        localStorage.setItem('pg-recent-books', JSON.stringify(recent));
+      } catch (e) {}
+    })();
+    </script>
 </main>
