@@ -350,7 +350,7 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
     .sort((a, b) => (categoryBookCount[b.slug] || 0) - (categoryBookCount[a.slug] || 0))
     .slice(0, 12);
   const popularCategoriesHtml = popularCategories.map(cat =>
-    `<a href="/category/${cat.slug}/1/" class="pg-chip">${cat.title} <span class="pg-chip-count">${toBanglaNum(categoryBookCount[cat.slug])}</span></a>`
+    `<a href="/category/${cat.slug}/1/" class="cat-card"><div><span class="cat-card-name">${cat.title} <span class="cat-card-count">(${toBanglaNum(categoryBookCount[cat.slug])})</span></span></div></a>`
   ).join('');
 
   // ---- জনপ্রিয় লেখক: সবচেয়ে বেশি বই আছে এমন লেখক, ছবিসহ carousel ----
@@ -371,12 +371,12 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
     const info = authorInfo[slug];
     const initial = info.name ? info.name[0] : '?';
     const photoInner = info.img
-      ? `<div class="pg-author-fallback">${initial}</div><img src="${info.img}" alt="${info.name}" loading="lazy">`
-      : `<div class="pg-author-fallback">${initial}</div>`;
-    return `<a href="/author/${slug}.html" class="pg-author-card">` +
-      `<div class="pg-author-photo">${photoInner}</div>` +
-      `<span class="pg-author-name">${info.name}</span>` +
-      `<span class="pg-author-count">${toBanglaNum(authorBookCount[slug])} টি বই</span>` +
+      ? `<div class="author-photo-fallback">${initial}</div><img src="${info.img}" alt="${info.name}" loading="lazy">`
+      : `<div class="author-photo-fallback">${initial}</div>`;
+    return `<a href="/author/${slug}.html" class="author-card">` +
+      `<div class="author-photo-wrap">${photoInner}</div>` +
+      `<span class="author-card-name">${info.name}</span>` +
+      `<span class="author-book-count"><strong>${toBanglaNum(authorBookCount[slug])}</strong> টি বই</span>` +
       `</a>`;
   }).join('');
 
