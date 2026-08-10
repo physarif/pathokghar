@@ -98,66 +98,10 @@
         .pg-visit-pill i { font-size: 0.7rem; color: #ff3b30; opacity: 0.85; }
         .pg-visit-pill .pg-sep { color: #ff3b30; margin: 0 0.05rem; }
 
-        /* Bottom tab bar — ported from adp4tvd5n.html admin dashboard design */
-        .bottom-tab-bar {
-            position: fixed;
-            bottom: 12px;
-            left: 28px;
-            right: 28px;
-            z-index: 200;
-            background: rgba(255,255,255,0.95);
-            border: 1px solid #ebebeb;
-            border-radius: 24px;
-            display: flex;
-            align-items: stretch;
-            height: 58px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.14), 0 2px 8px rgba(0,0,0,0.08);
-            margin-bottom: env(safe-area-inset-bottom, 0px);
-        }
-        .dark .bottom-tab-bar {
-            background: rgba(22,27,34,0.95);
-            border-color: #30363d;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04);
-        }
-        .bottom-tab-item {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            color: #c4c4c4;
-            text-decoration: none;
-            -webkit-tap-highlight-color: transparent;
-            transition: color 0.18s ease, transform 0.18s ease;
-        }
-        .dark .bottom-tab-item { color: #3d444d; }
-        .bottom-tab-item i {
-            font-size: 1.4rem;
-            line-height: 1;
-            position: relative;
-            z-index: 1;
-            transition: transform 0.18s ease;
-        }
-        .bottom-tab-item.active { color: #c0392b; }
-        .dark .bottom-tab-item.active { color: #e57373; }
-        .bottom-tab-item.active::before {
-            content: '';
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 52px; height: 32px;
-            background: rgba(192, 57, 43, 0.12);
-            border-radius: 16px;
-        }
-        .dark .bottom-tab-item.active::before { background: rgba(229, 115, 115, 0.14); }
+        /* বটম বার সরানো হয়েছে; হেডারে আইকন যুক্ত */
+        .header-nav-btn.active { color: #c0392b !important; }
+        .dark .header-nav-btn.active { color: #e57373 !important; }
 
-        /* বটম বার-এর জন্য পেজের নিচে জায়গা রাখা, যাতে কনটেন্ট ঢাকা না পড়ে */
-        body { padding-bottom: 90px; }
-        @media (min-width: 768px) {
-            .bottom-tab-bar { display: none; }
-            body { padding-bottom: 0; }
-        }
 
         /* Sidebar (plain CSS — precompiled tailwind.css এ এই ক্লাসগুলো নাও থাকতে পারে) */
         #sidebar-overlay {
@@ -303,15 +247,24 @@
     <!-- TOP BAR -->
     <header id="site-header" class="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1f1f1f]">
         <div id="header-default" class="flex items-center justify-between px-5 py-3">
-            <button id="menu-btn" type="button" aria-label="মেনু" class="text-gray-500 dark:text-gray-400">
-                <i class="fa-solid fa-bars text-xl"></i>
-            </button>
-            <a href="https://pathokghar.com" aria-label="পাঠক ঘর" style="color:#c0392b;">
+            <a href="https://pathokghar.com" aria-label="পাঠক ঘর" class="flex items-center gap-2" style="color:#c0392b;">
                 <i class="fa-solid fa-swatchbook text-2xl"></i>
+                <span class="text-xl font-bold text-gray-800 dark:text-gray-100" style="line-height:1;">পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span></span>
             </a>
-            <button id="header-search-btn" type="button" aria-label="খুঁজুন" class="text-gray-500 dark:text-gray-400">
-                <i class="fa-solid fa-magnifying-glass text-xl"></i>
-            </button>
+            <div class="flex items-center gap-3">
+                <a href="/" data-nav-path="/" class="header-nav-btn text-gray-500 dark:text-gray-400" aria-label="বই">
+                    <i class="fa-solid fa-house text-xl"></i>
+                </a>
+                <a href="/authors/" data-nav-path="/authors/" class="header-nav-btn text-gray-500 dark:text-gray-400" aria-label="লেখক">
+                    <i class="fa-solid fa-user-pen text-xl"></i>
+                </a>
+                <a href="/categories/" data-nav-path="/categories/" class="header-nav-btn text-gray-500 dark:text-gray-400" aria-label="বিভাগ">
+                    <i class="fa-solid fa-layer-group text-xl"></i>
+                </a>
+                <button id="header-search-btn" type="button" aria-label="খুঁজুন" class="text-gray-500 dark:text-gray-400">
+                    <i class="fa-solid fa-magnifying-glass text-xl"></i>
+                </button>
+            </div>
         </div>
         <div id="header-search-box" class="hidden items-center gap-3 px-5 py-3" style="position:relative;">
             <i class="fa-solid fa-magnifying-glass text-gray-400 dark:text-gray-500"></i>
@@ -431,7 +384,7 @@
             hideSidebarUI();
         });
 
-        menuBtn.addEventListener('click', openSidebar);
+        if (menuBtn) menuBtn.addEventListener('click', openSidebar);
         closeBtn.addEventListener('click', closeSidebar);
         overlay.addEventListener('click', closeSidebar);
 
@@ -670,33 +623,17 @@
         {{content}}
     </main>
 
-    <!-- BOTTOM TAB BAR (floating pill, mobile app style) -->
-    <nav class="bottom-tab-bar">
-        <a href="/" data-tab-path="/" class="bottom-tab-item bottom-tab-btn" aria-label="বই">
-            <i class="fa-solid fa-house"></i>
-        </a>
-        <a href="/authors/" data-tab-path="/authors/" class="bottom-tab-item bottom-tab-btn" aria-label="লেখক">
-            <i class="fa-solid fa-user-pen"></i>
-        </a>
-        <a href="/categories/" data-tab-path="/categories/" class="bottom-tab-item bottom-tab-btn" aria-label="বিভাগ">
-            <i class="fa-solid fa-layer-group"></i>
-        </a>
-        <a href="/blogs/" data-tab-path="/blogs/" class="bottom-tab-item bottom-tab-btn" aria-label="ব্লগ">
-            <i class="fa-brands fa-hashnode"></i>
-        </a>
-    </nav>
     <script>
         (function() {
             var path = window.location.pathname;
             var rules = {
                 '/': /^\/((book|books)(\/.*)?)?$/,
                 '/authors/': /^\/(author|authors)(\/.*)?$/,
-                '/categories/': /^\/(category|categories)(\/.*)?$/,
-                '/blogs/': /^\/(blog|blogs)(\/.*)?$/
+                '/categories/': /^\/(category|categories)(\/.*)?$/
             };
-            document.querySelectorAll('.bottom-tab-btn').forEach(function(btn) {
-                var tabPath = btn.getAttribute('data-tab-path');
-                var re = rules[tabPath];
+            document.querySelectorAll('.header-nav-btn').forEach(function(btn) {
+                var navPath = btn.getAttribute('data-nav-path');
+                var re = rules[navPath];
                 if (re && re.test(path)) btn.classList.add('active');
             });
         })();
