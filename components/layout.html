@@ -190,6 +190,20 @@
         #sidebar-links { display: flex; align-items: center; gap: 14px; }
         #sidebar-social a { color: inherit; }
 
+        /* বিভাগসমূহ accordion */
+        #sidebar-categories-chevron { transition: transform 0.2s ease; }
+        #sidebar-categories-list li a {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.9rem;
+            color: #4b5563;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+        #sidebar-categories-list li a:hover { background: #fff5f5; color: #c0392b; }
+        .dark #sidebar-categories-list li a { color: #d1d5db; }
+        .dark #sidebar-categories-list li a:hover { background: #2a1f1f; color: #e57373; }
+
         /* Floating (sticky) header — নিচে স্ক্রল করলে hide, উপরে স্ক্রল করলে show */
         #site-header {
             position: fixed;
@@ -300,6 +314,16 @@
             </button>
         </div>
 
+        <!-- বিভাগসমূহ — collapsible, সব category বর্ণমালা অনুসারে -->
+        <div id="sidebar-categories-toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="sidebar-categories-list"
+             class="flex items-center justify-between px-4 py-3 cursor-pointer border-b border-gray-200 dark:border-gray-700">
+            <span class="text-base font-bold text-gray-800 dark:text-gray-100">বিভাগসমূহ</span>
+            <i id="sidebar-categories-chevron" class="fa-solid fa-chevron-down text-gray-500 dark:text-gray-400 text-sm"></i>
+        </div>
+        <ul id="sidebar-categories-list" class="px-2 pb-1" style="display:none; list-style:none; margin:0; max-height:45vh; overflow-y:auto;">
+            {{hero_categories}}
+        </ul>
+
         <!-- একেবারে নিচে বসবে -->
         <div id="sidebar-bottom">
             <div class="mx-4 border-t border-gray-200 dark:border-gray-700"></div>
@@ -375,6 +399,19 @@
         menuBtn.addEventListener('click', openSidebar);
         closeBtn.addEventListener('click', closeSidebar);
         overlay.addEventListener('click', closeSidebar);
+
+        // বিভাগসমূহ accordion টগল
+        var catToggle = document.getElementById('sidebar-categories-toggle');
+        var catList = document.getElementById('sidebar-categories-list');
+        var catChevron = document.getElementById('sidebar-categories-chevron');
+        if (catToggle && catList) {
+            catToggle.addEventListener('click', function() {
+                var isOpen = catList.style.display !== 'none';
+                catList.style.display = isOpen ? 'none' : 'block';
+                catToggle.setAttribute('aria-expanded', String(!isOpen));
+                if (catChevron) catChevron.style.transform = isOpen ? '' : 'rotate(180deg)';
+            });
+        }
     })();
     </script>
 
