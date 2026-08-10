@@ -99,8 +99,21 @@
         .pg-visit-pill .pg-sep { color: #ff3b30; margin: 0 0.05rem; }
 
         /* বটম বার সরানো হয়েছে; হেডারে আইকন যুক্ত */
+        .header-nav-btn { position: relative; padding-bottom: 4px; }
         .header-nav-btn.active { color: #c0392b !important; }
         .dark .header-nav-btn.active { color: #e57373 !important; }
+        .header-nav-btn.active::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -6px;
+            width: 18px;
+            height: 3px;
+            border-radius: 3px;
+            background: #c0392b;
+            transform: translateX(-50%);
+        }
+        .dark .header-nav-btn.active::after { background: #e57373; }
 
 
         /* Sidebar (plain CSS — precompiled tailwind.css এ এই ক্লাসগুলো নাও থাকতে পারে) */
