@@ -156,12 +156,16 @@ if (!fs.existsSync('book')) fs.mkdirSync('book');
 
 // Sidebar HTML builder
 function buildSidebarHTML(bookList, authorsRaw, categoriesRaw) {
-  // Categories — বর্ণমালা অনুসারে (Bengali locale) sort করে সবগুলো
+  // Categories — বর্ণমালা অনুসারে (Bengali locale) sort করে সবগুলো, পাশে বইয়ের সংখ্যা
+  const catCount = {};
+  for (const book of bookList) {
+    if (book.category_slug) catCount[book.category_slug] = (catCount[book.category_slug] || 0) + 1;
+  }
   const catItems = Object.entries(categoriesRaw)
     .map(([id, cat]) => ({ id, cat }))
     .filter(({ cat }) => cat && cat.slug && cat.title)
     .sort((a, b) => a.cat.title.localeCompare(b.cat.title, 'bn'))
-    .map(({ cat }) => `<li><a href="/category/${cat.slug}/1/">${cat.title}</a></li>`);
+    .map(({ cat }) => `<li><a href="/category/${cat.slug}/1/"><span>${cat.title}</span><span class="text-[11px] text-gray-400 dark:text-gray-500">${toBanglaNum(catCount[cat.slug] || 0)}</span></a></li>`);
 
   // Authors — count per author
   const authorMap = {};
