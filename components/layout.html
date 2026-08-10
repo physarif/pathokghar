@@ -99,8 +99,24 @@
         .pg-visit-pill .pg-sep { color: #ff3b30; margin: 0 0.05rem; }
 
         /* বটম বার সরানো হয়েছে; হেডারে আইকন যুক্ত */
+        .header-nav-btn {
+            position: relative;
+            padding-bottom: 6px;
+        }
         .header-nav-btn.active { color: #c0392b !important; }
         .dark .header-nav-btn.active { color: #e57373 !important; }
+        .header-nav-btn.active::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -4px;
+            transform: translateX(-50%);
+            width: 26px;
+            height: 3px;
+            border-radius: 3px;
+            background: #c0392b;
+        }
+        .dark .header-nav-btn.active::after { background: #e57373; }
 
 
         /* Sidebar (plain CSS — precompiled tailwind.css এ এই ক্লাসগুলো নাও থাকতে পারে) */
@@ -246,26 +262,19 @@
 
     <!-- TOP BAR -->
     <header id="site-header" class="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1f1f1f]">
-        <div id="header-default" class="flex items-center justify-between px-5 py-4">
-            <div class="flex items-center gap-3">
-                <button id="menu-btn" type="button" aria-label="মেনু" class="text-gray-500 dark:text-gray-400">
-                    <i class="fa-solid fa-bars text-2xl"></i>
-                </button>
-                <a href="https://pathokghar.com" aria-label="পাঠক ঘর" class="flex items-center gap-2" style="color:#c0392b;">
-                    <span class="text-2xl font-bold text-gray-800 dark:text-gray-100" style="line-height:1;">পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span></span>
-                </a>
-            </div>
-            <div class="flex items-center gap-4">
-                <a href="/categories/" data-nav-path="/categories/" class="header-nav-btn text-gray-500 dark:text-gray-400" aria-label="বিভাগ">
-                    <i class="fa-brands fa-hashnode text-2xl"></i>
-                </a>
-                <a href="/authors/" data-nav-path="/authors/" class="header-nav-btn text-gray-500 dark:text-gray-400" aria-label="লেখক">
-                    <i class="fa-solid fa-user-graduate text-2xl"></i>
-                </a>
-                <a href="/" data-nav-path="/" class="header-nav-btn text-gray-500 dark:text-gray-400" aria-label="বই">
-                    <i class="fa-solid fa-house text-2xl"></i>
-                </a>
-            </div>
+        <div id="header-default" class="flex items-center justify-around px-2 pt-4 pb-3">
+            <button id="menu-btn" type="button" aria-label="মেনু" class="header-nav-btn text-gray-500 dark:text-gray-400">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+            <a href="/categories/" data-nav-path="/categories/" class="header-nav-btn text-gray-500 dark:text-gray-400" aria-label="বিভাগ">
+                <i class="fa-brands fa-hashnode text-2xl"></i>
+            </a>
+            <a href="/authors/" data-nav-path="/authors/" class="header-nav-btn text-gray-500 dark:text-gray-400" aria-label="লেখক">
+                <i class="fa-solid fa-user-graduate text-2xl"></i>
+            </a>
+            <a href="/" data-nav-path="/" class="header-nav-btn text-gray-500 dark:text-gray-400" aria-label="বই">
+                <i class="fa-solid fa-house text-2xl"></i>
+            </a>
         </div>
     </header>
     <!-- header fixed হওয়ায় নিচের কনটেন্টের জন্য একই উচ্চতার একটি spacer -->
