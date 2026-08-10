@@ -156,14 +156,11 @@ if (!fs.existsSync('book')) fs.mkdirSync('book');
 
 // Sidebar HTML builder
 function buildSidebarHTML(bookList, authorsRaw, categoriesRaw) {
-  // Categories — Firebase numeric key অনুসারে sort করে প্রথম ১০টা
+  // Categories — বর্ণমালা অনুসারে (Bengali locale) sort করে সবগুলো
   const catItems = Object.entries(categoriesRaw)
-    .map(([id, cat]) => ({ id, cat, num: parseInt(id, 10) }))
+    .map(([id, cat]) => ({ id, cat }))
     .filter(({ cat }) => cat && cat.slug && cat.title)
-    .sort((a, b) => {
-      if (!isNaN(a.num) && !isNaN(b.num)) return a.num - b.num;
-      return a.id.localeCompare(b.id);
-    })
+    .sort((a, b) => a.cat.title.localeCompare(b.cat.title, 'bn'))
     .map(({ cat }) => `<li><a href="/category/${cat.slug}/1/">${cat.title}</a></li>`);
 
   // Authors — count per author
