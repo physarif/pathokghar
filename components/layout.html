@@ -206,6 +206,15 @@
         #sidebar-categories-list li a:hover { background: #fff5f5; color: #c0392b; }
         .dark #sidebar-categories-list li a { color: #d1d5db; }
         .dark #sidebar-categories-list li a:hover { background: #2a1f1f; color: #e57373; }
+        /* বইয়ের সংখ্যা — bracket-সহ, ডান পাশে */
+        #sidebar-categories-list li a .cat-count {
+            font-size: 13px;
+            color: #9ca3af;
+            flex-shrink: 0;
+        }
+        #sidebar-categories-list li a .cat-count::before { content: '('; }
+        #sidebar-categories-list li a .cat-count::after { content: ')'; }
+        .dark #sidebar-categories-list li a .cat-count { color: #6b7280; }
 
         /* Floating (sticky) header — নিচে স্ক্রল করলে hide, উপরে স্ক্রল করলে show */
         #site-header {
@@ -320,10 +329,7 @@
         <!-- বিভাগসমূহ — collapsible, সব category বর্ণমালা অনুসারে -->
         <div id="sidebar-categories-toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="sidebar-categories-list"
              class="flex items-center justify-between px-4 py-3 cursor-pointer border-b border-gray-200 dark:border-gray-700">
-            <span class="flex items-center gap-2 text-base font-bold text-gray-800 dark:text-gray-100">
-                <i class="fa-solid fa-layer-group text-sm" style="color:#c0392b;"></i>
-                বিভাগসমূহ
-            </span>
+            <span class="text-base font-bold text-gray-800 dark:text-gray-100">বিভাগসমূহ</span>
             <i id="sidebar-categories-chevron" class="fa-solid fa-chevron-down text-gray-500 dark:text-gray-400 text-sm"></i>
         </div>
         <ul id="sidebar-categories-list" class="px-2 pb-1" style="display:none; list-style:none; margin:0; max-height:45vh; overflow-y:auto;">
