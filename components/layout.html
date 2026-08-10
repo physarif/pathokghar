@@ -189,8 +189,8 @@
         #site-header.header-hidden { transform: translateY(-100%); }
 
         /* Header search — Google-স্টাইল autosuggest dropdown */
-        #header-search-suggest { background: rgba(255,255,255,0.95); }
-        .dark #header-search-suggest { background: rgba(35,35,42,0.95); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
+        #sidebar-search-suggest { background: rgba(255,255,255,0.95); }
+        .dark #sidebar-search-suggest { background: rgba(35,35,42,0.95); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
         .hs-item {
             display: flex;
             align-items: center;
@@ -260,22 +260,10 @@
                 <a href="/categories/" data-nav-path="/categories/" class="header-nav-btn text-gray-500 dark:text-gray-400" aria-label="বিভাগ">
                     <i class="fa-brands fa-hashnode text-2xl"></i>
                 </a>
-                <button id="header-search-btn" type="button" aria-label="খুঁজুন" class="text-gray-500 dark:text-gray-400">
-                    <i class="fa-solid fa-magnifying-glass text-2xl"></i>
-                </button>
                 <button id="menu-btn" type="button" aria-label="মেনু" class="text-gray-500 dark:text-gray-400">
                     <i class="fa-solid fa-bars text-2xl"></i>
                 </button>
             </div>
-        </div>
-        <div id="header-search-box" class="hidden items-center gap-3 px-5 py-4" style="position:relative;">
-            <i class="fa-solid fa-magnifying-glass text-xl text-gray-400 dark:text-gray-500"></i>
-            <input id="header-search-input" type="text" placeholder="বই, লেখক বা বিভাগ দিয়ে খুঁজুন..." autocomplete="off"
-                   class="flex-1 min-w-0 bg-transparent outline-none border-none text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
-            <button id="header-search-close-btn" type="button" aria-label="বন্ধ করুন" class="text-gray-500 dark:text-gray-400 shrink-0">
-                <i class="fa-solid fa-xmark text-2xl"></i>
-            </button>
-            <div id="header-search-suggest" style="display:none;position:absolute;left:0;right:0;top:100%;background:#fff;border-radius:0 0 10px 10px;box-shadow:0 8px 20px rgba(0,0,0,0.15);max-height:70vh;overflow-y:auto;z-index:60;"></div>
         </div>
     </header>
     <!-- header fixed হওয়ায় নিচের কনটেন্টের জন্য একই উচ্চতার একটি spacer -->
@@ -284,14 +272,23 @@
     <!-- SIDEBAR -->
     <div id="sidebar-overlay"></div>
     <aside id="sidebar">
-        <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1f1f1f]">
+        <div id="sidebar-header-default" class="flex items-center justify-between px-4 py-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1f1f1f]">
             <div class="flex items-center gap-2">
                 <span style="color:#c0392b;"><i class="fa-solid fa-swatchbook text-2xl"></i></span>
                 <span class="text-2xl font-bold text-gray-800 dark:text-gray-100" style="line-height:1;">পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span></span>
             </div>
-            <button id="sidebar-close-btn" type="button" aria-label="বন্ধ করুন" class="text-gray-500 dark:text-gray-400">
-                <i class="fa-solid fa-xmark text-xl"></i>
+            <button id="sidebar-search-btn" type="button" aria-label="খুঁজুন" class="text-gray-500 dark:text-gray-400">
+                <i class="fa-solid fa-magnifying-glass text-2xl"></i>
             </button>
+        </div>
+        <div id="sidebar-search-box" class="hidden items-center gap-3 px-4 py-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1f1f1f]" style="position:relative;">
+            <i class="fa-solid fa-magnifying-glass text-xl text-gray-400 dark:text-gray-500"></i>
+            <input id="sidebar-search-input" type="text" placeholder="বই, লেখক বা বিভাগ দিয়ে খুঁজুন..." autocomplete="off"
+                   class="flex-1 min-w-0 bg-transparent outline-none border-none text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
+            <button id="sidebar-search-close-btn" type="button" aria-label="বন্ধ করুন" class="text-gray-500 dark:text-gray-400 shrink-0">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+            <div id="sidebar-search-suggest" style="display:none;position:absolute;left:0;right:0;top:100%;background:#fff;border-radius:0 0 10px 10px;box-shadow:0 8px 20px rgba(0,0,0,0.15);max-height:70vh;overflow-y:auto;z-index:60;"></div>
         </div>
 
         <!-- বিভাগসমূহ — collapsible, সব category বর্ণমালা অনুসারে -->
@@ -345,7 +342,6 @@
     <script>
     (function() {
         var menuBtn = document.getElementById('menu-btn');
-        var closeBtn = document.getElementById('sidebar-close-btn');
         var sidebar = document.getElementById('sidebar');
         var overlay = document.getElementById('sidebar-overlay');
 
@@ -387,7 +383,6 @@
         });
 
         if (menuBtn) menuBtn.addEventListener('click', openSidebar);
-        closeBtn.addEventListener('click', closeSidebar);
         overlay.addEventListener('click', closeSidebar);
 
         // বিভাগসমূহ accordion টগল
@@ -419,14 +414,14 @@
     </script>
 
     <script>
-    // Header-এর ভেতরে inline search box টগল করা + live autosuggest
+    // Sidebar-এর ভেতরে inline search box টগল করা + live autosuggest
     (function() {
-        var defaultRow = document.getElementById('header-default');
-        var searchBox = document.getElementById('header-search-box');
-        var searchBtn = document.getElementById('header-search-btn');
-        var closeBtn = document.getElementById('header-search-close-btn');
-        var searchInput = document.getElementById('header-search-input');
-        var suggestBox = document.getElementById('header-search-suggest');
+        var defaultRow = document.getElementById('sidebar-header-default');
+        var searchBox = document.getElementById('sidebar-search-box');
+        var searchBtn = document.getElementById('sidebar-search-btn');
+        var closeBtn = document.getElementById('sidebar-search-close-btn');
+        var searchInput = document.getElementById('sidebar-search-input');
+        var suggestBox = document.getElementById('sidebar-search-suggest');
 
         function openHeaderSearch() {
             defaultRow.classList.add('hidden');
