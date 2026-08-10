@@ -98,22 +98,27 @@
         .pg-visit-pill i { font-size: 0.7rem; color: #ff3b30; opacity: 0.85; }
         .pg-visit-pill .pg-sep { color: #ff3b30; margin: 0 0.05rem; }
 
-        /* বটম বার সরানো হয়েছে; হেডারে আইকন যুক্ত */
-        .header-nav-btn { position: relative; padding-bottom: 4px; }
-        .header-nav-btn.active { color: #c0392b !important; }
-        .dark .header-nav-btn.active { color: #e57373 !important; }
-        .header-nav-btn.active::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: -6px;
-            width: 18px;
-            height: 3px;
-            border-radius: 3px;
-            background: #c0392b;
-            transform: translateX(-50%);
+        /* হেডার ন্যাভ — গ্রুপড আউটলাইন বক্স (ডিজাইন ২) */
+        .header-nav-group {
+            display: flex;
+            align-items: center;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
         }
-        .dark .header-nav-btn.active::after { background: #e57373; }
+        .dark .header-nav-group { border-color: #374151; }
+        .header-nav-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 36px;
+            border-right: 1px solid #e5e7eb;
+        }
+        .dark .header-nav-btn { border-right-color: #374151; }
+        .header-nav-btn:last-child { border-right: none; }
+        .header-nav-btn.active { color: #c0392b !important; background: #fdecea; }
+        .dark .header-nav-btn.active { color: #e57373 !important; background: #3a2323; }
 
 
         /* Sidebar (plain CSS — precompiled tailwind.css এ এই ক্লাসগুলো নাও থাকতে পারে) */
@@ -269,15 +274,17 @@
                 </a>
             </div>
             <div class="flex items-center gap-4">
-                <a href="/" data-nav-path="/" class="header-nav-btn text-gray-500 dark:text-gray-400" aria-label="হোম">
-                    <i class="fa-solid fa-house text-2xl"></i>
-                </a>
-                <a href="/authors/" data-nav-path="/authors/" class="header-nav-btn text-gray-500 dark:text-gray-400" aria-label="লেখক">
-                    <i class="fa-solid fa-user-graduate text-2xl"></i>
-                </a>
-                <a href="/categories/" data-nav-path="/categories/" class="header-nav-btn text-gray-500 dark:text-gray-400" aria-label="বিভাগ">
-                    <i class="fa-brands fa-hashnode text-2xl"></i>
-                </a>
+                <nav class="header-nav-group">
+                    <a href="/" data-nav-path="/" class="header-nav-btn text-gray-500 dark:text-gray-400" aria-label="হোম">
+                        <i class="fa-solid fa-house text-xl"></i>
+                    </a>
+                    <a href="/authors/" data-nav-path="/authors/" class="header-nav-btn text-gray-500 dark:text-gray-400" aria-label="লেখক">
+                        <i class="fa-solid fa-user-graduate text-xl"></i>
+                    </a>
+                    <a href="/categories/" data-nav-path="/categories/" class="header-nav-btn text-gray-500 dark:text-gray-400" aria-label="বিভাগ">
+                        <i class="fa-brands fa-hashnode text-xl"></i>
+                    </a>
+                </nav>
             </div>
         </div>
     </header>
