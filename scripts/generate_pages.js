@@ -338,6 +338,21 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
 
   const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
 
+  // বিভাগসমূহ — বই সংখ্যা অনুসারে সর্বোচ্চ ৯টি বিভাগ (হোমপেজে সংখ্যা দেখানো হবে না)
+  const catCountHome = {};
+  for (const book of bookList) {
+    if (book.category_slug) {
+      catCountHome[book.category_slug] = (catCountHome[book.category_slug] || 0) + 1;
+    }
+  }
+  const topCategoriesHtml = Object.entries(categoriesRaw)
+    .filter(([, cat]) => cat && cat.slug && cat.title)
+    .map(([, cat]) => ({ slug: cat.slug, name: cat.title, count: catCountHome[cat.slug] || 0 }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 9)
+    .map(cat => `<a href="/category/${cat.slug}/1/" class="idx-cat-card"><span class="idx-cat-card-name">${cat.name}</span></a>`)
+    .join('');
+
   for (let page = 1; page <= totalPages; page++) {
     const pageBooks = sorted.slice((page - 1) * BOOKS_PER_PAGE, page * BOOKS_PER_PAGE);
 
@@ -359,6 +374,7 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
       total_pages_bn: toBanglaNum(totalPages),
       total_books_bn: toBanglaNum(sorted.length),
       load_more_link: loadMoreLinkHtml,
+      top_categories: topCategoriesHtml,
     });
 
     const fullPage = render(layout, {
