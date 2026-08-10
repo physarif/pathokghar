@@ -167,7 +167,7 @@ function buildSidebarHTML(bookList, authorsRaw, categoriesRaw) {
     .sort((a, b) => a.cat.title.localeCompare(b.cat.title, 'bn'))
     .map(({ cat }) => `<li><a href="/category/${cat.slug}/1/"><span>${cat.title}</span><span class="cat-count">${toBanglaNum(catCount[cat.slug] || 0)}</span></a></li>`);
 
-  // Authors — count per author
+  // Authors — বর্ণমালা অনুসারে (Bengali locale) সব লেখক, পাশে বইয়ের সংখ্যা
   const authorMap = {};
   const authorCount = {};
   for (const book of bookList) {
@@ -178,7 +178,7 @@ function buildSidebarHTML(bookList, authorsRaw, categoriesRaw) {
   }
   const authorItems = Object.entries(authorMap)
     .sort(([,a],[,b]) => a.localeCompare(b, 'bn'))
-    .map(([slug, name]) => `<li><a href="/author/${slug}.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-[#fff5f5] dark:hover:bg-[#2d1a0e] hover:text-[#c0392b] dark:hover:text-[#e57373] transition-colors"><i class="fas fa-user text-[9px] text-[#c0392b] opacity-60"></i><span class="flex-1">${name}</span><span class="text-[11px] text-gray-400 dark:text-gray-500">${authorCount[slug] || 0}</span></a></li>`);
+    .map(([slug, name]) => `<li><a href="/author/${slug}.html"><span>${name}</span><span class="cat-count">${toBanglaNum(authorCount[slug] || 0)}</span></a></li>`);
 
   return {
     hero_categories: catItems.join('\n                '),
