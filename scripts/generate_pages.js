@@ -165,7 +165,7 @@ function buildSidebarHTML(bookList, authorsRaw, categoriesRaw) {
     .map(([id, cat]) => ({ id, cat }))
     .filter(({ cat }) => cat && cat.slug && cat.title)
     .sort((a, b) => a.cat.title.localeCompare(b.cat.title, 'bn'))
-    .map(({ cat }) => `<li><a href="/category/${cat.slug}/1/"><span>${cat.title}</span><span class="text-[11px] text-gray-400 dark:text-gray-500">${toBanglaNum(catCount[cat.slug] || 0)}</span></a></li>`);
+    .map(({ cat }) => `<li><a href="/category/${cat.slug}/1/"><span>${cat.title}</span><span class="cat-count">${toBanglaNum(catCount[cat.slug] || 0)}</span></a></li>`);
 
   // Authors — count per author
   const authorMap = {};
