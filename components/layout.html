@@ -190,9 +190,9 @@
         #sidebar-links { display: flex; align-items: center; gap: 14px; }
         #sidebar-social a { color: inherit; }
 
-        /* বিভাগসমূহ accordion */
-        #sidebar-categories-chevron { transition: transform 0.2s ease; }
-        #sidebar-categories-list li a {
+        /* বিভাগসমূহ ও লেখকগণ accordion */
+        #sidebar-categories-chevron, #sidebar-authors-chevron { transition: transform 0.2s ease; }
+        #sidebar-categories-list li a, #sidebar-authors-list li a {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -203,18 +203,18 @@
             text-decoration: none;
             border-radius: 6px;
         }
-        #sidebar-categories-list li a:hover { background: #fff5f5; color: #c0392b; }
-        .dark #sidebar-categories-list li a { color: #d1d5db; }
-        .dark #sidebar-categories-list li a:hover { background: #2a1f1f; color: #e57373; }
-        /* বইয়ের সংখ্যা — bracket-সহ, ডান পাশে */
-        #sidebar-categories-list li a .cat-count {
+        #sidebar-categories-list li a:hover, #sidebar-authors-list li a:hover { background: #fff5f5; color: #c0392b; }
+        .dark #sidebar-categories-list li a, .dark #sidebar-authors-list li a { color: #d1d5db; }
+        .dark #sidebar-categories-list li a:hover, .dark #sidebar-authors-list li a:hover { background: #2a1f1f; color: #e57373; }
+        /* সংখ্যা — bracket-সহ, ডান পাশে (বিভাগে বই সংখ্যা, লেখকে বই সংখ্যা) */
+        #sidebar-categories-list li a .cat-count, #sidebar-authors-list li a .cat-count {
             font-size: 13px;
             color: #9ca3af;
             flex-shrink: 0;
         }
-        #sidebar-categories-list li a .cat-count::before { content: '('; }
-        #sidebar-categories-list li a .cat-count::after { content: ')'; }
-        .dark #sidebar-categories-list li a .cat-count { color: #6b7280; }
+        #sidebar-categories-list li a .cat-count::before, #sidebar-authors-list li a .cat-count::before { content: '('; }
+        #sidebar-categories-list li a .cat-count::after, #sidebar-authors-list li a .cat-count::after { content: ')'; }
+        .dark #sidebar-categories-list li a .cat-count, .dark #sidebar-authors-list li a .cat-count { color: #6b7280; }
 
         /* Floating (sticky) header — নিচে স্ক্রল করলে hide, উপরে স্ক্রল করলে show */
         #site-header {
@@ -336,6 +336,16 @@
             {{hero_categories}}
         </ul>
 
+        <!-- লেখকগণ — collapsible, সব লেখক বর্ণমালা অনুসারে -->
+        <div id="sidebar-authors-toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="sidebar-authors-list"
+             class="flex items-center justify-between px-4 py-3 cursor-pointer border-b border-gray-200 dark:border-gray-700">
+            <span class="text-base font-bold text-gray-800 dark:text-gray-100">লেখকগণ</span>
+            <i id="sidebar-authors-chevron" class="fa-solid fa-chevron-down text-gray-500 dark:text-gray-400 text-sm"></i>
+        </div>
+        <ul id="sidebar-authors-list" class="px-2 pb-1" style="display:none; list-style:none; margin:0; max-height:45vh; overflow-y:auto;">
+            {{sidebar_authors}}
+        </ul>
+
         <!-- একেবারে নিচে বসবে -->
         <div id="sidebar-bottom">
             <div class="mx-4 border-t border-gray-200 dark:border-gray-700"></div>
@@ -422,6 +432,19 @@
                 catList.style.display = isOpen ? 'none' : 'block';
                 catToggle.setAttribute('aria-expanded', String(!isOpen));
                 if (catChevron) catChevron.style.transform = isOpen ? '' : 'rotate(180deg)';
+            });
+        }
+
+        // লেখকগণ accordion টগল
+        var authorToggle = document.getElementById('sidebar-authors-toggle');
+        var authorList = document.getElementById('sidebar-authors-list');
+        var authorChevron = document.getElementById('sidebar-authors-chevron');
+        if (authorToggle && authorList) {
+            authorToggle.addEventListener('click', function() {
+                var isOpen = authorList.style.display !== 'none';
+                authorList.style.display = isOpen ? 'none' : 'block';
+                authorToggle.setAttribute('aria-expanded', String(!isOpen));
+                if (authorChevron) authorChevron.style.transform = isOpen ? '' : 'rotate(180deg)';
             });
         }
     })();
