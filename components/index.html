@@ -165,6 +165,26 @@
     white-space: nowrap;
   }
   .dark .idx-cat-card-name { color: #e5e7eb; }
+
+  /* বিভাগসমূহ সেকশনের নিচে ও পরের সেকশনের উপরে space কমানো */
+  .idx-cat-section { margin-bottom: 0.15rem; }
+  .idx-cat-section + .book-section { padding-top: 0.25rem; }
+
+  /* horizontal scroll এখন true screen edge পর্যন্ত যাবে (full-bleed) */
+  .idx-cat-section {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+  .idx-cat-grid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: 768px) {
+    .idx-cat-grid { padding-left: 1.5rem; padding-right: 1.5rem; }
+  }
 </style>
 
 {{book_card_styles}}
@@ -172,7 +192,7 @@
 <main class="flex-1 py-2 md:py-6 md:px-8 lg:px-16 min-h-[calc(100vh-3.5rem)] min-w-0 overflow-hidden">
 
   <!-- বিভাগসমূহ (top 9 categories, সংখ্যা ছাড়া) -->
-  <section class="book-section">
+  <section class="book-section idx-cat-section">
     <div class="idx-cat-grid">{{top_categories}}</div>
   </section>
 
