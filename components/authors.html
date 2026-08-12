@@ -1,9 +1,8 @@
 <div class="max-w-5xl mx-auto py-6">
 
-  <!-- Section label -->
-  <div style="padding:0.45rem 1rem;background:#c0392b;font-size:1rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
-    <span style="color:#fff;font-weight:700;letter-spacing:0.01em;">লেখকগণ</span>
-    <span id="ag-count" style="background:rgba(255,255,255,0.18);color:#fff;font-weight:600;font-size:0.78rem;padding:0.15rem 0.6rem;"></span>
+  <!-- Section label (সর্বশেষ বই এর সাথে মিলিয়ে ডিজাইন করা) -->
+  <div class="ag-title">
+    <i class="fa-solid fa-feather-pointed"></i> লেখকগণ<span id="ag-count"></span>
   </div>
 
   <!-- Body: letter sidebar + groups -->
@@ -18,6 +17,33 @@
 <script type="application/json" id="authors-json">{{authors_json}}</script>
 
 <style>
+/* লেখকগণ — index.html এর "সর্বশেষ বই" title-এর মতো accented progress-underline */
+.ag-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+  letter-spacing: 0.01em;
+}
+.ag-title i { color: #c0392b; font-size: 1rem; }
+.ag-title::after {
+  content: '';
+  flex: 1;
+  height: 6px;
+  border-radius: 1px;
+  background: linear-gradient(to right, #e5e7eb 0%, #c0392b 100%);
+}
+.dark .ag-title { color: #f3f4f6; }
+.dark .ag-title::after {
+  background: linear-gradient(to right, #374151 0%, #f87171 100%);
+}
+#ag-count { color: #c0392b; font-weight: 700; }
+.dark #ag-count { color: #f87171; }
+
 .ag-body {
   display: flex;
   align-items: flex-start;
@@ -150,9 +176,9 @@
     return String(n).replace(/[0-9]/g, function(d) { return '০১২৩৪৫৬৭৮৯'[d]; });
   }
 
-  // Count label
+  // Count label — লেখকগণ(count) ফরম্যাট
   var countEl = document.getElementById('ag-count');
-  if (countEl) countEl.textContent = toBn(data.length) + ' জন লেখক';
+  if (countEl) countEl.textContent = '(' + toBn(data.length) + ')';
 
   // Sort বাংলা নাম অনুসারে
   data.sort(function(a, b) { return a.name.localeCompare(b.name, 'bn'); });
