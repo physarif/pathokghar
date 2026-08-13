@@ -642,6 +642,71 @@
         {{content}}
     </main>
 
+    <!-- FOOTER -->
+    <footer class="bg-gray-100 dark:bg-[#1f1f1f] border-t border-gray-300 dark:border-gray-700 mt-8">
+
+        <!-- Brand row -->
+        <div class="max-w-3xl mx-auto px-5 pt-6 pb-4 flex items-center justify-between">
+            <div>
+                <a href="https://pathokghar.com" class="flex items-center">
+                    <span class="text-2xl font-bold text-gray-800 dark:text-gray-100" style="line-height:1;">পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span></span>
+                </a>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5 tracking-wide">বাংলা বইয়ের ডিজিটাল পাঠাগার</p>
+            </div>
+            <!-- Social icons -->
+            <div class="flex items-center gap-2">
+                <a href="https://facebook.com/pathokghar" target="_blank" rel="noopener" aria-label="Facebook"
+                   class="w-12 h-12 rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] flex items-center justify-center text-[#1877f2] hover:border-[#1877f2] transition-all">
+                    <i class="fa-brands fa-facebook-f text-lg"></i>
+                </a>
+                <a href="https://t.me/pathokghar" target="_blank" rel="noopener" aria-label="Telegram"
+                   class="w-12 h-12 rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2a2a2a] flex items-center justify-center text-[#229ed9] hover:border-[#229ed9] transition-all">
+                    <i class="fa-brands fa-telegram"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="max-w-3xl mx-auto px-5">
+            <div class="border-t border-gray-300 dark:border-gray-700"></div>
+        </div>
+
+        <!-- Dot-separated links — mobile: wrap, desktop: single row -->
+        <div class="max-w-3xl mx-auto px-5 py-3 flex flex-wrap md:flex-nowrap items-center justify-between gap-y-2">
+            <!-- Links -->
+            <div class="flex flex-wrap md:flex-nowrap items-center gap-y-1">
+                <a href="/about" class="footer-dot-link">সম্পর্কে</a>
+                <span class="footer-dot">·</span>
+                <a href="/contact" class="footer-dot-link">যোগাযোগ</a>
+                <span class="footer-dot">·</span>
+                <a href="/policy" class="footer-dot-link">শর্তাবলী</a>
+            </div>
+
+            <!-- Visit counter -->
+            <span id="pg-visit-counter-footer" class="pg-visit-pill"><i class="fa-solid fa-arrow-trend-up"></i> <b>**</b> <span class="pg-sep">|</span> <b>**</b></span>
+
+        </div>
+
+    </footer>
+
+    <script>
+        // Visit counter (footer) — প্রতি পেজ লোড/রিফ্রেশে count বাড়বে
+        (function () {
+            const el = document.getElementById('pg-visit-counter-footer');
+            if (!el) return;
+            const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+            const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');
+            const nums = el.querySelectorAll('b');
+            fetch('/api/visits')
+                .then(r => r.json())
+                .then(data => {
+                    nums[0].textContent = toBn(data.today);
+                    nums[1].textContent = toBn(data.total);
+                })
+                .catch(() => { el.style.display = 'none'; });
+        })();
+    </script>
+
     <script>
         (function() {
             var path = window.location.pathname;
