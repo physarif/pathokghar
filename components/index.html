@@ -204,79 +204,29 @@
     <div class="bc-list">{{latest_books}}</div>
   </section>
 
-  <div id="bc-load-more-wrap" style="text-align:center;padding:1rem 0;">{{load_more_link}}</div>
+  <div id="bc-pagination"></div>
   <script>
     (function() {
+      const current = parseInt('{{current_page}}', 10);
       const total = parseInt('{{total_pages}}', 10);
-      let current = parseInt('{{current_page}}', 10);
       if (!current || !total || total <= 1) return;
-
-      const wrap = document.getElementById('bc-load-more-wrap');
-      const bcList = document.querySelector('.book-section .bc-list');
-      let loading = false;
-      let observer = null;
-
-      // পেজ লোড হওয়ার সাথে সাথেই server-rendered fallback লিঙ্ক (<a href>)
-      // সরিয়ে ফাঁকা রাখা হচ্ছে — JS থাকলে scroll করলেই auto-load হবে।
-      // JS বন্ধ থাকলে এই replace-টাই হবে না, ফলে আসল লিঙ্কটা থেকে যাবে।
-      wrap.innerHTML = '';
-
-      function renderLoading() {
-        wrap.innerHTML = '<span style="display:inline-flex;align-items:center;gap:0.5rem;color:#c0392b;font-weight:600;font-size:0.95rem;"><i class="fa-solid fa-spinner fa-spin"></i> লোড হচ্ছে...</span>';
+      const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+      const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');
+      const el = document.getElementById('bc-pagination');
+      let html = '<div class="bc-pagination">';
+      if (current > 1) {
+        const prev = current === 2 ? '/' : '/books/' + (current - 1) + '/';
+        html += '<a href="' + prev + '" class="bc-page-nav"><i class="fas fa-chevron-left text-xs"></i> পূর্ববর্তী</a>';
       }
-
-      function renderRetry() {
-        wrap.innerHTML = '<button id="bc-retry-btn" type="button" style="display:inline-flex;align-items:center;gap:0.5rem;background:#c0392b;color:#fff;font-weight:600;font-size:0.95rem;padding:0.6rem 1.5rem;border:none;border-radius:5px;cursor:pointer;">আবার চেষ্টা করুন <i class="fa-solid fa-rotate-right"></i></button>';
-        document.getElementById('bc-retry-btn').addEventListener('click', loadNextPage);
+      for (let i = 1; i <= total; i++) {
+        const href = i === 1 ? '/' : '/books/' + i + '/';
+        if (i === current) html += '<span class="bc-page-btn active">' + toBn(i) + '</span>';
+        else html += '<a href="' + href + '" class="bc-page-btn">' + toBn(i) + '</a>';
       }
-
-      function loadNextPage() {
-        if (loading || current >= total) return;
-        loading = true;
-        renderLoading();
-
-        const nextPage = current + 1;
-        const url = '/books/' + nextPage + '/';
-
-        fetch(url)
-          .then(function(res) {
-            if (!res.ok) throw new Error('load failed');
-            return res.text();
-          })
-          .then(function(html) {
-            const doc = new DOMParser().parseFromString(html, 'text/html');
-            const nextList = doc.querySelector('.book-section .bc-list');
-            if (nextList) {
-              bcList.insertAdjacentHTML('beforeend', nextList.innerHTML);
-            }
-            current = nextPage;
-            loading = false;
-            if (current >= total) {
-              wrap.innerHTML = '';
-              if (observer) observer.disconnect();
-            } else {
-              wrap.innerHTML = '';
-            }
-          })
-          .catch(function() {
-            loading = false;
-            renderRetry();
-          });
+      if (current < total) {
+        html += '<a href="/books/' + (current + 1) + '/" class="bc-page-nav">পরবর্তী <i class="fas fa-chevron-right text-xs"></i></a>';
       }
-
-      if ('IntersectionObserver' in window) {
-        observer = new IntersectionObserver(function(entries) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting) loadNextPage();
-          });
-        }, { rootMargin: '400px 0px' });
-        observer.observe(wrap);
-      } else {
-        window.addEventListener('scroll', function() {
-          if (loading || current >= total) return;
-          const rect = wrap.getBoundingClientRect();
-          if (rect.top < window.innerHeight + 400) loadNextPage();
-        });
-      }
+      html += '</div>';
+      el.innerHTML = html;
     })();
   </script>
