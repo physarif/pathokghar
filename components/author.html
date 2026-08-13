@@ -16,20 +16,13 @@
     <div class="author-hero-card">
         <img src="{{author_img}}" alt="{{author_name}}" class="author-hero-avatar">
         <div class="author-hero-body">
-            <h1 class="author-hero-name">{{author_name}}</h1>
+            <h1 class="author-hero-name">{{author_name}} <span class="author-hero-count">({{author_book_count}} টি বই)</span></h1>
             <hr class="author-hero-rule">
             <!-- build time-এই markdown থেকে HTML — crawler-এর জন্য প্রথম
                  লোডেই লেখক পরিচিতি পাওয়া যায়, JS-এর উপর নির্ভরতা নেই -->
             <div class="author-desc-md text-base text-gray-500 dark:text-gray-400 leading-6 text-justify">{{author_desc_html}}</div>
         </div>
     </div>
-</div>
-
-<div style="padding:0 0.5rem;">
-  <div style="padding:0.45rem 1rem;background:#c0392b;font-size:1rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
-    <span style="color:#fff;font-weight:700;letter-spacing:0.01em;">লেখকের বইসমূহ</span>
-    <span style="background:rgba(255,255,255,0.18);color:#fff;font-weight:600;font-size:0.78rem;padding:0.15rem 0.6rem;">{{author_book_count}} টি বই</span>
-  </div>
 </div>
 
 <div style="padding:0 0.5rem 0.5rem;">
@@ -97,6 +90,12 @@
     .author-hero-name { font-size: 1.4rem; }
 }
 .dark .author-hero-name { color: #f3f4f6; }
+.author-hero-count {
+    color: #c0392b;
+    font-weight: 700;
+    font-size: 0.85em;
+}
+.dark .author-hero-count { color: #f2938a; }
 .author-hero-rule {
     border: none;
     border-top: 1px dashed #f0d3d0;
