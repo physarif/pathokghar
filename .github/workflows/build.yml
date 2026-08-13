@@ -59,6 +59,7 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" != "push" ]; then
             echo "layout_only=false" >> $GITHUB_OUTPUT
+            echo "convert_needed=true" >> $GITHUB_OUTPUT
             exit 0
           fi
 
@@ -74,6 +75,15 @@ jobs:
             echo "layout_only=false" >> $GITHUB_OUTPUT
           fi
 
+          # Convert books step শুধু তখনই দরকার যখন components/read.html বা
+          # root-level "github-actions" state ফাইল বদলায়; নাহলে skip করবে।
+          CONVERT_CHANGED=$(echo "$CHANGED" | grep -E '^components/read\.html$|^github-actions$' || true)
+          if [ -n "$CONVERT_CHANGED" ]; then
+            echo "convert_needed=true" >> $GITHUB_OUTPUT
+          else
+            echo "convert_needed=false" >> $GITHUB_OUTPUT
+          fi
+
       # ৬. Firebase থেকে data fetch + সব pages generate
       - name: Generate static pages
         env:
@@ -84,7 +94,9 @@ jobs:
         run: node scripts/generate_pages.js
 
       # ৭. ZIP → HTML convert + read page generate
+      #    শুধু read.html বা github-actions state ফাইল বদলালেই চলবে, নাহলে skip
       - name: Convert books
+        if: steps.changes.outputs.convert_needed == 'true'
         env:
           FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
         run: python scripts/convert_zip.py
