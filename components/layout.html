@@ -78,6 +78,25 @@
             margin: 0 6px;
             line-height: 1;
         }
+        /* Footer social icons — সাদা বক্স + হালকা বর্ডার (arbitrary Tailwind
+           ক্লাসের বদলে plain CSS, যাতে precompiled build-এ নিশ্চিতভাবে রেন্ডার হয়) */
+        .footer-social-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            border: 2px solid #d1d5db;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: border-color 0.15s;
+        }
+        .dark .footer-social-icon { background: #2a2a2a; border-color: #4b5563; }
+        .footer-social-icon.fb { color: #1877f2; }
+        .footer-social-icon.fb:hover { border-color: #1877f2; }
+        .footer-social-icon.tg { color: #229ed9; }
+        .footer-social-icon.tg:hover { border-color: #229ed9; }
         /* Visit counter — retro LCD display */
         .pg-visit-pill {
             display: inline-flex;
@@ -653,14 +672,12 @@
                 </a>
                 <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5 tracking-wide">বাংলা বইয়ের ডিজিটাল পাঠাগার</p>
             </div>
-            <!-- Social icons — sidebar-social এর সাথে হুবহু মিলিয়ে -->
-            <div class="flex items-center gap-3">
-                <a href="https://facebook.com/pathokghar" target="_blank" rel="noopener" aria-label="Facebook"
-                   class="flex items-center justify-center" style="width:36px;height:36px;color:#1877f2;font-size:1.25rem;">
-                    <i class="fa-brands fa-facebook"></i>
+            <!-- Social icons — রেফারেন্স ডিজাইনের বক্স-স্টাইলের সাথে হুবহু -->
+            <div class="flex items-center gap-2">
+                <a href="https://facebook.com/pathokghar" target="_blank" rel="noopener" aria-label="Facebook" class="footer-social-icon fb">
+                    <i class="fa-brands fa-facebook-f"></i>
                 </a>
-                <a href="https://t.me/pathokghar" target="_blank" rel="noopener" aria-label="Telegram"
-                   class="flex items-center justify-center" style="width:36px;height:36px;color:#229ed9;font-size:1.25rem;">
+                <a href="https://t.me/pathokghar" target="_blank" rel="noopener" aria-label="Telegram" class="footer-social-icon tg">
                     <i class="fa-brands fa-telegram"></i>
                 </a>
             </div>
