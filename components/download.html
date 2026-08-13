@@ -101,44 +101,50 @@
         margin: 0.25rem 0;
     }
     .dark .dl-hero-rule { border-top-color: #4a3232; }
-    .dl-hero-desc-link {
+    .dl-hero-actions {
+        display: flex;
+        gap: 0.6rem;
+        margin-top: 0.15rem;
+    }
+    .dl-hero-link {
         display: inline-flex;
         align-items: center;
-        gap: 0.35rem;
-        width: fit-content;
         font-size: 0.8rem;
         font-weight: 700;
         text-decoration: none;
-        padding: 0.375rem 0.95rem;
+        padding: 0.45rem 1rem;
         border-radius: 8px;
-        background: #fff;
-        color: #c0392b;
-        border: 1.5px solid #c0392b;
         transition: background 0.15s, color 0.15s, transform 0.1s;
-        margin-top: 0.15rem;
     }
-    .dl-hero-desc-link:hover { background: #fde8e6; }
-    .dl-hero-desc-link:active { transform: scale(0.96); }
-    .dark .dl-hero-desc-link { background: transparent; color: #f2938a; border-color: #a93226; }
-    .dark .dl-hero-desc-link:hover { background: rgba(192,57,43,0.15); }
+    .dl-hero-link:active { transform: scale(0.96); }
+    .dl-hero-link-solid { background: #c0392b; color: #fff; }
+    .dl-hero-link-solid:hover { background: #a93226; }
+    .dark .dl-hero-link-solid { background: #c0392b; color: #fff; }
+    .dark .dl-hero-link-solid:hover { background: #a93226; }
+    .dl-hero-link-outline { background: #fff; color: #c0392b; border: 1.5px solid #c0392b; padding: 0.375rem 0.95rem; }
+    .dl-hero-link-outline:hover { background: #fde8e6; }
+    .dark .dl-hero-link-outline { background: transparent; color: #f2938a; border-color: #a93226; }
+    .dark .dl-hero-link-outline:hover { background: rgba(192,57,43,0.15); }
 </style>
 
 <!-- ─── Download page (single layout) ─── -->
 <div class="max-w-lg mx-auto py-2 px-4">
 
     <!-- Book Info Card: breadcrumb-এর বদলে book.html-এর মতো hero card,
-         এখানে read/download বাটনের বদলে শুধু "বিবরণ" লিংক — ক্লিক করলে
-         বই পেজে চলে যাবে -->
-    <a href="/book/{{book_slug}}.html" class="dl-hero-card" style="text-decoration:none;">
+         এখানে "পড়ুন" ও "বিবরণ" — দুটোই বই পেজে নিয়ে যায় -->
+    <div class="dl-hero-card">
         <img src="{{book_cover}}" alt="{{book_title}} বই এর কভার" width="100" height="148" class="dl-hero-cover">
         <div class="dl-hero-body">
             <span class="dl-hero-category">{{book_category}}</span>
             <p class="dl-hero-title">{{book_title}}</p>
             <span class="dl-hero-author">{{book_author}}</span>
             <hr class="dl-hero-rule">
-            <span class="dl-hero-desc-link"><i class="fas fa-info-circle text-[11px]"></i> বিবরণ</span>
+            <div class="dl-hero-actions">
+                <a href="/read/{{book_slug}}.html" class="dl-hero-link dl-hero-link-solid">পড়ুন</a>
+                <a href="/book/{{book_slug}}.html" class="dl-hero-link dl-hero-link-outline">বিবরণ</a>
+            </div>
         </div>
-    </a>
+    </div>
 
     <!-- Download action card -->
     <div class="bg-white dark:bg-[#2d2d2d] rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-6">
@@ -196,7 +202,7 @@
     </div>
 
     <!-- Info strip -->
-    <div class="mt-4 flex items-center justify-center gap-5 text-xs text-gray-400 dark:text-gray-600">
+    <div class="mt-4 flex items-center justify-between text-xs text-gray-400 dark:text-gray-600">
         <span class="flex items-center gap-1.5"><i class="fas fa-shield-alt text-[10px]"></i> নিরাপদ</span>
         <span class="flex items-center gap-1.5"><i class="fas fa-bolt text-[10px]"></i> দ্রুত</span>
         <span class="flex items-center gap-1.5"><i class="fas fa-ban text-[10px]"></i> অবাধ</span>
