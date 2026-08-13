@@ -390,8 +390,6 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
       current_page: page,
       total_pages: totalPages,
       current_page_bn: toBanglaNum(page),
-      total_pages_bn: toBanglaNum(totalPages),
-      total_books_bn: toBanglaNum(sorted.length),
       top_categories: topCategoriesHtml,
     });
 
