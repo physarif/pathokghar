@@ -98,6 +98,32 @@
   .dark .bc-page-btn.active { background: #f87171; color: #111827; }
   .dark .bc-page-nav { background: #f87171; color: #111827; }
   .dark .bc-page-nav:hover { background: #ef4444; }
+
+  /* সর্বশেষ বই — title with accented progress-style underline */
+  .bc-latest-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    letter-spacing: 0.01em;
+  }
+  .bc-latest-title i { color: #c0392b; font-size: 1rem; }
+  .bc-latest-title .bc-page-num { color: #c0392b; }
+  .dark .bc-latest-title .bc-page-num { color: #f87171; }
+  .bc-latest-title::after {
+    content: '';
+    flex: 1;
+    height: 6px;
+    border-radius: 1px;
+    background: linear-gradient(to right, #e5e7eb 0%, #c0392b 100%);
+  }
+  .dark .bc-latest-title { color: #f3f4f6; }
+  .dark .bc-latest-title::after {
+    background: linear-gradient(to right, #374151 0%, #f87171 100%);
+  }
 </style>
 
 {{book_card_styles}}
@@ -106,9 +132,8 @@
 
   <!-- সর্বশেষ বই -->
   <section class="book-section">
-    <div style="padding:0.45rem 1rem;background:#c0392b;font-size:1rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;border-radius:5px;">
-      <span style="color:#fff;font-weight:700;letter-spacing:0.01em;"><i class="fa-solid fa-angles-right"></i> পাতা নং {{current_page_bn}}/{{total_pages_bn}}</span>
-      <span style="background:rgba(255,255,255,0.18);color:#fff;font-weight:600;font-size:0.78rem;padding:0.15rem 0.6rem;">{{total_books_bn}} টি বই</span>
+    <div class="bc-latest-title">
+      <i class="fa-solid fa-clock-rotate-left"></i> সর্বশেষ বই (<span class="bc-page-num">{{current_page_bn}}</span>)
     </div>
     <div class="bc-list">{{latest_books}}</div>
   </section>
