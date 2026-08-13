@@ -27,9 +27,10 @@
     <meta name="twitter:title" content="{{full_title}}">
     <meta name="twitter:description" content="{{page_description}}">
     <meta name="twitter:image" content="{{page_image}}">
-    <!-- আগে cdn.tailwindcss.com (runtime JIT) ব্যবহার হতো, যেটা FOUC/layout-shift
-         করত। এখন GitHub Actions বিল্ড টাইমে precompile হওয়া static CSS। -->
-    <link rel="stylesheet" href="/assets/css/tailwind.css">
+    <!-- Pure static CSS — কোনো build step লাগে না। আগে Tailwind CDN (runtime JIT,
+         FOUC), তারপর CI-তে precompile হওয়া tailwind.css ব্যবহার হতো — এখন সেটা
+         এক-বারের জন্য generate করে plain CSS হিসেবে commit করা হয়েছে। -->
+    <link rel="stylesheet" href="/components/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css">
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
