@@ -564,7 +564,7 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
       if (typeof a.id === 'number' && typeof b.id === 'number') return a.id - b.id;
       return String(a.id).localeCompare(String(b.id));
     });
-    const BOOKS_PER_PAGE = 24;
+    const BOOKS_PER_PAGE = 12;
     const totalPages = Math.ceil(data.books.length / BOOKS_PER_PAGE);
     const dir = `category/${slug}`;
     if (!fs.existsSync('category')) fs.mkdirSync('category');
