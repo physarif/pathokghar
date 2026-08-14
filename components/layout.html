@@ -74,11 +74,11 @@
         }
         .header-left { display: flex; align-items: center; gap: 0.75rem; }
         .header-right { display: flex; align-items: center; gap: 1rem; }
-        #menu-btn, #sidebar-search-btn, #sidebar-search-close-btn, #header-search-btn, #header-search-close-btn {
+        #menu-btn, #header-search-btn, #header-search-close-btn {
             background: none; border: none; padding: 0; cursor: pointer;
             color: #6b7280;
         }
-        .dark #menu-btn, .dark #sidebar-search-btn, .dark #sidebar-search-close-btn, .dark #header-search-btn, .dark #header-search-close-btn { color: #9ca3af; }
+        .dark #menu-btn, .dark #header-search-btn, .dark #header-search-close-btn { color: #9ca3af; }
         .brand-link { display: flex; align-items: center; gap: 0.5rem; color: #c0392b; text-decoration: none; }
         .brand-name { font-size: 1.5rem; font-weight: 700; color: #1f2937; line-height: 1; }
         .dark .brand-name { color: #f3f4f6; }
@@ -133,38 +133,6 @@
         .dark .sidebar-header { border-bottom-color: #374151; background: #1f1f1f; }
         .sidebar-brand { display: flex; align-items: center; gap: 0.5rem; }
         .sidebar-brand-icon { color: #c0392b; }
-        .sidebar-search-box {
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem;
-            border-bottom: 1px solid #e5e7eb;
-            background: #ffffff;
-            position: relative;
-        }
-        .dark .sidebar-search-box { border-bottom-color: #374151; background: #1f1f1f; }
-        .sidebar-search-input {
-            flex: 1;
-            min-width: 0;
-            background: transparent;
-            outline: none;
-            border: none;
-            color: #1f2937;
-        }
-        .dark .sidebar-search-input { color: #f3f4f6; }
-        .sidebar-search-input::placeholder { color: #9ca3af; }
-        .dark .sidebar-search-input::placeholder { color: #6b7280; }
-        .sidebar-search-suggest {
-            display: none;
-            position: absolute;
-            left: 0; right: 0; top: 100%;
-            background: #fff;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            max-height: 70vh;
-            overflow-y: auto;
-            z-index: 60;
-        }
-
         /* ── Sidebar collapsible sections ── */
         .sidebar-toggle-row {
             display: flex;
@@ -464,8 +432,6 @@
         #site-header.header-hidden { transform: translateY(-100%); }
 
         /* Header search — Google-স্টাইল autosuggest dropdown */
-        #sidebar-search-suggest { background: rgba(255,255,255,0.95); }
-        .dark #sidebar-search-suggest { background: rgba(35,35,42,0.95); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
         .hs-item {
             display: flex;
             align-items: center;
@@ -541,10 +507,10 @@
                     <a href="/categories/" data-nav-path="/categories/" class="header-nav-btn" aria-label="বিভাগ">
                         <i class="fa-brands fa-hashnode icon-lg"></i>
                     </a>
+                    <button id="header-search-btn" type="button" class="header-nav-btn" aria-label="খুঁজুন">
+                        <i class="fa-solid fa-magnifying-glass icon-lg"></i>
+                    </button>
                 </nav>
-                <button id="header-search-btn" type="button" aria-label="খুঁজুন">
-                    <i class="fa-solid fa-magnifying-glass icon-lg"></i>
-                </button>
             </div>
         </div>
         <div id="header-search-box" class="hidden header-search-box">
@@ -566,16 +532,6 @@
                 <span class="sidebar-brand-icon"><i class="fa-solid fa-swatchbook icon-lg"></i></span>
                 <span class="brand-name">পাঠক <span class="brand-name-light">ঘর</span></span>
             </div>
-            <button id="sidebar-search-btn" type="button" aria-label="খুঁজুন">
-                <i class="fa-solid fa-magnifying-glass icon-lg"></i>
-            </button>
-        </div>
-        <div id="sidebar-search-box" class="hidden sidebar-search-box">
-            <input id="sidebar-search-input" type="text" placeholder="বই, লেখক বা বিভাগ দিয়ে খুঁজুন..." autocomplete="off" class="sidebar-search-input">
-            <button id="sidebar-search-close-btn" type="button" aria-label="বন্ধ করুন">
-                <i class="fa-solid fa-xmark icon-lg"></i>
-            </button>
-            <div id="sidebar-search-suggest" class="sidebar-search-suggest"></div>
         </div>
 
         <!-- বিভাগসমূহ — collapsible, সব category বর্ণমালা অনুসারে -->
@@ -850,16 +806,6 @@
                 if (!searchBox.contains(e.target)) hideSuggestions();
             });
         }
-
-        // Sidebar-এর ভেতরের search box
-        initSearchBox({
-            defaultRow: document.getElementById('sidebar-header-default'),
-            searchBox: document.getElementById('sidebar-search-box'),
-            searchBtn: document.getElementById('sidebar-search-btn'),
-            closeBtn: document.getElementById('sidebar-search-close-btn'),
-            searchInput: document.getElementById('sidebar-search-input'),
-            suggestBox: document.getElementById('sidebar-search-suggest')
-        });
 
         // Header-এর ভেতরের search box
         initSearchBox({
