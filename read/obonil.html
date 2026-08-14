@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/obonil.html">
+    <title>অবনীল - পাঠক ঘর</title>
+    <meta name="description" content="'অবনীল' উপন্যাসের পটভূমি গড়ে উঠেছে এক ভিনগ্রহের পটভূমিতে, যা মুহম্মদ জাফর ইকবালের চেনা বৈজ্ঞানিক কল্পকাহিনীর চাদরে মোড়ানো। গল্পে 'অবনীল' কোনো সাধারণ মানুষ নয়, ব">
+    <meta property="og:title" content="অবনীল - পাঠক ঘর">
+    <meta property="og:description" content="'অবনীল' উপন্যাসের পটভূমি গড়ে উঠেছে এক ভিনগ্রহের পটভূমিতে, যা মুহম্মদ জাফর ইকবালের চেনা বৈজ্ঞানিক কল্পকাহিনীর চাদরে মোড়ানো। গল্পে 'অবনীল' কোনো সাধারণ মানুষ নয়, ব">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e', black:'#000' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', sepia:'#3b2f1e', dark:'#e5e7eb', black:'#d1d5db' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .dark body { background: #1a1a1b; color: #e5e7eb; }
+
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.7rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+        .dark #book-content { color: #e5e7eb; }
+    
+    /* ── Book read header hero ── */
+    .book-read-header {
+        margin-bottom: 1.5rem;
+    }
+    .book-read-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.65rem;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 1.4rem 1.25rem 1.2rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .dark .book-read-box {
+        background: #2a2a2b;
+        border-color: #3a3a3b;
+    }
+    .book-read-cover {
+        width: 100px;
+        height: 136px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        object-fit: cover;
+        background: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .book-read-cover svg { opacity: 0.35; }
+    .book-read-title-link {
+        text-decoration: none;
+        display: block;
+    }
+    .book-read-title-link:hover .book-read-title { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-title-link:active .book-read-title { opacity: 0.7; }
+    .book-read-title {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #1a1a1b;
+        line-height: 1.4;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+    .dark .book-read-title { color: #f3f4f6; }
+    .book-read-author-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+    .book-read-author-link:hover .book-read-author { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-author-link:active .book-read-author { opacity: 0.6; }
+    .book-read-author {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #c0392b;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+</style>
+</head>
+<body>
+
+<style>
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    #read-progress-bar {
+        position: fixed;
+        top: 0; left: 0;
+        height: 2px;
+        width: 0%;
+        background: #c0392b;
+        z-index: 1000;
+        transition: width 0.1s linear;
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h1 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #9ca3af;
+        text-align: center;
+        margin: 0 0 0.25rem;
+        letter-spacing: 0.04em;
+    }
+    #book-content h1::after {
+        content: '';
+        display: block;
+        width: 2.8em;
+        height: 3px;
+        background: #c0392b;
+        border-radius: 2px;
+        margin: 0.4rem auto 0;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #7a2115;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid #d9a5a0;
+        border-bottom: 1px solid #d9a5a0;
+    }
+    /* Night mode heading adjust */
+    body.theme-dark  #book-content h1,
+    body.theme-black #book-content h1 { color: #6b7280; }
+    body.theme-dark  #book-content h2,
+    body.theme-black #book-content h2 { color: #f2938a; border-color: rgba(169,50,38,0.4); }
+    body.theme-dark  #book-content h1::after { background: #a93226; }
+    body.theme-black #book-content h1::after { background: #922b21; }
+    body.theme-sepia #book-content h1 { color: #a08060; }
+    body.theme-sepia #book-content h2 { color: #7a2115; border-color: rgba(160,64,48,0.35); }
+    body.theme-sepia #book-content h1::after { background: #a04030; }
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: rgba(192,57,43,0.05);
+        border: 1px solid rgba(192,57,43,0.15);
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p,
+    body.theme-black #book-content p {
+        background: rgba(169,50,38,0.1);
+        border-color: rgba(169,50,38,0.25);
+    }
+    body.theme-sepia #book-content p {
+        background: rgba(160,64,48,0.08);
+        border-color: rgba(160,64,48,0.2);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #c0392b;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #c0392b;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(192,57,43,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    .dark #book-content blockquote {
+        background: rgba(192,57,43,0.08);
+        color: #bbb;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #c0392b;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    .dark #book-content td { border-color: #3a3a3b; }
+    .dark #book-content tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(192,57,43,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: #e57373;
+        font-weight: 600;
+        background: rgba(192,57,43,0.18);
+        border-radius: 0.375rem;
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: #fff;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transition: color 0.15s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.6);
+    }
+    #toc-nav-desktop .toc-link {
+        display: block;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.375rem;
+        color: #4b5563;
+        text-decoration: none;
+        transition: background-color 0.15s, color 0.15s;
+    }
+    .dark #toc-nav-desktop .toc-link { color: #d1d5db; }
+    #toc-nav-desktop .toc-link:hover { background: #f3f4f6; }
+    .dark #toc-nav-desktop .toc-link:hover { background: #1f2937; }
+    #toc-nav-desktop .toc-link-h1 {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: #1f2937;
+    }
+    .dark #toc-nav-desktop .toc-link-h1 { color: #f3f4f6; }
+    #toc-nav-desktop .toc-link-h2 {
+        padding-left: 1.25rem;
+        font-size: 0.6875rem;
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.6rem 0.5rem 0.6rem 0.35rem;
+        background: #1a1a1b;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-back {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.25rem;
+        text-decoration: none;
+        transition: background 0.15s;
+    }
+    #rh-back:active { background: rgba(255,255,255,0.12); }
+    #rh-title {
+        flex: 1;
+        min-width: 0;
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: transparent;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+    #reader-header .rh-actions button:active { background: rgba(255,255,255,0.12); }
+    body.theme-dark  #reader-header,
+    body.theme-black #reader-header,
+    body.theme-sepia #reader-header { background: #141414; }
+
+    /* ── Reader footer: chapter label + page/percent + seek slider ── */
+    #reader-footer {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 55;
+        background: #1a1a1b;
+        padding: 0.5rem 1rem 0.65rem;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-footer { transform: translateY(100%); }
+    body.theme-dark  #reader-footer,
+    body.theme-black #reader-footer,
+    body.theme-sepia #reader-footer { background: #141414; }
+    #rf-labels {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.7);
+        margin-bottom: 0.35rem;
+    }
+    #rf-chapter {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #rf-page { flex-shrink: 0; }
+    #rf-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        background: rgba(255,255,255,0.22);
+        outline: none;
+        margin: 0;
+        cursor: pointer;
+    }
+    #rf-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        margin-top: -6px;
+    }
+    #rf-slider::-moz-range-thumb {
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        border: none;
+    }
+    #rf-slider::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; }
+    #rf-slider::-moz-range-track { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.22); }
+
+    /* Content needs bottom clearance so the fixed footer never covers text */
+    #read-main-content { padding-bottom: 4.5rem; }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: #303134;
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.55);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: #e57373;
+        border-bottom-color: #c0392b;
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ── Breadcrumb dark mode ── */
+    .read-breadcrumb-full { margin-left: -1.25rem; margin-right: -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
+    .dark #bc-category { color: #9ca3af !important; }
+    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
+    .dark #read-breadcrumb li > span { color: #4b5563; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #e57373;
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: 34px; height: 34px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        flex-shrink: 0;
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+    }
+    .theme-circle.active { border-color: #c0392b; }
+    .theme-circle svg { display: none; }
+    .theme-circle.active svg { display: block; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: #fff; }
+    .settings-row-val { font-size: 0.74rem; color: rgba(255,255,255,0.5); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: rgba(192,57,43,0.35); border-color: #c0392b; color: #fff; }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+</style>
+
+<!-- Progress bar (kept for internal % calc, hidden — footer slider replaces it visually) -->
+<div id="read-progress-bar" style="display:none;"></div>
+
+<!-- ══ Reader header (Lithium-style app bar) ══ -->
+<header id="reader-header">
+    <a href="/book/obonil.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <h1 id="rh-title">অবনীল</h1>
+    <div class="rh-actions">
+        <button id="rh-menu-btn" aria-label="মেনু" title="মেনু"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+    </div>
+</header>
+
+<!-- ══ Reader footer (chapter + page/percent + seek slider) ══ -->
+<footer id="reader-footer">
+    <div id="rf-labels">
+        <span id="rf-chapter"></span>
+        <span id="rf-page">০%</span>
+    </div>
+    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
+</footer>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                    <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
+                    <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
+                    <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn active" id="align-justify" title="জাস্টিফাই" style="background:#fde8e6;border-color:#c0392b;color:#c0392b;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <br/><h2>০১. ক্যাপ্টেন বৰ্কেন</h2>
+<hr/>
+<br/><div>
+<p>ক্যাপ্টেন বৰ্কেন হাত দিয়ে অন্যমনস্কভাবে টেবিলে শব্দ করতে করতে মনিটরের দিকে তাকিয়ে ছিলেন। পেছনে মৃদু একটা শব্দ শুনে মাথা ঘুরিয়ে তাকিয়ে দেখেন, মহাকাশযানের শিক্ষানবিশ ক্রু রিরা কন্ট্রোলরুমের পেছনে স্থির হয়ে দাঁড়িয়ে আছে। ক্যাপ্টেন বৰ্কেন একটু অবাক হয়ে বললেন, তুমি এখানে?</p>
+<p>মহামান্য ক্যাপ্টেন, আমাকে এখানে ডিউটি দেওয়া হয়েছে।</p>
+<p>ক্যাপ্টেন হাত নেড়ে পুরো ব্যাপারটি উড়িয়ে দেবার মতো করে বললেন, কন্ট্রোলরুমে এখন কোনো কাজ নেই রিরা। তুমি এখন বিশ্রাম নিতে যেতে পার।</p>
+<p>ক্যাপ্টেন বৰ্কেন এই মহাকাশযানের দলপতি, তার সাধারণ কথাই আদেশের মতো। রিরার মাথা নুইয়ে অভিবাদন করে চলে যাবার কথা ছিল, কিন্তু সে একটু ইতস্তত করে বলল, আর কিছুক্ষণ এখানে থাকার অনুমতি চাইছি মহামান্য ক্যাপ্টেন।</p>
+<p>ক্যাপ্টেন বৰ্কেন একটু অবাক হয়ে কমবয়সী এই মেয়েটির দিকে ভালো করে তাকালেন। কিশোরীর মতো মুখ, হালকা-পাতলা ছিপছিপে শরীর, ছোট করে ছাঁটা বাদামি চুল। বড় বড় চোখে কৌতূহল এবং একধরনের নিস্পাপ সারল্য। জীবনে প্রথমবার মহাকাশযানের দীর্ঘ অভিযানে এসে তার চোখে-মুখে একধরনের উত্তেজনার ছাপ, যেটি অনেক কষ্ট করে ঢেকে রেখে সে একধরনের শান্ত ভাব ফুটিয়ে তোলার চেষ্টা করছে। ক্যাপ্টেন বৰ্কেন মনিটর থেকে পা নামিয়ে হালকা গলায় বললেন, কন্ট্রোলরুম হচ্ছে মহাকাশযানের সবচেয়ে আনন্দহীন এবং সবচেয়ে একঘেয়ে জায়গা। তুমি এখানে থেকে কী করবে?</p>
+<p>আমার কাছে এটি অত্যন্ত কৌতূহলোদ্দীপক জায়গা মহামান্য ক্যাপ্টেন। আমাদের একাডেমিতে এসব শিখানো হয়েছে। কিন্তু এই প্রথমবার আমি সত্যিকারের কন্ট্রোলরুম নিজের চোখে দেখছি!</p>
+<p>ক্যাপ্টেন বৰ্কেন মুখে হাসি ফুটিয়ে বললেন, এস, তা হলে কাছে এসে দেখ!</p>
+<p>রিরা মেয়েটি সতর্ক পা ফেলে মনিটরের কাছাকাছি এগিয়ে আসে। ক্যাপ্টেন বৰ্কেন তার পাশের চেয়ারটি ঘুরিয়ে তাকে বসার জায়গা করে দিয়ে বললেন, নাও, এখানে বল।</p>
+<p>মহাকাশযানের ক্যাপ্টেনের পাশে বসার সুযোগ পেয়ে রিরার চোখে-মুখে কৃতজ্ঞতার একটা স্পষ্ট ছাপ পড়ল। সে মাথা ঝুঁকিয়ে বলল, আপনাকে অনেক ধন্যবাদ মহামান্য ক্যাপ্টেন।</p>
+<p>এর মাঝে ধন্যবাদ দেবার কিছু নেই। তুমি নতুন এসেছ বলে সবকিছু এরকম মনে হচ্ছে—দেখতে দেখতে অভ্যাস হয়ে যাবে। একাডেমিতে তোমাদের অনেক আইনানুন। শিখিয়েছে না?</p>
+<p>শিখিয়েছে মহামান্য ক্যাপ্টেন।</p>
+<p>তুমি দেখবে আমরা এগুলো নিয়ে এখানে মাথা ঘামাই না।</p>
+<p>রিরা একটু অবাক হয়ে ক্যাপ্টেন বৰ্কেনের দিকে তাকাল, ক্যাপ্টেন বৰ্কেন একটু হেসে বললেন, সব মানুষের নিজের একটা নিয়ম থাকে। আমার মহাকাশযানের নিয়মটা খুব সহজ।</p>
+<p>সেটি কী মহামান্য বর্কেন?</p>
+<p>মহাকাশযানটাকে চালিয়ে নিয়ে যাওয়াটা হচ্ছে আমাদের দায়িত্ব নিয়মগুলো করা হয়েছে সেজন্য। এই নিয়মগুলো অল্পবিস্তর শর্ট সার্কিট করে যদি মহাকাশবানকে আরো সহজে চালানো যায়, আমার আপত্তি কোথায়?</p>
+<p>রিরা মুখে এক ধরনের গাম্ভীর্য এনে বলল, আমাদের একাডেমিতে আপনার সম্পর্কে অত্যন্ত উচ্চ ধারণা পোষণ করা হয় মহামান্য ক্যাপ্টেন। আমার খুব সৌভাগ্য যে আমি আপনার মহাকাশযানে কাজ করার সুযোগ পেয়েছি।</p>
+<p>ক্যাপ্টেন বৰ্কেন শব্দ করে হেসে বললেন, আমি খুব নিশ্চিত না যে, তুমি সপ্তাহখানেক পরে এই কথা বলবে। আইনকানুন নিয়ে আমি মাথা ঘামাই না সত্যি, কিন্তু কাজকর্ম নিয়ে আমি খুব খুঁতখুঁতে! কয়দিন পরেই টের পাবে।</p>
+<p>ক্যাপ্টেন বর্কেনের হালকা কথাবার্তা শুনে রিরা এর মাঝে খানিকটা সহজ হয়ে এসেছে এই প্রথমবার তার মুখে হালকা হাসির একটা ছাপ পড়ল, বলল, আমি সেটা টের পাবার জন্য আগ্রহ নিয়ে অপেক্ষা করছি ক্যাপ্টেন বৰ্কেন।</p>
+<p>চমৎকার। ক্যাপ্টেন বৰ্কেন আঙুল দিয়ে টেবিলে শব্দ করতে করতে বললেন, মহাকাশযানের সমস্যাটা কী জান?</p>
+<p>কী মহামান্য ক্যাপ্টেন?</p>
+<p>এর সবকিছু নিজে থেকে নিয়ন্ত্রণ করা হয়। এই কন্ট্রোলরুমের মূল যে প্রসেসর, সেটা তোমার কিংবা আমার মস্তিষ্ক থেকে কয়েক হাজার গুণ বেশি শক্তিশালী। কাজেই আপাতদৃষ্টিতে মনে হতে পারে এখানে কারো কিছু করার নেই। কিন্তু–</p>
+<p>ক্যাপ্টেন বৰ্কেন কথা থামিয়ে দিয়ে অন্যমনস্কভাবে মনিটরের দিকে তাকিয়ে রইলেন। রিরা ধৈর্য ধরে ক্যাপ্টেন বর্কেনের দিকে তাকিয়ে রইল; ক্যাপ্টেন বৰ্কেন একটা নিশ্বাস ফেলে রিরার দিকে তাকিয়ে বললেন, কিন্তু এখানে সব সময় খুব সতর্ক থাকতে হয়, এমন বিচিত্র সমস্যা হতে পারে, যেটা কেউ আগে কোনো দিন চিন্তা করে নি। এখন পর্যন্ত একটি অভিযানও হয় নি যেখানে আমাকে বিচিত্র কিছু করতে হয় নি।</p>
+<p>মহামান্য ক্যাপ্টেন।</p>
+<p>বলো।</p>
+<p>আপনার কি মনে হয় আমাদের এই অভিযানে বিচিত্র কোনো অভিজ্ঞতা হতে পারে?</p>
+<p>নিশ্চয়ই হতে পারে রিরা।</p>
+<p>সেটি কি বিপজ্জনক কিছু হতে পারে? রিরা তার গলায় একটা স্বাভাবিক ভাব বজায় রাখার চেষ্টা করলেও সেখানে আশঙ্কাটুকু গোপন থাকল না।</p>
+<p>ক্যাপ্টেন বৰ্কেন মৃদু হেসে বললেন, বিপজ্জনক তো হতেই পারে রিরা—লক্ষ লক্ষ মাইলের নির্জন মহাকাশে কত কী ঘটতে পারে। কিন্তু তাতে ভয় পাওয়ার কিছু নেই।</p>
+<p>রিরা সোজা হয়ে বসে বলল, আমি ভয় পাচ্ছি না মহামান্য ক্যাপ্টেন।</p>
+<p>ক্যাপ্টেন বৰ্কেন হাসি গোপন করে বললেন, অবিশ্যি তুমি ভয় পাচ্ছ না রিরা। আমি জানি তুমি সাহসী মেয়ে। সাহসী না হলে কেউ মহাকাশযানের অভিযাত্রী হয় না।</p>
+<p>দুজন বেশ কিছুক্ষণ চুপচাপ বসে রইল। মহাকাশযানটি প্রায় নিঃশব্দ, খুব চেষ্টা করলে তার শক্তিশালী ইঞ্জিনের মৃদু গুঞ্জন শোনা যায়। রিরা একটু ইতস্তত করে বলল, মহামান্য ক্যাপ্টেন, আপনাকে একটা জিনিস জিজ্ঞেস করতে পারি?</p>
+<p>হ্যাঁ, জিজ্ঞেস কর।</p>
+<p>আমাদের এই মহাকাশযানে করে আমরা নাকি একটা বিপজ্জনক কার্গো নিয়ে যাচ্ছি?</p>
+<p>ক্যাপ্টেন বৰ্কেন একটু অবাক হয়ে বললেন, তুমি কোন কার্গোর কথা বলছ রিরা?</p>
+<p>এই মহাকাশযানে করে নাকি একটা নীলমানবের দল নিয়ে যাওয়া হচ্ছে?</p>
+<p>হ্যাঁ। আমাদের মহাকাশযানে সতের জন নীলমান আছে। ক্লড উপগ্রহের যুদ্ধে এরা ধরা পড়েছে।</p>
+<p>এরা নাকি অত্যন্ত ভয়ংকর?</p>
+<p>ক্যাপ্টেন বর্কেন একটু হেসে বললেন, আমরা যে জিনিসটা জানি না সেটাকেই মনে করি ভয়ংকর। নীলমানব সম্পর্কেও সেটা সত্যি তাদেরকে ভয়ংকর ভাবার কারণ হচ্ছে আমরা তাদের সম্পর্ক খুব বেশি জানি না। কদাচিৎ আমরা তাদের ধরতে পারি, এই প্রথমবার একসাথে সতের জনকে ধরতে পেরেছি।</p>
+<p>কিন্তু সেজন্য আমাদের নাকি ভয়ংকর রক্তক্ষয়ী যুদ্ধ করতে হয়েছে?</p>
+<p>ক্যাপ্টেন বর্কেন মাথা নাড়লেন, হ্যাঁ, সেটা সত্যি। নীলমানব নতুন কিছু অস্ত্র তৈরি করেছে, যেগুলো খু্ব শক্তিশালী। তাদের মহাকাশযানের টেকনোলজিটাও ভিন্ন।</p>
+<p>মহামান্য ক্যাপ্টেন, আমরা কি নীলমানবকে মানুষ হিসেবে বিবেচনা করি?</p>
+<p>না, করি না। মানুষের বিবর্তন হয় স্বাভাবিকভাবে। নীলমানব নিজেদের মাঝে জোর করে বিবর্তন এনেছে। তাদের চোখ ইনফ্রারেড থেকে শুরু করে আলট্রাভায়োলেট পর্যন্ত সংবেদন করে ফেলেছে। তাদের রক্ত কপারভিত্তিক, তাই তাদের গায়ের রঙ হালকা নীল। আমি যতদূর জানি তারা ফুসফুসের আকার অনেক বড় করেছে, বাতাসে কম অক্সিজেনেও বেঁচে থাকতে পারে। শরীরের ভেতরে নাকি নতুন নতুন পরিবর্তন এনেছে।</p>
+<p>রিরা একটু শিউরে উঠে বলল, কী সর্বনাশ!</p>
+<p>এগুলো হচ্ছে কাঠামোগত পরিবর্তন। আমি শুনেছি এদের চিন্তার জগৎটাও অনেক ভিন্ন। মানুষের মতো এরা বিচ্ছিন্ন না, এদের পুরো দলটি একসাথে কাজ করে।</p>
+<p>সেটা কীভাবে সম্ভব?</p>
+<p>আমরা সেটা এখনো জানি না, বোঝার চেষ্টা করছি। সতের জনের এই দলটাকে মূল বিজ্ঞান একাডেমিতে পৌঁছে দিতে পারলে অনেক কিছু জানা যাবে। ক্যাপ্টেন বৰ্কেন একটা নিশ্বাস ফেলে বললেন, আমি সিকিউরিটি ডিভিশনকে বলেছিলাম, পুরো দলটিকে ঘুম পাড়িয়ে শীতল ঘরে নিয়ে যেতে। তা হলে আমাদের ঝামেলা খুব কম হত, কিন্তু বিজ্ঞান একাডেমি রাজি হয় নি।</p>
+<p>কেন রাজি হয় নি মহামান্য ক্যাপ্টেন?</p>
+<p>এই মহাকাশযানে করে যখন নেওয়া হবে.তখন তারা কী করে বিজ্ঞান একাডেমি সেটা দেখতে চায়। তারা কীভাবে কথা বলে, কীভাবে সময় কাটায় ব্যাপারটা নিয়ে গবেষণা করবে।</p>
+<p>রিরা একটু অবাক হয়ে বলল, এর মাঝে গবেষণা করার কী আছে মহামান্য ক্যাপ্টেন?</p>
+<p>ক্যাপ্টেন বর্কে একটু হেসে বললেন, নীলমানরা অসম্ভব সাহসী, অসম্ভব একরোখা, প্রায় খ্যাপা ধরনের প্রাণী। তারা মহাকাশযান থেকে বের হয়ে যাবার চেষ্টা করবেই কীভাবে চেষ্টা করবে সেটাই দেখতে চায়।</p>
+<p>রিরার মুখে আতঙ্কের একটা ছাপ পড়ল, বলল, সর্বনাশ! যদি সত্যি বের হয়ে যায়?</p>
+<p>ক্যাপ্টেন বৰ্কেন হাসলেন, বললেন, এত সোজা নয়। ওদের পুরো ঘরটা চব্বিশ ঘণ্টা পর্যবেক্ষণ করা হচ্ছে। আমি ছয় জন নিরাপত্তা প্রহরীকে দাঁড় করিয়ে দিয়েছি স্বয়ংক্রিয় অস্ত্র হাতে–অস্বাভাবিক কিছু ঘটলে সাথে সাথে গুলি করার অনুমতি আছে।</p>
+<p>রিরা সাবধানে একটা নিশ্বাস ফেলল। খানিকক্ষণ দেয়ালের বিশাল মনিটরটির দিকে তাকিয়ে থেকে হঠাৎ মাথা ঘুরিয়ে ক্যাপ্টেন বর্কেনকে জিজ্ঞেস করল, মহামান্য ক্যাপ্টেন, নীলমানবেরা কী ভাষায় কথা বলে?</p>
+<p>তাদের নিজেদের ভাষা রয়েছে। একসময় তো নীলমানবেরা মানুষই ছিল, তাই আমাদের ভাষার সাথে মিল আছে। কথা শুনলে মোটামুটি বোঝা যায়।</p>
+<p>ওরা এখানে কী নিয়ে কথা বলছে?</p>
+<p>প্রথম কয়েকদিন লক্ষ করেছিলাম একেবারে দৈনন্দিন কথাবার্তা। মেঝেতে দাগ কেটে কী একটা খেলা খেলছে, অনেকটা দাবার মতো। বসে বসে সেটা খেলে।</p>
+<p>কোনোরকম দুশ্চিন্তা নেই?</p>
+<p>থাকলেও কথায় বার্তায় সেটা বোঝার কোনো উপায় নেই। খুব চাপা স্বভাবের।</p>
+<p>ওদের মাঝে কি মেয়ে আছে?</p>
+<p>আছে। ছেলেমেয়ের ব্যাপারটা আমাদের মতোই, সব কাজে সমান সমান। এখানে সতের জনের মাঝে আট জনই মেয়ে। দলটার যে নেতৃত্ব নিয়েছে বলে মনে হচ্ছে সেও একজন মেয়ে। কমবয়সী একরোখা ধরনের।</p>
+<p>মহামান্য ক্যাপ্টেন, আমি কি তাদের দেখতে পারি?</p>
+<p>যখন তোমার ডিউটি দেওয়া হবে, তখন তো দেখবেই। কাছে থেকে দেখবে। এখন দেখতে চাইলে এই মনিটরে দেখ।</p>
+<p>ক্যাপ্টেন বৰ্কেন একটা সুইচ টিপে দিতেই বড় মনিটরে অবরুদ্ধ একটা ঘরের ছবি ফুটে উঠল। ঘরের ভেতর সতের জন নানাবয়সী নীলমানব ছড়িয়ে-ছিটিয়ে আছে। একজন মাথার নিচে হাত দিয়ে শুয়ে নিষ্পলক চোখে ছাদের দিকে তাকিয়ে আছে, মুখে গভীর একটা বিষণ্ণতার ছাপ। গায়ের রঙ হালকা নীল, দেখে মনে হয় বুঝি কোনো একটি অশরীরী প্রাণী। দুজন মেঝেতে দাগ কাটা ছকের দু পাশে বসে খেলছে—খেলাটি প্রাচীন দাবার মতো, খুঁটি নেই বলে খাবারের জন্য দেওয়া শুকনো রুটির টুকরো কেটে কেটে খুঁটিগুলো তৈরি করেছে। খেলোয়াড় দুজন গালে হাত দিয়ে ভাবছে। তাদের ঘিরে আরো কয়েকজন। নিচু গলায় কথা বলছে। দেখে মনে হয় কীভাবে খেলতে হবে, সে বিষয়ে উপদেশ দিচ্ছে।</p>
+<p>বন্ধ ঘরের দেয়ালে হেলান দিয়ে পা ছড়িয়ে বসে আছে বেশ কয়েকজন। একজন নিচু গলায় একটা গান গাইছে। গানের কথাগুলো বোঝা যায় না কিন্তু সুরটুকু খুব বিষণ্ণ এবং করুণ, বুকের ভেতর এক ধরনের হাহাকারের মতো অনুভূতি হয়। রিরা এক ধরনের বিস্ময় নিয়ে নীলমানবদের দলটির দিকে তাকিয়ে রইল। এই মানুষগুলো আসলে ভয়ংকর একরোখা, দুর্ধর্ষ এবং নৃশংস। কিন্তু চুপচাপ নিঃশব্দে বসে থাকতে দেখে সেটি একেবারেই বিশ্বাসযোগ্য মনে হয় না। একাডেমিতে মানুষের এই অপভ্রংশ সম্পর্কে তাদেরকে পড়ানো হয়েছে, তাদের সম্পর্কে রিরার এক ধরনের বিচিত্র কৌতূহল ছিল, মনিটরে সরাসরি দেখতে পেয়ে সে বিস্ময়াভিভূত চোখে তাদের দিকে তাকিয়ে রইল।</p>
+<p>রিরা তখনো জানত না তার জীবনের সবচেয়ে বড় ঘটনাটি ঘটবে এই নীলমানবদের নিয়েই।</p>
+</div>
+<br/><h2>০২. তীক্ষ্ণ একটা অ্যালার্মের শব্দ</h2>
+<hr/>
+<br/><div>
+<p>তীক্ষ্ণ একটা অ্যালার্মের শব্দ শুনে রিরা ঘুম থেকে জেগে উঠল। মহাকাশযানে এই অ্যালার্মটি একটি বিপদসংকেত। একাডেমিতে তাদের অনেকবার শোনানো হয়েছে। রিরা লাফিয়ে বিছানা থেকে নেমে তার কাপড় পরতে শুরু করে, জরুরি অবস্থার জন্য আলাদা করে রাখা ব্যাকপেকটা পেছনে ঝুলিয়ে সে দ্রুত দরজা খুলে বের হয়ে এল। মহাকাশযানের অন্যরাও ছুটতে ছুটতে যাচ্ছে, রিরা ভয় পাওয়া গলায় কমবয়সী একজনকে জিজ্ঞেস করল, কী হয়েছে জান?</p>
+<p>উহ জানি না। মানুষটি হাত দিয়ে পুরো ব্যাপারটি উড়িয়ে দেবার একটা ভঙ্গি করে বলল, আমার মনে হয় ড্রিল।</p>
+<p>ড্রিল?</p>
+<p>হ্যাঁ। মহাকাশযানে রওনা দেবার পর প্রথম প্রথম ইচ্ছে করে এরকম ড্রিল করানো হয়।</p>
+<p>রিরা ছুটতে ছুটতে মহাকাশযানের কন্ট্রোলরুমে হাজির হয়ে দেখতে পেল, সেখানে এর মাঝে অন্য সবাই পৌঁছে গেছে। ক্যাপ্টেন বৰ্কেন বড় মনিটরটির দিকে চিন্তিত মুখে তাকিয়ে আছেন। তিনি মনিটরটি বন্ধ করে মাথা ঘুরিয়ে সবার দিকে তাকিয়ে বললেন, আমি অ্যালার্ম বাজিয়ে সবাইকে ডেকে এনেছি—যদিও তোমাদের মনে হতে পারে ডেকে আনার প্রয়োজন ছিল না। তোমাদের মনে হতে পারে এটি মোটেও মহাকাশযানের একটি জরুরি ঘটনা নয়।</p>
+<p>ক্যাপ্টেন বৰ্কেন চুপ করলেন এবং মধ্যবয়স্ক ফ্লাইট ইঞ্জিনিয়ার লি জিজ্ঞেস করলেন, কী হয়েছে মহামান্য ক্যাপ্টেন?</p>
+<p>তোমরা সবাই জান আমরা আমাদের এই মহাকাশযানে করে সতের জন নীলমানকে বিজ্ঞান একাডেমিতে নিয়ে যাচ্ছি। তোমরা নিশ্চয়ই এটাও জান যে নীলমানবেরা এই মহাজগতের সবচেয়ে দুর্ধর্ষ এবং সবচেয়ে ভয়ংকর প্রাণী। আমি যদি তাদেরকে ঘুম পাড়িয়ে শীতলঘরে করে নিতে পারতাম, তা হলে স্বস্তিবোধ করতাম। কিন্তু বিজ্ঞান একাডেমির বিশেষ নির্দেশে আমরা তাদেরকে একটা ঘরে বন্ধ করে মুক্ত অবস্থায় নিয়ে যাচ্ছি। ক্যাপ্টেন বৰ্কেন একটা নিশ্বাস ফেলে বললেন, আমার একটি সন্দেই ছিল যে, এরা নিশ্চয়ই কোনোভাবে এখান থেকে নিজেদের মুক্ত করে মহাকাশযানটি দখল করার চেষ্টা করবে।</p>
+<p>ফ্লাইট ইঞ্জিনিয়ার লি শঙ্কিত গলায় বললেন, তারা কি কিছু করেছে?</p>
+<p>আমার ধারণা প্রক্রিয়াটি তারা শুরু করেছে।</p>
+<p>উপস্থিত সবাই একসাথে চমকে উঠল। কমবয়সী একটা মেয়ে বলল, তারা কী করছে?</p>
+<p>ক্যাপ্টেন বৰ্কেন একটা নিশ্বাস ফেলে বললেন, কিছুক্ষণ আগে একজন নীলমানব তার হাতের কবজির ধমনিটা কেটে ফেলেছে। তার শরীর থেকে নীল রক্ত বের হয়ে আসছে। কিছুক্ষণের মাঝেই এই নীলমানবটি মারা যাবে।</p>
+<p>কমবয়সী মেয়েটা ছটফট করে বলল, কিন্তু এটা তো আত্মহত্যা। নীলমানবেরা নিজেরা আত্মহত্যা করে কেমন করে আমাদের মহাকাশযান দখল করবে?</p>
+<p>ক্যাপ্টেন বর্কেন একটু হাসার চেষ্টা করে বললেন, নীলমানবেরা, যে ঘরটিতে আছে, সেটা বলা যেতে পারে একটা দুর্ভেদ্য ঘর, তার ভেতরে কারো যাবার কিংবা বের হবার ব্যবস্থা নেই। স্বয়ংক্রিয় যন্ত্র দিয়ে তাদের খাবার দেওয়া হয়, তাদের বর্জ সরিয়ে নেওয়া হয়। কিন্তু এখন—</p>
+<p>ক্যাপ্টেন বৰ্কেন একটু থামলেন—সবার দিকে একনজর দেখে বললেন, কিন্তু এখন এই দুর্ভেদ্য ঘরের দরজা আমাদের খুলতে হবে। নীলমানবের মানুষ নয়—তাই যে নীলমানরটি তার হাতের কবজি কেটে আত্মহত্যা করার চেষ্টা করছে, তাকে বাঁচানোর আমাদের কোনো আইনগত বাধ্যবাধকতা নেই। কিন্তু বিজ্ঞান একাডেমি এদেরকে জীবন্ত পেতে চায়। আমাদের এখন একে বাচাতে চেষ্টা করতে হবে। এবং সেজন্য এখন আমাদের এই ঘরের দরজা খুলে ঢুকতে হবে।</p>
+<p>মহাকাশযানের নিরাপত্তা বাহিনীর প্রধান ক্রুশ ভুরু কুঁচকে বললেন, মহামান্য ক্যাপ্টেন, আপনার ধারণা এই ঘরের দরজা খোলার জন্য নীলমানবটি আত্মহত্যা করেছে?</p>
+<p>আমার তা-ই ধারণা।</p>
+<p>তা হলে এর একটি সুনির্দিষ্ট পরিকল্পনা আছে। নীলমানবেরা সবাই মিলে এই পরিকল্পনাটি করেছে?</p>
+<p>হ্যাঁ। নীলমানব বিচ্ছিন্নভাবে কাজ করে না। তারা সব সময় একসাথে কাজ করে। এরা এক ধরনের সমন্বিত প্রাণসত্তা।</p>
+<p>নিরাপত্তা বাহিনীর প্রধান ক্রুশ গম্ভীর মুখে বললেন, যদি তারা সত্যিই এটি পরিকল্পনা করে থাকে, তা হলে আমাদের সিকিউরিটি সিস্টেম সেটি জানবে। কারণ আমরা তাদের প্রত্যেকের প্রতিটি পদক্ষেপ মনিটর করছি। আমাদের সিকিউরিটি সিস্টেম কী বলছে?</p>
+<p>ক্যাপ্টেন বৰ্কেন বললেন, সেটাই হচ্ছে সমস্যা। আমাদের মহাকাশযানের মূল সিকিউরিটি প্রসেসর যে রিপোর্ট দিয়েছে, সেখানে কোথাও কোনো ধরনের পরিকল্পনার কথা নেই। কোনো ষড়যন্ত্র নেই। নীলমানবেরা হালকা কথাবার্তা বলেছে, দাবা জাতীয় একটা খেলা খেলে সময় কাটিয়েছে, গান করেছে এবং বেশিরভাগ সময়ে কিছু না করে চুপচাপ ছাদের দিকে তাকিয়ে শুয়ে থেকেছে।</p>
+<p>নিরাপত্তা বাহিনীর প্রধান ক্রুশ একটি নিশ্বাস ফেলে সহজ গলায় বললেন, মহামান্য বর্কেন, আমার মনে হয় আপনার সন্দেহটি অমূলক। নীলমানবের আত্মহত্যাটি একটি বিচ্ছিন্ন ঘটনা। আমাদের মহাকাশযান দখল করার প্রক্রিয়া এটা নয়।</p>
+<p>ক্যাপ্টেন বৰ্কেন কিছুক্ষণ ক্রুশের দিকে তাকিয়ে থেকে বললেন, আমি সত্যিই চাই যে, তোমার ধারণা সত্যি প্রমাণিত হোক এবং আমি ভুল প্রমাণিত হই। কিন্তু–</p>
+<p>কিন্তু?</p>
+<p>ক্যাপ্টেন বৰ্কেন হাত দিয়ে বড় মনিটরের সুইচটা স্পর্শ করে সেটা অন করে দিলেন। নীলমানবদের ঘরের দৃশ্যটি মুহূর্তের মাঝে ফুটে উঠল।</p>
+<p>একজন নীলমান মেঝেতে নিথর হয়ে শুয়ে আছে। তার চোখ দুটো খোলা, ভান হাতটি অবসন্ন হয়ে পাশে পড়ে আছে। কবজির খানিকটা অংশ কাটা। সেখান থেকে রক্ত চুইয়ে চুইয়ে বের হয়ে শরীরের নিচে জড়ো হয়েছে। রক্তের রঙ নীল, এখন কালচে হয়ে জমাট বাঁধতে শুরু করেছে। তার মাথার কাছে একজন নীলমানব স্থির হয়ে বসে আছে–তার মুখ পাথরের মতো ভাবলেশহীন। দুজন মেঝেতে দুক কেটে রাখা ঘরের দু পাশে বসে খেলছে। তাদের পাশে আরো দুজন স্থির হয়ে বসে আছে। একজন করুণ বিষণ্ণ স্বরে গান। গাইছে। অন্যের দেয়ালে হেলান দিয়ে নিঃশব্দে বসে আছে।</p>
+<p>সমস্ত দৃশ্যটি একটি পরাবাস্তব দৃশ্যের মতো।</p>
+<p>ক্যাপ্টেন বৰ্কেন একটা নিশ্বাস ফেলে বললেন, আমি নীলমানদের বিশেষজ্ঞ নই কিন্তু তারপরও আমি বলতে পারি, এই দৃশ্যটি স্বাভাবিক নয়। এটি স্বাভাবিক হতে পারে না। একজন মানুষের মৃত্যুর সময়ে অন্যেরা এত নিস্পৃহ হতে পারে না। নীলমানব হলেও না।</p>
+<p>নিরাপত্তা বাহিনীর প্রধান ক্রুশ বললেন, দৃশ্যটি অস্বাভাবিক হতে পারে মহামান্য ক্যাপ্টেন, কিন্তু এখানে তো কোনো ষড়যন্ত্রের আভাস নেই।</p>
+<p>ক্যাপ্টেন বনে কিছুক্ষণ স্থির দৃষ্টিতে ক্রুশের দিকে তাকিয়ে রইলেন, তারপর শান্ত গলায় বললেন, এই দৃশ্যটিতে ষড়যন্ত্রের কোনো আভাস নেই আমার ধারণা সেটাই হচ্ছে ষড়যন্ত্র।</p>
+<p>ফ্লাইট ইঞ্জিনিয়ার লি বললেন, এই নীলমানবটিকে বাঁচানোর জন্য কী করা হবে মহামান্য ক্যাপ্টেন?</p>
+<p>ক্যাপ্টেন বৰ্কেন মনিটরটির দিকে তাকিয়ে শান্ত গলায় বললেন, প্রথমে ঘরটিতে নিথিলিয়াম গ্যাল দেওয়া হবে। গ্যাসের বিক্রিয়ায় সবাই অচেতন হয়ে যাবার পর নিরাপত্তাকর্মীরা ঘরটিতে ঢুকবে। কবজি কেটে যে নীলমানবটি আত্মহত্যা করার চেষ্টা করছে, তাকে বের করে আনা হবে চিকিৎসা করার জন্য।</p>
+<p>তাকে কি বাঁচানো সম্ভব হবে?</p>
+<p>জানি না। শুনেছি নীলমানদের প্রাণশক্তি আমাদের প্রাণশক্তি থেকে অনেক বেশি। হয়তো বেঁচে যেতেও পারে।</p>
+<p>নিরাপত্তা বাহিনীর প্রধান ক্রুশ বললেন, আমরা তা হলে কাজ শুরু করে দিই?</p>
+<p>হ্যাঁ। শুরু করে দাও</p>
+<p>ক্যাপ্টেন বৰ্কেনকে হঠাৎ কেন জানি ক্লান্ত দেখায়, তিনি ঘুরে অন্য সবার দিকে তাকিয়ে বললেন, অ্যালার্মের শব্দ শুনে চলে আসার জন্য সবাইকে অনেক ধন্যবাদ। আমি সবাইকে সবকিছু জানিয়ে রাখতে চেয়েছিলাম, যেন হঠাৎ করে আমরা আক্রান্ত হয়ে না পড়ি।</p>
+<p>কমবয়সী মেয়েটি বলল, কিন্তু আমাদের তো এখন আক্রান্ত হবার কোনো আশঙ্কা নেই—তাই না?</p>
+<p>ক্যাপ্টেন বৰ্কেন কোনো কথা না বলে অন্যমনস্কভাবে মেয়েটির দিকে তাকিয়ে রইলেন। নিরাপত্তা বাহিনীর প্রধান ক্রুশ মেয়েটির দিকে তাকিয়ে বললেন, না, কোনো আশঙ্কা নেই। এখন আপনারা সবাই নিজেদের কেবিনে কিংবা নিজেদের স্টেশনে ফিরে যেতে পারেন। ক্রুশ মাথা ঘুরিয়ে অন্যদের দিকে তাকিয়ে বলল, আমার কমান্ডে যারা আছ, তারা আমার সাথে এস। সবাই নিজেদের অস্ত্রগুলো লোড করে বেখ। ।</p>
+<p>মহাকাশচারীরা একজন একজন করে কন্ট্রোলরুম থেকে বের হয়ে যেতে শুরু করার পর ক্যাপ্টেন বৰ্কেন মনিটরের সামনে বড় চেয়ারটিতে বসলেন। হাত বাড়িয়ে সুইচ টিপে মনিটরটি চালু করে কার্গো বেতে দাঁড়িয়ে থাকা নিরাপত্তাকর্মীদের দেখতে দেখতে অন্যমনস্কভাবে হাত দিয়ে টেবিলে শব্দ করতে লাগলেন।</p>
+<p>মহামান্য ক্যাপ্টেন— গলার স্বর শুনে ক্যাপ্টেন বৰ্কেন মাথা ঘুরিয়ে দেখলেন রিরা তার পেছনে দাঁড়িয়ে আছে।</p>
+<p>ক্যাপ্টেন বৰ্কেন হালকা গলায় বললেন, কী ব্যাপার রিরা?</p>
+<p>আমি কি আপনার সাথে এখানে কিছুক্ষণ থাকতে পারি?</p>
+<p>এখানে থাকতে চাও?</p>
+<p>জি মহামান্য ক্যাপ্টেন।</p>
+<p>কেন?</p>
+<p>রিরা কিছুক্ষণ চুপ করে থেকে নিচু গলায় বলল, আমাদের একাডেমিতে কয়েকটা কেস স্টাডি পড়ানো হয়েছিল, তার ভেতরে আপনার দুটো অভিযানের ঘটনা ছিল। আমি সেগুলো খুব মনোযোগ দিয়ে বিশ্লেষণ করেছি। আমার মনে হয়েছে, কিছু কিছু বিষয়ে আপনার ষষ্ঠ ইন্দ্রিয় আছে। গ্রিন গ্রহপুঞ্জে আপনি যেভাবে বিপদের ভবিষ্যদ্বাণী করেছিলেন। সেটি রীতিমতো অলৌকিক।</p>
+<p>কাপ্টেন বৰ্কেন কোনো কথা না বলে একটু হাসলেন। রিরা একটা বড় নিশ্বাস নিয়ে বলল, আমার ধারণা নীলমানবদের ব্যাপারে আপনি যে আশঙ্কাটুকুর কথা বলেছেন, সেটা সত্যি প্রমাণিত হবে।</p>
+<p>তোমার তাই ধারণা?</p>
+<p>আমার নিজের কোনো ধারণা নেই মহামান্য ক্যাপ্টেন, আমার এই বিষয়ে কোনো অভিজ্ঞতাও নেই। কিন্তু আপনার সম্পর্কে আমি যেটুকু জানি, সেটা থেকে আমার ধারণা আপনার আশঙ্কা সত্যি প্রমাণিত হবে। নীলমানবেরা মহাকাশযান দখল করার চেষ্টা করবে। আমি আপনার কাছাকাছি থেকে পুরো ব্যাপারটি দেখতে চাই মহামান্য ক্যাপ্টেন। আপনি কীভাবে পুরো বিষয়টির অবসান ঘটান, আমি সেটা নিজের চোখে দেখতে চাই মহামান্য ক্যাপ্টেন।</p>
+<p>ক্যাপ্টেন বৰ্কেন একটু হাসার চেষ্টা করে বললেন, গ্রিন গ্রহপুঞ্জে আমার ভবিষ্যদ্বাণী যেভাবে কাজে লেগেছে, সেরকম অনেক জায়গায় আমার ভবিষ্যদ্বাণীর ভুল বের হয়েছে। আমি খুব আন্তরিকভাবে চাই, এবারে আমার আশঙ্কা ভুল প্রমাণিত হোক। তা না হলে—</p>
+<p>তা না হলে?</p>
+<p>এখানে যে ভয়ংকর রক্তারক্তি হবে, সেটি কোনো মহাকাশযানের ইতিহাসে আগে কখনো ঘটে নি। ক্যাপ্টেন বৰ্কেন সোজা হয়ে তার চেয়ারে বসে মনিটরটি উজ্জ্বল করতে করতে বললেন, এবং সেই রক্তের রঙ হবে লাল ও নীল।</p>
+<p>রিরা কোনো কথা বলল না, কিন্তু নিজের অজান্তেই সে কেমন জানি শিউরে ওঠে।</p>
+
+<p>নিথিলিয়াম গ্যাস সিলিন্ডারের ভাল্বটি খোলার সাথে সাথে নীলমানবদের একজন উপরের দিকে তাকাল। ক্যাপ্টেন দাতে দাঁত ঘষে বললেন, বুঝতে পেরেছে।</p>
+<p>রিরা একটু অবাক হয়ে বললেন, কেমন করে বুঝতে পেরেছে? নিথিলিয়াম বর্ণহীন এবং গন্ধহীন গ্যাস।</p>
+<p>নিথিলিয়াম আমাদের কাছে বর্ণহীন এবং গন্ধহীন গ্যাস। নীলমানরদের ইন্দ্রিয় আমাদের থেকে অনেক বেশি তীক্ষ। তাদের ইন্দ্রিয়ের সংখ্যাও আমাদের থেকে বেশি।</p>
+<p>রিরা নিশ্বাস আটকে রেখে বলল, এখন কী হবে মহামান্য ক্যাপ্টেন?</p>
+<p>কিছুই হবে না। আগে হোক পরে হোক ওরা বুঝতে পারত, আমরা নিথিলিয়াম বা অন্য কোনো গ্যাস দিয়ে তাদের অচেতন করে ফেলব।</p>
+<p>রিরা রুদ্ধশ্বাসে মনিটরের দিকে তাকিয়ে রইল। যে নীলমানবটি উপরের দিকে তাকিয়েছিল সে উঠে দাঁড়াল এবং রিরা বুঝতে পারল সে একজন নারী। ক্যাপ্টেন বৰ্কেন বললেন, এই মেয়েটি সম্ভবত অন্তঃসত্ত্বা—অন্তঃসত্ত্বা মেয়েদের ঘ্রাণশক্তি খুব প্রবল হয়।</p>
+<p>মেয়েটি অনিশ্চিত ভঙ্গিতে দুই পা হেঁটে হঠাৎ করে ঘুরে দাঁড়িয়ে কিছু একটা বলল এবং তখন একসাথে সবাই উপরের দিকে তাকাল। তারা বুঝতে পারছে এই ঘরের ভেতর নিখিলিয়াম গ্যাস দেওয়া হচ্ছে। তাদের মুখে কোনো ধরনের অনুভূতির চিহ্ন ফুটে উঠল না, স্থির হয়ে উপরের দিকে তাকিয়ে রইল।</p>
+<p>ক্যাপ্টেন বৰ্কেন ফিসফিস করে বললেন, বাতাসে এক পিপিএম নিথিলিয়াম থাকলেই মানুষ অচেতন হয়ে যায়। এদের দেখ দশ পিপিএম দিয়েও কিছু হচ্ছে না।</p>
+<p>ক্যাপ্টেন বকেনের কথা শেষ হবার আগেই দেয়ালে হেলান দিয়ে বসে থাকা একজন নীলমান কাত হয়ে পড়ে গেল। রিরা বলল, অচেতন হতে শুরু করেছে।</p>
+<p>হ্যাঁ। কিছুক্ষণের মাঝেই আরো দু-একজন কাত হয়ে মেঝেতে পড়ে গেল। দাঁড়িয়ে থাকা মেয়েটিও একসময় হাঁটু ভেঙে নিচে পড়ে গেল। ক্যাপ্টেন বৰ্কেন নিচু গলায় বললেন,</p>
+<p>চমৎকার। নিথিলিয়াম কাজ করতে রু করেছে। কিন্তু–</p>
+<p>কিন্তু কী মহামান্য ক্যাপ্টেন?</p>
+<p>কিছু একটা অস্বাভাবিক ব্যাপার আছে এখানে।</p>
+<p>রিরা একটু অবাক হয়ে বলল, কী অস্বাভাবিক ব্যাপার?</p>
+<p>আমি বুঝতে পারছি না—কিন্তু কিন্তু ক্যাপ্টেন বৰ্কেনের ভুরু কুঁচকে উঠল, তিনি অবাক হয়ে তীক্ষ্ণ দৃষ্টিতে ঘরের মেঝেতে লুটিয়ে পড়ে থাকা নীলমানবদের দিকে তাকিয়ে রইলেন। এই দৃশ্যে কিছু একটা অস্বাভাবিকতা আছে, ব্যাপারটি তিনি ষষ্ঠ ইন্দ্রিয় দিয়ে অনুভব করতে পারছেন, কিছু বুঝতে পারছেন না।</p>
+<p>কন্ট্রোলরুমের বড় মনিটরে হঠাৎ করে নিরাপত্তা বাহিনীর প্রধান ক্রশের ছবি ভেসে উঠল। ক্রুশ মাথা তুলে ক্যাপ্টেন বর্কেনের কাছে ভেতরে ঢোকার অনুমতি চাইলেন। বললেন, আমার দলটি প্রস্তুত মহামান্য বর্কেন। আমরা কি ভেতরে যেতে পারি?</p>
+<p>একটু দাঁড়াও ক্রুশ।</p>
+<p>কেন মহামান্য ক্যাপ্টেন?</p>
+<p>আমার কাছে কিছু একটা অস্বাভাবিক মনে হচ্ছে।</p>
+<p>সেটা কী মহামান্য বর্কেন?</p>
+<p>আমি এখনো জানি না।</p>
+<p>আমরা কি অপেক্ষা করব? আহত নীলমানবটির কিন্তু অনেক রক্তক্ষরণ হয়েছে, তা ছাড়া নিথিলিয়াম খুব তাড়াতাড়ি অক্সিডাইজড হয়ে যায় আমাদের হাতে সময় বেশি নেই।</p>
+<p>আমি জানি। ক্যাপ্টেন বৰ্কেন বললেন, তবুও একটু অপেক্ষা কর।</p>
+<p>ক্রুশের মুখে একটু হাসি ফুটে উঠল, তিনি মাথা নেড়ে বললেন, আপনি শুধু শুধু আশঙ্কা করছেন মহামান্য ক্যাপ্টেন। আপনি আমাদের ওপর ভরসা করতে পারেন। আমার দলটি অত্যন্ত সুগঠিত এবং দায়িত্বশীল। ভেতরে কোনো ধরনের অঘটন ঘটা সম্ভব নয়। তা ছাড়া নীলমানবেরা সবাই অচেতন হয়ে আছে। নিথিলিয়াম গ্যাসটি অত্যন্ত কার্যকর গ্যাস।</p>
+<p>ক্যাপ্টেন বৰ্কেন একটা দীর্ঘশ্বাস ফেলে বললেন, বেশ। তোমরা ঢোকো।</p>
+<p>রিরা ফিসফিস করে বলল, মহামান্য ক্যাপ্টেন, আপনি অনুমতি না দিলেই পারতেন। আপনার ষষ্ঠ ইন্দ্রিয় সাধারণত ভুল করে না।</p>
+<p>ক্যাপ্টেন বৰ্কেন রিরার কথায় উত্তর না দিয়ে ভুরু কুঁচকে তীক্ষ্ণ চোখে মনিটরের দিকে তাকিয়ে রইলেন, ঘরের ভেতর ছড়িয়ে-ছিটিয়ে নীলমানবেরা পড়ে আছে দৃশ্যটি দেখে মনে হয় কোনো পরাবাস্তব জগতের দৃশ্য।</p>
+<p>নিরাপত্তা বাহিনীর প্রধান শক্তিশালী আরগন লেজার দিয়ে বন্ধ ঘরের দরজা কেটে আলাদা করতে শুরু করতেই ক্যাপ্টেন বৰ্কেন লাফিয়ে উঠে দাঁড়ালেন, চিৎকার করে বললেন, সর্বনাশ!</p>
+<p>রিরা ভয় পাওয়া গলায় বলল, কী হয়েছে? কী হয়েছে মহামান্য ক্যাপ্টেন?</p>
+<p>ক্যাপ্টেন বৰ্কেন চিৎকার করে বললেন, থামো। থামো তোমরা–</p>
+<p>কিন্তু ততক্ষণে দেরি হয়ে গেছে, বিশাল দরজা হাট করে খুলে ভেতরে ঢুকে গিয়েছে নিরাপত্তা বাহিনীর লোকজন। ভেতরের নিথিলিয়াম থেকে রক্ষা পাবার জন্য তাদের শরীরে বায়ুরোধক পোশাক, সেই পোশাকে তাদেরকে দেখাচ্ছে অতিকায় পতঙ্গের মতো। তাদের হতের স্বয়ংক্রিয় অস্ত্রগুলো দেখাচ্ছে খেলনার মতো।</p>
+<p>রিরা ভয় পাওয়া মুখে বলল, কী হয়েছে মহামান্য ক্যাপ্টেন? কী হয়েছে?</p>
+<p>ক্যাপ্টেন বৰ্কেন খুব ধীরে ধীরে তার চেয়ারে বসে ফিসফিস করে বললেন, আমরা সবাই শেষ হয়ে গেলাম।</p>
+<p>কী বললেন? আর্তচিৎকার করে রিরা বলল, কী বললেন আপনি?</p>
+<p>আমরা শেষ হয়ে গেলাম। কেউ আর আমাদের রক্ষা করতে পারবে না।</p>
+<p>কেন?</p>
+<p>নীলমানবেরা নিথিলিয়াম গ্যাস দিয়ে আক্রান্ত হয় নি। তারা ভান করেছে আক্রান্ত হয়েছে।</p>
+<p>আপনি কেমন করে জানেন?</p>
+<p>সবাই অচেতন হয়েছে একইভাবে একই ভঙ্গিতে মাথা নিচু করে উপুড় হয়ে কারো মুখ দেখা যাচ্ছে না—সবাই মুখ ঢেকে রেখেছে।</p>
+<p>এখন কী হবে?</p>
+<p>ওরা উঠে দাঁড়াবে।</p>
+<p>ক্যাপ্টেন বর্কেনের কথা শেষ হবার আগেই ঘরের একেবারে অন্যপ্রান্তে পড়ে থাকা নীলমানবটি উঠে দাঁড়াল–হঠাৎ করে লাফিয়ে নয়, খুব সহজ ভঙ্গিতে। যেন কিছুই হয় নি কোনো একজন পুরাতন বন্ধুকে দেখে একজন মানুষ যেভাবে উঠে দাঁড়ায় সেভাবে। তারপর টলতে টলতে সে এগিয়ে আসতে থাকে নিরাপত্তা বাহিনীর দলটির দিকে। নিরাপত্তা বাহিনীর দলটি হতচকিত হয়ে দাঁড়িয়ে থাকে—কী করবে বুঝতে পারে না।</p>
+<p>রিরা চাপা গলায় বলল, এখন কী হবে?</p>
+<p>গুলি করবে। গুলি করে মারবে নীলমানবটিকে।</p>
+<p>কেন মারবে?</p>
+<p>কথা শেষ হবার আগেই প্রচণ্ড শব্দে স্বয়ংক্রিয় অস্ত্র গর্জন করে উঠল—নীলমানবটির শরীর ঝরা হয়ে যায় মুহর্তে ঝনঝন করে কাচ ভেঙে পড়ল ঘরের ভেতর!</p>
+<p>ঘরের ভেতর বিশুদ্ধ বাতাস আনার ব্যবস্থা করল আর ভয় নেই নীলমানদের। নিথিলিয়ামে অচেতন থাকবে না কেউ।</p>
+<p>ক্যাপ্টেন বৰ্কেনের কথা শেষ হবার আগেই ঘরের মেঝেতে পড়ে থাকা নীলমানবেরা উঠে দাঁড়ায়, টলতে টলতে তারা ঝাঁপিয়ে পড়ল নিরাপত্তা বাহিনীর মানুষগুলোর ওপর। প্রচণ্ড গুলির শব্দে কানে তালা লেগে গেল, ধোয়ায় অন্ধকার হয়ে গেল চারদিক।</p>
+<p>তুমি কিছু বোঝার আগে নলিমানবেরা ছুটে আসবে—একজন একজন করে সবাইকে হত্যা করবে ওরা। ক্যাপ্টেন বর্কেনের গলার স্বর হঠাৎ আশ্চর্যরকম শান্ত হয়ে গেল, তিনি মাথা নেড়ে বললেন, কী আশ্চর্য! আমি এই সহজ জিনিসটা বুঝতে পারি নি।</p>
+<p>রিরা রক্তশূন্য মুখে মনিটরটির দিকে তাকিয়ে রইল। মনিটরে স্পষ্ট দেখা যাচ্ছে, নীলমানবেরা অস্ত্র কেড়ে নিয়েছে প্রতিরক্ষা বাহিনীর দলটির থেকে বায়ু নিরোধক পোশাক পরে থাকায় তারা ঠিকভাবে নড়তে পারছিল না, ক্ষীপ্র নীলমানবেরা অবলীলায় তাদের কাবু করেছে। প্রচণ্ড গোলাগুলিতে বেশ কয়জন নীলমানবের শরীর ছিন্নভিন্ন হয়ে গেছে কিন্তু সেজন্য কারো ভেতর এতটুক ভয়ভীতি বা দুর্বলতা এসেছে বলে মনে হল না। নীলমানবেরা স্বয়ংক্রিয় অস্ত্র হাতে বেপরোয়াভাবে গুলি করতে করতে ছুটে আসছে। তাদের ভাবলেশহীন মুখে এই প্রথমবার হিংস্র প্রতিহিংসার একটা চিহ্ন স্পষ্ট হয়ে উঠেছে। দুর্বোধ্য ভাষায় চিৎকার করতে করতে তারা মহাকাশযানের চারদিকে ছড়িয়ে পড়ছে। পুরো মহাকাশযানটাকে একটা ধ্বংসস্তুপে পরিণত না করে তারা থামবে না।</p>
+<p>রিরা ক্যাপ্টেন বর্কেনের দিকে তাকিয়ে বলল, আমরা এখন কী করব মহামান্য ক্যাপ্টেন?</p>
+<p>ক্যাপ্টেন বৰ্কেন অন্যমনস্কভাবে মাথা নেড়ে বললেন, আমাদের করার কিছু নেই। এই মহাকাশযানে যারা আছে, তারা সাধারণ মহাকাশচারী। এই নীলমানবেরা যোদ্ধা ওদের হাতে এখন অস্ত্র। আমাদের আর কিছু করার নেই।</p>
+<p>কিন্তু–</p>
+<p>ক্যাপ্টেন বৰ্কেন এক ধরনের স্নেহ নিয়ে রিরার দিকে তাকিয়ে শোনা যায় না এরকম গলায় বললেন, আমরা যদি নীলমানবদের ভেতরে এই ভয়ানক প্রতিহিংসার জন্ম না দিতাম, তা হলে হয়তো এই অবস্থা হত না। নীলমানদের মানুষ হিসেবে বিবেচনা করা উচিত ছিল।</p>
+<p>কিন্তু এখন কিছুই কি করতে পারব না?</p>
+<p>ক্যাপ্টেন বৰ্কেন উঠে দাঁড়িয়ে বললেন, কিছু একটা চেষ্টা অবশ্যই করতে হবে। কার্গো বে থেকে মূল মহাকাশযানের করিডরটাতে যদি এদের কিছুক্ষণ আটকে রাখা যায়, তা হলে মহাকাশযানের অন্য ক্রুরা হয়তো খানিকটা সময় পাবে। তারা হয়তো কিছু ভারী অস্ত্র বের করে এনে সত্যিকারের একটা প্রতিরোধ দিতে পারে।</p>
+<p>ক্যাপ্টেন বৰ্কেন দেয়ালের একটা সুইচ স্পর্শ করে বেশ বড় একটা অংশকে নামিয়ে আনলেন। ভেতরে বড় বড় কিছু স্বয়ংক্রিয় অস্ত্র সাজানো। তিনি একটা বহুঁ ব্যবহৃত অস্ত্র টেনে নামিয়ে দক্ষ হাতে লোভ করে বললেন, কখনো ভাবি নি এটা আবার ব্যবহার করতে হবে। ভেবেছিলাম খুনোখুনির পর্যায় পার হয়ে এসেছি।</p>
+<p>রিরা দেয়াল থেকে অন্য একটি স্বয়ংক্রিয় অস্ত্র নামিয়ে নিল, ক্যাপ্টেন বৰ্কেন তাকে বাধা দিলেন না। এই অস্ত্র কে কখন কীভাবে ব্যবহার করতে পারবে—সেটি নিয়ে নানারকম নিয়মকানুন আছে, কিন্তু সেসব এখন পুরোপুরি অর্থহীন। ক্যাপ্টেন বৰ্কেন বললেন, তুমি ডান দিক দিয়ে যাও, আমি বাম দিকে আছি, মিনিট পাচেক আটকে রাখতে পারলেই অনেক। মাথা ঠাণ্ডা রেখ–খুব কাছে না আসা পর্যন্ত গুলি করো না। নিশানা ঠিক রেখ–হত্যা খুব ভয়ংকর একটা ব্যাপার—কিন্তু তারপরেও আমাদের করতে হয়। বেঁচে থাকার জন্য ফুড চেইন নামে একটা প্রক্রিয়ায় একজন প্রাণী অন্য প্রাণীকে বহুদিন থেকে হত্যা করে আসছে। মনে রেখ যত বেশিজন নীলমানবকে হত্যা করতে পারবে, আমাদের বেঁচে থাকার সম্ভাবনা তত বেশি।</p>
+<p>রিরা মাথা নাড়ল, ক্যাপ্টেন বৰ্কেন তার হাত স্পর্শ করে বললেন, আমি খুব দুঃখিত রিরা। খুব দুঃখিত।</p>
+<p>আপনার সাথে কাজ করার সুযোগ পেয়ে আমি অত্যন্ত সম্মানিত বোধ করছি।</p>
+<p>ক্যাপ্টেন বৰ্কেন শব্দ করে হাসলেন, বললেন, যদিও সেই সুযোগটা হচ্ছে খুব অল্পবয়সে নীলমানবের হাতে খুন হয়ে যাওয়ার সুযোগ।</p>
+<p>কার্গো বে-র করিভরে বড় ধাতব দরজার নিচু অংশে স্বয়ংক্রিয় অস্ত্রটি বসিয়ে রিরা। অপেক্ষা করতে থাকে। দূরে গোলাগুলির শব্দ শোনা যাচ্ছে। নীলমানবেরা গুলি করতে করতে ছুটে আসছে। নৃশংস নীলমান নিয়ে তার খুব কৌতূহল ছিল, একটু পরেই তাদেরকে সে দেখবে। প্রথমবার তাদেরকে সামনাসামনি দেখবে। হয়তো শেষবার।</p>
+</div>
+<br/><h2>০৩. রিরা খুব ধীরে ধীরে উঠে দাঁড়াল</h2>
+<hr/>
+<br/><div>
+<p>রিরা খুব ধীরে ধীরে উঠে দাঁড়াল। মহাকাশযানটিতে এক বিস্ময়কর নীরবতা। কিছুক্ষণ আগেই ভয়ংকর শব্দে পুরো মহাকাশযানটি কেঁপে কেঁপে উঠছিলএখন হঠাৎ করে এই নৈঃশব্দ্যকে অসহনীয় আতঙ্কের মতো মনে হতে থাকে। রিরা স্বয়ংক্রিয় অস্ত্রটি হাতে নিয়ে চারদিকে তাকাল। পুরো মহাকাশযানটি একটি ধ্বংসস্তুপের মতো, দেয়ালে বড় বড় গর্ত, ধাতব বিম ভেঙে পড়েছে, এদিকে সেদিকে আগুন ধিকিধিকি করে জ্বলছে, চারদিকে কালো। ধোয়া এবং পোড়া গন্ধ।</p>
+<p>রিরা স্বয়ংক্রিয় অস্ত্র হাতে দেয়ালে হেলান দিয়ে দাঁড়িয়ে থাকে পুরো মহাকাশযানে কোথাও কোনো জীবিত প্রাণীর শব্দ নেই। কারো কথা, কাবো নিশ্বাস, এমনকি যন্ত্রণার একটু কাতরধ্বনিও নেই। নীলমানব আর এই মহাকাশযানের মহাকাশচারীরা কি তা হলে পরস্পর পরস্পরকে একেবারে পরিপূর্ণভাবে নিঃশেষ করে দিয়েছে? হঠাৎ করে রিয়ার ভেতরে এক অচিন্তনীয় আতঙ্ক এসে ভর করে—সে কি তা হলে এই মহাকাশযানে একমাত্র জীবিত প্রাণী? রিরা ফিসফিস করে নিজেকে বলল, না না—এটা হতে পারে না। কেউ না কেউ নিশ্চয়ই বেঁচে আছে। নিশ্চয়ই বেঁচে আছে।</p>
+<p>রিরা খুব সতর্ক পায়ে হাঁটতে শুরু করে, তীক্ষ্ণ চোখে সে তাকায়—কোথাও কি কেউআছে?</p>
+<p>করিডরের গোড়ায় সে ক্যাপ্টেন বর্কেনের মৃতদেহটি দেখতে পেল ভয়ংকর গোলাগুলির মাঝে থেকেও তার মৃতদেহটি আশ্চর্যরকম অক্ষত। মুখে এক ধরনের প্রশান্তির চিহ্ন, দেখে মনে হয় কোনো একটা কিছু দেখে কৌতুক বোধ করছেন।</p>
+<p>রিরা কিছুক্ষণ মৃতদেহটির কাছে দাঁড়িয়ে রইল, তার ভেতরে দুঃখ, ক্রোধ বা হতাশা কোনো ধরনের অনুভূতিই নেই, সে ভেতরে এক ধরনের আশ্চর্য শূন্যতা অনুভব করে। রিরা অনেকটা যন্ত্রের মতো মৃতদেহটি ডিঙিয়ে এগিয়ে যেতে শুরু করে।</p>
+<p>দুজন নীলমানবের মৃতদেহ পাওয়া গেল কন্ট্রোলরুমের দরজায়। শক্তিশালী কোনো বিস্ফোরকের আঘাতে একজনের মস্তিষ্কের বড় অংশ উড়ে গেছে। গুলির আঘাতে দ্বিতীয়জনের বুকের একটা অংশ ছিন্নভিন্ন হয়ে আছে। কালচে এক ধরনের রক্তে পুরো জায়গাটা ভিজে আছে। মহাকাশযানের অভিযাত্রীদের মৃতদেহের বেশিরভাগ তাদের কেবিনের কাছাকাছি ছড়িয়ে-ছিটিয়ে পড়ে আছে। তাদের বেশিরভাগই ছিল নিরস্ত্র, প্রতিবোধ দূরে থাকুক নিজেদের রক্ষা করার সুযোগও কেউ পায় নি। ইঞ্জিনঘরের কাছাকাছি মনে হয় একটা রক্তক্ষয়ী যুদ্ধ হয়েছে, সেখানে ইতস্তত অনেকগুলো মৃতদেহ পড়ে আছে। নীলমানবদের মৃতদেহের বেশিরভাগই কুরু ইঞ্জিনের আশপাশে মনে হয় তারা ইঞ্জিনটা ধ্বংস করতে চেষ্টা করেছিল। উপরে নিরাপত্তাকর্মীরা থাকায় শেষপর্যন্ত ধ্বংস করতে পারে নি। ফ্লাইট ইঞ্জিনিয়ারের মৃতদেহটি পাওয়া গেল কন্ট্রোল প্যানেলের উপর তার পায়ের কাছেই একজন নীলমানবের মৃতদেহ পড়ে আছে। আশপাশে চারদিকে ধস্তাধস্তির চিহ্ন একপর্যায়ে মনে হয় অস্ত্র হাতে এরা হাতাহাতি যুদ্ধ করেছে, কিন্তু শেষরক্ষা হয় নি, একটি মানুষ কিংবা নীলমানবও বেঁচে নেই। পুরো ইঞ্জিনঘরটির ভেতরে মনে হয় একটা প্রলয়কাণ্ড ঘটে গেছে তার ভেতরে ধক ধক শব্দ করে এখনো ইঞ্জিনটি চলছে, সেটাই একটি রহস্য।</p>
+<p>রিরা ইঞ্জিনঘর থেকে বের হয়ে কমিউনিকেশনস ঘরে গেল, সেখান থেকে মূল প্রসেসর ঘরে। প্রসেসর ঘর থেকে শীতলঘর, সেখান থেকে কার্গোঘরে—কোথাও একজন জীবিত প্রাণী নেই। একজন মানুষ কিংবা একজন নীলমানব কেউ বেঁচে নেই। এই পুরো মহাকাশযানে সে একা অসংখ্য মানুষ এবং নীলমানবের মৃতদেহ নিয়ে মহাকাশ পাড়ি দেবে-রিরা হঠাৎ করে অসহনীয় আতঙ্কে থরথর করে কাপতে শুরু করে।</p>
+<p>ঠিক তখন সে একটা শব্দ শুনতে পেল, কোনো একজনের পদশব্দ কিংবা কোনো কিছু সরে যাবার শব্দ। নিজের অজান্তেই সে চিৎকার করে উঠল, কে?</p>
+<p>নিঃশব্দে মহাকাশযানে তার চিঙ্কার প্রতিধ্বনিত হয়ে ফিরে আসে কিন্তু কেউ তার প্রশ্নের উত্তর দেয় না। রিরা তার স্বয়ংক্রিয় অস্ত্রটি হাতে নিয়ে তীক্ষ্ণ চোখে চারদিকে তাকায়। কোনো মহাকাশচারী হলে নিশ্চয়ই তার প্রশ্নের উত্তর দিত—এটি হয়তো কোনো নীলমান। ভয়ংকর দুর্ধর্ষ নৃশংস একজন নীলমানব। রিরা নিশ্বাস বন্ধ করে তার অস্ত্রটি ধরে রাখে, কোনো একটা কিছুকে নড়তে দেখলেই সে গুলি করবে।</p>
+<p>আবার কিছু একটা নড়ে যাবার শব্দ হল—মনের ভুল নয়, নিশ্চিত শব্দ, কোনো জীবন্ত প্রাণীর সরে যাবার শব্দ। রিরা শক্ত হাতে তার স্বয়ংক্রিয় অস্ত্র হাতে এগুতে থাকে, করিডরের পাশেই একটা ছোট ঘর, তার ভেতর থেকে শব্দটা এসেছে। দরজার সামনে কয়েক মুহূর্ত দাঁড়িয়ে থেকে হঠাৎ করে লাথি দিয়ে দরজাটা খুলে অস্ত্র উদ্যত করে ভেতরে ঢুকে গেল সে—একমুহূর্ত সে নিশ্বাস নিতে পারে না আতঙ্কে। দেয়ালে হেলান দিয়ে স্থির চোখে তার দিকে তাকিয়ে আছে একজন নীলমানব। কী ভয়ংকর ক্রুর সে দৃষ্টি! রিরার সমস্ত শরীর থরথর করে কেঁপে উঠল আতঙ্কে।</p>
+<p>রিরা নীলমানবটির মাথার দিকে অস্ত্রটি উদ্যত করে রেখে কয়েক মুহূর্ত তাকিয়ে থাকে এবং হঠাৎ করে বুঝতে পারল নীলমানবটি নিরস্ত্র ও আহত। পায়ের কাছাকাছি কোথাও গুলি লেগেছে। নীল রক্ত চুইয়ে চুইয়ে পড়ে পুরো জায়গাটা কালচে হয়ে আছে। নীলমানবটি ইচ্ছে করলেই তাকে হত্যা করতে পারবে না বুঝতে পেরে হঠাৎ সে তার শরীরে শক্তি ফিরে পায়, অস্ত্র হাতে দুই পা পিছিয়ে গিয়ে সে অস্ত্রটি নীলমানবের মাথার দিকে তাক করে। হত্যা খুব ভয়ংকর ব্যাপার, তারপরেও আমাদের হত্যা করতে হয়। ক্যাপ্টেন বর্কেন বলেছিলেন, নিজেকে বেঁচে থাকার জন্য প্রয়োজনে অন্যকে হত্যা করতে হয়। রিরা এই মুহূর্তে নীলমানবটিকে হত্যা করবে। সে অস্ত্রটি নীলমানবের মাথার দিকে তাক করে ট্রিগার টেনে ধরল। কান ফাটানো বিস্ফোরণের শব্দে পুরো ঘর প্রকম্পিত হওয়ার কথা ছিল কিন্তু কোনো শব্দ হল না; খট করে একটা শব্দ করে স্বয়ংক্রিয় অস্ত্রটি মৃদু ঝাকুনি দিয়ে কেঁপে উঠল মাত্র। রিরা অস্ত্রটির দিকে তাকায় গুলি শেষ হয়ে গেছে। কোমর থেকে নতুন ম্যাগজিন বের করে অস্ত্রতে লোড করে আবার সেটি উদ্যত করল নীলমানবের মাথার দিকে। নীলমানবটি স্থির দৃষ্টিতে তার দিকে তাকিয়ে আছে কী ভয়ংকর ক্রুর তার দৃষ্টি, মুখমণ্ডলে কী ভয়ংকর নিষ্ঠুরতা! একটু আগে কী নৃশংসভাবেই না তারা এই মহাকাশের সবাইকে হত্যা করেছে। রিরা ট্রিগারে চাপ দিতে গিয়ে থেমে গেল, দৃষ্টিতে কি শুধু অমানবিক নিষ্ঠুরতা? তার সাথে কি একটু ভয়, একটু আতঙ্ক এবং শূন্যতা নেই তাকে হত্যা না করার জন্য কাতর প্রার্থনা নেই? বেঁচে থাকার জন্য আকুলতা নেই?</p>
+<p>রিরা অস্ত্রটি নামিয়ে রাখল, পায়ে গুলি লেগে রক্তক্ষরণ হচ্ছে, নীলমানবটি এমনিতেই মারা যাবে তার মাথায় গুলি করে তাকে আলাদাভাবে হত্যা করার প্রয়োজন নেই। সে ঘরটির চারদিকে তাকাল, এখান থেকে বের হয়ে যাবার কোনো উপায় নেই। বাইরে থেকে তালা দিয়ে রাখলে নীলমানবটি এই ঘর থেকে বের হতে পারবে না—আপাতত আটকে থাকুক এই ঘরে। রিরা ঘরটি বন্ধ করে বের হয়ে এল।</p>
+<p>কন্ট্রোলরুমের দরজায় ছিন্নভিন্ন হয়ে পড়ে থাকা নীলমানবটির মৃতদেহ ডিঙিয়ে রিরা কন্ট্রোলরুমের ভেতরে এসে ঢোকে। ক্যাপ্টেন বর্কেন যে চেয়ারটিতে বসতেন, তার পাশে দাঁড়িয়ে সে সুইচ স্পর্শ করল। মহাকাশযানের ক্যাপ্টেন ছাড়া আর কেউ এই কন্ট্রোল প্যানেল ব্যবহার করার কথা নয়। কিন্তু এখন পুরোপুরি ভিন্ন একটা অবস্থা, জরুরি অবস্থায় যে-কেউ মূল প্রসেসরের সাথে যোগাযোগ করতে পারে। শিক্ষানবিশ মহাকাশচারী হিসেবে তাদেরকে অনেকবার এ ধরনের পরিস্থিতির জন্য প্রস্তুত করা হয়েছে। রিরা তার রেটিনা স্ক্যান করিয়ে গোপন পাসওয়ার্ডটি প্রবেশ করাল। সাথে সাথেই উত্তর আসার কথা কিন্তু কোনো উত্তর না এসে মনিটরটি নিরুত্তর হয়ে রইল। রিরা এক ধরনের আতঙ্ক অনুভব করে, সে দ্বিতীয়বার চেষ্টা করল। দুই চোখের রেটিনা স্ক্যান করিয়ে সে আবার গোপন পাসওয়ার্ডটি প্রবেশ করাল। কয়েক মুহূর্ত পরে মনিটরে কিছু আলোর বিচ্ছুরণ দেখা যায় এবং শুষ্ক কণ্ঠস্বরে মূল প্রসেসর যোগাযোগ করার চেষ্টা করল, জরুরি পর্যায় আট, আমি আবার বলছি মহাকাশযানে জরুরি পর্যায় আট।</p>
+<p>রিরা এক ধরনের আতঙ্ক অনুভব করে। মহাকাশযান অভ্যন্তরীণ বিস্ফোরণে ছিন্নভিন্ন হয়ে যাবার পূর্বমুহূর্তে জরুরি পর্যায় দশ ঘোষণা করা হয় এই মহাকাশযানটি সেই পর্যায় থেকে মাত্র দুই পর্যায় উপরে রয়েছে। নীলমানবেরা যখন মহাকাশযানে আক্রমণ করেছিল, তখন মহাকাশযানটিকে নিশ্চয়ই পুরোপুরি ধ্বংস করে দিয়েছে। জরুরি পর্যায় পাঁচ পর্যন্ত মহাকাশযান সহ্য করতে পারে। জরুরি পর্যায় আট পৌঁছে গেলে সেটা পরিত্যাগ করে সরে যাবার কথা—যে কোনো মুহূর্তে সেটা ধ্বংস হয়ে যেতে পারে। রিরা কাপা গলায় বলল, আমি মহাকাশ্যানচারী রিরা। মহাকাশযানে একমাত্র জীবিত মানুষ আমার সাহায্যের প্রয়োজন।</p>
+<p>শুষ্ক কণ্ঠস্বরে মহাকাশযানের প্রসেসর উত্তর করল, এই মহাকাশযান খুব শিগগিরই ধ্বংস হয়ে যাবে। মহাকাশযানের বায়ুর পরিশীলন সিস্টেম ক্ষতিগ্রস্ত হয়েছে, বাতাসের চাপ কমে আসছে। কুরু ইঞ্জিন ক্ষতিগ্রস্ত হয়েছে। জ্বালানি টিউবে ফুটো হওয়ার কারণে জ্বালানি ছড়িয়ে পড়ছে।</p>
+<p>রিরা নিশ্বাস বন্ধ করে বলল, কেন্দ্রীয় মহাকাশ কেন্দ্রে খবর পাঠানো প্রয়োজন। জরুরি সাহায্য না পেলে–</p>
+<p>বিস্ফোরণের কারণে যোগাযোগ কেন্দ্র নষ্ট হয়ে গেছে। আমাদের পক্ষে বাইরে যোগাযোগ করা সম্ভব নয়।</p>
+<p>রিরা আর্তচিৎকার করে বলল, বাইরে যোগাযোগ করা সম্ভব নয়?</p>
+<p>না।</p>
+<p>এই মহাকাশযানটা কয়েকদিনের মাঝে ধ্বংস হয়ে যাবে?</p>
+<p>হ্যাঁ। মহাকাশযানে বাতাসের চাপ কমে আসছে। ইঞ্জিনঘরে যে জ্বালানি ছড়িয়ে পড়েছে, যে কোনো মুহর্তে সেটা দিয়ে বিস্ফোরণ হতে পারে।</p>
+<p>এবং সাহায্য পাবার কোনো আশা নেই?</p>
+<p>মহাকাশযানের মূল প্রসেসর শুষ্ক কণ্ঠে বলল, সাহায্য পাবার সম্ভাবনা দশমিক শূন্য তিন।</p>
+<p>চমৎকার! রিরা হঠাৎ আবিষ্কার করল পুরো ব্যাপারটি নিয়ে তার যেরকম অস্থির হয়ে যাবার কথা ছিল, সে মোটেও সেরকম অস্থির হয়ে উঠছে না। বরং পুরো ব্যাপারটা সে বেশ সহজভাবেই মেনে নিয়েছে। একটা নিশ্বাস ফেলে সে বেশ শান্ত গলায় বলল, যদি তা-ই সত্যি হয় যে, এই মহাকাশযানে আগামী কয়েকদিনই আমার জীবনের শেষ কয়েকদিন, তা হলে সময়টা আমি ভালোভাবে কাটাতে চাই।</p>
+<p>মূল প্রসেসর শুষ্ক কণ্ঠে জিজ্ঞেস করল, তুমি কী করতে চাও রিরা?</p>
+<p>প্রথমত মহাকাশযানে যে অসংখ্য মৃতদেহ পড়ে আছে, সেগুলো যথাযযাগ্য মর্যাদা দিয়ে সমাহিত করতে চাই। সেটা সম্ভব না হলে সেগুলোকে অন্তত হিমঘরে সংরক্ষণ করতে চাই।</p>
+<p>কাজটা একটু কঠিন হবে। মহাকাশযানের অভ্যন্তরীণ যোগাযোগ অনেক জায়গায় ক্ষতিগ্রস্ত হয়েছে।</p>
+<p>কঠিন হলেও করতে হবে। রিরা একটু থেমে যোগ করল, আমি এতগুলো মৃতদেহের মাঝে একদিনও থাকতে পারব না।</p>
+<p>রক্ষণাবেক্ষণ কেন্দ্র থেকে যদি দুএকটি নিচু শ্রেণীর রোবট অক্ষত অবস্থায় পাওয়া যায়, তা হলে তাদেরকে ব্যবহার করা যেতে পারে।</p>
+<p>ঠিক আছে। মৃতদেহগুলো সরিয়ে নেবার পর মহাকাশযানটিকে পরিষ্কার করতে হবে। সব জায়গা রক্ত এবং ক্লেদে মাখামাখি হয়ে আছে।</p>
+<p>ভ্যাকুয়াম সিস্টেম ব্যবহার করে সেটা সহজেই পরিষ্কার করা যাবে।</p>
+<p>আমার থাকার জন্য খানিকটা জায়গা পরিষ্কার করে দিলেই আপাতত কাজ চলে। যাবে।</p>
+<p>সেটি কোনো সমস্যা নয়, ক্যাপ্টেনের নিজস্ব অতিরিক্ত কেবিনটি তুমি ব্যবহার করতে পারবে। সেখানে আরামদায়ক বিছানা, ব্যক্তিগত আনন্দের জন্য বিনোদন কেন্দ্র, বিশেষ স্নায়ু-উত্তেজক পানীয় এই সবকিছু আছে।</p>
+<p>তার কোনো প্রয়োজন নেই। এখন মৃতদেহ সংরক্ষণের কাজ শুরু করে দেওয়া যাক।</p>
+<p>রক্ষণাবেক্ষণ কেন্দ্র থেকে চারটি নিচু শ্রেণীর রোবট পেয়ে যাবার পরও মহাকাশকেন্দ্রের ছড়িয়ে-ছিটিয়ে থাকা মৃতদেহগুলো শীতল ঘরে নিয়ে সংরক্ষণ করে মহাকাশযানটি ধুয়ে মুছে পরিষ্কার করে মোটামুটি ব্যবহারযোগ্য করতে করতে প্রায় আট ঘণ্টা সময় ব্যয় হয়ে গেল। কাজ শেষ করে রিরা যখন ক্যাপ্টেনের অতিরিক্ত কেবিনে শুতে এসেছে, তখন সে দাঁড়িয়ে থাকতে পারছিল না। বিছানায় শোয়ার সাথে সাথে তার চোখে ঘুম নেমে এল–শুনতে পেল তার মহাকাশযানের মূল প্রসেসর শুষ্ক কণ্ঠে বলছে, রিরা, অভুক্ত অবস্থায় ঘুমিয়ে যাওয়া স্বাস্থ্যের জন্য ক্ষতিকর। তুমি আর কিছু না হলেও বলকারক একটু পানীয় মুখে দিয়ে নাও।</p>
+<p>না খেয়ে ঘুমিয়ে পড়লে শরীরের কী কী ক্ষতি হতে পারে আবছাভাবে শুনতে শুনতে রিরা গভীর ঘুমে ঢলে পড়ল।</p>
+<p>রিরার ঘুম ভাঙল ভয়ংকর খিদে নিয়ে। ঘুম থেকে উঠে সে খানিকক্ষণ নরম বিছানায় লম্বা হয়ে শুয়ে রইল। তার মনে পড়ল—সে একটি মহাকাশযানে একা এবং এই মহাকাশযানটি আগামী কয়েকদিনের মাঝেই পুরোপুরি ধ্বংস হয়ে যাবে। ব্যাপারটি নিয়ে তার যেরকম বিচলিত হওয়ার কথা ছিল, সে সেরকম বিচলিত হল না। কোনো একটা অজ্ঞাত। কারণে তার ভাবনা-চিন্তা সবকিছুই কেমন যেন ভোতা হয়ে এসেছে। রিরা কিছুক্ষণ বিছানায় শুয়ে ছাদের দিকে তাকিয়ে রইল; মহাকাশযানের ইঞ্জিনের চাপা গুঞ্জন শোনা যাচ্ছে–গুঞ্জনটির মাঝে কিছু একটা পরিবর্তন হয়েছে, যদিও সে পরিবর্তনটা ঠিক ধরতে পারল না। রিরা একসময় উঠে দাঁড়াল, শরীরের অবসাদ কেটে গেছে, ভালো করে কিছু খেয়ে নিতে পারলে সে দিনটি ভালোভাবে শুরু করতে পারবে। মহাকাশযানের সব মহাকাশচারী মারা গিয়েছে, বেঁচে আছে শুধু সে একা–জেনে প্রথমে তার ভেতরে এক ভয়াবহ আতঙ্কের জন্ম হয়েছিল। সে কী করবে কিছুতেই ঠিক করতে পারছিল না। মহাকাশযানটি কয়েকদিনের মাঝে ধ্বংস হয়ে যাবে শুনে হঠাৎ করে তার আতঙ্ক এবং অস্থিরতা পুরোপুরি কেটে গেছে, সে আবিষ্কার করেছে তার আসলেই কিছু করার নেই। কাজেই জীবনের শেষ কয়টি দিনকে এখন যতটুকু সম্ভব অর্থবহ করাই হতে পারে একমাত্র অর্থপূর্ণ কাজ।</p>
+<p>রিরা দীর্ঘ সময় নিয়ে শরীর পরিষ্কার করে সত্যিকার পানিতে স্নান সেরে নিয়ে পরিষ্কার একটি ওভারঅল পরে নেয়। ক্যাপ্টেনের সুদৃশ্য টেবিলে বসে সে যখন কী খাবে সেটা নিয়ে। মহাকাশযানের প্রসেসরের সাথে কথা বলছিল, ঠিক তখন তার নীলমানবটির কথা মনে পড়ল। কী আশ্চর্য! সে একটি আহত নীলমানবকে রক্তক্ষরণ হয়ে মারা যাবার জন্য একটা ঘরে বন্ধ করে রেখে তার কথা পুরোপুরি ভুলে গেছে। রিরা তার বিছানায় বসে দ্রুত খেয়ে নেয়। এক টুকরো রুটি, সত্যিকারের মাখন, পনির এবং খানিকটা কৃত্রিম প্রোটিন। খাবার শেষে এক মগ গরম কফি। রিরা খাওয়া শেষ করে তার অস্ত্রটি খুঁজে বের করে কাঁধে ঝুলিয়ে নিয়ে কার্গো বের করিডরের শেষ মাথায় বন্ধ ঘরটিতে হাজির হল। সাবধানে তালা খুলে সে দরজা টেনে ভেতরে উঁকি দেয়, মনে মনে আশা করেছিল নীলমানবটি এতক্ষণে মরে গিয়ে সব ঝামেলা চুকিয়ে দিয়েছে, কিন্তু সে দেখতে পেল নীলমানবটি এখনো বেঁচে আছে। রিরা নিজের ভেতরে এক ধরনের ক্রোধ অনুভব করে, সে তার অস্ত্রটি হাতবদল করে হিংস্র আক্রোশ নিয়ে নীলমানবটির দিকে তাকাল, দাঁতে দাঁত ঘষে চাপা গলায় বলল, এখনো বেঁচে আছ?</p>
+<p>নীলমানবটি কিছুক্ষণ স্থির দৃষ্টিতে তার দিকে তাকিয়ে রইল, তারপর আশ্চর্য রকমের এক ধরনের ভরাট গলায় বলল, পানি।</p>
+<p>পানি! রিরা নিজের কানকে বিশ্বাস করতে পারল না, আহত নীলমানবটি তার কাছে পানি চাইতে পারে সেটি নিজের কানে না শুনলে সে বিশ্বাসই করত না। রিরা ক্রুদ্ধ গলায় বলল, আমার মহাকাশযানের সব মানুষকে একজন একজন করে গুলি করে মেরে ফেলেছ, এখন তুমি আমার কাছে পানি চাইছ, তোমার সাহস তো কম না! পানি নয়, তোমার মাথার খুলিতে চতুর্থ মাত্রার বিস্ফোরক দিয়ে একটা বুলেট পাঠানো দরকার। বুঝেছ?</p>
+<p>নীলমানবটি ধৈর্য ধরে রিয়ার কথা শেষ হবার জন্য অপেক্ষা করল, তারপর আবার ঠিক আগের মতো ভরাট গলায় বলল, পানি।</p>
+<p>রিরা আবার ক্রুদ্ধ গলায় বলল, চুপ কর শয়তানের বাচ্চা। আমি আমার জীবনের শেষ সময়টা তোমার মতো দানবদের সেবা-যত্ন করে কাটাতে পারব না। তোমার গুলি খেয়ে মরার কথা ছিল—-তোমার চৌদ্দপুরুষের সৌভাগ্য যে গুলি খেয়ে মরতে হচ্ছে না। সভ্য মানুষের মতো রক্তক্ষরণে মারা যাচ্ছ। বুঝেছ?</p>
+<p>নীলমানবটি আবার ধৈর্য ধরে রিরার কথা শুনে গেল। তার কথা শেষ হবার পর বলল, পানি। কিশিমারা।</p>
+<p>কিশিমারা? রিরা ধমক দিয়ে বলল, কিশিমারা মানে কী? তিতির পাখির ঝলসানো কাবাব? নাকি আঙুরের রস? গ্যালাক্সির মহাসম্রাটের আর কী কী প্রয়োজন? ঘুমানোর জন্য নরম বিছানা? নিয়ন্ত্রিত তাপমাত্রার সুগন্ধি বাতাস? স্নায়ু-উত্তেজক কিছু পানীয়?</p>
+<p>নীলমানবটি মাথা নাড়ল, এবং রিরার প্রথমবার মনে হল তার মুখে খুব সূক্ষ্ম এক ধরনের হাসি ফুটে উঠেছে। নীলমানবেরা যে মানুষের একটি অপভ্রংশ এই প্রথমবার রিরার মাথায় উঁকি দিয়ে যায়। রিরা জিজ্ঞেস করল, তা হলে কিশিমারা মানে কী?</p>
+<p>কিশিমারা। নীলমানবটি মুখে একটি কাতর ভঙ্গি করে হাত দুটি বুকের কাছে এনে অনুনয়ের ভঙ্গি করে।</p>
+<p>ও! রিরার রাগ কমে আসে, তা হলে কিশিমারা মানে অনুগ্রহ করে?</p>
+<p>নীলমানবটি মাথা নাড়ল, কিশিমারা অনুগ্রহ… কিশিমারা… অনুগ্রহ পানি পানি অনুগ্রহ।</p>
+<p>ঠিক আছে। রিরা তার অস্ত্রটা হাতবদল করে বলল, তোমাকে এক বোতল পানি দিচ্ছি কিন্তু আর কিছু পাবে না। এই বোতল পানি খেয়ে ঝটপট তোমাকে মরে যেতে হবে। বুঝেছ? আমি তোমার সেবা করতে পারব না।</p>
+<p>নীলমানবটি মাথা নাড়ল, বলল, বুঝেছি। বুকে হাত দিয়ে নিজেকে দেখিয়ে বলল, বুঝেছি।</p>
+<p>রিরা পানির একটি বোতলের সাথে কী মনে করে দুই টুকরো রুটি, এক টুকরো কৃত্রিম প্রোটিন আর একটা শুকনো ফল নিয়ে এল। ট্রেটা নীলমানবের দিকে এগিয়ে দিয়ে বলল, খাও। এবং মনে রেখ এটা হবে তোমার প্রথম এবং শেষ খাবার।</p>
+<p>নীলমানবটির মুখের মাংসপেশি হঠাৎ শিথিল হয়ে সেখানে একটি হাসি ফুটে ওঠে। রিরা প্রথমবার লক্ষ করল, নীলমানবটির বয়স খুব বেশি নয় এবং গায়ের রঙ নীল না হলে এবং চোখ দুটোতে এত অস্বাভাবিক তীক্ষ্ণ দৃষ্টি না থাকলে তাকে সুদর্শন মানুষ হিসেবে চালিয়ে দেওয়া যেত। নীলমানবটি খাবার ট্রেটা নিজের কাছে টেনে নিয়ে বলল, কুগুরা।</p>
+<p>কুগুরা? রিরা কঠিন মুখে বলল, কুগুরা মানে কী? আরো চাই?</p>
+<p>নীলমানবটি খাবারটুকু দুই ভাগ করে এক ভাগ নিজের কাছে রেখে অন্য ভাগ রিরার দিকে এগিয়ে দিয়ে মাথা ঝুঁকিয়ে বলল, কুগুরা।</p>
+<p>রিরার কয়েক মুহূর্ত লাগল বুঝতে যে নীলমানবটি তার খাবারের অর্ধেক তাকে খেতে দিয়েছে। যখন বুঝতে পারল তখন হঠাৎ সে শব্দ করে হেসে ফেলল, হাসতে হাসতে বলল, এমনিতে মহাকাশযানের সব মানুষকে গুলি করে মেরে ফেল, কিন্তু খাবার বেলায় সেটা ভাগাভাগি করে খাও! এটা তোমাদের কোন ধরনের ভদ্রতা?</p>
+<p>নীলমানবটি কোনো কথা না বলে বোতলটি মুখে লাগিয়ে ঢকঢক করে অনেকখানি পানি খেয়ে রিরার দিকে তাকিয়ে মাথা ঝুঁকিয়ে বলল, কুগুরা। অনেক কুগুরা।</p>
+<p>কুগুরা মানে কি ধন্যবাদ?</p>
+<p>হ্যাঁ। নীলমানবের মুখে আবার একটু হাসির চিহ্ন দেখা গেল, মাথা ঝুঁকিয়ে বলল, ধন্যবাদ। তোমাকে অনেক ধন্যবাদ।</p>
+<p>রিরা অর্ধেক করে তার কাছে পাঠানো খাবারের ট্রেটা ধাক্কা দিয়ে নীলমানবের কাছে ফেরত পাঠিয়ে দিয়ে বলল, কুগুরা। ধন্যবাদ। আমি খেয়ে এসেছি—এটা তোমার জন্য।</p>
+<p>তারপর দরজাটা টেনে বন্ধ করতে করতে বলল, আবার যখন আলব, তখন যেন ঝামেলা না থাকে। খাবারটা খেয়ে ঝটপট মরে যাও। মনে থাকবে?</p>
+<p>নীলমানবটি দুই টুকরো রুটির মাঝে প্রোটিনের টুকরোটা রেখে সেটিতে একটা বড় কামড় দিয়ে বলল, ধন্যবাদ। তোমাকে ধন্যবাদ। অনেক ধন্যবাদ।</p>
+</div>
+<br/><h2>০৪. কন্ট্রোল প্যানেলে ঝুঁকে পড়ে</h2>
+<hr/>
+<br/><div>
+<p>কন্ট্রোল প্যানেলে ঝুঁকে পড়ে রিরা বলল, আমাদের মহাকাশযানের এখন কী অবস্থা?</p>
+<p>মহাকাশযানে মূল প্রসেসর শুষ্ক কণ্ঠে উত্তর দিল, অবস্থা ভালো নয়। গত আঠার ঘণ্টায়। আরো কিছু জ্বালানি ক্ষয় হয়েছে। কক্ষপথের পরিবর্তন না করলে আমরা অতিকায় অন্ধকার গ্রহটার মহাকর্ষ বলে আটকা পড়ে যাব।</p>
+<p>তা হলে কক্ষপথ পরিবর্তন করছি না কেন?</p>
+<p>দুটি কারণে। মহাকাশযানের ইঞ্জিন ক্ষতিগ্রস্ত হয়েছে এবং যথেষ্ট জ্বালানি নেই। জ্বালানি পরিবহন টিউব ফেটে গিয়ে অনেক জ্বালানি নষ্ট হয়েছে।</p>
+<p>রিরা একটা নিশ্বাস ফেলে বলল, মহাকাশযানের বাতাসের কী খবর?</p>
+<p>খুব দ্রুত বাতাস বের হয়ে যাচ্ছে। আমরা রিজার্ভের বাতাস ব্যবহার করতে শুরু করেছি।</p>
+<p>রিরা চিন্তিত মুখে বলল, এটা খুব খারাপ খবর।</p>
+<p>হ্যাঁ। মূল প্রসেসর শুষ্ক কণ্ঠে বলল, রিজার্ভের বাতাস ব্যবহার করা খুব বিপজ্জনক।</p>
+<p>রিরা টেবিলে শব্দ করতে করতে বলল, কিছু বাতাস রক্ষা করা যাক। কী বলো?</p>
+<p>কীভাবে?</p>
+<p>মহাকাশযানে আমি ছাড়া আর কোনো জীবিত প্রাণী নেই। আমার তো খুব বেশি জায়গার প্রয়োজন নেই। কাজেই অল্পকিছু জায়গা বায়ু নিরোধক করে ফেল।</p>
+<p>তাতেও সমস্যার সমাধান হবে না। কেন?</p>
+<p>গোলাগুলিতে দেয়ালে অনেক ফুটো হয়েছে।</p>
+<p>ফুটোগুলো বন্ধ করা যাক।</p>
+<p>মহাকাশযানের ফুটো বন্ধ করার কোনো ক্ষমতা আমার নেই।</p>
+<p>আমি জানি মহাকাশযানে ফুটো বন্ধ করার তোমার কোনো ক্ষমতা নেই। তুমি হচ্ছ তথ্যকেন্দ্র। তোমার তথ্যগুলো খুব প্রয়োজনীয় যখন সবকিছু ঠিকভাবে কাজ করে। যখন। বড় কোনো বিপদ হয়, তখন মানুষকে নিজের চেষ্টায় বেঁচে থাকতে হয়। বুঝেছ?</p>
+<p>মূল ভাবনাটা অনুমান করতে পারছি।</p>
+<p>রিরা একটা নিশ্বাস ফেলে বলল, সেটাই যথেষ্ট।</p>
+<p>মহাকাশযানের মূল প্রসেসর কিছুক্ষণ অপেক্ষা করে বলল, তুমি তা হলে কীভাবে ফুটোগুলো বন্ধ করবে?</p>
+<p>অত্যন্ত প্রাচীন পদ্ধতি ব্যবহার করে।</p>
+<p>কোন প্রাচীন পদ্ধতি?</p>
+<p>ওয়েল্ডিং। ধাতব পাত এনে উপরে লাগিয়ে ওয়েন্ড করব। বাতাস বের হয়ে যাওয়া কমবে।</p>
+<p>এটি অত্যন্ত শ্রমসাপেক্ষ ব্যাপার।</p>
+<p>রিরা বলল, জানি। তোমার কি এর চাইতে ভালো কোনো পদ্ধতি জানা আছে?</p>
+<p>না, জানা নেই। তবে—</p>
+<p>তবে কী?</p>
+<p>এরকম পরিশ্রমসাপেক্ষ একটি কাজ করে ঠিক কী লাভ হবে? মহাকাশযানটি দুদিন পরে ধ্বংস না হয়ে হয়তো তিন কিংবা চার দিন পরে ধ্বংস হবে। মহাকাশযানটিকে তো রক্ষা করা যাবে না।</p>
+<p>রিরা একটা নিশ্বাস ফেলে বলল, মানুষের সাথে এখানে যন্ত্রের পার্থক্য। মানুষ শেষ মুহূর্ত পর্যন্ত চেষ্টা করে। যন্ত্র করে না।</p>
+<p>কিন্তু যেখানে আশা নেই, সেখানে চেষ্টা করে কী লাভ?</p>
+<p>আমি সেটা তোমাকে বুঝাতে পারব না। মানুষের ইতিহাস পড়ে দেখ, অসংখ্যবার তারা অসাধ্য সাধন করছে। তবে রিরা একমুহূর্ত অপেক্ষা করে বলল, আমার অসাধ্য সাধন করার ক্ষমতা নেই, কিন্তু শুধুমাত্র বসে বসে তো আর মৃত্যুর জন্য অপেক্ষা করতে পারি না। কিছু একটা করে নিজেকে ব্যস্ত রাখতে চাই।</p>
+<p>মহাকাশযানের মূল প্রসেসর শুষ্ক কণ্ঠে বলল, তুমি কি নিজেকে ব্যস্ত রাখার জন্য এখনই ওয়েল্ডিং করতে শুরু করে দেবে?</p>
+<p>হ্যাঁ। ওয়েল্ডিঙের যন্ত্রপাতি কোথায় আছে বলে দাও। এই কাজে সাহায্য করার জন্য কি কোনো নিম্নশ্রেণীর রোবট পাওয়া যাবে?</p>
+<p>আমি খুব দুঃখিত রিরা। এটি এত প্রাচীন পদ্ধতি যে, কোনো রোবটকে এটা শেখানো হয় না।</p>
+
+<p>রিরা টানা ছয় ঘণ্টা কাজ করে কন্ট্রোলরুমের আশপাশের দেয়ালগুলোর ফুটোগুলো ওয়েল্ডিং করে বন্ধ করার চেষ্টা করল। পুরোপুরি নিচ্ছিদ্র করতে পারল না, কিন্তু যেটুকু করেছে সেটা খারাপ নয়, বাতাস আগে থেকে অনেক কম বের হবে, মহাকাশযানটি। পুরোপুরি বায়ুশূন্য হতে এখন নিশ্চিতভাবে আরো দুদিন বাড়তি সময় পাওয়া যাবে। রিরা মনে মনে আশা করে আছে কোনো একটি উদ্ধারকারী মহাকাশযান তাদেরকে উদ্ধার করতে আসবে—সেজন্য মহাকাশযানটি যত দীর্ঘ সময় বাচিয়ে রাখতে পারবে, ততই বেঁচে যাওয়ার সম্ভাবনা বেড়ে যাবে। যদিও সে খুব ভালো করে জানে সুবিস্তৃত এই বিশাল মহাশূন্যে তাদেরকে উদ্ধার করতে যে সময়ের প্রয়োজন, সেই সময়টুকু তারা কোনোভাবেই মহাকাশযানটাকে টিকিয়ে রাখতে পারবে না। কিন্তু কখনো কখনো তো অভূতপূর্ব ঘটনা ঘটে—তার জীবনেও কি একটা অভূতপূর্ব ঘটনা ঘটতে পারে না?</p>
+<p>ক্যাপ্টেনের ঘরে গিয়ে খেতে বসে তার হঠাৎ করে নীলমানবের কথা মনে পড়ল। নীলমানবটি কি এখনো বেঁচে আছে? রিরা কী ভেবে খাবারের ট্রেটা সরিয়ে রেখে স্বয়ংক্রিয় অস্ত্রটা কাঁধে ঝুলিয়ে কার্গো বের পাশে করিডরের কাছে তালাবদ্ধ ঘরটির সামনে এসে দাঁড়াল। অস্ত্রটি উদ্যত রেখে সে সাবধানে তালা খুলে দরজাটা ঠেলে ভেতরে উঁকি দিল, নীলমানবটি মারা যায় নি, দেয়ালে হেলান দিয়ে বসে আছে। রিরার মনে হল তাকে দেখে তার মুখে খুব সূক্ষ্ম একটি হাসি ফুটে উঠল। নীলমানবটি পায়ের কাছে ট্রাউজারটি গুটিয়ে এনেছে, রক্ত বন্ধ করার জন্য শরীরের কাপড় ছিঁড়ে শক্ত করে বেঁধে রেখেছে। আগে শরীরের নানা জায়গায় শুকিয়ে যাওয়া কালো রক্তের দাগ ছিল, মনে হল পানি দিয়ে সে সেগুলো ধুয়ে পরিষ্কার করেছে।</p>
+<p>নীলমানবটি কোনো কথা না বলে এক ধরনের কৌতূহল নিয়ে রিরার দিকে তাকিয়ে রইল। রক্তক্ষরণে মারা যাবে বলে রিরার যে ধারণাটি ছিল সেটি সত্যি হবার কোনো সম্ভাবনা দেখা যাচ্ছে না—ব্যাপারটিতে রিরার রেগে ওঠার কথা ছিল কিন্তু খানিকটা বিস্ময় নিয়ে সে আবিষ্কার করল, সে মোটেও রেগে উঠছে না, বরং নীলমানবটি বেঁচে আছে দেখে সে এক ধরনের স্বস্তিবোধ করছে। যে নৃশংস প্রাণীরা তার মহাকাশযানের সবাইকে হত্যা। করেছে, তাদের একজন এখনো বেঁচে আছে বলে সে স্বস্তিবোধ করছে দেখে রিরা নিজের ওপর রেগে ওঠে। সে জোর করে মুখে এক ধরনের কাঠিন্য নিয়ে এসে নীলমানবটির দিকে তাকিয়ে থাকে।</p>
+<p>নীলমানবটি রিরার দিকে তাকিয়ে বলল ওয়েল্ডিং।</p>
+<p>তার সারা শরীরে কালিঝুলি মাখানো, ওয়েল্ডিঙের এসিডের ঝাঁজালো গন্ধ শরীর থেকে বের হচ্ছে, সে যে ওয়েল্ডিং করে এসেছে সেটা বোঝা খুব কঠিন নয়। নীলমানবটির কথার উত্তরে সে মাথা নাড়ল।</p>
+<p>নীলমানবটি নিজের বুকে থাবা দিয়ে বলল, আমি ওয়েল্ডিং ভালো। অনেক ভালো।</p>
+<p>রিরা ভুরু কুঁচকে বলল, তুমি খুব ভালো ওয়েল্ডিং করতে পার?</p>
+<p>নীলমানবটি হ্য-সূচকভাবে মাথা নাড়ল। রিরা মাথা নাড়ল, বলল, তাতে কিছু আসে যায় না। তুমি আশা করবো না আমি তোমাকে এখানে ওয়েল্ডিং করতে দেব। বুঝেছ?</p>
+<p>নীলমানবটি মাথা নেড়ে আবার বলল, আমি খুব ভালো ওয়েল্ডিং। বেশি বেশি ভালো ওয়েন্ডিং।</p>
+<p>ব্যস, অনেক হয়েছে। নিজের প্রশংসায় এত পঞ্চমুখ হবার কোনো দরকার নেই। রিরা একটু থেমে বলল, তোমার পায়ে যে গুলি লেগেছে, সেটা খেয়াল আছে? গুলি-লাগা পা দিয়ে তুমি দাঁড়াবে কেমন করে শুনি?</p>
+<p>রিরার সব কথা নীলমানব বুঝতে পারল না কিন্তু তার কথায় যে তার গুলি খাওয়া পায়ের কথা আছে সেটা সে বুঝতে পারল। নীলমানব তার পায়ের দিকে দেখিয়ে বলল, কিজুন।</p>
+<p>কিজুন?</p>
+<p>হ্যাঁ। নীলমানবটি হাত দিয়ে তার পায়ের ক্ষতে ইনজেকশন দেবার ভঙ্গি করে বলল, কিশিমারা… অনুগ্রহ… কিজুন।</p>
+<p>রিরা ভুরু কুঁচকে বলল, কিজুন মানে ওষুধ? তোমার পায়ের জন্য ওষুধ দরকার?</p>
+<p>নীলমানবটি জোরে জোরে মাথা নাড়ল। রিরা কঠিন মুখে বলল, এরপর তুমি কী বলবে? ঘুমানোর জন্য নরম বিছানা? নেশা করার জন্য উত্তেজক ড্রাগ? দেশে ফিরে যাবার জন্য স্কাউটশিপ?</p>
+<p>রিরা কী বলছে নীলমানবটি ঠিক বুঝতে পারল না, কিন্তু গলার স্বরে ক্রোধটি অনুভব করে এক ধরনের শূন্যদৃষ্টি নিয়ে রিরার দিকে তাকিয়ে রইল। সেই দৃষ্টি দেখে সম্পূর্ণ অকারণে হঠাৎ রিরা আরো ক্রুদ্ধ হয়ে ওঠে। সে স্বয়ংক্রিয় অস্ত্রটি ঝকিয়ে চিৎকার করে বলল, আমি যে তোমাকে গুলি করে মেরে না ফেলে এখনো বেঁচে থাকার জন্য দুবেলা খাবার দিচ্ছি, সেটা তোমার চৌদ্দপুরুষের ভাগ্য। এই ভাগ্যকে টেনে আর লম্বা করার চেষ্টা করো না বুঝেছ?</p>
+<p>নীলমানবটি কী বুঝল কে জানে, কিন্তু সে সম্মতিসূচকভাবে মাথা নেড়ে রিরার দিকে একদৃষ্টিতে তাকিয়ে রইল।</p>
+
+<p>রিরা ক্যাপ্টেনের ঘরে দীর্ঘসময় একা একা খাবারের ট্রে নিয়ে বসে থাকে। নিঃসঙ্গ এই মহাকাশযানটি আর কয়েকদিনের মাঝে ধ্বংস হয়ে যাবে, জীবনের এই শেষ কয়েকটি মুহূর্তে তার কোনো একজন আপনজনের সাথে কথা বলার জন্য বুকের ভেতরটি হাহাকার করতে থাকে। এখানে কোনো আপনজন নেই, একমাত্র জীবিত প্রাণী নীলমানবটির কথা তার ঘুরেফিরে মনে হতে থাকে। গুলিবিদ্ধ অসহায় প্রাণীটির শূন্যদৃষ্টির কথাটি সে ভুলতে পারে না। তার মনে হয় সে খাবারের ট্রেটি নিয়ে নীলমানবের কাছে যাবে, গিয়ে বলবে, আমি দুঃখিত যে তোমার সাথে এত দুর্ব্যবহার করেছি। এস জীবনের শেষ কয়েকটা মুহূর্ত আমরা ভুলে যাই তুমি নীলমানব এবং আমি মানুষ। দুজনে একসাথে বসে বসে খেতে খেতে কথা বলি।</p>
+<p>কিন্তু রিরা নীলমানবের কাছে গেল না, ক্যাপ্টেনের সুদৃশ্য ঘরে একা একা খাবারের ট্রে সামনে নিয়ে বসে রইল।</p>
+</div>
+<br/><h2>০৫. রিরা মনিটরের সামনে</h2>
+<hr/>
+<br/><div>
+<p>রিরা মনিটরের সামনে নিঃশব্দে বসে আছে। মহাকাশযানটি একটা নিউট্রন স্টারের গা ঘেঁষে যেতে যেতে গতি সঞ্চয় করছে—দূরে একটা গ্রহাণুপুঞ্জ, তার ভেতর দিয়ে যাবার কথা। রিরা গ্রহাণুপুঞ্জটি খুঁটিয়ে খুঁটিয়ে দেখে মহাকাশযানের মূল প্রসেসরকে জিজ্ঞেস করল, এই গ্রহাণুপুঞ্জের সব গ্রহ-উপগ্রহ কি নিখুঁতভাবে ক্যাটালগ করা আছে?</p>
+<p>আছে। এটা আমাদের নিয়মিত রুটের মাঝে পড়ে।</p>
+<p>তা হলে আমরা এখানকার ভালো দেখে একটা গ্রহে নেমে পড়ি না কেন?</p>
+<p>মহাকাশযানের মূল প্রসেসর কিছুক্ষণ অপেক্ষা করে বলল, এটি একটি অত্যন্ত অবাস্তব পরিকল্পনা।</p>
+<p>রিরা একটু রেগে উঠে বলল, কেন? অবাস্তব পরিকল্পনা কেন?</p>
+<p>এই মহাকাশযানটি খুব খারাপভাবে ক্ষতিগ্রস্ত হয়েছে—কোনো গ্রহে নামা বা সেখান থেকে ওঠার ক্ষমতা নেই। নামতে গেলে বিধ্বস্ত হবার আশঙ্কা শতকরা নব্বই ভাগ থেকে বেশি।</p>
+<p>রিরা কাঠকাঠ স্বরে হেসে উঠে বলল, মহাকাশে যেতে থাকলে এমনিতেই মহাকাশযান বিধ্বস্ত হয়ে যাবে—তা হলে নামার চেষ্টা করে বিধ্বস্ত হওয়া কি বুদ্ধিমানের কাজ না? যদি বেঁচে যাই, তা হলে কী লাভ হবে বুঝতে পারছ?</p>
+<p>না, বুঝতে পারছি না।</p>
+<p>তা হলে হয়তো ভবিষ্যতে কখনো কোনো মহাকাশযান এসে আমাদের উদ্ধার করতে পারবে।</p>
+<p>তার সম্ভাবনা দশমিক শূন্য শূন্য চার ভাগ।</p>
+<p>রিরা মাথা ঝাঁকিয়ে বলল, তুমি তোমার সম্ভাবনা হিসাব করে বের করা একটু বন্ধ করবে?</p>
+<p>আমি দুঃখিত রিরা। মূল প্রসেসর তার শুক ধাতবস্বরে বলল, আমি তোমাকে সিদ্ধান্ত নেবার ব্যাপারে সাহায্য করছিলাম।</p>
+<p>তোমার যেখানে সাহায্য করার কথা, সেখানে সাহায্য করলেই হবে। সিদ্ধান্ত নেবার ব্যাপারে সাহায্য করতে হবে না।</p>
+<p>ঠিক আছে।</p>
+<p>এখন ক্যাটালগ দেখে আমাকে জানাও কোন গ্ৰহটাতে নামা সবচেয়ে বেশি বুদ্ধিমানের কাজ হবে।</p>
+<p>মহাকাশযানের মূল প্রসেসর কিছুক্ষণ চুপ করে থেকে বলল, আমি সবগুলো গ্রহ পরীক্ষা করে দেখলাম। এর কোনোটাই দীর্ঘ সময় থাকার উপযোগী নয়।</p>
+<p>রিরা একটা নিশ্বাস ফেলে বলল, তোমাকে খুব সহজ একটা জিনিল বোঝানো যাচ্ছে! আমি আমার গ্রীষ্মের ছুটি কাটাতে এই গ্রহে যাচ্ছি না। আমি এই গ্রহে যাচ্ছি কোনো উপায় না দেখে হয়তো এই গ্রহে কিছুদিন থাকা যাবে—যে সময়ের ভেতরে কোনো উদ্ধারকারী মহাকাশযান আমাদের খুঁজতে আসবে। বুঝেছ?</p>
+<p>বুঝেছি।</p>
+<p>তা হলে আমাকে বলে কোন গ্রহটা সবচেয়ে কম বিপজ্জনক।</p>
+<p>মহাকাশযানের মূল প্রসেসর বলল, প্রথম প্রহটা ছোট–বায়ুমণ্ডল নেই, প্রতিমুহূর্তে উল্কাপাত হচ্ছে–খুব বিপজ্জনক। দ্বিতীয় গ্রহটা এখনো শীতল হয় নি, অসংখ্য আগ্নেয়গিরি ক্রমাগত লাভা বের হচ্ছে, এটাও বিপজ্জনক। তৃতীয় গ্ৰহটাতে একটা বায়ুমণ্ডল আছে, তাপমাত্রাও মোটামুটি আরামদায়ক–তবে গ্রহটা পুরোপুরি অন্ধকার।</p>
+<p>রিরা মাথা নেড়ে বলল, উহুঁ, অন্ধকার গ্রহে যাওয়া যাবে না। মহাকাশযানের প্রসেসর বলল, চতুর্থ গ্রহটাকে মনে করা যায় বাসযোগ্য, অবিশ্বাস্য হলেও সত্যি এর মাধ্যাকর্ষণজনিত ত্বরণ জি-এর কাছাকাছি। গ্রহটি মোটামুটি আলোকিত, একটা কাজ চালানোর মতো বায়ুমণ্ডল আছে, তবে অক্সিজেন সাপ্লাই না নিয়ে তুমি বের হতে পারবে লা।</p>
+<p>রিরা টেবিলে থাবা দিয়ে বলল, চমৎকার!</p>
+<p>আগেই চমৎকার বলো না। মানুষ প্রায় অর্ধশতাব্দী আগে এখানে কলোনি করেছিল, কিন্তু–</p>
+<p>কিন্তু কী?</p>
+<p>কোনো একটি অজ্ঞাত কারণে কলোনির সবাই মারা পড়েছিল। কারণটা বের করতে পারে নি মানুষ আর কখনো ফিরে আসে নি।</p>
+<p>রিরা ভুরু কুঁচকে বলল, আমাকে ভয় দেখানোর চেষ্টা করছ?</p>
+<p>না রিরা। আমি ভয় দেখানোর চেষ্টা করছি না, তোমাকে শুধু জানিয়ে রাখছি।</p>
+<p>অনেক ধন্যবাদ সেজন্য। রির অন্যমনস্কভাবে টেবিলে আঙুল দিয়ে কয়েকবার শব্দ করে বলল, এই গ্রহের সব মানুষ কেন মারা পড়েছিল, সেটা নিয়ে কোনো তথ্য আছে?</p>
+<p>না নেই। মহাকাশযানের প্রসেসর তার শুকণ্ঠে বলল, তবে অসমর্থিত একটা তথ্য আছে।</p>
+<p>সেটা কী?</p>
+<p>এই গ্রহে কোনো এক ধরনের প্রাণের বিকাশ ঘটেছে। বুদ্ধিহীন, ভয়ংকর এবং নৃশংস প্রাণী।</p>
+<p>রিরা একটা নিশ্বাস ফেলল, বলল, আমার জীবনে যেন যথেষ্ট উত্তেজনা নেই—এখন। বুদ্ধিহীন ভয়ংকর নৃশংস প্রাণীর সাথে সময় কাটাতে হবে! কপালটা দেখেছ? এর চাইতে ভালো কোনো গ্রহ আছে?</p>
+<p>না। অন্য গ্রহগুলো বড় এবং অস্থিতিশীল। জি-এর মান এত বেশি যে নিজের শরীরের ওজনেই মারা পড়বে।</p>
+<p>বেশ, তা হলে বুদ্ধিহীন ভয়ংকর এবং নৃশংস প্রাণীর গ্রহটাতেই নামার ব্যবস্থা কর।</p>
+<p>কাজটি জটিল এবং বিপজ্জনক।</p>
+<p>আমি জানি। রিরা হাসার চেষ্টা করে বলল, বেঁচে থাকার প্রক্রিয়াটাই জটিল এবং বিপজ্জনক। তবুও কি আমরা বেঁচে থাকার চেষ্টা করি না?</p>
+<p>মহাকাশযানের কিছু গুরুত্বপূর্ণ নিয়ন্ত্রণ নষ্ট হয়েছে—অবতরণ করাটি প্রায় দুঃসাধ্য।</p>
+<p>তুমি কিছু চিন্তা করো না রিরা মুখে হাসি ফুটিয়ে বলল, আমি তোমাকে সাহায্য করব।</p>
+<p>তুমি আমাকে সাহায্য করবে?</p>
+<p>হ্যাঁ। এত অবাক হচ্ছ কেন?</p>
+<p>মূল প্রসেসর শুষ্ক এবং ভাবলেশহীন কণ্ঠে বলল, আমি অবাক হচ্ছি না। সত্যি কথা বলতে কী, অবাক বা রাগ হওয়ার মতো মানবিক ক্ষমতাগুলো আমাদের নেই। তবে ঘোর অবাস্তব পরিকল্পনা আমরা নিরুৎসাহিত করি।</p>
+<p>আমরা করি না। রিরা গলায় খানিকটা উৎফুল্ল ভাব ফুটিয়ে বলল, মহাকাশ একাডেমিতে বিপজ্জনক পরিস্থিতিতে মহাকাশযান অবতরণের ওপরে আমার একটি কোর্স ছিল। দেখা যাক যেসব বিষয় শিখিয়েছে সেটা সত্যি কি না!</p>
+<p>মহাকাশযানের মূল প্রসেসর কোনো কথা না বলে শুধুমাত্র একটা যান্ত্রিক দীর্ঘশ্বাসের মতো শব্দ করল।</p>
+
+<p>প্রথমে মহাকাশযানটিকে গ্রহের কক্ষপথে আটকে নিতে হল, পুরো কাজটি ছিল অত্যন্ত বিপজ্জনক। নিউট্রন স্টারের পাশ দিয়ে যাবার সময় এটি যে বিশাল গতিবেগ সঞ্চয় করেছে, তার প্রায় পুরোটুকুই কমিয়ে আনতে হল। ক্ষতিগ্রস্ত ইঞ্জিন দিয়ে সেই কাজটি করা খুব কঠিন। প্রথম কক্ষপথটি হল বিশাল, খুব ধীরে ধীরে সেই কক্ষপথ ছোট করে আনতে শুরু করে। গ্রহের বায়ুমণ্ডলের ঠিক বাইরে পুরোপুরি বৃত্তাকার কক্ষপথে মহাকাশযানটিকে আবদ্ধ করে নেওয়ার পর রিরা গ্রহটির খুঁটিনাটির দিকে নজর দিল। উঁচু-নিচু পাথরে ঢাকা বিশাল একটি গ্রহ, একটা বড় অংশ সাদা বালু দিয়ে ঢাকা। মহাকাশযানটিকে নামানোর জন্য একটা সমতল জায়গা প্রয়োজন। শেষবার মানুষ যেখানে বসতি করেছিল, তার আশপাশে নামতে পারলে সবচেয়ে ভালো, অনেক ভাবনা-চিন্তা করে নিশ্চয়ই জায়গাটা ঠিক করা হয়েছিল। শেষ পর্যন্ত অবিশ্যি কোনো মানুষই বেঁচে থাকে নি—তবে সেটা ভিন্ন কথা। সেটা নিয়ে পরে দুশ্চিন্তা করলেও হবে।</p>
+<p>মহাকাশযানটি প্রতি ঘণ্টায় একবার পুরো গ্রহটি প্রদক্ষিণ করছে শক্তিশালী টেলিস্কোপ দিয়ে রিরা গ্ৰহটাকে খুঁটিয়ে খুঁটিয়ে দেখল। বুদ্ধিহীন ভয়ংকর এবং নৃশংস প্রাণী থাকার কথা কিন্তু মহাকাশ থেকে সেগুলো চোখে পড়ল না।</p>
+<p>গ্রহটিতে বেশ লম্বা একটা সমতল জায়গা খুঁজে বের করে রিরা মহাকাশযানের মূল প্রসেসরের সাথে কথা বলতে শুরু করে। বায়ুমণ্ডলে প্রবেশ করার পর প্রচণ্ড ঘর্ষণে মহাকাশযানের বাইরের অংশ ভয়ংকর উত্তপ্ত হয়ে উঠবে, অন্য সময় সেটি একটি বড় সমস্যা, কিন্তু এখন রিরা সেটি নিয়ে মাথা ঘামাল না এই মহাকাশযানটিকে অক্ষত রাখার কোনো কারণ নেই, গতিবেগ কমিয়ে কোনোভাবে গ্রহটির শক্ত মাটিতে নামিয়ে স্থির করতে পারলেই হবে—তার ফলে মহাকাশযানের যে ক্ষতি হয় হোক! বিশাল মহাকাশযানের দুইতিনটি ছোট কেবিন অক্ষত থাকলেই সে দীর্ঘ সময় বেঁচে থাকতে পারবে। এই মহাকাশযানটি নিয়ে সে এমনিতেই আর কখনো মহাকাশে উঠতে পারবে না।</p>
+<p>বায়ুমণ্ডলে প্রবেশ করতে শুরু করার পর হঠাৎ রিরার নীলমানবটির কথা মনে পড়ল। পরবর্তী এক ঘণ্টা অত্যন্ত বিপজ্জনক সময় মহাকাশযানের মূল প্রসেসরের হিসেবে ঠিকভাবে অবতরণ করার সম্ভাবনা শতকরা মাত্র দশ ভাগ। এই সময়টিতে মহাকাশযান নানারকম ঝড়-ঝাঁপটার মাঝে পড়বে। মহাকাশচারীদের বিশেষ পোশাক পরে জীবন। সংরক্ষণ মডিউলে বসে থাকার কথা—রিরা নিজেও তার কিছু করে নি। নীলমানবটির অবস্থা আরো খারাপ; একটা ছোট ঘরে তালাবদ্ধ অবস্থায় আছে। যদি বড় দুর্ঘটনা হয়, নীলমানবটি খাচায় আটকে থাকা ইঁদুরের মতো মারা পড়বে। রিরা জোর করে তার মাথা থেকে চিন্তাটি সরিয়ে দিল।</p>
+<p>বিশাল মহাকাশযানটি বায়ুমণ্ডলের ভেতরে ঢুকতে শুরু করেছে, বাতাসের ঘর্ষণে মহাকাশযানের বাইরের অংশ উত্তপ্ত হতে শুরু করেছে। রিরা মনিটরে দেখতে পেল, তাপমাত্রা বিপজ্জনক সীমার কাছে পৌঁছে গেছে। বাতাসের ঝাঁপটাটি এসে লাগছে মহাকাশযানের নিচের অংশে—বিশেষ তাপ অপরিরাহী পদার্থ দিয়ে তৈরি অংশটুকু আগুনের মতো গরম হয়ে উঠেও তাপকে ভেতরে যেতে দিচ্ছে না। রিরা মহাকাশযানের ভেতরে এখনো কোনো বাড়তি তাপমাত্রা অনুভব করছে না।</p>
+<p>মহাকাশযানটি থরথর কাঁপছে, রিরা মনিটরে দেখতে পায় আগুনের ফুলকির মতো ছোট ছোট ধাতব কণা মহাকাশযানের পাশ দিয়ে ছুটে যাচ্ছে। হঠাৎ একটা বিস্ফোরণের শব্দ হল, ভয়ংকর ঝাকুনি দিয়ে পুরো মহাকাশযানটি প্রায় উল্টে যেতে গিয়ে আবার স্থির হয়ে গেল সম্ভবত একটি এন্টেনা বাতাসের ঝাঁপটায় ভেঙে উড়ে গেছে, খুব সাবধানে সে বুকের ভেতরে চাপা থাকা একটা নিশ্বাস বের করে দেয়।</p>
+<p>রিরা তীক্ষ্ণ দৃষ্টিতে মনিটরের দিকে তাকিয়ে গতিবেগ দেখতে থাকে, ধীরে ধীরে সেটি কমতে শুরু করেছে। ঘণ্টায় হাজার কিলোমিটারে নেমে আসার পর সে মহাকাশযানের দুটি পাখা বের করে দেবার চেষ্টা করবে। যেহেতু এখানে বায়ুমণ্ডল আছে সে সেখানে ভেসে থাকার সুযোগটা নিতে চায়।</p>
+<p>আবার একটা ভয়ংকর বিস্ফোরণের শব্দ হল, মহাকাশযানটি নিয়ন্ত্রণের বাইরে যেতে যেতে শেষমুহূর্তে নিয়ন্ত্রণে চলে এল। ভয়ংকর ঝাঁকুনি দিতে শুরু করেছে, ভেতরে বিকট শব্দ হচ্ছে, মনে হচ্ছে বিশাল এই মহাকাশযানটিকে কেউ যেন দুমড়ে-মুচড়ে ভেঙে টুকরো টুকরো করে ফেলছে। ভেতরের তাপমাত্রা বেড়ে যেতে শুরু করেছে, তার সাথে একটা পোড়া গন্ধ। এভাবে বেশিক্ষণ চলতে থাকলে পুরো মহাকাশযানটি জ্বলেপুড়ে শেষ হয়ে যাবে। রিরা নিশ্বাস বন্ধ করে মহাকাশযানের কন্ট্রোল স্টিয়ারিং ধরে রাখে, খুব ধীরে ধীরে গতিবেগ কমে আসছে, শব্দের গতিবেগের নিচে নেমে আসার পর ভয়ংকর শব্দে সনিক বুমটি শুনতে পেল—রিরা বুকের ভেতর আটকে থাকা নিশ্বাসটি বের করে দেয়, বিপদের প্রথম ধাক্কাটি শেষ হয়েছে বায়ুমণ্ডল ভেদ করে সে মহাকাশযানটিকে গ্রহের ভেতরে নিয়ে এসেছে। এখন দ্বিতীয় এবং সবচেয়ে বড় চ্যালেঞ্জ। মহাকাশযানটিকে শক্ত মাটির উপরে নামানো। একটু ভুল হলেই এটি মুহূর্তের মাঝে বিধ্বস্ত হয়ে যাবে।</p>
+<p>রিরা মনিটরের দিকে তাকাল, এটি দ্রুত নিচে নামছে—এই গতিতে নিচে নামতে থাকলে কোনোভাবেই মহাকাশযানটিকে রক্ষা করা যাবে না। রিরা কন্ট্রোলরুমের স্টিয়ারিং টেনে পাখা দুটো বের করার চেষ্টা করল, শক্ত স্টিয়ারিং নড়তে চায় না, পুরো শরীর দিয়ে ধাক্কা দিয়ে শেষ পর্যন্ত টেনে আনতে পারল, প্রায় সাথে সাথে সে ঘরঘর একটা শব্দ শুনতে পায়। মহাকাশযানের মূল ইঞ্জিন তার মোটর চালু করে পাখা দুটো বের করতে শুরু করেছে। রিরা নিশ্বাস বন্ধ করে তাকিয়ে থাকে, মোটরের ঘরঘর শব্দ বন্ধ হবার পর সে স্বস্তির নিশ্বাস ফেলল। মহাকাশযানটিকে রক্ষা করার সম্ভাবনা এখন আরো কয়েক গুণ বেড়ে গেছে।</p>
+<p>বিশাল পাখা মেলে অতিশয় একটা পাখির মতো এই মহাকাশযানটি নিচে নেমে আসতে শুরু করেছে। পাখার নিচে ছোট ছোট জেট ইঞ্জিন রয়েছে, থেমে যাবার আগের মুহূর্তে সেগুলো চালু হয়ে মহাকাশযানটিকে সাবধানে নিচে নামিয়ে আনার কথা। কতগুলো জেট চালাতে পারবে সেটি রিরা জানে না, নীলমানদের সাথে সংঘর্ষের সময় তাদের অনেক জ্বালানি নষ্ট হয়েছে।</p>
+<p>রিরা তীক্ষ্ণ চোখে মনিটরের দিকে তাকিয়ে থাকে—এতক্ষণ পর্যন্ত সবকিছু পরিকল্পনা মতো কাজ করেছে—যদিও একেবারে শেষ অংশটুকু হচ্ছে সবচেয়ে কঠিন এবং সবকিছু পরিকল্পনা মতো কাজ করা পুরোপুরি অর্থহীন হয়ে যাবে, যদি শেষটুকু ঠিকভাবে সমাপ্ত না হয়। রিরা এই দীর্ঘসময় একটিবারও মূল প্রসেসরের সাথে কথা বলে নি—এই প্রথম সে খানিকটা সময় পেয়েছে। চাপা গলায় সে ডাকল, প্রসেসর।</p>
+<p>বলো রিরা।</p>
+<p>সবকিছু কি ঠিক আছে?</p>
+<p>প্রায়।</p>
+<p>প্রায় কেন বলছ?</p>
+<p>মহাকাশযানের দুটি পাখা অনেকটুকু জায়গা নিয়ে নিয়েছে।</p>
+<p>সে তো নেবেই। এত বড় মহাকাশযানকে ভাসিয়ে রাখতে হলে কয়েক কিলোমিটার লম্বা পাখা লাগার কথা।</p>
+<p>মূল প্রসেসর শান্ত গলায় বলল, আমি এবোডিনামিক্স নিয়ে প্রশ্ন করছি না।</p>
+<p>তা হলে কী নিয়ে প্রশ্ন করছ?</p>
+<p>মহাকাশযানটিকে সফলভাবে নামার ব্যাপারে প্রশ্ন করছি।</p>
+<p>রিরা নিশ্বাস বন্ধ করে বলল, সফলভাবে নামার ব্যাপারে তোমার কী প্রশ্ন?</p>
+<p>এটি একটি পাথুরে গ্রহ। পুরো গ্রহটিতে উঁচু-নিচু পাথর। তার একটা বড় সমস্যা আছে।</p>
+<p>রিরা দাঁত দিয়ে ঠোঁট কামড়ে ধরে বলল, পাথরের আঘাত খেয়ে পাখা ভেঙে যাবে?</p>
+<p>হ্যাঁ।</p>
+<p>কত উঁচুতে ভাঙবে?</p>
+<p>একেবারে নিখুঁতভাবে বলা যাচ্ছে না। গ্রহটাতে এক ধরনের ঝড়ো হাওয়া বইছে, মহাকাশযানটা ঠিক কোথায় নামবে বলা যাচ্ছে না। রাডার জ্বলেপুড়ে গেছে—কোনো নিয়ন্ত্রণ নেই নিশ্চয়ই জান।</p>
+<p>রিরা একটা নিশ্বাস ফেলে বলল, তুমি এটা আমাকে আগে কেন বলো নি?</p>
+<p>বলে লাভ কী? শুধু শুধু তুমি পুরো সময়টা দুশ্চিন্তা করতে। এখন দুশ্চিন্তা করবে শেষ কয়েকটি মুহূর্ত।</p>
+<p>শেষ মুহূর্ত কি চলে এসেছে?</p>
+<p>হ্যাঁ। আমার সুপারিশ হবে তুমি এখন মহাকাশযানের নিরাপত্তা পোশাক পরে নাও। আর সময় নেই।</p>
+<p>রিরা উঠে দাঁড়াল। মনিটরের দিকে তাকিয়ে হঠাৎ সে আতঙ্ক অনুভব করে। গ্রহটির অনেক নিচে নেমে এসেছে। যে গ্ৰহটাকে মহাকাশ থেকে মোটামুটি সমতল মনে হয়েছে মাটির কাছাকাছি এসে দেখা যাচ্ছে সেটা মোটেও সমতল নয় বড় বড় পাথর ছড়িয়েছিটিয়ে আছে। হঠাৎ হঠাৎ অনেক পাথর উঁচু হয়ে আছে। নিয়ন্ত্রণহীন একটা বড় পাখির মতো মহাকাশযানটি নিচে নেমে আসছে। ঠিক সোজাসুজি নামছে না, দুলতে দুলতে নামছে। মহাকাশযানের মাঝে আর সোজা হয়ে দাঁড়িয়ে থাকা যাচ্ছে না।</p>
+<p>রিরা সাবধানে দেয়াল ধরে অগ্রসর হতে শুরু করে। মূল প্রসেসর বলল, তুমি উল্টোদিকে যাচ্ছ রিরা, নিরাপত্তা পোশাকগুলো অন্যদিকে রাখা।</p>
+<p>আমি জানি।</p>
+<p>তা হলে?</p>
+<p>একটা নীলমাকে একটা ঘরে তালাবদ্ধ করে রাখা আছে। তালাটা খুলে দিই।</p>
+<p>কেন?</p>
+<p>মহাকাশযান বিধ্বস্ত হয়ে গেলে সে খাঁচায় আটকে পড়া ইঁদুরের মতো মারা যাবে।</p>
+<p>তাতে কী আসে যায়? নীলমানব মানুষ নয়—তাদের জীবন রক্ষা করার দায়িত্ব তোমার নয়। তা ছাড়া–</p>
+<p>তা ছাড়া কী?</p>
+<p>তা ছাড়া সে মুক্ত হতে পারলে নিশ্চিত তোমাকে হত্যা করবে।</p>
+<p>রিরা কয়েক মুহূর্ত দ্বিধা করে বলল, তোমার তা-ই ধারণা?</p>
+<p>এটি আমার ধারণা নয়। আমি নিশ্চিতভাবে জানি। আমি চাই তুমি সুযোগ। থাকতেই তাকে গুলি করে হত্যা কর। সরাসরি মস্তিষ্কে আট পয়েন্টের একটি গুলি। করা হলে হত্যাকাণ্ডটি সম্পর্কে নিশ্চিত হওয়া যাবে। তুমি স্বয়ংক্রিয় অস্ত্রটি নিয়ে যাও।</p>
+<p>স্বয়ংক্রিয় অস্ত্রটি নিয়ে যাব?</p>
+<p>হ্যাঁ। মহাকাশযানের মূল প্রসেসর তার যান্ত্রিক কণ্ঠে খানিকটা ব্যস্ততার ভাব ফুটিয়ে বলল, কোনো একটা উঁচু পাথরে আঘাত লেগে মহাকাশযানটি বিধ্বস্ত হয়ে গেলে বন্দি নীলমানবটির ঘরের দরজা বা দেয়াল ভেঙে যেতে পারে, সে তখন বের হয়ে আসতে পারে।</p>
+<p>রিরা দ্বিধান্বিতভাবে বলল, কিন্তু—</p>
+<p>কিন্তু কী?</p>
+<p>মানুষকে যেসব জিনিস শেখানো হয়, তার একটি হচ্ছে কখনো বন্দি মানুষকে হত্যা না করা। তার চাইতে বড় কোনো কাপুরুষতা হতে পারে না।</p>
+<p>নীলমানব মানুষ নয়। তাকে ভিন্ন কোনো প্রাণী হিসেবে বিবেচনা করতে পার।</p>
+<p>রিরা মাথা নাড়ল, বলল, বন্দি হচ্ছে বন্দি। মানুষ কিংবা অন্য যে কোনো প্রাণীই হোক কেন।</p>
+<p>মহাকাশযানের মূল প্রসেসব কঠোর কণ্ঠে বলল, তোমার এই ছেলেমানুষি যুক্তির কারণে তুমি ভয়ংকর বিপদগ্রস্ত হবে।</p>
+<p>রির উত্তরে কিছু একটা বলতে যাচ্ছিল কিন্তু হঠাৎ করে প্রচণ্ড আঘাতে পুরো মহাকাশযানটি কেঁপে উঠল। ভয়ংকর শব্দে তার কানে তালা লেগে যায়, মহাকাশযানটি পাক খেয়ে উল্টে যেতে থাকে প্রচণ্ড আঘাতে রিরা ছিটকে পড়ে। বিকট বিস্ফোরণের শব্দ শুনতে পেল সে—মহাকাশযানটি দুমড়ে-মুচড়ে ভেঙেচুরে টুকরো টুকরো হয়ে যাচ্ছে। রিরার মনে হতে থাকে সে কোথাও পড়ে যাচ্ছে হাত বাড়িয়ে কিছু একটা ধরার চেষ্টা করে কিন্তু কিছুই ধরতে পারে না সে। কেউ একজন চিৎকার করছে অমানুষিক গলায়, কালো ধোঁয়ায় ঢেকে যাচ্ছে মহাকাশযানটি, পোড়া গন্ধে নিশ্বাস নিতে পারছে না রিরা। কিছু একটা প্রচণ্ড শব্দে ভেঙে পড়ল, আগুনের হলকার মতো কিছু একটা অনুভব করল রিরা। ভয়ংকর অমানুষিক যন্ত্রণায় শরীরের ভেতরে কুঁকড়ে উঠতে থাকে। মহাকাশযানের আলো নিভে গেল হঠাৎ রিরা ওঠার চেষ্টা করতে থাকে কিন্তু উঠতে পারে না। কোনো একটা ধাতব বিমের নিচে আটকা পড়ে গেছে। প্রাণপণে বের হতে চেষ্টা করছে কিন্তু বের হতে পারছে না, শরীরের একটা অংশ আটকা পড়ে গেছে তার। ঘুটঘুটে অন্ধকারে দেখার চেষ্টা করছে রিরা কিন্তু সে কিছুই দেখতে পারছে না। খানিকটা বাতাসের জন্য বুকের ভেতরটা ফেটে যাচ্ছে কিন্তু সে নিশ্বাস নিতে পারছে না। অমানুষিক যন্ত্রণায় চিৎকার করতে চেষ্টা করে কিন্তু তার গলা থেকে কোনো আওয়াজ বের হয় না।</p>
+<p>রিরা হঠাৎ করে অনুভব করে, গাঢ় অন্ধকারে সে তলিয়ে যাচ্ছে ধীরে ধীরে। মনে হতে থাকে আর কখনোই সে এই অন্ধকার থেকে বুঝি উঠে আসতে পারবে না।</p>
+</div>
+<br/><h2>০৬. রিরার জ্ঞান ফিরে আসে</h2>
+<hr/>
+<br/><div>
+<p>খুব ধীরে ধীরে রিরার জ্ঞান ফিরে আসে। মহাকাশযানের ভেতর সব সময়ই অল্প কম্পনের একটা শব্দ হতে থাকে। সেই শব্দটা এখন নেই। যে শক্তিশালী কুরু ইঞ্জিনটি মহাকাশযানটিকে উড়িয়ে নিয়ে এসেছে, এই প্রথমবার সেই ইঞ্জিনটি বন্ধ হয়ে গেছে, হঠাৎ করে পুরো মহাকাশযানে একটি বিস্ময়কর নৈঃশব্দ্য নেমে এসেছে। রিরা মনে করতে চেষ্টা করে সে কোথায়, তার কী হয়েছে। সে মহাকাশযানটিকে অবতরণ করানোর চেষ্টা করছিল, মহাকাশযানের বিশাল দুটি পাখা বের হয়ে এসেছিল, খুব ধীরে ধীরে সেটি নেমে আসছিল, ঠিক তখন এক ভয়ংকর বিস্ফোরণের শব্দ হল–</p>
+<p>হঠাৎ রিরার সব কথা মনে পড়ে যায়, লাফিয়ে উঠে বসে সে। চোখ খুলে তাকিয়ে দেখে ক্যাপ্টেনের ঘরে নরম বিছানায় শুয়ে আছে সে। কে এনেছে তাকে এখানে?</p>
+<p>রিরা বিছানা থেকে নামার চেষ্টা করে হঠাৎ মুখ থুবড়ে নিচে পড়ে গেল, অবাক হয়ে আবিষ্কার করল তার দুই পা শেকল দিয়ে বাধা। রিরা হতচকিত হয়ে নিজের পায়ের দিকে তাকিয়ে থাকে, কে তাকে বেঁধে রেখেছে এখানে? রিরা কাপা গলায় ডাকল, প্রসেসর… প্রসেসর…।</p>
+<p>ক্যাপ্টেনের ঘরে প্রসেসর শুষ্ক গলায় উত্তর দিল, বলো রিরা।</p>
+<p>আমাকে কে বেঁধে রেখেছে?</p>
+<p>তুমি যথেষ্ট বুদ্ধিমতী মেয়ে, তোমার এটি জানার কথা।</p>
+<p>নীলমানব?</p>
+<p>হ্যাঁ। আমি বলেছিলাম তাকে হত্যা করতে তুমি রাজি হলে না। এখন তার মূল্য দিচ্ছ।</p>
+<p>সে কেমন করে বের হল?</p>
+<p>মহাকাশযানটি যখন বিধ্বস্ত হয়েছে, তখন তার ঘরের দরজা ক্ষতিগ্রস্ত হয়েছিল। সে তখন তার দরজা ভেঙে বের হয়ে এসেছে।</p>
+<p>কিন্তু… তার পায়ে গুলি লেগেছিল?</p>
+<p>মূল প্রসেসর একমুহূর্ত অপেক্ষা করে বলল, সে খুঁজে খুঁজে মেডিক্যাল কিট বের করে পায়ে ব্যান্ডেজ করেছে। যন্ত্রণা কমানোর জন্য নিথিলিন ইনজেকশন নিয়েছে, তারপর খুঁড়িয়ে খুঁড়িয়ে হেঁটে হেঁটে সবকিছু করেছে।</p>
+<p>রিরা বড় বড় দুটি নিশ্বাস ফেলে বলল, আমাকে টেনে বের করে এনেছে?</p>
+<p>হ্যাঁ, তুমি একটা বিমের নিচে আটকা পড়েছিলে, অনেক কষ্ট করে সেই বিমের নিচে থেকে টেনে বের করে এনেছে।</p>
+<p>তুমি বলেছিলে সে আমাকে গুলি করে মারবে।</p>
+<p>মূল প্রসেসর ধাতব গলায় বলল, তার সময় এখনো শেষ হয়ে যায় নি। তুমি ভুলে যেও না তোমার দুই পা শিকল দিয়ে বাধা। তোমাকে হত্যা করতে তার এক সেকেন্ড সময়ও লাগবে না।</p>
+<p>কিন্তু—</p>
+<p>মূল প্রসেসর রিরাকে বাধা দিয়ে বলল, নীলমানব এদিকে আসছে।</p>
+<p>রিরার গলার স্বর কেঁপে উঠল, সে কি সশস্ত্র?</p>
+<p>হ্যাঁ। তার হাতে একটা স্বয়ংক্রিয় অস্ত্র।</p>
+<p>রিরা একটা বড় নিশ্বাস নিয়ে তার বিছানায় গিয়ে বসে। একটু আগেই নীলমানব ছিল তার হাতে বন্দি, এখন সে নীলমানবের হাতে বন্দি।</p>
+<p>খুট করে একটা শব্দ হল, তারপর খুব ধীরে ধীরে দরজা খুলে গেল। রিরা তাকিয়ে দেখল ঘরের দরজায় দীর্ঘদেহী নীলমানবটি পাথরের মতো মুখ করে তাকিয়ে আছে। তার ডান হাতে আলগোছে একটা স্বয়ংক্রিয় যন্ত্র ধরে রাখা। রিরা তীব্র দৃষ্টিতে তাকিয়ে বলল, তুমি আমাকে কেন শেকল দিয়ে বেঁধে রেখেছ?</p>
+<p>নীলমানবটি তার কথা বুঝতে পারল কি না বোঝা গেল না, কিন্তু সে উত্তর দেবার কোনো চেষ্টা না করে স্থিরদৃষ্টিতে তাকিয়ে রইল। রিরা উচ্চকণ্ঠে ডাকল, প্রসেসর… প্রসেসর…</p>
+<p>বলো।</p>
+<p>তুমি কি নীলমানবের ভাষা জান?</p>
+<p>জানি।</p>
+<p>তুমি আমার প্রশ্নটি অনুবাদ করে দাও।</p>
+<p>রিরা শুনতে পেল কোনো একটি বিজাতীয় ভাষায় প্রসেসর তার প্রশ্নটি অনুবাদ করে দিচ্ছে। প্রশ্নটি শুনে নীলমানব খুঁড়িয়ে খুঁড়িয়ে ঘরের ভেতরে ঢুকল, তারপর কিছু একটা উত্তর দিল। রিরা জিজ্ঞেস করল, কী বলেছে সে?</p>
+<p>প্রসেসর বলল, সে বলেছে তুমি যে কারণে আমাকে বন্দি করে রেখেছিলে, আমি ঠিক সেই কারণে তোমাকে বন্দি করে রেখেছি।</p>
+<p>রিরা চিৎকার করে বলল, তাকে বলল এটা আমাদের মহাকাশযান তার না। আমার তাকে বন্দি করে রাখার অধিকার আছে। তার নেই।</p>
+<p>মূল প্রসেসর রিরার কথাটির অনুবাদ করে শুনিয়ে দিল এবং তখন প্রথমবার নীলমানবটিকে হাসতে দেখল। নীলমানবটির চেহারা নিষ্ঠুর কিন্তু হাসার সময় এটা রিরা স্বীকার না করে পারল না সে অত্যন্ত সুদর্শন।</p>
+<p>নীলমানবটি কিছু একটা বলে খুঁড়িয়ে খুঁড়িয়ে ঘর থেকে বের হয়ে যেতে উদ্যত হল। রিরা জিজ্ঞেস করল, কী বলেছে সে?</p>
+<p>তেমন গুরুত্বপূর্ণ কিছু নয়।</p>
+<p>কিন্তু আমি শুনতে চাই।</p>
+<p>সে বলেছে তোমার কথাবার্তা অল্পবয়সী শিশুর মতো।</p>
+<p>রিরা নিশ্বাস আটকে রেখে বলল, তাই বলেছে?</p>
+<p>হ্যাঁ।</p>
+<p>তাকে বলে এই মুহূর্তে আমার পায়ের শেকল খুলে দিতে।</p>
+<p>বলে কোনো লাভ হবে না রিরা।</p>
+<p>লাভ না হলে নাই। তাকে বলো।</p>
+<p>মূল প্রসেসর নীলমানরটিকে তার ভাষায় শেকল খুলে দিতে বলল। সাথে সাথে নীলমানবের মুখমণ্ডল কঠোর হয়ে ওঠে, হাতের স্বয়ংক্রিয় অস্ত্র ঝাঁকিয়ে কিছু একটা বলে, সে খুঁড়িয়ে খুঁড়িয়ে ঘর থেকে বের হয়ে যায়। রিরা জিজ্ঞেস করল, কী বলেছে নীলমানব?</p>
+<p>বলেছে অর্থহীন কথা বলে শক্তিক্ষয় না করতে। তাই বলেছে?</p>
+<p>হ্যাঁ। তারপর বলেছে এই মুহূর্তে তোমাকে হত্যা করার তার কোনো পরিকল্পনা নেই। কিন্তু তুমি যদি বাড়াবাড়ি কর, তা হলে সে তার মত পরিবর্তন করতে পাবে।</p>
+<p>রিরার ভেতরে এক ধরনের অক্ষম ক্রোধ পাক খেতে থাকে। সে দাতে দাঁত ঘষে বলল, সে এখন কোথায় যাচ্ছে? কী করছে?</p>
+<p>সব সময় যা করে।</p>
+<p>সব সময় কী করে?</p>
+<p>মহাকাশযানের নিরাপত্তা নিশ্চিত করছে। যত জায়গা ভেঙেচুরে গেছে সেগুলো বন্ধ করছে। অস্ত্র হাতে ঘুরে বেড়াচ্ছে।</p>
+<p>কেন?</p>
+<p>কেউ যেন ঢুকতে না পারে।</p>
+<p>রিরা নিশ্বাস বন্ধ করে বলল, কে ঢুকবে এখানে?</p>
+<p>তোমাকে আগেই বলেছি, এখানে বুদ্ধিহীন নৃশংস ভয়ংকর এক ধরনের প্রাণী থাকে।</p>
+<p>রিরা মাথা নাড়ল, বলল, হ্যাঁ, তুমি বলেছিলে। এখন সেটা খুব কাছের ব্যাপার হয়ে গেছে।</p>
+<p>রিরা বিষদৃষ্টিতে তার পায়ের শেকলের দিকে তাকিয়ে থাকে, তারপর দুই হাতে ভর দিয়ে বিছানায় শুয়ে পড়ে। ক্যাপ্টেনের ঘরের ছাদের দিকে তাকিয়ে থেকে বলল, প্রসেসর।</p>
+<p>বলো।</p>
+<p>এই গ্রহের কি কোনো নাম আছে?</p>
+<p>আগে ছিল। এখন নেই, এখন শুধু একটি সংখ্যা।</p>
+<p>এই গ্রহের প্রাণীগুলো কী রকম তুমি জান?</p>
+<p>না, জানি না।</p>
+<p>কিছুই জান না?</p>
+<p>না, কিছুই জানি না। মহাকাশযানটা যখন বায়ুমণ্ডলের ভেতর দিয়ে নামিয়ে এনেছ, তখন প্রচণ্ড উত্তাপে বাইরের দিকের সবকিছু জ্বলেপুড়ে শেষ হয়ে গেছে। সেখানে আমাদের সব সেন্সর ছিল। সেন্সরগুলো থাকলে আমি এই গ্রহটাকে খুঁটিয়ে খুঁটিয়ে পরীক্ষা করতে পারতাম। এখন আমি কিছু করতে পারি না, কিছু দেখতে পারি না।</p>
+<p>শুধু মহাকাশযানের ভেতরে দেখতে পার?</p>
+<p>হ্যাঁ, মহাকাশযানের ভেতর্বকার ক্যামেরাগুলো নষ্ট হয় নি—ভেতরে দেখতে পারি।</p>
+<p>রিরা একটা নিশ্বাস ফেলে জিজ্ঞেস করল, নীলমানব এখন কী করছে?</p>
+<p>এতক্ষণ মহাকাশযানের সামনে দাঁড়িয়ে বাইরের দিকে তাকিয়ে ছিল। কয়েকটা। স্বয়ংক্রিয় অস্ত্র বসিয়ে এসেছে। এখন খুঁড়িয়ে খুঁড়িয়ে পিছন দিকে যাচ্ছে, ঘাড়ে করে বেশ কয়েকটা স্বয়ংক্রিয় অস্ত্র নিয়ে যাচ্ছে।</p>
+<p>তুমি বলতে চাও নীলমানবটা কোনো বিশ্রাম নেয় না?</p>
+<p>না।</p>
+<p>খায় না?</p>
+<p>না, এখনো খেতে দেখি নি।</p>
+<p>ঘুমায় না?</p>
+<p>এখনো ঘুমায় নি।</p>
+<p>রিরা কোনো কথা না বলে ছাদের দিকে মাথা রেখে দুই হাতের উপর শুয়ে রইল।</p>
+<p>নীলমানব খায় না বা ঘুমায় না—কথাটা পুরোপুরি সত্যি নয়। ঘণ্টা ছয়েক পরে সে একটা খাবারের ট্রে নিয়ে হাজির হল। মেঝেতে রেখে সে ট্রেটা পা দিয়ে রিরার দিকে ঠেলে দিল। রিরা চাপা গলায় বলল, প্রসেসর।</p>
+<p>বলো।</p>
+<p>ওকে বলো একজন মানুষকে পা দিয়ে খাবার ঠেলে দেওয়া যায় না। সেটা অসম্মানজনক।</p>
+<p>বলে লাভ নেই।</p>
+<p>কেন?</p>
+<p>সে এসব বোঝে না। নীলমানদের কালচার মানুষের কালচার থেকে ভিন্ন।</p>
+<p>হোক। রিরা পাথরের মতো মুখ করে বলল, তুমি ওকে বলো একজন মানুষকে তার খাবার পা দিয়ে ঠেলে দেওয়া যায় না।</p>
+<p>প্রসেসর বিজাতীয় ভাষায় কিছু একটা বলল এবং নীলমানবকে হঠাৎ একটু বিভ্রান্ত দেখায়। সে কয়েক মুহূর্ত একটা কিছু ভাবল, তারপর হাতের স্বয়ংক্রিয় অস্ত্রটি তাক করে রিরার দিকে এগিয়ে এল। রিরার কাছাকাছি এসে সে খাবারের ট্রেটা হাতে নিয়ে রিরার দিকে এগিয়ে দেয়, নিচু গলায় বলে, অনুগ্রহ করে। কিশিমারা।</p>
+<p>রিরা স্থিরদৃষ্টিতে কিছুক্ষণ নীলমানবটির দিকে তাকিয়ে থেকে বলল, কুগুরা। ধন্যবাদ।</p>
+<p>নীলমানবটি দুই পা পিছনে সরে গিয়ে হেলান দিয়ে বসে রিরার দিকে স্থিরদৃষ্টিতে তাকিয়ে রইল। রিরা খাবারের ট্রেটির দিকে তাকাল, একজন মানুষ যতটুকু খেতে পারে খাবার তার থেকে অনেক বেশি। নীলমানবদের খাবারের অভ্যাস নিশ্চয়ই অন্যরকম, কারণ ট্রেতে প্রোটিনের পরিমাণ অনেক বেশি। রিরা যেটুকু খেতে পারবে, আলাদা করে সরিয়ে বার্কি খাবারসহ ট্রেটা নীলমানবটির দিকে এগিয়ে দেয়। নীলমানটা অনিশ্চিতভাবে কিছুক্ষণ রিরার দিকে তাকিয়ে থাকে, তারপর এগিয়ে এসে খাবারের ট্রেটা হাতে নেয়। রিরা যখন খেতে শুরু করল তখন নীলমানবটিও খৈতে শুরু করল। নীলমানবের খাবারের ভঙ্গিটুকু এক বিচিত্র, খাবারের টুকরো যত ছোটই হোক কিংবা যত বড়ই হোক সেটা সে দুই হাতে ধরে খায়। কে জানে এর পেছনে হয়তো কোনো সংস্কার রয়েছে। তবে রিরার কৌতূহলটি হল অন্য ব্যাপারে, যে কোনো কারণেই হোক নীলমানবটি বসেছে তার কাছাকাছি, স্বয়ংক্রিয় অস্ত্রটা রেখেছে এমন জায়গায় যে রিরা ইচ্ছে করলে সেটা ধরে ফেলতে পারে। রিরা খেতে খেতে পুরো ব্যাপারটা একটু ভেবে দেখল নীলমানবটি কিছু সন্দেহ করছে না, অন্যমনস্কভাবে খাবার মুখে তুলছে। রিরা বাম হাত দিয়ে ইচ্ছে করলেই এক ঝটকায় স্বয়ংক্রিয় অস্ত্রটা তুলে নিতে পারে সাথে সাথে এই মহাকাশযানে পুরো সমীকরণটি পাল্টে যাবে। যদি তুলতে না পারে তা হলে একটা ঝামেলা হতে পারে কিন্তু সেটা নিয়ে এখন চিন্তা না করাই ভালো। রিরা চোখের কোনা দিয়ে নলিমানবটিকে লক্ষ করল এবং যখন সে দু হাতে এক টুকরো প্রোটিন হাতে নিয়েছে রিরা তখন ঝাঁপিয়ে পড়ল স্বয়ংক্রিয় অস্ত্রটির ওপর।</p>
+<p>নীলমানবটি হকচকিয়ে গিয়ে যখন কী হচ্ছে বুঝতে পেরেছে তখন খুব দেরি হয়ে। গেছে। রিরার হাতে স্বয়ংক্রিয় অস্ত্র এবং ট্রিগারে আঙুল। সে হিংস্র গলায় বলল, দুই হাত উপরে নীলমানব।</p>
+<p>নীলমানবটি কী করবে বুঝতে পারছিল না, রিরা তখন অধৈর্য গলায় চিৎকার করে উঠল, হাত উপরে।</p>
+<p>নীলমানবটি ইতস্ততভাবে হাত উপরে তুলল। রিরা স্বয়ংক্রিয় অস্ত্র ঝাকুনি দিয়ে বলল, দেয়ালের কাছে যাও। নীলমানবটি বিভ্রান্ত হয়ে দুই হাত উপরে তুলে দেয়ালের কাছে এগিয়ে যায়। দেয়ালে হেলান দিয়ে সে এক ধরনের বিস্ময় নিয়ে রিরার দিকে তাকিয়ে রইল।</p>
+<p>প্রসেসর হঠাৎ শিস দেওয়ার মতো একটা শব্দ করে বলল, চমৎকার।</p>
+<p>রিরা কোনো কথা বলল না। প্রসেসর আবার বলল, গুলি কর রিরা। অস্ত্রটি তার হৃৎপিণ্ডের দিকে তাক করে গুলি কর। তুমি আরো একবার সুযোগ পেয়ে আমি নিশ্চিতভাবে বলতে পারি আর এই সুযোগ পাবে না।</p>
+<p>রিরা অস্ত্র তাক করে দাঁড়িয়ে রইল, প্রসেসর আবার বলল, গুলি কর রিরা। গুলি</p>
+<p>কর।</p>
+<p>রিরা স্বয়ংক্রিয় অস্ত্রটি নিজের পায়ের দিকে তাক করে শেকল লক্ষ করে গুলি করল, বন্ধ ঘরের মাঝে ভয়ংকর শব্দে সেই অস্ত্রের বিস্ফোরণের শব্দ প্রতিধ্বনিত হয়ে উঠল। নীলমানব নিষ্পলক দৃষ্টিতে রিরার দিকে তাকিয়ে রইল, প্রসেসর আবার বলল, রিরা, গুলি কর। হত্যা কর নীলমানবকে।</p>
+<p>রিরা নিজেকে মুক্ত করে নীলমানবের দিকে এগিয়ে গেল, পায়ে বাধা শেকলের অংশ নূপুরের মতো শব্দ করে ওঠে। প্রসেসর চাপা গলায় বলল, দেরি করো না, রিরা। এই সুযোগ আর তুমি পাবে না।</p>
+<p>রিরা এক মুহূর্ত দ্বিধা করে তারপর স্বয়ংক্রিয় অস্ত্রটি নীলমানবের দিকে এগিয়ে দিয়ে বলল, নাও।</p>
+<p>নীলমানবটি এক ধবনের বিস্ময় নিয়ে রিরার দিকে তাকিয়ে থাকে, এখনো সে বিশ্বাস করতে পারছে না রিরা কী করতে চাইছে। রিরা আবার বলল, নাও।</p>
+<p>নীলমানবটি নিজের বুকে হাত দিয়ে বলল, আমি অস্ত্র?</p>
+<p>হ্যাঁ, আমি তোমাকে এই স্বয়ংক্রিয় অস্ত্রটি দিচ্ছি। আমি আমার পায়ের শেকল খোলার জন্য নিয়েছিলাম, শেকল খুলেছি, এখন আর প্রয়োজন নেই। তোমার অস্ত্র তুমি নাও।</p>
+<p>নীলমানব কী বুঝল কে জানে, সে হাত বাড়িয়ে অস্ত্রটি নিল এবং হঠাৎ হেসে ফেলল। ঝকঝকে সাদা দাঁত এবং এক ধরনের ভালো মানুষের মতো হাসি—রিরা হঠাৎ আবার বুঝতে পারে নীলমানবটি অসম্ভব রূপবান।</p>
+<p>নীলমানবটি অস্ত্র হাতে নিয়ে কয়েক মুহূর্ত আড্রষ্টের মতো দাঁড়িয়ে থাকে, সেটি কী করবে যেন বুঝতে পারে না। ইতস্তত করে সে দুই পা এগিয়ে বিছানার উপর অস্ত্রটি রেখে রিরার কাছে ফিরে এল, রিরা তার হাতটি বাড়িয়ে দিয়ে বলল, আমার নাম রিরা।</p>
+<p>নীলমানবটি রিরার হাত ধরে নবম গলায় বলল, আমি কুশান।</p>
+<p>তোমার সঙ্গে পরিচিত হয়ে খুশি হলাম কুশান।</p>
+<p>কুশান বিড়বিড় করে কী যেন বলল, রিরা ঠিক বুঝতে পারল না। রিরা সেটা নিয়ে মাথা ঘামাল না, বলল, এই মহাকাশযানে অনেক লাল এবং নীল রক্তক্ষয় হয়েছে। সেটা যথেষ্ট। আশা করছি আমি এবং তুমি সেই নির্বুদ্ধিতার কথা ভুলে যাব।</p>
+<p>নীলমানব তার নিজের বিজাতীয় ভাষায় কিছু একটা বলল, রিরা তার কিছু একটা বুঝতে পারল না। সে গলা উঁচিয়ে বলল, প্রসেসর।</p>
+<p>বলে রিরা।</p>
+<p>কশান কী বলেছে?</p>
+<p>সে বলেছে তোমার গায়ের রঙ যদি পচা আঙুরের মতো না হত, তা হলে তোমাকে মোটামুটি সুন্দরী হিসেবে চালিয়ে দেওয়া যেত।</p>
+<p>রিরা কথাটি শুনতে পায় নি ভান করে হঠাৎ করে নিজের পায়ে বাধা শেকলের অংশগুলো খুলতে ব্যস্ত হয়ে গেল।</p>
+</div>
+<br/><h2>০৭. নীলমানব কুশান</h2>
+<hr/>
+<br/><div>
+<p>নীলমানব কুশান এবং রিরা মিলে মহাকাশযানটাকে সুরক্ষিত করতে শুরু করে। মহাকাশযানের যেসব জায়গা ভেঙে ফঁকফোকর বা ফাটল তৈরি হয়েছিল, সেগুলো বুজিয়ে দিতে শুরু করল এই গ্রহটিতে বুদ্ধিহীন ভয়ংকর এবং নৃশংস এক ধরনের প্রাণী আছে, এরকম একটা তথ্য তারা জানে। সেই প্রাণী বা প্রাণীগুলো কী রকম সে সম্পর্কে তাদের কোনো ধারণা নেই। কাজেই তারা কোনোরকম ঝুঁকি নিতে চাইল না। বাইরে থেকে হঠাৎ করে কোনো প্রাণী ঢুকে গেলে তার সাথে রীতিমতো যুদ্ধ করার জন্য স্বয়ংক্রিয় যন্ত্র বা ক্ষেপণাস্ত্র প্রস্তুত করে রাখল।</p>
+<p>নীলমানব কুশানের সাথে কথা বলে রিরা আবিষ্কার করল, মানুষ কথা বলার সময় শুধু কণ্ঠস্বর নয়, চোখ-হাত খুলে এমনকি পুরো শরীর ব্যবহার করে। দুজনের পরিচিত শব্দের সংখ্যা খুব বেশি নয়, বেশ কিছু শব্দ অনুমান করে কাজ চালিয়ে নিতে হয় কিন্তু তারপরেও দুজনের কথাবার্তা বলতে খুব সমস্যা হল না। রিরা আবিষ্কার করল, নীলমানব কুশান বুদ্ধিমান এবং ধীরস্থির। এটি কি কুশানের নিজস্ব ব্যাপার নাকি নীলমানদের চারিত্রিক বৈশিষ্ট্য—রিরা সে ব্যাপারে নিঃসন্দেই হতে পারল না।</p>
+<p>দুজনে মিলে কাজ করতে কোনো অসুবিধা হল না মহাকাশযানটিকে সুরক্ষিত করার জন্য কুশানের নিজস্ব কিছু পরিকল্পনা ছিল। রিরা দ্বিধান্বিতভাবে তার ভেতরে কিছু কিছু পরিবর্তন করার কথা বলা মাত্রই কুশান সাথে সাথে সেগুলো মেনে নেয়। কুশানের জায়গায় একজন মানুষ হলে এত সহজে মেনে নিত না। মহাকাশযানের ক্যাপ্টেন বৰ্কেন বলেছিলেন, নীলমানব বিচ্ছিন্ন প্রাণীসত্তা নয়, তারা সব সময় একসাথে কাজ করে। এখানেও নিশ্চয়ই সেটি হচ্ছে, রিরা যখনই কোনো প্রস্তাব করছে কুশান সাথে সাথে সেটি মেনে নিচ্ছে। নীলমানবদের সে ভয়ংকর দুর্ধর্ষ এবং একরোখা জেনে এসেছে কিন্তু এই মহাকাশযানে দুজনে একসাথে আটকা পড়ে যখন একসাথে কাজ করতে হচ্ছে, তখন কুশানকে মোটেও একরোখা বা দুর্ধর্ষ মনে হচ্ছে না। মহাকাশযানটি দখল করার সময় এই কুশান এবং তার সঙ্গীসাথীরাই যে ভয়ংকর আক্রমণ চালিয়েছিল, কুশানকে দেখে সে কথাটি বিশ্বাসযোগ্যই মনে হয় না। কুশানকে দেখে মনে হয় একজন স্বল্পভাষী সহৃদয় মানুষ—ভয়ংকর একরোখা যোদ্ধা কিছুতেই নয়।</p>
+<p>টাইটেনিয়ামের শক্ত দরজা দিয়ে যেসব করিডর এবং টানেল বন্ধ করা সম্ভব হল, দুজনে মিলে সেগুলো বন্ধ করে দিল। বড় বড় ফুটোগুলোতে ধাতব পাত লাগিয়ে ওয়েল্ড করে দেওয়া হল। বড় বড় ফুটোগুলো বন্ধ হবার পর দুজনে মিলে ফাটলগুলোতে ধাতব আকরিকের পেস্ট দিয়ে সেগুলো সিল করে দিতে শুরু করল। মহাকাশযানটি বিধ্বস্ত হবার পর তার প্রায় সব অ্যালার্ম সিস্টেম নষ্ট হয়ে গিয়েছে, দুজনে মিলে সেগুলোও আবার দাঁড় করাতে শুরু করল। মহাকাশযানটি মানুষের, প্রযুক্তিটিও মানুষের, তাই এ ধরনের কাজের সাথে কুশান পরিচিত নয়। তবে খুব দ্রুত সে কাজ শিখে নিতে পারে এবং আশ্চর্য ক্ষিপ্রতায় সে কাজে দক্ষ হয়ে উঠতে পারে। মহাকাশযানে কুশানের মতো একজন মহাকাশচারীকে পেয়ে যাওয়া নিশ্চয়ই রীতিমতো সৌভাগ্যের একটা ব্যাপার।</p>
+<p>মহাকাশযানটিকে মোটামুটিভাবে সুরক্ষিত করে তারা প্রথমবার ভালো করে গ্রহটির দিকে নজর দেবার সুযোগ পেল। গ্রহটি একেবারেই সাদামাটা গ্রহ, বাইরে রুক্ষ পাথর ছাড়া আর কিছু নেই। বিশাল একটা উপগ্রহ থেকে বিচ্ছুরিত আলো গ্ৰহটাকে আলোকিত করে রেখেছে। এই উপগ্রহটির আলো কোথা থেকে আসছে, রিরা ভালো করে বুঝতে পারল না। তবে উপগ্রহের উপরের দিক থেকে কুণ্ডলী পাকানো আলোর বিচ্ছুরণ দেখে মনে হয় শক্তিশালী চৌম্বকীয় ক্ষেত্রে ইলেকট্রন এবং আয়ন আটকা পড়ে বিশাল একটা প্লাজমাক্ষেত্রের মতো কাজ করছে। সম্ভবত সেটাই আলো হিসেবে আসছে। আলোটা স্থির নয়, এটি বাড়ছে এবং কমছে। তার রঙেরও পরিবর্তন হচ্ছে, বেশিরভাগ সময়ে এটি উজ্জ্বল সাদা রঙের কিন্তু হঠাৎ হঠাৎ কমলা রঙে পাল্টে যায়। রিরার মনে হতে থাকে দূরে কোথাও বুঝি আগুন লেগেছে এবং সেই আগুনের কমলা আভা এসে পড়ছে, রিরা তখন ভেতরে ভেতরে এক ধরনের অস্থিরতা অনুভব করে। রিরা এক ধরনের হিংসা নিয়ে লক্ষ করেছে নীলমানবের ভেতরে কখনোই কোনো অস্থিরতা নেই। এক ধরনের কৌতূহলী শান্ত চোখে সে সবকিছু গভীর আগ্রহ নিয়ে লক্ষ করে, কোনো কিছু নিয়েই সে ব্যস্ত হয়ে ওঠে না।</p>
+<p>প্রথমে কিছুদিন এক ধরনের অমানুষিক পরিশ্রম করে তারা মহাকাশযানটিকে মোটামুটি সুরক্ষিত করার পর অন্য বিষয়গুলোর দিকে নজর দিতে শুরু করে। এখানে তাদের কতদিন থাকতে হবে তারা জানে না, তাই খাবার সরবরাহের ব্যাপারটি নিশ্চিত করে নিল। বিদ্যুৎপ্রবাহ নিশ্চিত করার জন্য তারা অনেক সময় নিয়ে ছড়িয়ে-ছিটিয়ে পড়ে থাকা। জ্বালানিটুকু সংরক্ষণের ব্যবস্থা করল। জ্বালানির যেন অপচয় না হয়, সেজন্য পুরো মহাকাশযান ঘুরে ঘুরে যেখানে প্রয়োজন নেই সেখানে বিদ্যুৎ এবং তাপপ্রবাহ বন্ধ করে দিল। ভেতরে অক্সিজেন সরবরাহের পাম্পটি দুজনে মিলে ওভারহল করে প্রায় নতুন করে ফেলল।</p>
+<p>দৈনন্দিন জীবনের ব্যাপারটি নিশ্চিত করে তাদেরকে কমিউনিকেশন্স মডিউলটির দিকে নজর দিতে হবে। প্রথমবার দেখে মনে হয়েছে পুরো ইউনিটটি ধ্বংস হয়ে গেছে, তার ভেতর থেকে কোনোটা রক্ষা করা যাবে কি না এখনো তারা জানে না। যোগাযোগের কোনো ব্যবস্থা করতে না পারলে এই মহাজগতের কেউ জানবে না যে, তারা এই গ্রহটিতে আটকা পড়ে গেছে—কেউ তাদের উদ্ধার করতে আসবে না। এক-দুইদিনের ভেতরেই কমিউনিকেশন্স মডিউলের ম্যানুয়েল নিয়ে তারা সেগুলো নিয়ে বসবে। যেভাবেই হোক একটা শক্তিশালী ট্রান্সমিটার তৈরি করে মহাবিশ্বে খবর পাঠাতে হবে যে, তারা এখানে আটকা পড়ে আছে, তাদেরকে উদ্ধার করতে হবে।</p>
+<p>নতুন এই গ্রহে রিরা এবং কুশান বেশ কিছুদিন থেকে আছে, এই গ্রহে বুদ্ধিহীন নৃশংস এবং ভয়ংকর এক ধরনের প্রাণী থাকার কথা তারা সে ধরনের কোনো প্রাণী এখনো দেখে নি। সত্যি কথা বলতে কী তারা এখন পর্যন্ত এই গ্রহে কোনো ধরনের প্রাণীই দেখতে পায় নি। গ্রহটির ওপর নজর রাখার জন্য তারা মহাকাশযানের একেবারে উপরে একটা পর্যবেক্ষণ টাওয়ার তৈরি করেছে, কোয়ার্টজের স্বচ্ছ জানালা দিয়ে তারা বাইরে বহুদূর দেখতে পায়, যখন তাদের কোনো কাজ না থাকে রিরা এবং কুশান এই টাওয়ারে বসে নির্জন নিষ্প্রাণ গ্রহটিকে দেখে। পুরো গ্রহটিতে সব সময় এক ধরনের ভুতুড়ে আলো, আকাশের অর্ধেকটা জুড়ে একটা বিশাল উপগ্রহ অনেকটা জীবন্ত প্রাণীর মতো তাদের দিকে তাকিয়ে থাকে। মহাকাশটি মোটামুটি স্থিতিশীল। হঠাৎ কখনো কখনো এক ধরনের ঝড়ো হাওয়া বইতে থাকে, বাতাসে তখন এক বিচিত্র ধরনের শব্দ হতে থাকে, মনে হয় কোনো অশরীরী ইনিয়ে বিনিয়ে কাঁদছে, রিরা তখন অত্যন্ত অস্থির অনুভব করতে থাকে কিন্তু কুশানকে কখনোই বিচলিত হতে দেখা যায় না।</p>
+<p>যখন রিরা এবং কুশানের দৈনন্দিন জীবন প্রায় রুটিন হয়ে যাবার উপক্রম হয়ে এসেছে, তখন এই গ্রহের প্রথম বিচিত্র রূপটি তাদের চোখে পড়ল।</p>
+
+<p>কমিউনিকেশন্স মডিউল কক্ষে একটা সংবেদী রিলিভারকে প্রায় অনেকখানি সারিয়ে তুলতে গিয়ে রিরা এবং কুশান প্রায় টানা আট ঘণ্টা পরিশ্রম করেছে। এখন দুজনেই ক্লান্ত। কৃত্রিম প্রোটিনের সাথে কয়েকটা শক্ত রুটি, খানিকটা স্নায়ু সতেজকারী পানীয় খেয়ে দুজনে পর্যবেক্ষণ টাওয়ারে এসে বসেছে। বেশ কিছুদিন একসাথে থেকে তাদের ভেতরকার ভাষার বেশ উন্নতি হয়েছে—দুজনেই দুজনকে বেশ বুঝতে পারে, কোনো একটা কিছু বোঝানোর জন্য আজকাল প্রসেসরের সাহায্য বলতে গেলে নিতেই হয় না।</p>
+<p>রিরা টাওয়ারে বসে বাইরের মন খারাপ করা গ্রহটির দিকে তাকিয়ে বলল, আমাদের না জানি আর কতদিন এই গ্রহে থাকতে হবে!</p>
+<p>কুশান তার কথার কোনো উত্তর দিল না, তার বড় এবং খানিকটা বিচিত্র চোখে রিরার দিকে তাকিয়ে রইল। রিরা আবার বলল, এই গ্রহটি আমার নার্ভের ওপর উঠে যাচ্ছে।</p>
+<p>কুশান জিজ্ঞেস করল, কেন?</p>
+<p>গ্রহটিতে কোনো দিন-রাত নেই, আলো-আঁধার নেই। সব সময়েই এক ধরনের ভুতুড়ে আলো।</p>
+<p>কুশান নিচু গলায় বলল, মহাকাশচারীদের অনেক লম্বা সময় মহাকাশযানে থাকতে হয়। তাদের দিন-রাতের অনুভূতি থাকে না।</p>
+<p>রিরা একটা নিশ্বাস ফেলে বলল, আমার আছে। আমি মনে হয় খাঁটি মহাকাশচারী নই।</p>
+<p>কুশান একটু হেসে বলল, না রিরা। তুমি খাঁটি মহাকাশচারী। আমাদের নীলমনিবদের মাঝে তোমার মতো মহাকাশচারী পাওয়া খুব কঠিন।</p>
+<p>রিরা ভুরু কুঁচকে জিজ্ঞেস করল, আমার কোন কাজটি দেখে তোমার এই ধারণা হল?</p>
+<p>তোমার সব কাজ দেখে। তুমি যেভাবে একা এই পুরো মহাকাশযানটাকে রক্ষা করেছ, তার কোনো তুলনা নেই।</p>
+<p>রিরা একটু হেসে বলল, বেঁচে থাকার তাগিদটা অসম্ভব শক্তিশালী তাগিদ, সেজন্য মানুষ অনেক কাজ করে।</p>
+<p>কুশান গম্ভীর মুখে বলল, আমার জানামতে তুমি শুধু একটি ভুল করেছ।</p>
+<p>কী ভুল করেছি?</p>
+<p>প্রথম যখন আমাকে পেয়েছিলে, তখন সাথে সাথে তোমার আমাকে হত্যা করা উচিত ছিল।</p>
+<p>রিরা শব্দ করে হেসে বলল, সে কী! এটা তুমি কী বলছ?</p>
+<p>আমি ঠিকই বলছি। আমাকে হত্যা না করে তুমি নিজের ওপরে অসম্ভব বড় ঝুঁকি নিয়েছিলে।</p>
+<p>রিরা এক ধরনের কৌতকের দৃষ্টিতে কুশানের দিকে তাকিয়ে রইল। বলল, তা হলে তুমিও আমাদের মূল প্রসেসরের মতো বিশ্বাস কর তোমাকে হত্যা করা উচিত ছিল?</p>
+<p>কুশান গম্ভীর মুখে মাথা নাড়ল, বলল, তুমি আমাকে হত্যা না করায় আমি এখনো বেঁচে আছি। মানুষ কীভাবে কাজ করে, ভাবনা-চিন্তা করে সেটা বোঝার সুযোগ পেয়েছি। এটি চমৎকার অভিজ্ঞতা।</p>
+<p>রিরা কথার পিঠে আরেকটি কথা বলতে গিয়ে হঠাৎ থেমে গেল। তার কাছে মনে হল হঠাৎ করে গ্রহটির কিছু একটা পরিবর্তন হয়েছে। সে চাপা গলায় ডাকল, কুশান। আমার মনে হচ্ছে গ্রহটার কিছু একটা পরিবর্তন হচ্ছে।</p>
+<p>কী পরিবর্তন?</p>
+<p>ঠিক বুঝতে পারছি না। মনে হচ্ছে গ্রহটা অন্ধকার হয়ে যাচ্ছে।</p>
+<p>অন্ধকার?</p>
+<p>হ্যাঁ। দেখ আলোটা কেমন কমে আসছে।</p>
+<p>রিরার সন্দেহ কিছুক্ষণের মাঝেই সত্য প্রমাণিত হল। সত্যি সত্যি হঠাৎ করে গ্রহটা অন্ধকার হতে শুরু করল। বিশাল একটা চোখের মতো যে উপগ্রহটা সব সময় এই গ্রহটার দিকে তীক্ষ্ণ চোখে তাকিয়ে রয়েছে, তার মাঝে একটা ছায়া পড়তে শুরু করেছে, হঠাৎ করে পুরো গ্রহটা অন্ধকার হয়ে যাচ্ছে। রিরা বিস্ফারিত চোখে কোয়ার্টজের জানালা দিয়ে বাইরে তাকিয়ে রইল, অবাক হয়ে বলল, কী আশ্চর্য! হঠাৎ করে গ্রহটা অন্ধকার হয়ে যাচ্ছে।</p>
+<p>কুশান কোনো কথা না বলে একটু বিস্ময়ের ভঙ্গি করে রিরার দিকে তাকিয়ে রইল, তাকে দেখে মনে হতে থাকে হঠাৎ করে আলোকোজ্জ্বল একটা গ্রহ অন্ধকার হয়ে যাওয়া বুঝি খুব স্বাভাবিক ব্যাপার।</p>
+<p>কিছুক্ষণের মাঝে চারদিক নিকষ কালো অন্ধকারে ঢেকে গেল। উজ্জ্বল আলোতে অভ্যস্ত চোখ হঠাৎ করে এই গাঢ় অন্ধকারে কেমন যেন এক ধরনের নির্ভরতা খুঁজে পায়। রিরা খানিকটা বিস্ময় নিয়ে বলল, এই অন্ধকারটা কেমন অদ্ভুত দেখেছ? কোনো কিছু দেখতে না পাওয়ার মাঝে এক ধবনের আরাম আছে।</p>
+<p>কুশান নিচু গলায় বলল, তুমি সত্যি কিছু দেখতে পাচ্ছ না?</p>
+<p>রিরা অবাক হয়ে বলল, তুমি কী বলতে চাইছ? তুমি দেখতে পাচ্ছ?</p>
+<p>হ্যাঁ। আমি দেখতে পাচ্ছি।</p>
+<p>হঠাৎ করে রিরার মনে পড়ল কুশানের চোখ ইনফ্রারেড থেকে আলট্রাভায়োলেট পর্যন্ত সংবেদী। রিরার চোখে যখন সবকিছু অন্ধকার, কুশান তখনো দেখতে পারে কিন্তু তবুও তার কাছে ব্যাপারটা অসম্ভব মনে হতে থাকে। সে অবাক হয়ে বলল, তুমি সত্যি দেখতে পাচ্ছ?</p>
+<p>হ্যাঁ রিরা, আমি সবকিছু দেখতে পাচ্ছি।</p>
+<p>তুমি স্পষ্ট দেখতে পাচ্ছ?</p>
+<p>হ্যাঁ, আমি সবকিছু স্পষ্ট দেখতে পাচ্ছি। একটু নীলাভ রঙ, কিন্তু স্পষ্ট।</p>
+<p>রিরা হঠাৎ ছেলেমানুষের মতো গলায় বলল, আমি তোমার কথা বিশ্বাস করি না।</p>
+<p>কুশান শব্দ করে হেসে বলল, তোমাকে আমার সব কথা বিশ্বাস করতে হবে কে বলেছে?</p>
+<p>আমাকে তুমি ছুঁতে পারবে?</p>
+<p>কেন পারব না?</p>
+<p>রিরা একটু সরে বসে বলল, ছোঁও দেখি।</p>
+<p>রিরা হঠাৎ করে অনুভব করে একটা হাত খুব আলতোভাবে তাকে স্পর্শ করল–অনেকটা আদর করার মতো তার গাল স্পর্শ করে হাতটি তার চিবুকের কাছে এসে থেমে যায়। কুশান বলল, এটা তোমার চিবুক।</p>
+<p>রিরা অনুভব করে হাতটি সরে গিয়ে খুব কোমলভাবে তার চুল স্পর্শ করে বলল, এই যে তোমার চুল। রিরা হঠাৎ অনুভব করল কুশানের দুটি হাত খুব ধীরে ধীরে তার দুই গালের কাছে এসে তার মুখটি উপরে তুলেছে খুব কাছে থেকে সে হঠাৎ কুশানের নিশ্বাস শুনতে পেল। রিরা হঠাৎ কেমন যেন অস্বস্তি অনুভব করে, সে ইতস্তত করে বলল, কুশান, তুমি কী করছ?</p>
+<p>তোমাকে দেখছি।</p>
+<p>আমাকে তুমি আগে দেখ নি?</p>
+<p>অবশ্যই দেখেছি, কিন্তু এখন—</p>
+<p>এখন কী?</p>
+<p>এখন সবকিছুতে একটু নীলচে আভা। আর—</p>
+<p>আর কী?</p>
+<p>নীলচে আভাতে তোমাকেও নীল দেখাচ্ছে। হঠাৎ করে তোমাকে একটা নীলমানবীর মতো লাগছে। তোমাকে এত সুন্দর দেখাচ্ছে যে, আমি চোখ ফেরাতে পারছি না রিরা।</p>
+<p>রিরা হঠাৎ একটু লজ্জা পেয়ে যায়, সে সাবধানে কুশানের হাত দুটি সরিয়ে হালকা গলায় বলল, তার অর্থ কী বুঝতে পারছ?</p>
+<p>কী?</p>
+<p>সাধারণ আলোতে আমার চেহারায় কোনো সৌন্দর্য নেই। আমার সৌন্দর্য আসে শুধুমাত্র নীল আলোতে যখন আমাকে নীলমানবীর মতো দেখায়!</p>
+<p>আমি সেটা বলতে চাই নি রিরা।</p>
+<p>তুমি তা হলে কী বলতে চাইছ?</p>
+<p>কুশান একটা দীর্ঘশ্বাস ফেলে বলল, আমি ঠিক জানি না রিরা। আমি খুব গুছিয়ে কথা বলতে পারি না। হঠাৎ করে নীলাভ আলোতে তোমাকে দেখে আমার পুরোনো দিনের কথা মনে পড়ে গেল।</p>
+<p>পুরোনো দিনের কথা?</p>
+<p>হ্যাঁ, আমার শৈশবের কথা, আমার পরিরারের কথা। যুদ্ধে নাম লেখানোর পর থেকে বহুকাল তাদের কারো সাথে যোগাযোগ নেই। তারা কে কোথায় আছে, কেমন আছে কিছু জানি না।</p>
+<p>রিরা কিছুক্ষণ চুপ করে থেকে বলল, আমি যখন একাডেমিতে পড়ছি, তখন তোমাদের ওপর আমাদের একটা কোর্স করতে হত। সেখানে আমাদের শেখানো হয়েছিল—তোমরা। অত্যন্ত দুর্ধর্ষ এবং একরোখা।</p>
+<p>রিরার কথা শুনে কুশানের কী প্রতিক্রিয়া হল অন্ধকারে ঠিক দেখা গেল না। রিরা বলল, আলো জ্বেলে দিই।</p>
+<p>কুশান বলল, আর একটু পর, ছোট ওয়েভলেংথে দেখতে একেবারে অন্যরকম লাগছে।</p>
+<p>তোমার অন্যরকম লাগছে। আমি যে কিছু দেখছি না? ঘুটঘুটে অন্ধকার।</p>
+<p>তোমরা মানুষেরা নাকি অসম্ভব কল্পনা করতে পার। তুমি কল্পনা করে দেখ!</p>
+<p>আমাদের মানুষদের সম্পর্কে তোমরা আর কী কী জান?</p>
+<p>কুশান একটা দীর্ঘশ্বাস ফেলে বলল, আমাদের জন্ম থেকে শেখানো হয়েছে মানুষ অামাদের সবচেয়ে বড় শত্রু। শেখানো হয়েছে মানুষ আমাদেরকে ধ্বংস করে ফেলবে বলে ঠিক করেছে। মানুষের হাত থেকে রক্ষা পাবার জন্য আমাদের যুদ্ধ করতে হবে।</p>
+<p>কী আশ্চর্য!</p>
+<p>হ্যাঁ, মানুষের হাত থেকে রক্ষা পাবার জন্য আমরা নিজেদের মাঝে বিবর্তন এনেছি–আমরা নিজেদের শরীরকে উন্নত করেছি। আমরা এখন অন্ধকারে দেখতে পাই। আমাদের ফুসফুসের আকার বড়, সেখানে অক্সিজেন জমা রাখতে পারি।</p>
+<p>রিরা বাধা দিয়ে বলল, এখন বুঝতে পেরেছি, যখন নিথিলিয়াম গ্যাস দিয়ে তোমাদের অচেতন করার চেষ্টা করা হয়েছিল তখন তোমরা কেন অচেতন হও নি!</p>
+<p>হ্যাঁ। আমাদের পরিকল্পনায় তোমরা পা দিয়েছিলে।</p>
+<p>ক্যাপ্টেন বৰ্কেন হলে ঠিক অনুমান করেছিলেন।</p>
+<p>কুশান কোনো কথা না বলে চুপ করে রইল। ঘুটঘুটে অন্ধকারে রিরার চোখ খানিকটা অভ্যস্ত হয়ে এসেছে। এখন খুব হালকাভাবে সে কুশানের অবয়ব দেখতে পায়, বাইরে গ্রহের দিগন্তটুকুও হালকাভাবে চোখে পড়তে শুরু করেছে। মনে হচ্ছে আকাশের এক-দুটি নক্ষত্রও মিটমিট করে দেখতে শুরু করেছে। চোখ অভ্যস্ত হয়ে যাবার পর অন্ধকারটুকু বেশ লাগছে, তবে সে দেখতে পাচ্ছে না কিন্তু কুশান তাকে স্পষ্ট দেখছে—এই চিন্তাটুকু মাঝে। মাঝেই তাকে অস্বস্তিতে ফেলে দিচ্ছে।</p>
+<p>রিরা খানিকক্ষণ চুপ করে থেকে বলল, আমি একটা জিনিস কখনো বুঝতে পারি না। তুমি বলছ আমরা তোমাদের পরিকল্পনায় পা দিয়েছিলাম। কিন্তু তোমরা কখন পরিকল্পনা। করেছ? আমাদের মূল প্রসেসর সব সময় তোমাদের চোখে চোখে রেখেছে—তোমাদের প্রত্যেকটি কথা শুনেছে, প্রত্যেকটি অঙ্গভঙ্গি লক্ষ করেছে!</p>
+<p>কুশান শব্দ করে হাসল। বলল, আমরা কথা না বলেও তথ্য আদান-প্রদান করতে পারি। একজন আরেকজনের দিকে তাকিয়ে শুধু চোখের ভাষায় অনেক কিছু বলে দিতে পারি। তা ছাড়া</p>
+<p>তা ছাড়া কী?</p>
+<p>আমাদের মূল পরিকল্পনাটা করেছি তোমাদের চোখের সামনে, তোমরা বুঝতে পার নি।</p>
+<p>কীভাবে?</p>
+<p>মনে আছে মেঝেতে ছক কেট শুকনো রুটির টুকরো দিয়ে আমরা খেলতাম?</p>
+<p>হ্যাঁ। মনে আছে।</p>
+<p>সেই খেলাটা আসলে শুধু খেলা ছিল না। খেলাটার আড়ালে আমরা পরিকল্পনা করেছি।</p>
+<p>তোমরা চিন্তা-ভাবনা করে ঠিক করেছিলে কে কবজি কেটে আত্মহত্যা করবে?</p>
+<p>হ্যাঁ, আমরা নিজিতকে বেছে নিয়েছিলাম। সে ছিল আমাদের মাঝে দুর্বল। যুদ্ধে সে একটু আহত হয়েছিল।</p>
+<p>সে একবারও আপত্তি করে নি?</p>
+<p>কুশান মাথা নাড়ল, বলল, আসলে আমরা সবাই মিলে একটা প্রাণীসত্তা। আমরা আলাদা না—আমরা কখনো আপত্তি করি না। আপত্তি করা যায়, সেটা আমরা জানিও না।</p>
+<p>কী আশ্চর্য! মানুষ কখনোই এভাবে চিন্তা করতে পারবে না।</p>
+<p>রিরার কথার উত্তরে কুশান কোনো কথা না বলে হঠাৎ উঠে দাঁড়াল, অন্ধকারে আবছাভাবে রিরা দেখতে পায়—সে দ্রুতপায়ে কোয়ার্টজের জানালার কাছে গিয়ে দাঁড়িয়েছে। রিরা ভয় পাওয়া গলায় বলল, কী হয়েছে কুশান?</p>
+<p>আসছে!</p>
+<p>কে আসছে?</p>
+<p>আমার মনে হয় এই গ্রহের প্রাণী!</p>
+<p>রিরা কোয়ার্টজের জানালার কাছে ছুটে গিয়ে বাইরে ঘুটঘুটে অন্ধকারের দিকে তাকাল। গাঢ় অন্ধকারে কিছুই সে দেখতে পায় না। অন্ধকারে হাত বাড়িয়ে কুশানকে ধরে একটা ঝাকুনি দিয়ে বলল, তুমি দেখতে পাচ্ছি?</p>
+<p>হ্যাঁ।</p>
+<p>কোথায় এখন, কী করছে? দেখতে কেমন? কুশান চাপা গলায় বলল, আমি ঠিক বোঝাতে পারব না, তুমি শব্দ শুনতে পাচ্ছ না?</p>
+<p>রিরা কান পেতে শুনল, মনে হল ঝড়ের মতো একটা শব্দ হচ্ছে, দূর থেকে শোনা অনেক মানুষের কোলাহলের মতো। খুব ধীরে ধীরে শব্দটা বাড়ছে, তাদের দিকে এগিয়ে আসছে এই গ্রহের প্রাণী। বুদ্ধিহীন, ভয়ংকর এবং নৃশংস প্রাণী।</p>
+</div>
+<br/><h2>০৮. একটা পাথর এসে</h2>
+<hr/>
+<br/><div>
+<p>প্রথমে মনে হল কোনো একটা পাথর এসে মহাকাশযানকে আঘাত করেছে, তারপর মনে হল আরো একটা, তারপর অনেকগুলো। শিলাবৃষ্টির মতো হঠাৎ শব্দ হতে শুরু হয়ে গেল। মনে হল প্রচণ্ড ঝড়ে মহাকাশযানটি থরথর করে কাপতে শুরু করেছে। অন্ধকারে রিরা আবছা আবছাভাবে দেখতে পেল, কুশান কোয়ার্টজের জানালা থেকে ছিটকে পিছনে সরে এসেছে। রিরার হাত ধরে চাপা গলায় বলল, পালাও।</p>
+<p>কেন? কী হয়েছে?</p>
+<p>ভেতরে ঢুকে যাচ্ছে।</p>
+<p>ভেতরে ঢুকে যাচ্ছে? রিরা ভয় পাওয়া গলায় বলল, কেমন করে ভেতরে ঢুকে যাচ্ছে?</p>
+<p>জানি না। ভয়ংকর ধারালো দাঁত মনে হয় শুনতে পাচ্ছ না? রিরা শুনতে পেল, মহাকাশযানটিতে একটা কর্কশ শব্দ। মনে হয় ধারালো ফাইল দিয়ে কেউ যেন কাটছে। চারদিক থেকে কর্কশ শব্দ আসছে, মনে হয় কেটে কেটে টুকরো করে ফেলছে। রিরা বলল, আলো জ্বালাও আমি একটু দেখব।</p>
+<p>দেখার মতো কিছু নেই রিরা, বীভৎস।</p>
+<p>আমি তবু দেখতে চাই।</p>
+<p>কুশান দেয়ালের কাছে গিয়ে আলো জ্বালানোর নিরাপত্তা সুইচে গোপন সংখ্যা প্রবেশ করাতেই অবজারভেশান টাওয়ারে উজ্জ্বল আলো জ্বলে উঠল—রিরার চোখ ধাধিয়ে যায় মুহূর্তের জন্য। কিছু স্পষ্ট দেখতে পায় না সে, শুধু কোয়ার্টজের জানালায় ধারালো দাঁত দিয়ে কামড়ে ধরে থাকা বীভৎস একটা প্রাণী মুহর্তের জন্য দেখতে পেল, কিন্তু সাথে সাথে বিকট আর্তচিৎকারে পুরো এলাকাটা প্রকম্পিত হতে থাকে।</p>
+<p>আশ্চর্য! কুশান কঁপা গলায় বলল, কী আশ্চর্য!</p>
+<p>রিরা দুই হাতে চোখ ঢেকে বলল, কী হয়েছে?</p>
+<p>প্রাণীগুলো আলো সহ্য করতে পারে না। সব পালিয়ে যাচ্ছে।</p>
+<p>রিরা সাবধানে চোখ খুলে তাকাল, সত্যি সত্যি কোয়ার্টজের জানালায় ধারালো দাঁত দিয়ে কামড়ে ধরে থাকা প্রাণীগুলো নেই…। বাইরে অসংখ্য প্রাণীর আর্তচিৎকার, ছোটাছুটি শোনা যাচ্ছে, একসাথে পালিয়ে যেতে চেষ্টা করছে সবগুলো প্রাণী।</p>
+<p>আলো জ্বালিয়ে দিতে হবে আমাদের। মহাকাশযানের সব আলো জ্বালিয়ে দিতে হবে এক্ষুনি।</p>
+<p>হ্যাঁ, চল তাড়াতাড়ি।</p>
+<p>মহাকাশযানের ভেতরে আলো জ্বালাতে গিয়ে রিরা আর কুশান আবিষ্কার করল, জ্বালানি বাচানোর জন্য তারা মহাকাশযানের বেশিরভাগ অংশের বিদ্যুৎ সরবরাহ বন্ধ করে রেখেছে। নতুন করে সংযোগ দিয়ে আলো জ্বালাতে জ্বালাতে অনেক সময় লেগে যাবে। এই সময়ের ভেতরে প্রাণীগুলো ধারালো দাঁত দিয়ে মহাকাশযানের দেয়াল কেটে ভেতরে ঢুকে যাবে। মহাকাশযানের যেখানে যেখানে আলো আছে—বাইরে আলো ছড়িয়ে পড়েছে, সেখানে প্রাণীগুলো নেই, কিন্তু অন্ধকার অংশগুলোতে ফাইল দিয়ে ঘষে কাটার মতো শব্দ করে প্রাণীগুলো ভেতরে ঢোকার চেষ্টা করছে। প্রাণীগুলো কত বড়, দেখতে কী রকম রিরা ভালো করে জানে না কিন্তু শব্দ শুনে বোঝা যায় অসংখ্য প্রাণী একসাথে এসেছে, কোথাও যদি কেটে ঢুকে যেতে পারে তা হলে রক্ষা পাবার উপায় নেই। মহাকাশযানের চারদিকে এক ধরনের অশুভ কর্কশ শব্দ। রিরা হঠাৎ ভয়াবহ এক ধরনের আতঙ্ক অনুভব করে।</p>
+<p>কুশানের মুখে উত্তেজনার কোনো চিহ্ন নেই। সে একটা স্বয়ংক্রিয় অস্ত্র রিরার হাতে দিয়ে বলল, এটা তোমার হাতে রাখ। ভেতরে ঢুকে গেলে কাজে লাগতে পারে।</p>
+<p>আমাদের দরকার সার্চলাইটের মতো আলো। শক্তিশালী ফ্ল্যাশলাইট।</p>
+<p>হ্যাঁ। কোথায় আছে জান?</p>
+<p>স্টোররুমে। ইমার্জেন্সি কিটের ভেতরেও থাকতে পারে।</p>
+<p>তুমি দাঁড়াও আমি নিয়ে আসি।</p>
+<p>রিরার হঠাৎ একটা জিনিস মনে হল, বলল, কুশান! দাঁড়াও।</p>
+<p>কী হয়েছে?</p>
+<p>এই মহাকাশযানে ফেয়ার আছে। বাইরে গিয়ে উপরে ছুড়ে দিয়ে জ্বালিয়ে দিলে পুরো এলাকাটা আলোকিত হয়ে যাবে। তীব্র উজ্জ্বল চোখ ধাঁধানো আলো।</p>
+<p>চমৎকার! কোথায় আছে জান?</p>
+<p>রিরা মাথা নাড়ল, বলল, জানি। তুমি দাঁড়াও আমি নিয়ে আসছি।</p>
+<p>কিছুক্ষণের মাঝেই রিরা দুটো ফ্লেয়ার হাতে নিয়ে এল। দুটোর পেছনেই ছোট্ট একটি করে রকেট লাগানো রয়েছে। খোলা জায়গায় নিয়ে সুইচটা টিপে ছেড়ে দিলেই স্বয়ংক্রিয় কন্ট্রোল এটা চালু করে কয়েক শ মিটার উপরে নিয়ে যাবে। সেখানে তীব্র উজ্জ্বল আলোয় আশপাশে কয়েক কিলোমিটার আলোকিত করে খুব ধীরে ধীরে নিচে নেমে আসবে। কশান চিন্তিত মুখে ফ্লেয়ার দুটোর দিকে খানিকক্ষণ তাকিয়ে থেকে বলল, এটা নিয়ে বাইরে যেতে হবে।</p>
+<p>রিরা মাথা নাড়ল, বলল, হ্যাঁ।</p>
+<p>এই মহাকাশযানটিকে এই অজানা গ্রহে অবতরণ করানোর পর এখন পর্যন্ত তারা বাইরে যায় নি। কোনো একটা কিছু প্রথমবার করার সময় একটু অনিশ্চয়তা থাকে। এখানে সেই অনিশ্চয়তা অনেকগুণ বেশি। এই মুহূর্তে বাইরে হাজার হাজার হিংস্র প্রাণী মহাকাশযানটাকে কেটে ঢোকার চেষ্টা করছে—পরিস্থিতিটা শুধু অনিশ্চিত নয়, অত্যন্ত বিপজ্জনক। মহাকাশযান ঘিরে কর্কশ শব্দ আরো অনেক বেড়ে গেছে। মনে হচ্ছে কোনো এক জায়গা ভেদ করে সত্যি সত্যি প্রাণীগুলো যে কোনো মুহূর্তে ঢুকে যাবে। রিরা একটা ফ্লেয়ার হাতে নিয়ে বলল, আমি বাইরে নিয়ে যাচ্ছি। তুমি আমাকে কাভার দাও।</p>
+<p>কুশান মাথা নেড়ে বলল, নানা রিরা। তুমি যাবে না। তুমি ভেতরে থেকে একটা সার্চলাইট নিয়ে আমাকে কাভার দাও। আমি যাচ্ছি।</p>
+<p>রিরা একটু অবাক হয়ে কুশানের দিকে তাকিয়ে বলল, কিন্তু কুশান, তুমি একজন নীলমান। তুমি মানুষের মতো বিচ্ছিন্ন সত্তা নও তুমি সমন্বিত। আমি যা বলেছি তুমি সব সময় সেটা শুনেছ।</p>
+<p>কুশানের মুখে হঠাৎ একটা মৃদু হাসি ফুটে ওঠে। সে রিরার দিকে তাকিয়ে বলল, আমি তোমার সাথে থাকতে থাকতে মনে হয় মানুষের মতো হয়ে যাচ্ছি।</p>
+<p>এটা কি ভালো না খারাপ?</p>
+<p>এখনো বুঝতে পারছি না।</p>
+<p>রিরা বলল, এখন সময় নষ্ট করে লাভ নেই তুমি নীলমানব, আমাদের প্রযুক্তির সাথে অভ্যস্ত নও, আমাকেই করতে দাও।</p>
+<p>একটা সুইচ টিপে দেওয়ার জন্য কি আর প্রযুক্তিতে অভ্যস্ত হতে হয়?</p>
+<p>ঠিক আছে, তা হলে দুজনেই যাই। হাতে অস্ত্র থাকবে, সাথে দু শ লুমেনের সার্চলাইট।</p>
+<p>সত্যি যেতে চাও? কুশান দ্বিধান্বিতভাবে বলল, তুমি যদি ভেতরে থেকে কাভার দাও, আমি পারব।</p>
+<p>ঝুঁকি নিয়ে লাভ নেই। দুজন একসাথে গেলে বিপদের ঝুঁকি কম।</p>
+<p>মহাকাশযানের দেয়ালে প্রচও কর্কশ শব্দটা মনে হল হঠাৎ বেড়ে গেছে, রিরার মনে হতে থাকে হঠাৎ বুঝি কোনো একটা দেয়াল ভেঙে হুঁড়মুড় করে বীভৎস কিছু প্রাণী ভেতরে। ঢুকে যাবে। রিরা আর কুশান দ্রুত প্রস্তুত হয়ে নিল। পিঠে অক্সিজেন সিলিন্ডার, নিশ্বাস নেবার জন্য মুখে একটা মাস্ক, মাথায় শক্ত হেলমেটে তীব্র সার্চলাইট, হাতে অস্ত্র। মহাকাশযানের দরজার সামনে গিয়ে বড় হ্যান্ডেলটা নিচের দিকে চাপ দিতেই ঘটাং করে ভেতরের কুঠুরিটা খুলে গেল। সেখানে ঢুকে ভেতরের দরজা বন্ধ করে দিয়ে বাইরের বাতাসের সাথে সমতা আনতে শুরু করল। রিরা কিংবা কুশীন কেউই বুঝতে পারে নি গ্রহটা অন্ধকার হয়ে যাবার পর হঠাৎ করে এত দ্রুত এরকম ভয়ংকর ঠাণ্ডা হয়ে যাবে। এখন কিছু করার নেই, কনকনে শীতে দুজন অপেক্ষা করতে থাকে, কিছুক্ষণের মাঝেই মূল দরজাটা খোলার জন্য প্রস্তুত হয়ে যায়। রিরা গেলি হান্ডেলটা ঘুরিয়ে বড় লিভারে হাত রেখে বলল, কুশান, আমি দরজা খুলছি।</p>
+<p>খোল। আমি আলো আর অস্ত্র দুটি নিয়েই প্রস্তুত।</p>
+<p>রিরা পা দিয়ে ধাক্কা দিয়ে হঠাৎ দরজাটা খুলে দিতেই তীক্ষ্ণ আর্তনাদ করতে করতে কিছু প্রাণী চারদিকে ছুটে সরে যেতে থাকে। প্রাণীগুলোর আকার বোঝা যায় না–একইসাথে সরীসৃপ কিংবা কীটের মতো মনে হয়। সমস্ত দেহ পিচ্ছিল এক ধরনের পদার্থ দিয়ে ঢাকা, আলো পড়তেই মুহূর্তের মাঝে সেখানে বড় বড় বীভৎস ফোসকার মতো বের হতে শুরু করেছে। প্রাণীগুলো ধারালো দাঁত বের করে যন্ত্রণায় চিৎকার করতে করতে সরে যাচ্ছে—মাথার কাছে ছোট ছোট কুতকুতে হলুদ চোখে এক ধরনের বোবা আতঙ্ক।</p>
+<p>রিরা আর কুশান হাতে অস্ত্র নিয়ে সতর্কভাবে আরো কয়েক পা অগ্রসর হয়, বাইরে কনকনে ঠাণ্ডা এবং বাতাসে এক ধরনের ঝালো গন্ধ। প্রাণীগুলো ছুটে দূরে সরে গিয়ে। তাদের জন্য অপেক্ষা করছে অন্ধকারে হঠাৎ হঠাৎ ধারালো দাঁত চকচক করে উঠছে। কুশান হাতে অস্ত্র নিয়ে সতর্কভাবে চারদিকে তাকাতে তাকাতে ফিসফিস করে বলল, রিরা। তুমি ফ্লেয়ারটা ছাড়। দেরি করো না।</p>
+<p>রিরা বলল, হ্যাঁ, ছাড়ছি।</p>
+<p>সে ভেতরকার টাইমারটাকে পাঁচচ সেকেন্ডের জন্য সেট করে ফ্লেয়ারটা একটা পাথরের উপর রেখে পিছিয়ে এল। মনে মনে পচ পর্যন্ত গোনার আগেই ফেয়ারের রকেটটা তীব্র শব্দ করে উপরে উঠে গেল, প্রায় সাথে সাথেই পুরো এলাকাটা তীব্র আলোতে ঝলসে ওঠে। আশপাশে কয়েক কিলোমিটার এলাকা উজ্জ্বল সূর্যালোকে আলোকিত মধ্যাহ্নের মতো আলোকিত হয়ে যায়।</p>
+<p>মহাকাশযানকে ঘিরে থাকা হাজার হাজার বীভৎস প্রাণীগুলোর ভেতর হঠাৎ করে একটা ভয়ংকর বিপর্যয় ঘটে যায়। তীব্র স্বরে চিৎকার করতে করতে সেগুলো সরে যেতে থাকে–একটি প্রাণী অন্যটির উপর দিয়ে হুঁটোপুটি করে আতঙ্ক এবং যন্ত্রণায় আর্তনাদ করতে করতে সেগুলো প্রাণভয়ে ছুটে যেতে থাকে। কিছুক্ষণের মাঝে তারা সবিস্ময়ে দেখতে পায়–আক্ষরিক অর্থে হাজার হাজার প্রাণী গ্রহটির পাথরের উপরে লাফিয়ে লাফিয়ে সরে যাচ্ছে। যতদূর চোখ যায় ততদূর পর্যন্ত কুৎসিত প্রাণী কিলবিল করছে। রিরা নিশ্বাস ফেলে বলল, আমি আমার জীবনে কখনো একসাথে এতগুলো প্রাণী দেখি নি।</p>
+<p>কুশান বলল, আমি দেখেছি।</p>
+<p>কোথায় দেখেছ?</p>
+<p>মাইক্রোস্কোপে। কোষের ভেতরে এভাবে ব্যাক্টেরিয়া কিলবিল করে বের হতে থাকে।</p>
+<p>শব্দ করে হাসতে গিয়ে রিরা থেমে গেল, বলল, ঠিকই বলেছ। এই প্রাণীগুলো ব্যাক্টেরিয়ার মতো। কী ভয়ানক!</p>
+<p>কুশান বলল, চলো মহাকাশযানের ভেতরে যাই।</p>
+<p>হ্যাঁ, বাইরে শীতে আর দাঁড়িয়ে থাকা যাচ্ছে না।</p>
+<p>গ্রহটি কতক্ষণ অন্ধকার থাকবে সে সম্পর্কে তাদের কোনো ধারণা নেই। দুজনে কোনো ঝুঁকি নিল না। তারা পালাক্রমে পাহারা দিল, যদি প্রাণীগুলো আবার ফিরে আসে, তা হলে আবার ফ্লেয়ারটি জ্বালাতে হবে। অন্ধকার গ্রহটিতে দুজনে অপেক্ষা করতে থাকে আলোর জন্য।</p>
+</div>
+<br/><h2>০৯. ক্যাপ্টেনের ঘরে টেবিলের দুইপাশে</h2>
+<hr/>
+<br/><div>
+<p>ক্যাপ্টেনের ঘরে টেবিলের দুইপাশে দুজনে বসে চুপচাপ খাচ্ছে। দুজনের চেহারাতেই এক ধরনের ক্লান্তির ছাপ। গ্রহটিতে তিন দিন পরে আলো ফিরে এসেছে। এই তিন দিন তারা বিশ্রাম নেবার ঝুঁকি নেয় নি। এই গ্রহের প্রাণীগুলো বুদ্ধিহীন নির্বোধ হতে পারে, কিন্তু তাদের সংখ্যা বিশাল। এই বিশাল সংখ্যার সাথে বুদ্ধি বা কৌশল কিংবা কোনোকিছুতেই কেউ পেরে উঠবে না। ফ্লেয়ার জ্বালিয়ে প্রথমবার প্রাণীগুলোকে তারা ভয় দেখিয়ে তাড়িয়ে দিয়েছে। ফ্লেয়ারের আলো নিভে যাবার পর প্রাণীগুলো আবার ফিরে আসতে পারত সৌভাগ্যক্রমে ফিরে আসে নি।</p>
+<p>রিরা এবং কুশানের খুব সৌভাগ্য যে, প্রাণীগুলো আলো সহ্য করতে পারে না এবং ফ্লেয়ারের মতো একটা তুচ্ছ জিনিস দিয়ে ভয় দেখিয়ে সেগুলোকে তাড়িয়ে দেওয়া গেছে। কিন্তু রিরা এবং কুশান খুব ভালো করে জানে যে, যদি তাদের অনির্দিষ্ট সময় এখানে থাকতে হয়, তা হলে আগে হোক পরে হোক তাদের ফ্লেয়ার ফুরিয়ে যাবে এবং কোনো এক অন্ধকার মুহূর্তে এই লক্ষ লক্ষ প্রাণী এসে তাদেরকে শেষ করে দেবে। অসংখ্য ভাইরাস যেভাবে জীবকোষকে কুরে কুরে খেয়ে ফেলে, এই প্রাণীগুলোও তাদেরকে সেভাবে খেয়ে ফেলবে। পুরো বিষয়টি চিন্তা করে রিরা একটা নিশ্বাস ফেলে বলল, আমরা একটা বিপদের মাঝে আছি।</p>
+<p>কুশান সম্মতিসূচকভাবে মাথা নাড়ল। রিরা চোখ বড় বড় করে বলল, কুশান, তোমাকে আমি সঠিকভাবে মানুষ হিসেবে ট্রেনিং দিতে পারি নি।</p>
+<p>কেন? কী হয়েছে?</p>
+<p>আমি যখন বলব আমরা একটা বিপদের মাঝে আছি, তখন তুমি হেসে পুরো ব্যাপারটি উড়িয়ে দিয়ে বলবে, কে বলেছে বিপদ? কোনো বিপদ নেই!</p>
+<p>বিপদ থাকলেও বলব বিপদ নেই?</p>
+<p>হ্যাঁ। মানুষ এভাবে একজন আরেকজনকে সাহস দেয়।</p>
+<p>কুশান একটু হাসার চেষ্টা করে বলল, ঠিক আছে রিরা, আমি জেনে রাখলাম। পবেব বার আমি বলব কোনো বিপদ নেই। আমি মোটামুটি নিশ্চিত যে আমাদের এরকম অনেক সুযোগ আসবে!</p>
+<p>রিরা উষ্ণ স্নায়ু-সতেজকারী পানীয়টাতে একটা চুমুক দিয়ে বলল, আমরা কী করব সেটা খুব ভালো করে ঠিক করে নিতে হবে।</p>
+<p>কুশান মাথা নাড়ল, বলল, হ্যা।</p>
+<p>এই আজব গ্রহটার মাথামুণ্ডু কিছুই বুঝতে পারছি না। হঠাৎ করে এটা পুরোপুরি অন্ধকার হয়ে যায় কেমন করে?</p>
+<p>উপগ্রহের চৌম্বকক্ষেত্রের একটা বিচ্যুতি হয় বলে মনে হচ্ছে।</p>
+<p>দুদিন পরে পরেই যদি এরকম বিচ্যুতি ঘটতে থাকে, তা হলে আমাদের কী হবে?</p>
+<p>কুশান কোনো কথা না বলে নিঃশব্দে দুই হাতে ধরে এক টুকরো কৃত্রিম প্রোটিন চিবুতে থাকে।</p>
+<p>যখন গ্রহটা আলোকিত থাকে, তখন প্রাণীগুলো কোথায় থাকে বলে মনে হয়?</p>
+<p>মাটির নিচে কোনো অন্ধকার গুহা নিশ্চয়ই আছে।</p>
+<p>কতগুলো প্রাণী দেখেছ? এতগুলো প্রাণী থাকার জন্য বিশাল বড় এলাকা দরকার।</p>
+<p>হ্যাঁ। কুশান মাথা নাড়ল, বলল, আমরা তো আসলে গ্রহটা সম্পর্কে কিছুই জানি না।</p>
+<p>রিরা নিঃশব্দে শুকনো একটা রুটির টুকরো চিবুতে চিবুতে বলল, আমাদের প্রস্তুত থাকতে হবে। গ্রহটা কখন আবার অন্ধকার হয়ে যাবে আমরা জানি না।</p>
+<p>কুশান কোনো কথা বলল না।</p>
+<p>রিরা বলল, এই গ্রহের অধিবাসীরা কীভাবে মারা গিয়েছিল, আমি এখন খানিকটা অনুমান করতে পারি।</p>
+<p>কীভাবে?</p>
+<p>নিশ্চয়ই আলোর ব্যবস্থা করতে করতে সমস্ত জ্বালানি শেষ করে ফেলেছিল। আমরা সতর্ক না থাকলে আমাদেরও সেই অবস্থা হবে।</p>
+<p>তুমি কীভাবে সতর্ক থাকবে রিরা?</p>
+<p>খুব যত্ন করে জ্বালানি খরচ করতে হবে। আলো জ্বালিয়ে রাখার নতুন কোনো বুদ্ধি বের করতে হবে।</p>
+<p>কুশান আস্তে আস্তে বলল, আগে হোক পরে হোক আমাদের জ্বালানি শেষ হয়ে যাবে রিরা।</p>
+<p>রিরা একটা নিশ্বাস ফেলে অন্যমনস্কভাবে নিজের হাতের দিকে কিছুক্ষণ তাকিয়ে থেকে বলল, যেভাবেই হোক আমাদের কমিউনিকেশান্স মডিউলটি ঠিক করতে হবে। আমাদের বাইরের মহাকাশে খবর পাঠাতেই হবে। কারো না কারো এসে আমাদের উদ্ধার করতেই হবে।</p>
+<p>কুশান কোনো কথা না বলে এক ধরনের বিচিত্র দৃষ্টিতে রিরার দিকে তাকিয়ে রইল। রিরা জিজ্ঞেস করল, কী হল, তুমি এভাবে আমার দিকে তাকিয়ে আছ কেন?</p>
+<p>কুশান তার চোখ সরিয়ে নিয়ে বলল, না। এমনিই।</p>
+<p>ভালো করে বিশ্রাম নিয়ে রিরা আর কুশান কমিউনিকেশান্স মডিউলটি নিয়ে ব্যস্ত হয়ে পড়ল। মূল প্রসেসরের কাছ থেকে পাওয়া যোগাযোগ মডিউলের ম্যানুয়েলগুলো দেখে রিরা। আর কুশান মোটামুটি হতাশ হয়ে পড়ে। অত্যন্ত জটিল সার্কিট, এই বিষয়ে কয়েক বছরের আনুষ্ঠানিক পড়াশোনা না থাকলে এগুলো নিয়ে কাজ করা প্রায় অসম্ভব ব্যাপার। দুজনে মিলে অনেক কষ্ট করে সবচেয়ে কম ক্ষতিগ্রস্ত একটা বিসিতারকে কোনোমতে আবার চালু করে নেয়। সুইচ অন করেই অবশ্য তারা হতাশ হয়ে গেল, রিসিভারটি একটু পরে পরেই বিপ করে একটি শব্দ করছে। যার অর্থ সার্কিটে সমস্যা থাকার কারণে এখানে কোনো এক ধরনের ফিডব্যাক হচ্ছে। রিরা কিছুক্ষণ বিষদৃষ্টিতে রিসিভারটির দিকে তাকিয়ে থেকে বলল, আমাদের এত ঘণ্টার পরিশ্রম একেবারে বৃথা গিয়েছে!</p>
+<p>কুশান বলল, না রিরা, বৃথা যায় নি।</p>
+<p>কেন বৃথা যায় নি?</p>
+<p>কুশান বলল, আমরা যদি ট্রান্সমিটার তৈরি করার জন্য অনেক পরিশ্রম করতাম, তা হলে বলতে পারতাম পরিশ্রমটা বৃথা গিয়েছে।</p>
+<p>কেন কুশান? তুমি এটা কেন বলছ?</p>
+<p>কারণ রিসিভারটি আমাদের কোনো প্রয়োজন নেই। আমরা সিগন্যাল পেতে চাই —আমরা সিগন্যাল পাঠাতে চাই। সিগন্যাল পাঠাতে দরকার ট্রান্সমিটার!</p>
+<p>রিরা শব্দ করে হেসে বলল, ঠিকই বলেছ। এখন চলো বিশ্রাম নিতে যাই। একদিনের জন্য অনেক পরিশ্রম হয়েছে।</p>
+<p>কুশান বলল, তুমি যাও। আমি আরো কিছুক্ষণ দেখি।</p>
+<p>বেশ। দেখি তুমি একটা ট্রান্সমিটার দাঁড় করাতে পাব কি না। এই ভয়ংকর প্রাণীগুলো আমাদের খেয়ে ফেলার আগে আমাদের যে করে হোক একটা ট্রান্সমিটার দাঁড় করাতে হবে। যে করেই হোক!</p>
+
+<p>রিরা ঘুম থেকে উঠে কুশানকে খোঁজ করতে গিয়ে আবিষ্কার করল, সে এখনো কমিউনিকেশান কক্ষে বসে আছে। রিরা অবাক হয়ে বলল, সে কী! তুমি ঘুমাতে যাও নি?</p>
+<p>যাব।</p>
+<p>কী করছ এখানে একা একা বসে?</p>
+<p>রিসিভারটার সার্কিট আবার পরীক্ষা করে দেখছিলাম।</p>
+<p>পরীক্ষা করে কী দেখলে?</p>
+<p>মনে আছে, রিসিভারটি ঠিক করে কাজ করছিল না? এক ধরনের পজিটিভ ফিডব্যাক হয়ে একটু পরে পরে বিপ বিপ শব্দ করছিল?</p>
+<p>হ্যাঁ, মনে আছে।</p>
+<p>আমি তাই সার্কিটটা পরীক্ষা করে দেখলাম। সার্কিটটা ঠিকই আছে। রিসিভারটা আসলে ঠিকভাবেই কাজ করছে।</p>
+<p>রিরা ভুরু কুঁচকে বলল, বিপ বিপ শব্দ বন্ধ হয়েছে?</p>
+<p>কুশান রিরার দিকে তাকিয়ে একটু হাসল। বলল, না, বন্ধ হয় নি।</p>
+<p>তা হলে?</p>
+<p>এই বিপ বিপ শব্দটা আসলে সত্যিকার সিগন্যাল। এটা এই গ্রহ থেকেই আসছে।</p>
+<p>কী বলছ তুমি?</p>
+<p>হ্যাঁ, আমি পরীক্ষা করে নিশ্চিত হয়েছি। এখান থেকে প্রায় ষাট কিলোমিটার দূর থেকে আসছে।</p>
+<p>কে পাঠাচ্ছে এই সিগন্যাল?</p>
+<p>কেউ পাঠাচ্ছে না। কুশান মাথা নেড়ে বলল, আগে এই গ্রহে মানুষেরা থাকত, এটা সম্ভবত তাদের ট্রান্সমিটার। নিজে থেকে কাজ করছে। ব্যাটারি দুর্বল, তাই সিগন্যালটাও খুব দুর্বল।</p>
+<p>রিরা চোখ বড় বড় করে তাকাল, সত্যি বলছ তুমি?</p>
+<p>আমার তা-ই ধারণা।</p>
+<p>তার মানে ইচ্ছে করলে আমরা সেই ট্রান্সমিটারটা ব্যবহার করতে পারব?</p>
+<p>হ্যাঁ, আমরা যদি এই গ্রহে ষাট কিলোমিটার ভ্রমণ করে ট্রান্সমিটারে নতুন ব্যাটারি লগিয়ে আসি তা হলে আমরা নিশ্চয়ই ব্যবহার করতে পারব।</p>
+<p>আমরা তা হলে আমাদের অবস্থান জানিয়ে সিগন্যাল পাঠাতে পারব? উদ্ধারকারী কোনো মহাকাশযান এলে আমাদেরকে উদ্ধার করবে?</p>
+<p>কুশান নরম গলায় বলল, এটি এখন প্রায় নিশ্চিত একটি সত্যিকারের সম্ভাবনা।</p>
+<p>রিরা আনন্দে চিৎকার রে কুশানকে জড়িয়ে ধরল, কুশান একটু বিব্রত হয়ে বলল, আমি মানুষের মতো আনন্দ প্রকাশ হতে পারি না। একজন আরেকজনকে জড়িয়ে ধরলে কী করতে হয়?</p>
+<p>রিরা কুশানকে জড়িয়ে ধরে রেখে বলল, যদি সেটা তুমি না জান, তা হলে তোমাকে এখন আর শেখানো সম্ভব নয়।</p>
+<p>তবু আমি জানতে চাই…</p>
+<p>তোমার জানার প্রয়োজন নেই কশান। তোমরা নীলমানবের আনন্দ-ভালবাসা। এইসব ব্যাপার প্রকাশ করতে চাও না। আমরা মানুষেরা দরকার না থাকলেও প্রকাশ করে ফেলি।</p>
+<p>আমি সেটা লক্ষ করেছি।</p>
+<p>কাজেই যখন আনন্দ এবং ভালবাসা প্রকাশ করার প্রয়োজন হবে, আমি এখন থেকে দ্বিগুণ প্রকাশ করব। আমার এবং তোমার দুজনেরটা একসাথে মিলিয়ে।</p>
+<p>তোমাকে অনেক ধন্যবাদ রিরা।</p>
+<p>রিরা কুশানকে ছেড়ে দিয়ে বলল, এবারে তুমি ওঠো। গিয়ে টানা একটা লম্বা ঘুম দাও। আমি জানি মানুষ কিংবা নীলমানব কেউই ঘুম ছাড়া ঠিকভাবে কাজ করতে পারে না।</p>
+<p>কুশান উঠে দাঁড়াল, রিরার দিকে তাকিয়ে বলল, আমি আমার নিজের ভেতরে একটা বিচিত্র জিনিস লক্ষ করছি।</p>
+<p>কী লক্ষ করছ কুশান?</p>
+<p>আমার নিজের খুশি হওয়া এবং আনন্দ হওয়া নির্ভর করে তোমার ওপরে। তোমাকে খুশি হতে দেখলে আমিও খুশি হয়ে যাই। তোমার মন খারাপ হলে আমারও মন খারাপ হয়ে যায়।</p>
+<p>রিরা একটু অবাক হয়ে কুশানের দিকে তাকাল। দুর্ধর্ষ এবং একরোখা এই নীলমানব প্রজাতির একজনের মুখে এরকম সহজ-সরল স্বীকারোক্তি রিরা কখনো আশা করে নি। সে একটু চেষ্টা করে মুখে সহজ একটা ভঙ্গি ফুটিয়ে বলল, এখন তা হলে আমার ওপর দায়িত্ব বেড়ে গেল! তোমাকে হাসিখুশি রাখার জন্য আমাকেও হাসিখুশি থাকতে হবে!</p>
+<p>কুশান তার ঝকঝকে সাদা দাঁত বের করে হেসে বলল, তুমি মোটামুটিভাবে নিখুঁত শুধু যদি তোমার গায়ের রঙটা পচা আঙুরের মতো বাদামি না হত, তা হলে তোমাকে নিখুঁত বলা যেত!</p>
+<p>রিরা শব্দ করে হেসে বলল, ঠিক আছে কুশান, আমি এটা একটা প্রশংসা হিসেবে নিচ্ছি!</p>
+<p>আমি প্রশংসা হিসেবেই বলেছি। কুশান অপরাধীর মতো বলল, আমরা কিছু কিছু বিষয় ঠিকভাবে প্রকাশ করতে পারি না।</p>
+<p>কুশান ঘুমাতে চলে যাবার পর রিরা কমিউনিকেশান কক্ষে রিসিভারটির সামনে গিয়ে বসে। মূল প্রসেসরের সাথে কথা বলে তার দেখতে হবে—এখানে মানুষের আগের বসতিটি কোথায় ছিল, কেমন ছিল সেগুলো জানে কি না। এক-দুদিনের মাঝেই তাদের সেই বসতিতে যেতে হবে ট্রান্সমিটারের ব্যাটারিটি বদলে দিয়ে চালু করে দেবার জন্য।</p>
+<p>রিসিভারের সুইচে হাত দিয়ে হঠাৎ করে রিরা একটু আনমনা হয়ে যায়, কী জন্য সে ঠিক বুঝতে পারে না।</p>
+</div>
+<br/><h2>১০. চাপা একটা গর্জন</h2>
+<hr/>
+<br/><div>
+<p>চাপা একটা গর্জন করে মাটি থেকে মিটাবখানেক উপর দিয়ে বাইভার্বালটা উড়ে যাচ্ছে। বাইভার্বালের সামনে রেলিঙে হাত রেখে রিরা আর কুশান পাশাপাশি দাঁড়িয়ে যাচ্ছে। গরম বাতাসের হলকায় তাদের চুল উড়ছে, গ্রহের সাদা বালিতে দুজনের চেহারাই ধূলি ধূসরিত। রিরা বলল, পুরো ব্যাপারটা একটা জুয়াখেলার মতো। তার মুখে অক্সিজেনের ছোট মাস্ক থাকার কারণে এবং বাতাসের শব্দে ভালো করে কথা শোনা যাচ্ছে না বলে প্রায় চিৎকার করে কথা বলতে হল।</p>
+<p>কুশান প্রত্যুত্তরে প্রায় চিৎকার করে বলল, কেন? এটাকে তুমি জুয়াখেলা কেন বলছ?</p>
+<p>যদি হঠাৎ করে গ্রহটা অন্ধকার না হয়ে যায়, তা হলে পুরো কাজটা পানির মতো সহজ! আমরা বাইভার্বালে করে যাব, ট্রান্সমিটারে নতুন ব্যাটারি লাগাব, ট্রান্সমিটারে প্রোগ্রাম লোড করব এবং ফিরে আসব। কিন্তু যদি এর মাঝে গ্রহটা আবার অন্ধকার হয়ে যায়, তখন আমাদের কী অবস্থা হবে কল্পনা করতে পার?</p>
+<p>কিন্তু আমরা তো তার প্রস্তুতি নিয়েছি। বেশ অনেকগুলো ফ্লেয়ার নিয়েছি, সার্চলাইট নিয়েছি, অস্ত্র নিয়েছি।</p>
+<p>কিন্তু তুমি খুব ভালো করে জান এগুলো সত্যিকারের নিরাপত্তা না! আমরা যদি এই খোলা গ্রহে কয়েক লক্ষ বীভৎস প্রাণীর মুখোমুখি হয়ে যাই, তা হলে কোনোভাবে বের হয়ে আসতে পারব?</p>
+<p>কুশান বলল, পারব, নিশ্চয়ই পারব।</p>
+<p>কুশানের কথা শুনে বিারা কোনো উত্তর না দিয়ে মুখ টিপে হাসল।</p>
+<p>কুশান জিজ্ঞেস করল, তুমি হাসছ কেন?</p>
+<p>তুমি আমার উপদেশ মেনে মিছিমিছি আশা দিতে শুরু করে দেখে।</p>
+<p>কুশান বলল, যেখানে ঠিক উত্তর জানা নেই, সেখানে মিছিমিছি আশা করে থাকা খারাপ নয়।</p>
+<p>রিরা বাইভার্বালটাকে একটা বিপজ্জনক বড় পাথরের পাশ কাটিয়ে নিয়ে বলল, মানুষের বসতিটা আর কতদূর হবে বলে মনে হয়?</p>
+<p>আমরা নিশ্চয়ই খুব কাছাকাছি চলে আসছি। আমার পাওয়ার মিটারে হাই ফ্রিকোয়েন্সির সিগন্যালটা বেশ জোরালো হয়ে গেছে।</p>
+<p>রিরা বাইভার্বালটাকে কয়েক মিটার উপরে নিয়ে বলল, কুশান, তোমার দৃষ্টিশক্তি ঈগল পাখির মতো তুমি খুঁজে দেখ, দেখা যায় কি না।</p>
+<p>কুশান সামনে তাকিয়ে বলল, আমার মনে হয় দেখতে পেয়েছি। সোজা সামনের দিকে যাও। একটা বিধ্বস্ত দালানের মতো দেখছি উপরে একটা এন্টেনা দেখা যাচ্ছে। আলোতে চকচক করছে।</p>
+<p>রিরা দেখার চেষ্টা করে বলল, আমি কিছু দেখছি না।</p>
+<p>আরেকটু কাছে গেলেই দেখবে।</p>
+<p>সত্যি সত্যি কয়েক মিনিট পরেই রিরা মানুষের বসতিটা দেখতে পেল। ধুলায় ঢাকা পড়ে আছে কিন্তু দেখে বোঝা যায় একসময় এটি নিশ্চয়ই বেশ বড় একটা আবাসস্থল ছিল। একপাশে বড় বড় ডোম, দূরে পাওয়ার স্টেশন, মানুষের থাকার আবাসস্থল, পানির ট্যাংক–সবকিছুই ধুলার নিচে আড়াল হয়ে যেতে শুরু করেছে। রিরা বাইভার্বালটি নিয়ে পুরো এলাকাটা একবার ঘুরে এসে বলল, আর কিছুদিন পার হলে তো পুরোটাই বালুর নিচে ড়ুবে যেত, আর খুঁজেই পেতাম না।</p>
+<p>কুশান বলল, খালিচোখে খুঁজে বের করা কষ্ট হত—ঠিক যন্ত্রপাতি থাকলে বের করা কঠিন কোনো ব্যাপার নয়।</p>
+<p>রিরা বাইভার্বালটি মূল কেন্দ্রের কাছাকাছি থামিয়ে বলল, হ্যাঁ, সেটা ঠিকই বলেছ। আমাদের মহাকাশযানটা বিধ্বস্ত হয়ে আমরা মোটামুটিভাবে অনাথ হয়ে গেছি।</p>
+<p>দুজন বাইভার্বাল থেকে নেমে কেন্দ্রটির দিকে তাকাল—সবকিছু ভেঙেচুরে বিধ্বস্ত হয়ে আছে। এই গ্রহের প্রাণীগুলো নিশ্চয়ই অসংখ্যবার এই কেন্দ্রটিতে এসে হানা দিয়েছে। রিরা। স্পষ্ট দেখতে পায়—মানুষের জ্বালানি শেষ হয়ে গেছে আর আলো জ্বালাতে পারছে না, অন্ধকার রাতে হাজার হাজার লক্ষ লক্ষ মহাজাগতিক প্রাণী হিংস্র দাঁত নিয়ে ছুটে আসছে, মানুষকে ছিন্নভিন্ন করে ফেলছে! কী ভয়ংকর একটি পরিণতি। রিরা একটা নিশ্বাস ফেলে বলল, চলো কুশান, ভেতরে যাই।</p>
+<p>চলো। ভাঙা দেয়াল পার হয়ে তারা ভেতরে ঢুকল। ভেতরে আরো বেশি বিধ্বস্ত অবস্থা। ভাঙা যন্ত্রপাতি ছড়িয়ে-ছিটিয়ে আছে—নোংরা দেয়ালে পোড়া দাগ, ধসে যাওয়া ছাদ, দুমড়ে-মুচড়ে থাকা ধাতব টিউব—সব মিলিয়ে একটা ভয়ংকর পরিবেশ। রিরা নিচু গলায় বলল, এরকম একটা পরিবেশে ট্রান্সমিটারটা টিকে আছে কেমন করে? প্রাণীগুলো ট্রান্সমিটারটাকে নষ্ট করে নি কেন?</p>
+<p>আমার মনে হয় কন্ট্রোল প্যানেলটি আলোকিত ছিল, আলো দেখে ভয় পেয়ে আসে</p>
+<p>নি!</p>
+<p>হ্যাঁ। তা-ই হবে নিশ্চয়ই। এখন এই জঞ্জালের ভেতরে খুঁজে পেলে হয়।</p>
+<p>কুশান বলল, ভয় পেয়ো না। আমি খুঁজে বের করে ফেলব।</p>
+<p>হ্যাঁ, কুশান। তুমি আর তোমার নীলমানবের দৃষ্টি এখন আমাদের একমাত্র ভরসা!</p>
+<p>দুজনে মিলে খুঁজতে শুরু করে। বন্ধ ঘরের দরজা খুলে রিরা চিৎকার করে পেছনে। সরে আসে। ভেতরে একজন মানুষের মৃতদেহ পড়ে আছে কিছু কিছু অংশ ক্ষয়ে গেলেও চোখে-মুখে এখনো এক ধরনের অবর্ণনীয় আতঙ্ক। রিরা নিশ্বাস আটকে রেখে বলল, আমাদের যদি কেউ উদ্ধার করতে না আসে, তা হলে আমাদের এই অবস্থা হবে।</p>
+<p>কুশান রিরাকে টেনে সরিয়ে নিয়ে এসে বলল, সেটা নিয়ে পরে দুশ্চিন্তা করা যাবে এখন যেটা করতে এসেছি, সেটা করা যাক।</p>
+<p>ট্রান্সমিটারের কন্ট্রোল প্যানেলটা খুঁজতে গিয়ে তারা আরো কয়েকজন মানুষের মৃতদেহ এবং অনেকগুলো মৃতদেহের অংশবিশেষ খুঁজে পেল। এই গ্রহের প্রাণীগুলো এই মানুষগুলোকে তাদের ধারালো দাঁত দিয়ে ছিন্নভিন্ন করে ফেলেছে। দেখে মনে হচ্ছে কেউ আত্মরক্ষার কোনো সুযোগ পায় নি।</p>
+<p>ট্রান্সমিটারের কন্ট্রোল প্যানেলটি ছিল তিনতলার একটি ঘরে। কুশানের ধারণা সত্যি, প্যানেলটি আলোকিত বলে প্রাণীগুলো এটাকে কখনো স্পর্শ করে নি। দুজনে খুঁজে পুরোনো ব্যাটারিগুলো বের করে সেগুলো খুলে নতুন ব্যাটারি লাগিয়ে দিল। নতুন করে সুইচ অন করার সাথে সাথে কন্ট্রোল প্যানেলটি উজ্জ্বল আলোতে জ্বলে উঠল। রিরা হাত মুষ্টিবদ্ধ করে বলল, চমৎকার! এখন এটাকে যদি উদ্ধার করার জন্য প্রোগ্রাম করতে পারি, তা হলেই আমাদের কাজ শেষ।</p>
+<p>কুশান জিজ্ঞেস করল, তুমি পারবে?</p>
+<p>পারার কথা, মহাকাশ একাডেমিতে আমাদের শিখিয়েছে।</p>
+<p>এটা কিন্তু অনেক পুরোনো সিস্টেম।</p>
+<p>তা হলেও ক্ষতি নেই। জরুরি অবস্থার কোড কখনো পরিবর্তন করা হয় না। আমাদেরকে সেটাই শিখিয়েছে।</p>
+<p>কিছুক্ষণের মাঝেই রিরা আবিষ্কার করল তাদেরকে ভুল জিনিস শেখানো হয় নি। জরুরি অবস্থার কোড ব্যবহার করে সে সত্যি সত্যি কিছুক্ষণের মাঝে ট্রান্সমিটারটা প্রোগ্রাম করে ফেলল। প্রতি সেকেন্ডে একবার করে ট্রান্সমিটারটা মহাকাশে সবাইকে জানিয়ে দিতে লাগল—বিধ্বস্ত মহাকাশযানের মহাকাশচারী এই গ্রহে আটকা পড়ে আছে, তাদেরকে উদ্ধার করার জন্য এস। এই তথ্যটি কাছাকাছি সব মহাকাশযান থেকে রিলে করা হবে—এক-দুই দিনের ভেতরে মূল মহাকাশ কেন্দ্রে তথ্যটি পৌঁছে যাবে। তখন কেউ না কেউ তাকে উদ্ধার করতে আসবে। এটি এখন শুধু সময়ের ব্যাপার।</p>
+<p>রিরা কন্ট্রোল প্যানেলে সিগন্যালের তীব্রতা নিশ্চিত করে ঘুরে কুশানের দিকে তাকিয়ে বলল, কাজ শেষ।</p>
+<p>পুরোপুরি শেষ হয় নি। আমরা মহাকাশযানে ফিরে যাবার পর বলব, কাজ শেষ।</p>
+<p>হ্যাঁ। রিরা মাথা নাড়ল, বলল, মহাকাশযানে গিয়ে আমরা আজকে সত্যিকারের তিতির পাখির মাংস আর যবের রুটি দিয়ে একটা ভোজ দেব। তার সাথে থাকবে আঙুরের</p>
+<p>রস।</p>
+<p>খাবার পর থাকবে বুনো স্ট্রবেরি দিয়ে তৈরি ফলের কাস্টার্ড।</p>
+<p>হ্যাঁ, ফলের কাস্টার্ড। রিরা মাথা নেড়ে বলল, তারপর কিহিতার সপ্তদশ সিম্ফনি শুনতে শুনতে আমি আকাশের দিকে তাকিয়ে থাকব।</p>
+<p>কুশান একটু হেসে বলল, আমার মনে হয় সেজন্য আমাদের সবচেয়ে প্রথম মহাকাশযানে ফিরে যেতে হবে। যত তাড়াতাড়ি ফিরে যেতে পারব, তত তাড়াতাড়ি এই আনন্দোৎসব শুরু করা সম্ভব হবে।</p>
+<p>তুমি ঠিকই বলেছ কুশান, আর দেরি করে লাভ নেই।</p>
+<p>চলো যাই।</p>
+<p>দূজনে বাইভার্বালে এসে ওঠে। শক্ত হাতে হ্যান্ডেল ধরে পা দিয়ে চাপ দিয়ে ইঞ্জিন চালু করে দিতেই বাইভার্বালটা একটা চাপা গর্জন করে মাটির উপরে ভেসে উঠল। রিয়া হ্যান্ডেলটা টেনে ধরতেই সেটা একটা ঝাকুনি দিয়ে ছুটে যেতে থাকে।</p>
+<p>রির দিগন্তে ঝুলে থাকা অতিকায় উপগ্রহটার দিকে তাকিয়ে থাকতে থাকতে অন্যমনস্কভাবে বলল, মহাকাশে পৌঁছানোর আগে হঠাৎ যদি গ্রহটা অন্ধকার হয়ে যায়, তা হলে কী হবে কুশান?</p>
+<p>কিছুই হবে না রিরা, আমরা তার জন্য প্রস্তুত হয়ে এসেছি।</p>
+<p>আমাদের মহাকাশ একাডেমিতে কী শিখিয়েছিল জান?</p>
+<p>কী?</p>
+<p>একজন মানুষ কখনোই একটা বিপদের জন্য পুরোপুরি প্রস্তুত হতে পারে না। সেটার জন্য প্রস্তুত হওয়া সম্ভব কখন, জান?</p>
+<p>কুশান রিয়ার দিকে তাকিয়ে বলল, কখন?</p>
+<p>সেই বিপদটিতে পড়ে তার থেকে একবার উদ্ধার পেলে।</p>
+<p>কুশান কোনো কথা না বলে দূরে উপগ্রহটির দিকে তাকিয়ে রইল। রিরা বলল, কী। হল কুশান, তুমি চুপ করে আছ কেন?</p>
+<p>কুশান রিরার প্রশ্নের উত্তর না দিয়ে বলল, মহাকাশযানে পৌঁছতে আমাদের আর কতক্ষণ লাগবে রিরা?</p>
+<p>এখনো কমপক্ষে আধাঘণ্টা। কেন?</p>
+<p>আমার মনে হয় গ্রহটায় অন্ধকার নেমে আসতে শুরু করেছে।</p>
+<p>রিরা ভয় পাওয়া গলায় বলল, তুমি কী বলছ কুশান?</p>
+<p>হ্যাঁ। তাকিয়ে দেখ।</p>
+<p>রিরা তাকিয়ে দেখল গাঢ় একটি অন্ধকার ছায়া উপগ্রহটি ঢেকে ফেলতে শুরু করেছে। অশুভ একটি অন্ধকারে ঢেকে যাচ্ছে পুরো গ্রহটি। কোথা থেকে শীতল একটি বাতাস ভেসে এল, শিউরে উঠল রিরা, শীতে এবং আতঙ্কে।</p>
+<p>কিছু বোঝার আগেই গাঢ় অন্ধকারে চারদিক ঢেকে গেল।</p>
+</div>
+<br/><h2>১১. বাইভার্বালটি থামিয়ে রিরা বলল</h2>
+<hr/>
+<br/><div>
+<p>বাইভার্বালটি থামিয়ে রিরা বলল, আমি কিছু দেখতে পাচ্ছি না কুশান। তুমি দেখতে পাচ্ছ?</p>
+<p>হ্যাঁ, দেখতে পাচ্ছি।</p>
+<p>চমৎকার। এই নাও-বাইভার্বালটা তুমি চালিয়ে নিয়ে যাও।</p>
+<p>রিরা, আমি কখনো তোমাদের এই ভাসমান যান চালাই নি। কেমন করে চালাতে হয় আমি জানি না।</p>
+<p>ঘুটঘুটে অন্ধকারে রিরা কুশানের দিকে তাকানোর চেষ্টা করল, সে কখনো কল্পনা করে নি যে, একজন বলতে পারে যে সে বাইভার্বাল কীভাবে চালাতে হয় জানে না। মানুষ যেভাবে হাঁটতে শেখে, সেভাবে বাইভার্বাল চালাতে শেখে। রিরা ভুলে গিয়েছিল কুশান মানুষ নয়, কুশান নীলমানব। সে একটু অধৈর্য গলায় বলল, বাইভার্বাল চালানো খুব সোজা কুশান। হ্যান্ডেলটা টেনে ধরলেই চলে…।</p>
+<p>জানি। তুমি চালিয়েছিলে, আমি লক্ষ করেছি। কিন্তু সবকিছুরই এক ধরনের ব্যালেন্স দরকার। আমি যদি চালাতে গিয়ে কোনো পাথরে ধাক্কা লাগিয়ে ফেলি খুব বড় বিপদ হয়ে যাবে।</p>
+<p>তা হলে?</p>
+<p>একটা ফেয়ার জ্বালানো যাক। ফেয়ারের আলোতে তুমি চালিয়ে নাও।</p>
+<p>ঠিক আছে।</p>
+<p>রিরা বাইভার্বালের জমাটবাধা অন্ধকারের দিকে তাকিয়ে রইল এবং তার মাঝে বুঝতে পারল কুশান একটা ফ্লেয়ার এনে সুইচ টিপে ছেড়ে দিয়েছে। জ্বলন্ত আগুনের হলকা ছড়িয়ে ফ্লেয়ারটা আকাশে উঠে গেল। কয়েক মুহূর্ত পর পুরো এলাকাটা তীব্র সাদা আলোতে ভরে গেল। অন্ধকারে এতক্ষণ থাকার পর হঠাৎ করে এই তীব্র আলোতে রিরার চোখ ধাধিয়ে যায়, সে দুই হাতে চোখ ঢেকে আলোতে অভ্যস্ত হবার চেষ্টা করতে করতে হঠাৎ ঝড়ো বাতাসের মতো এক ধরনের শব্দ শুনতে পেল। ভয় পাওয়া গলায় বলল, ওটা কিসের শব্দ কুশান?</p>
+<p>আমার মনে হয় মহাকাশের প্রাণী বের হয়ে আসছে। ভয়ংকর এক ধরনের আতঙ্কে হঠাৎ রিরার বুক কেঁপে ওঠে। সে কাঁপা হাতে বাইভার্বালের হ্যান্ডেলটা ধরে নিজের দিকে টেনে আনে, একটা ছোট ঝাকুনি দিয়ে বাইভার্বালটা উড়ে যেতে শুরু করে। রিরা তীব্র আলোতে চোখ দুটোকে অভ্যস্ত হতে দিয়ে বাইভার্বালটাকে নিয়ন্ত্রণের মাঝে রাখার চেষ্টা করে। ফ্লেয়ারের কৃত্রিম আলোতে পুরো এলাকাটা এখন অপরিচিত একটা জগতের মতো দেখাচ্ছে, রিরার হঠাৎ করে দিক বিভ্রম হতে শুরু করল। কোনদিকে যাবে সেটা নিয়ে হঠাৎ তার ভেতরে একটা বিভ্রান্তির জন্ম হয়ে গেল। ভয় পাওয়া গলায় বলল, কুশান!</p>
+<p>কী হল?</p>
+<p>আমি কোনদিকে যাব বুঝতে পারছি না।</p>
+<p>তুমি ঠিক দিকেই যাচ্ছ রিরা। একটু বাম দিকে ঘুরিয়ে নাও-দশ ডিগ্রির মতো।</p>
+<p>ফ্লেয়ারের আলোতে সবকিছু অন্যরকম লাগছে—আলোটা উপর থেকে আসছে, কোনো ছায়া নেই, তাই কোনো কিছুর গভীরতা বুঝতে পারছি না।</p>
+<p>আমি বুঝতে পারছি রিরা। তুমি মাথা ঠাণ্ডা রাখ ঘাবড়ে যাবার কিছু নেই।</p>
+<p>পাথরগুলো কত উঁচুতে বুঝতে পারছি না—মনে হচ্ছে কোথাও ধাক্কা লাগিয়ে দেব।</p>
+<p>না রিরা। কুশান শান্ত গলায় বলল, তুমি ধাক্কা লাগাবে না।</p>
+<p>ফ্লেয়ারটা ধীরে ধীরে নেমে আসছে। এটা যত নিচে নামছে আলোর তীব্রতা তত বাড়ছে—শুধু যে আলোর তীব্রতা বাড়ছে তা নয়, ফ্লেয়ারটি নামছে সামনের দিকে, তাই রিরার চোখ ধাধিয়ে যাচ্ছে। পুরো এলাকাটি হঠাৎ মনে হতে থাকে একটা বিশাল সাদা পরদার মতো। রিরা দাতে দাঁত চেপে বলল, আর পারছি না, চোখ ধাধিয়ে যাচ্ছে।</p>
+<p>কুশান কোনো কথা বলল না। রিরা জিজ্ঞেস করল, প্রাণীগুলো কোথায় আছে কুশান?</p>
+<p>আমাদের ঘিরে রেখেছে। ফ্লেয়ারটা নিভে গেলেই ছুটে আসবে আমাদের দিকে।</p>
+<p>সর্বনাশ!</p>
+<p>হ্যাঁ রিরা, কাজেই যেভাবে হোক আমাদের মহাকাশযানে পৌঁছাতে হবে। বুঝেছ?</p>
+<p>বুঝেছি।</p>
+<p>রিরা সমস্ত মনোযোগ কেন্দ্রীভূত করে বাইভার্বালটা চালিয়ে নিয়ে যেতে থাকে, কয়েকবার বিপজ্জনকভাবে দুটি পাথরের সাথে ধাক্কা লাগতে লাগতে শেষমুহূর্তে নিজেদের বাঁচিয়ে নেয়। কুশান শান্ত গলায় বলল, মহাকাশযানটিকে দেখতে পাচ্ছি রিরা। আর মাত্র কিছুক্ষণ।</p>
+<p>ঠিক আছে।</p>
+<p>মাথা ঠাণ্ডা রাখ রিরা—</p>
+<p>রিরা মাথা ঠাণ্ডা রাখল।</p>
+<p>আজ ভাগ্য আমাদের পক্ষে, আজ আমাদের কোনো বিপদ হতে পারে না।</p>
+<p>রিরা বিশ্বাস করতে চাইল আজ ভাগ্য তাদের পক্ষে। আজ সত্যিই বিপদ হবে না।</p>
+<p>কিন্তু শেষমুহূর্তে ভাগ্য তাদের সাথে বিশ্বাসঘাতকতা করল। ফ্লেয়ারটি যখন খুব নিচে নেমে এসেছে, তীব্র আলোতে যখন কিছু দেখা যাচ্ছে না, তখন রিরা বাইভার্বালটিকে একটা বড় পাথরের পাশ দিয়ে ঘুরিয়ে নিতে গিয়ে অনুমানে ভুল করে ফেলল, বাইভার্বালটিসহ রিরা আর কুশান আছড়ে পড়ল শক্ত মাটিতে। বাইভার্বালের যন্ত্রপাতি, ফ্লেয়ার, অস্ত্র, সার্চলাইট, ব্যাটারি সবকিছু ছিটকে পড়ল চারদিকে, ঢালু পাথরে গড়িয়ে যেতে থাকল সিলিন্ডারের মতো ফ্লেয়ারগুলো।</p>
+<p>চাপা গলায় একটা গালি দিয়ে রিরা উঠে দাঁড়ায়, পায়ের গোড়ালিতে ব্যথা লেগেছে, সোজা হয়ে দাঁড়াতে পারছিল না সে। কুশান কাত হয়ে থাকা বাইভার্বালটা ধরে কোনোমতে উঠে দাঁড়াল, এক ধরনের হতচকিত দৃষ্টি দিয়ে চারদিকে তাকাল সে। রিরা কয়েক মুহূর্ত বেটার দিকে তাকিয়ে থাকে, তার ঔজ্জ্বল্য কমতে শুরু করেছে, বার কয়েক আলোটা কেঁপে কেঁপে উঠল, এটা নিভে যাবার সময় হয়েছে। রিরা ফিসফিস করে বলল, আমাদের ভাগ্যটুকু আমরা শেষ করে ফেলেছি কুশান।</p>
+<p>কুশান চাপা গলায় বলল, ভাগ্য তৈরি করে নিতে জানলে কখনো শেষ হয় না।</p>
+<p>তুমি জান তৈরি করতে?</p>
+<p>জানতাম না। শিখছি।</p>
+<p>কোথা থেকে শিখছ?</p>
+<p>তোমার কাছ থেকে।</p>
+<p>রিরা এত কষ্টের মাঝেও একটু হাসার চেষ্টা করে বলল, আশা করি তুমি ভালো করে শিখেছ কুশান। কারণ আমি কিন্তু শিখি নি।</p>
+<p>কুশান বাইভার্বালটাকে একটা ধাক্কা দিয়ে বলল, এটা কি আর যাবে?</p>
+<p>রিরা একনজর দেখে বলল, কিছুক্ষণ সময় ব্যয় করতে পারলে আবার চালানো যাবে।</p>
+<p>কুশান চারদিকে একবার তাকিয়ে বলল, আমাদের সেই কিছুক্ষণ সময় নেই। প্রাণীগুলো ঘিরে ফেলেছে।</p>
+<p>আরেকটা ফ্লেয়ার জ্বালানো যায় না?</p>
+<p>না। ফ্লেয়ারগুলো গড়িয়ে নিচে চলে গেছে-এখন খুঁজে বের করার সময় নেই।</p>
+<p>তা হলে?</p>
+<p>আমার মনে হয় সবচেয়ে ভালো হবে যদি দৌড়ে মহাকাশযানের কাছে চলে যাই।</p>
+<p>রিরা ফ্লেয়ারটির দিকে তাকাল, সেটা প্রায় নিবুনিবু হয়ে এসেছে, যে কোনো মুহূর্তে নিবে যাবে। জিজ্ঞেস করল, পৌঁছাতে পারব মহাকাশযানের কাছে?</p>
+<p>পৌঁছাতে হবে।</p>
+<p>কুশান নিচু হয়ে একটা অস্ত্র হাতে তুলে নিয়ে বলল, দেরি করে লাভ নেই রিরা। দৌড়াও।</p>
+<p>কিন্তু—</p>
+<p>এখন কিন্তুর সময় নেই। কুশান রিরাকে ধাক্কা দিয়ে বলল, দৌড়াও।</p>
+<p>রিরা দৌড়াতে শুরু করেই হুঁমড়ি খেয়ে পড়ে গেল। কুশান তার হাত ধরে বলল, কী হয়েছে রিরী?</p>
+<p>কিছু না। পায়ে ব্যথা পেয়েছি।</p>
+<p>রিরা আবার উঠে দাঁড়াল, পায়ের ব্যথা সহ্য করে সে কোনোভাবে দৌড়াতে চেষ্টা করতে থাকে, কুশান তার পিছু পিছু আসছে, স্বয়ংক্রিয় অস্ত্রটি হাতে নিয়ে সে সতর্ক দৃষ্টিতে তাকাচ্ছে চারদিকে।</p>
+<p>ফ্লেয়ারটা হঠাৎ দপ করে নিবে গেল; অন্ধকার হয়ে গেল চারদিক—সাথে সাথে অসংখ্য প্রাণীর এক ধরনের হিংস্র ধ্বনি শুনতে পায় রিরা। সমুদ্রের ঢেউয়ের মতো এক ধরনের শব্দ ভেসে আসতে থাকে, ঘুটঘুটে অন্ধকারে কিছু না দেখেও রিরা বুঝতে পারে ধারালো দাঁত বের করে অসংখ্য ক্লেদাক্ত প্রাণী হিংস্র নিশ্বাস ফেলতে ফেলতে ছুটে আসছে তাদের দিকে।</p>
+<p>রিরা ভয় পাওয়া গলায় বলল, আমি কিছু দেখছি না কুশান।</p>
+<p>আমি দেখছি। আমাকে ধর।</p>
+<p>রিরা হাত বাড়িয়ে কুশানকে ধরার চেষ্টা করল, কুশান এগিয়ে এসে রিরার হাত ধরে তাকে টেনে নিতে থাকে। একটু পরে পরে সে হুঁমড়ি খেয়ে পড়ে যেতে চায়, কিন্তু কুশান তাকে শক্ত করে ধরে রাখল, পড়ে যেতে দিল না। হিংস্র চিৎকার আর গর্জন বাড়ছে চারদিকে—পায়ের শব্দ শুনতে পাচ্ছে স্পষ্ট। অন্ধকারে একটা পাথরে হোঁচট খেয়ে রিরা হঠাৎ পড়ে গেল নিচে। প্রচণ্ড যন্ত্রণায় ছোট একটা আর্তচিৎকার করে ওঠে সে দাতে দাঁত চেপে যন্ত্রণাটা সহ্য করে ওঠার চেষ্টা করতে গিয়ে আবার হুঁমড়ি খেয়ে পড়ে গেল সে। কাতর গলায় বলল, আমি আর পারছি না কুশান।</p>
+<p>পারতে হবে। অন্ধকারে কুশানের চাপা গলার স্বর শোনা গেল, যেভাবে হোক। পারতে হবে।</p>
+<p>আমাদের ভাগ্য আমরা খরচ করে ফেলেছি কশান।</p>
+<p>এখনো খরচ হয় নি। রিরা হঠাৎ অনুভব করল, কুশান তাকে টেনে দাঁড় করিয়েছে, আমার অংশের ভাগ্যটুকু আমি তোমাকে দিচ্ছি। এখন তোমার কাছে দুজনের ভাগ্য।</p>
+<p>কী বলছ তুমি?</p>
+<p>ঐ যে সামনে তাকিয়ে দেখ—আমাদের মহাকাশযানটা দেখতে পাচ্ছ?</p>
+<p>রিরা আবছাভাবে দেখতে পেল, বলল, হ্যাঁ।</p>
+<p>তুমি সেদিকে যেতে শুরু কর। যেভাবে পার। দৌড়িয়ে হেঁটে হামাগুড়ি দিয়ে।</p>
+<p>আর তুমি?</p>
+<p>আমি আসছি তোমার পিছু পিছু তোমাকে কাভার দিয়ে।</p>
+<p>তুমি কীভাবে কাভার দেবে?</p>
+<p>আমার কাছে স্বয়ংক্রিয় অস্ত্র আছে। আমি আগুন জ্বালাব।</p>
+<p>তুমি কীভাবে আগুন জ্বালাবে? এখানে অক্সিজেন নেই।</p>
+<p>আছে, আমার কাছে অক্সিজেন আছে।</p>
+<p>রিরা চমকে উঠে বলল, কিন্তু সেটা নিশ্বাস নেবার অক্সিজেন।</p>
+<p>সেটা নিয়ে কথা বলার সময় নেই। প্রাণীগুলো চলে আসছে। আমি দেখতে পাচ্ছি রিরা আমি স্পষ্ট দেখতে পাচ্ছি।</p>
+<p>না। আমি একা যাব না।</p>
+<p>তোমাকে যেতে হবে। তোমাকে যেভাবে হোক বেঁচে থাকতে হবে। তোমাকে উদ্ধার করতে আসবে মনে নেই?</p>
+<p>না–রিরা চিৎকার করে বলল, না।</p>
+<p>হ্যাঁ। কুশান রিরাকে একটা ধাক্কা দিয়ে বলল, যাও। তাড়াতাড়ি।</p>
+<p>রিরা কুশানের পদশব্দকে মিলিয়ে যেতে শুনল। কোথায় গিয়েছে সে?</p>
+<p>ভয়ংকর হিংস্র শব্দ শুনতে পাচ্ছে সে। সমুদ্রের জলোচ্ছাসের মতো হাজার হাজার লক্ষ লক্ষ প্রাণী ছুটে আসছে তাদের দিকে। রিরা আর চিন্তা করতে পারছে না। কোনোভাবে সে উঠে দাঁড়াল, তারপর একপায়ে ভর দিয়ে ছুটে যেতে শুরু করল মহাকাশযানের দিকে। পায়ের নিচে শক্ত পাথর, অন্ধকারে হাতড়ে হাতড়ে সে এই পাথরের উপর দিয়ে হেঁটে যায়। তাকে ঘিরে হিংস্র জন্তুগুলি ছুটে যাচ্ছে, খুব কাছে থেকে ভয়ংকর গলায় ডেকে উঠছে হঠাৎ হঠাৎ। রিরা কিছু দেখতে পাচ্ছে না, অন্ধকারে হঠাৎ কোথা থেকে তার উপরে কিছু ঝাঁপিয়ে পড়বে এরকম একটা আতঙ্কে তার সমস্ত মায়ু টানটান হয়ে আছে। যন্ত্রণা আর পরিশ্রমে তার সমস্ত শরীর অবসন্ন হয়ে আসতে চাইছে। প্রচণ্ড তৃষ্ণয় বুকটা ফেটে যেতে চাইছে, তার মাঝে সে মহাকাশযানের দিকে ছুটে যেতে লাগল।</p>
+
+<p>হঠাৎ করে স্বয়ংক্রিয় অস্ত্রের গুলির শব্দ শুনল সে ছাড়া ছাড়াভাবে, সাথে সাথে ভয়ংকর প্রাণীগুলোর হিংস্র চিৎকার বেড়ে গেল কয়েকগুণ হুঁটোপুটি শুরু হয়ে গেল কোথাও। রিরা নিজেকে টেনে নিতে থাকে সামনে, মহাকাশযানের একেবারে কাছাকাছি এসে গেছে সে, আর কয়েক পা গেলেই পৌঁছে যাবে রিরা।</p>
+<p>আবার গুলির শব্দ শুনতে পেল, তাকে কাভার দিচ্ছে কুশান। বলেছিল তার ভাগ্যটুকু সে রিরাকে দিয়ে দিচ্ছে—সত্যিই কি একজনের ভাগ্য আরেকজনকে দেওয়া যায়? সত্যিই কি স্বার্থপরের মতো কুশানের ভাগ্যটুকু নিয়ে এসেছে সে? রিরা মহাকাশযানের দরজায় হাত দেয়, গোপন সংখ্যা প্রবেশ করাতেই ঘরঘর শব্দ করে দরজাটা খুলে গেল। ভেতরে ঢুকে টেনে দরজাটা বন্ধ করে দিতেই মূল প্রসেসরের কণ্ঠস্বর শুনতে পেল, জীবাণুমুক্ত করার জন্য বাতাস শোধনের প্রক্রিয়া শুরু করতে যাচ্ছি—</p>
+<p>বাইপাস কর।</p>
+<p>এটি হবে অত্যন্ত অযৌক্তিক নিরাপত্তাবহির্ভূত কাজ।</p>
+<p>রিরা চিৎকার করে বলল, আমি যা বলছি তা-ই কর।</p>
+<p>বাইরের বাতাস ভেতরে ঢুকে সমস্ত মহাকাশযান দূষিত হয়ে যেতে পারে, ভয়ংকর বিপর্যয় হয়ে যেতে পারে।</p>
+<p>রিরা দরজায় লাথি দিয়ে বলল, আহাম্মক, খুন করে ফেলব আমি। দরজা খোল।</p>
+<p>নিরাপত্তার সব নিয়ম ভঙ্গ করে, ঘরঘর করে মহাকাশযানের মূল দরজা খুলে গেল। রিরা মহাকাশযানের ভেতরে ঢুকে ছুটতে থাকে, তার এখন একটা ফ্লেয়ার দরকার, জরুরি নিরাপত্তার জন্য সে অনেকগুলো আলাদা করে রেখেছে।</p>
+<p>ফ্লেয়ারটা হাতে নিয়ে রিরা যখন বাইরে ছুটে যাচ্ছিল, তখন সে আবার স্বয়ংক্রিয় অস্ত্রের গুলির শব্দ শুনতে পেল, এবারে থেমে থেমে একটানা গুলি হতে লাগল। কুশানকে নিশ্চয়ই আক্রমণ করেছে প্রাণীগুলো নিজেকে রক্ষা করার চেষ্টা করছে সে। দূরে একটা আগুন জ্বলছে আগুনটা নড়ছে ইতস্তত, কুশান আগুন দিয়ে সরিয়ে রাখার চেষ্টা করছে প্রাণীগুলোকে, আগুনকে ঘিরে ছায়াকে সে ছুটোছুটি করতে দেখে, ভয়ংকর হিংস্র কিছু ছায়া।</p>
+<p>ফ্লেয়ারটার সুইচ টিপে ছেড়ে দিতেই আগুনের একটা হলকা বের হয়ে গর্জন করে সেটা আকাশে উঠে গেল, মহুর্তে দিনের মতো আলোকিত হয়ে উঠল চারদিক। সাথে সাথে হিংস্র প্রাণীগুলো কাতর আর্তনাদ করে ছুটে পালিয়ে যেতে শুরু করে। ভয়ংকর হুঁটোপুটি শুরু হয়ে যায় চারদিকে। রিরা চোখ কুঁচকে তাকাল সামনে, একটা বড় পাথরে হেলান দিয়ে বলে আছে কুশান, নিজের কাপড় খুলে সেটাতে আগুন ধরিয়েছে, নিশ্বাস নেবার অক্সিজেন দিয়ে আগুনটা জ্বালিয়ে রেখেছে কোনোভাবে।</p>
+<p>রিরা ছুটে গেল কুশানের কাছে, সমস্ত শরীর ক্ষতবিক্ষত হয়ে আছে, ধারালো দাঁত দিয়ে খুবলে নিয়েছে তার ডান হাতের একটা অংশ। নীল রক্তে ভিজে যাচ্ছে শুকনো পাথর। রিরাকে দেখে কুশান দুর্বলভাবে হাসল, বলল, তুমি এসেছ?</p>
+<p>হ্যাঁ কশান, আমি এসেছি।</p>
+<p>বেঁচে গেলাম তা হলে আমরা?</p>
+<p>হ্যাঁ, কুশান। তোমার জন্য। তুমি তোমার ভাগ্যটা আমাকে দিয়ে দিয়েছিলে বলে আমরা বেঁচে গেলাম।</p>
+<p>ভাগ্য খুব বিচিত্র জিনিস কুশান নরম গলায় বলল, কাউকে দিয়ে দিলেও সেটা ফুরিয়ে যায় না।</p>
+<p>রিরা নিচু হয়ে কুশানকে স্পর্শ করল, তারপর গভীর মমতায় তার মাথাটিকে নিজের বুকে চেপে ধরল। ফিসফিস করে বলল, কুশান, আমার ভাগ্য ফুরিয়ে গিয়েছিল, আমার জীবনও ফুরিয়ে গিয়েছিল! তুমি সবকিছু ফিরিয়ে এনেছ। তুমি!</p>
+<p>কুশান অবাক হয়ে দেখল রিরার চোখে পানি চিকচিক করছে। মানুষকে মনে হয় সে কখনোই পুরোপুরি বুঝতে পারবে না।</p>
+</div>
+<br/><h2>১২. তিতির পাখির মাংস</h2>
+<hr/>
+<br/><div>
+<p>কুশান প্লেটের খাবারের টুকরোটা দেখে বলল, তুমি দাবি করছ এটা সত্যিকার তিতির পাখির মাংস?</p>
+<p>রিরা মাথা নাড়ল, বলল, হ্যাঁ। খাবারের টিনে পরিষ্কার লেখা আছে এটা সত্যিকার তিতির পাখির মাংস।</p>
+<p>কুশান শুকনো রুটির টুকরোগুলো দেখিয়ে বলল, আর এগুলো সত্যিকার যবের রুটি?</p>
+<p>হ্যাঁ। এগুলো সত্যিকার যবের রুটি। বিশাল একটা মাঠে এটা জনেছে। এটা কৃত্রিমভাবে তৈরি করা হয় নি।</p>
+<p>কুশান রুটির টুকরোর উপর মাখন লাগাতে লাগাতে বলল, আর এই মাখনটা সত্যিকারের মাখন?</p>
+<p>সেটা নিয়ে একটু বিতর্ক আছে। দাবি করা হয় কৃত্রিম এবং সত্যিকারের মাখনের মাঝে এখন আর কোনো পার্থক্য নেই। কাজেই কোনটা সত্যি কোনটা কৃত্রিম বোঝার কোনো উপায় নেই।</p>
+<p>কুশান রুটির টুকরোটা মুখে দিয়ে চিবুতে চিবুতে বলল, কিন্তু একটা জিনিস জান রিরা</p>
+<p>কী?</p>
+<p>আমি কিন্তু খাবার সময় সত্যিকার যবের রুটির সাথে কৃত্রিম যবের রুটির মাঝে। কোনো পার্থক্য খুঁজে পাচ্ছি না।</p>
+<p>রিরা শব্দ করে হেসে বলল, এটা কাউকে বলো না, তা হলে সবাই তোমাকে ভাববে সাধারণ রুচির মানুষ। যাদের রুচি খুব উন্নত, তারা এই পার্থক্যগুলো ধরতে পারে।</p>
+<p>কুশান বলল, তুমি বলেছিলে আমাদের এই ভোজের সময় আমরা কিহিতার সপ্তদশ সিম্ফনি শুনব।</p>
+<p>হ্যাঁ। আমি সেটার ব্যবস্থা করেছি। কিন্তু সেখানে একটা ব্যাপার আছে।</p>
+<p>কী ব্যাপার?</p>
+<p>সপ্তদশ সিম্ফনি শুনে যদি তোমার ভালো নাও লাগে, তুমি সেটা বলতে পারবে না।</p>
+<p>কুশান চোখ বড় করে বলল, বলতে পারব না?</p>
+<p>না। তুমি ভান করবে তোমার খুব ভালো লাগছে।</p>
+<p>কেন?</p>
+<p>রিরা চোখে-মুখে একটা গাম্ভীর্য ফুটিয়ে বলল, এই সিম্ফনিটি আমার খুব প্রিয়। কেউ এটাকে অপছন্দ করলে আমিও তাকে অপছন্দ করি।</p>
+<p>কুশান তিতির পাখির মাংসের ছোট টুকরো মুখে দিয়ে হাসতে হাসতে বলল, তুমি নিশ্চিন্ত থাক রিরা, তুমি যেটাকে ভালো বলবে আমি সেটাকে কখনো খারাপ বলব না। দরকার হলে আমার চোখ-কান বন্ধ করে আমি সেটাকে ভালো বলব।</p>
+<p>ঠিক তো?</p>
+<p>ঠিক।</p>
+<p>রিরা গলা উঁচু করে বলল, প্রসেসর?</p>
+<p>প্রসেসর তার নিষ্প্রাণ ধাতব কণ্ঠে বলল, বলো রিরা।</p>
+<p>কিহিতার সপ্তদশ সিম্ফনিটা শুরু করে দাও।</p>
+<p>খুব সূক্ষ্ম একটা সঙ্গীতের ধ্বনি ভেসে এল, প্রায় শোনা যায় না এরকম। আস্তে আস্তে সেটি ঘরের ভেতরে অনুরণিত হতে থাকে। মহাকাশের মাঝে যে বিশাল শূন্যতা, যে তীব্র নিঃসঙ্গতার বেদনা, সেটি যেন বুকের ভেতর হাহাকার করে যেতে থাকে। মনে হতে থাকে এই জগৎ, এই জীবন, এই বেঁচে থাকা সবকিছু মিথ্যে, সবকিছু অর্থহীন।</p>
+<p>সিম্ফনিটা শেষ হবার পরও দুজন অনেকক্ষণ চুপ করে রইল। রিরা নিজের চোখ মুছে জোর করে মুখে একটা হাসি ফুটিয়ে বলল, আমি আসলে খুব আবেগপ্রবণ, অল্পতেই খুব কাতর হয়ে যাই। তবে সেটা কখনো কাউকে দেখাই নি। মহাকাশ একাডেমিতে সবাই জানত আমি খুব শক্ত একটি মেয়ে!</p>
+<p>আমার মাথায় অস্ত্র ঠেকিয়েও যেদিন তুমি ট্রিগার টান নি, আমি সেদিনই বুঝতে পেরেছিলাম যে তোমার ভেতরটা খুব নরম।</p>
+<p>আর কী বুঝেছিলে?</p>
+<p>আর বুঝেছিলাম তুমি—</p>
+<p>আমি?</p>
+<p>তুমি হয়তো জীবনে কষ্ট পাবে।</p>
+<p>রিরা একটু অবাক হয়ে কিছু একটা বলতে যাচ্ছিল, ঠিক তখন মূল প্রসেসর বলল, রিরা।</p>
+<p>বলো।</p>
+<p>এইমাত্র একটা উদ্ধারকারী মহাকাশযান থেকে আমাদের সাথে যোগাযোগ করেছে।</p>
+<p>রিরা চিৎকার করে উঠে দাঁড়াল, ছুটে গিয়ে কুশানকে জড়িয়ে ধরে বলল, শুনেছ? কুশান শুনেছ? আমাদের জন্য উদ্ধারকারী মহাকাশযান আসছে।</p>
+<p>কুশীন মাথা নাড়ল, বলল, শুনেছি।</p>
+<p>রিরা জিজ্ঞেস করল, প্রসেসর? কী বলছে উদ্ধারকারী মহাকাশযান?</p>
+<p>এখনো কিছু বলে নি। তারা মহাকাশযানের আইডি কোড এসব মিলিয়ে নিচ্ছে। কিছুক্ষণের মাঝে সরাসরি যোগাযোগ করবে। কিন্তু–</p>
+<p>কিন্তু কী?</p>
+<p>তুমি শুধু তাদের কথা শুনতে পাবে। তাদেরকে কিছু বলতে পারবে না।</p>
+<p>হ্যাঁ। রিরা কাঁধ ঝাঁকিয়ে বলল, এখানে আমরা একটা দুর্বল রিসিভার দাঁড় করিয়েছি কিন্তু আমাদের ট্রান্সমিটার ত্রিশ কিলোমিটার দূরে।</p>
+<p>কুশান বলল, আমার মনে হয় সেটা কোনো বড় সমস্যা নয়। যখন সামনাসামনি দেখা হবে তখন তোমার ট্রান্সমিটার আর রিসিভার কিছুই লাগবে না!</p>
+<p>রিরা মাথা নাড়ল, বলল, তুমি ঠিকই বলেছ। তারপর হাত নেড়ে উত্তেজিত গলায় বলল, আমার এখনো বিশ্বাস হচ্ছে না যে, সত্যি সত্যি আমাদের উদ্ধার করতে চলে আসছে! কী আশ্চর্য! তাই না কুশান?</p>
+<p>কুশান খুব ধীরে ধীরে মাথা নাড়ল। রিরা উত্তেজিত হয়েছিল বলে লক্ষ করল না মাথা নাড়ার সময় কুশান খুব সাবধানে একটি দীর্ঘশ্বাস গোপন করেছে।</p>
+<p>রিসিভারের কাছে সারাক্ষণ বসে থাকার প্রয়োজন নেই, তারপরেও রিরা কমিউনিকেশান ঘরে ধৈর্য ধরে বসে বইল। প্রাথমিক যোগাযোগের প্রায় তিন ঘণ্টা পর রিরা প্রথমবার উদ্ধারকারী দলের কণ্ঠস্বর শুনতে পেল। মহাকাশযানের ক্যাপ্টেন ভারী গলায় বললেন, মহাকাশযান ভেগা সাত সাত তিন চারের বেঁচে থাকা মহাকাশচারীদের উদ্দেশে বলছি। আমি আবার বলছি মহাকাশযান ভেগা সাত সাত তিন চারের অভিযাত্রীরা, আমরা তোমাদের পাঠানো জরুরি উদ্ধারবার্তা পেয়েছি। আবার বলছি, জরুরি উদ্ধারবার্তা পেয়েছি। তোমাদের বার্তা মূল মহাকাশ কেন্দ্রে পাঠানো হয়েছে, সেখান থেকে আমাদের জরুরি বার্তা। পাঠিয়ে তোমাদের উদ্ধার করতে নির্দেশ দেওয়া হয়েছে। আমি আবার বলছি, তোমাদের উদ্ধার করতে নির্দেশ দেওয়া হয়েছে। আমি তাই আমার মহাকাশযানের গতিপথ একটু পরিবর্তন করে এদিকে এসেছি। আমাদের একটা স্কাউটশিপ তোমাদের উদ্ধার করার জন্য রওয়ানা দিয়েছে। কিছুক্ষণের মাঝে সেটা এই গ্রহটির কক্ষপথে পৌঁছে যাবে। স্কাউটশিপ থেকে জানানো হয়েছে তারা তোমাদের বিধ্বস্ত মহাকাশযানটি খুঁজে পেয়েছে এবং গ্রহে অবতরণ করেই সেখানে পৌঁছে যাবে।</p>
+<p>ভারী গলার স্বরটি কয়েক মুহূর্ত অপেক্ষা করে বলল, তোমাদের পক্ষে যদি সম্ভব হয়</p>
+<p>তা হলে আমাদের এই বার্তার প্রত্যুত্তর দাও। আবার বলছি, প্রত্যুত্তর দাও।</p>
+<p>রিরা হাত মুষ্টিবদ্ধ করে রিসিভারের উপর আঘাত করে নিজের হতাশাটা প্রকাশ করে। বলল, কেমন করে দেব? আমি খালি শুনতে পাই, বলতে পারি না।</p>
+<p>রিসিভারে ভারী কণ্ঠস্বরটি বলল, যদি প্রত্যুত্তর দেবার মতো সুযোগ না থাকে তা হলেও কোনো সমস্যা নেই। আমাদের স্কাউটশিপে উদ্ধারকাজে ব্যবহৃত সর্বাধুনিক যন্ত্রপাতি রয়েছে, তারা নিশ্চিতভাবেই তোমাদের উদ্ধার করবে। স্কাউটশিপের দায়িত্বে আছে ক্যাপ্টেন বিহান, গ্রহটির কক্ষপথে পৌঁছেই সে তোমাদের সাথে যোগাযোগ করবে। ব্যাপ্টেন রিহান আমাদের সবচেয়ে কর্মদক্ষ তরুণ অফিসার। সে আমাদের মহাকাশযানের বারো জন দক্ষ এবং সশস্ত্র নিরাপত্তাকর্মীকে নিয়ে রওয়ানা দিয়েছে। আমি নিশ্চিত সে সাফল্যের সাথে তোমাদের উদ্ধার করতে পারবে। তোমাদের জন্য অনেক শুভ কামনা।</p>
+<p>রিরা উতেজিত চোখে ইশানের দিকে তাকিয়ে বলল, শুনেছ কুশান, সবচেয়ে কর্মদক্ষ তরুণ অফিসার আসছে আমাদের উদ্ধার করতে?</p>
+<p>কুশান মাথা নাড়ল, বলল, শুনেছি।</p>
+<p>তোমার কী মনে হয় কুশান, আমরা কি তাদের অভ্যর্থনা করার জন্য কিছু ব্যবস্থা করে রাখব?</p>
+<p>কুশান একটু হেসে বলল, তোমার মহাকাশ একাডেমি এ ব্যাপারে তোমাদের কোনো কোর্স দেয় নি?</p>
+<p>রিরা মাথা নাড়ল, বলল, না। মজার ব্যাপার হচ্ছে কীভাবে উদ্ধার করতে যেতে হয়, সেটার ওপরে দুটি কোর্স নিয়েছিলাম, কিন্তু উদ্ধার করতে এলে কী করতে হয় তার ওপরে একটি কোর্সও দেয় নি।</p>
+<p>কুশান বলল, ক্যাপ্টেন বিহান যখন এসে দেখবে তুমি জীবিত, সুস্থ এবং আনন্দে চিৎকার করছ, সে এত খুশি হবে যে সেটাই হবে তার অভ্যর্থনা।</p>
+<p>রিরা মাথা নাড়ল, বলল, তুমি ঠিকই বলেছ। একজন মানুষকে জীবিত উদ্ধার করতে পারাই খুব বড় একটা কাজ। মানুষের জীবন খুব বড় একটি ব্যাপার। অসম্ভব বড় একটি ব্যাপার। তাই না কুশান?</p>
+<p>কুশান রিরার দিকে তাকিয়ে মাথা নাড়ল, তারপর ফিসফিস করে বলল, ঠিকই বলেছ। মানুষের জীবন খুব বড় একটি ব্যাপার।</p>
+<p>ঘণ্টা দুয়েক পর গ্রহটির কক্ষপথ থেকে ক্যাপ্টেন বিহান একবার যোগাযোগ করে তার অবস্থানটি জানিয়ে দিল। কক্ষপথ থেকে রওয়ানা দিয়ে গ্রহটির বায়ুমণ্ডল ভেদ করে দ্বিতীয়বার যোগাযোগ করল আরো ঘণ্টাখানেক পর। এরপর সবকিছু ঘটতে লাগল খুব দ্রুত। তারা স্কাউটশিপটিকে মহাকাশযানের উপর দিয়ে গর্জন করে উড়ে যেতে দেখল, স্কাউটশিপটি বৃত্তাকার ঘুরে আবার তাদের কাছে ফিরে এল এবং বৃত্তটি ছোট করতে করতে একসময় মহাকাশযানের এক কিলোমিটারের কাছাকাছি একটি সমতল জায়গায় এসে অবতরণ করল। কোয়ার্টজের জানালা দিয়ে রিরা দেখল, উদ্ধারকারী দল নেমে আসছে। ছোটখাটো মানুষটি নিশ্চয়ই ক্যাপ্টেন রিহান, যোগাযোগ মডিউলে কথা বলতে বলতে সে তার দলটিকে প্রস্তুত করে নেয়। কিছু যন্ত্রপাতি, অস্ত্র, মেডিকেল টিম নিয়ে তারা দ্রুত মহাকাশযানটির দিকে ছুটে আসতে থাকে। রিরা হাত দিয়ে নিজের চুলগুলোকে বিন্যস্ত করে কুশানের দিকে তাকিয়ে জিজ্ঞেস করল, কুশান, আমাকে কেমন দেখাচ্ছে?</p>
+<p>কুশান হেসে বলল, আমি তোমাকে আগেও বলেছি, তোমার গায়ের রঙ যদি পচা আঙুরের মতো না হত, তা হলে তোমাকে সুন্দরী বলে চালিয়ে দেওয়া যেত।</p>
+<p>আকাশের জন্য নীল রঙ ভালো হতে পারে কিন্তু গায়ের জন্য পচা আঙুরের রঙ কিন্তু খারাপ না!</p>
+<p>সেটা নিয়ে বিতর্ক করার সময় আরো পাবে, তুমি এখন যাও, মহাকাশযানের দরজাটা খুলে দাও। তা না হলে তারা ভেঙে ঢুকে যাবে!</p>
+<p>রিরা বলল, ঠিকই বলেছ। একেবারে সত্যি কথা।</p>
+<p>রিরা দ্রুত মহাকাশযানের দরজার কাছে ছুটে গিয়ে তার হ্যান্ডেলটা ঘুরিয়ে সেটা খুলতে শুরু করে। কয়েক মিনিটের মাঝেই উদ্ধারকারী দলটি মহাকাশযানের ভেতরে ঢুকল, সবার আগে ক্যাপ্টেন রিহান, তার পিছনে সশস্ত্র লোকজন। ক্যাপ্টেন রিহান এক ধরনের বিস্ময় নিয়ে রিরার দিকে তাকিয়ে বলল, এই মহাকাশযানটি যেভাবে বিধ্বস্ত হয়েছে, তার ভেতরে কোনো জীবন্ত মানুষ খুঁজে পাব আমি একেবারে আশা করি নি।</p>
+<p>রিরা তার হাত বাড়িয়ে দিয়ে বলল, আশার বাইরেও অনেক কিছু ঘটে যায়। উদ্ধার করতে আসার জন্য কৃতজ্ঞতা প্রকাশ করছি।</p>
+<p>ক্যাপ্টেন রিহান হাত মিলিয়ে বলল, আমি রিহান। ক্যাপ্টেন রিহান।</p>
+<p>আমি রিরা। আর–কুশানকে পরিচয় করিয়ে দেবার জন্য সে মাথা ঘুরিয়ে তাকাল।</p>
+<p>ঠিক তক্ষুনি সে একটা চিৎকার শুনতে পায়। কে একজন চিৎকার করে বলল, সর্বনাশ! নীলমানব।</p>
+<p>কিছু বোঝার আগে রিরা বিস্ফারিত চোখে দেখতে পেল সশস্ত্র মানুষগুলো একসাথে তাদের অস্ত্রগুলো উপরে তুলেছে, একমুহূর্ত সময় লাগল তার ব্যাপারটি বুঝতে। যখন সে বুঝতে পারল তখন ভয়ংকর আতঙ্কে সে তার সমস্ত শক্তি দিয়ে চিৎকার করে উঠল, না—না–না–</p>
+<p>কিন্তু ততক্ষণে অনেক দেরি হয়ে গেছে। রিরার মনে হল তার চোখের সামনে অনন্তকাল নিয়ে মানুষগুলো অস্ত্রগুলো কুশানের দিকে তাক করেছে। মনে হল খুব ধীরে ট্রিগারে টান দিয়েছে। তার মনে হল লে বুলেটগুলোকে ছুটে যেতে দেখল। রিনার মনে হল সে দেখতে পেল একটি একটি বুলেট কুশানকে আঘাত করছে আর সেই আঘাতে তার শরীর কেঁপে কেঁপে উঠছে। রিরার মনে হল সমস্ত সৃষ্টিজগৎ বুঝি থমকে দাঁড়িয়েছে, বুঝি সময় স্থির হয়ে গেছে। তার মনে হল কুশান বুঝি দুই হাতে দেয়াল আঁকড়ে ধরে দাঁড়িয়ে থাকার চেষ্টা করছে—পারছে না। রির দেখল তার বুকের কাছাকাছি কাপড়ে বিন্দু বিন্দু নীল রঙের ছোপ, দেখল কুশানের চোখে এক ধরনের বিস্ময়। রিরা দেখল কুশান খুব ধীরে ধীরে হাঁটু ভেঙে পড়ে যাচ্ছে। মনে হচ্ছে তার মাঝে বুঝি অনন্তকাল পার হয়ে গেছে। রিরা ছুটে যেতে থাকে কুশানের কাছে মনে হয় সে বুঝি কখনোই আর তার কাছে পৌঁছতে পারবে না।</p>
+<p>রিরা কুশানের মাথাটা দুই হাতে চেপে তার দিকে তাকিয়ে থাকে। কুশানের দুই ঠোটের মাঝখানে নীল একফেঁটা রক্ত, সে স্থির চোখে রিরার দিকে তাকিয়ে আছে। কুশানের ঠোঁট দুটি নড়ে উঠল। কিছু একটা বলছে সে। রক্তের ফোঁটাটি চিবুক বেয়ে গড়িয়ে পড়ল। আবার ঠোঁট দুটি নড়ল কুশানের, কিছু একটা বলছে সে, রিরা শুনতে পাচ্ছে না।</p>
+<p>রিরা কুশানের মাথাটা নিজের বুকে চেপে ধরে বলল, না। না কুশান, না… না…</p>
+<p>কুশান ফিসফিস করে বলল, মনে নেই রিরা—আমি তোমাকে আমার ভাগ্যটা দিয়ে দিয়েছিলাম! দেখেছ সত্যিই দিয়ে দিয়েছি।</p>
+<p>রিরা চিৎকার করে বলল, না, না, না।</p>
+<p>কুশান বলল, রিরা, তুমি আমার দিকে তাকাও।</p>
+<p>রিরা কুশানের দিকে তাকাল। কুশান বলল, আমার দৃষ্টি ঝাঁপসা হয়ে আসছে। কিন্তু আমি যতক্ষণ দেখতে পারি, আমি তোমাকে দেখতে চাই রিরা। তুমি আমার হাত ধরে থাক—তুমি আমার দিকে তাকিয়ে থাকি।</p>
+<p>রিরা কুশানের হাত ধরে তার মাথাটা নিজের কোলে নিয়ে একদৃষ্টিতে তার চোখের দিকে তাকিয়ে রইল।</p>
+<p>ক্যাপ্টেন রিহান এবং তা উদ্ধারকারী দল অবাক বিস্ময়ে লক্ষ করল, অপরিচিত এই নীলমানবটি মারা যাবার পরও দীর্ঘ সময় মহাকাশচারী রিরা তার চোখের দিকে একদৃষ্টিতে তাকিয়ে রইল।</p>
+</div>
+<br/><h2>১৩. নাইনা গ্রহের জাতীয় সমাধিক্ষেত্র</h2>
+<hr/>
+<br/><div>
+<p>নাইনা গ্রহের জাতীয় সমাধিক্ষেত্র যে সমাধিটিতে ফুল দেবার জন্য দূর-দূরান্ত থেকে এখনো মানুষ এবং নীলমানবেরা নিয়মিতভাবে উপস্থিত হয়, সেই সমাধিটি মহীয়সী রিরার। জনশ্রুতি আছে তার একক প্রচেষ্টায় চতুর্থ সহস্রাব্দের গোড়ার দিকে মানুষ এবং নীলমানবের বিরোধের সমাপ্তি ঘটে। মানুষ এবং নীলমানবেরা এখনো গভীর আগ্রহ এবং ভালবাসা নিয়ে এই মহীয়সী মহিলার কথা স্মরণ করে।</p>
+</div>
+
+            </div>
+
+        </div>
+    </div>
+
+        <!-- TOC nav for mobile -->
+        <nav id="toc-nav-desktop" class="hidden"></nav>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const progressBar  = document.getElementById('read-progress-bar');
+    const progressPct  = document.getElementById('progress-pct');
+    const tocDesktop   = document.getElementById('toc-nav-desktop');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+    const progressRing = document.getElementById('progress-ring-circle');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = p.currentTheme;
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    function toBN(n) {
+        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
+    }
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        if (progressPct) progressPct.textContent = toBN(pct) + '%';
+        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
+        if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
+        if (rfPage) rfPage.textContent = toBN(pct) + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+
+    // ── Footer: chapter label + seek slider ──
+    const rfSlider  = document.getElementById('rf-slider');
+    const rfPage    = document.getElementById('rf-page');
+    const rfChapter = document.getElementById('rf-chapter');
+    let rfSliderDragging = false;
+    if (rfSlider) {
+        rfSlider.addEventListener('input', () => {
+            rfSliderDragging = true;
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
+        });
+        rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
+    }
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav, isMobile) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            if (isMobile) {
+                a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+                a.addEventListener('click', closeDrawer);
+            } else {
+                a.className = 'toc-link ' + (isH1 ? 'toc-link-h1' : 'toc-link-h2');
+            }
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocDesktop, false);
+    buildToc(tocMobile, true);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+        if (rfChapter && headings[current]) rfChapter.textContent = headings[current].textContent.trim();
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme only; drawer/settings UI stays a fixed dark sheet)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+        black: { bg: '#000',     text: '#d1d5db' },
+        sepia: { bg: '#f5efe6',  text: '#3b2f1e' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? '#c0392b' : 'transparent';
+            });
+            savePrefs();
+
+            // Ad bar theme sync
+            window._pathakAdBarTheme && window._pathakAdBarTheme(m);
+        });
+    });
+
+    // ── Ad bar theme sync function (exposed globally) ──
+    window._pathakAdBarTheme = function(m) {
+        const adBar     = document.getElementById('ad-bar');
+        const adContent = document.getElementById('ad-bar-content');
+        const adDatetime= document.getElementById('ad-bar-datetime');
+        const adNotice  = document.getElementById('ad-bar-notice');
+        if (adBar)      adBar.style.background     = m.bg;
+        if (adContent)  adContent.style.background = m.bg;
+        if (adDatetime) adDatetime.style.color      = m.text;
+        if (adNotice)   adNotice.style.color        = m.text;
+    };
+
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+        // Ad bar HTML is below — expose theme for ad bar script to pick up
+        window._pathakCurrentTheme = currentTheme;
+        window._pathakThemeMap = themeMap;
+    })();
+})();
+</script>
+
+
+</body>
+</html>

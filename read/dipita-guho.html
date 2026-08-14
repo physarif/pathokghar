@@ -1,0 +1,1937 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/dipita-guho.html">
+    <title>দীপিতা - পাঠক ঘর</title>
+    <meta name="description" content="বুদ্ধদেব গুহের **'দীপিতা'** উপন্যাসটি মূলত তার চেনা ঘরানার অরণ্য, প্রকৃতি এবং মানবিক সম্পর্কের এক চমৎকার মেলবন্ধন। যারা তার লেখা পছন্দ করেন, তাদের কাছে বইটি বেশ">
+    <meta property="og:title" content="দীপিতা - পাঠক ঘর">
+    <meta property="og:description" content="বুদ্ধদেব গুহের **'দীপিতা'** উপন্যাসটি মূলত তার চেনা ঘরানার অরণ্য, প্রকৃতি এবং মানবিক সম্পর্কের এক চমৎকার মেলবন্ধন। যারা তার লেখা পছন্দ করেন, তাদের কাছে বইটি বেশ">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e', black:'#000' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', sepia:'#3b2f1e', dark:'#e5e7eb', black:'#d1d5db' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .dark body { background: #1a1a1b; color: #e5e7eb; }
+
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.7rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+        .dark #book-content { color: #e5e7eb; }
+    
+    /* ── Book read header hero ── */
+    .book-read-header {
+        margin-bottom: 1.5rem;
+    }
+    .book-read-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.65rem;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 1.4rem 1.25rem 1.2rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .dark .book-read-box {
+        background: #2a2a2b;
+        border-color: #3a3a3b;
+    }
+    .book-read-cover {
+        width: 100px;
+        height: 136px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        object-fit: cover;
+        background: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .book-read-cover svg { opacity: 0.35; }
+    .book-read-title-link {
+        text-decoration: none;
+        display: block;
+    }
+    .book-read-title-link:hover .book-read-title { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-title-link:active .book-read-title { opacity: 0.7; }
+    .book-read-title {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #1a1a1b;
+        line-height: 1.4;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+    .dark .book-read-title { color: #f3f4f6; }
+    .book-read-author-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+    .book-read-author-link:hover .book-read-author { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-author-link:active .book-read-author { opacity: 0.6; }
+    .book-read-author {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #c0392b;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+</style>
+</head>
+<body>
+
+<style>
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    #read-progress-bar {
+        position: fixed;
+        top: 0; left: 0;
+        height: 2px;
+        width: 0%;
+        background: #c0392b;
+        z-index: 1000;
+        transition: width 0.1s linear;
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h1 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #9ca3af;
+        text-align: center;
+        margin: 0 0 0.25rem;
+        letter-spacing: 0.04em;
+    }
+    #book-content h1::after {
+        content: '';
+        display: block;
+        width: 2.8em;
+        height: 3px;
+        background: #c0392b;
+        border-radius: 2px;
+        margin: 0.4rem auto 0;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #7a2115;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid #d9a5a0;
+        border-bottom: 1px solid #d9a5a0;
+    }
+    /* Night mode heading adjust */
+    body.theme-dark  #book-content h1,
+    body.theme-black #book-content h1 { color: #6b7280; }
+    body.theme-dark  #book-content h2,
+    body.theme-black #book-content h2 { color: #f2938a; border-color: rgba(169,50,38,0.4); }
+    body.theme-dark  #book-content h1::after { background: #a93226; }
+    body.theme-black #book-content h1::after { background: #922b21; }
+    body.theme-sepia #book-content h1 { color: #a08060; }
+    body.theme-sepia #book-content h2 { color: #7a2115; border-color: rgba(160,64,48,0.35); }
+    body.theme-sepia #book-content h1::after { background: #a04030; }
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: rgba(192,57,43,0.05);
+        border: 1px solid rgba(192,57,43,0.15);
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p,
+    body.theme-black #book-content p {
+        background: rgba(169,50,38,0.1);
+        border-color: rgba(169,50,38,0.25);
+    }
+    body.theme-sepia #book-content p {
+        background: rgba(160,64,48,0.08);
+        border-color: rgba(160,64,48,0.2);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #c0392b;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #c0392b;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(192,57,43,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    .dark #book-content blockquote {
+        background: rgba(192,57,43,0.08);
+        color: #bbb;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #c0392b;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    .dark #book-content td { border-color: #3a3a3b; }
+    .dark #book-content tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(192,57,43,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: #e57373;
+        font-weight: 600;
+        background: rgba(192,57,43,0.18);
+        border-radius: 0.375rem;
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: #fff;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transition: color 0.15s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.6);
+    }
+    #toc-nav-desktop .toc-link {
+        display: block;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.375rem;
+        color: #4b5563;
+        text-decoration: none;
+        transition: background-color 0.15s, color 0.15s;
+    }
+    .dark #toc-nav-desktop .toc-link { color: #d1d5db; }
+    #toc-nav-desktop .toc-link:hover { background: #f3f4f6; }
+    .dark #toc-nav-desktop .toc-link:hover { background: #1f2937; }
+    #toc-nav-desktop .toc-link-h1 {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: #1f2937;
+    }
+    .dark #toc-nav-desktop .toc-link-h1 { color: #f3f4f6; }
+    #toc-nav-desktop .toc-link-h2 {
+        padding-left: 1.25rem;
+        font-size: 0.6875rem;
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.6rem 0.5rem 0.6rem 0.35rem;
+        background: #1a1a1b;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-back {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.25rem;
+        text-decoration: none;
+        transition: background 0.15s;
+    }
+    #rh-back:active { background: rgba(255,255,255,0.12); }
+    #rh-title {
+        flex: 1;
+        min-width: 0;
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: transparent;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+    #reader-header .rh-actions button:active { background: rgba(255,255,255,0.12); }
+    body.theme-dark  #reader-header,
+    body.theme-black #reader-header,
+    body.theme-sepia #reader-header { background: #141414; }
+
+    /* ── Reader footer: chapter label + page/percent + seek slider ── */
+    #reader-footer {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 55;
+        background: #1a1a1b;
+        padding: 0.5rem 1rem 0.65rem;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-footer { transform: translateY(100%); }
+    body.theme-dark  #reader-footer,
+    body.theme-black #reader-footer,
+    body.theme-sepia #reader-footer { background: #141414; }
+    #rf-labels {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.7);
+        margin-bottom: 0.35rem;
+    }
+    #rf-chapter {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #rf-page { flex-shrink: 0; }
+    #rf-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        background: rgba(255,255,255,0.22);
+        outline: none;
+        margin: 0;
+        cursor: pointer;
+    }
+    #rf-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        margin-top: -6px;
+    }
+    #rf-slider::-moz-range-thumb {
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        border: none;
+    }
+    #rf-slider::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; }
+    #rf-slider::-moz-range-track { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.22); }
+
+    /* Content needs bottom clearance so the fixed footer never covers text */
+    #read-main-content { padding-bottom: 4.5rem; }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: #303134;
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.55);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: #e57373;
+        border-bottom-color: #c0392b;
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ── Breadcrumb dark mode ── */
+    .read-breadcrumb-full { margin-left: -1.25rem; margin-right: -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
+    .dark #bc-category { color: #9ca3af !important; }
+    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
+    .dark #read-breadcrumb li > span { color: #4b5563; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #e57373;
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: 34px; height: 34px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        flex-shrink: 0;
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+    }
+    .theme-circle.active { border-color: #c0392b; }
+    .theme-circle svg { display: none; }
+    .theme-circle.active svg { display: block; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: #fff; }
+    .settings-row-val { font-size: 0.74rem; color: rgba(255,255,255,0.5); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: rgba(192,57,43,0.35); border-color: #c0392b; color: #fff; }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+</style>
+
+<!-- Progress bar (kept for internal % calc, hidden — footer slider replaces it visually) -->
+<div id="read-progress-bar" style="display:none;"></div>
+
+<!-- ══ Reader header (Lithium-style app bar) ══ -->
+<header id="reader-header">
+    <a href="/book/dipita-guho.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <h1 id="rh-title">দীপিতা</h1>
+    <div class="rh-actions">
+        <button id="rh-menu-btn" aria-label="মেনু" title="মেনু"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+    </div>
+</header>
+
+<!-- ══ Reader footer (chapter + page/percent + seek slider) ══ -->
+<footer id="reader-footer">
+    <div id="rf-labels">
+        <span id="rf-chapter"></span>
+        <span id="rf-page">০%</span>
+    </div>
+    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
+</footer>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                    <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
+                    <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
+                    <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn active" id="align-justify" title="জাস্টিফাই" style="background:#fde8e6;border-color:#c0392b;color:#c0392b;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <p><span>কা</span><span>লীপুজো শেষ হয়ে গেছে। ভাইফোঁটাও চলে গেছে। দীপিতার কোনো ভাই নেই। বিয়ের আগে কলকাতাতে যখন বড়োমামার কাছেই থাকত বরানগরে, তখন মামাতো দিদির সঙ্গে মেজোমামার ছেলেকে ফোঁটা দিত। বিয়ের পর সেই যে, ডালটনগঞ্জে এসেছে তারপর থেকে মামা-মামিরাও দু-একটা চিঠিতে ছাড়া আর খোঁজ নেননি। দীপিতার শ্বশুরবাড়ি থেকেওসে-কারণেই দীপিতার মামাতো ভাইকে কখনো ভাইফোঁটাতে আসতে বলা হয়নি।</span></p>
+<p><span>দীপিতাদের মাতৃকুল বরিশালের। সেখানে ‘জামাইষষ্ঠী’ ব্যাপারটা নেই নাকি। সেই কারণে প্রতিবছর জামাইষষ্ঠী এলেই দীপিতাকে তার শাশুড়ির কাছে নতুন করে কথা শুনতে হয়। তার স্বামী অমল অবশ্য নিজে কিছু বলে না। প্রথম প্রথম ঠাট্টা করত। কিন্তু মনে কোনো দুঃখ রাখেনি। সে দিক দিয়ে মানুষটা ভালোই।</span></p>
+<p><span>যে-মেয়ে শিশুকাল থেকেই আশ্রিতার মতো মানুষ হয়েছে মামাবাড়িতে, তার এর চেয়ে বেশি কিছু প্রত্যাশারও ছিল না। অন্যকিছুর জন্যে শূন্যতাও বোধ করে না দীপিতা আর কিছুমাত্র। একমাত্র সাংস্কৃতিক-সাংগীতিক পরিবেশের অভাবটা ছাড়া।</span></p>
+<p><span>কে জানে! সত্যিই কি করে না?</span></p>
+<p><span>কলকাতাতে থাকাকালীন, স্কুল-কলেজের দিনগুলোতে একটা মুক্ত হাওয়ার মধ্যে কাটিয়েছিল। সাহিত্য, গান, নাটক-টাটক সম্বন্ধে একটা তীব্র উৎসাহ ছিল। পঁচিশে বৈশাখে জোড়াসাঁকোতে এবং রবীন্দ্রসদনে যেতই। দোলে অথবা পৌষোৎসব দু-একবার শান্তিনিকেতনেও গেছে বন্ধুদের সঙ্গে ও বড়োমামার মেয়েদের সঙ্গে। তবে শেষ গেছে, বছর দশেক আগে। বড়োমামা বলতেন, কলকাতার যত অশিক্ষিত বড়োলোক সব গিয়ে বাড়ি করেছে এখন শান্তিনিকেতনে। জায়গাটা একটা অশান্তি-নিকেতন হয়ে গেছে। এ ভিড়ে আর গিয়ে দরকার নেই।</span></p>
+<p><span>দীপিতা, ডালটনগঞ্জের নয়াটোলিতে তার শ্বশুরবাড়ির একতলার বারান্দাতে দাঁড়িয়েছিল। বাড়ির সামনে বাগান মতো আছে। বড়ো বড়ো পাঁচটি ইউক্যালিপটাস গাছ। গেটের দু-পাশে দু-টি কৃষ্ণচূড়া। এখন ফুল নেই অবশ্য। মস্ত বড়ো গেট-এর ফাঁক দিয়ে লাল মোরামের পথটা দেখা যায় স্টেশনের দিক থেকে এসে কাছারির দিকে চলে গেছে। তা দিয়ে সাইকেল রিকশা, সাইকেল, অটো ও ক্বচিৎ গাড়িও যায়। বিচ্ছিরি শব্দ করে মোটর সাইকেল বা স্কুটারও। মারুতি গাড়িও যায়, কিন্তু মারুতির ইঞ্জিনের কোনো শব্দই শোনা যায় না। হঠাৎ দেখা যায় যে, চলে গেল। গেট পেরিয়ে গেলেই দেখা যায় শুধু।</span></p>
+<p><span>এই পথটা, বলতে গেলে প্রাইভেট। তবে শর্টকাট করার জন্যে অনেকেই এই পথে যাওয়া-আসা করে। এই ফাঁক দিয়ে দেখা নয়াটোলির এই পথটুকুই বলতে গেলে দীপিতার সঙ্গে বাইরের জগতের একমাত্র যোগাযোগ। মাঝে মাঝেই নিজেকে ওর বন্দিনি বলে মনে হয়।</span></p>
+<p><span>এখন বেলা সোয়া চারটে বাজে। আজ রবিবার। নানারকম পদ রান্না হয় বাড়িতে। শাশুড়ির নির্দেশে একটি বা দু-টি পদ দীপিতারও রান্না করতে হয়। বাড়িতে মানুষ খুব বেশি নেই। শ্বশুর, শাশুড়ি, তার স্বামী অমল। দেওরেরা কমল এবং বিমল। একমাত্র ননদ সিমলি। রান্নার জন্যে বিহারি ঠাকুর আছে, পাঁড়ে। বহুদিনকার লোক। শাশুড়ির জন্যে একমাত্র আয়া আছে। সুরাতিয়া। তার ছেলে ভিখু বাড়ির সকলের ফাইফরমায়েশ খাটে। শ্বশুরমশায়ের খাস-চাকর-কাম-ড্রাইভার সুখরাম। সে বাড়িতেই থাকে। শ্বশুরমশায়ের সঙ্গে ছায়ার মতো লেগে থাকে সে। শীতকালে রোদে বসিয়ে তেল মাখায়, গড়গড়ায় তামাক সাজে, শোয়ার আগে পা টিপে দেয়, ব্যাঙ্কে যায় চেক জমা দিতে বা টাকা তুলতে।</span></p>
+<p><span>শ্বশুরমশায়ের গোয়েন্দাও বটে সুখরাম। সে থাকে গ্যারাজের পাশের ঘরে। বাড়িতেই খায়। তার দেশ লোহারডাগাতে। বয়স দীপিতার স্বামী অমলের-ই মতো। লোকটার চোখের চাউনি মোটে ভালো লাগে না দীপিতার প্রথম দিন থেকেই। যথেষ্ট বয়স হওয়া সত্ত্বেও সুখরাম বিয়ে করেনি। বাড়িতে নাকি মা আছে শুধু। ছুটিছাটাও নেয় না। বছরে সাতদিন ছুটি নেয় ছট-পরবের সময়ে। বাসে করে চলে যায় লোহারডাগা। আবার ঠিক সময়মতো ফিরে আসে।</span></p>
+<p><span>সুখরাম নাকি কথার খেলাপ করেনি কোনোদিনও। সেইজন্যেই দীপিতার শ্বশুর ব্রজেন কর মশায় তাকে অত পছন্দ করেন।</span></p>
+<p><span>আজ সকালে একচোট বৃষ্টি হয়ে গেছে। ডালটনগঞ্জে বিয়ে হয়ে আসার পর থেকেই দেখছে প্রতিবছর-ই দেওয়ালির পরে হয়। এরপর-ই শীত নামবে জব্বর। এই সময়ের রোদটাও মিষ্টি লাগে। এখানে গরমের সময়ে যেমন গরম, শীতের সময়েও তেমনি শীত।</span></p>
+<p><span>ঘরে অমল ঘুমোচ্ছে। দীপিতাও ওর সঙ্গেই ছিল। আলতো করে নিজের কোমর থেকে অমলের বাঁ-হাতটা নামিয়ে, শাড়ি-ব্লাউজ ঠিক করে নিয়ে বারান্দাতে এসে রেলিং ধরে দাঁড়িয়েছে দীপিতা।</span></p>
+<p><span>সপ্তাহে মাত্র এই একটা দিন-ই অমল দিনেরবেলা বাড়ি থাকে। তিরিশে জুন থেকে একতিরিশে অক্টোবর পর্যন্ত জঙ্গলের কাজ বন্ধ থাকে। দেওয়ালির পরেই কাজ আরম্ভ হয়। পয়লা নভেম্বর থেকে সব জঙ্গল খুলে গেছে। এখন অমলকে ও আরও কম পাবে কাছে। কাঠের গুদাম, চেরাইকল, বাঁশের ডিপো, ছড়িয়ে আছে, ওর শ্বশুরমশায়ের। ব্যাবসা প্রায় দু-শো বর্গকিমি এলাকা জুড়ে। বছরভর কাজের সঙ্গে জঙ্গলের ওইসব কাজও দেখতে হবে অমলের উপরন্তু। দীপিতার দেওরেরা অনেক-ই ছোটো অমলের চেয়ে। একজন ক্লাস নাইনে পড়ে, অন্যজন ক্লাস এইটে। সবে। শ্বশুরমশাইও আর কাজ তেমন দেখেন না। পুরোনো কর্মচারী আছেন দু-তিনজন—। তাঁদের-ই সাহায্যে অমল-ই পুরো ব্যাবসা দেখে এখন।</span></p>
+<p><span>সারাদিন মন খুলে কথা বলার মতো কারওকেই পায় না দীপিতা। একমাত্র ননদ সিমলি নামধারী কলেজে পড়ে। মেয়েটা ভালো। কিন্তু পড়াশুনা, মাস্টারমশাই এবং বন্ধু-বান্ধব নিয়ে ব্যস্ত থাকে। তা ছাড়া শাশুড়ি পছন্দ করে না সিমলি বেশি সময় দীপিতার সঙ্গে কাটাক। মাঝে মাঝে পাশের বাড়ি, বিশ্বাসবাড়িতে যায়। সে, বাড়ির ছেলে ভোঁদাই অমলের চেয়ে একটু ছোটো। ভালো গজল গায় সে। তার মা এবং এক বিধবা পিসিই আছেন শুধু বাড়িতে। একমাত্র দিদির বিয়ে হয়েছে বেনারসে। তার নাম বাণী। সে মাঝে মাঝে বাপের বাড়ি এলে বেশভালো লাগে দীপিতার। দীপিতাকে খুব-ই ভালোবাসেন ওঁরা। সাহিত্য, গান-বাজনা, সিনেমা, নাটকের আলোচনা হয় একটু। ওর গান শুনতেও ভালোবাসেন ওঁরা। দীপিতা যে, একসময়ে ভালো গান গাইত সে-কথাআজ মনে পর্যন্ত পড়ে না। তবে গান যার মধ্যে আছে, তার মধ্যে তা কচুরিপানার-ই মতো থাকে। মরেও মরতে চায় না।</span></p>
+<p><span>দীপিতার শ্বশুরবাড়ি, কর-বাড়িতে গান গাওয়া মানা। বিয়ের পরে পরে কখনো-কখনো স্নানঘরে আনমনে গান গেয়ে উঠত দীপিতা। শাশুড়ি একদিন বলে পাঠিয়েছিলেন, তাঁর আয়া সুরাতিয়াকে দিয়ে, এটা বাইজি-বাড়ি নয়। এখানে গান-টান না গাইলেই ভালো।</span></p>
+<p><span>স্নানঘরের দরজাতে ধাক্কা দিয়ে সুরাতিয়া শাশুড়ির সেই আদেশ জারি করেছিল।</span></p>
+<p><span>মরমে মরে গেছিল দীপিতা।</span></p>
+<p><span>দীপিতা জানে না, কেন তার শ্বশুরমশায় কলকাতা থেকে তাকেই পছন্দ করে ছেলের বউ করে আনলেন তার পটভূমি জানা সত্ত্বেও। আর বড়োমামাই বা কী করে তাকে এমনভাবে এতদূরে নির্বাসন দিলেন! মেজোমামা যদিও আলাদা থাকেন পাকপাড়াতে, তিনিও তো কোনো আপত্তি করলেন না। ওর শ্বশুরবাড়ির ওপরে যত-না রাগ হয় দীপিতার, তার চেয়ে অনেক বেশি অভিমান হয় মামাদের ওপরে, বিশেষ করে বড়োমামার ওপরে। হাত-পা বেঁধে জলে ছুড়ে দেওয়ার-ই মতো করে তাঁরা বিসর্জন দিয়েছেন দীপিতাকে। বিয়ে, তাই দিতে পারলেন এমন ঘরে। আগে জানলে দীপিতা কোথাও পালিয়ে যেত। আত্মহত্যা করত। অমল মানুষটা যদিও খারাপ নয়, তাকে তার মতন করে ভালোও বাসে, কিন্তু ভালোবাসা জিনিসটা দু-জনের। একা একজনের ভূমিকা ধর্তব্য নয়। তাই দীপিতার প্রতিমুহূর্তেই মনে হয় এক জেলখানার কয়েদি সে।</span></p>
+<p><span>ভালোমানুষ হওয়াটাই তো মানুষের একমাত্র গুণ নয়। অমলের মধ্যে কোনো রস-কষ নেই। সাহিত্য পড়েনি কোনোদিন। গান ভালোবাসে না। এক হাতে ক্যালকুলেটার আর অন্য হাতে নস্যির ডিবে নিয়ে সে ঘুরে বেড়ায়, তার বাবার সাম্রাজ্য রক্ষার জন্যে। নস্যি দু-চোখে দেখতে পারে না দীপিতা ছেলেবেলা থেকে। অমল দীপিতাকে যখন আদর করে, তাও করে ব্যাবসা করার-ই মতো করে, তড়িঘড়ি, তখন অমলের মুখ তার মুখের কাছে এলেই নস্যির গন্ধে দীপিতার বমি পেয়ে যায়।</span></p>
+<p><span>বারান্দার রেলিং ধরে দাঁড়িয়ে পথের দিকে চেয়ে তার চোখ দুটো ঝাপসা হয়ে ওঠে। মাঝে মাঝেই এমন হয়।</span></p>
+<p><span>ওকি পাগল হয়ে যাবে? ভাবে দীপিতা। গুজরাটি চম্পকলাল শাহ, বিড়িপাতা কারবারির নতুন চারতলা বাড়ি থেকে খুব জোরে টিভি-তে হিন্দি সিনেমার আওয়াজ ভেসে আসছে। ওরা মাঝে মাঝে নানারকম আচার পাঠায় দীপিতাকে। ওদের বাড়িতেও দীপিতার সমবয়সি একটি বউ আছে। নাম নভনীত। সেও থাকত কলকাতাতেই। ভবানীপুরে। তাকেও মাঝে মাঝে তিনতলার বারান্দাতে দাঁড়িয়ে থাকতে দেখে দীপিতা। ওর মনে হয়, ও-ও দীপিতার মতোই দুঃখী। নভনীত কি কোনোদিন তিনতলার বারান্দা থেকে লাফ দিয়ে পড়বে নীচের রাস্তায়? ভাবলেও শিউরে ওঠে দীপিতা ভয়ে। বুঝতে পারে না, ভয়টা নভনীতের জন্যে, না নিজের-ই জন্যে?</span></p>
+<p><span>চম্পকলালদের একজন মুহুরি আছে, তার মান পোপটলাল। সে গদিঘরের পাশে একতলার একটি ঘরে থাকে। দীপিতাকে বারান্দাতে দেখলেই জানলার সামনে এসে দাঁড়ায় পোপটলাল। লোকটা খুব-ই অসভ্য আছে। একদিন ধুতির খুঁট তুলে দীপিতাকে দেখিয়েছিল। যদিও অতদূর থেকে দেখা কিছুই যায় না। আর দেখাবার আছেই বা কী ছাই পুরুষদের! কতরকমের বিকৃতিই যে, থাকে মানুষের! রাগে গনগন করতে করতে দীপিতা ভেতরে চলে আসে, পোপটলাল জানলার কাছে এসে দাঁড়ালেই। কিন্তু ভয়ে কারওকেই কিছু বলতে পারে না। যেমন তার শ্বশুরবাড়ি! শাশুড়ি অন্নদা ঠাকুরানি হয়তো বলতেন, তুমি দেখতে চাও, তাই লোকে দেখায়।</span></p>
+<p><span>ছি: ছি! ভাবলেও গা ঘিনঘিন করে দীপিতার। এই যুগে এমন শ্বশুরবাড়িও হয় কারও?</span></p>
+<p><span>বরানগরে টবিন রোডের কাছে ছিল ওর বড়োমামার বাড়ি। মামাবাড়ির পরিবেশ আর এই পরিবেশের মধ্যে কোনোই মিল নেই। একমাত্র মেয়ে পুঁটিকে ও কী করে, যে মানুষ করে তুলবে এই পরিবেশে তা ভেবেই পায় না দীপিতা। ভাবতে ভাবতে মাথা ধরে যায়। তবে বড়োমামার বাড়ির পরিবেশের কথা ভেবেই বা লাভ কী? বড়োমামা তো সব জেনেশুনেই এমন করেছেন।</span></p>
+<p><span>মেয়ের ডাক নাম রেখেছিল ‘কারো’। দীপিতার ভারি পছন্দসই নাম। বিহারের সারাণ্ডার জঙ্গলে তিনটি নদী আছে, কোয়েল, কারো, কয়না।</span></p>
+<p><span>কিন্তু শ্বাশুড়ি নাতনিকে ডাকেন পুঁটি বলে। অতএব নাম পুঁটি হয়ে গেছে। ভালো নামও দেবে ঠিক করেছে চারুমতী। কিন্তু শ্বশুরমশাই বলেছেন স্কুলে নাম লেখাবেন সমলেশ্বরী। ওড়িশার সম্বলপুরে নাকি সমলেশ্বরীর মন্দির আছে। মা দুর্গার-ই আর এক নাম সমলেশ্বরী। ফরেস্ট ডিপার্টমেন্টের চাকরি ছাড়ার পর সেই জঙ্গলেই প্রথমে কাঠের ঠিকাদারি নিয়ে তাঁর অবস্থা নাকি ফেরে। তাই প্রথম নাতনির নাম রাখতে চান সমলেশ্বরী। আর তিনি চাইলে তাতে আপত্তি করেন এমন মানুষ, ঘাড়ে একাধিক মাথঅলা, এ পরিবারে আর কে আছে?</span></p>
+<p><span>দীপিতা বলেছিল অমলকে, তোমার বোনের নাম সমলেশ্বরী রাখলেই তো হত।</span></p>
+<p><span>অমল বলেছিল, সিমলি নামেরও ইতিহাস আছে। সিমলিপালির জঙ্গলের জন্যেই তার নাম রেখেছিলেন সিমলি।</span></p>
+<p><span>—সিমলিপাল বলো।</span></p>
+<p><span>দীপিতা বলেছিল।</span></p>
+<p><span>—না, এ তোমাদের কলকাতার কাছে সিমলিপাল নয়, এ সিমলিপালি, ওড়িশার-ই সম্বলপুর ফরেস্ট ডিভিশনের জুজুমার-এর কাছে। সেই জঙ্গলে, ময়ূরভঞ্জের রাজার ঠিকা নিয়েছিলেন নাকি তিনি। সেই ঠিকা, অতিসামান্য হলেও ব্রজেন কর-এর প্রথম স্বাধীন ব্যাবসা। তার আগে নাকি ওড়িশার বনবিভাগে রেঞ্জারের চাকরি করতেন ব্রজেন কর।</span></p>
+<p><span>তার শ্বশুরমশায় মানুষটি বড়োঅদ্ভুত ধরনের। মুখ দেখলে মনে হয় অনেক মানুষ খুন করেছেন। এক আশ্চর্য ‘নিষ্ঠুরতা’ সারামুখে আঁকা আছে। খুব কম কথা বলেন। প্রয়োজনে এবং তাঁর মতের বিরুদ্ধাচরণ করলে, তাকে তো বটেই এমনকী নিজের ছেলে অমলকেও তিনি সম্ভবত খুন করতে পারেন। কোনো ব্যাপারে তাঁর বিরুদ্ধাচরণ করা তো দূরস্থান, বিরুদ্ধাচরণ করার কথা মনে আনার কথা ভাবলেও দীপিতার রক্ত হিম হয়ে আসে।</span></p>
+<p><span>ব্রজেনবাবুর কোনো বন্ধুবান্ধবও নেই। লোকমুখে শুনেছেন যে, গাড়োয়াতে তাঁর এক মুসলমান রক্ষিতা আছে। সে নাকি দীপিতার-ই বয়সি। এই কথা ভাবতেও ওর ঘেন্না করে। আগে সেই মেয়েটির মাও ছিল তাঁর রক্ষিতা। প্রতি শনিবার খাওয়া-দাওয়ার পরে ড্রাইভার সুখরামকে নিয়ে গাড়িতে করে তিনি বেরিয়ে যান। ফিরে আসেন রবিবার সকালে। দশটা-সাড়ে দশটাতে। পাঁঠার মাংস সঙ্গে নিয়ে আসেন। গাড়োয়ার পাঁঠার মাংস নাকি খুব ভালো।</span></p>
+<p><span>তার শাশুড়ি অন্নদাদেবী, যিনি দীপিতার সঙ্গে অকারণেই প্রচন্ড খারাপ ব্যবহার করেন, তিনিও হয়তো শ্বশুরমশাইকে দীপিতা নিজে যেমন ভয় পায়, তেমন-ই ভয় পান। নানা হীনম্মন্যতা থেকেই হয়তো শাশুড়ির স্বভাবে এমন বিকৃতি এসেছে। কে জানে!</span></p>
+<p><span>ভালো-খাওয়া, ভালো-পরা, বড়োলোকের বাড়ির বউ হওয়ার মধ্যে স্বাচ্ছন্দ্য ও জাগতিক সুখ হয়তো আছে কিন্তু এমন ভয়ের জীবন, বন্দিদশার জীবন কার কাটাতে ভালো লাগে!</span></p>
+<p><span>অন্ধকার প্রায় হয়ে এল। ভিখু চা নিয়ে এল দোতলা থেকে। বানানো চা খেতে বিচ্ছিরি লাগে দীপিতার। নিজের পছন্দমতো দুধ, চিনি, পছন্দমতো পাতলা লিকার না হলে চা খেয়ে কোনোদিনও আনন্দ পায়নি। বিয়ের পর পর আলাদা করে টি-পট-এ চা, মিল্ক পট-এ দুধ এবং সুগার পট-এ চিনি আনতে বলাতে শাশুড়ি বলেছিলেন, বউমা! এ বাড়িতে যে-নিয়ম চলে আসছে সেই নিয়ম-ই চলবে। তোমার জন্যে নতুন কোনো নিয়ম চালু হবে না।</span></p>
+<p><span>এমন মানসিক অত্যাচারের মধ্যে বাঁচা যায় না। এত এবং এতরকম অত্যাচার-ই যদি করবেন এঁরা দীপিতার ওপরে, তবে অত ঢং করে বড়োছেলের বউ হিসেবে কলকাতা থেকে এই সুদূর পালামৌতে ওকে নিয়ে এলেন কেন? বারে বারেই গা-রিরি করে ওঠে বড়োমামা ও বড়োমামির ওপরে। কোনো খোঁজখবর না নিয়েই ওঁরা...। দীপিতার মনে হয়, ওর প্রতি তাঁদের ভালোবাসাটা ছিল মুসলমানের মুরগি পোষার-ই মতো। অথচ ওঁরা ছাড়া দীপিতার ‘আপনজন’ বলতে তো আর কেউ-ই ছিলেন না। বড়োই অভিমান হয় ওঁদের ওপরে। ওঁদের ভালোবাসাটা কি ভড়ং ছিল, কিছুই বুঝতে পারে না দীপিতা। ভাবলে মাথার মধ্যে যন্ত্রণা হয়। দু-চোখ জলে ভরে আসে।</span></p>
+<p><span>বারান্দা থেকেই ভিখুর হাত থেকে চায়ের কাপ দুটো নিয়ে ঘরে গেল দীপিতা। চা দিয়ে, অমলকে তুলে দিল।</span></p>
+<p><span>বছরের এই সময় থেকে শীতের শেষ অবধি ডালটনগঞ্জ শহরের পাশ দিয়ে বয়ে যাওয়া কোয়েল নদীর পাশে অনেকে বেড়াতে যান। তারপর বেলোয়াটিকার এ প্রকাশের দোকানে ফুচকা খেতে যান। প্রকাশের দোকানের কাছাকাছি ভেলপুরি, বাটাটাপুরি, ধোসা, ইডলি এসবও বিক্রি করে অনেকেই। সকলেই যার যার সাইকেল-ভ্যান নিয়ে আসে। তার ওপরেই দোকান। তাদের মধ্যেই বাল-বিধবা বাঙালি-বৃদ্ধা কাত্যায়নী মাসিও বসে পাটিসাপটা, ক্ষীরের পুলি, নারকোলের তক্তি এসব নিয়ে। কাত্যায়নী মাসি অবশ্য নয়াটোলির সব বাড়িতেই আসে।</span></p>
+<p><span>কাত্যায়নীর সাইকেল-ভ্যান নেই। এক কানা ভাইপো আছে। তার নাম বিটকেল। এই বিটকেল আবার ভোঁদাই-এর খিদমদগার। যখন পিসির কাজ থাকে না তখন সে ভোঁদাই-এর ফাই-ফরমাশ খাটে। ওকে খুব স্নেহ করে ভোঁদাই। প্রয়োজন না থাকলেও কাত্যায়নী মাসির কাছ থেকে জিনিস কিনে বিশ্বাস বাড়ির ভোঁদাই অন্যদের বিলিয়ে দেয়। ও বলে, ভিক্ষে তো চায় না। মাসির আত্মসম্মান জ্ঞান আছে, অভাব যতই থাক-না-কেন।</span></p>
+<p><span>বিটকেল-ই মাসির অ্যালুমিনিয়ামের হাঁড়ি-কুড়ি সব বয়ে নিয়ে যায়। পিঠে তো গরম করতে হয় না, তাই সুবিধে আছে। পাছে গরমে পিঠেগুলো খারাপ হয়ে যায়, তাই বরফ-কল থেকে এক চাঙড় বরফ কিনে সেইসব হাঁড়ি-কুড়ি কাত্যায়নী বরফের ওপর বসিয়ে রাখে। অবাঙালিরাই বেশি কেনে কাত্যায়নীর জিনিস। বাঙালিরা কখনো-কখনো, মুখ বদলাবার জন্য কিনে আগে মিষ্টি খেয়ে তারও পরে বুধিয়ার তেজপাতা-টেজপাতা দেওয়া সুগন্ধি গরম গোরখপুরি চা খায়। প্রবাসী বাঙালিরা এখনও বাড়িতে মিষ্টি-টিস্টি বানান নানারকম। তাঁরা কলকাতার বাঙালিদের মতো অ্যাংলো-ইণ্ডিয়ান হয়ে যাননি। খুব-ই কষ্ট করে হলেও বাঙালিয়ানা এখনও বাঁচিয়ে রেখেছেন।</span></p>
+<p><span>বাঙালিরও যে, অনেক ভালো ভালো খাবার-দাবার, রান্নাবান্না ছিল, তা কলকাতার বাঙালিরাই বরং ভুলে গেছেন। বিহারের পালামৌ জেলার এই সদর শহর ডালটনগঞ্জের মুষ্টিমেয় বাঙালিরা যে, নিজেদের ‘স্বাতন্ত্র্য’ বজায় রেখেছেন আপ্রাণ চেষ্টাতে, একথা অস্বীকার করা যায় না।</span></p>
+<p><span>দীপিতা বলল, তার স্বামী অমলকে, চা খাওয়া হলে, অ্যাই নিয়ে যাবে নদীর পারে আমাকে একটু ফুচকা খাওয়াতে? তারপরে প্রকাশের দোকানে? চলো না গো!</span></p>
+<p><span>তারপর বলল, জিপটা তো একমাত্র রবিবারেই বাড়িতে থাকে। তা আমি যে, মেয়েটাকে নিয়ে একটু কোথাও যাব, তা কি হবে? নিজেও বাড়ি থেকে বেরোবে না, আমাকেও বেরোতে দেবে না। অদ্ভুত পুরুষমানুষ তুমি! তাও যদি একটা ড্রাইভার থাকত তোমার জিপের, তাহলেও না-হয় হত!</span></p>
+<p><span>—ড্রাইভার কোথায় পাব? আমি-ই ড্রাইভার, আমি-ই হেল্পার, আমি-ই মেকানিক। থাকলে তো ভালোই হত, জঙ্গলের পথেঘাটে অনেক উপকারে লাগত। যদি একজন হেল্পারও থাকত তাহলে বুঝতাম। আমার ইচ্ছেতে তো কিছু হবে না। তুমি তো সব-ই জানো।</span></p>
+<p><span>—জানি বলেই তো বলি যে, তুমি পুরুষমানুষ নও।</span></p>
+<p><span>তারপর বলল অমল, পাশের বাড়ির ভোঁদাইকে নিয়ে যাও-না। ওই তো টেবিলের ওপরে জিপের চাবিটা পড়ে আছে। আমি আর একটু গড়িয়ে নিই।</span></p>
+<p><span>—ছেলেটির ভালো নামটি তো চমৎকার। অনিকেত। তোমরা সকলেই ওঁকে ভোঁদাই বলে ডাকো কেন বলো তো?</span></p>
+<p><span>—বিশ্বাস কাকার আদরের রকম-ই তো ওরকম ছিল। আমরা কী করব? একমাত্র ছেলেকে আদর করে ডাকতেন ভোঁদাই। সেই শিশুকাল থেকে। তাই অমন চালাক-চতুর চৌকশ ছেলেও মুখে মুখে ভোঁদাই হয়ে গেছে সকলের কাছেই।</span></p>
+<p><span>—এটা অন্যায়।</span></p>
+<p><span>—যাকে ওই নামে ডাকা হয় তার আপত্তি না থাকলে তোমার এত আপত্তির কী কারণ?</span></p>
+<p><span>—সকলের বরেরাই তাদের স্ত্রীদের নিয়ে যায় আর আমাকে পাশের বাড়ির ভোঁদাইয়ের সঙ্গে কেন যেতে হবে? লোকে কী বলবে! বাইরের লোকের কথা ছেড়েই দিলাম। তোমার মা-বাবা? তাঁরাও আড়ালে অনেক কিছুই বলেন। তা ছাড়া তোমার সাঙাত ভোঁদাই তো আর সত্যি সত্যিই ভোঁদাই নয়। সে বেশ বুদ্ধিমান-ই।</span></p>
+<p><span>—কেন? একথা বলছ কেন? বুদ্ধিমান হওয়া কি খারাপ?</span></p>
+<p><span>—না, তা নয়। তবে এসব ব্যাপারে তোমার পক্ষে বোকাদের ওপর নির্ভর করাই ভালো।</span></p>
+<p><span>—কেন? ও কি তোমাকে কিছু...</span></p>
+<p><span>—না, না, সেসব কিছু নয়। তবে কোনোদিন তো কিছু হলেও হতে পারে। এতখানি উদার হওয়া ভালো না। পুরুষের জাত-ই তো! তোমরা পুরুষেরা সবাই হনুমানের চেয়েও খারাপ।</span></p>
+<p><span>অমল বলল, অমন করে বাইরের কারও সামনে আবার বলে বোসো না।</span></p>
+<p><span>—কী বলব?</span></p>
+<p><span>বি জে পি-র জন্যে এখন গোরু আর হনুমান সম্বন্ধে সবসময়ে মুখ সামলে কথা বলবে। কখন কার বিশ্বাসে আঘাত লাগে, কে বলতে পারে? জানোই তো যে, পবন-পুত্র হনুমানকে এখানে সকলেই দেবতাজ্ঞানে দেখে। এ তো তোমাদের কলকাতা নয়!</span></p>
+<p><span>—তা হয়তো হবে। কিন্তু জানো তো? আমি সেদিন দিয়েছি হনুমানের শ্রাদ্ধ করে।</span></p>
+<p><span>—হনুমানের শ্রাদ্ধ! কী করে? কেন করতে গেলে? কী সর্বনাশ!</span></p>
+<p><span>—আরে বলো কেন? যখন-তখন পেছনের উঠোনের পাঁচিল টপকে লাফিয়ে এসে উঠোনে পড়ে দুড়দাড় করবে, একে-তাকে চড়-থাপ্পড় মারবে। মেয়েদের শাড়ি ধরে টানবে। গত সপ্তাহে তো একদিন সিমলিকেও জড়িয়ে ধরেছিল। মেয়েটা ভয়ে প্রায় অজ্ঞান হয়ে গেছিল। রায়দের বাড়ির মিনু বলছিল, জিরাডিয়ার এক অল্পবয়সি নতুন বউকে নাকি একটা ধেড়ে হনুমান ধর্ষণ করেছে সেদিন।</span></p>
+<p><span>—আহা! কেষ্টর জীব। রামচন্দ্রর। করেছে না-হয় করেইছে। তার ধেড়ে বর তাকে ধর্ষণ করলে দোষ নেই, যত দোষ ওই ধেড়ে হনুমানের-ই!</span></p>
+<p><span>অমল বলল।</span></p>
+<p><span>—তোমরা তো হনুমানদের দলেই ছিলে এবং আছ চিরদিন-ই।</span></p>
+<p><span>দীপিতা বলল, কপট রাগের সঙ্গে।</span></p>
+<p><span>কালেভদ্রে রবিবারের দুপুরে বড়ো আদর করে অমল দীপিতাকে। তবে ব্যাপারটা চিরদিন-ই একপক্ষের-ই একচেটে। দীপিতার ভালো লাগা মন্দ লাগাটা অবান্তর। শব-এর মতো শবাসনে শুয়ে অমলকে সবকিছু করতে দেয়। হনুমানের সঙ্গে সত্যিই কোনো তফাত নেই অমলের। দীপিতা ভাবে, সব পুরুষ-ই কি এরকমই? তবে ব্যাপারটার পরে শরীরটা ছেড়ে দেয়। আলসেমি লাগে। ঘুম পায়। তাই ঘুমোয় ও।</span></p>
+<p><span>দিবানিদ্রার পরে আড়মোড়া ভাঙতে ভাঙতে অমল বলল, হনুমানের শ্রাদ্ধটা কী করলে শুনি?</span></p>
+<p><span>—আরে! বৈদ্যনাথ দাওয়াখানার কব্জ-হার খান-না বাবা!</span></p>
+<p><span>দীপিতা বলল।</span></p>
+<p><span>—বাবা?</span></p>
+<p><span>—হ্যাঁ-এ-এ। তোমার বাবা।</span></p>
+<p><span>—আরে ‘তোমার’ বাবা বলার কী দরকার? হ্যাঁ। বাবা তো খান-ই রোজ রাতে শোবার সময়ে। তোমার নিজের বাবা তো তোমার শিশুকালেই গত হয়েছেন। শুধু ‘বাবা’ বলতে বুঝি ইচ্ছে করে না?</span></p>
+<p><span>দীপিতা উত্তর না দিয়ে ভাবছিল তার বাবার যে, স্মৃতিটুকু তার মনে দৃঢ়বদ্ধ আছে তার সঙ্গে ব্রজেন কর মশাইকে যে, একেবারেই মেলানো যায় না। মরে গেলেও শ্বশুরমশায়কে ও বাবা বলে ডাকতে পারবে না।</span></p>
+<p><span>—এখন বাবার ব্যাখ্যা না করে হনুমানের ব্যাপারটা বলো।</span></p>
+<p><span>স্বভাব-অধৈর্য অমল, বলল তার স্ত্রী দীপিতাকে।</span></p>
+<p><span>ভিখুকে দিয়ে বড়ো বড়ো একছড়া মর্তমান কলা আনিয়ে খোসা আধখানা করে ছাড়িয়ে তার গায়ে ফুটো করে চামচ-চামচ কব্জ-হার তারমধ্যে ঢুকিয়ে দিয়ে খোসাতে হালকা করে ফেভিকল লাগিয়ে এমন করে সেঁটে দিয়েছিলাম যে, হনুমান তো দূরস্থান, রামচন্দ্রেরও সাধ্য ছিল না যে, কারসাজি ধরতে পারেন।</span></p>
+<p><span>—তারপর?</span></p>
+<p><span>—তারপর আর কী? হনুমান বাবাজি তো হুড়ুম-দাড়ুম করে পাঁচিলের ওপর থেকে গোলকিপারের মতো বডি-থ্রো মেরে পুরো কাঁদি নিয়ে লোপাট।</span></p>
+<p><span>—তারপর?</span></p>
+<p><span>—তারপরের দিনে তার অবস্থা যদি দেখতে!</span></p>
+<p><span>—কীরকম?</span></p>
+<p><span>—সে বড়ো করুণ অবস্থা। উঠোনের ও-পাশের বড়ো সাদাফুলের গাছটার এডালে-ওডালে একবার দাঁড়ায় তো আর একবার বসে, গালে হাত দিয়ে শুয়ে থাকে, একেবারে চলচ্ছক্তিহীন, সারাদিন। ওই গাছটাতেই ওর আস্তানা ছিল কিনা!</span></p>
+<p><span>—তারপরে?</span></p>
+<p><span>—তারপর থেকেই এ-তল্লাট ছেড়েছে। আর একদিনও আসেনি। প্রায় পনেরো দিন হয়ে গেল।</span></p>
+<p><span>—বুঝবে। যেদিন তোমাকে ধর্ষণ করে এর প্রতিশোধ নেবে। ‘হনুমান’ বলে কথা।</span></p>
+<p><span>অমল বলল।</span></p>
+<p><span>দীপিতা মুখে কিছুই বলল না। কারণ, সব কথা মুখে বলার নয়। যেসব স্বামী তাদের স্ত্রীদের শুধু ধর্ষণ-ই করে, আদর কী করে করতে হয়, সোহাগ কাকে বলে, শৃঙ্গার কী? সে-সম্বন্ধে যাদের কোনো ধারণাই নেই, যারা স্ত্রীর শরীরকে জমিদারির অঙ্গ বলে মনে করে, সেই শরীরকে যন্ত্রের মতো কর্ষণ করে, সেই স্ত্রীকে হনুমানেই ধর্ষণ করল না অন্য কেউ করল তাতে স্বামীর কী?</span></p>
+<p><span>মাঝে মাঝে অমল স্বগতোক্তি করে, বুড়ো কি আর বয়সে হয়েছি! জীবন-ই বুড়ো করে দিল। এত পরিশ্রম কোনো মানুষের সহ্য হয়? আমার শরীরটা তো বুড়ো হয়েইছে, মনটাও বুড়িয়ে গেছে একেবারেই। কিছুতেই আর আনন্দ পাই না। এত বড়ো আর এত ছড়ানো ব্যাবসা। একা হাতে দেখা কি সম্ভব? বাবা তো...কমল আর বিমল যে, কবে এসে ব্যাবসাতে বসবে! তখন আমি একটু রিলিফ পাব।</span></p>
+<p><span>—কেন? বাবা তো রোজ-ই অফিসে যান। বাবা কিছু দেখেন না?</span></p>
+<p><span>দীপিতা জিজ্ঞেস করেছিল।</span></p>
+<p><span>—বাবা তো যান একবার সন্ধের আগে আগে। হিসেবটা দেখতে যান। কত বাকি পড়ল, কত আদায় হল। মুহুরি জিতেনবাবুর সঙ্গে বসেন। কত এক নম্বরে দেখাবেন, কত দু-নম্বরে করবেন সেসব। চেকের পেমেন্ট তো দেখাতেই হয়। যা লাভ হয় ব্যাবসা থেকে তার দশভাগও তো দেখানো হয় না। টাকা-ফাকা গুনে, সঙ্গের থলেতে পুরে বাড়ি নিয়ে আসেন। বাবা এখন এ ছাড়া আর কী করেন? অবশ্য টাকার বদলে সরকার কী দেয়? গরিবদের ভালো করলেও না হয় হত। তবু তো যারা দেয়, তাদের টাকাতেই এতবড়ো দেশ চলে। এটা খারাপ। সরকার যার ভাত খায়, তাকেই কিল মারে। এমনটি হওয়া উচিত নয়।</span></p>
+<p><span>তারপরেই বলল অমল, এসব কথা তুমি আবার বোলো না যেন কারোকে। মেয়েদের কিছু বলাই বিপদ।</span></p>
+<p><span>—তা অত যে, টাকা রোজগার হয়, তুমি যে, গাধার মতো উদয়াস্ত খাটো, তা তোমাকে বাবা সেই পাঁচ-শো টাকাই তো দেন হাতখরচা। তাও তো তোমার একার জন্যে নয়, তোমার আমার পুঁটির তিনজনের সব খরচ-ই তার থেকে চালাতে হয়। তোমাকে দু-নম্বর থেকে কিছু দেন না বাবা?</span></p>
+<p><span>—পাগল!</span></p>
+<p><span>মিথ্যে কথা বলল অমল দীপিতাকে। তারপর-ই বলল, বা:। মাথার ওপরে ছাদ দিয়েছেন, খেতে দিচ্ছেন, পুজোতে, পয়লা বোশেখে নতুন জামা-কাপড় দিচ্ছেন আমাকে তোমাকে-পুঁটিকে। এই তো যথেষ্ট। জিপগাড়ি দিয়েছেন।</span></p>
+<p><span>—হুঁ:। সে তো কাজ করার জন্যে, তাঁরই ব্যাবসা দেখার জন্যে। জিপগাড়ি ছাড়া দিন-রাত বন-জঙ্গলে দাবড়ে বেড়াতে পারতে? অত জায়গার কাজ সামলাতে পারতে একা হাতে? তোমার নিজস্ব কাজে বা আমাদের নিয়ে তো কোথাও-ই যেতে পারো না। তোমার জিপগাড়ি কোনো ব্যক্তিগতকাজে লাগে কি আমাদের? সকাল সাতটাতে বেরিয়ে যাও, আসো রাতন-টায়। তার ওপর আজ রাঁচি, কাল পাটনা, পরশু শোনপুর, তার পরদিন হাজারিবাগ, তারও পরদিন মহুয়াডাঁর। তুমি থাকো ক-দিন ডালটনগঞ্জে? একা হাতে পুঁটিকে দেখে, তোমার মা-বাবা, দুই ভাই আর বোনের মন জুগিয়ে চলতে আমার দমবন্ধ হয়ে যায়। একটু যে, গল্পের বই পড়ব একটা, তারও উপায় নেই। লাইব্রেরির মেম্বারশিপও ছেড়ে দিতে হল। তোমাদের কোনো কালচার নেই। তোমরা খোট্টা হয়ে গেছ। অবশ্য দোষ সব আমার-ই। বাপ-মরা গরিবের মেয়ে না-হলে কি আর কলকাতা থেকে এই ডালটনগঞ্জে নির্বাসিত হই? সব-ই আমার কপাল।</span></p>
+<p><span>—কেন? লাইব্রেরি ছেড়ে দিয়েছ কেন?</span></p>
+<p><span>—আমাকে বই কে এনে দেয়?</span></p>
+<p><span>—কেন? কমল-বিমলকে বলো না কেন? সিমলিও তো এনে দিতে পারে।</span></p>
+<p><span>—কমল বিমলের সময় কোথায়? ক্যারাম চ্যাম্পিয়নশিপ, ব্যাডমিন্টন চ্যাম্পিয়নশিপ, অষ্টপ্রহর সাইকেল রেস, ভলিবল, ফুটবল, তারপর থিয়েটারের মহড়া। তা ছাড়া...</span></p>
+<p><span>—তো ওরা পড়ে কখন?</span></p>
+<p><span>পড়ে না-যে তা নয়, পড়ে। বেশি পড়েই বা কী করবে? তোমার বাবা তো কোনোক্রমে বি.কমটা পাশ করিয়েই ব্যাবসাতে বসাবেন। তোমাকে কি চার্টার্ড অ্যাকাউন্ট্যান্সি পড়তে দিয়েছিলেন? তুমিই তো বলেছ যে, রাঁচির ‘মুখার্জি’ কোম্পানি তোমাকে আর্টিকেল্ড ক্লার্ক নেওয়ার ব্যাপারে রাজিও হয়ে গেছিলেন। টাকা রোজগার করাটাই তোমাদের পরিবারে সবচেয়ে বড়োগুণ।</span></p>
+<p><span>অমল হঠাৎ চটে উঠে বলল, ‘পরিবার’ তুলে কথা বলবে না বলে দিচ্ছি।</span></p>
+<p><span>তারপর বেশ কিছুক্ষণ গুম হয়ে থেকে বলল, আমার কথা ছাড়ো। দশটা গাধা মরে একটা বড়োছেলে জন্মায়। আমার সঙ্গে ওদের কী তুলনা? ওরা তো রাজপুত্র। ওরা বড়োলোকের বেটা। বাবা কেমন ‘বেটা! বেটা’ বলে ওদের আদর করে ডাকেন, শোনো-না? আমি তো বড়োলোকের ‘বেটা’ ছিলাম না। আমি যখন জন্মেছিলাম তখন বাবা তো গরিব, সৎ, সামান্য মাইনের একজন বিট অফিসার। রেড়াখোলের জঙ্গলে তখন পোস্টিং ছিল শুনেছি বাবার।</span></p>
+<p><span>তারপরে একটু চুপ করে থেকে দীপিতাকে বলল, তোমার দু-একটা কাজ তো ওরা করে দিতে পারে। আমি যখন পরিবারের ব্যাবসাতেই সারাদিন বাইরে বাইরে থাকি।</span></p>
+<p><span>—কিন্তু আমার যে, ওদের কোনো কাজ করতে বলতেই ইচ্ছে করে না। তাও কমলটার স্বভাবটা ভালো। মিষ্টি ছেলে। যতটুকু করার তা তো ওই করে। বউদি বলে মানেও। বিমলটাকে তো কিছু বলতেই ইচ্ছে করে না। তার ওপরে যে, ক-টা টাকা তুমি আমাকে দাও তা থেকে বিমল প্রায় জোর করেই প্রতি সপ্তাহে-ই সিনেমা দেখার জন্যে আমার কাছ থেকে টাকা চায়। ওর ভয়ে তোমাকে বলতে পর্যন্ত পারি না। আর ওর যা বন্য স্বভাব, ভয়ে, ওকে নাও করতে পারি না।</span></p>
+<p><span>—প্রতি সপ্তাহেই সিনেমা দেখে বিমল? বলো কী তুমি? কী সিনেমা দেখে?</span></p>
+<p><span>—তা আমি কী করে জানব? আমাকে নিয়ে কি একদিনও সিনেমা দেখতে গেছ তুমি?</span></p>
+<p><span>—আজকাল নাকি সব ভিডিয়ো-পার্লারে থ্রি-এক্স ছবি দেখায়?</span></p>
+<p><span>চিন্তিত মুখে বলল অমল।</span></p>
+<p><span>—সেটা কী জিনিস? ‘থ্রি-এক্স’?</span></p>
+<p><span>—মানে পর্নোগ্রাফিক ছবি আর কী?</span></p>
+<p><span>—মানে?</span></p>
+<p><span>—আরে একেবারে উদোম ছবি। নায়ক-নায়িকার গায়ে একটু সুতোও থাকে না। তার ওপর নানারকমের পারভার্সন।</span></p>
+<p><span>মনে মনে বলল, দেখতে তো ভালোই লাগে। সে নিজেও দেখে মাঝেমধ্যে। তাই জানে।</span></p>
+<p><span>তারপর হেসে, গলা নামিয়ে বলল, চলো, একদিন আমরাও দেখে আসি।</span></p>
+<p><span>—আমার দরকার নেই। তুমি দ্যাখো গিয়ে। যেমন ভাই, তেমন-ই তো হবে দাদা। তোমাদের পরিবারের রুচিটাই বিকৃত।</span></p>
+<p><span>—অ্যাই! আবার! পরিবার তুলে কথা বোলো না। সাবধান! তা ছাড়া ‘রুচি’ ব্যাপারটা চিরদিন-ই ব্যক্তিগত।</span></p>
+<p><span>—তাই? হবে।</span></p>
+<p><span>‘সাবধান’ কথাটা এমন করে বলল অমল যে, ভয় পেয়ে গেল দীপিতা।</span></p>
+<p><span>সেইমুহূর্তে দীপিতার মনে হল যে, সে বিমলের-ই দাদা।</span></p>
+<p><span>ওর মনে পড়ে গেল বড়োমামা একটা কথা বলতেন,</span> <span>‘Blood is thicker than water’</span><span>। কথাটা বোধ হয় ঠিক-ই।</span></p>
+<p><span>—রুচি-ফুচি নিয়ে মাথা ঘামাবার সময় কোথায় পেলাম?</span></p>
+<p><span>অমল বিরক্তির গলাতে বলল। স্কুল ফাইনাল পাশ করার পর-ই তো বাবা ব্যাবসাতে ঢুকিয়ে দিলেন। ব্যাবসা দেখতে দেখতেই তো কোনোক্রমে বি-কমটা পাশ করলাম। আমি তো চেয়েছিলাম চার্টার্ড অ্যাকাউন্টেন্সি পড়ি। বড়ো কোম্পানিতে চাকরি করি পাশ করে। কিন্তু কাঠ, বাঁশ, ওয়াগন, রেক, ঢোলাই, লাদাই, কাটাই, চেরাই, কুলি-কামিন, মেট-মুনশি, এইসব নিয়েই তো কেটে গেল বছরগুলো। বাইশ বছর বয়সে বিয়ে হল। তখন তোমার উনিশ। তারপরে এই পাঁচ বছরেই বুড়ো। বিয়ের পরে পর একবার-ই তোমার বরানগরের বড়োমামার বাড়িতে গিয়ে যা-তিনদিন ছিলাম। তা ছাড়া তো লম্বা ছুটিও পেলাম না একদিনও। সব শখ-ই মরে গেছে এখন। জীবনে আনন্দ বলতে আর কিছুই নেই। প্রতি রবিবার একটু শুয়ে-ঘুমিয়ে গায়ের ব্যথা মারা ছাড়া আর কোনো আনন্দ-ই আমার নেই।</span></p>
+<p><span>—আর আমার ‘আনন্দ’ বলতে কী আছে?</span></p>
+<p><span>—কেন? আমি।</span></p>
+<p><span>—তা আছ। তবে তোমার আনন্দ আরও আছে।</span></p>
+<p><span>—কীরকম?</span></p>
+<p><span>—কেন? তোমার মা? হয়তো আরও আছে। যা, আমি জানি না।</span></p>
+<p><span>অমল বলল, মা তো আছেন-ই। মা তো সকলের-ই থাকে। কিন্তু তুমি আসার পরে মা যেন, আমাকে অনেক-ই দূরে ঠেলে দিয়েছেন। আগের মতো আর ভালোবাসেন না। এখন মায়ের কাছে কমল-বিমল-ই সব।</span></p>
+<p><span>—আমি তো মা-বাবা-দিদিদের পাঁচ বছর বয়সে-ই হারিয়েছি। তুমি ভাব তাই। কোনো মা-ই কি তাঁর ছেলেকে পর ভাবতে পারেন?</span></p>
+<p><span>—পারেন। পারেন। ইমরাত খান বলে যে, পুরুষ যখন যার বুকে মুখ রাখে, সে তার-ই বশ হয়। মা জানেন যে....</span></p>
+<p><span>অদ্ভুত কথা, ঝাঁঝের সঙ্গে বলল দীপিতা।</span></p>
+<p><span>অমল বলল, জানি না, মাঝে মাঝে মনে হয়, বাবা আমাকে একটি যন্ত্রের মতো ব্যবহার করছেন এবং করে যাবেন তাঁর পরিবারের ভবিষ্যৎ-এর জন্যে, পরিবারের সুরক্ষার জন্যে। এ ছাড়া আমার আর কোনো-ই ভূমিকা নেই। সেই প্রয়োজন ফুরিয়ে গেলে হয়তো আমিও বেকার হয়ে যাব।</span></p>
+<p><span>—বাবা তোমার কথা তো শতমুখে বলেন। সবসময়েই।</span></p>
+<p><span>দীপিতা বলল।</span></p>
+<p><span>—তাই নাকি? কীরকম?</span></p>
+<p><span>বলেন, অমল-ই তো সব। অমল-ই তো ব্যাবসা দেখে। আমি তো এখন কিছু-ই আর করি না। অমল-ই মালিক।</span></p>
+<p><span>অমলের মুখ এক কুটিল আনন্দে উদ্ভাসিত হয়ে গেল।</span></p>
+<p><span>বলল, বাবা তাই বলেন?</span></p>
+<p><span>—তাই তো বলেন। আমার কাছেই বলেন। বলেন অবশ্য যখন আর কেউই সামনে থাকে না।</span></p>
+<p><span>—আহা! কী বলেন তা বলো না।</span></p>
+<p><span>অমলের ব্যবহার ভালো, কাজও সব শিখেই গিয়েছে। খুব খাটতেও পারে। আমার আর কী চিন্তা!</span></p>
+<p><span>—তাই?</span></p>
+<p><span>অমল বলল, উত্তেজিত হয়ে বিছানাতে উঠে বসে, মাথার বালিশটাকে কোলের কাছে নিয়ে। তারপরে হেসে বলল, মাই ফাদার ইজ এ গ্রেট ম্যান।</span></p>
+<p><span>হাসিটা দুর্বোধ্য ঠেকল, দীপিতার চোখে।</span></p>
+<p><span>একটু চুপ করে থেকে বলল, চলো, লুঙ্গিটা ছেড়ে ধুতিটা পরে নিই।</span></p>
+<p><span>—কেন? হঠাৎ?</span></p>
+<p><span>—আজ তোমাকে ফুচকা খাইয়ে-ই আনি প্রকাশের দোকান থেকে। তোমার এতদিনের শখ!</span></p>
+<p><span>অ্যাম্বাসাডর গাড়ির ড্রাইভার সুখরাম বাড়িতেই থাকে। তবে বাবার অথবা বাবার নির্দেশমতো ডিউটি-ই সে করে। এ-বাড়িতে কারও অধিকার নেই অ্যাম্বাসাডর নিয়ে কোথাওই যাবার। এমনকী মায়েরও নয়। তবে সিমলিকে বাবা কিছু বলেন না। অনেক সময়ে বাবাকে না বলেই সিমলি গাড়ি নিয়ে যায়। দীপিতার শ্বশুরমশাই ব্রজেন কর অন্য ধাতুর মানুষ। ডিকটেটর। বাঘ। এক জায়গাতে যে, দু-টি বাঘ থাকতে পারে না কখনো, একথা তিনি প্রায়ই বলে থাকেন।</span></p>
+<p><span>তবে সুখরাম ড্রাইভার জিপের টায়ার-ফায়ার প্রয়োজনে বদলে দেয়। খারাপ ব্যবহার করে না অমলের সঙ্গে। গ্যারাজে অ্যাম্বাসাডর আর জিপটা পাশাপাশি থাকে।</span></p>
+<p><span>অমল লুঙ্গি ছেড়ে পায়জামা-পাঞ্জাবি পরে চাবিটা আর মানিব্যাগটা টেবিল থেকে তুলে নিয়ে জিপটা বের করল গ্যারাজ থেকে। দীপিতা তাড়াতাড়ি শাড়িটা ছেড়ে, মুখে একটু পাউডার বুলিয়ে আর চোখে একটু কাজল দিয়ে নিল। অমল দীপিতাকে তুলল, তুলে লেভেল ক্রশিং-এ আসতেই ভোঁদাই-এর সঙ্গে দেখা। পাশের বাড়ির ভোঁদাই।</span></p>
+<p><span>ভোঁদাই বলল, গন্ধ-টন্ধ মেখে বউকে সাজিয়ে-গুজিয়ে কোথায় চললে গুরু?</span></p>
+<p><span>অমল বলল, গুরু হয়তো ছিলাম এককালে। এখন যা দিনকাল পড়েছে, চেলার যা চেকনাই, তাতে বলতে হয় গুরু ‘গুড়’-ই রয়ে গেছে আর চেলা ‘চিনি’ হয়ে গেছে।</span></p>
+<p><span>তারপর-ই বলল, যাবি নাকি? নদীর ধারে যাচ্ছি। ফুচকা খেতে। তারপর যাব প্রকাশের ওখানে।</span></p>
+<p><span>—চলো। তুমি বললে গুরু, জাহান্নমেও যাব।</span></p>
+<p><span>বলেই, দীপিতার গা ঘেঁষে সামনের সিট-এ উঠে বসে পড়ল ভোঁদাই।</span></p>
+<p><span>দীপিতা অমলের দিকে সরে এল। মুখে কিছু বলল না। দীপিতা জানে যে, ভোঁদাই তাকে খুব-ই পছন্দ করে। বেচারি। না হয়, বসল-ই একটু পাশে। দীপিতাও পছন্দ করে ভোঁদাইকে এবং তাদের বাড়ির সকলকে।</span></p>
+<p><span>দীপিতা কলকাতার সুন্দরী মেয়ে। সুন্দর করে সাজে। সাবলীলভাবে কথা বলে। ভালো গান গায়, ডালটনগঞ্জের মতো শহরে ভোঁদাই-এর মতো অনেক পুরুষ-ই তার কাছে আসতে চায়। এটা বুঝতে পেরে ও খুশি যেমন, তেমন অস্বস্তিও বোধ করে। ভালো লাগার মতো পুরুষ এখানে দেখে কোথায়? তাকে হয়তো অনেকের ভালো লাগতে পারে কিন্তু তার কারোকেই ভালো লাগে না। একমাত্র ভোঁদাইকে ছাড়া। কিন্তু নামটা একেবারে যাচ্ছেতাই। ওর কি কোনো ভালো নাম নেই?</span></p>
+<p><span>ফেরার পথে রেড়মাতে ভোঁদাই নেমে গেল ঝাণ্ডুরাম-এর পেট্রোল পাম্পে। বলল, একটু আড্ডা মেরে যাই।</span></p>
+<p><span>ভোঁদাই-এর কোনো অকুপেশন নেই। ওর বাবা, অনাদিবাবুর অবস্থা খুব-ই ভালো ছিল। লোকমুখে-ই শুনেছে দীপিতা। তিনি মোটর ভেহিকেলস-এর ইন্সপেক্টর ছিলেন। অন্যান্য ব্যাবসাও ছিল। দু-হাতে পয়সা রোজগার করেছেন। যেমন শুনেছে যে, করেছেন তার শ্বশুর ব্রজেন করও, ওড়িশার বন বিভাগে চাকরি করে। এও শুনেছে, ভোঁদাই-এর বাবা মানুষটি খুব-ই ভালো ছিলেন।</span></p>
+<p><span>সততা মানুষের মস্ত বড়োগুণ, কিন্তু সততা-ই মানুষের একমাত্র গুণ নয়। একজন সৎ মানুষও মানুষ হিসেবে অত্যন্ত খারাপ হতে পারেন আবার অসৎ মানুষও ভালো হতে পারেন। অনাদিবাবু অনেকের জন্যে অনেক-ই করেছেন নাকি। মায়া-দয়া ছিল। এবং প্রতিবেশী হলেও ব্রজেন কর-এর সঙ্গে তেমন মাখামাখি ছিল না। গত হয়েছেন বছর সাতেক হল। তা ছাড়া, মানুষটির গান-বাজনা, সাহিত্য এসব বিষয়েও যথেষ্ট আগ্রহ ছিল। নিজে ভালো এসরাজ বাজাতেন।</span></p>
+<p><span>সব-ই অবশ্য শোনা কথা। দীপিতার বিয়ের আগেই উনি গত হয়েছেন। ভোঁদাইদের জায়গা-জমি আছে লাতেহারের দিকে অনেক। কোম্পানির কাগজ-টাগজ ছাড়াও জমি থেকেও আয় খুব-ই ভালো। মঘাই পান, খুশবুদার জর্দা, ভালো গান শোনা, বাংলা সাহিত্য পড়া, ভালো হিন্দি সিনেমা দেখা আর মাঝেমধ্যে ইমরাত খানদের সঙ্গে রাতের চোরা শিকার, এই-ই শখ ভোঁদাই-এর। মাঝেমধ্যেই চুরি করে শিকার করা হরিণের বা শম্বরের বা শুয়োরের মাংস পাঠায় ভোঁদাই, অমলদের বাড়িতে। তিতির-বটেরও পাঠায়। ক্বচিৎ মুরগি। তবে দীপিতা বা বাড়ির অন্য কেউ-ই শুয়োরের মাংস খায় না। শুধু অমল খেতে ভালোবাসে। তাই ভোঁদাই, অমলের জন্যে আলাদা করে রান্না করে পাঠায়। কচ্ছপের পিঠ-এর মতোই শুয়োরের নদনদে চর্বি কচকচ করে খেতে খুব ভালোবাসে অমল। তবে দীপিতা এইসব শিকার-করা মাংসের কোনো মাংসই খায় না। বলে, এইসব সুন্দর পাখি, হরিণ এসব কেউ-ই মারে! তা ছাড়া, মারা যখন বেআইনিও, তখন মারা-ই বা কেন!</span></p>
+<p><span>দীপিতা বড়ো বড়ো চোখে তাকিয়ে অমলের এইসব পশুপাখি খাওয়া দেখে আর বলে, তুমি একটি রাক্ষস।</span></p>
+<p><span>—আমার কী? আমি তো আর মারিনি। অন্যে মেরে খাওয়ালে আমার দোষ কী? তবে কোনোদিন ওরা ধরে পড়লে কিন্তু জেলে যাবে। ইমরাত খান এক সাংঘাতিক চরিত্র। ওকে এড়িয়েই চলে অমল। ভোঁদাই যে, কেন ওর সঙ্গে যায় রাতের শিকারে, জানে না অমল। জীবিকা হিসেবে ইমরাত কী করে তা ঠিক কারোরই জানা নেই। ও নাকি আই. এস. আই-এর স্পাই। ওর কাছে নাকি নানারকম আগ্নেয়াস্ত্র আছে। ইমরাত খান সত্যিই বিপজ্জনক মানুষ মনে হয়। তবে ভোঁদাই-এর অন্য কোনো নেশা বা দোষ-ই নেই। কখনো-সখনো একটু মহুয়া বা রাম খায়। বেহেড হয় না কখনোই।</span></p>
+<p><span>ভোঁদাই-এর চরিত্রটা টু-টিয়ার। ওকে বাইরে দেখে যা মনে হয় ভেতরে ও তা আদৌ নয়। মাঝে মাঝেই, শিশুকাল থেকেই ওকে হেঁয়ালি হেঁয়ালি লাগে।</span></p>
+<p><span>গত একবছর হল, অমলের কেবল-ই মনে হয় যে, ভোঁদাই দীপিতার প্রেমে পড়েছে। ভোঁদাই-এর মা ও পিসিমা দীপিতাকে খুব-ই ভালোবাসেন। ওকে ডেকে নিয়ে ওর গান শোনেন। অতুলপ্রসাদ ও রজনীকান্তর গান খুব-ই ভালো গায় দীপিতা। রবীন্দ্রনাথের গানও গায়। গল্পের বইও ধার দেন ওঁরা। কলকাতা থেকে অনেক পত্রপত্রিকা, ‘দিশা-সাহিত্য’, ‘তথ্যকেন্দ্র’ ‘নবকল্লোল’, ‘উদ্বোধন’ আসে ওদের বাড়িতে। নানা লেখকের সমগ্র রচনাবলিও আছে কম নয়। তাই ওদের বাড়ির সঙ্গে দীপিতার বেশ মাখামাখি। এই ডালটনগঞ্জের বিহারি পরিবেশে, বিড়িপাতা, লাক্ষা আর বাঁশ-কাঠের কারবারিদের মধ্যে বাংলার সংস্কৃতি, শিক্ষা এবং বাঙালিআনা শুধু ভোঁদাইদের বাড়িতে-ই বেঁচে আছে ভোঁদাই-এর মা-পিসিমার-ই জন্যে।</span></p>
+<p><span>ভোঁদাই এখানকার পাঁকি রোড-এর ছেলেদের কলেজ, জি. এল. এ. কলেজ থেকে বি. এ. পাশ করেছে ইংরেজিতে, অমলের বি.কম. পাশ করার দু-বছর পরে। এখন সে কলেজে এম. এ.-ও পড়া যায়। তখন সে-সুযোগ থাকলে এম. এ. টাও করে নিত। খারাপ ছিল না ভোঁদাই আদৌ পড়াশুনোতে।</span></p>
+<p><span>এখানে একটা কথা চালু আছে। যদি বহিরাগত কেউ এখানের কারওকে জিজ্ঞাসা করেন, লেখাপড়া কতদূর করা হয়েছে? তখন অন্যজনে বলবে, আমি</span> <span>L.L.P.P.</span></p>
+<p><span>প্রথম-জন স্বাভাবিক কারণেই ভাববেন</span> <span>L.L.P.P.</span> <span>বুঝি কোনো ভারী ডিগ্রিই হবে। কিন্তু আসলে</span> <span>L.L.P.P.</span> <span>‘লিখ লোড়া, পল পাত্ত্বল’। অর্থাৎ, শিলনোড়া দিয়ে লেখে আর পড়ার মধ্যে পাথর পড়ার কথা জানে।</span></p>
+<p><span>ভোঁদাইও অবশ্য অমলের-ই মতো আধা-বিহারি। পালাম্যুর ঠেঁট উচ্চারণে বাংলা বলে ওরা। যারা কখনো শোনেনি, তাদের কানে আজব ঠেকে। ওরা তবু বলে ‘আমরা বাঙালি হচ্ছি’। দুর্গাপুজো করছে, বিড়োয়া-সম্মিলনি, পুজোর পরে থিয়েটার, যাত্রা, কালীপুজো। এখনও কলকাতায় নববর্ষ যতখানি উদ্দীপনার সঙ্গে উদযাপিত না হয়, প্রবাসে তার চেয়ে ঢের বেশি উদ্দীপনার সঙ্গে পালিত হয়। এই প্রজাতি বড়ো নস্টালজিক। পুরোনো শিকড়ের কথা এরা ভুলতে পারেনি। পারবেও না। প্রবাসী বাঙালিরা কলকাতার বাঙালিদের মতো আঁতেল, ঈশ্বর-অবিশ্বাসী, ধর্ম-বিমুখ এবং নিজস্বার্থপরায়ণ হয়ে ওঠেনি। এখনও অনেক-ই ভালোত্ব রয়ে গেছে প্রবাসী বাঙালিদের মধ্যে।</span></p>
+<p><span>তবে আগেকার দিনের মতো গর্ব করার মতো বাঙালি আজকাল প্রবাসী বাঙালিদের মধ্যেও কম-ই দেখা যায়। পশ্চিমবঙ্গেই দেখা যায় না, তা প্রবাসের দোষ কী?</span></p>
+
+<p><span>ভোঁদাই জিপ থেকে নেমে যাওয়ার পরে দীপিতা বলল, বছরে হয়তো একটা সন্ধে আমাকে নিয়ে বেরুলে, তবু সঙ্গে ভোঁদাইকে না জোটালে হত না?</span></p>
+<p><span>কী বলতে চাইল দীপিতা তা ঠিক না বুঝেই অমল বলল, আরে! ছেলেবেলায় ফুটবল খেলেছি কত একসঙ্গে। পাশের বাড়ির পড়শি। ওদের বাড়িতেই তো পড়ে থাকতাম। একটা সময়ে। অনাদি কাকা খুব-ই ভালোবাসতেন আমাকে। বাবাও যেমন ভোঁদাইকে বাসেন। আজকাল ওকেও তো একটুও সময় দিতে পারি না। বিমল-কমল তো আমার চেয়ে দশ এগারো বছরের ছোটো। ওদের সঙ্গে তো বন্ধুত্ব হত না। এখনও হয় না হয়তো আরও বছর পাঁচেক পরে যখন ওরাও আর একটু বড়ো হবে, তখন হবে। কে জানে! হয়তো তখনও হবে না। বন্ধুত্ব হয় মনের মিল, ধ্যান-ধারণার মিল, শখের মিল থাকলে। রক্তের আত্মীয় হলেই কি, কেউ আপসে কারও বন্ধু হতে পারে?</span></p>
+<p><span>তারপর বলল, তা ছাড়া, ভেবে দ্যাখো, ভোঁদাই-এর মনে তো দুঃখ হতে পারত ওকে যেতে না বললে।</span></p>
+<p><span>—তোমার কাছে সকলের-ই দাম আছে, সকলের দুঃখর কথাই তুমি ভাবো, শুধু আমার-ই কোনো দাম নেই।</span></p>
+<p><span>—আরে তুমি যে, আমার ওয়াইফ। তুমি তো আমার-ই একটা পোর্শন। তোমার সঙ্গে আমার তফাত কোথায়? তোমার সঙ্গে আর কার তুলনা চলে? কোথায় তুমি কোথায় ভোঁদাই। তুমি বড়ো বোকার মতো কথা বলো আজকাল।</span></p>
+<p><span>—বোকা তো আমি নিশ্চয়ই।</span></p>
+<p><span>জিপ থেকে নেমে যাওয়ার আগে নদীর ধার থেকে ফেরার সময়ে ভোঁদাই বলেছিল, পরের শনিবার রাতে আমাদের বাড়িতে পিসিমার ছোটো জা-এর ছেলে আসছে। সে রাঁচিতে হেভি ইঞ্জিনিয়ারিং-এ চাকরি নিয়ে এসেছে। ইঞ্জিনিয়ার ছেলে। কলকাতার। কিন্তু ইঞ্জিনিয়ারিং পাশ করেছে খড়গপুরের ‘আই. আই. টি’ থেকে। আগামী শনিবার রাতে তোমাদের দু-জনের আমাদের ওখানে যেতে হবে। খেতেও হবে। মা ও পিসিমা বলে দিয়েছেন। সিমলিকেও বলব। কলকাতার ছেলে এসে আমাদের গোল দিয়ে যাবে তা হতে দেওয়া হবে না। আমাদেরও গোলকিপার আছে।</span></p>
+<p><span>—মানে?</span></p>
+<p><span>অমল বলেছিল।</span></p>
+<p><span>—আমরাও টকরাব। সে যদি তকরারে যায় তো তকরার করব। দীপিতা বউদি আমাদের ডালটনগঞ্জকে রিপ্রেজেন্ট করবে। তাই কথা হয়েছে। কোন শালা বলে যে, এখানে ভদ্রলোকে থাকে না।</span></p>
+<p><span>—বলে নাকি কেউ? কে বলে? সে শালার ঘাড়ে ক-টা মাথা?</span></p>
+<p><span>অমল বলল, হাসতে হাসতে।</span></p>
+<p><span>ভোঁদাই বলল, তাদের মাফ করে দাও অমলদা। ‘পাগলে কিনা বলে, ছাগলে কিনা খায়।’</span></p>
+<p><span>—তিনি কি একা আসছেন? তাঁর স্ত্রী আসবেন না?</span></p>
+<p><span>দীপিতা শুধিয়েছিল।</span></p>
+<p><span>—স্ত্রী থাকলে তো আসবেন? দাও না দেখে একটা ভালো মেয়ে। বয়স তো বেশি নয়। আমাদের চেয়ে ছোটো। তোমার বয়সি হবেন, যা শুনেছি।</span></p>
+<p><span>মেয়ের অভাব কি বাঙালিদের মধ্যে? সস্তা বলতে তো একমাত্র মেয়েরাই।</span></p>
+<p><span>ভোঁদাই বুঝেছিল যে, কথাটাতে একটু খোঁচা আছে।</span></p>
+<p><span>দীপিতা বলেছিল, আগে পাত্রকে নিজচোখে দেখি। তারপর ঠিক করে দেব মেয়ে। কঠিন কাজ আর কী?</span></p>
+<p><span>—দিয়ো তো। মা ও পিসিমাও তোমাকে বলবেন বলেছেন।</span></p>
+<p><span>এই কথা রইল। তাহলে বিকেল-বিকেল-ই চলে এসো দু-জনে। পুঁটিকেও নিয়ে এসো।</span></p>
+<p><span>—তোমার পিসিমার ছোটোজায়ের ছেলের নাম কী?</span></p>
+<p><span>—ভালো নাম জিজ্ঞেস করিনি। ডাক নাম, কাট্টুস।</span></p>
+<p><span>—কী নাম বললে?</span></p>
+<p><span>—কাট্টুস।</span></p>
+<p><span>—ও মা! ‘কাট্টুস’ মানে কী?</span></p>
+<p><span>—কারোর-ই ডাকনামের আবার মানে হয় নাকি?</span></p>
+<p><span>অমল বলল, আছে আছে। ‘কাট্টুস’ একরকমের গাছের নাম। নর্থ বেঙ্গলে হয়। দুবেজি, ডি এফ. ও.-র কাছে শুনেছি। উনি ছিলেন কিছুদিন নর্থ বেঙ্গলের বক্সা ডিভিশনে।</span></p>
+<p><span>ভোঁদাই বলল, তুমি চেন সে গাছ?</span></p>
+<p><span>আমি চিনব কী করে? পালাম্যু-রাঁচি-হাজারিবাগে ওসব গাছ নেই।</span></p>
+<p><span>দীপিতা ভাবছিল, ও চেনে। মানে চিনত একজন কাট্টুসকে। তবে এই কাট্টুস সে কখনোই হতে পারে না। দীপিতার জীবন থেকে সেই কাট্টুস ভো-কাট্টা ঘুড়ির-ই মতো কাট্টুস হয়ে গেছে দীপিতার বিয়ের সঙ্গে সঙ্গেই।</span></p>
+<p><span>তারপর মুহূর্তের জন্য ভাবল, স্বপ্নে কত কী ঘটে! যদি এই কাট্টুস সেই কাট্টুস হয়। সেও তো ইঞ্জিনিয়ারিং পড়ত।</span></p>
+<p><span>দীপিতার সুখ-স্বপ্ন ভেঙে তাকে চমকে দিয়ে ভোঁদাই বলল, বউদি, তিনি নাকি গানও গান। তোমার সামনে গাইলেই মাল ক্যাচ হয়ে যাবে। একটু গলাটাও সেধে রেখো কিন্তু বউদি। দেখো ব্যাংলো-বিহারিরা যেন, পিয়োর কলকাত্তাইয়ার কাছে হেরে না যাই।</span></p>
+<p><span>দীপিতা কথা না বলে, মুখ টিপে হেসেছিল। তারপর-ই গম্ভীর হয়ে গেছিল।</span></p>
+<p><span>অমল বলেছিল, মেয়েলি-পুরুষ ছাড়া কেউ গান গায়! ধু...স।</span></p>
+<p><span>ভোঁদাই হেসে বলেছিল, নিজের গলাতে রামছাগল বেঁধে রেখেছ তাই ও কথা বলছ। বড়ে গুলাম আলি সাহেব বা কালে খাঁ সাহেব কি মেয়েদের মতো দেখতে ছিলেন?</span></p>
+<p><span>—তারা আবার কারা?</span></p>
+<p><span>অমল বলল।</span></p>
+<p><span>সে কথাতে ভোঁদাই এবং দীপিতা দু-জনেই একসঙ্গে জোরে হেসে উঠল।</span></p>
+<p><span>অমল লজ্জা পেয়ে বলল, হাসবার কী আছে?</span></p>
+<p><span>ভোঁদাই বলল, তোমার-ই বা লজ্জা পাওয়ার কী আছে? ওঁরা কি বলতে পারতেন পালাম্যুতে কতরকম বাঁশ হয়? অথবা ‘কাট্টুস’ মানে কী? সবাই কি সব জানতে পারে? তবে গান-বাজনা ভালো না বেসে, জানতেই পারলে না কী মিস করলে জীবনে।</span></p>
+<p><span>অমল চুপ করে থাকল।</span></p>
+<p><span>বাড়িতে ফিরে দীপিতা গ্যারাজের সামনে জিপ থেকে নেমে ভেতরে গেল। অমল বলল, জিপটার হাওয়া চেক করিয়েই আসছি। কাল সকালেই টুটিলাওয়ার কাঠগোলায় যেতে হবে টোড়ি, বাঘড়া-মোড়, সীমারিয়া হয়ে। একেবারে ভোরে বেরোব। ডালটনগঞ্জ থেকে টোড়িই তো সাতান্ন মাইল। উলটোদিকে যেতে গেলে সকালে দেরি হয়ে যাবে। হর্নটাও একটু দেখিয়ে নিতে হবে। মাঝে মাঝেই গোলমাল করছে। লুজ-কানেকশন হয়েছে বোধ হয়।</span></p>
+<p><span>ঘাড় এলিয়ে, নিরুচ্চারে, ঠিক আছে বলে, দীপিতা যখন ভেতর-বাড়িতে গেল, দেখল ভিখুর মা সুরাতিয়া পুঁটিকে হাতে ধরে নিয়ে দোতলা থেকে নামছে। গম্ভীর মুখে সুরাতিয়া বলল, ‘মা তোমাকে ডেকেছে বহুদিদি। না বলে-কয়ে কোথায় চলে যাও হুট করে?’</span></p>
+<p><span>দীপিতার খুব রাগ হল। সম্ভবত মাস দেড়েক পরে আধ ঘণ্টার জন্যে স্বামীর সঙ্গে বেরিয়েছিল। সে জন্যে....</span></p>
+<p><span>দোতলাতে উঠতেই শাশুড়ি বললেন, তুমি কি স্বাধীন হয়ে গেছ বউমা। বাড়ি থেকে বেরোবার সময়ে একটু বলেও যেতে পারো না?</span></p>
+<p><span>হাসিমুখেই দীপিতা বলল, মা! হঠাৎ-ই...</span></p>
+<p><span>তারপর একটু চুপ করে থেকে বলল, আপনার ছেলে তো নিয়ে যায় না কোথাও-ই কোনোদিন। নদীর ধারে গেছিলাম একটু আর প্রকাশের দোকানে...।</span></p>
+<p><span>—অতিভালো কথা। কিন্তু বাড়িতে তো একটা ছোটো ননদ আছে। তার কথা কি মনে পড়ল না একবারও? তাকেও তো সঙ্গে নিয়ে যেতে পারতে! সাধ-আহ্লাদ তো তারও থাকতে পারে। আর আমার মেয়ে কি তোমার মেয়ের আয়া যে, তুমি আহ্লাদ করে বেড়োবে আর আমার মেয়ে তোমার মেয়েকে দেখবে?</span></p>
+<p><span>গা জ্বালা করে উঠল দীপিতার। দীপিতা জানে যে, সিমলি প্রায় প্রতিসপ্তাহেই শ্বশুরমশাই-এর অ্যাম্বাসাডর গাড়িতে করে কলেজের বন্ধুদের সঙ্গে নদীর ধারে যায়। ফুচকা খেতে, বেড়াতে। মীরচাইয়াতে পিকনিক করতে। কিন্তু সিমলি কোনোদিনও বলেনি যে, বউদি তুমি যাবে? কিন্তু মুখে সেসব কথা কিছুই বলল না। শুধু বলল, পুঁটিকে তো আপনিই ভিখুর মাকে পাঠিয়ে চারটের সময় ওপরে নিয়ে গেছিলেন মা। তাই বুঝতে পারিনি। ভেবেছিলাম আপনার কাছেই আছে।</span></p>
+<p><span>—তুমি তো অনেক কিছুই বুঝতে পারো না বউমা। আর কবে বুঝবে তাও জানি না। তা ছাড়া, আজকাল মুখে মুখে কথাও খুব বলতে শিখেছ দেখছি। দেখেও তো কিছু বুঝতে-শিখতে পারতে। তোমার না হয় ছেলেবেলাতে মা চলে গেছিলেন কিন্তু মামিমারাও কি সহবত বলে কিছুই শেখাননি তোমাকে?</span></p>
+<p><span>এসব কথা এতভাবে শুনেছে দীপিতা যে, এখন আর গায়ে লাগে না। তা ছাড়া, যে মামাবাড়িতে বিয়ের পরে এতবছরে একবারও যায়নি—সেও যেতে চায়নি, তারাও যেতে বলেননি, সেই মামাবাড়ি সম্বন্ধে সব দুর্বলতাও যেন আস্তে আস্তে মুছে যাচ্ছে।</span></p>
+<p><span>কলকাতার মানুষেরা প্রত্যেকে-ই ভীষণ-ই ব্যস্ত থাকেন নিজের কাজ নিয়ে। তাঁদের এসব ফালতু সামাজিকতা করার সময় ও মানসিকতাও নেই। কিন্তু তাঁদের সেই নিরাসক্তির কারণে অসহায় দীপিতার জীবন যে, কত দুর্যোগময় হয়ে উঠেছে, সেকথা তাঁরা যদি জানতেন!</span></p>
+<p><span>প্রতিবছর-ই শীতে আর জামাইষষ্ঠীর সময়ে শাশুড়ি নিয়মিত কথা শোনান। বলেন, কর্তাকে বলেছিলাম যে, বাঙাল বাড়িতে ছেলের বিয়ে দিয়ো না। তাও আবার বরিশালের বাঙাল! না, জেদ করে তাই দিলেন। বামুনের ডানা-কাটা-পরি মেয়ে পেয়ে তিনি সব ভুলে গেলেন। কবে নাকি তাদের কোন জামাই, জামাইষষ্ঠী খেতে গিয়ে মারা গেছিল সেই থেকে বুদ্ধিমানেরা জামাইষষ্ঠী-ই তুলে দিলেন। এরকম চোখের চামড়াহীন মানুষ হয়-ই বা কী করে কে জানে! জামাইষষ্ঠী নেই বলে কি ভাইফোঁটাও নেই? তোমাদের ভাই নেই বলে? যাদের আছে? তারা বুঝি কোঁচা দুলিয়ে দিদি বা বোনের বাড়ি ভাইফোঁটা নিতে আর খেতে যায় না প্রতিবছর? আশ্চর্য সব নিয়ম, কানুন বাবা। অজীব আদমি।</span></p>
+<p><span>প্রথম প্রথম, বিহারে বহুদিন বসবাস করা তার শাশুড়ি অন্নদাদেবী যখন বিহারি উচ্চারণে ‘অজীব আদমি’ বাক্যটি দীপিতার পিতৃকুল-মাতৃকু¨লের মানুষদের উদ্দেশ্যে ব্যবহার করতেন তখন ওর মনে হত হিন্দি সিনেমার ডায়ালগ শুনছে বুঝি। এখন আর তা মনে হয় না। ও নিজেও সত্যি সত্যি একজন ‘অজীব আদমি’ হয়ে গিয়ে অন্যের সব অজীবপনা মেনে নিয়েছে। এক-ই কথা, সহস্রবার বললে যে, তার ধার বা ভার কমে যায়, তা কেন যে, দীপিতার শাশুড়ি-মা বোঝেন না, তা জানে না দীপিতা। মাঝে মাঝে নিজেকে অভিশাপ দেয় ও। মাঝে মাঝে নিজের ওপরে, শৈশবেই চলে-যাওয়া মা-বাবার ওপরে, তাকে ঘাড় থেকে নামিয়ে দেওয়া বড়োমামির ওপরে এমন তীব্র অভিমান হয় যে, মনে হয় রাতের বেলা উঠোনের গভীর কুয়োতে ঝাঁপিয়ে পড়ে। কিন্তু পুঁটির জন্যেই পারে না। ও মরলে তো পুঁটির অবস্থাও ওর নিজের-ই মতো হবে।</span></p>
+<p><span>কিছুই না-বলে মুখ নীচু করে শাশুড়ির সামনে দাঁড়িয়ে রইল দীপিতা। শ্বশুরমশাই দোতলার বারান্দার ইজিচেয়ারে লুঙ্গি আর গেঞ্জি পরে বসে পা দোলাচ্ছিলেন। তিনি সব শুনছিলেন। সবসময়েই শোনেন। দীপিতার মনে হয়, উনি দীপিতার প্রতি নিক্ষিপ্ত এইসব বাক্যবাণ খুব-ই উপভোগ করেন আর বাইরে ভাব দেখান যে, এসব মেয়েলি ব্যাপারের উনি কিছুই বোঝেন না এবং বুঝতে চানও না। ওঁরা কে যে, কাকে কখন চালনা করেন তা বোঝা ভার। আর ওঁদের দু-জনকেই চালনা করে অমলের ছোটোভাই বিমল। যত কুমন্ত্রণা, দীপিতার এবং অমলের নামে যতকিছু লাগানো সব-ই তার ছোটো দেওর বিমল-ই করে। তা জানে দীপিতা।</span></p>
+<p><span>জীবনে অনেকের হাতে অনেক-ই কষ্ট পেয়েছে সে কিন্তু কারোকে ঘৃণা করেনি আজ পর্যন্ত। এই বিমলকে ছাড়া। এত অল্পবয়সি ছেলের যে, এমন নীচ ইতর চরিত্র হতে পারে তা বিমলকে নিজে চোখে না দেখলে দীপিতা হয়তো বিশ্বাস-ই করত না। আপাদমস্তক মিথ্যে দিয়ে মোড়া। স্কুলের কোনো মাস্টারমশায়কে ঘুস দিয়েই ও পাশ করে। হেডমাস্টারের বেকার ছেলেকে শ্বশুরমশায়কে বলে ছিপনাদোহরের ডিপোতে চাকরি করে দিয়েছে। গুণের ‘গ’ নেই অথচ নাম করার খুব ইচ্ছে। সমস্ত কিছুই ফাঁকি দিয়ে, বাবার টাকা এবং প্রতিপত্তি দিয়েই পেতে চায় বিমল। জীবনে চালাকির দ্বারা যে, কোনো মহৎ কর্ম হয় না —একথা ও বিশ্বাস করে না। টাকাই ওর জীবনের একমাত্র প্রার্থনা। টাকার বিনিময়ে যে, নামযশ কিনতে পারা যায় তাই ও শুনেছে। ফুটবল খেলে থার্ড ক্লাস কিন্তু গেমস টিচারকে ঘুস দিয়ে স্কুল টিমে চান্স পেয়েছে। যেটা দীপিতাকে আশ্চর্য করে, তা হচ্ছে এসব কিছু জেনেশুনেও শ্বশুর-শাশুড়ি তাকে প্রশ্রয় দিয়ে যান, তার সব প্রয়োজনেই টাকা জুগিয়ে যান।</span></p>
+<p><span>সুরাতিয়া দোতলা থেকে নেমে আসার আগে আগেই বিমল দোতলা থেকে নেমে স্কুটার নিয়ে বাইরে বেরিয়ে গেল। শ্বশুরমশাই নতুন ‘ভেসপা’ স্কুটার কিনে দিয়েছেন তাকে অথচ কমলকে দেননি। কমল হেঁটে স্কুলে যায়। ছোটোছেলে কি তাঁর কোনো গোপন কথা জানে? নইলে কী করে সে, ব্রজেন করের মতো ধুরন্ধর মানুষকে এমন করে বশে রেখেছে? ভেবে পায় না দীপিতা।</span></p>
+<p><span>কিছুক্ষণ পরে দীপিতা বলল, আমি আসি মা?</span></p>
+<p><span>—এসো। ছেলেটা সারাসপ্তাহ বনেবাদাড়ে ঘুরে বেড়ায়, ছুটির দিনে তার কাছে কাছে একটু থাকো, তাকে একটু সঙ্গ দাও, সুখী করো, পুরুষমানুষের অনেকরকম চাহিদা থাকে। তাহলেই কৃতার্থ হব আমি। সংসারের জন্যে তো কুটোটিও নাড়তে হয় না তোমায়। কাজের মধ্যে, পরি সেজে থাকা। তা যার সুবাদে পরি হয়েছ তাকে একটু দেখলেই কৃতার্থ হব আমরা।</span></p>
+<p><span>হঠাৎ বহুবচনে গেলেন কেন অন্নদাদেবী তা বুঝল না দীপিতা। সিঁড়ি দিয়ে নেমে আসতে আসতে মনে মনে ও ভাবছিল বড়োছেলের প্রতি কত যে, দরদ শাশুড়ির, তা তার জানা আছে। তাছাড়া পুরুষমানুষদের চাহিদা সম্বন্ধে এতই যদি জানেন, তবে ষাটোর্ধ্ব শ্বশুরমশাই যুবতী মুসলমান রক্ষিতার কাছে যাবেন কেন? ভাবলেও হাসি পায় দীপিতার। নাটক-নভেলে অনেক অশিক্ষিতা অত্যাচারী শাশুড়ির কথা পড়েছে দীপিতা কিন্তু জীবনেও যে, তার শাশুড়ির মতো শাশুড়ি এই আধুনিক সময়েও কারও থাকতে পারে, সেকথা মাঝে মাঝে ওর নিজের-ই বিশ্বাস হয় না। ওর মনে হয় ওর শাশুড়ির, শাশুড়ি বোধ হয় তাঁর ওপরে অত্যন্ত-ই অত্যাচার করতেন। দীপিতার প্রতি অন্নদার ব্যবহার তার-ই শোধ তোলার জন্যে। মানুষের ‘মনস্তত্ত্ব’ বোঝা ভারি মুশকিল।</span></p>
+<p><span>মুখে তখনও প্রকাশের ফুচকার আর গোরখপুরি চায়ের স্বাদটা ছিল কিন্তু শাশুড়ির বাক্যবাণে মুখটা যেন, তেতো হয়ে গেল।</span></p>
+<p><span>আধখানা সিঁড়ি নেমেছে, এমন সময়ে পেছন থেকে কে যেন, দীপিতার হাত ধরল।</span></p>
+<p><span>স্পর্শেই বুঝল যে, তার একমাত্র ননদ সিমলি। এই মেয়েটা অন্যরকম। এ বাড়ির মতো নয়। চেহারাতে মা কী বাবা কারও ছাপ নেই। ও ব্রজেন করের-ই মেয়ে যে, সে-সম্বন্ধে মাঝে মাঝে সন্দেহ হয়। নিজে ও খুব-ই ছোটো হয়ে গেছে, কত নীচ হয়ে গেছে, নইলে এইসব ভাবনা ওর মনে আসে কী করে? নিজের জন্যে ভারি কষ্ট হয়ে দীপিতার।</span></p>
+<p><span>পেছন ফিরে তাকাতেই সিমলি বলল, চলো।</span></p>
+<p><span>তারপর সিঁড়ি দিয়ে নীচে নামতে নামতে বলল, দুঃখ কোরো না বউদি। আমি কিন্তু মাকে কিছু-ই বলিনি। আমি তো নিবেদিতাদের বাড়িতেই ছিলাম। একটু আগেই এসেছি। বলে থাকলে, বিমল-ই বলেছে। তুমি তো জানোই ওকে। ওকে আমি ভাই বলে স্বীকার করি না। ও কিছু না বললে, হঠাৎ এই আক্রমণ হবে কেন তোমার ওপরে। গেছ, বেশ করেছ। উলটে দু-কথা শুনিয়ে দিতে পারো না তুমি?</span></p>
+<p><span>দীপিতা দীর্ঘশ্বাস ফেলে বলল, আমার কোন জোরটা আছে যে, কিছু বলব আমি?</span></p>
+<p><span>একতলাতে নেমে, দীপিতাদের ঘরের দিকে এগোতে এগোতে সিমলি বলল, তোমাকে দেখে আমি একটা ব্যাপারে মনস্থির করে ফেলেছি।</span></p>
+<p><span>—কী?</span></p>
+<p><span>—নিজে স্বাবলম্বী না হয়ে আমি কখনোই বিয়ে করব না।</span></p>
+<p><span>—বিয়ে কি আমি আমার নিজের ইচ্ছাতে করেছিলাম রে সিমলি? না তুই-ই করতে পারবি? আমরা তো বিয়ে ‘করিনি’, আমাদের বিয়ে ‘দেওয়া’ হয়েছিল। ভবিষ্যতে একটা সময় হয়তো আসবে, যখন মেয়েরা সত্যি-ই নিজেদের মতে ও ইচ্ছেতে বিয়ে ‘করবে’। আমাদের মতো তাদের বিয়ে ‘দেওয়া’ হবে না।</span></p>
+<p><span>সিমলি বলল, কালকে কলেজে নিবেদিতা বলেছিল যে, কলকাতাতে ও নাকি দেখেছে যে, একটা অটো-রিকশার পেছনে লেখা আছে— ‘নারীর সুখ স্বপনে, আর নারীর শান্তি শ্মশানে’।</span></p>
+<p><span>তারপর হেসে বলল, সত্যি? তোমাদের কলকাতাতে কি এরকম সব লেখা থাকে নাকি অটোর পেছনে?</span></p>
+<p><span>দীপিতা বলল, কী জানি রে! পাঁচবছর তো হয়ে গেল এসেছি কলকাতা থেকে। আর তো যাইনি। কী করে বলব বল? তবে তোর বন্ধু নিবেদিতা যখন বলেছে তখন নিশ্চয়ই তাই।</span></p>
+<p><span>সিমলি বলল, আমি যাই একটু ভোঁদাইদাদের বাড়ি থেকে ঘুরে আসি। কাকিমা ডেকেছিলেন। ওদের বাড়িটা একেবারে অন্যরকম। ভারি ভালো লাগে আমার ওদের।</span></p>
+<p><span>—ভোঁদাইকে বিয়ে করবি নাকি?</span></p>
+<p><span>—মানুষটা তো ভালোই রসিক, কিন্তু ওসব এখনও ভাবার সময় আসেনি। স্বাবলম্বী হই আগে। তা ছাড়া ভোঁদাইদা আমার চেয়ে অনেক-ই বড়ো। আর শুধু বি. এ. পাশ।</span></p>
+<p><span>—তোর দাদাও তো শুধুমাত্র বি. কম. পাশ।</span></p>
+<p><span>—তুমি তো তা নও। আমার বরের আমার চেয়ে বেশিভালো হতে হবে না, তা না হলে চলবে? আমি তো নামধারী কলেজ থেকে এ বছর-ই, বি এ পাশ করে বেরোব।</span></p>
+<p><span>—লেখাপড়া যে, সকলকেই অনেকদূর অবধি করতে হবে তার কী মানে আছে, কলকাতাতে আমি অনেক-ই লেখাপড়া করা খুব বড়ো বড়ো বদমাইশ ছেলে দেখেছি।</span></p>
+<p><span>—সে যাইহোক। বলেছি তো, অন্য কারও ভরসাতে, নিজের মা-বাবার ভরসাতেও আমি বিয়ে করব না। নিজের পায়ে দাঁড়িয়ে তবেই করব। বিমল যেমন ছেলে, বাবার অবর্তমানে হয়তো দাদাকে, কমলকে আর আমাকেও তাড়িয়েই দেবে বাড়ি থেকে। ও একটা সাংঘাতিক ছেলে। বাবার প্রশ্রয়ে আরও সাংঘাতিক হয়ে উঠছে দিনকে দিন। ওকে আমি ভীষণ-ই ভয় পাই, ওর দিদি হলে কী হয়!</span></p>
+<p><span>দীপিতা বলল, আমিও পাই।</span></p>
+
+<p><span>আজ দুপুরবেলা ভারি মেঘ করে এল।</span></p>
+<p><span>মনে হচ্ছে যেন বর্ষাকাল। এই বৃষ্টির পরেই শীতকাল শুরু হবে। এতদিন হেমন্ত হেমন্ত ভাব ছিল। কালো মেঘের পটভূমিতে বেলোয়াটিকারের দিক থেকে একঝাঁক সাদাপায়রা ডিগবাজি খেতে খেতে উড়ে আসছিল নয়াটোলির দিকে। মুগ্ধ হয়ে চেয়ে রইল দীপিতা।</span></p>
+<p><span>ওর শ্বশুরবাড়ির গেটের কৃষ্ণচূড়াগুলোর উলটোদিকে পথের ওপরে একটি মস্ত গামহার গাছ আছে। গামহার গাছ দীপিতা চিনত না। অমল-ই চিনিয়ে দিয়েছে। ভেতরে আছে একটি বটলব্রাশের গাছ। অনেক পুরোনো। শ্বশুরমশাই নাকি ওই গাছটি সুদ্ধুই জমিটি কিনে বাড়ি বানিয়েছিলেন। আরও একটি গাছ ছিল নাকি ওই বটলব্রাশ-এর জোড়া। সেটি নাকি বাড়ি বানাবার সময়-ই কেটে ফেলা হয়েছে। ভাবলেও খারাপ লাগে। গাছ কেউ কাটে? সে, যে-গাছই হোক-না-কেন।</span></p>
+<p><span>বটলব্রাশ-এরও গাছ দীপিতা কলকাতাতে তার কলেজের এক বন্ধুদের বাগানবাড়িতে দেখেছিল। প্রকৃতি যে, তাকে এখনও মোহিত করে, তার মধ্যে আলোড়ন তোলে, একথা ভেবেও অবাক লাগে দীপিতার। বিশ্বাস-বাড়ি থেকে কণিকা ব্যানার্জি বা নীলিমা সেনের বা অতুলপ্রসাদের গান, বা রামকুমার চট্টোপাধ্যায়ের পুরাতনি গান ভেসে এলে এখনও কেন, মন উচাটন হয়? এখনও সব ‘সূক্ষ্মতা’ বোধ হয় নষ্ট হয়নি। হয়নি যে, সেটাই বড়োকষ্টের। পুরোপুরিই যদি ভোঁতা হয়ে যেতে পারত, সুখী হতে পারত হয়তো। খেতে-পরতে পাওয়াই তো একজন মানুষের সুখের চরম নয়, পরমপ্রার্থনা নয়!</span></p>
+<p><span>কবিতা লেখে না আর ও, গানও গায় না, এমনকী কবিতা পড়েও না। এ বাড়ির সঙ্গে কবিতা, গান এসবের কোনো সম্পর্কই নেই। সকাল থেকে রাত অবধি ‘টাকা’ রোজগার আর খাওয়ার চিন্তা। ‘বিনোদন’ বলতে একমাত্র পরনিন্দা আর পরচর্চা। তবু ও যে, বেঁচে আছে এখনও তা বুঝতে পারে আজকের মেঘলা দুপুরের মতো প্রাকৃতিক কোনো হঠাৎ অভিঘাতে। বেঁচে আছে বলে, নিজেকে অভিশাপও দেয় দীপিতা। এ বাঁচা কি বাঁচা! আজকাল ওর প্রায়-ই মনে হয় যে, কিছু একটা করতে হবে। ওর জীবনটাকে এভাবে নষ্ট হতে দেবে না দীপিতা। প্রায়-ই ভাবে, যখন একা থাকে। ওর আগের জীবনটা, কুমারী জীবনটা, গায়ে-মাখা সুগন্ধি সাবানের-ই মতো হঠাৎ-ই হাত পিছলে শ্বশুরবাড়ির কুয়োতে পড়ে গেছে। পড়ে গিয়ে গলে গেছে। আর তাকে উদ্ধার করার উপায় নেই কোনো।</span></p>
+<p><span>বিয়ের পরে পরে, যখন অমল এখনকার চেয়ে অনেক বেশি সময় দিত দীপিতাকে, তখন রবিবারের দুপুরে অনেক গল্প করত ওরা। অমলের গ্রাম্য সারল্য মুগ্ধ করত দীপিতাকে। কবিতা বা গানের বা নাটকের বা সাহিত্যের গল্প নয়। এমনিই সব গল্প। অন্য পরিবেশের, অন্য জীবনের সব সাধারণ গল্প। তাই অসাধারণ মনে হত দীপিতার কাছে। এখন অমল খালি ভস ভস করে নাক ডাকিয়ে ঘুমোয়।</span></p>
+<p><span>বিয়ের পরে পরে অমল দীপিতার এই ‘গাছ-প্রীতি’র কথাতে হাসত। বলত, নানারকম গাছ কেটে, তাদের চিরে-ফেড়েই তো আমাদের রুজি-রোজগার। গাছকে অত ভালোবাসলে, খাব কী? শুকিয়ে মরতে হবে। ব্যাবসা লাটে উঠবে।</span></p>
+<p><span>সেকথা ভাবলেও খারাপ লাগত দীপিতার।</span></p>
+<p><span>একদিন অমলকেও বলেছিল, দেখো, তোমাদের একদিন খুব পাপ লাগবে। যারা মদের ব্যাবসা করে তারা যেমন ভালো হতে পারে না। গাছেদের প্রাণ নেই বুঝি?</span></p>
+<p><span>—তোমার বড়োমামা তো সব-ই জানতেন। তোমাকে বলেননি উনি আমাদের কীসের ব্যাবসা?</span></p>
+<p><span>অমল জিজ্ঞেস করেছিল।</span></p>
+<p><span>—না: আমাকে কেউ কিছুই বলেননি। শুধু বলেছিলেন, হবু-জামাই ডালটনগঞ্জের বড়ো ব্যাবসাদারের ভালো ছেলে। সচ্চরিত্র। তখন ডালটনগঞ্জ নামের যে-একটা জায়গা আছে, অথবা সেটা কোথায়, তাও জানতাম না। বড়োমামিমা বলেছিলেন সত্যজিৎ রায়ের ‘অরণ্যের দিনরাত্রি’ ওইসব জায়গাতে তোলা।</span></p>
+<p><span>অমল বলত সব তো মোহনদার-ই বন্দোবস্তে হয়েছিল। ওই ছবির পেছনে মোহন বিশ্বাসের যে, কত টাকা গলে গেছে সে-সময়ে, সে আমরাই জানি।</span></p>
+<p><span>বড়োমামা বলেছিলেন, জামাই বিরাট ব্যাবসার পার্টনার।</span></p>
+<p><span>হ্যাঁ। পার্টনার ওই নামেই! ইনকাম-ট্যাক্স কমাবার জন্যেই তো পার্টনার করেছিলেন বাবা। ছাতার পার্টনার আমি। অমল বলত।</span></p>
+<p><span>তারপরে দীপিতা বলত, আমিও আশ্চর্য হতাম ভেবে যে, কোথায় কলকাতার বরানগর আর কোথায় এই পালামৌর ডালটনগঞ্জের নয়াটলি! তোমার বাবা খুঁজে খুঁজে আমাকে বের করলেন কী করে?</span></p>
+<p><span>—বা: রে! তোমার বড়োমামার সঙ্গে বাবার যে, যোগাযোগ ছিল অনেক-ই আগে থেকে। তোমার বড়োমামা তো পুলিশের এস. পি. ছিলেন ওড়িশার সম্বলপুরে। আমার বাবাও তো তখন সেখানে-ই ফরেস্ট ডিপার্টমেন্টের রেঞ্জার ছিলেন। কী কারণে জানি না, কোনো গূঢ় কারণ নিশ্চয়ই থাকবে, আমার বাবা তোমার বড়োমামার কাছে খুব-ই কৃতজ্ঞ ছিলেন। সেই কৃতজ্ঞতার ঋণ মিটোতেই আমার সঙ্গে বিয়ে দিয়ে তোমাকে নিয়ে এসেছিলেন আমার বাবা। তোমার মামারা সত্যি সত্যিই তোমাকে হাত-পা বেঁধে জলে ফেলে দিয়েছিলেন। আমি কি কোনোদিক দিয়েই তোমার যোগ্য? রূপে-গুণে তুমি তো সরস্বতী। সফিসটিকেটেড।</span></p>
+<p><span>সফিটসিকেশন সব ধুয়ে-মুছে যেতে বসেছে। পাঁচ বছর তো হল কর-বাড়িতে। তারপর উদাস গলাতে দীপিতা বলেছিল, আমার-ই বা কী যোগ্যতা। যে, মেয়ে স্বাবলম্বী নয়, যে-নিজে রোজগেরে নয় অথবা যার বাবার টাকার জোর নেই তার কোনো গুণ-ই গুণ নয়। এমন অভাগীও তো সকলে হয় না। কারও মা-বাবা আর দুই দিদি কি একইসঙ্গে প্লেন ক্র্যাশে মারা যায়?</span></p>
+<p><span>তারপরে একটু চুপ করে থেকে বলল, আসলে, মামাবাড়ির, মানে, বড়োমামা বড়োমামিকেই মা-বাবা বলেই জেনেছিলাম। মেজোমামার মেয়েদের না-থাকা দিদিদের মতোই দেখেছিলাম। কলকাতা শহরের শিক্ষিত, সংস্কৃতিসম্পন্ন মানুষেরাও যে, এমন হতে পারেন, তা কী করে জানব বলো? তা ছাড়া আপন মামাই তো। অবশ্য শুনেছি যে, বাবার দশ লক্ষ টাকা ইনশিয়োরেন্স ছিল। আরও কী কী ছিল, তা আমি জানি না। সব-ই বড়োমামাই নিয়েছিলেন। আমার তো তখন পাঁচ বছর বয়েস।</span></p>
+<p><span>—তোমার বড়োমামা বাবার কাছ থেকেও এক লাখ টাকা নিয়েছিলেন, তোমার সঙ্গে আমার বিয়ে দেওয়ার জন্যে। ‘পণ’। তা কি তুমি জানো?</span></p>
+<p><span>—সে কী! টাকা তো মেয়েপক্ষই চিরদিন দেন বলে শুনেছি।</span></p>
+<p><span>—আমি শুনেছি, তোমার বড়োমামার কাছে আমার বাবার এত গভীর ঋণ ছিল যে, তাঁকে কন্যাদায় থেকে উদ্ধার করেও সেই ঋণশোধ হয়নি, উলটে ওই টাকাও দিতে হয়েছিল।</span></p>
+<p><span>—কীসের ঋণ?</span></p>
+<p><span>—পুলিশ সাহেবের কাছে তো কারও টাকার ঋণ থাকে না।</span></p>
+<p><span>অমল মুখ নামিয়ে বলল।</span></p>
+<p><span>—তবে?</span></p>
+<p><span>—আমি জানি না। তবে সম্বলপুরের ফরেস্ট অফিসের এক পিয়োন বাবুলি বেহারা, যার কাছেই আমি মানুষ হয়েছিলাম বলতে পারো, যার কাছে আমার অক্ষর পরিচয়, আমার হাতেখড়ি, তার কাছ থেকেই আমি শুনেছিলাম যে, বাবা একটি খুনের মামলাতে জড়িয়ে পড়েছিলেন। এবং মিথ্যে খুন নয়। ফাঁসি হয়ে যেত। তোমার বড়োমামা বাবাকে বাঁচিয়েছিলেন।</span></p>
+<p><span>—এসব কথা তুমি বিশ্বাস করো? তোমার নিজের বাবা সম্বন্ধে এসব কথা?</span></p>
+<p><span>—বিশ্বাস করতে ভালো লাগেনি। কার-ই বা লাগে? কিন্তু করি। কারণ বাবুলি কাকা ভগবানের মতো মানুষ ছিলেন। সম্বলপুর ছেড়ে তাঁর দেশ বার্মাতে চলে যাবার আগে উনি বলেছিলেন অমু, বাবার মতো হোয়ো না, তুমি, তোমার মতোই হোয়ো। ‘মানুষ’ হোয়ো। সন্তানহীন বাবুলিকাকা আমাকে নিজের সন্তানের মতোই দেখতেন। কিন্তু কথা রাখতে পারিনি। ছেলেরা হয়তো বাবার মতোই হয়।</span></p>
+<p><span>—তোমার বিয়ের সময়ে তাঁকে তো দেখলাম না। নেমন্তন্ন করোনি?</span></p>
+<p><span>—আমার বিয়েতে আমার কতটুকু হাত ছিল? কোনো ব্যাপারেই আমার কোনো অধিকার-ই ছিল না। না তখন ছিল, না এখন আছে। আমি বাবার কর্মচারী। নিজের বাবার চাকরি করার মতো বাজে ব্যাপার আর হয় না। যারা জানে, তারাই জানে।</span></p>
+<p><span>—দীপিতা বলেছিল, তুমি কি পুরুষমানুষ? তোমার এসব কথা বলতে লজ্জা করে না?</span></p>
+<p><span>—করে। আবার করেও না। আমি পুরুষমানুষ কি না জানি না। আমি ভালো মানুষ। বলতে পারো বোকামানুষ। এমনকী মেয়েমানুষও বলতে পারো। অনেকরকম মানুষ নিয়েই তো এই সংসারের চিড়িয়াখানা ভরা।</span></p>
+<p><span>—মানুষ কি হতে পেরেছ? তোমার বাবুলিকাকার কথামতো?</span></p>
+<p><span>—না।</span></p>
+<p><span>—তবে?</span></p>
+<p><span>—জীবনে মানুষ আর ক-জন হতে পারে বলো? মানুষের চেহারা তো কোটি কোটি মানুষের প্রত্যেকের-ই থাকে কিন্তু ‘মানুষ’ ক-জন হতে পারে? তবে হতে যে, পারিনি তারজন্যে বাবার শিক্ষাও অনেকখানি ছিল। বাবুলি বেহারার সব প্রভাব থেকে যাতে আমি মুক্ত হই, বাবা তার সব বন্দোবস্তই করেছিলেন। তা ছাড়া আমার মধ্যে সাহস ছিল না। বাবার বিরুদ্ধে বিদ্রোহ করার মতো চরিত্রজোর আমার ছিল না। পড়াশুনোতেও তো সাধারণ-ই ছিলাম। মেরুদন্ড এমনি এমনি গজায় না, তারজন্য শক্ত ভিত-এর প্রয়োজন হয়। বাবা তাড়িয়ে দিলে তোমাকে আর পুঁটিকে নিয়ে আমি কোথায় গিয়ে দাঁড়াব? কী এমন নিজস্ব যোগ্যতা আমার!</span></p>
+<p><span>একটু চুপ করে থেকে অমল বলেছিল, বাবাকে কোনোদিনও ভালোবাসতে পারিনি, শ্রদ্ধা করতে পারিনি। ভয়-ই পেয়েছি চিরদিন। সম্পর্কটা বাবা-ছেলের হতে পারেনি কোনোদিনও, রাজা-প্রজার-ইছিল। আমার ‘মেরুদন্ড’ বলে যাতে কিছু গড়ে না ওঠে, তার সব বন্দোবস্তই বাবা করেছিলেন। তবুও বিদ্রোহী হয়ে উঠতাম মাঝে মাঝে। অক্ষমের, দুর্বলের বিদ্রোহ। এখনও হই। বিদ্রোহের বীজ সম্ভবত এখনও সুপ্ত আছে আমার মধ্যে। তাই বাবা আমার চেয়ে কমল আর বিমলকে অনেক বেশি ভালোবাসেন। তারা যে, বাবার বুড়ো-বয়সের ছেলে কিনা! তারা বাবার স্বপ্নের ছেলে, বাবার আদর্শে, তাঁর মানসিকতায়, তাঁর জীবনদর্শনেই তারা বড়ো হয়ে উঠেছে। যাকে ইংরেজিতে বলে, মানে, যেমন ফরেস্ট কনসার্ভেটর ঘোষ সাহেব প্রায়-ই বলতেন,</span> <span>‘Like Father like Son.’</span></p>
+<p><span>তারপর বলেছিল, আমার মাঝে মাঝে কী মনে হয় জান?</span></p>
+<p><span>—কী?</span></p>
+<p><span>—কমল আর বিমল বড়ো হয়ে ব্যাবসাতে এলেই, বাবা আমাকে লাথি মারবেন। পরিবারের স্বার্থর-ই জন্যে বাবা আমাকে ব্যবহার করছেন। আমাকে উনি পছন্দ করেন না! তা ছাড়া উনি প্রায়-ই একটি বাক্য ব্যবহার করেন, ‘ওকে টাইট করে দেব’। আমাকে একা নয়, পৃথিবীর সবাইকেই। এই ‘টাইট করা’ মনোবৃত্তি থেকেই বাবার সব স্বাভাবিকতা আর ভালোত্বর প্যাঁচগুলো বোধ হয় আস্তে আস্তে একেবারে কেটে গেছে। ওইসব গুণ বাবা আর ইচ্ছে করলেও ফিরে পাবেন না। একসময়ে ওইসব গুণ অবশ্যই ছিল। নইলে, আমার মধ্যে ওসব ‘বোকা-বোকা’ বোধ এল কী করে! আমিও তো বাবার-ই ছেলে। আমি যে-সময়ে মায়ের গর্ভে আসি, তখন সম্ভবত বাবা মানুষটা অন্যরকম ছিলেন। আস্তে আস্তে বদলেছেন। বোধ হয় সব মানুষের বেলাতেই তাই হয়। সে কারণেই বোধ হয় সব স্বামী-স্ত্রীর প্রথম সন্তানেরা সরল, ভালো অথবা বোকা-বোকা হয়। তারা ধূর্ত হয় না সাধারণত। অবশ্য ব্যতিক্রম কি আর নেই? অবশ্যই আছে।</span></p>
+<p><span>—থাক এসব কথা।</span></p>
+<p><span>দীপিতা বলেছিল, অমলের পিঠে হাত রেখে।</span></p>
+<p><span>তারপর গাঢ়স্বরে বলেছিল দীপিতা অমলকে, সোনা, আমার এসব খারাপ কথা শুনতে ভালো লাগে না গো। এসব তুমি কখনো বোলো না আর আমাকে। আমি বুঝতে পারছি যে, ক্রমশ আমি তোমাদের-ই মতো হয়ে যাচ্ছি। আমার ‘নিজস্বতা’ বলতে আর কিছুমাত্র রইল না। থাকবে না।</span></p>
+<p><span>একটু পরেই অমলের নাক ডাকতে শুরু করল। দীপিতার ঘুম আসছিল না। সে আবার জানলার কাছে মোড়াটাকে টেনে নিয়ে এসে বসল।</span></p>
+<p><span>রঙ্গনের ডালে বৃষ্টির ফোঁটা জমে আছে। বৃষ্টিতে ভেজা গাছগাছালি থেকে দারুণ একটা গন্ধ উঠছে। ভেজা ইউক্যালিপটাসদের গা থেকেও ভারি সুন্দর গন্ধ ছড়াচ্ছে। আস্তে আস্তে নয়াটোলির এই কটুগন্ধী বাড়ির ভেতরে বৃষ্টিশেষের হাওয়াতে ভর করে, এক মিশ্র সুগন্ধ ধীরে ধীরে ছড়িয়ে যাচ্ছে, কর-বাড়ির দূষিত আবহাওয়াতে সেই অসময়ের বৃষ্টিবাহী সুগন্ধ ধীরে ধীরে ছড়িয়ে যাচ্ছে। ধীরে, ধীরে, খুব-ই ধীরে ধীরে।</span></p>
+<p><span>দীপিতা ভাবছিল, সেও কি নিজের নষ্ট হয়ে-যাওয়া পানাপুকুরের জীবনকে বদলাতে পারবে? আস্তে আস্তে, খুব আস্তে আস্তে?</span></p>
+<p><span>কর-বাড়ির আবহাওয়া ক্রমশই অসহ্য হয়ে উঠছে ওর কাছে। কিন্তু জীবন তো ব্লাউজ বা শাড়ি নয়, যে ইচ্ছে করলেই ছেড়ে ফেলা যায়। এই জীবন তাকে আষ্টেপৃষ্ঠে বেঁধেছে। এই বাঁধন ছেঁড়ার ক্ষমতা তার একার হাতে নেই। অথচ...</span></p>
+
+<p><span>পালামৌ ন্যাশনাল পার্ক এর মধ্যে গাড়ু থেকে মারুমারের মাঝে মীরচাইয়া ফলস-এর পরে পিচরাস্তা থেকে ডানদিকে একটি পথ বেরিয়ে গেছে বন বিভাগের-ই বানানো। সে-পথে ক্বচিৎ বন-বিভাগের জিপ ছাড়া অন্য কোনো যানবাহনের চাকা গড়ায়। পালামৌ টাইগার প্রোজেক্টের ‘কোর এরিয়ার’ মধ্যে পড়ে এইসব অঞ্চল। এত বছরে বাঘের সংখ্যা সত্যিই বেড়েছে কি না, তা বনবিভাগের আমলারাই বলতে পারবেন। কিন্তু টাইগার প্রোজেক্ট চালু হওয়ার পরে, এ-অঞ্চলের অগণ্য মানুষ যে, অনাহারে মারা গেছে, অগণ্য মেয়ে দেহপসারিনি হয়ে গেছে একথা ভোঁদাই জানে। এইসমস্ত অঞ্চলের মানুষদের এই রুখু অরণ্য-বেষ্টিত গ্রামের মধ্যেই বাস। তাদের ফসল ফলানোর মতো জমি নেই বলতে গেলে। যতটুকু আছে, তাতে গোলদনি, সাঁওয়া, চিনামিনা এইসব জংলি ধান কিছু করে ওরা। বাজরা মকাইও করে, কেউ কেউ মটরছিম্মি বা লাউকি। কিন্তু সেই ধান খেয়ে বড়োজোর তিন মাস চলে। ছিপাদোহর, ও গাড়ুর হাটে অন্য ফসল বেচে যা, সামান্য আয় হয় তাতেও মাসখানেকের খোরাকির সংস্থান হয়। বাকি সময়ের খাবার এরা আগে জোটাত বাঁশ ও কাঠের ঠিকাদারদের কাছে কুলি-কামিনের কাজ করে। কিন্তু টাইগার প্রোজেক্ট হওয়ার পর থেকে সেসব রোজগার একেবারেই নেই, কারণ, বাঘেদের নির্বিঘ্ন-প্রজননের জন্যে জঙ্গলের মধ্যে সবরকম ক্রিয়া-কর্মই বন্ধ করে দেওয়া হয়েছে। শুকনো মহুয়া, বুনো আম, এবং অন্যান্য ফল ও ফুল এবং নানা মূল, কান্দা-গেঠি এইসব খুঁড়ে বের করে খেয়ে কোনোক্রমে, মানুষের মতো নয়, পশুর-ই মতো বেঁচে থাকে এরা। আজকাল ডাকাতিও শুরু হয়েছে বেশ কিছুদিন হল। নকশাল ছেলেদের আড্ডাও হয়েছে। কী করবে মানুষ। বাঁচতে তো হবে। বুড়োরা হায় রাম! বলে, দীর্ঘশ্বাস ফেলে তাদের ভাগ্যকে দোষারোপ করে অনাহারে মরছে। কিন্তু শিশুরা এখন যুবক হয়েছে। তারা অত সহজে ভাগ্যর ওপরে সব ছেড়ে দিয়ে নিশ্চিন্ত হতে পারেনি। তাই ট্যুরিস্টদের ছিনতাই করা শুরু করেছে। ডাকাতিও হচ্ছে প্রায়-ই।</span></p>
+<p><span>ওই লালমাটির বন-পথের পাশে, জিপের বনেটের ওপরে ভোঁদাই, ইমরাত আর ইমরাত-এর এক রিস্তেদার রহমত বসেছিল। ইমরাত আর রহমত মহুয়া খাচ্ছিল। বিটকেল, ওদের ভিজিয়ে রাখা ছোলা, ভাজা আর কাঁচা লঙ্কা আদার কুচির সঙ্গে মাটির ভাঁড়ে করে এগিয়ে দিচ্ছিল। চোরাশিকারে এলে ওরা সঙ্গে কখনো-কখনো বিটকেলকেও নিয়ে আসে। অতটুকু ছেলেকে সঙ্গে দেখে চেকনাকাতে কেউ সন্দেহও করে না।</span></p>
+<p><span>ইমরাতের এক রিস্তেদার মৌলবি, জঙ্গলের মধ্যে ডেরা করেছে বেশ কিছুদিন হল। ওদের দু-জনকে জিপে বসিয়ে রেখে ইমরাত আর রহমত তার কাছে গেছিল। ডিজেলের জেনারেটর আছে মৌলবির। টিভি আছে। রেডিয়ো আছে। সরকার এই অভয়ারণ্যের মধ্যে তাকে থাকতে দিয়েছে কেন কে জানে? লোকটার জীবিকা কী, তাও বুঝতে পারে না ভোঁদাই। কিন্তু বিহার-শরিফ থেকে, নওয়াদা থেকে, রাংকা থেকে, গাড়োয়া থেকে কাবুলিওয়ালার মতো দেখতে মানুষেরা এর কাছে আসে-যায়। সব-ই একে ডাকে ‘মৌলবি সাব’ বলে। ইমরাতের এই রিস্তেদারের চেহারা কখনো দেখেনি ভোঁদাই। লোকটার কাছে বন্দুক, রাইফেল আছে। ইমরাতের গুলি-বন্দুক সব সেই জোগান দেয়। দারুণ দারুণ বিলিতি গুলি। কী করে পায়, কোথা থেকে পায়, কে জানে।</span></p>
+<p><span>শিকার হয়ে গেলে জঙ্গলেই তা কেটে-কুটে একটা রাং মৌলবি সাহেবকে দিয়ে বাকিটা ওরা নিয়ে যায়। ইদানীং নিজেদের বন্দুক রাইফেলও আনে না। চেকনাকা পেরোতে সুবিধে হয়। মৌলবির কাছ থেকে ধার নিয়ে বন্দুক-রাইফেল, তাকেই ফিরেই দেয় ইমরাতরা।</span></p>
+<p><span>শিকার বলতে চিতল হরিণ, কোটরা, খরগোশ। শম্বর, ছোটো পেলে মারে। বড়োশম্বর মারলে অনেক-ই হ্যাপা। ম্যানেজ করা যায় না। খেতেও ভালো নয়। একবার একটা বাচ্চা মেরেছিল মাসখানেকের। ভারি নরম মাংস ছিল। ইমরাতরা গোরুও খায়।</span></p>
+<p><span>কেমন খেতে, তা জানার জন্যে এবার একটা বাইসনের বাচ্চাও মেরেছিল। ভারতীয় বাইসনের আসল নাম ‘গাউর’। বাইসন, উত্তর আমেরিকার প্রাণী। গাউরের চেয়ে অনেক-ই ছোটো। সাধারণে অনেকেই জানে না এসব।</span></p>
+<p><span>ইমরাত বলে যে, মৌলবি সাহেব এদিকে অনেক মাদ্রাসা বানাবার জন্যে এসেছেন স্বপ্নাদিষ্ট হয়ে। পাটনার বড়া মসজিদের ইমাম-ই নাকি তাঁকে পাঠিয়েছেন। এখন বিহারে লালু যাদব-রাবড়ি দেবীর জমানাতে যাদব আর মুসলমানদের কেউ কিছু বলে এমন হিম্মত বা মূর্খামি কারও নেই। তা ছাড়া কোনো অজ্ঞাত কারণে বনবিভাগও মৌলবি সাহেবকে বেশ সমীহ করে চলে। অঙ্ক কী, তা ঠিক বোঝে-না ভোঁদাই।</span></p>
+<p><span>ভোঁদাই বোঝে যে, কিছু একটা গোলমাল আছে। তবে ইমরাতের কোনো গোলমাল নেই। নানা জায়গাতে ইউনিফর্ম সাপ্লাই করে জীবিকা নির্বাহ করে সে। আঠারো ঘণ্টা খাটে। পুরো বিহার জুড়ে ওর ব্যাবসা। ব্যবহারও খুব ভালো। হেরাফেরিও করে না কোনোরকম। দিব্যি দিন চলে যায়। তার দুই বিবি বছর বছর বিয়োয়। বিরিয়ানির দাওয়াত লেগেই থাকে। উদার মানুষ। তবে টোকা মারলেই বোঝা যায় যে, তার ভেতরেও একজন ‘কট্টর’ মুসলমান বাস করে। বাইরের ঔদার্য তখন ঝুরোমাটির মতো ঝরঝরিয়ে ঝরে যায়।</span></p>
+<p><span>ইমরাতের চরিত্রর নিষ্ঠুর দিকটা ফুটে ওঠে, যখন ও গুলিতে আহত অথবা মৃত জানোয়ারকে দৌড়ে গিয়ে জবাই করে। ওরা বলে, ‘হালাল করা’। এ-বছরে শীতে কান্দাহারে খুনি হাইজ্যাকারেরা যেমন করে রূপিন কাটিয়ালকে জবাই করেছিল। গলাতে আমেরিকান ‘রেমিংটন’ কোম্পানির বড়ো ছুরি দিয়ে আড়াই প্যাঁচ লাগায়। এই জবাই একটা বীভৎস ব্যাপার।</span></p>
+<p><span>বেতলার টুরিস্ট লজ-এর বাবুর্চির হেল্পার একদিন নাকার পাশে একটা বড়ো মোরগকে হালাল করে ছেড়ে দিয়েছিল। তখন ভোঁদাই পথের পাশে জিপে বসেছিল। শ্বাসনালি-কাটা মোরগটা কীভাবে দপাদাপি করছিল, এক এক ঝটকাতে রক্তর ফিনকি ছিটিয়ে কত দূরে দূরে গিয়ে পড়ছিল, তা দেখেই ভোঁদাই বুঝেছিল, জীবন্ত অবস্থাতে হালাল-করা প্রাণীর রকমটা। এর চেয়ে বলি অনেক-ইভালো। এককোপে ধড় থেকে মুন্ডু আলাদা হয়ে যায়। কষ্ট অনেক-ই কম হয়। ভোঁদাই তাই ভাবে, গোরু বা আহত বড়ো জানোয়ারকে জবাই করলে তাদের মৃত্যুযন্ত্রণা কেমন হতে পারে। মানুষের কথা তো ছেড়েই দিল। জানোয়ার মরে গেলেও, মরে তার জিভ বেরিয়ে গেলেও, ইমরাত তবু তাকে হালাল করে। অথচ যে, প্রাণীকে ‘হালাল’ করে মারা না হয়েছে তাকে খাওয়া ইসলামে বারণ আছে। কখনো ইমরাত ভোঁদাই-এর সঙ্গে একা থাকলে কিন্তু হালাল নিয়ে অমন বাড়াবাড়ি করে না। সঙ্গে অন্য কোনো মুসলমান থাকলেই অমন বাড়াবাড়ি করে। পাছে সেই সঙ্গী ভাবে যে, ইমারাতের মুসলমানত্বে কোনো খামতি আছে। মুসলমানদের সঙ্গে হিন্দুদের সম্ভবত এখানেই তফাত। ইসলামের যেটা গুণ সেটাই হয়তো দোষ। বড়োবেশি ঘেরাটোপ, বাঁধাবাঁধি ওদের ধর্মে। হিন্দুধর্ম হিন্দু-ধর্মাবলম্বীদের অনেক স্বাধীনতা দিয়েছে। ‘দোষ’ বলতে, জাতপাতের নোংরা ব্যাপারটা। কিন্তু ইসলাম ধর্মে গোঁড়ামিটাই একটা গুণ। ওদের সবচেয়ে বড়োগুণ এই যে, মানুষে মানুষে কোনো তফাত করে না ওরা। ওদের বিরাদরিকে তারিফ করে ভোঁদাই। এই কারণেই কত হিন্দু অপমানে, অসম্মানে মুসলমান হয়ে গেছে।</span></p>
+<p><span>হিন্দুরা সকলেই যে, দেবদেবী মানে এমন আদৌ নয়। কিন্তু মুসলমানদের আল্লার প্রতি অন্ধ-ভক্তি না থাকলেই চলে না। এই ব্যাপারটা একটু অবাক করে ভোঁদাইকে।</span></p>
+<p><span>ছেলেবেলার সুখ-দুঃখের বন্ধু ইমরাত। তার চেয়েও বড়োকথা, শিকারের বন্ধু। অনেক বিপদকে পাশাপাশি দাঁড়িয়ে ‘সামনা’ করেছে ওরা কৈশোর থেকে। এই বন্ধুত্বের রকম অন্যে বুঝবে না।</span></p>
+<p><span>বিটকেল একদিন বলেছিল ও বাজারে শুনেছে যে, পুরুলিয়ায় প্লেন থেকে যে-অস্ত্রশস্ত্র ফেলা হয়েছিল তারসঙ্গে এই মৌলবি সাহেবের নাকি সম্পর্ক আছে।</span></p>
+<p><span>যতদিন না দোস্তিতে ফাটল ধরছে ততদিন বাজারি গুজবে দোস্ত-এর বিচার করতে বসতে রাজি নয় ভোঁদাই। তা ছাড়া ইমরাত পুরো দস্তুর হিন্দুস্থানি। গাছের খাওয়া আর তলার কুড়োনোটা ও অত্যন্ত অপছন্দ করে। ওর নামে মিথ্যে কথা রটায় অন্য মুসমানেরাই।</span></p>
+<p><span>জঙ্গলে আসার সময়ে, নিজেদের অস্ত্র নিয়ে চেকনাকা পেরিয়ে যাওয়া এবং আসাটাও বিপজ্জনক। তাই মৌলবির বন্দুক নিয়ে শিকার করাটাই সুবিধেজনক ওদের পক্ষে। শিকার নিয়ে ফেরাটাও বিপজ্জনক। তবে নাকাতেও ওরা দিয়ে যায় নজরানা। ধরা পড়লে, কম করে দশ-পনেরো বছর সশ্রম কারাদন্ড। অধুনা ভারতবর্ষের আইন হচ্ছে</span> <span>Live and let live</span> <span>চুরি করো, ডাকাতি করো, ঘুস খাও, ঘুস দাও, খুন করো, ধর্ষণ করো, টাকা থাকলেই পার পেয়ে যাবে। ভোটের সময়ে ছাপ্পা মারো, মেরে ক্ষমতাতে এসো। কেউ তোমার কেশাগ্রও স্পর্শ করতে পারবে না।</span> <span>Nothing succeeds like success.</span></p>
+<p><span>—কেয়া ইয়ার? হুয়া ক্যায়া?</span></p>
+<p><span>—তবিয়ত গড়বড়া গিয়া।</span></p>
+<p><span>—কাহে?</span></p>
+<p><span>—কওন জানে?</span></p>
+<p><span>—তবিয়ত, না দিল? রানি মুখার্জি? ‘পেয়ার কিয়া তো ডরনা ক্যায়া?’</span></p>
+<p><span>গান ধরেছিল।</span></p>
+<p><span>—মজাক মত উড়ানা।</span></p>
+<p><span>বলল, ভোঁদাই বিরক্ত হয়।</span></p>
+<p><span>—চলো, মেহমান আয়েগা আজ চাতরা সে। কুছ মিল গ্যায়া তো আচ্ছাহি হ্যায়, খাতিরদারিমে কাম আয়েগা।</span></p>
+<p><span>—তুমহারা শালা কিতনা হ্যায় ইমরাত?</span></p>
+<p><span>—বহুত হ্যায়। মগর তুমহারা তকলিফ কওন চি কী? একভি সাদিভি করনেকা হিম্মত হুয়া নেহি তুমহারা, শালা, ক্যায়া আসমানসে গিড়েগা সুরত হারাম?</span></p>
+<p><span>—শাদি করনেমে ঔর আওলাদ পায়দা করনেমে, কওনসি হিম্মতকি জরুরত পড়তি হ্যায়?</span></p>
+<p><span>তারপর ইমরাত বলল, লেরে বিটকেল। তুহর চানা-পিঁয়াজ, ঔর হারা-মিরচা।</span></p>
+<p><span>ইমরাত বলল, অব ম্যায় জিপ চালাউঙ্গা, আজ হামারা রিস্তেদার রহমত মিয়া মারেঙ্গে।</span></p>
+<p><span>ইমরাত স্টিয়ারিং-এ বসল। রহমত গিয়ে সামনের বাঁ-দিকের সিটে বসল, বন্দুকের ব্যারেল বের করে। সিলড-বিম স্পটলাইটটা ইঞ্জিনের বনেটের নীচের ব্যাটারির সঙ্গে ক্ল্যাম্প দিয়ে আটকানো ছিল। কিন্তু জঙ্গলের আরও গভীরে না গেলে স্পষ্ট করা যাবে না। কারণ, পিচরাস্তা থেকে কোনো গাড়ি বা ট্রাক বা বাস গেলে তারা আলোর আভাস পাবে।</span></p>
+<p><span>মাইলখানেক গিয়েই পথটা ডান-দিকে একটা হেয়ার-পিন টার্ন নিয়েছে। বর্ষার পরে জঙ্গলের বাড় হয়েছে ভীষণ। স্পট ফেললেও নিবিড় আণ্ডারগ্রোথ-এর জন্যে দেখা যায় না কিছুই। কোনো জানোয়ার আত্মহত্যা করতে রাস্তা দিয়ে হেঁটে এলে, অথবা রাস্তা পেরোবার সময়েই একমাত্র তাকে মারার সুযোগ পাওয়া যেতে পারে।</span></p>
+<p><span>জিপটা সেই হেয়ার পিন বাঁকের মুখে আসতেই দেখা গেল পথজুড়ে দাঁড়িয়ে আছে প্রকান্ড এক দাঁতাল শুয়োর। সাদা দাঁতদুটো জিপের হেডলাইটের আলোতে চেকনাই পেয়েছে।</span></p>
+<p><span>—হারাম। মারো শালে কো।</span></p>
+<p><span>ইমরাত বলল।</span></p>
+<p><span>হেডলাইটের আলোর আভাতে বারো-বোর দোনলা শটগানের নাকের মাঝি পরিষ্কার দেখা যাচ্ছে। রহমত মিয়া গুলি করল। বন্দুকের ডান দিকের ব্যারেলে ‘বল’ ছিল। বলটা গিয়ে পড়ল শুয়োরটার সামনের পা-এর হাত খানেক আগে। মাটি ছিটকে উঠল। বিশ্রী একটা ঘোঁৎ-ঘোঁৎ আওয়াজ করে শুয়োরটা তিন লাফ দিয়ে চরকি মেরে জঙ্গলে ঢুকে গেল ঝোপঝাড় ভেঙে।</span></p>
+<p><span>ভোঁদাই বলল, আইয়ে রহমত ভাই, পিছে আইয়ে। মুঝে জারা চান্স দিজিয়ে।</span></p>
+<p><span>অতবড়ো শুয়োরটাকে যে, অতকাছ থেকে কেউ মিস করতে পারে, ভাবা যায় না। রহমত ইমরাত-এর শালা হতে পারে কিন্তু শিকারি নয়। মানুষ-মারা শিকারি হয়তো হতে পারে কিন্তু বন্যপ্রাণী মারা শিকারি নয়। সব ব্যাপারেই শিক্ষানবিশি হতে হয়। পৃথিবীতে কোনো কর্মই সোজা নয়, তা দূর থেকে যতই সোজা বলে মনে হোক-না-কেন!</span></p>
+<p><span>ইমরাত কিছু বলল না।</span></p>
+<p><span>রহমত মিয়া পেছনে এল।</span></p>
+<p><span>ভোঁদাই বলল, সামনে গিয়ে বাঁ-দিকে উঠে, ইক চান্স হামারা। ইনকো বাদ ম্যায় স্টিয়ারিংমে বৈঠেগা, তুম মারেগা ইমরাত।</span></p>
+<p><span>জিপটা স্টার্ট করে এক-শো গজ যাওয়ার পরেই শুয়োরটাই ডান দিকের জঙ্গল ফুঁড়ে বাঁ-দিকের জঙ্গলে যাওয়ার জন্যে দৌড় লাগাল। রানিং-এর ওপরেই মারল ভোঁদাই মৌলবি সাহেবের দেওয়া, ইংলিশ আলফাম্যাক্স-এর নতুন পৌনে-তিন-ইঞ্চি এল. জি. দিয়ে। এক্কেবারেকানপাট্টিয়ামে।</span></p>
+<p><span>শুয়োরটা পথের ওপরেই পড়ে গেল।</span></p>
+<p><span>—ইঞ্জিন বন্ধ করো।</span></p>
+<p><span>ভোঁদাই বলল।</span></p>
+<p><span>—কাহে?</span></p>
+<p><span>—উঠানা নেহি হোগা?</span></p>
+<p><span>—হারাম হামলোগোনে খায়েগা থোরি।</span></p>
+<p><span>—হামলোগোনে তো খায়েগা।</span></p>
+<p><span>—উ হোনে সেকতা। তো তুম দোনো উঠাও। মগর ই হারামমে হামলোগোনে হাত নেহি লাগায় গা।</span></p>
+<p><span>ভোঁদাই কিছুক্ষণ চুপ করে রইল। আজ ইমরাত-এর ইয়ার্কি মাত্রা ছাড়িয়ে যাচ্ছে। বেশি মহুয়া খেয়ে ফেলেছে।</span></p>
+<p><span>তারপর বলল, অজীব বাত! খ্যয়ের ঠিক্কে হ্যায়, হাম ঔর বিটকেল উসকি দাঁত কাট লেগা আর পিছলাওয়ালা দো রাং। উসকি বাদ হাম দোনো পিছে বৈঠেগা, তুম দোনো সামনামে বৈঠো মজেমে।</span></p>
+<p><span>কী ভেবে, ইমরাত বলল, ঠিক্কে হ্যায়। তব উতারো তুম দোনো।</span></p>
+<p><span>তারপরে বলল, বিটকেল-এর দিকে ফিরে, ঔর বুতল নেহি হ্যায় রে, বিটকেলোয়া? সুরতহারাম।</span></p>
+<p><span>—হাঁ জি। হ্যায় হুজৌর।</span></p>
+<p><span>গরিব বিটকেল বলল, বাধ্য বান্দার মতো। বলে, মহুয়ার নতুন একটি বোতল এগিয়ে দিল ইমরাত-এর দিকে।</span></p>
+<p><span>ভোঁদাই নামল, জিপের পেছনের সিট-এর নীচে রাখা ছুরিটা বের করে। বিটকেলও নামল।</span></p>
+<p><span>ভোঁদাই বলল ইমরাতকে, হেডলাইট নেহি না বুজানা।</span></p>
+<p><span>—জি হুজৌর।</span></p>
+<p><span>ইমরাত বলল। ঠাট্টার গলাতে।</span></p>
+<p><span>জিপ থেকে নামবার সময়ে বন্দুকটা সেফ করে রহমত মিয়ার হাতে দিয়ে দিল ভোঁদাই। বাঁ-ব্যারেলেও ‘এল. জি.’ ভরা ছিল।</span></p>
+<p><span>মহুয়ার বোতল থেকে ঢকঢক করে অনেকখানি মহুয়া খেল ইমরাত, তারপর রহমতের দিকে এগিয়ে দিল বোতলটা।</span></p>
+<p><span>ভোঁদাই আর বিটকেল যখন শুয়োরটার কাছে গিয়ে পৌঁছেছে তখন-ই মারুমারের দিক থেকে একটা বড়োবাঘ-এর ডাক শোনা গেল। পরপর কয়েকবার। পাহাড়, বর্ষণক্ষান্ত ঘন বন থেকে যেন থরথরিয়ে কেঁপে উঠল।</span></p>
+<p><span>বিটকেল ভয় পেয়ে ভোঁদাইকে জড়িয়ে ধরে বলল, কাকু-উ-উ! বাঘ।</span></p>
+<p><span>ভোঁদাই হেসে বলল, কোনো ভয় নেই। বাঘ সঙ্গিনীকে ডেকেছে। আয়। চটপট কাজ সারি। আঃ কী নদনদে চর্বি রে। যা ভিন্দালু হবে না! মগনাটা আবার শুয়োরের ভিন্দালুটা রাঁধে দারুণ।</span></p>
+<p><span>ভোঁদাইরা যখন কাজ শুরু করেছে তখন হঠাৎ-ই ইঞ্জিনটা স্টার্ট করে ইমরাত জিপটাকে এক ঝটকাতে ব্যাক করে নিয়ে পথের মোড়ে মুহূর্তের মধ্যে ঘুরিয়ে, জোরে চালিয়ে চলে গেল ওদের অন্ধকারে ফেলে রেখে। ভোঁদাই তার টর্চটাও নিয়ে নামেনি, জিপের হেডলাইটের আলো ছিল বলে।</span></p>
+<p><span>—এমন ইয়ার্কি কেউ করে? বলো ভোঁদাইকাকু?</span></p>
+<p><span>বিটকেল বলল।</span></p>
+<p><span>ভোঁদাই বলল, ইমরাতটা ওরকম-ই। ইয়ার্কি নয়, তিড়ি মারে। ও চিরদিন-ই এইরকমই। মনে মনে আসলে ছেলেমানুষ-ই আছে। শরীরের বয়স বত্রিশ, মনের বয়স দশেই আটকে আছে।</span></p>
+<p><span>—এখন কী হবে?</span></p>
+<p><span>আতঙ্কিত বিটকেল বলল।</span></p>
+<p><span>—কী আবার হবে? এমন নধর শুয়োরটা খাওয়া হবে না। দাঁত দুটো দিয়ে ভালো ছুরি হত, চাবির-রিং, শু-হর্ন।</span></p>
+<p><span>অন্ধকারে কিছুক্ষণ থাকতেই চোখ সয়ে এল। উপরে চেয়ে দেখল বিটকেল, তারারা ঝকমক করছে। তবে কৃষ্ণপক্ষর রাত। আজ দ্বিতীয়া বা তৃতীয়া হবে। চাঁদ উঠবে শেষরাতে। লালমাটির পথ আবছা দেখা যায়, দু-পাশের সবুজ অন্ধকারে ঢাকা বনের মাঝখানে, কোরা-রঙা নতুন শাড়ির মতো মেলা আছে।</span></p>
+<p><span>—কী করবে ভোঁদাইকাকু?</span></p>
+<p><span>—দাঁড়া। একটু দেখি। ভাবি একটু। যদি ইয়ার্কি-ই মেরে থাকে তো ফিরে আসবে। তবে কখন? সেই হচ্ছে কথা।</span></p>
+<p><span>—আর যদি না ফেরে?</span></p>
+<p><span>ভয়ার্ত বিটকেল বলল।</span></p>
+<p><span>—না ফিরলে, আমরা হাঁটা লাগাব। মারুমারে গিয়ে রামধানিয়ার বাড়ি শুয়ে থাকব। মহুয়াডাঁর থেকে আসা লাস্ট বাস তো কখন চলে গেছে। কাল সকালের বাসে ফিরব ডালটনগঞ্জে। অত চিন্তার কী আছে?</span></p>
+<p><span>—পিসি যে, চিন্তা করে করে মরে যাবে ভোঁদাইকাকু।</span></p>
+<p><span>—আরে পিসি তো আমারও আছে, নাকি? তার ওপরে আমার মাও তো আছে। বাইরে বেরোলে, বিশেষ করে জঙ্গলে, অত মা-মাসির কথা ভাবলে চলে না।</span></p>
+<p><span>তারপর বলল, মাঝে মাঝে, মা-মাসি-পিসিদের চিন্তা করা ভালো আমাদের জন্যে। বুঝলি। দাম বাড়বে।</span></p>
+<p><span>বিটকেল কোনো মন্তব্য না করে চুপ করেই রইল।</span></p>
+<p><span>—এই অন্ধকারে মারুমারে হেঁটে যেতে গিয়ে পথে যদি, অন্য শুয়োরে ফেড়ে দেয় আমাদের? ভাল্লুকে নাক খামচে তুলে নেয়? সাপ কামড়ায় যদি? যদি বাঘে ধরে?</span></p>
+<p><span>—যদি ফেল নদীতে। অত ‘যদি’ নিয়ে জঙ্গলে আসা যায়?</span></p>
+<p><span>ভোঁদাই আর বিটকেল প্রায় মিনিট পনেরো অন্ধকারে মৃত শুয়োরটার সামনে দাঁড়িয়ে থাকল কিন্তু ইমরাত ফিরল না জিপ নিয়ে।</span></p>
+<p><span>—এও হতে পারে যে, ওর শালার জন্যে কোনো হরিণ-টরিণ মেরে ফিরে আসবে এখানে। ইমরাত-এর শালা আসছে আজ রাতে চাতরা থেকে, শুনলি-না? সে তো আর শুয়োর খাবে না।</span></p>
+<p><span>—কেন?</span></p>
+<p><span>—আরে গাধা শুনলি কী তবে এতক্ষণ? শুয়োর খায় না মুসলমানেরা। শালার খাতিরদারির জন্যেই তো আজকে এসেছে ও। আমার জিপ, আমার ডিজেল, ধরা পড়লে জিপ বাজেয়াপ্ত হয়ে আমার-ই দশ-পনেরো বছরের জেল হবে। সশ্রম কারাদন্ড। তোরা তো সকলে জঙ্গলে জঙ্গলে সটকে যাবি। ফিগার ভালো হয়ে যাবে শাহরুখ খানের মতো। আর দেখ আমার সঙ্গেই এরকম পেঁয়াজি। আমাকে চেনে না ইমরাত। একদিন এমন শেখাব না!</span></p>
+<p><span>বলেই, কান খাড়া করে উৎকর্ণ হয়ে শুনল, ওই দিকে কী, ‘খস খস শব্দ হল একটা।</span></p>
+<p><span>—এবার চলো ভোঁদাইকাকু।</span></p>
+<p><span>—জঙ্গলে ওরকম কত শব্দ হয়। জংলি ইঁদুর-ফিঁদুর হবে। জঙ্গলে এরকম রাতের বেলা অন্ধকারে ঘোরার মতো মজা আছে? আমি তো এই মজার জন্যেই আসি। ইমরাতটা তো শুধু জানে গুলি করতে আর মরা জানোয়ারকে হালাল করে নিয়ে গিয়ে খেতে। চিজ একটা। ওর মধ্যে অন্য অনেক গুণ আছে, কিন্তু সূক্ষ্মতা বলে কোনো ব্যাপার-ই নেই। অমলদার-ই মতো।</span></p>
+<p><span>তারপর বলল, বেঁচে গেছে। যে-মানুষ যত সূক্ষ্ম, যত সুরুচিসম্পন্ন, যত স্পর্শকাতর তার ‘দুঃখ’ও ততবেশি!</span></p>
+<p><span>বিটকেল এসব কথার কিছু বুঝল না। যেদিক থেকে খসখস শব্দটা এসেছিল সেদিকেই তাকিয়ে রইল একদৃষ্টে সেদিকের সবুজ অন্ধকারে।</span></p>
+<p><span>—চল এগোই। ইমরাত ইচ্ছে করলে আজ-ই আমাকে ফাঁসাতে পারে। মানে ওর ইয়ার্কিটা যদি একটু বাড়াবাড়ি রকমের করে আর কী! শালার সামনে বাহাদুরি দেখাতে গিয়ে কত কী করে মানুষে।</span></p>
+<p><span>—কী করে?</span></p>
+<p><span>বিটকেল জিজ্ঞেস করল।</span></p>
+<p><span>—কোনো কিছু মেরে, মানে, হরিণ-টরিণ, বাঘ-ভাল্লুক মারার হিম্মত তো ওর নেই। তা ছাড়া জানে ও, যে মারলে, হ্যাপাও অনেক। যে-জানোয়ারই মারুক, মেরে আমার জিপের মধ্যে মরা জানোয়ারটাকে ফেলে রেখে যদি তার মৌলবির বাড়ি গিয়ে বিরিয়ানি খায় তাহলে কাল-ই আমাকে অ্যারেস্ট করবে পুলিশ, ফরেস্ট ডিপার্টমেন্টের করা ডাইরির জোরে।</span></p>
+<p><span>—এমন করতে পারে?</span></p>
+<p><span>—পারে না? বলিস কী? সেদিন মোহনদাদের একজন ট্রাক ড্রাইভারের ট্রাকের চাকার তলাতে একটা ব্যর্থ-প্রেমিক খরগোশ আত্মহত্যা করল দৌড়ে এসে, সেজন্যে এখনও কেস চলছে। শুনলাম, মোহনদা দশ হাজার টাকা খেসারত দিয়ে অফেন্স ‘কম্পাউণ্ড’ করে কেস মিটিয়ে নেবে। বোঝো তবে। একেই বলে, ‘বজ্র-আঁটুনি, ফসকা-গেরো’।</span></p>
+<p><span>বিটকেল-এর মাথার উপর দিয়ে কথাগুলো ঝোড়ো হাওয়ার মতো বয়ে গেল। ওর বোধগম্য হল না কিছুই। বিটকেল শুধু বলল, আমারও জেল হবে তোমার সঙ্গে ভোঁদাইকাকু? তাহলে আমার পিসির কী হবে?</span></p>
+<p><span>উলুবনে মুক্তো ছড়াল, তা বুঝতে পেরে বিরক্তস্বরে ভোঁদাই বলল, আমার পিসির যা হবে, তোর পিসিরও তাই হবে। তোর পিসিকে আমার মা আর পিসি আমাদের বাড়িতে এনে রাখবে। কিন্তু তোর জেল হবে কেন? আমি বলব, তুই আমাদের সঙ্গে ছিলি-ই না।</span></p>
+<p><span>—তুমি বললে কী হবে? সকলে বুঝি দেখেনি আমাকে? নাকাতে? তা ছাড়া ইমরাত কাকুই বলে দেবে।</span></p>
+<p><span>—না, না। ইমরাত মানুষ ভালো। ও বলবে না। তোর ক্ষতি করে ওর কী লাভ হবে?</span></p>
+<p><span>তারপরে বলল, তুই চুপ কর তো। সে আমি বুঝব। জঙ্গলের মধ্যে কথা বললে কখন কোন জানোয়ার এসে ঘাড়ে পড়বে তার শব্দ পাবি কেমন করে? একদম চুপ করে চল।</span></p>
+<p><span>বিটকেল চুপ করে গেল। কিন্তু মনে মনে বলল, নিজে যে, এতক্ষণ গড়গড় করে কত কথা বললে তারবেলা কিছু নয়?</span></p>
+<p><span>মিনিট পনেরো হাঁটার পরে বিটকেল বলল, ভোঁদাইকাকু, যদি দারহা মেলে পথে।</span></p>
+<p><span>—‘দারহা’ মানে?</span></p>
+<p><span>—তুমি দারহা কী জানো না?</span></p>
+<p><span>—না তো!</span></p>
+<p><span>—দারহা একরকমের জংলি ভূত। রমেন জ্যাঠার কাছে শুনেছি আমি। রাতের বেলা হঠাৎ জঙ্গলের পথে সামনা-সামনি এসে দাঁড়িয়ে পড়বে। তালগাছের মতো লম্বা। এদিকে রোগা টিঙটিঙে। মুখটা পেছন দিকে থাকে। সে বলবে, আও হামসে কুস্তি লড়ো।</span></p>
+<p><span>—আর না লড়লে?</span></p>
+<p><span>—না লড়লে তোমাকে গলা টিপে মেরে জঙ্গলে ছুড়ে ফেলে দেবে।</span></p>
+<p><span>—দারহার সঙ্গে দেখা হলে আমি তো আর বেঁচেই থাকতাম না। তাই দেখিনি। তুই দিনে দিনে একটা রামছাগল হচ্ছিস। রমেনদার গুলকে তুই সত্যি ভেবে বসে আছিস?</span></p>
+<p><span>পিসিও তাই বলে।</span></p>
+<p><span>—কী বলে?</span></p>
+<p><span>—আমি একটা রামছাগল।</span></p>
+<p><span>—কাত্যায়নী মাসি ঠিক-ই বলে।</span></p>
+<p><span>এমন সময় ‘গুম’ করে একটা শব্দ হল দূরে।</span></p>
+<p><span>—ওটা কীসের শব্দ?</span></p>
+<p><span>দাঁড়িয়ে পড়ে, বিটকেল বলল।</span></p>
+<p><span>বনের গভীরে রাইফেলের শব্দ এরকম শোনায়, বন্দুকের শব্দ অন্যরকম। গুলি যদি জানোয়ারের গায়ে লাগে তাহলে একরকম শব্দ হয় আর যদি ফসকে যায় তাহলে অন্যরকম শব্দ হয়। ছেলেবেলা থেকে বনেজঙ্গলে ঘুরছে বলে ভোঁদাই এসব জানে। ফাঁকা জায়গাতে শব্দ একরকম শুনতে লাগে, গভীর জঙ্গলে অন্যরকম। জলের ওপরে আরও অন্যরকম।</span></p>
+<p><span>বিটকেল আবার উদবিগ্ন গলাতে বলল, ও কীসের শব্দ ভোঁদাইকাকু?</span></p>
+<p><span>—হরিণ কিংবা অন্যকিছু মারল ইমরাত।</span></p>
+<p><span>—কত দূরে?</span></p>
+<p><span>—খুব বেশি দূরে নয়। মীরচাইয়া ফলস-এর কাছাকাছিই হবে।</span></p>
+<p><span>—ও। তবে আমাদের ফেলে যায়নি।</span></p>
+<p><span>—ওর ঘাড়ে ক-টা মাথা। আমাকে ও ভালো করেই চেনে।</span></p>
+<p><span>—তবে ইয়ার্কি মারছিল বলো। এ কীরকম ইয়ার্কি রে বাবা!</span></p>
+<p><span>—ওর ইয়ার্কি ওরকম-ই। ছেলেটা কিন্তু ভালো। মনটা খুব-ই বড়ো। ও কি আমার আজকের দোস্ত? নেঙ্গোটিয়া দোস্ত। বাবার অসুখের সময়ে, ও যা করেছে তার ঋণ কোনোদিনও শোধবার নয়।</span></p>
+<p><span>—তবে ইমরাতকাকুর সঙ্গে অত ঝগড়া করছিলে কেন?</span></p>
+<p><span>—আরে ঝগড়া তো মানুষ কাছের মানুষের সঙ্গে, ভালোবাসার মানুষের সঙ্গেই করে। যে পর, তার সঙ্গে কি কেউ ঝগড়া করে?</span></p>
+<p><span>—তা ঠিক।</span></p>
+<p><span>—তবে চল আমরা ফিরি।</span></p>
+<p><span>—কোথায়?</span></p>
+<p><span>—বা:! শুয়োরটার কাছে।</span></p>
+<p><span>—কেন?</span></p>
+<p><span>—হায়নাতে বা শেয়ালে এসে খেয়ে যেতে পারে। নেকড়েও আছে বেতলার জঙ্গলে। খেতে পারে খিদে থাকলে। তা ছাড়া, আমরা ওখানে না থাকলে ইমরাত ভাবতে পারে, ওরা আমাদের অন্ধকারে ফেলে চলে গেছে বলে, খুব-ই ভয় পেয়েছি আমরা।</span></p>
+<p><span>—কী জানি কাকু। তোমাদের ‘বন্ধুত্ব’র রকমটা ভারি গোলমেলে।</span></p>
+<p><span>—তা হোক। মগনা যা ভিন্দালু রাঁধবে না শুয়োরের। তুই শুয়োর খেয়েছিস আগে?</span></p>
+<p><span>—দুর। গু খায় ওরা।</span></p>
+<p><span>—আরে সে তো ধাঙড়-বস্তির শুয়োর। এই শুয়োরেরা তো বনের গাছ-পাতা, ফল-মূল খায়। রামচন্দ্র যখন বনবাসে ছিলেন তখন বন্য বরাহ শিকার করে খেতেন। শুধু রামচন্দ্রই কেন? রাম, লক্ষ্মণ, সীতাও। ফার্স্ট-ক্লাস মাংস না হলে তাঁরা কি খেতেন?</span></p>
+<p><span>—তাহলে ইমরাত চাচারা খায় না কেন?</span></p>
+<p><span>—ওদের কথা ছাড়। ওরা তো গোরু খায়। ওরা ওদের মতো থাকুক, আমরা আমাদের মতো। ‘নানা ভাষা নানা মত নানা পরিধান বিবিধের মাঝে দেখো মিলন মহান।’ —গান শুনিসনি?</span></p>
+<p><span>—আমি আর কী শুনেছি ভোঁদাইকাকু! ভোর পাঁচটাতে উঠি, এগারোটোতে শুই। কী করে যে, আমার আর পিসির দিন কাটে, তা আমরাই জানি। তাও তো নুন আনতে পান্তা ফুরোয়। আজকাল এইসব বাঙালি মিষ্টি-ফিষ্টি বাঙালিরা খায় না।</span></p>
+<p><span>—হুঁ! ‘বাঙালি’ জাতটাই মুছে যাবে আস্তে আস্তে। তারা বাংলা পড়ে না, শাড়ি পরে না, বাঙালি রান্না খায় না। দারহার মতোই আশ্চর্য ভূত হয়ে উঠছে তারা আস্তে আস্তে।</span></p>
+<p><span>—ওরা শুয়োরটার কাছে পৌঁছোতে পৌঁছোতেই জিপের ইঞ্জিনের আওয়াজ এল দূর থেকে।</span></p>
+<p><span>—আসছে বাঁদরটা।</span></p>
+<p><span>বলল, ভোঁদাই।</span></p>
+<p><span>—তোমরা কি প্রায়-ই এরকম ঝগড়া করো।</span></p>
+<p><span>—তা করি।</span></p>
+<p><span>—বাবা!</span></p>
+
+<p><span>ভিখুকে দিয়ে দীপিতা বানোয়ারির দোকান থেকে একটা ‘মাইসোর’ স্যাণ্ডাল সাবান আনিয়েছিল আজ সকালে-ই তার হাতখরচের পয়সা থেকে। শাশুড়ি নাকি চিরদিন নিম সাবান মাখেন, তাই বাড়িতে শুধু নিম সাবানই আসে গায়ে মাখার জন্যে। শাশুড়ি ‘আর্নিকা’ তেল ব্যবহার করেন মাথায়, অতএব দীপিতারও তাই মাখতে হয়। তার স্বভাব-চরিত্র, অভ্যেস সবকিছুই বদলে যেতে বসেছে বিয়ের পরে। কমিউনিস্ট রাশিয়াতেও বোধ হয়, এমন ব্রেইন-ওয়াশিং করা হয় না।</span></p>
+<p><span>চন্দনের গন্ধ খুব ভালোবাসে দীপিতা। সাবান, কী পারফিউম, কী আতর যে-মাখে, তার নিজের জন্য সে সুগন্ধ যতখানি, তার চেয়ে অনেক-ই বেশি তার কাছে-থাকা মানুষদের জন্য।</span></p>
+<p><span>কলকাতাতে যখন ছিল দীপিতা ‘আতর’ কাকে বলে জানত না। ডালটনগঞ্জে আসার পর ভোঁদাই-ই প্রথমে আতর নিয়ে এসে ক্রমে দীপিতাকে আতরে অভ্যস্ত করিয়েছে। তার স্বামী অমলের ‘শখ’ বলে কিছু নেই। এক খাওয়া আর ঘুম ছাড়া। দীপিতা কী শাড়ি পরল, কী সাবান মাখল বা কী সুগন্ধে সুগন্ধি হল সেসবে তার কোনোই খেয়াল নেই। বিবরবাসী নগ্ন-মানুষ যেমন তার সঙ্গিনীর নগ্না-শরীর অন্ধকার বিবরের মধ্যে কর্ষণ করত, কী করছে তা না জেনেই, নিছক-ই অভ্যাসবশেই, অমলও তার মানসিক ক্লান্তি, পারিবারিক অশান্তি, একঘেয়েমি এবং যৌবনের তীব্র গতিজাড্য অপনোদন করত, অন্ধকার-করা ঘরে প্রায় বিবরবাসী পুরুষের-ই মতো। যে-নারীর ওপরে তার এক-শো ভাগ অধিকার, তার শরীর নিয়ে যা খুশি তাই করত। তার নিজের সুখটুকুই সব ছিল। অন্ধকারে দীপিতার দু-চোখের কোল গড়িয়ে, যে-জলের ফোঁটা পড়ে বালিশ ভিজে যেত সেই খবর অমল কোনোদিন-ই রাখেনি, অন্য অনেক মূর্খ, স্বাধিকার-মত্ত স্বামীর-ই মতো।</span></p>
+<p><span>এসব দুঃখের কথা আলোচনা করে, এমন কোনো নারীই ছিল না ডালটনগঞ্জে ধারে-কাছে দীপিতার। কেন জানে না, আজ বিকেলে চন্দন সাবান দিয়ে গা ধুতে ধুতে ওর হঠাৎ ভীষণ-ই কান্না এল। একবার ভাবল, যাবে না ভোঁদাইদের বাড়িতে। তার কারও সামনে বেরোতেই আর ইচ্ছে করে না আজকাল। কুনো হয়ে গেছে, না বেরিয়ে বেরিয়ে। কে-না-কে আসছে, তারজন্যে দীপিতার যাওয়ার কী দরকার! যাদের পড়শি সেই অমল আর তার বোন সিমলি গেলেই তো চলে।</span></p>
+<p><span>তবুও বাঁ-হাত দিয়ে চুলের ঝুঁটি উঁচু করে ডান হাত দিয়ে খুব ভালো করে ঘাড়ে সাবান ঘষল। তারপর বাঁ-হাত দিয়ে। গলায়, বুকে, তলপেটে, হাতে, পায়ে, মেয়েলি শরীরের নানা পর্বত-কন্দরে। সর্বাঙ্গে সাবানের ফেনা তুলে দারুণ চান করে উঠল ও। শোয়ারঘরের দরজা বন্ধ করেই চলে গেছিল। যাওয়ার আগে শাড়ি-ব্লাউজ বের করেই রেখে গেছিল। একটা মাহেশ্বরি শাড়ি, জারুল ফুলের মতো হালকা বেগুনি তার রং, আর তারসঙ্গে সাদা ছোটো-হাত কটন-এর ব্লাউজ। তার মায়ের একছড়া গার্নেটের হার ছিল। বিয়ের সময়ে বড়োমামি তাকে দিয়েছিলেন। কিন্তু পরেনি কখনো। আজ-ই পরবে বলে বের করে রেখেছিল। শাড়িটাতে ফলস লাগানো ছিল না। ভোঁদাই গতরবিবারে নেমন্তন্ন করার পর-ই ভিখুকে রহমান-দর্জির কাছে পাঠিয়ে ফলস লাগিয়ে এনেছে। এই সময়টা ডালিয়া ফোটার আসল সময় নয়, তবে সবে ফুটতে আরম্ভও করেছে। ভিখুকে দিয়ে সিভিল কনট্রাক্টর বিষেণ সিং সাহেবের মেয়ের কাছ থেকে একটা ফিকে বেগুনি-রঙা ডালিয়া আনিয়ে গেলাসে নুনজল দিয়ে রেখেছিল স্নানে যাওয়ার আগে।</span></p>
+<p><span>শ্যাম্পু করে চান সেরে যখন সাজগোজ শেষ করল, চোখে গাঢ় করে কাজল দিল, বাহুমূলে আর স্তনসন্ধিতে ফিরদৌস আতর, তারপর ফুল গুঁজল খোঁপাতে, তখন সত্যিই আয়নার সামনে দাঁড়িয়ে নিজেকে রানি মুখার্জির মতোই মনে হল ওর। ভোঁদাই ঠাট্টা করে ওকে রানি মুখার্জি বলে ডাকছে কিছুদিন হল। মিল ঠিক কোথায় তা জানে না, তবে মুখের বুদ্ধির প্রসাধনে সম্ভবত মিল আছে কিছু। পুরুষেরা তার মধ্যে কী যে দেখে, তা তারাই বলতে পারে। তবে তার স্বামী অমল যে, বিশেষ কিছুই দেখে না তার মধ্যে, সে কথাটুকু-ই সে বলতে পারে।</span></p>
+<p><span>স্নান করার আগে স্নানঘরে রাখা নুনের বয়াম থেকে আজ নুন নিয়ে গ্লাসে করে গিজারের গরম জলে গার্গল করেছিল। যদি সত্যি সত্যিই গান গাইতে হয়-ই, সে জন্যে।</span></p>
+<p><span>অমল অনেক আগেই তৈরি হয়ে বারান্দার রেলিং-এর ওপরে পা তুলে বসে খবরের কাগজ পড়ছিল। পুঁটি যাবে না। শাশুড়ির মানা। উলটোপালটা খেয়ে শরীর খারাপ করতে পারে, সেইজন্যে। পুঁটি, অন্নদাদেবী আর সুরাতিয়ার কাছেই থাকে বেশি সময়। আগামী মাসে চার-এ পড়বে। তাকে এবার স্কুলে দেওয়া দরকার। কিন্তু শাশুড়ির ভীষণ-ই আপত্তি। বলেছেন, ছ-বছরে পড়লে তবেই স্কুলে যাবে ও। সিমলি যেমন গেছিল। সিমলিদের সময় আর এখনকার সময় যে এক নয়, একথা তাঁকে বোঝাবে কে? মেয়েটার স্বভাব-ই ছিচকাঁদুনে হয়ে যাচ্ছে দিনকে দিন। নিজের সন্তানকে যেভাবে মানুষ করবে ভেবেছিল তার কিছুই হচ্ছে না। পুঁটির ওপরেও দীপিতার কোনো অধিকার নেই। রাতেও অন্নদা তাকে শুতে দেন না দীপিতার সঙ্গে। বাঁকা চোখে বলেন, তোমাদের সুবিধের জন্যেই তো, রাখি আমার কাছে। বলেন, আমাদের শাশুড়িরা যদি এমন হতেন তো, আমরা তখনকার দিনের বউরা বর্তে যেতাম। কে জানে! তখনকার দিনের অন্নদার মাতো বউ-এরা বোধ হয় ‘দাম্পত্য’ বলতে ওই একটা জিনিস-ই বুঝতেন। ভাবলেও গা ঘিনঘিন করে।</span></p>
+<p><span>আসলে পুঁটিকে অন্নদা তাঁর খেলনা করেছেন। ধীরে ধীরে মেয়েটার সঙ্গে দীপিতার আত্মিক যোগ হালকা হয়ে যাচ্ছে। ওর ‘নিজস্ব’ বলতে তো শুধু ওই আত্মজাই। সেই আত্মজার শিকড়টিও তার থেকে শাশুড়ি আলগা করে দিচ্ছেন ক্রমাগত। বুঝতে পারে দীপিতা। চারদিক থেকে এক গভীর চক্রান্ত তাকে ঘিরে ফেলছে। এই লক্ষ্মণরেখা ছিড়ে তাকে বেরোতেই হবে। কিন্তু বেরোবে কী করে?</span></p>
+<p><span>তৈরি হয়ে দরজা খুলে ভেতরের বারান্দা হয়ে যখন বাইরের বারান্দাতে এল, তখন দেখল অমল বারান্দাতে নেই। বাগানে পায়চারি করছিল সে। দীপিতাকে দেখে জ্বলন্ত সিগারেটের টুকরোটা ছুড়ে ফেলে বলল, বাবা:! যাবে তো পাশের বাড়িতেই, সাজ দেখে মনে হচ্ছে যেন, অভিসারে চলেছ! সিমলি তোমার জন্যে অপেক্ষা করে করে চলে গেছে। আমিও চলেই যাচ্ছিলাম।</span></p>
+<p><span>দীপিতা ভেবেছিল, অমলকে জিজ্ঞেস করবে, কেমন দেখাচ্ছে আমাকে? ভেবেছিল, আবার ভাবেওনি। বিয়ের পর থেকে আজ অবধি অমল নিজে থেকে কখনো বলেনি তাকে কেমন দেখাচ্ছে। যায় না তো ও কোথাওই! কোনো বিয়েবাড়িতে যাওয়ার সময় একটু সাজগোজ করার পরে খুব-ই ইচ্ছে করে বাড়ির লোকে কেউ একটু বলুক, ‘বা:! বেশ দেখাচ্ছে তো।’</span></p>
+<p><span>এ বাড়িতে কেউ কোনোদিনও বলেনি। সাজগোজ করতে জানেও না কেউ। তবে ননদ সিমলি কোথাও যেতে হলে, দীপিতার কাছে সাজতে আসে। ওর কোনো কোনো বন্ধুও আসে। এক বন্ধুর বিয়ের সময়ে তার মা সিমলিকে অনুরোধ করেছিলেন দীপিতাকে কনে সাজাতে আসতে। অন্নদা দেবী যেতে দেননি। বলেছিলেন, তার চেয়ে চুল-বাঁধার, নখ-কাটার দোকান দিলেই হয়, কর-বাড়ির বউ নাচতে নাচতে কোথাও গিয়ে কারোকে সাজাবে না।</span></p>
+<p><span>তারপর সিমলিকে বলেছিলেন, সাজতে হলে, তোর বন্ধুকে বল এখানে এসে সেজে যাবে। বিয়ের দিন বিয়ের কনের পক্ষে আসা সম্ভব হয়নি। এই ঘটনাতে সিমলির খুব রাগ হয়েছিল তার মায়ের ওপরে।</span></p>
+<p><span>অমল অমন সাধ-করে সাজা দীপিতার দিকে একবার পূর্ণদৃষ্টিতে চাইল না পর্যন্ত। বিরক্ত মুখে বলল, আমি এগোলাম। বলেই, আগে আগে গেট খুলে বেরিয়ে গেল। দীপিতা অনেকখানি পেছনে পেছনে হেঁটে যেতে লাগল। ও ভাবছিল, এমনভাবেই যদি, যাবে তাহলে আর দীপিতার অপেক্ষাতে আদৌ থাকা কেন? চলে গেলেই তো হত। কে জানে! ওর বাবাকে দেখে হয়তো ও শিখেছে যে, স্ত্রীর সঙ্গে খারাপ ব্যবহার করাটাই ‘শিভালরি’। দোষটা অমলের নয়, অমলের রক্তের।</span></p>
+<p><span>সারাটা সপ্তাহ দীপিতার কেবল-ই মনে হয়েছে, এই কাট্টুস সেই কাট্টুস নয় তো? তার কলেজের বন্ধু মাধবীর কাজিন। মাধবীদের বাড়িতেই আলাপ হয়েছিল। দীপিতাকে দেখেই যে, কাট্টুস একেবারে</span> <span>Head over Heels</span> <span>প্রেমে পড়েছিল এটা কোনো কথা নয়। সে অনেক পুরুষেই পড়েছে তার কৈশোর থেকেই। কথাটা হচ্ছে এই যে, দীপিতারও তাকে ভীষণ-ই ভালো লেগেছিল। ঠিক ওইরকম ছেলে তাদের বন্ধুবান্ধবদের মধ্যে একজনও ছিল না। ছেলে বন্ধুদের আজকাল সকলেই, মেয়ে বন্ধুদের মতো ‘তুই তুই’ করেই বলে কিন্তু কাট্টুসের মধ্যে কিছু একটা বা একাধিক ব্যাপার ছিল, যে-কারণে ওকে তুই বলতে পারেনি দীপিতা প্রথম দর্শনে। মনে মনে সম্ভ্রমে তাকে আপনিই বলতে চেয়েছিল কিন্তু তা না বলে ‘তুমি’ বলেই সম্বোধন করেছিল। অনেক গল্প হয়েছিল। গান হয়েছিল। এক গভীর ভালো লাগায় ভাসতে ভাসতে সেই সন্ধেতে মামাবাড়িতে ফিরেছিল দীপিতা।</span></p>
+<p><span>পরদিন মাধবী ফোন করে বলেছিল, তুই কাট্টুসদার মাথাটি আস্ত চিবিয়ে খেয়ে গেছিস কালকে দীপিতা। প্রেমে পড়লে চালাক মানুষেরা বোকা হয়ে যায় আর বোকারা চালাক, এমন শুনেছিলাম কিন্তু সত্যি সত্যিই যে হয় তা কাট্টুসদাকে দেখেই প্রথম বুঝলাম। প্রাণে মারিস না প্লিজ আমার ভালো দাদাটাকে।</span></p>
+<p><span>তারপরে আর কাট্টুসের সঙ্গে দেখা হয়নি। তবে ফোন করত সে প্রায়-ই। দীপিতাও ফোন করত মাঝে মাঝে। বড়োমামা কাট্টুসের সঙ্গে তার সেই প্রথম আলাপের মাস দুয়েক পর-ই দীপিতাকে হঠাৎ-ই ঘাড় থেকে নামালেন। ব্রজেন কর নামক ‘খুনি-খুনি’ মানুষটি এক সকালে এলেন। বড়োমামা দীপিতাকে ডেকে বললেন, প্রণাম করো।</span></p>
+<p><span>যাকে-তাকে পায়ে হাত দিয়ে প্রণাম করতে একেবারেই ভালো লাগে না দীপিতার ছেলেবেলা থেকেই। তবু করতেই হল। বড়োমামি তারপরে দীপিতাকে অমলের একটি ফোটো দেখালেন নিজের ঘরে নিয়ে গিয়ে। জিনস-পরা আর ‘আডিডাসে’-এর গেঞ্জি-পরা স্পোর্টসম্যানের মতো দেখতে লম্বা-চওড়া একটি ছেলে জিপগাড়ির সামনে দাঁড়িয়ে আছে। তবে, গ্রাম্য-গ্রাম্য। বোকা-বোকা চেহারা।</span></p>
+<p><span>বড়োমামি বললেন, ব্রজেনবাবু তোর বড়োমামার বহুদিনের বন্ধু। খুব-ই উপকারী বন্ধু। অবস্থা দারুণ ভালো। ছেলে বি.কম পাশ, বাবার ব্যাবসার পার্টনার। ডালটনগঞ্জে বাড়ি, গাড়োয়াতে বাড়ি, দু-খানা গাড়ি, একমাত্র ননদ, তারও বিয়ে হয়ে যাবে ক-দিন পর। এখন ক্লাস নাইনে পড়ে। তার দুই ছোটো দেওর। এরকম ঝামেলাহীন পরিবার হয় না। তোর অনেক কপাল যে, বাড়ি বয়ে উনি তোকে নিতে এসেছেন।</span></p>
+<p><span>—আমার পড়াশুনো মামিমা?</span></p>
+<p><span>প্রায় কাঁদো কাঁদো হয়ে বলেছিল দীপিতা।</span></p>
+<p><span>—পার্ট টুতে বসলে কি আর ল্যাজ গজাবে? পরীক্ষার ফল তো মেয়েদের বিয়ের জন্যেই দরকার। তা তুই পরীক্ষা না দিয়েই যদি এই বিয়ের পরীক্ষাতে পাশ করে যাস, তাহলে আর মিছিমিছি পরীক্ষার জন্য অপেক্ষা করবি কেন? এম.এ., এম.ফিল, পি. এইচ. ডি করে কারা? যেসব মেয়ের বিয়ে হয় না। প্রত্যেক মেয়ের জীবনের পূর্ণতাই বিয়েতে। সংসার করবি, মা হবি, সুখে থাকবি, এর চেয়ে বড়ো চাওয়া মেয়েদের জীবনে আর কী থাকতে পারে? তা ছাড়া যা প্রতিযোগিতার দিন আজকাল! পড়াশুনা করতে চাইলেই কি সকলেই তা করতে পারে, না, করার যোগ্যতা রাখে? তোর মামা রিটায়ার করেছেন চার বছর হল। ওঁর কিছু একটা হয়ে গেলে তোকে নিয়ে আমি কী করব? তোর মামা যা বলেন তাই কর। মা-বাবা মরা তোকে কি আর উনি ভাসিয়ে দেবেন? আমরাই তো মা-বাবা চলে যাওয়া তোকে এতবড়োটি করে তুললাম। নাকি?</span></p>
+<p><span>দীপিতা মনে মনে বলেছিল, তা তুলেছ, কিন্তু মামাতো-দিদি অনুরাধার আয়ার মতোই ব্যবহার করে এসেছ চিরদিন। অনুদিই বরং তাঁর সঙ্গে মানুষের মতো ব্যবহার করত। অনুদি যখন তার ব্রিলিয়ান্ট প্রাইভেট-টিউটর শেখরদার সঙ্গে পালিয়ে গিয়ে বিয়ে করল আর আহমেদাবাদে চলে গেল তার পরের বছর দুয়েক মামা-মামিমা তার সঙ্গে মেয়ের মতোই ব্যবহার করেছিলেন অবশ্য।</span></p>
+<p><span>যাই হোক, দীপিতার আপত্তি করার কোনো উপায়-ই ছিল না। তা ছাড়া ভেবেছিল, বিয়েই সম্ভবত মেয়েদের সমস্ত সুখ ও আহ্লাদের শেষকথা। যে-মেয়ের বিয়ে না হয়, তার জীবন-ই বৃথা। তা ছাড়া, বিয়ে তো সবসময়-ই একটা জুয়া। ভালোবেসে বিয়ে করলেও তাই, না-ভালোবেসে করলেও তাই। চারদিকে তো কতই দেখল ছেলেবেলা থেকে। এমনকী অনুদি-শেখরদারও নাকি বনিবনা হয় না এখন। এত প্রেম ছিল যাদের। অনুদি নাকি ‘কম্পিউটার’ কোর্স করে একটি চাকরি নিয়ে মেয়েদের হস্টেলে একা থাকে। শেখরদার একটি বড়োলোক গুজরাটি মেয়ের সঙ্গে ভাব হয়েছে। তাই যদি হবে তবে মামা-মামির কথাতে রাজি হয়ে যেতে আপত্তিই বা কী?</span></p>
+<p><span>আশ্চর্য!</span></p>
+<p><span>দীপিতা মনে মনে নিজেকে বলল, এতসব কথা ভোঁদাইদের বাড়িতে যাওয়ার সময়েই কেন মনে হচ্ছে দীপিতার, তার মন আজকে সকাল থেকে এমন বিবশ কেন? সে কি মনে মনে নিশ্চিত-ই হয়েছে যে, মাধবীর পিসতুতো দাদা কাট্টুস-ই ভোঁদাই-এর পিসিমার ছোটো জা-এর ছেলে কাট্টুস? হওয়াটার সম্ভাবনাই বেশি। কাট্টুস নামটাই এমন যে, তা বেশি মানুষের থাকা সম্ভব নয়। ভেরি আনকমন নাম।</span></p>
+<p><span>ভোঁদাইদের বাড়ির দো-তলা থেকে সাউণ্ড সিস্টেমে অজয় চক্রবর্তীর ভজন ভেসে আসছিল। অজয় চক্রবর্তীর একমাত্র কন্যা কৌশিকী নাকি দারুণ গাইছে। দেখতেও নাকি ভারি সুন্দরী। এখনও তাকে কিশোরীই বলা চলে। সেদিন কোন কাগজে যেন পড়ছিল। ভোঁদাই-এর মায়ের কাছে উস্তাদ রশিদ খাঁ-এর দু-টি ক্যাসেট আছে। মেঘগর্জনের মতো গলা। সামনে থেকে এঁদের কারওকেই তো আর শোনা হবে না এ-জীবনে, ক্যাসেট-ই সার। অমলকে যে বলবে, একটা সি.ডি প্লেয়ার কিনে দাও তাও তার সাহস হয় না। যে-মানুষ গান পছন্দই করে না, তাকে বলেই বা কোন মুখে? বললেও বলবে, তোমার জন্যে কি চুরি করব? ওই ক-টা টাকা তো দেন বাবা! অনেক পাপ করলে মানুষে আমার মতো বাপের চাকরি করে।</span></p>
+<p><span>অমল ততক্ষণে ভেতরে ঢুকে গেছিল। ভোঁদাইদের অ্যালসেশিয়ান কুকুর, যার নাম পিশাচ, সে খোলা ছিল। দোতলার বারান্দায় দাঁড়িয়ে-থাকা সিমলি বলল, গলা তুলে, ওই তো বউদি আসছে।</span></p>
+<p><span>দীপিতা মুখ তুলে বলল, পিশাচকে বাঁধতে বল সিমলি।</span></p>
+<p><span>ভোঁদাইও বারান্দার রেলিং-এ ভর দিয়ে দাঁড়াল এসে, গলা চড়িয়ে ডাকল, রামলগন। বাঁধ। বাঁধ। পিশাচকে বাঁধ।</span></p>
+<p><span>রামলগন দৌড়ে এল। এসে বাঁধল কালো অ্যালসেশিয়ানটাকে।</span></p>
+<p><span>রামলগন পিশাচ বলতে পারে না, বলে পীযূয। ঝুমরিতিলাইয়াতে বাড়ি রামলগনের। সেখানে একটা দাড়িঅলা চশমাপরা নোংরা বাঙালি হাজামত, অর্থাৎ নাপিত আছে, তার নাম নাকি পীযূষ। সে একদিন রামলগনের দাড়ি কামাতে গিয়ে তার বাঁ-কানের অনেকখানি কেটে দিয়েছিল। তখন থেকে রামলগনকে ঝুমরিতিলাইয়ার মানুষে কান-কাটা রামলগন বলে ডাকে। সেই রাগেই এই লাল চোখো কালো কুকরটাকে রামলগন পীযূষ বলে ডাকে। কান কাটা যাওয়ার পর থেকে সব হাজামত, সব পীযূষ-ই তার কাছে পিশাচ। যদিও ‘পিশাচ’ শব্দটির মানে জানে না রামলগন, তবে জানে বেশ খারাপ-ই কিছু হবে নিশ্চয়ই!</span></p>
+<p><span>ভোঁদাই বলল, বাবা:। খোঁপাতে আবার ফুলও লাগিয়েছ আজ।</span></p>
+<p><span>বলেই বলল, না:। আজ, কুছ হোগা। পুটুস আজকে ফুটুস করে ফুটে যাবে।</span></p>
+<p><span>—পুটুস আবার কে?</span></p>
+<p><span>—ওই তো পিসিমার দেওরের ছেলে।</span></p>
+<p><span>—তুমি যে বললে, তাঁর নাম কাট্টুস।</span></p>
+<p><span>—আমি ভুল শুনেছিলাম। তাঁর নাম কাট্টুস নয়, পুটুস।</span></p>
+<p><span>—তিনি আসেননি এখনও? ওপরেই এসো তো আগে। তারপরে কথা হবে। তুমি কি শুধু নন-এগজিস্টেন্ট কাট্টুস-এর জন্যেই আমাদের বাড়ি আসতে রাজি হয়েছিলে? আমরা কেউই নই?</span></p>
+<p><span>সিঁড়ি দিয়ে ওপরে যাওয়ার সময়ে দীপিতা দেখল, সিঁড়ির পাশে একতলার ঘরে অমল বসে আছে। টেবিলের ওপর রাম-এর বোতল, গ্লাস, বরফের বাটি, লেবু সব সাজানো।</span></p>
+<p><span>মনে মনে বলল, ও। এইজন্যেই এত তাড়া!</span></p>
+<p><span>অমল বলল, দীপিতাকে, ভোঁদাইকে নীচে পাঠিয়ে দিয়ো তো।</span></p>
+<p><span>কেন জানে না, হঠাৎ অমলের ওপরে ভীষণ-ই বিরক্তি বোধ করল দীপিতা। অমলের কথার উত্তর না দিয়ে, ও ওপরে উঠে গেল আস্তে আস্তে।</span></p>
+<p><span>—সত্যি বউদি। আজ তোমাকে যা দেখাচ্ছে না, তোমার জন্যে আমি আজ জীবনও দিয়ে দিতে পারি। একেবারেই রানি মুখার্জির রেপ্লিকা।</span></p>
+<p><span>মনে মনে খুব খুশি হলেও, দীপিতা বলল, আমি, ‘আমি’-ই থাকতে চাই। কারও রেপ্লিকাই হতে চাই না।</span></p>
+<p><span>দো-তলাতে উঠতেই ভোঁদাই-এর মা দীপিতার থুতনি ধরে আদর করে বললেন, ভোঁদাই কিন্তু বাড়িয়ে বলেনি বউমা। তোমাকে আজ ভারি সুন্দর দেখাচ্ছে। সেজেছও ভারি সুন্দর। এই গয়নাটা তো দেখিনি আগে কখনো।</span></p>
+<p><span>সিমলিই বলল, তার বউদির হয়ে, এটা বউদির মায়ের গয়না। গার্নেট।</span></p>
+<p><span>পিসিমা বললেন, শাড়ির সঙ্গে ম্যাচ করে ডালিয়াটি কেমন লাগিয়েছে দীপিতা খোঁপাতে! অমন জারুল ফুলের রঙের ডালিয়া পেলে কোত্থেকে?</span></p>
+<p><span>না গো মেয়ে, তোমার রুচি আছে। পিসিমা বললেন।</span></p>
+<p><span>একটা দীর্ঘশ্বাস পড়ল দীপিতার।</span></p>
+<p><span>পুটুস-এর জন্যে অপেক্ষা করে করে থেকে, এই পাঁচ মিনিট আগে হাটিয়া থেকে ফোন এল যে, প্লান্টে ব্রেকডাউন হয়েছে। অনেক চেষ্টা করা সত্ত্বেও, ওর পক্ষে আজ আসা সম্ভব হবে না। অবশ্য বিকেল তিনটেতেই জানিয়েছিল যে, বোধ হয় এসে পৌঁছোতে পারবে না। তবু চেষ্টা করছে। না আসতে পারলে জানাবে।</span></p>
+<p><span>ভোঁদাই ঠাকুরপো বলেছিলেন আপনার দেওরের ছেলের নাম নাকি কাট্টুস?</span></p>
+<p><span>দীপিতা বলল ভোঁদাই-এর পিসিমাকে।</span></p>
+<p><span>—না না, ওর নাম পুটুস। পুটুস ফুল দেখেছ তো। পুটুসের ঝাড়।</span></p>
+<p><span>—না তো।</span></p>
+<p><span>—সে কী!</span></p>
+<p><span>পিসিমা বললেন, এদিকে পথের পাশে পাশে যে, কটুগন্ধী ঝাড়গুলো হয়-না? দ্যাখোনি? নানা-রঙা ফুল হয় তাতে।</span></p>
+<p><span>—ইংরেজি নাম</span> <span>lantana</span><span>।</span></p>
+<p><span>বিশ্বাস-কাকিমা বললেন, তোমার কাকাবাবু আমাকে এই ইংরেজি নামটা বলেছিলেন।</span></p>
+<p><span>পিসিমা বললেন, পুটুস ইঞ্জিনিয়ার। হাটিয়ার হেভি ইঞ্জিনিয়ারিং কর্পোরেশনে কাজ করে! ও খড়্গপুরের ‘আই. আই. টি.’ থেকে পাশ করে বেরোয়। মেকানিক্যাল ইঞ্জিনিয়ার। রুচি শখ, সব-ই এরকম। ভোঁদাই-এর মতো। ভোঁদাই ওকে দেখেনি। এলেই আলাপ হবে প্রথম। সাহিত্য, গান ছবি আঁকা সবেতেই তো দু-জনের সমান উৎসাহ।</span></p>
+<p><span>—এমা! উনি আসবেন না। তাহলে আমাদের একটা খবর পাঠালেন না কেন বিকেলেই কাকিমা?</span></p>
+<p><span>মনমরা হয়ে বলল, দীপিতা।</span></p>
+<p><span>—কেন? তোমরা কি একদিনের বদলে দু-দিন খেতে পারো না আমাদের এখানে? মগনলালের রান্না তো সব প্রায় হয়েই এসেছিল। আজ মিষ্টি পোলাও করেছে মগনলাল, কচি পাঁঠার মাংস, দই দিয়ে রুই মাছের রেজালা। ভোঁদাই কোথা থেকে বটের মেরে এনেছিল তাই বটেরের কাবাব। ছোলার ডাল, নারকোল দিয়ে তোমাদের-ই জন্যে, সঙ্গে ফুলকো-লুচিও করতে বলেছি। পেঁপের চাটনি, দুখুয়ার দোকানের কাঁচাগোল্লা আর রাবড়ি। আজও খাও তারপরে পরের সপ্তাহেও আবার হবে। তিনদিনের জন্যে আসবে বলেছে ও।</span></p>
+<p><span>তারপর বিশ্বাস-কাকিমা বললেন, খাওয়া-দাওয়া তো আছেই। তার আগে ক-টা গান শোনাও তো আমাদের।</span></p>
+<p><span>ভোঁদাই বলল, বউদি আজ তোমার সামনে দাঁড়ানোর মতো বুকের পাটা আমার নেই। শুধু আমার কেন, কোনো পুরুষের-ই হবে না। সব পুরুষেরাই কচুকাটা হয়ে যাবে আজ। পুটুস না এসে ভালোই হয়েছে। এলে তার প্রাণ-ই যেত আজ। বলো মা! এত সুন্দরী হওয়ার কোনো মানে হয়? বউদির জন্যেই আমার বিয়ে করা হল না। হবেও না এ-জন্মে।</span></p>
+<p><span>—ওমা! এ আবার কী কথা!</span></p>
+<p><span>সিমলি হেসে উঠে বলল। দীপিতা বিব্রত হয়ে মুখ নামিয়ে নিল।</span></p>
+<p><span>—ও তুই বুঝবি না। তোর দাদার, মানে অমলদার হাতখানা একদিন দেখিস, মানে হাতের পাতা। আরে সাব্বাশ! ফেট-লাইনখানা কী! একেবারে এধার থেকে ওধারে চলে গেছে। আর এই দেখ আমারটা। আধখানা আসার পর ছাগলে মুড়িয়ে খেয়ে দিয়েছে। বুঝলি না, কপালে গোপাল করে। যার কপাল-ফাটা, তার সব-ই ফাটা।</span></p>
+<p><span>—তোমাকে কিন্তু ডাকছে তোমার অমলদা নীচে।</span></p>
+<p><span>দীপিতা বলল, ভোঁদাইকে।</span></p>
+<p><span>—যাচ্ছি। একা তো আর নেই। রামবাবুকে দেখলে না?</span></p>
+<p><span>প্রথমে বুঝতে পারেনি দীপিতা। বুঝতে পেরে, হেসে বলল, ও হ্যাঁ। দেখলাম বটে।</span></p>
+<p><span>—তবে আর কী! যাচ্ছি। একটা গান আমিও শুনে যাই। তবে, অন্যদিকে চেয়ে শুনব।</span></p>
+<p><span>—কেন? অন্যদিকে চেয়ে কেন?</span></p>
+<p><span>—আরে সেই যে, শায়েরি আছে না একটা?</span></p>
+<p><span>—কী? আমি শায়েরি জানব কোত্থেকে? কার শায়েরি?</span></p>
+<p><span>—কার অত মনে নেই, মির্জা গালিব বা জওক বা জিগর মোরদাবাদি বা ফিরাখ গোরখপুরি কারও হবে। সেই যে...</span></p>
+<p><span>—আহা! বলোই না।</span></p>
+<p><span>‘অ্যাইসা ডুবা হুঁ তেরি আঁখো কি গেহরাইমে</span></p>
+<p><span>হাঁথমে জাঁম হ্যায়, মগর পিনেকি হোঁস নেহি।’</span></p>
+<p><span>—মানে কী হল?</span></p>
+<p><span>—মানে হল, তোমার চোখের গভীরে আমি এমনিই ডুবে গেছি যে, হাতে আমার পান-পাত্র ধরাই আছে, কিন্তু চুমুক দিতেও ভুলে গেছি। ‘জাঁম’ মানে পান-পাত্র, জান কি? তারপর বলল, তুমি আজ এমন করে কাজল পরেছ-না বউদি! তুমি আজ সত্যিই প্রাণঘাতিকা।</span></p>
+<p><span>রক্তর নানারকম রিপোর্ট, এক্স-রে-র প্লেট, ই.সি.জি.-র গ্রাফ সব মনোযোগ দিয়ে দেখার পরে ডাক্তার ঝাঁ স্টেথোটা ভোঁদাই-এর বুক থেকে নামিয়ে ওর নাড়ি টিপে বসে রইলেন। জ্বর এখন এক-শো পাঁচ। ভুল বকছে। জ্বর এসেছে চারদিন হল। দোতলাতে ওর ঘরে মা এবং পিসিমা। দীপিতা ওর পায়ের কাছে শুকনো মুখে দাঁড়ানো।</span></p>
+<p><span>ডাক্তারবাবু এসেছেন প্রায় ঘণ্টাখানেক। আজকালকার কোনো ডাক্তার কোনো একজন রোগীর জন্যে এত সময় ব্যয় করেন না, অনেক অর্থের প্রলোভন ছাড়া। অনাদি বিশ্বাস, ভোঁদাই-এর বাবা, ডাক্তার ঝাঁ-র প্রথমজীবনে অনেকইরকম সাহায্য করেছিলেন। সে-কথা ডা. ঝাঁ ভোলেননি। এখনও কিছু মানুষের বুকে ‘কৃতজ্ঞতাবোধ’ বেঁচে আছে হয়তো।</span></p>
+<p><span>ওঁরা এক একজনে এক এক জিনিস আনতে গেছিলেন। সিমলি ওদের কলেজের ফাংশানে যাওয়ার আগে ওখান থেকে ফিরে গিয়ে বলেছিল দীপিতাকে, বউদি! তোমার কাছে ওডিকোলন আছে? একটু নিয়ে যাও-না ভোঁদাইদাদের বাড়ি। ভোঁদাইদা বোধ হয় বাঁচবে না। মাও তো গেছিল কাল রাতে। কাকিমা বললেন, তোমার কথা নাকি খুব বলছে।</span></p>
+<p><span>দীপিতা চুপ করে রইল। খবর তো সব-ই পায় কিন্তু যেতে লজ্জা করে। ভয়ও করে। অমল আজকাল যেন, কেমন ব্যবহার করছে দীপিতার সঙ্গে। ভোঁদাই যে, দীপিতাকে ভীষণ পছন্দ করে, তা তো ভোঁদাই কারও কাছেই গোপন করে না। মনে পাপ থাকলে কি করত? তা ছাড়া পাপের-ই বা কী? ভালোলাগা, ভালোবাসা কি পাপ?</span></p>
+<p><span>দীপিতা, সিমলিকে বলল, তাই?</span></p>
+<p><span>তারপর বলল, যাচ্ছি।</span></p>
+<p><span>ভয়ে ওর বুক দুরদুর করে উঠল। ওর কথা যে, ভোঁদাই বলছে, একথা অন্নদা জানলে নতুন করে নিগ্রহ শুরু হবে ওর ওপরে। হয়তো জেনেছেন বলেই দীপিতাকে যেতে বলেননি। অমলও বলেনি ওকে যেতে। কিন্তু সিমলি বলেছে। এবারে যাবে দীপিতা।</span></p>
+<p><span>শাড়িটা বদলে একটা সাদা-কালো কটকি শাড়ি পরে ওডিকোলনের বড়োশিশিটা নিয়ে চলে এসেছিল। কাকিমা আর পিসিমা খুব-ই খুশি হয়েছিলেন। কিন্তু ভোঁদাই-এর চোখ বন্ধ। জ্ঞান নেই।</span></p>
+<p><span>অমল ভোরেই বেরিয়ে গেছে। কাল রাতে একবার গেছিল মিনিট পনেরোর জন্যে ভোঁদাইকে দেখতে। অথচ ওর চেয়ে অনেক বেশি কনসার্নড হওয়ার কথা ছিল। ওদের বাড়িতে ভোঁদাই ছাড়া দ্বিতীয় পুরুষ নেই। ডাক্তার-টাক্তার সম্বন্ধে খোঁজ নেওয়ার ছিল। প্রয়োজনে নার্সিংহোম-এ দেবে কি না...না, সেসব-এর কিছুই করেনি। করবার মধ্যে করছে ইমরাত। আর বিটকেল খাটের পাশে বসে রয়েছে সর্বক্ষণ। যে যা বলছে, করছে। কাত্যায়নী দিদিও সকাল-সন্ধে এসে খোঁজ নিয়ে যাচ্ছে। গরিবে তো পয়সা দিয়ে ভালোবাসা দেখাতে পারে না, শুধু শরীর দিয়ে, সেবা দিয়ে, উদবেগ দিয়েই পারে।</span></p>
+<p><span>আরও বসে আছে পিশাচ, খাটের নীচে, রামলগন যাকে ‘পীযূষ’ বলে ডাকে। কুকুরের ভালোবাসা যে, অনেকাংশে অকৃতজ্ঞ ‘মনুষ্য’ জাতের ভালোবাসার চেয়ে অনেক-ই পবিত্র, অনেক-ই গভীর, তা এমন এমন সময়ে বোঝা যায়। পিশাচ খাওয়া-দাওয়া বন্ধ করে দিয়েছে দু-দিন হল, ভোঁদাই অজ্ঞান হয়ে যাওয়ার পর থেকেই।</span></p>
+<p><span>ডা. ঝাঁ বিশ্বাস-কাকিমাকে জিজ্ঞেস করলেন, দীপিতা কওন হ্যায় ভাবিজি?</span></p>
+<p><span>—দীপিতা?</span></p>
+<p><span>কাকিমা ও পিসিমা চমকে উঠে বললেন।</span></p>
+<p><span>দীপিতা ওডিকোলোনের শিশিটা তেপায়ার ওপরে রেখে বলল, আমি বারান্দাতে আছি কাকিমা। আমাকে ডাকবেন, ডাক্তারবাবু চলে গেলে।</span></p>
+<p><span>—এসো মা। তবে চলে যেয়ো না।</span></p>
+<p><span>দীপিতা বারান্দাতে দাঁড়িয়ে গামহার আর কৃষ্ণচূড়া গাছগুলোর দিকে চেয়ে রইল। ওর খুব ভয় করছিল। আটদিন আগে শনিবার সন্ধেবেলা ভোঁদাই ওদের বাড়িতে এসেছিল। ব্রজেনবাবু তো গাড়োয়া গেছিলেন। শাশুড়ি ও সিমলি সাইকেল-রিকশাতে করে মাধুরী দীক্ষিতের কী একটা ছবি হচ্ছে সিনেমা হল-এ, সেই ছবি দেখতে গেছিলেন। ভোঁদাই হয়তো সব জেনে-শুনেই এসেছিল। পুঁটি ছিল সুরাতিয়ার কাছে দোতলাতে। ভিখু গেছিল শাশুড়ির পানের সব সরঞ্জাম আনতে। দীপিতা শোয়ার ঘরে বসে ‘নবকল্লোল’ পড়ছিল। ‘নবকল্লোল’, ‘তথ্যকেন্দ্র’, আর ‘সংবাদ প্রতিদিন’ —এই তিনটি পত্রিকা চেয়ে এনেছিল বিশ্বাস-কাকিমার কাছ থেকে দীপিতা। ‘সংবাদ প্রতিদিন’ দৈনিক কাগজটাও দিনকে দিন ভালো হচ্ছে।</span></p>
+<p><span>ভোঁদাই ঘরে ঢুকেই বলেছিল, কী করছ একা একা?</span></p>
+<p><span>ওর মুখে মদের গন্ধ পেল দীপিতা।</span></p>
+<p><span>—তুমি মদ খেয়ে এসেছ?</span></p>
+<p><span>—হ্যাঁ। আমি মিথ্যে বলি না। আজ খেয়েছি। কিন্তু খাই না।</span></p>
+<p><span>—কেন?</span></p>
+<p><span>—আজ তোমাকে একটা চুমু খেতে এসেছি।</span></p>
+<p><span>খুব রেগে দীপিতা দাঁড়িয়ে উঠল। বলল, তোমার সাহস তো কম নয়।</span></p>
+<p><span>—কারোকে ভালোবেসে ভীষণ কষ্ট যারা পায় তারা বুঝি খুব সাহসী? তোমাকে ছাড়া আমি বাঁচব না দীপিতা। তোমাকে আমি বিয়ে করব।</span></p>
+<p><span>—তোমার মাথা খারাপ হয়ে গেছে।</span></p>
+<p><span>সে-কথা বলল বটে কিন্তু ওর মাথার মধ্যে পৃথিবী ঘুরে গেল। কিন্তু তার-ই সঙ্গে মুক্তির আভাস পেল যেন ও হঠাৎ। যে-কয়েদির যাবজ্জীবন দ্বীপান্তর হয়েছে, তাকে যদি হঠাৎ— ‘ছুটি হয়ে গেছে’ একথা কেউ এসে বলে তার মনে যেমন হয়, তেমন আর কী!</span></p>
+<p><span>কিছুক্ষণ মুখ নামিয়ে চুপ করে থেকে ভোঁদাই বলল, তা বলতে পারো। কিন্তু গত এক বছর হল, এ-নিয়ে আমি ভেবেছি। তুমি কি কিছুই বুঝতে পারোনি? সত্যি করে বলো তো? তোমাকে এ-বাড়িতে নানা কষ্ট সহ্য করতে হয়। আমার মা-পিসিমাও সে-কথা জানেন। তোমাকে নিয়ে গেলে ওঁরা তোমাকে মাথায় করে রাখবেন। তুমি এখানে নষ্ট হয়ে যাচ্ছ, তিল তিল করে ফুরিয়ে যাচ্ছ দীপিতা। তা আমি হতে দেব না। তুমি অমলদাকে ডিভোর্স করো। চলো আমাদের বাড়িতে। পুঁটিকেও নিয়ে যাব। তোমাদের সঙ্গে পুঁটিকেও আমরা পুরো পরিবার সানন্দে গ্রহণ করব। সত্যি বলছি। আমি আমার মা ও পিসির মন বুঝেই একথা বলছি। পুঁটিকেও এরা নষ্ট করে দেবে। এই পরিবারের অনেক নোংরা কথা আমি জানি। কিন্তু তোমাকে বলব না। আমি তোমার পিশাচ হয়ে থাকব বাকিজীবন। বিশ্বাস করো।</span></p>
+<p><span>—তুমি এখন যাও ভোঁদাই। তোমার মাথা খারাপ হয়ে গেছে। বড়োই ছেলেমানুষ তুমি।</span></p>
+<p><span>—এসো, কাছে এসো, তোমাকে একটা চুমু খাব, তোমার বুকে একটু মাথা রাখব। তোমার ছায়াতে একটুক্ষণ থাকব। পৃথিবীতে বড়ো রোদ্দুর বউদি।</span></p>
+<p><span>বলেই, দীপিতার কাছে এসে তার কোমর দু-হাতে জড়িয়ে ধরল ভোঁদাই।</span></p>
+<p><span>ঠাস করে এক চড় মারল ওকে দীপিতা। এতজোরে মারল যে, ওর গালে পাঁচ আঙুলের দাগ বসে গেল।</span></p>
+<p><span>স্তম্ভিত হয়ে গেল ভোঁদাই। ওর ওপরে জোর করল না, ওর ওপরে রাগ করল না, স্তব্ধ হয়ে চেয়ে রইল দীপিতার দু-চোখে। ঝরঝর করে জল ঝরতে লাগল ছ-ফিট লম্বা, সুগঠিত ভোঁদাই-এর দু-চোখ দিয়ে।</span></p>
+<p><span>তারপর ও মুখ নামিয়ে বলল, ক্ষমা কোরো আমাকে তুমি।</span></p>
+<p><span>বলেই, যেমন এসেছিল, তেমন-ই দ্রুত চলে গেল ঘর ছেড়ে।</span></p>
+<p><span>সিমলির কাছে শুনেছিল দীপিতা যে, ডা. ঝাঁ গতকাল রাঁচির মেন্টাল হসপিটালেরডা. সেনকে কল দিয়ে নিজের গাড়ি পাঠিয়ে নিয়ে এসেছিলেন ভোঁদাইকে দেখাতে। কোনো এক্সট্রিম মেন্টাল শক-এর জন্যেই নাকি এই সাংঘাতিক জ্বর হয়েছে। দীপিতা জোর করে হেসে, মুখে হাসি রেখে বলেছিল, চোরা-শিকার করতে গিয়ে ধরা পড়ল নাকি? নাকি কারও প্রেমে পড়ে হতাশ হয়েছে! পড়তে পারে। প্রেমে পড়া তো অপরাধ নয়।</span></p>
+<p><span>—কার প্রেমে পড়ল?</span></p>
+<p><span>সিমলি অর্থবহ স্বরে বলেছিল, তা কী করে বলব? তুমিও যতটুকু জানো, আমিও ততটুকুই। তবে আমার প্রেমে যে পড়েনি, তা তুমি নিশ্চয়ই জানো।</span></p>
+<p><span>বেশ কিছুদিন হল সিমলি তার বন্ধু মাধবীর দাদার প্রেমে পড়েছে বলে মনে হয়। বড়ো ঘন ঘন মাধবীদের বাড়ি যাচ্ছে। সেদিন সে সিনেমাতে গেছিল তাও মাধবীর দাদাই টিকিট কেটে নিয়ে গেছিল। মাধবীর মা-ও নাকি যাবেন। হয়তো তাই, প্রেমিক-প্রেমিকার কাছে প্রেমে পড়া যে, অপরাধ নয় এই স্থবির সত্যকে নতুন করে আবিষ্কার করেছে ও। তাদের কাছে না হলেও, প্রেমে পড়া অন্যদের কাছে যে, গর্হিত অপরাধ একথা এখনও বোঝেনি সিমলি। তার বাবা ব্রজেন করের অন্য মূর্তি যখন দেখবে তখন জানবে।</span></p>
+<p><span>মাধবীদের অবস্থা একেবারেই ভালো নয়।</span></p>
+<p><span>ছেলের বউ আনবার সময়ে অসহায় মেয়ে দেখে আনেন কর পরিবার আর মেয়ের বিয়ে দেওয়ার সময়ে সম্পদশালী ক্ষমতাবান পরিবারের খোঁজ করেন।</span></p>
+<p><span>দীপিতা মুখে বলেছিল, তুই যা তোদের কলেজের ফাংশানে, তোর দেরি হয়ে যাচ্ছে। আমি যাচ্ছি।</span></p>
+<p><span>চোখে একটু কাজল দিয়ে, খোলা চুলটাকে এলো খোঁপা করে, শাড়িটা বদলেই ওডিকোলোনটা নিয়ে চলে গেছিল দীপিতা।</span></p>
+<p><span>ডাক্তার ঝাঁ আরও মিনিট পনেরো পরে ঘর থেকে বেরিয়ে এলেন। বিশ্বাস-কাকিমা সঙ্গে এলেন। পিসিমা ঘরেই রইলেন ভোঁদাই-এর কাছে। ডাক্তার ঝাঁ-এর ব্যাগ বয়ে নিয়ে গেল রামলগন। কাকিমা সিঁড়ির মুখ অবধি পৌঁছে দিলেন। কাকিমাকে ফিরে আসতে দেখেই দীপিতা বাইরে থেকে ভেতরে মুখ ফেরাল।</span></p>
+<p><span>কাকিমা বললেন, চা খাবি দীপিতা?</span></p>
+<p><span>কখনো তুই করে বলেননি উনি দীপিতাকে। আজ বললেন। কেন, কে জানে!</span></p>
+<p><span>তারপর বললেন, চল, খাবার ঘরে যাই।</span></p>
+<p><span>মগনলালকে চা ভেজাতে বলে খাবার টেবিলের সামনের চেয়ারে বসে, দীপিতাকে বসিয়ে বললেন, আমার ছেলের জীবন এখন তোর-ই হাতে। তোর সঙ্গে কি কোনো ঝগড়া-টগড়া হয়েছিল ভোঁদাই-এর?</span></p>
+<p><span>—না তো।</span></p>
+<p><span>বলল, দীপিতা।</span></p>
+<p><span>—সত্যি করে বল মা। আমার একটি মাত্র সন্তান। তোর পিসিমাও নি:সন্তান। ও ছাড়া আমাদের কেউ-ই নেই। ওর প্রয়োজন নেই তাই ও চাকরি বা ব্যাবসা করে না, কিন্তু ছেলে তো ও খারাপ নয়। মাঝে মাঝে একটু মদ-টদ খায়, সে আজকাল কে-ই বা না খায়? ইচ্ছে করলেই ব্যাবসা করতে পারে। আজ অবধি ওর মন কারোতেই বসেনি। একমাত্র তুই-ই ব্যতিক্রম। তুই হয়তো জানিস না, পড়াশোনাতেও খুব ভালো ছিল। কিন্তু ইংরেজিতে বি.এ. করার পরে আর পড়ল না। গান-বাজনা, সাহিত্য, খেলাধুলো, ছবি আঁকা, শিকার সব ব্যাপারেই ওর তুমুল উৎসাহ ছিল। জীবনকে ও দারুণ ভালোবাসে। আমার সন্তান বলে বলছি না, মানে....</span></p>
+<p><span>—এসব কেন বলছেন কাকিমা আমাকে?</span></p>
+<p><span>—ভোঁদাই তোকে ভালোবাসে। এত ভালোবাসা সম্ভবত কম মানুষ-ই কম মানুষকে বাসে। তুই বিয়ে হয়ে এখানে আসার পরমুহূর্ত থেকে ও তোর প্রেমে পড়েছে। আমি ওর মা, ওর কষ্ট আমি সব বুঝি। কিন্তু আমার করার তো কিছুই নেই। না তোর, না ওর, না আমাদের! ও যে, তোর জন্যে কত কষ্ট পেয়েছে ও পাচ্ছে সে আমরাই জানি। ওর স্বভাবটাই কেমন হয়ে গেছে। মনমরা, উদাসীন।</span></p>
+<p><span>—আমি কী করতে পারি কাকিমা....</span></p>
+<p><span>—তুইও তো কর-বাড়িতে গত, পাঁচ বছরে কম কষ্ট পাসনি। এখনও তো আনন্দে নেই। তোর বাপের বাড়ি বলতেও কিছু নেই যে, রাগ দেখিয়ে, সেখানে গিয়ে দু-দিন কাটিয়ে আসবি মন শান্ত করতে। তোকেও তো বুঝি আমরা। তোকে কথা দিচ্ছি আমি, তোর ছেলেবেলাতে হারিয়ে-যাওয়া মায়ের অভাব পূরণ করব। আমাদের, মানে পিসিমারও যা-কিছু আছে সব-ই তোর, ভোঁদাইসুদ্ধু।</span></p>
+<p><span>—আমি কী করতে পারি....</span></p>
+<p><span>আবারও বলল এক-ই কথা দীপিতা, যেন ঘোরের মধ্যে।</span></p>
+<p><span>—তুই ও বাড়ি ছেড়ে আমাদের বাড়ি চলে আয়।</span></p>
+<p><span>স্তম্ভিত হয়ে গেল দীপিতা সে-কথা শুনে। এমন প্রস্তাব যে, কেউ দিতে পারে, তা অভাবনীয়।</span></p>
+<p><span>এমন সময়ে পিসিমাও এলেন।</span></p>
+<p><span>—কী হল দিদি, তুমিও চলে এলে?</span></p>
+<p><span>—ইমরাত আর ঝাণ্ডুরাম এসেছে।</span></p>
+<p><span>—তাই?</span></p>
+<p><span>—ওরা আছে। কিন্তু ওরা খেতে যাবে। খেয়ে আবার ফিরে এসে থাকবে নীচে, রাতে।</span></p>
+<p><span>পিসিমা বললেন, দীপিতা চা খেয়ে আয় মা, একটু ওডিকোলনের জল-পট্টি দিয়ে দিবি কপালে। অজ্ঞানাবস্থায় সমস্তক্ষণ তোর নাম-ই বলেছে। ডাক্তার ঝাঁ-ও শুনেছেন। তিনি তো জানেন না দীপিতা কে? তাই আমাদের জিজ্ঞেস করছিলেন।</span></p>
+<p><span>তাহলে তুমি ইমরাতদের এখন যেতে বলো। বলো, খাওয়া-দাওয়া করে আসুক। রাতে একজনের তো থাকা দরকার। রাত-বিরেতে কী দরকার হয়। ওরা চলে গেলে দীপিতা যাবে চা খেয়ে ঘরে।</span></p>
+<p><span>কাকিমা বললেন।</span></p>
+<p><span>—তাই ভালো।</span></p>
+<p><span>পিসিমা বললেন।</span></p>
+<p><span>চা খাওয়া হলে দীপিতা গিয়ে একটা চেয়ার নিয়ে ভোঁদাই-এর মাথার কাছে বসে ওর কপালে ওডিকোলনের জলপট্টি দিতে লাগল একটা রুমালে ভিজিয়ে। একটি কাপে ওডিকোলোনের সঙ্গে জল মিশিয়ে নিয়েছে। এখন টেবিল-লাইটটা জ্বলছে শুধু ঘরে। আলোতে দেখা যাচ্ছে টেবিলের ওপরে সাজানো আছে অমিতাভ দাশগুপ্ত, শঙ্খ ঘোষ, নীরেন্দ্রনাথ চক্রবর্তী এবং জয় গোস্বামীর কবিতা। ও শীর্ষেন্দু মুখোপাধ্যায় আর বাণী বসুর লেখার খুব ভক্ত। আসলে সব বই আছে ওর লাইব্রেরি-ঘরে। তথ্যকেন্দ্র, দিশা, বিভাব, কবিতা-পাক্ষিক, এসব দীপিতা তো এ বাড়ি থেকে চেয়েই পড়ে। তাদের বাড়িতে শাশুড়ি শুধু সাপ্তাহিক বর্তমান রাখেন।</span></p>
+<p><span>টেবিল-লাইটটার আলো এসে ভোঁদাই-এর মুখের একটা পাশে পড়েছে। থুতনিতে। সাতদিন দাড়ি না-কামানোতে মাজা রঙের ওপরে ফলসা রঙা ছায়ার মতো দাড়ি গজিয়েছে। ও একবার দেখবার চেষ্টা করল ওর মারা চড়ের দাগটা এখনও ভোঁদাই-এর গালে আছে কি না।</span></p>
+<p><span>ভোঁদাই-এর ভালো নাম অনিকেত। কিন্তু ও নামে কেউ-ই তাকে ডাকে না। এত কাছ থেকে এত মনোযোগ দিয়ে কখনো তাকায়ওনি ও ভোঁদাই-এর মুখের দিকে। দেখতে সে বেশ ভালোই। ফিগার তো দারুণ-ই ভালো। সরু কোমর, চওড়া বুক, লম্বা ঘাড়, একমাথা অবাধ্য চুল, কিন্তু তার ওপরে মুখটিও সুন্দর। সবচেয়ে বড়োকথা, মানুষটি শরীরসর্বস্ব নয়, তার একটি সুন্দর, সুরুচিসম্পন্ন, রসিক, দরদি মন আছে। এতদিন ইয়ার্কির ছলে অনিকেত যা-কিছু বলে এসেছে দীপিতাকে সকলের সামনে এবং একা পেয়েও, তা যে ইয়ার্কি নয়, মর্মান্তিক সত্যি —একথা এই বেহুঁশ অনিকেতের পাশে বসে উপলব্ধি করল দীপিতা।</span></p>
+<p><span>অস্পষ্ট গোঙানির সঙ্গে চোখ চাইল আস্তে আস্তে অনিকেত। চোখ মেলে, তার মুখের ওপরে ঝুঁকে-পড়া দীপিতার মুখটিকে দেখেই আতঙ্কে অথবা আনন্দে তার দু-চোখ বিস্ফারিত হয়ে উঠল। তারপর-ই বিড়বিড় করে বলল, ক্ষমা কোরো, ক্ষমা কোরো।</span></p>
+<p><span>তখন ঘরে আর কেউ-ই ছিল না। ভোঁদাই-এর গলার স্বর শুনতে পেয়ে খাটের তলাতে শুয়ে-থাকা পিশাচ তড়াক করে লাফিয়ে উঠতে গিয়ে তেপায়াটার পায়ে ধাক্কা দিতেই ওডিকোলনের কাপটা পড়ে ভেঙে গেল। এমন সময়ে বিটকেল এল ঘরে। দীপিতা কাকিমাকে ডাকতে বলল তাকে।</span></p>
+<p><span>ওঁরা দু-জনেই দৌড়ে আসতেই দীপিতা বলল, চোখ মেলেছিল। কথাও বলেছিল। বিড়বিড় করে কী বলছিল, বুঝতে পারিনি। কাপটা ভেঙে গেল। পিশাচ।</span></p>
+<p><span>অন্য একটা কাপ আনছি, বলে পিসিমা চলে গেলেন।</span></p>
+<p><span>এবারে ভোঁদাই পূর্ণদৃষ্টিতে তাকাল। প্রথমে কাকিমার দিকে, তারপর দীপিতার দিকে। অনেকক্ষণ তাকিয়ে রইল। তারপর বলল, ক-টা বেজেছে?</span></p>
+<p><span>—ন-টা। মা তুমি এতক্ষণ বউদিকে আটকে রেখেছ! অমলদা রাগ করবে।</span></p>
+<p><span>—রাগ করবে কেন? সে কি অবুঝ? না অমানুষ?</span></p>
+<p><span>কাকিমা বললেন।</span></p>
+<p><span>—না, বকবে বউদিকে।</span></p>
+<p><span>—আরে না, না। চলে যাবে দীপিতা একটু পরে।</span></p>
+<p><span>—হ্যাঁ। তা তো যাবেই। যেতে তো হবেই বউদিকে। সন্ধে হলেই পশুপাখি মানুষ সকলেই যে-যার ঘরে ফিরে যায়। যার যার নিজের ঘরে। এখন রাত। তুমি চলে যাও বউদি তোমার নিজের ঘরে।</span></p>
+<p><span>এবারে মাঝে মাঝেই চোখ মেলতে লাগল ভোঁদাই। দীপিতার অনিকেত।</span></p>
+<p><span>জ্বরটা কি নামছে?</span></p>
+<p><span>দীপিতা নতুন পট্টি লাগাবার সময়ে ওর কপালে ডান হাতের পাঁচটি আঙুল ছোঁয়াল। কেঁপে উঠল ভোঁদাই। শীতে, না ভয়ে, না আনন্দে, তা সেই জানে।</span></p>
+<p><span>কাঁপুনি দিয়ে ছাড়ছে জ্বর।</span></p>
+<p><span>পিসিমা স্বগতোক্তি করলেন।</span></p>
+<p><span>দীপিতা ভাবছিল, কীসের কাঁপুনি, কেন কাঁপুনি, কে জানে!</span></p>
+<p><span>—কীরে ভোঁদাই, কেমন লাগছে এখন?</span></p>
+<p><span>—ভালো।</span></p>
+<p><span>—কিছু খাবি?</span></p>
+<p><span>—হুঁ।</span></p>
+<p><span>ডাক্তার ঝাঁ বলেছেন সাবুর খিচুড়ি দিতে। খাবি?</span></p>
+<p><span>—হুঁ।</span></p>
+<p><span>—বাবা: ধড়ে প্রাণ এল আমাদের।</span></p>
+<p><span>পিসিমা হেসে বললেন।</span></p>
+<p><span>ভোঁদাই ওর ডান হাতটা বাড়িয়ে দিল দীপিতার দিকে। কাকিমা ও পিসিমা উদবিগ্ন এবং অপ্রতিভ মুখে তাকিয়ে ছিলেন দীপিতার মুখের দিকে। একমুহূর্তে কী ভেবে দীপিতা তার ডান হাতটা ভোঁদাই-এর হাতের দিকে বাড়িয়ে দিল, ডুবন্ত মানুষ যেমন করে কুটোকে আঁকড়ে ধরে, যেন তেমন করেই আঁকড়ে ধরল ও দীপিতার হাতের পাতাকে। দীপিতা আলতো করে চাপ দিল অনিকেতের হাতে।</span></p>
+<p><span>ভোঁদাই এমন করে দীপিতার হাতটি ধরল যেন, আর কোনোদিনও ছাড়বে না।</span></p>
+<p><span>পাঁচ মিনিট পরেই ভিখু এসে বারান্দায় দাঁড়িয়ে বলল, বহুদিদি, বড়দাদা ঘর লওটা হ্যায়। আপকো বোলা রহা হ্যায়।</span></p>
+<p><span>ভোঁদাই-এর মা ভিখুকে মাথায় হাত দিয়ে বললেন, যাকর বোলনা, হাম সবহি হিঁয়া হ্যায়, বহুদিদিকে আভি ভেজ দুঙ্গা। হামারা নাম লেকর বোলনা। সমঝা-না ভিখু!</span></p>
+<p><span>—জি মাইজি! সমঝা।</span></p>
+<p><span>বলে, ভিখু চলে গেল।</span></p>
+<p><span>দীপিতাকে যখন রামলগলন ওদের বাড়ির গেট-এ পৌঁছে দিয়ে এল, তখন রাত দশটা বাজে। দীপিতা ভাবছিল, আজ অমলের চাতরাতেই তো রাতে থেকে যাওয়ার কথা ছিল। ফিরে এল যে, বড়ো!</span></p>
+<p><span>বারান্দা পেরিয়ে ঘরে ঢুকতেই অমল বলল, বিদ্রূপের সঙ্গে, কাঁহা চলে গ্যায়িথি আপ দীপিতাজি?</span></p>
+<p><span>দীপিতার ইচ্ছে করল ওয়ার্ল্ড-কাপ-এর সময়ে একটা বিজ্ঞাপনে রানি মুখার্জি যেমন করে বলেছিল তেমন করেই বলে, ‘হামারা আসলি হিরো কি পাস।’</span></p>
+<p><span>—তোমার তো আজ ফেরার কথা ছিল না।</span></p>
+<p><span>তারপর বলল, তুমি জান না?</span></p>
+<p><span>—জানি না, কিছুই জানি না। ফিরব না জেনে, রাতভর থেকে যাবে প্রেমিকের কাছে! তাই কি ঠিক করেছিলে?</span></p>
+<p><span>—কে প্রেমিক?</span></p>
+<p><span>—বাজে কথা বোলো না। বিমল আমাকে সব বলেছে। বলছে, বহুদিন থেকে। আমি-ই বিশ্বাস করিনি বোকা বলে।</span></p>
+<p><span>আকাশ থেকে পড়ে দীপিতা বলল, বিমল! অতটুকু ছেলে! ও কী বলেছে?</span></p>
+<p><span>—ওই তো আজকে ফোন করে বলল বিকেলে আমাকে চাতরাতে। গত বুধবার রাতে আমি যখন ছিলাম না, তখন তোমার সঙ্গে রাত কাটিয়ে যায়নি ভোঁদাই? সপ্তাহে দু-তিনদিন দুপুরে আসে না ও তোমার কাছে?</span></p>
+<p><span>—কী বলছ কী তুমি!</span></p>
+<p><span>আতঙ্কিত ও আহত গলাতে বলল, দীপিতা।</span></p>
+<p><span>হঠাৎ চেয়ার ছেড়ে দাঁড়িয়ে উঠে অমল বলল, সত্যি কথা বলো, সে-রাতে সে আসেনি তোমার কাছে?</span></p>
+<p><span>দীপিতা বুঝল, অমলের নেশা হয়ে গেছে। চেয়ারের পাশে একটা মহুয়ার বোতল। অন্য একটা পড়ে আছে নীচে।</span></p>
+<p><span>একমুহূর্ত চুপ করে থেকে দীপিতা বলল, হ্যাঁ। আমি মিথ্যে বলি না। এসেছিল।</span></p>
+<p><span>—এসেছিল? তুমি মিথ্যে বলো না বলে, আবার গর্ব করে বলছ!</span></p>
+<p><span>বলেই, চেয়ার ছেড়ে দাঁড়িয়ে উঠে দীপিতাকে প্রচন্ড শব্দে এক চড় মারল অমল। দীপিতা মাথা ঘুরে খাটের ওপরে পড়ে গেল। জোরে চিৎকার করে কেঁদে উঠতে গেছিল সে, কিন্তু একটা ভোঁতা হ্রস্ব আওয়াজ তার গলা অবধি উঠে স্তব্ধ হয়ে গেল।</span></p>
+<p><span>অমল ঘৃণাভরে তাকে চুলের মুঠি ধরে তুলে আবারও এক চড় মারল, দীপিতার ‘আর মেরো না’ বলবার মুখে।</span></p>
+<p><span>তারপর বলল, কলকাতার রান্ডী! যাও, ভিখুকে বলে এসো আমার খাবার নীচে নিয়ে আসতে।</span></p>
+<p><span>পরক্ষণেই বলল, না তুমি নিজে যাও। আমার খাবার নিজে হাতে বয়ে নিয়ে এসো। সব যেন গরম থাকে। আমি চানে গেলাম।</span></p>
+<p><span>বলেই, বাথরুমের দরজা বন্ধ করল প্রয়োজনের চেয়ে অনেক-ই জোরে। ‘দড়াম’ শব্দটা মাথার মধ্যে দপদপানি তুলল। দীপিতা একমুহূর্ত ভাবল। তারপরে ঘরের বাইরে এসে দোতলার সিঁড়ির সামনে দাঁড়াল সামান্যক্ষণ। তারপরেই গেট খুলে বাইরে বেরিয়ে ভোঁদাইদের বাড়ির দিকে এগোল।</span></p>
+<p><span>এমন সময়ে দোতলার তাঁর শোয়ার ঘরের লাগোয়া ছোটোঝুল বারান্দাতে দাঁড়িয়ে অন্নদা বললেন, এতরাতে কোথায় চললে? বউমা!</span></p>
+<p><span>দীপিতা মুখ না-তুলে, কথা না-বলে, বিশ্বাস-বাড়ির দিকে আঙুল তুলে দেখাল।</span></p>
+<p><span>সিমলি, মাধবীদের বাড়ি থেকে দীপিতা ফেরার পরে পরেই ফিরেছিল। মাধবীর দাদা রণেশের গলা শুনেছিল দীপিতা। সাইকেলে ডাবল-ক্যারি করে পৌঁছে দিয়ে গেল সম্ভবত ও সিমলিকে। হয়তো কলেজের ফাংশানের নাম করে নদীর ধারে গেছিল-বা ওদের বাড়িতে বসে গল্প করছিল। ভদ্রলোকের বাড়ি সেটা, গল্প করতেই পারে। কর-বাড়ির মতো ছোটোলোকের, অসুস্থ মানসিকতার মানুষদের বাড়ি নয় তো! সিমলি তার মায়ের পাশে বারান্দাতে দাঁড়িয়ে বলল, যাও বউদি, চলে যাও। আর ফিরে এসো না। অনেক অপমান, অনেক কষ্ট সয়েছ এখানে তুমি। আর এসো না।</span></p>
+<p><span>অন্নদা সিমলির হাত ধরে হিড়বিড় করে টেনে তাকে ভেতরে নিয়ে গেলেন। ‘ঠাস’! করে একটি শব্দ হল। সম্ভবত অন্নদা সিমলিকে চড় মারলেন।</span></p>
+<p><span>পরমুহূর্তেই অন্নদা বাইরে এসে বললেন, পুঁটিকে আমি তোমার কাছে একমুহূর্তের জন্যেও পাঠাব না। কাল সকালেই তো ফিরে আসতে হবে। যাও আজ গোসাভাঙিয়ে এসো। গোসাঘরে চললেন বিবি! ছি:! ছি:!</span></p>
+<p><span>মুখ না তুলেই বলে দীপিতা, আর আসব না আমি।</span></p>
+
+<p><span>গেট বন্ধ করে পিশাচকে ছেড়ে দিয়েছিল রামলগন। রামলগনের ‘পীযূষ’। বাকরুদ্ধ কন্ঠে দীপিতা বলল, রামলগন, পিশাচকে বাঁধো।</span></p>
+<p><span>দীপিতার গলার স্বর শুনে ভোঁদাই-এর মা-পিসিমা দো-তলার বারান্দাতে এসে দাঁড়ালেন এবং ঠিক সেইসময়ে ইমরাত খাঁ তার সাইকেল করে গেটের কাছে এসে পৌঁছোল। তার গালে অমলের পাঁচ আঙুলের দাগ, এলোথেলো চুল এবং চোখের জল পৃথিবীর কারও কাছেই আর লুকোবার প্রয়োজন মনে করল না দীপিতা।</span></p>
+<p><span>ইমরাত পূর্ণদৃষ্টিতে দীপিতার মুখের দিকে একমুহূর্ত চেয়ে থেকে কী ভেবে রামলগনকে বলল, রামলগন ম্যায় আভভি আয়া লওটকে। তুম ভাবিকে উপ্পর লে যাও।</span></p>
+<p><span>বলেই, সাইকেল ঘুরিয়ে চলে গেল।</span></p>
+<p><span>দো-তলার বারান্দাতে পৌঁছোবার আগেই কাকিমা আর পিসিমা ওকে দেখে দৌড়ে একতলাতে নেমে আসছিলেন। সিঁড়ির দেড়তলার ল্যাণ্ডিং-এ দেখা হল ওঁদের দীপিতার সঙ্গে। দীপিতার মুখের দিকে চেয়ে ওই অবস্থা দেখে দু-জনে একইসঙ্গে কেঁদে উঠলেন।</span></p>
+<p><span>পিসিমা বললেন, আমাদের জন্যে তোমার! ইশ!</span></p>
+<p><span>কাকিমা ওকে বুকে জড়িয়ে ধরে বললেন, আয়। আয়। মা। তিন বছর বয়েসে মাকে হারিয়েছিলি, আমি আজ থেকে তোর মা হলাম। তোকে আর ছাড়ব না।</span></p>
+<p><span>—পুঁটিকে আনলে না?</span></p>
+<p><span>পিসিমা বললেন।</span></p>
+<p><span>—না। ও তো আমার নয়। ও টেস্ট-টিউবেও হতে পারত। ও অমলের আর আমার শ্বশুর-শাশুড়ির। হয়তো সুরাতিয়ারও। কিন্তু আমার নয়। ও বাড়ির কোনো স্মৃতিই আমি রাখব না।</span></p>
+<p><span>—তোমার মায়ের দেওয়া সেই গার্নেটের মালাটাও? সে তো ওদের নয়, তোমার মায়ের-ই তো।</span></p>
+<p><span>পিসিমা বললেন।</span></p>
+<p><span>ভোঁদাই-এর মা বললেন, আমি ওকে ঠিক ওর মায়ের দেওয়া মালার-ই মতো গার্নেটের মালা-গড়িয়ে দেব। আর আমার বউমার জন্যে তো সব গয়না গড়ানোই আছে। গয়নাতে মুড়ে দেব ওকে।</span></p>
+<p><span>দীপিতা ফুঁপিয়ে কেঁদে উঠে বলল, আমার কিছুই চাই না মা, শুধু একটু ভালোবাসা...</span></p>
+<p><span>ভোঁদাই-এর মা ওকে বুকে জড়িয়ে ধরে বললেন, আমি, ছোড়দি, ভোঁদাই, রামলগন, পিশাচ—আমরা সকলে তোকে ভালোবাসায় মুড়ে দেব। তুলোর মধ্যে করে রাখব তোকে। তোকে জিপে চড়তে হবে না। মারুতি কিনে দেব তোকে তোর পছন্দসই রঙের।</span></p>
+<p><span>ভোঁদাই এইসব উচ্চগ্রামের কথাবার্তাতে সচকিত হয়ে বিছানার ওপরে উঠে বসার চেষ্টা করছিল। ওঁরা ঘরে ঢুকে হাঁ হাঁ করে উঠলেন। বললেন, পড়ে যাবি পড়ে যাবি।</span></p>
+<p><span>—তুমি যে আবারও এলে!</span></p>
+<p><span>আধশোয়া হয়েই বলল, ভোঁদাই।</span></p>
+<p><span>—তোরা কথা বল। আমি দেখি সাবুর খিচুড়ির কতদূর হল।</span></p>
+<p><span>কাকিমা বললেন।</span></p>
+<p><span>তারপর বললেন, চলো ছোড়দি, ওদিকটা দেখি গিয়ে আমরা। সকলেই আজ সাবুর খিচুড়ি খাব।</span></p>
+<p><span>দীপিতা গিয়ে ভোঁদাই-এর সামনে দাঁড়াল। প্রথমে ভোঁদাই যেন বুঝতে পারেনি তারপর-ই টেবিল-লাইটের আলোতেই তার গালে পাঁচ-আঙুলের দাগ দেখতে পেয়ে ব্যথায় নীল হয়ে গিয়ে বলল, এমনও কেউ করতে পারে? পিশাচ আমার পিশাচ নয়, আসল ‘পিশাচ’ অমলদা। ইশ!</span></p>
+<p><span>দীপিতা, অনিকেতের গালে নিজের হাতের পাতা ছুঁইয়ে অর্ধেক হেসে, অর্ধেক কেঁদে বলল, কেউ কেউ পারে।</span></p>
+<p><span>দীপিতার মারা চড়ের দাগটা মিলিয়ে গেছিল অনিকেতের গাল থেকে। মেয়েদের হাত তো নরম হয়। মেয়েদের সবকিছুই নরম হয়। সবচেয়ে বেশি নরম হয় মন। এই সহজ কথাটা অমল কর বুঝল না।</span></p>
+<p><span>দীপিতা বলল, তোমার অমলদাকে চিরদিনের জন্যে ছেড়ে এলাম। এবার থেকে তোমাদের বাড়িতেই থাকব।</span></p>
+<p><span>অনিকেত দীপিতার হাতের ওপরে নিজের হাতটি রেখে কাঁপা কাঁপা গলায় বলল, সত্যি?</span></p>
+<p><span>তারপর কিছুক্ষণ চুপ করে থেকে বলল, এতদিনে তুমি সত্যি সত্যিই ‘দীপিতা’ হলে।</span></p>
+<p><span>—দীপিতা!</span></p>
+<p><span>দীপিতা বলল।</span></p>
+<p><span>তারপরেই ওর মনে হল যে, ও ভুলেই গেছিল ওর মা-বাবার দেওয়া নামের একটা মানে ছিল। মানেটা এতবছর পরে ফুলের মতোই ফুটে উঠল যেন।</span></p>
+<p><span>ইমরাত আর ঝাণ্ডুরাম একটু পরে ফিরে এসে রামলগনকে ডেকে গেট খোলাল। ওর বন্দুকটা সঙ্গে করে নিয়ে এসেছে। অমলকে বা ব্রজেন করকে এই গেটের মধ্যে আর কোনোদিনও ঢুকতে দেবে না ইমরাত এবং ভোঁদাই-এর অন্য বন্ধুরা। আসতে পারে, শুধু ভোঁদাই আর দীপিতার বিয়ের দাওয়াতে। তা নইলে নয়।</span></p>
+<p><span>ঝাণ্ডু বলল, ইমরাতকে, তুমকো ম্যায় বোলা থা ইয়ার যো ডালটনগঞ্জকি ইয়ে রানি মুখার্জিহি ভোঁদাইকি জান খায়েগা।</span></p>
+<p><span>—যোভি বোল, বহত-ই খুবসুরত হ্যায় উও জেনানা।</span></p>
+<p><span>—স্রিফ খুবসুরত-ই নেহি হ্যায়, এইসি লেড়কি লাখোমে এক মিলতি হ্যায়।</span></p>
+<p><span>ইমরাত বলল।</span></p>
+<p><span>পিশাচ যেন ওদের দু-জনকে সমর্থন করে বলল, ভৌ! ভৌ!</span></p>
+
+            </div>
+
+        </div>
+    </div>
+
+        <!-- TOC nav for mobile -->
+        <nav id="toc-nav-desktop" class="hidden"></nav>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const progressBar  = document.getElementById('read-progress-bar');
+    const progressPct  = document.getElementById('progress-pct');
+    const tocDesktop   = document.getElementById('toc-nav-desktop');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+    const progressRing = document.getElementById('progress-ring-circle');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = p.currentTheme;
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    function toBN(n) {
+        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
+    }
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        if (progressPct) progressPct.textContent = toBN(pct) + '%';
+        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
+        if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
+        if (rfPage) rfPage.textContent = toBN(pct) + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+
+    // ── Footer: chapter label + seek slider ──
+    const rfSlider  = document.getElementById('rf-slider');
+    const rfPage    = document.getElementById('rf-page');
+    const rfChapter = document.getElementById('rf-chapter');
+    let rfSliderDragging = false;
+    if (rfSlider) {
+        rfSlider.addEventListener('input', () => {
+            rfSliderDragging = true;
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
+        });
+        rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
+    }
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav, isMobile) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            if (isMobile) {
+                a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+                a.addEventListener('click', closeDrawer);
+            } else {
+                a.className = 'toc-link ' + (isH1 ? 'toc-link-h1' : 'toc-link-h2');
+            }
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocDesktop, false);
+    buildToc(tocMobile, true);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+        if (rfChapter && headings[current]) rfChapter.textContent = headings[current].textContent.trim();
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme only; drawer/settings UI stays a fixed dark sheet)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+        black: { bg: '#000',     text: '#d1d5db' },
+        sepia: { bg: '#f5efe6',  text: '#3b2f1e' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? '#c0392b' : 'transparent';
+            });
+            savePrefs();
+
+            // Ad bar theme sync
+            window._pathakAdBarTheme && window._pathakAdBarTheme(m);
+        });
+    });
+
+    // ── Ad bar theme sync function (exposed globally) ──
+    window._pathakAdBarTheme = function(m) {
+        const adBar     = document.getElementById('ad-bar');
+        const adContent = document.getElementById('ad-bar-content');
+        const adDatetime= document.getElementById('ad-bar-datetime');
+        const adNotice  = document.getElementById('ad-bar-notice');
+        if (adBar)      adBar.style.background     = m.bg;
+        if (adContent)  adContent.style.background = m.bg;
+        if (adDatetime) adDatetime.style.color      = m.text;
+        if (adNotice)   adNotice.style.color        = m.text;
+    };
+
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+        // Ad bar HTML is below — expose theme for ad bar script to pick up
+        window._pathakCurrentTheme = currentTheme;
+        window._pathakThemeMap = themeMap;
+    })();
+})();
+</script>
+
+
+</body>
+</html>

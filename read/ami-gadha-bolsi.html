@@ -1,0 +1,2123 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/ami-gadha-bolsi.html">
+    <title>আমি গাধা বলছি - পাঠক ঘর</title>
+    <meta name="description" content="কৃষণ চন্দরের বিখ্যাত ব্যঙ্গাত্মক (satirical) উপন্যাস **'আমি গাধা বলছি'** (*এক গাধে কি সর্গজশত*) উপমহাদেশের রাজনৈতিক ও সামাজিক ব্যবস্থার ওপর এক তীব্র চাবুক।
+বইটি">
+    <meta property="og:title" content="আমি গাধা বলছি - পাঠক ঘর">
+    <meta property="og:description" content="কৃষণ চন্দরের বিখ্যাত ব্যঙ্গাত্মক (satirical) উপন্যাস **'আমি গাধা বলছি'** (*এক গাধে কি সর্গজশত*) উপমহাদেশের রাজনৈতিক ও সামাজিক ব্যবস্থার ওপর এক তীব্র চাবুক।
+বইটি">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e', black:'#000' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', sepia:'#3b2f1e', dark:'#e5e7eb', black:'#d1d5db' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .dark body { background: #1a1a1b; color: #e5e7eb; }
+
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.7rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+        .dark #book-content { color: #e5e7eb; }
+    
+    /* ── Book read header hero ── */
+    .book-read-header {
+        margin-bottom: 1.5rem;
+    }
+    .book-read-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.65rem;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 1.4rem 1.25rem 1.2rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .dark .book-read-box {
+        background: #2a2a2b;
+        border-color: #3a3a3b;
+    }
+    .book-read-cover {
+        width: 100px;
+        height: 136px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        object-fit: cover;
+        background: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .book-read-cover svg { opacity: 0.35; }
+    .book-read-title-link {
+        text-decoration: none;
+        display: block;
+    }
+    .book-read-title-link:hover .book-read-title { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-title-link:active .book-read-title { opacity: 0.7; }
+    .book-read-title {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #1a1a1b;
+        line-height: 1.4;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+    .dark .book-read-title { color: #f3f4f6; }
+    .book-read-author-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+    .book-read-author-link:hover .book-read-author { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-author-link:active .book-read-author { opacity: 0.6; }
+    .book-read-author {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #c0392b;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+</style>
+</head>
+<body>
+
+<style>
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    #read-progress-bar {
+        position: fixed;
+        top: 0; left: 0;
+        height: 2px;
+        width: 0%;
+        background: #c0392b;
+        z-index: 1000;
+        transition: width 0.1s linear;
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h1 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #9ca3af;
+        text-align: center;
+        margin: 0 0 0.25rem;
+        letter-spacing: 0.04em;
+    }
+    #book-content h1::after {
+        content: '';
+        display: block;
+        width: 2.8em;
+        height: 3px;
+        background: #c0392b;
+        border-radius: 2px;
+        margin: 0.4rem auto 0;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #7a2115;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid #d9a5a0;
+        border-bottom: 1px solid #d9a5a0;
+    }
+    /* Night mode heading adjust */
+    body.theme-dark  #book-content h1,
+    body.theme-black #book-content h1 { color: #6b7280; }
+    body.theme-dark  #book-content h2,
+    body.theme-black #book-content h2 { color: #f2938a; border-color: rgba(169,50,38,0.4); }
+    body.theme-dark  #book-content h1::after { background: #a93226; }
+    body.theme-black #book-content h1::after { background: #922b21; }
+    body.theme-sepia #book-content h1 { color: #a08060; }
+    body.theme-sepia #book-content h2 { color: #7a2115; border-color: rgba(160,64,48,0.35); }
+    body.theme-sepia #book-content h1::after { background: #a04030; }
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: rgba(192,57,43,0.05);
+        border: 1px solid rgba(192,57,43,0.15);
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p,
+    body.theme-black #book-content p {
+        background: rgba(169,50,38,0.1);
+        border-color: rgba(169,50,38,0.25);
+    }
+    body.theme-sepia #book-content p {
+        background: rgba(160,64,48,0.08);
+        border-color: rgba(160,64,48,0.2);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #c0392b;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #c0392b;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(192,57,43,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    .dark #book-content blockquote {
+        background: rgba(192,57,43,0.08);
+        color: #bbb;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #c0392b;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    .dark #book-content td { border-color: #3a3a3b; }
+    .dark #book-content tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(192,57,43,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: #e57373;
+        font-weight: 600;
+        background: rgba(192,57,43,0.18);
+        border-radius: 0.375rem;
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: #fff;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transition: color 0.15s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.6);
+    }
+    #toc-nav-desktop .toc-link {
+        display: block;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.375rem;
+        color: #4b5563;
+        text-decoration: none;
+        transition: background-color 0.15s, color 0.15s;
+    }
+    .dark #toc-nav-desktop .toc-link { color: #d1d5db; }
+    #toc-nav-desktop .toc-link:hover { background: #f3f4f6; }
+    .dark #toc-nav-desktop .toc-link:hover { background: #1f2937; }
+    #toc-nav-desktop .toc-link-h1 {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: #1f2937;
+    }
+    .dark #toc-nav-desktop .toc-link-h1 { color: #f3f4f6; }
+    #toc-nav-desktop .toc-link-h2 {
+        padding-left: 1.25rem;
+        font-size: 0.6875rem;
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.6rem 0.5rem 0.6rem 0.35rem;
+        background: #1a1a1b;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-back {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.25rem;
+        text-decoration: none;
+        transition: background 0.15s;
+    }
+    #rh-back:active { background: rgba(255,255,255,0.12); }
+    #rh-title {
+        flex: 1;
+        min-width: 0;
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: transparent;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+    #reader-header .rh-actions button:active { background: rgba(255,255,255,0.12); }
+    body.theme-dark  #reader-header,
+    body.theme-black #reader-header,
+    body.theme-sepia #reader-header { background: #141414; }
+
+    /* ── Reader footer: chapter label + page/percent + seek slider ── */
+    #reader-footer {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 55;
+        background: #1a1a1b;
+        padding: 0.5rem 1rem 0.65rem;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-footer { transform: translateY(100%); }
+    body.theme-dark  #reader-footer,
+    body.theme-black #reader-footer,
+    body.theme-sepia #reader-footer { background: #141414; }
+    #rf-labels {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.7);
+        margin-bottom: 0.35rem;
+    }
+    #rf-chapter {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #rf-page { flex-shrink: 0; }
+    #rf-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        background: rgba(255,255,255,0.22);
+        outline: none;
+        margin: 0;
+        cursor: pointer;
+    }
+    #rf-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        margin-top: -6px;
+    }
+    #rf-slider::-moz-range-thumb {
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        border: none;
+    }
+    #rf-slider::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; }
+    #rf-slider::-moz-range-track { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.22); }
+
+    /* Content needs bottom clearance so the fixed footer never covers text */
+    #read-main-content { padding-bottom: 4.5rem; }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: #303134;
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.55);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: #e57373;
+        border-bottom-color: #c0392b;
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ── Breadcrumb dark mode ── */
+    .read-breadcrumb-full { margin-left: -1.25rem; margin-right: -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
+    .dark #bc-category { color: #9ca3af !important; }
+    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
+    .dark #read-breadcrumb li > span { color: #4b5563; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #e57373;
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: 34px; height: 34px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        flex-shrink: 0;
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+    }
+    .theme-circle.active { border-color: #c0392b; }
+    .theme-circle svg { display: none; }
+    .theme-circle.active svg { display: block; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: #fff; }
+    .settings-row-val { font-size: 0.74rem; color: rgba(255,255,255,0.5); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: rgba(192,57,43,0.35); border-color: #c0392b; color: #fff; }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+</style>
+
+<!-- Progress bar (kept for internal % calc, hidden — footer slider replaces it visually) -->
+<div id="read-progress-bar" style="display:none;"></div>
+
+<!-- ══ Reader header (Lithium-style app bar) ══ -->
+<header id="reader-header">
+    <a href="/book/ami-gadha-bolsi.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <h1 id="rh-title">আমি গাধা বলছি</h1>
+    <div class="rh-actions">
+        <button id="rh-menu-btn" aria-label="মেনু" title="মেনু"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+    </div>
+</header>
+
+<!-- ══ Reader footer (chapter + page/percent + seek slider) ══ -->
+<footer id="reader-footer">
+    <div id="rf-labels">
+        <span id="rf-chapter"></span>
+        <span id="rf-page">০%</span>
+    </div>
+    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
+</footer>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                    <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
+                    <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
+                    <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn active" id="align-justify" title="জাস্টিফাই" style="background:#fde8e6;border-color:#c0392b;color:#c0392b;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <h2>এক</h2>
+<p>সুহৃদ পাঠকৃবন্দ, আমার বাগাড়ম্বর দেখে অনেকে অনেক কিছু মনে করে থাকেন। রাশিয়ার রকেট বলুন, আর আমেরিকার পকেট বলুন—আমি ওসব কিছু নই। সত্যি কথা হলো, আমি নেহাত গোবেচারী ভবঘুরে এক গাধা। ছোটবেলায় খবরের কাগজ পড়ার অভ্যাস হয়ে গিয়েছিল বলে আজ আমার এ দুর্গতি। বহু চেষ্টা করেও এ অভ্যাসটা দূর করা সম্ভব হয়নি।</p>
+<p>আসল কাহিনীটাই তাহলে শুরু করা যাক এবার। ছোটবেলায় খবরের কাগজ পড়তে পড়তে আমি মনুষ্যজাতির ভাষা আয়ত্ত করে নিলাম এবং মানুষের বুলি বলতে শুরু করলাম। রাজনীতি এবং জীবন দর্শনের সব রকম জটিল সমস্যাদি আমার কাছে দিবালোকের মত স্পষ্ট হয়ে ধরা দিতে লাগল। অতঃপর আমি জন্মভূমি বারাবাংকি ছেড়ে ডাংকি হয়ে দিল্লীতে এলাম এবং এক ধোপার বাড়িতে কাপড়ের গাঁট টানার কাজে নিয়োজিত হহলাম। একদিন ধোপা নদীতে কাপড় কাচতে গিয়ে আর ফিরে এল না। এক কুমীরে খেয়ে ফেলল ধোপাকে। ধোপার বিপন্ন স্ত্রী-পুত্রের ভরণ-পোষণের দায়িত্ব অবশেষে আমি নিলাম। বড় বড় অফিসারদের দ্বারে দ্বারে করুণা ভিক্ষা করতে লাগলাম আমি। ধোপার পরিবারের করুণ দুরবস্থার কথা বলে বলে আমি এ অফিস সে অফিস যেতে যেতে কেমন করে অবশেষে একদিন পণ্ডিত নেহেরুর বাসভবন অবধি গিয়ে উপস্থিত হলাম।</p>
+<p>আকস্মিকভাবে পণ্ডিত নেহেরুর সাথে এ সাক্ষাৎকার আমার ভাগ্য খুলে দিল। পণ্ডিত নেহেরু আমাকে খ্যাতির শীর্ষে তুলে ধরলেন। লোকে আমাকে বাড়ি বাড়ি ক্লাবে ক্লাবে, নিমন্ত্রণ করতে লাগল। অলি গলি এবং সড়কে আমাকে নিয়ে মিছিল বের হল। এক শেঠজী মনে করল, আমার মধ্যে কোন কেরামতি আছে। আমি নিশ্চয়ই কোন কোটিপতির নিজের লোক। তার ধারণা, বাইরে যে খোলসেই থাকি না কেন, ভেতরে ভেতরে বেশ কাজ বাগিয়ে যাচ্ছি। সে অনেক অনুনয় বিনয় করে আমাকে তার বাড়ি নিয়ে গেল। তার ফার্মের অংশীদার বানিয়ে মেয়েকে বিয়ে দেবার জন্য সে আমার যারপর নাই খাতির যত্ন করতে লাগল। আমাকে নিয়ে হাই সোসাইটিতে পরিচয় করিয়ে দিতে লাগল। আমি তাকে বাধা দিয়ে বললাম, আমি শিক্ষিত এবং বিচক্ষণ বটে, কিন্তু আসলে এক গাধা বইতো নই? কিন্তু সে অর্থগৃটা আমার কথা শুনতো থোড়াই। তার উদ্দেশ্য সিদ্ধির জন্যে বরাবর আমাকে খাতির তোয়াজ করে যেতে লাগল।</p>
+<p>কয়েক মাস তো বেশ আরামেই কাটল। কিন্তু যখন শেঠ জানতে পারল, আমার কাছে কোন পারমিট বা কোটা বলতে কিছুই নেই। সে আমার উপর ক্ষেপে গেল। দরজা জানালা বন্ধ করে শেঠজী এবং তার রূপবতী বিদুষী-কন্যা উভয়ে মিলে আমাকে বেদম মারলো এবং আমার সারা দেহ ক্ষত-বিক্ষত করে রাস্তায় ফেলে দিল।</p>
+<p>ছ’মাস ধরে আমি পশু হাসপাতালে জীবন-মৃত্যুর দোলায় দুলতে লাগলাম। ক্ষতের ব্যথায় দিনরাত কাতরাতে লাগলাম। মানবজাতির নির্মমতা এবং গাধাদের অক্ষমতার কথা চিন্তা করে আমি কাঁদলাম। কিন্তু এত কিছুর পরও আমি আবার কি করে বেঁচে উঠলাম, ভাবতে আশ্চর্য লাগে। জীবনের তিক্ত হলাহল পান করা আমার ভাগ্যের লিখন ছিল। নতুবা এর পরও কি কেউ বাঁচে?</p>
+<p>পুরোপুরি সুস্থ হবার পর ডাক্তার আমাকে তাঁর চেম্বারে ডেকে পাঠালেন। আমি পৌছলে আমার পিঠে সের দুয়েক ঘাস চাপিয়ে দিয়ে বললেন, ‘নাও, এই ঘাস তোমার আজকের ভরণ-পোষণের জন্য যথেষ্ট হবে। বাদবাকী আল্লাহ ভরসা। কিন্তু যাবার আগে আমার বিলটা চুকিয়ে যেও কিন্তু ‘</p>
+<p>‘ডাক্তার সাহেব আমি একজন শিক্ষিত গাধা এ কথা সত্যি। শিক্ষিত হবার দরুনই আজ আমি রিক্ত এবং নিঃস্ব। আমি যতদিন জীবিত থাকব আপনাকে দোয়া করব। কিন্তু এই দু’হাজার টাকার বিল পরিশোধ করা সম্পূর্ণ আমার শক্তির বাইরে।’</p>
+<p>ডাক্তার রামঅবতার যথেষ্ট হুঁশিয়ার লোক ছিলেন। আমার অসুবিধার কথা বুঝে একটু মুচকি হেসে বললেন, ‘তাহলে আমার টাকা তোমার কাছে ধার হিসেবে থাকল। তুমি যদি সত্যি সত্যি এ টাকাটা পরিশোধ করতে চাও তাহলে আমার কথা মত সোজা বোম্বে চলে যাও।’</p>
+<p>‘বোম্বে?’</p>
+<p>‘হ্যাঁ, বোম্বে। পশ্চিম ভারতে অবস্থিত এই শহরটি সব শহরের ওস্তাদ। তুমি সেখানে চলে যাও এবং আয় উপার্জন করে আমার টাকাটা পরিশোধ কর।’</p>
+<p>আমি নিজেও আর দিল্লীর মতো অপদার্থ জায়গায় থাকতে চাচ্ছিলাম না। যে দিল্লী একদিন আমার খ্যাতির চূড়ান্ত দেখেছে, সে আবার কি করে আমার পতন দেখবে? সুতরাং ডাক্তারের পরামর্শ আমার মনে লাগল, আমি পুরাতন দিল্লীকে নমস্কার জানিয়ে বোম্বে রওয়ানা হয়ে গেলাম। রেল সড়ক ধরে ধরে আমি প্রথমে মথুরা যেয়ে পৌঁছলাম। মথুরার ‘পেড়া’ খাবার খুব শখ ছিল আমার। কিন্তু মথুরার পেড়ার বদলে পাণ্ডা পূজারীদের ডান্ডার কবলে পড়তে হল আমাকে। সেখানে থেকে কোনমতে জান বাঁচিয়ে গোয়ালিয়র পৌঁছলাম। এখানে এসে ঠিক করলাম ওস্তাদ তানসেনের মাজারে একটু ভক্তি-শ্রদ্ধা জ্ঞাপন করব। সমগ্র উপমহাদেশে যাঁর নামে ক্লাসিক্যাল মিউজিক প্রচলিত, তাঁর মাজারে আমি ভক্তি নিবেদন করতে পারব এ যে কত বড় সৌভাগ্য আমার। এটাতো আজকাল সবাই জানে যে, ভারতে অধুনা দুই শ্রেণীর লোকই ক্লাসিক্যাল মিউজিক পছন্দ করে। একদল তানসেনের শিষ্য, অপর দল আমরা গাধারা। আর বাদবাকীরা রেডিও সিলোন শোনে। তানসেনের মাজারে এক নীরব গাম্ভীর্য বিরাজমান। এককোণে দু’জন ভক্ত বসে ঝিমুচ্ছিল। চত্বরে বাসি মালার শুকনো পাপড়ি ছড়িয়ে আছে। মাজারের বাইরে ক’টা ছাগল প্লেব্যাক গায়িকাদের মত অনুচ্চকণ্ঠে চ্যা ভ্যা করছিল। সঙ্গীতগুরুর মাজারের এই দুরবস্থা দেখে আমার মনে দুঃখ হল। আমি তাড়াতাড়ি আভূমি নত হয়ে সালাম করলাম তাঁকে। তারপর মাথা তুলে ভাবে গদগদ হয়ে মরহুম ওস্তাদের এক বিখ্যাত সঙ্গীতের তান তুলে গলা ভাজতে শুরু করলাম। আমার তান শুনে ভক্ত দু’জন মাথা তুলে দেখল আমাকে। ভাবলাম, আমাকে ধন্যবাদ জানাবে। কিন্তু কৈ, তারা বরং উল্টো আমাকে ডাণ্ডা মারতে শুরু করল।</p>
+<p>ডাণ্ডার মার খেয়ে আমার তেমন দুঃখ হয়নি। দুঃখ হয়েছে এদেশের আর্টকালচারের ভবিষ্যৎ চিন্তা করে। এদেশের শিল্প-সাহিত্যের এখন আল্লাহই নেগাবান। যে দেশে একজন উচ্চাঙ্গ গায়ক একজন সঙ্গীত সম্রাটের মাজারে ভক্তিশ্রদ্ধা জ্ঞাপন করতে বাধা প্রাপ্ত হয়, সেদেশের শিল্প-সাহিত্যের আর ভবিষ্যৎ কোথায়? ডাণ্ডা খেতে খেতে আমি একবার করুণ চোখে মরহুম ওস্তাদের মাজারের দিকে পিছন ফিরে দেখলাম, তারপর পাহাড়-জঙ্গল নদী-নালা অতিক্রম করে সোজা বোম্বে এসে হাঁফ ছাড়লাম।</p>
+<p>বোম্বেতে ঘিসু নামের নেহাত কায়ক্লেশে খেটে খাওয়া একজন লোক আমার উপর দয়া দেখাল। আমাকে সে আশ্রয় দিল। ঘিসু বেপারীর মাত্র ১১টা বালবাচ্চা ছিল। সে রোজ চার আঁটি ঘাস আমার পিঠে এবং এক আটি নিজের মাথায় নিয়ে যোগেশ্বরীর গোয়ালাদের কাছে যেত। গোয়ালাদের কাছে ৫ আঁটি বিক্রয় করে সেই পয়সা নিয়ে সে জোসেফ ডি’ সুজার ঝুপড়িতে যেয়ে হাজির হত। তারপর পোয়াটাক মদ নিয়ে সেখানে বসে খেত। রমজানি কসাই এবং কর্ণেল সিং ড্রাইভার আগেভাগেই বসে থাকত সেখানে। তারা সেখানে বসে গালগল্প করত। আর আমি ঝুপড়ির বাইরে নারিকেল গাছের নীচে তাজা ঘাসের উপর চরে বেড়াতাম। তাজা ঘাস খেয়ে আমি আত্মপ্রসাদ লাভ করে মনে মনে বলতাম, যাক অবশেষে একটা নির্ঝঞ্ঝাট জীবনের নাগাল পাওয়া গেল।</p>
+<p>বোম্বেতে এসে আমি মানুষের বুলি ছেড়ে দিলাম। কারণ নানা অভিজ্ঞতা থেকে দেখলাম, পৃথিবীতে যারা নির্বাক গাধা হয়ে থাকতে পারে তাদের ভাগ্যেই সুখ বলতে কিছু আছে। বুদ্ধিমানের জগৎ নয় এটা। কারণ ভালো কথা কারো গায়েই সয় না। তাই আমি মানুষের বুলি পরিত্যাগ করে নিছক পশুর জীবন বেছে নিলাম, যেমন করে বোম্বের আরো অনেকে মনুষ্যজীবন পরিত্যাগ করে গাধার জীবন গ্রহণ করেছে। তারা খাচ্ছে দাচ্ছে দিব্যি আছে। পয়সা জমানোর মতলবই তাদের জীবনের মূলমন্ত্র। তাজা ঘাস খেয়ে আমি ছ’মাসের মধ্যে বেশ মোটা তাজা হয়ে গেলাম।</p>
+<p>আমার কালো চামড়া একটুখানি তেলানো হয়ে উঠলো। দেখতে দেখতে আমি সুদর্শন গাধা বনে গেলাম। এখন যে কোন সুন্দরী মেয়ে গাধাই আমার উপর প্রেমাসক্ত হতে পারে। আর এটাতো তাদের ধর্মই, যে-কোন সুদর্শন শক্ত সুঠাম গাধার প্রতিই তারা প্রণয়াসক্ত হয়ে থাকে। এ গাধাদের অন্যান্য সম্পদ থাক আর না থাক, সে কথা আর তাদের মনে থাকে না। ইতিমধ্যে বেশ কয়েকটা মেয়েগাধাই আমার কাছাকাছি পাঁয়তারা শুরু করে দিয়েছে। কিন্তু এদের মধ্যে যেটি সবচেয়ে সুন্দরী এবং লাস্যময়ী তার মোটেই খেয়াল ছিল না আমার দিকে। তার এ নির্লিপ্ততা আমাকে বারংবার তার প্রতি আকুল করে তুলত। একটা আজব ধরনের অন্তর্দ্বন্দ্বে আমার সময় কাটত। লম্বা লম্বা সোনালী কান হেলিয়ে দুলিয়ে চলতো সে। তার ছোট ছোট রূপালী দাঁত দিয়ে সে এক আধ কামড় ঘাস খেত। এবং বেছে বেছে এমন করে খেত, মনে হত, অত্যন্ত বিশুদ্ধ ঘাস ছাড়া আজেবাজে ঘাস মোটেই রোচে না তার। এতে মনে হয় অবিশ্যিই সে কোন বড় সম্ভ্রান্ত পরিবারে জন্ম নিয়েছে। নেহাত পায়চারি করে বেড়ানোর উদ্দেশ্যেই যেন সে ডি’সুজার ঝুপড়ির বাইরে এসেছে। কারণ, ক্ষুধা নিবৃত্তি হলো বড়লোকদের বিলাস আর গরীবদের জীবন বাঁচানোর প্রয়াস। একদিন আমি সুযোগ পেয়ে তার কাছাকাছি যেয়ে পৌছলাম। সে নারিকেল গাছের নীচে অত্যন্ত আয়েশী ভঙ্গিতে এক আধ কামড় ঘাস খাচ্ছিল এবং বিলোল কটাক্ষ হেনে চারিদিকে ইতি উতি করছিল। আমি কাছে যেয়ে ফিস ফিস করে বললাম, ‘ওগো সুন্দরী, আর কতকাল দূরে দূরে থাকবে? এ হতভাগার দিকেওতো এক আধটু দৃষ্টিপাত করতে পার।’ ‘হুত’— সে একটা ন্যাক্কারজনক ধ্বনি করল ৷’ ‘এত অবজ্ঞা কেন হে সুন্দরী, আমিওতো এক গাধাই ৷’</p>
+<p>‘প্রেমে পড়লে সবাই গাধা হয়ে যায়।’ ঝাঁঝ মাখানো কণ্ঠে সে বললো। শুনে আমি খামোস হয়ে গেলাম। খুবতো উপস্থিত বুদ্ধিসম্পন্ন দেখছি। মনে হয় উন্নত পরিবেশে মানুষ হয়েছে। সত্যি যদি ওর সাথে আমার বিয়েটা কোনমতে হয়ে যায় তাহলে একেবারে সোনায় সোহাগা। অন্যান্য মামুলি গাধার সাথে বিয়ে হলে এর জীবনটাই মাটি হয়ে যাবে। তখন বোঝা বহন করা আর সন্তান জন্ম দেয়া ছাড়া আর কোন কাজেই সে লাগবে না। অথচ আমার মত শিক্ষিত গাধার সাথে বিয়ে হলে রীতিমত জ্ঞান-বিজ্ঞানের চর্চা হবে আমাদের মাঝে, সিনেমা দেখব, আরো কত কি! আমাদের সংমিশ্রণে একদিন যে সন্তান জন্ম হবে, সে একেবারে গাধা হবে না। আমি আবার তাকে বললাম, ‘ডার্লিং’ শুনে আবারও ন্যাক্কারজনক একটা আওয়াজ করে পেছনের দিকে একটা লাথি মারল। আমি হঠাৎ একটু সরে না দাঁড়ালে আমার চোখই ফুটো হয়ে যেত। সে চোখ পাকিয়ে আমাকে বলল, ‘তোমার লজ্জা করে না, সামান্য একজন ঘাস বিক্রেতার গাধা হয়ে তুমি আমার সাথে প্রেম করতে চাও?’ আমি ঘাবড়ে গিয়ে বললাম, ‘কে তুমি?’</p>
+<p>‘আমি? আমি ভিক্টর বরগঞ্জার আশ্রয়ে থাকি। ভিক্টর তোমাদের ডি’সুজার বস। গোরগাঁও থেকে দাদর পর্যন্ত তার মদ ব্যবসায় ছড়ানো। আমি রোজ চারটি পিপে বহন করে ডি’সুজার এখানে নিয়ে আসি এবং বিকালে খালি পিপা নিয়ে ফিরে যাই। আমি তোমাদের মত দিনভর গাধা-খাটুনি খাটি না।’ I</p>
+<p>‘কি খবর বাছা?’ একজন অর্ধবয়েসী মহিলা-গাধা আমায় জিজ্ঞেস করতে করতে এগিয়ে এল। বলায় চলায় একটা আশ্চর্য গম্ভীরতা রয়েছে তার। ‘না, তেমন কিছুই না মা, এ গাধাটা আমার সাথে প্রেম করতে চায়। দেখতো ওর স্পর্ধাটা।’</p>
+<p>মা-গাধাটা আমার আপাদমস্তক নিরীক্ষণ করে বলল, ‘তুমি কে?’ আমি আমার পরিচয় দিলাম। ‘তোমার সাথে আমাদের কিসের মিল? তুমি হিন্দু, আমরা খ্রিষ্টান। কোথাকার বাসিন্দা তুমি?’</p>
+<p>‘ইউপির ৷’</p>
+<p>‘তুমি ইউপি’র আর আমরা মহারাষ্ট্রের। তোমাদের সাথে আমাদের কিসের তুলনা? কোন জাত তোমার?’</p>
+<p>‘গাধাদের আবার জাত হয় নাকি?’</p>
+<p>‘বাহ্, জাত হবে না কেন? মালিকের যে জাত, গাধাদেরও সে জাত হবে। আমরা মালিকের জাতে পরিচিত হব ; আমাদের প্রভুরা যে কাজ করে এবং ভাবে আমরাও তা করি এবং ভাবি।’</p>
+<p>‘খালা, আপনার একথা আমি পুরোপুরি মেনে নিতে পারি না। কারণ, আমি বহু মানুষকে পশুদের মত ভাবতে এবং কাজ করতে দেখেছি।’ আমি একটু বিনীত হয়ে বললাম, আমার কথাবার্তা বেশ পছন্দ হল তার। তিনি বললেন, ‘তোমাকে তো বেশ বুদ্ধিমান গাধা বলে মনে হয়। আচ্ছা মনে কর আমার মেয়েকে তোমার কাছে বিয়ে দিলাম। কিন্তু তাকে তুমি কিভাবে খাওয়াবে এবং কোথায় রাখবে? ঘিসুর সেখানে থাকার জন্য তো এমন কোন নির্দিষ্ট জায়গা নেই।’</p>
+<p>‘আমাকে রাতের বেলা বাইরে জামগাছ তলায় শুতে হয়। অনেক সময় এমনি ছেড়েও দেওয়া হয় যাতে এদিক সেদিক চরে স্বাধীনভাবে কিছু খেয়ে নিতে পারি।’ ‘কেন, সে তোমাকে কোন ঘাস খেতে দেয় না? তাহলে তো আমার মেয়েও তোমার মত বিনা ঘাসে মারা যাবে।’</p>
+<p>‘প্রেম ভালবাসার বেলায় ঘাসের কি প্রশ্ন খালা? ইকবাল বলেছেন, ‘বেখতর কুদপড়া আতশে নমরুদ মে ইশ্ক’। প্রেম প্রেমই আবার ঘাস ঘাসই। প্রেমের সাথে ঘাসের কি সম্পর্ক? এই দেখুন না, আমি প্রেমও করি ঘাসও খাই ৷ যখন ঘাস পাই না তখন কাওয়ালী গাই। খালাম্মা দয়া করে দিয়ে দাও তোমার মেয়েকে। এ বিশাল জগতে ঘাসের কোন অভাব হবে না।’</p>
+<p>‘না, তা হয় না ৷’ খালাম্মা দৃঢ়চিত্তে বললেন। ‘আমি আমার মেয়েকে তোমার মত গাধার কাছে বিয়ে দিতে পারি না, যার মা-বাবার ঠিক ঠিকানা নেই, থাকাখাওয়ার কোন বন্দোবস্ত নেই। শুধু পড়া লেখার বুলি আওড়ালেই আমার মেয়েকে তার কাছে বিয়ে দিতে পারি না।’</p>
+<p>আমি গর্বদীপ্ত ভঙ্গীতে বললাম।</p>
+<p>‘হ্যাঁ, আমি পড়া লেখা জানি, পত্র পত্রিকা পড়ি। কিন্তু এতে আমার দোষটা কোথায়?’</p>
+<p>“আলবত দোষ। আজকাল এ দেশে যত পড়ুয়া গাধা আছে সবাই কেরানীগিরি করে নতুবা উপবাস থাকে। নিজেই বল দেখি, কোন শিক্ষিত লোকটা লাখপতি হয়েছে? না বাবা, আমার মেয়েকে আমি বরং কোন লাখপতির ছেলের কাছে দিয়ে দেব, হোক না সে চরম মূর্খ।’ তার এসব কথা শুনে আমার রাগে গা জ্বলে যাচ্ছিল। কিন্তু করা কি, প্রেমসংক্রান্ত ব্যাপারে আর কিইবা বলা যায়। আমি নীরবে সব হজম করে নিয়ে তাকে বললাম, ‘দেখ খালা, এই প্রগতির যুগে মানুষ জাতধর্ম মানে না। আমরা সবাই হিন্দুস্তানি এবং আমরা সবাই গাধা। আমরা এক জাতি এটাই আমাদের বড় পরিচয়।’</p>
+<p>‘ধনী গরীব এক হয় কি করে? আমাদের সমস্যা এক ধরনের। তোমাদের সমস্যা অন্য ধরনের। তোমার জীবনযাত্রার মান এক রকম, আমাদের অন্যরকম। তাছাড়া সত্যিকার অর্থে আমরা হিন্দুস্থানীও নই। মেয়ের দাদা (খোদা তাকে বেহেস্ত নসীব করুক) খাস ইংরেজি গাধা ছিলেন, আমার মা ছিলেন ফরাসী গাধা। আর তুমি হলে হিন্দুস্থানী ভবঘুরে বাউণ্ডেলে কালো গাধা। তুমি চাচ্ছ আমার মেয়ের সাথে প্রেম করতে। খবরদার, আমার মেয়ের দিকে তাকালে চোখ ফুটো করে দেব।’</p>
+<p>বলেই খালাম্মা এমনভাবে লেজ দোলাল এবং ফোঁস ফোঁস করল, মনে হল আমাকে এখন কাবু করে ফেলবে। আমি তাড়াতাড়ি দৌড়ে ডি’ সুজার ঝুপড়ির কাছে এসে দম নিলাম। তারপর সেদিন থকে তওবা করলাম যে, আর প্রেম করার নাম করব না। কারণ এতে একথা প্রতীয়মান হলো যে, প্রেম করার জন্য একটা লোকের কাব্য প্রতিভা এবং পর্যাপ্ত শিক্ষা দীক্ষা থাকাই যথেষ্ট নয়, যথেষ্ট পরিমাণ খাবার বন্দোবস্ত না থাকলে কোন গাধাই প্রেম করে সাফল্য লাভ করতে পারে না।</p>
+<p>অতএব আমি সে স্বর্ণকেশী মেয়ে গাধার সাথে প্রেম করার দুরাশা পরিত্যাগ করে রোজ ঘাস টানার কাজে নিয়োজিত হলাম। সাধারণ গাধাদের ভাগ্যে ঘাস টানার কাজ ছাড়া আর কিইবা করার থাকে?</p>
+<h2>দুই</h2>
+<p>আমার দিনগুলো বড় আরামেই কাটছিল। ঘাসের আঁটি বহন করা, এদিক সেদিক চরে ঘাস খাওয়া আর দিনের শেষে খুঁটির কাছে এসে শুয়ে পড়া এই ছিল নিত্যনৈমিত্তিক কাজ। এর চেয়ে সাদাসিধে জীবন আর কি হতে পারে? আর এ জগতে বেশির ভাগ লোক এর চেয়ে বেশি আর কিইবা চায়। কিন্তু প্রকৃতির নিয়মের কাছে আমার এ নিরবচ্ছিন্ন ঝঞ্ঝাটহীন জীবন ভালো লাগল না। শোনা গেল সরকার আর এ, কলোনী নাম দিয়ে বিশুদ্ধ দুগ্ধ সরবরাহের জন্যে এক ডায়রী ফার্মের পত্তন করেছে। সকল বিপদগুলো প্রথমত এমনি শুভ উদ্দেশ্যে নিয়েই তো আত্মপ্রকাশ করে। কিন্তু আমি জিজ্ঞেস করি বোম্বেতে আবার খাঁটি দুধ পান করার দরকার হল কার? বোম্বের সকল বীরপুরুষরাই ইরানীদের চা আর গোয়ালদের আধা দুধ আধা পানি পান করে সব রকম স্বাধীনতা সংগ্রাম করেছে। জীবনের সব রকম সংগ্রামের মাঝে এসব দুধ পান করেই আজো তারা বেঁচেবর্তে থাছে। এমতাবস্থায় তাদেরকে খাঁটি দুধ পান করানোর জন্যে নতুন একটা পন্থার উদ্ভব করার কি মানে হতে পারে? লোকদেরকে একটা নতুন বিষয়ের প্রতি নিবিষ্ট করিয়ে একটা বিতর্কের সূত্রপাত করা ছাড়া আর কি উদ্দেশ্য থাকতে পারে? আমি জানি, সরকারের উদ্দেশ্য এটা নয়। কিন্তু শেষ অবধি তাই হয়ে যায়। লোকদের একটা প্রয়োজন মিটিয়ে দিলে অপর প্রয়োজনের ক্ষুধা বেড়ে যায়। যারা বিজ্ঞলোক তারা বিচক্ষণ জেনে গেছে যে, যেদিন থেকে আর, এ, কলোনীর সূত্রপাত হয়েছে সেদিন থেকে মহারাষ্ট্রের কাহিনীও শুরু হয়েছে। এখন আপনি লোকদেরকে খাঁটি দুধ পান করিয়ে কি আশা করতে পারেন? ইরানীদের চা’র বদৌলতেই তো এতকাল মহারাষ্ট্র এবং গুজরাটের মধ্যে গলায় গলায় মিল ছিল। কিন্তু দুধ এমন একটা পদার্থ যা সব সময় ভাগাভাগির পক্ষপাতী। পাঞ্জাবীদের কথাই ধরুন না; বেশি বেশি দুধ পান করতো; ফলে তাদের মধ্যে ভাগাভাগি হয়ে গেল। আসলে অপরাধ ছিল দুধের।</p>
+<p>কিন্তু দোষ দেওয়া হয় ইংরেজদের। আসলে দুধের স্বভাবটাই বিভক্ত হবার। আপনি একটা পাত্রে একটু দুধ রেখে দিন, দেখবেন, একটু পর ভাগাভাগি হয়ে গেছে। মানুষের ইতিহাসে এমন অসংখ্য নজির পাওয়া যায় যে, ছোট ছোট জিনিস থেকে বড় বড় শিক্ষা গ্রহণ করা হয়েছে। উদাহরণস্বরূপ, মনে করুন মোহাম্মদ বিন-কাশিম যদি ভারতের বদলে চীন আক্রমণ করত তাহলে পাকিস্তান এখন চীন দেশে থাকত। আর নেপোলিয়ান যদি পানিপথে জন্মগ্রহণ করত, তাহলে ওয়াটারলুর যুদ্ধে ইংরেজরা কোনদিন জিতে পারত না। কলম্বাসের জাহাজ যদি সমুদ্রে ডুবে যেত, তাহলে আমেরিকা কোন দিনই আবিষ্কৃত হত না। তখন কলম্বাস হয়ত ডুবতে ডুবতে মহাকবি গালিবের ভাষায় বলত,</p>
+<p>ডুবুয়া মুজকো হোনে নে</p>
+<p>না-হোতা মায় তু কেয়া হোতা?</p>
+<p>এ ধরনের যুক্তিতর্কের উপমা দিয়ে টয়েন বি তাঁর সমুদয় ইতিহাস লিপিবদ্ধ করেছেন। এজন্যে আমিও বলি, যদি আর, এ কলোনী না হতো মহারাষ্ট্র প্রদেশও আলাদা হতো না। এ শুধু দুধেরই অপরাধ। বোম্বের বনেদী লোকেরা প্রায় একশ বছর থেকে ইরানীদের ফিকে চা পান করে আসছে। এখন নতুন করে তারা খাঁটি দুধ পান করতে গিয়ে তাদের পাকস্থলীতে দেখা দিল গোলমাল। আর লোকেদের পাকস্থলীতে গোলমাল হলে বদহজমের দরুন তারা নতুন নতুন দাবি-দাওয়া উত্থাপন করে। আমরা মহারাষ্ট্র চাই, কাজ চাই, অন্ন চাই, বস্ত্ৰ চাই, বাড়ি চাই, ছাতা চাই, সিনেমা চাই এবং প্রত্যেক জিনিস এত ভাল চাই, যত ভালো আর, এ, কলোনীর দুধ। “</p>
+<p>এজন্য সেকালের রাজা বাদশাহরা জনসাধারণের কোন চাহিদাই পূরণ করতো না। তাতে জনসাধারণের হজম শক্তি সম্পূর্ণ সুস্থ থাকত। কিন্তু আজকাল লোকদের হজম শক্তি বিগড়ে হা হা এত বেড়ে গেছে যে, ভাল একটা আশা ভরসা না দিলে তাদেরকে নিরস্ত করা কঠিন।</p>
+<p>আর, এ, কলোনী হয়ে যাবার পর বহুসংখ্যক গোয়ালারা কারবার বন্ধ হবার উপক্রম হল। তাদের ব্যবসা চালু রাখার জন্য তারা সম্ভাব্য সকল রকম চেষ্টা করল। কখনো দুধের দাম কমিয়ে পানি বেশি মিশাল। কখনো ঘাসের দাম কমিয়ে বিক্রয় দর কমাল। কখনো পানি কম দিয়ে বেশি লোকসান দিল। কিন্তু আর, এ, কলোনীর সামনে তাদের সব প্রয়াস বানচাল হয়ে গেল। প্রাইভেট গোয়ালদেরকে অবশেষে হাত গোটাতে হল। দিন দিন আর, এ, কলোনীর দুধের চাহিদাই বেশি রকম বেড়ে যেতে লাগল। গোয়ালারা যদি খাঁটি দুধ আর, এ, কলোনীর চেয়ে কম দামে বিক্রি করতো তাহলে কিছু সংখ্যক লোকের ব্যবসাটা চালু থাকত ৷ কিন্তু সেটাতো ব্যবসা-নীতির খেলাপ। এক জিনিসে অন্য জিনিস না মিশালে কোনদিনই সেটা ব্যবসা হয় না। উদাহরণ স্বরূপ, দুধে পানি, সাহিত্যে নগ্নতা, আটাতে ভূষি, ঘি’তে তেল, রাজনীতিতে ধর্ম এবং চাকরিতে ঘুষ ইত্যাদি তো ব্যবসা-নীতির পয়লা সবক।</p>
+<p>ব্যবসা নীতির দ্বিতীয় ধারা হল, ভেজাল সংমিশ্রণের পরিমাণ এবং উপাদান। যেমন, আপনি যদি দুধে মধু মিশালেন, তাহলে হয়েছে আপনার ব্যবসা। একটা দামী, জিনিসের সাথে একটা দামী জিনিস মেশানো চলে না। দামী জিনিসের সাথে কম দামী জিনিস মিশাতে হবে (যদি ক্ষতিকর হয় তাতেও ক্ষতি নেই)। আজকাল ব্যবসার সব রকম রহস্য এর মধ্যেই নিহিত রয়েছে। উদাহরণস্বরূপ, পানির কিইবা দাম আছে। আমার মত গাধাও বিনে পয়সার পানি পান করে থাকে। কিন্তু এ পানি যখন দুধে মেশানো হয়, চার গুণ দামে বিক্রি হয়। কাঠের ভুষির কিইবা দাম? অথচ আটার সাথে মিশিয়ে দিলে দিব্যি চলে যায়, কারো খেতে অসুবিধা হয় না। ঘৃণা এবং বিসংবাদ এমনিতে কত নিচ কাজ, অথচ তাতে যদি ধর্মের সংমিশ্রণ করা যায়, তাহলে লাখো নিষ্পাপীদের প্রাণ তাতে বিলীন হয়ে যাওয়া বিচিত্র নয়। ব্যবসা-নীতির এসব গুরুত্ব দুধের গোয়ালারা শুধু জানে না, ধর্মের ধ্বজাধারী থেকে আরম্ভ করে রাজনীতির জনহিতৈষীদেরও বিলক্ষণ জানা আছে। যখন এভবে গোয়ালাদের ব্যবসা শিকায় উঠতে আরম্ভ করলো, ঘিসুর ঘাস বিক্রিও দিন দিন কমে আসতে লাগল।</p>
+<p>ঘিসুর বাড়িতে বাল বাচ্চা উপোষ করতে আরম্ভ করল। ঘিসুর অবস্থা শেষ অবধি এমন হল যে, সে জোসেফ ডি. সুজার বাসায় বসে আমাকে বিক্রি করার কথাবার্তা উত্থাপন করল। বিক্রি করার পরামর্শটা দিয়েছিল তাকে রমজানী কসাই। ঘিসু যখন থেকে বেকার হল তার পানের মাত্রাটা বেড়ে গেল। প্রথম প্রথম ডি, সুজা ধার দিল ৷ কিন্তু ধারের পরিমাণ যখন বেড়ে গেল এবং তা পরিশোধ হবার ব্যাপারে ডি, সুজা সন্দিহান হয়ে পড়ল, তখন সে কিছুটা নিয়ন্ত্রণের চেষ্টা করতে লাগল—নিঃসন্দেহে সে ঘিসুর বন্ধু। কিন্তু বন্ধুই বা বন্ধুকে কদিন বাকী দিতে পারে।</p>
+<p>এমতাবস্থায় রমজানী কসাই ঘিসুকে পরামর্শ দিল আমাকে বিক্রি করে দেবার জন্য। আমি সেসব কথা বাইরে দাঁড়িয়ে শুনতে লাগলাম। ‘গাধাটা আমার কাছে বিক্রি কর। পুরো পঁচিশ টাকা দেব।’ রমজানী কসাই বলল। জোসেফ বলল, ‘ঠিকই, রমজানী ঠিকই বলছে। আজকাল তোমার ঘাস কোথাও বিক্রি হচ্ছে না, গাধাটা রেখে আর কি করবে? তাছাড়া আমারও গোটা সাতেক টাকা পাওনা। বিক্রি দিলে আমার টাকাটাও পেয়ে যেতে পারি।’ কর্ণেল সিং বলল, ‘আর বাদ বাকী টাকা দিয়ে দিব্যি আরো দশদিন পান করতে পারবে।’</p>
+<p>ঘিসু বলল, ‘বেচারী গাধাটা তো আমার মাথার বোঝা হয়ে রয়নি। নিজেই চারিদিকে চরে খায়। আর সন্ধ্যায় এসে খোঁটার কাছে শুয়ে থাকে। সারাদিন আমার ছেলেপিলেগুলি ওর পিঠে চড়ে বেড়ায়। তাছাড়া এক আধটা ঘাসের আঁটি তো এখনও বিক্রি হয়। রমজানী বলল, ‘এক আধটা ঘাসের আঁটি তো তুমি নিজেও বয়ে নিয়ে যেতে পার। তুমি চিন্তা করে দেখ পুরো পঁচিশটা টাকা দেব। তাও খায়খাতির আছে বলে। নইলে এই গাধা পনের টাকাও বিকায় না।’</p>
+<p>ঘিসু বলল, ‘তুমি গাধা দিয়ে কি করবে?’ রমজানী বলল, ‘আজকাল বাঁচা বড় দায়। এখন ছাগল বকরীর যা দাম। তাছাড়া একটা থেকে বড় জোর তিন সের গোস্ত পাওয়াও দুষ্কর। তোমার গাধা তো বেশ মোটাসোটা আছে। গোস্তও মন্দ হবে না?’</p>
+<p>‘তুমি গাধার গোস্ত বিক্রি করবে ?’</p>
+<p>‘হ্যাঁ, তবে বকরীর গোস্তের সাথে মিশাল দিয়ে ৷’ ‘বকরীর গোস্তের সাথে মিশিয়ে?’ ঘিসু বিস্মিত হয়।</p>
+<p>‘এতে আশ্চর্যের কি আছে? তোমাদের গোয়ালারা দুধে পানি দেয় না বুঝি?’ ‘কিন্তু তাই বলে গাধার গোস্ত লোকেরা কি মোটেই টের পাবে না?’</p>
+<p>‘এটা তো ভাই যার যার ব্যবসার গোমর, আমি এমন এমন ওস্তাদ কসাইকে দেখেছি যারা বকরীর গোস্তের সাথে কুকুরের গোস্ত পর্যন্ত বেমালুম চালিয়ে দিয়েছেন। আমি তো শুধু গাধার গোস্ত বিক্রি করবো। আর তাও কিমা করে বিক্রি করলে কোন নাম নিশানাও থাকবে না।’ কর্ণেল সিং ড্রাইভার মাথা নেড়ে বলল, ‘হ্যাঁ, এটাতো গোমরের কথাই। আমরা মালিকের পেট্রলের উপর কি কারসাজিটা করি সেটা কেউ জানলে উপায় থাকে? তা না করে আমরা বাঁচবই বা কি করে বল? এজন্যেই-ইয়ার এক আধটু’ ……</p>
+<p>‘হ্যাঁ, ইয়ার, তুমি রাজী হয়ে যাও।’ কর্ণেল সিং ঘিসুকে উদ্দেশ্য করে আবার বলল। এসব কথা শুনে আমার পায়ের নীচের মাটি যেন সরে যাচ্ছিল। মনে হলো কে যেন আমার পায়ের সাথে চার চার মণ লোহা বেঁধে দিয়েছে। আমি গাছের আড়ালে দাঁড়িয়ে মন দিয়ে শুনছিলাম আমার জীবন মৃত্যুর কথা। আমি শেষ অবধি শুনতে চাচ্ছিলাম ঘিসু কি বলে। যে অবলা প্রাণী এত মাস ধরে মন প্রাণ-দিয়ে যার সেবায় নিয়োজিত ছিল, প্রতিদানে একটু ঘাস পর্যন্ত নেয়নি, তার প্রতি ঘিসুর কোন দয়া আছে কিনা সেটাই আমি মনোযোগ দিয়ে শুনতে চাচ্ছিলাম। ঘিসু বলল, ‘গাধাটি আমার সাথে এবং বাড়ির ছেলেপিলেদের সাথে বেশ মায়া জমিয়ে ফেলেছে। আমি কি করে আজ তার প্রাণ বিনষ্ট করব? দাও আর একটু দাও দেখি।’ ,</p>
+<p>‘নাও, পান কর। কিন্তু তুমি তার প্রাণ বিনষ্ট করছ কোথায়? প্রাণ দেবার নেবার মালিক তো হল উপরওয়ালা। তুমি শুধু গাধাটি আমার কাছে বিক্রী করছো বৈ তো নয়। পঁচিশ টাকা দিচ্ছি তাও বন্ধু মানুষ বলে। নইলে অন্য কেউ দশ টাকায়ও নেবে না এটা। ঠিক আছে, তোমার মনে না চাইলে না হবে।’</p>
+<p>কর্ণেল সিং কথা কাটিয়ে বলল, ‘কাল কোথায় গিয়েছিলিরে রমজানী? কালকে যে এলি না এখানে।’</p>
+<p>‘আর বলিস না ভাই—আকিলা বানুর কাওয়ালী শুনতে গিয়েছিলাম, সে যা গায়</p>
+<p>‘আরজে নিয়াজে ইকে কাবেল নেহি রাহা</p>
+<p>যিস দিলপে হামে নাজ থা উ দিল নেহি রাহা।’</p>
+<p>বলেই রমজানী গুন গুন করতে লাগল। তার গুন গুন শুনে ঘিসু মাথা দোলাতে শুরু করল। আর সেই সাথে কর্ণেল সিং ড্রাইভার টিনের পেটরা পেটাতে শুরু করল। আমি স্বস্তির নিশ্বাস ফেললাম। যাক, জীবনটা বেঁচে গেল তাহলে। ঘিসু ভাবাবিষ্ট হয়ে বলল, ‘পঁচিশ কেন কেউ যদি হাজার টাকা দেয়, তবু আমার গাধা কাউকে দেব না।’</p>
+<p>‘কে, তোর গাধার কথা বলছে এখন আর? রমজানীর কাওয়ালীটা শুনতে দে।’ জোসেফ বলল। কিন্তু ঘিসুর ততক্ষণে জোস উঠে গেছে সে হাত নেড়ে বলল ‘কেউ যদি পঞ্চাশ লাখ টাকাও দেয়, তবু আমার গাধা কাউকে দেব না। এ গাধা আমার যে সেবা করেছে আমি তা জীবনভর ভুলতে পারব না। আমি কোনদিন গাধা বেচব না। সে যখন কোন কোন সময় করুণ চোখে আমার দিকে চায়, মনে হয় সে কোন গাধা নয়। গাধার খোলসের নীচে এক সাধুর আত্মা লুকিয়ে আছে। কেউ যদি পঞ্চাশ কোটি টাকাও দেয় আমার গাধা হাত ছাড়া করবো না। ঘিসু কোন দিন কারো সাথে বেঈমানী করে নাই আর করবেও না। ঘিসু ধর্মবিরোধী কোন কাজ করতে পারবে না।’</p>
+<p>‘নিয়ে এলো ফের ধর্মের কথা মাঝখানে। জোসেফ ওর গ্লাসটা একটু ভরে দে।’ কৰ্ণেল সিং বলল।</p>
+<p>‘কোত্থেকে দেব? সাত টাকার আগেই সামাল দিয়ে রেখেছে। কত আর ধার দেয়া যায় বলো।’</p>
+<p>‘দে ভাই, ভরে দে, ভগবান দেনেওয়ালা। যেভাবে হোক তোমার ধার পরিশোধ হবেই।’</p>
+<p>‘যখন পরিশোধ হবে তখনই দেব। এখন আর এক ফোঁটাও দিতে পারব না।’ ঘিসু তার খালি গেলাস দেখিয়ে রমজানীকে বলল, ‘আমার গেলাসটা যে একেবারে খালিরে রমজানী।’</p>
+<p>‘তোমার গ্লাস খালিই থাকবে।’ জোসেফ বলল।</p>
+<p>‘একটা টাকা দে রমজানী।’ ঘিসু বলল। রমজানী পকেট থেকে পঁচিশ টাকা বের করে বলল, ‘এক টাকা কেন, এই নাও পুরো পঁচিশ টাকা দিচ্ছি।’</p>
+<p>ঘিসু কট্ করে টাকাগুলোর দিকে এগুতে লাগল। ধপকরে টাকাগুলো হাতে নিয়ে সে বলল, ‘চলো গাধা দিয়ে দিচ্ছি তোমাকে। নে জোসেফ, এখন তো আর দিতে বাধা নেই ৷</p>
+<p>রমজানী আমার গলায় দড়ি লাগিয়ে নিয়ে চলল এবং নেচে নেচে বলতে লাগল—</p>
+<p>আরজে নিয়াজে ইকে কাবেল নেহি রাহা</p>
+<p>যিস দিলপে নাজ থা মুঝে উ দিল নেহি রাহা। –</p>
+<p>সহসা আমি বললাম,</p>
+<p>জাতাহুঁ দাগে হাসরাতে</p>
+<p>হাসতি লিয়ে হুয়ে</p>
+<p>কুশতায়ে দরখুরে মাহফিলে নেহী রাহা।</p>
+<p>রমজানী চমকে তাকাল। তারপর আমার দিকে দেখে রশি টেনে জোরে সামনের দিকে এগিয়ে গেল। সে ঠিক করতে পারছিল না যে ; এ আওয়াজ কোত্থেকে আসছে। ভয়ে তার মুখ সাদা হয়ে গেল। ভয় দূর করার জন্য সে জোরে জোরে গাইতে লাগল। আরজে নিয়াজে …</p>
+<p>আমি এবার একটু জোরেই বললাম,</p>
+<p>মরণে কি আয় দিল আওর হি</p>
+<p>তদবীর কর,</p>
+<p>কে ম্যায়,</p>
+<p>শায়ানে দস্ত অ বাজুয়ে কাতে নেহি রাহা।</p>
+<p>রমজানী ভয়ে রীতিমত কাঁপতে লাগল এবার। রাতও হয়ে এসেছে। সে অন্ধকারে চীৎকার দিয়ে বলল, কে? ‘কে এসব বলছে?’</p>
+<p>‘আমি এক হতভাগা গাধা।’</p>
+<p>‘তুমি, তুমি?’</p>
+<p>রমজানী চোখ ছানাবড়া করে আমার দিকে তাকাল। চমকে উঠে বলল,</p>
+<p>‘তুমি এক গাধা হয়ে মানুষের ভাষায় কথা বলছ ৷’</p>
+<p>আমি বললাম, ‘আমি প্রতিজ্ঞা করেছিলাম আর কখনো মানুষের ভাষায় কথা বলব না। কিন্তু যখন জীবনমরণের প্রশ্ন দাঁড়িয়েছে এবং মানব জাতির বেঈমানী দেখতে পেলাম তখন বাধ্য হয়ে ইকবালের সে চরণ বলতে হয়,</p>
+<p>দিলসে হুয়া আয় কাশতে অফা মিট গেয়ি কে ওয়া</p>
+<p>হাসেল সেওয়ায়ে হাসরাতে</p>
+<p>হাসেল নেহি রাহা।</p>
+<p>লা হাওলা ওলা কুয়াতা…. রমজানী চিৎকার দিয়ে বলল এবং আমার রশি ছেড়ে দিয়ে জোরসে দৌড়াল। আমি পেছন দিকে রমজানীর অপসৃয়মান দৃশ্য দেখতে দেখতে তাকে ডাক দিয়ে বললাম, ‘ও রমজানী ভাই, একটু শোন, যাচ্ছ কেন?’</p>
+<p>কিন্তু সে একবারও পিছন ফিরে দেখল না। সে ভয়ে চিৎকার করতে করতে দৌড়াতে থাকল। আমি মাথা নত করে আস্তে আস্তে ফিরে চললাম। চলতে চলতে জোসেফ ডিসুজার ঝুপড়ির কাছে যেয়ে পৌঁছলাম। ততক্ষণে ঘিসু’ এবং কর্ণেল সিং চলে গেছে। শুধু ডি’সুজা বাইরের বেঞ্চিতে বসে গ্লাসের তলানীটুকু পান করছিল। সে আমাকে দেখে লাফ মেরে আমার রশি ধরে ফেলল।</p>
+<p>‘রমজানীর হাত থেকে ছুটে পালিয়ে এসেছ বুঝি? পালিয়েই বা কোথা যাবে। কালকেই তোমাকে রমজানীর হাওলা করে দেব। বলেই সে আমাকে নারিকেল গাছের সাথে বেঁধে রাখল। আমি আস্তে আস্তে জোসেফকে বললাম,। ‘জোসেফ।’</p>
+<p>‘হায়, একি?’ সে জোরে চিৎকার করে বলল।</p>
+<p>আমি বললাম, ‘চিৎকার করার কোন দরকার নেই। তুমি একজন শিক্ষিত · লোক এ জন্য তোমার সাথে মুখ খুললাম। তুমি আশ্চর্যই হচ্ছ, আমি গাধাই বলছি।’</p>
+<p>‘একি, আমি স্বপ্ন দেখছি নাতো।’</p>
+<p>‘না, স্বপ্ন দেখবে কেন? এ হতভাগা ঠিকই বলছে। ছোটকালে আমি মানুষের ভাষা শিখে নিয়েছিলাম।’</p>
+<p>সে আমার জীবনের আদ্যোপান্ত ঘটনা শুনে বলল, ‘হায় হায় মোটেই বিশ্বাস হতে চায় না। কিন্তু আজ তোমাকে সামনে দেখে মনে পড়ছে তুমিই সেই বিখ্যাত গাধা। তুমিতো পণ্ডিত নেহেরুর সাথে সাক্ষাৎ করেছিলে। হ্যাঁ, বেশ মনে পড়ছে। তোমার বহু খবর আমি পত্রিকায় পড়েছি। বলুন, আমি আপনার কি খেদমত করতে পারি।’</p>
+<p>আমি বললাম, ‘শুধু রমজানীর হাত থেকে আমাকে বাঁচাও।’</p>
+<p>‘কিন্তু তা কেমন করে? রমজানী তোমাকে পঁচিশ টাকা দিয়ে কিনে ফেলেছে যে।.</p>
+<p>‘শুধু পঁচিশ টাকায় আমার জীবনটা বরবাদ হয়ে যেতে বলো?’</p>
+<p>‘কেন, বোম্বের দাদারাতো মাত্র দশ টাকার বদলে মানুষের প্রাণ সংহার করে থাকে। তারাতো হলো মানুষ। আর তুমি হলে গাধা। লেখাপড়া জান ঠিকই। কিন্তু তাতে কি আসে যায়। বিশ্বযুদ্ধের সময় আমি সৈনিক ছিলাম। আমি নিজের চোখে দেখেছি মাত্র কটা ‘টাকার লোভে বহু লোককে নিহত করা হয়েছে। সে তুলনায় তুমিতো এক গাধা।’</p>
+<p>‌</p>
+<p>‘তারাও গাধা ছিল। যুদ্ধের সময় মানুষের জীবনকে ভেড়া বকরির মত জ্ঞান করা হত। হিরোশিমার বোমা বর্ষণে ৭০ হাজার লোকের প্রাণহানি হয়েছে। হিসেব করলে দেখবে তাদের মাথাপিছু দাম পঁচিশ টাকাও পড়েনি।’</p>
+<p>জোসেফ বলল, ‘এতে তো তোমার খুশী হওয়া দরকার। মানুষের জীবনের চেয়ে এক গাধার দাম অনেক বেশি দেয়া হচ্ছে।’ আমি তার কথা না শোনার ভান করে বললাম, ‘সে লোকেরা অযথা লাখো লাখো মানুষকে মেশিনগানের শিকার বানিয়েছে। তারা যদি বরং তাদের মাংস গরুর মাংসের সাথে মিশিয়ে বিক্রি করতো তাহলে বেশ লাভ হত তাদের। লাভই তো তাদের দরকার।’</p>
+<p>‘তুমি কি সব আশ্চর্য কথা বলছ।’</p>
+<p>‘শুধু পঁচিশ টাকার বিনিময়ে একজনের হাতের রশি অপরের হাতে তুলে দেওয়ার মত আশ্চর্য কথাতো আর বলছি না।’</p>
+<p>‘এখন তুমি কি বাঁচতে চাও?’</p>
+<p>‘আমি বাঁচতে চাই।’ আমি ধরা গলায় বলতে লাগলম, ‘আমার মত কোটি কোটি লোক এ জগতে রয়েছে। তাদেরকে গাধা পেয়ে সবাই গলা টিপে মারছে। এখন আমরা সবাই বাঁচতে চাই, আমাদের গলায় কেউ যেন রশি না লাগাতে পারে।’</p>
+<p>‘সবার কথা বলে তোমার কি লাভ? তোমার নিজের কথা বল।’ ‘আমি বলি তুমি রমজানীর হাত থেকে আমাকে কিনে নাও।’</p>
+<p>‘বাহ্ এক গাধার জীবন বাঁচানোর জন্য রমজানীকে পঁচিশটি টাকা দিয়ে দেব আমি? আমি এত গাধা নই।’</p>
+<p>‘আমার কথা আগে শুনেই নাও। এতে তোমারই লাভ। তুমি আমাকে কিনে নিলে আমি পুলিশের চোখ বাঁচিয়ে তোমার মদ মহমক্রাক অবধি পৌছে দেব। এখন পর্যন্ত এ কাজের জন্য তোমরা মানুষের সাহায্য গ্রহণ করছ। মানুষ পুলিশের হাতে গ্রেফতার হয়ে যায়, তাদের সাজা হয়। তোমাদের লোকসান হয়। কিন্তু এ কাজের জন্য যদি তুমি আমার সাহায্য নাও, তাহলে আমি কছম করে বলতে পারি পুলিশ একবারও ধরতে পারবে না।’</p>
+<p>‘তা কেমন করে?</p>
+<p>‘বেশ সহজ পন্থা আমি তোমাকে সব বুঝিয়ে বলছি। এ কাজের জন্য সর্ব প্রথমে তোমাকে বান্দ্রাতে এবং মহমক্রাকে দুটো ঘাঁটি করতে হবে।’ ‘সেসব চিন্তা করতে হবে না। আগে থাকেই আমাদের একাধিক ঘাঁটি রয়েছে সেখানে।’</p>
+<p>‘তবে তো সব কাজ সহজ হয়ে যাচ্ছে। আমি শপথ করে বলতে পারি পৃথিবীর কোন স্মাগলারের মাথায় এ ফন্দি আসবে না।’ জোসেফ অধৈর্য হয়ে বলল, ‘আচ্ছা, তারপর।’</p>
+<p>‌ ‘পন্থাটা একেবারে সহজ। তোমার কাজ হবে শুধু রোজ আমাকে বান্দ্রা থেকে মহমক্রাকে নিয়ে যাওয়া।’</p>
+<p>‘আচ্ছা, তারপর।’</p>
+<p>‘রোজ সকালে আমাকে পর্যাপ্ত পরিমাণ মদ পান করিয়ে দাও। আমার পেটে বেশ কয়েক গ্যালন মদই ধরবে, আমাকে মদ পান করিয়ে দিয়ে মহমক্রাকে নিয়ে ছেড়ে দাও। আমি একটা ভবঘুরে গাধার মত ঘুরতে ঘুরতে পাঁচ মিনিটের মধ্যে পুলিশের চেকপোস্ট পার হয়ে যাব। পুলিশের বাবার সাধ্য নাই আমাদের কারসাজি বুঝে। তারাতো শুধু মানুষের তল্লাশী করে, গাধার প্রতি তাদের সন্দেহ হবে কেন? ‘তারপর ?’</p>
+<p>‘তারপর মহমের ঘাঁটিতে পৌঁছে তুমি গলায় রাবরের নল ঢুকিয়ে সব মদ বের করে নেবে গাধার পেট থেকে।’</p>
+<p>‘বের করা মদ লোকেরা পান করবে? গন্ধ আসবে না?’</p>
+<p>‘কি বোকার মত কথা বলছ। যারা পঁচা জায়গায় লুকানো বোতল এবং পুরানো টায়ারে ভরা মদ পান করে যাচ্ছে দিব্যি, তারা গাধার পেটের মদ খেতে আপত্তি করবে কেন? সকাল বেলা আমার খালি পেট ময়লা যুক্ত টায়ারের থেকে তো অনেকাংশে পবিত্রই থাকে বলতে হবে।’</p>
+<p>‘বুঝলাম, এতে তোমার নেশা হবে না?’</p>
+<p>‘পাঁচ মিনিটে আবার নেশা কতটুকু হবে? মহমক্রাক পার হয়ে যেতে পাঁচ মিনিটের বেশি তো আর লাগবে না। আমার পেটকে মনে কর পেট্রোলের একটা বড় ড্রাম। বান্দ্রা হল তোমার ফিলিং স্টেশন। ব্যাস, বান্দ্রা হতে এ ড্রাম ভরে মহমক্রাকে এনে খালি করছ, এরচে বিজ্ঞানসম্মত পন্থা আর কি হতে পারে।’ ‘গড ব্লেস ইউ—’</p>
+<p>জোসেফ একটু চিন্তা করে বললো এবং খুশীতে আমার গলা জড়িয়ে ধরে বলল, ‘এমন ভাল পন্থা আর হয় না। তুমি এক নম্বর পাকা স্মাগলার গাধা। পুলিশের চোখে ধুলা দেবার এর চেয়ে বড় ফন্দি আর নেই। হলিক্রাইষ্ট ইউ—আমি তো এক বছরেই লাখপতি বনে যাব।’ আনন্দের আতিশয্যে জোসেফ আমার মুখে চুমা দিতে লাগলো। ‘এখন অবশ্যিই বড়লোক হয়ে যাব আমি। এতে আর কোন সন্দেহ নেই। এখন পঁচিশ কেন, দরকার হয় একশ টাকা দিয়ে আমি তোমাকে ছাড়িয়ে নেবো।’</p>
+<p>‘এতদিন আমি নেহাত এক গাধা ছিলাম। এখন এক উপকারী জন্তু বলে আখ্যায়িত হচ্ছি। মানুষ যখন লাভের গন্ধ পায়, তখন একটা গাধার গালেও চুমা দিতে পারে।’</p>
+<p>‘এসো ভিতরে চলে এসো।’</p>
+<p>জোসেফ আমাকে টানতে টানতে ভিতরে নিয়ে গেল এবং বলতে লাগল, ‘আমি তোমাকে বাইরে নারকেল গাছের নীচে থাকতে দিতে পারি না। তোমার যদি ঠাণ্ডা লেগে যায়। কি আশ্চর্য, তোমার গায়েতো একটা কাপড়ও নেই।’ আমি বললাম, ‘পৃথিবীতে অসংখ্য গাধা নগ্ন অবস্থায় গাছের নীচে শুয়ে থাকে।’</p>
+<p>‘রাখো সে সব গাধাদের কথা। আজ তো আমি তোমাকে আমার নিজের বেডরুমে শুতে দেব। গরম লাগলে সিলিং ফ্যান খুলে দেব ৷’</p>
+<h2>তিন</h2>
+<p>জোসেফ আমাকে রাতভর কিছু খেতে দিল না। ভোরে কিছু খেতে দেবে, তাও দিল না। কিছু না খেতে দিয়েই আমাকে নিয়ে বান্দ্রা রওনা হল। ক্ষুধায় আমার পেটের নাড়িভুঁড়ি চোঁ চোঁ করতে লাগল। আমার চলৎশক্তি রহিত হয়ে আসছিল।</p>
+<p>অবশ্য আমাকে ভুখা রাখতে পেরে জোসেফ খুশীই হয়েছিল। কারণ, আমাকে যত বেশি ভুখা রাখতে পারবে ততই তার লাভ। বেশি বেশি মদ ধরাতে পারবে আমার পেটে। আমি আগে থাকতেই জানতাম, এ কাজ করতে হলে আমাকে দিনভর মাত্র একবার খেতে দেবে। আর তাও দিনের দশটা এগারটায়, যখন স্মাগলিং এর কাজ সারা হবে। উপবাস থাকা খুব কষ্ট। কিন্তু আমি একথা ভেবে মনকে সান্ত্বনা দিলাম যে, পৃথিবীতে কোটি কোটি লোক অনাহারে অর্ধাহারে দিন কাটাচ্ছে। আর আমি তো হলাম গিয়ে এক গাধা। দিনভর একবারও যদি এক আধ আঁটি ঘাস পাওয়া যায়, তাই আমার জন্যে ঢের।</p>
+<p>বান্দ্রার গোপন ঘাঁটিতে পৌঁছে জোসেফ আমাকে জিজ্ঞেস করল,</p>
+<p>‘এখন কি করব?’</p>
+<p>‘এখন বালতিতে মদ এনে আমার সামনে রাখ। আমি তা পান করে নিই।’</p>
+<p>জোসেফ একটা ঘরের মধ্যে ঢুকে পড়ল। কিছুক্ষণ পর সে ঘর থেকে দু’জন লোক বেরিয়ে এল। একজন জোসেফ, অন্যজন কামতাপ্রসাদ। কামতাপ্রসাদ লোকটা হালকা পাতলা এবং খিটখিটে মেজাজের। কিন্তু এক নম্বর ফোরটুয়েন্টি এবং চালাকের হদ্দ। দু’জনে ধরাধরি করে মদভর্তি একটা বড় বালতি নিয়ে এল।</p>
+<p>এক বালতি দু’বালতি করে বড় কষ্টে আমি তৃতীয় বালতিটাও পান করলাম। কিন্তু এরপরও কামতাপ্রসাদ আর এক বালতি নিয়ে এল। আমি মাথা নেড়ে অসম্মতি জানালাম ৷ ‘কি যে বল, চেষ্টা করে দেখতে দোষ কি? দু’তিন বালতি মদ তো একজন তাগড়া লোক এক দিনেই পান করে ফেলতে পারে। আর তুমি গাধা হয়ে কিনা’</p>
+<p>‘না, ভাই আমি পারব না। আমার পেট ফেটে যাবে তাহলে।’ ঠিক আছে, না পারলে আর কি করা। তবে তোমাকে রাতের বেলা ইনোজফ্রুটসন্ট বা অন্য কোন ঔষধ দিতে হবে। ভোর বেলা তাহলে পেটটা আরো বেশি খালি হবে। তখন সহজেই চার বালতি পান করতে পারবে তুমি।’</p>
+<p>আমি বললাম, ‘এখন ওসব কথা রাখ। যত জলদি পার আগে আমাকে নিয়ে চল। দেরি করলে আমার নেশা হবে। খালি পেটে মদ পান করলে সহজেই নেশা পায়।</p>
+<p>ওর দু’জন আমাকে বান্দ্রার মসজিদের কাছে নিয়ে ছেড়ে দিল। আর আমি একটা বেওয়ারিশ গাধার মত ঘোরাফেরা করতে করতে ক্রমশ ফাঁড়ির দিকে এগোতে লাগলাম।</p>
+<p>সকালের মৃদুমন্দ হাওয়া আমার বেশ ভালই লাগছিল। মহমক্রাকের কাছে জেলেরা জাল রোদে দিয়েছে। দূরে সমুদ্রে নানা ধরনের নৌকা পাল তুলে চলেছে। ছোট ছোট মেয়েরা রঙ বেরঙের ফ্রক পরে চড়ুই পাখির মত চেঁচামেচি করতে করতে স্কুলে যাচ্ছিল।</p>
+<p>আজকের সকাল বেলাটা আমার বেশ ভাল লাগল। আমার মনে একটা গানের কলি গুঞ্জন করছিল। ইচ্ছে হচ্ছিল গলা ছেড়ে তান ধরি। কিন্তু একালে ইচ্ছা করলেই সবকিছু করা যায় না। আজকাল সর্বত্র ব্যবসা নীতি চলছে। একটা মামুলী জিনিসও পারমিট বা কোটা ছোড়া এদিক-সেদিক করা যায় না। পারমিট বা কোটা না হলে স্মাগলিং বা ঘুষের আশ্রয় নিতে হয়। উচ্চাঙ্গ সঙ্গীতকেও আজকাল রেডিওর লোকরা লাইট মিউজিকের প্রোগ্রামে স্মাগলিং করে থাকে।</p>
+<p>আমি এসব ভাবছিলাম আর হেলে দুলে চলছিলাম। হঠাৎ একটা মারাঠি মেয়েকে দেখতে পেয়ে আমি থমকে দাঁড়িয়ে গেলাম। গাঢ় সবুজ রঙের মারাঠি শাড়ি আর সোনালী কাজ করা কাল মতো ব্লাউজে তাকে চমৎকার মানিয়েছিল। সকালের সোনালী সূর্যের আভা পড়েছে তার চোখে মুখে। তার চুল থেকে একটা চমৎকার তেলের গন্ধ আসছিল। ডাগর ডাগর চোখের পলক টেনে টেনে এমন ব্রীড়ানতার ভঙ্গিতে সে চলছিল, দেখে মনে হচ্ছে এ ধূলির ধরার কোন মানবী সে নয়, ইন্দ্রলোকের অপ্সরী। মন্ত্রমুগ্ধের মত আমি তার পেছনে পেছনে চলছিলাম।</p>
+<p>পুলিশ ফাঁড়ির কাছে বেজায় রকম ভিড়। সারি সারি ট্যাক্সি, লরি, বাস দাঁড়িয়ে রয়েছে। পুলিশ অত্যন্ত সতর্ক দৃষ্টি দিয়ে সেগুলোকে নিরীক্ষণ করছে এবং এক এক করে যাবার অনুমতি দিচ্ছে।</p>
+<p>পুলিশ একটা গাড়ির তল্লাশী নিচ্ছিল। এমনি সময় মারাঠি মেয়েটি সেখানে একটু দাঁড়াল। মেয়েটির হাতে একটা কাঁসার থালা ছিল। মেয়েটি চারদিকে ইতিউতি করে যখন আবার পা চালিয়ে দিল এমন সময় একজন মেয়ে পুলিশ তাকে ডাক দিয়ে দাঁড় করাল।</p>
+<p>মেয়ে পুলিশটি কাছে এসে বলল, ‘কোথায় যাচ্ছ তুমি?’</p>
+<p>‘মন্দির।’</p>
+<p>হঠাৎ মেয়ে পুলিশটি তার দেহ তল্লাশী শুরু করে দিল। সামনে পেছনে হাত চালিয়ে তার শাড়ীর তল থেকে দুটো মদ ভর্তি টিউব বের করে ফেলল।</p>
+<p>‘তুমি মদ নিয়ে মন্দিরে যাচ্ছিলে বুঝি।’ মেয়ে পুলিশটি বলল মারাঠি মেয়েটি</p>
+<p>জোরে জোরে কাঁদতে শুরু করে দিল।</p>
+<p>একজন সিপাই আমার পিঠে একটা ঘা বসিয়ে দিল, বলল,</p>
+<p>‘পা-জী গাধাটা এখানে দাঁড়িয়ে রয়েছে কেন?’</p>
+<p>ঘা খেয়ে আমি দৌড় দিলাম এবং কিছুক্ষণের মধ্যেই ‘মহম’-এর ঘাঁটিতে যেয়ে পৌছলাম। জোসেফ এবং কামতাপ্রসাদ আগে থাকতেই আমার প্রতীক্ষা করছিল সেখানে। জোসেফ আমার গলায় রশি লাগিয়ে টেনে টেনে অন্ধ গলিতে এসে তারপর সেখান থেকে একটা অন্ধকার ঘরের মধ্যে নিয়ে গেল। আমাকে নিয়ে ওরা সেখানে কিছুক্ষণ দাঁড়িয়ে থাকল। তারপর দরজাটা খট খটাল।</p>
+<p>‘কে?’ একটা মেয়েলী কণ্ঠ ভেসে এল।</p>
+<p>‘আমি কামতাপ্রসাদ।’</p>
+<p>দরজা খুলে গেল। বাদামী রং-এর ব্লাউজ এবং গাঢ় লাল রং-এর ছায়া পরিহিতা এক সুন্দর, সুঠাম মেয়ে এগিয়ে এলো। একটু ঘাড় বাঁকিয়ে বলল, ‘আজ খালি হাতে এসেছ মনে হয়?’</p>
+<p>‘মারিয়া আগে দরজাটা ছেড়েই দাঁড়াও না। মারিয়া দাঁড়ালো ওরা আমাকে টেনে আরো ভেতরের কোঠায় নিয়ে গেল।</p>
+<p>এবং তারও পরে একটা খোলা আঙ্গিনায় গিয়ে উপস্থিত হলাম আমি। আঙ্গিনার এক কোণে ক’টা ড্রাম রাখা আছে। অন্য কোণে একটা দড়িতে ধোয়া কাপড় শুকাতে দেয়া হয়েছে। অন্য দিকে খাটিয়ায় এক বুড়ো শুয়ে এপাশ ওপাশ করছে।</p>
+<p>ওরা দুজন হঠাৎ গায়েব হয়ে গেল। কিছুক্ষণ পর একটা রবারের নল এবং একটা বিরাট ড্রাম নিয়ে এলো। ড্রামটা আমার সামনে রেখে আমার গলা দিয়ে নল ঢুকিয়ে দিল।</p>
+<p>আমার গলা দিয়ে মদ বেরুচ্ছে দেখে মারিয়া তো হতবাক। হঠাৎ সে এমন জোরে হাসতে শুরু করল যে, আমরা চমকে উঠলাম। হাসতে হাসতে ওর চোখে জল দেখা দিল। জোসেফ মারিয়ার কাঁধে হাত রেখে বলল,</p>
+<p>‘আমরা বড় লোক হতে আর ক’দিনই বা লাগবে মনে কর। যখন বিরাট শেঠ হয়ে যাব, তখন তো আর তুমি বিয়ে করতে আপত্তি করবে না?’</p>
+<p>‌ মারিয়া তার হাতটা ঝটকা দিয়ে সরিয়ে কামতার কাছে যেয়ে বলল, ‘দেখা যাবে।’</p>
+<p>তারপর একটু হেসে বলল,</p>
+<p>‘তোমরা কি করে এ জানোয়ারটাকে বশ করলে? আশ্চর্য, তোমাদের মাথায় এত বুদ্ধি আছে আগে জানতাম না।’</p>
+<p>‘জোসেফ আবার বলল,</p>
+<p>‘আমাদের বিয়ে কবে হচ্ছে তাই বলো।’</p>
+<p>মারিয়া আমার গলা জড়িয়ে ধরে বলল, ‘আমার তো এখন এ গাধাকে বিয়ে করতে ইচ্ছে করছে। এ তো গাধা নয়, সোনার খনি।’</p>
+<p>কামতাপ্রসাদ মদগুলোকে বালতিতে ঢেলে মাপল। তারপর বলল,</p>
+<p>‘পৌনে তিন বালতি হল। এক চতুর্থাংশ গাধাটা হজম করে ফেলেছে।’ ‘শোকর কর। গাধা বলে তবু পৌনে তিন বালতি ফেরত পেয়েছ। কোন পাকাশরারী যদি পান করত তাহলে এক ফোঁটাও ফেরত পেতে না।’</p>
+<p>জোসেফ বলল, ‘গাধাটা যতটুকু হজম করেছে, ততটুকু পানি দিয়ে পূরণ করে নাও।’</p>
+<p>আমি মনে মনে হেসে বললাম, দুধেও পানি, মদেও পানি …</p>
+<p>কামভাপ্রসাদ জিজ্ঞেস করল, ‘শেঠ কোথায়?’ মারিয়া কামতার কানে কানে কি যেন বলল। তারপর দু’জনে বারান্দার দিকে চলে গেল। এই ফাঁকে আমি জোসেফকে বললাম, তাড়াতাড়ি আমাকে ঘাস দাও নইলে এক্ষুণি আমি ক্ষুধায় মরে যাব ৷</p>
+<p>‘এইতো এক্ষুণি দিচ্ছি পার্টনার।’</p>
+<p>বলেই সে মারিয়াকে ডেকে বলল, ‘মারিয়া ঘাস নিয়ে এস।’ মারিয়া ঘাস নিয়ে এলো এবং আমার সামনে বসে খাওয়াতে লাগল। তার নরম এবং সুন্দর হাত আমার মাথায় ও কানে বুলিয়ে আদর করতে লাগল। সে হাতের পরশের কি আমেজ, তা একমাত্র আমিই বুঝতে পারি।</p>
+<p>দিন দুয়েক পর কামতাপ্রসাদ একটা মোটা টিউব এবং হ্যাণ্ড পাম্প দিয়ে বলল, ‘গাধাটা সত্যিই কামচোর। ওর পেটে এত কম মদ ধরে কি করে?’</p>
+<p>জোসেফ বলল, ‘বেচারী যতটুকু সামলাতে পারে, তার চেয়ে বেশি নেবে কি</p>
+<p>করে? তার শক্তি পরিমাণ সে পান করে।’</p>
+<p>‘জী না, এ পাম্পের সাহায্যে আমি ওর পেটে মদ ভর্তি করবো।’</p>
+<p>আমি বললাম, ‘আমার পেটটা একটা জানোয়ারের পেট। এটা কোন মোটরের টিউব না যে, যত পাম্প দেবে ততই ফুলবে।’</p>
+<p>কিন্তু কামতাপ্রসাদ আমার কোন কথাই শুনল না। যেমন করে মোটরের টায়ার পাম্প দেয়া হয়, সেভাবে সে আমার পেটে মদ ভর্তি করতে লাগল। শেষ অবধি আমার মনে হল আমার পেট যেন ফেটে যাচ্ছে। পাম্প করতে করতে আমার গলা দিয়ে যখন মদ পড়তে আরম্ভ করলো, তখন সে পাম্প টানা বন্ধ করল।</p>
+<p>কামতা প্রসাদ বিজয়ীর হাসি হেসে বলল, পুরো ছ’বালতি মদ ভর্তি করলাম। কোথায় তিন বালতি আর কোথায় ছ’বালতি ৷’</p>
+<p>জোসেফ বলল, ‘তালেতো বেশ এখন দেখছি আমাদের ব্যবসা দ্বিগুণ হচ্ছে।’ আমি ব্যথায় কঁকিয়ে উঠে বললাম,</p>
+<p>‘তোমরা এত নির্দয়, আমার পেট ফেটে যাচ্ছে।’</p>
+<p>‘একটু সহ্য করে থাক দোস্ত। মাত্র পাঁচ মিনিটের রাস্তা বই তো নয়। চোখের পলকের মধ্যে পার হয়ে যাও—আমাদেরকে মহম এর চকে পাবে।’</p>
+<p>‘যদি আমাদের এক আধ মিনিট দেরিও হয়, কোন চিন্তা নেই। তুমি সেখানে পৌঁছে একটু অপেক্ষা কর।’ কামতাপ্রসাদ বলল, তারপর জোসেফের দিকে তাকিয়ে বলল, ‘এ খুশীতে এক পেগ হয়ে যাক না।’</p>
+<p>‘হোক ৷’ জোসেফ সম্মতি জানাল।</p>
+<p>তার পান করছিল আর আমি রওনা হয়ে গেলাম। অন্য দুদিনের মতই আমি নির্বিঘ্নে মহমের চকে যেয়ে পৌঁছলাম। সেখানে পৌঁছে তাদেরকে না পেয়ে ফুটপাথে দাঁড়িয়ে ওদের প্রতীক্ষা করতে লাগলাম আমি।</p>
+<p>. আমি যেখানে দাঁড়িয়েছিলাম সেখানে সারি সারি ভাড়াটে ট্যাক্সি দাঁড়িয়েছিল। অপরদিকে ক’জন বিদঘুটে ধরনের লোক চারপেয়েতে বসে লটারীর নম্বরের কথা বলাবলি করছিল আর সকালের নাস্তা খাচ্ছিল।</p>
+<p>সেসব দিক আমার খেয়াল খবর ছিলনা। আমি শুধু ওদের প্রতীক্ষা করছিলাম। আমার সাংঘাতিক অসুবিধা হচ্ছিল। আমার পেট ফেটে যাবার উপক্রম হলো।</p>
+<p>ওদের প্রতীক্ষায় আমি পাঁচ মিনিট, দশ মিনিট করে সময় অতিবাহিত করলাম। কিন্তু ওদের টিকিটাও দেখা গেল না। আমি নিজের উপর অভিসম্পাত দিতে লাগলাম। কেন আমি এ বাজে কাজটা আরম্ভ করলাম।</p>
+<p>এভাবে দাঁড়িয়ে থাকতে থাকতে নেশা পেয়ে গেল। আমার মাথা ঘুরতে লাগল আমার শিরা উপশিলায় মদ প্রবাহিত হয়ে চলল। মনে হল আমি হাওয়াতে ভেসে বেড়াচ্ছি। আমি মাতাল হয়ে আস্তে আস্তে নাচতে শুরু করলাম। সেই সাথে গানও গাইতে লাগলাম। আমার এই অবস্থা দেখে আমার চারিদিকে লোকজন জমা হয়ে গেল।</p>
+<p>‘কি আশ্চর্য, গাধা নাচছে।’</p>
+<p>‘শুধু নাচছে বল কেন, গাইছে যে তা শুনতে পাচ্ছ না? অপরজন বলল। আমি পাকা নাচিয়ের মত বিলোল কটাক্ষ হেনে বললাম,</p>
+<p>‘ইয়ারো মুঝে মাফ কর, ম্যায় নেশে মে হুঁ।’</p>
+<p>আমার নেশা যত বাড়তে লাগল, লোকজনও জমা হতে লাগল প্রচুর।</p>
+<p>‘বেশ মজার গাধাতো দেখছি।’</p>
+<p>‘একজন বলল, কি আশ্চর্য। গাধা মানুষের মত কথা বলছে।’</p>
+<p>‘একেই বলে বিংশ শতাব্দী—এ কালে কিনা হয়।’</p>
+<p>‘এটা বোম্বাই—বোম্বাইতে সবকিছুই সম্ভব। এখানে গাধা যদি মানুষের গলায় কথা বলে তাতেও আশ্চর্যের কিছু নেই।’</p>
+<p>অন্য একজন বলল। লোকটিকে, ওপাশের চার পেয়েতে বসে নাস্তা খেতে দেখেছিলাম। সে তার সাথীকে ডেকে আবার বলল,</p>
+<p>‘অদ্যাবধি তুমি কোন গাধাকে কথা বলতে দেখছ জুমন?’ ‘না শেঠজি, শুনিওনি এমন সৃষ্টি ছাড়া কথা ৷’</p>
+<p>জুমন এবং শেঠ ভুসুরিমল দু’জনকেই আমি চার পেয়েতে দেখেছিলাম। শেঠ বলল,</p>
+<p>‘ইয়ার জুমন—আমার কাছে কেমন যেন গোলমেলে মনে হচ্ছে ব্যাপারটা।’ ‘কি রকম গোলমাল?’</p>
+<p>‘আমার মনে হয় আসলে এটা গাধা নয়। কোন সাধু সন্ন্যাসী হবে। দুনিয়ার পাপাচার থেকে দূরে থাকার জন্য গাধার বেশ ধারণ করেছে।’</p>
+<p>‘তুমি ঠিকই বলছ শেঠ। আমারও মনে হচ্ছে কোন পীর পয়গম্বরের আত্মা এ গাধার মধ্যে আশ্রয় নিয়েছে।’</p>
+<p>‘তাহলে তার পায়ের উপর পড়ে লটারীর নম্বরটা জিজ্ঞেস করি।’ বলেই শেঠজি এত লোকের সামনে গাধার পা জড়িয়ে ধরে বলল, ‘আমরা চিনে ফেলেছি তোমায় সাধু মহারাজ।’</p>
+<p>জুমন অন্য পা ধরে বলল,</p>
+<p>‘বাবা ফকির দস্তগীর দয়া করে লটারীর নাম্বারটা দাও।’</p>
+<p>‘আমি ঝটকা টানে পা ছাড়িয়ে নিয়ে বললাম—’কি সব বাজে বকছো। তোমরা ভাগো এখান থেকে।’</p>
+<p>‘না ছাড়ব না তোমায়, নম্বর না বললে মোটেই ছাড়ব না, তোমায় বাবা। তুমি জ্ঞানে অন্তর্ধান হয়ে আমাদের নম্বরটা একটু দেখে দাও।’ শেঠ বলল –</p>
+<p>‘দয়া করে এ গরীব বেচারাকেও একটা নম্বর বলে দাও বাবা— তুমি রাগ হলে আমরা কোথায় যাব?’</p>
+<p>জুমন বলল—তাদের দেখাদেখি আরো কজন লোক আমার পায়ের ওপর এসে পড়ল।</p>
+<p>‘তোমাকে প্রতিদিন হালুয়া খেতে দেব। শুধু একবার ওপেন টু ক্লোজ নাম্বারটা গড় গড় করে বলে দে বাবা।’</p>
+<p>আমি জানতাম না বোম্বেতে এত লোক লটারী আর রেসের পাগল।</p>
+<p>এখন এদের নাম্বারটা বলে আমিই বা বাঁচব কি করে? আমি অনেক সাধু সন্ন্যাসীকে ভুয়ো নাম্বার বলে দিতে শুনেছি। আমি তাই করব কিনা ভাবছিলাম। প্রথমে আমি হাত পা ছেড়ে কিছু জায়গা করে নিলাম। তারপর আবোল তাবোল বকতে শুরু করলাম। ‘অন্তর মন্তর জন্তর—কংগ্রেস লীগ ছু মন্তর। হিন্দু মুসলিম এক মন, ‘দুই প্রাণ ৷’</p>
+<p>শেঠ খুশী হয়ে বলল,</p>
+<p>‘পেয়েছি পেয়েছি।’</p>
+<p>জুমন বাঁধা দিয়ে বললো,</p>
+<p>‘আমিও বুঝে নিয়েছি—একের সাথে দুই মিলিয়ে নাও।’</p>
+<h2>চার</h2>
+<p>অন্য একজন বলল, ‘না, দুই থেকে এক বাদ দিতে হবে। থাকবে এক।’ গোঁফওয়ালা একজন বলল, ‘না ভাই, আসল নাম্বার এখনো বলেনি।’ কিন্তু এতক্ষণে অন্যান্য লোকরা নাম্বার ধরার জন্য বিদায় হয়ে গেছে। যে যেভাবে নম্বর বুঝে নিয়েছে, সেভাবেই সে লটারী ধরল। মুহূর্তে ভীড় কমে গেল। ইতিমধ্যে জোসেফ, মারিয়া এবং এবং কামতাপ্রসাদ এসে হাসির হল। জোসেফ বলল,</p>
+<p>‘কি হয়েছে? তোমার এখানে এত লোকের ভীড় কেন?’</p>
+<p>‘গাড়ী যদি ওভারলোড হয়, তাহলে ইঞ্জিন ফেল করে না? তোমরা আমার ওপর ওভারলোড করেছ। ফলে আমাকে নেশায় ধরেছে এবং আমি আবোল তাবোল বকতে শুরু করেছি। আমার মুখে মানুষের ভাষা শুনতে পেয়ে লোক জড়ো হয়েছে। তোমাদের জগৎটা এমনই যে কোন মানুষ যদি গাধার ভাষায় কথা বলে, তাহলে কেউ আশ্চর্য হয় না। কিন্তু কোন গাধা মানুষের ভাষায় কথা বললেই সেটা আশ্চর্যের বিষয় হয়ে দাঁড়ায়। এখন যত তাড়াতাড়ি পার, তোমাদের মদগুলো বের করে নিয়ে আমাকে মুক্তি দাও। নইলে আমি এই হার্টফেল করলাম।’</p>
+<p>ওরা তাড়াতাড়ি আমাকে সেই অন্ধকার গলির মধ্যে মারিয়ার বাড়িতে নিয়ে গেল। আমি সেখানে পৌছেই বেঁহুশ হয়ে মাটিতে পড়ে গেলাম। আমার যখন জ্ঞান ফিরে এল দেখলাম গলির বাইরে একটা ময়লা আবর্জনাপূর্ণ ড্রেনের পাশে পড়ে আছি আমি। ফেনিল লালায় আমার কণ্ঠনালী ঝাপসা হয়ে আছে। কঁটা দুষ্ট ছেলে দাঁড়িয়ে দাঁড়িয়ে আমাকে দেখছিল। আমি চোখ টেনে চারিদিকে ভাল করে তাকালাম। কান নেড়ে চেড়ে যখন পাগুলোকে টানটান করলাম মনে হল আমার পেটটা অনেকাংশে হাল্কা হয়ে গেছে। নেশাও তেমন আর নেই। কিন্তু জোসেফ, মারিয়া আর কামতাপ্রসাদ কোথায়? এ পিশাচগুলো আমার পেট থেকে মদ বের করে আমাকে রাস্তায় ফেলে দিয়েছে। মনে করেছে মরে গেছি। হ্যাঁ, এমনই হয়ে থাকে। ব্যবসা জগতের এই ধারা। একটা লোক আর যখন কোন কাজে আসে না তখন তাকে টেনে হিঁচড়ে ড্রেনে ফেলে দেওয়াই স্বাভাবিক। ড্রেনে ফেলে দেওয়ার আগে তার শক্তির সমস্ত নির্যাসটুকু নিংড়ে নিয়ে নেয় ওরা।</p>
+<p>মানুষ মানুষের সাথে যখন এমন ধারা ব্যবহার করতে পারে, আর আমি কোন ছার। আমি তো এক গাধা। আমার সহ্য করে নেওয়া উচিত। ভাগ্য বলতে হবে যে, একেবারে প্রাণে মারেনি। খোদার ইচ্ছায় প্রাণটা বেঁচে গেছে। আমি এসব ভাবছিলাম আর ইতি উতি করে চারদিক তাকাচ্ছিলাম, এমন সময় দেখতে পেলাম জোসেফ, মারিয়া এবং কামতাপ্রসাদ আসছে। তাদের সাথে দু’জন পুলিশ। তিনজনের হাতেই হাত কড়া। আমি ঘাবড়ে গিয়ে উঠে দাঁড়ালাম। মারিয়া আমাকে দেখেই চীৎকার করে বলল,</p>
+<p>‘ওই যে গাধাটা’ বলতেই একটা পুলিশ আমাকে ধরবার জন্য দৌড়ে এল। তার এ ভাব সাব দেখে আমিও দৌড় দিলাম।</p>
+<p>‘ধর—ধর পালিয়ে গেল …।’</p>
+<p>পুলিশটা চিৎকার করে হাত নেড়ে অন্যান্য পুলিশদেরকে বলল। আমার পায়ে যেন বিদ্যুতের ছটা লেগেছে। আমি সমস্ত ইন্দ্রিয় একত্র করে প্রাণপণে দৌড়াতে দৌড়াতে মহমের বাজারের ভেতরে দিয়ে সোজা শিবাজী পার্ক অবধি চলে এলাম। পুলিশের লোকেরা একটা জীপ নিয়ে আমার পিছে ধাওয়া করছিল। কিন্তু আমি তাদের চেয়েও দ্রুতগতিতে জীবনমরণ পণ করে হাঁপাতে হাঁপাতে দৌড়াচ্ছিলাম। আমি জানতাম আমাকে ধরতে পারলে এরা জ্যান্ত রাখবে না।</p>
+<p>আমি শিবাজী পার্কের দিকে দৌড়াচ্ছিলাম। আমার পিছে পিছে পুলিশের জিপ আসছে। আমি একটা লাফ দিয়ে দেয়াল টপকে শিবাজী পার্কের ভেতর চলে গেলাম। কিন্তু জীপ লাফ দিতে পারল না বলে ওখানেই থেমে গেল। তারপর ঘুরে শিবাজী পার্কের তোরণের দিকে যেতে লাগল। আমি ততক্ষণ ফুটবল খেলোয়াড়দের মাঝখানে দিয়ে, ক্রিকেট খেলোয়াড়দের উইকেট উল্টে দিয়ে অরলি সাইডের দেওয়াল টপকে অনেক দূর চলে এলাম। তারপরও থামলাম না। প্রাণের ভয়ে দৌড়াতে দৌড়াতে অরলি বাজারের ভেতর দিয়ে ট্রাফিকের সব নিয়ম কানুন ভঙ্গ করে সোজা সমুদ্রের তীরে এসে হাঁফ ছাড়লাম। এখানে এসে আমার সমস্ত শক্তি যেন হারিয়ে গেল। আমি অনেকটা অচৈতন্য হয়ে সমুদ্রের সৈকতে বালির উপর শুয়ে পড়লাম। ,</p>
+<p>অরলির দৃশ্য বেশ মনোরম। যতদূর দৃষ্টি যায় সমুদ্র একটা বৃত্তের মত পরিব্যাপ্ত হয়ে আছে। আকাশ যেন সমুদ্রের উপর ঝুঁকে পড়েছে। আকাশের দূর চক্রবালে রঙ্গীন মেঘের আলপনা। এ দৃশ্য দেখে আমি মোহমুগ্ধের মত তন্ময় হয়ে গেলাম। আমি ভাবলাম, এ সৌন্দর্যস্বাদ আমাদের নাগালের বাইরে। ক্ষুধা বেকারত্ব এবং অন্যায়ে পরিপূর্ণ এ ধরা মাঝে সাধারণ গাধাদের এসব দৃশ্যস্বাদ উপভোদ করার অবসর কোথায়? এমন দিন কি কখনো আসবে, যখন গাধাদের এদিন আর থাকবে না?</p>
+<p>না, মনে হয় না। গাধা হয়ে সুখের আশা করা দুরাশা। গাধাদের সমতল থেকে কোন ক্রমেই জীবনটাকে একটু উপরে তোলা যাচ্ছে না। যত বাগাড়ম্বরই করি না কেন, আমি গাধাই এবং এমন গাধা যার পেছনে পুলিশ ধাওয়া করছে। ক্লান্তিতে আমার চোখের পাতা মুদে আসতে লাগল। এখন যা ইচ্ছা তাই হোক। পুলিশ এসে গ্রেফতার করে নিয়ে যাক, আপত্তি নেই। এমন কি সমুদ্রের ঢেউ এসেও যদি আমাকে ভাসিয়ে নিয়ে যায় তাতেও আপত্তি নেই। আমি এত ক্লান্ত হয়ে পড়েছি যে, সব রকম পরিস্থিতির স্রোতে নিজেকে ভাসিয়ে দিতে রাজী আছি। চোখ মেলতে না পারলেও আমার কান সজাগ ছিল। আমার কাছেই একটা গাড়ী এসে দাঁড়াল যেন। আমি ভাবলাম আলবত পুলিশের জীপ। আমি যেমন ছিলাম তেমনই পড়ে রইলাম।</p>
+<p>সশব্দে গাড়ির দরজা বন্ধ হল। তারপর কুঁজোড়া পায়ের চাপ শোনা গেল ৷ অতঃপর সে পদশব্দ ক্রমশ আমার কাছে এসে থেমে গেল। আমি তখনও চক্ষু মুদে। আমি শুনতে পেলাম একজন অপরজনকে বলছে, ‘শেঠজী, একটা খোলা ট্রাক আনা দরকার।’</p>
+<p>‘তা দিয়ে কি হবে রুস্তম শেঠ?’</p>
+<p>‘গাধাটাকে আস্তাবলে নিয়ে যেতে হবে।’</p>
+<p>‘আস্তাবল? কেন??</p>
+<p>‘দেখ খেমজী, মুখের উপর কথা বলো না। এড্‌ভান্স কথা আমি বড্ড অপছন্দ করি। পুলিশের লোকেরা আসতে না আসতে যত তাড়াতাড়ি গাধাটাকে নিয়ে যেতে পারি, ততই মঙ্গল ৷’</p>
+<p>‘ঠিক আছে শেঠ, এখনই আনছি। খেমজি ট্রাক আনার জন্য চলে গেল। আমি ভাবলাম, এরা আর যা-ই হোক না, পুলিশের লোক নয়। তাই কিছুটা আশ্বস্ত হয়ে আমি চক্ষু খুললাম।</p>
+<p>দেখলাম, লাল টকটকে চেহারার একটা লোক দাঁড়িয়ে আমাকে খুঁটে খুঁটে দেখছে। মোটা নাক এবং টাক মাথা। রুস্তম শেঠ এসব অবশ্য আমাকে পরে বলেছে। আস্তাবলে নিয়ে আসার পর আমি একাধিক্রমে তিনদিন বেঁহুশ হয়েছিলাম। আমার চিকিৎসার জন্য বড় বড় পশু চিকিৎসকদের আনা হয়েছে।</p>
+<p>কিন্তু এরা সবাই এদেশী ছিল বলে আমার চিকিৎসায় জুৎ করতে পারল না। রুস্তম শেঠ আমার জন্য একজন ফরেন এক্সপার্ট-এর কথা ভাবছিলেন। কিন্তু অতীব দুঃখের বিষয়, বোম্বেতে গাধা রোগের বিশেষজ্ঞ এমন কোন এক্সপার্ট ছিল না। গাধাদের চিকিৎসা করেই বা কে? চিকিৎসা করে দু’পয়সা কামাতে হবে তো তাদের। কিন্তু গাধারাতো ফিস দিতে অপারগ।</p>
+<p>কিন্তু রুস্তম শেঠের তো পয়সা কড়ির প্রশ্ন ছিল না। প্রশ্ন হলো উপযুক্ত গাধা বিশেষজ্ঞের। অনেক চেষ্টা চরিত্রের পর খবর পাওয়া গেল হংকং এ ডঃ মেকনিলে নামের এক ইংরেজ চিকিৎসক থাকেন। গাধাদের চিকিৎসার ব্যাপারে তার বেশ নামডাক। তাছাড়া ইংরেজ ডাক্তার বলে শেঠজীর আগ্রহ বেড়ে গেল বেশি। কারণ ইংরেজরা দু’শ বছর অবধি এশীয় গাধাদের চিকিৎসার ব্যাপারে দেদার পরীক্ষা নিরীক্ষা চালিয়েছেন। সুতরাং দেরি না করে প্লেনযোগে হংকং থেকে তাকে আনিয়ে নিলেন। তিনি এসেই আমার চিকিৎসা শুরু করে দিলেন। এ সমুদয় ঘটনা আমি পরে জানতে পেরেছি। আমার শুধু এতটুকুই মনে আছে তিন চারদিন পর আমি যখন প্রকৃতিস্থ হলাম দেখলাম কাঠের তৈরি একটা বিরাট মশারীর মধ্যে শুয়ে আছি আমি। আমার হাত পা বাঁধা। সিথানে হাওয়া দিয়ে ফোলানো রবারের আরামপ্রদ বালিশ। ডানদিকে এক নার্স দাঁড়িয়ে। বাম দিকে ডঃ মেকনিলে দাঁড়িয়ে। নানা ধরনের কাচের যন্ত্র দিয়ে এটা ওটা পরীক্ষা করছে। আমি চোখ খুলতেই বললাম, ‘আমি এখন কোথায়?’</p>
+<p>‘আমার আস্তাবলে ৷’ রুস্তম শেঠ পাশ থেকে বললেন।</p>
+<p>‘এসব কি হচ্ছে?’</p>
+<p>‘তোমার শিরাতে রক্ত দেয়া হচ্ছে।’</p>
+<p>‘কথা বলো না চুপ থাক।’ ডাক্তার মেকনিলে ঠোঁটে হাত রেখে বললেন। আমি চোখ বন্ধ করে ফেললাম। কিছুক্ষণ পর আমার দেহে এক নতুন প্রাণ চাঞ্চল্যের সৃষ্টি হল। দ্বিগুণ শক্তিতে আমি উজ্জীবিত হয়ে উঠলাম। একটা সুস্থ স্বচ্ছন্দ সুখের আমেজে আমার সারা দেহ মন সজীব হয়ে উঠল। গভীর প্রশান্তিতে এরপর কখন আমি ঘুমিয়ে পড়লাম বলতে পারব না।।</p>
+<p>কতকাল পরে যেন ঘুম থেকে জাগলাম। জেগে দেখি ততক্ষণে রাত হয়ে গেছে। আমার মশারীর কাছে নীলচে টেবিল বাতি জ্বলছে। তার নিষ্প্রভ আলো কামরার মধ্যে যেন এক ইন্দ্রজাল মেলে ধরেছে। পাশের একটা আরাম কেদারায় মারিয়া বসে আছে।</p>
+<p>‘মারিয়া, তুমি এখানে?’ আমি খুশিতে নেচে উঠলাম। মারিয়া তার ডাগর ডাগর চোখ ঘুরিয়ে নিয়ে আস্তে আস্তে বলল,</p>
+<p>‘রুস্তম শেঠ তোমাকে কিনে নিয়েছেন। জোসেফ তোমাকে নিতে এসেছিল, রুস্তম শেঠ তাকে পাঁচ হাজার টাকা দিয়ে বিদায় করেছেন। তোমার দেখাশুনার জন্য আমাকে নিয়োজিত করা হয়েছে।</p>
+<p>আমি ছাড়া আরও দু’জন নার্স রয়েছে। তারা পালাক্রমে ডিউটিতে আসে। যাক, এখন বল দেখি, কেমন লাগছে তোমার?’</p>
+<p>‘কিন্তু তাই বলে পাঁচ হাজার টাকা? মারিয়া ভেবে দেখ দেখি, এ দেশে আর কোন গাধা পাঁচ হাজার টাকায় বিকাবে কিনা? বাবা, গাধার এত দাম।’ আমার চোখ বিস্ময়ে বিস্ফোরিত হয়ে গেল। মারিয়া বলল,</p>
+<p>‘তাতো ঠিকই। এদেশে কোন গাধাইতো দু’এক আনার বেশি পারিশ্রমিক পায় না। এক দুআঁটি ঘাস দিয়ে দিনভর খাটিয়ে নেয়া যায়। সেদিক থেকে দেখতে গেলে তোমার ভাগ্যের কোন তুলনা হয় না। অথচ শুনেছি, তোমার জাতবংশও নাকি ভাল নয় তেমন।’</p>
+<p>‘এক হতভাগ্য গরীব গাধার আবার জাত ভালো হবে কোত্থেকে? আজকাল যার ভাল গাড়ী আছে, সে-ই ভাল জাতের লোক। একখানা কেডিলেক রা রোলস রয়েস আছে তারাই বড় লোক। যারা পায়ে চলে তাদের আবার জাতপাত কিসের? আমার আশ্চর্য লাগে, শেঠ কি দেখে আমাকে পাঁচ হাজার টাকায় কিনে নিল?’</p>
+<p>‘কি জানি, তবে আমার জানা মতে, শেঠ এযাবৎ তোমার চিকিৎসার জন্য লাখো টাকা খরচ করে ফেলেছেন। শেঠ অত্যন্ত ভাল লোক। তুমি ঘুমের ঘোরে যখন বিড় বিড় করে আমার নাম উচ্চারণ করছিলে শেঠ তখনি উপযুক্ত বেতন দিয়ে আমাকে তোমার সেবায় নিয়োজিত করলেন।’</p>
+<p>বলতে গিয়ে লজ্জায় মারিয়ার মাথা ঝুঁকে এল। আমিও মারিয়ার কথায় সায় দিয়ে বললাম,</p>
+<p>‘সত্যি রুস্তম শেঠের মত মানুষ আর হয় না। সে আমার জীবন বাঁচিয়েছে সারা জীবন আমি তার কাছে কৃতজ্ঞ থাকব। অসহায় এবং দুর্গতদের জন্য এমন দরদবান মানুষ একালে আর হয় না।’</p>
+<p>ভক্তি-গদগদ কণ্ঠে বলতে গিয়ে আমার চোখে জল দেখা দিলো। আমি আরো কিছু বলতে যাচ্ছিলাম, এমন সময় ডাক্তার মেকনিলের আবির্ভাব হল। হাতের ইশারায় মারিয়াকে যেতে নির্দেশ দিয়ে আমাকে বললেন, ‘এখন কেমন মনে হচ্ছে?’ ‘বড় ভালো লাগছে ডাক্তার, থ্যাঙ্ক ইউ ডক্টর।’</p>
+<p>ডঃ মেকনিলে মুচকি হাসলেন। শিরা দেখে নিয়ে আমার মশারীর কাছের চেয়ারটাতে বসে পড়ে বললেন, ‘আসলে শেঠকে ধন্যবাদ দেয়া উচিত তোমার। যথাসময়ে আমাকে না আনালে তোমাকে বাঁচানো যেত কিনা বলা মুস্কিল।’ ‘আমার কি হয়েছিল ডাক্তার?’</p>
+<p>‘বেশি খেয়েছিলে।’</p>
+<p>‘ওভার ইটিং নয়, ওভার ড্রিংকিং হবে হয়তো।’</p>
+<p>‘বেশি খাওয়া বা পান করা এক কথাই তো।’</p>
+<p>‘কিন্তু আমার বেশ মনে পড়ছে সেদিন তো আমি কিছুই খেয়েছিলাম না। খাওয়া দূরে থাকুক, আমাকে বরং দু’দিন ধরে উপবাস করতে হয়েছিল। এমনতো কোনদিনই আমার জীবনে হয়নি, যেদিন পেট পুরে খেয়েছিলাম।’</p>
+<p>‘জীবনে কোনদিন পেট পুরে খাওনি বলেই তো এই দশা। হঠাৎ যখন খেতে পেয়েছ, গলা অবধি খেয়ে নিয়েছ, আর এসব কাণ্ড করে বসেছ। আমি অধিকাংশ গাধাদের মধ্যে এ রোগ দেখেছি।’</p>
+<p>‘এটাতো কোন রোগ নয় ডাক্তার। আসল রোগ তো হল ক্ষুধা।’ ‘ক্ষুধার কোন চিকিৎসা নেই। ক্ষুধা দুরারোগ্য ব্যাধি।</p>
+<p>‘আর বেকারত্ব?’</p>
+<p>‘তারও কোন চিকিৎসা নেই।’</p>
+<p>‘আর মূর্খতা?’</p>
+<p>‘মূর্খতাও দুরারোগ্য ব্যাধি। মূর্খতা বরং মারাত্মক ব্যাধি। যেখানে গাধাদেরকে পড়াশুনা করতে দেয়া হয়েছে সেখানেই সরকারের অবস্থা কাহিল হয়েছে। কেবিনেট পালটে দিয়েছে।’</p>
+<p>আমি ডাক্তারের সাথে আর তর্ক করতে চাইলাম না। তার সাথে কথা বলা উলুবনে মুক্তা ছড়ানোর মত। এমনও হতে পারে রেগে গিয়ে আমার চিকিৎসা করাই বন্ধ করে দেবে। তারপর হংকং চলে যাবে। আমি কথা কেড়ে নিয়ে বললাম,</p>
+<p>‘তাহলে আপনার মতে বেশি খাবার দরুনই আমার এ দশা হয়েছে?’ ‘আলবৎ।’</p>
+<p>আমি মনে মনে বললাম, আপনি দেখছি আমার চেয়েও বড় গাধা। ডাক্তার বললেন,</p>
+<p>‘আমি তোমাকে আগে থেকেই জানতাম। খবরের কাগজে তোমার সম্পর্কে অনেক কিছু পড়েছি। তুমি ভাল পড়াশোনা জানো এজন্য আমি সব জিনিস তোমাকে বুঝিয়ে বলছি। তোমার রোগটা কিন্তু মারাত্মক। একে ত বেশি খেয়েছ তদুপরি তোমার রক্ত খারাপ হয়ে গেছে।’</p>
+<p>‘রক্ত খারাপ!’</p>
+<p>‘হ্যাঁ, যে সব গাধারা পড়ালেখা করে, তাদের রক্ত খারাপ না হয়ে যায় না। শুধু রক্ত কেন, তাদের বুদ্ধিও খারাপ হয়ে যায়। এজন্য আমি আসা মাত্রই তোমার মল, মূত্র, থুথু এবং ঘাম পরীক্ষা করেছিলাম।</p>
+<p>‘ঘামের পরীক্ষা হয় নাকি?’</p>
+<p>‘হ্যাঁ, তারপর তোমার হৃৎপিণ্ড, মস্তিষ্ক, ফুসফুস, কলিজা, পাকস্থলী ইত্যাদিরও এক্সরে নিয়েছি। সবকিছু দেখাশুনা করে আমি সিদ্ধান্তে উপনীত হলাম যে, আসলে তোমার রক্তই খারাপ হয়েছে। রক্ত ঠিক করতে হলে তোমার দেহে কোন নিরক্ষর</p>
+<p>গাধার রক্ত দিতে হবে। শেঠ ভেবেছিল, ‘বোম্বেতে নিরক্ষর গাধা হয়ত পাওয়া যাবে না। কিন্তু যখন বিজ্ঞাপন দেওয়া হল গণ্ডায় গণ্ডায় গাধা এসে হাজির হল। দশ টাকা থেকে আরম্ভ করে এক আঁটি ঘাসের বিনিময়ে পর্যন্ত তারা রক্ত দিতে প্রস্তুত ৷ শেঠ তো একেবারে হতবাক।’</p>
+<p>‘হতবাক হবার কি আছে? গরীবরা সব সময়ই অকাতরে রক্ত দান করে থাকে।’ আমার কথা শুনে ডাক্তারের মুখ ফ্যাকাসে হয়ে গেল। ডাক্তার বললেন,</p>
+<p>‘তোমার রোগ এখনো পুরোপুরি সারেনি দেখছি। তোমাকে আরো এক সপ্তাহ নিরক্ষর গাধাদের রক্ত দিতে হবে। তোমার নিজস্ব এক ফোঁটা রক্তও যেন আর দেহে না থাকতে পারে।</p>
+<p>দশ বার দিন পর আমি সম্পূর্ণ সুস্থ হয়ে উঠলাম। দিনভর আস্তাবলের বাইরে পায়চারি করছি। ওদিকে ডাক্তার মেকনিলে মোটা টাকা নিয়ে হংকং চলে গেছেন মারিয়া এখনো আমার সেবায় নিয়োজিত। বাকী নার্স দু’জনকে বিদায় করে দেওয়া হয়েছে। মারিয়া সব সময় আমার পায়ে পায়ে থাকত। তার সান্নিধ্য বড় ভালো লাগত আমার। একদিন বিকেলে রুস্তম শেঠ আমাকে দেখতে এলেন। তাঁর সাথে একজন নাপিত। শেঠ আমাকে দেখিয়ে নাপিতকে বললেন, ‘এর গায়ের সব লোম কামিয়ে একেবারে ঘোড়ার চামড়ার মত মসৃণ করে দিতে হবে। পারবে ত?’ নাপিত</p>
+<p>বলল,</p>
+<p>‘আমি কানপুরের নাপিত। মানুষের চুল ছাড়া কোন জন্তু জানোয়ারের চুল কাটি না আমি ৷’</p>
+<p>‘না কেটেছ তাতে কি হয়েছে।’</p>
+<p>‘জী না শেঠ, আমি কানপুরের নাপিত। যদি লোকেরা জানতে পারে যে, আমি এক গাধার চুল কেটেছি তাহলে তারা আমাকে এক ঘরে করে রাখবে।’</p>
+<p>‘তারা মোটেই জানতে পারবে না। আমরা না বললে তারা কি করে জানবে?’</p>
+<p>‘তা তো বুঝলাম। আমি একজন মানুষের বেলায় দুটাকা নেই। কিন্তু এ গাধার সারা শরীরে আমার ক্ষুর কাঁচি যে সব বেকার হয়ে যাবে। তারপরই আমাকে গঙ্গা স্নান করতে হবে। না, শেঠজী না। আমি এত নিচ কাজ করতে পারব না। আমি কানপুরের নাপিত। একথা বলে নাপিত চলে যাচ্ছিল। এমন সময় শেঠ একখানা একশ টাকার নোট দিল তার হাতে।</p>
+<p>‘এখন আপত্তি আছে?’</p>
+<p>‘না, আপত্তি থাকার আর কি আছে শেঠ। আমার কাজ হল চুল কাটা। তা সে চুল মানুষেরই হোক, আর ভেড়া বকরিরই হোক, তাতে আমার কি আসে যায়?’</p>
+<h2>পাঁচ</h2>
+<p>আমার সারাদেহ কামানোর পর গরম পানি এবং সাবান দিয়ে কয়েকবার গোসল করানো হলো। কয়েকবার শুকনো তোয়ালে দিয়ে সারা গা মুছে সাফ-সাফাই করে জয়তুনের তৈল মালিশ করা চলল। অবশেষে একদিন একটা দামী-পালিশ লাগানো হলো আমার গায়ে। পালিশ লাগানোর পর আমার চেহারাটাই পালটে গেল। সারা জীবনে আমার এতরূপ কোনদিন দেখিনি। আমার রূপে মুগ্ধ হয়ে মারিয়া আজকাল চুপি চুপি দেখতে লাগলো আমাকে। আমি মারিয়াকে বললাম,</p>
+<p>‘আসলে রুস্তম শেঠ একটা ফেরেশতা। এমন নিঃস্বার্থ সহানুভূতিশীল ও দেবতাতুল্য মানুষ আমি জীবনে দেখিনি। আপন ভাইও ভাইর সাথে এমন ব্যবহার করে না। একমাত্র রুস্তম শেঠকে দেখেই আমার মত গাধাও মানবতা বলে যে জগতে একটা বস্তু আছে, সে কথায় বিশ্বাস স্থাপন করতে পারে।’ মারিয়া বলল,</p>
+<p>‘সত্যি তার ঋণ আমরা শোধ করতে পারব না।’</p>
+<p>পরদিন ঘন মোচওয়ালা দোহারা চেহারার অর্ধ বয়েসী একজন লোক আমার আস্তাবলে এলো। তার শ্যেনদৃষ্টি আমার পালিশ করা দেহকে যেন বিদ্ধ করছিল। লোকটির সাথে একজন ডাক্তার রয়েছে। তাদের পেছনে শেঠজী এবং খেমজী রয়েছেন। ডাক্তার আমার আপাদমস্তক দেখে বললেন, ‘এটাকে গাধার মত মনে হচ্ছে যে।’ রুস্তম শেঠ বলেন, “জ্বি না, এটা পেরুর ঘোড়া। দক্ষিণ আমেরিকার পেরুতে এ ঘোড়ার জন্ম। সেখানকার ঘোড়া ঠিক এ আদলেরই হয়ে থাকে।’</p>
+<p>‘জ্বি হ্যাঁ, ওখানকার ঘোড়াগুলো অনেকটা দেখতে গাধার মত। শেঠ বিশেষভাবে অর্ডার দিয়ে পেরু থেকে এ ঘোড়া আনিয়েছেন। এদেশে এ জাতের ঘোড়া আর কোথাও নেই। এটার মা স্পেনিশ এবং বাপ সাউথ আমেরিকার ইণ্ডিয়ান। উভয়ের ক্রস ব্রিডিং-এ এটার জন্ম। বেশ দৌড়াতে পারে।’ খেমজি বলল।</p>
+<p>‘রাখো, হয়েছে—হুহ্ গোঁফধারী লোকটি একটা ন্যক্কারজনক অভিব্যক্তি করে বলল। ‘এটার নাম কি?’ ‘গোল্ডেন স্টার।’ ‘গোল্ডেন স্টার? নামের কত বাহার।’ এবার ডাক্তারও কেমন যেন সন্দেহের ভাব দেখাল। তাদের এ ভাব সাব দেখে শেঠজী তাদেরকে নিয়ে একটু আড়ালে গেল। অনেকক্ষণ ধরে তাদের মধ্যে কি নিয়ে যেন কানাঘুষা চলল। অতঃপর তারা দু’জন চলে গেল। শেঠজী এবং খেমজী হাসতে হাসতে এসে আমাকে বলল,</p>
+<p>‘সব ঠিক হয়ে গেল। কালকে তোমাকে মহালক্ষ্মী রেসকোর্সের আস্তাবলে নেয়া হবে।’</p>
+<p>‘মহালক্ষী রেসকোর্সে কেন?’</p>
+<p>‘সেখানে একমাস পর ক্রিসমাস কাপের যে রেস হবে, তাতে তুমি অংশগ্রহণ করবে।’</p>
+<p>আমি গাধা হয়ে ঘোড়ার সাথে দৌড়াব? আপনাদের বুদ্ধিসুদ্ধির মাথা খেয়েছেন নাকি? গাধারা কোনদিন ঘোড়ার সাথে দৌড়ে পারে?’</p>
+<p>‘তুমি যে কত দ্রুত দৌড়াতে পার, সেটা আমাদের সেদিনই জানা হয়ে গেছে, যেদিন পুলিশ তোমার পিছু ধাওয়া করছিল। পুলিশের জীপ এবং সব রকম দ্রুতগামী যানবাহন পিছে ফেলে কি করে যে তুমি দেয়াল টপকে অরলির দিকে চলে এসেছিলে, আমরা সবই দেখেছি। খেমজী তার ছোট সবুজ কার নিয়ে তোমাকে অনুসরণ করছিল। সেদিন যত দ্রুত দৌড়েছিলে, তার চার ভাগের এক ভাগও যদি রেসে দৌড়াতে পার, তবেই আমাদের কেল্লাফতে। আমি হলফ করে বলতে পারি, কোন ঘোড়াই তোমার সাথে এঁটে উঠতে পারবে না।’</p>
+<p>‘শেঠ, এ জন্যই কি তুমি আমাকে এত দয়া দেখিয়েছ?’</p>
+<p>‘আলবৎ। তুমি বেশ দৌড়াতে পারবে বলে আমার বিশ্বাস এবং সে জন্যই তোমার এত যত্ন আত্তি।’</p>
+<p>‘আচ্ছা তাহলে এজন্যেই কি শেঠ আমার জীবন বাঁচিয়েছিলো? কি আশ্চৰ্য্য, আজকাল গাধাকেও ঘোড়ার দলে স্মাগেল করা হচ্ছে। মারিয়া, চিন্তা করে দেখ দেখি স্মাগলিং দুনিয়ার কোথায় না আছে? না মারিয়া, রেসে দৌড়ানো আমার পক্ষে সম্ভব হবে না।’</p>
+<p>‘তা কি করে হয়? তুমি এতোদিনে মরে ভূত হয়ে থাকতে। সেই মরণ থেকে যে তোমাকে বাঁচাল এবং তোমার চিকিৎসার জন্য হাজার হাজার টাকা খরচ করল, তার জন্যে তোমার কোন কৃতজ্ঞতা নেই?’</p>
+<p>‘তাতো বুঝলাম মারিয়া, কিন্তু রেসে যে আমি জিততে পারব তার কোন নিশ্চয়তা আছে? শেঠ যে অবস্থায় আমাকে দৌড়াতে দেখেছে, সে সময়ের কথা আলাদা, তখন ছিল আমার জীবন মরণের প্রশ্ন। না—মারিয়া আমি দৌড়াতে পারব না।’</p>
+<p>‘আরো চিন্তা করে দেখ। ইতিহাসে এমন কোন নজির নেই যে এক গাধা ঘোড়ার সাথে দৌড়ের পাল্লা দিয়েছে। তুমিই হবে প্রথম গাধা, যে ঘোড়ার সাথে দৌড়াবে। তুমিই গাধা কুলের প্রথম প্রতিনিধি হবে।’</p>
+<p>‘আর যারা রেসের অন্তরালের এসব দুর্নীতি এবং স্মাগলিং সম্পর্কে কিছুই না জেনে রেসে লাখো লাখো টাকা ঢেলে দেবে তাদেরকে তুমি কি বলবে?’</p>
+<p>‘শেঠ আমাকে বলেছেন, এটাকেই বিজনেস বলে। একজন অপরজনকে যত বেশি গাধা বানাতে পারবে ততই সে বিজনেসে লাভবান হবে।’</p>
+<p>‘আমি এমন কাজ কেন করতে যাব, যেখানে সাধারণ লোকেরা না জেনে লাখো লাখো টাকা পানিতে ঢালবে। আমি সাধারণ লোকদের ক্ষতি করতে পারি না।’</p>
+<p>‘তবে এটা জেনো তুমি এতে অংশগ্রহণ না করলেও রেসের খেলা যেমন চলত, তেমনই চলবে। রেস বন্ধ হবে না। তবে বেচারি মারিয়ার চাকুরিটা হয়ত থাকবে না।’</p>
+<p>‘কি, তোমার চাকুরি যাবে কেন?’</p>
+<p>‘চাকুরি যাবে না বসে থাকবে? তুমি বোঝ না শেঠ আমাকে কি জন্যে নিয়োগ করেছেন। সে উদ্দেশ্যই যদি বানচাল হয়ে যায়, ডিয়ার ডাংকিং, তুমি অন্ততঃ আমার খাতিরেও কি এ রেসে যোগ দিতে পার না—শুধু আমার জন্যে—’</p>
+<p>‘কি যে বলো মারিয়া, তোমার জন্যে আমার প্রাণও দিয়ে দিতে পারি।’ আমি দৃঢ় আত্মপ্রত্যয় নিয়ে বললাম, ‘তুমি কোন চিন্তা করো না। তোমার খাতিরে যদি দৌড়াতে হয় তবে এ গাধা অবশ্যই দৌড়বে। শুধু দৌড়াবেই না—ঘোড়ার কুলের নাকে মুখে কালি মেখে দেবে। মনে রেখো, এ গাধা মহালক্ষ্মী রেসকোর্সের সকল ঘোড়াকে বেকুব বানিয়ে ছাড়বে।’</p>
+<p>‘ডার্লিং’ মারিয়া আমাকে চুমু দিয়ে বলল, ‘আমি তোমার কাছে এরকম আশাই করি।’</p>
+<p>‘আমি জানতাম না, তুমি আমাকে এত ভালবাস। আসলে আমি এক গাধা বইতো নই ৷’</p>
+<p>‘প্রেম করতে হলে কিছুটা গাধা হওয়া দরকার।’ বলেই মারিয়া একটা লাস্যভঙ্গি করে আঁচল দোলাতে দোলাতে আস্তাবল থেকে বেরিয়ে গেল। মারিয়া চলে গেলে—আমার মনটা খুশিতে ভরে উঠল। আমি হাত পা টানা দিয়ে গলাটা আস্তাবলের বাইরে গলিয়ে দিলাম এবং মরহুম ওস্তাদ তানসেনের একটা সুরের তান ধরলাম।</p>
+<p>সে সুরে সারা আস্তাবল গুঞ্জরিত হয়ে উঠল।</p>
+<p>মারিয়া আস্তাবল থেকে বেরিয়ে লনের মাঝখানে দিয়ে শেঠজির বাংলোর দিকে এগোচ্ছিলো।</p>
+<h2>ছয়</h2>
+<p>রেস শুরু হবার ক’দিন আগে থেকেই পত্র-পত্রিকায় গোল্ডেন স্টারকে নিয়ে বেশ বাক-বিতণ্ডা শুরু হল। গোল্ডেন স্টারের বংশ পরিচয় দিতে গিয়ে বলেছেন, স্পেনিশ এবং সাউথ আমেরিকার ইণ্ডিয়ান গাধার ক্রুশ ব্রিডিং-এ এর জন্ম হয়েছে। বেশির ভাগ সাংবাদিক এ ঘোড়াটি সম্পর্কে কোনরূপ সুস্পষ্ট মতামত দিলেন না, পাঠকদেরকে তারা হুঁশিয়ার করে দিয়ে বললেন, তারা যেন অযথা এই বুনো অনভিজ্ঞ ঘোড়ার পেছনে টাকা না ঢালেন।</p>
+<p>মারিয়া খবরের কাগজ থেকে এসব পড়ে পড়ে আমাকে শোনাতো আর তা শুনে শুনে আমার রক্ত টগবগ করতে থাকত। আমি মনে মনে ঠিক করলাম, রেসের দিনে আমি এমন করে দৌড়াব, মনে করব আমার পেছনে বোম্বের সকল পুলিশরা জীপ নিয়ে তাড়া করে আসছে। আমি এসব সাংবাদিকদেরকে দেখিয়ে দেব, দৌড় কাকে বলে? গাধারাও যে ভালো জাতের ঘোড়াকে দৌড়ে হারিয়ে দিতে পারে আমি তাদের চোখে আঙ্গুল দিয়ে দেখিয়ে দেব।</p>
+<p>রেসের দিনে আমাকে মহালক্ষ্মী রেসকোর্সের আস্তাবলে স্থানান্তরিত করা হল। কিন্তু নিরাপত্তার জন্যে কোন ঘোড়ার সাথে আমাকে মিশতে দেওয়া হল না। কোন ফটোগ্রাফারকেও আমার কাছে আসতে দেওয়া হল না।</p>
+<p>রেসের ঘণ্টা খানেক আগে মারিয়া যথেষ্ট পরিমাণে মদ পান করিয়ে গেল আমাকে। তার কিছুক্ষণ পর এক ডাক্তার এসে একটা ইঞ্জেকশন দিয়ে গেল। ইঞ্জেকশন দিতেই আমার সারাদেহে একটা দুর্দান্ত তেজ টগবগ করে উঠল।</p>
+<p>রেসকোর্সের ময়দানে অসংখ্য দর্শকের সমাগম হয়েছে। আমাকে দেখেই দর্শকরা খিলখিল করে হেসে উঠল। লজ্জায় ঘৃণায় আমার গা থরথর করে কাঁপছিল। আমি দাঁতে দাঁত চেপে চুপ করে রইলাম। উইনার্স গ্যালারীতে মারিয়া শেঠ রুস্তমের পাশে দাঁড়িয়ে একটা গোলাপী রুমাল দেখাচ্ছিল। লোকদের হাসিঠাট্টা দেখে আমি একেবারে ঘাবড়ে গিয়ছিলাম। কিন্তু মারিয়াকে দেখে সাহসে আমার বুক ভরে উঠল। রেসের ঘোড়াগুলোর একেবারে শেষের দিকে আমি দাঁড়ালাম। যখন আমরা এক চক্কর ঘুরে এলাম তখনও আমি সবার পিছনে। আমার দৌড় দেখে লোকরা হেসে বলল, ‘আরে এ যে গাধার চেয়েও অধম। এই বুঝি পেরুর ঘোড়া। গাধাও তো এর চেয়ে ভাল দৌড়াতে পারে।’।</p>
+<p>কোন লোকই আমার নামে কোন টিকেট ধরল না, তা দেখে শেঠ রুস্তমের চেহারা অনেকটা পিঙ্গল বর্ণ ধারণ করল। মারিয়াও কেমন যেন চিন্তিত হয়ে পড়ল।</p>
+<p>মারিয়ার মুখের দিকে তাকিয়ে দাঁতে দাঁত পিষে এমন জোরে এক দৌড় দিলাম যে, আধা ফার্লং এর মধ্যেই তিনটা ঘোড়াকে পিছনে ফেলে দিলাম। এরপর চতুর্থ, পঞ্চম, ষষ্ঠ, এমন কি সপ্তম ঘোড়াটাকেও অতিক্রম করে চললাম আমি।</p>
+<p>‘হারিআপ গোল্ডেন স্টার, মারিয়া রুমাল নেড়ে খুশিতে চিৎকার করে উঠল। সর্বত্র শুধু মারিয়ার চিৎকারই যেন গুঞ্জন করতে লাগল। এখন উইনিং পোস্ট মাত্র—</p>
+<p>আর এক ফার্লং দূরে রয়েছে। আমার আগে মাত্র—দুটো ঘোড়া রয়েছে। সবাই হাঁ করে তাকিয়ে ধীর আগ্রহে ফলাফলের প্রতীক্ষা করছিল।</p>
+<p>‘বাকআপ’ ‘সোনাকা তারা।’ হাজারো দর্শক চিৎকার করে উঠল। অসংখ্য লোক ‘সোনাকা তারার’ উপর টিকেট ধরছে এবং সেটা এখনো আগে রয়েছে। ‘বাক আপ মাহপারা—’।</p>
+<p>মাহপারা ছিল আমার আগে। তার উপরও অনেকে বাজি লাগিয়েছে। ‘হারিআপ মাই ডার্লিং গোল্ডেন স্টার।’</p>
+<p>মারিয়া তীব্র চিৎকার করে বলল। আমি এবার শেষ শক্তিটুকু নিঃশেষ করে জীবন মরণপণ করে দৌড়ালাম। মুহূর্তে আমি ঘোড়া দুটোকে পঞ্চাশ গজ পেছনে ফেলে উইনিং পোস্ট অতিক্রম করে গেলাম।</p>
+<p>বোম্বাইর রেসকোর্সের ইতিহাসে এমন রেস কোনদিন হয়নি। গোল্ডেন স্টার শতকরা নম্বই ভাগ দাও মেরে দিয়েছে। গোল্ডেন স্টারের নামে মাত্র সাতটা টিকেট ধরা হয়েছিল। সাতটা টিকেটই রুস্তম শেঠের লোকেরা ধরেছিল।</p>
+<p>মারিয়া আমার উপর দুশ টাকা ধরেছিল। সে পেয়েছে আঠার হাজার টাকা। শেঠজির দুটো টিকেট বেকার গেছে। সে দুটো অন্য ঘোড়ার নামে ধরেছিল। তা সত্ত্বেও শেঠজি এ রেসে সর্বমোট আড়াই লাখ টাকা উপার্জন করেছে।</p>
+<p>গোল্ডেন স্টার…।</p>
+<p>রেস শেষ হবার সাথে সাথেই আমাকে মহালক্ষ্মীর আস্তাবল থেকে শেঠজির আস্তাবলে নিয়ে আসা হল। শেঠ আমার পিঠে চাপড় দিয়ে আদর করল। মারিয়া ভালবাসা জানাল। আমার অনুরোধক্রমে রুস্তম শেঠ ডাক্তার রাম অবতারের বিলটা পাঠিয়ে দিল। প্রথমবার রাম অবতার আমার প্রাণ বাঁচিয়েছিল, তার কাছে আমি দুই হাজার টাকা ঋণী ছিলাম।</p>
+<p>রাতে গোলাপ জল ছিটানো তাজা তাজা ঘাস এনে দেয়া হলো আমাকে। এরপর আমাকে আসল হুইস্কি দেয়া হল। আমি নিমিষে দুবোতল শেষ করে ফেললাম। পানাহার শেষ করে আমি মশারীর নীচে পা ছড়িয়ে সটান শুয়ে পড়লাম।</p>
+<p>মাঝরাতে আমার ঘুম ভেঙে গেল। আমার আস্তাবলের বাইরে কারা যেন ফিস্ ফিস্ করে কথা বলছিল। আমি দেওয়ালের সাথে কান লাগিয়ে শুনতে লাগলাম, ‘এ সম্পর্কে খুব তদন্ত হবে। আর অন্য কোন রেসের রিস্ক নেয়া ঠিক হবে না।’</p>
+<p>‘খেমজি বলল, ‘কিন্তু শেঠ, গোল্ডেন স্টারতো আজ একেবারে বাজিমাত করে দিয়েছে।’</p>
+<p>‘তুমি বোঝ না, আমি রিস্ক নিতে পারি না, যখন তদন্ত শুরু হবে একথা গোপন রাখা যাবে না যে, আমি একটা গাধা দিয়ে ঘোড় দৌড়ে জয়লাভ করেছি। ফলে আমার জেলও হয়ে যেতে পারে। সুতরাং আমি রিস্ক নিতে পারি না। গোল্ডেন স্টারকে খতম করে দেয়া দরকার।’</p>
+<p>‘সেটা কি করে সম্ভব?’ খেমজি বলল।</p>
+<p>‘তুমি গাধাটাকে কোন ছুতা করে সমুদ্রের পাড়ে নিয়ে যাও। গাধাটা কিন্তু ভারী হুঁশিয়ার। কোন কিছু টের না পায় যেন। বলবে এখানে তোমার প্রাণের ভয় আছে। এ কথা বলে সমুদ্রের তীরে নিয়ে পিস্তল দিয়ে সুট করে লাশটা সমুদ্রে ফেলে দেবে। কি বল মারিয়া।’</p>
+<p>‘হাঁ, এটাই ঠিক হবে। সমুদ্রে ফেলে দিলে পুলিশের লোকেরা মোটেই টের পাবে না।’</p>
+<p>প্রথমদিকে তো আমি ভয়ে কাঁপছিলাম। তারপর যখন মারিয়ার কথা শুনলাম, আমার কান্না পেল। একেই তাহলে আমি ভালবাসতাম। ভালবাসার এই প্রতিদান 1 খেমজি বলল, ‘আসলে কেমন যেন লাগছে শেঠজি। যে গাধা আমাদের একই রেসে লাখো টাকার ভাগ্য ফিরিয়ে দিল, কি করে তাকে শেষ করে দেবো। কিছুই ভাল লাগছে না শেঠজি।’</p>
+<p>‘বোকার মত কথা বলো না। যে গাধা দিয়ে আমাদের আর কোন কাজ হচ্ছে না, তাকে রেখে কি করব? তাকে শেষ করে দেয়াই ভাল। তাকে রেখে বিপদের ঝুঁকি নিতে যাবে কে?’</p>
+<p>এরপর তাদের আর কোন কথা শোনা গেল না। এরপর দীর্ঘ নীরবতা। রাতের অন্ধকারের মধ্যে আমার গলার কাছে একটা খড়গ ঝুলছিল যেন। আমার এখনই পালিয়ে যাওয়া দরকার। কিন্তু তা কি করে সম্ভব? আস্তাবলের দরজা বাইরে থেকে আটকানো, তাছাড়া ইচ্ছা করলেই কি কোন গাধা পালিয়ে যেতে পারে?</p>
+<p>‘না না এমন হতে পারে না। আমি নিজেকে মরতে দিতে পারি না।’ আমি আবেগ জড়িত কণ্ঠে মরিয়া হয়ে বললাম। এরপর অতি সতর্কতার সাথে কে যেন দরজাটা খুলল। এবং একটা কালো ছায়া ভেতরে প্রবেশ করলো।</p>
+<p>আমি চমকে উঠে বললাম ‘কে?’</p>
+<p>হঠাৎ ছায়াটা দরজার কাছের সুইস টিপে দিল। প্লাবিত আলোর মাঝে দেখলাম খেমজি দাঁড়িয়ে।</p>
+<p>‘কি জন্যে এত রাতে?’</p>
+<p>‘উঠ,—চলো—বাইরে থেকে ঘুরে আসি।’</p>
+<p>‘বাইরে কোথায়?’</p>
+<p>‘সমুদ্রের তীরে। একটু হাওয়া খেয়ে আসি আর তোমার সাথে কিছু জরুরী কথা আছে ৷’</p>
+<p>‘সে কথা এখানে বললেই তো হয়।’</p>
+<p>‘এখানে বড্ড গরম। তাছাড়া কেউ শুনে ফেলতে পারে। জানতো দেয়ালেরও কান আছে। এক রেসে তো আমরা জিতলাম। আগামী রেস সম্পর্কে কি করা যায় তা নিয়ে অনেক কথা আছে তোমার সাথে।’</p>
+<p>আমি মনে মনে বললাম, আগামী রেস সম্পর্কে আর কি বলবে। তার আগেই তো আমার মৃত্যু হচ্ছে।</p>
+<p>খেমজি আমার গলায় দড়ি লাগিয়ে সমুদ্রের তীরের দিকে নিয়ে চলল। রাস্তায় ঘুটঘুটে অন্ধকার। নারকেল গাছগুলোকে মার্শাল ল’র সিপাইর মতো মনে হল। সমুদ্রের তরঙ্গ তীরে এসে হুমড়ি খেয়ে পড়ছে। তরঙ্গর ঝুপঝাপের তীব্র আওয়াজে কানে তালা দেবার জো। চারিদিকে কোন জনপ্রাণী নেই। দিগন্ত বিস্তৃত সমুদ্র আর তার তীরে একজন মানুষ ও একটি গাধা।</p>
+<h2>সাত</h2>
+<p>সমুদ্রের তীরে পৌঁছে খেমজি আমাকে দাঁড় করিয়ে রক্তচক্ষু পাকিয়ে বলল, ‘জানো আমি তোমাকে এখানে কেন নিয়ে এসেছি?’</p>
+<p>‘জানি, আমাকে খুন করার জন্য এখানে নিয়ে এসেছ।’ জীবন সম্পর্কে একেবারে বেপরোয়া হয়ে আমি বললাম। ‘বেশতো আগেই জেনে ফেলেছ দেখছি। ঠিক আছে, মৃত্যুর জন্য প্রস্তুত হও।’ বলেই খেমজি পকেট থেকে একটা পিস্তল বের করল।</p>
+<p>‘আমার আর বাঁচবার সাধ নেই। আমি যে কোন মুহূর্তে মরতে প্রস্তুত। তবে আমার একটা অন্তিম অনুরোধ। মৃত্যুর পূর্বে আমার একটা মনোবাঞ্ছা।’ ‘কি তোমার অনুরোধ?’</p>
+<p>‘অনুরোধ আর কিছুই নয়। রেসের সময় যে আমার পিঠে আরোহণ করেছিল এবং যার পরিচালনায় আমি ঘোড়াদের হারিয়ে দিয়ে গাধাদের নতুন ইতিহাস সৃষ্টি করেছি, মরার আগে সেই মহাত্মনের পূণ্য হস্ত চুম্বন করতে চাই।’</p>
+<p>‘ও এই কথা?’ খেমজি ঠোঁট উল্টিয়ে বলল, ‘ঠিক আছে ঝটপট চুমো দিয়ে নাও।’</p>
+<p>বলেই খেমজী হাতটা এগিয়ে দিল। খেমজি হাত এগিয়ে দিতেই আমি পেছন ফিরে এমন জোরে লাথি মারলাম যে, সে ক’হাত দূরে পাথরের ওপর যেয়ে ছিটকে পড়ল। হাত থেকে পিস্তল পড়ে গেল। এই সুযোগে আমি উঠে পড়ে দৌড়াতে শুরু করলাম। খেমজি কাতরাতে কাতরাতে উঠে দাঁড়াল এবং আমার চৌদ্দ পুরুষ একত্র করে গালি দিল। কিন্তু আমি পেছনে একট ও না তাকিয়ে প্রাণপণে দৌড়াতে থাকলাম। রেসকোর্সের মাঠের চেয়েও দ্বিগুণ রেসে দৌড়াতে লাগলাম। হঠাৎ দেখলাম, খেমজি গুলী ছুড়ছে। ক’টা গুলীই আমার গা ঘেঁষে ছম ছম করে চলে গেল।</p>
+<p>শেষ অবধি একটা গুলী এসে আমার পেছনের ডান দিকের পা ভেদ করে চলে গেল। আমি ঘুরে পড়ে যাচ্ছিলাম, কিন্তু কোন্‌মতে নিজেকে সামলে নিয়ে তবু দৌড়াতেই থাকলাম। পথঘাট, বাজার-গলি, খেলার মাঠ কোন কিছুই আমার মনে নেই। আমি প্রাণের দায়ে উঠে পড়ে দৌড়াচ্ছিলাম।</p>
+<p>অনেকক্ষণ দৌড়ানোর পর পেছনে ফিরে যখন দেখলাম, যতদূর দৃষ্টি যায় আর কোন লোকজন নেই, পথঘাট নীরব নিস্তব্ধ, আশপাশের বাংলোগুলো নিঃসাড়ে ঘুমুচ্ছে, হঠাৎ আমার হাত পা ভেঙে এল। একটি বাংলোর বারান্দায় নারকেল গাছের তলায় আমি এক রকম হুমড়ি খেয়ে পড়ে গেলাম।</p>
+<p>সকালে যখন বাংলোর মালী এসে ডাণ্ডা মেরে আমাকে তাড়ানোর চেষ্টা করছিল, কোন মতেই আমি উঠতে পারছিলাম না। আমার পা ফুলে গেছে ক্ষতস্থানের রক্ত শুকিয়ে গেছে। মালীর মার খেয়ে আমি কাঁদতে লাগলাম।</p>
+<p>আমার চিৎকার শুনে বাংলোর মালিক বেরিয়ে এলেন। বেঁটে দোহারা চেহারার</p>
+<p>একজন লোক, মাথায় টাক। চোখগুলো চকচকে। লোকটি থেমে থেমে কথা বলে। ‘আলী—এখানে কিসের হল্লা? এ কি?</p>
+<p>‘গাধা স্যার ৷’ বলেই আলী আবার এক ঘা বসিয়ে দিল আমার উপর। লোকটি আমার আপাদমস্তক ভালভাবে নিরীক্ষণ করল। টেকো মাথায় একটু চুলকালো। তারপর কিছু একটা পেয়ে যাবার মত উৎফুল্ল হয়ে উঠলো। মালীকে থামিয়ে দিয়ে বলল, ‘হু—এটার পায়ে জখম। এটাকে তাড়াতাড়ি ভেতরে নিয়ে আসো।’</p>
+<p>মালী অনেকটা বিস্ময় ও বিরক্তির সাথে মালিকের দিকে তাকাল। হঠাৎ গাধার প্রতি তার এত দরদ হল কেন সে বুঝে উঠতে পারল না। কতক্ষণ কি বক বক করে দড়ি আনবার জন্যে সে ভেতরে চলে গেল। সে চলে যেতেই মালিকও ভেতরে গেল।</p>
+<p>প্রায় আধা ঘণ্টা পর মালিক ঔষধপত্র এবং ব্যান্ডেজের সরঞ্জাম নিয়ে আমার কাছে এল। সাথে একটা চাকর ছেলেও এসেছে। মালিক আমার ক্ষতস্থান ধুয়ে অপারেশন করে ভেতর থেকে খুঁজে গুলী বের করল। তারপর ঔষধ লাগিয়ে ব্যান্ডেজ করে ইনজেকশন দিতে লাগল।</p>
+<p>এমন সময় ভেতর থেকে একজন স্বর্ণকেশীর আবির্ভাব হল। সে মালিক থেকে কম হলেও দেড় ফুট লম্বা হবে। তার পরনে সাঁতারের পোশাক। অর্থাৎ বুকে এবং কোমরে এক চিলতে রঙিন কাপড়। তার দেহ দেখে মনে হলো, সূর্য্য কিরণ দিয়ে তাকে তৈরী করা হয়েছে।</p>
+<p>‘মাস্টার, এ জানোয়ার কোত্থেকে এসেছে?</p>
+<p>সে ইংরেজিতে বলছিল। কিন্তু তার ইংরেজি বলার ধরন দেখে আমার ধারণা পাল্টে গেল। আমি ভেবেছিলাম মেয়েটি সাগর পারের হবে। ‘এ তুমি কি করছ?’</p>
+<p>‘গাধাটা—জখম হয়েছে ইনজেকশন দিচ্ছি।’ পরে আমি জানতে পারলাম মালিকের নাম—এইচ বি মাস্টার। একজন খ্যাতিমান ডাক্তার এবং বৈজ্ঞানিক।</p>
+<p>মাস্টার আমাকে ইনজেকশন দিচ্ছিল আর মেয়েটি আমার গায়ে হাত বুলাচ্ছিল। তার নরম হাতের পরশ লেগে আমার গা শির শির করছিল। ‘এখান থেকে যাও বলছি লোলা—’</p>
+<p>মাস্টার হুকুমের স্বরে বলল। লোলা একটু পিছিয়ে গিয়ে আমাকে দেখতে লাগল। মাস্টার কোন দিকে না তাকিয়ে নিবিষ্ট মনে আমাকে এক সাথে দুটো</p>
+<p>ইনজেকশন দিল। তারপর সিরিঞ্জ ইত্যাদি চাকরের হাতে দিয়ে লোলাকে বলল, ‘তুমি এ ড্রেস পরে বাইরে এসেছ? লজ্জা করে না?’।</p>
+<p>‘কিসের লজ্জা, এ তো গাধা।’</p>
+<p>‘না এসব চলবে না, জলদি ভেতরে গিয়ে এসব বদল করে এসো।’</p>
+<p>‘কিন্তু আমি তো সুইমিংপুল যাচ্ছিলাম ডার্লিং ; নো সুইমিং, আমার হুকুম, ড্রেস বদল করো।’</p>
+<p>মাস্টার রেগে গিয়ে বলল। তার রাগ দেখে লোলা অনেকটা ভয় পেয়ে গেল। তার টকটকে লাল দেহ আরো আরক্ত হয়ে উঠল। চোখগুলো আরো নীল হয়ে গেল। সে ইচ্ছা করলে বেঁটে মাস্টারটিকে দুহাতে ধরে এক পলকের মধ্যে কাবু করে ফেলতে পারে। কিন্তু তবু সে তার হুকুম মেনে নিয়ে বাংলার ভেতরে চলে গেল। মাস্টার একটু বিজয়ীর হাসি হেসে আমার দিকে তাকিয়ে বলল, ‘আমি মাস্টার আমার কথা শুনবে না এতই বুকের পাটা?’</p>
+<p>কিন্তু তার কথায় কিইবা সম্মতি জানাতে পারি আমি। কিছুক্ষণ পর মাস্টার কি মনে করে ভেতরে চলে গেল।</p>
+<p>লনে রোদ এসে পড়েছে। আমার গা গরম হয়ে উঠেছে। ঔষধ এবং ইনজেকশন দেওয়াতে আমার বেশ ভাল বোধ হচ্ছিল। এবং কিছুক্ষণের মধ্যে আমার খুব ক্ষুধা পেল। অপ্রত্যাশিতভাবে মালীর ছেলে দু’টি আমার জন্য দু’আঁটি ঘাস নিয়ে এল। আমি পরমানন্দে চিবিয়ে চিবিয়ে তা খেতে লাগলাম।</p>
+<p>আমি ঘাস খাচ্ছিলাম আর অপর দিকের লনে একটা রঙিন ছাতার নিচে গালিচা বিছানোর আয়োজন হচ্ছিল। গালিচা বিছানোর কাজ সারা হলে মাস্টার এবং লোলা এসে বসলো সেখানে। লোলার পরনে চমৎকার পাশ্চাত্য ফ্রক। মাথায় তোয়ালের তৈরী টুপির মত, আসলে সেটা তোয়ালেই ছিল। হাতে দুটো মালিশের শিশি। মাস্টারের পরনে কালো লেংটিটুকু ছাড়া আর কিছুই ছিল না। রোদের মধ্যে তার শ্যামলা দেহ দেখে মনে হলো, আসলে সে মানুষ নয় একটা জ্বল জ্যান্ত গরিলার বাচ্চা।</p>
+<p>মাস্টার গালিচার উপর সটান উপুড় হয়ে শুয়ে পড়ল, আর লোলা তার দেহ মালিশ করতে শুরু করল।</p>
+<p>মালির ছেলের দুটো দূরে দাঁড়িয়ে তাদেরকে চুপি চুপি দেখছিল আর ফিস্ ফিস্ করে আপ্‌সে বলাবলি করেছিল,</p>
+<p>‘যখনই বিবি সাব দেশে যান, এ হারামজাদী লোলাটা এসে জেঁকে বসে।’ ‘আমার তো রীতিমত হাসি পায়, এত লম্বা চওড়া মেমটার এই বেঁটে দেড়হাত মানুষের সাথে কেমন খাতির আবার?’</p>
+<p>‘ ও বুঝবে না ভাই, পয়সা।’</p>
+<p>‘পয়সা! পয়সা তো সে যেখানে যাবে সেখানেই পাবে।</p>
+<p>‘শুধু পয়সাও নয়। বাড়ি গাড়ি। চাকরদের ওপর কেমন হুকুম চালায় দেখেছ? মনে হয় বাড়ির মালিক বনে বসেছেন আর কি। জানো পাজিটা ইংরেজিতে গালি দেয়। একবার যদি ফাঁক মত পাই ….।’</p>
+<p>বলেই সে একটা চমকপ্রদ খেয়ালে ডুবে গেল।</p>
+<p>‘দেখতো মাস্টারের গা টা। একেবারে গণ্ডারের চামড়ার</p>
+<p>‘মেয়ে জাত কি চামড়া দেখে, তাদের পয়সা পেলেই হল।’</p>
+<p>তারপর দুভাই একটা চাপা নিঃশ্বাস টেনে চুপসে গেল। এদিকে আমার ঘাসও শেষ হয়ে এসেছে। ছেলে দুটি এক সময় কেটে পড়লো সেখান থেকে। আমি খাবার শেষ করে রঙিন ছাতার দিকে কান খাড়া করে ওদের কথাবার্তা শুনতে লাগলাম। লোলা জিজ্ঞেস করল-</p>
+<p>‘এ গাধাটা দিয়ে করবে কি তুমি?’</p>
+<p>মত।’</p>
+<p>‘গবেষণা করব।</p>
+<p>‘গবেষণা? কিসের গবেষণা?’</p>
+<p>‘সিরাম, তৈরির গবেষণা।</p>
+<p>‘সিরাম?’</p>
+<p>‘হ্যাঁ সিরাম, এ সিরাম ব্যবহারে পুরনো ক্ষত দু’দিনেই শুকিয়ে যাবে।’ ‘কিন্তু ওয়েস্টার্ন কানট্রিতে তো ঘোড়া নিয়ে গবেষণা করে সিরাম তৈরি করে বলে আমি শুনেছি।</p>
+<p>‘ঘোড়া কোথায় পাব? ঘোড়ার খুব দাম। গাধাতেই চলে যাবে। বিনে পয়সায় পেয়ে গেলাম।’</p>
+<p>‘কিন্তু…’</p>
+<p>‘কোন কিন্তু নেই। আমি মাস্টার, আমি সাইন্টিস্ট—ইউ শাট-আপ ৷’</p>
+<h2>আট</h2>
+<p>গবেষণার নামে মাস্টার আমার উপর নানা পরীক্ষা-নিরীক্ষা চালাতে শুরু করল। একাধিকবার আমার দেহ থেকে রক্ত বের করল এবং প্রবেশ করাল। এরপর বার কয়েক বিভিন্ন ধরনের ইনজেকশন দেওয়ার ফলে আমার সারা গায়ে অসংখ্য ফোঁড়া ফুটে উঠল এবং তা থেকে পুঁজ বের হতে লাগল। একটা অন্ধকার প্রকোষ্ঠে আবদ্ধ রেখে মাস্টার আমাকে নিয়ে গবেষণা করত। একটা লোহার শিকল দিয়ে সারাক্ষণ আমাকে বেঁধে রাখা হত।</p>
+<p>একদিন আমার গা’টা বড্ড ব্যথা করছিল। ফোঁড়াগুলো থেকে রক্ত এবং পুঁজ গলতে লাগল। জ্বরে সারা গা পুড়ে যাচ্ছিল। মনে হচ্ছিল, এ যাত্রা আমি আর বাঁচব না। এতদিন আমি ঢুঁ শব্দটি করি নাই। কিন্তু মরতে বসে আর চুপ করে থাকতে পারলাম না। কামরাতে আর কেউ ছিল না। মাস্টার আমাকে একটা ইনজেকশন দিচ্ছিল। ইনকেজশন দেওয়া শেষ হলে আমি আস্তে আস্তে বললাম,</p>
+<p>‘ভাল ডাক্তারের হাতেই পড়লাম দেখছি।’ সে আমার কথায় চমকে উঠে বলল,</p>
+<p>‘তুমি গাধা, অথচ কথা বলছ?’ বলতে গিয়ে হাত থেকে সিরিঞ্জটা পড়ে গেল তার।</p>
+<p>‘হ্যাঁ মাস্টার, আমি গাধা বটে কিন্তু সামান্য লেখাপড়া জানি এবং বেশ বলতে কইতে পারি। তুমি আমার সম্পর্কে খবরের কাগজে অবিশ্যিই অনেক কিছু পড়েছ।’ সে একেবারে হতবাক হয়ে হা করে আমাকে দেখতে লাগলো। আমি আবার বললাম,</p>
+<p>‘তুমি কেন আমার জীবনটা নিয়ে ছিনিমিনি শুরু করেছ মাস্টার?’ ‘গবেষণার জন্য।</p>
+<p>‘আমি শিক্ষিত গাধা। আমার জীবন নিয়ে ছিনিমিনি করতে দেবো না তোমাকে।’</p>
+<p>‘দোষ কি, তুমি যদি বেঁচে যাও আর তাতে যদি আমার সিরাম তৈরী হয়ে যায় ক্ষতি কি? আর যদি মরে যাও সে তো তোমার জোর কপাল। বিজ্ঞানের জন্য কে শহীদ হতে পারে?</p>
+<p>‘আমি শহীদ হতে চাই না, আমি বেঁচে থাকতে চাই।’</p>
+<p>‘গাধারা তো শহীদই হয়ে থাকে বরাবর।</p>
+<p>বলেই সে কুটিল হাসি হাসল। আমি মিনতি করে বললাম,</p>
+<p>‘দোহাই তোমার, আমার শিকলটা খুলে দাও। আমাকে ছেড়ে দাও।’ আমি ব্যথায় বেদনায় প্রায় আর্তনাদ করে উঠলাম। ‘শাট-আপ।’ বলেই মাস্টার বাইরে থেকে তালা লাগিয়ে গট গট করে চলে গেল।</p>
+<p>আমার কপাল ভাল ছিল। কারণ, ঘটনার পর থেকেই আমার ফোঁড়াগুলো আপনিতেই শুকিয়ে আসতে লাগল। এবং এক মাসের মধ্যে আমি রীতিমত সুস্থ হয়ে উঠলাম। কিন্তু এরপরও নিষ্ঠুরটা আমাকে একটু বের হতে দিল না বরং আরো দু’সপ্তাহ ধরে নানাভাবে আমাকে নিয়ে গবেষণা করল। তারপর যখন দেখল আমি সম্পূর্ণ সুস্থ হয়ে গেছি একটা ঔষধের প্যাকেট হাতে নিয়ে হাসি খুশি আমার কামরায় ঢুকল।</p>
+<p>‘এন্টিনাসুর সিরাম রেডি ফর সেল। একেবারে পেটেন্ট গবেষণা সাক্সেস ফুল।’ বলেই সে প্যাকেট খুলে বারটি সিরাম বের করলো।</p>
+<p>‘একটি লাল, অপরটি সাদা। সে বলল একদিন লাল ইনজেকশন, অপরদিন সাদা ইনকেজশন, বার দিনে কোর্স শেষ</p>
+<p>‘আমি বললাম,</p>
+<p>‘লাল রংটা কি?’</p>
+<p>‘এন্টিনাসুর সিরাম।’</p>
+<p>‘সাদাটি?’</p>
+<p>‘শুধু পানি ৷’</p>
+<p>‘শুধু পানি? পানি দিয়ে কি হবে?’</p>
+<p>‘সাদা পানিও ইনজেকশনের নাম করে দিতে হবে যে।’</p>
+<p>‘শুধু পানি ইনজেকশন করে কি লাভ? আসলে বারটার ছ’টাই তোমার ঔষধ। ছ’দিনের ছ’টা দিলে তো ছ’দিন আগেই তোমার কোর্স শেষ হয়। আবার পানি কেন ইনজেকশন করতে যাবে?</p>
+<p>‘পানি ইনজেকশন না করলে খাব কি? ওটাই তো আমার লাভ।’</p>
+<p>‘তোমার এত লাভ কি দরকার? তোমার এত নাম-কাম। ঔষধের ফ্যাক্টরী রয়েছে তোমার, বছরে তিন চার লাখ টাকা পাও সেখান থেকে। এরপরেও তোমার লাভের দরকার?</p>
+<p>‘আলবৎ। এক ছেলে প্যারিসে পড়ে। এক ছেলে লণ্ডনে পড়ে।</p>
+<p>‘সোমত্ত মেয়ে আছে দুটো। বিয়ে দিতে হবে। এক বউ, এক মেম—বড় খরচ—পানি না বেচে কি করব?</p>
+<p>‘এতকাল জানতাম শুধু গাধাদের জীবন নিয়েই তোমরা ছিনিমিনি খেল। এখন দেখছি মানুষদের জীবন নিয়েও খেলা চলছে। চার পয়সার জন্যে দুধে পানি, মদে পানি এবং এখন ঔষধেও পানি।’ ,</p>
+<p>‘এদিকে আমি পানি বিক্রি করছি। ওদিকে আমার বড় ভাই এটম বোমা বানাচ্ছে। সেও বৈজ্ঞানিক, আমিও বৈজ্ঞানিক ‘</p>
+<p>‘আসলে তোমরা দু’জনই চোর। তোমরা দু’জনই গাধাদের দুশমন।’ আমি অধৈর্য হয়ে বললাম। আমি অনেক ভেবে দেখলাম এইচ, বি মাস্টারের সাথে গলাবাজি করে কোন লাভ নেই। এখান থেকে ছাড়া পাবার জন্য বরং অন্যভাবে চেষ্টা করা দরকার। একদিন আমি তাকে বললাম,</p>
+<p>‘আমাকে নিয়ে নতুন গবেষণা তো সাকসেসফুল হয়েছে। এখন আমাকে মুক্তি দাও না।’ সে কঠিনভাবে মাথা নেড়ে বলল,</p>
+<p>‘তোমাকে নিয়ে নতুন গবেষণা হবে আমার, তোমাকে ভুখা রাখব এবার।’ আমি ঘাবড়ে গিয়ে বললাম,</p>
+<p>‘আমাকে ভুখা রাখবে কেন আবার?’</p>
+<p>‘নূতন ইনজেকশন আবিষ্কার করব। ক্ষুধার ইনজেশন।’</p>
+<p>‘ক্ষুধার ইনজেকশন আবার কিসের? মাস্টার ক্ষুধার ইনজেকশন সম্পর্কে আমাকে অনেকক্ষণ ধরে বুঝাল। তার মর্মার্থ হল,</p>
+<p>বিশ্বব্যাপী ক্ষুধার হাহাকার বড় বিপজ্জনক। এ বিশ্বগ্রাসী ক্ষুধাকে নিবারণ করার জন্য লোকদেরকে দু’ দুবেলা খাবার সংস্থান করতে হয়। সাধ্যাতীত পয়সা খরচ করতে হয় তাতে। সুতরাং এমন একটা ইনজেকশন সে তৈরি করবে যা দিলে নিমেষে মানুষের ক্ষুধা নিবৃত্তি হয়ে যাবে। অবশ্য ক্ষুধাকে একেবারে সমূলে বিনাশ করা সম্ভব হবে না তাতে। এক ইনজেকশন দিলে আট দশ দিন আর ক্ষুধা লাগবে না। কিন্তু এর মানে এই নয় যে, ইনজেকশন খাদ্যের কাজ দেবে। ইনজেকশন শুধু ক্ষুধাটা দাবিয়ে রাখবে। এ আট দশ দিনে মানুষ অবশ্য দুর্বল হয়ে যাবে, কিন্তু ক্ষুধা লাগবে না। চিন্তা করে দেখ তো আমি যদি ইনজেকশন তৈরিতে সফলকাম হই, বিশেষ করে কারখানার মালিকদের কত উপকার হবে। কারখানায় হাজার হাজার মজুরকে শুধু একটি করে ইনজেকশন দিয়ে দশ দিন পর্যন্ত দিব্যি খাটিয়ে নিতে পারবে। তোমার রক্ত দিয়ে ক্ষুধার এন্টিসিরাম তৈরি হবে আর তা সারা বিশ্বে পেটেন্ট হয়ে বিক্রি হবে, তখন আমার নাগাল আর পায় কে?</p>
+<p>আমি মনে মনে বললাম, এতদিন ছিলাম বন্দী আর এবারে শালার দানা পানিও উঠে গেল কপাল থেকে। এমন পাগলা বৈজ্ঞানিকের পাল্লাতে পড়লাম। আমি তাকে অনেক কাকুতি মিনতি করে বললাম, আমাকে ছেড়ে দাও। অনেক কাঁদাকাটি করে দেওয়ালে মাথা ঠুকলাম, কিন্তু কিছুতেই তার মন গললো না। এরপর থেকে রোজ সকালে এসে সে আমাকে একটা ইনজেকশন দিয়ে যেত এবং সারাদিন কিছুই খেতে দিত না। সন্ধ্যায় এসে জিজ্ঞেস করত ক্ষুধা পেয়েছে?’</p>
+<p>‘হ্যাঁ খুব ক্ষুধা পেয়েছে।’ পরদিন আবার নতুন একটা ইনজেকশন দিয়ে সারাদিন উপবাস রেখে সন্ধ্যায় এসে জিজ্ঞেস করল,</p>
+<p>‘আজও ক্ষুধা লাগছে?’</p>
+<p>‘খুব লেগেছে। ক্ষুধায় আর বাঁচি না মাস্টার। আমাকে কিছু খেতে দাও।’ কিন্তু আমার কথায় ভ্রূক্ষেপ না করে সে চলে গেল। চতুর্থ সকালে আবার একটা ইনজেকশন দিল। সন্ধ্যায় এসে বলল,</p>
+<p>‘এখন অবশ্যি আর ক্ষুধা লাগছে না তোমার, তাই না??</p>
+<p>‘কে বলে ক্ষুধা লাগেনি? আজ আমার এত ক্ষুধা পেয়েছে যে যদি ছাড়া পেতাম, তোমাকেই কাঁচা খেয়ে ফেলতাম।’ আমি দাঁতে দাঁত পিষে বললাম। নিষ্ঠুরটা সত্যি সত্যি দশদিন আমাকে ভুখা রাখল। দশদিনে আমার হাড়গোড় বেরিয়ে গেল, আমার গা থর থর করে কাঁপছিল। আমি কেঁদে কেঁদে বললাম,</p>
+<p>‘মাস্টার আমাকে সামান্য ঘাস খেতে দাও। আমাকে প্রাণে মেরো না তুমি। এত দীর্ঘদিন আমি কোন কালেই উপোস করিনি। এমন ঔষধ কোনদিন আবিষ্কার করা সম্ভব নয় মাস্টার। ক্ষুধা হলো মানুষের সহজাত প্রবৃত্তি। জীবন যদ্দিন আছে ক্ষুধাও আছে। মানুষ না মরলে কোনদিনই ক্ষুধা নিবৃত্তি হবে না। তাছাড়া ক্ষুধার বিরুদ্ধে এই অভিযানের দরকারই বা কি? আজও পৃথিবীতে এত পরিমাণে ঘাস রয়েছে যে, দুবেলা খেয়ে গাধাদের দিব্যি চলে যাবে। কিন্তু তুমি নিজের লালসা চরিতার্থ করার জন্য গাধাদেরকে উপোস রাখার অপচেষ্টা চালাচ্ছ। এটা মোটেই সম্ভব নয়।’</p>
+<p>‘শাট আপ।’ বলেই সে আমার পিছন দিকে একটা লাথি মেরে রাগে গরগর করতে করতে চলে গেল।</p>
+<p>আমি এবার ছাড়া পাবার জন্য মরিয়া হয়ে চিন্তা করতে লাগলাম। যেভাবেই হোক, এ পাগলা বৈজ্ঞানিকের হাত থেকে ছাড়া পেতেই হবে আমাকে। তার গবেষণা কোনদিনই শেষ হবে না। আর আমিও শেষ অবধি প্রাণে বাঁচি কিনা সন্দেহ আছে। ভাবতে ভাবতে হঠাৎ আমার মাথায় এক বুদ্ধি খেলে গেল। ফন্দিটা মাথায় আসতেই আমার খুব রাগ ধরল এবং খুশিও হলাম। খুশি হলাম এজন্যে যে, যাক্ জীবনটা বেঁচে যাবে দেখছি। আর রাগ হলে এজন্যে যে, এতদিন কেন ফন্দিটা মাথায় আসেনি? আমার মত আস্ত গাধা আর নেই।</p>
+<p>দ্বিতীয় দিন বরাবরের মত মাস্টার এসে যখন জিজ্ঞেস করল,</p>
+<p>‘এখন ক্ষুধা লাগছে তোমার?’ আমি হেসে উঠে বললাম,</p>
+<p>‘ক্ষুধা? ক্ষুধা আবার কি জিনিস?’ আমার তো মনে হয় খানাপিনা ছাড়াই আমি একশ বছর বেঁচে থাকতে পারব। আমি অত্যন্ত কৌশলে ক্ষুধার কথা লুকিয়ে গেলাম। মাস্টার খুশিতে উৎফুল্লা হয়ে বলল,</p>
+<p>‘ও গড় এখন তো আমি লাখোপতি—কোটিপতি, ব্যাস—–—সিরাম তৈরি।’ ‘হা-হা-হা’ আমি অট্ট হাসি হেসে বললাম,</p>
+<p>‘তোমার বিশ্বাস হচ্ছে না? আমার সামনে ঘাস এনে দাও দেখি, আমি এক পাতাও খাই কিনা দেখে নাও।’ মাস্টার সত্যি সত্যি আমার সামনে কতগুলো ঘাস এনে রাখল। আমার তো ইচ্ছে হচ্ছিল ঘাসের উপর হুমড়ি খেয়ে পড়ি। কিন্তু বড় কষ্টে সে ইচ্ছে দমন করে পা দিয়ে ঠেলে ঘাসগুলো একপাশে সরিয়ে দিয়ে বললাম,</p>
+<p>‘আরে এতো সামান্য ঘাস, এখন আমার সামনে কেউ বিরিয়ানী এনে দিলেওতো আমি খাব না।’</p>
+<p>‘সাবাস—ডাংকি দি গ্রেট।’ বলেই মাস্টার আমার গলা জড়িয়ে ধরল। আর আমি একটা গানের কলি ভাজতে ভাজতে বললাম,</p>
+<p>‘জানি না মাস্টার তুমি আমাকে কি খাইয়েছ। ক্ষুধা তো লাগছেই না উপরন্তু আমার গান গাইতে ইচ্ছে করছে।</p>
+<p>‘ভুখাকে আগে জাহা</p>
+<p>আওর ভি হ্যায়</p>
+<p>আভি ইশ্ক্-কে ইমতেহান</p>
+<p>আওর ভি হ্যায়।’</p>
+<p>‘হুররে।’ বলেই মাস্টার শিকলটা খুলে তার হাতে নিয়ে খিল খিল করে হাসতে হাসতে বলল, ‘লোলা কাম হিয়ার, দেখো ভুখা ডাংকি গান গাচ্ছে।’ বলতে বলতে মাস্টার লনে বেরিয়ে গেল। আরো জোরে জোরে লোলাকে ডেকে বলল, দেখো লোলা, ওয়ার্ল্ড প্রবলেম খতম। দশদিন থেকে উপোস, তারপরও গাধা গান গাচ্ছে।’ একথা শুনে আমি আরো নেচে নেচে গাইতে লাগলাম—</p>
+<p>‘জিস্ খেত সে মেলে কেসি গাধে কো রুটি উস্ খেত কে হার খোসায়ে গন্ধম কো জ্বালা দো।’</p>
+<p>শুনে মাস্টার এবং লোলা দু’জনেই হাততালি দিয়ে নাচতে নাচতে মাস্টার লোলার কোমরে হাত দিয়ে বলল, ‘যাক, এবারে আমরা বেড়াতে বের হতে পারি। সহসা আমি সুযোগ বুঝে একটা লাফ মেরে এক টানে মাষ্টারের হাত থেকে শিকলটা ছাড়িয়ে নিলাম এবং দৌড়ে বাংলোর বাইরে চলে গেলাম।</p>
+<p>‘একি কোথা যাচ্ছ?’ মাস্টার চিৎকার করে বলল, ‘আমিও বেড়াতে যাচ্ছি। গুড বাই।’ আমি বললাম।</p>
+<p>‘যেয়ো না বলছি, দাঁড়াও।’ মাস্টার হাত নেড়ে নেড়ে আমাকে বাধা দিচ্ছিল। আমি সেসব না শুনে প্রাণপণে দৌড়াতে লাগলাম। ওদিকে মাস্টার লোলাকে নিয়ে গ্যারেজের দিকে দৌড়ালো এবং ত্বরিৎ গাড়িতে বসে হুকুম করল,</p>
+<p>‘জলদি চলো গাধার পেছনে।’ আমি জীবন মরণ পণ করে দৌড়াতে লাগলাম। কিন্তু অন্যান্য বারের মত দৌড়াতে পারছিলাম না। কারণ, দশদিনের উপবাসী। শরীরে এক ফোঁটাও বল ছিল না। দৌড়াতে দৌড়াতে পাশ কেটে এক বাজারে ঢুকে পড়লাম আমি। বাজার ছেড়ে এক লেনে ঢুকে একটা অন্ধকার গলির মধ্যে এসে পড়লাম। গলির ভেতর দিয়ে দৌড়াতে দৌড়াতে গলির প্রান্তসীমায়</p>
+<p>এসে পড়লাম আমি। সামনে পাঁচতলা একটা বাড়ি। এখানে এসে আমার পা আর চলছিল না। বাধ্য হয়ে আমি দাঁড়িয়ে পড়লাম। পেছন ফিরে দেখলাম মাষ্টারের গাড়ি দ্রুত এগিয়ে আসছে। এখন আগেও যেতে পারছি না, পেছনে যেতেও পারছি না।</p>
+<h2>নয়</h2>
+<p>আমি মুহূর্তের জন্যে প্রমাদ গুনলাম, তারপর দ্রুত পা চালিয়ে সামনের বিরাট বাড়িটার সিঁড়ি বেয়ে উপরে উঠে গেলাম এবং হাঁপাতে হাঁপাতে যেয়ে একটা প্রশস্ত রুমে হুমড়ি খেয়ে পড়লাম। আমাকে দেখেই একজন ধুতি-পরা লোক চিৎকার করে উঠে বলল,</p>
+<p>, ‘আরে এই যে গুরুজী, গুরুজী এসে গেছে আমার।’ বলেই গড় হয়ে প্রণাম করল আমাকে। গুরুজী গুরুজী এদ্দিন কোথায় ছিলেন আপনি? আপনাকে খুঁজতে খুঁজতে আমি হয়রান। আমার কি জোর কপাল … …</p>
+<p>আপন নিজেই পদধূলি দিলেন আরে ও কুরিয়া মজুরিয়া কোথায় গেলি তোরা? জলদি মোনেমজীকে ডেকে আন।’ …</p>
+<p>এতক্ষণে আমি কিছু ঠাহর করতে পারলাম তাকে। শেঠ ভুসুরীমল যে, মহমে যাকে আমি লটারীর নম্বর বলেছিলাম। শেঠ আনন্দে নাচতে নাচতে বলল,</p>
+<p>‘গুরুজী সেদিন আপনি যে নাম্বার বলেছিলেন, তাতে আমি পাকা তিন লাখ টাকা পেয়েছিলাম। সে টাকাতেই এ বাড়ি করেছি।’</p>
+<p>জবাবে আমি কিছু একটা বলব ভাবছিলাম। এমন সময় হঠাৎ লোলা এবং মাস্টার হন্তদন্ত হয়ে কামরায় প্রবেশ করল। আমার গলার শিকল ধরবার জন্যে হাত বাড়াতেই শেঠ বলল,</p>
+<p>‘খবরদার, গুরুজীর গায়ে কেউ হাত দিও না কিন্তু ‘</p>
+<p>‘এ গাধা আমার।’ মাস্টার বলল।</p>
+<p>‘খবরদার, গুরুজীকে যে গাধা বলবে তুমি কোত্থেকে এসেছ, তুমি কে? গুরুজী সাধু সন্ন্যাসী। তার মাহাত্ম্য তুমি কি বুঝবে? সন্ন্যাসীরা বরাবর জন্তু জানোয়ারের বেশ বদল করে থাকে।’</p>
+<p>লোলা মাঝখানে পড়ে দু’জনের মধ্যে সন্ধি করবার চেষ্টা করল। মাস্টার বরাবর শর্টহ্যান্ডে টেনে টেনে কথা বলে আর শেঠ বলে লংহ্যান্ডে। শেঠ বলল,</p>
+<p>‘ঠিক আছে, গাধা তোমাদের মানি, কিন্তু গাধাটা আমার কাছে বিক্রি করে ফেল। আমি পাঁচশ টাকা দিচ্ছি।’</p>
+<p>‘না, ‘মাস্টার অসম্মতি জানাল। ‘এক হাজার?’</p>
+<p>‘না।’</p>
+<p>‘দশ হাজার?’</p>
+<p>এবারে মাস্টার কিছুটা অবাক হয়ে লোলার দিকে চোখ ছানাবড়া করে দেখতে লাগল এ গাধার মধ্যে এমন কি সম্পদ লুকিয়ে আছে যার জন্যে লোকটা দশ হাজার টাকা দিতে চাচ্ছে। টাকার অংক শুনে মাষ্টারের লোভ বেড়ে গেল। সে মাথা নেড়ে বলল,</p>
+<p>‘না।’</p>
+<p>‘বিশ হাজার।’</p>
+<p>‘না।’</p>
+<p>‘ত্রিশ হাজার।’</p>
+<p>‘নাও-তাওনা।’</p>
+<p>‘চল্লিশ হাজার, পঞ্চাশ হাজার, ষাট হাজার, সত্তর হাজার 1’ ‘ভুসুরীমল শুধু টাকা বাড়াতেই লাগল। মাস্টার লোলার দিকে তাকিয়ে বলল, ‘না।’</p>
+<p>‘এক লাখ ৷’</p>
+<p>ভুসুরীমল নিলামের ডাকের মত চিৎকার করে বলে উঠলো। লোলা মাস্টারকে অনেকটা শাসনের ভঙ্গিতে বলল,</p>
+<p>‘নিয়ে নাও না, পঞ্চাশ-ষাট টাকা করে তুমি বিস্তর গাধা কিনতে পাবে। একটা গাধার জন্যে এক লাখ টাকা পাচ্ছ, এর চে’ জোর কপাল আর কি হতে পারে? এ টাকা দিয়ে গাধা না কিনে বরং তুমি একপাল ঘোড়াই কিনতে পারবে।’</p>
+<p>এক গাধার এত দাম? মাস্টার কিছুই ঠিক করতে পারছিল না। সে এরপর আমার দিকে আরেকবার শেঠের দিকে তাকাল—’একলাখ পঁচিশ হাজার।’</p>
+<p>শেঠ আরো পঁচিশ হাজার বাড়িয়ে বলল। মাস্টার তবু সম্মতি দিচ্ছিল না। শেঠ এবারে এক লাখ পঁচিশ হাজার টাকার একটা চেক লিখে মাষ্টারের দিকে এগিয়ে দিল।</p>
+<p>‘না, এতেও আমি গাধা বিক্রি করব না।’</p>
+<p>‘ঠিক আছে, তাহলে তোমার গাধা তুমি নিয়ে যাও, বেশি দিতে পারি না।’</p>
+<p>বলেই শেঠ তার দিকে আমার শিকল এগিয়ে দিল। মাস্টার আমাকে নিয়ে বেরিয়ে যাচ্ছিল। দরজা অবধি গিয়ে আবার কি মনে করে ফিরে এসে শেঠের হাত থেকে চেকটা পকেটে পুরে নিয়ে আমার শিকলটা শেঠের হাতে তুলে দিয়ে চুপঁচাপ লোলাকে নিয়ে বেরিয়ে পড়ল।</p>
+<p>ওরা যখন বেশ কিছুদুর চলে গেল শেঠ অট্টহাসিতে ফেটে পড়ে বলল, ‘কার সাথে ফাজলামী। আপনার জন্য আমি দু’লাখ টাকা লাগলেও কুণ্ঠাবোধ করতাম না। বোকাটা সোয়া লাখেই রাজী হয়ে গেল। দেখলেন কি বোকা।’ ‘বোকা বটে।’</p>
+<p>‘সে মাথা নত করে বলল,</p>
+<p>‘আপনি যা বলেন তাই সই। আপনার কথা আমার জন্য অমৃত।’</p>
+<p>আরে ও কুরিয়া, মজুরিয়া, হা করে কি দেখছিস, পাশের কামরা আর বাথরুম গুরুজীর জন্য খালি করে দিতে বল। আজ থেকে গুরুজী এখানেই থাকবেন।’</p>
+<p>পরদিন শেঠজি এক গাদা খবরের কাগজ নিয়ে আমার কামরায় প্রবেশ করল। অধিকাংশ কাগজের প্রথম পৃষ্ঠাতেই বড় হরফে ফলাও করে আমার খবর ছাপা হয়েছে।</p>
+<p>“বিশ্বের চমকপ্রদ গাধা</p>
+<p>.শেঠ ভুসুরীমল সোয়া লাখ টাকায় কিনেছে—</p>
+<p>অধিকাংশ পত্রিকাওয়ালারা আমার জীবনের বিশেষ ঘটনাবলী সবিস্তারে বর্ণনা করেছেন। পত্রিকাগুলোতে এইচ, বি, মাস্টারের ইন্টারভিউ ছাপা হয়েছে। মাস্টার আমাকে নিয়ে বৈজ্ঞানিক গবেষণা করেছে, এক কথার কোথাও অপলাপ হয়নি। তবে সে যে আমাকে এক নাগাড়ে দশদিন উপবাস রেখেছে ঘুণাক্ষরে সে কথা কোথাও বলা হয়নি। পাশাপাশি শেঠ ভুসুরীমলের ইন্টারভিউ ছাপা হয়েছে। শেঠ বলেছে এ গাধা আমার ভাগ্যদেবতা।</p>
+<p>এজন্যে আমি একে সোয়ালাখ টাকা দিয়ে কিনে নিয়েছি। এ সম্পর্কে সাংবাদিকরা নানা ধরনের মন্তব্য করেছেন। প্রায় পত্রিকার প্রথম পৃষ্ঠায় বেশি অর্ধেক অংশ জুড়ে আমার খবর ছাপা হয়েছে। সেদিনকার রাজনৈতিক সংবাদস্তম্ভ এবং মন্ত্রীদের বক্তৃতা প্রথম পৃষ্ঠায় জায়গা পায়নি।</p>
+<p>শেঠ ভুসুরীমল বলল,</p>
+<p>‘দেখলেন কেমন পাবলিসিটি হয়েছে আপনার।’</p>
+<p>‘শুধু আমার কেন, এই সাথে তোমাদেরওতো বেশ পাবলিসিটি হয়ে গেল।’ ‘ঠিকই গুরু আজকাল পাবলিসিটির জামানা। গাধার সাথে হোক আর কুকুরের সাথে হোক, পাবলিসিটি হলেই হলো। কাল রাতেই আমি সাংবাদিকদের ডেকে খবরটা দিয়েছিলাম।’</p>
+<p>আমি কাগজগুলো একপাশে সরিয়ে রেখে বললাম,</p>
+<p>‘আমি কাল রাত থেকে ভেবে ভেবে হয়রান। একটা গাধার জন্য তুমি কেন এতগুলো টাকা জলে ঢালতে গেলে? আমি এক গাধা বইতো নই।’</p>
+<p>‘আপনাকে যে গাধা মনে করে সে নিজেও এক গাধা। আপনার জন্যে আমি যা ইচ্ছে তা করতে পারি। আপনি আমার ভাগ্যদেবতা। এখন এসব কথা থাক। আপনার স্বাস্থ্যের একি অবস্থা? হাড়গোড় সব বেরিয়ে গেছে যে, আপনি নিশ্চিন্তে কিছুকাল বিশ্রাম করুন, তারপর কথা বলা যাবে।’</p>
+<p>প্রায় এক পক্ষকাল আমার যারপরনাই সেবাযত্নে কাটল। তিনবেলা তাজা তাজা ঘাস, বিলাতী পানীয়, গ্লুকোজ ইনজেকশন, তাজা ফলের রস, ভিটামিন টেবলেট এবং অনেক নাম না জানা দামী টনিক খেতে হলো আমাকে। একজন ফুল টাইম পশু-চিকিৎসক আমার কাছে থাকতেন। আগাথা ক্রিষ্টির নভেল, ডিটেকটিভ, রোমান্টিক পত্রিকা, সিনেমা ম্যাগাজিন এবং অজস্র বিলাতী পত্রপত্রিকা পড়তে দেয়া হল আমাকে। আর্ট পেপারে ছাপা এসব পত্রিকাগুলোতে মেয়েদের নগ্ন ছবি এবং হত্যাকাণ্ডের বীভৎস সব ছবি থাকত।</p>
+<p>পনের দিনে যখন আমি সম্পূর্ণরূপে সুস্থ হলাম, শেঠ এ উপলক্ষে একটা বিরাট পার্টির আয়োজন করলো। খাদ্যমানের বিচারে পার্টিটা বেশ জমকালো হয়েছিল। এদিকে শেঠ আমার জন্যে কাশ্মীর থেকে প্লেনযোগে এক বিশেষ ধরনের ঘাস আনালেন। গুলবুর্গের পাহাড়ের চূড়ায় নাকি এ ঘাস জন্মে। ঘাসগুলো খেতে যেমন সুস্বাদু তেমনি বলকারক। এ পার্টিতে বেশি লোককে নিমন্ত্রণ করা হয়নি। শেঠের বন্ধু জুমন সিং ছিল পার্টির মধ্যমণি। এ ছাড়া আর মাত্র দুজন লোক এসেছিল। তাদের নাম ছিল গোপাল সিং এবং সেতাব সিং। বিরাট বপু আর ইয়া মোটা গোঁফ দেখে এ দুজনকে রীতিমত দুর্ধর্ষ গুণ্ডা বলে মনে হলো আমার। সেদিন এত দামী দামী মদ পান করেছি যে, গাধাদের ভাগ্যে কোনদিনই তা জুটে না। ইটালীর কিয়ানে, হাঙ্গেরীর তোকাই, জার্মেনীর বায়েন হাসেন, ফ্রান্সের সাডুব্রিয়ান, স্পেনের ব্রিগান্তি, স্কটল্যাণ্ডের ব্লাক ডগ হুইস্কি। মোট কথা বিশ্বের সব রকম দামী মদের সমাবেশ ঘটেছিল সেদিন। ব্লাক ডগ হুইস্কি মানে কালো কুকুর মার্কা, আমি কালো না হলেও কালো গাধাতো ছিলাম। সুতরাং ব্লাক ডগেরই তিন বোতল সাবাড় করে ফেলে নেশায় ঝিমুতে লাগলাম আমি এবং আর স্থির থাকতে পারছিলাম না। পুরো কার্পেটের উপরই আমি এলভিস প্রিসলের রক-এন-রোলের সুরে ইংরেজি আর হিন্দি মিলিয়ে গাইতে লাগলাম,</p>
+<p>জু জু জু কড়য়া কড়য়া থু মিঠা মিঠা হাপ</p>
+<p>ইউ—সাট্-আপ ইউ ইউ ইউ জু জু জু তু মেরি জান</p>
+<p>ম্যায় তেরা জানি</p>
+<p>তেরে মেরে উপর এক মাশহুর দানি</p>
+<p>সো হোয়াট</p>
+<p>সাট্ আপ</p>
+<p>সহসা শেঠ, জুমন দাদা, গোলাপ এবং সেতাব সিং উঠে এসে আমার পা জড়িয়ে ধরলো। ‘দয়া করো গুরু মহারাজ। নাম্বার বলে দাও গুরু।’ শেঠ ভুসুরীমল আমার পায়ে তার নাক ঘষতে ঘষতে বলল, ‘সাধু বাবা, একবার একটা নাম্বার বলো।’ জুমন দু’হাতে পা চেপে ধরে বলল। ‘পা ছাড়ো বলছি। কে বলে আমি সাধু সন্ন্যাসী? আমি শুধু এক গাধা ‘আমরা জানি। আমরা চিনি তোমাকে গুরু।’ সবাই সমস্বরে বলে উঠল। ‘কি চেনো তোমরা? আমি যদি কোন সন্ন্যাসীই হতাম তাহলে এত মদ খেতাম?’</p>
+<p>‘গুরু মহারাজ, এসব কথায় আমরা ভুলব না। আমরা সবই জানি। জানি, যারা সত্যিকার সাধু-ধ্যানী-জ্ঞানী তারা মাছ মাংস দুধ মদ সবই খেতে পারে এবং যে বেশ ধরতে চায় সে বেশ ধারণ করতে পারে। গুরু আমরা আপনাকে কিছুতেই ছাড়বো না। নাম্বার না বললে আমরা কিছুতেই পা ছাড়ব না।’</p>
+<p>আমি পা ছাড়াতে অনেক চেষ্টা করলাম। কিন্তু ওরা চারজন আমার পা এমন জেঁকে ধরেছে যে, আমার নড়বার উপায় ছিল না। বাধ্য হয়ে আমি বললাম, ‘আমার পা-গুলো ছাড়। পা না ছাড়লে নাম্বার বলি কি করে?’</p>
+<p>একথা শুনতেই ওরা হঠাৎ করে আমার পা ছেড়ে দিল। আমি হাঁফ ছেড়ে মনে মনে একটা ফন্দি আঁটতে লাগলাম। কয়েক মিনিট দম ধরে থেকে আস্তে আস্তে নাচতে শুরু করলাম। এবং গুন গুন করে একটা গানের কলি ভাজতে লাগলাম। আমার দেখাদেখি ওরাও হাতে তালি দিয়ে নাচতে লাগল। নাচতে নাচতে আমি একটা গান শুরু করে দিলাম,</p>
+<p>উটি দেখা শিমলা দেখা</p>
+<p>দেখা মায়নে কুল্লু,</p>
+<p>কুলু মে উলু চিলুর্ম মে চিল্লু</p>
+<p>চিল্লু মে পানি</p>
+<p>মরগেয়ী চারু কি নানী</p>
+<p>নানী কে বেটে গেয়ারা</p>
+<p>জু জিতা উভি হারা</p>
+<p>গাইতে গাইতে আমার মুখ দিয়ে ফেনা বের হল। আমি আর দাঁড়িয়ে থাকতে পারছিলাম না। কাঁপতে কাঁপতে বেহুঁশ হয়ে পড়ে গেলাম। যদিও এসব আমি ইচ্ছে করে করছিলাম। ওরা মনে করেছে সত্যি বেহুঁশ হয়ে পড়েছি আমি।</p>
+<p>জুমন বলল,</p>
+<p>‘গুরু বেহাল হয়ে পড়েছেন।’</p>
+<p>শেঠ বলল,</p>
+<p>‘সাধু বাবা অন্তর্ধানে চলে গেছেন?’</p>
+<p>জুমন বলল,</p>
+<p>‘কিন্তু নাম্বার………. .ľ</p>
+<p>‘কেন, নাম্বারতো পরিষ্কারই বলে দিয়েছে। মরগেয়ী চাঁরো কি নানিএবার চৌকাতেই আমাদের বাজীমাৎ হবে।? –</p>
+<p>জুমন বলল,</p>
+<p>‘কিন্তু ওপেন আসবে না ক্লোজে আসবে সেটাতো বলল না।’</p>
+<p>‘সাধুরা কোনদিন কি সব কিছু খুলে বলে? আমারতো মনে হয় ক্লোজে ধরতে</p>
+<p>হবে।’</p>
+<p>‘তা কেমন করে?</p>
+<p>‘কেন মরগেয়ী চাঁরো কি নানি—মরণকে তো আর ওপেন বলা যায় না, মৃত্যুটাতো এক ধরনের ক্লোজ। সুতরাং …’ শেঠ বলল, ‘আমার তো মনে হয় এগার। কারণ, নানিকে বেটে গেয়ারা (এগার) ‘এগারটাই আসলে ঠিক। এগার হয় কি করে? দশের উপর তো কোন নাম্বারই নেই।’ ‘তারও ব্যাখ্যা আছে। ওপেনে টু ক্লোজ এগার। তার মানে এক এবং এক ৷’ ‘আসলে এইটেই ঠিক মনে হয় আমার কাছে।’ সেতাব সিং বলল এবং বলেই সে বিলম্ব না করে নাম্বার ধরতে চলে গেল। এরপর জুমন এবং গোলাব সিং রওনা হয়ে গেল। শেঠ ভুসুরীমল তখনও আকাশপাতাল ভাবছিল। কিছুক্ষণ ভাবনা-চিন্তা করে এক সময় সেও বেরিয়ে গেলো।</p>
+<h2>দশ</h2>
+<p>দ্বিতীয় দিন ছক্কা-চৌকা কোনটাই লাগলো না। ছক্কা-চৌকা একেবারে মাঠে মারা গেছে। জুমন, গোলাব সিং আর সেতাব সিং ড্রইংরুমে মাথায় হাত দিয়ে বসে রয়েছে। অবশ্য শেঠকে খুব হাসি-খুশি মনে হচ্ছিল। আজ আবারও নাকি সে দু’লাখ টাকা দাও মেরে দিয়েছে।</p>
+<p>‘শেঠ দু’লাখ টাকা পেল কি করে?’ জুমন জিজ্ঞেস করলো। জুমন কেন? আমারও জিজ্ঞেস করতে ইচ্ছে করছিল, সেখানে চৌকা-ছক্কা কিছুই এলো না, শেঠ এত টাকা পেল কি করে? শেঠ মুচকি হেসে বলল,</p>
+<p>‘তোমরা তো হৈ-হৈ করে চলে গেলে। তোমরা চলে গেলে আমি বেশ কিছুক্ষণ আরও চিন্তা করলাম। যোগী মহারাজ এত সোজা কথায় কি আর নাম্বার বলে দেয়? নিশ্চয়ই এতে কিছু কিন্তু আছে। অনেক চিন্তা ভাবনার পর গুরুজীর শেষ কথাটাই আমার বেশ মনে ধরল :</p>
+<p>‘জু জিতা ইভি হারা</p>
+<p>অর্থ একেবারে পরিষ্কার। অর্থাৎ হার-জিত সমান এজন্যে আমি বন্দীতে টিকেট ধরলাম।’</p>
+<p>‘সাবাস শেঠ, আমি বললাম, ‘তুমি দেখছি আজকাল আমার সব কথা ধরে নিতে পার।’</p>
+<p>‘তা কেন পারব না গুরু। সারা জীবন আপনার পদসেবা করেছি। কিছুই কি পাইনি এখানে?’ জুমন বলল,</p>
+<p>‘ঠিক আছে এখন থেকে সাধু বাবার কথা শুনে তুমি যে নাম্বার ঠিক করবে আমিও তাই বলব শেঠ। আমার সাথে দালালী করো না যেন। হাতে বানানো নাম্বার বললে, ভাল হবে না বলছি।’</p>
+<p>‘আজকে আমি কিন্তু নাম্বার টাম্বার বলাবলির মধ্যে নেই।’ আমি বললাম।</p>
+<p>‘কেন যোগী মহারাজ, আমরা কোন অপরাধ করেছি?’ শেঠ দু’হাত জোড় করে বলল, ‘আসলে ব্যাপারটা হলো রোজ রোজ নাম্বার বলা আমার জন্য নিষেধ আছে। শুধু পূর্ণিমার দিনই আমি নাম্বার বলতে পারব।’</p>
+<p>আমি ভেবে নিয়েছিলাম যেভাবে হোক আমাকে এ যাত্রা কোন রকম ইজ্জত রক্ষা করে যেতে হবে। এরপর যদি মদ খেয়ে অন্তর্ধান হয়ে নাম্বার বলতে থাকি, একদিন না একদিন ধরা পড়ে যাবই। এখানে দিব্যি আরামেইতো আছি। এভাবেই পূর্ণিমার ভাওতা দিয়ে আর মাস খানেক যদি নির্ঝঞ্ঝাটে থাকতে পারি দোষ কি? এরপর যা হয় হবে। আগামী পূর্ণিমাতেও যদি আমার অর্থহীন বকাঝকা থেকে ওরা কোন নাম্বার বুঝে নিয়ে কিছু পেয়ে যায় তাহলে তো পোয়া বারো। আর না পেলে মানে মানে কেটে পড়ব। আর নয়তো তখন ওরাই ডাণ্ডা মেরে বের করে দেবে এক সময়।</p>
+<p>গোলাব সিং বলল,</p>
+<p>‘শেঠ মাসে একবারও যদি আমার নাম্বার ঠিক ধরতে পারি সারা বছরের কোন চিন্তা করতে হবে না। আমি একবার এক পাগলা বাবার চক্করে পড়েছিলাম। গুরুজীতো তবু নাম্বার পষ্ট করে বলেন। কিন্তু তার কাছ থেকে নাম্বার বের করা বড়</p>
+<p>ঝক্কির ব্যাপার ছিল। সারাদিন তেল মালিশ করেও কেউ কোন নাম্বার বের করতে পারতো না। সত্যি বলতে কি, তিনি কোন কথাই সোজা বলতেন না। তার আজব ধরনের ইশারা ইঙ্গিত থেকে নাম্বার বুঝে নিতে হতো। একেবার তো তিনি আমার মুখে পানের পিক দিলেন। আমি তক্ষুণি দৌড়ে গিয়ে পাঞ্জা ধরলাম। ধরতেই বাজীমাত—সেদিন তিনি হাতের লাঠি দিয়ে আমাকে বসিয়ে দিলেন এক ঘা, আমি বুঝলাম এক্কা ধরতে হবে। লাঠি তো একের মতই সোজা কিনা। এবারও বেশ মালপানি পেয়ে বসলাম। বড় কামেল মানুষ ছিলেন। কিন্তু তারপরও হঠাৎ এক সময় তিনি এমন ডুব মারলেন যে কোন দিনই দেখা পেলাম না আর তাঁর। আজ তিনি থাকলে তাঁর জুতা সাফ করেই আমার ভাগ্য ফিরে যেত।’</p>
+<p>‘চিন্তা করো না গোলাব সিং। আমাদের সাধু কম কিসে?’ পূর্ণিমার দিনে আমি সরাসরি অস্বীকার করে বললাম,।’</p>
+<p>‘আজ আমি নাম্বার বলতে পারব না</p>
+<p>‘কেন, মহারাজ আমরা কি অপরাধ করেছি।’</p>
+<p>‘আজ হিমালয় থেকে আমার ডাক এসেছে। গুরু শুভ্রনাথ আমার উপর রেগে আছেন। কৈলাস পর্বতে আজ দু’হাজার বছর অবধি তিনি সমাধি আসনে বিরাজমান। আজকেই আমাকে হিমালয় রওনা দিতে হচ্ছে।’</p>
+<p>‘কেন মহারাজ, আপনার উপর রেগে আছেন কেন তিনি?’</p>
+<p>‘কারণ, আমি বোম্বেতে এসে আমার কর্তব্য ভুলে গেছি। তাঁর চাঁদা তুলবার জন্য তিনি আমাকে বোম্বে আসার আজ্ঞা করেছিলেন। হায় হায়, আমি সব ভুলে গেছি। তার জন্যে যে একুশ লাখ টাকা জমা করতে হবে। কি আশ্চর্য, কোথায় আমার কর্তব্য আর কোথায় তোদের পাঞ্জা-ছক্কা। তোরা আমাকে ডুবিয়েছিস।’</p>
+<p>‘গুরু আপনি বলেন তো, কৈলাসের গুরুর জন্যে এক্ষুণি আমি এক লাখ টাকার চেক কাটছি ৷’ শেঠ বলল।</p>
+<p>‘এক লাখ টাকায় কি হবে? আমার দরকার একুশ লাখ। আর গুরু বলেছেন একজনের কাছেই সব টাকাগুলো চাইতে। সে যদি দিতে না পারে, তাহলে আর কারো কাছে যেন না চাই।’</p>
+<p>‘কিন্তু আমার কাছে তো একুশ লাখ নাই গুরুজী।’</p>
+<p>শেঠ ভুসুরীমল অপরাধীর মত হয়ে বলল।</p>
+<p>‘আমি কি তোমার কাছে একুশ লাখ চাই নাকি? আমি চাই আমার ধ্যান জ্ঞান থেকে তোমরা যেসব টাকা কড়ি পেয়েছ তার অর্ধেক টাকা আমার নামে ব্যাংকে জমা করতে থাক। জমা করতে করতে যখন একুশ লাখ হবে তখনই না হয় আমি হিমালয় রওনা দেব।’</p>
+<p>‘আমার কোন আপত্তি নেই গুরু মহারাজ। আমি তো আপনার চরণের দাস। যা হুকুম করবেন তাই করব।’</p>
+<p>নির্দিষ্ট সময়ে আবার মাহফিল বসল। বোতল বোতল হুইস্কি চলল ৷ আজ আমি এমন সব তন্তর মন্তর পড়ব যে, কারো ভাগ্যে যেন কিছু না পড়ে। এরপরও যদি কিছু পেয়ে যায় ওরা, তার অর্ধেক তো আমার জন্য বরাদ্দ রইলোই। তা না হলে ওরা আমার ওপর একটা না একটা অভিযোগ খাড়া করবে। ব্যস, এ যাত্রা কেটে গেলে আরো কিছু কালের জন্য নিশ্চিন্ত হতে পারি। শালার জগৎটাই এ ধারার। সততা এবং ভালমানুষীর অর্থই হলো সারা জীবন তুমি ভুখা থাকো এবং গাধা হয়ে ধুঁকতে ধুঁকতে মারা যাও। এখন থেকে আমি ওদের মতোই ব্যবহার করব। ওদের মাথায় রেখেই কাঁঠাল ভেঙে খাব। নইলে আমার মত গাধার কোন উপায়ান্তর নেই।</p>
+<p>নাম্বার বলার সময় যতই ঘনিয়ে আসতে লাগলো আমার মাথায়ও রক্ত চড়ে যেতে লাগল।</p>
+<p>কি রকম আহাম্মক আর মূর্খ এ লোকগুলো। পয়সার জন্যে যা ইচ্ছে তাই করতে পারে। এদের কাছে ধর্ম, রাজনীতি, কৃষ্টি, সভ্যতা এবং মানব জাতির ভবিষ্যৎ চিন্তার কোন মানেই নেই। অর্থের সীমিত গণ্ডির মধ্যেই এদের আনাগোনা। আত্মার উপর অন্ধত্বের পট্টি বেঁধে বর্তমান, ভবিষ্যৎ, আর অতীতকে ভুলে লোভী কুকুরের মত অর্থের বেদীতে আত্মাহুতি দিচ্ছে। হতভাগাগুলো কেমন করে আমার দিকে তাকাচ্ছে। মনে হচ্ছে আমার মুখ থেকে কোন কথা বের হলে ঝাঁকে ঝাঁকে নোট ঝরতে থাকবে উপর থেকে। আমি ক্রোধে উন্মত্ত হয়ে বললাম, শুয়োরের বাচ্চা হারামীগুলো …’</p>
+<p>হঠাৎ ওরা চারজন এক পলকের জন্য চমকে উঠল। আবার নড়েচড়ে সোজা হয়ে বসল।</p>
+<p>‘হতভাগা চামারগুলো খেটে খেতে চায় না, এক পয়সা দিয়ে দেশের উন্নতি করবে না। শুধু জুয়া, লটারী, রেস, স্মাগলিং, বদমাশী, চুরি, ডাকাতি, ঘুষ, জালিয়াতি, হত্যা সব রকম খারাপ কাজে লেগে আছে। তারপর আবার ন্যাকামী করে বলবে এদেশের উন্নতি হচ্ছে না কেন? এদেশের দারিদ্র্য কেন যায় না? লোকদের এত দুঃখ দুর্দশা কিসের? ব্যাটা চোর, বদমাশ, কুত্তা, কমিনা-কমজাত, শুধু রাতারাতি বড় লোক হবার শখ। শুধু নম্বর আর নম্বর, না, নম্বর আমি বলব না। কেন বলব? আমি পারব না নম্বর বলতে। যাও, যা ইচ্ছে তাই কর গিয়ে।’ রাগে আমার গা থর থর করে কাঁপছিল আর মুখ থেকে গরম ফেনা বের হচ্ছিল। আমি ক্ষোভে ঘৃণায় ওদের লক্ষীছাড়া পিশাচ চেহারাগুলোর দিকে চরম ন্যক্কারজনক কটাক্ষ হেনে রুম ছেড়ে বেরিয়ে গেলাম এবং দাঁড়িয়ে ওদের কথাবার্তা শুনতে লাগলাম।</p>
+<p>সেতাব সিং বলল,</p>
+<p>মিষ্টি, ‘গাধাটার হলো কি? আমাদের খেয়ে আমাদের গাল দিচ্ছে। ফলের রস, চা, কত খাবার আয়োজন, শোবার জন্য নরম বিছানা, থাকার জন্য সাজানো কামরা, টেলিফোন, ঝালর আরো কত আরাম আয়েশের উপকরণ ভোগ করছে, অথচ এমনভাবে আমাদেরকে গালি দিচ্ছে। আমি এক্ষুণি পিস্তল মেরে ওর জীবনলীলা সাঙ্গ করে দেব।’</p>
+<p>জুমন তাকে থামিয়ে দিয়ে বলল,</p>
+<p>‘রসো, সেতাব তুমি কিছুই বুঝ না। গুরুজী সাধে কি আর রেগেছে, নিশ্চয়ই আমরা কোন অপরাধ করেছি।’ গোলাব সিং মাথা চুলকাতে চুলকাতে বলল : ‘জুমন ঠিক বলেছে। অবশ্যি আমরা কোন অপরাধ করেছি, নইলে গুরু আমাদের গাল দেবে কেন?’ শেঠ সবাইকে থামিয়ে দিয়ে বলল,</p>
+<p>‘আরে থামো না, কি হয়েছে? সাধুর গালিতো আকাশবাণী। তাঁর কথা নিয়ে মন ভার করলে চলে? তোমরা এখনো টের পেলে না সাধু বাবা তো নম্বর বলে ফেলেছেন?’</p>
+<p>‘একি, নম্বর বলল আবার কোন সময়? শুধু গালিইতো দিল এতক্ষণ?’</p>
+<p>‘গালিইতো দিলো কিন্তু পয়লাতেই কি গালি দিল খেয়াল করেছ কি?’</p>
+<p>‘কেন শুয়রের বাচ্চা হারামী থেকে শুরু করে চোর, বদমাস, পাজী, কুত্তা সব গালিই তো দিল। তাহলে হিসাব করে দেখ প্রথমে দু’টি গালি এবং শেষের দিকে ছ’টি গালি।</p>
+<p>এখনতো বেশ বুঝতে পারছ আজ ওপেন দুই এবং ক্লোজে হয় আসবে। সাধু বাবা আজ প্রাণভরে আমাদের গালি দিয়েছেন। আর আমরাও ইচ্ছামত দুই আর ছক্কাতে ধরব। সব পয়সা নিঃশেষ করে ধরব। বোম্বের সকল ধন দৌলত লুটে নেব আজ ৷’ শেঠ ভুসুরীমল-এর একথা শুনে সবার চোখ বিস্ময়ে বিস্ফোরিত। একটা কিছু পেয়ে যাওয়ার মতো তারা খুশিতে আটখানা হয়ে উঠল।</p>
+<p>আমি তাড়াতাড়ি করে আমার কামরায় চলে এলাম আর লোকগুলোর কাণ্ডকারখানা সম্পর্কে চিন্তা করতে লাগলাম। টাকার জন্য এরা কি না করতে পারে। টাকার জন্যে এরা গালি শুনতে রাজী। আমি মনে মনে বললাম, কালকে যদি এরা নম্বর মাফিক কিছু না পায় নির্ঘাত আমাকে পিস্তল মেরে শেষ করে ফেলবে। আমি এখন পালিয়ে বাঁচার জন্য মনে মনে অনেক ফন্দি আঁটলাম। কিন্তু কড়া পাহারায় থেকে তার কিছুই করা সম্ভব না। তাছাড়া রাত্রিবেলা বাইরে থেকে তালা লাগিয়ে দিয়ে যায়।</p>
+<p>ভোরবেলায় যখন তালা খুলল, ভয়ে আমার গা কাঁপছিল। আমি মৃত্যুর জন্য অপেক্ষা করছিলাম, আমার সামনে চারজন ভাবলেশহীন মুখে দাঁড়িয়ে। আমি ভয়ে এক পা দুপা করে পিছু হটছিলাম। কিন্তু হঠাৎই ওরা হুমড়ি খেয়ে আমার পায়ের উপর পড়ল। আজকের মত বাজিমাত কোনদিনই হয়নি তাদের। জুমন সত্তর হাজার পেয়েছে। গোলাব সিং ত্রিশ হাজার। সেতাব সিং পঞ্চাশ হাজার আর শেঠ ভুসুরিমল তার সমুদয় পুঁজি দিয়ে টিকেট ধরেছিল, সে পেয়েছে পুরো চৌষট্টি লাখ টাকা।</p>
+<p>বাপ্‌রে! এখন তারা খুশিতে ক্ষণে হাসছে, ক্ষণে কাঁদছে, ক্ষণে আমার পায় চুমু দিচ্ছে। খুশিতে আত্মহারা হয়ে ওরা পাগলের মত কি করছিল আমি তার কিছুই বুঝতে পারছিলাম না।</p>
+<p>‘ভগবান মালিক মহর্ষি দেবতা সাধু ফকির দরবেশ’,—আমি জোরসে একটা ধমক দিয়ে বললাম,</p>
+<p>‘ভাগো এখান থেকে। আমাকে একা থাকতে দাও।’</p>
+<p>হুকুম শুনে একসঙ্গে সবাই আমার পা ছেড়ে দিয়ে পিছে হটে গেল। এবং হাত জোড় করে কাঁপতে কাঁপতে পিছু হটে যাচ্ছিল। আমি ততোধিক গর্জন করে বললাম,</p>
+<p>‘শেঠ তুমি যেও না, তোমার সাথে আমার কথা আছে।’ সবাই চলে গেলে আমি শেঠের আপাদমস্তক দেখে নিয়ে বললাম, ‘সত্য সত্য বল কত টাকা পেয়েছ আজ?’</p>
+<p>শেঠ মাথা নত করে বিনীতভাবে বলল,</p>
+<p>চৌষট্টি লাখ টাকা গুরুদেব, মাত্র চৌষট্টি লাখ</p>
+<p>‘আমার বত্রিশ লাখ আলাদা করে দাও।’</p>
+<p>‘এখনি দিচ্ছি ৷’ বলেই শেঠ তার কামরায় চলে গেল এবং কাঁপা কাঁপা হাতে ট্রেজারী খুলে ৩২টা বাণ্ডিল এনে আমার পদপ্রান্তে জমা করল। সবগুলো হাজার টাকার নোট। এক সাথে এত টাকা দেখে আমার স্বর বদলে গেল। আমি প্রসন্ন হয়ে বললাম,</p>
+<p>‘বেটা আমি অত্যন্ত খুশি হয়েছি তোর উপর। এজন্যে আমি তোকে দু’লাখ টাকা বখশিশ দিচ্ছি। এখান থেকে দুটা বাণ্ডিল তুলে নে। বাদ-বাকী টাকাগুলো নিয়ে আমার সাথে ব্যাংকে চল।’</p>
+<p>এগার</p>
+<p>ব্যাংকের একজন এসিন্টেট গিয়ে ম্যানেজারকে জানালো যে, তাঁর সাথে দেখ করার জন্য এক গাধা অপেক্ষা করছে। ম্যানেজার চোখ কপালে তুলে বললেন, ‘গাধা? ব্যাংকে গাধার আবার কি কাজ?’</p>
+<p>আমি ব্যাংকে পা দিতেই চারদিকে একটা হৈ চৈ পড়ে গেল। কেরানীরা হাতের কাজ রেখে চোখ ছানাবড়া করে আমাকে দেখছিল। শেঠ ভুসুরিমল সেসব উপেক্ষা করেই আমাকে নিয়ে সোজা ম্যানেজারের কামরাতে ঢুকে পড়ল।</p>
+<p>‘এসব কি হচ্ছে?’ ম্যানেজার প্রায় চিৎকার করে উঠলেন। শেঠকে উদ্দেশ্য করে বললেন,</p>
+<p>“ ‘জনাব এটা ব্যাংক, এটা আস্তাবল নয়।’ শেঠ কিছু একটা বলতে যাচ্ছিল, আমি তাকে থামিয়ে দিয়ে বললাম,</p>
+<p>‘ম্যানেজার সাহেব, বিপদ তো এখানেই যে, যারা থাকবে ব্যাংকে তাদেরকে আস্তাবলে বন্ধ করে রাখা হয়েছে, আর যারা থাকবে আস্তাবলে তারাই আজ ব্যাংকের চেয়ার দখল করে আছেন।’</p>
+<p>ম্যানেজার আমাকে কথা বলতে দেখে একেবারে ভ্যাবাচেকা খেয়ে গেলেন। গাধা, এই আমার মস্তবড় পরিচয়, আমি আপনার ব্যাংকে একাউন্ট খুলতে চাই।’</p>
+<p>আমার দিকে হাত এগিয়ে দিয়ে বললেন, ‘আপনার, মানে আপনার পরিচয়?’ ‘গাধাদের আবার পরিচয় কি? তবে আমি আপনার সময় নষ্ট করব না। আমি</p>
+<p>‘আমাদের এখানে গাধাদের একাউন্ট খোলার কোন বন্দোবস্ত নেই।’ ‘বন্দোবস্ত করে নিলেই হয়। আমি নগদ টাকা নিয়ে এসেছি। ব্যাংকের যাবতীয় ফর্মালিটিজ মেনে চলতে আমার কোন আপত্তি নেই।’</p>
+<p>‘না, তা হয় না। আপনি যদি মানুষ হতেন তবে এক কথা ছিল।’</p>
+<p>‘এটা কি গ্যারান্টি দিয়ে বলতে পারেন যে, আপনার কাছে যারা আসে তারা সবাই মানুষ। আমি অনেক মানুষকে পশুদের চেয়েও নিকৃষ্টভাবে জীবন যাপন করতে দেখেছি। আপনার এই অফিসেই এমন সব মানুষ আছে যাদের তুলনায় পশুজাত অনেকাংশে শ্রেয়।’</p>
+<p>‘আমাকে ক্ষমা করবেন। এ ব্যাংকে কোন চতুষ্পদ জন্তু বা পশু পাখি একাউন্ট খুলতে পারে না।’</p>
+<p>‘পশু আর মানুষের মধ্যে প্রভেদ কি? যে কথা বলে সেই তো মানুষ। আমি যখন কথা বলতে পারছি, আমাকেও মানুষ বলতে পারেন আপনি।’</p>
+<p>‘দয়া করে তর্ক করে বৃথা সময় নষ্ট করবেন না। পশুদের কোন একাউন্ট হয় না এখানে, এর বেশি আমি আর কিছুই বলতে পারিনা।’</p>
+<p>‘ঠিক আছে তাহলে আমার একটা প্রশ্নের জবাব দিবেন কি?’ ‘বলুন।’</p>
+<p>‘এই যে এতলোক আপনার ব্যাংকে টাকা জমা দিতে আসে তাদেরকে আপনি কি দেন?’</p>
+<p>‘তাদেরকে দেব আবার কি, বরং আমরা সুদ নিয়ে থাকি তাদের কাছ থেকে।’</p>
+<p>‘তার মানে হচ্ছে আমাদের টাকাও আপনার কাছে থাকবে আর সুদও আমরাই দেব, বেশ তো।’</p>
+<p>‘আপনি যদি সেভিংস বা ফিক্সড ডিপোজিটে টাকা রাখেন তখন আমরাই আপনাদেরকে আবার সুদ দেই।’</p>
+<p>‘আপনিই বা আমাকে সুদ দিতে যাবেন কেন? আমার টাকা আপনার কাছে বসে বসে ডিম পাড়ে নাকি?’</p>
+<p>ম্যানেজার উঠে বললেন,</p>
+<p>‘মশাই, আসল কথা হচ্ছে একজন দু’জন করে এই যে এত লোকের টাকা জমা হয়ে লাখ লাখ টাকা হচ্ছে আমরা সে টাকা বড় বড় শিল্প কারখানায় খাটাই এবং তা দিয়ে নানা কায়-কারবার করি। তা থেকে ব্যাংক প্রতি বছর লাখো লাখো টাকা আয় করে থাকে।’</p>
+<p>‘তার মানে হচ্ছে, গবী বেচারীরা তাদের কষ্টার্জিত পুঁজি এনে এখানে জমা রাখে আর তা দিয়ে আপনারা নাড়া-চাড়া করে বেশ দু’পয়সা কামিয়ে নিচ্ছেন, এই না?’</p>
+<p>‘হ্যাঁ—অনেকটা তাই।’</p>
+<p>‘তাই যদি হয়, এখানে গাধাদের একাউন্ট খুলতে বাধা কি?’ ‘আপনি দেখছি বড্ড রসিক।’</p>
+<p>‘গবীদের রসিকতাই তো বড় সম্বল। দুঃখ বিষাদকে হেসে উড়িয়ে না দিতে পারলে তাদের বাঁচবার উপায় আছে? আচ্ছা ম্যানেজার সাহেব, মনে কিছু করবেন না। আপনাকে বিরক্ত করলাম। এখন আসি।’</p>
+<p>বলেই আমি ম্যানেজার-এর কামরা থেকে বেরিয়ে এলাম। আমি বাইরে চলে এলে শেঠ ভুসুরিমল ম্যানেজারকে বলল, ‘তুমি বড্ড ভুল করেছ দয়ালুরাম। এ গাধা ত্রিশ লাখ টাকা জমা করতে এসেছিল।</p>
+<p>‘ত্রিশ লাখ? ম্যানেজার একেবারে আকাশ থেকে পড়ল</p>
+<p>। ম্যানেজার চেয়ার ছেড়ে লাফিয়ে উঠল।</p>
+<p>‘গাধাটা গেল কোথায়?’ বলেই ম্যানেজার দৌড়াতে</p>
+<p>ম্যানেজারকে দৌড়াতে দেখে ব্যাংকময় একটা হৈ চৈ পড়ে গেল</p>
+<p>‘আরে ও গাধা, মানে জনাব গাধা সাহেব, দয়া করে একটু দাঁড়ান। স্যার, একটু কথা শুনে যান।’</p>
+<p>আমি পেছন ফিরে দেখলাম ম্যানেজার দৌড়ে আসছে।</p>
+<p>‘কি ব্যাপার, এত ব্যস্ত হচ্ছেন কেন?’</p>
+<p>দৌড়াতে চলে এলো।।</p>
+<p>ম্যানেজার আমার রশিটা হাতে নিয়ে অত্যন্ত বিনীত হয়ে</p>
+<p>বললেন,</p>
+<p>‘আমার বড্ড ভুল হয়ে গেছে স্যার। চলুন আপনি ফিরে চলুন। আপনার একাউন্ট খুলতে আমাদের কোন বাধা নেই।</p>
+<p>‘কিন্তু আমি যে এক গাধা।’</p>
+<p>‘আপনি গাধা হোন আর যাই হোন, কোন আপত্তি নেই আমাদের। চলুন ভেতরে চলুন।’</p>
+<p>ম্যানেজার প্রায় পা ছুঁয়ে সালাম করলেন আমার। কামরায় ঢুকেই ঘন ঘন বেল বাজালেন।</p>
+<p>‘একাউন্ট ফরম আনো, সই ফরম আনো, পাসবুক ফরম আনো। আর হ্যাঁ আপনি ত্রিশ লাখ টাকাই কি জমা করবেন স্যার?’ বলতে বলতে ম্যানেজার হাঁফিয়ে উঠলেন।</p>
+<p>আমি সংক্ষেপে বললাম, ‘হ্যাঁ।’</p>
+<p>‘তাহলে এক কাজ করুন। বিশ লাখ ফিক্সড ডিপোজিট, পাঁচ লাখ সেভিংসে আর পাঁচ রাখ জেনারেল একাউন্টে রাখুন’।</p>
+<p>‘না, আমি একুশ লাখ রাখব ফিক্সড ডিপোজিটে, চার লাখ জেনারেল একাউন্টে।’</p>
+<p>‘বিশ লাখ না রেখে একুশ লাখ কেন?’ শেঠ জিজ্ঞেস করল।</p>
+<p>‘একুশ লাখ গুরুর জন্যে রাখতে চাই। টাকাটা জমা না করে,। হিমালয়ে যাই।’ কি করে আমি</p>
+<p>কৈলাস পর্বতের গুরুর কথা মনে পড়তেই শেঠজি চুপসে গেল। ম্যানেজার আমার সামনে ফরম এগিয়ে দিয়ে বললেন,</p>
+<p>‘নিন, সই করুন।’</p>
+<p>‘আমি সইতো জানি না, গাধারাতো লিখতে জানে না।’</p>
+<p>‘ঠিক আছে তাতে কিছু আসে যায় না, টিপ সহি দিলেও চলবে।’</p>
+<p>‘টিপ সইও তো দিতে পারব না, আমার কোন আঙ্গুল নেই। পায়ের ছাপ ছাড়া</p>
+<p>সই করার মত আমার আর কোন যোগ্যতা নেই।’</p>
+<p>‘তাতেও চলে যাবে। ত্রিশ লাখ টাকার জন্যে পায়ের ছাপ কেন, লেজের ছাপ দিলেও চলবে।’ বলেই ফরমটা আমার দিকে এগিয়ে দিয়ে বললেন,</p>
+<p>‘নিন পায়ের ছাপ দিন।’</p>
+<p>‘শেঠ ভুসুরিমল বলল, ‘একটু থামুন গুরু।’</p>
+<p>‘কেন?’</p>
+<p>আমার কথার উত্তর না দিয়ে সে ম্যানেজারকে বলল,</p>
+<p>‘এ টাকার জন্য ওভার ড্রাফট কত পাবো?</p>
+<p>‘ওভার ড্রাফট আবার কি?’ আমি বললাম।</p>
+<p>‘শেঠ আমাকে ওভার ড্রাফট সম্পর্কে বুঝিয়ে বলল :</p>
+<p>‘ওভার ড্রাফট হলো আপনার একাউন্ট আছে, প্রয়োজন বোধে আপনার জমাকৃত টাকার চেয়েও বেশি টাকা তুলতে পারেন।’ ম্যানেজার বললেন,</p>
+<p>‘এক লাখ টাকা পর্যন্ত ওভার ড্রাফট দিতে</p>
+<p>পারবো আমি।’</p>
+<p>‘না, দু’লাখ দিতে হবে।’ শেঠ বলল।</p>
+<p>‘ঠিক আছে, দু’লাখই দেব। ঝটপট আপনি সইটা মানে পায়ের ছাপটা দিয়ে ফেলুন। আমি যখন বিভিন্ন ফরমে পায়ের ছাপ দিচ্ছিলাম এমন সময় একজন গো’বেচারী ধরনের লোক এসে ম্যানেজারকে অনুনয় করে বলতে লাগল,</p>
+<p>‘ম্যানেজার সাহেব, আমার স্ত্রীর অবস্থা মরণাপন্ন। ঔষধ কেনার জন্যে দেড়শ টাকার দরকার। আমার একাউন্টে আছে মাত্র পঞ্চাশ টাকা, দয়া করে আমাকে দেড়শত টাকার বন্দোবস্ত করে দিন। এ যাত্রা আমাকে বাঁচান। দু’দিন পর যখন বেতন পাব টাকাটা তখন পরিশোধ করে দেবো।’</p>
+<p>‘ব্যাংক আপনাকে ওভার ড্রাফট দেবে এমন কথা বলেছে?’</p>
+<p>‘না। কিন্তু আমার স্ত্রীর যে কঠিন অসুখ। ওষুধ না কিনতে পারলে মরেই যাবে, দয়া করে …</p>
+<p>‘না, আমি এ ব্যাপারে আপনাকে কোন সাহায্য করতে পারি ľ</p>
+<p>এ কথা শুনে লোকটি কাঁদ কাঁদ হয়ে বেরিয়ে গেল। আমি ম্যানেজারকে বললাম, ‘বিশ লাখ টাকা জমা দিচ্ছি বলে এক গাধা দু’লাখ টাকা ওভার ড্রাফট পাচ্ছে আর একজনের বউ মারা যাচ্ছে তাকে আপনি একশ’টাকা দিতে পারলেন না। এটাকে আপনি মানুষের ব্যাংক বলতে চান?’</p>
+<p>ম্যানেজার কিছু বলতে যাচ্ছিল এমন সময় দরজা ঠেলে আবার একজন লোক ঢুকল। গায়ে বাদামী রং-এর কামিজ। পরনে সাদা প্যান্ট আর পায়ে পেশোয়ারী চপ্পল। লোকটির হাতে একখানা চেক। সে ম্যানেজারকে উদ্দেশ্যে করে বলল,।</p>
+<p>‘কাটাকাট ফিল্ম কোম্পানি আমাকে দেড়’শ টাকার চেকটা দিয়েছে অথচ ক্লার্ক বলছে একাউন্টে নাকি মাত্র একশ চল্লিশ টাকা আছে।’</p>
+<p>‘একশ চল্লিশ টাকা আছে তো আমি কি করব?’ ম্যানেজার বলল।</p>
+<p>‘আপনি এক কাজ করুন, কাটাকাট ফিল্ম-এর একাউন্টে আমার কাছ থেকে দশ টাকা নিয়ে ফটাফট আমার চেকটা ক্যাশ করে দিন। আমার টাকা যায় যাক, একশ চল্লিশ টাকাতো উসুল হয়ে যাচ্ছে।’ ম্যানেজার বলেন, ‘ও কে।’</p>
+<p>আমি লোকটির চালাকীতে মুগ্ধ হয়ে ম্যানেজারকে তার পরিচয় জিজ্ঞেস করলাম। ম্যানেজার বললেন, ‘ইনি হলেন দাদা ধূমল। কাটাকাট ফিল্ম কোম্পানির ডিরেক্টর।’</p>
+<p>একথা বলেই তিনি আমাকে চেকবুক ইত্যাদি বুঝিয়ে দিয়ে বললেন,</p>
+<p>‘নিন, আপনার ব্যাপার চুকে গেল। বলেন আর কি করতে পারি আপনার</p>
+<p>জন্যে?’</p>
+<p>‘এখন আমি একাউন্ট থেকে টাকা তুলতে পারি?’ ‘আলবত—একশ’বার। যত টাকা ইচ্ছে তুলতে পারেন।’ ‘শুধু পায়ের ছাপ দিয়েই চেক কাটতে পারব?’ ‘আলবত–আপনার ছাপকেই আপনার সই মনে করা হবে।’ ‘বেশ।’</p>
+<p>তারপর শেঠকে বললাম,</p>
+<p>‘শেঠ, এক লাখ টাকার একটা চেক কেটে দাও আমি পায়ের ছাপ দিয়ে দিচ্ছি।</p>
+<p>এক লাখ টাকা নিয়ে বাইরে এলে শেঠ আমাকে বলল, ‘এ টাকা দিয়ে কি হবে গুরু?’</p>
+<p>‘বেশি ববক্ করো না বলছি। ঐ মোড়ের জেনারেল স্টোরে গিয়ে একটা টাকার থলে কিনে এনে তাতে টাকাগুলো রেখে আমার গলায় ঝুলিয়ে দাও।’ শেঠ কোন কথা বলতে না পেরে গজর গজর করে বলতে লাগল, ‘শেষকালে গাধাটার মাথা খারাপ হয়েছে দেখছি।’</p>
+<p>‘শেঠ মনে করেছে আমি শুনি নি। মনে মনে বললাম, ‘আচ্ছা, তোকেও জ্ঞান দান করতে হবে দেখছি।’</p>
+<p>যখন শেঠ মোড়ের দিকে অদৃশ্য হয়ে গেল, কে যেন ডাক দিল ‘শেঠ’। আমি চারদিকে তাকিয়ে কাউকেই দেখলাম না। আবার কে যেন বলল, ‘‘শেঠ, আমি তোমাকেই ডাকছি শেঠ ৷’</p>
+<p>এবার চেয়ে দেখলাম দাদা ধূমল আমাকে উদ্দেশ্য করে বলছে, ‘শেঠ আইসক্রীম খাবে?’</p>
+<p>‘না।’</p>
+<p>‘জিলিপি খাবে?’</p>
+<p>‘না।’</p>
+<p>‘চমৎকার সাচিপান খাবে?’</p>
+<p>‘না, কিছুই খাব না। কেন, কি জন্য তোষামোদ করছ খুলেই বলো না।’ ‘তোষামোদ আমি আমার বাবাকেও করি না। কিন্তু তোমাকে একটা মজার কথা শুনাব। একটু এদিকে কোণের দিকে এসো।”</p>
+<p>আমি তাকে অনুসরণ করে এক কোণের দিকে গেলাম। অনেকক্ষণ ধরে সে আমার সাথে ফিফাস করছিল। শেঠকে আসতে দেখে হঠাৎ আবার দেখা হবে</p>
+<p>বলে কেটে পড়ল সে। শেঠ তাকে চলে যেতে দেখল না। আমার সাথে কথা বলতেও দেখল না। শেঠ থলেতে টাকাগুলো গুনে থলে ভর্তি করে আমার গলায় বেঁধে দিল। তারপর আমার পা ছুঁয়ে হাত জোড় করে বলল,</p>
+<p>‘গুরু মহারাজ—এখন কবে নাগাদ আপনি হিমালয় রওয়ানা হবেন?’ টাকাগুলো আমার গলায় বেঁধে দিতেই আমার সারাদেহ শক্তি সাহসে টগবগ করে উঠল। শিরা-উপশিরায় যেন রক্তপ্রবাহ ছুটে সারা দেহমন এক নতুন প্রাণচাঞ্চল্যে উজ্জীবিত হয়ে উঠল। আমি চোখ পাকিয়ে বললাম,</p>
+<p>‘বোকা কোথাকার, হিমালয় যাব মরতে?’ ‘কেন কৈলাস গুরুর চাঁদা আর …’ ‘কৈলাস গুরুর ভক্তি ভজন সব এখন বোম্বেতেই হবে।’ ‘তার মানে?’</p>
+<p>‘তার মানে একটা ফিল্ম কোম্পানি খোলা হবে।’</p>
+<p>বার</p>
+<p>শেঠ ভুসুরিমল প্রায় আঁৎকে উঠে বলল,</p>
+<p>‘গুরুজী; আপনি ধ্বংস হয়ে যাবে। একাজে হাত দিবেন না।’ ‘ধ্বংস হব কেমন করে? ধূমল আমাকে সবকিছু বাৎলে দিয়েছে, মাত্র আটচল্লিশ টাকায় ফিল্ম কোম্পানি খোলা যায়, মাত্র আটচল্লিশ টাকা।’</p>
+<p>‘আপনার মাথাতো খারাপ হয়নি</p>
+<p>গুরু?</p>
+<p>‘শেঠ আমাকে অত গাধা মনে করো না। আমি সব বুঝে শুনে করছি। দাদা ধূমল আমাকে সবকিছু বুঝিয়ে দিয়েছে। সে বলছে মাত্র আটচল্লিশ টাকা দাও, আমি তোমাকে ফিল্ম কোম্পানি খুলে দেব। আমি তাকে একশ টাকা দিয়েছি। রাতারাতি সে ফিল্ম কোম্পানির সবকিছু বন্দোবস্ত সেরে কাল সকালে এখানে আসবে।’</p>
+<p>‘ফিল্ম কোম্পানি কি ঘরের কথা যে, ইচ্ছা করলাম আর হয়ে গেল?’</p>
+<p>‘তুমি বুঝতে পারছ না শেঠ, দাদা ধূমল আমাকে সবকিছু বুঝিয়ে দিয়েছে। তাছাড়া আমাদের এতে তেমন লোকসানই বা কি যাচ্ছে ? নগদ আটচল্লিশ টাকা আর তেমন কি? আটচল্লিশ টাকাতে যদি আটচল্লিশ লাখ টাকা মুনাফা পাওয়া যায় দোষ কি?’</p>
+<p>‘এত টাকা লাভ কে দেবে আপনাকে?’</p>
+<p>‘কি লাভ হবে আমি সব বুঝে নিয়েছি। তোমাকেও বুঝিয়ে দেব। কাল সকালে দাদা ধূমল আসলেই সব বুঝতে পারবে।’</p>
+<p>পরদিন দাদা ধূমল তার বিজনেস ম্যানেজার সুমনকে নিয়ে এসে হাজির। সুমন দাদা ধূমলের চেয়েও হালকা পাতলা। তার চকচকে চোখ দু’টো চারিদিকে ঘনঘন ঘুরঘুর করছিল। চেহারায় চিরস্থায়ী একটা ক্ষুধার ছাপ কিন্তু মাথা বড় পরিষ্কার। তার চোখের শ্যেন জ্যোতি সবাইকে যেন কাতুকুতু দিচ্ছিল। শেঠ ভুসুরিমল বলল,</p>
+<p>‘মাত্র আটচল্লিশ টাকায় ফিল্ম কোম্পানি, আবার তাতে আটচল্লিশ লাখ টাকা লাভ কি করে হয়?’ দাদা ধূমল একটা প্যাকেট খুলল। আমি বললাম, ‘এগুলো কি?’</p>
+<p>‘এগুলো আপনার কোম্পানির লেটার প্যাড, এগ্রিরিমেন্ট ফরম আর রসিদ বই। আমার বিজনেস ম্যানেজার সুমন রাতারাতি এগুলো ছাপিয়ে নিয়েছে।’</p>
+<p>‘দশ টাকাতো এতেই চলে গিয়েছে।’</p>
+<p>‘নিজেদের পকেট থেকে এক পাই পয়সা যাবে না জনাব। সুমন বলল,</p>
+<p>‘আমি প্রেসে কন্ট্রাক্ট করে নিয়েই এগুলো ছাপিয়েছি। আমাদের কোম্পানির সব কিছুই এখানে ছাপানো হবে। বড় বড় রঙিন পোস্টার ছাপান হবে। পাবলিসিটিতে যে পঁচিশ হাজার টাকা খরচ হবে, তার সবকিছু ওখানে ছাপা হবে।’</p>
+<p>‘কিন্তু আটচল্লিশ টাকায়?’</p>
+<p>‘আগে পুরোটা শুনে নাও ৮না শেঠ। চল্লিশ হাজার টাকার এক পয়সাও আমাদের দিতে হবে না, সব টাকা দেবে ডিস্ট্রিবিউটর।’</p>
+<p>‘ডিস্ট্রিবিউটর আবার কারা?’ আমি জিজ্ঞেস করলাম,</p>
+<p>‘তারাও আমাদের মত শেঠ। তারা আমাদের ছবি ডেলিভারী নেবে।’ ‘কিন্তু টাকা পয়সা ছাড়া ছবি হবে কেমন করে? ছবিতে নাকি বড় বড় অভিনেতারা কাজ করে। লাখো লাখো টাকা দিতে হয় তাদেরকে।</p>
+<p>শুধু আটচল্লিশ টাকা দিয়ে তুমি কেমন করে ছবি তৈরি করবে?’</p>
+<p>কেমন করে হবে তাইত বলছি, ‘অশনি কুমার বাল্যবন্ধু। সে আমাকে দাদা ধূমল ডাকে, আমিও তাকে দাদা গুনী বলি। গতরাতে আমি তার সাথে দেখা করেছি।’ আমি বললাম, ‘দাদা গুনী, আমার ছবিতে কাজ করবে? সে বলল, ‘এখন আমার হাতে গোটা বিশেক ছবি আছে। তোমারটাও তালিকাভুক্ত করে নেবো দোষ কি?’ আমি বললাম, ‘প্রথম দশদিন কিন্তু এক পয়সাও দিতে পারব না। আর অন্যান্যদের তুলনায় পয়সা কম দেব।’ সে বলল, ‘তুই হলি আমার বাল্যবন্ধু। তুই যদি এক পয়সাও না দিস, আমি কি করতে পারি? তবে আমি সচরাচর আড়াই লাখ টাকা নিয়ে থাকি। তুই না হয় দুই লাখ দিবি।’ আমি বললাম, ‘দু’লাখ টাকা দেব না, পৌনে দুলাখ দেব’। সে বলল, ‘তাই হোক, পয়সা দিয়ে আমাদের কি কাজ।</p>
+<p>বন্ধুত্বই আমাদের বড় জিনিস’। সুমন বলল, ‘আর আমিও বিজেন্দ্র কুমার এর কাছে গিয়েছিলাম। এককালে আমরা দু’জন একই পরিচালকের অধীনে সহকারী হিসাবে কাজ করেছিলাম। সেকালে আমরা কত দুঃখ কষ্ট সহ্য করেছি। ভগবান আজ তাকে কত বড় বানিয়ে দিয়েছে। কিন্তু ধন্যবাদ দিতে হয় তাকে, বড় হয়েও সে বন্ধুদের ভুলে যায়নি। আমি যখন আমাদের ছবির কথা পাড়লাম, সে ভাবে গদগদে হয়ে আমার হাত চেপে বলল, শুয়োর, তোর ছবিতে কাজ করবোনা তো কার ছবিতে করব?’</p>
+<p>‘সে তোমাকে শুয়োর বলল?</p>
+<p>‘শুয়োর বলেছে আদর করে। কারণ, আমাদের মত এমন নিবিড় বন্ধুত্ব আর হয় না। আমি তাকে জিন্নি বলে ডাকি।’ আমি বললাম, ‘জিন্নি প্রথম দশদিন কিন্তু তোকে এডভান্স না নিয়েই কাজ করতে হবে। আর পয়সা-কড়িও কম দেব। সে বলল, ‘শুয়োর পয়সা দিয়ে কি হবে? অন্যের কাছ থেকে চার লাখ নিয়ে থাকি। তুই না হয় দু’লাখ দিবি, এইতো শেষে দু’লাখে সে রাজী হয়ে গেল।’</p>
+<p>‘দু’লাখ, পৌনে দু’লাখে রাজী করালে ভাল হতো। অশনি মনে মনে কি বলবে?’ দাদা ধূমল বলল,</p>
+<p>‘অসুবিধা হবে না, পৌনে দু’লাখেও রাজী করিয়ে নিতে পারব, ওতো আমার হাতের মানুষ।’</p>
+<p>‘পৌনে দু’আর পৌনে দু’মিলে সাড়ে তিনলাখ টাকা হচ্ছে, এ টাকা কে দেবে?’ ‘দশদিনে তো আমাদের ছবির এক তৃতীয়াংশ শেষ হয়ে যাবে। তারপর, ডিস্ট্রিবিউটরদেরকে ছবি দেখিয়ে তাদের কাছ থেকে পয়সা নিয়ে নেব। একজন একলাখ দিলে দু’জন দু’লাখ দেবে। ব্যস, ওদিক থেকে চেক আসবে আর এদিকে দিয়ে দেব, নিজেদের পকেট থেকে এক পাই পয়সাও যাবে না। তাছাড়া ছবিও জনি ভাই-এর স্টুডিওতে তৈরি হবে। সে সেট তৈরি করবে। ফার্নিচার এবং পোশাক-আশাকও সে সাপ্লাই দেবে। চা পানি তার কেন্টিনে হবে, তার ল্যাবরেটরিতে ছবি প্রিন্ট হবে। মোটকথা, স্টুডিওর সব খরচ সে বহন করবে।’</p>
+<p>‘সে কেন বহন করতে যাবে এসব খরচ?’</p>
+<p>‘কারণ; ছবি তৈরি শেষ হলে আমরা তাকে দু’লাখ টাকা দেব।’ ‘কোত্থেকে দেব দু’লাখ টাকা আমরা?’</p>
+<p>‘সে টাকাতো ডিস্ট্রিবিউটর দেবে। কারণ তারাই তো ছবি বাজারে ছাড়বে।’ ‘যাক, বুঝলাম ৷ নায়িকা?’</p>
+<p>‘তারও বন্দোবস্ত হয়ে গেছে। এইমাত্র প্রেমবালার সাথে কথা পাকা-পাকি করে এলাম। আমিই প্রেমবালাকে প্রথম ছবিতে চান্স দিয়েছিলাম। সে আমার খুব অনুগত। সেও দশদিন পয়সা নেবে না।’</p>
+<p>‘পয়সা যখন কোথাও লাগছে না, আটচল্লিশ টাকারইবা কি দরকার?’</p>
+<p>‘মহরতের সময় কিছু চা পানি হবে। আমি হিসেব করে দেখেছি তাতে আটচল্লিশ টাকার মতন খরচ হবে।’ সুমন বলল।</p>
+<p>‘ইচ্ছা করলে তারও বাকী বন্দোবস্ত করে নিতে পারি। এক দোকানের সাথে আমার জানাশোনা আছে। আমি বাধা দিয়ে বললাম,</p>
+<p>‘না, দরকার নেই। মহরতের পয়সা বাকী রাখা ঠিক হবে না।’ শেঠ বলল,</p>
+<p>‘কিন্তু কোম্পানির জন্য একটা ছোট-খাটো অফিসের তো দরকার। কেরানী টাইপিস্ট রাখতে হবে। একটা টাইপরাইটার না হলেও চলবে না।’ সুমন বলল,</p>
+<p>‘শেঠ, কোম্পানির অফিস আপনার ওখানেই বানিয়ে নেবো। কোম্পানির জন্য এতটুকু কাজতো করতেই হবে। এরপর থাকে কেরানী ও টাইপিস্টদের চিন্তা। আমি নিজেই না হয় তা সামলে নেব। সামান্য হিসাবপত্র আমি নিজেই মেনটেন করতে পারব। আর টাইপও কোন রকমে চালিয়ে নিতে পারব। স্পীড মন্দ হয় না। শুধু পয়সা ব্যয় করে কি লাভ?’</p>
+<p>‘ঠিকই এসব কাজ সুমনই চালিয়ে নিতে পারবে। আমাদের খরচ করতে হবে না। দাদা ধূমল বলল, আমি এবং শেঠ ভুসুরীমল পরস্পর মুখ চাওয়া-চাওয়ি করলাম। আমরা সবকিছু স্বীকার করে নিতে বাধ্য হয়ে যাচ্ছি। সত্যি, কোম্পানি খুলতে আটচল্লিশ টাকার বেশি খরচ হচ্ছে না। কিন্তু আটচল্লিশ লাখ কথাটা কেন যেন বেখাপ্পা মনে হচ্ছে। আমাদের মনের ভাব বুঝে দাদা ধূমল আবার শুরু করল,</p>
+<p>‘শেঠ টেকনিক্যালারে ছবি তৈরি করবো। বেশি মাপের স্ক্রীন দেব। এমন হাইক্লাস ছবি বানাব যে, লোকেরা সিসিল ভি, ডি, মিলের কথাও ভুলে যাবে।’ ‘নাগিন’ ছবি তিন কোটি টাকার বিজনেস করেছে। মোগলে আজম ২৬ কোটি টাকার বিজনেস করেছে। শালার, আমার আটচল্লিশ লাখ না হয়ে তার কম বিজনেস হলেও আমাদের ক্ষতি কি? আমাদের পকেট থেকে তা এক পয়সাও যাচ্ছে না।’ সুমন বলল।</p>
+<p>‘কোম্পানির নাম কি হবে?’ আমি লেটার প্যাডের প্যাকেট খুলতে খুলতে জিজ্ঞেস করলাম।</p>
+<p>‘ডাংকিলা প্রডাকশন ৷’ সুমন বলল ৷ ‘ডাংকিলা প্রডাকশন।’ ধূমল বলল ৷ বলে দু’জনেই খুশি হয়ে আমার দিকে তাকাল। আমিও খুব খুশি হলাম। কারণ, বড় বড় হরফে চমৎকার টাইপে কোম্পানির নাম এবং তার উপরে ছোটোমতো একটা গাধার ছবি। দাদা ধূমল ছবিটি দেখিয়ে বলল,</p>
+<p>‘শেঠ, এ হচ্ছে আমাদের কোম্পানির মনোগ্রাম। ছবিতেও সবার আগে পর্দায় এ মনোগ্রাম দেখা যাবে। ব্যস, এখন মুখ মিষ্টি করে মহরতটা চুকিয়ে ফেলো।’</p>
+<p>কিন্তু এরপর ব্যাপারটা অন্যরকম হয়ে গেল। মহরতের সময় কেউ কেউ কোকাকোলা চাইল। শেষে এক গাড়ি কোকাকোলা আনতে হলো। আবার ওদিকে পান সিগারেটের কথা তা মনেই ছিল না। মহরতের যে জ্যোতিষী এসেছিল সে টাকা চেয়ে বসল। তারপর চারিদিকের দৌড়াদৌড়িতে বেশ পয়সা খরচ হচ্ছে দেখে আমরা একটা স্টেশন ওয়াগন কিনে নিলাম। গাড়িটা নতুনই কিনতে হল। কারণ, দাদা ধূমল বলল,</p>
+<p>‘গাড়িতো খুবই জরুরী। এসব হল শো। শো না থাকলে বিজনেস হয় না। নতুন গাড়ি না থাকলে ডিস্ট্রিবিউটরদের থেকে টাকা বেশি গলানো যায় না। তাছাড়া আপনাদের মতো শেঠদেরকে আর এসব বুঝিয়ে বলতে হয়। শেঠদের নতুন মডেলের গাড়ি থাকতেই হয়। দশদিন পরে ডিস্ট্রিবিউটর থেকে ছ’লাখ টাকা এলে গাড়ির দাম আর ড্রাইভারের পয়সাকড়ি তা থেকে খসিয়ে নেয়া যাবে।</p>
+<p>মহরতে সত্যিকারভাবে আটচল্লিশ টাকার মতো খরচ হয়েছিল। কিন্তু গাড়ী কেনা থেকে আরম্ভ করে চারিদিকে খরচ পত্র যখন হিসাব করা হলো, দেখা গেল আটচল্লিশ হাজার টাকার মত নেমে গেছে। শুধু মহরতে এত টাকা খরচ? আমি ভাবছিলাম সবকিছু বন্ধ করে দেব কিনা। কিন্তু শেঠ ভুসুরীমল বলল,</p>
+<p>‘আমি এদ্দিন ধরে একটা জিনিস ভাবছিলাম। দাদা ধূমল আর সুমন অত্যন্ত ভাল লোক। কিন্তু ওরা বিজনেস বুঝে না। যদি আপনি বলেন কোম্পানির পরিচালনার ভারটা আমি নিয়ে নিই।’</p>
+<p>‘সেটাতো বেশ ভাল কথা।’ আমি বললাম। শেঠকে কোম্পানি পরিচালনার কাজের জন্য চার আনা পার্টনারশিপেরও বন্দোবস্ত করে দিলাম আমি। শেঠ বলল, ‘পার্টনারশিপের আবার কি দরকার ছিল?</p>
+<p>‘না সাহেব, আমি কারো হক মেরে খেতে চাই না। যে পরিশ্রম করবে তার পাওনাটা আজ হোক কাল হোক, পেয়ে যাওয়া দরকার। আর এতে আমারই বা অসুবিধাটা কোথায়? ডিস্ট্রিবিউটররা চেক পাঠাবে আর তা সবাইকে দিয়ে দেয়া হবে। নিজের পকেট থেকে তো পয়সা যাচ্ছে না।’</p>
+<p>তের</p>
+<p>মহরতের পর কাহিনী সম্পর্কে আলোচনা উঠল। ছবির কাহিনী কি হবে? ‘কাহিনী?’ দাদা ধূমল অনেকটা অপ্রস্তুতের মত হল। সুমন বলল, ‘ছবিতে কাহিনী হয় না শেঠ।’ ‘তবু একটা কিছু কাহিনীতো থাকতে হবে।’</p>
+<p>‘মনে করুন এক ছিল মশা।’ ‘না, ওসব রাখ, কাহিনী বল ৷’ ‘কাহিনী?’ ‘হ্যাঁ, এইমাত্র মনে পড়ল একেবারে ফার্স্টক্লাস …’ ধূমল বলল। ‘আচ্ছা বল।’ ‘সোহনী মাহিয়াল।’ ‘সোহনী মাহিয়ালের ছবিতো হয়েছে।’ ‘হয়েছে। তিনবার হয়েছে। দুইবার সিলভার জুবিলী লাভ করেছে। কিন্তু দাদা সেটাকে এবার এমনভাবে সাজিয়ে নেবেন যে, সবগুলোর মাথা কাটা যাবে।’</p>
+<p>সুমন বলল।</p>
+<p>‘আর তাও টেকনিকালারে হবে।’ দাদা ধূমল বলল।</p>
+<p>‘আর তাও চওড়া স্ক্রিনে হবে।’ সুমন বলল ৷</p>
+<p>‘আমি এ কাহিনীর আগাগোড়া এক নূতন ধাঁচে ঢেলে তৈরি</p>
+<p>করব।</p>
+<p>এটাতে এমন একটা একশন কাজে লাগাব যে, এ ছবি গোল্ডেন এমন কি ডায়মন্ড জুবিলী লাভ করার পরও যেন হল থেকে না বের হয়। অবশেষে পুলিশের লোকেরা এসে ছবিকে হল থেকে বের করবে।’</p>
+<p>‘আচ্ছা কি ভাবে সাজাতে চাও ওটাকে?’</p>
+<p>‘অশনি হবে কুমার। প্রেমবালা তার মেয়ে, যার নাম সোহনী। সোহনী বিজেন্দ্রনাথকে ভালবাসে, যার নাম মাহিয়াল।’</p>
+<p>‘আচ্ছা তারপর?’</p>
+<p>‘তারপর আমি একটা আইডিয়া লাগাচ্ছি।’</p>
+<p>‘কি আইডিয়া?’</p>
+<p>‘কুমারের ছিল এক গাধা।</p>
+<p>‘গাধা?’ সুমন অবাক হলো।</p>
+<p>‘কেন, কেন কুমারদের গাধা হয় না? সোহিনী-মাহিয়ালের কাহিনীর কুমারেরও এক গাধা ছিল। কিন্তু এ কালের লেখকরা সে গাধাকে কাজে লাগায়নি। আমি সে গাধাকে দিয়ে এমন অ্যাকশন লাগব যে, লোকেরা সোহনী-মাহিয়ালকে পর্যন্ত বেমালুম ভুলে যাবে।’</p>
+<p>‘তা কেমন করে?</p>
+<p>‘মনে কর সোহনী যখন মাহিয়ালকে ভালবেসে ফেলে, সোহনী আবেগরুদ্ধ কণ্ঠে গাধার গলা জড়িয়ে মনের দুঃখ জানাতে থাকে। গাধা অবলা জীব, সোহনীর</p>
+<p>মনের কথা সব বুঝতে পারে কিন্তু ব্যক্ত করতে পারে না। নীরব অভিব্যক্তি দিয়ে সে সোহনীর প্রেমাবেগের স্বীকৃতি দেয়। মাহিয়ালের জন্য প্রেম-কাতর সোহনী যখন করুণকণ্ঠে গান গাইতে থাকে, তার চোখ থেকে টপ টপ করে অশ্রু গড়াতে থাকে।’</p>
+<p>‘কার চোখ থেকে?’</p>
+<p>‘প্রেমবালার?’</p>
+<p>‘না, গাধার। সোহনীর প্রেমের ব্যথায় গাধার মত অবলা জীবের চোখ থেকে যখন দরদর করে পানি পড়তে থাকবে, তখন হলের লোকেদের কি অবস্থা হবে? কোন লোক না কেঁদে পারবে?’ শুনে সুমনের চোখ ছলছল করে উঠল।</p>
+<p>‘আরেকটা আইডিয়া লাগাচ্ছি।’</p>
+<p>‘আচ্ছা বল দেখি।’</p>
+<p>‘প্রেমকাতর সোহনীর ব্যথায় ব্যথিত হয়ে গাধা আর টিকতে পারে না। একদিন সে সোহনীকে পিঠে করেই নিয়ে চলল মাহিয়ালের কাছে। পথে যেতে একটা বিরাট পরিখা পড়ল। এক লাফে তা পার হয়ে গেল। তারপর একটা দেয়াল সামনে পড়ল, তা এক লাফে টপকে গেল। তারপর দৌড়াতে দৌড়াতে চেনাব-এর তীরে দাঁড়াল। এপারে সোহনী ওপারে মাহিয়াল মাঝখানে উত্তাল তরঙ্গ নদী। গাধা একটুখানি থেমে নিয়ে বিপজ্জনক নদীর বুকে ঝাঁপিয়ে পড়ল। স্রোতস্বিনী চেনাবের তরঙ্গাভিঘাত উপেক্ষা করে সাঁতার কেটে গাধা ওপারে যেয়ে উঠতে সক্ষম হলো। তারপর উভয়ের মিলন। কেমন লাগলো? এমন কোন লোক থাকবে না যে হাততালি না দেবে ওখানটায়?’</p>
+<p>‘আলবৎ, তারপর?</p>
+<p>আমার বেশ মজা লাগছিল।</p>
+<p>‘তারপর আর কি, রোজ ওভাবে সোহনীকে পিঠে করে মাহিয়ালের কাছে নিয়ে যায় সে। কিন্তু একদিন কুমার টের পেয়ে যায়। সোহনীকে এক কামরায় বন্ধ করে বাইরে থেকে দরজা লাগিয়ে দিল। আর গাধাকে পিটিয়ে আধমরা করে ফেলল। সিনটা একবার খেয়াল করে দেখো। ভেতরে সোহনী কাঁদছে বাইরে গাধা মার খাচ্ছে। মার খেতে খেতে গাধা বেহুঁশ হয়ে যায়।</p>
+<p>আমার আইডিয়া দেখ। গভীর রাত। গাধা বেহুঁশ হয়ে পড়ে আছে, সোহনী দরজা খুলবার জন্যে অনর্গল দরজা পিটাচ্ছে। সে শব্দে গাধার সংজ্ঞা ফিরে আসে। হঠাৎ সবকিছু মনে পড়ে যায় গাধার। কিন্তু অবলা জীব। কি করতে পারে সে? তবু ক্ষত-বিক্ষত দেহ নিয়ে আস্তে আস্তে দরজার দিকে এগোল এবং থুতনি দিয়ে ঠেলে ঠেলে দরজার অর্গলটা খুলে ফেলল। সোহনী বেরিয়ে এসে গাধার পিঠে চড়ে বসল। গাধার সারাদেহে এত ব্যথা যে, সে নড়তেও পারছিল না। কিন্তু সোহনীর মিলনাকাঙ্ক্ষার কথা চিন্তা করে গাধা এক মুহূর্তের জন্য সবকিছু ভুলে গেল এবং মরিয়া হয়ে চেনাবের দিকে দৌড়াল। আবারও সে উত্তাল তরঙ্গ ভেঙে ওপারে গিয়ে মাহিয়ালের সাথে মিলিয়ে দিল তাকে। আবার করতালি!</p>
+<p>এবারে কুমার রেগে গিয়ে গাধাকে অন্যত্র বিক্রি করে ফেলল। কিন্তু সোহনী জানতে পারল না। রাতের বেলা গাধাকে খুঁজতে লাগল। খুঁজতে খুঁজতে সে চেনাবের তীরে চলে এল। ওপারে মাহিয়াল সোহনীর প্রতীক্ষা করে বিলম্বিত লয় নিয়ে গাইছে,</p>
+<p>‘আজা মেরি সোহনী আজা।’ আর এপারে সোহনী গাধাকে খুঁজে খুঁজে হয়রান হয়ে গাইছে,</p>
+<p>‘আজা মেরি গাধে আজা।’</p>
+<p>ডুয়েট শেষ হবার পর গাধা দ্বিতীয় মালিকের বাড়ি থেকে দড়ি ছিঁড়ে যথা সময়ে চেনাবের তীরে এসে হাজির হল। আবার করতালি।</p>
+<p>‘কিন্তু সোহনী মাহিয়ালের কাহিনীতো ট্রাজেডী।’ আমি বললাম। ‘হ্যা ট্রাজেডীইতো ৷’ শেষে হলো কি, এবারে মালিক গাধাকে এক ঘরে বন্ধ করে তালা লাগিয়ে দিল। আজ সোহনী কেমন করে চেনাব পার হবে? অনেক ভেবে চিন্তে সোহনী একটা মাটির ঘড়া নিয়ে নদীতে নেমে পড়ল। ওদিকে গাধা যথাসময়ে নদী তীরে আসার জন্যে দেয়ালে মাথা কুটতে লাগল। মাথা কুটতে কুটতে হঠাৎ দেয়াল ভেঙে গেল (গ্রামাঞ্চলের বাড়ি ঘরের দেয়াল মাটির হয়ে থাকে)। গাধা কেমন করে জানতে পারল সোহনী মাটির কলসী নিয়ে চেনাব পাড়ি দিয়েছে। চেনাবে ভীষণ ঝড় তুফান। মাঝপথে কলসী যদি ভেঙে যায় সোহনীতো ওপারে পৌঁছতে পারবে না। এসব ভেবে গাধা প্রাণপণে নদী-তীরের দিকে দৌড়ে আসছিল। মালিক টের পেয়ে গেল যে, গাধা ছাড়া পেয়েছে। সে বন্দুক নিয়ে গাধার পিছনে দৌড়াল। দু’বার গুলী করল। গুলী খেয়েও গাধা সোহনীর বিপদের কথা ভুলতে পারল না। মাটির কলসী ঢেউয়ের আঘাতে ভেঙে যাবার আগে যদি সে নদীতে, ঝাঁপিয়ে পড়তে পারে কতো ভাল হয়। জখমী পা নিয়ে সে প্রাণপণে তরঙ্গবিক্ষুব্ধ চেনাবের দিকে দৌড়ে আসছিল। চেনাবে ভীষণ ঝড় তুফান। ওপার থেকে মাহিয়াল আকুল কণ্ঠে বলছে,</p>
+<p>‘হায় সোহনী তুমি আমাকে ভুলে গেলে</p>
+<p>তার জবাবে সোহনী চিৎকার করে বলল, ‘ম্যয় ক্যায়সে বেওফাই করুঙ্গী? ‘মেরা রেশতায়ে উলফত তো পাক্কা হ্যায়।’</p>
+<p>ততক্ষণে গাধা একেবারে তীরে এসে পড়েছে। গাধা বলল, ‘মগার ঘড়াতো কাচ্চা হ্যায়।’</p>
+<p>বলেই সে নদীতে ঝাঁপিয়ে পড়ল এবং শেষ শক্তিটুকু নিঃশেষ করে দিয়ে সামনের দিকে এগোবার চেষ্টা করে। কিন্তু গুলিবিদ্ধ পা নিয়ে সে এগোতে পারে না। ওদিকে মাঝপথে সোহনীর মাটির ঘড়া ভেঙে যায় এবং পানিতে তলিয়ে যেতে থাকে সে। সোহনীকে বাঁচাবার জন্যে মাহিয়াল নদীতে লাফিয়ে পড়ে। তারপর পানি আর পানি। দু’জনে আলিঙ্গনাবদ্ধ হয়ে তরঙ্গের মধ্যে ঢাকা পড়ে যায়। ওদিকে আহত গাধাও শেষ নিঃশ্বাস ত্যাগ করে স্রোতের টানে টানে ভেসে যায়।</p>
+<p>কাহিনী শেষ করে দাদা ধূমল রুমাল দিয়ে চোখ মুছলেন। শেঠ ভুসুরীমল বলল,</p>
+<p>‘কিন্তু এ কাহিনীতে সোহনী মাহিয়ালের চেয়ে গাধার কাহিনীই বেশি মনে হয়।</p>
+<p>‘তা যাই হোক, কাহিনী কিন্তু বেশ জমজমাট। আমার রীতিমত গা কাঁটা দিয়ে উঠেছে।’</p>
+<p>আমি বললাম।</p>
+<p>‘কিন্তু কথা হচ্ছে, গাধা কোথায় পাওয়া যাবে? এমন চরিত্রের জন্য যেমন তেমন গাধা হলে তো চলবে না।’ সুমন বলল</p>
+<p>দাদা বলল,</p>
+<p>‘গাধার জন্যে আমরা আবার কোথায় যাব? গাধাতো আমাদের সামনেই।’ ‘আমি’’ আমি আঁৎকে উঠলাম।</p>
+<p>‘হ্যা শেঠ, তুমি নিজেই যদি ছবিতে কাজ করতে রাজী হও আমাদের আর চাই কি?’</p>
+<p>‘কিন্তু আমি যে গাধা। বড় বড় ফিল্মস্টাররা আমার সাথে কাজ করতে রাজী হবে?</p>
+<p>‘আলবৎ হবে। কেন হবে না?’</p>
+<p>‘কিন্তু আমি তো কোনদিন অভিনয় করিনি। তাছাড়া এক গুরুত্বপূর্ণ চরিত্রে অভিনয় করতে হবে। বলতে গেলে এ ছবিতে আমিই হিরো।’</p>
+<p>‘প্রথমত সব হিরোই গাধা থাকে। দু’চারটা ছবি নস্যাৎ করার পর তবে গিয়ে তাদের বুদ্ধিশুদ্ধি কিছু হয়। কিন্তু আপনি তো আর ওরকম হবেন না। বেশ পড়ালেখা জানেন, বুদ্ধি জ্ঞানও কম নেই। আপনি ভালই অভিনয় করতে পারবেন। আরে সাহেব, অভিনয় এক জিনিস, একবার নেমেই দেখুন না। দু’চার দিনেই বড় বড় হিরোদের নাক কান কেটে দিতে পারবেন। শেষে এমন হবে ছবি শেষ হবার আগে গণ্ডায় গায় লাখো টাকার কন্ট্রাক্ট আপনার পকেটে জমা হতে থাকবে।’</p>
+<p>‘তা কি করে হয়? আমি কি আর কোন ফিল্মস্টার?’</p>
+<p>‘আরে জনাব, ভাল মতো পাবলিসিটি পেলে গাধারও ফিল্মস্টার হতে কদ্দিন? আজকাল তো পাবলিসিটিই সব। আপনি মন দিয়ে কাজ করুন, আর দু’লাখ টাকা ব্যয় করে পাবলিসিটি করুন দেখবেন কি অবস্থা দাঁড়ায়। ‘ঠিক আছে, আমি অভিনয় করব।’ আমি বললাম।</p>
+<h2>চৌদ্দ</h2>
+<p>প্রথমদিনের রাশপ্রিন্ট দেখে প্রেমবালা আমার গলা জড়িয়ে ধরে বলল,</p>
+<p>‘কি অপূর্ব অভিনয় করেছ তুমি। দিলীপ কুমারকেও হার মানিয়ে দিয়েছ।’ ‘সত্যি?’ আমি খুশী হয়ে বললাম।</p>
+<p>‘আর ওই যে নদীর তীরে, কি ফাইন এক্সপ্রেশন তোমার—মাহিয়াল যখন আমাকে দেখে এগিয়ে আসে, কেমন দ্বিধাগ্রস্ত হয়ে তুমি হাঁটো একেবারে চার্লি চ্যাপলিনের মতো তোমার অভিনয়।’</p>
+<p>‘না, কে বলে? আমার অভিনয় মোটেই ভাল হয়নি।’ আসলে আমি মনে মনে ফুলছিলাম।</p>
+<p>‘সত্যি বলছি, ওই যে তোমার ক্লোজ আপটা—কুমারের চোখকে ফাঁকি দিয়ে যখন তুমি আমার কাছে চলে আসো এবং অবলীলাক্রমে আমাকে পিঠে তুলে নাও তোমার ভাবভঙ্গি একেবারে দেবানন্দের মত। আমি জানতাম না এক গাধার মধ্যে এমন সুন্দর অভিনয় প্রতিভা লুকিয়ে আছে।’</p>
+<p>সে রসিয়ে রসিয়ে কতক্ষণ হাসল। তারপর বলল,</p>
+<p>‘দেখো, শেষে মাহিয়ালকে রেখে তোমাকেই না আবার ভালবেসে ফেলি।’ বলেই সে অট্টহাসি করে উঠল। তারপর কি মনে করে একটু লজ্জিত হয়ে পড়ল। তার হাসির সাথে আমিও হাসছিলাম। যেন একটা চমকপ্রদ কাহিনী শুনে আমরা হাসছি। হঠাৎ তার ছবিটা যেন কেমন হয়ে গেল। কিছুক্ষণ পর আমি দৃষ্টিটা নত করে নিলাম। এবং আমার বুক দুরু দুরু কাঁপছিল তখন। সে দিন বিকেলেই সে আমার বাংলোতে এসে হাজির। বিশেষ চিন্তা-ক্লিষ্ট মনে হল। জিজ্ঞেস করলাম, কিছুই বলল না। কিন্তু আমি নাছোড়বান্দা হয়ে ধরলাম। পরে বলল,</p>
+<p>‘কি বলব ডার্লিং। ওই যে আমার ইনকাম ট্যাক্সের মামলাটা। হিসেবে গোলমাল হয়ে যাওয়াতে ইনকাম ট্যাক্সওয়ালারা আমার দু’লাখ টাকা জরিমানা, করেছে। কাল সে টাকাটা দিতে হবে। কিন্তু আমার কাছে এখন কুল্লে পঞ্চাশ হাজার টাকা আছে। কিভাবে কি করব কিছুই বুঝতে পারছি না।’</p>
+<p>‘তাতে কি হয়েছে? আমি দেড় লাখ টাকা দিয়ে দিচ্ছি। এই নাও চেক দিয়ে দিচ্ছি।’</p>
+<p>‘না, তোমার থেকে আমি টাকা নেব না। আমি দশদিন কিছু না নিয়ে কাজ করার ওয়াদা করেছি, আমি কিছুতেই তোমার কাছ থেকে টাকা নিতে পারি না। কি আর হবে? বড়জোর জেল হবে, এইতো? আমি জেলে যেতে রাজী, ওয়াদা খেলাপ করতে পারি না।’ তবু আমি</p>
+<p>‘আমরা থাকতে তুমি জেলে যাবে, এ কেমন কথা? এ টাকা তোমাকে গ্রহণ করতেই হবে।’</p>
+<p>বারংবার সে অস্বীকার করলো আর আমি তাকে রাজী করার চেষ্টা করছিলাম। অবশেষে সে নিতে রাজী হল। আমি চেক কেটে দিলাম। এরপর আমি একটু হুইস্কি পান করলাম। তাকেও একটু পান করতে দিলাম। তারপর সে আমার রেডিওগ্রাম বাজাতে শুরু করল।</p>
+<p>‘তুমি নাচতে পার?’ সে জিজ্ঞেস করল।</p>
+<p>‘আমি তো শুধু লাফাতে জানি।’</p>
+<p>‘বাজে কথা রাখ, তোমার গলায় এটা কি ঝুলিয়ে রেখেছ? কোট প্যান্ট পর। টাই লাগাও। এসো তোমাকে ড্যান্স শিখাচ্ছি। হাই সোসাইটিতে মেলামেশা করতে হলে ওয়েস্টার্ন ড্যান্স শিখে নিতে হয়?</p>
+<p>একথা বলেই সে ‘স্নোফক্সট্রাট’ এর রেকর্ড জুড়ে দিল। এবং আমাকে টেনে নিয়ে নাচতে শুরু করল। ‘ওয়ান টু থ্রি—’ তালে তালে আমি নাচতে লাগলাম। সময় কিভাবে গত হল বলতে পারব না। আমি আমার অস্তিত্ব সম্পর্কে ভুলে গেলাম। চরম নাচের সময় মনে হল আমি একজন মানুষ। সাজানো উৎকৃষ্ট কামরা, কার্পেট, গালিচা, রেডিওগ্রাম, নীলাভ হালকা আলো এবং অনিন্দ্যসুন্দরীর সাহচর্য, কত আনন্দের এ জীবন। কোটি কোটি গাধা এমন আনন্দ পায় না। “</p>
+<p>হঠাৎই সে হাতঘড়ি দেখে চমকে উঠে বলল,</p>
+<p>‘উফ, নটা বেজে গেছে। মা বকবে। এখন আসি। স্টুডিওতে দেখা হবে। টাটা।</p>
+<p>বলেই সে ছোঁ মারার মতো আমাকে একটা চুমো দিয়ে তাড়াতাড়ি বেরিয়ে গেল। প্রথম দশ দিনের সুটিং এর মধ্যে আরেকটা ঘটনা ঘটল। কুমারের বস্তির সেট তৈরি করা হয়েছে। কুমার মাটির বাসন-কোসন তৈরি করছে। কুমারের বউঝিরা নানা কাজে দৌড়াদৌড়ি করছে। ছোট-ছোট ছেলেমেয়েরা হৈ-হল্লা করছে। কখনো লাইট জ্বালানো হচ্ছে, কখনো নেভানো হচ্ছে এমন জমকালো দৃশ্যের এককোণে একটা কৃত্রিম গাছও তৈরি করা হয়েছে। গাছের নীচে কতকগুলো গাধা চরে বেড়াচ্ছে।</p>
+<p>আমি দাদা ধূমলকে বললাম,</p>
+<p>‘গাধাগুলো এলো কোত্থেকে?’</p>
+<p>‘আমি আনিয়েছি। কুমারের বস্তিতে তো গাধা থাকতেই হবে</p>
+<p>‘আমি এসব গাধাদের সাথে কাজ করব না।’</p>
+<p>‘শেঠ, এসব তো হল গিয়ে একস্ট্রা গাধা। তাদের সাথে আপনার কি তুলনা? সিনটাকে জমকালো করার জন্যেই এগুলোকে এনেছি। এগুলোকে গাধা বলাও ঠিক হবে না। কারণ, আপনি স্বয়ং গাধা। এগুলোকে বলা যায় বাজারী ভবঘুরে টাট্টি। সুমন তাল মিলিয়ে বলল,</p>
+<p>‘কোথায় আপনি, আর কোথায় এরা। কোথায় রাজা ভোজ আর কোথায় গঙ্গা তেলী। আপনি তো কাজ করবেন বড় বড় স্টারদের সাথে।</p>
+<p>অশনি, ব্রিজেন্দ্র—প্রেমবালা, সবাই আপনার সমমানের।’</p>
+<p>‘হ্যাঁ, তাহলে ঠিক আছে।’ আমি নিজেকে কোন মতে বুঝিয়ে নিলাম। দাদা ধূমল কাছে এসে আমার কানে কানে বলল,</p>
+<p>‘এখন তো আমি আগাগোড়া স্ক্রীপ্টটাই এমনভাবে সাজিয়ে নিচ্ছি যে, যেখানে প্রেমবালা থাকবে সেখানে আপনিও থাকবেন।’</p>
+<p>‘সাবাস।’ আমি বললাম। কিসের একটা আকর্ষণে আমি একস্ট্রা গাধাগুলোর কাছে যেয়ে হাজির হলাম। কাছে যেতেই দেখলাম, আমার সেই ভূতপূর্ব প্রেমাস্পদও রয়েছে সে দলে। জোসেফ ডি’সুজার ঝুপড়ির কাছে আমি যাকে প্রেম নিবেদন করেছিলাম। কিন্তু এখন সে কেমন যেন শ্রীহীন হয়ে পড়েছে। দেহের সেই লাবণ্য আর নেই। কান ঝুঁকে পড়েছে। হাড়-গোড় বেরিয়ে পড়েছে। মনে হচ্ছে না জানি বেচারী কতকাল থেকে পেট ভরে ঘাস খেতে পায়নি</p>
+<p>‘কেমন আছ মেম সাহেব? একবার চোখ তুলে দেখ দেখি কে এসেছে তোমার কাছে।’</p>
+<p>সে চমকে উঠে আমার আপাদমস্তক দেখে নিল। কিন্তু অনেক চেষ্টা করেও আমাকে চিনতে পারলো না।</p>
+<p>‘কে তুমি?’</p>
+<p>‘আমি তোমার ব্যর্থ প্রেমিক। মনে নেই সেদিনের কথা? জোসেফ ডি’সুজার ওখানে আমার প্রেম নিবেদনকে পদদলিত করে দিয়েছিলে।’</p>
+<p>মুহূর্তে তার চেহারাটা আরক্ত হয়ে উঠল। বিস্ময় বিস্ফারিত চোখে সে আমার দিকে তাকাতে লাগল।</p>
+<p>‘কিন্তু তুমি এখানে কি করে এলে? তুমিও একস্ট্রা হিসাবে এসেছো?’ ‘না। যে ছবির জন্য তোমাদেরকে আনা হয়েছে, আমি তার প্রডিউসার।</p>
+<p>‘ফিল্ম প্রডিউসার? গাধা হয়ে?’ সে চোখ কপালে তুলে বলল। ‘কেন, যার কাছে লাখ লাখ টাকা আছে প্রডিউসার হতে বাধা কি তার? সে গাধা হোক, আর যাই হোক। ডাক্তারকে ডাক্তারী পাস করতে হয়, ইঞ্জিনিয়ারকে ইঞ্জিনিয়ারিং পাস করতে হয়। কিন্তু প্রডিউসার হবার জন্য কোন কোয়ালিফেকেশনের দরকার হয় না। শুধু টাকা থাকলেই হলো।’</p>
+<p>‘তুমি এত টাকা কোথায় পেলে?’</p>
+<p>‘লটারী ধরে ৷’</p>
+<p>‘কত টাকা?’</p>
+<p>‘ত্রিশ লাখ।’</p>
+<p>‘ত্রিশ লাখ! বাপরে!’ বলেই সে চোখে ছানাবড়া করে আমার আপাদমস্তক দেখতে লাগল। আমার গায়ে চমৎকার সার্কসিফেনের কোট, পরনে চার পা বিশিষ্ট পাতলুন, গলায় চমৎকার টাই। আমার মসৃণ লোমগুলিতে সুগন্ধি তৈল মাখানো ছিল। সে একটু কাছে এসে আমার দেহের ঘ্রাণ নিয়ে একটা দীর্ঘশ্বাস ছেড়ে বলল,</p>
+<p>‘সত্যি, আমি যদি তখন তোমাকে গ্রহণ করতাম কত ভালো হতো।’ আমি কিছুই বললাম না। ‘চল এখন তুমি আমাকে বিয়ে কর।’</p>
+<p>‘সেদিন চলে গেছে মেম সাব। সে সময় আমি ছিলাম গরীব অসহায়। আজ আমি মস্তবড় ফিল্মস্টার। ‘ফেন ফেয়ার’ এবং ‘নিউ স্ক্রীনে’ আমার রঙিন ছবি ছাপা হয়। এখন আমি আমার সমমানের গাধাদেরকেই বিয়ে করব। তোমাকে কেন বিয়ে করব?’</p>
+<p>‘এতটুকু বলে আর আমি সেখানে দাঁড়ালাম না। ডাইরেক্টরের কাছে এসে বললাম, ‘ওই যে স্বর্ণকেশী মেয়ে গাধাটা, মনে হয় অনেক দিন থেকে ঘাস পায়নি। ওটার জন্য কিছু ঘাসের বন্দোবস্ত করে দাও। একস্ট্রাগুলো যতদিন এখানে থাকবে ততদিন ওটার জন্যে ঘাসের বন্দোবস্ত রাখ।’</p>
+<p>দাদা ধূমল মুচকি হেসে বলল,</p>
+<p>‘আজ্ঞে কোন পুরনো স্মৃতি</p>
+<p>‘মিথ্যে নয়। কিন্তু তা স্তিমিতপ্ৰায় ৷’ সুমন বলল,</p>
+<p>‘আগুন নিভে গেলে থাকে ভস্ম আর সৌন্দর্য ফুরিয়ে গেলে থাকে স্মৃতি ৷’ ‘এমন সময় হঠাৎ প্রেমবালা অগ্নিমূর্তি হয়ে এসে আমাকে আক্রমণ করে বলল</p>
+<p>‘কার সাথে তুমি এতক্ষণ কথা বলছিলে?’</p>
+<p>‘তুমি রাগ করছ কেন ডার্লিং ওটাতো একটা একস্ট্রা গাধা।’</p>
+<p>‘হোক না, তুমি তো তার সাথে বেশ রসিয়ে রসিয়ে মজা করে কথ বলছিলে।’</p>
+<p>‘ওর সাথে মজা করে কথা বলার কি আছে? একটা একস্ট্রার সাথে আমার কিইবা অন্তরঙ্গতা থাকতে পারে? এমনি ওটাকে খুব ক্ষুধায় কাতর মনে হচ্ছিল, কিছু ঘাসের বন্দোবস্ত করে দেবার কথা বলেছি।’</p>
+<p>‘না, ওটাকে ঘাস দিতে পারবে না তুমি। এক্ষুণি যদি ওটাকে সেট থেকে বের করে না দাও, সত্যি করে বলছি, আমি ছবিতে কাজ করব না।’ বলেই সে ক্রোধে হাঁফাতে লাগল। আমি তাকে অনেক করে বুঝালাম। কিন্তু কিছুতেই সে মানল না। বাধ্য হয়ে একস্ট্রাকে সেটের বাইরে তাড়িয়ে দেবার হুকুম দিতে হল। তাড়িয়ে দিতেই প্রেমবালার মুড ফিরে এল। একটা চাপা আনন্দে মনটা ভরে উঠল তার। গুন গুন করে একটা গান ধরল সে।</p>
+<p>তখন তাকে এত ভাল লাগছিল আমার ইচ্ছা হচ্ছিল সবকিছু কোরবান করে দেই তার জন্য।</p>
+<p>পনের</p>
+<p>দশদিন পর ডিস্ট্রিবিউটরদের কাছ থেকে দুলাখ টাকা আসার কথা ছিল কিন্তু এলো না। আসল ব্যাপার হয়েছিল, ‘জনি’ ভাইর লেবরেটরীতে টেকনিকালারের কোন বন্দোবস্ত ছিল না। টেকনিকালার একমাত্র লন্ডন ছাড়া তো আর হয় না। অনেক ভেবেচিন্তে সুমনকে ছবি প্রিন্ট করিয়ে আনার জন্য লন্ডনে পাঠানো হল। ভেবেছিলাম পনের বিশ দিনের মধ্যেই সে ফিরে আসবে। কিন্তু কতগুলো টেকনিকেল অসুবিধার সৃষ্টি হলো, যার কারণে তাকে চার সপ্তাহ লন্ডনে থাকতে হলো। তারপর একই কারণে তাকে আবার প্যারিস এবং প্যারিস থেকে রোম অবধি যেতে হলো। এমনি করে সব ব্যাপারে গড়িমসি হয়ে চলল। স্যুটিং বন্ধ করে দেওয়াতে প্রেমবালা হাঁফিয়ে উঠলো। একদিন সে আমাকে বললো,</p>
+<p>‘তুমি সুটিং কেন বন্ধ করে রেখেছ? লন্ডন থেকে ছবির প্রিন্ট একদিন তো এসেই যাবে, ডিস্ট্রিবিউটরদের ছ’লাখ টাকাও পেয়ে যাবে। খামাখা কেন তুমি স্যুটিং করা বন্ধ করে সময় নষ্ট করছ? স্যুটিং শুরু করে দাও, টাকা না থাকে তো আমার কাছ থেকে নিয়ে নাও। কত লাগবে, পাঁচ লাখ-দশ লাখ?’</p>
+<p>আমি লজ্জায় মরে যেতে লাগলাম। মনে মনে ঠিক করলাম স্যুটিং করতেই হবে।</p>
+<p>আমি সুমনকে ইউরোপ থেকে আসতে বারণ করে দিলাম। আরো দশদিন স্যুটিং হয়ে গেলে সেগুলোও লন্ডনে পাঠিয়ে দেব প্রিন্ট করার জন্যে। কিন্তু দুর্ভাগ্যক্রমে দশদিন পর প্রিন্ট একেবারেই নষ্ট হয়ে গেল। বাধ্য হয়ে আরো</p>
+<p>দশদিন বেহুদা স্যুটিং করতে হল। স্যুটিং শেষ হলে সবাই কথামত টাকা চেয়ে বসল। সবাইকে টাকা দিতে হল। ইতিমধ্যে আবার অশনির সাথে কি নিয়ে প্রেমবালার ঝগড়া হয়ে গেল। আমি ক্রুদ্ধ হয়ে অশনির পাওনা দেনা চুকিয়ে দিয়ে বিদায় করে দিলাম। অশনির স্থলে রূপকুমারকে নিয়ে এলাম। বিশদিন আলাদা স্যুটিং করতে হল। এতে আমার সাত লাখ টাকা নেমে গেল। মোটকথা, এমনি করে পুরো ত্রিশ লাখ টাকাই আমার ছবিতে চলে গেল। কিন্তু ছবি শেষ করতে পারলাম না। ডিস্ট্রিবিউটরদের কাছ থেকে এক পাই পয়সাও এলো না। ওদিকে সুমন তখন নিউইয়র্কে পৌছে গেছে।</p>
+<p>আমি শেঠ ভুসুরীমলের কাছ থেকে টাকা চাইলাম। সে সাফ না করে বলল, ‘সত্যি কথা বলতে কি গুরু ফিল্ম লাইনে আপনাকে মোটেই মানায় না। আর দেরি না করে আপনার হিমালয়ের দিকে রওয়ানা দেওয়া দরকার।’ দাদা ধূমল বলল,</p>
+<p>‘কি বলব শেঠ, লজ্জায় আমার মাথা কাটা যাচ্ছে। কি কুক্ষণেই না এ কাজটা হাতে নিয়েছিলাম। দিয়ে থুয়ে আমার কাছে বলতে গেলে একটা স্যাকড়া গাড়ী আছে। বলেন তো সেটা বেচে দিই। কম হলে পাঁচ সাতশ’ টাকা তো বেচা যাবে।’</p>
+<p>‘পাঁচ সাতশ’ টাকা? এতে কি হবে?’</p>
+<p>‘তাতো ঠিকই—আমি যথাসাধ্য চেষ্টা করে দেখেছি। এদ্দিন এখানে না খেটে অন্য কোথাও কাজ করলে নির্ঘাৎ দুটো ছবি রিলিজ করিয়ে দেওয়া যেত। তবে শেঠ এখনো এমন কিছু পানিতে পড়ে যাইনি আমরা। লাখ তিনেক টাকা হলেই ছবিটা শেষ করিয়ে দিতে পারি। মাথার দিব্যি দিয়ে বলছি, এর বেশি এক পয়সাও লাগবে না। ছবি তৈরির কাজ শেষ হলে আর বাঁধে কে? ডিস্ট্রিবিউটরদের কাছ থেকে টাকা আসতে থাকবে তখন, নিজেদের পকেট থেকে আর পাই পয়সা লাগবে না।’</p>
+<p>কিন্তু তিন লাখ টাকা দেবে কে? দু’তিন দিন নানা চিন্তাভাবনায় কাটালাম। তৃতীয় দিন সন্ধ্যাবেলা ঠিক করলাম প্রেমবালার কাছে যেয়ে দেখি। তার কাছে টাকাটা চেয়ে নিই। তাছাড়াও সে তো আমার কাছে দেনাও আছে। এগ্রিমেন্টের টাকা ছাড়াও সে আমার কাছ থেকে দু’লাখ নিয়েছিল, সে দু’লাখ, আর একলাখ যদি ধার দেয়, তা হলে কোনমতে এ যাত্রা বেঁচে যেতে পারি।</p>
+<p>এসব ভেবেচিন্তে সন্ধ্যাবেলায় তাঁর বাংলোতে যেয়ে উপস্থিত হলাম। ড্রইংরুমে ঢুকতেই আমি যেন হোঁচট খেলাম, দেখলাম প্রেমবালা অশনির কোলে বসে ড্রিংক করছে। অথচ প্রেমবালাকে খুশী করার জন্য আমি অশনিকে বাদ দিয়েছিলাম।</p>
+<p>আমাকে দেখেই প্রেমবালা দাঁড়িয়ে গেল এবং চিবিয়ে বলল,</p>
+<p>‘কি, হলো? এভাবে না বলে কয়ে হঠাৎ ঢুকে পড়লে যে? কি দরকার এখানে?’ ‘আমি একটা জরুরী কাজে এসেছি তোমার কাছে। এ ছবিতে আমি ত্রিশ লাখ টাকা নিঃশেষ করে ফেলেছি। এখন তিন লাখ টাকা হলেই ছবিটা শেষ করতে পারি। তুমি সে টাকাটা দিয়ে দাও।’</p>
+<p>‘আমি দেবো তিন লাখ টাকা! তোমার মাথা খারাপ হয়নি তো?’</p>
+<p>‘মাথা খারাপ হয়নি। তবে খুব শীঘ্রই খারাপ হয়ে যাবে। আমি তোমার কাছে</p>
+<p>অন্যায়ভাবে কিছু চাচ্ছি না। দু’লাখ টাকা তো তুমি দেনাই আছ ৷’ ‘কিসের দু’লাখ?’ সে দাঁতে দাঁত চেপে বলল।</p>
+<p>‘দেড় লাখ ইনকাম ট্যাক্সের ব্যাপারে নিয়েছিলে, আর গাড়ি কেনার সময় পঞ্চাশ হাজার দিয়েছিলাম। ডার্লিং তুমি কি তা ভুলে গেছ?’</p>
+<p>‘ডার্লিং? আমি কারো ডার্লিং নই। শুনেছ অশনি, গাধা আমাকে ডার্লিং বলছে।’</p>
+<p>‘এমনই হয়ে থাকে। কাল অবধি আমার কাছে যখন টাকা ছিল, আমি ছিলাম শেঠ আর আজ আমি হয়েছি গাধা।’</p>
+<p>‘গেট আউট ইউ ডার্টি ডাংকি।’ বলেই দু’হাতে সে আমাকে চড় মারতে লাগল। আমারও মাথায় রক্ত চড়ে গেল। আমি বললাম,</p>
+<p>‘প্রেমবালা, তুমি এসব ভাল করছ না কিন্তু। আমার টাকা কড়ি বুঝিয়ে না দিলে আমি এক পাও নড়বো না। দেখি তুমি আমাকে কি করে বের করো?’ ‘বের হবে না?’</p>
+<p>‘না।’</p>
+<p>‘হবে না?’</p>
+<p>‘না।’</p>
+<p>‘আচ্ছা’। বলেই প্রেমবালা একটা ছড়ি কুড়িয়ে নিয়ে অশনিকে বলল, ‘অশনি তুমিও একটা ছড়ি নিয়ে নাও। আর দরজাটা ভাল করে বন্ধ করে দাও।’</p>
+<p>পুনার রাস্তা দিয়ে এক গাধা মন্থর গতিতে হেঁটে যাচ্ছিল। যেতে যেতে এক জায়গায় দেখল একটা ষাঁড় মরে পড়ে আছে আর তার পাশে দুজন মানুষ আহাজারী করে কাঁদাকাটি করছে। একজন পুরুষ অপরজন স্ত্রীলোক।</p>
+<p>‘কি হয়েছে তোমাদের?’ গাধা জিজ্ঞেস করল।</p>
+<p>‘আমাদের ষাঁড়টা মরে গেছে।’</p>
+<p>‘মরে গেছে তো কি হয়েছে? আরেকটা কিনে নাও।’</p>
+<p>‘আরেকটা কোথায় পাব? এ ষাঁড় দিয়ে আমরা যে রোজগার করতাম তা কোন ষাঁড়ই পারবে না। ষাঁড়ের চোখ বেঁধে দিয়ে কৃষকদের মধ্যে ছেড়ে দিতাম এবং</p>
+<p>কৃষকদের ভাগ্য পরীক্ষা করে আমরা পয়সা উপার্জন করতাম।’ মেয়ে লোকটি কাঁদতে কাঁদতে বলল। গাধা বলল,</p>
+<p>‘সে জামানা চলে গেছে। ষাঁড়ের চোখ বেঁধে দিয়ে অন্ধ কৃষকদের ভাগ্য পরীক্ষা করবার দিন আর নেই। এখন চোখ খুলে কাজ করার দিন এসেছে। তোমরা আমাকে কৃষক ভাইদের কাছে নিয়ে চলো। আমি তাদেরকে খবরের কাগজ পড়ে শোনাব এবং তাদেরকে সত্যিকার ভাগ্যের সন্ধান দেব, যে ভাগ্য লটারীর টাকা বা আলাদীনের প্রদীপের স্পর্শে তৈরি হয় না। বরং সত্যিকার পরিশ্রম দিয়ে সে ভাগ্য তৈরি হয়।</p>
+<p>উপরে উদার আকাশ। সামনে ধু ধু প্রান্তর। রাস্তা দিয়ে তিনজন পাশাপাশি চলেছে।</p>
+<p>একজন পুরুষ, এক গাধা এবং একজন নারী।</p>
+<p>পুরুষ-জন্মদাতা।</p>
+<p>নারী—গর্ভধারিণী।</p>
+<p>গাধা, জীবনের শ্রম এবং ভালমানুষী দিয়ে গড়া এক নিষ্পাপ সত্তা।</p>
+<p>(সমাপ্ত)</p>
+
+            </div>
+
+        </div>
+    </div>
+
+        <!-- TOC nav for mobile -->
+        <nav id="toc-nav-desktop" class="hidden"></nav>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const progressBar  = document.getElementById('read-progress-bar');
+    const progressPct  = document.getElementById('progress-pct');
+    const tocDesktop   = document.getElementById('toc-nav-desktop');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+    const progressRing = document.getElementById('progress-ring-circle');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = p.currentTheme;
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    function toBN(n) {
+        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
+    }
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        if (progressPct) progressPct.textContent = toBN(pct) + '%';
+        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
+        if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
+        if (rfPage) rfPage.textContent = toBN(pct) + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+
+    // ── Footer: chapter label + seek slider ──
+    const rfSlider  = document.getElementById('rf-slider');
+    const rfPage    = document.getElementById('rf-page');
+    const rfChapter = document.getElementById('rf-chapter');
+    let rfSliderDragging = false;
+    if (rfSlider) {
+        rfSlider.addEventListener('input', () => {
+            rfSliderDragging = true;
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
+        });
+        rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
+    }
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav, isMobile) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            if (isMobile) {
+                a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+                a.addEventListener('click', closeDrawer);
+            } else {
+                a.className = 'toc-link ' + (isH1 ? 'toc-link-h1' : 'toc-link-h2');
+            }
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocDesktop, false);
+    buildToc(tocMobile, true);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+        if (rfChapter && headings[current]) rfChapter.textContent = headings[current].textContent.trim();
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme only; drawer/settings UI stays a fixed dark sheet)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+        black: { bg: '#000',     text: '#d1d5db' },
+        sepia: { bg: '#f5efe6',  text: '#3b2f1e' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? '#c0392b' : 'transparent';
+            });
+            savePrefs();
+
+            // Ad bar theme sync
+            window._pathakAdBarTheme && window._pathakAdBarTheme(m);
+        });
+    });
+
+    // ── Ad bar theme sync function (exposed globally) ──
+    window._pathakAdBarTheme = function(m) {
+        const adBar     = document.getElementById('ad-bar');
+        const adContent = document.getElementById('ad-bar-content');
+        const adDatetime= document.getElementById('ad-bar-datetime');
+        const adNotice  = document.getElementById('ad-bar-notice');
+        if (adBar)      adBar.style.background     = m.bg;
+        if (adContent)  adContent.style.background = m.bg;
+        if (adDatetime) adDatetime.style.color      = m.text;
+        if (adNotice)   adNotice.style.color        = m.text;
+    };
+
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+        // Ad bar HTML is below — expose theme for ad bar script to pick up
+        window._pathakCurrentTheme = currentTheme;
+        window._pathakThemeMap = themeMap;
+    })();
+})();
+</script>
+
+
+</body>
+</html>

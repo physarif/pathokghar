@@ -1,0 +1,2941 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/phire-eso-chaka.html">
+    <title>ফিরে এসো চাকা - পাঠক ঘর</title>
+    <meta name="description" content="বিনয় মজুমদারের **‘ফিরে এসো, চাকা’** বাংলা কবিতার ইতিহাসে এক অনন্য এবং কালজয়ী সৃষ্টি। ১৯৬২ সালে প্রকাশিত এই কাব্যগ্রন্থটি কেবল বিনয় মজুমদারকেই খ্যাতির শিখরে নিয়">
+    <meta property="og:title" content="ফিরে এসো চাকা - পাঠক ঘর">
+    <meta property="og:description" content="বিনয় মজুমদারের **‘ফিরে এসো, চাকা’** বাংলা কবিতার ইতিহাসে এক অনন্য এবং কালজয়ী সৃষ্টি। ১৯৬২ সালে প্রকাশিত এই কাব্যগ্রন্থটি কেবল বিনয় মজুমদারকেই খ্যাতির শিখরে নিয়">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e', black:'#000' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', sepia:'#3b2f1e', dark:'#e5e7eb', black:'#d1d5db' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .dark body { background: #1a1a1b; color: #e5e7eb; }
+
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.7rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+        .dark #book-content { color: #e5e7eb; }
+    
+    /* ── Book read header hero ── */
+    .book-read-header {
+        margin-bottom: 1.5rem;
+    }
+    .book-read-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.65rem;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 1.4rem 1.25rem 1.2rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .dark .book-read-box {
+        background: #2a2a2b;
+        border-color: #3a3a3b;
+    }
+    .book-read-cover {
+        width: 100px;
+        height: 136px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        object-fit: cover;
+        background: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .book-read-cover svg { opacity: 0.35; }
+    .book-read-title-link {
+        text-decoration: none;
+        display: block;
+    }
+    .book-read-title-link:hover .book-read-title { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-title-link:active .book-read-title { opacity: 0.7; }
+    .book-read-title {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #1a1a1b;
+        line-height: 1.4;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+    .dark .book-read-title { color: #f3f4f6; }
+    .book-read-author-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+    .book-read-author-link:hover .book-read-author { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-author-link:active .book-read-author { opacity: 0.6; }
+    .book-read-author {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #c0392b;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+</style>
+</head>
+<body>
+
+<style>
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    #read-progress-bar {
+        position: fixed;
+        top: 0; left: 0;
+        height: 2px;
+        width: 0%;
+        background: #c0392b;
+        z-index: 1000;
+        transition: width 0.1s linear;
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h1 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #9ca3af;
+        text-align: center;
+        margin: 0 0 0.25rem;
+        letter-spacing: 0.04em;
+    }
+    #book-content h1::after {
+        content: '';
+        display: block;
+        width: 2.8em;
+        height: 3px;
+        background: #c0392b;
+        border-radius: 2px;
+        margin: 0.4rem auto 0;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #7a2115;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid #d9a5a0;
+        border-bottom: 1px solid #d9a5a0;
+    }
+    /* Night mode heading adjust */
+    body.theme-dark  #book-content h1,
+    body.theme-black #book-content h1 { color: #6b7280; }
+    body.theme-dark  #book-content h2,
+    body.theme-black #book-content h2 { color: #f2938a; border-color: rgba(169,50,38,0.4); }
+    body.theme-dark  #book-content h1::after { background: #a93226; }
+    body.theme-black #book-content h1::after { background: #922b21; }
+    body.theme-sepia #book-content h1 { color: #a08060; }
+    body.theme-sepia #book-content h2 { color: #7a2115; border-color: rgba(160,64,48,0.35); }
+    body.theme-sepia #book-content h1::after { background: #a04030; }
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: rgba(192,57,43,0.05);
+        border: 1px solid rgba(192,57,43,0.15);
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p,
+    body.theme-black #book-content p {
+        background: rgba(169,50,38,0.1);
+        border-color: rgba(169,50,38,0.25);
+    }
+    body.theme-sepia #book-content p {
+        background: rgba(160,64,48,0.08);
+        border-color: rgba(160,64,48,0.2);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #c0392b;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #c0392b;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(192,57,43,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    .dark #book-content blockquote {
+        background: rgba(192,57,43,0.08);
+        color: #bbb;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #c0392b;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    .dark #book-content td { border-color: #3a3a3b; }
+    .dark #book-content tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(192,57,43,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: #e57373;
+        font-weight: 600;
+        background: rgba(192,57,43,0.18);
+        border-radius: 0.375rem;
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: #fff;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transition: color 0.15s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.6);
+    }
+    #toc-nav-desktop .toc-link {
+        display: block;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.375rem;
+        color: #4b5563;
+        text-decoration: none;
+        transition: background-color 0.15s, color 0.15s;
+    }
+    .dark #toc-nav-desktop .toc-link { color: #d1d5db; }
+    #toc-nav-desktop .toc-link:hover { background: #f3f4f6; }
+    .dark #toc-nav-desktop .toc-link:hover { background: #1f2937; }
+    #toc-nav-desktop .toc-link-h1 {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: #1f2937;
+    }
+    .dark #toc-nav-desktop .toc-link-h1 { color: #f3f4f6; }
+    #toc-nav-desktop .toc-link-h2 {
+        padding-left: 1.25rem;
+        font-size: 0.6875rem;
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.6rem 0.5rem 0.6rem 0.35rem;
+        background: #1a1a1b;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-back {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.25rem;
+        text-decoration: none;
+        transition: background 0.15s;
+    }
+    #rh-back:active { background: rgba(255,255,255,0.12); }
+    #rh-title {
+        flex: 1;
+        min-width: 0;
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: transparent;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+    #reader-header .rh-actions button:active { background: rgba(255,255,255,0.12); }
+    body.theme-dark  #reader-header,
+    body.theme-black #reader-header,
+    body.theme-sepia #reader-header { background: #141414; }
+
+    /* ── Reader footer: chapter label + page/percent + seek slider ── */
+    #reader-footer {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 55;
+        background: #1a1a1b;
+        padding: 0.5rem 1rem 0.65rem;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-footer { transform: translateY(100%); }
+    body.theme-dark  #reader-footer,
+    body.theme-black #reader-footer,
+    body.theme-sepia #reader-footer { background: #141414; }
+    #rf-labels {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.7);
+        margin-bottom: 0.35rem;
+    }
+    #rf-chapter {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #rf-page { flex-shrink: 0; }
+    #rf-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        background: rgba(255,255,255,0.22);
+        outline: none;
+        margin: 0;
+        cursor: pointer;
+    }
+    #rf-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        margin-top: -6px;
+    }
+    #rf-slider::-moz-range-thumb {
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        border: none;
+    }
+    #rf-slider::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; }
+    #rf-slider::-moz-range-track { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.22); }
+
+    /* Content needs bottom clearance so the fixed footer never covers text */
+    #read-main-content { padding-bottom: 4.5rem; }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: #303134;
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.55);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: #e57373;
+        border-bottom-color: #c0392b;
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ── Breadcrumb dark mode ── */
+    .read-breadcrumb-full { margin-left: -1.25rem; margin-right: -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
+    .dark #bc-category { color: #9ca3af !important; }
+    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
+    .dark #read-breadcrumb li > span { color: #4b5563; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #e57373;
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: 34px; height: 34px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        flex-shrink: 0;
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+    }
+    .theme-circle.active { border-color: #c0392b; }
+    .theme-circle svg { display: none; }
+    .theme-circle.active svg { display: block; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: #fff; }
+    .settings-row-val { font-size: 0.74rem; color: rgba(255,255,255,0.5); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: rgba(192,57,43,0.35); border-color: #c0392b; color: #fff; }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+</style>
+
+<!-- Progress bar (kept for internal % calc, hidden — footer slider replaces it visually) -->
+<div id="read-progress-bar" style="display:none;"></div>
+
+<!-- ══ Reader header (Lithium-style app bar) ══ -->
+<header id="reader-header">
+    <a href="/book/phire-eso-chaka.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <h1 id="rh-title">ফিরে এসো চাকা</h1>
+    <div class="rh-actions">
+        <button id="rh-menu-btn" aria-label="মেনু" title="মেনু"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+    </div>
+</header>
+
+<!-- ══ Reader footer (chapter + page/percent + seek slider) ══ -->
+<footer id="reader-footer">
+    <div id="rf-labels">
+        <span id="rf-chapter"></span>
+        <span id="rf-page">০%</span>
+    </div>
+    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
+</footer>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                    <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
+                    <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
+                    <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn active" id="align-justify" title="জাস্টিফাই" style="background:#fde8e6;border-color:#c0392b;color:#c0392b;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <h2>৮ মার্চ ১৯৬০</h2>
+<p><br/> </p>
+<p>একটি উজ্জ্বল মাছ একবার উড়ে</p>
+<p>দৃশ্যত সুনীল কিন্তু প্রকৃত প্রস্তাবে স্বচ্ছ জলে</p>
+<p>পুনরায় ডুবে গেলো– এই স্মিত দৃশ্য দেখে নিয়ে</p>
+<p>বেদনার গাঢ় রসে অপক্ক রক্তিম হ'লো ফল</p>
+<br/>
+
+<p>বিপন্ন মরাল ওড়ে, অবিরাম পলায়ন করে,</p>
+<p>যেহেতু সকলে জানে তার শাদা পালকের নিচে</p>
+<p>রয়েছে উদগ্র উষ্ণ মাংস আর মেদ;</p>
+<p>স্বল্পায়ু বিশ্রাম নেয় পরিশ্রান্ত পাহাড়ে-পাহাড়ে;</p>
+<p>সমস্ত জলীয় গান বাষ্পীভূত হয়ে যায়, তবু</p>
+<p>এমন সময়ে তুমি, হে সমুদ্রমৎস্য, তুমি... তুমি...</p>
+<p>কিংবা, দ্যাখো, ইতস্তত অসুস্থ বৃক্ষেরা</p>
+<p>পৃথিবীর পল-বিত ব্যাপ্ত বনস্থলী</p>
+<p>দীর্ঘ-দীর্ঘ ক্লান্তশ্বাসে আলোড়িত করে;</p>
+<p>তবু সব বৃক্ষ আর পুষ্পকুঞ্জ যে যার ভূমিতে দূরে-দূরে</p>
+<p>চিরকাল থেকে ভাবে মিলনের শ্বাসরোধী কথা।</p>
+
+<br/>
+
+
+<h2>২৬ অগাস্ট ১৯৬০</h2>
+<br/>
+<p>মুকুরে প্রতিফলিত সূর্যালোক স্বল্পকাল হাসে ।</p>
+<p>শিক্ষায়তনের কাছে হে নিশ্চল, স্নিগ্ধ দেবদারু</p>
+<p>জিহ্বার উপরে দ্রব লবণের মতো কণা কণা</p>
+<p>কী ছড়ায়, কে ছড়ায়; শোনো, কী অস্ফুট স্বর, শোনো-</p>
+<p>‘কোথায়, কোথায় তুমি, কোথায় তোমার ডানা, শ্বেত পক্ষীমাতা,</p>
+<p>এই যে এখানে জন্ম, একি সেই জনশ্রুত নীড় না মৃত্তিকা?</p>
+<p>নীড় না মৃত্তিকা পূর্ণ এ-অস্বচ্ছ মৃত্যুময় হিমে...'</p>
+<p>তুমি বৃক্ষ, জ্ঞানহীন, মরণের ক্লিষ্ট সমাচার</p>
+<p>জানো না, এখন তবে স্বর শোনো, অবহিত হও ।</p>
+<br/>
+<p>সুস্থ মৃত্তিকার চেয়ে সমুদ্রেরা কতো বেশি বিপদসঙ্কুল</p>
+<p>তারো বেশি বিপদের নীলিমায় প্রক্ষালিত বিভিন্ন আকাশ,</p>
+<p>এ-সত্য জেনেও তবু আমরা তো সাগরে আকাশে</p>
+<p>সঞ্চারিত হ'তে চাই, চিরকাল হ'তে অভিলাষী,</p>
+<p>সকল প্রকার জ্বরে মাথা ধোয়া আমাদের ভালো লাগে ব'লে ।</p>
+<p>তবুও কেন যে আজো, হায় হাসি, হায় দেবদারু ।</p>
+<p>মানুষ নিকটে গেলে প্রকৃত সারস উড়ে যায়!</p>
+<br/>
+
+
+<h2>২১ সেপ্টেম্বর, ১৯৬০</h2>
+<br/>
+
+<p>শিশুকালে শুনেছি যে কতিপয় পতঙ্গশিকারী ফুল আছে।</p>
+<p>অথচ তাদের আমি এত অনুসন্ধানেও এখনো দেখিনি।</p>
+<p>তাঁবুর ভিতরে শুয়ে অন্ধকার আকাশের বিস্তার দেখেছি,</p>
+<p>জেনেছি নিকটবর্তী এবং উজ্জ্বলতম তারাগুলি প্রকৃত প্রস্তাবে</p>
+<p>সব গ্রহ, তারা নয়, তাপহীন আলোহীন গ্রহ।</p>
+<p>আমিও হতাশবোধে, অবক্ষয়ে, ক্ষোভে ক্লান্ত হয়ে</p>
+<p>মাটিতে শুয়েছি একা-কীটদষ্ট নষ্ট খোশা, শাঁস।</p>
+<p>হে ধিক্কার, আত্মঘৃণা, দ্যাখো, কী মলিনবর্ণ ফল।</p>
+<p>কিছুকাল আগে প্রাণে, ধাতুখন্ডে সুনির্মল জ্যোৎস্না পড়েছিলো।</p>
+<p>আলোকসম্পাতহেতু বিদ্যুৎসঞ্চার হয়, বিশেষ ধাতুতে হ'য়ে থাকে।</p>
+<p>অথচ পায়রা ছাড়া অন্য কোনো ওড়ার ক্ষমতাবতী পাখি</p>
+<p>বর্তমান যুগে আর মানুষের নিকটে আসে না।</p>
+<p>সপ্রতিভভাবে এসে দানা খেয়ে ফের উড়ে যায়,</p>
+<p>তবুও সফল জ্যোৎস্না চিরকাল মানুষের প্রেরণাস্বরূপ ।</p>
+<p>বিশেষ অবস্থামতো বিভিন্ন বায়ুর মধ্য দিয়ে</p>
+<p>আমরা সতত চলি; বিষাক্ত, সুগন্ধি কিংবা হিম</p>
+<p>বায়ু তবু শুধুমাত্র আবহমণ্ডল হ'য়ে থাকে।</p>
+<p>জীবনধারণ করা সমীরবিলাসী হওয়া নয়।</p>
+<p>অতএব, হে ধিক্কার, বৈদ্যুতিক আক্ষেপ ভোলো তো,</p>
+<p>অতি অল্প পুস্তকেই ক্রোড়পত্র দেওয়া হ'য়ে থাকে।</p>
+<br/>
+
+
+<h2>১১ অক্টোবর ১৯৬০</h2>
+<br/>
+
+<p>আকাশআশ্রয়ী জল বিস্তৃত মুক্তির স্বাদ পায়, পেয়েছিলো।</p>
+<p>এখন তা মৃত্তিকায়, ঘাসের জীবনে, আহা, কেমন নীরব।</p>
+<p>মহৎ উল্লাস, উগ্র উত্তেজনা এইভাবে শেষ হতে পারে?</p>
+<p>ইপ্সিত গৃহের দ্বারে পৌঁছোনোর আগেই যে ডিম ভেঙে যায়-</p>
+<p>এই সিক্ত বেদনায় দূরে চ'লে গেলে তুমি, পলাতকা হত,</p>
+<p>বেদনার দানা নিয়ে একা-একা খেলা করো, সুকুমার খেলা।</p>
+<br/>
+<p>ঘন অরণ্যের মধ্যে সুর্যের আলোর তীব্র অনটন বুঝে</p>
+<p>তরুণ সেগুন গাছ ঋজু আর শাখাহীন, অতি দীর্ঘ হয়;</p>
+<p>এত দীর্ঘ যাতে তার উচ্চ শীর্ষে উপবিষ্ট নিরাপদ কোনো</p>
+<p>বিকল পাখির চিন্তা, অনুচ্চ গানের সুর মাটিতে আসে না।</p>
+<br/>
+
+<p><a href="https://t.me/bongboi" rel="noopener noreferrer" target="_blank">বংবইয়ের</a> ইপাবটির প্রুফ সংশোধনে স্বেচ্ছাসেবকঃ <a href="https://t.me/boibongo_bot" rel="noopener noreferrer" target="_blank">পৌলমী পাঠক</a>।</p>
+<br/>
+<h2>১২ অক্টোবর ১৯৬০</h2>
+<br/>
+
+<p>স্রোতপৃষ্ঠে চূর্ণ-চূর্ণ লোহিত সূর্যাস্ত ভেসে আছে;</p>
+<p>নিশ্চল, যদিও নিম্নে সংলগ্ন অস্থির স্রোত বয়।</p>
+<p>এখন আহত মাছ কোথায় যে চ'লে গেছে দূরে,</p>
+<p>তুমিও হতাশ হয়ে রয়েছো পিছন ফিরে, পাখি।</p>
+<p>এখনো রয়েছে ওই বর্ণময়, সুস্থ পুষ্পোদ্যান;</p>
+<p>তবুও বিশিষ্ট শোকে পার্শ্ববর্তী উদাত্ত সেগুন।</p>
+<p>নিহত, অপসারিত, আর নেই শ্যামল নিস্বন।</p>
+<p>কেন ব্যথা পাও বলো, পৃথিবীর বিয়োগেবিয়োগে?</p>
+<br/>
+<p>বৃক্ষ ও প্রাণীরা মিলে বায়ুমণ্ডলকে সুস্থ, স্বাস্থ্যকর রাখে।</p>
+<p>এই সত্য জানি, তবু হে সমুদ্র, এ-অরণ্যেকান পেতে শোনো-</p>
+<p>ঝিঁঝিঁ পোকাদের রব—যদিও এখানে মন সকল সময়</p>
+<p>এ-বিষয়ে সচেতন থাকে না, তবুও এই কান্না চিরদিন</p>
+<p>এইভাবে র'য়ে যায়, তরুমর্মরের মধ্যে অথবা আড়ালে।</p>
+<br/>
+
+
+<h2>১৪ অক্টোবর</h2>
+<br/>
+
+<p>কাগজকলম নিয়ে চুপচাপ ব'সে থাকা প্রয়োজন আজ;</p>
+<p>প্রতিটি ব্যর্থতা, ক্লান্তি কী অস্পষ্ট আত্মচিন্তা সঙ্গে নিয়ে আসে।</p>
+<p>সতত বিশ্বাস হয়, প্রায় সব আয়োজনই হয়ে গেছে, তবু</p>
+<p>কেবল নির্ভুলভাবে সম্পর্কস্থাপন করা যায় না এখনো।</p>
+<p>সকল ফুলের কাছে এতো মোহময় মনে যাবার পরেও</p>
+<p>মানুষেরা কিন্তু মাংসরন্ধনকালীন ঘ্রাণ সবচেয়ে বেশি ভালোবাসে।</p>
+<p>বর্ণাবলেপনগুলি কাছে গেলে অর্থহীন, অতি স্থূল ব'লে মনে হয়।</p>
+<p>অথচ আলেখ্যশ্রেণী কিছুটা দূরত্ব হেতু মনোলোভা হয়ে ফুটে ওঠে।</p>
+<p>হে আলেখ্য, অপচয় চিরকাল পৃথিবীতে আছে;</p>
+<p>এই যে অমেয় জল - মেঘে মেঘে তনুভূত জল –</p>
+<p>এর কতোটুকু আর ফসলের দেহে আসে বলো?</p>
+<p>ফসলের ঋতুতেও অধিকাংশ শুষে নেয় মাটি।</p>
+<p>তবু কী আশ্চর্য, দ্যাখো, উপবিষ্ট মশা উড়ে গেলে</p>
+<p>তার এই উড়ে যাওয়া ঈষৎ সংগীতময় হয়।</p>
+<br/>
+
+
+
+<h2>১৫ অক্টোবর ১৯৬০</h2>
+<br/>
+
+<p>বিনিদ্র রাত্রির পরে মাথায় জড়তা আসে, চোখ জ্ব'লে যায়,</p>
+<p>হাতবোমা ভ'রে থাকে কী ভীষণ অতিক্রান্ত চাপে।</p>
+<p>এ-রকম অবস্থায় হৃদয়ে কিসের আশা নিয়ে</p>
+<p>কবিতার বই, খাতা চারিপাশে খুলে ব'সে আছি?</p>
+<p>সকল সমুদ্র আর উদ্ভিদজগৎ আর মরুভূমি দিয়ে</p>
+<p>প্রবাহিত হওয়া ভিন্ন বাতাসের অন্য কোনো গতিবিধি নেই ।</p>
+<p>ফলে বহুকাল ধ'রে অভিজ্ঞ হবার পরে পাখিরা জেনেছে</p>
+<p>নীড় নির্মাণের জন্য উপযুক্ত উপাদান ঘাস আর খড়।</p>
+<br/>
+<p>প্রত্যক্ষ ও অপ্রত্যক্ষ অভিজ্ঞতাগুলি ক্রমে জ্ঞান হয়ে ওঠে।</p>
+<p>এ-সকল সংখ্যাতীত উদ্ভিদ বা তৃণ, গুল্ম ইত্যাদির মূল</p>
+<p>অন্তরালে মিশে গিয়ে অত্যন্ত জটিলভাবে থাকা স্বাভাবিক।</p>
+<p>কোনো পরিচিত নাম বলার সময় হলে মাঝে মাঝে দেখি</p>
+<p>মনে নেই, ভুলে গেছি; হে কবিতারাশি, ভাবি ঈষৎ আয়াসে</p>
+<p>ঠিক মনে এসে যাবে, অথচ...অথচ...হায়, সে এক বিস্মিত,</p>
+<p>অসহ্য সন্ধান, তাই কেউ যদি সে-সময়ে ব'লে দেয় তবে</p>
+<p>তপ্ত লৌহদণ্ড জলে প্রবিষ্ট হবার শান্তি আচম্বিতে নামে।</p>
+<br/>
+
+
+
+
+
+<h2>১৩ জুন ১৯৬১</h2>
+<br/>
+
+<p>কেন যেন স'রে যাও, রৌদ্র থেকে তাপ থেকে দূরে ।</p>
+<p>ভেঙে যেতে ভয় পাও ; জাগতিক সফলতা নয়,</p>
+<p>শয়নভঙ্গির মতো অনাড়ষ্ট স্বকীয় বিকাশ</p>
+<p>সকল মানুষ চায়- এই সাধনায় লিপ্ত হ'তে</p>
+<p>অভ্যন্তরে ঘ্রাণ নাও, অযুত শতাব্দীব্যাপী চেয়ে</p>
+<p>মস্তিষ্কে সামান্যতম সাধ নিয়ে ক্লিষ্ট প্রজাপতি</p>
+<p>পাখাময় রেখাচিত্র যে-নিয়মে ফুটিয়ে তুলেছে</p>
+<p>সে-নিয়ম মনে রাখো ; ঢেউয়ের মতন খুঁজে ফেরো ।</p>
+<p>অথবা বিম্বের মতো ডুবে থাকো সম্মুখীন মদে ।</p>
+<p>এমনকি নিজে-নিজে খুলে যাও ঝিনুকের মতো,</p>
+<p>ব্যর্থ হও, তবু বালি, ভিতরে প্রবিষ্ট বালিটুকু</p>
+<p>ক্রমে-ক্রমে মুক্তা হ'য়ে গতির সার্থক কীর্তি হবে।</p>
+<p>শয়নভঙ্গির মতো স্বাভাবিক, সহজ জীবন</p>
+<p>পেতে হ'লে ঘ্রাণ নাও, হৃদয়ের অন্তর্গত ঘ্রাণ ।</p>
+<br/>
+<br/>
+
+<h2>১৬ জুন ১৯৬১</h2>
+<br/>
+
+<p>মাংসল চিত্রের কাছে এসে সব ভোলা গিয়েছিলো ।</p>
+<p>মদিরার মতো তুমি অজস্র যুদ্ধের ক্ষত ধুয়ে</p>
+<p>স্নিগ্ধ ক'রে দিয়েছিলে । প্রত্যাশার শেষে ছিপ রেখে</p>
+<p>জাল ফেলে দেখার মতন এই উদ্যম এসেছে ।</p>
+<p>বিদেশী চিত্রের মতো আগত, অপরিচিত হ'লে,</p>
+<p>কিংবা নক্ষত্রের মতো অতিপরিচিত হ'লে তবে</p>
+<p>আলাপে আগ্রহ আসে ; অথচ পত্রের মতো ভুলে</p>
+<p>অন্য এক দুয়ারের কাছে উপনীত হ'য়ে যাই ।</p>
+<br/>
+<p>ডানা না-নেড়েই ঊর্ধ্বে যে-চিল সন্ধান ক'রে ফেরে</p>
+<p>তার মতো ক্লান্তি আসে ; কোনো যুগে কোনো আততায়ী</p>
+<p>শক্ত ছিলো ব'লে আজো কাঁটায় পরিবেষ্টিত হ'য়ে</p>
+<p>গোলাপ যেমন থাকে, তেমনি রয়েছো তুমি ; আমি</p>
+<p>পত্রের মতন তুলে অন্য এক দুয়ারের কাছে।</p>
+<br/>
+
+
+
+
+<h2>২৬ জুন ১৯৬১</h2>
+<br/>
+
+
+<p>বলেছি, এভাবে নয়, দৃশ্যের নিকটে এনে দিয়ে</p>
+<p>সকলে বিদায় নাও; পিপাসার্ত তুলি আছে হাতে,</p>
+<p>চিত্ৰণ সফল হ'লে শুনে নিও যুগল ঘোষণা।</p>
+<p>অথবা কেবল তুমি লিপ্ত হ'লে সমাধান হয়।</p>
+<p>মেলার মতন ভিড়ে তবে তুমি—আমরা এখনো</p>
+<p>ক্রমাগত বাধা পাই প্রাত্যহিক হৃদয়যাপনে ।</p>
+<p>সৃষ্টির পূর্বাহ্নে, দ্যাখো, নিজেকেই সৃষ্টি করা প্রয়োজন হয়।</p>
+<p>পরিচিত সূর্য আরো বেশি আকর্ষণশীল হ'লে</p>
+<p>হয়তো সমুদ্রবক্ষে এমন জোয়ার এসে যেতো</p>
+<p>যাতে সব বালিয়াড়ি, প্রবালপ্রাচীর পার হ'য়ে</p>
+<p>জলরাশি হৃদয়ের কাছে এসে উপস্থিত হ'তো ।</p>
+<p>অর্থাৎ কেবল তুমি লিপ্ত হ'লে সমাধান হয়।﻿</p>
+<br/>
+
+
+
+
+
+<h2>২৬ জুন ১৯৬১</h2>
+<br/>
+
+
+<p>নাকি স্পষ্ট অবহেলা, কোরকে আকাঙ্ক্ষা নিয়ে, আজো</p>
+<p>যে-আকাশ দেখা যায় তারো দূরে ওপারে আকাশে</p>
+<p>চ'লে গেলে ; কাল আছে, শারীরিক বৃদ্ধি, ক্ষয় আছে</p>
+<p>দেখেছি গাংচিলগুলি জাহাজের সঙ্গে-সঙ্গে চলে,</p>
+<p>অথবা ফড়িঙ সেও নৌকার উপরে ভেসে থাকে</p>
+<p>ডানা না-নেড়েই, এতো স্বাভাবিক, সহজ, স্বাধীন</p>
+<p>গ্রীষ্মের বিকেলবেলা অকস্মাৎ শীতল বাতাস</p>
+<p>যেমন ঝড়ের ডাক, বৃষ্টির প্রস্তাব এনে দেয়,</p>
+<p>আয়াসহীনভাবে যেমন নিশ্বাস নিতে হয়</p>
+<p>অলক্ষ্যে ঘুমেরো মধ্যে, সে-প্রকার প্রয়োজন আছে,</p>
+<p>তোমারো রয়েছে, তাই সমুদ্রমৎস্যের মতো নানা</p>
+<p>বাতাসের ভার বও, সে-কথা বোঝে না, প্রিয়তমা ?</p>
+<br/>
+
+
+
+
+<h2>২৭ জুন ১৯৬১</h2>
+<br/>
+
+
+<p>সময়ের সঙ্গে এক বাজি ধ'রে পরাস্ত হয়েছি।</p>
+<p>ব্যর্থ আকাঙ্খায়, স্বপ্নে বৃষ্টি হ'য়ে মাটিতে যেখানে</p>
+<p>একদিন জল জমে, আকাশ বিম্বিত হ'য়ে আসে।</p>
+<p>সেখানে সত্বর দেখি, মশা জন্মে ; অমল প্রত্যূষে</p>
+<p>ঘুম ভেঙে দেখা যায়, আমাদের মুখের ভিতরে</p>
+<p>স্বাদ ছিলো, তৃপ্তি ছিলো যে-সব আহার্য তারা প'চে</p>
+<p>ইতিহাস সৃষ্টি করে ; সুখ ক্রমে ব্যথা হ'য়ে ওঠে।</p>
+<p>অঙ্গুরীয়লগ্ন নীল পাথরের বিচ্ছুরিত আলো।</p>
+<p>অনুষ্ণ ও অনির্বাণ,জ'লে যায় পিপাসার বেগে ।</p>
+<p>ভয় হয়, একদিন পালকের মতো ঝ'রে যাবো ।</p>
+<br/>
+
+
+
+
+
+<h2>২৭ জুন ১৯৬১</h2>
+<br/>
+
+
+<p>আমাদের অভিজ্ঞতা সিক্ত গিরিখাতের মতন</p>
+<p>সংকীর্ণ, সীমিত ; এই কদিন যা কুয়াশায়,</p>
+<p>মেঘে সব ঢেকে আছে—উপত্যকা, অরণ্য, পাহাড় ।</p>
+<p>পৃথিবীতে বহুবিধ আহার্য রয়েছে, তবু বলো,</p>
+<p>বিড়ালের ব্যর্থতর জিহ্বা তার কতো স্বাদ পায়?</p>
+<p>অথচ তীক্ষ্নতা আছে, অভিজ্ঞতাগুলি সূচিমুখ,</p>
+<p>ফুলের কাঁটার মতো কিংবা অতি দূর নক্ষত্রের</p>
+<p>পরিধির মতো তীক্ষ্ণ, নাগালের অনেক বাহিরে ।</p>
+<p>যা-ই হোক, তা সত্ত্বেও বিশালা আকাশময় বায়ু,</p>
+<p>বিশাল বাহাস বয়, বিরুদ্ধ বাতাসে বেধে যায় ।</p>
+<p>সর্বদা কোনো না কোনো স্থানে, দেশে ঝড় হ'তে থাকে ।</p>
+<p>এ-সকল অনিশ্চিত অস্থিরতা, দ্বন্দ্ব ভেদ ক'রে</p>
+<p>তবুও পাইন গাছ, ঋজু হ'য়ে ক্রমে বেড়ে ওঠে,</p>
+<p>প্রকৃত লিপ্সার মতো, আকাশের বিদ্যুতের দিকে ।</p>
+<br/>
+
+
+
+
+
+<h2>১ জুলাই ১৯৬১</h2>
+<br/>
+
+
+<p>কী উৎফুল্ল আশা নিয়ে সকালে জেগেছি সবিনয়ে।</p>
+<p>কৌটোর মাংসের মতো সুরক্ষিত তোমার প্রতিভা</p>
+<p>উদ্ভাসিত করেছিলো ভবিষ্যৎ, দিকচক্রবাল ।</p>
+<p>সভয়ে ভেবেছিলাম সম্মিলিত চায়ের ভাবনা,</p>
+<p>বায়ুসেবনের কথা, চিরন্তন শিখরের বায়ু ।</p>
+<p>দৃষ্টিবিভ্রমের মতো কাল্পনিক ব'লে মনে হয়</p>
+<p>তোমাকে অস্তিত্বহীনা, অথবা হয়তো লুপ্ত, মৃত ।</p>
+<p>অথবা করেছো ত্যাগ, অবৈধ পুত্রের মতো, পথে ।</p>
+<p>জীবনের কথা ভাবি, ক্ষত সেরে গেলে পরে ত্বকে</p>
+<p>পুনরায় কেশোদ্গম হবে না ; বিমর্ষ ভাবনায়</p>
+<p>রাত্রির মাছির মতো শান্ত হ'য়ে রয়েছে বেদনা-</p>
+<p>হাসপাতালের থেকে ফেরার সময়কার মনে ।</p>
+<p>মাঝে-মাঝে অগোচরে বালকের ঘুমের ভিতরে</p>
+<p>প্রস্রাব করার মতো অস্থানে বেদনা ঝ'রে যাবে।</p>
+<br/>
+
+
+
+
+
+<h2>২ জুলাই ১৯৬১</h2>
+<br/>
+
+
+<p>গুনে-গুনে ছেড়ে দিই, নিজেও সুস্থির পায়ে নামি,</p>
+<p>জাহাজডুবির পরে ; শীতল আঁধারে মিশে থাকি।</p>
+<p>বরং ছিলাম দীর্ঘ-দীর্ঘকাল, হাসি ভুলে হেসে,</p>
+<p>করুণ ফলের মতো ; কেউ চায় আত্মবলিদান।</p>
+<p>ভ্রূণের বিকট দৃশ্যে ব্যথা পেয়ে—এমনই পৃথিবী—</p>
+<p>গবেষক হ'য়ে ফের কারণ নির্ণয়, ক্ষয়-ক্ষতি</p>
+<p>দেয়ালি রাত্রির নষ্ট কীটের মতন জ'মে গেছে।</p>
+<p>ফুল নয়, চাঁদ নয়, মহিলার দেহস্থিত মন</p>
+<p>অতি অল্পকালে যদি বিকশিত হয় তবে হয়,</p>
+<p>না-হ'লে কাঁটার মতো বিধে ফের কিছু ভেঙে থাকে।</p>
+<p>অবশ্য তোমার কাছে যাবার সময়ে আলো লেগে</p>
+<p>নীলাভ হয়েছে দেখি অনেক আকাশ ; দীর্ঘকাল</p>
+<p>শীতল আঁধারে থেকে গবেষণা শেষ হ'য়ে আসে।</p>
+<br/>
+
+
+
+
+<h2>১৪ জুলাই ১৯৬১</h2>
+<br/>
+
+
+<p>পর্দার আড়ালে থেকে কেন বৃথা তর্ক ক'রে গেলে—</p>
+<p>আমি ভগ্ন বৃদ্ধ নই, বিড়ম্বিত সম্পৃক্ত তরুণ।</p>
+<p>এই যে ছেড়েছি দেশ, সব দৃশ্য, পাহাড়, সাগর—</p>
+<p>এতে কি বিশ্বাস হবে ; কোনোদিন মদ্যপান ক'রে</p>
+<p>মাতালের আর্ত নেশা হয়তো হৃদয়ঙ্গম হবে—</p>
+<p>লুপ্ত সভ্যতার কথা স্বীকারের মতো সার্থকতা।</p>
+<p>বিকলাঙ্গ সন্তানের মতো স্নেহে বিনষ্ট অতীত</p>
+<p>বুকের নিভৃতে নিয়ে ভাবি একা, ভাবি গ্রীষ্মকালে</p>
+<p>শুষ্কপ্রায় জলাশয়ে সন্ত্রস্ত ভেকের মতো মনে।</p>
+<p>বেশ, তবে চ'লে যাও, তবে যদি কোনোদিন কোনো</p>
+<p>লৌকিক সাহায্যে লাগি, ডেকে নিও ; যাকে ভালোবাসে</p>
+<p>সেই পুষ্পকুঞ্জটিকে যত্নভরে, তৃপ্ত সুখে রাখা</p>
+<p>মানুষের প্রিয় কীর্তি ; কিসের ব্যাঘাতে মুঠো ক'রে</p>
+<p>চন্দ্রালোক ধ'রে নিতে বারংবার ব্যর্থ হ'তে হয় ;</p>
+<p>সেই কোন ভোরবেলা ইটের মতন চূর্ণ হ'য়ে</p>
+<p>প'ড়ে আছি নানা স্থানে ; কদাচিৎ যথেষ্ট ক্ষমতা,</p>
+<p>তুমি এসে ছিন্ন ছিন্ন চিঠির মতন তুলে নিয়ে</p>
+<p>কৌতূহলে এক ক'রে একবার প'ড়ে চ'লে যাও,</p>
+<p>যেন কোন নিরুদ্দেশে, ইটের মতন ফেলে রেখে।</p>
+<br/>
+
+
+
+
+
+<h2>১৫ জুলাই ১৯৬১</h2>
+<br/>
+
+
+<p>কী যে হবে, কী যে হয়, এখনো অনেক রীতি বাকি।</p>
+<p>দুরারোহ, নভোলীন পর্বতশিখরে আরোহণ</p>
+<p>ক'রে ফের অবিলম্বে নেমে আসি, নেমে যেতে হয়।</p>
+<p>কাচের শার্শিতে ধৃত, সুদূরের আকর্ষণে স্মিত,</p>
+<p>প্রজাপতিদের মতো ঘরে কিংবা নক্ষত্রে বা চাঁদে</p>
+<p>গমনেচ্ছুদের মতো পৃথিবীতে প'ড়ে আছি শুধু</p>
+<p>বাধা ও ব্যাঘাত পেয়ে ; আমাদের পরিণাম এই।</p>
+<p>তবু ভালো, ইঁদুরের দংশনে আহত হ'য়ে তবু</p>
+<p>ঘুম ভেঙে যাওয়া ভালো, সাপ ভেবে, উত্তেজিত হ'য়ে।</p>
+<p>যদিও অগ্নির মতো জ্বললেই, প্রিয় অন্ধকার,</p>
+<p>বহু দূরে স'রে গেছো ; অবশেষে দেখি, প্রেম নয়,</p>
+<p>প'ড়ে আছে পৃথিবীর অবক্ষয়ী সহনশীলতা।</p>
+<p>নিষ্পেষণে ক্রমে-ক্রমে অঙ্গারের মতন সংযমে</p>
+<p>হীরকের জন্ম হয়, দ্যুতিময়, আত্মসমাহিত।</p>
+<br/>
+
+
+
+
+<h2>১৯ জুলাই ১৯৬১</h2>
+<br/>
+
+<p>বেশ কিছুকাল হ'লো চ'লে গেছো, প্লাবনের মতো</p>
+<p>একবার এসে ফের ; চতুর্দিকে সরস পাতার</p>
+<p>মাঝে থাকা শিরীষের বিশুষ্ক ফলের মতো আমি</p>
+<p>জীবনযাপন করি; কদাচিৎ কখনো পুরোনো</p>
+<p>দেয়ালে তাকালে বহু বিশৃঙ্খল রেখা থেকে কোনো</p>
+<p>মানুষীর আকৃতির মতো তুমি দেখা দিয়েছিলে ।</p>
+<p>পালিত পায়রাদের হাঁটা, ওড়া, কূজনের মতো</p>
+<p>তোমাকে বেসেছি ভালো ; তুমি পুনরায় চ'লে গেছো।</p>
+<br/>
+<br/>
+<p>=====</p>
+<h2>১৯ জুলাই ১৯৬১</h2>
+<p>=====</p>
+<br/>
+
+
+<p>নেই কোনো দৃশ্য নেই, আকাশের সুদূরতা ছাড়া ।</p>
+<p>সূর্যপরিক্রমারত জ্যোতিষ্কগুলির মধ্যে শুধু</p>
+<p>ধূমকেতু প্রকৃতই অগ্নিময়ী ; তোমার প্রতিভা</p>
+<p>স্বাভাবিকতায় নীল, নর্তকীর অঙ্গসঞ্চালন</p>
+<p>ক্লান্তিকর নয় ব'লে নৃত্য হয় যেমন তেমনি।</p>
+<p>সুমহান আকর্ষণে যেভাবে বৃষ্টির জল জ'মে</p>
+<p>বিন্দু হয়, সেইভাবে আমিও একাগ্র হ'য়ে আছি।</p>
+<p>তবু কোনো দৃশ্য নেই আকাশের সুদূরতা ছাড়া।</p>
+<br/>
+
+
+
+
+
+
+<p>=====</p>
+<h2>২০ জুলাই ১৯৬১</h2>
+<p>=====</p>
+<br/>
+
+
+<p>আর যদি না-ই আসো, ফুটন্ত জলের নভোচারী</p>
+<p>বাষ্পের সহিত যদি বাতাসের মতো না-ই মেশো,</p>
+<p>সেও এক অভিজ্ঞতা ; অগণন কুসুমের দেশে</p>
+<p>নীল বা নীলাভবর্ণ গোলাপের অভাবের মতো</p>
+<p>তোমার অভাব বুঝি ; কে জানে হয়তো অবশেষে</p>
+<p>বিগলিত হ'তে পারো ; আশ্চর্য দর্শন বহু আছে-</p>
+<p>নিজের চুলের মৃদু ঘ্রাণের মতন তোমাকেও</p>
+<p>হয়তো পাই না আমি, পূর্ণিমার তিথিতেও দেখি</p>
+<p>অস্ফুট লজ্জায় ম্লান ক্ষীণ চন্দ্রকলা উঠে থাকে,</p>
+<p>গ্রহণ হবার ফলে, এরূপ দর্শন বহু আছে।</p>
+<br/>
+
+
+
+
+
+
+<p>=====</p>
+<h2>২০ জুলাই ১৯৬১</h2>
+<p>=====</p>
+<br/>
+
+
+<p>অভিজ্ঞতা থেকে ক্রমে আকাশের বর্ণহীনতার</p>
+<p>সংবাদের মতো আমি জেনেছি তোমাকে ; বাতাসের</p>
+<p>নীলাভতাহেতু দিনে আকাশকে নীল মনে হয়।</p>
+<p>বালুময় বেলাভূমি চিত্রিত করার পরেকার</p>
+<p>তরঙ্গের মতো লুপ্ত, অবলুপ্ত তুমি, মনোলীনা।</p>
+<p>এতকাল মনে হ'তো, তুমিও এসেছো অভিসার</p>
+<p>চাঁদের উপর দিয়ে স্বচ্ছ মেঘ ভেসে ভেসে গেলে</p>
+<p>যেমন প্রতীতি হয়, মেঘ নয়, চাঁদ চলমান।</p>
+<p>এখন জেনেছি সব, তবুও প্রয়াস প'ড়ে আছে।</p>
+<p>শিশুদের আহার্যের মতন সরল হও তুমি,</p>
+<p>সরল, তরল হও ; বিকাশের রীতিনীতি এই।</p>
+<p>বৃক্ষের প্রত্যঙ্গ নড়ে-এই দৃশ্য দেখেই কখনো</p>
+<p>সে নিজে দোলনক্ষম-এই কথা পাখিদের মতো</p>
+<p>ভুল ক'রে ভেবেছো কি, তোমার বাতাসে সে তো দোলে।</p>
+<br/>
+
+
+
+
+
+
+<p>=====</p>
+<h2>২০ জুলাই ১৯৬১</h2>
+<p>=====</p>
+<br/>
+
+
+<p>নিকটে অমূল্য মণি, রত্ন নিয়ে চলার মতন</p>
+<p>কী এক উৎকণ্ঠা যেন সর্বদা পীড়িত ক'রে রাখে।</p>
+<p>শুনি, নানা ফুল আছে ; অথচ ক্ষতবিশিষ্ট কারো</p>
+<p>সমুদ্রস্নানের মতো-লোনা জলে স্নানের মতন</p>
+<p>ভীতি ছেয়ে আসে মনে ; এখন কোথায় তুমি ভাবি।</p>
+<p>পৃথিবীর বুক থেকে সহসা বাতাস লোপ পেলে</p>
+<p>সকল জীবন, ফুল, সব কীর্তি, খ্যাত কীর্তিগুলি</p>
+<p>ধ্বংস হ'য়ে যেতে পারে—যে-সব চিত্রের পক্ষে কোনো</p>
+<p>সামাজিক মেলামেশা অসম্ভব তাদের মতন</p>
+<p>ত্যক্ত হ'য়ে যেতে পারো ; কিংবা বকুলের মতো শেষে</p>
+<p>শুকিয়ে খয়েরি হ'য়ে, দীর্ঘস্থায়ী হ'য়ে মালিকার</p>
+<p>কোনোদিন আসবে কি, নিষিদ্ধ সমুদ্রস্নান আজ ।</p>
+<p>নিকটে অমূল্য মণি, রত্ন নিয়ে চলার মতন</p>
+<p>কী এক উৎকণ্ঠা যেন সর্বদা পীড়িত ক'রে রাখে।</p>
+<br/>
+
+
+
+
+
+<p>=====</p>
+<h2>২০ জুলাই ১৯৬১</h2>
+<p>=====</p>
+<br/>
+
+<p>যেন প্রজাপতি ধরা—প্রত্যক্ষ হাতের অতর্কিত</p>
+<p>আক্রমণ ক'রে ব্যর্থ ; পূর্ণগ্রাস সূর্যগ্রহণের</p>
+<p>অবকাশে ফুটে ওঠা পিপাসার্ত তারাদের মতো</p>
+<p>অন্যান্য সকলে আছো ; অথচ আমি তো নিরুপায়।</p>
+<p>ক্ষুধিত বাঘের পক্ষে শূন্যে দিক-পরিবর্তনের</p>
+<p>মতন অসাধ্য কোনো প্রচেষ্টার সারবত্তা নেই ।</p>
+<p>তোমাদেরই নীতি নেই ; সে এখনো আসতেও পারে।</p>
+<p>কিছুটা সময় দিলে তবে দুধে সর ভেসে ওঠে।</p>
+<br/>
+
+
+
+
+<p>=====</p>
+<h2>২২ জুলাই ১৯৬১</h2>
+<p>=====</p>
+<br/>
+
+<p>সুগভীর মুকুরের প্রতি ভালোবাসার মতন</p>
+<p>শান্ত দিনগুলি যায়, হায় সখী, নবজাতকের</p>
+<p>শৈশবে হৃদয় দিয়ে পালন করায় অপারগ</p>
+<p>শাশ্বত মাছের মতো বিস্মরণশীলা যেন তুমি ।</p>
+<p>যদিও সংবাদ পাবে, পেয়েছো বেতারে প্রতিদিন,</p>
+<p>জেনেছো অন্তরলোক, দূরে থেকে, তবু ভুলে যাবে।</p>
+<p>গর্ভস্থ ভ্রূণের প্রতি গূঢ় ভালোবাসার মতন</p>
+<p>প্রকাশের কোনোরূপ উপায়বিহীন যন্ত্রণায়</p>
+<p>গীতিপরায়ণ আমি ; মানুষের মরণের আগে</p>
+<p>পিপাসা পাওয়ার মতো অতিরিক্ত অথচ করুণ</p>
+<p>আমার অপেক্ষা, আশা – আজ এ-রকম মনে হয়।</p>
+<p>সুগভীর মুকুরের প্রতি ভালোবাসার মতন</p>
+<p>শান্ত দিনগুলি যায় ; হায় সখী, বিস্মরণশীলা।</p>
+<br/>
+
+
+
+
+<p>=====</p>
+<h2>২৩ জুলাই ১৯৬১</h2>
+<p>=====</p>
+<br/>
+
+<p>বিদেশী ভাষায় কথা বলার মতন সাবধানে</p>
+<p>তোমার প্রসঙ্গে আসি ; অতীতের কীর্তি বাধা দেয়।</p>
+<p>হে আশ্চর্য দীপ্তিময়ী, কীটদষ্ট কবিকুল জানে,</p>
+<p>যারা চিত্রকর নয়, তাদের শৌখিন শিল্পায়নে</p>
+<p>আলেখ্যের মুখে চুল, ওষ্ঠ - সব কিছু আঁকা হয়</p>
+<p>কিন্তু তবু সে-মুখের অধিকারিণীর স্নিগ্ধ রূপ</p>
+<p>আলেখ্যে আসে না ; ফলে সাধনা ও ডুবুরি রয়েছে।</p>
+<p>তোমার কী মনে হয়? এও কি অপরিণত ফল?</p>
+<p>অথবা যৌগিক কথা যে-প্রাণীর রোম দৃঢ়মূল</p>
+<p>পরিধেয় বস্ত্রাদিতে তার ত্বক ব্যবহৃত হবে?</p>
+<br/>
+
+
+
+
+
+<p>=====</p>
+<h2>২৩ জুলাই ১৯৬১</h2>
+<p>=====</p>
+<br/>
+
+<p>তিন পা পিছনে হেঁটে পদাহত হ'য়ে ফিরে আসি ।</p>
+<p>আবার তোমার কথা মনে আসে ; ধূমকেতুর মতো</p>
+<p>দীর্ঘকাল মনে রবে তোমাকে ; পূর্ণাঙ্গ জীবনের</p>
+<p>জটিলতা, প্রতিঘাত বালকের মতন সাগ্রহে</p>
+<p>ভালোবাসি ; হৃদয়ের গুরুভার জলে নিমজ্জিত</p>
+<p>অবস্থায় লঘু ক'রে নেবার পিচ্ছিল সাধ ক'রে</p>
+<p>পদাহত হ'য়ে ফিরি ; অজ্ঞাত পূর্ণাঙ্গ জীবনের</p>
+<p>জটিলতা, প্রতিঘাত বালকের মতো ভালোবাসি।</p>
+<br/>
+
+
+
+
+
+
+<p>=====</p>
+<h2>২৭ জানুয়ারি ১৯৬২</h2>
+<p>=====</p>
+<br/>
+
+
+<p>মুক্ত ব'লে মনে হয় ; হে অদৃশ্য তারকা, দেখেছো</p>
+<p>কারাগারে দীর্ঘকাল কী-ভাবে অতিবাহিত হ'লো ।</p>
+<p>অথচ বাতাস ছিলো ; আবদ্ধ বৃক্ষের পাতাগুলি</p>
+<p>ভাষাহীন শব্দে, ছন্দে এতকাল আন্দোলিত ছিলো।</p>
+<p>অদৃশ্য তারকা, আজ মুক্ত ব'লে মনে হয় ; ভাবি,</p>
+<p>বালিশে সুন্দর কিছু ফুল তোলা নিয়ে এত ক্লেশ।</p>
+<p>ইতিমধ্যে কতিপয় অতি অল্প পরিচিত, নীল -</p>
+<p>নীল নয়, মনে হয়, নীলাভ কচুরি ফুল মৃত।</p>
+<p>অদর্শনে ম'রে গেছে ; অন্ধকার, ক্ষুব্ধ অন্ধকার।</p>
+<p>জীবনে ব্যর্থতা থাকে ; অশ্রুপূর্ণ মেঘমালা থাকে ;</p>
+<p>বেদনার্ত মোরগের নিদ্রাহীন জীবন ফুরালো ।</p>
+<p>মশাগুলি কী নিঃসঙ্গ, তবুও বিষন্ন আশা নিয়ে</p>
+<p>আর কোনো ফুল নয়, রৌদ্রতৃপ্ত সূর্যমুখী নয়,</p>
+<p>তপ্ত সমাহিত মাংস, রক্তের সন্ধানে ঘুরে ফেরে।</p>
+<br/>
+
+
+
+
+
+
+<h2>১১ ফেব্রুয়ারি ১৯৬২</h2>
+<br/>
+
+<p>অত্যন্ত নিপুণভাবে আমাকে আহত ক'রে রেখে</p>
+<p>একটি মোটরকার পরিচ্ছন্নভাবে চ'লে গেলো।</p>
+<p>থেমে ফিরে তাকালেই দেখে যেতো, অবাক আঘাতে</p>
+<p>কী আশ্চর্য সূর্যোদয়ে উদ্ভাসিত হয়েছে কুয়াশা,</p>
+<p>কী বিস্মিত বেদনায় একা-একা কেঁদে ফেরে শিশু।</p>
+<p>অজীর্ণ, তোমাকে নিয়ে আর কতো গান গাওয়া হবে?</p>
+<p>এতকাল চ'লে গেলো, তবু মাঝে-মাঝে বাতায়ন</p>
+<p>খুলে দেখি, মহাশূন্যে গোয়েন্দার মতো জোনাকিরা</p>
+<p>জ্বলে নেভে, জ্বলে নেভে ; তৃষ্ণা নিয়ে এরূপ খেলায়</p>
+<p>কতোকাল চ'লে গেলো ; মরণের মতো ক্লান্তি আসে।</p>
+<p>এসো ক্লান্তি, এসো এসো, বহু পরীক্ষায় ব্যর্থ হাঁস</p>
+<p>পুনরায় বলে, তার ওড়ার ক্ষমতাবলি নেই,</p>
+<p>নির্মিত নীড়ের কথা মনে আনে, বিস্মিত স্মৃতিতে।</p>
+<p>অজীর্ণ, তোমাকে নিয়ে আর কতো গান গেয়ে যাবো?﻿</p>
+<br/>
+
+
+
+
+
+
+<h2>১৮ ফেব্রুয়ারি ১৯৬২</h2>
+<br/>
+
+<p>রক্তে-রক্তে মিশে আছে কৌতূহল, লিপ্ত কৌতূহল ;</p>
+<p>বীজের ভিতরে আছে গুহার লালসাময় রস।</p>
+<p>নতুন ঘরের আলো, পার্বত্য ফুলের চিত্রগুলি</p>
+<p>মনকে নিয়েছে টেনে চারিদিকে, ছিন্নভিন্ন বেশে।</p>
+<p>এ-ই স্বাভাবিক, এই বিনিদ্রতা লালনেপালনে</p>
+<p>বৃদ্ধি পেয়ে প্রীতি হয়, হয়তো ঘাসের ফলকেও</p>
+<p>শস্য ব'লে ধান ব'লে বোঝার আদিম উদ্ভাবনা</p>
+<p>কখনো সম্ভব হয় ; অথচ নিষিদ্ধ মেলামেশা।</p>
+<p>যদি যাই প্রথমেই মাংসল মালার আমন্ত্রণ,</p>
+<p>মন নিয়ে কিছুকাল তাপ পেতে ব্যয় করেছি কি</p>
+<p>শোনা যাবে, হীরকের মতো আমি কঠিন, নিস্ক্রিয় ।</p>
+<p>ফলে সবই ব্যর্থ হয় ; কৌতূহল নিয়ে খেলা করি ।</p>
+<p>কবেকার নিমজ্জিত জাহাজের প্রেমে ভুলে থাকি,</p>
+<p>ভুলে থাকি বর্তমান রসোত্তীর্ণ মালা ও মদিরা।</p>
+<br/>
+
+
+
+
+
+
+<h2>২২ ফেব্রুয়ারি ১৯৬২</h2>
+<br/>
+
+<p>আর অন্ধকার নয়, আর নয় অবাঞ্ছিত ছায়া ।</p>
+<p>উন্মুক্ত স্বস্থানে স্থিত, বৃক্ষাবলি অধিক সংখ্যায়</p>
+<p>ফুল, ফল পেয়ে থাকে, ফসলের উপচার পায় ।</p>
+<p>এবার উন্মাদ হবো, অবশেষে উন্মত্ত নখরে</p>
+<p>খুলে নেবো পলাতকা পরিটির ঠিকানা, দরজা ।</p>
+<p>ইলোরার চিত্রাবলি, হরিণের মাংসের মতন</p>
+<p>বিলম্বিত ব্যবহার পাবো আমি জিহ্বায়, জগতে</p>
+<p>এরূপ বিরহী ভয় যথার্থই হয়েছে আমার ।</p>
+<p>তবে তুমি গুহাচিত্র, নিঃসন্দেহে দীর্ঘায়ু, সফল ।</p>
+<p>আর অন্ধকার নয়, আর নয় অবাঞ্ছিত ছায়া ।</p>
+<br/>
+
+
+
+
+
+
+<h2>২২ ফেব্রুয়ারি ১৯৬২</h2>
+<br/>
+
+<p>প্রত্যাখ্যাত প্রেম আজ অসহ ধিক্কারে আত্মলীন ।</p>
+<p>অগ্নি উদ্বমন ক'রে এ-গহ্বর ধীরে-ধীরে তার</p>
+<p>চারিপাশে বর্তমান পর্বতের প্রাচীর তুলেছে ।</p>
+<p>এত উচ্চে সমাসীন আজ তার আপন সততা,</p>
+<p>যাতে সমতলবর্তী প্রজাপতি, পাখিদের রঙ</p>
+<p>তার কাছে নিরর্থক ; এমন সমস্যাকীর্ণ আমি ।</p>
+<p>দূরে যাও মেঘমালা, তোমাদের দৌত্যে, আলিঙ্গনে</p>
+<p>আমি আর ঝঞ্ঝাক্ষুব্ধ সাগরের ক্রোড়ে তো যাবো না ।</p>
+<p>আমি যাবো দেশান্তরে যেখানে ফুলের মুক্তি আছে ।</p>
+<p>বৃষ্টি, ঢেউ ত্যাগ ক'রে রসে পুষ্ট শিল্প পেতে পারি</p>
+<p>বর্তমানে, চারিপাশে পর্বতের প্রাচীর আসীন ।</p>
+<p>আমি আর ঝঞ্ঝাক্ষুব্ধ সাগরের ক্রোড়ে তো যাবো না ।</p>
+<br/>
+
+
+
+
+
+
+
+<h2>২৫ ফেব্রুয়ারি ১৯৬২</h2>
+<br/>
+
+<p>কেন এই অবিশ্বাস, কেন আলোকিত অভিনয়?</p>
+<p>কী আছে এমন বর্ণ, গন্ধময় ; জীবনের পথে,</p>
+<p>গ্রন্থের ভিতরে আমি বহুকাল গবেষক হ'য়ে</p>
+<p>লিপ্ত আছি, আমাদের অভিজ্ঞতা কীটের মতন ।</p>
+<p>জানি, সমাধান নেই ; অথচ পালঙ্করাশি আছে,</p>
+<p>রাজকুমারীরা আছে-সুনিপুণ প্রস্তরে নির্মিত</p>
+<p>যারা বিবাহের পরে বারংবার জলে ভিজে-ভিজে</p>
+<p>শৈবালে আবিষ্ট হ'য়ে সরল শ্যামল হতে পারে ।</p>
+<p>এখন তাদের রূপ কী আশ্চর্য ধবল লোহিত ।</p>
+<p>অকারণে খুঁজে ফেরা ; আমি জানি, নীল হাসি নেই ।</p>
+<p>জঠরের ক্ষুধা-তৃষ্ণা, অট্টালিকা সচ্ছলতা আছে</p>
+<p>সফল মালার জন্য ; হৃদয় পাহাড়ে ফেলে রাখো ।</p>
+<br/>
+
+
+
+
+
+
+
+<h2>২৫ ফেব্রুয়ারি ১৯৬২</h2>
+<br/>
+
+<p>রোমাঞ্চ কি র'য়ে গেছে ; গ্রামে অন্ধকারে ঘুম ভেঙে</p>
+<p>দেহের উপর দিয়ে শীতল সাপের চলা বুঝে</p>
+<p>যে-রোমাঞ্চ নেমে এলো, রুদ্ধশ্বাস স্বেদে ভিজে-ভিজে ।</p>
+<p>সর্পিনী, বোঝোনি তুমি, দেহ কিনা, কার দেহ, প্রাণ ।</p>
+<p>সহসা উদিত হয় সাগরহংসীর শুভ্র গান ।</p>
+<p>স্বর-সুর এক-হ'য়ে কাঁপে বায়ু, যেন তুষ্ট শীতে,</p>
+<p>কেঁদে ওঠে, জ্যোৎস্নার কোমল উত্তাপ পেতে চায় ।</p>
+<p>রোমাঞ্চ তো র'য়ে গেছে শীতল সাপের স্পর্শে মিশে ।</p>
+<br/>
+
+
+
+
+
+
+
+
+<h2>১ মার্চ ১৯৬২</h2>
+<br/>
+
+<p>সবই অতিশয় শান্ত ; নির্বাক ডিমের ভাঙা খোশা,</p>
+<p>শালপাতা, হাহাকার, বকুল বৃক্ষের দীর্ঘশ্বাস।</p>
+<p>সব যেন কবেকার বনভোজনের পরিশেষে</p>
+<p>কোনো নীল অনামিকা নদীর মতন দীর্ঘ হ'য়ে</p>
+<p>চ'লে গেছে নিরুদ্দেশে ; দূর থেকে ভেসে-ভেসে আসে</p>
+<p>কাঠ চেরাইয়ের শব্দ ; আমাদের দেহের ফসল,</p>
+<p>খড় যেন ঝ'রে গেছে, অবশেষে স্বপ্নের ভিতরে ।</p>
+<p>এত স্বাভাবিকভাবে সবই ব্যর্থ-ব্যর্থ, শান্ত, ধীর।</p>
+<br/>
+<p>যে গেছে সে চ'লে গেছে ; দেশলাইয়ে বিস্ফোরণ হয়ে</p>
+<p>বারুদ ফুরায় যেন ; অবশেষে কাঠটুকু জ্বলে</p>
+<p>আপন অন্তরলোকে ; মাঝে-মাঝে সহসা সাক্ষাৎ</p>
+<p>তারই অনুজার সঙ্গে ; বকুল বৃক্ষের দিকে চাই,</p>
+<p>অত্যন্ত নিবিড়ভাবে চেয়ে দেখি, যে-শাখায় কলি</p>
+<p>একবার এসেছিলো, সে-শাখায় ফুটবে কি দ্বিতীয় কুসুম?</p>
+<br/>
+
+
+
+
+
+
+
+
+<h2>১ মার্চ ১৯৬২</h2>
+<br/>
+
+<p>যদি পারো তবে আনো, আনো আরো জয়ের সম্ভার।</p>
+<p>যদি মহীরুহ পেয়ে কাছে আসে কতিপয় লতা</p>
+<p>তবে তো ক্ষমতা আছে, তার কাছে আত্মনিবেদনে</p>
+<p>যেতে পারা সবিনয়ে ; হয়তো সে দ্রবীভূত হবে।</p>
+<p>এখনো সন্দেহ আছে, নতুন পাতার শ্যামলতা</p>
+<p>তার কাছ থেকে কোনো জ্যোৎস্না ভিক্ষা ক'রে পাবে কিনা।</p>
+<p>সে কী ফল ভালোবাসে, কে জানে সবুজ কিংবা লাল,</p>
+<p>কিছুই জানো না তুমি ; তবু দীর্ঘ আলোড়ন আছে,</p>
+<p>অনাদি বেদনা আছে, অক্ষত চর্মের অন্তরালে</p>
+<p>আহত মাংসের মতো গোপন বা গোপনীয় হ'য়ে।</p>
+<br/>
+
+
+
+
+
+
+
+<h2>৩ মার্চ ১৯৬২</h2>
+<br/>
+
+<p>ধূসর জীবনানন্দ, তোমার প্রথম বিস্ফোরণে</p>
+<p>কতিপয় চিল শুধু বলেছিলো, 'এই জন্মদিন'।</p>
+<p>এবং গণনাতীত পারাবত মেঘের স্বরূপ</p>
+<p>দর্শনে বিফল ব'লে, ভেবেছিলো, অক্ষমের গান।</p>
+<p>সংশয়ে-সন্দেহে দুলে একই রূপ বিভিন্ন আলোকে</p>
+<p>দেখে দেখে জিজ্ঞাসায় জীর্ণ হ'য়ে তুমি অবশেষে</p>
+<p>একদিন সচেতন হরীতকী ফলের মতন</p>
+<p>ঝ'রে গেলে অকস্মাৎ, রক্তাপ্লুত ট্রাম থেমে গেলো।</p>
+<br/>
+<p>এখন সকলে বোঝে, মেঘমালা ভিতরে জটিল</p>
+<p>পুঞ্জীভূত বাষ্পময়, তবুও দৃশ্যত শান্ত, শ্বেত,</p>
+<p>বৃষ্টির নিমিত্ত ছিলো, এখনো রয়েছে, চিরকাল</p>
+<p>র'য়ে যাবে ; সংগোপন লিপ্সাময়ী, কম্পিত প্রেমিকা-</p>
+<p>তোমার কবিতা, কাব্য, সংশয়ে-সন্দেহে দুলে-দুলে</p>
+<p>তুমি নিজে ঝ'রে গেছো, হরীতকী ফলের মতন।</p>
+<br/>
+<br/>
+<h2>৬ মার্চ ১৯৬২</h2>
+<br/>
+
+<p>আমিই তো চিকিৎসক, ভ্রান্তিপূর্ণ চিকিৎসায় তার</p>
+<p>মৃত্যু হ'লে কী প্রকার ব্যাহত আড়ষ্ট হ'য়ে আছি।</p>
+<p>আবর্তনকালে সেই শবের সহিত দেখা হয় ;</p>
+<p>তখন হৃদয়ে এক চিরন্তন রৌদ্র জ্ব'লে ওঠে।</p>
+<br/>
+<p>অথচ শবের সঙ্গে কথা বলা স্বাভাবিক কিনা</p>
+<p>ভেবে-ভেবে দিন যায় ; চোখাচোখি হ'লে লজ্জা-ভয়ে</p>
+<p>দ্রুত অন্য দিকে যাই ; কুক্কুপিন্ট ফুলের ভিতরে</p>
+<p>জ্বরাক্রান্ত মানুষের মতো তাপ ; সেই ফুল খুঁজি।</p>
+<br/>
+
+
+
+
+
+
+<h2>১১ মার্চ ১৯৬২</h2>
+<br/>
+
+<p>স্বপ্নের আধার, তুমি ভেবে দ্যাখো, অধিকৃত দু-জন যমজ</p>
+<p>যদিও হুবহু এক, তবু বহুকাল ধ'রে সান্নিধ্যে থাকায়</p>
+<p>তাদের পৃথকভাবে চেনা যায়, মানুষেরা চেনায় সক্ষম।</p>
+<p>এই আবিষ্কারবোধ পৃথিবীতে আছে ব'লে আজ এ-সময়ে</p>
+<p>তোমার নিকটে আসি, সমাদর নেই তবু সবিস্ময়ে আসি।</p>
+<p>পত্রবাহকে মতো কাষ্ঠময় দরজায় করাঘাত ক'রে।</p>
+<p>তোমাকে ঘুমের থেকে অবিন্যস্ত অবস্থায় বাহিরে এনেছি।</p>
+<p>আমরা যে জ্যোৎস্নাকে এত ভালোবাসি-এই গাঢ়ই রূপকথা</p>
+<p>চাঁদ নিজে জানে না তো ; না জানুক শুভ্র ক্লেশ, তবু অসময়ে</p>
+<p>তোমার নিকটে আসি, সমাদর নেই তবু আসি।</p>
+<br/>
+
+
+
+
+
+<p><a href="https://t.me/bongboi" rel="noopener noreferrer" target="_blank">বংবইয়ের</a> ইপাবটির প্রুফ সংশোধনে স্বেচ্ছাসেবকঃ <a href="https://t.me/boibongo_bot" rel="noopener noreferrer" target="_blank">পৌলমী পাঠক</a>।</p>
+<br/>
+<h2>১২ মার্চ ১৯৬২</h2>
+<br/>
+
+<p>আরো কিছু দৃশ্যাবলি দেখেছি জীবিতকালে যারা</p>
+<p>চিত্রায়িত হ'তে পারে ; ব্যথাতুর অসুবিধা এই,</p>
+<p>কিছুই গোপন নেই ; মনে হয়, নির্বাক শিশুর</p>
+<p>হাসি দেখে বুঝে নেয়, যার-যার অভিরুচি মতো।</p>
+<p>ফলত নিষ্ক্রিয় থাকি, কুসুমের প্রদর্শনী দেখি।</p>
+<p>দীর্ঘশ্বাস ফেলে যাই ; বাতাসে বিধৌত দেহমন</p>
+<p>কার জন্য সুরক্ষিত, হায় কাল, জলের মতন</p>
+<p>পাত্রের আকার পাওয়া এ-বয়সে সম্ভব হবে কি?</p>
+<br/>
+
+
+
+
+
+<h2>১২ মার্চ ১৯৬২</h2>
+<br/>
+
+<p>মনের নিভৃত ভাগ লোভাতুর, সতত সুগ্রাহী।</p>
+<p>চেয়ে দেখি, শুধু শূন্য, বিভিন্ন উষ্ণতা নিয়ে এসে</p>
+<p>ঊর্ধ্বাকাশে ভিন্ন-ভিন্ন বায়ু মিলে তরঙ্গআকারে</p>
+<p>মেঘের সূচনা করে, ভেবে এত লোভ, ভালোবেসে।</p>
+<p>সুদূর সমুদ্রবায়ু, কোথায় উষ্ণতা নিয়ে যাও?</p>
+<p>আমি যেই কেঁদে উঠি অনির্বাণ আঘাতে আহত</p>
+<p>তখনি সকলে ভাবে, শিশুদের মতোই আমার</p>
+<p>ক্ষুধার উদ্রেক হ'লো, বেদনার কথা বোঝে না তো।</p>
+<br/>
+
+
+
+
+
+<h2>১৫ মার্চ ১৯৬২</h2>
+<br/>
+
+<p>সুরায় উন্মত্ত হ'য়ে পদাঘাতে পুষ্পধারটিকে</p>
+<p>বিচূর্ণ করেছি ; কোনো পরিতাপ রাখিনি হৃদয়ে।</p>
+<p>এখন টেবিল রবে অন্তর্গত কাগজে আবৃত।</p>
+<p>দিনগুলি চ'লে যাবে রহস্যের সমাধানে, যাবে</p>
+<p>উপচীয়মান কিছু বৎসর ; বয়স বাড়ুক।</p>
+<p>মাটি খুঁড়ে যেতে হবে ; মাটির গভীরে ইতস্তত</p>
+<p>সভ্যতার অবশেষ খুঁজে পাই, পেয়েছি অনেক</p>
+<p>পোড়া ইট, পুতুলের অবয়ব ভগ্নপ্রায় বুক।</p>
+<p>মানুষেরা আজ যেন নিরুপম সম্রাটশিকারে</p>
+<p>ব্যস্ত আছে ; নানারূপ ছলা-কলা মিথ্যার আশ্রয়ে</p>
+<p>কোনোভাবে কিছু কাল বিনষ্ট করে আস্থাবান।</p>
+<p>জান্তব আগ্রহে দ্যাখে অশ্বের ভয়ার্ত গতিবেগ-</p>
+<p>কখন সে শ্রান্ত হবে, ধরা দেবে, এই প্রতীক্ষায়।</p>
+<p>সম্রাট বলে না কথা, রহস্যের সমাধানে থাকে।</p>
+<br/>
+
+
+
+
+
+
+
+<h2>১৫ মার্চ ১৯৬২</h2>
+<br/>
+
+<p>আমার সৃষ্টিরা আজ কাগজের ভগ্নাংশে নিহিত</p>
+<p>কিছু ছন্দে, ভীরু মিলে আলোড়িত কাব্যের কণিকা</p>
+<p>এখন বিক্ষিপ্ত নানা বায়ুপথে, ঝড়ের সম্মুখে।</p>
+<p>আমাকে ডাকে না কেউ নিরলস প্রেমের বিস্তারে।</p>
+<p>পুনরায় প্রতারিত ; কাগজের কুসুমকলিকে</p>
+<p>ফোটাতে পারিনি আমি, অথবা সে মৃতদেহ নাকি !</p>
+<p>এই বেদনায় ফের শিশির, বাতাস সঙ্গে নিয়ে</p>
+<p>খুঁজেছি সংগত হ্রদ, দেশে দেশে, হায় অনাহত।</p>
+<br/>
+
+
+
+
+
+
+<h2>১৭ মার্চ ১৯৬২</h2>
+<br/>
+
+<p>রসাত্মক বাক্য লেখা কবে যে আয়ত্ত হবে, ভাবি</p>
+<p>কবোষ্ণ প্রভাতবেলা উজ্জ্বল শব্দের দিকে চেয়ে</p>
+<p>অনুশোচনায় ভরে হৃদয় ; কখনো অধিকার</p>
+<p>পাবো না হে বাষ্পপুঞ্জ, বক্ষের অমল ক্ষতরাশি ।</p>
+<p>ওরা উড়ে যাবে দূরে, গানের সহিত যুক্ত হ'য়ে</p>
+<p>পাখির পশ্চাতে কিংবা নোঙরের গম্ভীর রজ্জুতে,</p>
+<p>নিজের নিয়মমতো ; আমার এ-লেখনীর মুখে</p>
+<p>আসবে না, মিশে যাবে পিপীলিকাশ্রেণীতে, জগতে।</p>
+<br/>
+
+
+
+
+
+
+
+<h2>১৭ মার্চ ১৯৬২</h2>
+<br/>
+
+<p>কিছুটা সময় তবু আমাকেও ক'রে নিতে হবে।</p>
+<p>শরীরের তমোরস অবিরাম সেই কথা বলে।</p>
+<p>হৃদয় ক্ষতের মতো অবিরাম জ্ব'লে যেতে থাকে।</p>
+<p>এখন সম্মুখে যাবো, অসুস্থতাগুলি মনে-মনে</p>
+<p>গোপন রেখেই যাবো ; ফুলের সহিত আলোচনা</p>
+<p>করা তো সম্ভব নয় যেতে হবে পিতার সকাশে।</p>
+<p>যদি বা মালিকা পাই, ভয় হয়, অসুস্থতাহেতু</p>
+<p>শাশ্বত পানীয়-জল হয়তো বিস্বাদ মনে হবে।</p>
+<br/>
+
+
+
+
+
+
+
+
+<h2>১৮ মার্চ ১৯৬২</h2>
+<br/>
+
+<p>শূন্যকে লেহন করো, দেবদারু, ঊর্ধ্বগ শাখায়</p>
+<p>পত্ররিক্ত নগ্নরূপে ; উদ্যত নতুন কোনো মুখ-</p>
+<p>কিংবা বিম্ব নেই আজ ; কারো প্রতি অবলোকনের</p>
+<p>প্রয়োজন ফুরিয়েছে ; অনেকেই বহুকাল আগে</p>
+<p>ফিরে গেছে ; একদিন সূর্যের দীপ্তিতে অন্ধ হ'য়ে</p>
+<p>তারা সবে সবিস্ময়ে সূর্যের পূজারী হয়েছিলো।</p>
+<br/>
+<p>দেবদারু, আমি স্পষ্ট পেচকের মতো গহ্বরের</p>
+<p>স্বস্তি অভিলাষী, তবু ফিরে আসি পূর্ববর্তী ফুলে</p>
+<p>ক্বচিৎ কখনো কোনো ফোঁড়া হ'লে নিষিদ্ধ হ'লেও</p>
+<p>যে-কারণে তার কাছে অগোচরে হাত চ'লে যায়।</p>
+<br/>
+
+
+
+
+
+
+
+
+<h2>১৮ মার্চ ১৯৬২</h2>
+<br/>
+
+<p>যে-পথ রয়েছে তাকে একমাত্র পায়ে-পায়ে হেঁটে</p>
+<p>পার হ'য়ে যেতে হবে, আর কোনো সুরম্য শকট</p>
+<p>পাবো না নিষ্ফলা পথে, এমনকি অশ্বগুলি কবে</p>
+<p>হারিয়ে গিয়েছে সেই আত্মরক্ষামূলক যুদ্ধের</p>
+<p>বিধ্বস্ত সময়ে, তবে মানুষের পদদ্বয় আছে।</p>
+<p>কোনো বন্ধু নেই আর, সহায়তা পাই না কখনো।</p>
+<p>নিজের নিরস্ত্র শোভা, উলঙ্গ অবস্থা নিয়ে আর</p>
+<p>কোথায়, কাদের দ্বারে উপস্থিত হবো, হে সময়?</p>
+<p>এখন হেঁটেই চলি ; জলে ডুব দেবার আগেই</p>
+<p>ডুবুরির মতো কিছু সুগভীর শ্বাস টেনে নিই।</p>
+<br/>
+
+
+
+
+
+
+
+
+<h2>২২ মার্চ ১৯৬২</h2>
+<br/>
+
+<p>কোনোদিন একবার উদ্যানে বেড়াতে গেলে পরে</p>
+<p>পরিচিতা বাঘিনীর শব পেয়ে অজ্ঞ, চমৎকৃত</p>
+<p>একটি মশক বেশ সুনিবিড় প্রেমে পড়েছিলো।</p>
+<p>অধ্যবসায়ের ফল ব্যথিত ব্যর্থতাময়, কালো।</p>
+<br/>
+<p>পচা শবে মৃত্তিকায় পুষ্পকুঞ্জ জন্ম পেলো নাকি?</p>
+<p>বেশ কিছুকাল হ'লো লীলাময়ী রসার্ত বয়স</p>
+<p>কাদের গৃহস্থবধূ হয়েছে ; কী-ভাবে জানি না তা।</p>
+<p>লতারা কী-ভাবে বোঝে কাছে কোনো মহীরুহ আছে,</p>
+<p>তার পরে আরোহণ ক'রে তবে জীবনযাপন</p>
+<p>করার সফল কীর্তি কী-ভাবে যে করে, তা জানি না।</p>
+<p>তবু বৃক্ষ সনাতন বৃক্ষই, লতাও শুধু লতা,</p>
+<p>মৌমাছি ও কুসুমের অভীপ্সার রোমাঞ্চ জানে কি?</p>
+<br/>
+
+
+
+
+
+
+
+<h2>৫ এপ্রিল ১৯৬২</h2>
+<br/>
+
+<p>শুধু গান ভালোবাসো ; বিপদার্ত মিলনচিৎকারে</p>
+<p>এমন আগ্রহহীনা, চ'লে গেছো পার্কের আশ্রয়ে।</p>
+<p>উৎপাটিত, রুগ্ন বৃক্ষ আর কোনো গান গায় না যে।</p>
+<p>শিকড়ের থেকে তবু নতুন অঙ্কুর অভ্যুদিত--</p>
+<p>চেয়ে দ্যাখে, মুখগুলি নিরুৎসাহ, গুপ্ত সাম্রাজ্যের</p>
+<p>পতনের কাল থেকে রয়েছে এমনিভাবে, যেন</p>
+<p>কাঠখোদাইয়ের শিল্প ; রক্তাপ্লুত শতাব্দীগুলির</p>
+<p>উচ্ছ্বাস বিষাদরাশি নীরস আবহে পরিণত।</p>
+<p>আমি বৃক্ষ, রোগশয্যা পরিত্যক্ত টিপয়ের মতো</p>
+<p>জীর্ণ, ধূলিময়, ম্লান। সলিলসমৃদ্ধ সিন্ধু নয়,</p>
+<p>কারো অতি স্বাভাবিক অমোঘ শীতল হাতও নেই,</p>
+<p>যে-হাত কপালে পেলে অতীত ও বর্তমানও মোছে।</p>
+<p>অসুখ গভীর তবু, হায় কবি, সংক্রামক নয়</p>
+<p>কখনো ফুলের দেহে সংক্রামিত হয়নি, হবে না।</p>
+<br/>
+
+
+
+
+
+
+
+
+<h2>৬ এপ্রিল ১৯৬২</h2>
+<br/>
+
+<p>একটি বৎসর শুধু লাস্যময়ী অগ্নির সকাশে</p>
+<p>ব'সে-ব'সে সদালাপে কাটিয়েছি অবকাশকাল।</p>
+<p>বহু তাপ পেয়ে শেষে, হায় অগ্নি, জ্বরাক্রান্ত হ'য়ে</p>
+<p>নীলিম কোরকে বিদ্ধ; কিছুকাল পরে অন্য পটে</p>
+<p>থেকেছি উদ্দাম বোধে বরফের ঘরের ভিতরে</p>
+<p>মথিত ঐশ্বর্য নিয়ে ; তবে পুনরায় অসুস্থতা।</p>
+<p>আমাকে ঘিরেছে, দ্যাখো, উদঘাটিত করেছে নিঃস্বতা ;</p>
+<p>রোগের সময়ে কোনো শুশ্রূষা পাবার বিত্ত নেই।</p>
+<br/>
+<p>অসুস্থতাকালে এত বিচিত্র লালসাময়ী স্বাদ</p>
+<p>মনে পড়ে, জেগে কয় ঝালমত্ত আহার্যের ঘ্রাণ্,</p>
+<p>মাংসের ঝোলের সিক্ত আবাহন বুভুক্ষু শরীরে।</p>
+<p>তারকারা ঋতুচক্রে স'রে গেছে, এ-সব বোঝেনি।</p>
+<br/>
+
+
+
+
+
+
+
+<h2>৮ এপ্রিল ১৯৬২</h2>
+<br/>
+
+<p>সন্তপ্ত কুসুম ফুটে পুনরায় ক্ষোভে ঝ'রে যায়।</p>
+<p>দেখে কবিকুল এত ক্লেশ পায়, অথচ হে তরু,</p>
+<p>তুমি নিজে নির্বিকার, এই প্রিয় বেদনা বোঝো না।</p>
+<br/>
+<p>কে কোথায় নিভে গেছে তার গুপ্ত কাহিনী জানি না।</p>
+<p>নিজের অন্তর দেখি, কবিতার কোনো পঙক্তি আর</p>
+<p>মনে নেই গোধূলিতে ; ভালোবাসা অবশিষ্ট নেই।</p>
+<p>অথবা গৃহের থেকে ভুলে বহির্গত কোনো শিশু</p>
+<p>হারিয়ে গিয়েছে পথে, জানে না সে নিজের ঠিকানা।</p>
+<br/>
+
+
+
+
+
+
+<h2>১১ এপ্রিল ১৯৬২</h2>
+<br/>
+
+<p>কোনো স্থির কেন্দ্র নেই, ক্ষণিক চিত্রের মোহে দুলি।</p>
+<p>ভিন্ন-ভিন্ন সুশীতল স্বাস্থ্যনিবাসের স্বপ্নরূপ</p>
+<p>ইতস্তত আকর্ষণে ভ'রে রাখে শূন্য মন, সাধ।</p>
+<p>এরূপ পিঙ্গল তৃষ্ণা, অবসর এসেছে এবার।</p>
+<p>অপূর্ণের ক্লেশ এই, যে-শাখাগ্রে ফাল্গুনে আমের</p>
+<p>বোল মুকুলিত হয়, সে-শাখায় নতুন পাতার</p>
+<p>উদ্গমের পথ নেই ; কোথায় সে মুকুলিত প্রেম?</p>
+<p>অথচ হৃদয় ছিন্ন, উৎপাটিত কেশমালা যেন,</p>
+<p>ছড়িয়ে গিয়েছে বহু ভবনে, উদ্যানে, নানা ক্ষণে।</p>
+<p>এত জন্ম, হায় প্রেম, নিয়ন্ত্রণ প্রয়োজন আজ।</p>
+<br/>
+
+
+
+
+
+
+<h2>১১ এপ্রিল ১৯৬২</h2>
+<p>কোনো সফলতা নয় ; আকাশের কৃপাপ্রার্থী তরু,</p>
+<p>সুপ্ত সরোবরে স্নান করায় অক্ষম ব'লে ; এত-</p>
+<p>এত অসহায় আমি, মানবিক শক্তিহীন, তবু</p>
+<p>নিমন্ত্রণপত্র পাই, প্রেরিকার ঠিকানাবিহীন।</p>
+<p>এত নিরুপায় আমি ; বিষন্ন বাতাস দিয়ে ঢাকি</p>
+<p>অন্যের অপ্রেম, ক্ষুধা, দস্যুবৃত্তি, পরিচিত কাঁটা।</p>
+<p>অব্যর্থ পাখির কাছে যতোই কালাতিপাত করি</p>
+<p>আমাকে চেনে না তবু, পরিচয় সূচিত হ'লো না।</p>
+<p>কোনোদিন পাবো না তো, সেতুর উপর দিয়ে দ্রুত</p>
+<p>ট্রেনের ধ্বনির মতো সুগম্ভীর জীবন পাবো না।</p>
+<br/>
+
+
+
+
+
+
+
+
+<h2>১২ এপ্রিল ১৯৬২</h2>
+<br/>
+
+<p>ব্যর্থতার সীমা আছে ; নিরাশ্রয় রক্তাপ্লুত হাতে</p>
+<p>বলো, আর কতকাল পাথরে আঘাত ক'রে যাবো?</p>
+<p>এখনো ভাঙেনি কেউ ; ফুরিয়েছে পাথেয় সম্বল।</p>
+<p>অথবা বিলীয়মান শবকে জাগাতে কোনো শিশু</p>
+<p>সেই সন্ধ্যাকাল থেকে সচেষ্ট রয়েছে, তবু যেন</p>
+<p>পৃথিবী নিয়মবশে নির্বিকার ধূসরতাধৃত।</p>
+<p>উষ্ণ, ক্ষিপ্ত বাতাসেরা, মেদুর মেঘেরা চিরকাল</p>
+<p>ঊর্ধ্বমুখী ; অবয়বে অমেয় আকাঙ্ক্ষা তুলে নিয়ে</p>
+<p>ঘুরেছি অনেক কাল পর্বতের আশ্রয় সন্ধানে ;</p>
+<p>পাইন অরণ্যে, শ্বেত তুষারে-তুষারে লীলায়িত</p>
+<p>হ'তে চেয়ে দেখি কারো হৃদয়ে জীবন নেই ; তাই</p>
+<p>জলের মতন ব'য়ে চ'লে যাবো ক্রমশ নিচুতে।</p>
+<br/>
+
+
+
+
+
+
+
+<h2>১২ এপ্রিল ১৯৬২</h2>
+<br/>
+
+<p>শিশুকাল হ'তে যদি মাত্রাসিদ্ধ পরম বীজাণু</p>
+<p>মাঝে-মাঝে পাওয়া যেতো, তবে আজ বসন্তে অসুখ</p>
+<p>এত ভয়াবহরূপে দেখা তো দিতো না, প্রিয় সখী ।</p>
+<p>আন্দোলিত প্রেমে-প্রেমে প্রাথমিক হৃদয় উন্মাদ ।</p>
+<br/>
+<p>ঝরে পুঁজ, ঝরে স্মৃতি, রহস্যনিলীনা অপসৃতা</p>
+<p>কুমারীত্ব থেকে দূরে, আরো দূরে, অবরুদ্ধ নীড়ে।</p>
+<p>আর আমি অর্ধমৃত ; বৃক্ষদের ব্যাপক অসুখে</p>
+<p>শুশ্রূষা করার মতো অনাবিল প্রিয়জনও নেই ।</p>
+<br/>
+
+
+
+
+
+
+
+<h2>১২ এপ্রিল ১৯৬২</h2>
+<br/>
+<p>হৃদয়, নিঃশব্দে বাজো ; তারকা, কুসুম, অঙ্গুরীয়—</p>
+<p>এদের কখনো আর সরব সংগীত শোনাবো না ।</p>
+<p>বধির স্বস্থানে আছে ; অথবা নিজের রূপে ভুলে</p>
+<p>প্রেমিকের তৃষ্ণা দ্যাখে, পৃথিবীর বিপণিতে থেকে।</p>
+<br/>
+<p>কবিতা লিখেছি কবে, দু-জনে চকিত চেতনায় ।</p>
+<p>অবশেষে ফুল ঝ'রে, অশ্রু ঝ'রে আছে শুধু সুর।</p>
+<p>কবিতা বা গান..ভাবি, পাখিরা — কোকিল গান গায়</p>
+<p>নিজের নিষ্কৃতি পেয়ে, পৃথিবীর কথা সে ভাবে না।</p>
+<br/>
+<h2>১৫ এপ্রিল ১৯৬২</h2>
+<br/>
+
+<p>বড়ো বৃদ্ধ হ'য়ে গেছি, চোখের ক্ষমতা ক'মে গেছে</p>
+<p>পরস্পর মিশে থাকা কাচপুঁতি এবং নীলার</p>
+<p>পার্থক্য নির্ণয় ক'রা এখন সম্ভব নয় আর।</p>
+<p>এমনকি কাগজের নৌকা নির্মাণের পদ্ধতিও</p>
+<p>ভুলে গেছি ; কবিতার মিল খুঁজে মন্থর প্রহর</p>
+<p>চলে যায় ; সন্ধ্যাকালে শুনেছি শীতের পুরোভাগে</p>
+<p>মৃত্তিকাসংলগ্ন মেঘ এখনো কুয়াশারাশি ব'লে</p>
+<p>অভিহিত হয় — এই কুৎসাভীত বহু ভালোবাসা।</p>
+<p>অভিজ্ঞতা ফুরিয়েছে ; অন্ধকারে আহার্যবিহীন</p>
+<p>ক্ষুধায় অতিবাহিত করা ভিন্ন বৃক্ষদের কোনো</p>
+<p>গত্যন্তর নেই, হায়, এই ক্লেশে ম্রিয়মাণ আমি।</p>
+<p>হেটেছি সুদীর্ঘ পথ; শুধু কাটা, রক্তাক্ত দু-পায়।</p>
+<p>তোমার দুয়ারে এসে অনিশ্চিত, নির্বাক, চিন্তিত।</p>
+<p>তুমি কি আমাকে বক্ষে স্থান দিতে সক্ষম, মুকুর?</p>
+<br/>
+
+
+
+
+
+
+
+<h2>১৫ এপ্রিল ১৯৬২</h2>
+<br/>
+
+<p>কোনো যোগাযোগ নেই, সেতু নেই, পরিচয় নেই ;</p>
+<p>তবুও গোপন ঘর নীলবর্ণে রঞ্জিত হয়েছে</p>
+<p>এই ভেবে যদি খুঁজি, তবে বলো, এ-কল্পনা কালো।</p>
+<p>আঁধারে সকলই, সখা, কালো ব'লে প্রতিভাত হয়।</p>
+<p>তর্কের সময় নয় ; বিপুল বিপদাপন্ন ক্ষুধা ।</p>
+<p>প্রাণে জ্যোৎস্নালেপনের সাধ যদি না-ই হয়, তবে</p>
+<p>ছিদ্র দিয়ে ডেকে নিয়ে কেন সে যে খোলে না দরজা।</p>
+<p>আহার করার আগে স্নান করা তারই রীতি, প্রেম।</p>
+<br/>
+
+
+
+
+
+
+
+
+<h2>১৭ এপ্রিল ১৯৬২</h2>
+<br/>
+<p>বাতাস আমার কাছে আবেগের মথিত প্রতীক,</p>
+<p>জ্যোৎস্না মানে হৃদয়ের দ্যুতি, প্রেম ; মেঘ - শরীরের</p>
+<p>কামনার বাষ্পপুঞ্জ ; মুকুর, আকাশ, সরোবর,</p>
+<p>সাগর, কুসুম, তারা, অঙ্গুরীয়—এ-সকল তুমি ।</p>
+<p>তোমাকে সর্বত্র দেখি ; প্রাকৃতিক সকল কিছুই</p>
+<p>টীকা ও টিপ্পনী মাত্র, পরিচিত গভীর গ্রন্থের ।</p>
+<p>অথচ তুমি কি, নারী, বেজে ওঠো কোনো অবকাশে?</p>
+<p>এতটা বয়সে ক্ষত - ক্ষত হয়নি কি কোনোকালে?</p>
+<br/>
+<p>তৃপ্ত অবস্থা তো নেই, সমুদ্রের আবশ্যক জল</p>
+<p>যতো পান করা হয়, তৃষ্ণা ততো বৃদ্ধি পেতে থাকে ।</p>
+<p>বৃষ্টির পরেও ফের বাতাস উত্তপ্ত হ'য়ে ওঠে।</p>
+<p>প্রেম, রাত্রি পরিপূর্ণ অতৃপ্তির ক্ষণিক ক্ষান্তিতে।</p>
+<p>সেহেতু তুমি তো, নারী, বেজে ওঠো শ্বেত অবকাশে ;</p>
+<p>এতটা বয়সে ক্ষত - ক্ষত হয়নি কি কোনোকালে?</p>
+<br/>
+
+
+
+
+
+
+
+
+<h2>১৭ এপ্রিল ১৯৬২</h2>
+<br/>
+
+<p>আমার বাতাস বয় ; সদ্যোজাত মরুভূমি থেকে</p>
+<p>কেবলই বালুকা ওড়ে ; অবাঞ্ছিত পিপাসা বাড়ায়।</p>
+<p>তাঁবু নিয়ে ফিরে আসি বন্দরের পরিশ্রান্ত ভিড়ে।</p>
+<p>কী আশ্চর্য, খুশি হয় কুকুর, উদ্যান, রাজপথ।</p>
+<p>শুনেছি সভার মাঝে একটি কুসুম ঘ্রাণময়ী ;</p>
+<p>ব্যথিত আগ্রহে দেখি ; এত ফুল, কোনটি বুঝি না।</p>
+<p>যে-কোনো অপাপবিদ্ধ তারকারো জোৎস্না আছে ভেবে</p>
+<p>কারো কাছে যেতে চাও, হে চকোর, স্বপ্নচারী, বৃথা।</p>
+<p>লাশের অভ্যর্থনাকারীদের মাঝ দিয়ে হেঁটে</p>
+<p>বিদেশী ব্যক্তির মতো কে জানে কোথায় যেতে হবে।</p>
+<br/>
+
+
+
+
+
+
+
+
+<h2>১৮ এপ্রিল ১৯৬২</h2>
+<br/>
+
+<p>ঈপ্সিত শিক্ষায়তনে যাবার বাসনা হয়েছিলো।</p>
+<p>গিয়ে দেখি ত্রস্ত মুখ, উপলক্ষ সমুদ্র উধাও।</p>
+<p>ভ্রমর পোষে না কেউ ; নবতর হাসির মাধ্যম</p>
+<p>সেখানে সুলভ নয় ; কাঁটাগাছ পূর্বেই প্রস্তুত।</p>
+<br/>
+<p>কিছু আলোকিত হ'লো সমাচ্ছন্ন বাঁশ, ভবিষ্যৎ।</p>
+<p>এখন সমস্যা এই, কোনো করবীর সঙ্গে আর</p>
+<p>খেলার সময় কিংবা বিশ্বস্ত সুযোগ কোনোদিন</p>
+<p>ভুলেও দেবে না কেউ ; বাকি আছে শুধু ক্ষুণ্ণ ক্রয়।</p>
+<br/>
+
+
+
+
+
+
+
+
+
+<h2>২৩ এপ্রিল ১৯৬২</h2>
+<br/>
+
+<p>এমন বিপন্ন আমি, ব্যক্তিগত পবিত্রতাহীন।</p>
+<p>যেখানে-সেখানে মুগ্ধ মলত্যাগে অথবা অসীমে</p>
+<p>প্রস্রাব করার কালে শিশুর গোপন কিছু নেই।</p>
+<p>ফলে পিপীলিকাশ্রেণী, কুসুমের দ্বারা নিয়ন্ত্রিত।</p>
+<br/>
+<p>নিয়ন্ত্রিত, ক্ষুব্ধ আমি ; যে-সুবিধা তোমরা পেয়েছো</p>
+<p>তার দুষ্ট ব্যবহার, মুহুর্মুহু কাদা, ইতিহাস -</p>
+<p>এ-সবে বিধ্বস্ত আজ ; এত সম্ভাবনাময় দ্যুতি,</p>
+<p>সবই ব্যর্থ ; শুধু আশা, কোনোদিন জীর্ণ বৃদ্ধ হবো।</p>
+<p>মৃত্তিকায় প'ড়ে রবে বয়োত্তীর্ণ, রসহীন বীজ,</p>
+<p>উৎসুক হবে না কেউ ধ্বংসপ্রাপ্ত দেবতার শবে।</p>
+<br/>
+
+
+
+
+
+
+
+<h2>২৪ এপ্রিল ১৯৬২</h2>
+<br/>
+
+<p>সহাস্য গুলিটি মনে বিদ্ধ হ'য়ে বহুকাল ছিলো</p>
+<p>সনাতন মূল কেটে, ভিক্ষা ক'রে সুস্থ হ'তে হয়।</p>
+<p>ফলে এই স্পৃহাহীন, ক্ষমায় বিশীর্ণ ঋতু আসে।</p>
+<p>অসীম শিল্পীর হাতে বৃক্ষ শেষে হয়েছে টিপয়।</p>
+<p>পাখিকে ডাকি না তবু, আহার্য ছড়িয়ে কাছে পেতে।</p>
+<p>নতুন মদের পাত্র নির্বাচন এখন স্থগিত।</p>
+<br/>
+<p>জরায়ু ত্যাগের পরে বিস্তীর্ণ আলোকে এসে শিশু</p>
+<p>সৃষ্টির সদর্থ বোঝে, নিজস্ব পিপাসা, ক্ষুধা পায়।</p>
+<p>অন্ধকার সীমা ছেড়ে চেয়ে দ্যাখে, আরো পরিসীমা</p>
+<p>আকাশের নীলে, চাঁদে, নক্ষত্রের আহ্বানে নিহিত।</p>
+<br/>
+
+
+
+
+
+
+
+
+
+<h2>২৮ এপ্রিল ১৯১২</h2>
+<br/>
+<p>কবে যেন একবার বিদ্ধ হ'য়ে বালুকাবেলায়</p>
+<p>সাগরের সাহচর্য পেয়েছিলো অলৌকিক পাখি।</p>
+<p>উদ্যত সংগীতে কবে ভরেছিলো হর্ম্যতল, তবু</p>
+<p>পেরেক বিফল হ'লো গহ্বরের উদ্ধার পেলো না।</p>
+<p>মাথা কুটে, ছিঁড়ে-খুড়ে, ঘুড়ির মতন ত্যক্ত হ'য়ে</p>
+<p>দ্যাখে, পৃথিবীর শিক্ষা ধারণার ক্রমসংশোধনে।</p>
+<p>যেন শিশু বায়ুলোকে নির্ভয়ে বিহার ক'রে শেষে</p>
+<p>পথে প'ড়ে ধ্বংস হয়। তেতলার থেকে পতনের</p>
+<p>অন্তিম, অজ্ঞাতপূর্ব মর্ম বোঝে শবের জীবনে।</p>
+<br/>
+
+
+
+
+
+
+
+
+<h2>৯ মে ১৯১২</h2>
+<br/>
+
+<p>এরূপ বিরহ ভালো ; কবিতার প্রথম পাঠের</p>
+<p>পরবর্তী কাল যদি নিদ্রিতের মতো থাকা যায়,</p>
+<p>স্বপ্নাচ্ছন্ন, কাল্পনিক ; দীর্ঘকাল পরে পুনরায়</p>
+<p>পাঠের সময়ে যদি শাশ্বত ফুলের মতো স্মিত,</p>
+<p>রূপ, ঘ্রাণ ঝ'রে পড়ে তাহ'লে সার্থক সব ব্যথা,</p>
+<p>সকল বিরহ, স্বপ্ন ; মদিরার বুদ্বুদের মতো</p>
+<p>মৃদু শব্দে সমাচ্ছন্ন, কবিতা, তোমার অপ্রণয়।</p>
+<br/>
+<p>হাসির মতন তুমি মিলিয়ে গিয়েছো সিন্ধুপারে।</p>
+<p>এখন অপেক্ষা করি, বালিকাকে বিদায় দেবার</p>
+<p>বহু পরে পুনরায় দর্শনের অপেক্ষার মতো -</p>
+<p>হয়তো সর্বস্ব তার ভ'রে গেছে চমকে-চমকে।</p>
+<p>অভিভূত প্রত্যাশায় এরূপ বিরহব্যথা ভালো।</p>
+<br/>
+
+
+
+
+
+
+
+
+<h2>১৮ মে ১৯১২</h2>
+<br/>
+
+<p>ভালোবাসা দিতে পারি, তোমরা কি গ্রহণে সক্ষম ?</p>
+<p>লীলাময়ী করপুটে তোমাদের সবই ঝ'রে যায় -</p>
+<p>হাসি, জ্যোৎস্না, ব্যথা, স্মৃতি, অবশিষ্ট কিছুই থাকে না।</p>
+<p>এ আমার অভিজ্ঞতা। পারাবতগুলি জ্যোৎস্নায়</p>
+<p>কখনো ওড়ে না ; তবু ভালোবাসা দিতে পারি আমি।</p>
+<p>শাশ্বত, সহজতম এই দান - শুধু অঙ্কুরের</p>
+<p>উদ্গমে বাধা না দেওয়া, নিষ্পেষিত অনালোকে রেখে</p>
+<p>ফ্যাকাশে হলুদবর্ণ না-ক'রে শ্যামল হ'তে দেওয়া।</p>
+<p>এতই সহজ, তবু বেদনায় নিজ হাতে রাখি</p>
+<p>মৃত্যুর প্রস্তর, যাতে কাউকে না ভালোবেসে ফেলি।</p>
+<p>গ্রহণে সক্ষম নও। পারাবত, বৃক্ষচূড়া থেকে</p>
+<p>পতন হ'লেও তুমি আঘাত পাও না, উড়ে যাবে।</p>
+<p>প্রাচীন চিত্রের মতো চিরস্থায়ী হাসি নিয়ে তুমি</p>
+<p>চলে যাবে ; ক্ষত নিয়ে যন্ত্রনায় স্তব্ধ হব আমি।</p>
+<br/>
+
+
+
+
+
+
+
+
+<h2>২১ মে ১৯৬২</h2>
+<br/>
+
+<p>নানা কুন্তলের ঘ্রাণ ভেসে আসে চারিদিক থেকে।</p>
+<p>হৃদয় উতলা হয়, ফুটন্ত জলের মতো মোহে।</p>
+<p>অনেকেই ছুঁয়ে গেছে, ঘুম ভেঙে গেছে বারবার।</p>
+<p>ত্রুটিপূর্ণ মুকুরের মতো তারা আমাকে প্রায়শ</p>
+<p>বিকৃত করেছে ; হায়, পিপীলিকাশ্রেণীতে একাকী</p>
+<p>কীটের মতন আমি অনেক হেঁটেছি অন্ধকারে।</p>
+<p>তোমাকে তো ঈর্ষা করি ; হে পাবক, তুমি সব কিছু</p>
+<p>গ্রাস ক'রে নিতে পারো - তোমার বাঞ্ছিত যুবকের</p>
+<p>জীবন, মরণ, মন ; কখনোই প্রেমে ব্যর্থ নও।</p>
+<p>আর আমি বারংবার অসফল, ক্ষমতাবিহীন।</p>
+<p>প্রায়শ নিষ্ক্রিয় থাকি, প্রত্যাশায় দ্যুতিময় মনে,</p>
+<p>অপরের অভ্যন্তরে ক্ষুধার মতন সংগোপন</p>
+<p>দুর্বোধ্য সমস্যাগুলি নিবেদিত হবে - এই ভেবে।</p>
+<p>কিছুই বলে না কেউ ; হে পাবক, তুমি বিশ্বজয়ী।</p>
+<br/>
+<h2>২৩ মে ১৯৬২</h2>
+<br/>
+
+<p>করুণ চিলের মতো সারাদিন, সারাদিন ঘুরি।</p>
+<p>ব্যথিত সময় যায়, শরীরের আর্তনাদে, যায়</p>
+<p>জ্যোৎস্নার অনুনয় ; হায়, এই আহার্যসন্ধান।</p>
+<p>অপরের প্রেমিকার মতন সুদূর নীহারিকা,</p>
+<p>গাঢ় নির্নিমেষ চাঁদ, আমাদের আবশ্যক সুখ।</p>
+<p>এতকাল চ'লে গেলো, এতকাল শুধু আয়োজনে।</p>
+<p>সকলেই সচেতন হ'তে চায় পরিসরে, ক্ষুধার মতন</p>
+<p>নিরন্তর উত্তেজনা নাড়িতে-নাড়িতে পেতে চায়।</p>
+<p>হস্তগত আহার্যের গূঢ় ঘ্রাণ, স্বাদ ভালোবেসে</p>
+<p>বিহ্বল মুহূর্তগুলি যেন কোনো অর্ঘ্যে দিতে চায়।</p>
+<p>অথচ চিলের মতো আয়োজনে আয়ু শেষ হয়।</p>
+<p>ব্যর্থ অনাশ্রয় কেউ চাই না ; তোমাকে পেতে চাই</p>
+<p>তবু আশ্রয়েরও আগে, পরিহিত অবস্থায় কোনো</p>
+<p>অঙ্গুরীয় হারানোর ক্ষিপ্ত ভয় লোপ পায় ব'লে।</p>
+<br/>
+
+
+
+
+
+
+<p><a href="https://t.me/bongboi" rel="noopener noreferrer" target="_blank">বংবইয়ের</a>ইপাবটির প্রুফ সংশোধনে স্বেচ্ছাসেবকঃ <a href="https://t.me/boibongo_bot" rel="noopener noreferrer" target="_blank">পৌলমী পাঠক</a>।</p>
+<br/>
+<h2>২৪ মে ১৯৬২</h2>
+<br/>
+
+<p>যখন কিছু না থাকে, কিছুই নিমেষলভ্য নয়,</p>
+<p>তখনো কেবলমাত্র বিরহ সহজে পেতে পারি।</p>
+<p>তাকেই সম্বল ক'রে বুঝি এই মহাশূন্য শুধু</p>
+<p>স্বতঃস্ফূর্ত জ্যোৎস্নায় পরিপূর্ণ, মুগ্ধ হ'তে পারে।</p>
+<p>ফলে গবেষণা করি ; পর্বতে, ব-দ্বীপে যেতে চাই ;</p>
+<p>চোখ বুজে হাস্যহীন দেহ তুলে দিতেও গিয়েছি</p>
+<p>ব-দ্বীপের অন্ধকার হ্রদের গভীরে একবার।</p>
+<p>অবশ্য পাখির মতো জলভ্রমে তেলের সকাশে</p>
+<p>গিয়ে ফের ফিরে আসি ; ফলে শুধু তৃষ্ণা বৃদ্ধি পায়।</p>
+<p>এরূপ সম্ভার আছে ; কতিপয় কুসুমের মুখ</p>
+<p>আহত করেছে দীর্ঘ রজনীগন্ধার মতো রূপে।</p>
+<p>তবুও গভীর কেন্দ্রে কেবলই চেতনা ব'লে যায়-</p>
+<p>এই সব নাতি-উষ্ণ ক্রীড়া ফেলে শিশুর মতন</p>
+<p>ছুটে যাবো যদি শুনি, মিষ্টদ্রব্য স্বগৃহে ফিরেছে।</p>
+<br/>
+
+
+
+
+
+
+
+<h2>৭ জুন ১৯৬২</h2>
+<br/>
+
+<p>তোমাদের কাছে আছে সংগোপন, আশ্চর্য ব-দ্বীপ</p>
+<p>কৃষ্ণবর্ণ অরণ্যের অন্তরালে ঘ্রাণময় হ্রদে</p>
+<p>আমার হৃদয় স্বপ্নে মুগ্ধ হয়, একা স্নান করে।</p>
+<p>হে শান্তি, অমেয় তৃপ্তি, তুমি দীপ্ত হার্দিক প্রেমের</p>
+<p>মূলে আছো, আছো ফলে ; মধ্যবর্তী অবকাশে প্রাণ</p>
+<p>তবুও সকল কিছু সংযমে নিক্ষেপ করে দূরে ;</p>
+<p>ক্ষণস্থায়ী তৃপ্তিজাত আসক্তিতে চিরন্তন মোহে</p>
+<p>রূপ দিতে বর্ণ, গন্ধ খুঁজে ফেরে, বায়ব আকাশ,</p>
+<p>খুঁজে ফেরে চন্দ্রাতপ ; যেন সরোবরে মুগ্ধ তাপ -</p>
+<p>জ্যোৎস্না উদ্ভাসিত হ'লে তবে তার স্নান গ্রহণীয়।</p>
+<p>এসো হে ব-দ্বীপ, এসো তামোরস, এসো জ্বালা, প্রেম,</p>
+<p>আলোড়ন, ঝঞ্ঝা, লোভ, সংযত সংহারমালা, এসো।</p>
+<p>নিয়ে যায় মূলে, রসে, বাষ্পীভূত ক'রে মেলে দাও</p>
+<p>আয়ুষ্কালব্যাপী নভে, আবিষ্কৃত আকাশের স্বাদে।</p>
+<br/>
+
+
+
+
+
+
+
+
+
+<h2>৭ জুন ১৯৬২</h2>
+<br/>
+
+<p>আমার আশ্চর্য ফুল, যেন চকোলেট, নিমিষেই</p>
+<p>গলাধঃকরণ তাকে না-ক'রে ক্রমশ রস নিয়ে</p>
+<p>তৃপ্ত হয়, দীর্ঘ তৃষ্ণা ভুলে থাকি আবিষ্কারে, প্রেমে।</p>
+<p>অনেক ভেবেছি আমি, অনেক ছোবল নিয়ে প্রাণে</p>
+<p>জেনেছি বিদীর্ণ হওয়া কাকে বলে, কাকে বলে নীল -</p>
+<p>আকাশের, হৃদয়ের ; কাকে বলে নির্বিকার পাখি।</p>
+<p>অথবা ফড়িং তার স্বচ্ছ ডানা মেলে উড়ে যায়।</p>
+<p>উড়ে যায়, শ্বাস ফেলে যুবকের প্রাণের উপরে।</p>
+<p>আমি রোগে মুগ্ধ হ'য়ে দৃশ্য দেখি, দেখি জানালায়</p>
+<p>আকাশের লালা ঝরে বাতাসের আশ্রয়ে-আশ্রয়ে।</p>
+<p>আমি মুগ্ধ ; উড়ে গেছো ; ফিরে এসো, ফিরে এসো, চাকা,</p>
+<p>রথ হ'য়ে, জয় হ'য়ে, চিরন্তন কাব্য হ'য়ে এসো।</p>
+<p>আমরা বিশুদ্ধ দেশে গান হবো, প্রেম হবো, অবয়বহীন</p>
+<p>সুর হ'য়ে লিপ্ত হবো পৃথিবীর সকল আকাশে।</p>
+<br/>
+
+
+
+
+
+
+
+
+<h2>২২ জুন ১৯৬২</h2>
+<br/>
+
+<p>খেতে দেবে অন্ধকারে—সকলের এই অভিলাষ।</p>
+<p>কে জানে কী ফল কিংবা মিষ্টদ্রব্য কোনো-</p>
+<p>বয়স্কা, অনূঢ়া, স্ফীত ; কিন্তু হায়, আমার রসনা</p>
+<p>ভালোবাসে পূর্বাহ্নেই রূপে, ঘ্রাণে রসাপ্লুত হ'তে।</p>
+<p>হয়েছিলো কোনোকালে একবার হীরকের চোখে</p>
+<p>নিজেকে বিম্বিত দেখে ; তারপর আর কেন আরো</p>
+<p>উদ্বৃত্ত ফুলের প্রতি তাকাবো উদ্যত বাসনায়?</p>
+<p>কেন, মনোলীনা, কেন বলো চাকা, কী হেতু তাকাবো?</p>
+<p>যতো বলি, অন্ধকার, আমার তারকা আছে, ততো</p>
+<p>দেখি, আকাশের প্রতি পাখিটির ভালোবাসা কারো</p>
+<p>শ্রদ্ধায় স্বীকৃত নয় ; অশিক্ষিত গর্তরাশি আসে।</p>
+<p>মনে হয়, জ্যোৎস্না নয়, অন্ধকারে বৃষ্টিপাত চায়।</p>
+<p>এ-সকল ক্ষোভ বুঝে চতুর্দিকে হেসে ওঠে বহু</p>
+<p>গহ্বর, বৃদ্ধার মতো বালকের রূপকথা শুনে।﻿</p>
+<br/>
+
+
+
+
+
+
+
+
+<h2>২২ জুন ১৯৬২</h2>
+<br/>
+
+<p>চিৎকার আহ্বান নয়, গান গেয়ে ঘুম ভাঙালেও</p>
+<p>অনেকে বিরক্ত হয় ; শঙ্খমালা, তুমি কি হয়েছো?</p>
+<p>আজ তা-ই মনে হয় ; তবু তুমি পৃথিবীতে আছো।</p>
+<p>অমোঘ শিকারীদের লক্ষ্যভেদে সফলতা তবে</p>
+<p>কোনো মুগ্ধ নিয়মের বশবর্তী নয় ; যেন বাঘ</p>
+<p>লাফ দিলে কুমারীটি স'রে গেছে লক্ষ্যবিন্দু থেকে ।</p>
+<p>তোমার হৃদয়ে দিতে রোমাঞ্চিত সংক্রামক ব্যাধি</p>
+<p>বীজাণু বহন করি ; তুমি থাকো দূরে সিন্ধুপারে ;</p>
+<p>ফলে নিজে পূর্বাহ্নেই আরো বেশি বিষক্রিয়া পাই।</p>
+<p>হৃদয় যদি না থাকে, তবু অন্য ঐশ্বর্য রয়েছে -</p>
+<p>গুদামে তো বিস্ফোরণ হ'তে পারে, সেও ভালোবাসা।</p>
+<p>যা-ই হোক, শঙ্খমালা, তোমাকে সর্বস্ব দিতে চাই,</p>
+<p>যে-কেনো কারণে খোলো, তা-ই মহত্তম প্রেম হবে।</p>
+<br/>
+
+
+
+
+
+
+
+<h2>২২ জুন ১৯৬২</h2>
+<br/>
+
+<p>যাক, তবে জ্ব'লে যাক, জলস্তম্ভ, ছেঁড়া যা হৃদয়।</p>
+<p>সব শান্তি দূরে থাক, সব তৃপ্তি, সব ভুলে যাই।</p>
+<p>শুধু তার যন্ত্রণায় ভ'রে থাক হৃদয় শরীর।</p>
+<p>তার তরণীর মতো দীর্ঘ চোখে ছিলো সাগরের</p>
+<p>গভীর আহ্বান, ছায়া, মেঘ, ঝঞ্ঝা, আকাশ, বাতাস।</p>
+<p>কাঁটার আঘাতদায়ী কুসুমের স্মৃতির মতন</p>
+<p>দীর্ঘস্থায়ী তার চিন্তা ; প্রথম মিলনকালে ছেঁড়া</p>
+<p>ত্বকের জ্বালার মতো গোপন, মধুর এ-বেদনা।</p>
+<p>যাক, সব জ্ব'লে যাক, জলস্তম্ভ, ছেঁড়া যা হৃদয়।</p>
+<br/>
+
+
+
+
+
+
+<h2>২৭ জুন ১৯৬২</h2>
+<br/>
+
+<p>করবী তরুতে সেই আকাঙ্খিত গোলাপ ফোটেনি।</p>
+<p>এই শোকে ক্ষিপ্ত আমি ; নাকি ভ্রান্তি হয়েছে কোথাও?</p>
+<p>অবশ্য অপর কেউ, মনে হয়, মুগ্ধ হয়েছিলো,</p>
+<p>সন্ধানপর্বেও দীর্ঘ, নির্নিমেষ জ্যোৎস্না দিয়ে গেছে।</p>
+<p>আমরা নিদ্রার মাঝে, স্তন্যপান করার মতন</p>
+<p>ব্যবহার ক'রে বলে শিহরিত হৃদয়ে জেগেছি।</p>
+<p>হায় রে, বাসি না ভালো, তবু এও ধন্য সার্থকতা,</p>
+<p>এই অভাবিত শান্তি, মূল্যায়ন, ক্ষিপ্ত শোকে ছায়া।</p>
+<p>তা না-হ'লে আস্বাদিত না হবার বেদনায় মদ,</p>
+<p>হৃদয় উন্মাদ হয়, মাংসে করে আশ্রয়—সন্ধান।</p>
+<p>অথচ সুদূর এক নারী শুধু মাংসভোজনের</p>
+<p>লোভে কারো কাছে তার চিরন্তন দ্বার খুলেছিলো,</p>
+<p>যথাকালে লবণের বিস্বাদ অভাবে ক্লিষ্ট সেও।</p>
+<p>এই পরিণাম কেউ চাই না, হে মুগ্ধ প্রীতিধারা,</p>
+<p>গলিত আগ্রহে তাই লবণ অর্থাৎ জ্যোৎস্নাকামী।</p>
+<br/>
+
+
+
+
+
+
+
+<h2>২৯ জুন ১৯৬২</h2>
+<br/>
+
+<p>কবিতা বুঝি নি আমি ; অন্ধকারে একটি জোনাকি</p>
+<p>যৎসামান্য আলো দেয়, নিরুত্তাপ, কোমল আলোক।</p>
+<p>এই অন্ধকারে এই দৃষ্টিগম্য আকাশের পারে</p>
+<p>অধিক নীলাভ সেই প্রকৃত আকাশ প'ড়ে আছে -</p>
+<p>এই বোধ সুগভীরে কখন আকৃষ্ট ক'রে নিয়ে</p>
+<p>যুগ যুগ আমাদের অগ্রসর হয়ে যেতে বলে,</p>
+<p>তারকা, জোনাকি - সব ; লম্বিত গভীর হয়ে গেলে</p>
+<p>না দেখা গহ্বর যেন অন্ধকার হৃদয় অবধি</p>
+<p>পথ ক'রে দিতে পারে ; প্রচেষ্টায় প্রচেষ্টায় ; যেন</p>
+<p>অমল আয়ত্তাধীন অবশেষে ক'রে দিতে পারে</p>
+<p>অধরা জ্যোৎস্নাকে ; তাকে উদগ্রীব মুষ্ঠিতে ধ'রে নিয়ে</p>
+<p>বিছানায় শুয়ে শুয়ে আকাশের, অনন্তের সার পেতে পারি।</p>
+<p>এই অজ্ঞানতা এই কবিতায়, রক্তে মিশে আছে</p>
+<p>মৃদু লবণের মতো, প্রশান্তির আহ্বানের মতো।</p>
+<br/>
+
+
+
+
+
+
+
+
+<h2>২৯ জুন ১৯৬২</h2>
+<br/>
+
+<p>আঘাত দেবে তো দাও। আর নেই মৃত স্মৃতিরাশি।</p>
+<p>অনেক মদিরা পান করেছি, হে আঁখি, ওষ্ঠ, চাকা।</p>
+<p>রক্তের ভিতরে জ্যোৎস্না ; তবু বুঝি, আজ পরিশেষে</p>
+<p>মাংসভোজনের উষ্ণ প্রয়োজন ; তা না হলে নেই</p>
+<p>মদিরার পূর্ণ তৃপ্তি ; তোমার দেহের কথা ভাবি -</p>
+<p>নির্বিকার কাপড়ের ভাঁজে ভাঁজে অন্ধকার, সুখ</p>
+<p>এমন আশ্চর্যভাবে মিশে আছে ; পৃথিবীতে বহু</p>
+<p>গান গাওয়া শেষ হল, সুর শুনে, ব্যথা পেয়ে আজ</p>
+<p>রন্ধনকালীন শব্দ ভালোবেসে, কানে কানে মৃদু</p>
+<p>অর্ধস্ফুট কথা চেয়ে, এসেছি তোমার দ্বারে, চাকা।</p>
+<p>মুগ্ধ মিলনের কালে সজোরে আঘাতে সম্ভাবিত</p>
+<p>ব্যথা থেকে মাংসরাশি, নিতম্বই রক্ষা করে থাকে।</p>
+<br/>
+
+
+
+
+
+
+<h2>২৯ জুন ১৯৬২</h2>
+<br/>
+
+<p>তুমি যেন ফিরে এসে পুনরায় কুন্ঠিত শিশুকে</p>
+<p>করাঘাত ক'রে ক'রে ঘুম পাড়াবার সাধ ক'রে</p>
+<p>আড়ালে যেও না ; আমি এতদিনে চিনেছি কেবল</p>
+<p>অপার ক্ষমতাময়ী হাত দুটি, ক্ষিপ্র হাত দুটি -</p>
+<p>ক্ষণিক নিস্তারলাভে একা একা ব্যর্থ বারিপাত।</p>
+<p>কবিতা সমাপ্ত হতে দেবে নাকি? সার্থক চক্রের</p>
+<p>আশায় শেষের পংক্তি ভেবে ভেবে নিদ্রা চ'লে গেছে।</p>
+<p>কেবলি কবোষ্ণ চিন্তা, রস এসে চাপ দিতে থাকে ;</p>
+<p>তারা যেন কুসুমের অভ্যন্তরে মধু-র ঈর্ষিত</p>
+<p>স্থান চায়, মালিকায় গাঁথা হয়ে ঘ্রাণ দিতে চায়।</p>
+<p>কবিতা সমাপ্ত হতে দাও, নারী, ক্রমে — ক্রমাগত</p>
+<p>ছন্দিত, ঘর্ষণে, দ্যাখ, উত্তেজনা শীর্ষলাভ করে,</p>
+<p>আমাদের চিন্তাপাত, রসপাত ঘটে, শান্তি নামে।</p>
+<p>আড়ালে যেও না যেন, ঘুম পাড়াবার সাধ ক'রে।</p>
+<br/>
+<p><a href="https://t.me/bongboi" rel="noopener noreferrer" target="_blank">বংবইয়ের</a> ইপাবটির প্রুফ সংশোধনে স্বেচ্ছাসেবকঃ <a href="https://t.me/boibongo_bot" rel="noopener noreferrer" target="_blank">পৌলমী পাঠক</a>।</p>
+
+            </div>
+
+        </div>
+    </div>
+
+        <!-- TOC nav for mobile -->
+        <nav id="toc-nav-desktop" class="hidden"></nav>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const progressBar  = document.getElementById('read-progress-bar');
+    const progressPct  = document.getElementById('progress-pct');
+    const tocDesktop   = document.getElementById('toc-nav-desktop');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+    const progressRing = document.getElementById('progress-ring-circle');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = p.currentTheme;
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    function toBN(n) {
+        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
+    }
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        if (progressPct) progressPct.textContent = toBN(pct) + '%';
+        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
+        if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
+        if (rfPage) rfPage.textContent = toBN(pct) + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+
+    // ── Footer: chapter label + seek slider ──
+    const rfSlider  = document.getElementById('rf-slider');
+    const rfPage    = document.getElementById('rf-page');
+    const rfChapter = document.getElementById('rf-chapter');
+    let rfSliderDragging = false;
+    if (rfSlider) {
+        rfSlider.addEventListener('input', () => {
+            rfSliderDragging = true;
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
+        });
+        rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
+    }
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav, isMobile) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            if (isMobile) {
+                a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+                a.addEventListener('click', closeDrawer);
+            } else {
+                a.className = 'toc-link ' + (isH1 ? 'toc-link-h1' : 'toc-link-h2');
+            }
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocDesktop, false);
+    buildToc(tocMobile, true);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+        if (rfChapter && headings[current]) rfChapter.textContent = headings[current].textContent.trim();
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme only; drawer/settings UI stays a fixed dark sheet)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+        black: { bg: '#000',     text: '#d1d5db' },
+        sepia: { bg: '#f5efe6',  text: '#3b2f1e' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? '#c0392b' : 'transparent';
+            });
+            savePrefs();
+
+            // Ad bar theme sync
+            window._pathakAdBarTheme && window._pathakAdBarTheme(m);
+        });
+    });
+
+    // ── Ad bar theme sync function (exposed globally) ──
+    window._pathakAdBarTheme = function(m) {
+        const adBar     = document.getElementById('ad-bar');
+        const adContent = document.getElementById('ad-bar-content');
+        const adDatetime= document.getElementById('ad-bar-datetime');
+        const adNotice  = document.getElementById('ad-bar-notice');
+        if (adBar)      adBar.style.background     = m.bg;
+        if (adContent)  adContent.style.background = m.bg;
+        if (adDatetime) adDatetime.style.color      = m.text;
+        if (adNotice)   adNotice.style.color        = m.text;
+    };
+
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+        // Ad bar HTML is below — expose theme for ad bar script to pick up
+        window._pathakCurrentTheme = currentTheme;
+        window._pathakThemeMap = themeMap;
+    })();
+})();
+</script>
+
+
+</body>
+</html>

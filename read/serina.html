@@ -1,0 +1,3980 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/serina.html">
+    <title>সেরিনা - পাঠক ঘর</title>
+    <meta name="description" content="‘সেরিনা’ মুহম্মদ জাফর ইকবালের একটি অন্যতম জনপ্রিয় সায়েন্স ফিকশন। বরাবরের মতোই লেখক অত্যন্ত সহজ-সরল ও সাবলীল ভাষায় জটিল বৈজ্ঞানিক তত্ত্বকে সাধারণ পাঠকদের সামনে উ">
+    <meta property="og:title" content="সেরিনা - পাঠক ঘর">
+    <meta property="og:description" content="‘সেরিনা’ মুহম্মদ জাফর ইকবালের একটি অন্যতম জনপ্রিয় সায়েন্স ফিকশন। বরাবরের মতোই লেখক অত্যন্ত সহজ-সরল ও সাবলীল ভাষায় জটিল বৈজ্ঞানিক তত্ত্বকে সাধারণ পাঠকদের সামনে উ">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e', black:'#000' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', sepia:'#3b2f1e', dark:'#e5e7eb', black:'#d1d5db' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .dark body { background: #1a1a1b; color: #e5e7eb; }
+
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.7rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+        .dark #book-content { color: #e5e7eb; }
+    
+    /* ── Book read header hero ── */
+    .book-read-header {
+        margin-bottom: 1.5rem;
+    }
+    .book-read-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.65rem;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 1.4rem 1.25rem 1.2rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .dark .book-read-box {
+        background: #2a2a2b;
+        border-color: #3a3a3b;
+    }
+    .book-read-cover {
+        width: 100px;
+        height: 136px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        object-fit: cover;
+        background: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .book-read-cover svg { opacity: 0.35; }
+    .book-read-title-link {
+        text-decoration: none;
+        display: block;
+    }
+    .book-read-title-link:hover .book-read-title { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-title-link:active .book-read-title { opacity: 0.7; }
+    .book-read-title {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #1a1a1b;
+        line-height: 1.4;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+    .dark .book-read-title { color: #f3f4f6; }
+    .book-read-author-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+    .book-read-author-link:hover .book-read-author { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-author-link:active .book-read-author { opacity: 0.6; }
+    .book-read-author {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #c0392b;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+</style>
+</head>
+<body>
+
+<style>
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    #read-progress-bar {
+        position: fixed;
+        top: 0; left: 0;
+        height: 2px;
+        width: 0%;
+        background: #c0392b;
+        z-index: 1000;
+        transition: width 0.1s linear;
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h1 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #9ca3af;
+        text-align: center;
+        margin: 0 0 0.25rem;
+        letter-spacing: 0.04em;
+    }
+    #book-content h1::after {
+        content: '';
+        display: block;
+        width: 2.8em;
+        height: 3px;
+        background: #c0392b;
+        border-radius: 2px;
+        margin: 0.4rem auto 0;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #7a2115;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid #d9a5a0;
+        border-bottom: 1px solid #d9a5a0;
+    }
+    /* Night mode heading adjust */
+    body.theme-dark  #book-content h1,
+    body.theme-black #book-content h1 { color: #6b7280; }
+    body.theme-dark  #book-content h2,
+    body.theme-black #book-content h2 { color: #f2938a; border-color: rgba(169,50,38,0.4); }
+    body.theme-dark  #book-content h1::after { background: #a93226; }
+    body.theme-black #book-content h1::after { background: #922b21; }
+    body.theme-sepia #book-content h1 { color: #a08060; }
+    body.theme-sepia #book-content h2 { color: #7a2115; border-color: rgba(160,64,48,0.35); }
+    body.theme-sepia #book-content h1::after { background: #a04030; }
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: rgba(192,57,43,0.05);
+        border: 1px solid rgba(192,57,43,0.15);
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p,
+    body.theme-black #book-content p {
+        background: rgba(169,50,38,0.1);
+        border-color: rgba(169,50,38,0.25);
+    }
+    body.theme-sepia #book-content p {
+        background: rgba(160,64,48,0.08);
+        border-color: rgba(160,64,48,0.2);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #c0392b;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #c0392b;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(192,57,43,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    .dark #book-content blockquote {
+        background: rgba(192,57,43,0.08);
+        color: #bbb;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #c0392b;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    .dark #book-content td { border-color: #3a3a3b; }
+    .dark #book-content tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(192,57,43,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: #e57373;
+        font-weight: 600;
+        background: rgba(192,57,43,0.18);
+        border-radius: 0.375rem;
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: #fff;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transition: color 0.15s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.6);
+    }
+    #toc-nav-desktop .toc-link {
+        display: block;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.375rem;
+        color: #4b5563;
+        text-decoration: none;
+        transition: background-color 0.15s, color 0.15s;
+    }
+    .dark #toc-nav-desktop .toc-link { color: #d1d5db; }
+    #toc-nav-desktop .toc-link:hover { background: #f3f4f6; }
+    .dark #toc-nav-desktop .toc-link:hover { background: #1f2937; }
+    #toc-nav-desktop .toc-link-h1 {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: #1f2937;
+    }
+    .dark #toc-nav-desktop .toc-link-h1 { color: #f3f4f6; }
+    #toc-nav-desktop .toc-link-h2 {
+        padding-left: 1.25rem;
+        font-size: 0.6875rem;
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.6rem 0.5rem 0.6rem 0.35rem;
+        background: #1a1a1b;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-back {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.25rem;
+        text-decoration: none;
+        transition: background 0.15s;
+    }
+    #rh-back:active { background: rgba(255,255,255,0.12); }
+    #rh-title {
+        flex: 1;
+        min-width: 0;
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: transparent;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+    #reader-header .rh-actions button:active { background: rgba(255,255,255,0.12); }
+    body.theme-dark  #reader-header,
+    body.theme-black #reader-header,
+    body.theme-sepia #reader-header { background: #141414; }
+
+    /* ── Reader footer: chapter label + page/percent + seek slider ── */
+    #reader-footer {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 55;
+        background: #1a1a1b;
+        padding: 0.5rem 1rem 0.65rem;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-footer { transform: translateY(100%); }
+    body.theme-dark  #reader-footer,
+    body.theme-black #reader-footer,
+    body.theme-sepia #reader-footer { background: #141414; }
+    #rf-labels {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.7);
+        margin-bottom: 0.35rem;
+    }
+    #rf-chapter {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #rf-page { flex-shrink: 0; }
+    #rf-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        background: rgba(255,255,255,0.22);
+        outline: none;
+        margin: 0;
+        cursor: pointer;
+    }
+    #rf-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        margin-top: -6px;
+    }
+    #rf-slider::-moz-range-thumb {
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        border: none;
+    }
+    #rf-slider::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; }
+    #rf-slider::-moz-range-track { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.22); }
+
+    /* Content needs bottom clearance so the fixed footer never covers text */
+    #read-main-content { padding-bottom: 4.5rem; }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: #303134;
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.55);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: #e57373;
+        border-bottom-color: #c0392b;
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ── Breadcrumb dark mode ── */
+    .read-breadcrumb-full { margin-left: -1.25rem; margin-right: -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
+    .dark #bc-category { color: #9ca3af !important; }
+    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
+    .dark #read-breadcrumb li > span { color: #4b5563; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #e57373;
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: 34px; height: 34px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        flex-shrink: 0;
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+    }
+    .theme-circle.active { border-color: #c0392b; }
+    .theme-circle svg { display: none; }
+    .theme-circle.active svg { display: block; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: #fff; }
+    .settings-row-val { font-size: 0.74rem; color: rgba(255,255,255,0.5); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: rgba(192,57,43,0.35); border-color: #c0392b; color: #fff; }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+</style>
+
+<!-- Progress bar (kept for internal % calc, hidden — footer slider replaces it visually) -->
+<div id="read-progress-bar" style="display:none;"></div>
+
+<!-- ══ Reader header (Lithium-style app bar) ══ -->
+<header id="reader-header">
+    <a href="/book/serina.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <h1 id="rh-title">সেরিনা</h1>
+    <div class="rh-actions">
+        <button id="rh-menu-btn" aria-label="মেনু" title="মেনু"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+    </div>
+</header>
+
+<!-- ══ Reader footer (chapter + page/percent + seek slider) ══ -->
+<footer id="reader-footer">
+    <div id="rf-labels">
+        <span id="rf-chapter"></span>
+        <span id="rf-page">০%</span>
+    </div>
+    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
+</footer>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                    <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
+                    <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
+                    <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn active" id="align-justify" title="জাস্টিফাই" style="background:#fde8e6;border-color:#c0392b;color:#c0392b;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <br/><h2>০১. ছোট স্টেশনটা ছবির মতো সুন্দর</h2>
+<hr/>
+<br/><div>
+<p><strong>সেরিনা – মুহম্মদ জাফর ইকবাল</strong> <br/>
+প্রথম প্রকাশ : ফেব্রুয়ারি
+বইমেলা ২০১৫ </p>
+<p>.</p>
+<p><strong>উৎসর্গ </strong></p>
+<p>আজান ইব্রাহীম খান<br/>
+এবং<br/>
+তার গর্বিত বাবা মা <br/>
+আসাদুজ্জামান খান ও <br/>
+শবনব শহীদ শুচি </p>
+<p>.</p>
+<p><strong>ভূমিকা </strong></p>
+<p>তখন মাত্র দেশ স্বাধীন হয়েছে, দেশে সবকিছুর খুব অভাব, কোনো কিছু পাওয়া যায় না। হঠাৎ আবিষ্কার করলাম দেশটি রাশিয়ান বই দিয়ে ভরে
+গেছে। কী সুন্দর বই, বিশ্ব সাহিত্যের যে অসাধারণ বই কখনো পড়ার কথা কল্পনাও করিনি সেই বই আমাদের হাতের নাগালে। </p>
+<p>আমি তখন ঢাকা বিশ্ববিদ্যালয়ের ছাত্র। হঠাৎ করে একটা বই হাতে এল, বইয়ের নাম, গ্রহান্তরের আগন্তক। বইটি সায়েন্স ফিকশন, কিছু গল্পের সংকলন, পড়ে আমি হতবাক হয়ে গেলাম। সেই বইটি আমাকে এতই মুগ্ধ করল যে তার একটি
+গল্প ম্যাক্সওয়েলের
+সমীকরণকে নাট্যরূপ দিয়ে ঢাকা বিশ্ববিদ্যালয়ের টি.এস.সি.-তে নাটক হিসেবে মঞ্চস্থ করেছিলাম। যারা সেই নাটকে অভিনয় করেছিল, যারা কলাকুশলী ছিল তাদের প্রায় সবাই
+এখন খুব বড় বড় মানুষ হয়ে পৃথিবীর নানা দেশে ছড়িয়ে আছে! </p>
+<p>গ্রহান্তরের আগন্তক বইটিতে আরেকজন
+অসাধারণ লেখকের একটি গল্প ছিল,
+তার নাম আলেক্সান্ডার বেলায়েভ। (সেই
+গল্পের মূল চরিত্র ছিল একটি হাতী, তাই সেটাকে নাটকে মঞ্চস্থ করার কথা মাথায় আসেনি!) আলেক্সান্ডার বেলায়েভের লেখা উভচর মানব
+আমার পড়া প্রথম পূর্ণাঙ্গ সায়েন্স ফিকশন উপন্যাস। সেই উপন্যাসটি যেভাবে আমার মনে দাগ কেটেছিল সেরকম আর
+কোনো উপন্যাস কাটেনি। (আমি তখন জানতাম না এই অসাধারণ
+লেখক মারা গিয়েছিলেন
+না খেতে পেয়ে, নাৎসী জার্মানীর দখল করা একটি
+অবরুদ্ধ শহরে। তার দেহ
+সমাহিত হয়েছিল
+নাম চিহ্ন হীন একটি গণকবরে।
+</p>
+<p>বহুদিন পর সেরিনা লিখতে গিয়ে আমার
+বার বার আলেক্সান্ডার বেলায়েভের কথা পনে পড়ছে। এরকম একটি সায়েন্স ফিকশন যে লেখা
+যেতে পারে সেটি আমি তার কাছেই শিখেছি। </p>
+<p>মুহম্মদ
+জাফর ইকবাল <br/>
+১.২.২০১৫ </p>
+<p>.</p>
+<p><strong>পূর্ব কথা </strong></p>
+<p>ছোট স্টেশনটা ছবির মতো সুন্দর। প্লটফর্মের উপর ছোট একটা লাল ঘর, তার পিছনে ঘন সবুজ গাছের সারি। ওপরে গাঢ় নীল আকাশ সেই আকাশে সাদা
+শরতের মেঘ। স্টেশনের পাশ দিয়ে একটা
+মাটির সড়ক গ্রামের
+দিকে চলে গেছে। সড়কের দুই পাশে কৃষ্ণচূড়া গাছ, সেই গাছের নরম ছায়ায় একটা কিশোরী লাল একটা ফুল হাতে নিয়ে ট্রেনটির
+দিকে তাকিয়ে আছে। ট্রেনের জানালা দিয়ে, এই অপূর্ব দৃশ্যটির দিকে তাকিয়ে থেকে
+শামীম নিজের মনে বলল, “বাহ! কী সুন্দর।” </p>
+<p>ট্রেনের অন্য কোনো যাত্রীর এই দৃশ্যটি চোখে পড়েছে বলে মনে হল, কারণ এই মাত্র সবাই খবর পেয়েছে সামনে একটা মালগাড়ী লাইন
+থেকে ছিটকে পড়েছে
+এবং যতক্ষণ পর্যন্ত সেগুলোকে
+টেনে সরানোনা হচ্ছে। ততক্ষণ সবাইকে এখানে বসে থাকতে হবে। সময়টা এক দুই ঘন্টা হতে পারে সাত আট ঘন্টাও হতে পারে। সে
+কারণে যাত্রীদের ভেতর বিরক্তি, হতাশা, আতংক এবং ক্ষোভের
+জমা হয়েছে। কোনো একটা বিচিত্র কারণে শামীমকে তার কিছুই স্পর্শ করল না, সে হালকা মেজাজে উঠে দাঁড়িয়ে মাথার ওপরে রাখা তার
+ব্যাকপেকটা টেনে নামাতে থাকে। </p>
+<p>তার পাশে বসে থাকা মানুষটি অবাক হয়ে শামীমের
+দিকে তাকিয়ে জিজ্ঞেস করল,
+“কী করেন?” </p>
+<p>শামীম বলল, “নেমে যাই।” </p>
+<p>মানুষটি চোখ কপালে তুলে বলল, “নেমে যান?” </p>
+<p>“হ্যাঁ। গ্রামটা একটু ঘুরে আসি।” </p>
+<p>মুহম্মদ
+জাফর ইকবাল “যদি এর মাঝে রেল লাইন ঠিক হয়ে যায়? ট্রেন ছেড়ে দেয়?” </p>
+<p>“দিলে দিবে। পরের ট্রেনে আসব।” </p>
+<p>“এই ছোট স্টেশনে ট্রেন যদি না থামে?” </p>
+<p>“লোকাল ট্রেনে চলে আসব। বাস টেম্পু কিছু একটা ব্যবস্থা হয়ে যাবে।” </p>
+<p>মানুষটার কাছে তবু ব্যাপারটা
+গ্রহণযোগ্য মনে হল না। পাশাপাশি বসে এতোক্ষণ শামীমের সাথে কথা বলে এসেছে, শামীম পাস করা ডাক্তার, ডাক্তারী না করে বিদেশে ল্যাবরেটরিতে
+গবেষণা করে দেশে চলে এসেছে,
+পরিবারের কেউ দেশে থাকে না এ-রকম একটা মানুষ হঠাৎ ট্রেন থেকে একটা ছোট গ্রাম্য স্টেশনে কোনো কারণ ছাড়াই নেমে পড়বে সেটা তার পক্ষে বিশ্বাস করা
+কঠিন। এর ভেতরে কোনো একটা জিনিস নিশ্চয়ই ভুল হচ্ছে কিন্তু
+কোন জিনিসটা ভুল সে ঠিক বুঝতে পারছিল না! </p>
+<p>শামীম মানুষটার কাছ থেকে বিদায় নিয়ে ট্রেন
+থেকে নেমে পড়ল। প্রাটফর্মের এক কোনায় টিউবওয়েল চেপে তার শ্যাওলা
+গন্ধের ঠাণ্ডা পানিতে মুখ ধুয়ে এক ধরনের আরামের শব্দ করে ব্যাকপেকটা ঘাড়ে নিয়ে সড়কটার দিকে এগিয়ে যায়। লাল ফুলের কিশোরী মেয়েটা তখনো গাছের নিচে দাঁড়িয়ে আছে, সে সন্দেহের চোখে শামীমের দিকে
+তাকাল। তাদের গ্রামে সাধারণত এরকম মানুষ
+আসে না। </p>
+<p>শামীম মেয়েটির দিকে তাকিয়ে মুখে
+একটু হাসি ফুটিয়ে জিজ্ঞেস করল,
+“কী খবর?” </p>
+<p>মেয়েটি শামীমের প্রশ্নের কোনো উত্তর দিল না, বরং তার চোখে সন্দেহ ঘনীভূত হল। শামীম হাল ছাড়ল না, বলল, “তোমার নাম কী?” </p>
+<p>কোনো উত্তর নেই।</p>
+<p>“কোন ক্লাসে পড়?” এবারেও উত্তর নেই। </p>
+<p>“তোমাদের গ্রামের নাম কী?” এবারেও কোনো উত্তর নেই। শামীম এবারে হাল ছেড়ে দিয়ে সড়কের নরম ধূলায় পা
+ডুবিয়ে সামনের দিকে হাঁটতে থাকে। কয়েক পা হেঁটে চোখের কোনা দিয়ে পিছনে
+তাকিয়ে দেখল মেয়েটি একটা নিরাপদ দূরত্ব
+বজায় রেখে তার পিছু পিছু হেঁটে আসছে। শামীমকে নিয়ে একটু
+কৌতূহল আবার অপরিচিত মানুষ বলে খানিকটা জড়তাও আছে। </p>
+<p>গ্রামের সড়ক ধরে হেঁটে হেঁটে সে একটা বড় দিঘীর
+কাছে পৌঁছাল। দিঘীর পাশে বিশাল একটা গাছ, গাছের শিকড় বহুদূর
+পর্যন্ত ছড়িয়ে আছে। শামীম গাছের ছায়ায় মোটা একটা শিকড়ের উপর আরাম করে বসে পড়ল। তার পিছনে পিছনে হেঁটে আসা
+কিশোরী মেয়েটাও কাছাকাছি একটা
+শিকড়ের ওপর বসে
+পড়ল। প্রশ্ন করলে মেয়েটি যেহেতু প্রশ্নের
+উত্তর দেয় </p>
+<p>তাই শামীম এবারে আর প্রশ্ন করার
+চেষ্টা করল না। চোখে চোখ
+পড়তেই সে একটু
+হাসার চেষ্টা করল। </p>
+<p>মেয়েটা হঠাৎ করে জিজ্ঞেস করল, “আপনি কই যান?” </p>
+<p>অত্যন্ত কঠিন প্রশ্ন, এই প্রশ্নের উত্তর দেওয়া সম্ভব
+না, কারণ সে আসলে কোথাও
+যাচ্ছে না! মেয়েটা তার প্রশ্নের উত্তরে
+সন্তুষ্ট হবে না জেনেও শামীম বলল, “আমি
+কোথাও যাই না।” </p>
+<p>“তাহলে এখানে কী করেন?” </p>
+<p>“কিছু করি না। বসে আছি।” </p>
+<p>ঠিক কী কারণ জানা নেই শামীমের
+কথা শুনে মেয়েটা
+ফিক করে হেসে দিল। মনে হয় একজন
+বড় মানুষ কিছু না করে শুধু বসে আছে ব্যাপারটা এই মেয়েটার কাছে খুবই হাস্যকর একটা
+ঘটনা। শামীম অবশ্য এখানে
+আসার মতো কিছু
+খুঁজে পেলো না কিন্তু সেও
+শব্দ করে হাসল। হাসি খুব চমৎকার একটা বিষয়, একটা হাসিতে সব দূরত্ব নিমেষে
+দূর হয়ে যায়। মূহুর্তে মেয়েটা সহজ হয়ে গেল, সব কিছু বুঝে ফেলেছে সেরকম
+ভঙ্গী করে মাথা নাড়ল, বলল, “বুঝেছি। </p>
+<p>“কী বুঝেছ?” </p>
+<p>“আপনি পত্রিকার লোক। আমাদের গ্রামের খবর পত্রিকায় লিখবেন।” </p>
+<p>মুহম্মদ
+জাফর ইকবাল শামীম হাসল, বলল, “না, আমি পত্রিকার লোক না! তোমাদের গ্রামে পত্রিকায় লেখার
+মতো খবর আছে?” </p>
+<p>মেয়েটা খানিকক্ষণ চিন্তা করে বলল, “কালাম চাচার গাইয়ের একটা বাছুর হয়েছিল তার দুইটা মাথা।” </p>
+<p>শামীম মাথা নাড়ল, “এটা মনে হয় খবরের
+কাগজে ছাপা হওয়ার
+মতই খবর।” জিজ্ঞেস করল, “আর কিছু?” </p>
+<p>“মতি চোরা যখন গরু চুরি করতে
+গিয়ে ধরা পড়ল
+তখন তার মাথার চুল কামিয়ে মুখে আলকাতরা মাখিয়ে সারা গ্রামে ঘুরিয়েছে।” </p>
+<p>“আর কিছু?” </p>
+<p>“স্বামীর সংসারে অশান্তি সেই
+জন্যে সকিনা খালা গলায় দড়ি দিয়েছিল।” </p>
+<p>শামীম একটা নিশ্বাস ফেলল, দেশের আনাচে-কানাচে এরকম কতো দুঃখের কাহিনী না জানি লুকিয়ে আছে। মেয়েটা আংগুলে গুনে গুনে তাদের
+গ্রামের গুরুত্বপূর্ণ খবরগুলো
+দিতে থাকে। শামীম অন্যমনস্ক
+ভাবে শুনতে শুনতে দূরে তাকিয়ে থাকে। বিশাল দিঘীটার এক পাশে কিছু দুরন্ত ছেলে দাপাদাপি করছে। গ্রামের মহিলারা দিঘীতে বাসনপত্র
+ধুতে এসেছে। কাপড় কাঁচছে। সড়ক দিয়ে রাখালেরা
+গরু নিয়ে মাঠে যাচ্ছে।
+কিছুক্ষণ বসে থেকে শামীম উঠে দাঁড়াল। মেয়েটাও
+উঠে দাঁড়াল, জিজ্ঞেস করল, “কই যান।” </p>
+<p>“একটু হেঁটে দেখি।” </p>
+<p>শামীম সড়কের নরম ধূলায় পা ডুবিয়ে হাঁটতে
+থাকে, মেয়েটাও তার পাশে পাশে
+হাঁটে-এবারে আর নিরাপদ দূরত্বে থেকে নয়,
+পাশাপাশি। মেয়েটা আঙুল দিয়ে দূরে
+দেখিয়ে বলল, “ঐ দিকে আমার বাড়ি।” </p>
+<p>“তোমার বাড়িতে কে কে আছে?” </p>
+<p>“বাবা আছে। ভাই আছে বুবু আছে।” </p>
+<p>“মা?” </p>
+<p>“মা-ও আছে।” বলে মা থাকার পরও মায়ের কথা না বলার জন্যে
+মেয়েটা একটু অপরাধীর
+মতো হাসল। সড়কটা ধীরে ধীরে সরু হয়ে আসে। সড়কের দুই ধারে বড় বড় গাছ সড়কটাকে আবছা অন্ধকারে
+ঢেকে ফেলে। সড়কের এক পাশে খানিকটা
+জলা জায়গা, তার কাছাকাটি আসতেই বেশ কয়েকটা ব্যঙ পানিতে লাফিয়ে পড়ল। শামীম একটু চমকে উঠল এবং সেটা দেখে মেয়েটা হি হি করে হাসতে
+শুরু করল। </p>
+<p>দুইজন আরো একটু এগিয়ে যায়, সড়কের এক পাশে একটা ছোট ডোবা
+এবং সেখানে হঠাৎ কী যেন খল-বল করে ওঠে। এবারে মেয়েটা চমকে উঠল তারপর ডোবার কাছে গিয়ে উঁকি
+দিয়ে বলল, “মাছ!” </p>
+<p>শামীম জিজ্ঞেস করল, “কী মাছ?” </p>
+<p>“জানি না। বড় মাছ।” </p>
+<p>“এই ছোট ডোবাতে বড় মাছ আছে?” </p>
+<p>মেয়েটা যুক্তিতর্কের দিকে গেল না, বলল, “বাবারে ডেকে আনি। কোঁচ দিয়ে মাছটারে
+ধরবে।” </p>
+<p>কোঁচ জিনিষটা কী শামীম বুঝতে
+পারল না, কিন্তু সেটা যাই
+হোক সেটা দিয়ে, কী ভাবে মাছটাকে ধরবে সেটা
+দেখার জন্যে শামীমের একটু আগ্রহ হল। সে বলল, “যাও ডেকে আন।” </p>
+<p>মেয়েটা বাবাকে ডাকতে ছুটে গেল, শামীম ডোবার পাশে পা ছড়িয়ে বসে
+অপেক্ষা করতে থাকে। পানিতে
+তাকিয়ে বড় মাছটা দেখার চেষ্টা করল, কিন্তু কিছু চোখে পড়ল না। কিছুক্ষণের মাঝেই মেয়েটা তার বাবাকে ডেকে আনে, বাবা কমবয়সী শক্ত সামর্থ্য একজন মানুষ, তার হাতে একটা কোঁচ এবং সেটা দেখে শামীম চমকে
+উঠল। কোচ হচ্ছে একটা বর্শা, তবে এই বর্শায় ফলা
+একটি নয়, অনেকগুলো। এটা দিয়ে একটা
+মাছকে গেঁথে এফোঁড় ওফোড় করে ফেলবে চিন্তা করেই শামীমের গা গুলিয়ে এল। তারপরেও দৃশ্যটা দেখার জন্যে
+শামীম দাঁড়িয়ে রইল। মেয়েটার বাবা খুব সাবধানে
+ডোবার দিকে নেমে যেতে থাকে। মেয়েটি তার বাবাকে জায়গাটা দেখিয়ে দেয় কেমন
+করে মাছটিকে গেঁথে ফেলা হবে দেখার জন্যে শামীম দাঁড়িয়ে গেল। মানুষটি তীক্ষ্ম চোখে দেখতে
+দেখতে নিঃশব্দে এগিয়ে যেতে থাকে তখন হঠাৎ ডোবার কিনারে পানিটা আবার খল-বল করে উঠে। কোঁচ হাতে মানুষটি তার সমস্ত শক্তি দিয়ে মাছটিকে
+কোচে গেথে ফেলার পূর্ব মুহূর্তে শামীম অমানুষিক গলায় চিৎকার
+করে উঠল, ”না!” </p>
+<p>শেষ মূহূর্তে মানুষটি থেমে অবাক হয়ে শামীমের
+দিকে তাকাল। পানিতে যেখানে খল-বল করে উঠেছে শামীম সেখানে স্পষ্ট দেখেছে ছোট একটা শিশুর হাত নড়ে উঠেছে। শামীম তীর থেকে ছুটে এসে ডোবার পানিতে নেমে এল, যেখানে পানি খল-বল করছে শামীম সেখানে
+ছুটে এসে হাত ডুবিয়ে দেয়, তার হাতে জ্যন্ত কিছু নড়ে উঠল, শামীম সেটাকে ধরে উপরে তুলে
+আনে। সবাই বিস্ফারিত চোখে দেখল, তার হাতে ছোট একটা মানব শিশু, পেট থেকে আমব্লিক্যাল কর্ডটা ঝুলছে। </p>
+<p>শামীম শিশুটিকে বুকে জড়িয়ে ধরে
+উপরে তুলে আনে, শিশুটি তখনো নড়ছে। কেঁচ হাতে মানুষটা চাপা গলায় বলল, “ইয়া মাবুদ!” </p>
+<p>শামীম বলল, “আমার ব্যাগটা খোলেন। একটা টাওয়েল আছে বের করেন তাড়াতাড়ি।” </p>
+<p>বাবা ধরার আগেই মেয়েটা ব্যাকপেকটার জিপ
+টেনে খুলে ভেতরে হাতড়ে একটা টাওয়েল বের করে আনে।
+শামীম দ্রুত বাচ্চাটাকে টাওয়েলে </p>
+<p>পেঁচিয়ে বলল, “এখানে হাসপাতাল কোথায় আছে?” </p>
+<p>কোচ হাতে মানুষটা বলল, “হাসপাতাল নাই।” </p>
+<p>“ক্লিনিক? মেডিকেল সেন্টার?” </p>
+<p>“নাই। সদরে একজন ডাক্তার বসে–” শামীম বলল, “আমার ডাক্তার দরকার নাই। আমি ডাক্তার।” </p>
+<p>মেয়েটা জিজ্ঞেস করল, “বেঁচে আছে?”</p>
+<p>“হ্যাঁ।“</p>
+<p>“পানিতে ডুবে বেঁচে আছে কেমন
+করে?” </p>
+<p>শামীম বলল, “আমি জানি না।” </p>
+<p>মেয়েটা শামীমের বুকে চেপে ধরে রাখা শিশুটিকে দেখার
+চেষ্টা করতে করতে বলল,
+“ছেলে না মেয়ে? ছেলে না মেয়ে?” </p>
+<p>শামীম বলল, “খেয়াল করি নি।” </p>
+<p>মেয়েটা বলল, “মেয়ে। মনে হয় মেয়ে।” </p>
+<p>দেখতে দেখতে তাদের ঘিরে মানুষের ভীড় জমে
+গেল একজন বলল, “এইটা কার বাচ্চা?” </p>
+<p>আরেকজন বলল, “বাচ্চাকে পানিতে ফেলেছে কেন?” </p>
+<p>আরেকজন বলল, “কেন পানিতে ফেলেছে আপনি বুঝেন নাই? বার্লি খেয়ে বড় হয়েছেন?” </p>
+<p>আরেকজন বলল, “কিন্তু কে? এই বাচ্চার মা কে?” </p>
+<p>“সেইটা আপনাকে বলবে?” </p>
+<p>তখন বেশ কয়েকজন হঠাৎ করে বাচ্চাটাকে দেখতে
+চাইল, বলল, “দেখি বাচ্চাটারে দেখি?” </p>
+<p>শামীম বলল, “বাচ্চাটাকে পরে দেখা যাবে-এখন
+তাকে হাসপাতালে নিতে হবে।
+এক্ষুনি।” </p>
+</div>
+<br/><h2>০২. ছোট শিশুটির বুকে স্টেথেস্কোপ</h2>
+<hr/>
+<br/><div>
+<p>ছোট শিশুটির বুকে কিছুক্ষণ স্টেথেস্কোপটা ধরে
+রেখে কিছু একটা শুনে কম বয়সী ডাক্তারটি বলল, “বাঁচার সম্ভাবনা খুব কম।“</p>
+<p>শামীম অবাক হল না। সে নিজে ডাক্তার, সে খুব ভালো করে জানে একটা ছোট শিশু মায়ের গর্ভে একটা উষ্ণ পরিবেশে থাকে। জন্ম হবার পর বাইরের জগৎটি তার জন্যে যথেষ্ট
+ঠাণ্ডা বাচ্চাকে তখন কাপড় জড়িয়ে রাখতে হয়। এই রকম একটা বাচ্চাকে যদি একটা ডোবায় ফেলে
+দেয়া হয় তার বেঁচে ওঠার সম্ভাবনা খুব কম। </p>
+<p>কম বয়সী ডাক্তার–যাকে দেখে একটা কলেজের ছাত্রী
+বলে মনে হয়, শামীমের দিকে তাকিয়ে বলল, “আপনি নিজেও তো একজন ডাক্তার, আপনি তো আমার থেকে ভালো জানেন। বাচ্চাটির দুই লাংসেই নিমোনিয়া। অক্সিজেন দিতে হবে।” </p>
+<p>শামীম মেয়েটির দিকে তাকিয়ে বলল, “বাচ্চাটার চিকিৎসা কী ঠিক করে হবে?” </p>
+<p>ডাক্তার মেয়েটি হেসে ফেলল, বলল, “এটা সরকারী হাসপাতাল সরকারী
+হাসপাতালের অবস্থা তো আপনি
+জানেন। এই রকম অবস্থায় যেটুকু
+পারি আমরা ততটুকু চেষ্টা করব।” </p>
+<p>শামীম বলল, “একটা ইনকিউবিটারে
+রাখলে–” </p>
+<p>মেয়েটি একটা নিশ্বাস ফেলে বলল, “আমাদের ইনকিউবিটর বেশি নাই। যে কয়টি আছে তার সবগুলো এখন ব্যবহার হচ্ছে। কোনো একটা খালি হলেই নিয়ে যাব।” </p>
+<p>“আমার তাহলে করার কিছু নেই?” </p>
+<p>“আপনার যা করার তার সবকিছু করেছেন। একটা ডোবাতে মাত্র জন্ম হওয়া একটা বাচ্চাকে ডোবাতে ফেলে দিলে তাকে পেয়ে কেউ
+তুলে হাসপাতাল পর্যন্ত আনে না। আপনি এনেছেন, তার চিকিৎসা শুরু করিয়েছেন, ওষুধপত্র যা লাগবে কিনে দিয়েছেন। আপনার দায়িত্ব শেষ।” </p>
+<p>শামীম ইতস্তত করে জিজ্ঞেস করল, “বাচ্চাটা যদি শেষ পর্যন্ত না বঁচে–” </p>
+<p>“বেওয়ারিশ লাশকে দাফন করার খুব ভালো ব্যবস্থা আছে। আপনি শুনে খুব অবাক হবেন মানুষকে
+আমরা অনেক সময় বাঁচাতে পারি না কিন্তু মরে গেলে যথেষ্ট যত্ন করে তাকে দাফন-কাফন করি।” </p>
+<p>“আর যদি কোনো একটা ম্যাজিক হয়ে যায়, বাচ্চাটা বেঁচে যায়? তখন তার কী হবে?” </p>
+<p>“এরকম ছোট বাচ্চাদের নিয়ে কোনো ভাবনা নেই। এদের পালক নেয়ার জন্য অনেক পরিবার
+থাকে। যদি বেঁচে যায় তাহলে
+এই বাচ্চাটি সুন্দর একটা পরিবার পেয়ে যাবে।“ </p>
+<p>শামীম তবু ইতস্তত করে, “তাহলে আপনি বলছেন এই বাচ্চাটির
+জন্যে আমার আর কিছু করার নেই?” </p>
+<p>“না। আপনার আর কিছু করার নেই?” </p>
+<p>“তাহলে আমি চলে যাব?”</p>
+<p>“হ্যাঁ। আপনি চলে যেতে পারেন।” </p>
+<p>শামীম ছোট শিশুটির দিকে তাকালো। শিশুটির নিশ্বাস নিতে কষ্ট হচ্ছে। ছোট ছোট দ্রুত নিশ্বাস পড়ছে। নিমোনিয়ার শিশুদের বেলায় যেটা
+সবসময়ে দেখা যায়। শামীম শিশুটির কপাল একবার স্পর্শ
+করে মনে মনে বলল, “ভালো হয়ে যাও।” </p>
+<p>হাসপাতালের করিডোর ধরে হাঁটতে হাঁটতে শামীমের
+ভেতরে কিছু একটা খচ খচ করতে লাগল। ঠিক কোন ব্যাপারটা তার ভেতরে এরকম খচ খচ করছে সে
+ধরতে পারল না সেই জন্যে অস্বস্তিটা আরো বেশি পীড়া দিতে লাগল। </p>
+<p>.</p>
+<p>চাবি দিয়ে ঘরের দরজা খুলে ভেতরে ঢুকে
+শামীম তার ব্যাকপেকটা নিচে রেখে ভেতরে তাকাতেই দেওয়ালে টানানো শাহানা আর রিতুর বড় ছবিটা চোখে পড়ল। দুইজনই তার দিকে তাকিয়ে আছে। যতক্ষণ সে বাসায় থাকে
+ততক্ষণ এই দুজন তার দিকে তাকিয়ে থাকে। গাড়ী একসিডেন্টে তার শরীরের
+প্রায় সবগুলো
+হাড় ভেঙ্গে গিয়েও সে বেঁচে গেল কিন্তু শাহানা আর রিতুর শরীরে আঘাতের কোনো চিহ্ন নেই কিন্তু তারা দুজনেই
+মরে গেলবিষয়টা
+এতোদিন পরেও তাকে অবাক করে দেয়। শামীম কোনোদিন চিন্তা করে নি শাহানা আর রিতু ছাড়া সে একা
+একা বেঁচে থাকতে পারবে। কিন্তু সে একা একা
+বেঁচে আছে। ঠিক কী কারণ জানা
+নেই মাঝে মাঝেই তার মনে হয় শাহানা কিংবা রিতু আসলে মারা যায় নি। তারা বাসাতেই আছে। ডাক দিলেই দরজা খুলে বের হয়ে আসবে। শান্তা চোখ পাকিয়ে বলবে, “কী হলো? চিৎকার করছ কেন? তোমার সমস্যাটা কী?” আর রিতু কোনো কথা না বলে পিছন থেকে ছুটে এসে তার ঘাড়ে ঝুলে
+পড়বে। একটিবার–শুধু একটিবার রিতুকে
+দুই হাতে জাপটে ধরার জন্যে তার সমস্ত শরীর আঁকুপাঁকু করতে থাকে। শাহানার চোখের দিকে তাকিয়ে শুধু
+একটা কথা বলার জন্যে তার সমস্ত চেতনা মাঝে মাঝে আচ্ছন্ন। হয়ে যায়। </p>
+<p>শামীম সার্টটা খুলতে খুলতে বলল, “বুঝলি রিতু, আজকে ছোট একটা বাচ্চাকে হাসপাতালে
+রেখে এসেছি। বাচ্চাটা মনে
+হয় বাঁচবে না।” </p>
+<p>শামীম মাঝে মাঝেই এ-রকম করে, জোরে জোরে কথা বলে যেন সত্যিই
+রিতু কিংবা শাহানা তার কাছাকাছি দাঁড়িয়ে আছে। কেউ তাকে এটা করতে দেখে নি, দেখলে নিশ্চিত ভাবেই ধরে নিতো সে একজন বদ্ধ উন্মাদ। </p>
+<p>একটু পরে শামীম আবার বলল, “নিমোনিয়া হয়ে গেছে। নিশ্বাস নিতে পারছে না। অক্সিজেন দিতে হবে, তারপরেও লাভ হবে মনে হয়।” বাথরুমে হাত মুখ ধুতে ধুতে
+বলল, বাচ্চাটা যদি বেঁচে
+যেতো সেটা একটা অসাধারণ গল্প হতো। কিন্তু মুশকিল কী জানিস?” শামীম একটু থেমে বলল, “মুশকিল হল রিয়েল লাইফে অসাধারণ গল্প
+নাই। ম্যাজিক নাই। রিয়েল লাইফ খুবই কঠিন। খুবই বোরিং।” </p>
+<p>শামীম ফ্রীজ থেকে কিছু খাবার
+বের করে মাইক্রো ওয়েভ
+ওভেনে গরম করে খেতে খেতে আবিষ্কার করল তার ভেতরে আবার কোনো একটা কিছু নিয়ে এক ধরনের
+অস্বস্তি। শুধু মনে হচ্ছে
+কিছু একটা জিনিস হিসেব মিলছে না,
+কোথায় সেই হিসাব মিলছে না সে ধরতে পারছে না। </p>
+<p>খাওয়া শেষ
+করে শামীম যখন এক কাপ চা তৈরি করে সোফায় হেলান দিয়ে অন্যমনস্ক ভাবে কাপে চুমুক দিচ্ছে তখন সে হঠাৎ
+করে চমকে উঠল। হঠাৎ করে সে বুঝতে পারল কেন
+হিসেবটি মিলছে না, হঠাৎ
+করে সেটা সে বুঝতে পেরেছে কেন তার ভেতরে এতো অস্বস্তি। </p>
+<p>গ্রামের সেই ডোবাতে কিশোরী মেয়েটা যখন প্রথমবার এই শিশুটাকে
+একটা বড় মাছ মনে করে তার বাবাকে ডাকতে গেল তখন থেকে সে ডোবার পাশে বসে ডোবার
+পানির দিকে তাকিয়েছিল। সে বাচ্চাটিকে দেখে নি-তার কারণ
+বাচ্চাটা পানিতে ডুবেছিল। একজন মানুষ নিশ্বাস না নিয়ে পানির
+ভেতরে বড় জোর এক দুই মিনিট থাকতে পারে। কিন্তু এই বাচ্চাটা তার চোখের
+সামনেই কম পক্ষে টানা পনেরো
+মিনিট পানিতে ডুবেছিল-এই পনেরো
+মিনিটি বাচ্চাটা একবারও নিশ্বাস নেয় নি। এটি কীভাবে সম্ভব? সে যখন বাচ্চাটিকে পানি থেকে
+তুলেছে তখন বাচ্চাটির পুরোপুরি
+জ্ঞান আছে, বাচ্চাটি তার
+দিকে এক ধরনের বিস্ময় নিয়ে তাকিয়েছিল। নবজাতকের বিস্ময়কর সেই বুক কাঁপানো দৃষ্টি। </p>
+<p>শামীম তার চায়ে চুমুক
+দিতে ভুলে গেল। তার সামনেই কম পক্ষে পনেরো মিনিট পানিতে ডুবেছিল, সে এখানে হাজির হওয়ার আগে কতোক্ষণ ডুবেছিল কে জানে। তাকে নিশ্চয়ই দিনের আলোতে ডোবায় ফেলে
+নি, রাতের অন্ধকারে ফেলেছে। যার অর্থ এই শিশুটি নিশ্চয়ই বেশ কয়েক ঘণ্টা পানিতে ডুবে
+আছে। কিন্তু পানিতে ডুবেও বাচ্চাটি
+মারা যায় নি। সেটি একটি অসম্ভব ব্যাপার–মানুষকে বেঁচে থাকতে হলে নিশ্বাস
+নিতে হয়, শরীরের কোষে কোষে অক্সিজেন
+পৌঁছে দিতে হয়। শরীরের সমস্ত জৈবিক কাজ সাময়িক ভাবে বন্ধ করে দিতে
+পারলে হয়তো নিশ্বাস নেবার প্রয়োজন হবে না, কিন্তু বাচ্চাটির জৈবিক কাজ
+তো বন্ধ হয় নি! বাচ্চাটির তো পুরোপুরি জ্ঞান ছিল, মাঝে মাঝে পানিতে খল-বল করে মাছের মতো নড়ে উঠেছিল। বাচ্চাটিকে তোলার পর তার হাতের ভেতর নাড়াচাড়া করেছে, সে পুরোপুরি সতেজ একটা শিশুর মতো ছিল। কোনো নিশ্বাস না নিয়ে-এটি কীভাবে সম্ভব? </p>
+<p>শামীম একটু অবাক হল, বিষয়টা কেন তার চোখে এতোক্ষণ পর ধরা পড়ল? যেহেতু এটা অসম্ভব একটি ঘটনা
+তাই নিজের অজান্তেই সে ধরে নিয়েছে নিশ্চয়ই এটি সত্য নয়, নিশ্চয়ই অন্য কিছু ঘটেছে যেটা
+তার চোখে পড়ে নি। তা
+ছাড়া বাচ্চাটাকে প্রাণে বাঁচানোটাই ছিল তার মূল উদ্দেশ্য তখন অন্য কোনোকিছু সাময়িক ভাবে তার মাথায় আসে
+নি। </p>
+<p>শামীম চায়ের কাপটা টেবিলে রেখে উঠে দাঁড়াল। সে হাসপাতালে গিয়ে বাচ্চাটিকে
+আরো একবার দেখে আসবে। এই রহস্যময় শিশুটিকে
+আরো একবার নিজের চোখে দেখে
+আসা দরকার। </p>
+<p>শামীম যখন হাসপাতালে পৌঁছেছে
+তখন সেখানে অনেক ভীড়। সরকারী হাসপাতালে যে-রকম হয়, রোগীর তুলনায় নার্স ডাক্তারের সংখ্যা
+খুব কম। হাসপাতালের কোনো নিয়ম কানুন নেই, লোকজন ইচ্ছে মতো ভেতরে ঢুকছে, বের হচ্ছে, রোগীর পাশে দাঁড়িয়ে আছে। বাচ্চাদের ওয়ার্ডে সব বাচ্চার কাছেই তার
+মা কিংবা কোনো আত্মীয় স্বজন
+দাঁড়িয়ে আছে। শামীম
+যে শিশুটিকে হাসপাতালে রেখে গেছে তার কাছে কেউ নেই, নাকে অক্সিজেনের নল লাগানো ছিল সেটা সরে গেছে কেউ লক্ষ্য করে নি। বুকটা খুব দ্রুত ওঠা নামা করছে, ঠোঁটগুলো নীল। শামীম বুঝতে পারলো বাচ্চাটি এর মাঝে মৃত্যুর দিকে আরো কয়েক পা এগিয়ে গেছে। </p>
+<p>শামীম এদিক সেদিক তাকিয়ে একজন
+নার্স খুঁজে বের করল, জিজ্ঞেস
+করল, “এই বাচ্চাটার কী খবর?” </p>
+<p>নার্স একটা স্যালাইনের ব্যাগ নিয়ে একদিকে
+প্রায় ছুটে যাচ্ছিল, বলল, “ডিউটি ডাক্তারকে জিজ্ঞেস করেন।” </p>
+<p>শামীম ডিউটি ডাক্তারকে খুঁজে বের করার জন্য
+এদিক সেদিক তাকাচ্ছিল তখন পিছন থেকে কেউ একজন ভারী গলায় জিজ্ঞেস
+করল, “কী সমস্যা?” </p>
+<p>শামীম ঘুরে তাকাল, ধড়ের ওপর মাথা বসানো গাট্টাগোট্টা একজন মানুষ। গায়ে ডাক্তারের
+এপ্রন, গলা থেকে স্টেথিস্কোপ
+ঝুলছে তাই বোঝা যাচ্ছে
+মানুষটা ডাক্তার। শামীম হাসি হাসি মুখ করে বলল, “না, কোনো সমস্যা নেই।
+আমি এই বাচ্চাটাকে ভর্তি করে গিয়েছিলাম,
+দেখতে এসেছি কেমন আছে।” </p>
+<p>“ও।” মানুষটা ভুরু কুঁচকে শামীমের দিকে তাকাল, চোখের দৃষ্টি দেখে শামীমের
+মনে হল সে নিশ্চয়ই
+কোনো একটা ভুল করে ফেলেছে। </p>
+<p>শামীম বলল,”আমি নিজেও আসলে ডাক্তার।” </p>
+<p>মানুষটা বলল, “ও! রোগী কেমন দেখলেন?” </p>
+<p>“ভালো না। খুব ক্রিটিক্যাল মনে হয় আরেকটু
+কেয়ার দরকার ছিল।” </p>
+<p>ডাক্তার মানুষটা বলল, “কেয়ার দরকার মনে করলে কেয়ার দেন। আপনাকে বাধা দিচ্ছে কে?” </p>
+<p>শামীম মানুষটার কথা শুনে রীতিমতো চমকে উঠল। এ-রকম ভাষায় কেউ তার
+সাথে কথা বলতে পারে শুনেও সে বিশ্বাস করতে পারে না। মানুষটার দিকে অবাক হয়ে তাকিয়ে বলল, “তাকে চিকিৎসার জন্যে হাসপাতালে
+ভর্তি করানো হয়েছে?” </p>
+<p>“এর জন্যে আপনার এতো দরদ কেন?” </p>
+<p>“দরদ?” শামীম হতচকিতের মতো এদিক সেদিক তাকাল। ভর্তি করানোর সময় কমবয়সী কলেজ ছাত্রীর মতো দেখতে মহিলা ডাক্তারটা কী। সুন্দর করে কথা বলেছে, আর এই গরিলার মতো মানুষটা কী শুরু করেছে? মানুষটা এমন ভাবে শামীমের দিকে
+এগিয়ে এল যে তার মনে হল বুঝি তাকে মারতে আসছে। একেবারে তার মুখের কাছে মুখ এনে হিস হিস
+করে বলল, “এই বাস্টার্ডের মা তাকে বাঁচাতে চায় নাই, ডোবায় ফেলে দিয়েছে। আপনি কেন তুলে এনেছেন?” </p>
+<p>“কী বলছেন আপনি?” </p>
+<p>“এই পাপের সন্তানকে বাঁচানো আমার মাথা ব্যথা
+কেন হবে?” </p>
+<p>শামীম পাথরের মতো মুখ করে বলল, “কী বলছেন আপনি? আপনি একজন ডাক্তার। আপনি হিপোক্রেটাসের ওথ নিয়েছেন—” </p>
+<p>“গুলি মারি আমি হিপেক্রেটাসকে। ঘেন্না হয় আমার। আমার কেন আবর্জনা ঘাটতে হবে? নর্দমার আবর্জনা কেন তুলে এনেছেন? এইখানে সত্যিকারের মা বাবার
+সত্যিকার বাচ্চা আছে। আমি
+তাদের চিকিৎসা করব। পাপের
+সন্তানকে আমি কেন ছোঁব?
+যার জন্ম হয়েছে
+দোজখে যাবার জন্যে তার জন্যে আমার কী দায়িত্ব?” </p>
+<p>অসহ্য ক্রোধে শামীমের শরীরে
+জ্বালা ধরে যায়। গরিলার মতো মানুষটা হিস হিস করে বলল, “এই বাস্টার্ডের চিকিৎসা করার
+আমার কোনো সখ নাই। একে বাঁচাতে চাইলে আপনি নিয়ে যান
+এখান থেকে। এই ওয়ার্ডে অনেক সত্যিকার মানুষের
+সত্যিকার বাচ্চা আছে যাদের চিকিৎসা দরকার।” </p>
+<p>অনেক কষ্ট করে শামীম নিজেকে
+শান্ত রাখল তারপর শীতল গলায় বলল, “ঠিক আছে আমি নিয়ে যাব। তার আগে আমার একটু প্রিপারেশান
+দরকার। আমি প্রিপারেশন নিয়ে আসছি। আপনার কাছে অনুরোধ–” </p>
+<p>“কী অনুরোধ?” </p>
+<p>“আমি প্রিপারেশান নিয়ে আসার
+আগে আপনি এই বাচ্চাটাকে গলা টিপে মেরে ফেলবেন না।” </p>
+<p>মানুষটা তীব্র দৃষ্টিতে শামীমের
+দিকে তাকিয়ে রইল। শামীম
+নিচু গলায় বলল, “যদি মেরে ফেলেন তাহলে আমি গলা
+টিপে আপনাকে মেরে ফেলব।
+মানুষ মারলে অপরাধ হয়-জানোয়ার মারলে
+অপরাধ হয় না।” </p>
+<p>.</p>
+<p>দুই ঘন্টা পর, শিশুটি শামীমের বাসায় তার ডাইনিং টেবিলে শুয়ে আছে। শামীম ফ্যান থেকে একটা দড়ি ঝুলিয়ে সেখানে
+একটা স্যালাইনের ব্যাগ ঝুলিয়ে রেখেছে। বাচ্চাটিকে একটা কম্বল দিয়ে মুড়ে ঢেকে
+রেখেছে। মাথার কাছে একটা
+ছোট অক্সিজেন সিলিন্ডার, সেখান থেকে তার নাকে সরু প্লাস্টিকের নল দিয়ে অক্সিজেন
+দেয়া হচ্ছে। সে স্টেথিস্কোপ
+দিয়ে শিশুটির বুক পরীক্ষা করে একটা দীর্ঘশ্বাস ফেলে দেওয়ালে টানানো তার মেয়ে রিতুর
+ছবির দিকে তাকিয়ে বলল, “বুঝলি রিতু। বাচ্চাটার অবস্থা ভালো না। যে বাচ্চা ঘণ্টার পর ঘণ্টা ডোবায় ডুবে
+থাকতে পারে তাকে অক্সিজেন দিয়ে বাঁচিয়ে রাখতে পারছি না, কেমন লাগে বল।” </p>
+<p>শামীম গলার স্বর নামিয়ে ষড়যন্ত্রীদের মতো করে বলল, “আমার কী মনে হচ্ছে
+জানিস রিতু? আমার মনে হচ্ছে
+এই বাচ্চাটি আসলে পানির ভেতর নিশ্বাস নিতে পারে এখন তাকে বাচঁতে হলে পানিতে ডোবাতে হবে। কিন্তু তুইই বল, এটা কী বিশ্বাসযোগ্য কথা?” </p>
+<p>শামীম ওঠে সারাঘরে একবার পায়চারী করল, তারপর টেলিফোনটা হাতে নিয়ে একটা
+নম্বরে না। জর্জটাউন ইউনিভার্সিটিতে তার এককালীন সহকর্মী আলেক্সের নম্বর। এই সময়টাতে তার খুব ব্যস্ত থাকার কথা
+টেলিফোনটা ধরবে তার সম্ভাবনা খুব কম, কিন্তু শামীম অবাক হয়ে দেখল আলেক্স টেলিফোনটা ধরে তার
+বিচিত্র ইংরেজী উচ্চারণে বলল,
+“আলেক্স বলছি।” </p>
+<p>শামীম ইংরেজীতে বলল, “আলেক্স আমি শামীম।” অন্য পাশ থেকে আলেক্সের আনন্দোচ্ছাস
+শোনা গেল, “হেই শামীম। লং টাইম নো সি, লং টাইম নো টক, লং টাইম নো ই-মেইল তোমার হয়েছেটা কী? বেঁচে আছ?” </p>
+<p>“হ্যাঁ। বেঁচে আছি। তোমার কী খবর।” </p>
+<p>আলেক্স চিৎকার করে বলল, “আমার সব রকম খবর আছে। ভালো, খারাপ, মাঝারী রকমের ভালো, মাঝারী রকমের খারাপ, খুব ভালো, খুব খারাপ,
+কোনটা শুনতে চাও?” </p>
+<p>শামীম হেসে ফেলল, বলল, “সবগুলো শুনি। খারাপ থেকে শুরু করে আস্তে আস্তে ভালোর দিকে যাও।” </p>
+<p>আলেক্স হড়বড় করে কথা
+বলতে থাকে। দুই বন্ধু বেশ খানিকক্ষণ
+পুরানো দিনের কথা বলে একে
+অন্যের খবর নেয়। এক সময় আলেক্স বলল, “ঠিক আছে শামীম, এখন বল তুমি কেন ফোন করেছ? ধরেই নিচ্ছি তুমি তোমার পুরনো
+বন্ধুর গার্লফ্রেন্ড তাকে কী রকম দাগাবাজী করেছে তার খবর নেওয়ার জন্য ফোন করো নাই।” </p>
+<p>শামীম বলল, “তুমি ঠিকই বলেছ। আমি তোমার কাছে একটা জিনিস জানার জন্য ফোন করেছি। ইন্টারনেটের হালকা তথ্য দিয়ে হবে
+না। আমার খাঁটি বৈজ্ঞানিক তথ্য দরকার।” </p>
+<p>“ঠিক আছে, বল।” </p>
+<p>“মানুষ কী কোনোভাবে তার ফুসফুস ব্যবহার না করে নিশ্বাস নিতে
+পারে?” </p>
+<p>“না। পারে না।” </p>
+<p>“শরীরের চামড়া দিয়ে?” ও </p>
+<p>“মানুষের চামড়া হচ্ছে, তার শরীরের সবচেয়ে বড় অর্গান। প্রায় তিন কেজি
+ওজন। প্রায় দুই
+মিলিওন লোমকুপ। এক বর্গ ইঞ্চিতে চার মিটার
+রক্তনালী। চামড়ার মৃত কোষ প্রতিনিয়ত ঝরে পড়ছে, নূতন কোষের জন্ম নিচ্ছে। এক জীবনে এক মানুষ প্রায় হাজার
+বার নূতন চামড়ার
+জন্ম দেয় কিন্তু যত কিছুই করুক এই চামড়া দিয়ে নিশ্বাস
+নেয়া যায় না। সরি
+শামীম।” </p>
+<p>“কিন্তু কোনো কোনো প্রাণী তো নিতে পারে।” </p>
+<p>“হ্যাঁ। পারে।
+উভচরেরা পারে। কোনো কোনো ব্যাঙ পারে। সালমান্ডার পারে। কোনো কোনো সালমান্ডার আছে যাদের ফুসফুস নেই। তারা তাদের চামড়া দিয়ে নিশ্বাস
+নেয়। কিন্তু মানুষ তো সালমান্ডার না।” </p>
+<p>“কোনো স্তন্যপায়ী প্রাণী পারে না?” </p>
+<p>আলেক্স কয়েক সেকেন্ড চিন্তা করে বলল, “অস্ট্রেলিয়াতে ইঁদুরের মতো এক ধরনের মার্সুপিয়াল আছে তার নামটা খুবই ফ্যান্সী, জুলিয়া ক্রিক ডুনার্ট! এই ইঁদুরগুলো চামড়ার
+ভিতর দিয়ে নিশ্বাস নিতে পারে। আমার জানামতে আর কোনো স্তন্যপায়ী প্রাণী
+পারে না।” আলেক্স এক মুহূর্ত
+অপেক্ষা করে বলল, “তুমি কেন আমাকে এটা জিজ্ঞেস করছ? তুমি কী কাউকে পেয়েছ যে ফুসফুস ব্যবহার
+না করে চামড়া দিয়ে নিশ্বাস নিতে পারে?” </p>
+<p>শামীম হাসার চেষ্টা করে বলল, “না সেভাবে পাই নি, কিন্তু এটা ছাড়া আর
+কোনো ব্যাখ্যা পাচ্ছি না।” </p>
+<p>আলেক্স হঠাৎ করে গম্ভীর গলায় বলল, “দেখ শামীম। মানুষের প্রতি মুহূর্তে বিবর্তন
+হচ্ছে, মিউটেশান হচ্ছে। তাই ঘটনাক্রমে খুব বিচিত্র
+কিছু হওয়া অসম্ভব কিছু না।
+এই মিউটেশানগুলো টিকে থাকে
+না বলে আমরা এই বিচিত্র উদাহরণগুলো দেখি না।
+মানুষের চামড়ার
+প্রতি বর্গ ইঞ্চিতে চার মিটার রক্তনালী, সেগুলো
+যদি কোনোভাবে চামড়ার কোষের ভেতর দিয়ে অক্সিজেন
+এক্সচেঞ্জ করতে পারে সে হয়তো চামড়া দিয়ে নিশ্বাস
+নিতেও পারে। মাছ তার ফুলকা
+দিয়ে জানি থেকে অক্সিজেন নেয়—“</p>
+<p>শামীম কিছু বলল না। আলেক্স বলল, “চামড়া দিয়ে নিশ্বাস
+নেবার জন্যে সালমান্ডারের চামড়া ভিজা থাকতে হয়। তুমি তোমার কেসে চামড়া ভিজিয়ে দেখ। দরকার হলে পানিতে ডুবিয়ে দেখ। তুমি বিজ্ঞানী মানুষ তোমার কারো কথা বিশ্বাস করার দরকার নেই। তুমি এক্সপেরিমেন্ট করো, করে দেখো কী হয়।” </p>
+<p>শামীম বলল, “দেখব।” </p>
+<p>.</p>
+<p>কিছুক্ষণের মাঝেই শামীম তার এক্সপেরিমেন্ট
+শুরু করল। </p>
+<p>শামীম টেবিলে একটা গামলায় পানি
+রেখে সেখানে খানিকটা গরম পানি ঢেলে কুসুম কুসুম তাপমাত্রায় নিয়ে এল। হাত দিয়ে যখন
+মনে হল তাপমাত্রাটা আরামদায়ক একটা উষ্ণতায় পৌঁছেছে তখন সে শিশুটিকে কম্বলের ভেতর থেকে বের করে খুব সাবধানে গামলার
+পানিতে নামাল, শিশুটির মাথার পিছনে সাবধানে ধরে রাখল হঠাৎ
+যেন গড়িয়ে পানিতে পড়ে না যায়। পানিতে নামানো পর শিশুটির শরীর এক দুইবার ঝাঁকুনী দেয়, তারপর শান্ত হয়ে যায়। </p>
+<p>শামীম তীক্ষ্ম দৃষ্টিতে তাকিয়ে থাকে, শিশুটি খুব ধীরে ধীরে তার হাত পা নাড়ছে। মনে হয় পানির ভেতরে এই শিশুটি একটু
+বেশী স্বাচ্ছন্দ্য অনুভব করে। শিশুটির বুক খুব দ্রুত ওঠানামা করছিল, নিমোনিয়া হলে
+বাচ্চাদের যা হয়, শামীম অবাক হয়ে দেখল তার বুকের ওঠা নামা কমে
+আসছে। শুধু তাই না, তার সারা শরীরে ছোট ছোট
+বাতাসের বুদবুদ জমা হচ্ছে। চামড়া দিয়ে শরীরে
+অক্সিজেন নিয়ে আবার চামড়া দিয়েই কার্বন ডাই অক্সাইড বের করে দিচ্ছে। কার্বন ডাই অক্সাইড বুদবুদগুলো বড় হওয়ার আগে শরীরে লেগে থাকছে। শামীম হতবাক হয়ে শিশুটির
+দিকে তাকিয়ে থাকে। স্টেথিস্কোপ দিয়ে তার
+হৃদস্পন্দন মেপে দেখে, ছোট শিশুর একটা শক্তিশালী হার্ট ধুকপুক ধুকপুক
+করে সারা শরীরে রক্ত সঞ্চালন করছে। </p>
+<p>শামীম চাপা গলায় বলল, “রিতু! তুই দেখছিস কী হচ্ছে? দেখছিস তুই?” দেয়ালে রিতুর ছবি কোনো উত্তর দিল না কিন্তু তাতে
+শামীমের কোনো সমস্যা হলো না, সে ফিসফিস করে বলল, “বুঝলি রিতু আমি এখন কী করব? আমি এখন খুব সাবধানে এই বাচ্চাটির
+মাথাটা ছেড়ে দেব যেন তার মাথাটাও পানির ভেতর ঢুকে যায়। তার পুরো শরীর যেন পানির ভেতর থাকে। আমার কী মনে হয় জানিস?” শামীম রিতুকে প্রশ্নের উত্তর
+দেওয়ার একটু সময় দিল, তারপর বলল, “আমার মনে হয় এই ছোট শিশুটা তখন আরো ভালো করে নিশ্বাস নিতে পারবে।” </p>
+<p>শামীম তখন সাবধানে বাচ্চাটার
+মাথা ছেড়ে দিল, সাথে
+সাথে বাচ্চাটা পানির নিচে তলিয়ে যায়,
+বাচ্চাটার চোখে মুখে বিন্দুমাত্র অস্বস্তির চিহ্ন নেই বরং খুবই স্বাভাবিক ভাবে সে পাশ
+ফিরে শুয়ে পড়ল। তার মুখ থেকে বড় বড় কয়েকটা বাতাসের বুদবুদ
+বের আসে। শামীম নিশ্বাস
+বন্ধ করে শিশুটির হৃৎস্পন্দন
+মাপে, একটা সতেজ কচি হৃৎপিণ্ড বুকের ভেতর ধ্বক ধ্বক করছে। কী বিচিত্র একটা দৃশ্য! </p>
+<p>শামীম হতবাক হয়ে কিছুক্ষণ
+তাকিয়ে রইল, তারপর
+রিতুর ছবির দিকে তাকিয়ে বলল, “বুঝলি রিতু, আমার কি মনে হয় জানিস? আমার মনে হয় এইবারে
+আমি এই বাচ্চাকে বাঁচিয়ে তুলতে পারব। ফুসফুস দিয়ে নিশ্বাস নিতে হচ্ছে না
+বলে ফুসফুসটা বিশ্রাম পাচ্ছে,
+এখন নূতন এন্টিবায়োটিক
+চেষ্টা করতে পারব। তোর কি বিশ্বাস হচ্ছে রিতু? আমার একটুও বিশ্বাস হচ্ছে না।” </p>
+<p>পরদিন শামীম আলেক্সকে একটা ই-মেইল পাঠালো : </p>
+<p>প্রিয় আলেক্স:
+</p>
+<p>আমি জানি তুমি বিশ্বাস করবে
+না, তারপরও আমি তোমাকে লিখছি। বিশ্বাস কর সাথে যে ছবিটা পাঠাচ্ছি
+সেটা সত্যি। আমার বাজায় বড় একটা
+একুয়ারিয়ামে ছোট একটি মেয়ে, বয়স সম্ভবত আটচল্লিশ ঘণ্টায় বেশি
+নয়। সে পানির নিচে শান্ত হয় ঘুমাচ্ছে, সে ফুসফুস দিয়ে নিশ্বাস
+নিচ্ছে না, নিশ্বাস নিচ্ছে
+তার তুক দিয়ে। তার শরীরে একটা রূপালী আভা লক্ষ্য করেছ? এটা এসেছে ত্বকের ওপরে খুব
+সূক্ষ্ম একটা কার্বন ডাই অক্সাইড গ্যাসের আস্তরণ থেকে, নিশ্বাসের সাথে যেটা বের হয়ে আসছে। এই মুহূর্তে আমি কোনো ঝুঁকি নিচ্ছি না, একটা পাম্প দিয়ে পানিতে
+অক্সিজেন মিশিয়ে যাচ্ছি। </p>
+<p>মেয়েটির খুব খারাপ ধরনের নিমোনিয়া হয়েছিল, এইটুকুন শরীরে অনেক এন্টিবায়োটিক গিয়েছে। কাল থেকে আজকে সে অনেক খানি
+ভালো! </p>
+<p>তোমার কী মনে হয়? জীব বিজ্ঞান বই কী নূতন করে লিখতে হবে? </p>
+<p>শামীম। </p>
+<p>পুনঃ ছবিটি, তোমার জন্যে-সাংবাদিকেরা হাতে পেলে আমার জীবন শেষ হয়ে যাবে। </p>
+<p>দুই মিনিটের ভেতর শামীম আলেক্সের কাছ থেকে
+একটা উত্তর পেলো: </p>
+<p>প্রিয় শামীম, <br/>
+আমি আসছি। <br/>
+আলেক্স </p>
+<p>পুনঃ আমার জন্যে বেশি করে ঝাল
+দিয়ে ভারতীয় কায়দায় মুরগির
+মাংস রান্না করে রেখো।
+</p>
+<p>পুনঃ পুনঃ মৎস্যকন্যার জন্যে
+সম্ভাব্য কিছু ওষুধ, এন্টিবায়োটিক হরমোন, স্টেরয়েড, নিউট্রিয়েন্ট আনছি।
+কাস্টমস আটকালে উদ্ধার করার ব্যবস্থা রেখো। </p>
+</div>
+<br/><h2>০৩. তেরো বছর পর</h2>
+<hr/>
+<br/><div>
+<p><strong>তেরো বছর পর</strong></p>
+<p>পুকুরের বাঁধানো ঘাটে শুয়ে শামীম আকাশের দিকে তাকিয়েছিল। গভীর নীল আকাশ। সেই আকশে এক চিলতে মেঘ। সেই মেঘের কাছাকাছি একটা চিল উড়ছে। সত্যিই কী উড়ছে, নাকী ভেসে আছে? দুটি পাখা মেলে ধরে আকাশে কী সহজে একটা চিল ভেসে থাকে। কেমন করে ভেসে থাকে? </p>
+<p>শামীম উঠে বসে পুকুরের দিকে
+তাকাল, পুকুরের স্থির পানিতে
+একটু ঢেউ নেই, একটু আলোড়ন নেই, মনে হয় পুকুরের
+পানি নয়, সময় বুঝি
+স্থির হয়ে আছে। পুকুরের
+কাচের মতো স্থির পানিতে বড় বড় গাছের
+ছায়া পড়েছে, সেই ছায়াগুলোও স্থির। শামীম নিজের ভেতরে এক ধরনের বিষণ্ণতা অনুভব করে, কেন তার ভেতরে এই অকারণ বিষণ্ণতা সে জানে না। শামীম একবার আকাশের চিলটিকে
+দেখে আবার পুকুরের স্থির পানির দিকে তাকাল, এই মুহূর্তে সেরিনা পানির নিচে ঘুরে বেড়াচ্ছে, কতোক্ষণ থেকে সে পানির নিচে আছে
+কে জানে! পয়তাল্লিশ মিনিট? এক ঘন্টা? নাকী আরো বেশি? </p>
+<p>তেরো বছর আগে অজানা অচেনা একটা গ্রামের ডোবায় সেরিনাকে কোচ দিয়ে একজন
+প্রায় গেঁথে ফেলছিল,
+শামীম শেষ মুহূর্তে তাকে বাঁচিয়েছিল। টাওয়েলে পেঁচিয়ে নিয়ে এসে
+তাকে হাসপাতালে ভর্তি করেছিল। গরিলার মতো একজন ডাক্তার ঠিক করে সেরিনার চিকিৎসা করতে রাজী
+হয় নি বলে শামীম সেরিনাকে
+তার বাসায় নিয়ে এসেছিল। তাকে বাসায় নিয়ে এসেছিল
+বলে সে বুঝতে পেরেছিল সেরিনা
+অন্য সবার থেকে ভিন্ন। সালামান্ডারের মতো কিংবা অস্ট্রেলিয়ার মার্ক্সপিয়াল জুলিয়া ক্রিক
+ডুনার্টের মতো সেরিনা ত্বক দিয়ে নিশ্বাস নিতে পারে। শামীমের মনে হয়, মাত্র সেদিনের ঘটনা যখন সেরিনার কথা শুনে ওয়াশিংটন ডিসি থেকে পরের দিন আলেক্স এই দেশে চলে
+এসেছিল। পুরো এক মাস আলেক্স সেরিনার পাশে পাশে ছিল। এই অস্বাভাবিক ক্ষমতা নিয়ে যেন
+সুস্থ মানুষের মতো বেঁচে থাকতে পারে সে জন্যে আলেক্স একটু
+একটু করে সেরিনাকে প্রস্তুত
+করেছে। সেরিনার রক্তটাকে পরিশুদ্ধ করেছে, ত্বকটাকে কোমল করেছে, লোমকূপকে বিস্তৃত করেছে, রক্তনালীকে স্পষ্ট করেছে। ফুসফুঁসে নিমোনিয়াকে দূর করেছে। সেরিনা নামটিও আলেক্সের দেওয়া,
+গ্রীক উপাখ্যানে মৎস্যকন্যার নাম ছিল সাইরেন-সাইরেন থেকে সেরিনা। </p>
+<p>এক মাস পর আলেক্স ওয়াশিংটন ডিসি ফিরে গিয়েছিল। সেরিনার পরিচয় গোপন রেখে আলেক্সের নেচারে একটা প্রবন্ধ লেখার কথা ছিল। সেই প্রবন্ধ আর লেখা হয় নি। আলেক্স ছুটি কাটাতে মাউন্ট রেইনিয়ারের চূড়ায় উঠতে
+গিয়ে বরফ ধ্বসে হারিয়ে গেল। শামীমের কী অবাক লাগে, একজন মানুষ কী সহজে হারিয়ে যায়। </p>
+<p>শামীম কখনো ভাবে নি অজানা অচেনা একটা
+গ্রামের ডোবায় পরিত্যক্ত
+একটি নবজাতককে নিয়ে সে আবার নিজের জীবন শুরু করবে। শাহানা আর রিতু মারা যাবার পর
+তার জীবনটা ছিল খাপছাড়া, সে ঠিক করে নিয়েছিল বাকী জীবনটা এভাবেই
+কাটিয়ে দেবে।
+কিন্তু সেরিনার কারণে
+আবার তার সব হিসেব ওলট পালট হয়ে গেল। এই মেয়েটি যেন সুন্দর সুস্থ একটা জীবন পেতে পারে শামীম তার
+সব ব্যবস্থা করতে শুরু করেছিল,
+তখন একদিন রাতে তাকে ঘুম পাড়িয়ে দেবার জন্য কোলে নিয়েছে তখন হঠাৎ করে অবোধ শিশুটি তার চোখের দিকে তাকিয়ে ফিক
+করে হেসে দিল। এক মাসের শিশু সত্যি সত্যি কারো চোখের দিকে তাকিয়ে অর্থপূর্ণ
+ভাবে হাসতে পারে কী না সেটা নিয়ে তর্ক করা যেতে পারে কিন্তু শামীম কোনো আলোচনার মাঝে গেল না। সেই অর্থহীন হাসিটি তার বুকের ভিতর সবকিছু ওলট
+পালট করে দিল। ঠিক সেই
+মুহূর্তে শামীম ঠিক করল সেরিনাকে সে নিজের সন্তান হিসেবে
+বড় করবে। তার খাপছাড়া অগোছালো জীবনটাকে আবার নূতন করে সাজাতে হল। মফস্বলের একটা শহরে সে এসে স্থায়ী হল। শহরতলীতে বড় জায়গা নিয়ে তার
+বাসা। বাসার পাশে বড় পুকুর। সেই পুকুরের ঘাটে সে এখন বসে আছে, গভীর পুকুরের কালো পানির নিচে সেরিনা সাঁতার কাটছে। </p>
+<p>হঠাৎ পুকুরের ঠিক মাঝখানে বিদ্যুৎ ঝলকের
+মতো সেরিনা লাফিয়ে উঠে, তার সমস্ত শরীর পানি থেকে বের হয়ে আসে, দুই হাত দুই দিকে ছড়িয়ে সে
+চরকীর মতো ঘুরপাক খেতে খেতে আবার পানিতে আছড়ে পড়ে, তারপর সে পানি ছিটিয়ে সাঁতরে সাঁতরে পুকুর ঘাটের দিকে
+আসতে থাকে। পুকুরের সিঁড়ি ধরে
+সে শামীমের দিকে তাকিয়ে খিলখিল করে হেসে বলল, “আব্বু! তুমি ভয় পেয়েছ?” </p>
+<p>শামীম বলল, “তোর ধারণা, আমি তোকে ভয় পাই?” </p>
+<p>“চমকে উঠেছ কী না বল?” </p>
+<p>“হ্যাঁ একটু চমকে উঠেছি। হঠাৎ করে পানি থেকে লাফ দিলি তো, সেজন্যে।” </p>
+<p>সেরিনা পুকুর ঘাটের সিঁড়ি দিয়ে ওপরে উঠতে থাকে, শামীমের বড় একটা
+টি শার্ট পরেছে, সেটা প্রায় হাঁটু
+পর্যন্ত নেমে এসেছে। মাথার
+ভিজে চুলগুলো তার মুখে
+লেপটে আছে। ভিজে শরীর থেকে টপ টপ করে পানি
+পড়ছে। সেরিনা ওপরে উঠে ভিজে শরীরে শামীমকে জাপটে ধরে আহ্লাদী গলায় বলল, “আবু আব্বু আবু
+আব্বু! আমার সুইট
+আব্বু।” </p>
+<p>শামীম বলল, “দিলি আমাকে ভিজিয়ে!” </p>
+<p>“ভিজলে কিছু হয় না আব্বু, আবার শুকিয়ে যায়।” শামীম হাত দিয়ে সেরিনাকে ধরে বলল, “তোর কিছু হয় না। তুই হচ্ছিস মৎস্যকন্যা। আমরা তো তোর মতো মৎস্যকন্যা না। মৎস্যমানবও না। আমরা হচ্ছি বোরিং মানুষ” </p>
+<p>“মৎস্যমানব হওয়া খুব
+সোজা। আমি তোমাকে শিখিয়ে দেব।” </p>
+<p>শামীম উঠে দাঁড়িয়ে বলল, “থাক। আমাকে আর কিছু শিখাতে হবে না।” </p>
+<p>সেরিনা বলল, “আব্বু! যা খিদে পেয়েছে তোমাকে কী বলব। মনে হচ্ছে আস্ত একটা ঘোড়া খেয়ে ফেলতে পারব।” </p>
+<p>“থাক। আস্ত ঘোড়া খেতে
+হবে না। ভাত খাবি আয়।” </p>
+<p>সেরিনা তার ভিজে শরীরে শামীমকে ধরে রাখে। সেই অবস্থায় দুইজনে
+পুকুর ঘাট থেকে গাছ গাছালীর ছায়া দিয়ে হেঁটে হেঁটে বাসায় ঢুকল। বাসায় কেউ নেই, সাধারণত
+কেউ থাকে না। সকালে একজন
+মহিলা এসে ঘর দোর পরিষ্কার করে দেয়।
+বিকেলে এসে একটু রান্না করে দেয়। </p>
+<p>সেরিনা তার ভেজা শরীর মোছায় কোনো চেষ্টা
+করল না। যতক্ষণ পানিতে
+ছিল একবারও সে নিশ্বাস নেয় নি। পানি থেকে উপরে উঠে ধীরে ধীরে নিশ্বাস নিতে শুরু করেছে। শরীর পুরোপুরি শুকিয়ে যাবার
+পর সে আবার সত্যিকার অর্থে নিশ্বাস নেবে ফুসফুস ব্যবহার করে বাতাস থেকে অক্সিজেন নেবে। যখন ছোট ছিল তখন সেরিনাকে এটা শেখাতে হয়েছে। আস্তে আস্তে এটা সেরিনার জন্যে স্বাভাবিক হয়ে গেছে। তবে তাকে সবসময় সতর্ক
+থাকতে হয়, যখন অন্যদের সামনে থাকে তখন
+তাকে ভেজা থাকলেও নিশ্বাস নেবার একটা সুক্ষ্ম অভিনয় করতে হয়। </p>
+<p>শামীম খাবার গরম করে টেবিলে
+রাখতে থাকে। সেরিনা ভেজা শরীরে ঘুর ঘুর
+করে শামীমকে সাহায্য করে,
+তারপর দুজন খেতে বসে। সেরিনার প্লেটে খাবার তুলে দেয়ার সাথে সাথে সে খাবারের ওপর হুমড়ি খেয়ে পড়ল। শামীম কিছুক্ষণ তাকে খেতে দেখল
+তারপর বলল, “তোর এত হুড়মুড় করে খেতে
+হবে না। আস্তে আস্তে খা। তোর খাবার কেউ চুরি করে নেবে না!” </p>
+<p>সেরিনা আবার হি হি করে হাসল, বলল, “তোমাকে বলেছি না খিদে লেগেছে!” </p>
+<p>“এক ঘণ্টা পানির নিচে সাতরাবি, খিদে লাগবে না!”</p>
+<p>“আমি পানির নিচে সাঁতরাই না আব্বু।” </p>
+<p>“কী করিস?” </p>
+<p>“ঘুরে বেড়াই। শুয়ে থাকি। মাছদের সাথে কথা বলি।” </p>
+<p>শামীম হেসে ফেলল, “কী কথা বলিস? কেমন আছেন, ভালো আছেন? ডিম পাড়বেন?” </p>
+<p>সেরিনা আবার হি হি করে হাসল, বলল, “আগে মাছগুলো আমাকে দেখলে পালিয়ে যেত। এখন পালায় না। কাছে আসে। আমার সাথে সতরায়। আমি মাঝে মাঝে সাঁতারের কম্পিটিশন করি।” </p>
+<p>“কে জেতে?” </p>
+<p>“মাছ!” সেরিনা এক টুকরো সবজি চিবুতে চিবুতে বলল, “একটা জিনিস জান আব্বু?” </p>
+<p>“কী জিনিস?” </p>
+<p>“মাছগুলো কিন্তু বোকা! কুকুর বেড়াল যেরকম পোষ
+মানে সাথে সাথে ঘুরে বেড়ায
+মাছগুলো মোটেও সেরকম না। এরা পোষ
+মানে না।” </p>
+<p>শামীম বলল, “তাই তো হবার কথা! কুকুর বেড়াল হচ্ছে স্তন্যপায়ী প্রাণী। ম্যামেল। তাদের বুদ্ধি তো বেশি হবেই।” </p>
+<p>“মাছদের মাঝে স্তন্যপায়ী প্রাণী
+নেই?” </p>
+<p>“থাকবে না কেন? তিমি মাছ? তিমি মাছ তো আসলে মাছ না। তিমি মাছ হচ্ছে ম্যামেল। স্তন্যপায়ী প্রাণী। </p>
+<p>সেরিনা হতাশ ভঙ্গীতে মাথা নেড়ে বলল
+“আমরা তো পুকুরে তিমি মাছ পালতে পারব না! এক তিমি মাছেই পুরো পুকুর ভরে যাবে!” </p>
+<p>শামীম বলল, “ডলফিনও ম্যামেল। ডলফিন সাইজে ছোট আছে।” </p>
+<p>সেরিনা আদুরে গলায় বলল, “আব্বু আমাকে একটা ডলফিন এনে
+দেবে? প্লীজ প্লীজ!” </p>
+<p>“কি করবি?” </p>
+<p>“পালব। সাথে নিয়ে সাঁতরাব।” </p>
+<p>“এনে দিতাম কিন্তু সমস্যা আছে” </p>
+<p>“কী সমস্যা?” </p>
+<p>“এগুলো তো লোনা পানিতে থাকে, তোর পুকুরে মনে হয় না
+বেঁচে থাকতে পারবে।” </p>
+<p>সেরিনা আশা ভঙ্গের মতো একটা শব্দ করল। শামীম বলল, “তোর সমস্যাটা কী? পানির নিচেই সবকিছু করতে হবে? পানির উপর কুকুর বিড়াল গরু ছাগল কতো কী আছে? তাদের পোষ মানিয়ে তাদের
+সাথে সময় কাটা।” </p>
+<p>“সেটা তো সবসময়েই কাটাই।” </p>
+<p>“শুধু কুকুর বিড়াল কেন? তোর স্কুল আছে না? স্কুলের বন্ধু বান্ধব আছে না? টিচার আছে না?” </p>
+<p>সেরিনা বলল,
+“বন্ধু বান্ধব ঠিক আছে, কিন্তু টিচাররাই তো সমস্যা।” </p>
+<p>শামীম জিজ্ঞেস করল, “কেন? টিচাররা কী সমস্যা করল?” </p>
+<p>“খুবই কড়া। খালি বলে পড় পড়।“ </p>
+<p>“বলবেই তো। টিচাররা যদি পড়ার কথা না বলে তাহলে
+কী বলবে? বলবে খাও খাও? ঘুমাও ঘুমাও?” </p>
+<p>সেরিনা মাথা নাড়ল, বলল, “আমার পড়তে ভালো লাগে না।” কারো পড়তে ভালো লাগে না।
+তবু পড়তে হয়।” </p>
+<p>“পড়ে কী হবে?” </p>
+<p>শামীম চোখ কপালে তুলে বলল, “বলিস কী তুই? পড়ে কী হবে মানে? না পড়ে তুই
+কী করবি?” </p>
+<p>“তুমি আর আমি ঘুরে বেড়াব। পৃথিবীর যত নদী আছে দেখব। যত লোক আছে দেখব। যত সমুদ্র আছে দেখব।” </p>
+<p>শামীম হেসে সেরিনার মাথার ভেজা চুল এলোমেলো করে দিয়ে বলল, “ঠিক আছে। তুই আর আমি সারা পৃথিবী ঘুরে
+বেড়াব। কিন্তু সে জন্যে পড়া বন্ধ
+করতে হবে কে বলেছে?” </p>
+<p>সেরিনা কিছু বলল না কিন্তু শামীমের যুক্তিটা মেনে
+নিল সেরকম মনে হল
+না। বিকেলে সেরিনা বলল, “আব্বু,
+আমি আবার পানিতে নামি?” </p>
+<p>শামীম জোরে জোরে মাথা নাড়ল, বলল, “না। তোর আলেক্স চাচা আমাকে অনেকবার
+বলেছে আমি যেন তোকে
+সবসময় পানিতে ফেলে না রাখি।” </p>
+<p>“কেন?” </p>
+<p>“তাহলে ধীরে ধীরে তুই তোর ফুসফুস ব্যবহার করতে ভুলে
+যাবি। চামড়ার নিচে তোর রক্তনালীগুলো স্পষ্ট হয়ে উঠবে।” </p>
+<p>“আলেক্স চাচা আর কী বলেছে?” </p>
+<p>“বলেছে তুই যখন বড় হবি
+তখন খুব হ্যাঁন্ডসাম একটা ছেলের সাথে তোকে বিয়ে দিতে।” </p>
+<p>“যাও।” বলে সেরিনা শামীমকে একটা ধাক্কা
+দিল। “আলেক্স চাচা এটা বলতেই পারে
+না। আমি কোনোদিন বিয়ে করব
+না।” </p>
+<p>“ঠিক আছে করিস না।” </p>
+<p>“আমি তোমার সাথে থাকব।“</p>
+<p>“ঠিক আছে থাকিস।” </p>
+<p>সেরিনা একটা নিশ্বাস ফেলে বলল, “আমার খুব আলেক্স চাচাকে দেখার ইচ্ছা করে।” </p>
+<p>সেরিনা শামীমের কাছ থেকে অনেকবার আলেক্সের গল্প শুনেছে। সেরিনার কথা শুনে মানুষটি সেই আমেরিকার ওয়াশিংটন ডিসি থেকে রাতারাতি
+এই দেশে হাজির হয়েছিল। বাক্স বোঝাই করে ওষুধপত্র যন্ত্রপাতি
+নিয়ে এসেছিল। আলেক্স যদি তখন তাকে চিকিৎসা
+না করতে তাহলে সে নাকী অন্যরকম হয়ে বড় হতো। অক্সিজেনের
+অভাবে তার মস্তিষ্ক ঠিকভাবে তৈরি হতো না, সে নাকী অনেকটা মানসিক প্রতিবন্ধীর মতো হয়ে যেতো। যে
+মানুষটা তাকে ঠিক ঠিক মানুষ কিংবা মৎস্যকন্যা করে দিয়েছে তার জন্যে সেরিনা সবসময়েই এক ধরণের ভালোবাসা অনুভব করে। মাউন্ট রেইনিয়ারে বরফের ধ্বসে আলেক্স সারা
+জীবনের জন্যে হারিয়ে গেছে সেরিনা
+সেটা মানতেই পারে না! </p>
+<p>সেরিনা শামীমের হাত ধরে বলল, “আচ্ছা আব্বু, এ-রকম কী হতে পারে যে আলেক্স চাচা আসলে তুষার
+ধ্বসে মারা যায় নাই?” </p>
+<p>সেরিনা কী বলতে চাইছে শামীম সেটা অনুমান করার চেষ্টা করে বলল, “হতে তো পারেই। কিন্তু তাই যদি হতো তাহলে এতোদিনে কী একবার তোকে দেখতে আসতো না?” </p>
+<p>“এরকম কী হতে পারে না যে আলেক্স চাচা বরফ
+ধ্বসে মারা যায় নাই কিন্তু বরফের নিচে চাপা পড়েছে বলে তার কিছু মনে নাই!” </p>
+<p>শামীম অনিশ্চিতের মতো বলল, “হতে পারে।” </p>
+<p>“তাহলে এমন কী হতে পারে না যে একদিন হঠাৎ
+করে আলেক্স চাচার সবকিছু মনে পড়ে যাবে তখন আলেক্স চাচা আমাকে দেখার জন্যে ছুটে
+আসবে?” </p>
+<p>শামীম এই ছেলেমানুষ মেয়েটির দিকে এক ধরনের
+মমতা নিয়ে তাকাল,
+তারপর নরম গলায় বলল, “হ্যাঁ। হতেই তো পারে।” </p>
+<p>সেরিনার সারা মুখ আনন্দে ঝলমল করে উঠল, বলল, “তখন কী মজা হবে, তাই না আব্বু?” </p>
+<p>“হ্যাঁ। তখন অনেক মজা হবে।” </p>
+<p>“আমি তখন আলেক্স চাচাকে নিয়ে স্কুলে
+যাব।” </p>
+<p>“ঠিক আছে।” শামীম সেরিনার ঘাড়ে হাত
+দিয়ে বলল, “চল এখন আমরা হেঁটে আসি। মাঠে সব বাচ্চারা আছে তাদের
+সাথে খেলবি চল।” </p>
+<p>“চল আব্বু।” </p>
+<p>.</p>
+<p>একটু পরে দেখা গেল ধান কাটার পর খালি হয়ে যাওয়া মাঠটাতে
+গ্রামের ছোট বড় অনেক
+ছেলে মেয়ের সাথে সেরিনা খেলছে। শামীম খেতের আলে বসে থেকে সেরিনাকে খুঁটিয়ে খুঁটিয়ে দেখে। হরিণীর মতো ক্ষীপ্র একটি মেয়ে। পানির নিচে সে কী করে শামীম
+কখনো দেখে নি কিন্তু মাটির
+ওপরে সেরিনার মতো ক্ষীপ্র একটি মেয়ে সে কখনো দেখে নি। পৃথিবীর কেউ জানে না এই মেয়েটি কী বিস্ময়কর। যদি কখনো তারা জানতে পারে তখন কী হবে চিন্তা করেই শামীমের বুক
+কেঁপে ওঠে। </p>
+<p>.</p>
+<p>রাতে খাওয়ার পর টেবিলের দুই পাশে শামীম
+আর সেরিনা বসে পড়াশোনা করছে। শামীম একটা মেডিক্যাল জার্নাল পড়ছে সেরিনা একটা জটিল এলজেবরা সমাধান
+করার চেষ্টা করছে। শেষ পর্যন্ত এলজেবরাটাকে
+ঘায়েল করে সেরিনা একটা আনন্দের ধ্বনি
+করল। শামীম চশমার ওপর দিয়ে সেরিনার দিকে তাকিয়ে বলল, “কী হয়েছে? এতো আনন্দ কিসের?” </p>
+<p>“একটা এলজেবরা করেছি।” </p>
+<p>“গুড।” </p>
+<p>“অনেক কঠিন ছিল।” </p>
+<p>“ভেরি গুড।” </p>
+<p>“এলজেবরা করে আমার মগজ জ্যাম
+হয়ে গেছে।” </p>
+<p>“এখন এই জ্যাম ছোটানোর জন্যে কী করতে হবে?” </p>
+<p>“আমার সাথে গল্প করতে হবে।” </p>
+<p>“কীসের গল্প?” </p>
+<p>সেরিনা লাজুক মুখে বলল, “আমার
+আম্মু আর আব্বুর গল্প। তুমি কেমন করে আমাকে পেয়েছ সেই গল্প।” </p>
+<p>শামীম মনে মনে একটা নিশ্বাস
+ফেলল। সেরিনাকে সে কীভাবে পেয়েছে সেই সত্যি ঘটনাটি
+সে কখনো তাকে বলে নি। তাকে খুঁজে পাওয়ার একটা কাল্পনিক গল্প
+বলেছে, সেই গল্পটি সেরিনার খুব প্রিয়। মাঝে মাঝেই সেই গল্পটি তাকে
+বলতে হয়। গল্পটি এতোবার বলেছে যে এখন তার নিজের
+কাছেই এটাকে সত্যি বলে মনে হয়। </p>
+<p>শামীম হাসি হাসি মুখ করে বলল, “তোকে কতোবার এই গল্প বলেছি–আর কতোবার শুনবি?” </p>
+<p>সেরিনা বলল, “আরো
+অনেকবার শুনব আব্বু। গল্পটা শুনতে আমার একটু কষ্ট হয় আবার
+একটু ভালো লাগে।” </p>
+<p>শামীম বলল, “ঠিক আছে,
+তাহলে কাছে আয়। আমার কাছে বস।” </p>
+<p>সেরিনা শামীমের কাছে এসে তার গলা ধরে বসল। শামীম তখন সেরিনাকে খুঁজে পাওয়ার সেই কাল্পনিক কাহিনীটা শুরু
+করে। কীভাবে একটা নদী দিয়ে সে স্পিড
+বোটে করে যাচ্ছে, বিশাল নদী সেখানে উথাল পাতাল ঢেউ। সেই নদীতে নৌকা করে একজন মাঝি তার স্ত্রীকে
+শহরের হাসপাতালে নিয়ে যাচ্ছে। তার স্ত্রী সন্তান সম্ভবা। মাঝ নদীতে হঠাৎ ঝড় উঠেছে। সেই ভয়ংকর ঝড়ের মাঝে কীভাবে মাঝি তার নৌকাটাকে উথাল পাথাল ঢেউয়ের মাঝে হাল ধরে রেখেছে। ঠিক তখন স্ত্রীর প্রসব বেদনা উঠেছে। ডাক্তার নেই, দাই নেই, আত্মীয়স্বজন কেউ নেই তার মাঝে
+সন্তানের জন্ম হল, ফুটফুটে একটা মেয়ে। ঠিক তখন নৌকা পড়েছে এক ঘূর্ণির মাঝে, সাথে দমকা হাওয়া, হঠাৎ করে নৌকা কাত
+হয়ে গেল। সন্তান ছিটকে পড়ল নদীতে তাকে বাঁচানো জন্যে মা ঝাঁপ দিল নদীতে আর মাঝিও তখন স্ত্রী আর সন্তানকে বাঁচানোর জন্যে নদীতে ঝাঁপিয়ে পড়েছে, ঘূর্ণিতে টেনে নিচ্ছে স্ত্রী আর সন্তানকে, মাঝি প্রাণপণ চেষ্টা করছে তাদের
+বাঁচানোর জন্যে। </p>
+<p>শামীম তখন সেই ভয়ংকর ঘটনার
+একটা শ্বাসরুদ্ধকর বর্ণনা দিল। সে কীভাবে তার স্পিড বোট নিয়ে সেখানে হাজির হল, তারপর কীভাবে দেখল প্রাণহীন
+বাবা কীভাবে তার প্রাণহীন স্ত্রীকে ধরে রেখেছে, আর তাদের দুজনের মাঝখানে ছোট একটা শিশু কীভাবে পানিতে ভেসে আছে। তখন শিশুটি ঠিক মাছের মতো সাঁতরে তার কাছে এসেছে, তার দৃষ্টি কী বিস্ময়কর অবাক হয়ে এই
+পৃথিবীর দিকে তাকিয়ে আছে। সেই
+ছোট শিশুটি হচ্ছে সেরিনা। </p>
+<p>কাল্পনিক গল্প। বলতে গিয়ে শামীমের
+গলা ধরে আসে। শুনতে শুনতে
+সেরিনার চোখ ভিজে আসে। </p>
+</div>
+<br/><h2>০৪. স্কুলের এসেমব্লিতে বড় আপা</h2>
+<hr/>
+<br/><div>
+<p>স্কুলের এসেমব্লিতে বড় আপা লম্বা
+বক্তৃতা দিতে ভালোবাসেন। এই দেশের মেয়েরা কীভাবে পুরো দেশটাকে পাল্টে দেবে সেটা
+তার প্রিয় একটা বিষয়। প্রত্যেকদিনই রোদের মাঝে দাঁড়িয়ে স্কুলের মেয়েদের এই লম্বা বক্তৃতা
+শুনতে হয়। বড় আপা একেকদিন একেকজন বিখ্যাত মহিলা
+নিয়ে বক্তৃতা দেন। আজকে কাকে নিয়ে বক্তৃতা
+দেবেন সেটা জানার জন্যে যখন সবাই এক ধরণের কৌতূহল নিয়ে অপেক্ষা
+করছে তখন বড় আপা বললেন, “প্রিয় মেয়েরা। আর দুই সপ্তাহ পরে স্কুল স্পোর্টস। ক্রীড়া প্রতিযোগিতা!” </p>
+<p>লেখাপড়া ছাড়া অন্য
+সবকিছুতে মেয়েদের
+উৎসাহ, তাই সবাই আনন্দে
+চিৎকার করে উঠল। বড় আপা বললেন,
+“লেখাপড়ার পাশাপাশি দরকার খেলাধূলা। সুস্থ মন থাকতে পারে শুধু সুস্থ
+শরীরে। তোমাদের যেন সুস্থ শরীর, সুস্থ দেহ থাকে সেজন্যে আমরা
+ক্রীড়া প্রতিযোগিতার
+ব্যবস্থা করি। এই বছর দৌড় ঝাপের
+সাথে একটা নতুন বিষয় যোগ হচ্ছে
+যেটা আগে কখনো হয় নি। সেটা হচ্ছে–” বলে বড় আপা
+একটু থামলেন, সব মেয়েরা এই নূতন বিষয়টা শোনার জন্যে কান পেতে রইল। </p>
+<p>বড় আপা তখন
+হাত তুলে ঘোষণা করলেন, “সাঁতার।” </p>
+<p>মেয়েরা শুনে খুব চমৎকৃত না হলেও
+চিৎকার করে আনন্দ প্রকাশ করল। বড় আপা জিজ্ঞেস করল, “তোমরা কারা কারা সাঁতার জানো?” </p>
+<p>সবাই হাত তুলল। শুধু ছোট ক্লাশের কয়েকটা মেয়ে হাত
+তুলল না। তারা হয় সাঁতার
+জানে না, না হয় বড় আপা
+কী বলছেন সেটা বুঝতে পারে নি। গ্রামের প্রায় সব মেয়ে বড় হতে
+হতে সাঁতার শিখে যায়। সেরিনা ইচ্ছে করে হাত তুলে নি, পানির সাথে তার যে একটা বাড়াবাড়ি বন্ধুত্ব
+আছে সেটা সে সব সময় গোপন রাখার চেষ্টা করে তাই সে
+নিজে থেকে এটা কাউকে বলে না। </p>
+<p>বড় আপা বললেন, “সরকার থেকে এই উদ্যোগ নেয়া হয়েছে। এখন থেকে প্রতি বছর মেয়েদের সাঁতার প্রতিযোগিতা হবে। আমাদের স্কুল থেকেও আমরা টিম
+পাঠাব। তোমরা কারা কারা অংশ নিতে চাও?” </p>
+<p>এবারেও প্রায় সব মেয়ে হাত
+তুলল, সেরিনা এবারও হাত তুলল না। সে কোনো সাঁতার প্রতিযোগিতায় অংশ নিতে
+চায় না। বড় আপা
+বললেন, “তোমরা যারা সাঁতার প্রতিযোগিতায় নাম দিতে
+চাও তারা নাজমা ম্যাডামের কাছে নাম দিবে।” নাজমা
+ম্যাডাম স্কুলের স্পোর্টস
+টিচার, শুকনো, খিটখিটে এবং বদরাগী। বড় আপা বললেন, “আর তোমরা যারা দৌড় ঝাপে
+নাম দিতে চাও তারা ক্লাশ টিচারের কাছে নাম দিবে।” </p>
+<p>স্কুলে বার্ষিক প্রতিযোগিতার জন্যে প্রতিদিন দুপুরের
+পর ক্লাশ ছুটি দিয়ে দেয়া হল। মেয়েরা তখন স্কুলের মাঠে দৌড়াদৌড়ি করে। হাই জাম্প, লং জাম্প দেয়। যারা কখনো দৌড়াদৌড়ি করে না তারা আছাড় খেয়ে পড়ে হাঁটু
+আর কনুইয়ের ছাল
+তুলে ফেলতে লাগল। সাঁতার নিয়ে বড় আপার
+অনেক বক্তৃতা দেবার পরেও খুব বেশী মেয়ের সাঁতারে উৎসাহ দেখা গেল না জেলেপাড়ার দুটি মেয়ে আর ডানপিটে
+ধরণের কয়েকটা মেয়ে ছাড়া সাঁতার
+প্রতিযোগিতায় বেশী
+মেয়ে পাওয়া গেল না।
+</p>
+<p>স্কুলের সীমানার ভেতরে একটা
+পুকুর রয়েছে, বহু বছর আগে একটা মেয়ে ডুবে
+মারা যাবার পর এখন কাউকে সেখানে যেতে দেয়া হয় না। স্কুলের সবচেয়ে দুষ্টু
+মেয়েটিও পুকুরের
+কাছে যেতে সাহস পায় না। স্কুল
+কর্তৃপক্ষ পুকুরে মাছের চাষ করে,
+বাইরের লোকজন এই পুকুর
+লিজ নিতে খুবই আগ্রহী,
+তার প্রধান কারণ মেয়েদের
+স্কুল বলে কেউ মাছ চুরি করে নেবে সেরকম ভয় নেই। </p>
+<p>সাঁতার প্রতিযোগিতার জন্যে পুকুরের এক পাশের
+জঞ্জাল পরিষ্কার করা হয়েছে। মেয়েরা এক পাশ থেকে অন্য পাশে সাঁতরে
+যাবে। আগে থেকে এই প্রতিযোগিতাটি সেরে রাখা হচ্ছে, মূল স্পোর্টসের দিনে শুধু পুরস্কার দেয়া হবে। নাজমা ম্যাডাম প্রত্যেকদিন শাড়ি পরে
+স্কুলে আসেন, আজকে সাঁতার প্রতিযোগিতার জন্যে সালওয়ার কামিজ পরে এসেছেন। নিজে পুকুরে নেমে মেয়েগুলোকে সারি বেঁধে দাঁড় করিয়ে দিলেন। পুকুরের মাঝামাঝি একটা বাঁশ ভাসিয়ে রাখা
+হয়েছে, মেয়েগুলো সঁতরে
+এসে এই বাঁশটাকে ছুঁবে,
+কে আগে ছুঁয়েছে
+কে পরে ছুঁয়েছে
+সেখান থেকে প্রথম দ্বিতীয় ঠিক করা হবে। </p>
+<p>সাঁতার প্রতিযোগিতা দেখার জন্যে স্কুলের অনেক ছাত্রী পুকুর পাড়ে হাজির
+হয়েছে। তাদের মাঝে সেরিনাও আছে। নাজমা ম্যাডাম প্রথমে সবাইকে বলে দিলেন কী
+করতে হবে। একবার বাঁশী বাজিয়ে প্র্যাকটিস
+করা হল। তারপর যারা সাঁতার
+দেবে তারা পুকুর পাড়ে সারি বেঁধে দাঁড়াল। নাজমা ম্যাডাম বাঁশী বাজাতেই সবাই পানিতে
+ঝাঁপিয়ে পড়ে প্রাণপণে সাঁতার দিতে শুরু করল। পুকুর পাড়ে দাঁড়িয়ে সবাই
+গলা ফাটিয়ে চিৎকার করতে থাকে, গৌরী আর ললিতা নামে জেলে পাড়ার দুটি মেয়ে সবার
+আগে, তার কিছু পিছনে নার্গিস
+নামে একজন ডানপিটে মেয়ে। অন্যেরা অনেক পিছনে। </p>
+<p>পানি ছিটিয়ে সাঁতার
+কেটে একে একে সবগুলো মেয়ে বাঁশ
+পর্যন্ত পৌঁছাল তখন তাদেরকে পুকুর পাড়ে নিয়ে এসে
+কে প্রথম কে দ্বিতীয় হয়েছে
+নাজমা ম্যাডাম তাদের নাম লিখে নিতে শুরু করল। </p>
+<p>যখন সবাই পুকুরের এই পাড়ে সাঁতার
+প্রতিযোগিতার জন্যে ভিড় করেছে
+তখন পুকুরের অন্য পাড়ে একটা বিপদজনক ঘটনা ঘটতে শুরু করেছে। নিচু ক্লাশের ছোট একটা মেয়ে পুকুরের অন্য পাড়ে একা
+একা নিজের মতো করে
+হেঁটে বেড়াচ্ছে। হাঁটতে হাঁটতে হঠাৎ সে পুকুরের
+মাঝে কিছু একটা দেখে দাঁড়িয়ে গেল। যেটা দেখে সে দাঁড়িয়েছে সেটা নিশ্চয়ই তার জন্যে যথেষ্ট
+কৌতূহলী কিছু, কারণ দেখা
+গেল সে ধীরে ধীরে পুকুরের পানির দিকে নামতে শুরু করেছে। পানির খুব কাছাকাছি এসে সে নিচু
+হয়ে পুকুর থেকে কিছু একটা তোলার চেষ্টা করতে থাকে এবং ঠিক
+তখন পুকুরের অন্য পাড় থেকে কেউ একজন প্রথমবার তাকে দেখতে পায়। </p>
+<p>উঁচু ক্লাশের বড় একটা
+মেয়ে চিৎকার করে বলল, “এই মেয়ে? তুমি কী কর? পানিতে পড়ে যাবে তো?” </p>
+<p>মেয়েটি তখন সত্যি সত্যি পানিতে
+পড়ে গেল। সবাই
+দেখল মেয়েটি পানিতে
+একটু হাবুডুবু খেলো তারপর পানিতে তলিয়ে গেল। পুকুরের পানিতে ছোট মেয়েটির কোনো চিহ্ন নেই। </p>
+<p>এক সাথে সবাই চিৎকার করে ওঠে, কয়েক মুহূর্ত কেউ কে কী করবে ঠিক করে বুঝতে পারে না। তারপর সবাই পুকুরের তীর ধরে
+দৌড়াতে শুরু করে। বিশাল পুকুর, এক পাশ থেকে দৌড়ে অন্য
+পাশে যেতে সময় লাগবে। পুকুরের অন্য পাশে পৌঁছানোর পরেও কেউ বাচ্চাটাকে তোলার জন্যে পানিতে ঝাঁপিয়ে পড়তে পারবে না, মাছ চাষিরা পুকুরের চারপাশে
+গাছের ডাল, বাঁশ পুঁতে
+রেখেছে। মেয়েদের আতংকিত চিৎকারে
+মুহূর্তে পুরো এলাকাটা ভয়ংকর হয়ে উঠে। </p>
+<p>সেরিনা এক মুহূর্ত চিন্তা করল, আর আব্বু অসংখ্যবার তাকে মনে করিয়ে দিয়েছে কেউ যেন পানির নিচে নিশ্বাস
+নেবার বিস্ময়কর
+ক্ষমতার কথা জানতে না পারে।
+সে কখনো কাউকে জানায় নি, কিন্তু
+সে এখন নিজের চোখের সামনে একটা বাচ্চাকে পানির নিচে নিশ্বাস নিতে না পেরে মারা যেতে
+দিতে পারবে না। </p>
+<p>তাই সবাই অবাক হয়ে দেখল
+হঠাৎ সেরিনা পুকুরের
+তীর ধরে ছুটে এসে পানিতে ঝাঁপিয়ে
+পড়েছে। পুকুরের পানিতে এতোটুকু ঢেউ না তুলে একটা তীরের
+মতো তার পুরো শরীরটা পানির ভেতর ঢুকে গেল। তারপর কোথাও কিছু নেই, একটা নিস্তরঙ্গ পুকুর, তার নিচে কী আছে কেউ জানে না। </p>
+<p>দুই হাতে পানি কেটে সেরিনা সামনে এগিয়ে যায়, অসংখ্য বড় বড় মাছ
+সরে গিয়ে তাকে জায়গা করে দেয়, ঘোলা পানি আর শ্যাওলা, বেশি দূর দেখা যায় না। তার মাঝে সেরিনা দ্রুত এগিয়ে গেল। পরিষ্কার কিছু দেখা না গেলেও
+পানির ভেতর সে ছটফট করে নাড়াচাড়া করার শব্দ শুনতে পাচ্ছে।</p>
+<p>চোখের পলকে সে শিশুটির কাছে পৌঁছে গেল, পানির নিচে গাছের ডালের সাথে
+তার কাপড় আটকে গেছে সেখান থেকে ছুটতে পারলেও সে ভেসে উঠতে পারবে না। এই বাচ্চাটি সাঁতার জানে না। </p>
+<p>বাচ্চাটির বুকের ভেতর বাতাস দরকার। সেরিনা বাচ্চাটির নাক চেপে ধরে মুখের ভেতর ফুঁ দিয়ে খানিকটা বাতাস ঢুকিয়ে দেয়। তারপর কাপড়টি হঁচকা টানে ছুটিয়ে আনে। বাচ্চাটি পাগলের মতো সেরিনাকে জাপটে ধরল, অন্য কেউ হলে সেটা বড় সমস্যা হয়ে যেতো, সেরিনার জন্যে কোনো সমস্যা নয়, সে পানির নিচে যতক্ষণ খুশী যেভাবে ইচ্ছে থাকতে পারে। কিন্তু বাচ্চাটি যেন নিজে থেকে নিশ্বাস নিতে
+পারে সেজন্যে তাকে ওপরে তুলতে হবে। সেরিনা পায়ে ধাক্কা দিয়ে মুহূর্তে
+পানির ওপর ভেসে উঠল, আর
+সাথে সাথে পুকুর ঘিরে দাঁড়িয়ে থাকা অসংখ্য ছাত্রী, শিক্ষক আনন্দে চিৎকার করে উঠল। </p>
+<p>ঘোট শিশুটি
+খক খক করে কাশছে, বুকের
+ভেতর মনে হয় পানি ঢুকে গেছে কিন্তু সেটা নিয়ে সেরিনা মাথা ঘামলি না, বাচ্চাটার মাথায় হাত
+দিয়ে বলল, “ভয় নাই, তোমার কোনো ভয় নাই।” </p>
+<p>বাচ্চাটা পাগলের মতো তাকে জাপটে ধরে রেখেছে, ভয়ে আতংকে
+থর থর করে কাঁপছে, তার
+মনে হচ্ছে সেরিনাকে ছেড়ে দিলেই
+বুঝি সে আবার ডুবে যাবে। </p>
+<p>সেরিনা বাচ্চাটিকে পিঠে নিয়ে সাঁতার কেটে পুকুর পাড়ে হাজির
+হতেই একসাথে অনেক মেয়ে বাচ্চাটাকে ধরে উপরে তুলে আনে। বাচ্চাটি আতংকিত মুখে কাশতে
+থাকে, হাউ মাউ করে কাঁদতে
+থাকে। </p>
+<p>সেরিনা নিজেও উপরে উঠে আসে আর সবাই তাকে ঘিরে ধরে। তার ক্লাশের একটি মেয়ে সেরিনাকে জাপটে ধরে কেঁদে ফেলল, বলল, “তুই কেমন করে করলি? কেমন করে করলি?” </p>
+<p>সেরিনা হাসার চেষ্টা করে বলল, “আমাকে ছাড়,
+তুই ভিজে যাচ্ছিস।” </p>
+<p>“ভিজলে ভিজব। তুই এতো ভালো সাঁতার কাটতে পারিস?” </p>
+<p>সেরিনা উত্তর দিল না, আরেকজন বলল, “তুই নিশ্বাস না নিয়ে পানির নিচে এতোক্ষণ কেমন করে থাকতে পারলি? কেমন করে?” </p>
+<p>সেরিনা এবারেও কোনো উত্তর দিল না।
+আরেকজন বলল, “তুই না থাকলে বাচ্চাটা আজকে
+নির্ঘাত মরে যেতো। নির্ঘাত মরে যেতো।” </p>
+<p>সেরিনা এবারেও কোনো কথা বলল না। </p>
+<p>.</p>
+<p>রাত্রিবেলা খাবার টেবিলে সেরিনা বলল, “আব্বু, আমার কিছু করার ছিল না।” </p>
+<p>শামীম বলল, “অবশ্যই তোর কিছু করার ছিল না। তুই ছাড়া আর কেউ
+এই বাচ্চা মেয়েটাকে
+বাঁচাতে পারতো না।” </p>
+<p>“কিন্তু এখন সবাই জেনে গেছে।” </p>
+<p>“কী জেনে গেছে?” </p>
+<p>“আমি পানির নিচে থাকতে পারি।“</p>
+<p>শামীম মাথা নাড়ল, বলল, “উহুঁ”। সেটা মনে হয় এখনো কেউ ধরতে পারে নি। সবাই ভেবেছে তুই খুব ভালো সাতার কাটতে পারিস। এই পর্যন্তই। কিন্তু তুই যে আসলে সাঁতার
+কাটিস না, তুই যে পানির
+নিচে মাছের মতো ঘুরে
+বেড়াস সেটা কেউ
+ধরতে পারে নাই, কারণ সেটা
+কেউ একবারও চিন্তা করে নাই।” </p>
+<p>সেরিনা মাথা নাড়ল, বলল, “হ্যাঁ, সবাই জিজ্ঞেস করেছে কেমন করে এতে ভালো সাঁতার কাটতে শিখেছি।” </p>
+<p>শামীম বলল, “যাই হোক যেটা হয়ে গেছে
+ভালো ভাবেই হয়েছে। একটা বাচ্চাকে প্রাণে বাঁচিয়েছিস। সেটা নিয়ে বেশি
+হইচই হয় নি। এখন
+থেকে খুব সাবধান। তোর যে একটা অস্বাভাবিক ক্ষমতা
+আছে সেটা কেন কেউ জানতে না পারে।” </p>
+<p>সেরিনা বলল,
+“কেউ জানবে না আব্বু। তুমি নিশ্চিন্ত থাক।” </p>
+<p>.</p>
+<p>কিন্তু এতো নিশ্চিন্ত থাকা গেল না, কারণ পরের দিনই বড় আপা ক্লাশের মাঝখানে সেরিনাকে ডেকে পাঠালেন। বড় আপার অফিসে ঢুকে সেরিনা দেখল সেখানে তাদের স্পোর্টস টিচার নাজমা ম্যাডাম
+ছাড়াও আর দুই একজন
+স্যার ম্যাডাম আছেন। বড় আপা সেরিনাকে ডেকে একেবারে তার নিজের কাছে নিয়ে গেলেন, তার মাথায় গায়ে হাত বুলিয়ে বুকের
+মাঝে একটু জড়িয়ে ধরলেন, তারপর বললেন, “সেরিনা, মা, তোমাকে যে আমি কী বলে কৃতজ্ঞতা জানাব বুঝতে
+পারছি না। তুমি না থাকলে কী
+সর্বনাশ যে হয়ে যেতো, চিন্তা করলেই আমার হাত পা ঠাণ্ডা হয়ে যাচ্ছে।” </p>
+<p>সেরিনা কিছু বলল না। বড় আপা বললেন, “সবাই যেটা বলছে সেটা বিশ্বাস করার মতো না, কিন্তু এতোজন মানুষের সামনে
+পুরো ব্যাপারটা ঘটেছে আমি
+ব্যাপারটা অবিশ্বাস করি কেমন করে? তুমি এতো ভালো সতার দেয়া কেমন করে শিখলে?” </p>
+<p>সেরিনা আমতা আমতা করে বলল, “এইতো মানে ইয়ে—“ </p>
+<p>“আমরা ঠিক করেছি স্কুলের পক্ষ থেকে আমরা তোমাকে একটা পুরস্কার দেব। অ্যানুয়েল স্পোর্টসের দিনে তোমাকে সেই পুরস্কার
+দেওয়া হবে।” </p>
+<p>সেরিনা শুকনো
+গলায় বলল, “থ্যাংক ইউ ম্যাডাম।” </p>
+<p>নাজমা ম্যাডাম বড় আপাকে
+বললেন, “আপা, আপনি তো আসল কথাটাই বললেন না।” </p>
+<p>বড় আপা বললেন, “আপনি বলেন।” </p>
+<p>নাজমা ম্যাডাম তখন তার খনখনে গলায় সেরিনাকে বললেন, “তুমি এতো ভালো
+সাঁতার জানো কিন্তু তুমি
+আমাদের সাঁতার প্রতিযোগিতায় যোগ দিলে না কেন?” </p>
+<p>সেরিনা মাথা নিচু করে দাঁড়িয়ে রইল, সে এই প্রশ্নের কী উত্তর দেবে? </p>
+<p>“যাই হোক, আমরা ঠিক করেছি তুমি প্রতিযোগিতায় যোগ না দিলেও তোমাকে আমাদের টিমে নিয়ে নেব। ন্যাশনাল কয়েকটা ইভেন্ট আছে সেইখানে আমরা
+অংশ নেব। তুমি হবে আমাদের টিম লিডার।” </p>
+<p>সেরিনা ভয় পাওয়া গলায় বলল, “না!” </p>
+<p>“কেন না? তুমি এতো ভালো সাঁতার জান, তুমি কেন অংশ নেবে।” </p>
+<p>সেরিনা কী উত্তর দিবে বুঝতে পারল না, আমতা আমতা করে বলল, “না ম্যাডাম না। আমি পারব না।” </p>
+<p>“তুমি কী পারবে না?” </p>
+<p>“আমি সাঁতারের টিমে থাকতে পারব
+না।”</p>
+<p>“কেন পারবে না?” </p>
+<p>সেরিনার কোনো
+ভালো উত্তর নেই, তাই মাথা নিচু করে দাঁড়িয়ে রইল। বড় আপা জিজ্ঞেস
+করলেন, “কেন পারবে না?” </p>
+<p>সেরিনা অসহায় ভাবে বলল, “আমার আব্বু বলেছে আমি যেন কোথাও না যাই।” </p>
+<p>বড় আপা হাসি
+মুখে বললেন, “এই সমস্যা? আমি নিজে তোমার আব্বুর সাথে কথা বলে পারমিশন
+নিব তুমি নিশ্চিন্ত থাক।” </p>
+<p>.</p>
+<p>সত্যি সত্যি বড় আপা
+নাজমা ম্যাডামকে নিয়ে একদিন বাসায় হাজির হয়ে গেলেন। শামীমের তখন আর কিছু বলার থাকল
+না। </p>
+</div>
+<br/><h2>০৫. বাস থেকে নেমে সেরিনা</h2>
+<hr/>
+<br/><div>
+<p>বাস থেকে নেমে সেরিনা তার ব্যাগটা ঘাড়ে তুলে
+নিল। নার্গিস তার ব্যাগটা নিয়ে সেরিনার পাশে দাঁড়াল। জেলেপাড়ার দুটি মেয়ে গৌরি আর ললিতা তাদের ব্যাগ
+খুঁজে পাচ্ছিল না, শেষ পর্যন্ত তারাও তাদের ব্যাগ খুঁজে পেল
+তখন চারজন তাদের ব্যাগ নিয়ে নাজমা ম্যাডামের পিছু পিছু সিঁড়ি দিয়ে বিল্ডিংটার
+উপরে উঠে যায়। এটা মেয়েদের একটা হোস্টেলে মত, সারা দেশ থেকে সাঁতার প্রতিযোগিতায় যে ।এসেছে তারা আগামী কয়েকদিন এখানে থাকবে। </p>
+<p>কালো মতন মোটা একজন মানুষ সবাইকে তাদের রুম নম্বর বলে দিচ্ছে। নাজমা ম্যাডাম মানুষটার কাছে থেকে সেরিনাদের রুম নম্বর জেনে নিলেন
+তারপর তাদেরকে গিয়ে সিঁড়ি দিয়ে দোতলায় উঠে গেলেন, একেবারে একটা কোনার দিকে একটা বড় ঘর, সেখানে অনেকগুলো বিছানা সারি সারি সাজানো। নাজমা ম্যাডাম বললেন, “তোমরা তোমাদের পছন্দের বিছানা
+বেছে নাও। আর কেউ যখন এখনো আসে নি তোমাদের ফার্স্ট চয়েস।“</p>
+<p>নাজমা ম্যাডামের কথা শুনে মনে হল এটা বুঝি
+বিশাল একটা সুযোগ–আসলে
+সবগুলো বিছানা একই রকম, কাজেই আগে আর পরে বেছে নেওয়ার মাঝে কোনো পার্থক্য নেই। নার্গিস কোনার দিকে জানালার পাশে একটা বিছানার
+দিকে গিয়ে বলল, “এইটা আমার বিছানা।” তখন কাছাকাছি অন্য তিনটা বিছানা
+বাকী তিনজন দখল করে নিল। </p>
+<p>নাজমা ম্যাডাম বললেন “করিডোরের অন্য মাথায় বাথরুম
+আছে। নিচে ডাইনিং রুম।” </p>
+<p>সেরিনা বলল, “ঠিক আছে ম্যাডাম।” </p>
+<p>“টিচারদের জন্য আলাদা ব্যবস্থা। আমাদেরকে অন্য বিল্ডিংয়ে রাখবে। তোমরা নিজেরা নিজেরা থাকতে পারবে না?” </p>
+<p>মেয়েরা মাথা নাড়ল, সেরিনা বলল,
+“পারব।” </p>
+<p>“গুড। আমি তাহলে যাই, গিয়ে দেখি
+আমাদের জন্যে কী ব্যবস্থা করেছে।” </p>
+<p>নাজমা ম্যাডাম চলে যাবার পর
+সেরিনা তার বিছানায় বসে
+বলল, “আমার খিদে লেগেছে।” </p>
+<p>নার্গিস বলল, “চল নিচে গিয়ে খেয়ে আসি।” </p>
+<p>সেরিনা বলল,
+“আগে হাত মুখে ধুয়ে আসি।” </p>
+<p>গৌরী বলল, “এই এত বড় ঘরে
+খালি আমরা থাকব? আর কেউ
+থাকবে না? </p>
+<p>“মনে হয় থাকবে। অন্যেরা এখনো আসে নাই।” </p>
+<p>নার্গিস তার ব্যাগ থেকে একটা
+তোয়ালে বের করে
+বলল, “আমি হাত মুখ ধুয়ে আসি।” ও </p>
+<p>নার্গিসের সাথে সাথে অন্যেরাও
+গেল। হাত মুখ ধুয়ে তারা
+নিচে খেতে গেল। খাওয়া শেষ
+করে যখন তারা ওপরে নিজেদের রুমে ফিরে এসেছে তখন তাদের রুমের ভিতরে অনেক মেয়ে, মনে হল রীতিমত বাজার বসে গেছে। ওরা দেখল ফর্সা করে লম্বা মতন
+একজন মেয়ে গলা উঁচু করে বলছে, “থাকব
+না। আমি এখানে থাকব না। আই উইল নট স্টে হেয়ার।” </p>
+<p>সেরিনা একটু অবাক হয়ে মেয়েটার দিকে তাকিয়ে বোঝার চেষ্টা করল সমস্যাটা কী। মেয়েটা মেঝেতে পা ঠুকে বলল, “এ রকম নোংরা জায়গায় মানুষ
+থাকতে পারে? আমি নিজের
+চোখে একটা তেলাপোকা দেখেছি। এ ফ্যাট আগলি ককরো।” </p>
+<p>নাদুস নুদুস একটা মেয়ে বলল, “এই দেশের সব জায়গায় তেলাপোকা থাকে। প্রেসিডেন্টের বাড়ীতেও আছে।” </p>
+<p>ফর্সা মেয়েটা চোখ পাকিয়ে বলল, “তুমি আমার সাথে ঠাট্টা করছ? তুমি আমাকে চিনো?” </p>
+<p>নাদুস নুদুস মেয়েটা থতমত খেয়ে বলল, “সরি। আমি আসলে ঠাট্টা
+করছিলাম না। আমি বুঝতে পারি নাই।” </p>
+<p>ফর্সা মেয়েটার সাথে আরো কয়েকজন আছে তাদেরও মেজাজ খুব গরম
+দেখা গেল। চেহারা দেখে বোঝা যায় তারা এরকম হোস্টেলের মতো জায়গায় থেকে অভ্যস্ত না। এতোজন মানুষের সাথে একটা ঘরে থাকতে হবে চিন্তা করেই তারা খুব বিরক্ত
+হয়ে উঠছিল। তাদের দলের আরেকটা মেয়ে বলল, “আমরা এখানে কেমন করে ঘুমাব? প্রাইভেসি কোথায়?” </p>
+<p>ফর্সা মেয়েটা বলল, “আমি আগে জানলে আসতেই রাজী হতাম না। মনে আছে যখন আমরা নেপাল গিয়েছিলাম আমাদের ফাইভ
+স্টার হোটেলে রেখেছিল?” </p>
+<p>তার দলের মেয়েরা মাথা নাড়ল। একজন বলল, “এখন চিৎকার করে লাভ নাই, কাল সকালে দেখা যাবে </p>
+<p>ফর্সা মেয়েটা বলল, “আমি ডেফিনিটলি এখান থেকে বের
+হয়ে যাব। আই
+এম নট স্লিপিং উইথ ককরোচস।” </p>
+<p>বিছানা ভাগাভাগি করতে গিয়ে হঠাৎ
+করে তারা আবিষ্কার করল,
+যে তাদের একটা বিছানা কম।
+তখন তারা এমন চিৎকার করতে শুরু করল, যে নিচ থেকে একজন মানুষ উপরে উঠে এল। ফর্সা মেয়েটি পা দাপিয়ে বলল, “আমরা চারজন মানুষ, তিনটা বিছানা। কীভাবে ঘুমাব?” </p>
+<p>নিচ থেকে উঠে আসা মানুষটা মাথা
+চুলকে বলল, “আজকে রাতটা ম্যানেজ করে ফেল, কাল একটা ব্যবস্থা করে দেব।” </p>
+<p>“কীভাবে ম্যানেজ করব? একজন জেগে বসে থাকব? কালকে আমাদের কম্পিটিশান, রাত্রে না ঘুমিয়ে কম্পিটিউশনে
+যাব?” </p>
+<p>“ভাগাভাগি করে ঘুমিয়ে যাও!” </p>
+<p>মেয়েটা চিৎকার করে বলল, “হোয়াট? এক বিছানায় দুইজন? আর ইউ ক্রেজী?” </p>
+<p>গৌরী ফিসফিস করে সেরিনাকে বলল, “সেরিনা।”</p>
+<p>“কী হয়েছে?” </p>
+<p>“আমি আর ললিতা এক বিছানায় ঘুমিয়ে যাব। তুই বলে দে আমাদের একটা বিছানায় ওদের
+একজন ঘুমাতে পারবে।” </p>
+<p>সেরিনা ফিসফিস করে বলল, “তোদের অসুবিধে হবে না?” </p>
+<p>গৌরী হেসে ফেলল, বলল, বাড়ীতে কি আমার আলাদা বিছানা আছে নাকী? আমরা একসাথে ঘুমাই না? তাই নারে ললিতা?” </p>
+<p>ললিতা মাথা নাড়ল। সেরিনা তখন ফর্সা মেয়েটাকে বলল, “শোনো। আমরা চারজন তিনটা বিছানায় ঘুমাতে পারব। তোমরা আমাদের একটা বিছানা নিতে
+পার।” </p>
+<p>মেয়েটা কেমন যেন থতমত খেয়ে গেল। বলল, “আর ইউ শিওর?” </p>
+<p>সেরিনা মাথা নাড়ল, “শিওর।” </p>
+<p>এরকম জটিল একটা সমস্যার হঠাৎ
+করে এত সহজ সমাধান হয়ে যাওয়ায় মনে হল মেয়েটার একটু আশা ভঙ্গ হল। সে আসলে আরো কিছুক্ষণ চিৎকার করতে চাচ্ছিল। নিচ থেকে যে মানুষটা এসেছিল
+সে এবার বেশ কঠিন স্বরে বলল,
+“এবারে তোমার সমস্যা মিটেছে?” </p>
+<p>ফর্সা মেয়েটা গজগজ করতে থাকে। মানুষটা গলায় স্বর
+আরেকটু কঠিন করে বলল, “দেখো, সারা দেশ থেকে মেয়েরা আসছে। নানা ধরণের ব্যাকগ্রাউন্ড থেকে
+মেয়েরা আসছে। আগামী কয়েকদিন সবাই মিলে মিশে থাকবে
+এটা হচ্ছে আমাদের আসল উদ্দেশ্য।
+মনে করো না প্রতিযোগিতা করে পুরস্কার পাওয়াটা আসল উদ্দেশ্য। বুঝেছ?” </p>
+<p>ফর্সা মেয়েটা আসলে সব সময়েই চিৎকার চেঁচামেচি
+করেছে এবং সবাই সবসময় তাকে সমীহ করে এসেছে। সে কোনো
+কিছু নিয়ে অভিযোগ
+করবে আর তাকে একজন উল্টো উপদেশ দেবে এরকম কিছু সে মোটেও অভ্যস্ত নয়। রাগে মেয়েটার মুখ থম থম করতে লাগল। </p>
+<p>রাতে ঘুমানোর সময় গৌরী আর ললিতা এক সাথে শুয়ে ফিস
+ফিস করে কথা বলছিল। সেরিনা বলল,
+“তোরা কী নিয়ে কথা
+বলিস?” </p>
+<p>গৌরী বলল, “কিছু না।” </p>
+<p>ললিতা বলল, “গৌরী বলছিল তার বাড়ীর জন্যে মন খারাপ লাগছে।” </p>
+<p>গৌরী লজ্জা পেয়ে বলল, “মোটেই বলি নাই।” </p>
+<p>সেরিনা বলল, “আমি আগে কোনোদিন আমার আব্বুকে
+ছাড়া একা থাকি নাই। আমারও আব্বুর জন্যে একটু একটু মন খারাপ করছে।” </p>
+<p>নার্গিস হি হি করে হেসে বলল, “ধূর গাধা। আমরা কালকে যদি হেরে যাই তাহলে পরশুদিন বাড়ী যাব। তোদের এতো মন খারাপ করার কী আছে?” </p>
+<p>গৌরী বলল, “প-র-শু দি-ন? এতো দিন পরে?” </p>
+<p>তার বলার ভঙ্গী শুনে অন্যেরাও
+হেসে উঠল। ঠিক এই সময় ফর্সা
+মেয়েটা খুবই কায়দার একটা ঘুমের কাপড় পরে
+তাদের পাশের বিছানায় ঘুমাতে এল।
+মেয়েটা তাদের বয়সী, খুব বেশী হলে হয়তো এক বছর বেশী বয়স হবে। কিন্তু মেয়েটার ভায় ভঙ্গি
+দেখে মনে হয় যে বুঝি তাদের থেকে অনেক বড়। ঠিক সেরকম ভাব করে তাদের দিকে তাকাল, বলল, “তোমরা ঘুমাবে না?” </p>
+<p>সেরিনা বলল,
+“ঘুমাব?” </p>
+<p>“কখন?” </p>
+<p>“এই তো এখন।” ‘ঘুমের কাপড় পরবে
+না?”</p>
+<p>ওরা একে অন্যের দিকে তাকাল। আলাদা করে যে ঘুমের কাপড় পরে
+ঘুমাতে হয় সেটাও তারা জানে না। </p>
+<p>নার্গিস বলল, “এইটাই আমাদের ঘুমানোর কাপড়।” </p>
+<p>মেয়েটা খুবই অবাক হল এবং সেটা গোপন রাখার চেষ্টা করল না। জিজ্ঞেস করল, “তোমরা কোন স্কুল থেকে এসেছ?” </p>
+<p>সেরিনা তাদের স্কুলের নাম বলল। মেয়েটা তখন জানতে চাইল সেটা কোথায়? তারা সেটাও বলল কিন্তু মেয়েটা জায়গাটা চিনল বলে মনে হল না। সেটা নিয়ে সে অবশ্যি মাথা ঘামাল না
+জিজ্ঞেস করল, “তোমাদের স্কুলের সুইমিং পুলটা কী রকম?” </p>
+<p>সেরিনা নার্গিস গৌরী আর ললিতা আবার একজন আরেকজনের মুখের দিকে তাকাল। নার্গিস বলল, “আমাদের স্কুলে কোনো সুইমিং পুল নাই।” </p>
+<p>মেয়েটা হকচকিয়ে বলল, “সুইমিং পুল নাই? তাহলে তোমরা কোথায় প্র্যাকটিস কর?” </p>
+<p>“পুকুরে। </p>
+<p>“পুকুরে?” মেয়েটা এতো জোরে চিৎকার করে উঠল যে শুনে
+মনে হল তারা পুকুরে’ বলে
+নি বলছে ‘আলকাতরায়। </p>
+<p>সেরিনা গৌরী আর ললিতার দিকে দেখিয়ে বলল, “এরা দুইজন নদীর ধারে থাকে। এরা নদীতে সাঁতরায়” </p>
+<p>মেয়েটা খানিকক্ষণ ওদের মুখের দিকে
+তাকিয়ে থাকল।
+মনে হল ব্যাপারটা সে বুঝতেই পারছে না। খানিকক্ষণ পর জিজ্ঞেস করল, “যদি তোমাদের সুইমিং পুল নাই তাহলে
+তোমরা কেমন করে প্র্যাকটিস করেছ? কীভাবে টাইমিং করেছ? কালকে কেমন করে কম্পিটিশনে
+পার্টিসিপেট করবে?” </p>
+<p>সেরিনা হাত নেড়ে বলল, “করব কোনো রকম ভাবে।” </p>
+<p>মেয়েটার কাছে পুরো ব্যাপারটাই মনে হল খুবই আজব
+লেগেছে তাই সে একটু পরে উঠে তার দলের অন্য যে মেয়েরা আছে তাদের কাছে গিয়ে ফিস
+ফিস করে কথা বলতে লাগল,
+মাঝে মাঝে আঙ্গুল দিয়ে সেরিনাদের
+দেখাতে লাগল, তারপর হেসে
+কুটি কুটি হতে লাগল। </p>
+<p>নারগিস বলল, “দেখ! আমাদের নিয়ে হাসাহাসি
+করছে।” </p>
+<p>সেরিনা বলল,
+“করুক।” </p>
+<p>গৌরী বলল, “আমার বাড়ীর জন্যে মন খারাপ লাগছে।” </p>
+<p>ললিতা বলল, “আমারও।”</p>
+<p>. </p>
+<p>পরদিন সকালে নাস্তা খাবার পর বড় একটা
+বাস এসে সবাইকে স্পোর্টস
+সেন্টারে নিয়ে গেল। সেখানে সেরিনাদের দলের সবাই জীবনের
+প্রথম একটা সুইমিং পুল দেখল। কী সুন্দর টলটলে নীল পানি, দেখলেই ঝাঁপিয়ে পড়তে ইচ্ছে করে। সাঁতার দেয়ার জন্যে আলাদা আলাদা লেন, সেখানে একেকজন একেকটা লেনে সাঁতার কাটবে। </p>
+<p>নাজমা ম্যাডাম তাদেরকে নিয়ে গেলেন
+রেজিস্ট্রেশন করানোর জন্যে, তাদেরকে একটা নম্বর দেয়া হল, সাতার কাটার
+সময় সেটা বুকে লাগিয়ে রাখতে হবে। একেকজন দুইটা ইভেন্টে অংশ নিতে পারবে। সেরিনারা ফ্রী স্টাইল আর
+রিলে সাতারে নাম দিয়েছে। সকালে ফ্রী স্টাইল বিকেলে রিলে সাঁতার। </p>
+<p>সেরিনাদের দল দ্বিতীয় রাউন্ডে হেরে গেল। গৌরী প্রাণপণ চেষ্টা করল, আরেকটু হলে সে এর পরের রাউন্ডে
+উঠতে পারত কিন্তু শেষ পর্যন্ত পারল না। ফর্সা মেয়েটা চাম্পিওন হল।
+তার দলের অন্যেরাও অন্যান্য ইভেন্টে খুব ভালো করল। তাদের স্কুলের টিচার মহা খুশী। নাজমা ম্যাডাম মুখ শুকনো করে ঘুরাঘুরি করতে লাগলেন। মাঝে মাঝে এসে তাদের বলে যেতে
+লাগলেন, “তোমরা মন খারাপ করো না। কম্পিটিশনে জেতা বড় কথা
+না, অংশ নেয়া হচ্ছে
+বড় কথা।” </p>
+<p>সেরিনা কিছু বলল না, সে তো আর
+নাজমা ম্যাডামকে বলতে পারে যে আসলে তাকে খুব সাবধানে সারাতে হচ্ছে যেন কোনোভাবে কোনো পুরস্কার না পেয়ে যায়। কোনো ভাবে কেউ যেন সন্দেহ করতে না পারে যে পানির সাথে
+তার অন্য এক ধরণের সম্পর্ক!
+সেরিনা ইচ্ছে করলেই এখানে
+যারা আছে তাদের যে কাউকে যে কোনো
+সময়ে হারিয়ে দিতে পারে।
+কিন্তু সেটা যেন না করে ফেলে সেটা নিয়েই সাবধান থাকতে হয়। চেষ্টা করে তাকে হেরে যেতে হয়! </p>
+<p>দুপুরের পরে রিলে সাঁতার। সেরিনাদের জন্যে তিন নম্বর ট্র্যাক, চার নম্বর ট্র্যাকে সেই ফর্সা
+মেয়েটির দল। সেরিনাদের দেখে মেয়েটি খিল খিল করে হেসে ফেলল, বলল, “তোমাদের সুইমিং কস্টিউটম নেই?” </p>
+<p>সেরিনা মাথা নাড়ল, বলল, “না নেই?” </p>
+<p>“এই টি শার্ট পরে সাঁতরাবে।” </p>
+<p>সেরিনা মাথা নাড়ল। মেয়েটা বলল, “সুইমিং কস্টিউম ছাড়া একজন
+কেমন করে সারায়? কিনে নাও না কেন?” </p>
+<p>নার্গিস বলল, “আমাদের থাকলেও কেউ পরতে রাজী
+হবে না।” </p>
+<p>“কেন?” </p>
+<p>গৌরী বলল, “লজ্জা করবে।” </p>
+<p>মেয়েটা আবার খিল খিল করে হাসল, তারপর বলল, “তোমাদের মাথাতে ক্যাপ নেই? চোখে গগলস নেই?” </p>
+<p>সেরিনা আবার মাথা নাড়ল,
+বলল, “না, নেই।” </p>
+<p>“চুল তোমাদের ডিস্টার্ব করে না।“ </p>
+<p>“করে না। আমাদের অভ্যাস আছে।” </p>
+<p>ফর্সা মেয়েটা বলে, “তোমাদের আসলে পানিতে নামাই ঠিক
+হয় নাই।” </p>
+<p>সেরিনা ভুরু কুঁচকে বলল, “কেন?” </p>
+<p>“পানিতে মানুষ সাঁতার কাটে। সাঁতার কাটার নিয়ম আছে। স্টাইল আছে। তোমরা তো কিছু জান না।” </p>
+<p>নার্গিস চোখ পাকিয়ে মেয়েটির দিকে তাকাল। মেয়েটা বলল, “সাতারের মাঝে হাইজিনেরও ব্যাপার
+আছে। ভাগ্যিস এই পানিতে
+ক্লোরিন দেওয়া থাকে।
+তা না হলে তোমরা
+কোথা থেকে কী ব্যাকটেরিয়া নিয়ে আসতে কে জানে!” </p>
+<p>গৌরী ফিস ফিস করে সেরিনাকে জিজ্ঞেস করল, “মেয়েটা কী বলছে রে?” </p>
+<p>“মেয়েটা বলছে, আমাদের শরীরে জীবানু থাকলেও
+সমস্যা নাই। সুইমিং পুলের
+পানিতে ক্লোরিন থাকে।” </p>
+<p>গৌরী ফিস ফিস করে বলল “ইচ্ছে করছে মেয়েটার মুখে খামচি দিয়ে চোখ
+তুলে নেই।” </p>
+<p>সেরিনা বলল,
+“আমারও।” </p>
+<p>.</p>
+<p>এরকম সময়ে নাজমা
+ম্যাডাম এসে বললেন, “সেরিনা তুমি প্রথম শুরু কর যদি ভালো একটা শুরু হয় অন্যেরা উৎসাহ পাবে।” </p>
+<p>সেরিনা বলল,
+“না ম্যাডাম আমি সবার শেষে।”</p>
+<p>“সবার শেষে?” </p>
+<p>“হ্যাঁ ম্যাডাম।” </p>
+<p>“তাহলে প্রথম কে?” </p>
+<p>“নার্গিস থাকুক।” </p>
+<p>নার্গিস একটু ইতস্তত করে রাজী
+হল। নাজমা ম্যাডাম ঠিক করে দিলেন
+নার্গিসের পর গৌরী। গৌরীর পর ললিতা, ললিতার পর সেরিনা। নাজমা ম্যাডাম যে সাঁতারের কায়দা কানুন খুব ভালো জানেন তা নয়, তারপরেও কিছু গাধা উপদেশ দিলেন। তখন সবাই সাঁতারের রিলের জন্যে
+রেডী হল। সুইমিং পুলের এক পাশে নার্গিস
+আর ললিতা অন্যপাশে গৌরি আর সেরিনা। নার্গিস ব্যাটন নিয়ে সুইমিং
+পুলের উপরে রেডি হল, ললিতা
+এক পাশে সরে নার্গিসের জন্যে জায়গা করে দিল। </p>
+<p>সবাইকে প্রস্তুত করানোর জন্যে হুইসেলের একটা লম্বা
+শব্দ হল। সবাই মাথা নিচু করে রেডি হল। এইবারে একটা তীব্র শব্দ হতেই
+সবাই নিজের ট্র্যাকে লাফিয়ে পড়ল।
+পানি ছিটিয়ে সবাই সাঁতরাতে থাকে। গৌরী উত্তেজনায় ছটফট করতে থাকে। সেরিনা গৌরীকে শান্ত রাখার চেষ্টা করে–“ঘাবড়াবি না গৌরী, একটুও ঘাবড়াবি না। তোকে শুধু ব্যাটনটা ঠিক করে নিতে
+হবে–ব্যাটনটা ফেলিস না তাহলেই হবে।” </p>
+<p>গৌরী আশে পাশের ট্র্যাকের দিকে তাকাল, তাদের পাশের ফর্সা মেয়ের দলের মেয়েটা এর মাঝে পৌঁছে গেছে সাত নম্বর ট্র্যাকও চলে এসেছে। গৌরীর মনে হতে থাকে নার্গিস বুঝি পৌঁছাবেই না। শেষ পর্যন্ত পানি ঝাঁপটে নার্গিস পৌঁছালো, গৌরী ব্যাটনটা প্রায় ছিনিয়ে নিয়ে উল্টো
+দিকে যেতে থাকে। ট্র্যাকের দড়ি ধরে
+ফর্সা মেয়েটা জোরে
+জোরে কয়েকটা নিশ্বাস
+নিয়ে আড় চোখে সেরিনার
+দিকে তাকিয়ে একবার মুচকি হাসে। সেরিনাও মেয়েটির দিকে তাকিয়ে হাসল–যেন খুব মজার একটা ব্যাপার। হয়েছে। </p>
+<p>গৌরী সুইমিং পুলের আধাআধি হতেই
+ফর্সা মেয়ের দলের
+মেয়েটি গন্তব্যে
+পৌঁছে পরের জনকে ব্যাটল
+দিয়ে দিয়েছে। গৌরী পৌঁছে ললিতাকে ব্যাটন দিতে গিয়েও একটু সমস্যা করে
+ফেলল, হাত থেকে ছুটে যেতে
+যেতে শেষ পর্যন্ত ব্যাটনটা ললিতা ধরতে পারল। তখন ললিতা সাঁতরে আসতে থাকে। </p>
+<p>ফর্সা মেয়েটা সেরিনাকে জিজ্ঞেস করল, “তোমরা কতো পজিশন পাবে বলে মনে কর?” </p>
+<p>সেরিনা জিজ্ঞেস করল, “তোমরা কতো পজিশন পাবে?” </p>
+<p>“চ্যাম্পিওন, আবার কী? দেখছ না তাকিয়ে!” </p>
+<p>সেরিনা বলল,
+“তাই নাকি?” </p>
+<p>“হ্যাঁ। ফর্সা মেয়েটা বলল, তোমাদের
+পজিশন কী হবে আমি বলব?” </p>
+<p>“বল।” </p>
+<p>“লাস্ট।” </p>
+<p>সেরিনা উত্তর না দিয়ে মেয়েটির মুখের দিকে তাকিয়ে মিষ্টি
+করে হাসল। এরকম সময়ে সেরিনা কেন মিষ্টি করে হাসছে
+ফর্সা মেয়েটা বুঝতে
+পারল না। </p>
+<p>ফর্সা মেয়েটা যখন ব্যাট হাতে সুইমিং পুলের
+মাঝামাঝি পৌঁছে গেছে তখন
+ললিতা সেরিনার হাতে ব্যাটনটি
+দিল। সেরিনা ব্যাটনটি নিয়ে ললিতার পিঠে থাবা দিয়ে বলল, “সাবাস ললিতা?” </p>
+<p>সেরিনা ললিতা ঠিক বুঝল না এতো দেরী করে পৌঁছানোর কোন জায়গাটা সাবাস। </p>
+<p>সেরিনা পানিতে ডুব দিল, তারপর দুই পা দিয়ে পানিটা ধাক্কা দিয়ে হঠাৎ
+করে নাচের ভঙ্গীতে পা দুটো নাড়াতে থাকে, হাত দুটো সামনে ধরে রেখেছে সাতারের ভঙ্গীতে
+কিন্তু পানি কেটে আনার চেষ্টা করছে না। যারা সাঁতার কাটে তারা তাদের হাত আর পা ব্যবহার
+করে সেরিনা আপাত দৃষ্টিতে
+তার হাতগুলো ব্যবহার পর্যন্ত
+করল না, সারা শরীর একটা তরঙ্গের মতো ঝাঁকুনি দিয়ে নিয়ে গেল
+একটি বার মাথাটা পানির ওপরে না তুলে সে একটা তীরের মতো এগিয়ে গেল, ফর্সা মেয়েটি গন্তব্যে প্রায় পৌঁছে গিয়েছিল সেরিনা তাকে পিছনে ফেলে একটা বিদ্যুৎ ঝলকের মতো সামনে এগিয়ে গেল। গন্তব্য পৌঁছে সে একটা ডিগবাজী দিয়ে সোজা হয়ে দাঁড়িয়ে ফর্সা
+মেয়েটির জন্যে
+অপেক্ষা করতে থাকে। </p>
+<p>ফর্সা মেয়েটি হঠাৎ করে সেরিনাকে দেখতে পায়, গন্তব্যে পৌঁছে শান্ত মুখে তার জন্যে অপেক্ষা
+করছে, সে তার নিজের চোখকে
+বিশ্বাস করতে পারে না,
+বড় বড় নিশ্বাস নিতে নিতে কোনো মতে বলল,
+“তুমি-তুমি-তুমি?” </p>
+<p>সেরিনা কিছু বলল না, মেয়েটার
+দিকে মিষ্টি করে হাসল। </p>
+<p>মেয়েটি আবার বলল, “তু-তু-তুমি কেমন করে?” </p>
+<p>সেরিনা বলল “আমাদের শরীরের ব্যাকটেরিয়া!” </p>
+<p>সেরিনার দল যখন মেডেল নিচ্ছে তখনও ফর্সা মেয়েটা সেরিনার দিকে তাকিলে রইল। বুঝতে পারছে না এটি কীভাবে
+সম্ভব। </p>
+<p>.</p>
+<p>দুই দিন পর খাবার টেবিলে শামীম সেরিনাকে বলল, “তোকে এতো করে করলাম কারো চোখে পড়বি না আর তুই এমন একটা নাটক করে ফেললি? </p>
+<p>সেরিনা বলল,
+“আন্ধু তুমি হলে আরো বেশী করতে। তুমি জান ঐ পাজী মেয়েটা আমাদেরকে কীভাবে
+টিটকারী মারছিল? উচিৎ শিক্ষা
+হয়েছে। মুখটা এই রকম হা হয়ে গেছে!” কথা শেষ করে সেরিনা মুখটা হা করে দেখাল। </p>
+<p>শামীম সেরিনার হা করা মুখটা দেখে হেসে ফেলল কিন্তু আবার হাসি
+বন্ধ করে গম্ভীর হয়ে বলল, “কিন্তু তুই যে আসলে সাঁতরাসনি তুই যে আসলে
+পানির টর্পেডো হয়েছিলি সেটা কেউ লক্ষ্য
+করে নি মনে করিস? কোথাও ভিডিও হয়ে গেছে
+হয়ত।” </p>
+<p>“না আব্বু। এতোজন পানি ঝাঁপটে
+সাঁতার দিচ্ছে কেউ আমাকে লক্ষ্য করে নি।” </p>
+<p>না করলে ভালো, কিন্তু এ-রকম একটা জিনিষ
+কী লক্ষ্য না করে থাকা সম্ভব?” </p>
+<p>সেরিনা বলল,
+“লক্ষ্য করলেও ভেবেছে আমি খুব
+ভালো সাঁতার কাটি। তার বেশী কিছু না। কেউ বুঝে নি যে আমি ফুসফুস
+দিয়ে নিশ্বাস নিই নি।” </p>
+<p>শামীম বলল, “সেটা অবশ্যি ঠিক। কেউ তো জানে না তুই ফুসফুস দিয়ে নিশ্বাস
+না নিয়েও থাকতে
+পারিস। তাই সেটা কারো সন্দেহ করার কথা না। তারপরেও সেরিনা ভবিষ্যতে আর কখনো যেন এরকম না হয়।” </p>
+<p>“হবে না আব্বু।” </p>
+<p>“আমাকে ছুঁয়ে বল আর
+কখনো এরকম করবি না।” </p>
+<p>সেরিনা শামীমকে ছুঁয়ে বলল, “আর কখনো করব না। আব্বু।” </p>
+<p>তারপর হাসি হাসি মুখ করে বলল, “কিন্তু আলু তুমি যদি ঐ পাজী
+মেয়েটার মুখটা
+দেখতে </p>
+<p>শামীম বলল, “আমার দেখতে হবে না, আমি খুব ভালো করে বুঝতে পারছি।” </p>
+<p>সেরিনা শামীমকে ধরে আনন্দে হি হি করে হাসতে লাগল। </p>
+</div>
+<br/><h2>০৬. ক্লাউস এটা দেখো</h2>
+<hr/>
+<br/><div>
+<p>মেয়েটা বলল, “ক্লাউস, এটা দেখো।” </p>
+<p>ক্লাউস বলল, “এটা কী?” </p>
+<p>“একটা ভিডিও।” </p>
+<p>“কীসের ভিডিও।” </p>
+<p>“একটা টিন এজ মেয়ে একটা
+সাঁতার প্রতিযোগিতায় সাঁতার
+কাটছে।” </p>
+<p>এটা কেন দেখতে হবে, “মিশেল?” </p>
+<p>নামের মেয়েটা বলল, “দেখলেই বুঝতে পারবে।” </p>
+<p>মিশেল মনিটর স্পর্শ করতেই ভিডিওটা চালু হয়ে যায়, ক্লাউস দেখল হলুদ রংয়ের টি শার্ট পরা একটা মেয়ে রিলে
+সাঁতারে তার দলের সাঁতারুর কাছ থেকে ব্যাটনটি নিয়ে সাঁতরাতে শুরু করেছে। ক্লাউস অবাক হয়ে দেখল
+মেয়েটি একটা মাছের
+মতো পানির নিচে দিয়ে বিদ্যুতের
+মতো এক পাশ থেকে অন্য পাশে চলে গেল। ক্লাউস বলল, “মেয়েটা এতো দ্রুত সাঁতরায় কেমন
+করে?” </p>
+<p>মিশেল বলল, “আমি মোটেও সেটা দেখতে বলি নি। মেয়েটা অলিম্পিকের স্বর্ণ বিজয়ী থেকেও
+দ্রুত সাঁতরায় কিন্তু আমি তোমাকে তার থেকে অনেক
+বেশী গুরুত্বপূর্ণ একটা জিনিস দেখতে বলেছি।” </p>
+<p>“সেটা কী?” </p>
+<p>“আবার দেখ, তাহলে বুঝবে।” </p>
+<p>ক্লাউস আবার ভিডিওটা দেখে সোজা হয়ে বসল, বলল, “মেয়েটা একবারও নিশ্বাস নেবার জন্যে পানির উপরে মাথাটা
+বের করে নি!” </p>
+<p>মিশেল বলল, “ঠিক ধরেছ!” </p>
+<p>ক্লাউস অবাক হয়ে বলল, “এটা কীভাবে সম্ভব?” </p>
+<p>“এটা সম্ভব না।”</p>
+<p>“তাহলে?” </p>
+<p>“আমি সেটাই তোমার কাছে জানতে চাই। তুমি আমাদের জীব বিজ্ঞানী।” </p>
+<p>ক্লাউস বলল, “এই ভিডিওটা কোথায় পেয়েছ?” </p>
+<p>“নেট থেকে আমাদের টিম ডাউনলোড করেছে। এটা কোথা থেকে পেয়েছে বের করে জানাবে। যে মেয়েগুলো সাঁতার দিচ্ছে তাদের চেহারায় মনে হয় ইন্ডিয়ার মেয়ে।” </p>
+<p>ক্লাউস তৃতীয়বার ভিডিওটা দেখতে শুরু করে, নিচু গলায় বলল, “এটা সম্ভব না। এ-রকম প্রতিযোগিতায় শরীরে
+অক্সিজেন আরো বেশী দরকার, নিশ্বাস না নিয়ে এভাবে সাঁতরানো অসম্ভব।” ক্লাউস ‘অসম্ভব’ শব্দটা উচ্চারণ করার সময় টেবিলে
+একটা থাবা দিল। </p>
+<p>ভিডিওটা দেখা শেষ করে হঠাৎ ক্লাউস আর্ত চিৎকারের
+মতো শব্দ করল। মিশেল অবাক হয়ে বলল, “কী হয়েছে?” </p>
+<p>“আমরা এখনো আসল জিনিসটাই দেখি নি।” </p>
+<p>মিশেল জানতে চাইল, “কী? আসল জিনিসটা কী?” </p>
+<p>“এই দেখো।” ক্লাউস ভিডিওটাতে
+আঙুল দিয়ে দেখিয়ে বলল, “মেয়েটা সাঁতার শেষ করে তার প্রতিপক্ষের জন্যে দাঁড়িয়ে আছে। মুখে একটা ঠাট্টার হাসি।” </p>
+<p>মিশেল বলল, “হ্যাঁ। হাসি তো থাকতেই পারে। টিন এজ মেয়ে তার
+প্রতিপক্ষকে হারিয়ে দিয়েছে, তার দিকে ঠাট্টার হাসি তো হাসতেই পারে।” </p>
+<p>“না, না সেটা আমি বলছি না। আমি বলছি এই মেয়েটার দিকে ভালো করে তাকাও। দেখ কী করে।” </p>
+<p>মিশেল, ভালো করে,
+তাকাল, বলল, “কী করছে?” </p>
+<p>“এতো বড় একটা ল্যাপ শেষ করেছে, এখন তার কী করা উচিত?” </p>
+<p>“হাঁপিয়ে যাওয়া উচিৎ। বড় বড় নিশ্বাস
+নেওয়া উচিৎ।” </p>
+<p>ক্লাউস খুশী হয়ে বলল, “গুড। দেখো তাকিয়ে। মেয়েটা কী হাঁপিয়ে উঠেছে? বড় বড় নিঃশ্বাস নিচ্ছে?” </p>
+<p>“না। মেয়েটা মুখে হাসি নিয়ে দাঁড়িয়ে আছে। বড় বড় নিশ্বাস
+নিচ্ছে না।” </p>
+<p>ক্লাউস বলল, “আমি আবার ভিডিওটা দেখাই, তুমি ভালো করে দেখো। এবারে স্লো মোশানে।” </p>
+<p>ক্লাউস পুরো ভিডিওটা খুবই স্লো মোশানে দেখালো, দেখাতে দেখাতে জিজ্ঞেস করল, “মেয়েটা কী আদৌ কোনো নিশ্বাস নিচ্ছে?” </p>
+<p>“না। নিশ্বাস নিচ্ছে না।” </p>
+<p>“মেয়েটার বুকের দিকে তাকাও–নিশ্বাস নিলে বুকটা ওপরে উঠে
+নিচে নামে। এই মেয়েটার বুক কী ওপরে উঠছে, নিচে নামছে?” </p>
+<p>মিশেল বলল, “না।” </p>
+<p>“মেয়েটা কী নিশ্বাস নিচ্ছে?” </p>
+<p>“না।” </p>
+<p>“এর চাইতে অবিশ্বাস কোনো জিনিস তুমি কোনোদিন দেখেছ?”</p>
+<p>“না।” </p>
+<p>“আমিও দেখি নি।” </p>
+<p>“এখন তাহলে কী করবে?” </p>
+<p>ক্লাউস মুখ দিয়ে বিচিত্র
+একটা শব্দ করে বলল, “মেয়েটাকে আমার চাই।” </p>
+<p>“মেয়েটা কোথায় থাকে
+কী করে কিছুই আমরা জানি না।” </p>
+<p>“তাতে কিছু আসে যায় না। আমাদের এজেন্সি পৃথিবীর যে
+কোনো জায়গায় যে কোনো মানুষকে যে কোনো সময় ধরে নিয়ে আসতে
+পারে।” </p>
+<p>“মেয়েটিকে এনে কী করবে?” </p>
+<p>ক্লাউস হাসার মতো শব্দ করল, বলল, “কী আবার করব? কেটে কুটে দেখব! মেয়েটার শরীরের ভিতরে কী আছে দেখা
+দরকার।” </p>
+<p>মিশেল বলল, “ঠিক আছে।” </p>
+<p>“একটা প্রজেক্ট বানাও। ফান্ডিং নিয়ে চিন্তা
+করো না। আমাদের এজেন্সির ফান্ডের সমস্যা নেই।” </p>
+<p>“আমি ফান্ডিং নিয়ে কখনো চিন্তা করি না।” </p>
+</div>
+<br/><h2>০৭. নৌকাটাকে ধাক্কা দিয়ে পানিতে</h2>
+<hr/>
+<br/><div>
+<p>শামীম নৌকাটাকে ধাক্কা দিয়ে পানিতে নামিয়ে দেয়, তারপর নিজে ছোট একটা লাফ দিয়ে নৌকার গলুইয়ে বসে গেল। নৌকার অন্য মাথায় সেরিনা বসে শামীমের দিকে তাকিয়েছিল। সে মাথা নেড়ে বলল, “ভেরি গুড আব্বু।” </p>
+<p>শামীম বৈঠাটা হাতে নিয়ে বলল, “কোন জিনিষটা ভেরি গুড?” </p>
+<p>“এই যে তুমি পানিতে আছাড় না
+খেয়ে নৌকাতে উঠতে পেরেছে সেইটা ভেরি গুড।” </p>
+<p>শামীম বলল, “তোর ধারণা শুধু তুই পানিতে ওঠা-নামা করতে পারিস, আমরা পারি না?” </p>
+<p>“তুমি যেরকম জবুথবু তোমাকে দেখে
+তো সে-রকমই মনে হয়।”</p>
+<p>“আমার সাথে ঠাট্টা করবি না, খবরদার।” </p>
+<p>“ঠিক আছে তোমার সাথে ঠাট্টা করব না।” সেরিনা এক মুহূর্ত থেমে বলল, “থ্যাংকু আব্বু। তোমাকে
+অনেক থ্যাংকু।” </p>
+<p>“কেন? হঠাৎ করে আমাকে এতো থ্যাংকু কেন?” </p>
+<p>“এই যে তুমি আমাকে আজকে এই বিলে
+নিয়ে এসেছ,
+সেইজন্যে।” </p>
+<p>শামীম বৈঠা দিয়ে পানি
+কাটতে কাটতে বলল, “কাজটা খুব সহজ হয় নাই। এই নৌকাটা কিনতে হয়েছে, নৌকা চালানো শিখতে হয়েছে।” </p>
+<p>সেরিনা আরেকটা বৈঠা হাতে নিয়ে বলল, “ভালোই তো হয়েছে, নৌকা চালানো অনেক ভালো ব্যায়াম। তুমি তো শুধু চেয়ার টেবিলে বসে লেখাপড়া করো। তোমার ব্যায়াম করা দরকার ছিল। আজকে তোমার ব্যায়াম হবে।” </p>
+<p>শামীম বলল, “অনেক হয়েছে। এখন মুখটা বন্ধ কর।” </p>
+<p>“না, আব্বু, তোমাকে আসলেই থ্যাংকু। আমাদের পুকুরের তলাটা দেখতে দেখতে চোখটা
+পচে গেছে; ওখানে দেখার মতো কিছুই নাই। এই বিলটার কথা চিন্তা কর–কতো বড় একটা বিল, এইটার পানির নিচে না জানি কতো কি আছে?” </p>
+<p>“সেইটা ভালো না খারাপ আমি বুঝতে পারছি না।” </p>
+<p>“খারাপ কেন হবে?” </p>
+<p>“পানির নিচে কী আছে কে জানে!” </p>
+<p>সেরিনা খিল খিল করে হাসতে হাসতে বলল, “আব্বু তুমি পানিকে এতো ভয় পাও কেন?” </p>
+<p>“আমি মোটেও পানিকে ভয় পাই
+না। প্রত্যেকদিন ঘুমানোর আগে আমি দুই গ্লাস পানি খাই!” </p>
+<p>“সেটা ঠিক। বোতলের পানিকে তুমি ভয় পাও না। কিন্তু পুকুরের পানি, বিলের পানি, নদীর পানি, সমুদ্রের পানি তুমি ভয় পাও!” </p>
+<p>শামীম মাথা নেড়ে বলল, “আমি তো তোর মতো পানির নিচে থাকতে পারি না, দেখতে পারি না–তুই যখন পানির নিচে থাকিস তখন
+কী করিস আমি দেখতে পারি না তাই তোর জন্য আমার একটু ভয় লাগে।” </p>
+<p>সেরিনা গম্ভীর হয়ে বলল, “আমার জন্যে তুমি একটুও ভয় করো না আব্বু। পানির নিচে কেউ আমাকে কিছু করতে
+পারবে না।” </p>
+<p>“থাক এতো বড় বড় কথা
+বলে লাভ নেই।” </p>
+<p>“সত্যি আব্বু। আমার কী মনে হয় জান?” </p>
+<p>“কী মনে হয়।” </p>
+<p>“আমি ইচ্ছে করলে পানির নিচে দিনের
+পর দিন থাকতে পারব।” </p>
+<p>শামীম ভুরু কুঁচকে বলল, “কী বললি?” </p>
+<p>সেরিনা বলল,
+“বলেছি যে আমি ইচ্ছে করলে পানির
+নিচে দিনের পর দিন থাকতে পারব।” </p>
+<p>“খাবি কী? ঘুমাবি কোথায়?” </p>
+<p>“শুকনো জায়গায় খাওয়ার কিছু নাই আব্বু। পানির নিচে অনেক রকম খাবার। আর ঘুমানোর জন্য পানির নিচে কিছু লাগে না। আমি
+যে কোনো জায়গায় ঘুমাতে
+পারি। তুমি তো কখনো পানির ভেতরে ভেসে ভেসে ঘুমাও নি তাই তুমি জানো না পানিতে ঘুমাতে কতো আরাম। একবার পানিতে ঘুমানো অভ্যাস হয়ে গেলে
+তুমি বিছানায় ঘুমাতেই পারবে না।” </p>
+<p>শামীম একটু শংকিত দৃষ্টিতে সেরিনার দিকে তাকিয়ে থাকে
+একটু পরে বলে, “কোনো কিছু নিয়ে বাড়াবাড়ি ভালো না। তোকে পানির নিচে ঘুমাতে হবে না, থাকতেও হবে না। তোর যদি পানির নিচে থাকার কথা
+হতো তাহলে খোদা তোকে পাঙাস মাছ করে পাঠাতো। খোদা মোটেই তোকে পাঙ্গাস মাছ করে পাঠায় নাই। তোকে সেরিনা করে পাঠিয়েছে।” </p>
+<p>সেরিনা খিল খিল করে হাসতে হাসতে বলল, “আব্বু তুমি এতো মজা করে কথা বলতে পার! পাঙ্গাস। হি হি হি!” </p>
+<p>শামীম চারদিকে তাকায়। আশেপাশে এখন কোনো জেলে নৌকা নেই। সেরিনা যখন পানিতে নামবে শামীম চায় না
+তখন কেউ সেটা দেখুক। গোপনে কয়েক ঘণ্টা পানির নিচে ভেসে বেড়িয়ে আবার
+বের হয়ে আসবে।
+শামীম বলল, “সেরিনা জায়গাটা কেমন?
+এখানে নামবি?” </p>
+<p>সেরিনা বলল,
+“ফ্যান্টাস্টিক। পানি কতো পরিষ্কার দেখেছ? এখানে অনেক দূর পর্যন্ত আলো যাবে। সবকিছু পরিষ্কার দেখা যাবে।” </p>
+<p>সেরিনা ঠিক যখন বিলের পানিতে নেমে যাচ্ছিল তখন হঠাৎ দূর থেকে একটা
+শক্তিশালী ইঞ্জিনের শব্দ শুনতে পেল, শামীম একটু অবাক হয়ে তাকাল, দেখল বহুদূর থেকে একটা স্পীডবোট ছুটে আসছে। শামীম বলল, “এই বিলে স্পীডবোট কোথা থেকে আসছে?” </p>
+<p>“জানি না, আব্বু।” </p>
+<p>সেরিনাও দূরে তাকিয়ে থাকে। স্পীড বোটটা গর্জন করে পানি কেটে তাদের দিকে আসছে। দেখতে দেখতে সেটা কাছে চলে
+আসে, তাদের নৌকাটার খুব কাছে দিয়ে সেটা ছুটে চলে যায়। স্পীডবোটের তৈরি ঢেউয়ে শামীম আর সেরিনার নৌকাটা বেশ ভালো রকম দুলতে থাকে। </p>
+<p>স্পীড বোটে কয়েকজন মানুষ বসে আছে, এর মাঝে একজনকে বিদেশী মনে হলো। চোখে কালো
+চশমা, রঙিন সার্ট। হাতে বাইনোকুলার। শামীম বলল, “নিশ্চয়ই এনজিও।” </p>
+<p>“কিসের এনজিও আব্বু।” </p>
+<p>“জানি না। বিদেশী এনজিওগুলো পকেটে করে কিছু ডলার এনে ছিটিয়ে দেয় আর
+সবাই হুমড়ি খেয়ে পড়ে।” </p>
+<p>সেরিনা বলল,
+“এখন নামি আব্বু?” </p>
+<p>“একটু দাঁড়া। স্পীড বোটটা একেবারে চলে যাক।” </p>
+<p>কিন্তু স্পীড বোটটা একেবারে চলে গেল না, বেশ কিছুদূর গিয়ে আবার
+সেটা ঘুরে তাদের দিকে এগিয়ে আসতে থাকে, দেখে মনে হয় সোজা তাদের দিকে আসছে, কাছাকাছি এসে স্পীড বোটটা একটু সরে গিয়ে প্রায় তাদের
+নৌকায় পানি ছিটিয়ে বের হয়ে গেল। শামীম বলল, “কেমন বেয়াদপের মতো স্পীডবোট চালাচ্ছে দেখেছিস?” </p>
+<p>“হ্যাঁ। দেখেছি।” স্পীড বোটে বসে থাকা মানুষটা
+যে বাইনোকুলার চোখে তাদের
+অনেক দূর থেকে লক্ষ্য করেছে সেটাও সে দেখেছে। কিন্তু শামীমকে কিছু বলল না। </p>
+<p>“এবারে আমি নেমে যাই আব্বু?” </p>
+<p>“যা নেমে যা।” </p>
+<p>সেরিনা তখন বিলের পানিতে নেমে গেল। শামীম দেখল আশ্চর্য রকম সাবলীলভাবে তার মেয়েটি পানির গভীরে যেতে
+থাকে কিছুক্ষণেই সে অদৃশ্য হয়ে যায়।
+শামীম একটা নিশ্বাস ফেলল,
+আজকাল মাঝে মাঝে তার মনে হয় এই মেয়েটি বুঝি ডাঙ্গা থেকে পানিতে বেশি স্বস্তি বোধ করে। </p>
+<p>নৌকাটা স্থির রাখার জন্যে একটা লোহার রডকে বাঁকা করে কাজ চালানোর মতো নোঙর তৈরী করে এনেছিল সেটা পানিতে ফেলে দিয়ে শামীম
+চারদিকে সতর্ক দৃষ্টিতে তাকাল।
+বহুদূরে কয়েকটা
+জেলে নৌকা, তার চাইতেও দূরে স্পীড বোটটা পানিতে স্থির হয়ে আছে। সেটি কাছে আসছে না আবার চলেও যাচ্ছে না। ঠিক কী কারণ জানা নেই শামীমের মনে হয় বিদেশী
+লোকটা বাইনোকুলার দিয়ে তাদের
+দেখছে। এক সময় শামীম
+নৌকার পাটাতনে শুয়ে পড়ল। মানুষেরা সাধারণ খোলা জায়গায় আকাশের
+দিকে তাকিয়ে শুয়ে থাকে না, মানুষ ঘরের ভেতর শোয়, তাই
+তাদের দৃষ্টি বাড়ীর
+ছাদে আটকে যায়। খোলা আকাশের নিচে শুয়ে থাকলে
+দৃষ্টি কোথাও আটকে যায় না, সেই আদিগন্ত বিস্তৃত আকাশ, আকাশে সাদা মেঘ, মেঘের পাশে দুই পাখা বিস্তৃত করে আকাশে ভেসে থাকা চিল দেখা যায়। কী কারণ জানা নেই আকাশের দিকে তাকিয়ে থাকতে
+থাকতে শামীম কেমন জানি বিষণ্ণ
+হয়ে যায়। </p>
+<p>.</p>
+<p>সূর্য পশ্চিম দিকে অনেকখানি হেলে যাবার পর
+সেরিনা পানি থেকে বের
+হয়ে এল। তার সারা শরীর পানিতে চিক চিক করছে। কোচড় বোঝাই নানা ধরনের শৈবাল, শামুক, পানির লতাপাতা ফলমূল। নৌকার মাঝে সেগুলো ঢেলে দিয়ে বলল, “আব্বু, তোমার জন্যে এনেছি।” </p>
+<p>“আমার জন্যে?” </p>
+<p>“হ্যাঁ আব্বু, খেয়ে দেখো।” </p>
+<p>“তোর কবে থেকে ধারণা হলো আমি শামুক খাই, পানির লতাপাতা খাই?” </p>
+<p>“তুমি বলছিলে না পানিতে কোনো খাবার নেই, সেই জন্যে এনেছি। ঐ কাঁটা কাটা ফলটা ভেঙ্গে দেখো ভেতরে কী মজার শাঁস। একেবারে গাজরের মতোন।” </p>
+<p>“থাক! আমার যখন গাজর খাবার ইচ্ছে করবে তখন কাঁটা কাঁটা আজব কোনো ফল না খেয়ে বাজার
+থেকে গাজর কিনে আনব!” </p>
+<p>“আব্বু তুমি খুবই বোরিং একজন মানুষ।” </p>
+<p>“একটা ফেমিলিতে এক্সাইটিং মানুষ
+বেশী থাকা ভালো না। একজনই যথেষ্ট! এখন বল তুই পানির নিচে কী দেখলি।” </p>
+<p>সেরিনার চোখ দুটো হঠাৎ চক চক করতে থাকে। সে দুই হাত নেড়ে বলল, “তুমি বিশ্বাস করবে না আব্বু পানির নিচে কী অসাধারণ সুন্দর। কতো রকম যে মাছ তুমি চিন্তাও করতে পারবে না। শুধু মাছ না আব্বু আরো কতো রকম প্রাণী যে আছে– </p>
+<p>“কতো রকম প্রাণী মানে?” </p>
+<p>“সাপের মতন কিন্তু সাপ না। ব্যাঙের মতন কিন্তু ব্যাঙ না। এছাড়াও ভেঁদড় আছে, পানকৌড়িকেও দেখেছি! বড় বড় মাছ ঘুরে বেড়ায় তাদের
+পিছনে তার লক্ষ লক্ষ পোনা! কী যে মজা লাগে দেখতে! কতো রকম গাছ, গাছের ফাঁকে ফাঁকে কতো রঙিন মাছ! তোমাকে একদিন নিয়ে যেতে
+হবে।” </p>
+<p>“থাক আমাকে নিতে হবে না। তুই গেলেই হবে।” </p>
+<p>“আমি আবার যাব আব্বু। আজকে কিছুই দেখা হয় নি।” </p>
+<p>“ঠিক আছে আরেকদিন যাবি। আজকে বাসায় চল।” </p>
+<p>“চল আব্বু।” </p>
+<p>শামীম নোঙরটা তুলে বৈঠা বেয়ে নৌকাটা তীরের দিকে নিতে থাকে। দূরে স্পীড বোটটা তখনো দাঁড়িয়ে আছে। তারা তীরে পৌঁছানোর পর স্পীড বোটটা গর্জন করে আরো দূরে অদৃশ্য হয়ে গেল। </p>
+<p>.</p>
+<p>বাংলা ক্লাশটা হওয়া উচিৎ
+সবচেয়ে আনন্দের কিন্তু সেরিনার কাছে বাংলা ক্লাশটা অসহ্য মনে হয়। ক্লাশটা পড়ান মকবুল স্যার। এই স্যারের মতো নিরানন্দ মানুষ পৃথিবীতে নাই, কথাবার্তাও বলেন এমনভাবে যে
+শুনলেই একজন মানুষ নেতিয়ে পড়বে। মকবুল স্যার ক্লাশের মাঝামাঝি
+গিয়েছেন আর তখন
+থেকে সেরিনা একটু পরে
+পরে জানালা দিয়ে বাইরে তাকাচ্ছে।
+তাদের ক্লাশরুমটা দোতলায়, দোতলা থেকে তাকালে বাইরে রাস্তা, রাস্তায় মানুষ, গাড়ী, টেম্পো সবকিছু দেখা যায়।
+মকবুল স্যারের একঘেয়ে গলার স্বর থেকে টেম্পুর হর্ণের শব্দ অনেক বেশি মজার। </p>
+<p>সেরিনা রাস্তার দিকে কয়েকবার তাকিয়ে হঠাৎ
+করে মাইক্রোবাসটা সেরিনার
+চোখে পড়ল। বিয়ের সময় বরযাত্রী নেবার জন্যে যে রকম মাইক্রোবাস
+ভাড়া করা হয় এটা মোটেও
+সেরকম মাইক্রোবাস নয়, মাইক্রোবাসটা খুব চকচকে, খুবই আধুনিক। দেখলেই বোঝা যায় খুব দামী মাইক্রোবাস। তাদের মফস্বল শহরে এরকম গাড়ী কখনো দেখা যায় না। </p>
+<p>মাইক্রোবাসটা তার ক্লাশরুমের খুব কাছাকাছি
+রাস্তায় দাঁড়িয়ে আছে। রাস্তাটা ক্লাশরুমের এতো কাছে যে সে মাইক্রোবাসের প্যাসেঞ্জারকেও
+এখান থেকে স্পষ্ট দেখতে পায়। প্যাসেঞ্জারের দিকে
+তাকিয়ে সে চমকে উঠল, মানুষটা বিদেশী, চোখে কালো
+চশমা হাতে একটা বাইনোকুলার। আর কী আশ্চর্য মানুষটা ঠিক তার দিকে তাকিয়েছিল, চোখে চোখ পড়তেই মানুষটা মুখ ঘুরিয়ে নিয়েছে। মাত্র সেদিন যখন সেরিনা তার আব্বুকে নিয়ে বিলের
+ভেতর গিয়েছিল তখন
+এই মানুষটাই স্পীড বোটে
+করে তাদের নৌকার চারপাশে ঘুরপাক খেয়েছে। হঠাৎ করে সেরিনার বুকটা ধ্বক করে ওঠে–তাহলে কী এই মানুষগুলো তার জন্যে এসেছে? কোনোভাবে তার খবর জেনে গেছে? সেরিনা এক ধরণের আতংক অনুভব করে। কখন মকবুল স্যারের ক্লাশ শেষ
+হয়ে গেছে সে টেরও পায় নি। </p>
+<p>সেরিনা তার ডেস্ক থেকে তার বই খাতা নিয়ে উঠে
+গেল, গৌরী ক্লাশের পিছন
+দিকে বসেছে, তার কাছে গিয়ে বলল, “গৌরী তুই একটা কাজ করবি?” </p>
+<p>“কী কাজ? “আমার সাথে সিট বদল
+করবি?” “সিট বদল?” </p>
+<p>“হ্যাঁ। আমি ঐ জানালার কাছে বসেছি। তুই ওখানে বোস। আর আমি তোর সীটে
+বসব।” </p>
+<p>গৌরী একটু অবাক হয়ে বলল, “কেন?” </p>
+<p>“তোকে পরে বলব। আর তুই আরো একটা কাজ করবি।” </p>
+<p>“কী কাজ?” </p>
+<p>“জানালা দিয়ে বাইরে
+তাকালেই তুই দেখবি রাস্তায় একটা ঘিয়ে রংয়ের মাইক্রোবাস। খুবই হাইফাই মাইক্রোবাস।” </p>
+<p>“হুঁ। কী হয়েছে সেই মাইক্রোবাসের?” </p>
+<p>“মাইক্রোবাসটা যদি চলে যায় তুই আমাকে
+সিগনাল দিবি।” </p>
+<p>“কি রকম সিগনাল?” </p>
+<p>“ডান হাতটা এভাবে নাড়াবি।” সেরিনা হাত দিয়ে কিছু
+একটা সরে যাওয়া দেখাল।</p>
+<p>গৌরী জিজ্ঞেস করল, “আর যদি না যায়?” </p>
+<p>“তাহলে তোর কিছু করতে হবে না। যা তুই আমার সিটে যা–তাড়াতাড়ি। আর একটা কথা–” </p>
+<p>“কী কথা?” </p>
+<p>সেরিনা বলল,
+“মাইক্রোবাসের প্যাসেঞ্জাররা যেন বুঝতে না পারে তুই তাদের
+লক্ষ্য করছিস। সোজাসুজি তাকাবি না।” </p>
+<p>গৌরী অবাক হয়ে বলল, “আমি কিছুই বুঝতে পারছি না।” </p>
+<p>“তোর এখন কিছুই বুঝতে হবে না। তাড়াতাড়ি যা–এক্ষুনি রওশান ম্যাডাম চলে
+আসবে। </p>
+<p>গৌরী তার বই খাতা নিয়ে জানালার
+কাছে সেরিনার সিটে বসে
+চোখের কোণা দিয়ে রাস্তায় তাকাল।
+সত্যিই রাস্তায় একটা ঘিয়ে রংয়ের মাইক্রোবাস। সে সরাসরি না তাকিয়ে চোখের কোণা দিয়ে মাইক্রোবাসটার
+দিকে তাকিয়ে থাকে। </p>
+<p>রওশান ম্যাডাম আসার পাঁচ মিনিট
+পর গৌরী সেরিনাকে সিগন্যাল
+দিয়ে জানালো
+মাইক্রোবাসটা চলে গেছে। </p>
+<p>.</p>
+<p>স্কুল ছুটির পর গৌরী সেরিনার কাছে এসে বলল, “সেরিনা, তুই বলবি কি হচ্ছে?” </p>
+<p>“আমি ঠিক জানি না কীভাবে বলব।” আমার সাথে আয় হাঁটতে
+হাঁটতে বলি। </p>
+<p>গৌরী আর সেরিনার বাসা একদিকে না, কিন্তু একটু ঘোরাপথে গেলে দুজন এক সাথে প্রথমে বেশ খানিকটা পথ যেতে পারে। মাঝে মাঝেই তারা এক সাথে হেঁটে হেঁটে এই
+পথে যায়। সাঁতার প্রতিযোগিতায় এক সাথে অংশ নেয়ার পর থেকে সেরিনার গৌরী, ললিতা আর বিলকিসের মাঝে অন্য এক ধরণের বন্ধুত্ব হয়েছে। প্রায় সময়েই তারা এক সাথে থাকে। বিলকিসের বাসা সম্পূর্ণ অন্যদিকে হওয়ার পরও মাঝে মাঝে সেরিনা গৌরী আর ললিতার সাথে
+হেঁটে হেঁটে যায়। আজকেও চারজন একদিকে রওনা দিল। </p>
+<p>স্কুলের গেট থেকে বের হওয়ার সাথে সাথে সেরিনার মনে হলো মোড়ের চায়ের দোকনে বসে থাকা দুইজন মানুষ
+উঠে দাঁড়িয়েছে। আসলেই মানুষ দুইজন তার জন্যে উঠেছে নাকী
+এমনিতেই উঠেছে সেটা পরিষ্কার বোঝা
+গেল না। সেরিনা সেটা নিয়ে বেশি মাথা ঘামাল না। </p>
+<p>গৌরী বলল, “এখন বল,
+কী হয়েছে?”</p>
+<p>বিলকিস জিজ্ঞেস করল, “কিসের কী হয়েছে?” </p>
+<p>গৌরী বলল, “আমি জানি না।“</p>
+<p>চারজনের মাঝে ললিতা কম কথা বলে
+তাই সে কিছু বলল না, অন্যেরা
+কী বলে শোনার জন্যে অপেক্ষা
+করতে লাগল। সেরিনা বলল, “আমি ঠিক কীভাবে বলব বুঝতে পারছি
+না।” </p>
+<p>বিলকিস বলল, “ধানাই পানাই না করে কী বলবি
+বলে ফেল।” </p>
+<p>সেরিনা হাঁটতে হাঁটতে বলল, “হয়েছে কী, আমার মনে হচ্ছে আমাকে
+ধরে নেবার জন্যে একটা দল এসেছে।” </p>
+<p>গৌরী, বিলকিস আর ললিতা একসাথে প্রায় চিৎকার
+করে বলল, “কী বললি? তোকে ধরে নিতে একটা
+দল এসেছে?” </p>
+<p>“আমার মনে হয়।” </p>
+<p>“কেন? তুই কী করেছিস?” </p>
+<p>সেরিনা বলল,
+“মনে আছে আমরা সাঁতারে চাম্পিওন
+হয়েছিলাম!” </p>
+<p>“হ্যাঁ। মনে আছে।” </p>
+<p>“মনে আছে শেষ অংশটাতে আমি সাঁতার দিয়েছিলাম?” </p>
+<p>তিনজন এবারে এক সাথে উচ্ছ্বসিত হয়ে উঠল, বলল,
+“হ্যাঁ! তুই যে গুলির মতো ছুটে গেলি! একবার পানি থেকে মাথা পর্যন্ত বের করলি না!” </p>
+<p>সেরিনা বলল, “কাজটা ঠিক হয় নাই।” “কোন কাজটা ঠিক হয় নাই?” </p>
+<p>“এই যে আমি এতো ভালো করে সাঁতার দিলাম এখন আমার ওপরে অনেকের নজর পড়ে গেছে!” </p>
+<p>বিলকিস বলল, “সেটা তো ভালো। তুই সাঁতারের টিমে থাকবি দেশ বিদেশ থেকে মেডেল আনবি।” </p>
+<p>সেরিনা মাথা নাড়ল, “উঁহু। জিনিষটা এতো সোজা না। আমি তোদেরকে সব কিছু বলতে পারব না। শুধু জেনে রাখ আমি যে এরকম
+সাঁতার কাটতে পারি এটা জানাজানি হওয়া আমার জন্যে ভালো না। মনে হয় সেইজন্যে
+আমাকে ধরে নিতে এসেছে।“ </p>
+<p>গৌরী জিজ্ঞেস করল, “তুই কেমন করে জানিস?” </p>
+<p>সেরিনা বলল, “মনে আছে তোকে আজকে জানালার কাছে বসিয়েছিলাম? </p>
+<p> “হ্যাঁ মনে আছে।” </p>
+<p>“একটা মাইক্রোবাস দেখিয়েছিলাম, তোকে?” </p>
+<p>“হ্যাঁ।” গৌরী মাথা নাড়ল। </p>
+<p>“ঐ মাইক্রোবাসে একটা বিদেশী লোক থাকে–আমি যেখানেই যাই লোকটা আমার পিছু পিছু যায়। দূর থেকে বাইনোকুলার দিয়ে দেখে।” সেরিনা হাঁটতে হাঁটতে বলল, “এই যে আমি হাঁটছি, আমার মনে হচ্ছে দুইজন মানুষ
+আমার পিছনে পিছনে আসছে।” </p>
+<p>তিনজন আঁতকে উঠে বলল, “সত্যি?” </p>
+<p>“তোরা কেউ এখন পিছনে তাকাবি না, যদি আসলেই থাকে তাহলে সন্দেহ
+করবে।” </p>
+<p>ললিতা ভয়ে ভয়ে বলল, “এখন তাহলে কী করব?” </p>
+<p>সেরিনা বলল,
+“আয় হেঁটে
+হেঁটে ঐ দোকানটা পর্যন্ত যাই।
+সেইখানে আমি ভান করব আমার কিছু একটা মনে পড়েছে, তখন তোদের
+ছেড়ে আমি আবার এই রাস্তা দিয়ে ফিরে যাব। তোরা দোকান থেকে লক্ষ্য করবি পিছনের
+দুইটা মানুষও আবার আমার পিছু নেয় কী না। ঠিক আছে?” </p>
+<p>“ঠিক আছে। তারপর কী করব?” </p>
+<p>“তারপর তোরা তোদের বাসায় যাবি, আমি আমার বাসায় যাব।” </p>
+<p>“না।” বিলকিস হুংকার দিল, “আমরা তোকে বাসায় পৌঁছে
+দিব। কার ঘাড়ে দুইটা
+মাথা আছে তোকে
+কিডন্যাপ করবে? আমরা দেখে
+নিব।” </p>
+<p>শান্তশিষ্ট ললিতা পর্যন্ত সেই
+হুংকারে সামিল হল। গৌরী বলল, “তুই সামনে গিয়ে ডানদিকে
+ঘুরে যা–আমরাও
+এদিক দিয়ে গিয়ে বাম দিকে ঘুরে তোর সাথে একত্র হব। তারপর সবাই মিলে তোকে বাসায় পৌঁছে
+দেব।” </p>
+<p>বিলকিস বলল, “কাল থেকে তুই আর একা স্কুলে
+আসবি না। আমরা সকালে তোর বাসায় যাব। তারপর একসাথে স্কুলে আসব।” </p>
+<p>অন্যেরা মাথা নেড়ে বিলকিসের
+কথায় সায় দিল। দেখে মনে হল এতোদিন পর সবাই একটা মনের মতো কাজ পেয়েছে। </p>
+<p>দোকানের কাছে পৌঁছে চারজন দাঁড়িয়ে যায় তারপর
+সেরিনা কিছু একটা মনে
+পড়েছে সেরকম ভান
+করে যে দিক দিয়ে এসেছিল ঠিক সেই দিক দিয়ে ফিরে যেতে থাকে। সেরিনা এবং তার সাথে সাথে অন্য তিন জন দেখল দুটো মানুষ হঠাৎ করে দাঁড়িয়ে যায়। তারা তখন নিজেদের ভেতর কথা
+বলে একজন পকেট থেকে সিগারেট বের করে তারপর দুজনে দুটো সিগারেট মুখে দেয়, একজন পকেট থেকে ম্যাচ বের করে, সিগারেট ধরায় এবং চোখের
+কোনা দিয়ে সেরিনাকে
+লক্ষ্য করতে থাকে। </p>
+<p>সেরিনা মানুষ দুজনকে পার করে আরো বেশ কিছুদূর যাওয়ার পর মানুষ দুটো আবার ঘুরে সেরিনার পিছু পিছু হটতে থাকে। </p>
+<p>কারো মনে আর কোনো দ্বিধা থাকে না যে সেরিনার সন্দেহ সত্যি। মানুষ দুটো আসলেই সেরিনার পিছু পিছু যাচ্ছে। কিন্তু মানুষ দুটো আসলেই কি সেরিনাকে কিডন্যাপ করার জন্য
+এসেছে? </p>
+<p>সেরিনা ডানদিকে ঘুরে যেতেই বাকী তিনজনের সাথে দেখা হয়ে গেল, তারা অন্য রাস্তা দিয়ে আগেই
+ছুটতে ছুটতে এখানে চলে এসেছে এখন তারা এক মুহূর্তের জন্যেও সেরিনাকে একাকী ছাড়তে রাজী নয়। </p>
+<p>গৌরী, ললিতা আর বিলকিস মিলে সেরিনাকে তার বাসায় পৌঁছে
+দিল। ওরা ঠিক করে নিল পরের দিন বেশ
+সকালেই ওরা সেরিনাকে
+স্কুলে নিয়ে যাবে।
+সেখানে গিয়ে কী করা যায় ঠিক করা হবে। </p>
+</div>
+<br/><h2>০৮. খাবার টেবিলে শামীম</h2>
+<hr/>
+<br/><div>
+<p>খাবার টেবিলে শামীম জিজ্ঞেস করল, “কী ব্যাপার সেরিনা? তুই আজকে এতো চুপচাপ কেন?” </p>
+<p>“না। আব্বু এমনি।” সেরিনা একবার ভাবল আব্বুকে সব কিছু খুলে বলে, কিন্তু আব্বুর মুখ দেখে তার মায়া হল। ব্যাপারটা শোনা মাত্রই আব্বু এমন দুশ্চিন্তায় পড়ে যাবেন
+যে চিন্তা করেই সেরিনার
+মন খারাপ হয়ে গেল। স্কুলের
+তিন বন্ধুর কাছে ব্যাপারটা বলে মনটা একটু হালকা হয়েছে, আগে তাদের সাথে পরামর্শ করে দরকার হলে অন্যদের বলা যাবে। আর সত্যি সত্যি একজন মানুষকে
+কিডন্যাপ করা এতো সোজা না কী? </p>
+<p>শামীম জিজ্ঞেস করল, “স্কুলের লেখাপড়ার কী খবর?”</p>
+<p>“ভালো আব্বু। কিন্তু লেখাপড়া খুব
+বেশী।” </p>
+<p>“আমরা যখন ছোট ছিলাম তখন লেখাপড়ার চাপ এতো বেশী ছিল। তোদের মনে হয় চাপ খুব
+বেশী।” </p>
+<p>“সেই জন্যেই তো লেখাপড়ার ইচ্ছে করে না।” </p>
+<p>“লেখাপড়া না করে
+করবি কী?” </p>
+<p>সেরিনা হাসি হাসি মুখ করে বলল, “পানির নিচে নিচে ঘুরে বেড়াব।” </p>
+<p>“একা একা?” </p>
+<p>“তুমিও থাকবে।” </p>
+<p>“আমি? আমি কীভাবে তোর সাথে পানির নিচে থাকব?” </p>
+<p>“তুমি থাকবে একটা নৌকায়। উপরে, আমি পানির নিচে ঘুরে ঘুরে তোমার জন্যে আজব আজব ফলমূল মাছ, শামুক ঝিনুক এই সব নিয়ে আসব।” </p>
+<p>শামীম একটু অবাক দৃষ্টিতে সেরিনার দিকে তাকিয়ে রইল। মেয়েটা আজকাল মাঝে মাঝেই বলে যে তার পানির নিচে নিচে
+ঘুরে বেড়াতে ইচ্ছে করে। একবার সত্যি সত্যি তাকে নিয়ে কোনো একটা সমুদ্রে গেলে হয়। ঠিক কী কারণ জানা নেই বিষয়টা চিন্তা করেই শামীমের বুকের
+ভেতর থেকে একটা দীর্ঘশ্বাস বের হয়ে এল। </p>
+<p>.</p>
+<p>রাতে সেরিনার ঘুম আসছিল না। ভেতরে একটা চাপা দুশ্চিন্তা, বিছানায় অনেকক্ষণ শুয়ে এপাশ ওপাশ করেছে। আব্বু খাবার টেবিলে বসে তার লেখাপড়া করছেন। বাইরে ঝি ঝি ডাকছে, মাঝে মাঝে হঠাৎ একটা মাছ পুকুরে
+ঘাই মারে–বিছানায় শুয়ে সেরিনা অনুমান করতে পারে ঠিক
+কোন মাছটা ঘাই মেরেছে।
+</p>
+<p>শেষ পর্যন্ত সে ঘুমিয়ে পড়ল। গভীর রাতে হঠাৎ তার ঘুম ভেঙ্গে
+যায়, ঘুম ভাঙ্গার পর সেরিনার অনেকক্ষণ ঘুম ঘুম ভাব
+থাকে কিন্তু এখন কী হল কে জানে সেরিনা পুরোপুরি
+জেগে গেল। ঘরের ভেতর আবছা
+অন্ধকার, হঠাৎ করে সেরিনার মনে হল সেই অন্ধকারে
+কয়েকটা ছায়ামূর্তি নিঃশব্দে নড়াচড়া করছে। আতংকে একটা চিৎকার দিতে গিয়ে সেরিনা থেমে গেল। সেরিনা বিছানায় কাঠ হয়ে শুয়ে কী হয় দেখার
+জন্যে অপেক্ষা করতে থাকে।
+</p>
+<p>সেরিনা দেখল একটা ছায়ামূর্তি তার বিছানার কাছে এগিয়ে আসছে, মশারিটা তুলে হঠাৎ করে তার
+একটা ফ্ল্যাশ লাইটের আলো
+মুহূর্তের জন্যে তার চোখ ধাধিয়ে দেয়।
+আলোটা সাথে সাথে নিভে গেল, কেউ একজন বলল, “পেয়েছি।” </p>
+<p>সেরিনা টের পেল,
+পাথরের মতো একটা
+হাত খপ করে তার মুখ। চেপে
+ধরে বলল, “একটা শব্দ করেছ তো গুলি করে ঘিলু বের করে দেব।” </p>
+<p>সেরিনা তার কপালে শীতল একটা ধাতব নলের স্পর্শ পেল। নিশ্চয়ই রিভলবার। ভয়ংকর আতংকে সেরিনার সারা শরীর শীতল হয়ে যায়। ঠিক করে সে চিন্তাও করতে পারে
+না। </p>
+<p>অন্ধকার ঘরের ভেতর থেকে ভারী
+একটা গলা বলল, “বাপটাকে নিউট্রলাইজ কর। মনে রেখো নো ব্লাড শেড।” </p>
+<p>সেরিনা দেখল তার ঘর থেকে কয়েকটা ছায়ামূর্তি বের হয়ে গেল এবং কয়েক সেকেন্ড পরেই সে তার আব্বুর গলার স্বর শুনতে পায়, একটা ধস্তাধস্তির শব্দ হয় এবং
+একজন মানুষ যন্ত্রণার মতো একটা
+শব্দ করল। সেরিনা শুনল পাশের ঘরে কেউ একজন চাপা গলায় বলছে
+“খবরদার কোনো শব্দ করবে না। একটা শব্দ করলে তোমার মেয়ের মগজ ফুটো করে ফেলব।” তখন হঠাৎ করে ধস্তাধস্তির শব্দ
+কমে গেল। সেরিনা শুনল তার আব্বু জিজ্ঞেস করছে, “তোমরা কারা? কী চাও?” </p>
+<p>কেউ কোনো উত্তর দিল না? শুধু একটা চাপা হাসির শব্দ
+শোনা গেল। </p>
+<p>ঠিক তখন কেউ একজন হাতের টর্চ
+লাইট জ্বালালো, সেরিনার ঘরটা মোটামুটি আলোকিত হয়ে যায়। সেরিনা দেখল তার ঘরের মাঝখানে
+একজন দাঁড়িয়ে আছে। দুজন
+মানুষ তার আব্বুকে দুই
+পাশ থেকে ধরে রেখে টেনে টেনে আনছে। </p>
+<p>শামীম হাহাকারের মতো শব্দ করে জিজ্ঞেস করল, “সেরিনা! মা, তুই ঠিক আছিস?” </p>
+<p>সেরিনার মুখ চেপে ধরে রেখেছে বলে সে ঠিক করে কথা বলতে পারল না, অস্পষ্ট একটা শব্দ করল। শামীম ছুটে আসতে চাচ্ছিল কিন্তু
+মানুষ দুইটা তাকে আসতে দিল না,
+শক্ত করে ধরে রাখল। শামীম
+আবার জিজ্ঞেস করল, “তোমরা কারা? কী চাও?” </p>
+<p>ঘরের মাঝখানে দাঁড়িয়ে থাকা
+মানুষটা শামীমের মুখে টর্চ লাইটের আলো ফেলে বলল,
+“আমরা তোমার সহযোগিতা চাই।” </p>
+<p>কথাটা এমনভাবে বলল যে শুনে ঘরের সবাই হেসে
+উঠল যেন খুব মজার একটা কথা বলেছে! </p>
+<p>শামীম জিজ্ঞেস করল, “কী সহযোগিতা?” </p>
+<p>“আমরা তোমার মেয়েকে নিয়ে যেতে এসেছি। তুমি সেই ব্যাপারে সহযোগিতা কর। একটা শব্দ না করে এই চেয়ারটাতে বস। আমরা তোমাকে বেঁধে রেখে যেতে চাই।” </p>
+<p>শামীম প্রায় হাহাকারের
+মতো শব্দ করে বলল, “কেন? তোমরা কেন আমার মেয়েকে নিতে চাও?” </p>
+<p>মানুষটা বলল, “আমরা ছোট মানুষ, বড় ব্যাপার
+জানি না। শুধু টের পেয়েছি এটা ইন্টারন্যাশনাল প্রজেক্ট। তোমার মেয়ে ছোট হলেও খুব গুরুত্বপূর্ণ। তার প্রতি তোলা রক্ত নাকি মিলিওন ডলারে বিক্রি
+হবে!” </p>
+<p>একজন বলল, “শুনে মনে হচ্ছে আমরাও কয়েক তোলা রক্ত রেখে দিই।” </p>
+<p>ঘরের মাঝখানে দাঁড়িয়ে থাকা
+মানুষটা বলল, “খবরদার। ঠাট্টা করেও এরকম কথা বলবে না। কড়া নির্দেশ
+এই মেয়ের যেন কোনো
+ক্ষতি হয়।” </p>
+<p>যে মানুষটা সেরিনাকে ধরে রেখেছিল সে এবারে
+তাকে ধরে বিছানা থেকে নিচে নামাল, সেরিনা
+ভাঙ্গা গলায় ডাকল,
+“আব্বু।” </p>
+<p>শামীম নিচু গলায় বলল, “মা, আমার।” </p>
+<p>শামীম বলতে চাইল, সব ঠিক হয়ে যাবে, কিন্তু বলতে পারল না। সে আবছা অন্ধকারে সেরিনার দিকে তাকিয়ে রইল। </p>
+<p>মানুষগুলো ধাক্কা দিয়ে শামীমকে
+চেয়ারে বসিয়ে দেয়। তারপর একজন তার মুখে একটা চওড়া মাস্কিং
+টেপ লাগিয়ে দেয়। তারপর হাত দুটো পিছনে নিয়ে শক্ত
+করে বাঁধতে থাকে। </p>
+<p>সেরিনা দৃশ্যটি দেখতে পারছিল না, হাউমাউ করে কাঁদতে কাঁদতে বলল, “আবু সব আমার জন্যে হচ্ছে। সব আমার দোষ! আমার!” </p>
+<p>শামীম বলতে চাইছিল, “তোর কোনো দোষ নেই!” কিন্তু সে কিছুই বলতে পারল
+না, সেরিনার দিকে তাকিয়ে রইল। </p>
+<p>সেরিনাকে ধরে যখন পুরো দলটি ঘর থেকে বের হয়েছে তখন রাত তিনটা বাজে। বাইরে একটা গাড়ী অপেক্ষা
+করছিল সেখানে সেরিনাকে
+ঠেলে ঢুকিয়ে দিয়ে মানুষগুলো গাড়ীর সামনে পিছনে উঠে যায়। সাথে সাথেই গভীর রাতের নির্জন রাস্তা দিয়ে গাড়ীটা ছুটে যেতে থাকে। কিছুক্ষণের মাঝেই গাড়ীটা শহরের এক পাশে দেওয়াল দিয়ে ঘেরা
+বড় একটা বিল্ডিংয়ের ভেতরে ঢুকে গেল। গাড়ী থামার সাথে সাথে ভেতর থেকে
+আরো কয়েকজন মানুষ বের হয়ে আসে, তারা গাড়ীর দরজা খুলে সেরিনাকে
+ধরে টেনে বিল্ডিংয়ের
+ভিতরে নিয়ে যায়। </p>
+<p>দোতলার একটা বড় ঘরে হাসপাতালের
+বিছানার মতো একটা বড় বিছানা তার চারপাশে নানা
+ধরনের যন্ত্রপাতি। সেরিনাকে বিছানায় শুইয়ে দেয়ার সাথে সাথে তার দুই
+হাত আর পা এক ধরনের স্ট্র্যাপ দিয়ে বিছানার সাথে বেঁধে ফেলা হল। </p>
+<p>একটু পরে ঘরে একজন বিদেশী মানুষ এসে ঢুকল। সেরিনা তাকে দেখেই চিনতে পারল। এই মানুষটিকেই সে তার ক্লাশ রুম থেকে মাইক্রোবাসে
+বসে থাকতে দেখেছে। সে যখন তার আব্বুর সাথে বিলে গিয়েছিল তখন এই মানুষটাই
+স্পীডবোটে করে তার নৌকাটার চারপাশে ছুটে বেড়িয়েছিল। মানুষটা সেরিনার কাছে এসে মাথা ঘুরিয়ে দেখল, তারপর ইংরেজীতে বলল, “তুমিই সেই রহস্যময়ী মেয়ে যে পানির
+নিচে থাকতে পার!” </p>
+<p>ইংরেজী উচ্চারণটা একটু অন্যরকম, তারপরও সেরিনা কথাটা বুঝতে পারল। সে কিছু বলল না, মানুষটার দিকে তাকিয়ে রইল, মানুষটা এরপর হড়বড় করে আরও
+অনেক কিছু বলল যার সে বিশেষ কিছু বুঝতে পারল না। পাশে দ্রলোকের মতো দেখতে
+একটা বাঙালি মানুষ দাঁড়িয়েছিল
+সে বলল, “স্যার বলছেন, তোমার এতো বিস্ময়কর ক্ষমতা। তুমি কেমন করে এই পোড়া দেশে পড়ে থাকবে।
+তোমাকে নিয়ে বিলিওন
+ডলারের রিসার্চ হবে ট্রিলিওন ডলারের ব্যবসা হবে।” </p>
+<p>সেরিনা বলল,
+“আমি ওসব কিছু চাই না। আমাকে ছেড়ে দেন
+আমি বাসায় যাব।” </p>
+<p>বিদেশীটা মাথা এগিয়ে জানতে
+চাইল সেরিনা কী বলছে, মানুষটি তখন তাকে সেরিনার কথাটা ইংরেজীতে অনুবাদ করে দিল। সেটা শুনে বিদেশী হা হা করে হেসে উঠল যেন
+কথাটা খুবই মজার কথা এবং মানুষটাকে হাসতে দেখে অন্যেরাও হাসতে শুরু করল। সেরিনা অবাক হয়ে মানুষগুলোর দিকে তাকিয়ে রইল, তাদের হাসি থামার পর বলল, “আপনারা আমার আব্বুকে বেঁধে রেখেছেন, আমাকে জোর করে ধরে এনেছেন, এটা আপনারা করতে পারেন না।” </p>
+<p>ভদ্রলোকের মতো দেখতে বাঙালি মানুষটা বলল, “আমরা সবকিছু করতে পারি। পৃথিবীর কেউ আমাদের কিছু করতে
+পারবে না। তোমার ওপর মায়া করে, তোমার বাবাকে আমরা মারি নাই! তোমার আমাদের উপর অনেক কৃতজ্ঞ
+থাকা উচিৎ। বুঝেছ?” </p>
+<p>সেরিনা বুঝল না,
+অবাক হয়ে মানুষটার দিকে তাকিয়ে রইল। একটু পরে জিজ্ঞেস করল, “আমাকে আপনারা কী করবেন?” </p>
+<p>“তোমাকে এই সাহেব তাদের দেশে নিয়ে যাবেন।” </p>
+<p>“কীভাবে নিয়ে যাবেন?” </p>
+<p>“তোমাকে ঘুম পাড়িয়ে একটা
+বাক্সে করে নিয়ে যাবে।
+তুমি কিছু জানতেই পারবে না।
+ঘুম ভাঙার পর দেখবে তুমি বিশাল একটা ল্যাবরেটরিতে। শত শত সায়েন্টিস্ট তোমকে নিয়ে গবেষণা
+করবে।” </p>
+<p>সেরিনা কেঁদে ফেলল, বলল, “আমি যেতে চাই না। প্লীজ আমাকে ছেড়ে দেন। প্লীজ! প্লীজ!” </p>
+<p>বিদেশী মানুষটা মুখে একটা হাসি
+নিয়ে এক পাশে সরে গেল তারপর একজনকে জিজ্ঞেস করল, “আমাদের পরিকল্পনাটা কী? হেলিকপ্টার কখন। আসবে।” </p>
+<p>“সকাল দশটায়। দশটায় ক্যাপসুলটা
+নিয়ে যাবে।” </p>
+<p>“মেয়েটাকে ক্যাম্পসুলে ঢোকাবে কখন?” </p>
+<p>“সকাল নয়টার দিকে।” </p>
+<p>“বাবাটা যদি তার আগে শহরে হই
+চই শুরু করে দেয়?” </p>
+<p> “করবে না, ওর বাসায় মেয়েটার বাবা ছাড়া আর
+কেউ নেই। কাজের একটা মহিলা আসে বেলা দশটার দিকে, বাপটা তখন ছাড়া পেয়ে হই চই
+করতে শুরু করলেও আমরা ততক্ষণে হাওয়া হয়ে যাব। তা ছাড়া বেশী হই চই করতে পারবে
+না। আমরা ডলার দিয়ে, সবার মুখ বন্ধ করে রেখেছি। কেউ তার কোনো কথা শুনবে না।” </p>
+<p>“গুড। কিন্তু–” বিদেশীটা একটু ইতস্তত করে। “কিন্তু কী?” </p>
+<p>“তারপরও আমার মনে হয় বাপটাকে
+মেরে ফেলে আসা উচিৎ ছিল। একজন জীবন্ত মানুষ মানেই বাড়তি যন্ত্রণা!” </p>
+<p>ভদ্রলোকের মতো দেখতে মানুষটা মাথা নাড়ল, বলল, “না। আমরা শুধু শুধু একজন মানুষকে
+মারতে চাই না। তুমি নিশ্চিন্ত
+থাকো, কোনো রক্তপাত ছাড়াই আমরা প্রজেক্টটা শেষ করব।” </p>
+<p>বিদেশীটা বলল, “ঠিক আছে। আমাদের হাতে এখন চার থেকে পাঁচ
+ঘন্টা সময় আছে, এই
+সময়ের ভিতর মেয়েটার পুরো বায়োলজিক্যাল প্রোফাইলটা বের করে ফেল।” </p>
+<p>“হ্যাঁ। বের করে ফেলব।“</p>
+<p>“তোমরা পুরো প্রজেক্টটা ঠিক করে বের করে দাও, আমাদের এজেন্সি তোমাদের খুশী করে দেবে!” </p>
+<p>“তুমি নিশ্চিন্ত থাকো। তোমার প্রজেক্ট আমরা এখান থেকে
+বের করে দেব। তোমার দেশে তোমরা কী করবে সেটা নিয়ে তুমি
+মাথা ঘামাও!” </p>
+<p>“একবার আমার দেশে নিতে পারলে পুরোটা হবে একট টুকরা কেকের মতো সোজা!” </p>
+<p>তারপর দুইজনই হা হা করে হাসতে
+লাগল। সেরিনা শূন্য দৃষ্টিতে তাদের
+দিকে তাকিয়ে থাকে।
+তার মনে হতে থাকে তার মাথার ভেতরে সবকিছু বুঝি শূন্য হয়ে যাচ্ছে! </p>
+</div>
+<br/><h2>০৯. ভোরবেলা গৌরী আর ললিতা</h2>
+<hr/>
+<br/><div>
+<p>ভোরবেলা গৌরী আর ললিতা সেরিনার বাসায় এসে
+বেল বাজায়। সকাল বেলা তাদের সেরিনাকে নিয়ে স্কুলে
+যাবার কথা। কেউ দরজা খুলল না
+তখন তারা আরো কয়েকবার বেল বাজালো। এবারও কেউ দরজা খুললো না। তখন তারা কয়েকবার জোরে জোরে সেরিনার নাম ধরে ডাকল। তারপরও কেউ দরজা খুলল না। তখন দুজনেই একটু দুশ্চিন্তায় পড়ে গেল। কী করবে সেটা নিয়ে যখন
+চিন্তা করছে ঠিক তখন বিলকিসকেও দেখা গেল, এতো সকালে সেও চলে এসেছে </p>
+<p>বারবার বেল বাজানোর পর ডাকাডাকি করার পরও কেউ দরজা খুলছে না শুনে
+বিলকিসও দুর্ভাবনায় পড়ে গেল। বিলকিস তখন গিয়ে দরজায় একটা
+ধাক্কা দিতেই দরজাটা খুলে যায়। তারা সবাই তখন একজন
+আরেকজনের মুখের দিকে তাকাল,
+দরজাটা খোলা কেন? হঠাৎ করে তাদের বুকের ভেতর এক ধরনের আতংক হতে থাকে। পা
+টিপে টিপে তারা বাসায় ভেতরে
+ঢুকলো। ডাইনিং টেবিলের ওপর কয়েকটা বই, পাশে একটা ঘর, দরজা খোলা। অন্য ঘরটা সেরিনার সেখানে উঁকি দিতেই তারা চমকে উঠল, সেখানে
+একটা চেয়ারে সেরিনার বাবা শামীমকে বেঁধে
+রাখা হয়েছে। তার মুখের মাঝে টেপ লাগানো তাই কোনো শব্দ করতে পারছে না। </p>
+<p> তিনজন একসাথে চিৎকার করে উঠল তারপর তারা শামীমের
+কাছে। ছুটে গেল। বিলকিস টান দিয়ে মুখের
+টেপটা খুলে দেয়, গৌরী আর ললিতা হাতের বাধন খোলার জন্যে টানাটানি করতে থাকে, কিন্তু শক্ত করে বাঁধা বলে খুলতে পারছিল না। শামীম বুক ভরে কয়েকবার নিশ্বাস নিয়ে বলল, “সেরিনাকে ধরে নিয়ে গেছে।” </p>
+<p>“কে ধরে নিয়েছে?” </p>
+<p>“তিন চারজন মানুষ এসেছিল–” শামীম ভাঙা গলায় বলল, “মেয়েটা আমার কোথায় আছে? কেমন আছে?” </p>
+<p>গৌরী বলল, “চাচা, আমরা জানি সেরিনাকে কারা ধরে নিয়ে গেছে।” </p>
+<p>শামীম চিৎকার করে বলল, “তোমরা জান? কারা? কোথায়?” </p>
+<p>গৌরী বলল, “দাঁড়ান চাচা, আমরা বলছি, আগে আপনার হাত পায়ের দড়িটা কেটে দেই।” </p>
+<p>শামীম বলল, “রান্নাঘরের টেবিলে দেখ, চাকু আছে।” </p>
+<p>রান্নাঘরের টেবিল থেকে একটা
+বড় চাকু এনে তারা শামীমের হাত পায়ের দড়ি কেটে দিল। শামীম হাত আর পায়ে টিপে
+টিপে রক্ত সঞ্চালন করতে করতে বলল, “কারা
+সেরিনাকে ধরে নিয়েছে? তোমরা কেমন করে জান?” </p>
+<p>বিলকিস বলল, “সেরিনা আমাদের বলেছে।” </p>
+<p>“সেরিনা তোমাদের
+বলেছে? তাহলে আমাকে কেন
+কিছু বলল না?” শামীম অবাক হয়ে ওদের
+দিকে তাকিয়ে রইল। </p>
+<p>গৌরী বলল, “মনে হয় আপনি
+দুশ্চিন্তা করবেন বলে আপনাকে বলে নাই।” </p>
+<p>ললিতা বলল, “একটা বিদেশী লোক আছে। কালো চশমা পরে থাকে।” </p>
+<p>গৌরী বলল, “ওরা একটা এনজিও। শহরের শেষে যে বড় নূতন
+বিল্ডিং তৈরী করেছে সেইখানে আছে।” </p>
+<p>“তুমি কেমন করে জান?” </p>
+<p>“বাবা বলেছে। এই এনজিও বিল হাওর রক্ষা করার
+জন্যে এসেছে। আমার বাবা
+মাছ ধরে–ওরা
+বাবাদের সাথে কথা বলেছে।
+বাবা জানে।” </p>
+<p>“তুমি এনজিওর নাম জান?” </p>
+<p>গৌরী মাথা চুলকালো, বলল, “বাবা নাম বলেছিল, এখন ভুলে গেছি।” </p>
+<p>শামীম বলল, “কোনো
+সমস্যা নাই। আমি বের করে নেব।” </p>
+<p>বিলকিস বলল, “আপনি এখনই থানায় ফোন
+করেন। ফোন করে সবকিছু বলেন।” </p>
+<p>শামীম যখন থানায় ফোন
+করছে তখন বাকী তিনজন তাকে ঘিরে দাঁড়িয়ে রইল। শামীম ফোনে কথা বলতে শুরু করতেই
+টের পেয়ে গেল এখানে অন্য কোনো ব্যাপার ঘটে গেছে, ফোনে কথা বলে লাভ নেই। তারা তার কথা শুনতেই চায় না, বেশ কিছুক্ষণ চেষ্টা করার পর বলল, তারা একজনকে তার বাসায় পাঠাচ্ছে। শামীম যেন বাসায় অপেক্ষা
+করে। </p>
+<p>বিলকিস তখন নিচু গলায় গৌরী
+আর ললিতাকে ডেকে বলল, “এই তোরা শোন।” </p>
+<p>“কী হয়েছে?” </p>
+<p>“এইভাবে হবে না।” </p>
+<p>“তাহলে কী করবি?” </p>
+<p>বিলকিস ফিসফিস করে বলল, “চল, তাড়াতাড়ি স্কুলে যাই।” </p>
+<p>“স্কুলে গিয়ে কী করবি?” </p>
+<p>“সবাইকে বলি। তারপর সবাই মিলে আমরা ঐ এনজিও
+অফিসটা আক্রমণ করি।” </p>
+<p>গৌরী বলল, “আক্রমণ করি?” </p>
+<p>“হ্যাঁ। তা না হলে সেরিনাকে বাঁচাবি কেমন করে?”</p>
+<p>শান্তশিষ্ট ললিতা মাথা নাড়ল, বলল, “ঠিকই বলেছিস। চল যাই।” </p>
+<p>তাই শামীম যখন অস্থির হয়ে তার
+ঘরে ছটফট করছে তখন বিলকিস,
+গৌরী আর ললিতা তাদের স্কুলের দিকে ছুটছে। তারা যখন স্কুলে পৌঁছেছে। তখন মাত্র এসেম্বলী শুরু হয়েছে। বড় আপা সব মেয়েদেরকে বিজ্ঞানী মাদাম কুরীর
+গল্প বলছেন তার মাঝে দৌড়াতে
+দৌড়াতে তিনজন এসেম্বলীর
+সামনে হাজির হল। বড় আপা চোখ কপালে তুলে বললেন, “কী হল? তোমরা এতো দেরী করে এখানে?” </p>
+<p>বিলকিস বলল, “বড় আপা, সর্বনাশ হয়ে গেছে।” </p>
+<p>বড় আপা ভয় পেয়ে বললেন, “কী সর্বনাশ?” </p>
+<p>“সেরিনাকে ধরে নিয়ে গেছে।” </p>
+<p>পুকুরের তলা থেকে একজনকে উদ্ধার করার পর, স্কুলের জন্যে। সাঁতার প্রতিযোগিতায় জাতীয় পুরস্কার
+আনার পর থেকে সবাই সেরিনাকে
+চিনে। কাজেই এসেম্বলীতে দাঁড়িয়ে থাকা
+সব মেয়ে এক ধরনের আর্ত চিৎকার করল। বড় আপা জিজ্ঞেস করলেন, “কে সেরিনাকে ধরে নিয়ে গেছে?” </p>
+<p>বিলকিস বলল, “একজন বিদেশী। তাদের একটা এনজিও অফিস আছে।” </p>
+<p>“তোমরা কেমন করে জান?” </p>
+<p>গৌরী বলল, “আমরা সেরিনার বাসায় গিয়েছিলাম। সেরিনার আব্বুকে বাসায় দড়ি দিয়ে বেঁধে
+রেখেছিল, আমরা গিয়ে ছুটিয়েছি।” </p>
+<p>“পুলিশে খবর দেওয়া হয়েছে?” </p>
+<p>গৌরী বলল, “লাভ নাই।” </p>
+<p>বড় আপা ভুরু
+কুঁচকে বললেন, “লাভ নাই?” </p>
+<p>“না, পুলিশ কোনো পাত্তা দিচ্ছে না।” </p>
+<p>“কী বল পাত্তা দিচ্ছে না–আমি
+এক্ষুণি ফোন করছি।” </p>
+<p>বিলকিস মাথা নেড়ে বলল, “বড় আপা আমাদের
+সময় নাই।” </p>
+<p>“কীসের সময় নাই?” </p>
+<p>“সেরিনাকে বাঁচানোর। ওরা সেরিনাকে মেরে ফেলবে–” </p>
+<p>“কী বলছ তুমি? কেন সেরিনাকে মেরে ফেলবে?” </p>
+<p>গৌরী কাঁদো কাঁদো হয়ে বলল, “সেরিনার একটা বিশেষ ক্ষমতা আছে–সেই ক্ষমতার জন্যে তাকে ধরে
+নিতে আসছে, ধরে কেটে কুটে
+ফেলবে। আমাদের এক্ষুণি যেতে হবে।” </p>
+<p>“কোথায় যেতে হবে?” </p>
+<p>“এনজিও অফিসে। গিয়ে ঘেরাও করতে হবে। আমরা যদি না। ছোটাই
+কেউ সেরিনাকে বাঁচাতে
+পারবে না। আমাদের হাতে একটুও সময় নাই। প্লীজ বড় আপা। প্লীজ।” </p>
+<p>বড় আপা কিছুই বুঝতে পারছিলেন না, খানিকটা অসহায়ভাবে মাথা নেড়ে বললেন, “তোমরা কী বলছ আমি কিছুই বুঝতে পারছি না! তোমরা এখানে কী করবে?” </p>
+<p>ললিতা বলল, “স্কুলের সব মেয়ে নিয়ে এনজিও
+অফিস ঘেরাও করে ভেতর থেকে সেরিনাকে
+ছুটিয়ে আনব।” </p>
+<p>বড় আপা চোখ কপালে তুলে বললেন, “কী বলছ তোমরা পাগলের মতো?” </p>
+<p>“সত্যি বলছি বড় আপা। এ ছাড়া কোনো উপায় নাই।” </p>
+<p>বিলকিস তখন এসেম্বলীতে দাঁড়িয়ে থাকা
+হাজার খানেক মেয়ের
+দিকে তাকিয়ে চিৎকার করে জিজ্ঞেস করল, “তোমরা আমাদের সাথে সেরিনাকে বাঁচানোর জন্যে যাবে?”</p>
+<p>সব মেয়ে এক সাথে
+চিৎকার করে বলল, “যাব।” </p>
+<p>বিলকিস বলল, “তাহলে চল।”</p>
+<p>সব মেয়ে তখন
+চিষ্কার করতে করতে বের হতে শুরু করল, বড় আপা বললেন,
+“দাঁড়াও দাঁড়াও। আগেই যেও না—” </p>
+<p>কিন্তু ততক্ষণে সবাই স্কুল থেকে
+বের হয়ে বিলকিস গৌরী আর ললিতার পিছু পিছু ছুটতে শুরু করেছে। দেখতে দেখতে শহরের রাস্তাঘাটের
+যত গাড়ী, টেম্পো, রিক্সা, স্কুটার আছে সব থেমে গেল আর তার ভেতর দিয়ে শত
+শত মেয়ে ছুটতে লাগল।
+</p>
+<p>.</p>
+<p>সেরিনাকে একটা কমলা রংয়ের জাম্পস্যুট পরানো হয়েছে। তার কপালের দুই পাশে দুইটা মনিটর লাগানো। সাদা এপ্রন পরা একজন মানুষ হাতে একটা সিরিঞ্জ
+নিয়ে সেরিনার
+কাছে এগিয়ে এল। সেরিনা ক্লান্ত গলায় জিজ্ঞেস
+করল, “এটা কী?” </p>
+<p>“তোমাকে ঘুম পাড়িয়ে দেওয়ার জন্যে একটা ইনজেকশান।” </p>
+<p>“কেন আমাকে ঘুম পাড়িয়ে দিচ্ছেন?” </p>
+<p>“তোমাকে ঘুম পাড়িয়ে তোমার শরীরটা শীতল করে ফেলা হবে
+তুমি কিছু টের পাবে না।” </p>
+<p>সেরিনা স্থির চোখে সাদা এপ্রন পরা মানুষটার চোখের
+দিকে তাকিয়ে বলল, “আপনাকে এই কাজ করার জন্যে কতো টাকা দিয়েছে?” </p>
+<p>মানুষটির মুখের মাংশপেশী শক্ত
+হয়ে গেল, বলল, “তুমি নড়বে না।” </p>
+<p>সেরিনা বলল, “আপনার ছেলে মেয়ে আছে? আমাকে শেষ করে দেওয়ার জন্যে আপনাকে যে
+টাকা দিবে সেই টাকা দিয়ে আপনি আপনার ছেলে মেয়েদের খেলনা কিনে দেবেন? তাদেরকে শিশুমেলা নিয়ে যাবেন?” </p>
+<p>মানুষটা কঠিন গলায় বলল, “তুমি বেশী কথা বলবে না মেয়ে।” </p>
+<p>ঠিক তখন জানালার কাঁচ ভেঙ্গে ঘরের ভেতরে প্রথম
+একটা ঢিল এসে পড়ল। তারপর একটার পর একটা ঢিল পড়তে লাগল। এবং সাথে সাথে অসংখ্য মেয়ে কন্ঠের
+চিৎকার শোনা যেতে লাগল। </p>
+<p>বিদেশী মানুষটা দৌড়ে ঘরে
+এসে ঢুকল, ইংরেজীতে জিজ্ঞেস
+করল, “কী হয়েছে?” </p>
+<p>ঘরের ভেতরে আরো যেসব মানুষ আছে তারা সাবধানে
+জানালা দিয়ে উঁকি দিয়ে ভয় পাওয়া গলায় বলল, “বুঝতে পারছি না। হাজার হাজার মেয়ে লাঠি
+সোটা ঢিল নিয়ে আক্রমণ
+করেছে।” </p>
+<p>“কেন?” </p>
+<p>“বুঝতে পারছি না। মনে হয় এই মেয়েটাকে নিয়ে যেতে
+এসেছে।” </p>
+<p>“এরা কেমন করে জানল, মেয়েটা এখানে আছে?”</p>
+<p>“জানি না। খুবই বিচিত্র ব্যাপার।” </p>
+<p>বিদেশীটার মুখ পাথরের মতো শক্ত হয়ে গেল, সে ভদ্রলোকের মতো দেখতে মানুষটার দিকে তাকিয়ে বলল, “তুমি বলেছিলে এই প্রজেক্টটা
+তুমি তুলে দেবে। এখন এসব কী হচ্ছে? এখন কী হবে?” </p>
+<p>মানুষটা মাথা চুলকে বলল, “একটু ঝামেলা হয়ে গেল। এর মাঝে স্কুলের মেয়েরা কেমন করে চলে এসেছে বুঝতে
+পারছি না।” </p>
+<p>“হেলিকপ্টার কোথায়?” </p>
+<p>“এখনো আসে নাই। চলে আসবে।” </p>
+<p>বিদেশী মানুষটা খেঁকিয়ে উঠল, “কখন চলে আসবে?” </p>
+<p>ভদ্রলোকের মতো দেখতে মানুষটা বলল, “হেলিকপ্টার এলেও মনে হয় আর লাভ হবে না।” </p>
+<p>“কেন?” </p>
+<p>মানুষটা জানালা দিয়ে উঁকি
+দিয়ে বলল, “মেয়েরা দেওয়াল টপকে ভিতরে ঢুকতে শুরু করেছে। হাতে লাঠি সোটা।” </p>
+<p>এই প্রথম বিদেশী মানুষটার মুখে ভয়ের একটা চিহ্ন দেখা
+গেল, শুকনো
+গলায় বলল, “আমাদের গার্ড কোথায়?” </p>
+<p>“গার্ড দিয়ে এদের
+ঠেকানো যাবে না। অনেক মেয়ে! হাজার হাজার।” </p>
+<p>সেরিনার মুখে হাসি ফুটে উঠল, বলল, “আপনারা
+বলেছিলেন, আপনাদের কেউ
+ঠেকাতে পারবে না! আমার
+স্কুলের মেয়েরাই
+ঠেকিয়ে দিয়েছে।” </p>
+<p>বিদেশীটা বলল, “কী বলছে এই মেয়ে?”</p>
+<p>ভদ্রলোকের মতো দেখতে মানুষটা সেরিনার কথাটাকে ইংরেজিতে অনুবাদ করে দিল। বিদেশীটা সেরিনার দিকে ঘুরে তাকিয়ে বলল, “এই মেয়ে! তুমি জেনে রাখো–আমি তোমাকে ধরে নিয়ে যাবই
+যাব।” </p>
+<p>সেরিনা ইংরেজীতে বলল, “কীভাবে? আমাদের মেয়েরা আমাকে বাঁচাবে। নিতে দেবে না।” </p>
+<p>“আমি তোমার শরীরে একটা ট্রাকিওশান ঢুকিয়ে দেব। সেই ট্রাকিওশান তোমার শরীরের ভেতর থেকে সিগনাল
+দিবে! তুমি পৃথিবীর যেখানেই থাকো তোমাকে খুঁজে বের করব। আমাদের এজেন্সির এজেন্টরা তোমাকে খুঁজে বের করে ধরে নিয়ে যাবে!” </p>
+<p>সেরিনা ভয় পাওয়া চোখে
+বিদেশীটার দিকে তাকিয়ে রইল, মানুষটি সত্যি কথা বলছে না ভয় দেখাচ্ছে
+সে বুঝতে পারল না। </p>
+<p>বিদেশী মানুষটি মিথ্যা ভয় দেখাচ্ছিল
+না, সে প্রায় ছুটে ঘরের এক কোনায় রাখা
+একটা বাক্স খুলে সেখান থেকে সাবধানে একটা ছোট স্টিলের টিউব বের করে আনে। তার ভেতর থেকে একটা ইলেকট্রনিক যন্ত্র বের
+করে কোথায় চাপ দিতেই বিপ বিপ শব্দ করে একটা বাতি জ্বলে উঠল, সেটা
+হাতে নিয়ে সে সেরিনার
+দিকে এগিয়ে আসে, তারপর
+সেরিনা কিছু বোঝার আগেই তার ঘাড়ে একটা
+ধারালো সূঁচ ঢুকিয়ে দেয়। তীব্র যন্ত্রণায় সেরিনা চিৎকার করে উঠল আর ঠিক
+তখন দরজা ভেঙ্গে ভিতরে অনেকগুলো
+মেয়ে ঢুকলো,
+সবার সামনে বিলকিস। তার
+হাতে বড় একটা ঢিল,
+কেউ কিছু বোঝার আগে সে
+বিদেশীটাকে লক্ষ্য করে ঢিলটা ছুঁড়ে দিল। </p>
+<p>সাথে সাথে একটা আর্তনাদের মতো শব্দ করে বিদেশীটা নিজের মুখ
+ঢেকে বসে পড়ে। বিলকিস চিৎকার করে বলল, “ধর শূয়রের বাচ্চাকে।” সত্যি সত্যি তাকে ধরার জন্যে
+সবাই ভিতরে ঢুকে যায়। </p>
+<p>অসংখ্য মেয়ে ঘরের
+ভেতরে ঢুকে গেছে। বেশীর
+ভাগ সেরিনাকে ঘিরে দাঁড়াল, কেউ একজন জিজ্ঞেস করল, “সেরিনা, তুই ভালো আছিস?” </p>
+<p>“হ্যাঁ। ভালো
+আছি। কিন্তু আমার ঘাড়ে কি
+যেন লাগিয়েছে খুব
+ব্যথা করছে। একটু খুলে দিবি?” </p>
+<p>একজন এগিয়ে এসে হ্যাঁচকা টানে ঘাড় থেকে
+সেটা খুলে ফেলল। তারপর
+সেরিনার হাত পায়ের বাঁধন খুলে দিতে
+লাগল। </p>
+<p>ঠিক তখন পুলিশের বাঁশী শোনা গেল। পুলিশ চলে এসেছে কিন্তু কাকে
+বাঁচানোর জন্যে এসেছে সেটা
+তখনো কেউ বুঝতে পারছিল
+না। </p>
+</div>
+<br/><h2>১০. সেরিনা একটা চাঁদর গায়ে</h2>
+<hr/>
+<br/><div>
+<p>সেরিনা একটা চাঁদর গায়ে চুপচাপ বসে আছে। শামীম এক হাত দিয়ে সেরিনাকে ধরে রেখেছে, তাদের সামনে একজন মহিলা পুলিশ
+অফিসার। </p>
+<p>শামীম বলল, “আমাকে একটু বলবেন এখানে কী হচ্ছে?” </p>
+<p>“বলব। এটা বলার জন্যে মনে হয় আমার
+চাকরী চলে যাবে কিন্তু আমি যেটুকু জানি সেটা আপনাকে বলব। বাবা হিসাবে আপনার জানার অধিকার আছে।” </p>
+<p>“বলেন প্লীজ।” </p>
+<p>“আপনার মেয়ের কোনো এক ধরনের অস্বাভাবিক ক্ষমতা
+আছে, সেটা কী আমি এখনো পরিষ্কার জানি না, পানিতে সাঁতার দেয়া নিয়ে কোনো এক ধরণের ক্ষমতা ১ </p>
+<p>শামীম চুপ করে রইল, ক্ষমতাটা যে সাঁতার দেয়ার নয় পানির
+নিচে নিশ্বাস নেবার ক্ষমতা সেটা সে বলল। </p>
+<p>পুলিশ অফিসার বলল, “যাই হোক, স্কুলের ছাত্রীদের সাঁতার প্রতিযোগিতার একটা ভিডিও কীভাবে কীভাবে
+জানি নেটওয়ার্কে
+চলে গিয়েছিল খুবই
+নিরীহ একটা ভিডিও, পানি
+ঝপাঝাপি করে কয়েকটা
+মেয়ে সাঁতার কাটছে। কিন্তু সেই ভিডিওটা একটা সিক্রেট এজেন্সির হাতে
+পড়ল, তারা সেটা এনালাইসিস করে আবিষ্কার
+করল আপনার মেয়ের
+একটা অসাধারণ ক্ষমতা আছে।
+তারা সারা পৃথিবী খুঁজে আপনার মেয়েকে বের করে ফেলল। </p>
+<p>“অন্য যে কোনো মানুষের হাতে এই ভিডিওটা পড়লে তারা সম্ভবত আপনার
+সাথে যোগযোগ করত। আপনার অনুমতি নিয়ে আপনার
+মেয়ের ব্লাড স্যাম্পল নিতো, শরীরের টিস্যু নিতো, সিটি স্ক্যান করতো। কিন্তু এই সিক্রেট এজেন্সি
+তার ধারে কাছে গেল না।
+কয়েক মিলিওন ডলারের
+একটা প্রজেক্ট হাতে নিয়ে কিছু মানুষকে পাঠাল আপনার মেয়েকে কিডন্যাপ করে নিতে। এই অংশটা আমি এখনো বুঝতে পারছি না কেন তারা কিডন্যাপ করতে এলো। এই সিক্রেট এজেন্সি এতোই ক্ষমতাশালী তারা পৃথিবীর যে
+কোনো জায়গায় যা-ইচ্ছে-তাই
+করতে পারে–তাদের
+টাকা পয়সার কোনো অভাব নেই তাই তাদের কাছে এইটাই
+মনে হয় সবচেয়ে সহজ কাজ মনে হয়েছে। কিংবা কে জানে আপনার মেয়ের ক্ষমতাটা হয়তো এতোই অস্বাভাবিক হয়তো যে কোনো মূল্যে তাকে নেয়ার একটা যুক্তি আছে।” </p>
+<p>শামীম একটু নড়েচড়ে বসল, সেরিনার ক্ষমতাটা কী সে নিজ থেকে বলে জানাজানি
+করতে চায় না। </p>
+<p>মহিলা পুলিশ অফিসার বলল, “সিক্রেট এজেন্ট কিছু লোককে অনেক টাকা দিয়ে এখানে
+পাঠালো। তারা একটা ভূয়া এনজিও
+অফিস খুলে কাজ শুরু করল।
+যখন আপনার মেয়েটাকে
+কিডন্যাপ করে নেবে তখন তাদের দিকে যেন নজর না যায় তার ব্যবস্থা করল, কিছু দেশী ক্রিমিনালকে ভাড়া করল, সবার শেষে টাকা খাইয়ে পুলিশকে
+নিষ্ক্রিয় করে ফেলল। এরপরের অংশটাতো আপনি জানেন। </p>
+<p>শামীম বলল, “না, আমি জানি না।” </p>
+<p>পুলিশ অফিসার বলল, “আপনার মেয়ে জানে। তাই না সেরিনা?” </p>
+<p>সেরিনা কোনো
+কথা না বলে মাথা নাড়ল। </p>
+<p>পুলিশ অফিসার বলল, “আপনার মেয়ে সেরিনা কিছু একটা সন্দেহ করেছিল। আপনাকে না বললেও তার বন্ধুদের
+বলেছিল। তার বন্ধুরা একেবারে
+হান্ড্রেড পার্সেন্ট খাঁটি
+বন্ধু। তারা ঠিক করল এখন
+থেকে সবসময় সেরিনাকে
+বাসায় পৌঁছে দেবে,
+আবার বাসা থেকে স্কুলে নিয়ে যাবে! ক্রিমিনালগুলো রাত্রে সেরিনাকে কিডন্যাপ করে আপনাকে বেঁধে রেখে গেল সেটা জানাজানি
+হবার আগেই তাদের পালিয়ে যাবার কথা।
+কিন্তু সেরিনার বন্ধুরা
+সকালে হাজির–আপনাকে
+তারা ছোটালো আপনি সরল বিশ্বাসে আমাদের ফোন করলেন। আমাদের একজন আপনাকে সাহায্য না করে ধানাই
+পানাই শুরু করল–একটা
+হেলিকপ্টার এসে সেরিনাকে
+নিয়ে পালিয়ে না যাওয়া পর্যন্ত আপনাকে ব্যস্ত রাখার কথা তারা সেটা খুব ভালোভাবে করেছে। কিন্তু সেরিনার বন্ধুরা সবকিছু ওলট
+পালট করে দিল। তারা যেটা
+করেছে শুধুমাত্র সেটাই ছিল সেরিনাকে
+উদ্ধার করার একমাত্র উপায়। এক হাজার
+মেয়ে গিয়ে হামলা করল!
+কী অসাধারণ একটা ব্যাপার। </p>
+<p>“সিক্রেট এজেন্সীর সেই মহা শক্তিশালী
+এজেন্ট এখন পর্যন্ত যাকে পৃথিবীর কোনো শক্তি স্পর্শ করতে পারে নাই, ভবিষ্যতে স্পর্শ করতে পারবে বলেও মনে হয় না। কিন্তু স্কুলের বাচ্চা বাচ্চা
+মেয়েরা ঢিল মেরে
+তার নাকের হাড় আর একটা দাঁত ভেঙে দিয়েছে! উচিৎ একটা শিক্ষা হয়েছে।” </p>
+<p>এই প্রথম সেরিনার মুখে সূক্ষ্ম একটা হাসি ফুটে উঠল। বলল, “বিলকিসের হাতের নিশানা খুব ভালো।“</p>
+<p>পুলিশ অফিসার বলল, “যাই হোক। সিক্রেট এজেন্ট কিন্তু শেষ পর্যন্ত
+সেরিনার আশা ছাড়ে নাই।
+যখন দেখল স্কুলের মেয়েরা
+সেরিনাকে উদ্ধার করে
+নিয়ে যাচ্ছে তখন শেষ মুহূর্তে সেরিনার শরীরে একটা ট্রাকিওশান ঢুকিয়ে দিল।” </p>
+<p>শামীম জিজ্ঞেস করল, “এটা কী?” </p>
+<p>“এক ধরনের ইলেকট্রনিক ট্যাগ। নির্দিষ্ট সময় পরে
+পরে শরীরের ভেতর থেকে একটা ইলেকট্রনিক সিগন্যাল পাঠায়। এগুলো ক্রিমিনালদের ট্র্যাক করার জন্যে তাদের শরীরে লাগিয়ে দেয়, সাধারণত সাইজে বড় হয়, হাতে পায়ে কিংবা
+গলায় এমনভাবে লাগিয়ে দেয় যেন খুলতে না পারে। কিন্তু সেরিনার বেলায় তারা
+ব্যবহার করেছে স্টে অফ দি আর্ট ইলেকট্রনিক ট্যাগ। এতোদিন শুধু সায়েন্স ফিকশানে দেখে এসেছি–ন্যানো টেকনোলজি ব্যবহার করে তৈরী ডিভাইস। সিরিঞ্জে করে শরীরের রক্তে ইনজেক্ট
+করে দিয়েছে এখন সেটা তার শরীরের ভেতরে কোথাও আছে। এক মিনিট পর পর একটা সিগন্যাল পাঠাচ্ছে।” </p>
+<p>শামীম ফ্যাকাসে মুখে বলল, “সেরিনার কোনো ক্ষতি হচ্ছে না?” </p>
+<p>মহিলা পুলিশ অফিসার মাথা নাড়ল, “না, কোনো
+ক্ষতি হচ্ছে না। সেরিনা টেরও পাচ্ছে না। তাই না?” </p>
+<p>সেরিনা মাথা নেড়ে জানাল সে কিছু টের পাচ্ছে না। </p>
+<p>“এই ট্রাকিওশানে একটা ন্যানো ব্যাটারী আছে, সেই ব্যাটারীতে এটা এক বছর
+সেরিনার শরীর থেকে সিগন্যাল
+পাঠাবে তারপর সিগন্যাল পাঠানো
+বন্ধ করবে।” </p>
+<p>শামীম বলল, “আমরা সেরিনার শরীর থেকে এটা বের
+করে ফেলতে পারব না?” </p>
+<p>“চেষ্টা করা যেতে পারে কিন্তু
+মনে হয় না সেটা সম্ভব হবে। এমনভাবে তৈরী হয়েছে যে শরীরের ভেতরে গিয়ে কোনো এক জায়গায় আটকে যাবে। ন্যানো সাইজ, দেখারও উপায় নেই।” </p>
+<p>শামীম চুপ করে রইল, তার চেহারায় একই সাথে
+ক্ষোভ, হতাশা আর এক ধরণের
+আতংক। </p>
+<p>সেরিনা নিচু গলায় বলল, “আব্বু, আমার শরীরে ট্যাকিওশান কেন ঢুকিয়েছে তুমি বুঝতে পেরেছ?” </p>
+<p>শামীম মাথা নাড়ল, বলল, “হ্যাঁ। বুঝতে পেরেছি।” </p>
+<p>“আমাকে আবার ধরে নিতে আসবে। তখন যেন খুঁজে বের করতে পারে
+সেই জন্যে।” </p>
+<p>পুলিশ অফিসার মাথা নাড়ল, বলল, “ট্রাকিওশানের টেকনোলজি খুবই মডার্ন, একেবারে সরাসরি স্যাটালাইটের
+সাথে যোগাযোগ।” </p>
+<p>সেরিনা বলল,
+“আমি যদি ঘরের ভিতরে থাকি তাহলেও
+কী সিগন্যাল যাবে?” </p>
+<p>“যাবে। সিগন্যাল ব্যান্ড উইডথটা খুব
+কায়দা করে রেডি
+করেছে।” </p>
+<p>“যদি পানির নিচে থাকি?” </p>
+<p>মহিলা পুলিশ অফিসার চোখ বড় বড় করে
+বলল, “পানির নিচে?” </p>
+<p>“হ্যাঁ। পানির নিচ থেকে কী সিগন্যাল বের হবে?” </p>
+<p>“না। পানির নিচ থেকে বের হবে না। ট্র্যাকিওশনের ফ্রিকোয়েন্সি পানিতে খুব দ্রুত এটেনিউয়েট করে।” মহিলা পুলিশ অফিসার সেরিনার দিকে তাকিয়ে জিজ্ঞেস করল, “তুমি পানির কথা কেন জিজ্ঞেস করছ?” </p>
+<p>সেরিনা মাথা নাড়ল, বলল, “না! এমনি।” </p>
+<p>শামীম কিছুক্ষণ এক দৃষ্টে সেরিনার দিকে তাকিয়ে রইল, তারপর মাথা ঘুরিয়ে পুলিশ
+অফিসারের দিকে তাকিয়ে বলল, “আমার মেয়ের সিকিউরিটির জন্যে আমি কী
+করতে পারি?” </p>
+<p>মহিলা পুলিশ অফিসার কোনো কথা না বলে মাথা নিচু করে
+বসে রইল। শামীম আবার জিজ্ঞেস করল, “আমি কী করতে পারি?” </p>
+<p>পুলিশ অফিসার মাথা তুলে বলল, “আমি সেরিনার সামনে বলতে চাচ্ছিলাম
+না–কিন্তু সত্যিটা তারও জানা থাকা ভালো। সত্যিটা খুবই কঠিন। যদি তার শরীর থেকে ট্র্যাকিওশনটা বের করা না যায়–আমি মোটামুটি নিশ্চিত এটা বের করা
+যাবে না–তাহলে সেরিনাকে সিকিউরিটি দেবার মতো শক্তি পৃথিবীতে কারো নেই। সিক্রেট এজেন্সির লোকগুলো আবার আসবে। এবারে আরো সতর্কভাবে আসবে আরো শক্তি নিয়ে আসবে।” পুলিশ অফিসার কিছুক্ষণ চুপ
+করে থেকে বলল, “আমি খুবই দুঃখিত শামীম সাহেব। খুবই দুঃখিত।” </p>
+<p>শামীম উঠে দাঁড়াল। বলল, “থ্যাংক ইউ। খোলাখুলি
+সবকিছু। জানানোর জন্যে আপনাকে অনেক ধন্যবাদ। </p>
+<p>শামীমের সাথে সাথে সেরিনাও তার চাঁদর জড়িয়ে উঠে
+দাঁড়াল। পুলিশ অফিসার তার মাথায় হাত
+বুলিয়ে বলল, “আমি দোয়া করি
+তুমি যেন। নিরাপদে থাকো।” </p>
+<p>সেরিনা পুলিশ অফিসারের মুখের দিকে তাকিয়ে বলল, “আপনাকে একটা কথা জিজ্ঞেস করি?” </p>
+<p>“কী কথা?” </p>
+<p>“ঐ বিদেশী লোকটা এখন কোথায় আছে? জেলে?” </p>
+<p>“না সেরিনা। সে জেলে নেই। আসলে তাকে এরেস্টও
+করা হয় নি। এই মুহূর্তে সে
+নিশ্চয়ই প্লেনে
+করে তার দেশে ফিরে যাচ্ছে।” </p>
+<p>সেরিনা বলল,
+“ও।” </p>
+</div>
+<br/><h2>১১-১২. নাকের হাড় ভেঙ্গেছে</h2>
+<hr/>
+<br/><div>
+<p><strong>১১.</strong></p>
+<p>“এজেন্ট।” </p>
+<p>“ইয়েস স্যার।” </p>
+<p>“তোমার নাকের হাড় কেমন
+করে ভেঙ্গেছে? সাথে সামনের একটা দাঁত। আমাদের এজেন্সির একজন এজেন্টের এরকম ইনজুরী
+হবার কথা নয়।” </p>
+<p>“স্যার। এটা খুবই দুঃখজনক একটা ঘটনা। আমি লোকাল রিসোর্সের ওপর নির্ভর করেছিলাম তারা ঠিকমত ম্যানেজ করতে পারে নি। একেবারে শেষ মুহূর্তে একটা বিপর্যয় হয়ে গিয়েছিল।” </p>
+<p>“কী বিপর্যয়?” </p>
+<p>“আমি আমার রিপোর্টে সেটা ডিটেল্‌স লিখেছি।” </p>
+<p>“আমি তোমার মুখ থেকে শুনতে চাই।” </p>
+<p>এজেন্ট অস্বস্তির সাথে বলল, “স্কুলের মেয়েরা ঘটনার সাথে জড়িয়ে পড়েছিল।” </p>
+<p>“তারা কেমন করে জড়িয়ে পড়ল এজেন্ট?” </p>
+<p>“সেটা একটা রহস্যময় ব্যাপার। আমি সেটা এখনো ভালো করে জানি না।” </p>
+<p>“তুমি জানো এই গুবলেট প্রজেক্টে তুমি এজেন্সির কতো টাকা নষ্ট করেছ?” </p>
+<p>“আই এম সরি স্যার। কিন্তু এটা ছিল একটা খুবই দুর্ভাগ্যজনক
+ঘটনা। আমি গ্যারান্টি দিচ্ছি
+পরের বার এটা হবে না।” </p>
+<p>“পরের বার? এই প্রজেক্টের পরের বার আছে?” </p>
+<p>“থাকা উচিৎ স্যার। আমি মেয়েটার শরীরে একটা ট্র্যাকিওশান ঢুকিয়ে এসেছি
+স্যার। সেটা নিয়মিত সিগন্যাল দিচ্ছে, আমরা মেয়েটাকে স্যাটালাইট দিয়ে ট্রাক
+করছি। আমরা জানি স্যার মেয়েটার শরীর থেকে ট্র্যাকিওশানটা
+বের করার চেষ্টা করেছে। পারে নাই। আমরা মেয়েটাকে চব্বিশ ঘন্টা ট্র্যাক করছি। স্যার।” </p>
+<p>“তুমি এখন কী করতে চাও এজেন্ট?” </p>
+<p>“আমি আবার চেষ্টা করতে চাই। লোকালদের ওপর নির্ভর না করে। এই মেয়েটা আমাদের ন্যাশনাল সিকিউরিটির জন্যে কতো গুরুত্বপূর্ণ আমি জানি স্যার। আমি মেয়েটাকে নিয়ে আসব স্যার।” </p>
+<p>“তুমি পারবে?” </p>
+<p>“অবশ্যই পারব স্যার। এই প্রজেক্টটা আপনি পাস করে দিলেই পারব স্যার।” </p>
+<p>“ঠিক আছে আমি দেখি।” </p>
+<p>“আমি যাব স্যার?” </p>
+<p>“দাঁড়াও। যাবার আগে বলে যাও–” </p>
+<p>“কী বলব স্যার।” </p>
+<p>“তোমার নাকের হাড় কেমন
+করে ভাঙল সেটা এখানো বল
+নাই।” </p>
+<p>“একটা মেয়ে ঢিল ছুঁড়ে আমার
+নাকের হাড়টা ভেঙে
+দিয়েছে।” </p>
+<p>কমান্ডার শুকনো স্বরে হা হা করে হেসে উঠল। বলল, “পৃথিবীর সেরা এজেন্সির কমান্ডোর নাকের হাড় ভেঙে দিয়েছে থার্ড ওয়ার্ল্ড কান্ট্রির ছোট একটা মেয়ে?” </p>
+<p>“আমাকে সুযোগ দিন স্যার। এবারে মিশন হান্ড্রেড পার্সেন্ট সফল হবে
+স্যার।” </p>
+<p>“যাও এজেন্ট। আমি ভেবে দেখি।” </p>
+<p>.</p>
+<p><strong>১২.</strong></p>
+<p>রেস্টুরেন্টটা খুব সাদামাটা কিন্তু তারপরেও
+খুব সুন্দর। মনে হয় এখান থেকে পুরো সমুদ্রটা দেখা যায় তাই
+সাদামাটা হলেও এটাকে এতো সুন্দর দেখায়। </p>
+<p>সেরিনা আর শামীম সামনা-সামনি বসে আছে। রাতের খাবার খেয়ে যখন
+তারা উঠে যাবে তখন সেরিনা
+শামীমের হাত ধরে বলেছে, “আব্বু, আরো
+একটু বস।” </p>
+<p>শামীম বলল, “আরো
+একটু বসবি? ঠিক আছে।” </p>
+<p>শামীম চেয়ারে হেলান দিয়ে বলল
+“চা খাবি?”</p>
+<p>সেরিনা মাথা নাড়ল বলল, “না, আব্বু চা খাব না।” </p>
+<p>“আর কিছু খাবি?” </p>
+<p>“না আলু আর কিছু খাব না। তুমি আমার সামনে বসে থাকো, আমি তোমাকে কাছে থেকে
+একটু ভালো করে দেখি।” </p>
+<p>সেরিনার গলায় স্বরে কিছু একটা ছিল–হঠাৎ করে শামীম ভয়ানক চমকে উঠল, মুহূর্তে তার মুখ রক্তহীন হয়ে যায়। কাঁপা গলায় বলে, “তুই কি বলছিস সেরিনা?” </p>
+<p>“হ্যাঁ আব্বু। ওরা এসে গেছে। তুমি পিছন দিকে তাকিও না। তাহলে সন্দেহ করবে। তোমার দুই টেবিল পিছনে একজন লোক বসেছে, বসে টেলিফোনে কথা বলছে। এই মানুষটাকে আজকে অনেকবার
+দেখেছি। আমাদের সাথে সাথে
+থাকছে।” </p>
+<p>শামীম দুই হাতের উপর তার মাথা
+রাখল, মনে হল হঠাৎ করে
+তার শরীরের ভেতর থেকে পুরো
+জীবনীশক্তি বাতাসের মতো উবে
+গেছে। </p>
+<p>সেরিনা হাত দিয়ে শামীমকে স্পর্শ করল। নিচু গলায় বলল, “আব্বু তুমি এতো মন খারাপ করো না। তুমিও জান আমিও
+জানি একদিন এই দিনটা আসবে। অনেকদিন থেকে জানি। আজকে এই দিনটা এসেছে।” </p>
+<p>শামীম শূন্য দৃষ্টিতে সেরিনার দিকে তাকিয়ে রইল। দেখে মনে হলো সেরিনা কী বলছে বুঝতে পারছে না। সেরিনা নরম গলায় বলল, “আব্বু, তুমি আর আমি কতোদিন থেকে এই দিনটার জন্যে রেডি
+হয়েছি, মনে আছে?” </p>
+<p>শামীম মাথা তুলে সেরিনার দিকে তাকাল, বলল, “এই দিনটার জন্যে কখনো রেডি হওয়া যায়?” </p>
+<p>“যায় আব্বু। আমি হয়েছি। তুমি আমাকে রেডি করেছ। তুমি আমাকে সমুদ্রের কাছে এই সুন্দর দ্বীপটাতে
+নিয়ে এসেছ।
+যখন ওরা আমাকে ধরতে আসবে তখন আমি সমুদ্রের মাঝে লুকিয়ে যাব! পানির নিচে ওরা আমাকে খুঁজে
+পাবে না। বেশী দিন নয় আব্বু
+মাত্র এক বছর!” </p>
+<p>“মাত্র এক বছর?” শামীম কেমন যেন হাহাকারের মতো শব্দ করল। </p>
+<p>“হ্যাঁ, আব্বু এক বছর পর ট্রাকিওশানের ব্যাটারী ফুরিয়ে যাবে
+তখন আবার আমি ফিরে আসব। তখন তারা আর আমাকে ধরতে পারবে
+না।” </p>
+<p>শামীম কিছু না বলে সেরিনার দিকে তাকিয়ে রইল। এই মেয়েটাকে সে রক্ষা করতে পারল না। পৃথিবীর দানবেরা তার এই ছোট মেয়েটিকে তার বুকের ভেতর থেকে কেড়ে নিল। </p>
+<p>সেরিনা শামীমের দিকে একটু ঝুঁকে নিচু গলায় বলল, “আব্বু তুমি আমাকে রেডি করেছ। আকাশের সব নক্ষত্র চিনিয়ে দিয়েছ যেন আমি রাতের আকাশ
+দেখে সময় বলতে পারি। পৃথিবীর কোথায় আছি জানতে পারি। তুমি আমাকে পৃথিবীর সমুদ্রের
+স্রোত শিখিয়েছ, জাহাজের পথ শিখিয়েছ। তুমি আমকে সমুদ্রের সব প্রাণীদের
+চিনিয়েছ–আলু বিশ্বাস কর </p>
+<p>আমি এখন খুব আগ্রহ নিয়ে সমুদ্রে
+ঝাঁপ দেবার জন্যে অপেক্ষা করছি।” </p>
+<p>শামীম জানে সেরিনা এই কথাগুলো বলছে তাকে শান্তনা দেবার জন্য
+কিন্তু তবুও সে কথাগুলো
+বিশ্বাস করতে চাইল। শামীম ফিস ফিস করে বলল, “আমি তোকে রক্ষা করতে পারলাম
+না মা। অনেক চেষ্টা করেছি
+মা–” </p>
+<p>“আমি জানি তুমি কতো চেষ্টা করেছ–কিন্তু তুমি আমাকে রক্ষা করেছ
+আব্বু–তারা আমাকে ধরে নিতে পারবে না। আমি সমুদ্রের মাঝে লুকিয়ে যাব! আর আমাকে খুঁজে পাবে না।” </p>
+<p>শামীম ফিসফিস করে বলল, “তুই আমাকে ক্ষমা করে দিস মা–” </p>
+<p>সেরিনা বলল,
+“তুমি এভাবে কথা বল না আব্বু। প্লীজ তুমি এভাবে কথা বল না। তাহলে আমি কিন্তু কাঁদতে আরম্ভ
+করব।” </p>
+<p>শামীম বলল, “না। তুই কাদিস না।” </p>
+<p>“আমার জন্যে তুমি একটুও চিন্তা
+করো না আব্বু। তুমি জান আমি মাটির ওপরে যতটুকু
+সহজে থাকতে পারি তার চাইতে অনেক সহজে পানির নিচে থাকতে পারি। একটা বিলের নিচেই কতো কী থাকে আর সমুদ্রের তলায় কতো কী থাকবে তুমি চিন্তা করতে
+পার আব্বু? তোমার জানতে ইচ্ছে করে না? এক বছর পর এসে আমি তোমাকে বলব! তখন তুমি আর আমি আবার একসাথে
+থাকব! মাত্র এক বছর আব্বু!” </p>
+<p>শামীম কোনো কথা না বলে সেরিনার দিকে তাকিয়ে রইল। আলেক্স তাকে বলেছিল সেরিনাকে যেন এক সাথে বেশীদিন
+পানির নিচে থাকতে না দেয় তাহলে ধীরে ধীরে সে ফুসফুস ব্যবহার করা ভুলে যাবে। এক বছর যদি পানির নিচে থাকে
+তাহলে কী সে আবার শুকনো
+মাটির ওপর ফিরে আসতে পারবে?
+শামীম জোর করে চিন্তাটা মাথা থেকে সরিয়ে দিল। কোনো কথা না বলে সেরিনার
+হাতটা শক্ত করে ধরে রাখল। </p>
+<p>সেরিনা নিচু গলায় বলল, আলু, “এই মাত্র আরেকজন মানুষ ঢুকেছে। মানুষটা আগের জনের সাথে বসেছে। আমাদের এখন উঠে যেতে হবে, আর দেরী করা যাবে না। </p>
+<p>শামীম উঠে দাঁড়িয়ে বলল, “আয় যাই।” </p>
+<p>দুজন যখন রেস্টুরেন্ট থেকে বের হয়ে গেল
+তখন তাদের টেবিল থেকে দুই টেবিল পিছনে বসে থাকা মানুষ দুজনও উঠে দাঁড়াল। রেস্টুরেন্ট থেকে বের হয়ে তারাও
+সেরিনা আর শামীমের পিছু
+পিছু হটতে থাকে। </p>
+<p>এই দ্বীপটি নির্জন। শীতের কয়েক মাস অনেক পর্যটক এসে ভীড় করে
+তারপর হঠাৎ করে পর্যটকদের ভীড় কমে গিয়ে দ্বীপটা নির্জন হয়ে যায়। এখন দ্বীপটিতে বাইরের মানুষ
+বলতে গেলে কেউ নেই। বালু বেলায় যতদূর
+চোখ যায় কোথাও কোনো
+মানুষের চিহ্ন নেই। অনেক
+দূরে কয়েকটা জেলে
+নৌকা সমুদ্রের ঢেউয়ে দোল খাচ্ছে। সূর্য ডুবে গেছে অনেক আগে কিন্তু পূর্ণিমার ভরা
+চাঁদ উঠেছে আকাশে, জোছনার
+আলোতে চারিদিক থই থই করছে। </p>
+<p>বালুতে পা গেঁথে যাচ্ছিল, তখন সেরিনা পা থেকে স্যান্ডেল খুলে
+নিল, তার আর স্যান্ডেলের
+দরকার নেই। পায়ের তলায় বালুর
+অনুভূতিটা অন্যরকম, সেরিনার বুকের ভেতর অতীতের
+এক ধরণের স্মৃতি নিয়ে আসে কিন্তু সেই স্মৃতিটা কবেকার সে মনে করতে পারে না। </p>
+<p>শামীম হাত দিয়ে সেরিনাকে ধরে রেখেছে, সেরিনাও তার হাত দিয়ে তার
+আবুকে ধরে রেখেছে। দুজনেই
+জানে একটু পর একজনের আরেকজনকে ছেড়ে দিতে হবে তারপর কেউ কাউকে দেখতে
+পারবে না, স্পর্শ করতে
+পারবে না। কোনো কথা না বলে হেঁটে হেঁটে দুজন সমুদ্রের তীরে এসে
+দাঁড়ালো। জোয়ার শুরু হয়েছে, ঢেউগুলো একটু পর পর বালু বেলায় আছড়ে পড়তে শুরু করেছে। </p>
+<p>শামীম আর সেরিনা দাঁড়িয়ে গেল, বড় একটা
+ঢেউ এসে দুজনের পা ভিজিয়ে দিয়ে যায়। শামীম মাথা ঘুরিয়ে পিছন
+দিকে তাকায়, দূরে কয়েকটা ছায়ামূর্তির মতো দেখা যাচ্ছে তারা ধীরে ধীরে
+এগিয়ে আসছে।
+অনেক দূরে একটা চাপা গুঞ্জন,
+মনে হয় একটা হেলিকপ্টার। সাথে সাথে শক্তিশালী কয়েকটা ইঞ্জিনের গর্জন বাড়ছে কমছে, মনে হয় বেশ কয়েকটা স্পীড বোট </p>
+<p>এদিকে আসছে। আসুক–এখন আর কিছুতেই কিছু আসে যায় না। </p>
+<p>সেরিনা তার আব্বুকে ছেড়ে দিয়ে বলল, “আব্বু, আমি যাই?” </p>
+<p>শামীম বলল, “যাই বলতে হয় না মা। বলতে হয় আসি।” </p>
+<p>সেরিনা বলল, “আবু আমি আসি?” </p>
+<p>“আয় মা।” শামীম সেরিনাকে ছেড়ে দিল, হঠাৎ তার বুকের ভেতরে হাহাকার করে ওঠে কিন্তু সে সেরিনাকে বুঝতে দিল না। সেরিনা শেষবার তার আব্বুকে গভীরভাবে আলিঙ্গন করে ছেড়ে দেয়। </p>
+<p>শামীম ফিসফিস করে বলল, “মনে আছে তো মা, যখন সূর্য ডোবার। পর কালপুরুষ নক্ষত্রটা ঠিক মাথার উপর থাকবে তখন যেদিন পূর্ণিমার চাঁদ
+উঠবে তখন আমি ঠিক এই জায়গায় তোর জন্যে অপেক্ষা করব। চাঁদের আলোতে এখানে বসে থাকব।” </p>
+<p>“মনে আছে আব্বু।” </p>
+<p>পিছনে হঠাৎ অনেকগুলো মানুষের পায়ের ধুপ ধাপ শব্দ শুনতে পায়, কিছু মানুষ ছুটে আসছে। শামীম পিছন ফিরে দেখার চেষ্টা
+করল না, কারা আসছে, কতজন আসছে তাতে এখন আর কিছু
+আসে যায় না। হেলিকপ্টারের
+শব্দটা এখন খুব কাছে, স্পীড বোটের
+গর্জন আরো বেড়ে গেছে, সেগুলো এখন আবছা দেখা যাচ্ছে, সমুদ্রের পানি কেটে তাদের দিকে
+ছুটে আসছে। </p>
+<p>তার মাঝে সেরিনা এক পা এক পা করে সমুদ্রের
+দিকে এগিয়ে যাচ্ছে,
+তার মাঝে কোনো ব্যস্ততা
+নেই। বড় একটা
+ঢেউ এসে সেরিনাকে আড়াল করে দিল, ঢেউটা সরে যেতেই আবার সেরিনাকে দেখা গেল, জোছনায় আলোতে সেরিনা আস্তে আস্তে এগিয়ে যাচ্ছে। শামীম তাকিয়ে রইল, সেরিনা আবছা হয়ে মিলিয়ে যাচ্ছে
+আরো একটি বড় ঢেউ
+এল তারপর আর সেরিনাকে
+দেখা গেল না। </p>
+<p>অনেকগুলো মানুষের গলায় আওয়াজ শুনতে পেল শামীম, কেউ একজন খপ করে তার ঘাড়ে ধরেছে, “কোথায়? কোথায় গেছে মেয়েটা।” </p>
+<p>শামীম ঘাড় ধরে রাখা
+মানুষটার হাত সরিয়ে বলল “চলে
+গেছে।” </p>
+<p>“কোথায়? কোথায় গেছে মেয়েটা?” </p>
+<p>“সমুদ্রে।” </p>
+<p>“কখন আসবে?” </p>
+<p>“আর আসবে না।” বলে শামীম ক্লান্ত পায়ে হাঁটতে থাকে। ঠিক তখন বিকট গর্জন করে একটা স্পীডবোট পানি থেকে প্রায় লাফিয়ে বালুবেলায় উঠে
+যায়। সেখান থেকে বেশ কয়েকজন মানুষ লাফিয়ে নেমে
+শামীমের দিকে ছুটে আসতে থাকে। একজন চিৎকার করে বলল, “থাম।” </p>
+<p>শামীম থামল না। মানুষটা বলল, “না থামলে গুলি করে দেব।” </p>
+<p>শামীম হাঁটতে হাঁটতে বলল, “দাও। গুলি করে দাও। আমি চাই তোমরা কেউ একজন আমাকে গুলি করে দাও। আমার আর ভালো লাগছে না।” </p>
+<p>কেউ গুলি করল না। শামীম একবারও পিছনে না তাকিয়ে হেঁটে
+যেতে থাকল। </p>
+<p>.</p>
+<p>সেরিনা তখন সমুদ্রের গভীরে সাঁতরে যেতে থাকে। তার চোখের লোনা পানি সমুদ্রের লোনা পানির সাথে মিশে যাচ্ছিল। </p>
+<p>পুরো সমুদ্রটাই কী তার মতো দুঃখী মানুষের চোখের পানিতে তৈরী হয়েছে? </p>
+</div>
+<br/><h2>১৩-১৪. একটু পর পর কিছু একটা</h2>
+<hr/>
+<br/><div>
+<p>একটু পর পর কিছু একটা সেরিনার পেটে ঢুশ মারছে, সেরিনা আধো ঘুমে হাত দিয়ে সেটাকে সরিয়ে দিতে
+চেষ্টা করল কিন্তু সেটি সরল না। সেরিনা শেষ পর্যন্ত চোখ খুলে তাকালো, প্রাণীটি টুশকি, একটি ডলফিনের বাচ্চা। ডলফিনের যে দলটির সাথে সেরিনা সময় কাটায় এই শিশুটা সেই দলের। সেরিনা এর নাম দিয়েছে টুশকি, ডলফিন শিশুটা এই নামে সাড়া দেয়। </p>
+<p>সেরিনা চোখ খুলে বলল, “টুশকি, তোমার সমস্যাটা কী? পানির ভেতর সেরিনার কণ্ঠস্বর অন্য রকম
+শোনায় কিন্তু
+তাতে টুশকির কোনো সমস্যা
+হলো বলে মনে হলো না। টুশকি একটা শীষ দেওয়ার মতো শব্দ করল তারপর মুখ দিয়ে টিক
+টিক করে শব্দ করতে লাগল। </p>
+<p>সেরিনা ডলফিনের ভাষা একটু একটু করে বুঝতে শুরু করেছে। প্রত্যেকটা ডলফিনের নিজের একটা
+শীষ আছে সে শীষের শব্দ শুনে বুঝতে হয় কে কথা বলছে। টিক টিক শব্দ করে তারা কথা
+বলে, যখন মাছ ধরতে যায় তখন
+এক ধরণের শব্দ যখন খেলতে চায় তখন অন্য ধরণের শব্দ। </p>
+<p>সেরিনা বলল,
+“কেন এতো ভোরে তুমি জ্বালাতন করছ? তোমার বেশীক্ষণ ঘুমাতে হয় না
+তার মানে এই না যে আমাকে ঘুমাতে হবে না।” </p>
+<p>টুশকি কী বুঝল কে জানে, তার মাঝে এক ধরণের আনন্দ আর
+উত্তেজনা দেখা গেল। সেটি কয়েকবার সামনে পিছনে দৌড়াদৌড়ি করে
+একবার উপরে উঠে নিশ্বাস নিয়ে আবার নিচে নেমে এল! সেরিনাকে না। নিয়ে সেটি যাবে না। সেরিনা তখন বাধ্য হয়ে পাথরের খাঁজ থেকে বের হয়ে আসে
+তারপর ডলফিল শিশু টুশকির সাথে পানির উপরে উঠে এল। </p>
+<p>পানির নিচের আবছা অন্ধকার থেকে উপরে উঠে
+সেরিনার চোখ ধাঁধিয়ে যায়, চারদিকে যতদূর চোখ যায় সমুদ্রের নীল পানি, উপরে নীল আকাশ। এক দল ডলফিন নিশ্বাস নেবার জন্যে তাদের মাথাটা
+বের করে ঘুমুচ্ছে। নিজেদের ভাসিয়ে রাখার
+জন্যে ঘুমর মাঝেই খুব ধীরে ধীরে তাদের লেজ নাড়ছে। </p>
+<p>টুশকি সেরিনাকে ঘিরে সাঁতার দিতে
+দিতে ঘুরপাক খেতে লাগল। মাঝে মাঝে পানি থেকে লাফিয়ে উপরে
+উঠে যেতে লাগল। টুশকির
+দাপাদাপিতে অন্য ডলফিনগুলোও
+জেগে উঠে নড়তে
+শুরু করল। সেরিনা তাদের শীষের শব্দ শুনতে
+পায়। </p>
+<p>ডলফিনগুলো একে অন্যের সাথে ক্লিক ক্লিক
+শব্দ করে কথা বলতে থাকে।
+একটু পরেই তারা মাছ ধরতে বের হবে, সেরিনা
+সব সময়েই তাদের
+সাথে যায়। যাবার আগে তার একটু খাওয়া দরকার। সদ্য বাচ্চা দেয়া মা
+ডলফিনটার শীষের শব্দ অনুসরণ করে সে কয়েকবার শব্দ করল, তখন একটা মাঝারী সাইজের ডলফিন তার দিকে এগিয়ে এসে
+মাথার উপরের ফুটো দিয়ে বড় একটা নিশ্বাস ফেলল। সেরিনা ডলফিনটাকে চিনতে পারল, সে এটাকেই খুঁজছে। </p>
+<p>সেরিনা পানিতে ডুবে গিয়ে মা ডলফিনটার পেটের নিচে দুধের
+বোঁটা খুঁজে মুখ লাগিয়ে দুধ খেতে শুরু করে। ডলফিনের দলটা তাকে গ্রহণ করার পর সে প্রায় নিয়মিতভাবে ডলফিনের দুধ
+খায়। সুস্বাদু গাঢ় দুধ একটু
+খানি খেলেই তার পেট ভরে যায়। ডলফিনের
+দলে যোগ দেয়ার পর এটা তার সবচেয়ে বড় লাভ
+হয়েছে। ডলফিনগুলো তাকে খুব আন্তরিকভাবে গ্রহণ
+করেছে দলের সবচেয়ে বদরাগী ধরণের পুরুষ ডলফিনটাও তাকে মেনে চলে। </p>
+<p>তার কারণ আছে। এই দলটার সাথে তার পরিচয়টা হয়েছে প্রায় হঠাৎ
+করে। সমুদ্রে যখন প্রায় প্রথম
+এসেছে তখন হঠাৎ করে একদিন সে একটা জাহাজের শব্দ পেল। নিচ থেকে দেখল মাঝারি সাইজের একটা জাহাজ জাল ফেলতে ফেলতে
+যাচ্ছে। জাল ফেলে কেমন
+করে মাছ ধরে দেখার জন্যে সে
+পিছু পিছু গেল। জাহাজটা আস্তে আস্তে যখন জাল গুটিয়ে আনছে
+তখন দেখতে পেলো টুনা মাছের
+বিশাল একটা ঝাক জালের ভেতর আটকা পড়েছে, মাছগুলো জালের ভেতর খল-বল করছে। হঠাৎ করে দেখল জালের আশেপাশে
+অনেকগুলো ডলফিন ছুটোছুটি
+করছে, মুখ দিয়ে শীষ
+দেওয়ার শব্দ করছে। ক্লীক ক্লীক শব্দ করছে। দেখেই বোঝা যাচ্ছিল ডলফিনগুলো কোনো একটা কারণে খুবই বিচলিত, তাদের মাঝে এক ধরণের উত্তেজনা
+আর ভয়। কেন ডলফিনগুলো এরকম করছে দেখার জন্যে সেরিনা আরেকটু কাছে এগিয়ে গেল
+তখন ডলফিনগুলোর উত্তণ্ঠার
+কারণটা বুঝতে পারল। জালের ভেতরে টুনা মাছের সাথে
+ছোট বড় অনেকগুলো ডলফিনও আটকা পড়েছে। সেগুলো ভেতরে আতংকিত হয়ে ছুটোছুটি
+করছে, বের হওয়ার চেষ্টা করছে, একটু পরে পরে জালে ধাক্কা দিচ্ছে
+কিন্তু বের হতে পারছে না।
+</p>
+<p>মাছ ধরার জাহাজটা তখন গুটিয়ে নেয়া জালটা
+আস্তে আস্তে উপরে তুলতে শুরু করে, টুনা মাছগুলো
+হুটোপুটি শুরু করে তার সাথে সাথে ডলফিনগুলোও আতংকিত হয়ে লাফ দিতে শুরু করে। </p>
+<p>সেরিনা তখন আরেকটু এগিয়ে গেলো, তার কোমরে টাইটেনিয়ামের একটা চাকু বেঁধে রাখা আছে। সে যখন সমুদ্রে লুকিয়ে থাকার
+সিদ্ধান্ত নিয়েছিল
+তখন শামীম তাকে এই চাকুটা দিয়েছে, টাইটেনিয়ামের বিশেষ ধরণের একটা
+চাকু, সমুদ্রের পানিতেও
+জং ধরে যাবে না। সমুদ্রের কতো রকমের প্রাণী সবারই নিজেকে
+রক্ষা করার জন্যে কিংবা অন্যকে আক্রমণ করার জন্যে ধারালো দাঁত বা অন্য কিছু একটা আছে, সেরিনার কিছু নেই। তার একমাত্র অস্ত্র হচ্ছে তার মাথার বুদ্ধি আর
+টাইটেনিয়ামের এই
+চাকুটা। </p>
+<p>সেরিনা চাকুটা হাতে নিয়ে এগিয়ে গেল
+তারপর জালটার উপর থেকে নিচে অনেকখানি কেটে দিল। কাটা অংশ দিয়ে টুনাগুলো বের হতে লাগল আর তাদের দেখে
+হঠাৎ করে ডলফিন বুঝে গেল বের হওয়ার একটা জায়গা তৈরি হয়েছে, দেখতে
+দেখতে সবগুলো ডলফিন বের
+হয়ে আসতে থাকে। তাদের বের হতে সাহায্য করার জন্যে সেরিনা কাটা জালটা টেনে ধরে রেখে জায়গা করে দিল। </p>
+<p>মাছ ধরার জালটা যখন উপরে টেনে তুলেছে তখন
+ডলফিনের সাথে সাথে বেশীরভাগ টুনাও বের হয়ে গেছে। জাহাজের মানুষগুলোকে নিচ থেকে দেখার উপায় নেই কিন্তু
+সেরিনা অনুমান করতে পারল
+মানুষগুলো নিশ্চয়ই তাদেও ফাটা জাল দেখে
+খুবই অবাক হয়ে গেছে। </p>
+<p>ডলফিনগুলো চলে গেল না, সেরিনার আশেপাশে ঘুর ঘুর করতে লাগল, বোঝাই যাচ্ছে তারা সেরিনাকে তাদের নিজেদের মতো করে ধন্যবাদ জানাতে চাচ্ছে। ডলফিন স্তন্যপায়ী প্রাণী, পানিতে থাকলেও তাদের উপরে উঠে নিশ্বাস নিতে হয়, তাদের মাথায় যথেষ্ট বুদ্ধি। আটকে পড়া ডলফিনগুলোকে সেরিনা কীভাবে ছুটিয়ে এনেছে
+তারা ঠিক বুঝতে পেরেছে। একটা ডলফিন খুব
+কাছে এসে সেরিনার মুখ
+স্পর্শ করল, মনে হলো তার গালে চুমু দেবার চেষ্টা
+করছে। পিছনে ছোট একটা ডলফিনের
+বাচ্চা, সেরিনা বুঝতে পারল বাচ্চাটা ভেতরে আটকা পড়েছিল, এখন ছাড়া পেয়েছে বলে মা’টা সেরিনাকে
+তার মত করে কৃতজ্ঞতা জানাচ্ছে। </p>
+<p>সেরিনা ডলফিনটাকে ধরে একটু আদর করে দিল এবং সেই মুহূর্ত থেকে সে এই
+ডলফিনের দলের একজন সদস্য হয়ে গেল। ছোট ডলফিনটা তার খুবই ন্যাওটা
+হয়ে গেছে,
+সেরিনা তার নাম দিয়েছে টুশকি। প্রতিদিন ভোরেই ঘুম থেকে উঠে টুশকি তার
+কাছে চলে আসে। আজকেও এসেছে। </p>
+<p>.</p>
+<p>কিছুক্ষণের মাঝেই ডলফিনের দলটা
+অগ্রসর হতে শুরু করে। এরা
+যখন মাছ ধরতে যায় তখন একসাথে না থেকে অনেক দূরে দূরে ছড়িয়ে যায়। ডলফিনগুলো পানির ভেতর দিয়ে যেভাবে
+সাঁতার কাটতে পারে ঠিক সেরকম লাফ দিয়ে পানি থেকে বের হয়ে আসে। ডলফিনগুলোর পাশাপাশি সাঁতার কেটে যেতে
+যেতে সে যদি কখনো পিছিয়ে পড়ে তখন
+ডলফিনগুলো তার জন্যে অপেক্ষা
+করে। সেরিনা কখনো কখনো আরেকটা ডলফিনের পিঠে চেপে
+বসে সেটি তাকে নিয়ে সাঁতারে যেতে থাকে। </p>
+<p>টুশকির পাশে পাশে সাঁতরে যেতে যেতে সেরিনা টের পেলো সামনে তারা একটা মাছের ঝাঁক
+পেয়েছে। ডলফিনগুলো চারদিক থেকে মাছের আঁকটাকে ঘিরে ফেলে তারপর মাছের আঁকটাকে
+ঘিরে বৃত্তাকারে ঘূরপাক খেতে
+থাকে। ডলফিনগুলো ধীরে ধীর বৃত্তটাকে ছোট করে আনে যখন বৃত্তটা মাছগুলো ধরার মতো ছোট হয়ে আসে তখন ডলফিনগুলো মাছ ধরে খেতে শুরু করে। এগুলো স্মেল্ট মাছ, বেশি বড় নয়। সেরিনা ডলফিনের মতো মাছ খেতে শিখে গেছে। ডলফিনগুলো সরাসরি মুখ দিয়ে খাচ্ছে
+সেরিনা মাঝে মাঝে উলফিনের
+মতো চেষ্টা করে দেখেছে, খুব সুবিধে করতে পারে না। তাকে সবসময়েই হাত দিয়ে ধরে
+নিতে হয়। গোটা তিনেক স্মেল্ট খেয়েই তার পেট ভরে গেল। সে যেভাবে কাঁচা মাছ ধরে খাচ্ছে
+তার আব্বু দেখলে নিশ্চয়ই খুব অবাক হয়ে যেতো। সমুদ্রে
+আসার পর এটাই সে প্রথমে শিখেছে। প্রথম প্রথম গন্ধে নাড়ী উল্টে
+আসতো আজকাল বেশ অভ্যাস হয়ে গেছে। চিংড়ি, কাঁকড়া আর ওয়েস্টার তার প্রিয় খাবার। ডলফিন স্কুইড খেতে পছন্দ করে
+সেও তাদের মতো স্কুইড
+খাওয়া শিখে গেছে।
+কাঁচা মাছ খুবই বিচিত্র খাবার হতে পারে না, জাপানীরা সুশী খায় সুশী তো কাঁচা মাছ ছাড়া আর
+কিছু নয়। প্রথম প্রথম তার খাওয়াটা ছিল বেঁচে থাকার
+জন্যে আজকাল যখন খুব খিদে লাগে তখন খাওয়াটা সে রীতিমত উপভোগ করতে শুরু করেছে। </p>
+<p>মাছের ঝাঁক থেকে মাছ খেয়ে ডলফিনের
+দলটা সমুদ্রের পানিতে ছোটাচ্চুটি
+করতে লাগল। হঠাৎ এক সময় একটা
+ডলফিন শীষের মতো শব্দ
+করে সবাইকে সতর্ক করে দেয়, ঠিক কী
+জন্যে সতর্ক করেছে সেরিনা
+বুঝতে পারল না, সে আশে
+পাশে তাকালে তখন দেখল দূর থেকে একটা হাঙ্গর মাছ আসছে। এই প্রাণীটাকে সেরিনা আসলেই ভয় পায়। সে নিঃশব্দে পানিতে ভেসে থাকল, কখন এটি কাকে আক্রমণ করে বসবে
+ঠিক নেই, এর মুখটা দেখেই
+আতংক হয়, সেটা কেমন জানি হিংস্র, ধারালো দাঁত দিয়ে মুহূর্তের
+মাঝে যে কোনো কিছু দু টুকরা
+করে ফেলতে পারে। আগেও তার মাঝে মাঝে হাঙ্গর মাছের
+সাথে দেখা হয়েছে, প্রতিবারই সে নিঃশব্দে ভেসে
+থেকেছে, হাঙ্গর মাছটি তখন
+পাশ দিয়ে, সাঁতরে চলে গেছে। চুপচাপ থাকলে মনে হয় হাঙ্গর
+মাছ সেটাকে ভালো দেখতে
+পায় না। </p>
+<p>সেরিনা সাবধানে তার চাকুটা ধরে রাখল, সত্যি সত্যি তাকে আক্রমণ করলে এমনি এমনি সে ছেড়ে দেবে
+না। হাঙ্গরটা তাকে আক্রমণ
+করল না, ডলফিনগুলোকেও ধরার চেষ্টা করল না, লেজটা ডানে বায়ে নাড়তে নাড়তে আরো গভীর পানির দিকে নেমে গেল। </p>
+<p>হাঙ্গরটা চলে যাবার পর ডলফিনগুলোও আবার খেলতে শুরু করে। সমুদ্রে থাকা শুরু না করলে
+সে কোনোদিন জানতে পারতো না ডলফিন এতো হাসিখুশি প্রাণী! মাঝে মাঝে মনে হয় এদের
+বুঝি মানুষের মতোই বুদ্ধি! সে যদি একবার তার আব্বুকে এনে এই ডলফিনদের সাথে
+পরিচয় করিয়ে দিতে পারতো তাহলে
+কী মজাই না হতো! </p>
+<p>সে বলতো, “আব্বু এই হচ্ছে টুশকিকে।“</p>
+<p>টুশকি একটা ছোট লাফ দিতো আর আব্বু বলতো, “কী খবর টুশকি?” </p>
+<p>তখন সে টুশকির মাকে দেখিয়ে বলতো, “আব্বু, এই হচ্ছে টুশকির মা। আমি এর দুধ খাই।” </p>
+<p>আব্বু বলতো, “আমার মেয়েকে দেখেশুনে রাখার জন্যে তোমাকে অনেক ধন্যবাদ টুশকির মা!” </p>
+<p>সেরিনা একটা নিশ্বাস ফেলে, মাঝে মাঝে তার খুব আব্বুর কথা মনে হয়। </p>
+<p>সেরিনা প্রথম যেদিন তিমি মাছ দেখেছিল সেই দিনটার কথা সে ভুলতে পারবে
+না। ডলফিন যেরকম হাসিখুশি
+বাচ্চাদের মতো তিমি
+মাছ ঠিক সেরকম গম্ভীর বয়স্ক
+মানুষের মতো। প্রথমবার যখন একটা তিমি মাছ দেখেছিল সে অবাক হয়ে সেটার
+দিকে তাকিয়ে ছিল। একেবারে ট্রেনের মতো বিশাল একটা প্রাণী ধীরে ধীরে
+যাচ্ছে। তিমি মাছটার একটা
+বাচ্চা, সেটাও বড় একটা
+বাসের মতো বড়, তার মায়ের পিছু পিছু যাচ্ছে। বিশাল একটা লেজ ধীরে ধীরে উপরে আর নিচে নামে। তিমি মাছও স্তন্যপায়ী প্রাণী
+এটাকেও নিশ্বাস নিতে হয়, মাঝে মাঝে মাথাটা পানির উপরে
+তুলে নিশ্বাস নেয় তারপর মাথার যে ফুটোটা আছে সেটা দিয়ে বাতাসটা
+বের করে দেয়। </p>
+<p>সেরিনা তিমি মাছটার পিছু পিছু অনেকদূর গিয়েছিল। তিমি মাছ এতো বড় যে সেটাকে কেউ আক্রমণ করবে
+তার সাহস নেই। তিমি মাছ নিজেও সেটা খুব ভালো করে জানে, তাই সেটা যখন পানির নিচে দিয়ে যায় তখন ডানে
+বামে কোনোদিকে তাকায় না। সেরিনা জানতো না তিমি মাছ গান গাওয়ার মতো করে ডাকতে পারে। অনেকদূর থেকে যখন কান্নায় মতো শব্দ করে তিমি মাছ ডাকতে থাকে সেটা শুনে
+কেমন জানি মন খারাপ হয়ে যায়। </p>
+<p>এতো বড় তিমি মাছ কিন্তু সেরিনা কখনো তিমি মাছটাকে কিছু খেতে দেখে নি! মনে হয় পানির শ্যাওলা প্রাংকটন এগুলো খেয়েই থাকে। ডলফিনের মতো মাংশাসী নয়, নিরমিষাশী। </p>
+<p>ডলফিনের সাথে সেরিনার যে রকম এক ধরণের বন্ধুত্ব হয়েছে তিমি মাছদের সাথে
+সেরকম বন্ধুত্ব না হলেও এক ধরণের পরিচয় হয়েছে। তিমি মাছের কৌতূহলী বাচ্চাটা সেরিনাকে দেখলেই
+তার দিকে এগিয়ে আসে, তাকে
+উল্টে পাল্টে দেখে। মা তিমি মাছটা তখন চোখের কোণ দিয়ে তাদের
+দিকে তাকিয়ে থাকে। </p>
+<p>কিন্তু একদিন তিমি মাছদের সাথে তার একধরণের
+ঘনিষ্ঠতা হলো। ঘটনাটা ছিল খুবই ভয়ংকর একটা ঘটনা। </p>
+<p>.</p>
+<p><strong>১৪.</strong></p>
+<p>কয়দিন থেকেই সেরিনা একটা জাহাজের শব্দ শুনছিল। জাহাজের প্রপেলারে শব্দ বাড়ে আবার
+কমে। মনে হয় জাহাজটা কোনো কাজে এ দিকে এসে ঘুরোঘুরি করছে। তিমি মাছের একটা বড় দলও এদিকে
+ঘুরোঘুরি করছে। দেখে মনে হয় এগুলো অন্য কোনো একটা এলাকা থেকে এদিকে এসেছে। শীতের সময় যেরকম
+এক এলাকার পাখী অন্য এলাকায় চলে আসে অনেকটা সেরকম। জাহাজটা যে তিমি মাছ মারার জন্যে এসেছে সেটা
+সেরিনা মোটেও অনুমান করতে পারে নি। </p>
+<p>ব্যাপারটা সেরিনা বুঝতে পারল যখন একদিন সে দেখল জাহাজের
+উপর থেকে একটা হারপুন দিয়ে বিশাল একটা তিমি মাছকে গেঁথে ফেলা হল। তিমি মাছটা যন্ত্রণায় ছটফট
+করতে করতে তার বিশাল শরীরটা নিয়ে পানির ভেতর দিয়ে ছুটতে
+থাকে আর জাহাজের উপর থেকে হারপুনের দড়ি ছাড়তে থাকে। হারপুনটা তিমি মাছের শরীরে এমনভাবে গেঁথে
+গেছে যে সেটা আর খুলে আসার উপায় নাই। হারপুনের দড়িতে বাঁধা থেকে তিমি মাছটা পানি
+তোলপাড় করে ছটফট করতে থাকে। রক্তে পানিটা টকটকে লাল হয়ে যায়। তিমি মাছটা নিশ্বাস নেবার জন্য একবার উপরে
+উঠে আবার ডুবে যায়। পানির নিচে ছটফট করতে থাকে। তিমি মাছটা যখন শেষ পর্যন্ত দুর্বল হয়ে নির্জীব
+হয়ে যায় তখন হারপুনের দড়ি টেনে টেনে তিমি মাছটাকে বিশাল জাহাজের কাছে
+নিয়ে আসে তারপর সেটাকে তখন ক্রেন দিয়ে টেনে টেনে জাহাজের উপর
+তুলে ফেলে। রক্তের গন্ধ পেয়ে একটু
+পরেই অনেকগুলো হাঙ্গর মাছ
+চলে এসে ঘোরাঘুরি করতে
+থাকে সেরিনা তখন তাড়াতাড়ি সরে
+গেল। </p>
+<p>এই জাহাজটা এই এলাকায় রয়ে গেছে। তিমি মাছগুলো এদিক দিয়ে যাচ্ছে আর জাহাজ থেকে একটার
+পর একটা তিমি মাছ মেরে যাচ্ছে। সেরিনা একদিন খুব সাবধানে পানি থেকে মাথা বের করে
+দূর থেকে জাহাজটা দেখল। জাহাজের ঠিক সামনে
+হারপুন ছোঁড়ার
+কামানটা বসানো সেখান থেকে
+একজন মানুষ একটা তিমি মাছের দিকে তাক করে হারপুন ছুঁড়ে, তীব্রগতিতে হারপুনটা ছুটে গিয়ে তিমি
+মাছটাকে গেঁথে ফেলে। বিশাল একটা নিরীহ তিমি মাছ যন্ত্রণায় ছটফট
+করে, পানিকে তোলপাড় করে
+ছুটতে থাকে কিন্তু রক্ষা পায় না। সমুদ্রের পানি রক্তে লাল হয়ে যায় আর
+খুব ধীরে ধীরে নির্জীব হয়ে যাওয়া তিমি মাছটাকে ধীরে ধীরে জাহাজের
+কাছে টেনে আনে। কী ভয়ংকর একটা
+ব্যাপার, দেখে সেরিনার ভেতরে অন্ধ রাগ পাক খেয়ে উঠতে
+থাকে। </p>
+<p>একদিন সে খুব সাহসের একটা কাজ করে ফেলল। জাহাজ থেকে হারপুন ছুঁড়ে যখন
+মাঝারী একটা তিমি মাছকে গেঁথে ফেলেছে, মাছটা যন্ত্রণায় ছটফট করছে তখন তার ভেতরে সে তিমি
+মাছটার কাছে গিয়ে তার ধারালো
+চাকুটা দিয়ে হারপুনের দড়িটা কেটে দিল। শক্ত নাইলনের দড়ি, সেটা কাটা মোটেও
+সহজ ছিল না, কিন্তু তারপরেও কীভাবে কীভাবে জানি সে শেষ
+পর্যন্ত দড়িটা
+কেটে ফেলতে পারল। সাথে সাথে হারপুন
+গাঁথা তিমি মাছটা যন্ত্রণায় কাতরাতে কাতরাতে ছুটে পালিয়ে গেল। </p>
+<p>জাহাজের তিমি শিকারীরা খুব অবাক হয়ে দড়িটা গুটিয়ে আনে, অবাক হয়ে লক্ষ্য করে নাইলনের দড়িটা নিখুঁতভাবে কেটে দেয়া হয়েছে। এটা কীভাবে সম্ভব তারা কেউ বুঝতে পারল না। </p>
+<p>ঘণ্টা খানেক পর দ্বিতীয় বিস্ময়কর ঘটনাটি ঘটল, সেরিনা অবাক হয়ে দেখল হারপুন গাঁথা তিমি
+মাছটা তার কাছে এসে তার মুখ দিয়ে ঠেলে তাকে হারপুনটার কাছে পাঠাচ্ছে, তাদের নিজেদের ভাষায় প্রায় কান্নায় মতো এক ধরণের শব্দ করছে। আরো কয়েকটা তিমি মাছ তাকে ঘিরে ঘুরছে। ইঙ্গিতটা খুবই স্পষ্ট, সেরিনাকে হারপুনটা খুলে দিতে হবে। </p>
+<p>সেরিনা জীবনেও একটা হারপুন নিজের চোখে দেখে নি, যখন একটা তিমি মাছের শরীরে একটা হারপুন গেঁথে যায় তখন
+সেটাকে আদৌ টেনে বের করা সম্ভব কী না সে জানে না। কিন্তু যখন পাহাড়ের মতো তিন চারটা তিমি মাছ সেরিনার মতোন ছোট একটা মানুষকে ঘিরে মুখ দিয়ে ঠেলে
+হারপুনটা খুলে দেয়ার
+জন্যে ঠেলে দিতে থাকে তখন তার আর কিছু করার থাকে না। তার এই ছোট জীবনে সে এর মাঝে এতোকিছু করেছে তার সাথে না হয় আরো একটা ঘটনা যুক্ত হোক। সে তার কোমর থেকে টাইটেনিয়ামের ধারালো চাকুটা নিয়ে কাজে
+লেগে যায়। </p>
+<p>সত্যি সত্যি সেরিনা হারপুনটা খুলে আনতে পারবে, নিজেও বিশ্বাস করে নি কিন্তু শেষ পর্যন্ত সেটা সে করতে পারল। তিমি মাছের শরীরে অনেক চর্বি, সেই চর্বি কেটে ভেতরে গিয়ে সেরিনা হারপুনের ধারালো ফলাগুলো ছুটিয়ে সাবধানে
+বের করে আনে। পুরো পানিটা রক্তে লাল হয়েছিল বলে তার দেখতে
+অসুবিধে হচ্ছিল। মাঝে মাঝেই হাত
+দিয়ে স্পর্শ করে অনুমান করতে হচ্ছিল হারপুনে ফলাটা কোনদিকে। পুরো সময়টা তিমি মাছটা যন্ত্রণায় ছটফট
+করছিল, অন্য তিমি মাছগুলো তখন তার আশেপাশে থেকে তাকে শান্ত করে রেখেছে। </p>
+<p>শেষ পর্যন্ত যখন হারপুনটা খুলে
+আনতে পেরেছে তখন তিমি মাছগুলো
+এক ধরণের আনন্দের শব্দ করল। যে তিমি মাছটার শরীরে হারপুন গেঁথে ছিল সেটি ঘুরে
+এসে খুব কাছ থেকে সেরিনাকে
+দেখলো, তার চোখটা এতো জীবন্ত যে সেরিনা এক ধরণের শিহরণ অনুভব
+করে। তারপর তার মুখ দিয়ে সেটি
+সেরিনাকে স্পর্শ করল
+তার কৃতজ্ঞতা প্রকাশ করার একটা পদ্ধতি। </p>
+<p>তিমি মাছেরা নিশ্চয়ই নিজেরা নিজেদের ভেতর
+কথা বলতে পারে কারণ এই ঘটনার পর সেরিনা আবিষ্কার করল, বিশাল বিশাল তিমি মাছ তাকে দেখলেই থেমে যেতে শুরু করেছে। মাথা ঘুরিয়ে তার
+কাছে এসে মুখ দিয়ে তাকে স্পর্শ করছে, ফ্লিপারটি তার শরীরের উপর বুলিয়ে নিচ্ছে, মুখ দিয়ে নরম
+কোমল এক ধরণের শব্দ করছে।
+নিশ্চয়ই তিমি মাছেরা
+নিজেদের ভেতর সেরিনাকে নিয়ে কথা বলতে শুরু করছে, একজন অন্যজনকে জানিয়ে দিচ্ছে মানুষের মতো দেখতে ছোট একটা প্রাণী তিমি মাছের বন্ধু সেই মানুষটি তাদের বাঁচানোর চেষ্টা করে যাচ্ছে। তাই তিমি মাছগুলো তাকে দেখলে একটু থেমে গিয়ে তার
+সাথে একটু ভাব বিনিময় করে যায়। </p>
+<p>কয়দিন পর আরো বড় একটা জাহাজ এল তিমি মাছ মারার জন্যে। একটি
+দুটি তিমি মাছকে মেরেও ফেলল। এরা শুধু যে হারপুন দিয়ে গেঁথে
+ফেলে তা না, তারপর শক্তিশালী রাইফেল দিয়ে গুলি
+করে তিমি মাছগুলোকে দ্রুত
+মেরে ফেলে। সেরিনা চেষ্টা করেও কোনো তিমি মাছ। রক্ষা করতে পারল না। </p>
+<p>রাতে জাহাজটা নোঙ্গর ফেলেছে। তখন সেরিনা ঘুরে ঘুরে জাহাজটাকে
+খুব ভালো করে দেখল। সারাদিন কাজ শেষ করে তিমি শিকারীরা
+ঘুমানোর আগে স্ফূর্তি করছে, তাদের হই হল্লা অনেকদূর থেকে
+শোনা যায়। </p>
+<p>জাহাজের গলুইয়ে লাগানো হারপুন ছোঁড়ার কামানটা দেখা যাচ্ছে, কোনোভাবে যদি এটাকে নষ্ট করে দেয়া যেতো তাহলে এরা আর তিমি মাছ মারতে
+পারতো না। হারপুন ছোঁড়ার কামানটা দেখতে দেখতে হঠাৎ সেরিনার মাথায় একটা
+বুদ্ধি উঁকি দিয়ে গেল। তিমি মাছদের ব্যবহার করে সে
+কী এই কামানটাকে উপড়ে ফেলতে পারে না?
+</p>
+<p>সেরিনা পানি থেকে মাথা বের করে কামানটাকে আরো ভালো করে দেখার চেষ্টা করল, নিচ থেকে ঠিক করে দেখা যাচ্ছিল
+না তাই সে রাত গম্ভীর হওয়ার জন্যে অপেক্ষা করতে
+থাকে। </p>
+<p>এক সময় তিমি
+শিকারীদের হল্লা থেমে গেল,
+সেরিনা বুঝতে পারল সবাই
+নিশ্চয়ই এখন ঘুমিয়ে গেছে। সে তখন খুব সাবধানে জাহাজের
+গলুই বেয়ে উপরে উঠে আসে। সাবধানে রেলিং টপকে জাহাজের পাটাতনে নেমে এল, তারপর কয়েক মুহূর্ত নিঃশব্দে অপেক্ষা
+করল। যখন দেখল কেউ নেই তখন সে পা
+টিপে টিপে হারপুন ছোঁড়ার
+কামানটার কাছে এগিয়ে যায়। </p>
+<p>বড় বড় স্কু
+দিয়ে কামানটা পাটাতনের সাথে লাগানো আছে, ভিতর থেকে কয়েক ফুট উপরে উঠে এসেছে, সেখানে একটা ধাতব সিলিন্ডার হারপুনটা এর ভেতরে ঢোকানো থাকে। হরপুনের সাথে দড়ি লাগানো। দড়িটা কামানের পিছনে সাবধানে বৃত্তাকারে পেঁচিয়ে রাখা
+আছে। হারপুনটা যখন ছুটে যায় তখন এই
+দড়িগুলো পাক খুলতে খুলতে যেতে থাকে। </p>
+<p>পুরো কামানটা উপড়ে নেয়া হয়তো সম্ভব হবে না। নাইলনের দড়ি যত শক্তই
+হোক এক সময় ছিঁড়ে যাবে। কিন্তু হারপুন ছোঁড়ার ব্যারেলটা মনে হয় বাঁকা
+করে দেয়া যেতে পারে। তাহলেই এটা অচল হয়ে যাবে। সেরিনা তখন সময় নষ্ট না করে কাজে লেগে গেল। হারপুনের দড়ি দিয়েই হারপুন ছোঁড়ার ব্যারেলটা ভালো করে বেঁধে দিল। বাড়তি দড়ি দিয়ে সে কামানটাকেও
+বেঁধে ফেলল শুধু একটা দড়ি ছিঁড়ে যেতে পারে বলে সে কয়েক প্রস্থ দড়ি ব্যবহার
+করে, তারপর দড়ির মাথাগুলো
+পানিতে ফেলে দিল। তার আপাতত কাজ শেষ, এখন একটা তিমি মাছকে রাজী করাতে হবে এই দড়িটা ধরে টেনে নিতে! তিমি মাছেরা আনন্দের সাথে রাজী হবে কিন্তু বিষয়টা বোঝানোই হবে বড় চ্যালেঞ্জ। </p>
+<p>জাহাজের গলুই থেকে নেমে যাবার
+আগে সে জাহাজটা একটু ঘুরে দেখতে গিয়ে রাইফেলগুলো আবিষ্কার করলো। একটা স্ট্যান্ডের মাঝে সুন্দর
+সাজানো আছে। সেরিনা রাইফেলগুলো নিয়ে একটা একটা করে সবগুলো সমুদ্রের পানিতে ফেলে দিল। তারপর জাহাজ থেকে নেমে পানিতে ডুবে গেল। </p>
+<p>পানিতে নেমে সে একটা তিমি মাছ
+খুঁজতে থাকে। তিমি মাছগুলো এই পথ দিয়ে যায়, সেজন্যেই তিমি শিকারীগুলো এখানে আস্তানা গেড়েছে তাই কিছুক্ষণেই
+সে একটা তিমি মাছের দলকে পেয়ে গেল। পানির নিচ অন্ধকার, তার মাঝেই বিশাল একটা তিমি মাছ তাকে দেখে চিনতে
+পেরে তার কাছে এগিয়ে আসে, তাকে
+মুখ দিয়ে স্পর্শ করে,
+ফ্লিপার দিয়ে তার শরীর বুলিয়ে দেয়। সেরিনা তখন তিমি মাছটার একটা ফ্লিপার
+ধরে তাকে টানতে থাকে, প্রথমে
+তিমি মাছটা ঠিক বুঝতে পারছিল না সেরিনা কী চাইছে, একটু পরে মনে হলো বুঝতে পারল, তখন সেরিনার সাথে সাথে সেটি জাহাজটার
+কাছে যেতে থাকে। জাহাজের কাছে যাবার
+পর সেরিনা হারপুনের দড়িটা তিমি মাছটার মাথার
+উপর দিয়ে গলিয়ে দিয়ে আবার তার ফ্লিপারটা ধরে টানতে থাকে। </p>
+<p>তিমি মাছটা বুঝতে পারল তাকে এই দড়িটা ধরে একটা হ্যাঁচকা টান দিতে হবে এবং সে সত্যি সত্যি হ্যাঁচকা টান দিল, দড়ির টানে হারপুন ঘোড়ার পুরো কামানটি উপড়ে এসে জাহাজের রেলিংয়ে আটকে
+গেল। দ্বিতীয়বার হ্যাঁচকা টান দিতেই কামানটির ধাতব সিলিন্ডারটা প্রচণ্ড
+চাপে বাঁকা হয়ে যায়, সাথে সাথে ভেতরে রাখা বিস্ফোরকটা শব্দ করে বিস্ফোরিত হয়ে গেল। </p>
+<p>সেরিনা তখন দড়িটা তিমি মাছের মাথা থেকে খুলে নেয়, তারপর তিমি মাছের বিশাল দেহটাকে একবার আলিঙ্গন করে তাকে বিদায় দিয়ে দেয়। তিমি মাছটা জাহাজের চারপাশে একবার পাক খেয়ে তার
+গন্তব্যের দিতে যেতে থাকে। </p>
+<p>সেরিনা জাহাজের কাছে এসে উপরে কী হচ্ছে বোঝার চেষ্টা করল। বিস্ফোরণের শব্দে জাহাজের অনেকের
+ঘুম ভেঙ্গে গেছে, তারা
+জাহাজের গলুইয়ে ছুটে এসেছে,
+হারপুন ছোঁড়ার
+পুরো কামানটা উপড়ে গিয়ে জাহাজের
+রেলিংয়ে পড়ে থাকতে দেখে মানুষগুলো হতবুদ্ধি হয়ে গেল, এরকম একটা ব্যাপার কেমন করে ঘটতে পারে তারা কোনোভাবে তার ব্যাখ্যা খুঁজে পেল
+না। </p>
+<p>পরদিন জাহাজটা এই এলাকা ছেড়ে চলে
+গেল। </p>
+</div>
+<br/><h2>১৫-১৭. আকাশের দিকে মুখ করে</h2>
+<hr/>
+<br/><div>
+<p><strong>১৫.</strong></p>
+<p>আকাশের দিকে মুখ করে সমুদ্রের পানিতে শুয়ে আছে
+সেরিনা। রাতের আকাশে নক্ষত্রগুলো স্ফটিকের মতো জ্বল জ্বল করছে। পূর্ব আকাশে কালপুরুষ নক্ষত্রমালা উঠেছে। শামীম বলেছিল যখন সূর্য ডোবার পর কালপুরুষ ঠিক মাথার
+উপর থাকবে তখন পূর্ণিমার রাতে সে বালুবেলায় তার জন্যে অপেক্ষা করবে। আকাশে কালপুরুষ নক্ষত্র উঠেছে আর কিছুদিনের
+ভেতর সূর্যাস্তের সময় কালপুরুষ নক্ষত্রটি ঠিক মাথার উপর থাকবে। সেরিনার সময় এসেছে তার আব্বুর কাছে ফিরে যাবার সে
+তাই ফিরে যেতে শুরু করেছে। </p>
+<p>সেরিনার বুকের ভেতর একটা চাপা বেদনা। গভীর এক ধরণের বিষণ্ণতা। সত্যি কী সে তার আঁঝুঁকে দেখতে পাবে? </p>
+<p>.</p>
+<p><strong>১৬.</strong></p>
+<p>শামীম আকাশের দিকে তাকাল। প্রতি রাতই সে আকাশের দিকে তাকিয়ে থাকে। আকাশের নক্ষত্রগুলোকে দেখে। কালপুরুষ নক্ষত্রটি একটু একটু করে মাঝ আকাশের
+দিকে এগিয়ে আসছে। তার মেয়েটি যদি বেঁচে থাকে
+তাহলে যখন সূর্যাস্তের সময় কালপুরুষ নক্ষত্রটি ঠিক মাথায় উপর থাকবে
+তখন ভরা জোছনার রাতে তার মেয়েটি সমুদ্র থেকে উঠে আসবে। শামীম সেরিনাকে বলে রেখেছিল, তার মেয়েটি কী মনে রেখেছে তার কথা? মেয়েটি কী সত্যি আসতে পারবে? </p>
+<p>শামীম বালুবেলায় বসে মাথা
+তুলে আকাশের দিকে তাকাল। এই মাত্র সূর্য
+ডুবেছে। পশ্চিম আকাশে এখনো সূর্যের লাল আভা। আকাশে নক্ষত্রগুলো একটু একটু করে বের হতে শুরু করেছে। কালপুরুষ নক্ষত্রগুলো ঠিক মাথার উপর জ্বল জ্বল করছে। আজ পূর্ণিমা, এক্ষুণি পূর্ব আকাশে ভরা চাঁদ উঠবে একটু পরে চাঁদের আলোতে চারিদিক থই থই করতে থাকবে। </p>
+<p>শামীম বালুবেলায় শুয়ে শুয়ে সমুদ্রের
+ঢেউ-এর শব্দ শোনে। একটির পর আরেকটি ঢেউ এসে বালুবেলাকে
+আঘাত করছে। এখন ভাটার সময়, খুব ধীরে ধীরে সমুদ্রের পানি
+সরে যেতে শুরু করেছে। একজন দুজন মানুষ বালুবেলায় এখনো ইতস্তত ঘুরে বেড়াচ্ছে একটু পরে তারা
+কেউ থাকবে না। এই পুরো বালুবেলাটি তখন নির্জন হয়ে যাবে। তার মাঝে শামীম একাকী বসে থাকবে। বেশ কিছুদিন থেকেই সে এভাবে
+একাকী বসে থাকে। তার মেয়েটি যদি আগেই চলে আসে, এসে দেখে কেউ নেই তখন একা একা
+এই মেয়েটা কী করবে? তাই শামীম প্রতি রাতে এই বালুবেলায় আসে, একা একা ঘুরে বেড়ায়। বালুবেলায় শুয়ে থাকতে থাকতে কখনো তার চোখে ঘুম নেমে আসে, গুটিশুটি হয়ে সে ঘুমিয়ে পড়ে। হঠাৎ তার ঘুম ভেঙ্গে যায়, জেগে উঠে সে চারদিকে তাকায়। তার মেয়েকে সে খোঁজে। যদি তার ঘুমের মাঝে মেয়েটি সমুদ্র থেকে উঠে এসে থাকে, একা একা তাকে খুঁজে বেড়ায়? </p>
+<p>শামীম আজকেও বালুবেলায় বসে
+আছে। আকাশে ভরা চাঁদ, চাঁদটা যখন আরো একটু উপরে উঠবে তখন জোছনার
+আলোতে চারিদিক থই থই করবে। সেই আলোতে বহুদূর দেখা যাবে, তার মেয়েটি যদি সমুদ্রের পানি থেকে
+উঠে আসে তাহলে সে তাকে দেখতে পাবে। প্রথম যখন তাকে দেখবে তখন তার কেমন লাগবে? </p>
+<p>শামীম সেটা চিন্তা করেও বুঝতে
+পারে না। </p>
+<p>.</p>
+<p><strong>১৭.</strong></p>
+<p>আব্বু, তুমি আমাকে যে রকম বলেছিলে যে ঠিক সূর্য ডুবে যাবার পর যখন আকাশে
+নক্ষত্রগুলো মিটি মিটি
+জ্বলতে শুরু করে তখন যখন কালপুরুষ নক্ষত্রটা ঠিক মাথার উপর থাকে তখন যেন আমি ফিরে আসি। তুমি বলেছিলে ঠিক যখন ভরা চাঁদ আকাশে উঠে
+চারিদিকে আলো করে দেবে
+তখন তুমি আমার জন্যে বালুবেলায় অপেক্ষা করবে। </p>
+<p>আব্বু, আজ সন্ধেবেলা কালপুরুষ ছি ঠিক মাথার উপর, আব্বু, আজ আকাশে ভরা চাঁদ। চারিদিক জোছনার আলোতে থই থই করছে। আব্বু, আমি আজকে ফিরে এসেছি। কখনো সমুদ্রের স্রোতে ভেসে এসেছি, কখনো ডলফিনের পিঠে করে এসেছি, কখনো
+কখনো তিমি মাছের ঝাঁকের
+সাথে এসেছি, তাদের পিঠে শুয়ে এসেছি। কখনো কখনো বিশাল কোনো
+একটা ট্যাংকরের নিচে কোনো
+খুপড়িতে শুয়ে শুয়ে এসেছি। তুমি আমাকে যেভাবে আকাশের নক্ষত্র দেখে কীভাবে
+পথ চিনতে হয় শিখিয়েছ
+আমি ঠিক সেভাবে পথ চিনে ফিরে এসেছি। </p>
+<p>আব্বু, আমি কিন্তু আজকে তোমার সাথে দেখা করতে আসি নি, আমি দূর থেকে তোমাকে শুধু এক নজর দেখতে এসেছি। মনে আছে, তুমি আমাকে বলেছিলে আমি যেন শুধু আমার শরীরের ত্বক দিয়ে অক্সিজেন
+না নিই, আমি যেন প্রতিদিন বুক ভরে ফুসফুস দিয়ে অক্সিজেন
+নিই? আব্বু আমি সেটা করতে পারি নি। কীভাবে পারব? আমার চারদিকে শুধু পানি আর পানি। আমি পানির মাঝে থাকি, পানির মাঝে ঘুমাই। বেঁচে থাকার জন্যে আমার পানির মাঝে থাকতে
+হয়। আমি বুক ভরে ফুসফুস দিয়ে শ্বাস
+নেয়ার জন্যে দিনের
+পর দিন রাতের পর রাত কোনো
+শুকনো জায়গা পাই নি আব্বু। </p>
+<p>আলেক্স চাচা যেরকম বলেছিল যদি আমি ফুসফুস
+ব্যবহার না করি তাহলে ধীরে ধীরে আমার ফুসফুসটা অকেজো হয়ে যাবে
+আমি আব্বু ফুসফুস দিয়ে শ্বাস
+নিতে পারব না–ঠিক
+তাই ঘটেছে আব্বু। আমি আমার ফুসফুস দিয়ে শ্বাস
+নিতে পারি না। আমি যখন
+শুকনোতে উঠি যখন আমার শরীর
+শুকিয়ে যায় তখন আমার নিশ্বাস বন্ধ হয়ে যায়। আমি আর মানুষ নই আব্বু, আমি এখন একটা মাছের মতোন। আমাকে দেখে তোমার কোনো আনন্দ হবে না আব্বু, আমাকে দেখে তোমার শুধু কষ্ট হবে। আমি তোমাকে কষ্ট দিতে চাই না আব্বু। </p>
+<p>শুধু যে আমার ফুসফুস অকেজো হয়ে গেছে
+তা নয় আব্বু। আমার ত্বকের রক্তনালী পানি থেকে
+অক্সিজেন নেয়, খুব ধীরে ধীরে আমার ত্বকের
+রক্তনালীগুলো স্পষ্ট হয়ে উঠেছে। আমার শরীরের চামড়াটা এখন অন্য রকম। টকটকে লাল রক্তনালী দিয়ে ঢাকা। দেখে তোমার মনে হবে কেউ বুঝি আমার শরীরকে
+ফালাফালা করে কেটে রেখেছে। তুমি দেখলে ভয় পাবে আব্বু। খুব ভয় পাবে। আমার চোখ এখন টকটকে লাল; দেখে মানুষের চোখ মনে হয় না, মনে হয় কোনো অশরীরি প্রাণী। আমি তোমাকে ভয় দেখাতে
+চাই না আব্বু। আমি চাই তোমার স্মৃতিতে যে ছোট মানব শিশু সেরিনার ছবিটি আছে সেটাই থাকুক। এই পাল্টে যাওয়া অন্যরকম
+সেরিনাকে তুমি নাইবা
+দেখলে। </p>
+<p>আব্বু শুধু তাই নয়।
+আমি কতোদিন
+কথা বলি না। পানির নিচে
+ডলফিনের সাথে তিমি মাছের সাথে কখনো কখনো
+আক্টোপাস আর স্কুইডের সাথে কথা বলতে বলতে আমার গলার স্বর অন্যরকম হয়ে গেছে। আমি এখন স্বাভাবিক মানুষের
+মতো কথা বলতে পারি না। আমার মুখ থেকে এখন কথা বের
+হয় না আব্বু,
+বিচিত্র এক ধরণের শব্দ বের হয়, সেই শব্দ
+শুনে তুমি চমকে উঠবে। তুমি আতংকিত হয়ে আমার
+দিকে তাকিয়ে থাকবে।
+আমি তোমাকে আতংকিত করতে চাই না আল্লু! মনে আছে আমি তোমার গলা জড়িয়ে কতো কথা বলতাম। আমি তোমাকে ছড়া শোনাতাম, আমি তোমাকে গান শোনাতাম। তুমি খুশি করার জন্যে বলতে আমার গলাটি খুব মিষ্টি? আমার সেই মিষ্টি গলাটি হারিয়ে গেছে
+আব্লু। আমি এখন যখন কথা বলার চেষ্টা করি আমার গলা
+থেকে আর মানুষের কণ্ঠ বের হয়ে আসে না। তাই তুমি যদি আমাকে কিছু প্রশ্ন কর আমি তোমার কথার উত্তর দিতে পারব না আব্বু। তুমি আমাকে ক্ষমা করো আব্বু।
+</p>
+<p>আব্বু, আমি খুব সাবধানে সমুদ্রের ঢেউয়ের ভেতর দিয়ে উঁকি
+দিয়ে দেখেছি বালুবেলায় ছোট শিশুর মতো একজন গুটিশুটি হয়ে শুয়ে আছে। আমি জানি শিশুর মতো গুটিশুটি হয়ে শুয়ে থাকা
+মানুষটি তুমি। তুমি যখন
+ঘুমিয়ে পড়বে
+তখন আমি সমুদ্রের পানি থেকে উঠে আসব। সমুদ্রের পানিতে থেকে থেকে আমি এখন শুকনো মাটিতে ভালো করে হাঁটতে পারি না, তাল হারিয়ে ফেলি, তারপরও আমি উঠে আসব। আমি শুধু একবার জোছনার আলোতে তোমাকে দেখতে চাই। মাত্র একবার। আমি তোমাকে শুধু একবার তোমাকে স্পর্শ করতে পারলে সারা
+পৃথিবীটি দিয়ে দিতে পারতাম,
+কিন্তু আব্বু আমি তোমাকে
+স্পর্শ করব না। যদি তোমার ঘুম ভেঙ্গে যায়? যদি জেগে উঠে আমাকে দেখে তুমি
+ভয়ে আতংকে চিৎকার করে উঠ? </p>
+<p>তাই আমি তোমাকে স্পর্শ করব না। আমি তোমাকে শুধু একবার দেখব। আমার পাল্টে যাওয়া লাল
+চোখে তোমাকে
+দেখব। আব্বু, তুমি আমাকে ক্ষমা করো আব্বু। এই পৃথিবীটাতে এখন আমার জায়গা নেই। আমার জায়গা বিশাল সমুদ্র। আমি তোমাকে কোনোদিন জানাতে পারব না যে বিশাল
+সমুদ্রে আমি একা নই আব্বু,
+সেখানে আমার বন্ধু আছে। ডলফিনরা আমার আপনজন, তিমি মাছেরা আমাকে দেখে রাখে। অক্টোপাসেরা আমাকে ভালোবাসে। আব্বু, আমি ছোট একটা মেয়ে,
+কিন্তু আমি মানুষ তাই আমার তাদের দেখে রাখতে হয়। আমি শত শত তিমি মাছকে বাঁচিয়ে রাখি
+আব্বু। যদি তোমাকে বলতে পারতাম তাহলে তুমি
+অবাক হয়ে যেতে,
+তোমার ছোট মেয়েটা সমুদ্রের নিচে কতো বড় একটা
+দায়িত্ব নিয়ে থাকে। আমার জন্য তুমি ভাবনা করো না আব্বু, আমি খুব ভালো আছি। শুধু তোমার কথা মনে পড়ে আব্বু। আমি শুধু তোমাকে এক নজর দেখতে চাই। </p>
+<p>.</p>
+<p>সুমদ্রের পানি থেকে খুব ধীরে ধীরে একটা ছায়ামূর্তি বের হয়ে আসে। খুব সাবধানে পা ফেলে সেটি শামীমের পাশে এসে
+বসে। মাথা ঘুরিয়ে সেই
+ছায়ামূর্তি শামীমের
+দিকে অপলক দৃষ্টিতে তাকিয়ে থাকে। তার হাতটি দিয়ে সে শামীমের
+কপাল স্পর্শ করতে চায়, কিন্তু স্পর্শ করে না। নিঃশব্দে পাশে বসে থাকে। </p>
+<p>একটু পরে ছায়ামূর্তিটি উঠে দাঁড়ায়, তারপর নিঃশব্দে পা ফেলে সমুদ্রের পানির দিকে এগিয়ে যায়। নরম বালুতে তার পায়ের ছাপগুলো সমুদ্রের পানি এসে মুছে দিতে
+থাকে। </p>
+<p>সমুদ্রের লোনা
+পানি। পৃথিবীর সব দুঃখী মানুষের
+চোখের পানিতে তৈরী হওয়া লোনা পানি।।</p>
+</div>
+
+            </div>
+
+        </div>
+    </div>
+
+        <!-- TOC nav for mobile -->
+        <nav id="toc-nav-desktop" class="hidden"></nav>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const progressBar  = document.getElementById('read-progress-bar');
+    const progressPct  = document.getElementById('progress-pct');
+    const tocDesktop   = document.getElementById('toc-nav-desktop');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+    const progressRing = document.getElementById('progress-ring-circle');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = p.currentTheme;
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    function toBN(n) {
+        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
+    }
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        if (progressPct) progressPct.textContent = toBN(pct) + '%';
+        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
+        if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
+        if (rfPage) rfPage.textContent = toBN(pct) + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+
+    // ── Footer: chapter label + seek slider ──
+    const rfSlider  = document.getElementById('rf-slider');
+    const rfPage    = document.getElementById('rf-page');
+    const rfChapter = document.getElementById('rf-chapter');
+    let rfSliderDragging = false;
+    if (rfSlider) {
+        rfSlider.addEventListener('input', () => {
+            rfSliderDragging = true;
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
+        });
+        rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
+    }
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav, isMobile) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            if (isMobile) {
+                a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+                a.addEventListener('click', closeDrawer);
+            } else {
+                a.className = 'toc-link ' + (isH1 ? 'toc-link-h1' : 'toc-link-h2');
+            }
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocDesktop, false);
+    buildToc(tocMobile, true);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+        if (rfChapter && headings[current]) rfChapter.textContent = headings[current].textContent.trim();
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme only; drawer/settings UI stays a fixed dark sheet)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+        black: { bg: '#000',     text: '#d1d5db' },
+        sepia: { bg: '#f5efe6',  text: '#3b2f1e' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? '#c0392b' : 'transparent';
+            });
+            savePrefs();
+
+            // Ad bar theme sync
+            window._pathakAdBarTheme && window._pathakAdBarTheme(m);
+        });
+    });
+
+    // ── Ad bar theme sync function (exposed globally) ──
+    window._pathakAdBarTheme = function(m) {
+        const adBar     = document.getElementById('ad-bar');
+        const adContent = document.getElementById('ad-bar-content');
+        const adDatetime= document.getElementById('ad-bar-datetime');
+        const adNotice  = document.getElementById('ad-bar-notice');
+        if (adBar)      adBar.style.background     = m.bg;
+        if (adContent)  adContent.style.background = m.bg;
+        if (adDatetime) adDatetime.style.color      = m.text;
+        if (adNotice)   adNotice.style.color        = m.text;
+    };
+
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+        // Ad bar HTML is below — expose theme for ad bar script to pick up
+        window._pathakCurrentTheme = currentTheme;
+        window._pathakThemeMap = themeMap;
+    })();
+})();
+</script>
+
+
+</body>
+</html>

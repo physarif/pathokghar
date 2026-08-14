@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/orokkhoniya.html">
+    <title>অরক্ষণীয়া - পাঠক ঘর</title>
+    <meta name="description" content="শরৎচন্দ্র চট্টোপাধ্যায়ের **'অরক্ষণীয়া'** (১৯১৬) তৎকালীন বাঙালি হিন্দু সমাজের কুসংস্কার এবং একবিংশ শতাব্দীর পাঠকের কাছেও প্রাসঙ্গিক এক নির্মম বাস্তবতার দলিল। উ">
+    <meta property="og:title" content="অরক্ষণীয়া - পাঠক ঘর">
+    <meta property="og:description" content="শরৎচন্দ্র চট্টোপাধ্যায়ের **'অরক্ষণীয়া'** (১৯১৬) তৎকালীন বাঙালি হিন্দু সমাজের কুসংস্কার এবং একবিংশ শতাব্দীর পাঠকের কাছেও প্রাসঙ্গিক এক নির্মম বাস্তবতার দলিল। উ">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e', black:'#000' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', sepia:'#3b2f1e', dark:'#e5e7eb', black:'#d1d5db' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .dark body { background: #1a1a1b; color: #e5e7eb; }
+
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.7rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+        .dark #book-content { color: #e5e7eb; }
+    
+    /* ── Book read header hero ── */
+    .book-read-header {
+        margin-bottom: 1.5rem;
+    }
+    .book-read-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.65rem;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 1.4rem 1.25rem 1.2rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .dark .book-read-box {
+        background: #2a2a2b;
+        border-color: #3a3a3b;
+    }
+    .book-read-cover {
+        width: 100px;
+        height: 136px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        object-fit: cover;
+        background: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .book-read-cover svg { opacity: 0.35; }
+    .book-read-title-link {
+        text-decoration: none;
+        display: block;
+    }
+    .book-read-title-link:hover .book-read-title { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-title-link:active .book-read-title { opacity: 0.7; }
+    .book-read-title {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #1a1a1b;
+        line-height: 1.4;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+    .dark .book-read-title { color: #f3f4f6; }
+    .book-read-author-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+    .book-read-author-link:hover .book-read-author { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-author-link:active .book-read-author { opacity: 0.6; }
+    .book-read-author {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #c0392b;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+</style>
+</head>
+<body>
+
+<style>
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    #read-progress-bar {
+        position: fixed;
+        top: 0; left: 0;
+        height: 2px;
+        width: 0%;
+        background: #c0392b;
+        z-index: 1000;
+        transition: width 0.1s linear;
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h1 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #9ca3af;
+        text-align: center;
+        margin: 0 0 0.25rem;
+        letter-spacing: 0.04em;
+    }
+    #book-content h1::after {
+        content: '';
+        display: block;
+        width: 2.8em;
+        height: 3px;
+        background: #c0392b;
+        border-radius: 2px;
+        margin: 0.4rem auto 0;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #7a2115;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid #d9a5a0;
+        border-bottom: 1px solid #d9a5a0;
+    }
+    /* Night mode heading adjust */
+    body.theme-dark  #book-content h1,
+    body.theme-black #book-content h1 { color: #6b7280; }
+    body.theme-dark  #book-content h2,
+    body.theme-black #book-content h2 { color: #f2938a; border-color: rgba(169,50,38,0.4); }
+    body.theme-dark  #book-content h1::after { background: #a93226; }
+    body.theme-black #book-content h1::after { background: #922b21; }
+    body.theme-sepia #book-content h1 { color: #a08060; }
+    body.theme-sepia #book-content h2 { color: #7a2115; border-color: rgba(160,64,48,0.35); }
+    body.theme-sepia #book-content h1::after { background: #a04030; }
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: rgba(192,57,43,0.05);
+        border: 1px solid rgba(192,57,43,0.15);
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p,
+    body.theme-black #book-content p {
+        background: rgba(169,50,38,0.1);
+        border-color: rgba(169,50,38,0.25);
+    }
+    body.theme-sepia #book-content p {
+        background: rgba(160,64,48,0.08);
+        border-color: rgba(160,64,48,0.2);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #c0392b;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #c0392b;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(192,57,43,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    .dark #book-content blockquote {
+        background: rgba(192,57,43,0.08);
+        color: #bbb;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #c0392b;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    .dark #book-content td { border-color: #3a3a3b; }
+    .dark #book-content tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(192,57,43,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: #e57373;
+        font-weight: 600;
+        background: rgba(192,57,43,0.18);
+        border-radius: 0.375rem;
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: #fff;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transition: color 0.15s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.6);
+    }
+    #toc-nav-desktop .toc-link {
+        display: block;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.375rem;
+        color: #4b5563;
+        text-decoration: none;
+        transition: background-color 0.15s, color 0.15s;
+    }
+    .dark #toc-nav-desktop .toc-link { color: #d1d5db; }
+    #toc-nav-desktop .toc-link:hover { background: #f3f4f6; }
+    .dark #toc-nav-desktop .toc-link:hover { background: #1f2937; }
+    #toc-nav-desktop .toc-link-h1 {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: #1f2937;
+    }
+    .dark #toc-nav-desktop .toc-link-h1 { color: #f3f4f6; }
+    #toc-nav-desktop .toc-link-h2 {
+        padding-left: 1.25rem;
+        font-size: 0.6875rem;
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.6rem 0.5rem 0.6rem 0.35rem;
+        background: #1a1a1b;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-back {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.25rem;
+        text-decoration: none;
+        transition: background 0.15s;
+    }
+    #rh-back:active { background: rgba(255,255,255,0.12); }
+    #rh-title {
+        flex: 1;
+        min-width: 0;
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: transparent;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+    #reader-header .rh-actions button:active { background: rgba(255,255,255,0.12); }
+    body.theme-dark  #reader-header,
+    body.theme-black #reader-header,
+    body.theme-sepia #reader-header { background: #141414; }
+
+    /* ── Reader footer: chapter label + page/percent + seek slider ── */
+    #reader-footer {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 55;
+        background: #1a1a1b;
+        padding: 0.5rem 1rem 0.65rem;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-footer { transform: translateY(100%); }
+    body.theme-dark  #reader-footer,
+    body.theme-black #reader-footer,
+    body.theme-sepia #reader-footer { background: #141414; }
+    #rf-labels {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.7);
+        margin-bottom: 0.35rem;
+    }
+    #rf-chapter {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #rf-page { flex-shrink: 0; }
+    #rf-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        background: rgba(255,255,255,0.22);
+        outline: none;
+        margin: 0;
+        cursor: pointer;
+    }
+    #rf-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        margin-top: -6px;
+    }
+    #rf-slider::-moz-range-thumb {
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        border: none;
+    }
+    #rf-slider::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; }
+    #rf-slider::-moz-range-track { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.22); }
+
+    /* Content needs bottom clearance so the fixed footer never covers text */
+    #read-main-content { padding-bottom: 4.5rem; }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: #303134;
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.55);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: #e57373;
+        border-bottom-color: #c0392b;
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ── Breadcrumb dark mode ── */
+    .read-breadcrumb-full { margin-left: -1.25rem; margin-right: -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
+    .dark #bc-category { color: #9ca3af !important; }
+    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
+    .dark #read-breadcrumb li > span { color: #4b5563; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #e57373;
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: 34px; height: 34px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        flex-shrink: 0;
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+    }
+    .theme-circle.active { border-color: #c0392b; }
+    .theme-circle svg { display: none; }
+    .theme-circle.active svg { display: block; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: #fff; }
+    .settings-row-val { font-size: 0.74rem; color: rgba(255,255,255,0.5); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: rgba(192,57,43,0.35); border-color: #c0392b; color: #fff; }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+</style>
+
+<!-- Progress bar (kept for internal % calc, hidden — footer slider replaces it visually) -->
+<div id="read-progress-bar" style="display:none;"></div>
+
+<!-- ══ Reader header (Lithium-style app bar) ══ -->
+<header id="reader-header">
+    <a href="/book/orokkhoniya.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <h1 id="rh-title">অরক্ষণীয়া</h1>
+    <div class="rh-actions">
+        <button id="rh-menu-btn" aria-label="মেনু" title="মেনু"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+    </div>
+</header>
+
+<!-- ══ Reader footer (chapter + page/percent + seek slider) ══ -->
+<footer id="reader-footer">
+    <div id="rf-labels">
+        <span id="rf-chapter"></span>
+        <span id="rf-page">০%</span>
+    </div>
+    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
+</footer>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                    <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
+                    <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
+                    <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn active" id="align-justify" title="জাস্টিফাই" style="background:#fde8e6;border-color:#c0392b;color:#c0392b;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <h2>অরক্ষণীয়া – ০১</h2>
+
+<p>মেজমাসিমা, মা মহাপ্রসাদ পাঠিয়ে দিলেন—ধরো।</p>
+<p>কে রে, অতুল? আয় বাবা আয়, বলিয়া দুর্গামণি রান্নাঘর হইতে বাহির হইলেন। অতুল প্রণাম করিয়া পায়ের ধূলা গ্রহণ করিল।</p>
+<p>নীরোগ হও বাবা, দীর্ঘজীবী হও। ওরে ও জ্ঞানদা, তোর অতুলদাদা ফিরে এসেছেন যে রে! একখানা আসন পেতে দিয়ে মহাপ্রসাদটা ঘরে তোল মা। কাল রাত্তিরে সাড়ে-নটা দশটার সময় সদররাস্তায় ঘোড়ার গাড়ির শব্দ শুনে ভাবলুম, কে এলো! তখন যদি জানতুম, দিদি এলেন—ছুটে গিয়ে পায়ের ধূলো নিতুম। এমন মানুষ কি আর জগতে হয়! তা’ দিদি ভাল আছেন বাবা? এখন পুরী থেকে আসা হ’ল বুঝি? কি কচ্ছিস মা—তোর অতুলদা যে দাঁড়িয়ে রইলেন।</p>
+<p>মায়ের আহ্বানে একটি বার-তের বছরের শ্যামবর্ণ মেয়ে হাতে একখানি আসন লইয়া ঘর হইতে বাহির হইল; এবং যতদূর পারা যায়, ঘাড় হেঁট করিয়া দাওয়ার উপর আসনখানি পাতিয়া দিয়া, অতুলের পায়ের কাছে আসিয়া প্রণাম করিল; কথাও কহিল না, মুখ তুলিয়াও চাহিল না। প্রণাম করিয়া উঠিয়া, মহাপ্রসাদের পাত্রখানি হাত হইতে লইয়া, ধীরে ধীরে ঘরে চলিয়া গেল। কিন্তু একটু ভালো করিয়া দেখিলেই দেখিতে পাওয়া যাইত, যাবার সময়ে মেয়েটির চোখমুখ দিয়া একটা চাপা হাসি যেন উছলিয়া পড়িতেছিল।</p>
+<p>আবার শুধু মেয়েঢিই নয়। এদিকেও একটুখানি নজর করিলে চোখে পড়িতে পারিত, এই সুশ্রী ছেলেটিরও মুখের উপরে দীপ্তি খেলিয়া একটা অদৃশ্য তড়িৎপ্রবাহ মুহূর্তের মধ্যে মিলাইয় গেল।</p>
+<p>অতুল আসনে বসিয়া তীর্থ-প্রবাসের গল্প বলিতে লাগিল। তাহার বাপ একজন সেকেলে সদরআলা ছিলেন। অনেক টাকাকড়ি এবং বিষয়-সম্পত্তি করিয়া পেনসন লইয়া ঘরে বসিয়াছিলেন; বছর-চারেক হইল, ইহলোক ত্যাগ করিয়া গিয়াছেন। বি. এ. একজামিন দিয়া অতুল মাস-দুই পূর্বে মাকে লইয়া তীর্থপর্যটনে বাহির হইয়াছিল। সম্প্রতি রামেশ্বর হইয়া, পুরী হইয়া কাল ঘরে ফিরিয়াছে।</p>
+<p>গল্প শুনিয়া দুর্গামণি একটা নিশ্বাস ফেলিয়া বলিলেন, আর এমনি মহাপাতকী আমি যে, আর কিছু না হোক, একবার কাশী গিয়ে বাবা বিশ্বেশ্বরের চরণ দর্শন করে আসব, এ-জন্মে সে সাধটাও কখন পুরল না।</p>
+<p>অতুল বলিল, কাশীই বল, আর যাই বল মেজমাসিমা, একবার সব ছেড়েছুড়ে জোর ক’রে বেরিয়ে পড়তে না পারলে আর হয় না। আমি অমন জোর ক’রে না নিয়ে গেলে, আমার মায়েরই কি যাওয়া হ’ত?</p>
+<p>দুর্গামণি আর একটা দীর্ঘনিশ্বাস ত্যাগ করিয়া কহিলেন, জানিস ত বাবা সব। জোর করব কি দিয়ে বল দেখি? তিরিশটি টাকা মাইনের উপর খেয়ে-পরে, লোক-লৌকতা, কুটুম্বিতে করে, ডাক্তার-বদ্যির ওষুধের খরচ যুগিয়ে কি থাকে বল দেখি? আর এই মেয়েটা দেখতে দেখতে তেরোয় পা দিলে। তোকে সত্যি বলচি, অতুল, ওর পানে চাইলেই যেন আমার বুকের রক্ত হুহু করে শুকিয়ে যায়! উঃ! এতবড় শত্রুকেও পেটে ধরে মাকে লালন-পালন করতে হয়! বলিতে বলিতেই তাঁহার দুই চক্ষু সজল হইয়া উঠিল।</p>
+<p>কিন্তু আশ্চর্য এই যে, অতুল এতবড় দুশ্চিন্তা ও কাতরোক্তির সম্মুখেও ফিক করিয়া হাসিয়া ফেলিল; কহিল, মাসিমার সব বাড়াবাড়ি! আচ্ছা, মেয়ে কি আর কারু হয় না যে, তোমারই শুধু ওই একটা হয়েছে—আর রাজ্যের দুর্ভাবনা একা তোমার?</p>
+<p>দুর্গামণি কহিলেন, আমার এটা ঠিক ভাবনা নয়, অতুল, এ আমাদের মৃত্যু-যন্ত্রণা! সমাজ আমি জানি ত! মেয়ের বিয়ে দিতে না পারলেই জাত যাবে; কিন্তু দেব কি ক’রে? টাকা চাই—কিন্তু পাব কোথায়? এই ভদ্রাসনের একাংশ ছাড়া আপনার বলতে ত আর কিছু নেই বাবা!</p>
+<p>আধ-ঘণ্টা পূর্বে এই মেয়েটাকেই উপলক্ষ করিয়া স্বামী-স্ত্রীতে কলহ হইয়া গিয়াছিল। স্বামী অর্ধভুক্ত ভাতের থালা ফেলিয়া রাখিয়া অফিসে চলিয়া গিয়াছিলেন। সেই ব্যথা দুর্গামণির মনে আলোড়িত হইয়া উঠিল এবং টপটপ করিয়া দু’ফোঁটা চোখের জল গাল বাহিয়া কোলের উপর ঝরিয়া পড়িল। হাত দিয়া মুছিয়া ফেলিয়া বলিলেন, আর-জন্মে কত স্ত্রীহত্যা, ব্রহ্মহত্যা করেছিলুম অতুল, যে, এ-জন্মে মেয়ে পেটে ধরেচি।</p>
+<p>নাঃ—মেজমাসিমা, আমি উঠলুম, নইলে তুমি থামবে না।</p>
+<p>দুর্গামণি আর একবার চোখ মুছিয়া লইয়া কহিলেন, না বাবা, একটু বোস, দু’দণ্ড তোর কাছে কাঁদলেও বুকটা হালকা হয়। তাই বলি, ভগবান! হতভাগীকে আমার কোলেই যদি পাঠালে, রংটা একটু ফরসা করেই পাঠালে না কেন? কালো ব’লে কেউ যে ওকে আশ্রয় দিতেই চায় না! সবাই যে চায় সুন্দরী মেয়ে। ওরে পোড়া সমাজ, তুই কুল, শীল, স্বভাব, চরিত্র কিছুই যদি দেখবি নে, মেয়ে শুধু কালো বলেই তাকে ঘরে ঠাঁই দিবিনে, তবে সে মেয়ের বিয়ে না হলেই বা বাপ-মাকে দণ্ড দিবি কেন?</p>
+<p>অতুল কহিল, কালো মেয়ের কি বিয়ে হচ্ছে না? ভোমরাও কালো, কোকিলও কালো—তাদের কি আদর হয় না? এ-সব ত চিরকালের দৃষ্টান্ত—মেজমাসিমা!</p>
+<p>দুর্গামণি কহিলেন, তাই দৃষ্টান্তই শুধু চিরজীবী হয়ে আছে বাবা, আর কিছু নেই। কিন্তু তাতে আর সান্ত্বনা পাইনে, জোরও পাইনে অতুল। গিরীশ ভটচায্যির মেয়ের বিয়ে চোখের উপর দেখে হাত-পা যেন পেটের ভেতর ঢুকে গেছে! ঠিক আমাদের মতই—না ছিল তার টাকার বল, না ছিল মেয়ের রূপ—তাই পাত্রের বয়সও গেল ষাটের কাছাকাছি। তার মায়ের কান্নাটা আমি আজও যেন কানে শুনতে পাচ্ছি।</p>
+<p>অতুল সবিস্ময়ে প্রশ্ন করিল,—ষাটের কাছাকাছি? বল কি?</p>
+<p>তা হবে বৈ কি বাবা! হরি চক্কোত্তির নাতজামাই হ’ল ওপাড়ার নিতাই চাটুয্যে। তারই একটা আট-দশ বছরের মেয়ে যে! হিসেব করে দেখ দেখি।</p>
+<p>খবর শুনিয়া অতুল স্তব্ধ হইয়া চাহিয়া রহিল।</p>
+<p>দুর্গামণি বলিতে লাগিলেন, সে মেয়ে যদি মনের ঘেন্নায় বিষ খায়, কি গলায় দড়ি দেয়, কিংবা কুলে কালি দিয়ে চলে যায়—মা হয়ে তাকে বুকের ভেতর থেকে অভিশাপ দিই কেমন করে, বল দেখি বাবা?</p>
+<p>অতুল চুপ করিয়া রহিল। দুর্গামণি হঠাৎ তাহার হাতটা চাপিয়া ধরিয়া বলিলেন, বাবা অতুল, আজকাল সবাই বলে, তোদের ছেলেদের মধ্যে দয়াধর্ম আছে। দেখিস নে বাবা, তোদের ইস্কুল-কলেজের কোন ছেলে যদি নিতান্ত দয়া করেই মেয়েটাকে তার পায়ে একটুখানি ঠাঁই দেয়। তাহলে তোদের কাছে আমি মরণ পর্যন্ত কেনা হয়ে থাকবো।</p>
+<p>অতুল শশব্যস্তে হাত ছাড়াইয়া লইয়া তাঁহার পায়ের ধূলা মাথায় লইয়া আর্দ্রকণ্ঠে বলিয়া ফেলিল, কেন এত ব্যস্ত হচ্চ মেজমাসিমা? আমি কথা দিচ্চি—</p>
+<p>কিন্তু কথাটা সে দিতে পারিল না। সহসা লজ্জায় তাহার কর্ণমূল পর্যন্ত রাঙ্গা হইয়া কণ্ঠরোধ হইয়া গেল। দুর্গামণি যদিচ ইহা লক্ষ্য করিলেন না, কিন্তু আর কেহ তথায় উপস্থিত থাকিলে হয়ত সংশয় করিত, কি এমন কথাটা অতুল ঝোঁকের উপর দিতে গিয়াও এমন করিয়া থামিয়া গেল।</p>
+<p>অতুল নিজেকে সামলাইয়া লইয়া উঠিয়া দাঁড়াইল। সহজভাবে কহিল,আচ্ছা, খুব চেষ্টা করব।—কৈ রে জ্ঞানদা, একটা পান-টান দে না—বাড়ি যাই।</p>
+
+<p>দুর্গামণি রাগিয়া চিৎকার করিলেন, তোর অতুলদারে একটা পান দে না গেনি। মুখপোড়া মেয়ের না আছে রূপ, না আছে গুণ। বলি, এ-সব কথাও কি শেখাতে হবে? মহাপ্রসাদ নিয়ে সেই যে ঘরে ঢুকলি, আর বেরুলি নে। শিগ্‌গির পান নিয়ে আয়।</p>
+<p>আচ্ছা, আমি নিজেই গিয়ে পান নিচ্চি—কোন্‌ ঘরে রে জ্ঞানদা! বলিয়া উচ্চকণ্ঠে সাড়া দিয়া অতুল শোবার ঘরে গিয়া প্রবেশ করিল।</p>
+<p>সম্মুখে পানের সজ্জা লইয়া মেয়েটি চুপ করিয়া বসিয়াছিল। অতুল ঘরে ঢুকিয়াই গম্ভীর হইয়া বলিল, মেজমাসিমা বলচেন, মুখপোড়া গেনির না আছে রূপ, না আছে গুণ। তাকে একটা ষাট বছরের বুড়োর সঙ্গে বিয়ে দিতে হবে।</p>
+<p>জ্ঞানদা জবাব দিল না, অবনত মুখে বাটা হইতে গোটা-দুই পান লইয়া হাত উঁচু করিয়া ধরিল।</p>
+<p>অতুল পিছনে আসিয়া হাত হইতে পান লইয়া কহিল, কিন্তু পান সাজা ভাল হলে এবার মাপ করা হবে, ষাটকে কমিয়ে না হয় কুড়ি-একুশে দাঁড় করান যাবে।</p>
+<p>জ্ঞানদা লজ্জায় মাথাটা ঝুঁকাইয়া প্রায় বাটার সঙ্গে এক করিয়া ফেলিল। অতুল গলা খাটো করিয়া বলিল, মাসিমার কাছে আর একটু হলে বলে ফেলেছিলুম আর কি! আচ্ছা, বেলা হ’ল চললুম।</p>
+<p>জ্ঞানদা ইহারও প্রত্যুত্তর করিল না। সেই যে জড়সড় হইয়া মাথা হেঁট করিয়া বসিয়াছিল, তেমনি বসিয়া রহিল।</p>
+<p>কথা কওয়া হ’ল না? আচ্ছা—বলিয়া অতুল মেয়েটির ভিজা এলো চুলের একগোছা টানিয়া দিয়া বলিল, কিন্তু আসচে হরি চক্কোত্তির মতন একটা বুড়ো—চললুম, বলিয়া হাসিতে হাসিতে ঘর হইতে বাহির হইয়া গেল। কিন্তু উঠানে পা দিয়াই চেঁচাইয়া উঠিল, মেজমাসিমা, জ্ঞানোর জন্যে বোম্বাই থেকে মা একজোড়া চুড়ি কিনেছিলেন, বাইরে এসে দেখ—</p>
+<p>কৈ, দেখি বাবা,—বলিয়া দুর্গামণি পুনরায় রন্ধনশালা হইতে বাহির হইলেন। অতুল পকেট হইতে দু’গাছি চুড়ি বহির করিয়া মেলিয়া ধরিল।</p>
+<p>তাহার রং এবং কারুকার্য দেখিয়া দুর্গামণি অত্যন্ত পুলকিত-চিত্তে দাতার ভূয়োঃভূ্য়োঃ যশোগান করিতে লাগিলেন। চুড়ি দু’গাছি কাঁচের বটে, কিন্তু সেরূপ মূল্যবান বাহারে চুড়ি পাড়াগাঁয়ে কেন, কলিকাতাতেও তখনো আমদানি হয় নাই। বস্তুতঃ তাহার গঠন, চাকচিক্য এবং সৌন্দর্য দেখিয়া মায়ের নাম করিয়া অতুল নিজের টাকাতেই বোম্বাই হইতে ক্রয় করিয়া আনিয়াছিল।</p>
+<p>মায়ের ডাকাডাকিতে জ্ঞানদা বাহির হইয়া আসিল এবং নিঃশব্দ-নতমুখে স্নেহের এই প্রথম উপহার হাত পাতিয়া গ্রহণ কারিতে গিয়া তাহার অঞ্জলিবদ্ধ হাত দুটি কাঁপিয়া গেল। তার পরে দাতার পায়ের কাছে নমস্কার করিয়া সে ধীরে ধীরে প্রস্থান করিল। সে একটি কথাও কহে নাই—কিন্তু আজ তাহার অন্তরের কথা অন্তর্যামী জানিলেন। শুধু পিছনে দাঁড়াইয়া এই দুটি মানুষ ক্ষণকালের জন্য সস্নেহ-মুগ্ধ-নেত্রে এই কিশোরীর অনিন্দ্য গঠন ও গতিভঙ্গীর প্রতি চাহিয়া রহিলেন।</p>
+<h2>অরক্ষণীয়া – ০২</h2>
+
+<p>বড়ভাই গোলোকনাথ মারা গেলে, তার বিধবা স্ত্রী স্বর্ণমঞ্জরি নির্বংশ পিতৃকুলের যৎসামান্য বিষয়-আশয় বিক্রয় করিয়া হাতে কিছু নগদ পুঁজি করিয়া, কনিষ্ঠ দেবর অনাথনাথকেই আশ্রয় করিয়াছিলেন। তাহারই বিষের অসহ্য জ্বালায় হিতাহিতজ্ঞানশূন্য হইয়া মেজভাই প্রিয়নাথ গত বৎসর ঠিক এমন দিনে ছোটভাই অনাথের সঙ্গে বিবাদ করিয়া উঠানের মাঝখানে একটা প্রাচীর তুলিয়া দিয়া পৃথগন্ন হইয়াছিলেন এবং মাঝখানে একটা কপাট রাখার পর্যন্ত প্রয়োজন অনুভব করেন নাই, তখন রঙ্গ দেখিয়া বিধাতাপুরুষ নিশ্চয়ই অলক্ষ্যে বসিয়া হাসিতেছিলেন। কারণ, একটা বৎসরও কাটিল না—প্রাচীরের সমস্ত উদ্দেশ্য নিষ্ফল করিয়া দিয়া, সেদিন প্রিয়নাথ সাতদিনের জ্বরে প্রায় বিনা চিকিৎসায় প্রাণত্যাগ করিলেন।</p>
+<p>মৃত্যুর আগের দিনটায়—মরণ সম্বন্ধে যখন আর কোথাও কিছুমাত্র অনিশ্চয়তা ছিল না, এবং তাই দেখিতে সমস্ত গ্রামের লোক পিলপিল করিয়া বাড়ি ঢুকিয়া, ঘরের দরজার সম্মুখে ভিড় করিয়া দাঁড়াইয়া অস্ফুট কলকণ্ঠে হা-হুতাশ করিতেছিল, তখনও প্রিয়নাথের একেবারে সংজ্ঞালোপ হয় নাই। অতুল গ্রামে ছিল না। কলিকাতার মেসে ওই দুঃসংবাদ পাইয়া আজ ছুটিয়া আসিয়া উপস্থিত হইয়াছিল। ভিড় ঠেলিয়া যখন সে রোগীর ঘরে ঢুকিবার চেষ্টা করিতেছিল, কোথা হইতে জ্ঞানদা পাগলের মত আছাড় খাইয়া পড়িয়া তাহার দুই পায়ের উপর মাথা কুটিতে লাগিল। যাহারা তামাশা দেখিতে আসিয়াছিল, তাহারা এই আর একটা অভাবনীয় ফাউ পাইয়া বিস্ময়াপন্ন হইয়া মনে মনে বিতর্ক করিতে লাগিল; কিন্তু অতুল এত লোকের সমক্ষে দুঃখে লজ্জায় হতবুদ্ধি হইয়া গেল।</p>
+<p>ক্ষণেক পরে যখন সে কথঞ্চিৎ প্রকৃতিস্থ হইয়া তাহাকে ধরিয়া তুলিতে গেল, তখন জ্ঞানদা জোর করিয়া পায়ের উপর মুখ চাপিয়া কাঁদিতে কাঁদিতে কহিল, বাবার মরণকালে তুমি নিজের মুখে তাঁকে একটা সান্ত্বনা দিয়ে যাও—আমার অদৃষ্টে পরে যাই থাক— এ-সময় আমার মতন আমার ভাবনাটাকেও যেন তিনি এইখানেই ফেলে রেখে যেতে পারেন—আর তোমার কাছে আমি কখন কিছু চাইব না।—বলিয়া তেমনি করিয়াই মাথা খুঁড়িয়া কাঁদিতে লাগিল।</p>
+<p>তাহার দুশ্চিন্তাগ্রস্ত দুর্ভাগা পিতা অত্যন্ত অসময়ে অকালে মরিতেছে—আজ আর তাহার কাণ্ডজ্ঞান ছিল না—এত লোকের সম্মুখে কি করিতেছে, কি বলিতেছে, কিছুই ভাবিয়া দেখিল না,—ক্রমাগত একভাবে মাথা খুঁড়িতে লাগিল। কিন্তু অতুল সংযমী লোক। জ্ঞানদার এই ব্যবহার অন্তরে সে যত ক্লেশই অনুভব করুক, বাহিরে এতগুলি কৌতূহলী চক্ষের উপর কঠিন হইয়া উঠিল।</p>
+<p>জোর করিয়া পা ছাড়াইয়া লইয়া মৃদু তিরস্কারের স্বরে কহিল, ছি, শান্ত হও, কান্নাকাটি করো না—আমার যা বলবার তা আমি বলব বৈ কি। বলিয়া মুমূর্ষুর শয্যার একাংশে গিয়া উপবেশন করিল। দুর্গামণি স্বামীর শিয়রে বসিয়া ছিলেন, অতুলের মুখের পানে চাহিয়া নিঃশব্দে কাঁদিতে লাগিলেন।</p>
+<p>প্রতিবেশী নীলকণ্ঠ চাটুয্যে দ্বারের উপরে দাঁড়াইয়া ছিলেন; অতুলের বিলম্ব দেখিয়া কহিলেন, প্রিয়নাথের এখানো একটু জ্ঞান আছে বাবা, যা বলবে, এইবেলা বেশ চেঁচিয়ে বল—তা হলেই বুঝতে পারবে। বলা বাহুল্য, বৃদ্ধের এই প্রস্তাব আরও দুই-একজন তৎক্ষণাৎ অনুমোদন করিল।</p>
+<p>জনতা দেখিয়া অতুল প্রথমেই ক্রুদ্ধ হইয়াছিল; তাহার উপর ইহাদের এই নিতান্ত অশোভন কৌতূহলে সে মনে মনে আগুন হইয়া কহিল, আপনারা নিরর্থক ভিড় করে থেকে ত কোন উপকার করতে পারবেন না,—একটুখানি বাহিরে গিয়ে বসলেই আমার যা বলবার বলতে পারি। নীলকণ্ঠ চটিয়া উঠিয়া বলিলেন, নিরর্থক কি হে? প্রতিবেশীর বিপদে প্রতিবেশীই এসে থাকে। তুমি কোন্‌ সার্থক উপকার করতে বিছানায় গিয়ে বসেচ বাপু? অতুল উঠিয়া দাঁড়াইয়া দৃঢ়স্বরে কহিল, আমি উপকার করি না করি, আপনাদের এমন করে বাতাস আটকে অপকার করতে আমি দেব না। সবাই বাইরে যান।</p>
+<p>তাহার ভাব দেখিয়া নীলকণ্ঠ দু’পা পিছাইয়া দাঁড়াইয়া কহিলেন, সেদিনকার ছোকরা—তোমার ত বড় আস্পর্ধা দেখি হে! কে একজন তাঁহার আড়ালে দাঁড়াইয়া কহিল, এল.এ.বি.এ. পাশ করেচে কিনা! একটা দশ-বার বছরের ছোঁড়া উঁকি মারিতেছিল। অতুল কাহারও কথার কোন জবাব না দিয়া তাহাকে ঠেলিয়া দিল। সে গিয়া আর একজনের গায়ে পড়িল। যাহার গায়ে পড়িল, সে অস্ফুটস্বরে সদরআলার ব্যাটা প্রভৃতি বলিতে বলিতে বাহিরে চলিয়া গেল। নীলকণ্ঠ প্রভৃতি ভদ্রলোক অতুলের কথাটা শুনিবার বিশেষ কোন আশা না দেখিয়া, মনে মনে শাসাইয়া প্রস্থান করিলেন।</p>
+<p>যখন বাহিরের লোক আর কেহ রহিল না, তখন অতুল মুমূর্ষুর উপর ঝুঁকিয়া পড়িয়া ডাকিল, মেসোমশাই! প্রিয়নাথ রক্তবর্ণ চক্ষু মেলিয়া মূঢ়ের মত চাহিয়া রহিলেন। অতুল পুনরায় উচ্চকণ্ঠে কহিল, আমাকে চিনতে পাচ্ছেন কি? প্রিয়নাথ চক্ষু মুদিয়া অস্ফুটে বলিলেন, অতুল।</p>
+<p>এখন কেমন আছেন?</p>
+<p>প্রিয়নাথ মাথা নাড়িয়া তেমনি অস্পষ্টস্বরে বলিলেন, ভাল না।</p>
+<p>অতুলের দুই চক্ষু জলে ভরিয়া গেল। অনেক কষ্টে নিজেকে সামলাইয়া লইয়া অশ্রুরুদ্ধ কণ্ঠ পরিষ্কার করিয়া কহিল, মেসোমশাই, একটা কথা আপনাকে জানাচ্চি। আপনি নিশ্চিন্ত হোন—আজ থেকে জ্ঞানদার ভার আমি নিলুম। প্রিয়নাথ কথাটা বুঝিতে পারিলেন না। এদিকে-ওদিকে দৃষ্টিপাত করিয়া বলিলেন, কৈ জ্ঞানদা?</p>
+<p>দুর্গামণি স্বামীর মুখের উপর ঝুঁকিয়া পড়িয়া অশ্রুবিকৃত রোদনের কণ্ঠে বলিলেন, একবার দেখবে জ্ঞানদাকে? প্রিয়নাথ প্রথমটা জবাব দিলেন না—শেষে বলিলেন, না!</p>
+<p>দুর্গামণি কাঁদিয়া ফেলিয়া বলিলেন, অতুল কি বলচে, শুনেচ? সে তোমার জ্ঞানদার ভার নিতে এসেচে। আর তুমি ভেবো না—হতভাগীকে অনেক গালমন্দ করেচ; আজ একবার ডেকে আশীর্বাদ করে যাও।</p>
+<p>প্রিয়নাথ চুপ করিয়া চাহিয়া রহিলেন। দুর্গামণি আবার সেই কথা আবৃত্তি করার পর, তাঁহার চোখ দিয়া দু’ ফোঁটা জল গড়াইয়া পড়িল। অক্ষম হাতখানি অনেক কষ্টে তুলিয়া, অতুলের কপালে একবার স্পর্শ করাইয়া পাশ ফিরিয়া শুইলেন। তাঁহার মুখ দিয়া কোন কথাই বাহির হইল না বটে, কিন্তু এই আসন্নকালে তাঁহার হৃদয়ের একটা অতি গুরুভার নিঃসংশয়ে তুলিয়া ফেলিতে পারিয়াছে অনুভব করিয়া অতুল অকস্মাৎ বালকের মত উচ্ছ্বসিত হইয়া কাঁদিয়া ফেলিল। সাক্ষী রহিলেন—শুধু দুর্গামণি আর ভগবান।</p>
+<p>পরদিন সায়াহ্নকালে, শতকরা আশীজন ভদ্র-বাঙ্গালী যাহা করে, প্রিয়নাথও তাহাই করিলেন। অর্থাৎ, অফিসের ত্রিশ টাকা চাকরির মায়া কাটাইয়া, ছাব্বিশ বৎসরের বিধবা ও তের বৎসরের অনূঢ়া কন্যার বোঝা তদপেক্ষা কোন এক দুর্ভাগ্য আত্মীয়ের মাথায় তুলিয়া দিয়া, ছত্রিশ বৎসর বয়সে প্রায় বিনা চিকিৎসায় ছিয়াশী বৎসরের সমতুল্য একটা জীর্ণ কঙ্কালসার দেহ তুলসীবেদীমূলে পরিত্যাগ করিয়া গঙ্গানারায়ণব্রহ্ম নাম শুনিতে শুনিতে বোধ করি বা হিন্দুর বিষ্ণুলোকেই গেলেন।</p>
+<h2>অরক্ষণীয়া – ০৩</h2>
+
+<p>ছোটভাই অনাথনাথকে বাধ্য হইয়া প্রাঙ্গণের প্রাচীরে একটা দ্বার ফুটাইতে হইল। অগ্রজের শ্রাদ্ধ-শান্তি হইয়া গেলে পনর-ষোল দিন পরে একদিন তিনি অফিসে যাইবার মুখে চৌকাঠের উপর দাঁড়াইয়া পান চিবাইতে চিবাইতে বলিলেন, আর না বললে ত নয় বোঠান, বুঝতে ত সবই পার—খেতে তোমাকে একবেলা একমুঠো দিতে আমি কাতর নই—তা দাদা আমার সঙ্গে যতই কেন না কুব্যবহার করে যান। কিন্তু এতবড় মেয়ের বিয়ের ভার ত আমি আর সত্যি সত্যি নিতে পারিনে। শুনতেই আমার দেড়-শ টাকা মাইনে, কিন্তু কাচ্চা-বাচ্চা ত কম নয়? তা ছাড়া আমার নিজের মেয়েটাও বার বছরে পড়ল, দেখতে পাচ্চ ত। তাই, আমি বলি কি, মেয়ে নিয়ে এ সময়ে তোমার একবার হরিপালে যাওয়া উচিত।</p>
+<p>দুর্গামণি রান্নাঘরের একটা খুঁটি আশ্রয় করিয়া কোনমতে দাঁড়াইয়া ছিলেন; সভয়ে সসঙ্কোচে কহিলেন, দাদার অবস্থা তুমি ত জান ঠাকুরপো। কিচ্ছু নেই তাঁর। এতবড় বিপদের কথা শুনে একবার দেখা পর্যন্ত দিতে এলেন না। তা ছাড়া, না নিয়ে গেলেই বা যাই কি করে?</p>
+<p>বড়বৌ স্বর্ণমঞ্জরী দেবরের পার্শ্বে প্রাচীরের আড়ালেই দাঁড়াইয়া ছিলেন, একটুখানি গলা বাড়াইয়া কহিলেন, দাদার অবস্থা ভাল নয় জানি, কিন্তু তোমার দেওরটিই কোন্‌ লাটসাহেব মেজবৌ? আর ঐ শুনতেই দেড়-শ! কিন্তু যা করে আমি সংসার চালাই, তা আমি ত জানি! আর তাও বলি—অত বড় ধুম্‌সো মেয়ে তোমার ঘাড়ে––কে তোমাকে যেচে ঠাঁই দিতে যাবে বল দিকি? কিন্তু তা বলে মান-অভিমান করে বসে থাকলে ত চলে না!</p>
+<p>দুর্গামণি ধীরে ধীরে বলিলেন, না দিদি, আমার আবার মান-অভিমান কি!</p>
+<p>স্বর্ণ দেওরকে বাঁ হাত দিয়া পিছনে ঠেলিয়া, নিজে অগ্রসর হইয়া আসিয়া কহিলেন, তোমাকে মন্দ কথা ত আমি বলিনি মেজবৌ, যে অমন করে চিবিয়ে চিবিয়ে কথাগুলি বললে? তা, রাগই কর, আর ঝালই কর বাপু––তোমার ঐ ডানাকাটা পরীর বিয়ে দিতে আমরা পারব না| মেয়ে ত ঐ ছোটবৌটাও পেটে ধরেচে। কেউ একবার বাছাদের মুখপানে চেয়ে দেখলে আবার নাকি সে চোখ ফিরিয়ে চলে যাবে! তা সত্যি কথা বলব মেজবৌ––যেমন তোমার মেয়ের ছিরি, তেমনি গিয়ে হরিপালে পোড়ে-হোড়ে থেকে যা-হোক একটা চাষা-ভূষো ধরে দাও গে––ন্যাটা চুকে যাক। শুনেচি নাকি––সেখানকার লোক সুচ্ছিরি-কুচ্ছিরি দেখে না––মেয়ে হলেই হ’ল।</p>
+<p>দুর্গামণি চুপ করিয়া রহিলেন। যে বিষের জ্বালায় একদিন তাঁহারা পৃথক হইয়াছিলেন, সেই বিষদন্ত পুনরায় উদ্যত দেখিয়া তিনি ভয়ে কাঠ হইয়া গেলেন। স্বর্ণ কহিলেন, যার যেমন! তোমাকে কেউ ত নিন্দে করতে পারবে না। হাঁ, পারে বটে বলতে আমাকে। তিনটে পাশের কম যদি জামাই ঘরে আনি, দেশসুদ্ধ একটা ঢিঢি পড়ে যাবে। সবাই বলবে—এটা করলে কি! এতবড় একটা জ্যাঠাই ঘরে থাকতে কিনা দুর্গাপ্রতিমে জলে ভাসিয়ে দিলে! সত্যি কিনা বল ঠাকুরপো? বলিয়া স্বর্ণ অনাথের প্রতি কটাক্ষ করিলেন।</p>
+<p>তা বৈ কি! বলিয়া অনাথ তাহার মহামান্য বড়ভাজের মর্যাদা রাখিয়া অফিসের বেলা হওয়ার অছিলায় প্রস্থান করিল।</p>
+<p>স্বর্ণ বলিলেন, তোমার ভাইকে ধরে-করে যা হোক একটা ধরে-পাক্‌ড়ে দাও গে। তাতে তোমার লজ্জা নেই মেজবৌ, কেউ নিন্দে করতে পারবে না। তিরিশটি টাকা ত সবে মাইনে ছিল, কেই বা তাকে জানত, আর কেই বা চিনত। এঁদের ভাই বলেই যা লোকে জানে। আমি বলি কি––কাল দিনটে ভাল আছে, কালই চলে যাও।</p>
+
+<p>দুর্গামণি মনে মনে একবার অতুলের কথা ভাবিলেন, কিন্তু, ইহার সাক্ষাতে কোন কথা কহিলেন না। কারণ এই বড়জায়ের সম্বন্ধেই অতুলের সঙ্গে তাঁর সম্বন্ধ। স্বর্ণ অতুলের মায়ের মামাত বোন।</p>
+<p>সেদিন কেমন করিয়া জ্ঞানদা অতুলের পায়ের উপর পড়িয়া কাঁদাকাটা করিয়াছিল, মা তাহা দেখিয়াছিলেন বটে, কিন্তু অতবড় বিপদ মাথার উপর লইয়া ইহার বিশেষ কোন অর্থ ভাবিয়া দেখেন নাই। কিন্তু দুঃখীর ঘরে ত একান্ত-মনে শোক করিবারও অবসর নাই! তাই স্বামীর মৃত্যুর পরের দিন হইতেই এই কথাটা চিন্তা করিতেছিলেন। ঘরে গিয়া দেখিলেন, মেয়ে চুপ করিয়া মেঝের উপর বসিয়া আছে। ধীরে ধীরে তাহার কাছে বসিয়া কহিলেন, দিদি যা বললেন শুনেচিস ত?</p>
+<p>মেয়ে ঘাড় নাড়িয়া জবাব দিল। তার পরে যে তিনি কি বলিবেন ভাবিয়া পাইলেন না।</p>
+<p>কিন্তু মেয়ে নিজেই তাহার সুবিধা করিয়া দিল। কহিল, কখ্‌খনো ত বাপের বাড়ি যাওনি মা, এ সময় একবার কেন চল না?</p>
+<p>মা বলিলেন, মা বেঁচে নেই, দাদা কোনদিন খোঁজ নিলেন না। এতবড় বিপদ শুনেও একটা চিঠি পর্যন্ত লিখলেন না। কেমন করে তাঁদের কাছে সেধে যাই, বল্‌ দেখি মা?</p>
+<p>মেয়ে কহিল, দুঃখীর খোঁজ কেউ সেধে কখনো নেয় না মা। তাঁরা নেননি—এঁরাও ত নেন না। এঁরা বরং যেতেই বলচেন। আমাদের মান-অভিমান বাবার সঙ্গেই চলে গেছে, মা। চল, আমরা সেখানে গিয়েই থাকি গে।</p>
+<p>মায়ের চোখ দিয়া জল পড়িতে লাগিল। মেয়ে সস্নেহে মুছাইয়া দিয়া কহিল, আমি জানি, শুধু আমার জন্যেই তুমি কোথাও যেতে চাও না। নইলে, জ্যাঠাইমার কথা শুনে একটা দিনও তুমি এখানে থাকতে না। আমার জন্যে তোমাকে এতটুকু ভাবতে হবে না মা, চল, দিন-কতকের জন্যে আমরা আর কোথাও যাই। এখানে থাকলে তুমি মরে যাবে।</p>
+<p>মা আর থাকিতে পারিলেন না, মেয়েকে বুকের কাছে টানিয়া লইয়া হু হু করিয়া কাঁদিয়া উঠিলেন। মেয়ে বাধা দিল না, শান্ত করিবার চেষ্টা করিল না; শুধু নীরবে জননীর বুকের উপর মুখ রাখিয়া বসিয়া রহিল। অনেকক্ষণ পরে দুর্গামণি নিজেই কতকটা শান্ত হইয়া চোখ মুছিয়া বলিলেন, তোকে সত্যি বলচি জ্ঞানদা, তুই না থাকলে আমি যেখানে দু’চক্ষু যায় সেইদিনই চলে যেতাম যেদিন তিনিও জন্মের মত চলে গেলেন। শুধু তোর জন্যেই পারিনি।</p>
+<p>তা আমি জানি মা।</p>
+<p>আচ্ছা, একটা কথা আমাকে সত্যি করে বল দেখি, বাছা, সেদিন কেন অতুল ও-কথা বললে? না জ্ঞানদা, অমন করে মুখ ঢেকে থাকিস নে মা, লজ্জা করবার সময় এ নয়। আমি জানি, মিছে কথা বলবার ছেলে সে নয়। তবে, সেই বা কেন তাঁর মরণকালে অমন ভরসা দিলে আর তুই বা কেন তার পায়ে পড়ে অমন করে কাঁদলি?</p>
+<p>জ্ঞানদা মায়ের বুকের মধ্য হইতে অস্ফুটে কহিল, সে আমি জানিনে, মা।</p>
+<p>দুর্গামণি জোর করিয়া মেয়ের মুখখানি তুলিয়া ধরিয়া একবার দেখিবার চেষ্টা করিলেন, কিন্তু সে জোর করিয়া আঁকড়িয়া ধরিয়া রহিল। বিফলকাম হইয়া তিনি পুনরায় কহিলেন, তোমার বাবা বেঁচে থাকতে আমার কখনো কিছু মনে হয়নি বটে, কিন্তু সেইদিন থেকে ভেবে ভেবে এখন যেন অনেক কথাই বুঝতে পারি। অতুলের মুখের কতদিনের কত ছোটখাট কথাই না আজ আমার মনে হচ্চে। বলিতে বলিতেই তিনি অকস্মাৎ ব্যগ্র হইয়া কন্যার দুটি হাত নিজের হাতের মধ্যে লইয়া জিজ্ঞাসা করিলেন, সত্যি বল মা, আমি যা মনে করেচি, তা মিথ্যে নয়! আমি এ ক’দিন শুধু স্বপন দেখিনি?</p>
+<p>জ্ঞানদা তেমনি মুখ ঢাকিয়া মৃদুস্বরে বলিল, কি জানি মা, তাঁর ধর্ম তাঁর কাছে।</p>
+
+<p>দুর্গামণি আনন্দের আবেগে কাঁদিয়া কহিলেন, আমাকে সংশয়ে ফেলে রেখে আর বিঁধিস নে মা, একবার মুখ ফুটে বল্‌—আমি তোর বাপের জন্যে একটিবার প্রাণ খুলে কাঁদি। আমার এ কান্না আজ তিনি শুনতে পাবেন।</p>
+<p>মেয়ে চুপি চুপি কহিল, কাঁদো না মা—আমি ত তোমাকে কাঁদতে বারণ করিনে। বাবাকে জানাতে বলেছিলাম—তিনি নিজেই ত জানিয়েচেন। এখন তাঁর ধর্ম তাঁর কাছে।</p>
+<p>দুর্গামণি এবার আর বাধা মানিলেন না। জোর করিয়া মেয়ের আরক্ত অশ্রুসিক্ত মুখখানি তুলিয়া ধরিয়া, তাহাকে অজস্র চুম্বন করিয়া, পুনরায় বুকের উপর চাপিয়া ধরিয়া, নীরবে বহুক্ষণ ধরিয়া অশ্রুপাত করিলেন। পরে চোখ মুছিয়া ধীরে ধীরে বলিতে লাগিলেন, তাই বটে মা, তাই বটে! অতুল আমার দীর্ঘজীবী হোক—তার ধর্ম তার কাছেই বটে। কিন্তু এ কথাটা আমাদের কারু একদিনের তরে মনে পড়েনি মা, তুই নিজেই যে তাকে মরা বাঁচিয়েছিলি। সে বছর, লোকে বললে—বেরিবেরি রোগ। তা সে যে রোগই হোক—ফুলে ফেটে, ঘা হয়ে,—আগে তার মা, তার পরে অতুল। অতুলের তো কোন আশাই ছিল না। পচা গন্ধে, ভয়ে, কেউ যখন তাদের ওদিক মাড়াত না, তখন এতটুকু মেয়ে হয়ে তুই যমের সঙ্গে দিবারাত্রি লড়াই করে তাকে ফিরিয়ে এনেছিলি। সে ধর্ম সে কি না রেখে পারে? সাবিত্রীর মত যাকে যমের হাত থেকে তুই ফিরিয়ে এনেছিলি, তাকে কি ভগবান আর কারু হাতে তুলে দিতে পারেন? এ ধর্ম যদি না থাকে, তবে চন্দ্র-সূর্য এখনও উঠচে কেন?</p>
+<p>একটুখানি মৌন থাকিয়া পুনরায় পুলকিত-চিত্তে বলিতে লাগিলেন, এখন যেখানে আমাকে বলিস সেইখানেই যাব। কিন্তু তুই ত তার মত না নিয়ে যেতে পারিস নে বাছা। তাই বটে! তাই বটে! তাই বাবা আমার ফিরে এসেই, সকাল হতে না হতে দু’গাছি চুড়ি দেবার ছল করে মাকে আমার দেখতে এসেছিল। ওগো, আর একটা বছর কেন তুমি বেঁচে থেকে চোখে দেখে গেলে না! বলিয়া তিনি উচ্ছ্বসিত ক্রন্দন বস্ত্রাঞ্চল দিয়া রোধ করিলেন।</p>
+<p>বলি মেজবৌ?</p>
+<p>দুর্গামণি তাড়াতাড়ি মেয়েকে বুক হইতে ঠেলিয়া দিয়া, চোখটা মুছিয়া লইয়া সাড়া দিলেন, কেন দিদি?</p>
+<p>বড়বৌ একবার ঘরের ভিতর দৃষ্টিপাত করিয়া কঠিন-স্বরে বলিলেন, তোমাদের না হয় শোকের শরীরে ক্ষিদে-তেষ্টা নেই; কিন্তু বাড়ির আর সবাই ত উপোস করে থাকতে পারে না। বেরিয়ে একবার বেলার দিকে চেয়ে দেখ দেখি।</p>
+<p>দুর্গামণি শশব্যস্তে ঘরের বাহিরে আসিয়া দাঁড়াইলেন। বেলার দিকে চাহিয়া লজ্জিতমুখে মেয়ের নাম করিয়া কি একটুখানি জবাবদিহি করিতেই, স্বর্ণমঞ্জরী তীক্ষ্ণভাবে বলিলেন, বেশ ত। হেঁসেলটা চুকিয়ে দিয়ে মেয়েকে কাছে বসিয়ে সারাদিন বোঝাও না— আমি কথাটিও কব না। কিন্তু আমার ছেলে-মেয়েগুলো যে পিত্তি পড়ে মারা যায়। না বাপু, এমনধারা সব অনাছিষ্টি কাণ্ড আমি সইতে পারব না। বলিয়া নিঃসন্তান বড়বৌ ছোটবধূর সন্তানদের প্রতি মাতৃস্নেহের পরাকাষ্ঠা প্রদর্শন করিয়া উত্তরের জন্য প্রতীক্ষা না করিয়াই চলিয়া গেলেন।</p>
+<p>অনাথের সংসার পুনরায় প্রবেশ করা অবধি দুর্গাকেই রান্নাঘরের সমস্ত ভার গ্রহণ করিতে হইয়াছিল। তাহাতে বড়বৌ এবং ছোটবৌ উভয়েই সমস্তদিনব্যাপী ছুটি পাইয়া, একজন পাড়া বেড়াইয়া এবং খরচপত্র অত্যন্ত বেশী হইতেছে বলিয়া কোন্দল করিয়া, এবং আর একজন ঘুমাইয়া, নভেল পড়িয়া, গল্প করিয়া দিন কাটাইতেছিলেন।</p>
+<p>অনাথ সাড়ে-আটটার ডেলি প্যাসেঞ্জার। ভোরে উঠিয়া যথাসময়ে তাঁহার আহার্য প্রস্তুত করিয়া দেওয়া, এ-বাটীতে একটা নিদারুণ অশান্তির ব্যাপার ছিল। এই লইয়া বড় এবং ছোট জায়ে প্রায়ই কথা-কাটাকাটি এবং মন-কষাকষি চলিত। এ কয়দিন এই হাঙ্গামা হইতে নিস্তার পাইয়া, উভয়ের মধ্যে অনেক দিনের পর আবার একটা ভালবাসার গ্রন্থিবন্ধনের সূচনা হইতেছিল। কিন্তু আজ সকালে হঠাৎ সেই বাঁধনটা আর একবার ছিঁড়িয়া যাইবার উপক্রম হইল। তাহার কারণ এই যে, বেলা সাতটা বাজে, এবং ঝি আসিয়া সদ্যনিদ্রোত্থিত ছোটবধূকে জানাইল যে, কয়লার উনানের আঁচ উঠিয়া গিয়াছে, একটু তৎপর হইয়া রান্না চাপাইয়া দেওয়া আবশ্যক।</p>
+<p>ছোটবৌ বিরক্ত হইয়া জিজ্ঞাসা করিল, কেন, মেজদি কি করচে? বেলা সাতটা বাজে—আজ বুঝি তার সে হুঁশ নেই?</p>
+<p>ঝি কহিল, হুঁশ কেন থাকবে না গা? ভোরে উঠে মায়ে-ঝিয়ে জিনিসপত্র গোছগাছ বাঁধাছাঁদা করচে—এই আটটার গাড়িতে হরিপাল না কোথায় যাবে যে!</p>
+<p>ছোটবৌর কালকার কথা মনে পড়িল। কিন্তু কিছুমাত্র প্রসন্ন না হইয়া চেঁচাইয়া কহিল, যাবে বললেই যাবে নাকি? বাবুর হুকুম নিয়েচে? দিদিকে জানিয়েচে?</p>
+<p>ঝি কহিল, বাবুর কথা জানিনে ছোটবৌমা, কিন্তু বড়মা ত নিজেই তাদের আজ যেতে বলেছিল।</p>
+<p>তবে, তাকেই বল গে সাড়ে-আটটার ভাত দিতে—আমি জানিনে, বলিয়া ছোটবৌ ক্রোধে অগ্নিমূর্তি হইয়া খানিকটা গুলগুঁড়ানো ঠোঁটের ভেতর পুরিয়া গামছাটা কাঁধে ফেলিয়া খিড়কির দিকে হনহন করিয়া চলিয়া গেল।</p>
+<p>ঝি বলিল, থাকলে ত বলব! তিনি গেছে গঙ্গাচ্চান করতে—বলিয়া সে নিজের কাজে চলিয়া গেল।</p>
+<p>ছোটবৌকে ফিরিতে হইল, কারণ অফিসের সাহেব তাহার রাগের মর্যাদা বুঝিবে না। হয় যা-হোক দুটা সিদ্ধ করিয়া দিতেই হইবে, না হয় স্বামীকে ঠিক সময়ে অভুক্তই যাইতে হইবে। দুটার একটা অপরিহার্য। ছোটবৌ ফিরিয়া আসিয়া দুর্গামণির দরজার সম্মুখে দাঁড়াইয়া তীক্ষ্ণকণ্ঠে কহিল, যাবেই ত। কিন্তু এমন খোলোমি করে না গেলেই কি হত না মেজদি?</p>
+<p>এই অভাবনীয় আক্রমণে দুর্গামণি অবাক হইয়া গেলেন।</p>
+<p>ছোটবৌ কহিল, আমরা কেউ জানিনে, তোমরা সকালেই যাবে। তিনি গেছেন গঙ্গা নাইতে। আমি ত এই উঠচি। টাইমের ভাত কি করে দিই বল দেখি?</p>
+<p>প্রাতঃপেন্নাম হই মাসিমারা, বলিয়া অতুল বারান্দায় আসিয়া দাঁড়াইল।</p>
+<p>ছোটবৌ ফিরিয়া আসিয়া কহিল, তুমি হঠাৎ যে অতুল?</p>
+<p>অতুল কলিকাতার মেসে থাকে। সেখানে চিঠি পাইয়া ছুটাছুটি করিয়া এইমাত্র আসিয়া জুটিয়াছে—এখনও বাড়ি যায় নাই। কহিল, মেজমাসিমা হরিপালে গঙ্গাযাত্রা করবেন, আর শেষ দেখাটা একবার দেখতে আসব না? হরিপাল! অর্থাৎ ম্যালেরিয়ার ডিপো! তা এই আশ্বিনের শুরুতেই এমন সুবুদ্ধিটা তোমাকে কে দিলে বল দেখি, মেজমাসিমা? বাঃ—বাঁধাছাঁদা একেবারে কমপ্লিট যে! বলিয়া সে সহাস্যে ঘরের মধ্যে দৃষ্টিনিক্ষেপ করিতেই একপ্রান্ত হইতে একজোড়া জলেভরা আরক্ত চক্ষু্র টেলিগ্রাফ পাইয়া স্তব্ধ হইয়া থামিল।</p>
+<p>ছোটবৌ প্রশ্ন করিল, তুমি কি করে খবর পেলে অতুল?</p>
+<p>আমি? বাঃ—, বলিয়া অতুল তাহার কৈফিয়ত শেষ করিল।</p>
+<p>অকস্মাৎ প্রাঙ্গণের কোন একটা অনির্দিষ্ট স্থান হইতে স্বর্ণমঞ্জরীর কণ্ঠস্বর শব্দভেদী বাণের মত আসিয়া প্রত্যেকের কানে বিঁধিল। অর্থাৎ তিনি গঙ্গাস্নানে শান্ত-শুচি হইয়া বাটীতে পা দিয়াই ঝির মুখে কয়লার উনুনের খবর পাইয়াছিলেন। সুতরাং মেজজায়ের সদ্য-বৈধব্যের যথার্থ হেতুটা মুক্তকণ্ঠে বলিতে বলিতে আসিতেছিলেন—চারপো পূর্ণ না হলে কি ভগবান কারু এমন সর্বনাশ করেন? করেন না। এ তাঁর ধর্মের সংসার—এখানে অধর্ম হবার জো নেই। সোজা চলিয়া আসিয়া ঘরের চৌকাঠের ভিতরে একটা পা দিয়া কহিলেন, মতলবটা ত তোমার এই, মেজবৌ—না খেয়ে উপোস করে ছোটকর্তা অফিসে যাক, সন্ধ্যাবেলা পিত্তি পরে জ্বর হয়ে বাড়ি আসুক। তারপর নিজের যেমন হয়েছে তেমনি সর্বনাশ আরো একজনের হোক।</p>
+<p>দুর্গামণি মনে মনে শিহরিয়া কহিলেন, এ কপাল যার পুড়েচে দিদি, সে অতিবড় শত্রুর জন্যেও অমন কামনা করে না। কিন্তু কি করেচি তোমার যে, এত কটু কথা আমাকে উঠতে বসতে শোনাচ্চ?</p>
+<p>স্বর্ণ হাত নাড়িয়া মুখ অতি বিকৃত করিয়া কহিলেন, কচি খুকী যে! আমাকে বলতে হবে—কি করেচ? সাড়ে-সাতটা বাজে—টাইমের ভাত রাঁধবে কে?</p>
+<p>অতুল এতক্ষণ অবাক হইয়া শুনিতেছিল। তাহার বড়মাসিকে সে ভাল করিয়াই চিনিত; এইজন্য কথাবার্তাও বড় একটা কহিত না। কিন্তু এখন আর সহ্য করিতে না পারিয়া নিজেই প্রশ্নের জবাব দিয়া বসিল। কহিল সত্যি কথা বললে তুমিই রাগ করবে মাসিমা; কিন্তু কপাল নেহাত না পুড়লে, আর কেউ তোমাদের ভাত খেতে আসে না, সে-কথা তোমরাও জান, পাড়ার আর পাঁচজনেও জানে। কিন্তু আজ যাবার দিনটায় হতভাগিনীদের একটুখানি মাপ করলে তোমাদের মহাভারত অশুদ্ধ হয়ে যেত না, মাসিমা।</p>
+<p>হঠাৎ অতুলের কথার ঝাঁজে দুই জায়েরই বিস্ময়ের অবধি রহিল না। মিনিট-খানেক কাহারও মুখ দিয়া কথা বাহির হইল না। তার পরে স্বর্ণ কহিলেন, কোলকাতা থেকে তুই কি আমাদের সঙ্গে ঝগড়া করতে এসে হাজির হয়েচিস নাকি রে?</p>
+<p>ছোটবৌ বলিল, ঝগড়া করতে আসবে কেন দিদি? ওর মেজমাসিকে আমরা হরিপালে গঙ্গাযাত্রা করাচ্চি, ও তাই যে শেষ দেখাটা দেখতে এসেচে।</p>
+<p>ও, তাই বটে?</p>
+<p>ছোটবৌ কহিল, তাই দিদি, তাই। তাই তখন থেকে ভাবচি, আমরা বাড়ির লোক জানলাম না, তোমার বোনপোটি কলকাতায় বসে জানলে কি করে? তা হলে লোকে যা বলে তা মিথ্যে নয় দেখচি।</p>
+<p>স্বর্ণ ক্রোধে দিগ্বিদিকজ্ঞানশূন্য হইয়া চেঁচাইয়া বিদ্রূপ করিয়া একটা কাণ্ড করিয়া তুলিলেন। বলিতে লাগিলেন, বেশ ত বাছা, এতই যদি দরদ জন্মে থাকে, তোমার শাশুড়িমাসিকে গঙ্গাযাত্রা করাবে কেন, ঘরেই নিয়ে যাও না। গাঁ-সুদ্ধ লোক বাহবা করবে এখন।</p>
+<p>তাঁহার বিষের জ্বালায় অতুলেরও মাথা বেঠিক হইয়া গেল। সেও বলিয়া বসিল, বেশ ত মাসিমা, তোমরা আপনার লোক, কথাটা যদি দু’দিন আগেই জেনে থাক, ভালই ত। উনি আমার ঘরে গেলে, আমি মাথার করে নিয়ে যেতে রাজি আছি। তোমাদের গাঁয়ের লোকগুলো তাতে বাহবা দেবে, কি ছি ছি করবে, আমি ভ্রূক্ষেপও করিনে।</p>
+<p>কথাটা বলিয়া ফেলিয়া অতুল নিজেও যেমনি লজ্জায় আড়ষ্ট হইয়া উঠিল, তাহার গুরুজনেরাও তেমনি অসহ্য বিস্ময়ে স্তম্ভিত হইয়া রহিলেন। এ যেন অকস্মাৎ কোথা একটা প্রচণ্ড ঘূর্ণিবায়ু ছুটিয়া আসিয়া লজ্জা-শরম আড়াল-আবডাল সমস্তই চক্ষের পলকে ভাঙ্গিয়া মুচড়াইয়া উড়াইয়া লইয়া মস্ত একটা ফাঁকা মাঠের মধ্যে সবাইকে দাঁড় করাইয়া দিয়া গেল। কাহারও কাছে কাহারও আর গোপন করিবার, রাখিবার-ঢাকিবার জায়গা রহিল না।</p>
+<p>অতুল নিঃশব্দে বাহির হইয়া গেল। যদু বাগদী গরুর গাড়ি আনিয়া কহিল, মা, সময় হয়েচে, জিনিসপত্তর কি দেবে দাও। এখন থেকে না বেরুলে ইস্টিশনে গাড়ি ধরতে পারা যাবে না। বলিয়া সে ঘরে ঢুকিয়া নির্দেশমত সুমুখের টিনের তোরঙ্গের উপর বিছানাটা তুলিয়া নিয়া ঘাড়ে করিয়া বাহির হইয়া গেল। বড়বৌ ছোটবৌ দ্রুতপদে প্রস্থান করিলেন। দুর্গামণি ‘দুর্গা দুর্গা’ বলিয়া ঘরে তালা দিয়া মেয়ের হাত ধরিয়া নিঃশব্দে গাড়িতে গিয়া উঠিলেন। মেয়েটা মূর্ছিতের মত মায়ের কোলের উপর চোখ বুজিয়া শুইয়া পড়িল।</p>
+<h2>অরক্ষণীয়া – ০৪</h2>
+
+<p>এগার বৎসর পরে দুর্গামণি হরিপালে বাপের ভিটায় আসিয়া উপস্থিত হইলেন। তখন শরতের সন্ধ্যা এমনই একটা অস্বাস্থ্যকর ঝাপসা ধুঁয়া লইয়া সমস্ত গ্রামখানার উপর হুমড়ি খাইয়া বসিয়াছিল যে, তাহার ভিতরে প্রবেশ করিবামাত্রই দুর্গামণির বুকের ভিতরটা ছাঁৎ করিয়া উঠিল। বাড়িতে বাপ-মা নাই—বড়ভাই আছেন। শম্ভু চাটুয্যের সেদিন ছিল বৈকালিক পালাজ্বরের দিন। অতএব সূর্যাস্তের পরই তিনি প্রস্তুত হইয়া বিছানা গ্রহণ করিয়াছিলেন। খবর পাইয়া সুপ্রাচীন বালাপোশে মাথা এবং দুই কান ঢাকিয়া খড়ম পায়ে খটখট শব্দে বাহিরে আসিয়া চিনিতে পারিলেন।</p>
+<p>কে, ও দুর্গা এলি নাকি? তা আয় আয়।</p>
+<p>দুর্গা কাঁদিতে কাঁদিতে অগ্রসর হইয়া দাদার পদমূলে প্রণাম করিলেন।</p>
+<p>জ্ঞানদা প্রণাম করিলে, কহিলেন, এটি বুঝি মেয়ে? তা বিয়ে দিলি কোথায়?</p>
+<p>দুর্গা কুণ্ঠিত-স্বরে কহিলেন, বিয়ে এখনও দিতে পারিনি দাদা—যেখানে হোক শিগগিরই—</p>
+
+<p>অ্যাঁ—বিয়ে দিসনি? এ যে একটা সোমত্ত মাগী রে দুর্গা? বহুকাল অদর্শনের পর ভগিনীর প্রতি তাঁহার ঈষৎ করুণ কণ্ঠস্বর এক মুহূর্তেই জমিয়া একেবারে কাঠ হইয়া গেল; বলিলেন, তাই ত, এখানকার আবার যে-সব বজ্জাত লোক—তা জানতে পেলে—তা আমি বলি কি, ওকে হেঁসেল-টেসেল ঠাকুরঘরদোরে ঢুকতে দিয়ে কাজ নেই—জানিস ত এদেশের সমাজ! বিশেষ হরিপাল—এমন পাজী জায়গা কি ভূ-ভারতে আছে? তা আয়, বাড়ির ভিতরে আয়। এতবড় মেয়ে—ওর কাকার কাছে রেখে এলে স্বচ্ছন্দে তুই দু’দিন জুড়িয়ে যেতে পারতিস। এখানে থাকলে ত আর—বুঝলি নে দুর্গা—তা যা, এখন হাত-পা ধু গে—ওগো, কৈ গো,—বলিতে বলিতে শম্ভু চাটুয্যে পুনরায় খটখট করিয়া অন্দরে প্রবেশ করিলেন। দুর্গা এবং তাঁহার কন্যা যেমন করিয়া তাঁহার অনুসরণ করিয়া বাড়ি ঢুকিল সে শুধু ভগবানই দেখিলেন।</p>
+<p>শম্ভুর এটি দ্বিতীয় পক্ষ। প্রথম পক্ষের বৌকে দুর্গা দেখিয়াছিলেন, কিন্তু ইহাকে দেখেন নাই। উপস্থিত ইনি যেমনই কাল, তেমনই রোগা এবং লম্বা। ম্যালেরিয়া জ্বরে রঙটা যেন পোড়াকাঠের মত। তিনদিনের গোবর উঠানের মাঝখানে জমা করা ছিল, তাহা এইমাত্র নিঃশেষ করিয়া ঘুঁটে দিয়া, হাত-পা ধুইয়া প্রদীপের জো করিতেছিলেন; স্বামীর আহ্বানে সম্মুখে আসিয়া ব্যাপার দেখিয়া থমকিয়া দাঁড়াইলেন। শম্ভুর জ্বর আসিতেছিল, আগন্তুকদিগের অভ্যর্থনার জন্য স্ত্রীর কাছে সংক্ষেপে ইহাদের পরিচয় দিয়া ঘরে গিয়া ঢুকিলেন। বৌয়ের নাম ভামিনী। মেদিনীপুর জেলার মেয়ে। কথাগুলো একটু বাঁকা-বাঁকা। সে হাসিয়া উপরের এবং নীচের সমস্ত মাড়ীটা অনাবৃত করিয়া ননদের হাত ধরিয়া রান্নাঘরের দাওয়ায় লইয়া গিয়া পিঁড়ি পাতিয়া বসাইলেন। তাঁহার হাসি এবং কথার শ্রী দেখিয়া দুর্গার বুকের ভিতর পর্যন্ত শুকাইয়া উঠিল। আসিবার সময় দুর্গা একহাঁড়ি রসগোল্লা আনাইয়াছিলেন, সেটা নামাইতে না নামাইতে এক পাল ছেলে-মেয়ে কোথা হইতে যেন পঙ্গপালের মত ছুটিয়া আসিয়া ছেঁকিয়া ধরিল। চেঁচাচেচি ঠ্যালাঠেলি—সে যেন একটা হাট বসিয়া গেল। তাহাদের মা ইহাকে আধখানি, উহাকে সিকিখানি, আর দু’জনকে দু’টুকরা বাঁটিয়া দিয়া হাঁড়িটা ছোঁ মারিয়া তুলিয়া লইয়া গিয়া শোবার ঘরের শিকায় টাঙ্গাইয়া রাখিলেন। ছেলেগুলো যে যাহা পাইয়াছিল, অমৃতবৎ গিলিয়া ফেলিয়া, হাতের রস চাটিতে চাটিতে প্রস্থান করিল।</p>
+<p>দুর্গা এখানকার রীতিনীতি কতক জানিতেন, কারণ তিনি এই গ্রামের মেয়ে। কিন্তু জ্ঞানদা আট-দশ বছরের ছেলেগুলাকে পর্যন্ত সম্পূর্ণ দিগম্বর দেখিয়া লজ্জায় মাথা হেঁট করিয়া রহিল। মেয়েগুলারও প্রায় ঐ দশা। ইতরবিশেষ যাহা আছে, তাহা নিতান্তই অকিঞ্চিৎকর। তাহাদের নিজেদের গ্রামটাও শহর নয় বটে কিন্তু সেখানে রাস্তাঘাট আছে; এমন আম, কাঁঠাল ও বাঁশঝাড়ে মাথার উপর অন্ধকার করিয়া নাই। এরূপ গোবর ও পাট-পচা গন্ধ চতুর্দিক হইতে আসিয়া শ্বাস-প্রশ্বাসের ক্রিয়াকে ভারাক্রান্ত, ব্যাকুল করিয়া দেয় না। তখনও অন্ধকার হয় নাই, একটা শৃগাল উঠানের উপর আসিয়া দাঁড়াইতেই বড়ছেলেটা তাড়া করিয়া গেল। চারিদিকে অসংখ্য ঝিঁঝিঁ পোকা বিকট শব্দ শুরু করিয়া দিল। দেয়ালের গায়ে একটা শুকনা ডালে হঠাৎ অশ্রুতপূর্ব একপ্রকার বিশ্রী শব্দ শুনিয়া জ্ঞানদা সভয়ে চুপি চুপি কহিল, ও কি ডাকে মা? মামী শুনিতে পাইয়া কহিলেন, ও যে তোক্ষোপ।</p>
+<p>জ্ঞানদা শিহরিয়া জিজ্ঞাসা করিল, তোক্ষোপ কি? তক্ষক সাপ?</p>
+<p>মামী বলিলেন, হাঁ মা, তাই। ঐ যে কোন্‌ রাজাকে কামড়েছিল বলে। —গাছে গাছে একেবারে ভরা!</p>
+<p>জবাব শুনিয়া জ্ঞানদা মায়ের মুখের প্রতি একবার চাহিল। ইতিপূর্বে কান্নায় তাহার সমস্ত বক্ষ পরিপূর্ণ হইয়া গিয়াছিল। এইবার সে জননীর কোলের উপর লুটাইয়া পড়িয়া একেবারে ফুঁপাইয়া কাঁদিয়া উঠিল, কহিল, এখান থেকে চল মা—এখানে আমি একদণ্ডও বাঁচব না।</p>
+<p>মামী আশ্চর্য হইলেন। বলিলেন, ভয় কি গো, ওরা যে দেবতা। কখ্‌খনো কারুর অপকার করে না। আর সাপখোপের কামড়ে কটা লোক মরে বাছা? বরঞ্চ, ভয় যা তা ঐ ম্যালোয়ারীর। একবার ধরলে, আর তাতে বস্তু রেখে ছাড়ে না। এ-বছর দিন-কুড়ি হ’ল তোমার মামাকে ধরেচে—এরই মধ্যে যেন শতজীর্ণ করে ফেলেচে, আর দিনকতক পরে কে কার মুখে জল দেবে মা, এ-গাঁয়ে তার ঠিক থাকবে না।</p>
+<p>জ্ঞানদা মনে মনে অতুলের শেষ কথাগুলো মিলাইয়া লইয়া নীরবে পড়িয়া রহিল। সে-রাত্রে সে একবারও ঘুমাইতে পারিল না। মায়ের বুকের কাছে মুখ রাখিয়া বারংবার চমকাইয়া উঠিতে লাগিল। এমনি করিয়া প্রভাত হইল; নূতন স্থানে নূতন আলো চোখে পড়ায় বিন্দুমাত্রও তাহার আনন্দোদয় হইল না—বরঞ্চ সমস্ত আবহাওয়া, আলো, বাতাস যেন কালকের চেয়েও বেশি করিয়া তাহাকে চাপিয়া ধরিল।</p>
+<p>এতবড় আইবুড়ো মেয়ে দেখিয়া পাড়ার লোক ভয়ানক আশ্চর্য হইয়া গেল। আমাদের বাঙ্গালাদেশে মেয়ের বয়স ঠিক করিয়া বলার রীতি নাই। সবাই জানে, বাপ-মাকে দু-এক বছর হাতে রাখিয়া বলিতে হয়। সুতরাং দুর্গা যখন বলিলেন, তের, তখন সবাই বুঝিল পনর। তা ছাড়া একমাত্র সন্তান বলিয়া, নিজেরা না খাইয়া মেয়েকে খাওয়াইয়াছিলেন, পরাইয়াছিলেন—সেই নিটোল স্বাস্থ্যই এখন আরও কাল হইল—জ্ঞানদার যথার্থ বয়সের বিরুদ্ধে ইহাই বেশি করিয়া সাক্ষ্য দিতে লাগিল।</p>
+<p>দুই দিন না যাইতেই শম্ভু কথাপ্রসঙ্গে ভগিনীকে কহিলেন, মেয়েটার জন্য ত পাড়ায় মুখ দেখানো ভার হয়েছে। একটি ভারী সুপাত্র হাতে আছে, দিবি?</p>
+<p>দুর্গা বলিলেন, জামাই আমার স্থির হয়ে আছে—আর কোথাও হতে পারে না। শম্ভু বলিলেন, তা হলে ত কথাই নেই। কিন্তু এমন সুপাত্র বড় ভাগ্যে মেলে, তা বলে দিচ্চি। কুড়ি-পঁচিশ বিঘে ব্রহ্মত্র, পুকুর, বাগান, ধানের গোলা—লেখাপড়াতেও—</p>
+<p>দুর্গা কথাটা শেষ করিতে না দিয়াই বলিলেন, না দাদা, আর কোথাও হবার জো নেই—এই বছরটা বাদে সেখানেই আমাকে মেয়ে দিতে হবে।</p>
+
+<p>শম্ভু বলিলেন, কিন্তু, আমার বিবেচনায়—এই সামনের অঘ্রানেই মেয়ে উচ্ছুগ্যু করা কর্তব্য হয়েছে। দুর্গা আর নিরর্থক প্রতিবাদ না করিয়া—কাজ আছে, বলিয়া উঠিয়া গেলেন। ক্রমশঃ প্রকাশ পাইল, এই সুপাত্রটি শম্ভুরই এ-পক্ষের বড় শ্যালক। স্ত্রীর মৃত্যু ঘটায়, প্রায় ছয় মাস যাবৎ বেকার অবস্থায় আছেন—আর বেশিদিন থাকা কেহই সঙ্গত মনে করে না। বিশেষতঃ ঘরে অনেকগুলি কাচ্চা-বাচ্চা থাকায় একটি ডাগর মেয়ে নিতান্তই আবশ্যক হইয়া পড়িয়াছে।</p>
+<p>সেইজন্যই বোধ করি, দুর্গার বারংবার অস্বীকার করা সত্ত্বেও এই সুপাত্রটি একদিন সহসা আবির্ভূত হইয়া সম্মুখেই জ্ঞানদাকে দেখিতে পাইলেন, এবং বলা বাহুল্য যে, পছন্দ করিয়াই ফিরিয়া গেলেন। অনতিকাল মধ্যেই ভগিনীর প্রতি শম্ভুনাথের স্নেহের অনুরোধ কঠোর নির্যাতনের আকার ধরিয়া দাঁড়াইল। একদিন তিনি স্পষ্টই জানাইয়া দিলেন যে, প্রিয়নাথের অবর্তমানে তিনিই এখন ভাগিনেয়ীর যথার্থ অভিভাবক। সুতরাং আবশ্যক হইলে এই সামনের অঘ্রানেই তিনি জোর করিয়া বিবাহ দিবেন।</p>
+<p>দাদার সঙ্গে বাদানুবাদ করিয়া দুর্গা ঘরে ঢুকিয়া মেয়ের পানে চাহিয়াই বুঝিতে পারিলেন, সে সমস্ত শুনিয়াছে। তাহার দুই চক্ষু ফুলিয়া রাঙ্গা হইয়া উঠিয়াছে। তাহাকে বুকে টানিয়া লইয়া বলিলেন, আমি বেঁচে থাকতে ভয় কি মা! মুখে অভয় দিলেন বটে, কিন্তু ভয়ে তাঁহার নিজের বুকের অন্তঃস্থল পর্যন্ত শুকাইয়া কাঠ হইয়া গিয়াছিল। এ-সব দেশে এরূপ জোর করিয়া বিবাহ দেওয়া যে একটা সচরাচর ঘটনা, তাহা তাঁহার অজ্ঞাত ছিল না। মায়ের বুকে মুখ লুকাইয়া মেয়ে উচ্ছ্বসিত হইয়া কাঁদিতে লাগিল। মা তাহার কপালে বুকে হাত দিয়া দেখিলেন, জ্বরে গা ফাটিয়া যাইতেছে। চোখ মুছাইয়া দিয়া জিজ্ঞাসা করিলেন, কখন জ্বর হল মা?</p>
+<p>কাল রাত্তির থেকে।</p>
+<p>আমাকে জানাস নি কেন? আজকাল যে ভয়ানক ম্যালেরিয়ার সময়। মেয়ে চুপ করিয়া রহিল, জবাব দিল না।</p>
+<p>দাদার বৌয়ের সহিত দুর্গা এ পর্যন্ত কোনপ্রকার ঘনিষ্ঠতার চেষ্টা করেন নাই। শুধু যে তাহার বিকট চেহারা ও ততোধিক বিকট হাসি দেখিলেই তাঁহার গা জ্বলিয়া যাইত তাহা নহে, তাহার অতি কর্কশ কণ্ঠস্বরও তিনি সহ্য করিতে পারিতেন না। পাড়াগাঁয়ের মেয়েরা স্বভাবতঃই একটু উচ্চকণ্ঠে কথা কহে; কিন্তু বৌয়ের কথাবার্তা একটু দূর হইতে শুনিলে ঝগড়া বলিয়া মনে হইত। তাহার উপর সে যেমন মুখরা, তেমনি যুদ্ধবিশারদ। কিন্তু তাহার একটা গুন দুর্গা টের পাইয়াছিল—সে গায়ে পড়িয়া ঝগড়া করিতে চাহিত না। তার গন্তব্য পথ ছাড়িয়া দিলে, সে কাহাকেও কিছু বলিত না—ছেলে-পিলে ঘর-সংসার লইয়াই থাকিত, পরের কথায় কান দিত না।</p>
+<p>প্রথমে আসিয়াই দুর্গা একদিন তাহার রান্নাবান্নার সাহায্য করিতে গিয়াছিলেন। তাহাতে সে স্পষ্ট করিয়া বলিয়াছিল—তুমি দু’দিনের জন্যে এসেচ ঠাকুরঝি, তোমাকে কাজ করতে হবে না। আমি রান্নাঘর, ভাঁড়ারঘর কাউকে দিতে পারব না। সেই অবধি দুর্গা এবিষয়ে একপ্রকার নিশ্চিন্ত হইয়াছিলেন!</p>
+<p>আজ বেলা দেখিয়া বৌ দোর-গোড়ায় স্বাভাবিক চিৎকারশব্দে প্রশ্ন করিল, আজ খাওয়া-দাওয়া কি হবে না ঠাকুরঝি? হেঁসেল নিয়ে বসে থাকব?</p>
+<p>দুর্গা মুখ তুলিয়া বলিলেন, মেয়েটার ভারী জ্বর হয়েচে বৌ; তোমরা খাও গে, আমরা আজ আর কেউ খাব না। বৌ কহিল, মেয়ের জ্বর, তা তোমার কি হ’ল গো? জ্বর আবার কার না হয়? নাও, উঠে এসো। দুর্গা কাতরকণ্ঠে কহিলেন, না বৌ, আমাকে খেতে বল না—মেয়ে ফেলে আমি মুখে ভাত তুলতে পারব না।</p>
+<p>তোমাদের সব আদিখ্যেতা, বলিয়া বৌ চলিয়া গেল। রান্নাঘর হইতে পুনরায় কহিল, জ্বর হয়েচে কবরেজ ডেকে পাঁচন সিদ্ধ করে দাও। ম্যালোয়ারী জ্বরে আবার খায় না কে? আমাদের দেশে ওসব উপোস-তিরেসের পাঠ নেই বাপু! বলিয়া সে নিজের কাজে মন দিল।</p>
+<p>অপরাহ্নবেলায় সে নিজেই একবাটি পাঁচন সিদ্ধ করিয়া আনিয়া কহিল, ওলো ও গেনি, উঠে পাঁচন খা! ভাতে জল দিয়ে রেখেছি, চল, খাবি আয়।</p>
+<p>মামীকে সে অত্যন্ত ভয় করিত। বিনাবাক্যে উঠিয়া খানিকটা তিক্ত পাঁচন গিলিয়া বমি করিয়া ফেলিয়া পুনরায় শুইয়া পড়িল। দুর্গা ঘরে ছিল না, বমির শব্দে ছুটিয়া আসিয়া ব্যাপার দেখিয়া নিঃশব্দে দাঁড়াইয়া রহিলেন। মামী রাগ করিয়া উঠানে গিয়া সমস্ত পাড়া শুনাইয়া বলিতে লাগিলেন, এ-সব বাবুমেয়ে নিয়ে আমাদের গরীব, দুঃখীর ঘরে আসা কেন বাপু?</p>
+<p>সেই হইতেই জ্ঞানদার অসুখ উত্তরোত্তর বাড়িতেই লাগিল। তাহার ভামিনী-মামী সেই যে প্রথম দিনেই বলিয়াছিল, বাছা! পল্লীগ্রামে সাপের কামড়ে আর ক’টা লোক মরে, মরে যা তা ঐ ম্যালোয়ারীতে। একবার ধরলে আর রক্ষে নেই। তাহার কথাটার সত্যতা সপ্রমাণ হইতে বেশি বিলম্ব ঘটিল না, অনতিকালমধ্যেই জ্ঞানদাকে একেবারে শয্যাগত করিয়া ফেলিল। সেদিন কার্তিকের সংক্রান্তি; দুর্গা ঘরে ঢুকিয়া আশ্চর্য হইয়া দেখিলেন, বৌ জ্ঞানদার শিয়রে বসিয়া তাহার মাথায় হাত বুলাইয়া দিতেছে। একে ত সংসারের কাজ ছাড়িয়া এইসব বাজে কাজ করিবার তাহার অবসরই নাই, তাহাতে পরের মেয়ের প্রতি এই অযাচিত সেবাটা এমনি একটা প্রকৃতি-বিরুদ্ধ বিসদৃশ কাণ্ড বলিয়া দুর্গার মনে হইল যে, তিনি দাদার প্রস্তাবিত সেই বিবাহ-ব্যাপারটা স্মরণ করিয়া আশঙ্কায় কণ্টকিত হইয়া উঠিলেন। ভামিনীর এই যত্নটা যে সেই জন্যই, তাহাতে আর সংশয়মাত্র রহিল না। কারণ, সে যে নিজের দাদার সহিত জ্ঞানদার বিবাহ ঘটাইবার জন্য স্বামীকে নিয়োজিত করিয়াছে এবং ভিতরে ভিতরে উত্তেজিত করিতেছে, প্রথম হইতেই এই কথাটা দুর্গা স্বতঃসিদ্ধের মত মানিয়া লইয়াছিলেন। বৌ গলাটা আজ একটু খাটো করিয়াই কহিল, তারকেশ্বরে পাশ-করা ডাক্তার আছে—তোমার দাদাকে আনতে পাঠিয়ে দিয়েচি, ঠাকুরঝি। জ্বর যেন রোজ রোজ বেশিই হচ্চে—এ তো ভালো না। দুর্গা অব্যক্তস্বরে যাহা বলিলেন, তাহা শোনা গেল না, কারণ এই সুসংবাদ শুনিয়াও তিনি অন্তরের ভিতর হইতে প্রসন্ন হইতে পারিলেন না।</p>
+<p>বৌ সংসারের কাজে চলিয়া গেল। জ্ঞানদা বালিশের তলা হইতে একখানি চিঠি বাহির করিয়া কহিল, জবাব দিয়েচেন।</p>
+<p>কৈ দেখি, দেখি, বলিয়া মা সেখানি যেন কাড়িয়া লইলেন। কিন্তু পরক্ষণেই অসহ্য আগ্রহ দমন করিয়া চিঠিখানা দুই মুঠার মধ্যে লইয়া চুপ করিয়া বসিয়া রহিলেন। একবার মনে করিলেন, খুলিয়া পড়ি। আবার ভাবিলেন, না, উচিত নয়। মেয়ে যেন হাতেই দিয়েছে, কিন্তু মা হইয়া তিনি পরিবেন কি করিয়া! মৃদুস্বরে জিজ্ঞাসা করিলেন, কি লিখেচে অতুল?</p>
+<p>জ্ঞানদা ইতিমধ্যে পাশ ফিরিয়া শুইয়াছিল। সংক্ষেপে কহিল, আসা উচিত ছিল না—এই-সব। পত্রের এই দুটি কথা শুনিয়াই মায়ের দুই চক্ষে জল আসিয়া পড়িল। তিনি মনে মনে আবৃত্তি করিলেন, আসা উচিত ছিল না—এই সব। অতুলের মুখখানি স্মরণ করিয়া, তাহাকে অসংখ্য আশীর্বাদ করিয়া দুর্গা মাতৃস্নেহে বিগলিত হইয়া মনে মনে বলিলেন, না জানি, বাছার কতই না অভিমান, কতই না মর্মান্তিক ব্যথা, এই দুটি কথার মধ্যে লুকান আছে। এখানে আসিয়া জ্ঞানদা জ্বরে পড়িয়াছে—তাহাতেই ত বাছা সেদিন রাগ করিয়া বলিয়াছিল—ইহাদের গঙ্গাযাত্রা দেখিতে কলিকাতা হইতে আসিয়াছি। সত্যই ত!—আমি নিজে যাই করি এবং যেখানেই যাই, সে আলাদা কথা। কিন্তু মেয়ে লইয়া আমার যে কোনমতেই আসা উচিত ছিল না। যতই কষ্ট হোক, সব সহ্য করিয়াই ত সেখানে আমাদের পড়িয়া থাকা উচিত ছিল। কাগজখানি অপূর্ব মমতার সহিত মুঠার মধ্যে নাড়াচাড়া করিতে করিতে কত কথাই আজ তাঁহার মনে পড়িতে লাগিল। স্বামীর মৃত্যুশয্যায় অতুলের প্রতিজ্ঞা—সেই চুড়ি দু’গাছি দিবার ছলে মহাপ্রসাদ লইয়া আসা, বিশেষ করিয়া আসিবার দিনটায় মাসির সহিত তাহার কলহ। এ-কথা তাহার মা শুনিয়াছেন, পাড়ার লোকে শুনিয়াছে—এতদিনে সবাই জানিয়াছে কেন সে কলিকাতা হইতে ছুটিয়া আসিয়াছিল। আনন্দে গর্বে তাঁহার মাতৃবক্ষ পরিপূর্ণ হইয়া উঠিল। মনে মনে বলিলেন, কালো মেয়ে! আমার কালো মেয়ের গৌরব দেখুক সবাই! ওরে কোকিলও কালো, ভোমরাও কালো যে! ডাকিলেন—জ্ঞানদা, এখন কেমন আছিস মা?</p>
+<p>ভাল আছি মা।</p>
+<p>হাঁ রে, আমার কথা অতুল কিছু লিখেচে?</p>
+<p>পড়ে দেখ না।</p>
+<p>কৌতূহল আর তিনি সামলাইতে পারিলেন না। জানালার কাছে কাগজখানি মেলিয়া ধরিলেন। অতবড় কাগজের মধ্যে মাত্র দুইছত্র লেখা দেখিয়া প্রথমটা তাহার মনে হইল, মেয়ে কি দিতে, হয়ত কি দিয়াছে। পরক্ষণেই ‘শ্রীচরণেষু’ পাঠ দেখিয়া মনে মনে হাসিয়া বলিলেন, তাইতেই পড়তে দিয়েছে—এ যে আমারই চিঠি। লেখা আছে—“সেই সময়েই বলিয়াছিলাম, ও জায়গা ম্যালেরিয়ার ডিপো। জ্ঞানদার জ্বর শুনিয়া দুঃখিত হইলাম—আশা করি, শীঘ্র আরোগ্য হইয়া যাইবে। আমরা ভাল আছি। আমার প্রণাম গ্রহণ করিবেন।” ইতি—</p>
+<p>দুর্গার কথাটা জিজ্ঞাসা করিতে একটু বাধিল, কিন্তু মায়ের প্রাণ—না জিজ্ঞাসা করিয়াও থাকিতে পারিলেন না; কাছে বসিয়া মেয়ের রুক্ষ চুলগুলি আঙুল দিয়া নাড়িতে নাড়িতে আস্তে আস্তে বলিলেন, হাঁ মা, তোমার চিঠিটার মধ্যে বুঝি অতুল রাগ করেচে? জ্ঞানদা বিস্মিত হইয়া মুখ ফিরাইয়া কহিল, আমার চিঠি আবার কোথায় মা? তোমাকেই তো লিখেছেন। দুর্গা একটুখানি হাসিয়া বলিলেন, আমি দেখতে চাই না, শুনলেই সুখী। রাগ করেচে, সে ত আমি বুঝতেই পারচি—</p>
+<p>না মা, আমাকে তিনি আলাদা চিঠিপত্র কিছুই লেখেন নি। যা লিখেছেন, তা ওই। বলিয়া মেয়ে পুনরায় পাশ ফিরিয়া শুইল।</p>
+<p>সবে দু’ছত্র? আর কোন কথা নেই? বলিয়া দুর্গা স্তব্ধ হইয়া গেলেন। তাঁহার যে আঙুলগুলা এতক্ষণ মেয়ের চুলের মধ্যে নানাপ্রকার বিচিত্র গতিতে বিচরণ করিয়া ফিরিতেছিল, সেগুলাও যেন হাড়ের মত শক্ত হইয়া উঠিল; এইভাবে অনেকক্ষণ নিঃশব্দে বসিয়া থাকিয়া তিনি উঠিয়া গেলেন।</p>
+<p>আবার দিন কাটিতে লাগিল।</p>
+<h2>অরক্ষণীয়া – ০৫</h2>
+
+<p>প্রথম অগ্রহায়ণের শীতের বাতাস বহিতেছিল। দুর্গার এক ছেলেবেলার সাথী বাপের বাড়ি আসিয়াছিল। আজ দুপুরবেলা মেয়েকে একটু ভাল দেখিয়া দুর্গা তাহার সহিত দেখা করিতে বাহির হইয়াছিলেন। পথে ডাক-পিয়নের সাক্ষাৎ পাইয়া ডাকিয়া বলিলেন, হাঁ দাশু, আমার নামের চিঠিপত্র পাচ্ছিনে কেন?</p>
+<p>দাশু হাসিয়া কহিল, চিঠি না এলে কি করে পাবে, দিদিঠাকরুন?</p>
+<p>দুর্গা সন্দিগ্ধস্বরে বলিলেন, আমার কিংবা আমার মেয়ে জ্ঞানদা দেবী—কারু নামেই কি চিঠি আসে না?</p>
+<p>দাশু কহিল, এলে ত আমিই দিয়ে যেতাম দিদিঠাকরুন?</p>
+<p>দুর্গা বলিলেন, না দাশু তোমার ব্যাগটা একটু ভাল করে দেখো—আসতেও পারে। তিন-তিনখানা চিঠির জবাব দেবে না,—আমার অতুল ত তেমন ছেলে নয়।</p>
+<p>দাশু বৃথা পরিশ্রম না করিয়া কহিল, না দিদি, নেই—এলেই পাবে। বলিয়া যাইতে উদ্যত হইলে দুর্গা বাধা দিয়া বলিলেন, হাঁ দাশু, এমনও ত হতে পারে—তোমার পোস্টাফিসেই পড়ে আছে—পোস্টমাস্টার আমাদের নাম জানে না। হয়ত বা টেবিলের তলায় ঘোঁজে- ঘাঁজে কোথাও পড়ে গেছে, তোমরা কেউ দেখতে পাওনি। আমাকে ত এখানে সবাই জানে, আমি নিজে গিয়ে কি একবার খুঁজতে পারিনে?</p>
+<p>ব্যাকুলতা দেখিয়া দাশু সদয়চিত্তে কহিল, কেন পারবে না দিদিঠাকরুন—কিন্তু সে মিছে খোঁজা হবে। আচ্ছা, আমি গিয়ে আজ একবার খুঁজে দেখব। যদি পাই দিয়ে যাবো। বলিয়া সে আর সময় নষ্ট না করিয়া চলিয়া গেল।</p>
+
+<p>দুর্গা ঠাকুর-দেবতার চরণে বিশ্বের ঐশ্বর্য মানত করিতে করিতে চলিলেন—হে মা দুর্গা, হে মা কালী, একখানি চিঠিও যেন খুঁজে পাওয়া যায়। জ্ঞানদার এত বড় অসুখ শুনিয়াও সে উত্তর লিখিবে না—এ কি কোনমতেই বিশ্বাস করা যায়! সে নিশ্চয় লিখিয়াছে; কিন্তু কোথাও গোলমাল হইয়া গেছে।</p>
+<p>হায় রে মানুষের আশা! শত কোটি সম্ভব-অসম্ভব জল্পনা-কল্পনার মধ্যে এ কথাটা একবারও দুর্গার মনে উদয় হইল না যে, ইতিমধ্যে অতুলের মনের গতি বদলাইয়া যাইতেও পারে। একবারও ভাবিলেন না—অতুলের যে কামনা একদিন একান্ত সঙ্গোপনে সম্পূর্ণ আবরণের অন্তরে, শুধু নির্বিবাদেই বাড়িয়া উঠিতে পাইয়াছিল, তাহাকে এমন অসময়ে এতবড় অনাবৃত প্রকাশ্যতার মাঝখানে টানিয়া আনিলে, সে চক্ষের পলকে শুকাইয়া যাইতে পারে! এখন শত বিরুদ্ধ-শক্তি সজাগ হইয়া তাহাকে মুহূর্তের মধ্যে চাপিয়া মারিতে পারে! মানুষ এমনিই অন্ধ!</p>
+<p>দুর্গা একটু সকাল সকাল বাড়ি ফিরিয়া মেয়ের ঘরে ঢুকিয়া প্রথমেই প্রশ্ন করিলেন, হাঁ রে জ্ঞানদা, দাশু কোন চিঠিপত্র দিয়ে গেছে কি?</p>
+<p>মেয়ে কুণ্ঠিতস্বরে কহিল, না মা।</p>
+<p>আজ দুই মাস হইতে উপর্যুপরি তিনখানি পত্রের জবাব আসিতেছে না। দুর্গা সংশয়ক্ষুব্ধ কণ্ঠে কহিলেন, তুই হয়ত ঘুমিয়ে পড়েছিলি। তোর সাড়া না পেয়ে দাশু হয়ত ফিরে গেছে। আমি বাড়িতে নেই—একদিন একটুখানি কি জেগে থাকতে পারিস নে বাছা? বলিয়া দুর্গা মুখ ভার করিয়া চলিয়া গেলেন। জ্ঞানদা চুপ করিয়া রহিল। সে ঘুমায় নাই, জাগিয়াছিল বলিয়া তর্ক করিল না। মায়ের কাছে প্রত্যহ একই প্রশ্নের একই উত্তর দিতে দিতে সে নিজের লজ্জায় নিজেই মাটির সঙ্গে মিশিয়া যাইতেছিল।</p>
+<p>দুর্গা তৎক্ষণাৎ ফিরিয়া আসিয়া দ্বারের বাহির হইতে কহিলেন, কেন দাশু যে আমাকে বললে, সে খুঁজে এনে দিয়ে যাবে? আজ কেমন করিয়া যেন তাঁহার নিশ্চয় বিশ্বাস হইয়াছিল, অতুলের চিঠিপত্র আসিয়াছেই।</p>
+<p>মেয়ে কথা কহিল না—একটা মলিন কাঁথার মধ্যে মুখ লুকাইয়া পড়িয়া রহিল। কিন্তু দুর্গা এইখানেই থামিতে পারিলেন না। তিনি ভ্রাতুষ্পুত্রকে পোস্টাফিসে পাঠাইয়া খবর লইয়া জানিলেন, দাশু আসে নাই।</p>
+<p>পরের তিন-চারি দিন তিনি পত্রের প্রত্যাশায় অহোরাত্র যেন কণ্টকশয্যায় বসিয়া কাটাইলেন—তথাপি কিছু আসিল না। অবশেষে হতাশ হইয়া অতুলের জননীকে চিঠি লিখিলেন। তিনি প্রত্যুত্তরে সংক্ষেপে জানাইলেন, অতুল ভাল আছে এবং কলিকাতার বাসায় থাকিয়া পূর্ববৎ লেখাপড়া করিতেছে। তাঁহার চিঠির মধ্যে একটা তাচ্ছিল্যের সুরই যেন দুর্গার কানে বাজিল। এমনি করিয়া অঘ্রান গেল, পৌষ গেল, কিন্তু অতুলের চিঠি আসিল না। মাঘের মাঝামাঝি মেয়ে যদিবা একটু সারিয়া উঠিল, মা অসুখে পড়িলেন। এতবড় নিরাশার আঘাত তিনি সহ্য করিতে পারিলেন না। তা ছাড়া, বৌয়ের প্রতি তাঁহার বিদ্বেষের আর যেন অন্ত ছিল না। তাহার উল্লেখ করিতে হইলেই, ঘৃণাভরে কখনো বা ‘পোড়া কাঠ’ কখনো বা ‘তাড়কা’ বলিতেন এবং যত দিন যাইতে লাগিল, ঘৃণা যেন অপরিসীম হইয়া উঠিতে লাগিল। তাহার আরও একটা কারণ এই ছিল,—‘পোড়া কাঠ’ নিজের ধরনে জ্ঞানদাকে তাহার স্বাভাবিক মাধুর্যের জন্যই বোধ করি ভালবাসিয়াছিল, যত্নও করিত। কিন্তু এই যত্নের মধ্যে একটা উৎকট স্বার্থের গন্ধ পাইয়া দুর্গা বিষের জ্বালায় জ্বলিতে লাগিলেন। বড় দুঃখের দেহ, তাই অনেক সহিয়াছিল; কিন্তু আর সহিল না। মাঘের শেষে তিনি শয্যা আশ্রয় করিলেন। মেয়ে কাঁদিয়া বলিল, আর না মা, এইবার বাড়ি চল। যা হবার সেইখানেই হোক।</p>
+
+<p>দুর্গা রাজি হইলেন। তাঁহার সম্মতির এখন আর কোন বিশেষ কোন কারণ ছিল না; শুধু এই ‘পোড়া কাঠে’র যত্ন ও আত্মীয়তা হইতে বাহির হইবার জন্যই মন যেন তাঁহার অহরহ পালাই পালাই করিতে লাগিল।</p>
+<p>যাত্রার উদ্যোগ হইতেছে শুনিয়া শম্ভু বাঁকিয়া বসিলেন। তখন সকাল সাতটা-আটটা, শম্ভু সন্ধ্যা-আহ্নিক সারিয়া খটখট শব্দে বাহিরে আসিয়া ডাকিলেন, দুর্গা!</p>
+<p>দুর্গা দাওয়ার একপ্রান্তে খুঁটি ঠেস দিয়া মুখ ধুইতেছিলেন। জ্ঞানদা কাছে বসিয়া সাহায্য করিতেছিল। দাদার আহ্বানে দুর্গা সাড়া দিলেন।</p>
+<p>শম্ভু কহিলেন, এখন ত তোমার যাওয়া হতে পারে না।</p>
+<p>কেন দাদা?</p>
+<p>কেন দাদা! আমি কি তোমার জন্যে কথা দিয়ে মিথ্যাবাদী হব নাকি? সে জন্ম আমার নয়। কথাটা না জানিয়াও দুর্গার বুকের ভিতরে তোলপাড় করিতে লাগিল। মৃদুকণ্ঠে জিজ্ঞাসা করিলেন, কিসের কথা, দাদা?</p>
+<p>শম্ভু কহিলেন, গেনির বিয়ের। আর ত আমি রাখতে পারিনে—কাজেই আমাদের নবীনের সঙ্গেই সামনের পাঁচুই ফাগুনে কথাবার্তা পাকা করে ফেলতে হ’ল। এদিকে গয়নাগাটিও মন্দ দেবে না বলচে। দেখতে শুনতে সবদিকেই ভাল হবে, দেখলাম কিনা।</p>
+<p>খবর শুনিয়া দুর্গার মাথায় বাজ ভাঙ্গিয়া পড়িল। কাঁদ-কাঁদ হইয়া কহিলেন, আমাকে না বলে কেন কথা দিলে, দাদা? এ বিয়ে ত আমি প্রাণ থাকতে দিতে পারব না।</p>
+<p>শম্ভু ক্রুদ্ধ হইয়া কহিলেন, পারব না বললেই হবে? আমি মামা—আমি যা বলব, তাই হবে। তোর জন্যে কথার নড়চড় করব, তেমন বাপে আমাকে জন্ম দেয়নি—তা জানিস?</p>
+
+<p>এইবার দুর্গা সত্যি সত্যিই কাঁদিয়া ফেলিলেন; কহিলেন, না দাদা, মেয়ের বিয়ে এখানে আমি মরে গেলেও দেব না—আমার জন্যে তুমি এতটুকু ভেব না দাদা—কণ্ঠ রুদ্ধ হইয়া কথাটা তিনি শেষ করিতেই পারিলেন না ৷</p>
+<p>শম্ভু এই কান্না দেখিয়া মহাবিরক্ত হইয়া দাঁত খিঁচাইয়া কহিলেন, শুভকর্মে মিছে কাঁদিস নে ভ্যানভ্যান করে। যা হবার নয়, যা পারব না—</p>
+<p>রঙ্গস্থলে ‘পোড়া কাঠ’ দেখা দিলেন। দুই হাত গোবর-মাখা—বোধ করি, তখনো গোয়ালঘরের ব্যবস্থাই করিতেছিলেন। উঠানের উপর আসিয়া স্বামীকে উদ্দেশ করিয়া অকস্মাৎ ভাঙ্গা-কাঁসির মত খ্যানখ্যান করিয়া বাজিয়া উঠিলেন—বলি সুপাত্তরটি কে গা ঠাকুর? একবার শুনতে পাইনে?</p>
+<p>শম্ভু স্ত্রীর ভাবগতিক দেখিয়া বিচলিত হইলেন। কিন্তু মুখের সাহস বজায় রাখিয়া কহিলেন, যেই হোক, তোর তাতে কি?</p>
+<p>‘পোড়া কাঠ’ গোবর-মাখা হাত দু’খানা নাড়া দিয়া অর্ধেক উঠানটা যেন নাচিয়া আসিল। তেমনি সুমধুর-কণ্ঠে সমস্ত পাড়াটা সচকিত করিয়া কহিল, মামা! মামাত্বি ফলাতে এসেছেন! নবীনের সঙ্গে বিয়ে দেব! তা হলে একশ’ টাকা সুদে-আসলে শোধ যায়, না? তাই সে সুপাত্তর? আমার নিজের দাদা, আমি জানিনে? তাড়ি-গাঁজা খেয়ে পাঁচ ছেলের মা বৌটাকে আট মাস পেটের ওপর লাথি মেরে, মেরে ফেললে কিনা,—তাই অমন সুপাত্তর আর নেই? গলায় দেবার দড়ি জোটে না তোমার? ধিক! ধিক!</p>
+<p>শম্ভু ভগিনী ভাগিনেয়ীর সমক্ষে ক্রোধ সংবরণ করিতে পারিলেন না। পায়ের খড়ম হাতে লইয়া চিৎকার করিলেন, চুপ কর্‌ বলচি, হারামজাদী!</p>
+<p>‘পোড়া কাঠ’ এইবার ক্ষেপিয়া উঠিল। সে এমনি একটা ভয়ঙ্কর ভঙ্গী করিয়া চেঁচাইতে লাগিল যে, সে বস্তু চোখে না দেখিলে শুধু লেখা পড়িয়া বোঝা যায় না, কহিল, অ্যাঁ আমাকে হারামজাদী? ফের মুখে আনলে পোড়া কাঠ যদি না মুখে গুঁজে দি ত, পাঁচু ঘোষালের মেয়ে নই আমি। জোর করে বিয়ে দেবে? কেন, কে তুমি? ও এসেছে মেয়ে নিয়ে দু’দিন জুড়োতে, কেন তুমি ওকে রাতদিন ভয় দেখাবে? আঁশ-বটিটা আমার দেখে রেখো। শালা-ভগ্নীপোতের একসঙ্গে নাক-কান কেটে তবে ছাড়ব। আমার নাম ভামিনী, তা মনে রেখো।</p>
+<p>সে মূর্তির সামনে শম্ভু আর কথা কহিলেন না—ঘরে চলিয়া গেলেন।</p>
+<p>‘পোড়া কাঠ’ তখন দুর্গার পানে ফিরিয়া চাহিয়া কহিল, ও কি সোজা চামার, ঠাকুরঝি! তোমার আসা পর্যন্ত মতলব আঁটচে,—কি করে অমন সোনার প্রতিমা বাঁদরের হাতে দিয়ে ধার শোধ করে জমি খালাস করে নেবে। আবার বলে—মামা আমি!</p>
+<p>একটুখানি দম লইয়া কহিতে লাগিল, বললে তুমি মনে কষ্ট করবে, আমি বলতাম না, ঠাকুরঝি। বললাম, মেয়েটা জ্বরে মরে যায়, একটা ভাল ডাক্তার আনো। বললে, অত পয়সা নেই আমার। সম্বলের মধ্যে সম্বল, একগাছি রূপার গোট ছিল আমার, তাই বাঁধা দিয়ে আমি ডাক্তার ডেকে আনলাম—আর ও বলে কিনা যা খুশি করব—আমি মামা! মুখপোড়া। আমি বেঁচে থাকতে ভয় কি ঠাকুরঝি! আমি আজই বন্দোবস্ত করে দিচ্চি, তুমি বাড়ি গিয়ে মেয়ের বিয়ে দাও গে—দিয়ে যখন খুশি আবার এসো।</p>
+<p>দুর্গা খুঁটি ঠেস দিয়া তেমনি বসিয়া রহিলেন—তাঁহার দুই চক্ষু দিয়া কেবল ঝরঝর করিয়া জল গড়াইয়া পড়িতে লাগিল।</p>
+<p>‘পোড়া কাঠ’ কণ্ঠস্বর কিঞ্চিৎ খাটো করিয়া অদৃশ্য স্বামীকে লক্ষ্য করিয়া বলিতে লাগিল, অনাথ বলে ওর ওপর জুলুম করবে কেন, মাথার ওপর ভগবান নেই কি? আমি বলি, যা তোমার আছে, তাই নিয়ে নাড়ো-চাড়ো খাও-দাও। পরের নিয়ে নিজের পেট মোটা করব কি জন্যে? ভগবান কখনো তার ভাল করেন না।</p>
+<p>সেই দিনেই দুপুরবেলা যাত্রার সমস্ত বন্দোবস্ত ঠিক হইয়া গেল।</p>
+
+<p>গরুর গাড়িতে উঠিতে গিয়া দুর্গা ‘পোড়া কাঠে’র দু’পায়ের উপর মাথা পাতিয়া আজ সত্য সত্যই তাহা অশ্রুজলে ভিজাইয়া ফেলিলেন। কহিলেন, বৌ, বড় ভাজ তুমি, তোমাকে ত আশীর্বাদ করতে পারিনে—কিন্তু ভগবান তোমাকে যেন দেখেন। আমার জন্যে তুমি তোমার গোটছড়াটি পর্যন্ত নষ্ট করে ফেললে।</p>
+<p>‘পোড়া কাঠ’ আদ্যন্ত মাড়ী বাহির করিয়া হাসিয়া কহিল, ছাই গোটছড়া! এই বল ঠাকুরঝি, হাতে নোয়া নিয়ে স্বামী-পুত্তরের, গো-ব্রাহ্মণের সেবা করে যেন যেতে পারি। নাও, রোগা শরীরে আর দাঁড়িয়ে থেকো না—গাড়িতে উঠে বসো। গেনি, মামা-মামীর ঘরে অনেক কষ্ট পেয়ে গেলি মা; কিন্তু আবার আসিস—ভুলিস নে যেন। বলিয়া তাহার হাতের মধ্যে জোর করিয়া দুটি টাকা গুঁজিয়া দিল।</p>
+<p>গাড়ি ছাড়িয়া দিলে দুর্গা চোখ মুছিতে মুছিতে কহিলেন, না বুঝে অনেক অপরাধ তোমার চরণে করে গেলাম বৌ, সে-সব আমার মাপ করো।</p>
+<p>‘পোড়া কাঠ’ আজ আর সমস্ত মাড়ী বিকশিত করিয়া হাসিল না, বরং চট করিয়া একফোঁটা চোখের জল মুছিয়া কহিল, পোড়া কপাল! অপরাধ ত সব আমাদেরই হ’ল ঠাকুরঝি। ওলো, ও গেনি, মামা-মামীর ওপর রাগ-টাগ করিস নে যেন। আসচে বছর আম-কাঁঠালের দিনে তোর নেমন্তন্ন রইল—জামাইকে সঙ্গে করে একবার আসিস মা। বলিয়া হাতের পিঠ দিয়া আর দু’ফোঁটা চোখের জল মুছিয়া ফেলিল।</p>
+<h2>অরক্ষণীয়া – ০৬</h2>
+
+<p>সংবাদ দিবার প্রয়োজন ছিল না বলিয়াই দুর্গা চিঠি না লিখিয়াই আসিয়াছিলেন। জ্ঞানদার চেহারা দেখিয়া জ্যাঠাইমা হাসিয়াই খুন—ওলো ও গেনি, গালদুটো তোর চড়িয়ে ভেঙ্গে দিলে কে লো? ও মা, কি ঘেন্না! মাথায় টাক পড়ল কি করে লো? ও ছোটবৌ, শিগগির আয়, শিগগির আয়—আমাদের জ্ঞানদাসুন্দরীকে একবার দেখে যা। গায়ের চামড়াটাও কি তোর মামা-মামীরা ছ্যাঁকা দিয়ে পুড়িয়েচে নাকি লো? জ্ঞানদা নিরুত্তরে ঘাড় হেঁট করিয়া বসিয়া রহিল। ছোটখুড়ী আসিতেই তাড়াতাড়ি উঠিয়া প্রণাম করিয়া পায়ের ধূলা হইল।</p>
+<p>ছোটবৌ শিহরিয়া উঠিল—ইস, এ কি হয়ে গেছিস মা?</p>
+<p>জ্যাঠাইমা নিতান্ত অত্যুক্তি করিলেন না; কহিলেন, বাঁশবনের পেত্নী। অন্ধকারে দেখলে আঁৎকে উঠতে হয়। বলিয়া খিলখিল করিয়া হাসিতে লাগিলেন। আজ কিন্তু ছোটবৌ তাহাতে যোগ দিল না। সে আর যাই হউক, সন্তানের জননী ত? মেয়েটির এই কঙ্কালসার পাণ্ডুর মুখের পানে চাহিয়া তাহার মায়ের প্রাণ যেন শতধা বিদীর্ণ হইয়া গেল।</p>
+<p>কাছে বসিয়া, তাহার মাথায় মুখে হাত বুলাইয়া দিয়া, একটি একটি করিয়া রোগের কথা শুনিয়া, নিঃশ্বাস ফেলিয়া কহিল, কেন তবে তখ্‌খুনি চলে এলিনে মা! আমি ত তোদের আসতে মানা করিনি। মেজদি কোথায়?</p>
+<p>মার গাড়িতে জ্বর এসেছিল,—ঘরে শুইয়ে দিয়েছি।</p>
+<p>স্বর্ণ কহিলেন, হবে না? আমি হাজার হই বড়জা ত! অত তেজ করে চলে গেলে কি সয়?</p>
+<p>ছোটবৌ জ্ঞানদার হাত ধরিয়া তাহার মাকে দেখিবার জন্য উঠিয়া দাঁড়াইয়াছিল।</p>
+
+<p>বড়জায়ের এই নিতান্ত গায়ে পড়া কটুকথাগুলো আজ তাহার এতই বিশ্রী লাগিল যে, সে সহিতে পারিল না; কহিল, দিদি, বছর-দুই মধু-সংক্রান্তির ব্রত করো—আর-জন্মে মুখখানা যদি একটু ভাল হয়। স্বর্ণ এই অপ্রত্যাশিত মন্তব্যে ক্রোধে বিস্ময়ে হঠাৎ অবাক হইয়া গেলেন। কিন্তু পরক্ষণেই তীব্রস্বরে গর্জিয়া উঠিলেন, তবু ভাল লো ছোটবৌ, তবু ভাল। এতকাল পরেও যা হোক মেজজাকে দেখে শোকটা উৎলে উঠেচে। মাইরি, কত ঢঙই তুই জানিস।</p>
+<p>ছোটবৌ জবাব দিল না। জ্ঞানদার হাত ধরিয়া ও-বাড়ি চলিয়া গেল। কিন্তু সে যাওয়া জ্ঞানদার পক্ষে একেবারে মারাত্মক হইয়া উঠিল। কারণ তাহার ও তাহার মাতার বিরুদ্ধে স্বর্ণমঞ্জরীর এমনই ত বিদ্বেষের অবধি ছিল না; কিন্তু ছোটবৌয়ের ব্যবহারে আজিকার বিদ্বেষ তাহাকেও অতিক্রম করিয়া গেল।</p>
+
+<p>হরিপালে থাকিতে দুর্গা জ্বর আসিলে শুইয়া পড়িতেন, ছাড়িলে উঠিয়া নড়াচড়া করিতেন। সাধ্যে কুলাইলে স্নান-আহ্নিক করিয়া একবেলা একমুঠা ভাতও খাইতেন। কিন্তু এখানে আসিয়া আর একপ্রকার ঘটিল। পাড়ার মেয়েরা অহোরাত্র সহানুভূতি করিয়া দু-পাঁচদিনেই তাঁহাকে একেবারে শয্যাশায়িনী করিয়া দিল। নীলকণ্ঠ মুখুয্যেমশায়ের পরিবার মেজবৌকে দেখিতে আসিয়া একেবারে আকাশ হইতে পড়িলেন। চোখ কপালে তুলিয়া বলিলেন, এ কি করেচিস মেজবৌ, মেয়ের বিয়ে দিবি কবে? ওর পানে যে আর চাইতে পারা যায় না।</p>
+<p>দুর্গা শ্রান্ত চোখ দুটি নিমীলিত করিয়া ক্ষীণকণ্ঠে কহিলেন, কি জানি পিসিমা, কবে ভগবান মুখ তুলে চাইবেন।</p>
+<p>তা ত জানি মা। কিন্তু চেষ্টা করতে হবে ত? ভগবান ত আর বর জুটিয়ে এনে দিয়ে যাবেন না!</p>
+<p>দুর্গা আর জবাব দিলেন না।</p>
+<p>একমিনিট প্রতীক্ষা করিয়া তিনি পুনরায় কহিলেন, বলি বাপের বাড়ি গেলি, ভাই কিছু যোগাড় করে দিলে না? দেওর কি বলে?</p>
+<p>ভগবান জানেন। বলিয়া দুর্গা পাশ ফিরিয়া শুইলেন।</p>
+<p>ঘণ্টা-খানেক পরেই আদরিণী বেড়াইতে আসিয়া চৌকাঠের বাহিরে দাঁড়াইয়াই উঁকি মারিয়া কহিল, বলি এ-বেলাটায় কেমন আছ মেজবৌ?</p>
+<p>জ্ঞানদা শয্যার একপ্রান্তে বসিয়া মায়ের পায়ে হাত বুলাইয়া দিতেছিল; কহিল, জ্বর এখনো ছাড়েনি পিসিমা। দুর্গা মুখ ফিরাইয়া চাহিয়া দেখিলেন; বলিলেন, ব’সো ঠাকুরঝি।</p>
+<p>না বৌ, বেলা গেল, আর বসবো না। তা বলি কি মেজবৌ, যাকে হোক ধরে উচ্ছুগ্যু করে দাও,আর খুঁতখুঁত ক’রো না। বলতে নেই,—তখন তবুও মেয়েটার যা হোক একটু ছিরি ছিল, কিন্তু ম্যালেরিয়া জ্বরে একেবারে যেন পোড়া কাঠটি হয়ে গেছে। হ্যাঁ লা গেনি, সুমুখের চুলগুলো বুঝি উঠে গেল?</p>
+<p>জ্ঞানদা ঘাড় নাড়িয়া নীরবে নতমুখে বসিয়া রহিল। আদরিণী কণ্ঠস্বর মৃদু করিয়া কহিল,—শুনচি নাকি ও-পাড়ার গোপাল ভটচায্যি আবার বিয়ে করবে। একবার অনাথদাকে পাঠিয়ে খবরটা কেন নিলে না মেজবৌ?</p>
+<p>আচ্ছা, বলব, বলিয়া দুর্গা নিশ্বাস ফেলিয়া পুনরায় দেয়ালের দিকে মুখ ফিরাইয়া শুইলেন।</p>
+<p>এমনি করিয়া কত লোক যে কত হিতোপদেশ দিয়া গেল, তাহার সংখ্যা রহিল না। কিন্তু যাহাদের পথ চাহিয়া দুর্গা অনুক্ষণ কান খাড়া করিয়া রহিলেন, তাহারা দেখা দিল না। না আসিল অতুল, না আসিল তাহার মা।</p>
+<p>ছোটবৌয়ের দেহে দয়ামায়া ছিল; কিন্তু সে ভারী অলস, তাহাতে অন্তঃসত্ত্বা। সুতরাং স্বর্ণ জ্ঞানদাকে যখন বলিলেন, বাছা, রোগ বলে ত আর চিরকাল চলে না, তোমার মা যেন ধরলুম পারে না, কিন্তু তুমি বাপু সোমত্ত মেয়ে—সকালে কাকার ভাত দুটি কি আর রেঁধে দিতে পার না? ঘরের ভিতর হইতে ছোটবৌ কথাটা অন্যায় বুঝিয়াও চুপ করিয়া রহিল। পরের দুঃখে সে ব্যথা অনুভব করিত; কিন্তু তাই বলিয়া নিজেকে পরিশ্রম দিয়া সে দুঃখ দূর করা তাহার পক্ষে অসাধ্য।</p>
+<p>জ্ঞানদা তৎক্ষণাৎ রাজি হইয়া মৃদুকণ্ঠে বলিল, আমিই দেব জ্যাঠাইমা।</p>
+<p>যদিচ, এখনও প্রতিরাত্রেই তাহার জ্বর হইত, কিন্তু মায়ের যন্ত্রণা বাড়াইবার ভয়ে এ কথা সে প্রাণপণে গোপন করিয়া রাখিয়াছিল। ফোঁপরা নির্জীব দেহটাকে সে সকালে বিছানা হইতে যেন টানিয়া তুলিতেই পারিত না; তথাপি একবার ইতস্ততঃ করিল না—একটিবার মুখভার করিল না।</p>
+<p>দুঃখী পিতা-মাতার কন্যা হইলেও সে একমাত্র সন্তান; তাঁহাদের বড় আদরে যত্নে লালিত-পালিত হইয়াছিল। কিন্তু ছেলেবেলা হইতেই গুরুজনের আজ্ঞা—ন্যায়-অন্যায় যাই হউক—নির্বিচারে মাথা পাতিয়া লইতে, সেবা করিতে, মুখ বুজিয়া সহ্য করিতে, সংসারে বোধ করি আর তাহার জুড়ি ছিল না। কিন্তু আজ সে যে কত বড় গুরুভার মাথায় করিয়া লইল, তাহা আর কেহ না বুঝুক, ছোটবৌ বুঝিল। সুতরাং বড়জায়ের এই অত্যন্ত অন্যায় আদেশে তাহার অন্তর জ্বলিতে লাগিল, তথাপি মুখ ফুটিয়া প্রতিবাদ করিতেও তাহার সাহস হইল না—পাছে, বলিতে গেলেই পালার শর্তমত তাহাকে ভোরে উঠিয়া রাঁধিতে হয়।</p>
+<p>পরদিন যথাসময়ে কাকাকে স্নানঘরে যাইতে দেখিয়া, জ্ঞানদা ভাতের থালাটি হাতে করিয়া দিতে যাইতেছিল,—কোথা হইতে জ্যাঠাইমা হাঁ-হাঁ করিয়া ছুটিয়া আসিয়া পড়িলেন—কোথা যাস লা গেনি?</p>
+<p>জ্ঞানদা থতমত খাইয়া বলিল, কাকা স্নান করে এলেন যে!</p>
+<p>তাতে তোর কি? বলিয়া জ্যাঠাইমা চেঁচাইয়া উঠিলেন—মানা করে দিয়েচি না ভাত বেড়ে নিয়ে যেতে? তোর হাতে পুরুষমানুষ খেতে পারে লা?</p>
+<p>দুর্গা সেইমাত্র উঠিয়া ঘরের সুমুখে বসিয়াছিলেন—চেঁচামেচি শুনিয়া সভয়ে চাহিয়া রহিলেন।</p>
+<p>ছোটবৌ ঘর হইতে বাহির হইয়া জিজ্ঞাসা করিল, কি হয়েছে দিদি?</p>
+<p>স্বর্ণ কাহারো প্রতি ভ্রুক্ষেপ না করিয়া, সেই নির্বাক নিস্পন্দ মেয়েটিকে লক্ষ্য করিয়া তিরস্কার করিতে লাগিলেন—হাতে করে থালা নিয়ে গেলে কাকা খুশি হয়ে তোমাকে মাথায় করে নিয়ে নাচবে—রাজপুত্তুর এনে বিয়ে দেবে, না? এই বয়সে কি মন যোগাতেই শিখেছিস মাইরি! বলিয়া থালাটা ছিনাইয়া লইয়া চলিয়া গেলেন।</p>
+<p>দুর্গা সহস্র জ্বালায় জ্বলিয়া ক্রমশঃই অসহিষ্ণু হইয়া উঠিতেছিলেন; মেয়েকে উদ্দেশ করিয়া কাঁদিয়া কহিলেন, পোড়ারমুখী, গুরুজনের কথা শুনবি নে যদি, তোর মরণ হয় না কেন!</p>
+<p>জ্ঞানদা নীরবে রান্নাঘরে চলিয়া গেল। একবার বলিল না, এ-বিষয়ে তাহাকে কেহই নিষেধ করিয়া দেয় নাই। মুখ তুলিয়া প্রতিবাদ করিতে সে বোধ করি জানিতই না।</p>
+<p>প্রতিবাদ যে করিতে পারিত, সে ছোটবৌ। কিন্তু সে বড়জাকে চিনিত বলিয়া কথা কহিল না। বড়জা যেমন মুখরা, তেমনি আত্মমর্যাদাজ্ঞানশূন্যা। মুখের উপর তাহার সহস্র দোষ দেখাইয়া দিলেও লজ্জা পাইবে না; বরঞ্চ অধিকতর নিষ্ঠুর হইয়া যন্ত্রণা দিবে জানিয়াই, ছোটবৌ নীরবে জ্ঞানদার অনুসরণ করিয়া রান্নাঘরে আসিয়া সস্নেহে সযত্নে তাহার হাতখানি ধরিয়া কহিল, দিদির কথাটা কেন শুনিস নি মা?</p>
+<p>এতক্ষণের এত কঠোর লাঞ্ছনা সে সহিয়াছিল, কিন্তু সেই স্নেহের অনুযোগ সহিতে পারিল না। একটিবার মাত্র চোখ তুলিয়া ছোটখুড়ীর মুখের পানে চাহিয়াই সে তাহার পদতলে ভাঙ্গিয়া পড়িল—আমাকে কেউ নিষেধ করে দেয়নি খুড়ীমা, বলিয়া উচ্ছ্বসিত হইয়া কাঁদিয়া ফেলিল।</p>
+
+<p>ছোটখুড়ী কাছে বসিয়া তাহার চোখ মুছাইয়া দিল, কিন্তু কি বলিয়া যে এই মেয়েটাকে সান্ত্বনা দিবে তাহা ভাবিয়া পাইল না।</p>
+<p>এমনি করিয়া এই শ্রীহীনা হতভাগ্য অনূঢ়া কন্যার দিন কাটিতে লাগিল। ঘরে-বাইরে আত্মীয়-পর সবাই মিলিয়া অনুক্ষণ কেবল লাঞ্ছনা দিতেই লাগিল, কিন্তু পরিত্রাণ করিবার কেহ চেষ্টামাত্রও করিল না।</p>
+<h2>অরক্ষণীয়া – ০৭</h2>
+
+<p>আজকাল ধরিয়া না তুলিলে দুর্গা প্রায় উঠিতেই পারিতেন না। মেয়ে ছাড়া তাঁহার কোন উপায়ই ছিল না। তাই সহস্র কর্মের মধ্যেও জ্ঞানদা যখন-তখন ঘরে ঢুকিয়া মায়ের কাছে বসিত। আজিকার সকালেও একটুখানি ফাঁক পাইয়া, কাছে বসিয়া আস্তে আস্তে মায়ের পিঠে হাত বুলাইয়া দিতেছিল। সহসা একটা অত্যন্ত সুপরিচিত কণ্ঠস্বরে তাহার বুকের ভিতর ধক করিয়া উঠিল।</p>
+<p>দোলের দিন। ছুটির বন্ধে অতুল বাড়ি আসিয়াছিল। দুই-তিনজন পাড়ার সঙ্গী লইয়া রঙ মাখিয়া পকেট ভরিয়া আবীর লইয়া সে ‘মাসিমা’ বলিয়া উচ্চকণ্ঠে ডাক দিয়া বাড়ি ঢুকিল।</p>
+<p>দুর্গা তন্দ্রায় জাগরণে সারাদিন একপ্রকার আচ্ছন্নের মত পড়িয়া থাকিতেন। পাছে কণ্ঠস্বর কানে গেলে মা সজাগ হইয়া উঠেন, এই ভয়ে জ্ঞানদা ত্রস্ত হইয়া উঠিল। মনে মনে ইনি যে এই লোকটিরই প্রতীক্ষা করিতেছেন, তাহা সে জানিত। অথচ, তাঁহার সেই স্বাভাবিক ধৈর্য, গাম্ভীর্য, আত্মসম্মান আর যেন ছিল না। বুদ্ধি-বিবেচনাও কেমন যেন দ্রুত বিকৃত হইয়া উঠিতেছিল। তাহার যে জননী কলহের ছায়া দেখিলেও শঙ্কিত হইতেন, তিনি আজকাল ইহাতেও যেন বিমুখ নন—সে লক্ষ্য করিয়া দেখিতেছিল। সুতরাং, উভয়ের দেখা হইলেই একটা অত্যন্ত অশোভন কলহ যে অনিবার্য, এ-কথা তাহার অন্তর্যামী আজ বলিয়া দিলেন। কি করিলে যে এই বিপদ এড়াইতে পারা যায়, ভাবিয়া সে ব্যাকুল হইয়া উঠিল। পা-টিপিয়া উঠিয়া সে কপাট রুদ্ধ করিতেছিল; মা বলিলেন, জ্ঞানদা, ও অতুল কথা কইলে না?</p>
+<p>জ্ঞানদা ফিরিয়া আসিয়া বলিল, কি জানি মা তিনি ন’ন বোধ হয়।</p>
+
+<p>হাঁ, সেই বৈ কি! উঠে একবার দেখ দিকি।</p>
+<p>তর্ক করিলেই ক্রুদ্ধ হইয়া উঠিবেন—তাহা সে জানিত; তাই ধীরে ধীরে উঠিয়া গিয়া উঁকি মারিয়া দেখিবার চেষ্টা করিল; কিন্তু দেখা গেল না। শুধু বারান্দার ওধারে অনেকের মধ্যে তাঁহারও কণ্ঠস্বর তাহার কানে গেল। এইটুকু খবর লইয়াই সে ফিরিতে পারিত; কিন্তু অন্তরাল হইতে একবার তাঁহার মুখখানি দেখিয়া লইবার লোভ তাহাকে যেন ঠেলিয়া লইয়া গেল।</p>
+<p>সে নিঃশব্দে আগাইয়া আসিয়া একটা থামের আড়ালে দাঁড়াইয়া দেখিল, তিনি বড়মাসির পায়ের উপর মুঠা করিয়া আবীর দিয়া হাসিতেছেন। পাড়ার ছেলেরাও দেখাদেখি তাহাই করিতেছে।</p>
+<p>ছোটবৌ ছিল না। একটা ব্যথার মত হওয়াতে আজ সে ঘর ছাড়িয়া বাহির হয় নাই। ফিরিবে ফিরিবে করিয়াও নিজের অজ্ঞাতসারে বোধ করি জ্ঞানদার একটু বিলম্ব ঘটিয়াছিল, অকস্মাৎ বজ্রাহতপ্রায় হইয়া দেখিল, সে যে ভয় করিয়াছিল ঠিক তাই,—মা হেলিয়া-দুলিয়া সেইদিকে চলিয়াছেন।</p>
+<p>ছুটিয়া গিয়া দুই বাহু দিয়া জড়াইয়া ধরিয়া ব্যাকুলকণ্ঠে কহিল, যেয়ো না মা, ফেরো।</p>
+<p>দুর্গা চক্ষু রক্তবর্ণ করিয়া কহিলেন, কেন?</p>
+<p>কেন, জানিনে মা, তুমি ফেরো। তার ত কোন আশাই নেই মা—</p>
+<p>আমাকে ছাড়্‌ হতভাগী—ছেড়ে দে! বলিয়া অমানুষিক বলে দুর্গা নিজেকে মুক্ত করিয়া লইয়া অগ্রসর হইয়া গেলেন। জ্ঞানদা কলের পুতুলের মত তাঁহাকে অনুসরণ করিয়া পিছনে গিয়া দাঁড়াইল। সবাই আশ্চর্য হইয়া চাহিয়া দেখিল—মেজবৌ।</p>
+<p>তাঁহার সেই কঙ্কালসার মুখমণ্ডলে ক্ষুধিত ব্যাঘ্রের দৃষ্টি ছিল। সে দুটা জ্বলন্ত চক্ষুর পানে চাহিয়া অতুল সভয়ে দৃষ্টি অবনত করিল।</p>
+<p>দুর্গা বলিলেন, অতুল, আমরা তোমার কি করেছিলাম যে, এমন করে আমাদের সর্বনাশ করলে?</p>
+<p>অতুল জবাব দিবে কি, অপরাধের ভারে ঘাড় তুলিতেই পারিল না।</p>
+<p>সেই কাজটা করিলেন স্বর্ণ। হৃদয় বলিয়া তাহার ত কোন বালাই ছিল না; তাই অতি সহজেই মুখ তুলিয়া কহিলেন, কেন, কি সর্বনাশ করেচে শুনি?</p>
+<p>দুর্গা বলিলেন, তোমাকে তার কি জবাব দেব, দিদি, যাকে বলচি সেই জানে সে কি করেচে।</p>
+<p>স্বর্ণ কহিলেন, আমরাও ঘাস খাইনে মেজবৌ, কিন্তু, ও কি তোমার মেয়েকে বিয়ে করবে বলে লেখাপড়া করে দিয়েছিল যে, এত লোকের মাঝখানে তেড়ে এসেচ? যাও, ঘরে যাও—পাল-পার্বণ আমোদ-আহ্লাদের দিনে আমার বাড়িতে বসে অনাছিষ্টি কাণ্ড ক’রো না।</p>
+<p>অনাছিষ্টি কাণ্ড আমি করতে আসিনি দিদি। বলিয়া অতুলের পানে চাহিয়া বলিলেন, যে করে আমাদের এই একটা বছর কেটেছে অতুল, সে তুমি জান না—কিন্তু ভগবান জানেন। কিন্তু, এই যদি তোমার মনে ছিল, কেন তাঁর মরণকালে আশা দিয়েছিলে? কেন তুমি তখনি জানালে না?</p>
+<p>স্বর্ণ রুখিয়া উঠিয়া কহিলেন, বাছাকে তুমি ভগবান দেখিয়ো না বলচি, মেজবৌ ভাল হবে না। আমারা বেঁচে থাকতে কথা দেবার কর্তা ও নয়।</p>
+<p>এত লোকের সমক্ষে অতুল নিজেকে অপমানিত বোধ করিতেছিল; মাসির জোর পাইয়া কহিল, আমি কি নিজে বিয়ে করব বলে কথা দিয়েছিলাম? আমার পা ছাড়ে না—পায়ের উপর পড়ে মাথা খুঁড়তে লাগল—বাবাকে নিজের মুখের কথা দাও| করি কি? অত লোকের সামনে আমি লজ্জায় বাঁচিনে—তাই পা ছাড়াবার জন্যে যদি একটা কৌশল করে থাকি, তাকে কি কথা দেওয়া বলে?</p>
+
+<p>স্বর্ণ খিলখিল করিয়া হাসিয়া কহিলেন, ওমা কি ঘেন্নার কথা অতুল,—তুই বলিস কি রে? ছুঁড়ি নিজে পায়ে ধরে বলে—আমায় বিয়ে কর? অ্যাঁ?</p>
+<p>অতুল কহিল, সত্যি কিনা, ওঁকেই জিজ্ঞাসা কর না? মেজমাসিমা নিজেই বলুন না, আমার পায়ের উপর মাথা খুঁড়তে দেখেছিলেন কিনা। নইলে ঐ মেয়েকে আমি বিয়ে করতে যাব? আমার কি মরবার দড়ি-কলসী জোটে না?</p>
+<p>অতুলের সঙ্গীরা মুখ ফিরাইয়া হাসিয়া উঠিল। দুর্গা উন্মাদের মত চেঁচাইয়া উঠিলেন, ওরে নিষ্ঠুর! ওরে কৃতঘ্ন! দড়ি-কলসী আমি কিনে দেব রে, তুই মর গে! তোর মরাই উচিত। যে মেয়েকে তুই এত লোকের সুমুখে এতবড় অপমান করলি, সেই মেয়েই যে তোকে যমের মুখ থেকে ফিরিয়ে এনেছিল রে! সব ভুলে গেলি?</p>
+<p>চিৎকার শুনিয়া ছোটবৌ ব্যথা ভুলিয়া ছুটিয়া আসিয়া দেখিল, স্বর্ণ লাফাইয়া উঠিয়াছে—তবে লো হতভাগী! বেরো আমার বাড়ি থেকে—বেরো বলচি।</p>
+<p>জ্ঞানদা দাঁড়াইয়া ছিল। কিন্তু সে অচেতন পাথর হইয়া গিয়াছিল। লজ্জা, ঘৃণা, অভিমান, অপমান, ভালমন্দ কিছুই তাহাকে স্পর্শ করিতেছিল না। এ-সমস্তরই যেন সে একান্ত অতীত হইয়াই নীরবে ফ্যালফ্যাল করিয়া চাহিয়া দাঁড়াইয়াছিল। এই অদৃষ্টপূর্ব মূর্তির প্রতি চাহিয়া ছোটবৌ সভয়ে একটা ঠেলা দিয়া ডাকিল,—জ্ঞানদা? সে ঘরের ভিতর হইতেই কলহের কিছু কিছু শুনিতে পাইয়াছিল।</p>
+<p>জ্ঞানদা জবাব দিল, কেন খুড়ীমা!</p>
+<p>আর কেন দাঁড়িয়ে মা, তোর মাকে ঘরে নিয়া যা।</p>
+<p>মা চল, বলিয়া মায়ের হাত ধরিয়া ধীরে ধীরে তাঁহাকে ঘরে লইয়া গেল।</p>
+<p>স্বর্ণ কহিলেন, দেখলি ছোটবৌ, আস্পর্ধা! একেই বলে, বামন হয়ে চাঁদে হাত।</p>
+<p>অতুল হাসিবার মত করিয়া দাঁত বাহির করিয়া কহিল, শুনলেন ছোটমাসিমা কাণ্ডটা? কি ভয়ানক লজ্জা!</p>
+<p>স্বর্ণ খনখন করিয়া বলিলেন, একফোঁটা মেয়ে,—এ কি ঘোর কলি! ছোটবৌ একটুখানি হাসিয়া কহিল,—ঘোর কলি বলেই বাঁচোয়া দিদি! নইলে আর কোন কাল হলে, মা বসুন্ধরা এতক্ষণ লজ্জায় দু’ফাঁক হয়ে যেতেন অতুল। বলিয়া ঘরে চলিয়া গেল।</p>
+<p>স্বর্ণ বিদ্রূপের তাৎপর্য না বুঝিয়া খুশি হইয়া বলিলেন, সেই কথাই ত বলচি ছোটবৌ!</p>
+<p>কিন্তু অতুলের মুখ কালো হইয়া উঠিল। ছোটবৌয়ের কথার তাৎপর্য স্বর্ণ না বুঝিলেও সে বুঝিয়াছিল। তাই খানিকক্ষণ স্তব্ধ হইয়া বসিয়া থাকিয়া যখন সে উঠিয়া গেল, তখন মনে হইল, এই হোলির দিনে কে যেন তাহার জামায় কাপড়ে লাল রঙ এবং মুখে গাঢ় কালি লেপিয়া ছাড়িয়া দিয়াছে।</p>
+<p>আসল কথাটা এতদিন অপ্রকাশ ছিল বটে, কিন্তু আর রহিল না। পাড়ার হিতাকাঙ্ক্ষিণীদের কথায় অচিরেই দুর্গার কানে গেল যে, এই বাড়িতেই অতুল আবদ্ধ হইয়াছে। অনাথেরই বড়মেয়ে মাধুরীর সঙ্গেই তাহার বিবাহ সম্বন্ধ স্থির হইয়াছে। ঘটকালি স্বর্ণ করিয়াছেন এবং মেয়ে দেখিয়া অতুলের ভারী পছন্দ হইয়াছে।</p>
+<h2>অরক্ষণীয়া – ০৮</h2>
+
+<p>মাধুরী শিশুকাল হইতেই কলিকাতায় মামার বাড়ি থাকে। মহাকালী পাঠশালায় পড়ে। ইংরাজী, বাংলা, সংস্কৃত শিখিয়াছে। গাহিতে, বাজাইতে, কার্পেট বুনিতেও জানে; আবার শিব গড়িতে, স্তোত্র আওড়াইতেও পারে। দেখিতেও অতিশয় সুশ্রী। এইবার পূজার সময় মাস-দুয়ের জন্য বাটী আসিয়াছিল; সেই সময়েই কথাবার্তা পাকা হইয়া গিয়াছে। অতুলের মত দুর্লভ পাত্র চেষ্টা করিয়া সংগ্রহ করিতে হয় নাই, পাত্র আপনিই ধরা দিয়াছে। অবশ্য স্বর্ণ মাঝখানে ছিলেন।</p>
+<p>ছোটবৌয়ের ভাইয়েরা অবস্থাপন্ন। মা বাঁচিয়া আছেন, আসন্ন-প্রসবা মেয়েকে তিনি বাড়ি লইয়া যাইবার জন্য লোক পাঠাইলেন, সঙ্গে মাধুরীও আসিল। মেজজ্যাঠাইকে সে অনেকদিন দেখে নাই, আসিয়াই প্রণাম করিতে আসিল।</p>
+<p>দীর্ঘজীবী হও মা! বলিয়া আশীর্বাদ করিয়া দুর্গা নির্নিমেষচক্ষে চাহিয়া রহিলেন। একে সে সুন্দরী, তাহাতে মামী সাজাইয়া-গুছাইয়া পাঠাইয়া দিয়াছিল। মামী কলিকাতার মেয়ে—কেমন করিয়া সাজাইয়া দিতে হয় জানে। গায়ে গুটি কয়েক বাছা বাছা স্বর্ণালঙ্কার; পরনে কোঁচানো চওড়া লালপেড়ে শাড়ি; পিঠের উপর চুল এলো করা; কপালে টিপ। চাহিয়া চাহিয়া দুর্গার চোখের পাতা আর পড়ে না। হঠাৎ একটা দীর্ঘনিশ্বাসের সঙ্গে মুখ দিয়া বাহির হইয়া আসিল—আহা! মেয়ে ত নয়—যেন স্বর্ণ-প্রতিমা! এবং সঙ্গে সঙ্গেই তাঁহার পদতলে উপবিষ্টা নিজের ঐ মলিন, শ্রীহীন মেয়েটার পানে চাহিয়া তাঁহার দু’চক্ষু সহসা যেন জ্বলিয়া গেল;—পাশ ফিরিয়া রুক্ষস্বরে কহিলেন, আর আমি মেয়ে পেটে ধরেচি যেন কাল্‌প্যাঁচা!</p>
+<p>মাধুরী ঘরে ঢুকিবামাত্রই তাহার রূপ এবং সাজসজ্জার পানে চাহিয়া জ্ঞানদা নিজেই ত হীনতার সঙ্কোচে মাটির সঙ্গে মিশিয়া গিয়াছিল। মাধুরী কহিল, দিদি, চল না, একটু গল্প করি গে।</p>
+<p>প্রত্যুত্তর জ্ঞানদা অব্যক্ত স্বরে কি কহিল, বোঝা গেল না। কিন্তু সেই শব্দটা মাত্র শুনিতে পাইয়াই দুর্গা তিক্তকণ্ঠে বলিয়া উঠিলেন, ও পোড়ামুখ লোকের সামনে আর বার করিস নে গেনি—বসে থাক। জ্ঞানদা নীরবে বসিয়া রহিল।</p>
+<p>মাধুরী চলিয়া গেলে, দুর্গা বোধ করি নিতান্তই মনের জ্বালায় বার-দুই আঃ উঃ করিলেন। জ্ঞানদা আস্তে আস্তে কহিল, কপালটা একটু টিপে দেব মা?</p>
+<p>না।</p>
+<p>ওষুধটা একবার—</p>
+<p>ওলো, না, না, না। যা, আমার বিছানা থেকে উঠে যা, হারামজাদী! তোর মুখ দেখলেও আমার সর্বাঙ্গ যেন জ্বলেপুড়ে যায়। বলিয়া পা দিয়া তিনি মেয়েকে সজোরে ঠেলিয়া দিলেন।</p>
+<p>জ্ঞানদা অনেক সহিয়াছিল; কিন্তু লাথিটা সহ্য করিতে পারিল না। নিঃশব্দে নীচে নামিয়া আসিয়া একেবারে মেঝের উপর উপুড় হইয়া পড়িল, এবং সঙ্গে সঙ্গেই তাহার দু’চক্ষের জলে মাটি ভিজিয়া গেল। দুই হাত সম্মুখে প্রসারিত করিয়া দিয়া মনে মনে বলিতে লাগিল,—ভগবান! আমি কার কাছে কি দোষ করিয়াছি যে সকলেরই চক্ষুশূল। আমার রূপ নাই, বসন-ভূষণ নাই, আমার বাপ নাই, সে কি আমার দোষ? আমার রোগগ্রস্ত এই কঙ্কালসার দেহ, এই জীর্ণ পাণ্ডুর মুখ যে একজনকে আকর্ষণ করিতে পারিল না, সে কি আমার ত্রুটি? আমার বিবাহ দিতে কেহ নাই, তবুও আমার বয়স বাড়িয়া যাইতেছে—সেও কি আমার অপরাধ? প্রভু! এতই যদি আমার দোষ, তবে আমাকে আমার বাবার কাছে পাঠাইয়া দাও—তিনি আমাকে কখনও ফেলিতে পারিবেন না|</p>
+
+<p>জ্ঞানদা! বলিয়া দুর্গা পাশ ফিরিলেন। মায়ের ডাকে সে চোখ মুছিয়া ধড়মড় করিয়া উঠিয়া বসিল।</p>
+<p>রোগা শরীর, ভিজে মাটির ওপর কেন মা? বলিয়া দুর্গা উৎকণ্ঠায় নিজেই উঠিয়া বসিলেন।</p>
+<p>ওঃ, বকেচি বুঝি মা! বলিয়া চক্ষের পলকে দুই হাত বাড়াইয়া মেয়েকে বুকের উপর টানিয়া লইয়া ফুকারিয়া কাঁদিয়া ফেলিলেন।</p>
+<p>আজ সন্ধ্যার পরে হঠাৎ অনাথ দুর্গামণির ঘরে ঢুকিয়া বিমর্ষমুখে কহিল, আজ কেমন আছ মেজবৌঠান? থাক থাক, আর উঠো না। তা—তা ওষুধপত্র কিছুই খেতে চাও না শুনলাম—অমন করলে ত আরাম হতে পারবে না!</p>
+<p>কথাটা সত্য। যদিচ ঔষধ যাহা দেওয়া হইতেছিল, তাহা না দিলেও ক্ষতি ছিল না; কিন্তু সেও তিনি একেবারে খাওয়া ছাড়িয়া দিয়াছিলেন। তাঁহার বাঁচিবার আশাও ছিল না, ইচ্ছাও ছিল না। কণ্ঠস্বর প্রতিদিন গহ্বরে ঢুকিতেছিল—খুব কাছে না আসিলে আজকাল আর শুনিতেই পাওয়া যাইত না। দেবরের আকস্মিক আত্মীয়তায় দুর্গা শঙ্কিত হইয়া উঠিলেন। তথাপি অব্যক্ত স্বরে প্রত্যুত্তরে যাহা কহিলেন, অনাথ ঘাড়টা কাত করিয়া, বিশেষ চেষ্টা করিয়া শুনিয়া, বলিলেন, সে ত সত্যি কথাই বৌঠান। বিধবা হয়ে আর বেঁচে লাভ কি,—কোন্‌ হিন্দুসন্তান এ কথার প্রতিবাদ করবে বল? তবে কিনা, আত্মহত্যাটা না করে কোনগতিকে ক’টা দিন সংসারে থাকা! তোমার আবার যে-রকম দেহের অবস্থা, তাতে এসব কথা আমার না বলাই উচিত, কিন্তু না বললেও যে নয় কিনা, তাই বলি কি, নিজেও দেখতে পাচ্চ—চেষ্টার আমি ত্রুটি করচি নে; কিন্তু কি হতভাগা মেয়ে—কোনমতেই কি একটা গাঁথচে না। ছ-সাতটা সম্বন্ধ—সব ক’টাই ভেঙ্গে গেল—মেয়ে দেখে আর কারুর পছন্দ হ’লো না।</p>
+<p>দুর্গা কিছুই বলিলেন না। একটুখানি থামিয়া অনাথ পুনরায় কহিতে লাগিল, মেজদা মরে তুমি আবার আমার সংসারে এসেছ কিনা! গোল হচ্ছে ত তাই নিয়ে। নীলকণ্ঠ মুখুয্যেকে ত চেনই—বাড়ি বাড়ি গিয়ে বেশ তালগোল পাকাচ্চে—তোমার ছুতো করে আমাকে কি করে ঠেলবে। আর, তাদের দোষই বা দিই কি করে, নিজেরাও ত মেয়ের বয়সটা দেখতে পাচ্চি! আবার তাও বলি, শহরে বাপু এত নেই—পোড়া পাড়াগাঁয়েই আমাদের যত হাঙ্গামা, যত বিচার। বলিয়া জোর করিয়া একটা দীর্ঘশ্বাস ত্যাগ করিল।</p>
+<p>দেবর যে কিসের ভূমিকা করিতেছেন, কোন্‌দিকে ইহার গতি—তাহা ধরিতে না পারিয়া দুর্গা তেমনি নিঃশব্দে চাহিয়া রহিলেন; কিন্তু শীর্ণ মুখের উপর একটা অনিশ্চিত শঙ্কার ছায়া পড়িল।</p>
+<p>একবার কাশিয়া একটু ইতস্ততঃ করিয়া অনাথ এইবার আসল কথা প্রকাশ করিল; কহিল, তোমার এ অবস্থায় সত্যিই ত আর কোথাও যাওয়া-আসা চলে না—সে আমি বলিনে; কিন্তু কি জান মেজবৌঠান—নিজের মেয়েটাও ত বিবাহযোগ্য হ’ল,—তাই আমি বলি কি জান,—সব দিক আমার বাঁচিয়ে চলা ত আবশ্যক,—আমি বলি কি—গেনিকে এ সময় আর কোথাও না পাঠালেই নয়। এ বাড়িতে আর ত তাকে রাখা যায় না। বড্ড হৈচৈ হচ্চে।</p>
+<p>দুর্গার ক্ষীণ কণ্ঠস্বর ওষ্ঠাধরের মধ্যেই যেন মিলাইয়া গেল,—কোথায় সে যাবে ঠাকুরপো?</p>
+<p>অনাথ কহিল, হরিপালেই যাক।</p>
+<p>সেখানে কি করে যাবে? গিয়েই বা কি হবে ঠাকুরপো?</p>
+<p>অনাথ এবার রুষ্ট হইল; কহিল, এ তোমার অন্যায়, মেজবৌঠান। কেবল নিজেরটি দেখলেই ত চলে না, যার সংসারে আছ—অসময়ে যে তোমাদের ঘাড়ে নিলে—তার ভালমন্দও ত চেয়ে দেখা চাই।</p>
+<p>দুর্গা জবাব দিতে পারিলেন না—শুধু একটা নিঃশ্বাস ফেলিলেন। এ নিঃশ্বাসে এইটুকু কাজ হইল যে, অনাথ গলাটা একটু কোমল করিয়া কহিতে লাগিল, এ অবস্থায় তোমার একটু কষ্ট হবে বটে, তা বুঝতে পারচি। কিন্তু উপায় কি? আর তোমার নিজের দোষও আছে, মেজবৌঠান। তোমার দাদাকে চিঠি লিখেছিলাম—তিনি ত স্পষ্টই লিখছেন—সেখানে বিয়ের সমস্ত যোগাড় হয়েছিল, তুমি শুধু একটা অসম্ভব আশায় ভুলে, রাগারাগি করে মেয়ে নিয়ে চলে এলে। তা না করলে ত আজ স্বচ্ছন্দে—</p>
+<p>স্বচ্ছন্দে যে কি হইতে পারিত, সেটা আর অনাথ খুলিয়া বলিল না। কিন্তু দুর্গা বুঝিলেন—হঠাৎ কেন সে আজ জ্ঞানদাকে বিদায় করিবার প্রস্তাব লইয়া উপস্থিত হইয়াছে। কিছুমাত্র হাঙ্গামা না পোহাইয়া, একটা পয়সা খরচ না করিয়া এই দায় হইতে নিষ্কৃতি পাইবার সন্ধান যখন তাহার মিলিয়াছে, তখন এ লোভ ত্যাগ করিবে—সে লোক অনাথ নয়।</p>
+<p>সে চলিয়া গেলে খানিক পরে কাজকর্ম সারিয়া জ্ঞানদা ঘরে ঢুকিয়া, মায়ের অবস্থা দেখিয়া ভয়ে চমকাইয়া উঠিল। তাঁহার কোটর-প্রবিষ্ট রক্তশূন্য চোখ দুটি আজ ফুলিয়া রাঙ্গা হইয়া উঠিয়াছে। মেয়েকে দেখিবামাত্রই তাঁহার ক্রন্দনের বেগ একবারে সহস্রমুখী হইয়া উঠিল। ইঙ্গিতে কাছে ডাকিয়া মেয়ের বুকে মুখ রাখিয়া মা আজ ছোট্ট মেয়েটির মত ফোঁপাইয়া ফোঁপাইয়া কাঁদিতে লাগিলেন।</p>
+<p>বহুক্ষণে কান্না যখন থামিল, তখন মেয়ে কহিল, আমাকে কি তুমি চেনো না মা যে, কেউ আমাকে তোমার কাছ-ছাড়া করতে পারে? এ ত কাকার বাড়ি নয় মা, এ আমার বাবার বাড়ি। তিনি খেতে না দেন তখন ত আর লজ্জা থাকবে না—যা করে হোক তখন তোমাকে আমি খাওয়াতে পারব মা। বলিয়া মেয়ে আজ মা হইয়া মাকে মেয়ের মত কোলে করিয়া বসিয়া রহিল। খানিক পরে মা শ্রান্তদেহে ঘুমাইয়া পড়িলেন। কিন্তু মেয়ে গভীর রাত্রি পর্যন্ত জাগিয়া থাকিয়াও স্থির করিতে পারিল না, তাহার এই ‘যা হোক’টা তখন কি হইবে। সে-দুর্দিনে মায়ের খাওয়া-পরাটা সে কেমন করিয়া কোথা হইতে সংগ্রহ করিবে!</p>
+<p>জ্ঞানদাকে বিদায় করার প্রস্তাবটা ছোটবৌ শুনিতে পাইয়া স্বামীকে নির্জনে ডাকিয়া কহিল, তোমার কি ভীমরতি হয়েচে যে, ভাজের পরামর্শে এই অসময়ে মায়ের কাছ থেকে মেয়েকে দূর করবার কথা বলে এলে? কসাই,—যাদের জবাই করাই ব্যবসা—তাদেরও তোমাদের চেয়ে দয়ামায়া আছে।</p>
+<p>যাই হোক, কাজটা নাকি একেবারেই অসম্ভব, তাই অনাথ চুপ করিয়া গেল; না হইলে এ-সকল ব্যাপারে সে স্ত্রীর বাধ্য, এতবড় দোষারোপ তাহার অতিবড় শত্রুরাও তাহার প্রতি করিতে পারিত না।</p>
+<p>কিন্তু দুর্গা হয়ত এই আসন্নকালেও মেয়ে লইয়া আর একবার হরিপাল যাইতে পারিতেন, কিন্তু সেখানে সেই যে পাত্র, যে নিজের পাঁচ-ছয়টি সন্তানের জননীকে অন্তঃসত্ত্বা অবস্থায় লাথি মারিয়া হত্যা করিয়াছে, তাহার কথা মনে হইলেই তাঁহার হৃৎকম্প উপস্থিত হইত।</p>
+<p>পরদিন অনাথকে নিজের শয্যাপার্শ্বে ডাকাইয়া আনিয়া দুর্গা তাহার হাতদুটি চাপিয়া ধরিয়া কাঁদিয়া কহিলেন, ঠাকুরপো, সম্পর্কে বড় না হলে, আজ তোমার পায়ে ধরে ভিক্ষে চাইতাম ভাই, তোমার যাকে ইচ্ছে হয় একে দাও, কিন্তু মেয়েকে এ সময়ে আমার কাছ-ছাড়া ক’র না। বলিয়া জ্ঞানদার হাতখানি তুলিয়া লইয়া তাহার কাকার হাতের উপর রাখিলেন।</p>
+<p>অনাথ হাতটা টানিয়া লইয়া বিরক্ত হইয়া কহিল, পরের দায়ে আমার জাত যায়। আমি কি চেষ্টার ত্রুটি করচি মেজবৌঠান? কিন্তু ঘাটের মড়াও যে এ শকুনিকে বিয়ে করতে চায় না। বলি, তোমার সেই বালাজোড়াটা যে ছিল, কি করলে?</p>
+<p>সে ত তোমার দাদার শ্রাদ্ধের সময়েই গেছে ঠাকুরপো।</p>
+<p>অনাথ হাতটা উল্টাইয়া কহিল, তা হলে আর আমি কি করব! একটা পয়সাও দেবে না, মেয়েও ছাড়বে না,—তার মানে, আমাকে মাথায় পা দিয়ে ডুবোতে চাও আর কি! বলিয়া রাগ করিয়া চলিয়া গেল।</p>
+
+<p>সে চলিয়া গেলে দুর্গা ক্ষণকাল স্থির থাকিয়া, অকস্মাৎ মেয়ের হাতটা সজোরে ঠেলিয়া দিয়া বলিলেন, বসে আছিস! ঘরে সন্ধ্যা দিবিনে?</p>
+<p>যে-সমস্ত আলোচনা এইমাত্র হইয়া গেল, তাহারই দহনে বোধ করি জ্ঞানদা একটুখানি অন্যমনস্ক হইয়া পড়িয়াছিল। জবাব দিবার পূর্বেই মা নিরতিশয় কঠিন হইয়া বলিয়া উঠিলেন, মরণ আর কি! রাজকন্যার মত আবার অভিমান করে বসে আছেন! হাঁ লা গেনি, এত ধিক্কারেও তোর ত প্রাণ বেরোয় না! যদু ঘোষের এক ছেলে সেদিন তিনদিনের জ্বরে ম’লো—আর এই একটা বছর ধরে তুই নিত্যি জ্বরের সঙ্গে যুঝচিস্‌, কিন্তু তোকে ত যম নিতে পারলে না! তুই বলে তাই এখনও মুখ দেখাস, আর কোন মেয়ে হলে মনের ঘেন্নায় এতদিন জলে ডুবে মরত। যা যা, সুমুখ থেকে একটু নড়ে যা শুকুনি,—একদণ্ড হাঁফ ফেলে বাঁচি। দিবারাত্রি আমাকে যেন জোঁকের মত কামড়ে পড়ে আছে। বলিয়া একটা ঠেলা দিয়া মুখ ফিরাইয়া শুইলেন।</p>
+<p>বাস্তবিক মায়ের কথাটা সত্য যে, আর কোন মেয়ে হইলে সুদ্ধমাত্র মনের ঘৃণাতেই আত্মহত্যা করিত,—এমন কত মেয়েই ত করিয়াছে,—কিন্তু এই মেয়েটিকে ভগবান যেন কোন নিগূঢ় কারণে মা বসুন্ধরার মতই সহিষ্ণু করিয়া গড়িয়াছিলেন। সে নীরবে উঠিয়া গিয়া নিয়মিত গৃহকার্যে প্রবৃত্ত হইল। এতবড় নির্দয় লাঞ্ছনাতেও মুহূর্তের জন্য আত্মবিস্মৃত হইয়া বলিল,—না মা, মরিতে আমিও জানি! শুধু তুমি ব্যথা পাইবে বলিয়াই সব সহিয়া বাঁচিয়া আছি।</p>
+<p>ঘরে প্রদীপ দিয়া গঙ্গাজল ছড়া দিয়া ধুনা দিয়া সে আর একটি ক্ষুদ্র দীপ হাতে করিয়া তুলসী-বেদীমূলে দিতে গেল। বাঙ্গালীর মেয়ে শিশুকাল হইতেই এই ছোট গাছটিকে দেবতা বলিয়া ভাবিতে শিখিয়াছে। এইখানে আসিয়া আজ আর সে কিছুতেই সামলাইতে পারিল না। গলায় আঁচল দিয়া প্রণাম করিতে গিয়া আর উঠিতে পারিল না। দুই হাত সুমুখে ছড়াইয়া দিয়া কাঁদিয়া সাষ্টাঙ্গে লুটাইয়া পড়িল।</p>
+<p>ঠাকুর! দয়াময়! এইখানে তুমি আমার বাবাকে লইয়াছ—এইবার আমার মাকে আর আমাকে কোলে লইয়া আমার বাবার কাছে পাঠাইয়া দাও ঠাকুর! আমরা আর সহিতে পারিতেছি না।</p>
+<h2>অরক্ষণীয়া – ০৯</h2>
+
+<p>চৈত্রের শেষের কয়টা দিন বলিয়া ছোটবৌয়ের বাপের বাড়ি যাওয়া হয় নাই। মাসটা শেষ হইতেই তাহার ছোটভাই তাহাকে এবং মাধুরীকে লইয়া যাইবার জন্য আসিয়া উপস্থিত হইল।</p>
+<p>আজ ভাল দিন—খাওয়া-দাওয়ার পরেই যাত্রার সময়। অতুল বাড়ি আসিয়াছিল বলিয়া স্বর্ণ তাহাকেও নিমন্ত্রণ করিয়াছিলেন।</p>
+<p>দুপুরবেলা এই দুটি যুবক আহারে বসিল, স্বর্ণ কাছে আসিয়া বসিলেন। শখ করিয়া তিনি মাধুরীর উপর পরিবেশনের ভার দিয়াছিলেন। সকালবেলা আঁশ-রান্নাটা জ্ঞানদাকে দিয়াই রাঁধাইয়া লওয়া হইত, কিন্তু তাহা গোপনে। বাহিরের কেহ জিজ্ঞাসা করিলেই স্বর্ণ অসঙ্কোচে কহিতেন, মা গো! সে কি কথা! ওকে যে আমরা রান্নাঘরেই ঢুকতে দিইনে; সুতরাং পরিবেশন করা তাহার পক্ষে একেবারে নিষিদ্ধ ছিল। তাছাড়া নিজের লজ্জাতেই সে কাহারও সাক্ষাতে বাহির হইত না—যতদূর সাধ্য ঘরের বাহিরের সকলের দৃষ্টি এড়াইয়াই সে চলিত।</p>
+<p>অতুলের সহিত মাধুরীর বিবাহ হইবে। তাই, এই সুন্দরী মেয়েটি সর্বাঙ্গে সাজসজ্জা এবং ব্রহ্মাণ্ডের লজ্জা জড়াইয়া লইয়া অপটু হস্তে যখন পরিবেশন করিতে গিয়া কেবলি ভুল করিতে লাগিল—এবং জ্যাঠাইমা সস্নেহ-অনুযোগের স্বরে, কখনো বা ‘পোড়ামুখী’ বলিয়া, কখনো বা ‘হতভাগী’ বলিয়া, হাসিয়া তামাশা করিয়া কাজ শিখাইতে লাগিলেন—তখন বিশ্বের পায়ে-ঠেলা আর একটি মেয়ে ইহারই জন্য রন্ধনশালায় নিভৃতে একান্তে বসিয়া মাথা হেঁট করিয়া সর্বপ্রকার আহার্য গুছাইয়া দিতে লাগিল।</p>
+<p>স্বর্ণ মাধুরীর বিবাহের কথা তুলিতেই সে ছুটিয়া রান্নাঘরে আসিয়া উপস্থিত হইল। জ্ঞানদা জিজ্ঞাসা করিল, কি চাই ভাই?</p>
+<p>কিছু না দিদি; আমি আর পারিনে। বলিয়া হাতের খালি থালাটা দুম করিয়া মাটিতে নিক্ষেপ করিয়া ছুটিয়া পলাইয়া গেল।</p>
+<p>পরক্ষণেই স্বর্ণ চেঁচাইয়া ডাকিলেন, একটু নুন দিয়ে যা দেখি মা। কিন্তু নুন লইবার জন্য মাধুরী ফিরিয়া আসিল না। তিনি আবার ডাকিলেন, কৈ রে—তোর ছোটমামা যে বসে আছে। তথাপি কেহ ফিরিল না। এবার তিনি রাগ করিয়া উচ্চকণ্ঠে বলিলেন,—কথা কি কারু কানে যায় না? এরা কি উঠে যাবে নাকি?</p>
+<p>তবুও যখন মাধুরী ফিরিয়া আসিল না, তখন জ্ঞানদা আর চুপ করিয়া বসিয়া থাকিতে পারিল না। ভাবিল, নুন জিনিসটা ত আর ছোঁয়া যায় না—তাই বোধ করি, এ আদেশটা তাহারই উপরে হইয়াছে।</p>
+<p>তখন মলিন শতচ্ছিন্ন পরিধেয়খানিতে সর্বাঙ্গ সতর্কে আচ্ছাদিত করিয়া লইয়া, সে নুন হাতে করিয়া ধীরে ধীরে দোরগোড়ায় আসিয়া দাঁড়াইল। ছেলে দুটি তাহাকে দেখিতে পাইল না। জ্যাঠাইমা তাহার আপাদমস্তক বার-দুই নিরীক্ষণ করিয়া মৃদু কঠোর স্বরে প্রশ্ন করিলেন, তোমাকে আনতে কে বললে? মাধুরী কৈ?</p>
+<p>জ্ঞানদা ঘরের বাহির হইতেই চুপি চুপি বলিল, কি জানি কোথায় গেল।</p>
+<p>তাই তুমি এলে? এক কথা তোমাকে কতবার মনে করিয়া দিতে হবে যে, তোমার মুখ দেখলে সাত পুরুষ নরকস্থ হয়? আমার সুমুখে তুমি এস না। ঐ যে অতুল খেতে এসেচে কিনা, তাই তোমার সামনে আসাই চাই? না? নুনের পাত্রটা ঐখানে রেখে দিয়ে যাও।</p>
+<p>পাত্রটা রাখিয়া দিয়া জ্ঞানদা চলিয়া গেল। সে শুদ্ধ এইজন্যই যাইতে পারিল যে, মা বসুন্ধরা দ্বিধা হইয়া তাহাকে গ্রহণ করিলেন না।</p>
+<p>স্বর্ণ স্বয়ং উঠিয়া নুন পরিবেশন করিলেন এবং স্বস্থানে বসিয়া অতুলের পানে চাহিয়া কহিলেন, তুই ব্যাটাছেলে, পুরুষমানুষ—তোর আবার লজ্জা কি যে ঘাড় হেঁট করে বসে আছিস! খা।</p>
+
+<p>মাধুরীর মামা প্রশ্ন করিল, ও কে দিদি?</p>
+<p>স্বর্ণ একটুখানি হাসিয়া কহিলেন, ও কিছু না—তোমরা খাও|</p>
+<p>কিন্তু অতুলের সমস্ত খাবার বিস্বাদ হইয়া গেল। লুচির টুকরা কিছুতেই যেন সে গিলিতে পারিল না। গিলিবে কি করিয়া? আজ সে মাধুরীকে দেখিয়া ভুলিয়াছে, তাহাতে ভুল নাই; কিন্তু জ্ঞানদাকেও ত সে চিনিত। এখনও জ্ঞানদা তাহাকে ভালবাসে কি ঘৃণা করে, যদিচ ঠিক জানিত না, কিন্তু একদিন সে যে তাহাকেই প্রাণাপেক্ষা ভালবাসিত তাহা ত জানে। কিন্তু তেমন দিনেও যে কখনো গায়ে পড়িয়া তাহার সুমুখে আসিবার চেষ্টা করে নাই, আজ সে যে তাহাই করিতে আসিয়াছে—এতবড় নির্লজ্জ অপবাদ সে এত সত্বর বিশ্বাস করিবে কি করিয়া?</p>
+<p>অপরাহ্নবেলায় ছোটবৌ মেয়ে লইয়া বাপের বাড়ি চলিয়া গেল। কিন্তু যাইবার সময় মেজজায়ের সহিত দেখা করিয়া গেল না। শুধু একমুহূর্তের জন্য রান্নাঘরে ঢুকিয়া জ্ঞানদার হাতে একখানি দশটাকার নোট গুঁজিয়া দিয়া, অনেকটা যেন চোরের মত পলাইয়া গেল। দাঁড়াইয়া তাহার প্রণামটা পর্যন্ত গ্রহণ করিল না।</p>
+<p>বাটীর মধ্যে শুধু এই একটা লোক,—যে এই দুর্ভাগা মেয়েটার ভিতরটা দেখিতে পাইয়াছিল—সেও আজ কি জানি, কতদিনের জন্য স্থানান্তরে চলিয়া গেল। থাকিয়াও সে যে বিশেষ কিছু করিয়াছিল তাহা নয়—ব্যথা পাওয়া এবং ব্যথা দূর করিবার জন্য সচেষ্ট হইয়া কাজ করা, এক জিনিস নয়—সকলে তাহা পারে না, তবুও ছোটখুড়ীমাকে চলিয়া যাইতে দেখিয়া নিবিড় অন্ধকারে এই মেয়েটার সমস্ত অন্তর পরিপূর্ণ হইয়া গেল।</p>
+<p>বৈশাখের মাঝামাঝি একটা দিনে অনাথের অফিস যাইবার সময় বড়বৌ মুখের উপর সংসারের সমস্ত দুশ্চিন্তা লইয়া আসিয়া দাঁড়াইলেন।</p>
+<p>অনাথ ভীত হইয়া কহিল, কি হয়েছে বৌঠান?</p>
+<p>স্বর্ণ কহিলেন, তুমি করচ কি ঠাকুরপো; মেজবৌয়ের যে হয়ে এলো!</p>
+<p>অনাথ হাতের হুঁকাটা ঠিক করিয়া রাখিয়া দিয়া পাংশু-মুখে কহিল, বল কি? কৈ আমি ত কিছু জানিনে!</p>
+<p>স্বর্ণ বলিলেন, না না, তা নয়; আজই সে মরচে না; কিন্তু বেশিদিন আর নেই, তা বলে দিচ্চি। বড় জোর দশ-পনর দিন। তার পরে ছ’মাস, একবছর ছুঁড়িটার বিয়ে দেবার জো থাকবে না—কিন্তু আমার মাধুরী-মায়ের বিয়ে আমি এই আষাঢ়ের মধ্যেই দেব—তা কারু কথা শুনব না | এমন খুঁজলে পাওয়া যাবে না। তা ছাড়া দেবার-থোবার কামড় নেই। ছেলে নিজে পছন্দ করেচে,—মা মাগী যে বলবেন—এ নেব, তা নেব, সে না হলে চলবে না—তার জো নেই| এমন সুবিধে কি আমি শেষকালে দেরি করতে গিয়ে নষ্ট করে ফেলব?</p>
+<p>অনাথ সভয়ে ঘাড় নাড়িয়া কহিল, না না, সে কি হতে পারে! তুমি হলে আমার সংসারের কর্তা-গিন্নী সমস্তই। তোমার মেয়ের বিয়ে বোনপোর সঙ্গে দেবে—যেদিন খুশি দিয়ো, যা ইচ্ছে ক’রো, আমি কখনো ত তাতে না বলব না, বৌঠান।</p>
+<p>স্বর্ণ সগর্বে বলিলেন, তা ত বলবে না, জানি। কখনো বলোওনি—আমার সে দেওর তুমি নও। তাতেই ত বলচি, এখন যা বলি কর। আর গড়িমসি ক’রো না, যাকে হোক ধরে-বেঁধে ওকে বিদায় কর। সে না করলে মাধুরীর বিয়ে কোনমতেই হতে পারবে না। এমনিই ত পাড়ার ব্যাটা-বেটীরা নানা কথা কইচে, তখন কি আবার একটা গোলমালে পড়ে যাব? মনে বেশ করে বুঝে দেখ, ও তোমারই ঘরের মড়া, ফেলবে ফ্যালো, না হয় পচা গন্ধে মরো।</p>
+<p>কথাটা অনাথ ভাবিতে ভাবিতে অফিসে গেল এবং পরদিন হইতেই ঘরের মড়া ফেলিবার জন্য ছুটাছুটি করিয়া এমন দুই-চারিজন পাত্র ধরিয়া আনিতে লাগিল, যাহাদের পরিচয় নিজের মুখে দিতে গেলে বোধ করি স্বর্ণমঞ্জরীকেও দু’বার ঢোক গিলিতে হইত।</p>
+
+<p>সেদিন দুপুরবেলা অনেক দিনের পর স্বর্ণ আসিয়া দুর্গার ঘরে ঢুকলেন—বলি, আজ কেমন আছ মেজবৌ?</p>
+<p>দুর্গা কষ্টে পাশ ফিরিয়া হাতটা একটু উলটাইয়া কহিলেন, আর থাকা-থাকি দিদি! আশীর্বাদ কর, আর যেন বেশী দিন ভুগতে না হয়।</p>
+<p>স্বর্ণ সহানুভূতির স্বরে বলিলেন, না না, ভয় কি? ভাল হয়ে যাবে বৈ কি।</p>
+<p>দুর্গা চুপ করিয়া রহিলেন, প্রতিবাদ করিলেন না। স্বর্ণ তখন কাজের কথা পাড়িলেন। কহিলেন, তা মেয়ে বড় কিনা, পাত্তরটি নেহাত ছোঁড়া হলেও ত আর মানাবে না মেজবৌ। বাপ-মা নেই, তাই নিজেই ওবেলা মগরা থেকে দেখতে আসবেন, বলে পাঠিয়েচেন—বলা বাহুল্য, বাপ-মা অমর না হইলে আর পাত্রটির ও-বয়সে তাঁহাদের বাঁচিয়া থাকা চলে না। স্বর্ণ বলিতে লাগিলেন, এখন মা-কালী করেন, মেয়ে দেখে তার পছন্দ হয়, তবেই ত ছোটঠাকুরপোর ছুটাছুটি হাঁটাহাঁটি সার্থক হয়। তার পর আবার দেনা-পাওনার কথা—তা আমি বলি কি—</p>
+<p>কথাটা শেষ না হইতেই দুর্গা আগ্রহে উঠিয়া বসিয়া ছলছল চক্ষে চাহিয়া বলিলেন, আশীর্বাদ কর দিদি, এই সম্বন্ধটি আর যেন ভেঙ্গে না যায়। আমি যেন দেখে যেতে পারি, বলিতে বলিতেই তাহার চোখ দিয়া দু’ফোঁটা জল গড়াইয়া পড়িল।</p>
+<p>স্বর্ণ বলিলেন, আশীর্বাদ করচি বৈ কি মেজবৌ, দিনরাত ঠাকুরকে জানাচ্চি,—ঠাকুর, যা হোক মেয়েটার একটা কিনারা করে দাও। তা দেখব বৈ কি মেজবৌ—আমি বলচি, তুমি জামাইয়ের মুখ দেখে তবে—</p>
+<p>দুর্গা নীরবে আঁচল দিয়া চোখ মুছিলেন। স্বর্ণ একটা হাই তুলিয়া, তুড়ি দিয়া একটু ইতস্ততঃ করিয়া কহিলেন, কাচ্চাবাচ্চার বাপ—ঐ শুনতে দেড় শ মাইনে—নইলে কিছু নেই, সব জানি ত। নিজের মেয়েটার কি করে যে দু’হাত এক করবে তাই ভেবে কাঠ হয়ে যাচ্চে। তার ওপর আবার এটি! বুঝতে সবই ত পার মেজবৌ,—তাই ঠাকুরপো বলছিল কি—লজ্জায় নিজে ত তোমাকে বলতে পারে না—বলছিল যে, তোমার অংশের বাড়িটা বাঁধা না দিলে ত আর খরচপত্রের যোগাড় হয়ে উঠবে না—তোমাকে নিজে কিছুই করতে হবে না, শুধু একটা ঢেরা-সই করে দেওয়া। শুধু হাতে কেউ ত আর ধার দিতে চায় না—পোড়া কলিকাল এমনি যে, তুমি মর আর বাঁচ, কেউ কারুকে বিশ্বাস করবে না—</p>
+<p>দুর্গা তৎক্ষণাৎ বলিলেন, আমি আর ক’দিন দিদি, তোমরা আমাকে যা করতে বলবে, আমি তাই করব। শুধু এইটুকু দেখো দিদি, ও আমার না একবারে অকূলে ভেসে যায়।</p>
+<p>না না, ভেসে যাবে কেন মেজবৌ? বাপ-খুড়ো, মা-জ্যাঠাই কি ভিন্ন? তা যদি হবে আমরাই বা কেন ওর জন্যে ভেবে ভেবে আহার-নিদ্রা ত্যাগ করব বল? আমার জ্ঞানদাও যা, মাধুরীও সেই পদার্থ। দে না মা জ্ঞানদা, তোর মায়ের চোখ দুটো মুছিয়ে। মাথায় একটু পাখা কর্‌ মা বসে। বলিয়া একাধারে আশা ও ভরসা দিয়া তিনি বাহির হইয়া গেলেন।</p>
+<p>আজ বহুদিনের পর দুর্গার মৃত্যুমলিন মুখের উপর একটা আনন্দের দীপ্তি দেখা দিল। মেয়ের হাত হইতে পাখাটা টানিয়া লইয়া, নিজে শীর্ণ হাতখানি তাহার মাথায় মুখে বুলাইয়া স্নিগ্ধকণ্ঠে কহিলেন, এইখানে শুয়ে একটু ঘুমো দিকি মা! বলিয়া জোর করিয়া নিজের বুকের কাছে টানিয়া লইয়া বলিতে লাগিলেন, এমন পোড়াকপালীর পেটে তুই জন্মেছিলি মা, যে এই বয়সেই খেটে খেটে, আর ভেবে ভেবে শরীর পাত করলি। যদি জন্মই নিয়েছিলি, ছেলে হয়ে কেন জন্মাস নি মা!</p>
+<p>অনেকদিন পর জননীর আদর পাইয়া মেয়ের দুই চোখ দিয়া নীরবে অশ্রু ঝরিয়া পড়িতে লাগিল। কিছুক্ষণের জন্য উভয়েই বোধ করি একটুখানি ঘুমাইয়া পড়িয়াছিলেন, হঠাৎ মায়ের ঠেলা খাইয়া জ্ঞানদা শশব্যস্তে উঠিয়া বসিল।</p>
+<p>ও মা, ওঠ ওঠ; বেলা যে আর নেই। আমার টিনের বাক্সটার মধ্যে বোধ করি একটুখানি সাবান আছে—যা দিকি মা, চট করে পুকুর থেকে মুখ হাত পা ধুয়ে আয়। না বাছা, ঐ তোর বড় দোষ—তুই কথা শুনতে চাসনে। বলচি, যা শিগগির।</p>
+<p>মাতার নির্দেশমত জ্ঞানদা টিনের বাক্স খুলিয়া বহুদিন পূর্বের একটুকরা সাবান বাহির করিয়া গামছা লইয়া ম্লানমুখে পুকুরে চলিয়া গেল। মা বলিতে লাগিলেন, বেশ করে একটু রোগড়ে রোগড়ে ধুস মা, তাচ্ছিল্য করিস নে, চট্‌ করে আসিস মা—বলা যায় না ত, কখন তাঁরা সব এসে পড়বেন।</p>
+<p>পুকুর হইতে ফিরিয়া আসিয়া জ্ঞানদা অবাক হইয়া গেল। মরণাপন্ন মা ইতিমধ্যে কখন বিছানা হইতে উঠিয়া কেমন করিয়া কি জানি তোরঙ্গের কাছে গিয়া, সেটা খুলিয়াছেন এবং নিজের একখানি ছোপান কাপড় এবং জামা বাহির করিয়া বসিয়া আছেন। মেয়ে আসিতেই বলিলেন, ভুল হয়ে গেল রে, মাথাটা বেঁধে দিলাম না, গা ধুয়ে এলি—তা হোক, ব’স। চট করে বেঁধে দিই।</p>
+<p>মেয়ে কাতর হইয়া বলিল, না মা, তোমার পায়ে পড়ি, তুমি পারবে না মা, শোও, আমি আপনি বেঁধে নিচ্চি। দোহাই মা তোমার।</p>
+<p>মেয়ের কথা শুনিয়া আজ মা একটুখানি হাসিলেন; ঘাড় নাড়িয়া বলিলেন, হুঃ! পারব না! জানিস গেনি, এই মেজবৌয়ের হাতে চুল বাঁধবার জন্যে পাড়ার মেয়ে ঝেঁটিয়ে আসত। আমি পারব না চুল বাঁধতে? নে, আয় দেরি করিস নে। বলিয়া জোর করিয়া কাছে বসাইয়া সযত্নে সস্নেহে স্বহস্তে পরিপাটি করিয়া, বোধ করি এই তাঁহার শেষ সাজ সাজাইয়া দিলেন।</p>
+<p>পায়ে আলতা, কপালে খয়েরের টিপ, ঠোঁটে রঙটুকু পর্যন্ত দিতে ভুলিলেন না, মুখখানি নাড়িয়া-চাড়িয়া একটি চুমা খাইয়া তাঁহার হঠাৎ মনে হইল,—কে বলে, মেয়ে আমার দেখতে ভাল নয়! একটু কালো কিন্তু কার মেয়ের এমন মুখ, এমন চোখ দুটি!</p>
+<p>এটা তিনি ধরিতে পারিলেন না যে, কার মেয়ে মাকে এমন ভালবাসে? কার এমন মা-অন্ত প্রাণ? কোন্‌ মেয়ের হৃদয়ের এতবড় ভক্তি ও ভালবাসার দীপ্তি এমন করিয়া তাহার সমস্ত কুরূপ আবৃত করিয়া বাহিরে ফুটিয়া উঠে? এ-সকল তিনি টের পাইলেন না বটে, কিন্তু মেয়ের গায়ে একখানি অলঙ্কারও পরাইতে পারেন নাই বলিয়া ইতিপূর্বে যে ক্ষোভ জন্মিয়াছিল, কেমন করিয়া কখন যেন তাহা মুছিয়া গেল। গহনার অভাব একটা ভারী অভাব বলিয়া আজ আর তাঁহার চোখে পড়িল না।</p>
+<p>তখনও অনেক বেলা ছিল, কিন্তু কোনমতেই আর তিনি শুইতে চাহিলেন না। সমস্ত দুঃখ ভুলিয়া মেয়েকে সম্মুখে লইয়া বসিয়া রহিলেন।</p>
+<p>গেনিকে দেখিতে আসিবে শুনিয়া পাশের বাড়ির নীলকণ্ঠের পরিবার আসিলেন, তরঙ্গিণী ঠাকুরঝি আসিলেন। যথাসময়ে মেয়ের ডাক পড়িল, তাঁহারা গিয়া পাশের ঘর হইতে উঁকিঝুঁকি মারিতে লাগিলেন।</p>
+<p>দৃষ্টির অন্তরালে একমাত্র উপযুক্ত সন্তানের অত্যন্ত কঠিন অস্ত্র-চিকিৎসা সম্পন্ন হইতে থাকিলে, তাহার মা যেমন করিয়া সময় কাটান, তেমনি করিয়া দুর্গা একাকী তাঁহার মলিন শয্যার উপর বসিয়া ছিলেন।</p>
+<p>পাত্র এবং ঘটকঠাকুর জলযোগাদি সমাধা করিয়া বাহির হইলেন—তিনি টের পাইলেন। তাঁহাদের ঠিকাগাড়ি ছড়ছড় ঘড়ঘড় করিয়া চলিয়া গেল—তাহাও শুনিতে পাইলেন। তার পরে তরঙ্গিণী ঠাকুরঝি ঘরে ঢুকিয়া একটা মস্ত দীর্ঘশ্বাস ছাড়িয়া জানাইলেন, নাঃ—মেয়ে পছন্দ হ’লো না।</p>
+<p>দুর্গা চোখ বুজিয়া শুইয়া পড়িলেন, একটি প্রশ্নও করিলেন না।</p>
+<p>ঠাকুরঝি করুণস্বরে কহিতে লাগিলেন, ঐ হাড়গোড়-বার-করা মেয়ে কি কারো পছন্দ হয়? বলি মেজবৌ, গেনিকে দু’দিন খাওয়াও-মাখাও, একটু তাউত কর। আমরা ছেলেবেলা থেকে দেখচি ত, এই মেয়ে কি এমনই ছিল? জ্বরে জ্বরে বাছার হাড়-পাঁজরা বার করে ফেলেচে—একটা বছর সবুর করে যত্ন-আত্তি করে দেখ দিকি, ঐ মেয়ে আবার কেমন হয়! তখন পড়তে পাবে না।</p>
+
+<p>সে ত ঠিক কথা। কিন্তু কৈ সে সুযোগ? টাকা কৈ? একটা বৎসর অপেক্ষা করিয়া তাহার অস্থিপঞ্জর ঢাকা দিবার সময় কোথায়? মেয়ে যে পনরোয় পড়িল। পিতৃপুরুষেরা প্রতিদিন যে নরকে গভীরতর কূপে নিমগ্ন হইতেছেন! বড় কুলীনের মেয়ে নয়, তাই গ্রামের লোক ‘জাতি মারিব’ বলিয়া যে অহর্নিশি চোখ রাঙ্গাইয়া শাসাইতেছে। প্রতীক্ষা করিবার আর তিলার্ধ অবসর নাই, বিদায় কর, বিদায় কর। যেমন করিয়া হোক, যাহার হাতে হোক—কাল তাহার বৈধব্য অনিবার্য জানিয়া হোক, অসহ্য দুঃখ ও চিরদারিদ্র্য চোখের উপর জাজ্বল্যমান দেখিয়া হোক, তাহাকে সঁপিয়া দিয়া জাতি-ধর্ম এবং পিতৃপুরুষের পারলৌকিক প্রাণ রক্ষা কর।</p>
+<p>তখনো ঘরে সন্ধ্যার আলো জ্বালা হয় নাই। সেই অন্ধকারে লুকাইয়া জ্ঞানদা তাহার লাঞ্ছিত সাজসজ্জা খুলিয়া ফেলিবার জন্য নিঃশব্দে প্রবেশ করিল। দুর্গা মড়ার মত পড়িয়া রহিলেন। খানিক পরে সে হতভাগ্য কঠিন অপরাধীর মতো নীরবে মায়ের পদপ্রান্তে আসিয়া যখন বসিল, জননী জানিতে পারিয়াও সাড়া দিলেন না। তার পরে তেমনি নিঃশব্দে বহুক্ষণ অপেক্ষা করিয়া অভুক্ত পীড়িত কন্যা শ্রান্তির ভারে সেইখানেই ঢলিয়া ঘুমাইয়া পড়িল। সমস্ত অনুভব করিয়াও মায়ের প্রাণে আজ লেশমাত্র দয়ার সঞ্চার হইল না।</p>
+<h2>অরক্ষণীয়া – ১০</h2>
+
+<p>দুর্গার এমন অবস্থা যে, কখন কি ঘটে বলা যায় না। তাহার উপর যখন তিনি পাড়ার সর্বশাস্ত্রদর্শী প্রবীণাদের মুখে শুনিলেন, তাঁহার প্রাপ্তবয়স্কা অনূঢ়া কন্যা শুধু যে পিতৃপুরুষদিগেরই দিন দিন অধোগতি করিতেছে তাহা নহে,—তাহার নিজেরও মরণকালে সে কোন কাজেই আসিবে না—তাহার হাতের জল এবং আগুন উভয়ই অস্পৃশ্য—তখন শাস্ত্র শুনিয়া এই আসন্ন পরলোকযাত্রীর পাংশু মুখ কিছুক্ষণের জন্য একেবারে কাগজের মত সাদা হইয়া রহিল।</p>
+<p>বহুদিন ধরিয়া অবিশ্রান্ত ঘা খাইয়া খাইয়া তাঁহার স্নেহের স্থানটা কি একপ্রকার যেন অসাড় হইয়া আসিতেছিল। যে মেয়ের প্রতি তাঁহার ভালবাসার অবধি ছিল না, সেই মেয়েকেই দেখিলে জ্বলিয়া উঠিতেছিলেন। আজ এই সংবাদ শোনার পর, তাঁহার পরলোকের কাঁটা এই মেয়েটার বিরুদ্ধে তাঁহার সমস্ত চিত্ত একেবারে পাষাণের মত কঠিন হইয়া গেল। মায়া-মমতার আর লেশমাত্র তথায় অবশিষ্ট রহিল না।</p>
+<p>অনাথকে ডাকাইয়া আনিয়া কহিলেন, ঠাকুরপো, শুনেচি নাকি ও-পাড়ার ঐ যে গোপাল ভটচায্যি, না কে, সে বুঝি আবার বিয়ে করবে। আমার মরবার আগে একবার শেষ চেষ্টা করে দেখবে না ঠাকুরপো?</p>
+<p>অনাথ কথাটা সম্পূর্ণ অবিশ্বাস করিয়া উড়াইয়া দিয়া কহিল, না না, গোপাল ভটচায্যি আবার বিয়ে করবে কি! কে তোমার সঙ্গে তামাশা করেচে, বৌঠান?</p>
+<p>দুর্গা নিশ্বাস ফেলিয়া বলিলেন, আমার সঙ্গে আর তামাশা করবে কে, ঠাকুরপো? তিনি পুরুষমানুষ ব্যাটাছেলে, তাঁদের আবার বয়সের খোঁজ কে করে? না না, ও-বয়সে অনেকে বিয়ে করে ঠাকুরপো! আমি মিনতি করচি, একবার গিয়ে তাঁর সন্ধান নাও। বেঁচে থেকে ত কিছুই পেলাম না, মরণের পরে একটু আগুনও কি পাব না?</p>
+<p>এখন ইহাই হইয়াছে তাঁহার সকল আশঙ্কার বড় আশঙ্কা। তাঁহার কেবলই মনে হইতেছে এই যে, মেয়ে পেটে ধরা, এত দুঃখে লালন-পালন করা, শেষ মুহূর্তে সমস্তই কি একেবারে নিষ্ফল হইয়া যাইবে? যাহার হাতে আগুন পাইবার জো নাই, সে মেয়ে কেন জন্মিয়াছিল?</p>
+<p>উদ্বেগে প্রায় উঠিয়া বসিয়া কহিলেন, ঠাকুরপো, যেখানে হোক, যার হাতে হোক, আমি বেঁচে থাকতে ওকে সঁপে দাও। আমি বলচি, আমার এই শেষ আশীর্বাদে তুমি রাজা হবে ঠাকুরপো।</p>
+<p>ঠাকুরপোর নিজের গরজও এ বিষয়ে কম নয়। সে সেইদিনই গোপাল ভটচায্যির খোঁজ লইতে গেল এবং কথাটা সত্য শুনিয়া খানিকক্ষণ স্তম্ভিত হইয়া রহিল, শুধু সত্য বলিয়াই নয়—ইহারই মধ্যে খবর পাইয়া চারি-পাঁচজন কন্যাভারগ্রস্ত পিতা আসিয়া তাহাকে সাধাসাধি করিয়া গিয়াছে বলিয়া।</p>
+<p>এত কষ্টের বিয়ে, তবুও যে শুনিল গোপালকে কন্যা দান করা হইবে—সে-ই ছি ছি করিল। কিন্তু জননীর তাহাতে মন টলিল না। তিনি যে এখন পরলোকের যাত্রী; সে যাত্রার পাথেয় শাস্ত্র-নির্দেশমত যেমন করিয়া হোক তাঁহার সংগ্রহ হওয়া যে নিতান্তই চাই!</p>
+<p>বাঙ্গালীর মেয়ে—কত জন্ম-জন্মান্তর ধরিয়া যে শাস্ত্রের যূপকাষ্ঠে কন্যা বলি দিয়া আসিয়াছে, আজ পিছাইয়া দাঁড়াইবে সে কি করিয়া? আবার দুঃখের উপর দুঃখ, সেই গোপাল বলিয়া পাঠাইল, সে মেয়ে দেখিয়া বিবাহ করিবে। এ পোড়া দেশে তাহারও শখ আছে এবং পাঁচটি দেখিয়া শুনিয়া বিবাহ করিবার সুযোগও আছে।</p>
+<p>গ্রীষ্মের শুষ্ক তৃণ একটা মেঘের বারিপাতেই যেমন উজ্জীবিত হইয়া উঠে, এই একটুকুমাত্র আশার ইঙ্গিতে দুর্গার মরা-আশা চক্ষের পলকে মাথাঝাড়া দিয়া উঠিল। তিনি অনাথের হাতটা ধরিয়া মিনতি করিয়া কহিলেন, ঠাকুরপো, এইটুকু ছোটভাইয়ের কাজ কর ভাই—হতভাগীর হাতের আগুনটুকু যেন শেষ সময়ে পাই। সামনের পাঁচুইটা যেন আর কোনমতেই ফসকে না যায়। তুমি বলে এস ভাই, আজকেই যেন মেয়ে দেখে কথাবার্তা পাকা করে যান।</p>
+<p>বিয়ে না হইলে মায়ের শেষ কাজটাও তাহাকে দিয়া করান হইবে না—শাস্ত্রে নিষেধ আছে—এ কথা শুনিয়া জ্ঞানদা নাওয়া-খাওয়া ত্যাগ করিল। সেও ত বাঙ্গালীর মেয়ে—তাহারও বুকের মধ্যে অবিশ্রাম যেন চিতার আগুন জ্বলিতে লাগিল।</p>
+<p>অপরাহ্নবেলায় একাকী রান্নাঘরে বসিয়া সে মায়ের জন্য পথ্য প্রস্তুত করিতেছিল,—রূপের পরীক্ষা দিবার জন্য আর একবার তাহার ডাক পড়িল।</p>
+<p>স্বর্ণ নিজে ছুটিয়া আসিয়া বলিলেন, ওলো গেনি, ওটা নামিয়ে রেখে শিগগির শিগগির আয়, তারা দেখতে এসেচে। শুধু একখানা কাপড় পড়ে আয়, তারা এমনি দেখে যাবে। বলিয়া তিনি তেমনি দ্রুতপদে চলিয়া গেলেন।</p>
+<p>অনাথ তখনও অফিস হইতে ফিরে নাই, সুতরাং আদর-অভ্যর্থনা করিবার ভার তাঁরই উপরে। দেখিতে আসিয়াছিল পাত্র নিজে এবং তাহার এক দূর-সম্পর্কীয় ভাগিনেয়। ছেলে- ছোকরাদের পছন্দ আছে বলিয়া গোপাল বুদ্ধি করিয়া তাহার এই ভাগিনেয়টিকে সঙ্গে আনিয়াছিল। ইহারই পরামর্শ মত মেয়ে যেমন আছে তেমনি দেখাইবার আদেশ হইয়াছিল,—কারণ সাজাইয়া দেখানোর মধ্যে ফাঁকি চলিতে পারে।</p>
+<p>ছেলেটি ছয়টার ট্রেনে কলিকাতায় যাইবে—সে তাড়াতাড়ি করিতে লাগিল স্বর্ণ অন্তরালে দাঁড়াইয়া গলা চাপিয়া ডাকাডাকি করিতে লাগিলেন, কিন্তু জ্ঞানদা আর আসে না।</p>
+<p>শুদ্ধমাত্র একখানা কাপড় পরিয়া আসিতে যে সময় লাগে তাহার অনেক বেশি বিলম্ব হইতেছে দেখিয়া ঝি গিয়া যখন তাহাকে টানিয়া আনিল, তখন তাহার প্রতি দৃষ্টিপাত করিয়াই জ্যাঠাইমা ক্রোধে আত্মহারা হইয়া চিৎকার করিয়া উঠিলেন, খোল এ-সব, কে বললে তোকে এমন করে সেজেগুজে আসতে? যা শিগগির খুলে আয়—</p>
+<p>যাঁহারা দেখিতে আসিয়াছিলেন, হঠাৎ এই চেঁচামেচি শুনিয়া তাঁহারা আশ্চর্য হইয়া গলা বাড়াইয়া দেখিলেন। ছেলেটি ব্যাপারটা বুঝিতে পারিয়া কহিল, তবে এমনিই নিয়ে আসুন, আমার আর দেরি করবার জো নেই।</p>
+<p>ঝি যখন তাহাকে আনিয়া সম্মুখে দাঁড় করাইল, তখন কন্যার অপরূপ সাজসজ্জা দেখিয়া ছেলেটি বহু ক্লেশে হাসি দমন করিয়া উঠিয়া দাঁড়াইল এবং কাল খবর দেব, বলিয়া মাতুলকে লইয়া প্রস্থান করিল। জলযোগের আয়োজন ছিল, কিন্তু ট্রেন মিস্‌ করিবার ভয়ে তাহা স্পর্শ করিবারও তাঁহাদের অবকাশ ঘটিল না।</p>
+<p>কাল খবর দিবার অর্থ যে কি, তাহা সবাই বুঝিল। জ্যাঠাইমা চেঁচাইয়া, গালি পাড়িয়া, চক্ষের পলকে সমস্ত পাড়াটা মাথায় তুলিয়া ফেলিলেন। মেজবৌয়ের অবস্থা ভাল নয়, অনর্থ আশঙ্কা করিয়া পাশের বাড়ির দুই-চারিজন ছুটিয়া আসিয়া পড়িল এবং ঠিক সময়েই অকস্মাৎ কোথা হইতে অতুল আসিয়া উপস্থিত হইল। সেও ছটার ট্রেনে কলিকাতায় যাইতেছিল এবং পথের মধ্যে চিৎকার শুনিয়া এই আশঙ্কা করিয়াই বাড়ি ঢুকিয়াছিল।</p>
+<p>অতুলকে দেখিতে পাইয়া স্বর্ণের রোষ শতগুণ এবং ক্ষোভ সহস্রগুণ হইয়া উঠিল। শীর্ণ, সঙ্কুচিত, ভয়ে মৃতকল্প, দুর্ভাগা মেয়েটার ঘাড়টা জোর করিয়া অতুলের মুখের উপর তুলিয়া গর্জিয়া উঠিলেন, দ্যাখ অতুল, একবার চেয়ে দ্যাখ! হতভাগী, শতেকখাকী, বাঁদরীর মুখখানা একবার তাকিয়ে দ্যাখ!</p>
+<p>বাস্তবিক তাহার মুখের পানে চাহিলে হাসি সামলানো যায় না। তাহার ঠোঁটের রঙ গালে, গালের রঙ দাড়িতে, অন্ধকার কোণে স্বহস্তে টিপ পরিতে গিয়া সেটা কপালের মাঝখানে লাগিয়াছে। রুক্ষ চুল বোধ করি তাড়াতাড়ি এক খাবলা তেল দিয়া বাঁধিতে গিয়াছিল, তখনো দুই রগ গড়াইয়া তেল ঝরিতেছে।</p>
+<p>দুই-একটা মেয়ে পাশ হইতে খিলখিল করিয়া হাসিয়া উঠিল। একজনের কোলে ছেলে ছিল, সে কহিল, গিনি পিতি থঙ থেজেচে। পিতি, এমনি কোলে জিব বার কলো—বলিয়া সে হাঁ করিয়া জিভ বাহির করিয়া দেখাইল। আর একবার সবাই খিলখিল করিয়া হাসিয়া উঠিল।</p>
+<p>মুখপোড়া ছেলে! বলিয়া তাহার মা-ও হাসিয়া ছেলের গালে একটা ঠোনা মারিলেন।</p>
+<p>কিন্তু অতুলের বুকের ভিতরটা কে যেন তপ্ত শেল দিয়া বিঁধিয়া দিল। অনেকদিন হইয়া গেছে, এমন দিবালোকে এত স্পষ্ট করিয়া সে জ্ঞানদার মুখের পানে চাহে নাই। শুধু পরের মুখে শুনিয়াছিল, রোগে বিশ্রী হইয়া গেছে। কিন্তু সে বিশ্রী যে এই বিশ্রী, তাহা সে স্বপ্নেও কল্পনা করে নাই। একদিন সাংঘাতিক রোগে নিজে যখন সে মরণাপন্ন, তখন এই মুখখানাকে সে ভালবাসিয়াছিল। চোখের নেশা নয়, কৃতজ্ঞতার উচ্ছ্বাস নয়,—অকপটে সমস্ত প্রাণ ঢালিয়াই ভালবাসিয়াছিল। আজ অকস্মাৎ যখন চোখে পড়িল, সেই মুখখানার উপরেই যম তাঁহার ডিক্রিজারি করিয়া শেষ নোটিস আঁটিয়া দিয়া গেছেন, তখন মুহূর্তের জন্য সে আত্মবিস্মৃত হইল। কি একটা বলিতে যাইতেছিল, কিন্তু স্বর্ণের উচ্চকণ্ঠে তাহা চাপা পড়িয়া গেল।</p>
+<p>অ্যাঁ, খানকীর বেহদ্দ করলি লা? একটা ঘাটের মড়া, তার মন ভুলোবার জন্যে এই সঙ সেজে এলি? কিন্তু পারলি ভুলোতে? মুখে লাথি মেরে চলে গেল যে!</p>
+<p>কে একজন প্রশ্ন করিল, কে এমন ভূত সাজিয়ে দিলে বড়বৌ? বুড়োর পছন্দ হ’ল না বুঝি?</p>
+
+<p>স্বর্ণ তাহার প্রতি চাহিয়া, তর্জন করিয়া কহিলেন,—নিজে সেজেছেন—আবার কে সাজাবে? মা ত অজ্ঞান-অচৈতন্য। বলে দিলাম, শুধু একখানি কাপড় পরে আয়। তা পছন্দ হ’ল না। ভাবলেন, সেজেগুজে না গেলে যদি বুড়োর মনে না ধরে? আর সাজের মধ্যে ত ঐ ছোপানো কাপড়খানি, আর অতুলের দেওয়া এই দু-গাছি চুড়ি। তা দিনের মধ্যে দশবার খুলে তুলে রাখচে, দশবার হাতে পরচে। কালীমুখীর ও-চুড়ি হাতে দিয়ে বার হতে লজ্জাও করে না? বেরো সুমুখ থেকে—দূর হয়ে যা—</p>
+<p>বেহায়া মেয়েটার এই নির্লজ্জ চরিত্রের সবাই সমালোচনা করিয়া, ছি ছি করিয়া চলিয়া গেল; শুধু যাঁহার কাছে কিছুই অজ্ঞাত থাকে না, সেই অন্তর্যামীর চোখ দিয়া হয়ত বা একফোঁটা জল গড়াইয়া পড়িল। তিনিই শুধু জানিলেন,—যে মেয়েটা আজন্মকাল লজ্জায় কখনো মুখ তুলিয়া কথা কহিতেই পারিত না, সে কেমন করিয়া, আজ সকল লজ্জায় পদাঘাত করিয়া নিজের ওই স্বাস্থ্য-শ্রীহীন দেহটাকে স্বহস্তে সাজাইয়া আনিয়া ঐ অতিবৃদ্ধটার পদেই ঠকাইয়া বিক্রি করিতে গিয়াছিল! কিন্তু বিক্রি হইল না—ফাঁকি ধরা পড়িল। আজ তাই সবাই ছি ছি করিয়া ধিক্কার দিয়া গেল—কেহই ক্ষমা করিল না। কিন্তু অন্তরে বসিয়া যিনি সর্বকালে সর্বলোকের বিচারক, তিনি হয়ত দুর্ভাগা বালিকার এই অপরাধের ভার আপনার শ্রীহস্তেই গ্রহণ করিলেন।</p>
+<p>জ্ঞানদা উঠিয়া দাঁড়াইল। কখনো সে পরের সমক্ষে কাঁদে নাই—আজ কিন্তু অতুলের সম্মুখে তাহার চোখ দিয়া জল পড়িতে লাগিল। অথচ, একটা কথারও কৈফিয়ত দিল না, কাহারো পানে চাহিয়া দেখিল না—নীরবে চোখ মুছিতে মুছিতে চলিয়া গেল।</p>
+<p>কলিকাতা যাইবার আর গাড়ি ছিল না বলিয়া অতুল সন্ধ্যার সময় বাড়ি ফিরিয়া গেল। পথে সব কথা ছাপাইয়া ছোটমাসির সেই শেষ কথাটাই বারংবার মনে পড়িতে লাগিল। সেদিন বাপের বাড়ি যাইবার সময় অতুলকে নিভৃতে ডাকিয়া বলিয়াছিলেন, অতুল, হীরা ফেলে যে কাঁচ আঁচলে বাঁধে, তার মনস্তাপের আর অবধি থাকে না বাবা। সেদিন কথাটা ভাল বুঝিতে পারে নাই; কিন্তু আজ তাহার যেন নিঃসংশয়ে মনে হইল, কথাটা তাহাকেই লক্ষ্য করিয়া বলা হইয়াছিল। লজ্জাহীনা বলিয়া যাহাকে আজ সবাই লাঞ্ছনা করিয়া বিদায় দিল, তাহারই লজ্জা-শরমের সীমারেখাটা যে কোন্‌খানে, আজ সে-কথাও তাহার স্মরণ হইল।</p>
+<p>তখনো ভোর হয় নাই, অনাথ ডাকিতে আসিলেন,—মেজবৌকে দাহ করিতে হইবে।</p>
+<p>চলুন যাই, বলিয়া অতুল বাহির হইয়া পড়িল। গিয়া দেখিল, দেড় বৎসর পূর্বে তুলসীমূলে পিতার পা-দুটি কোলে করিয়া যেমন বসিয়াছিল, আজও তেমনি নিঃশব্দে মায়ের পদ-দুটি কোলে লইয়া জ্ঞানদা বসিয়া আছে। শুধু একটিবার ছাড়া জীবনে কেহ কখনো তাহাকে চঞ্চল হইতে দেখে নাই––সেই যখন সে অতুলেরই পায়ের উপর পড়িয়া মাথা খুঁড়িয়াছিল। সুতরাং, তাহার এই নিবিড় নীরবতায় কেহ কিছুই মনে করিল না। সেদিকে কাহারও দৃষ্টিই ছিল না, সৎকারের উদ্যোগ-আয়োজনেই পাড়ার লোক ব্যস্ত।</p>
+<p>যথাসময়ে তাহারা মৃতদেহ লইয়া শ্মশানে যাত্রা করিল। সকলের পিছনে জ্ঞানদাও গেল। দুঃখীর মেয়ে বলিয়া পাড়ার কোন মেয়েই তাহার সঙ্গে গেল না; যাবার কথাও কাহারো মনে হইল না।</p>
+<p>বর্ষায় ভরা গঙ্গা শ্মশানের ঠিক নীচে দিয়াই খরবেগে বহিতেছিল। মায়ের শেষ কাজ মেয়ে নীরবে সাঙ্গ করিল। চিতা যখন ধুধু করিয়া জ্বলিয়া উঠিল, তখন সে পুরুষের ভিড় হইতে সরিয়া নীচে নামিয়া একেবারে জলের ধারে গিয়া বসিল। কেহই নিষেধ করিল না; কারণ, নিষেধ করিবার কিছু ছিল না। বরঞ্চ এই গভীর শোকের দৃশ্যটাকে চোখের আড়াল করিতেই সে যে নামিয়া গেল, তাহা নিশ্চয় অনুভব করিয়া মুহূর্তের সমবেদনায় অনেকেই ‘আহা’ বলিয়া নিঃশ্বাস ফেলিল।</p>
+<p>এই চিরদিন শান্ত পরমসহিষ্ণু মেয়েটি উৎকট কিছু যে করিয়া বসিতে পারে, সে ভয় কাহারও ছিল না। অতুলেরও না। তথাপি তাহাকে খরস্রোতের একান্ত সন্নিকটে গিয়া বসিতে দেখিয়া, তাহার বুকের ভিতরটা কেমন একরকম করিয়া উঠিল। একবার ভাবিল নিষেধ করে; একবার ভাবিল কাছে গিয়া দাঁড়ায়; কিন্তু লজ্জায়, কুণ্ঠায় কোনটাই পারিল না।</p>
+<p>অগ্ন্যুত্তাপ বাঁচাইয়া সবাই গিয়া যেখানে বাসিয়াছিল, অতুলও গিয়া সেখানে বসিল। সম্মুখে প্রজ্জ্বলিত চিতার পানে চাহিয়া সহসা তাহার মনের মধ্যে সেই চিরদিনের পুরানো প্রশ্ন আবার নূতন করিয়া জাগিয়া উঠিল—কাল যে ছিল, আজ সে নাই; আজও যে ছিল, তাহারও ঐ নশ্বর দেহটা ধীরে ধীরে ভস্মসাৎ হইতেছে, আর তাহাকে চেনাই যায় না; অথচ, এই দেহটাকেই আশ্রয় করিয়া কত আশা, কত আকাঙ্ক্ষা, কত ভয়, কত ভাবনাই না ছিল! কোথায় গেল? এক নিমিষে কোথায় অন্তর্হিত হইল? তবে কি তার দাম? মরিতেই বা কতক্ষণ লাগে?</p>
+<p>সহসা তাহার নিজেরই বিগত জীবন চোখের উপর ভাসিয়া উঠিল। বছর-তিনেক পূর্বে সেও ত মরিতে বসিয়াছিল, কিন্তু মরে নাই। অজ্ঞাতসারে তাহার চোখের দৃষ্টি চিতার পিঙ্গল ধূসর ধূমের তরঙ্গিত যবনিকা ভেদ করিয়া চলিয়া গেল। মনে পড়িল, সেদিন যে মরিতে দেয় নাই—সে ওই, ওই যে জাহ্নবীর ঘোলা জলে অস্পষ্ট ছায়া ফেলিয়া মূর্তিমতী শোকের মত বসিয়া আছে,––শুধু রুক্ষ কেশ ও মলিন অঞ্চল যাহার বাতাসে দুলিতেছে!</p>
+<p>তাহার দুই চক্ষু অশ্রুপূর্ণ হইয়া উঠিল। মনে মনে বলিল, ছাই রূপ! রূপেরই যদি এত দাম, তবে তিন বৎসর পূর্বে রূপের হাটে সে নিজেই ত দেউলিয়া হইয়া গিয়াছিল। সেদিন পরমাত্মীয়েরাও ত ঘৃণায় তাহার পানে চাহিতে পারে নাই!</p>
+<p>কেমন করিয়া যে সময় কাটিতেছিল, তাহার জ্ঞান ছিল না। কখন যে চিতা নিভিতেছিল, তাহাও সে দেখে নাই। সর্বক্ষণ তাহার সমস্ত দৃষ্টি শুধু ওই নিশ্চল মূর্তিটার প্রতি নিবদ্ধ হইয়া ছিল।</p>
+<p>অনাথ কহিলেন, আর বসে কেন বাবা? এসো, শেষ কাজটা শেষ করে দিই।</p>
+<p>চলুন, বলিয়া অতুল অপরাহ্নবেলায় স্বপ্ন ভাঙ্গিয়া উঠিয়া দাঁড়াইল।</p>
+<p>তখন সূর্য ঢলিয়া পড়িতেছিল। সেই ম্লান আলোকে দীপ্যমান ঘাটের উপরে নিপতিত দু’গাছি ভাঙ্গা চুড়ির উপর দৃষ্টি পড়ায় সে স্তব্ধ হইয়া দাঁড়াইল। এ সেই তাহারই দেওয়া অতি তুচ্ছ মহামূল্য অলঙ্কার।</p>
+<p>শত লাঞ্ছনা, সহস্র ধিক্কারেও যে দু’গাছির মায়া জ্ঞানদা কাটাইতে পারে নাই, আজ নিজের হাতে ভাঙ্গিয়া ফেলিয়া তাহার কৈফিয়ত দিয়াছে। অতুল দ্রুতপদে অগ্রসর হইয়া আসিয়া সেই দু’গাছি সস্নেহে, সযত্নে কুড়াইয়া লইল। অখণ্ড অবস্থায় যাহার কোন মর্যাদাই সে দেয় নাই, আজ তাহা ভগ্ন তুচ্ছ কাঁচখণ্ড হইয়াও তাহার কাছে একেবারে অমূল্য হইয়া উঠিল।</p>
+<p>পিছনে পদধ্বনি শুনিয়া জ্ঞানদা মুখ ফিরিয়া চাহিল। সে চাহনি অতুল সহ্য করিতে পারিল না। বোধ করি বা একবার সে যেন তাহার হাত ধরিতেও গেল, কিন্তু আত্মসংবরণ করিয়া বলিল,—ভুল সকলেরই হয়, জ্ঞানদা, কিন্তু—, বলিয়া সে হাতের মুঠাটা মেলিয়া ধরিতেই সায়াহ্নের আরক্ত আভায় আর একবার সেই কাঁচখণ্ডগুলি ঝকঝক করিয়া জ্বলিয়া উঠিল। কহিল, আজ যাকে তুমি ভেঙ্গে ফেলে দিয়ে এলে, আমি তাকেই আবার শ্মশান থেকে কুড়িয়ে নিয়ে এলুম।</p>
+<p>কথাটা জ্ঞানদা বুঝিতে পারিল না, তাই সে তাহার নিবিড় শোকাচ্ছন্ন উদাস দৃষ্টি অতুলের মুখের প্রতি তুলিয়া আজ অনেক দিনের পরে আবার কথা কহিল, মৃদুকণ্ঠে জিজ্ঞাসা করিল, কেন?</p>
+<p>জবাব দিতে গিয়া অতুলের দু’চক্ষু সহসা অশ্রুপূর্ণ হইয়া উঠিল। কিন্তু সামলাইয়া লইয়া বলিল, জ্ঞানো, আজ মেজমাসিমার চিতার আগুনের মধ্যে একটা জিনিস আমি স্পষ্ট দেখতে পেয়েচি, যা ভাঙ্গবার নয়, তাকে কিছুতেই জোর করে ভাঙ্গা যায় না। জোর করে কাঁচের চুড়িই ভাঙ্গা যায়, কিন্তু, আমাদের সেই দেওয়া-নেওয়াটা আজও তেমনি অটুট হয়ে আছে—তাকে ভেঙ্গে ফেলি, এত জোর তোমার আমার কারও নেই। আমি যা পারিনি, তুমিও তা পারবে না নিশ্চয় জানতে পেরেচি বলেই এই ভাঙ্গা চুড়ি বুকে করে তুলে নিয়ে বাড়ি যাচ্ছি। জ্ঞানদা হতচেতনের মত নির্নিমেষ চক্ষে চাহিয়া দাঁড়াইয়া রহিল। অতুল অকস্মাৎ দুই হাত বাড়াইয়া তাহার শীর্ণ ডান হাতখানি নিজের হাতের মধ্যে টানিয়া লইল, কিন্তু জ্ঞানদা তেমনি পাথরের মূর্তির মত স্থির হইয়াই রহিল। অতুল ক্ষণকাল নিঃশব্দে থাকিয়া অশ্রুরুদ্ধ-কণ্ঠে বলিয়া উঠিল, আমার সমস্ত পাপের গুরুদণ্ড আর যেই দিক জ্ঞানো, তুমি দেবার চেষ্টা ক’রো না। আমি যত অপরাধই করে থাকি না কেন, আমাকে তোমার ফিরে নিতেই হবে। আমাকে ত্যাগ করে শাস্তি দেবে এ সাধ্য তোমার কিছুতেই নেই।</p>
+<p>এতক্ষণে জ্ঞানদা মাথা হেঁট করিল, কিন্তু মুখ দিয়া তাহার ফুটিল না—শুধু দুর্বল শীর্ণ হাতটি অতুলের হাতের মধ্যে একবার শিহরিয়া কাঁপিয়া উঠিল। কয়েক মুহূর্ত উভয়েই স্তব্ধ হইয়া থাকিয়া অতুল হাতখানি ধীরে ধীরে ছাড়িয়া দিয়া বলিল, বাড়ি চল, তাঁরা সবাই এগিয়ে গেছেন।</p>
+
+            </div>
+
+        </div>
+    </div>
+
+        <!-- TOC nav for mobile -->
+        <nav id="toc-nav-desktop" class="hidden"></nav>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const progressBar  = document.getElementById('read-progress-bar');
+    const progressPct  = document.getElementById('progress-pct');
+    const tocDesktop   = document.getElementById('toc-nav-desktop');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+    const progressRing = document.getElementById('progress-ring-circle');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = p.currentTheme;
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    function toBN(n) {
+        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
+    }
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        if (progressPct) progressPct.textContent = toBN(pct) + '%';
+        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
+        if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
+        if (rfPage) rfPage.textContent = toBN(pct) + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+
+    // ── Footer: chapter label + seek slider ──
+    const rfSlider  = document.getElementById('rf-slider');
+    const rfPage    = document.getElementById('rf-page');
+    const rfChapter = document.getElementById('rf-chapter');
+    let rfSliderDragging = false;
+    if (rfSlider) {
+        rfSlider.addEventListener('input', () => {
+            rfSliderDragging = true;
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
+        });
+        rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
+    }
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav, isMobile) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            if (isMobile) {
+                a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+                a.addEventListener('click', closeDrawer);
+            } else {
+                a.className = 'toc-link ' + (isH1 ? 'toc-link-h1' : 'toc-link-h2');
+            }
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocDesktop, false);
+    buildToc(tocMobile, true);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+        if (rfChapter && headings[current]) rfChapter.textContent = headings[current].textContent.trim();
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme only; drawer/settings UI stays a fixed dark sheet)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+        black: { bg: '#000',     text: '#d1d5db' },
+        sepia: { bg: '#f5efe6',  text: '#3b2f1e' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? '#c0392b' : 'transparent';
+            });
+            savePrefs();
+
+            // Ad bar theme sync
+            window._pathakAdBarTheme && window._pathakAdBarTheme(m);
+        });
+    });
+
+    // ── Ad bar theme sync function (exposed globally) ──
+    window._pathakAdBarTheme = function(m) {
+        const adBar     = document.getElementById('ad-bar');
+        const adContent = document.getElementById('ad-bar-content');
+        const adDatetime= document.getElementById('ad-bar-datetime');
+        const adNotice  = document.getElementById('ad-bar-notice');
+        if (adBar)      adBar.style.background     = m.bg;
+        if (adContent)  adContent.style.background = m.bg;
+        if (adDatetime) adDatetime.style.color      = m.text;
+        if (adNotice)   adNotice.style.color        = m.text;
+    };
+
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+        // Ad bar HTML is below — expose theme for ad bar script to pick up
+        window._pathakCurrentTheme = currentTheme;
+        window._pathakThemeMap = themeMap;
+    })();
+})();
+</script>
+
+
+</body>
+</html>

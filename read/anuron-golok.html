@@ -1,0 +1,4090 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/anuron-golok.html">
+    <title>অনুরন গোলক - পাঠক ঘর</title>
+    <meta name="description" content="**"অনুরণ গোলক"** মূলত মানুষের মনস্তত্ত্ব ও মহাজাগতিক বিজ্ঞানের এক অনবদ্য মেলবন্ধন। ১৯৯৬ সালে প্রকাশিত মুহম্মদ জাফর ইকবালের এই সায়েন্স ফিকশনটি বাংলা কল্পকাহিনীর ">
+    <meta property="og:title" content="অনুরন গোলক - পাঠক ঘর">
+    <meta property="og:description" content="**"অনুরণ গোলক"** মূলত মানুষের মনস্তত্ত্ব ও মহাজাগতিক বিজ্ঞানের এক অনবদ্য মেলবন্ধন। ১৯৯৬ সালে প্রকাশিত মুহম্মদ জাফর ইকবালের এই সায়েন্স ফিকশনটি বাংলা কল্পকাহিনীর ">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e', black:'#000' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', sepia:'#3b2f1e', dark:'#e5e7eb', black:'#d1d5db' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .dark body { background: #1a1a1b; color: #e5e7eb; }
+
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.7rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+        .dark #book-content { color: #e5e7eb; }
+    
+    /* ── Book read header hero ── */
+    .book-read-header {
+        margin-bottom: 1.5rem;
+    }
+    .book-read-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.65rem;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 1.4rem 1.25rem 1.2rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .dark .book-read-box {
+        background: #2a2a2b;
+        border-color: #3a3a3b;
+    }
+    .book-read-cover {
+        width: 100px;
+        height: 136px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        object-fit: cover;
+        background: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .book-read-cover svg { opacity: 0.35; }
+    .book-read-title-link {
+        text-decoration: none;
+        display: block;
+    }
+    .book-read-title-link:hover .book-read-title { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-title-link:active .book-read-title { opacity: 0.7; }
+    .book-read-title {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #1a1a1b;
+        line-height: 1.4;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+    .dark .book-read-title { color: #f3f4f6; }
+    .book-read-author-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+    .book-read-author-link:hover .book-read-author { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-author-link:active .book-read-author { opacity: 0.6; }
+    .book-read-author {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #c0392b;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+</style>
+</head>
+<body>
+
+<style>
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    #read-progress-bar {
+        position: fixed;
+        top: 0; left: 0;
+        height: 2px;
+        width: 0%;
+        background: #c0392b;
+        z-index: 1000;
+        transition: width 0.1s linear;
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h1 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #9ca3af;
+        text-align: center;
+        margin: 0 0 0.25rem;
+        letter-spacing: 0.04em;
+    }
+    #book-content h1::after {
+        content: '';
+        display: block;
+        width: 2.8em;
+        height: 3px;
+        background: #c0392b;
+        border-radius: 2px;
+        margin: 0.4rem auto 0;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #7a2115;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid #d9a5a0;
+        border-bottom: 1px solid #d9a5a0;
+    }
+    /* Night mode heading adjust */
+    body.theme-dark  #book-content h1,
+    body.theme-black #book-content h1 { color: #6b7280; }
+    body.theme-dark  #book-content h2,
+    body.theme-black #book-content h2 { color: #f2938a; border-color: rgba(169,50,38,0.4); }
+    body.theme-dark  #book-content h1::after { background: #a93226; }
+    body.theme-black #book-content h1::after { background: #922b21; }
+    body.theme-sepia #book-content h1 { color: #a08060; }
+    body.theme-sepia #book-content h2 { color: #7a2115; border-color: rgba(160,64,48,0.35); }
+    body.theme-sepia #book-content h1::after { background: #a04030; }
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: rgba(192,57,43,0.05);
+        border: 1px solid rgba(192,57,43,0.15);
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p,
+    body.theme-black #book-content p {
+        background: rgba(169,50,38,0.1);
+        border-color: rgba(169,50,38,0.25);
+    }
+    body.theme-sepia #book-content p {
+        background: rgba(160,64,48,0.08);
+        border-color: rgba(160,64,48,0.2);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #c0392b;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #c0392b;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(192,57,43,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    .dark #book-content blockquote {
+        background: rgba(192,57,43,0.08);
+        color: #bbb;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #c0392b;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    .dark #book-content td { border-color: #3a3a3b; }
+    .dark #book-content tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(192,57,43,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: #e57373;
+        font-weight: 600;
+        background: rgba(192,57,43,0.18);
+        border-radius: 0.375rem;
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: #fff;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transition: color 0.15s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.6);
+    }
+    #toc-nav-desktop .toc-link {
+        display: block;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.375rem;
+        color: #4b5563;
+        text-decoration: none;
+        transition: background-color 0.15s, color 0.15s;
+    }
+    .dark #toc-nav-desktop .toc-link { color: #d1d5db; }
+    #toc-nav-desktop .toc-link:hover { background: #f3f4f6; }
+    .dark #toc-nav-desktop .toc-link:hover { background: #1f2937; }
+    #toc-nav-desktop .toc-link-h1 {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: #1f2937;
+    }
+    .dark #toc-nav-desktop .toc-link-h1 { color: #f3f4f6; }
+    #toc-nav-desktop .toc-link-h2 {
+        padding-left: 1.25rem;
+        font-size: 0.6875rem;
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.6rem 0.5rem 0.6rem 0.35rem;
+        background: #1a1a1b;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-back {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.25rem;
+        text-decoration: none;
+        transition: background 0.15s;
+    }
+    #rh-back:active { background: rgba(255,255,255,0.12); }
+    #rh-title {
+        flex: 1;
+        min-width: 0;
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: transparent;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+    #reader-header .rh-actions button:active { background: rgba(255,255,255,0.12); }
+    body.theme-dark  #reader-header,
+    body.theme-black #reader-header,
+    body.theme-sepia #reader-header { background: #141414; }
+
+    /* ── Reader footer: chapter label + page/percent + seek slider ── */
+    #reader-footer {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 55;
+        background: #1a1a1b;
+        padding: 0.5rem 1rem 0.65rem;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-footer { transform: translateY(100%); }
+    body.theme-dark  #reader-footer,
+    body.theme-black #reader-footer,
+    body.theme-sepia #reader-footer { background: #141414; }
+    #rf-labels {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.7);
+        margin-bottom: 0.35rem;
+    }
+    #rf-chapter {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #rf-page { flex-shrink: 0; }
+    #rf-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        background: rgba(255,255,255,0.22);
+        outline: none;
+        margin: 0;
+        cursor: pointer;
+    }
+    #rf-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        margin-top: -6px;
+    }
+    #rf-slider::-moz-range-thumb {
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        border: none;
+    }
+    #rf-slider::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; }
+    #rf-slider::-moz-range-track { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.22); }
+
+    /* Content needs bottom clearance so the fixed footer never covers text */
+    #read-main-content { padding-bottom: 4.5rem; }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: #303134;
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.55);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: #e57373;
+        border-bottom-color: #c0392b;
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ── Breadcrumb dark mode ── */
+    .read-breadcrumb-full { margin-left: -1.25rem; margin-right: -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
+    .dark #bc-category { color: #9ca3af !important; }
+    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
+    .dark #read-breadcrumb li > span { color: #4b5563; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #e57373;
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: 34px; height: 34px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        flex-shrink: 0;
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+    }
+    .theme-circle.active { border-color: #c0392b; }
+    .theme-circle svg { display: none; }
+    .theme-circle.active svg { display: block; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: #fff; }
+    .settings-row-val { font-size: 0.74rem; color: rgba(255,255,255,0.5); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: rgba(192,57,43,0.35); border-color: #c0392b; color: #fff; }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+</style>
+
+<!-- Progress bar (kept for internal % calc, hidden — footer slider replaces it visually) -->
+<div id="read-progress-bar" style="display:none;"></div>
+
+<!-- ══ Reader header (Lithium-style app bar) ══ -->
+<header id="reader-header">
+    <a href="/book/anuron-golok.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <h1 id="rh-title">অনুরন গোলক</h1>
+    <div class="rh-actions">
+        <button id="rh-menu-btn" aria-label="মেনু" title="মেনু"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+    </div>
+</header>
+
+<!-- ══ Reader footer (chapter + page/percent + seek slider) ══ -->
+<footer id="reader-footer">
+    <div id="rf-labels">
+        <span id="rf-chapter"></span>
+        <span id="rf-page">০%</span>
+    </div>
+    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
+</footer>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                    <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
+                    <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
+                    <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn active" id="align-justify" title="জাস্টিফাই" style="background:#fde8e6;border-color:#c0392b;color:#c0392b;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <br/><h2>অনুরন গোলক</h2>
+<hr/>
+<br/><div>
+<p><strong>অনুরন গোলক</strong></p>
+<p>উত্তরের এক জনাকীর্ণ শহর থেকে পাঁচ জন তরুণ–তরুণী দক্ষিণের এক উষ্ণ অরণ্যাঞ্চলে
+বেড়াতে এসেছে। তারা হ্রদের শীতল
+পানিতে পা ডুবিয়ে বড় বড় পাথরের উপর ছড়িয়ে ছিটিয়ে বসেছিল। উত্তরের যে জনাকীর্ণ শহর থেকে তারা
+এসেছে সেই শহরে এখন। তুষারভেজা হিমেল বাতাস বইছে হু–হুঁ করে,
+সেখানে মানুষজন দীর্ঘদিন থেকে শক্ত কংক্রিট ঘরের নিরাপদ উষ্ণতায় বন্দি
+হয়ে আছে। খোলা আকাশের নিচে হ্রদের পানিতে পা ডুবিয়ে বসে এই পাঁচ জন তরুণ–তরুণী এখনো বিশ্বাস
+করতে পারছে না তারা প্রকৃতির হিমশীতল, ছোবল থেকে এই কোমল উষ্ণতায় সরে এসেছে। </p>
+<p>পাঁচ জন তরুণ–তরুণীর মাঝে যে মেয়েটি সবচেয়ে সুন্দরী
+এবং সে সম্পর্কে সবসময় সচেতন তার নাম রিফা। সে পা দিয়ে পানি ছিটিয়ে বলল, কী সুন্দর জায়গাটা দেখেছ? মনে হচ্ছে ধরে কচকচ করে খেয়ে ফেলি। </p>
+<p>ক্রিক নামের সবচেয়ে হাসিখুশি
+ছেলেটি হেসে বলল, রিফা, তোমার সবকিছুতেই একটা খাওয়ার কথা থাকে লক্ষ করেছ? </p>
+<p>ক্রিকের কথা শুনে সবাই অকারণে উচ্চৈঃস্বরে হাসতে
+থাকে, রিফার গলা উঠল সবার ওপরে। স্বল্পভাষী
+স্না মাথা নেড়ে বলল, একটা জিনিসকে সত্যিকার অর্থে ভালবাসলে সেটাকে খাওয়ার সাথে তুলনা করতে
+হয়। খাওয়া হচ্ছে মানুষের আদি আর অকৃত্রিম ভালবাসা। </p>
+<p>শু নামের কোমল চেহারার দ্বিতীয় মেয়েটি বলল, তাহলে বলতেই
+হবে রিফার এই জায়গাটি খুব পছন্দ হয়েছে। </p>
+<p>রিফা পা দিয়ে আবার
+পানি ছিটিয়ে আদুরে গলায় বলল, অবশ্যি পছন্দ হয়েছে। তোমার পছন্দ হয় নি? </p>
+<p>শু মাথা নেড়ে নরম
+গলায় বলল, হয়েছে। তোমার মতো কচকচ করে খেয়ে ফেলতে
+ইচ্ছে করছে কি না জানি না কিন্তু জায়গাটা অপূর্ব। কী নিরিবিলি দেখেছ? </p>
+<p>ক্রিক বলল, আমরা সবাই মিলে যেভাবে চিৎকার করছি জায়গাটা কি আর নিরিবিলি
+আছে? </p>
+<p>শু বলল, তা নেই, কিন্তু এই বিশাল প্রকৃতিকে আমরা
+কয়েকজন চিৎকার
+করে কি আর জাগাতে পারব?
+এ রকম একটা জায়গায় এলে এমনিতেই মন ভালো হয়ে যায়। </p>
+<p>শুয়ের গলার স্বরে কিছু একটা ছিল বা এমনিতেই কোনো কারণে হঠাৎ সবাই চুপ করে যায়।
+শীতল পানিতে পা ডুবিয়ে সবাই চুপচাপ বসে থাকে, হ্রদের তীরে পাইনগাছে বাতাসের সরূসর শব্দ হতে থাকে, পাখির কিচমিচ ডাক
+কানে আসে এবং মৃদু বাতাসে হ্রদের পানি ছলাৎ ছলাৎ করে পাথরে এসে আছড়ে পড়তে থাকে। </p>
+<p>দীর্ঘ সময় সবাই চুপ করে থাকে এবং
+এক সময় রিফা নিশ্বাস ফেলে বলল, আমার কী মনে হচ্ছে জান? </p>
+<p>শু জিজ্ঞেস করল, কী? </p>
+<p>রিফা বলল, আমার মনে হচ্ছে আমরা সবাই বুঝি সেই প্রাচীন যুগের
+মানুষ হয়ে গেছি। প্রাচীন যুগের মানুষ যেরকম প্রকৃতির সাথে যুদ্ধ
+করে বেঁচে থাকত আমরা বুঝি সেভাবে বেঁচে আছি। </p>
+<p>রিফার কথা শুনে স্না হঠাৎ নিচু স্বরে হেসে উঠল। রিফা
+বলল, কী
+হল, তুমি
+হাসছ কেন? </p>
+<p>তোমার কথা শুনে হাসছি। </p>
+<p>কেন? আমি হাসির কথা কী বলেছি? </p>
+<p>তুমি হাসির কথা বল নি? তুমি
+বলেছ যে তুমি প্রাচীনকালের মানুষের মতো প্রকৃতির সাথে যুদ্ধ করে বেঁচে
+আছ! প্রকৃতির
+সাথে যুদ্ধ করার মানে কী তুমি জান? </p>
+<p>রিফা সরল মুখে জিজ্ঞেস করল, কী? </p>
+<p>প্রকৃতির সাথে যুদ্ধ করা মানে–ঝড় এসে ঘরবাড়ি উড়িয়ে নিয়ে যাওয়া, বন্যা এসে সবকিছু ভাসিয়ে নেয়া, ভূমিকম্পে বিশাল
+জনপদ ধ্বংস হয়ে যাওয়া। আমাদের কখনো সেরকম কিছু হয় না,
+এই শতাব্দীতে আমরা প্রকৃতিকে বশ করে আছি। ঝড় ভূমিকম্প বন্যা রিজার্ড
+আমাদের স্পর্শও করতে পারে না। শুধু তাই না, আকাশ থেকে একটা উল্কাও পৃথিবীতে পৌঁছাতে পারে না,
+মহাকাশেই সেটাকে ধ্বংস করে দেয়া হয়। </p>
+<p>ক্রিক বলল, শুধু কি তাই? এই যে আমরা এক গভীর অরণ্যে
+হ্রদের পানিতে পা ডুবিয়ে বসে আছি, আমরা কি ভয়ে ভয়ে আছি যে গভীর জঙ্গল থেকে একটা বুনো পশু
+এসে আমাদের উপর ঝাঁপিয়ে পড়বে? একটা বিষাক্ত সাপ এসে আমাদের ছোবল দেবে? না, আমাদের মোটেও সেই ভয় নেই! আমাদের ক্যাম্পে যে সনোট্রনটা রয়েছে সেটা প্রতিমুহূর্তে আলট্রাসনিক শব্দ দিয়ে যাবতীয় পশুপাখি জন্তু–জানোয়ারকে
+দূরে সরিয়ে রাখছে। আমাদের সবার
+কাছে যে যোগাযোগ মডিউলটা রয়েছে সেটা
+উপগ্রহের সাথে যোগাযোগ রাখছে, আমাদের যে–কোনো বিপদে এক ডজন হেলিকপ্টার দুই
+ডজন বাই ভার্বাল শ দুয়েক রবোট
+ছুটে আসবে। কাজেই রিফা, হ্রদের পানিতে পা ডুবিয়ে বসে থাকা আর প্রাচীন
+মানুষের মতো প্রকৃতির সাথে যুদ্ধ করার মাঝে বিশাল পার্থক্য। </p>
+<p>রিফা একটা নিশ্বাস ফেলে বলল, কিন্তু
+আমার মাঝে মাঝে জানতে ইচ্ছে করে প্রাচীনকালের মানুষদের বেঁচে থাকতে কেমন লাগত। </p>
+<p>ক্রিক সরল মুখে হেসে বলল, আমি দুঃখিত
+রিফা, তুমি সেটা কখনই জানতে পারবে না।</p>
+<p>দলের পঞ্চম সদস্য লন সারাক্ষণ চুপ
+করে বসেছিল। সে স্বল্পভাষী মানুষ নয় কিন্তু বিশাল এক জনাকীর্ণ শহর থেকে হঠাৎ করে প্রকৃতির এত
+কাছাকাছি এসে সে এক ধরনের শূন্যতা অনুভব
+করছে। বিশাল প্রকৃতি কখন কাকে কীভাবে প্রভাবিত করে বোঝা খুব। মুশকিল। সে এতক্ষণ
+খুব মনোযোগ দিয়ে সবার কথা শুনছিল, এবারে একটা নিশ্বাস ফেলে।
+বলল, আমি একটা কথা বলি? </p>
+<p>ক্রিক জিজ্ঞেস করল, কী কথা? </p>
+<p>রিফা যেরকম বলছে প্রাচীনকালের মানুষ কেমন করে বেঁচে
+থাকত তার জানতে খুব ইচ্ছে করে,
+আমারও সেরকম ইচ্ছে করে। ব্যাপারটি সহজ নয় কিন্তু একেবারে অসম্ভবও তো নয়। </p>
+<p>রিফা ঘুরে তাকাল লনের দিকে, চোখ বড় বড় করে বলল, কীভাবে? </p>
+<p>লন আঙুল দিয়ে দূর পাহাড়ের একটা চুড়োর দিকে দেখিয়ে বলল, ওই যে চুড়োটা </p>
+<p>দেখছ সেটা এখান থেকে প্রায় ষাট
+কিলোমিটার দূরে। চুড়োটার নিচে একটা চমৎকার
+উপত্যকা রয়েছে। আমরা
+যদি এখান থেকে ওদিকে যেতে শুরু করি, মনে হয় দুদিনে পৌঁছে যাব। বনে
+জঙ্গলে পাহাড়ে পর্বতে আমাদের হেঁটে অভ্যাস নেই তাইনা হয় অনেক
+আগে পৌঁছে যেতাম। </p>
+<p>ক্রিক ভুরু কুঁচকে বলল, আমি ঠিক
+বুঝতে পারছি না তুমি কী বলতে চাইছ। </p>
+<p>লন একটু হাসার মতো ভঙ্গি
+করে বলল, আমি বলছি চল আমরা সবাই মিলে পাহাড়ের নিচে সেই উপত্যকাটায় যাই। </p>
+<p>ক্রিক মাথা নেড়ে বলল,
+আমি এখনো ঠিক বুঝতে পারছি না। আমরা যদি উপত্যকাটায় যাই তাহলে কেন সেটা প্রাচীনকালের মানুষের মতো যাওয়া হবে? আমাদের পায়ের জুতো লেভিটেটিং
+প্রয়োজনে আমাদের
+ভাসিয়ে নিতে পারে, আমাদের জামাকাপড় নিও পলিমারের, তার মাঝে
+হাই জি সেন্সর রয়েছে,
+হঠাৎ করে পড়ে গেলে নিজে থেকে রক্ষা করে, আমাদের হেলমেটে-</p>
+<p> লন বাধা দিয়ে বলল, আমরা সে সবকিছু
+রেখে যাব। সাধারণ একজোড়া জুতো পরে, সাধারণ কাপড়ে হেঁটে হেঁটে যাব। সাথে থাকবে কিছু খাবার আর স্লিপিং ব্যাগ। আর কিছু
+না। </p>
+<p>কেউ কোনো কথা
+না বলে বিস্তারিত চোখে লনের দিকে তাকিয়ে রইল। রিফা খানিকক্ষণ চেষ্টা করে বলল, আর কিছু না? </p>
+<p>না। সবার কাছে প্রাচীন কোনো অস্ত্র থাকতে পারে। একটা ছোরা বা কুড়াল, এর বেশি কিছু নয়। </p>
+<p>যদি বুনো পশু
+আমাদের আক্রমণ করে? </p>
+<p>করার কথা নয়। তবু যদি করে আমরা আমাদের অস্ত্র
+দিয়ে নিজেদের রক্ষা করব। </p>
+<p>যদি পা হড়কে পড়ে যাই?
+গভীর ধাদের মাঝে পড়ে যাই? </p>
+<p>তাহলে মরে যাব। </p>
+<p>রিফা শিউরে উঠে বলল, মরে যাব? </p>
+<p>হ্যাঁ। তাই চেষ্টা করব যেন পা হড়কে পড়ে না
+যাই। খুব সাবধানে আমরা যাব, একে অন্যকে রক্ষা করে। </p>
+<p>যদি কোনো জরুরি প্রয়োজন হয়? আমাদের কমিউনিকেশান
+মডিউল–</p>
+<p>না, আমাদের কাছে কমিউনিকেশান মডিউলও
+থাকবে না। এখানে ফিরে না আসা পর্যন্ত আমরা কারো সাথে যোগাযোগ করতে পারব না। যদি জরুরি কোনো প্রয়োজন হয় আমাদের নিজেদের সেই প্রয়োজন মেটাতে হবে। প্রাচীনকালের মানুষেরা যেভাবে
+মেটাত। </p>
+<p>সবাই চুপ করে লনের দিকে তাকিয়ে রইল, কেউ বেশ খানিকক্ষণ কোনো কথা বলল। শেষ পর্যন্ত শু বলল, লন যেটা বলেছে সেটা স্রেফ পাগলামি,
+এর ভিতরে কোনো যুক্তি নেই এবং কাজটা হবে পরিষ্কার গোয়ার্তুমি। আমাদের ভিতরে যে–কেউ মারা পড়তে পারে এবং আমি
+নিশ্চিত কাজটা বেআইনি। একে অপরের জীবনের ঝুঁকি নেয়ার জন্যে আমাদের জবাবদিহি করতে
+হবে। কিন্তু আমাকে স্বীকার করতেই হবে আমি তবু এটা করতে চাই। আমি সবকিছু ছেড়েছুঁড়ে শুধুমাত্র একটা প্রাচীন অস্ত্র হাতে নিয়ে ওই
+পাহাড়ের পাদদেশে
+যেতে চাই। </p>
+<p>রিফা ভয় পাওয়া চোখে শুয়ের দিকে তাকিয়ে বলল, তুমি যেতে চাও? </p>
+<p>হ্যাঁ। </p>
+<p>যদি– যদি কোনো বিপদ হয়? </p>
+<p>সেটা দেখার জন্যেই যাওয়া। </p>
+<p>রিফা কী একটা বলতে চাইছিল, তাকে
+বাধা দিয়ে ক্রিক বলল, আমিও যেতে চাই। </p>
+<p>রিফা ঘুরে তাকাল ক্রিকের দিকে, তুমিও
+যেতে চাও? </p>
+<p>হ্যাঁ। ক্রিক একটু হাসার মতো ভঙ্গি
+করে বলল, কাজটা সম্পূর্ণ বেআইনি কিন্তু আমি তবু করে দেখতে
+চাই। এই যুগে আমাদের জীবন খুব বেশি ছকে বাঁধা–একটা বড়ধরনের বৈচিত্র্য মনে হয় মন্দ
+হবে না। </p>
+<p>স্না পানিতে তার পা নাড়িয়ে বলল, আমিও করে দেখতে চাই। আর তোমরা এটাকে যেটুকু বিপজ্জনক
+বা বেআইনি ভাবছ এটা সেরকম বিপজ্জনক বা বেআইনি নয়। আমরা যে এটা করছি সেটা কেউ না জানলেই হল। </p>
+<p>লন মাথা নাড়ল, তা ঠিক। </p>
+<p>আর আমরা সবাই যদি কাছাকাছি থাকি তাহলে কোনো বড় ধরনের ঝামেলা হওয়ার কথা নয়। আমাদের হয়তো কষ্ট হবে, শারীরিক পরিশ্রম
+হবে কিন্তু বিপদ হবে না। </p>
+<p>লন মাথা নাড়ল, স্না ঠিকই বলেছে। </p>
+<p>শু এবার ঘুরে তাকাল রিফার দিকে,
+রিফা, তুমি ছাড়া আর সবাই রাজি। </p>
+<p>রিফা শুকনো মুখে
+বলল, আমার এখনো ভয় ভয় করছে। কিন্তু তোমরা সবাই যদি রাজি
+থাক তাহলে আমিও যাব। অবশ্যি যাব। </p>
+<p>সাথে সাথে দলের অন্য সবাই একসাথে
+আনন্দধ্বনি করে ওঠে। </p>
+<p>.</p>
+<p>পুরো দলটি
+ঘণ্টাখানেকের মাঝে প্রস্তুত হয়ে নেয়। নিরাপত্তার আধুনিক সকল সরঞ্জাম
+রেখে দিয়ে তারা প্রাচীনকালের মানুষের মতো অল্প
+কিছু প্রয়োজনীয় জিনিসপত্র নিয়ে রওনা হয়। তাদের পিঠের ব্যাকপেকে থাকে–খাবর, স্লিপিং ব্যাগ আর কিছু
+কাপড়। তাদের
+হাতে থাকে প্রাচীন অস্ত্র, একটি কুড়াল, কয়েকটি ছোরা এবং কিছু বড় লাঠি। ছোট দলটি হ্রদের তীর
+ধরে হেঁটে হেঁটে উপরে উঠে যেতে থাকে। প্রথমে তাদের বুকের মাঝে জমে থাকে এক ধরনের আতঙ্ক,
+খুব ধীরে ধীরে তাদের সেই আতঙ্ক সরে গিয়ে সেখানে এক ধরনের আত্মবিশ্বাস
+এসে ভর করে। তারা হ্রদটিকে ঘিরে গভীর অরণ্যে প্রবেশ করে, লতাগুল কেটে কেটে অরণ্যের
+গভীরে যেতে থাকে। যখন রাতের অন্ধকার নেমে আসে, একটা খোলা জায়গায় শুকনো গাছের ডাল লতা পাতা জড়ো করে সেখানে আগ্রুন ধরিয়ে দেয়। বিশাল। অগ্নিকুণ্ডের দিকে তাকিয়ে সবাই
+গোল হয়ে বসে থাকে, ব্যাকপেক থেকে খাবার বের করে আগুনে ঝলসে ঝলসে খেতে থাকে।
+তাদের চেহারায় এক ধরনের ক্লান্তির ছাপ স্পষ্ট হয়ে আসে
+কিন্তু তাদের চোখ উত্তেজনায় জ্বলজ্বল করতে থাকে। তারা কথা বলে নিচু স্বরে
+এবং ক্রমাগত চকিত দৃষ্টিতে এদিক–সেদিক
+তাকাতে থাকে। গভীর জঙ্গলের দিকে তাকিয়ে নিশাচর পশুর ডাক শুনতে শুনতে
+তারা নিজেদের বুকের ভিতরে রহস্য এবং আতঙ্কের এক বিচিত্র অনুভূতি অনুভব করতে থাকে। রাত্রিবেলা
+তারা পালা করে ঘুমায় এবং কেউই সত্যিকার অর্থে
+ঘুমাতে পারে না এবং একটু পরে পরে তারা চমকে চমকে ঘুম থেকে জেগে ওঠে। </p>
+<p>ভোরবেলা সূর্যের প্রথম আলোকে পুরো দলটির মাঝে এক ধরনের উৎসাহের
+সঞ্চার হয়,
+তারা কোনোরকম
+সাহায্য ছাড়া একা একা গভীর অরণ্যে রাত কাটিয়েছে ব্যাপারটি অবিশ্বাস্য হলেও
+সত্যি। পরের দিনের পথ ছিল আরো দুর্গম কিন্তু কোনো একটি
+অজ্ঞাত কারণে পুরো দলটির
+কাছে সেটি আর দুর্গম বলে মনে হয় না। প্রবল
+আত্মবিশ্বাসে তারা নিজেদের টেনেহিঁচড়ে নিয়ে যেতে
+থাকে, ঝোঁপঝাড়ে লেগে তাদের শরীর ক্ষতবিক্ষত
+হয়ে আসে, অসহনীয় পরিশ্রমে তাদের দেহ অবশ হয়ে আসে তবুও তারা কোনো একটি অজ্ঞাত শক্তির প্রেরণায় হেঁটে যেতে থাকে। </p>
+<p>তারা যখন তাদের গন্তব্যস্থলে পৌঁছাল তখন বেলা ডুবে গেছে। ক্লান্তিতে তখন
+আর কেউ দাঁড়িয়ে থাকতে পারছে না। কোনোভাবে একটা আগ্রুন জ্বালিয়ে সবাই জড়াজড়ি করে বসে থাকে। খানিকক্ষণ বিশ্রাম নিয়ে এবং অল্প কিছু খেয়ে যখন তাদের মাঝে খানিকটা শক্তি
+ফিরে এল তখন আবার তারা কথাবার্তা বলতে শুরু করে। গরম একটা পানীয় চুমুক
+দিয়ে খেতে খেতে রিফা বলল, আমরা সত্যিই তাহলে করেছি! </p>
+<p>ক্রিক মাথা নাড়ল, হা, করেছি</p>
+<p>কোনরকম
+সাহায্য ছাড়া আমরা গত দুদিন থেকে হাঁটছি। একেবারে প্রাচীনকালের মানুষের মতো! </p>
+<p>শু রিফার দিকে তাকিয়ে হাসল,
+বলল, একেবারে প্রাচীনকালের মানুষের মতো! শরীরের শক্তিই হচ্ছে সবকিছু। </p>
+<p>ক্রিক মাথা নাড়ল, হ্যাঁ, কোনো যন্ত্রপাতি
+নেই, কোনো প্রযুক্তি নেই, শুধুমাত্র আমাদের শক্তি! আমাদের সাহস। </p>
+<p>রিফা তার গরম পানীয়টিতে চুমুক দিয়ে বলল, ব্যাপারটা আসলে খারাপ নয়। আমার তো মনে
+হচ্ছে বেশ চমৎকার একটা ব্যাপার। যন্ত্রপাতি থেকে কোনো সাহায্য
+পাওয়া যায় না বলে একে অন্যকে সাহায্য করতে হয়, নিজেদের মাঝে কী
+সুন্দর একটা পরিবার পরিবার সম্পর্ক গড়ে ওঠে। </p>
+<p>স্বল্পভাষী স্না মাথা নাড়ল, বলল, ঠিকই বলেছ।
+প্রাচীনকালের সমাজের খুঁটি সেজন্যে খুব শক্ত ছিল। এখন সেরকম পাওয়া খুব সহজ নয়।
+</p>
+<p>রিফা সামনের বিশাল আগুনের কুণ্ডলীটাতে
+এক টুকরা শুকনো কাঠ ছুঁড়ে দিয়ে বলল,
+এখানে এসে আমার যে কী ভালো লাগছে তোমাদের বোঝাতে পারব না। মনে হচ্ছে সবকিছু
+কচকচ করে খেয়ে ফেলি! </p>
+<p>দলের অন্য সবাই এক ধরনের স্নেহের চোখে রিফার দিকে
+তাকাল, মেয়েটির
+মাঝে এক ধরনের নির্দোষ সারল্য আছে যেটা
+প্রায় সময়েই খুব স্পষ্টভাবে প্রকাশ পেয়ে যায়। </p>
+<p>.</p>
+<p>গভীর রাতে যখন সবাই ঘুমানোর আয়োজন করছে তখন হঠাৎ লন সবার দিকে
+ঘুরে তাকিয়ে বলল,
+আমার হঠাৎ একটা কথা মনে হয়েছে। </p>
+<p>ক্রিক কৌতূহলী চোখে বলল, কী কথা? </p>
+<p>আমরা বলাবলি করছি যে আমরা গত দুদিন
+প্রাচীনকালের মানুষের মতো বেঁচে আছি। </p>
+<p>হ্যাঁ। কী হয়েছে
+তাতে? </p>
+<p>কথাটা সত্যি নয়। </p>
+<p>সত্যি নয়? কেন? </p>
+<p>আমাদের সবার কাছে একটা জিনিস রয়েছে যেটা প্রাচীনকালের
+মানুষের কাছে ছিল না। </p>
+<p>কী? </p>
+<p>অনুরন গোলক। </p>
+<p>রিফা ভুরু কুঁচকে বলল, অনুরন
+গোলকের সাথে
+এর কী সম্পর্ক? </p>
+<p>আছে, সম্পর্ক আছে। অবশ্যি আছে। </p>
+<p>কীভাবে আছে? </p>
+<p>বলছি শোন। লন আগুনের পাশে দাঁড়িয়ে বলল, আমাদের গত দুদিনের কথা চিন্তা কর, আমরা
+কী করেছি? </p>
+<p>হেঁটে হেঁটে এসেছি। </p>
+<p>হ্যাঁ। লন মাথা নেড়ে বলল, অত্যন্ত
+দুর্গম একটা পথ দিয়ে হেঁটে হেঁটে এসেছি। যখন রিফা খুব ক্লান্ত হয়ে গেছে তখন আমরা কী করেছি? </p>
+<p>রিফার মালপত্র অন্যেরা ভাগাভাগি করে এনেছি। </p>
+<p>হ্যাঁ। আমরা কেউ কি রিফার ওপরে বিরক্ত হয়েছি? </p>
+<p>শু একটু অবাক হয়ে বলল, বিরক্ত
+কেন হব? </p>
+<p>হওয়ার কথা। প্রাচীনকালের মানুষ হলে বিরক্ত হত। রাগ
+হত। যে দুর্বল তাকে সবাই ত্যাগ করে যেত। যারা
+সবল তারা একে অন্যের সাথে নেতৃত্ব নিয়ে যুদ্ধ করত। প্রয়োজনে তারা স্বার্থপর
+হত। কিন্তু আমরা হই না। জন্মের
+পরই আমাদের মস্তিষ্ক স্ক্যান করে আমাদের সবার শরীরে প্রয়োজনমাফিক নির্দিষ্ট অনুরন গোলক ঢুকিয়ে দেয়া হয়েছে। আমরা তাই অন্যরকম মানুষ। আমাদের
+মাঝে রাগ নেই, হিংসা নেই,
+আমাদের মাঝে লোভ নেই। আমরা একে অন্যকে সাহায্য করি। একজন মানুষ এমনিতে যেটুকু ভালো হওয়ার কথা, আমরা তার থেকে অনেক বেশি ভালো। গত শতাব্দীকে পৃথিবীতে মানুষ
+যুদ্ধ করে নি, একে অন্যকে শোষণ করে নি–তার
+কারণ হচ্ছে অনুরন গোলক।
+মানুষের মাঝে যেটুকু সীমাবদ্ধতা আছে সব সরিয়ে নিয়েছে এই অনুরন গোলক। </p>
+<p>ক্রিক তীক্ষ্ণ চোখে লনের দিকে তাকিয়ে বলল, তার মানে তুমি বলছ আমরা এখনো প্রাচীনকালের
+মানুষের অনুভূতির খোঁজ পাই নি? </p>
+<p>না। ব্যাপারটা সেই বিংশ শতাব্দী
+থেকে শুরু হয়েছে,
+যখন মানুষ আবিষ্কার করেছে একজন মানুষের ব্যক্তিত্ব আসলে তার মস্তিষ্কের জৈব রাসায়নিক বিক্রিয়া বিশেষ ওষুধ দিয়ে সেই বিক্রিয়ার পরিবর্তন করা
+যায়, যেই মানুষ
+বদ্ধ উন্মাদ তাকে সুস্থ করে দেয়া যায়, যেই মানুষ বিষণ্ণতায় ভুগছে তাকে উৎফুল্ল করে দেয়া যায়, তখন থেকে মানুষের
+ব্যক্তিত্বকে পাল্টে দেয়া শুরু হয়েছে। মানুষের সব সীমাবদ্ধতা
+সরিয়ে নেয়া শুরু হয়েছে। আমরা প্রাচীনকালের মানুষ
+থেকে অনেক ভিন্ন, অনেক যত্ন করে আমাদের প্রস্তুত করা হয়। এই শতাব্দীতে কোনো উন্মাদ নেই, খুনে নেই, খ্যাপা নেই, স্কৃতজোফ্রেনিয়া রোগী
+নেই—</p>
+<p>রিফা একটা নিশ্বাস ফেলে বলল, তার
+মানে আমাদের এই কষ্ট এই পরিশ্রম সব অর্থহীন?
+আসলে আমরা জানি না প্রাচীনকালের মানুষের অনুভূতি কী রকম? </p>
+<p>লন একটু হাসার চেষ্টা করে বলল, তুমি
+ঠিকই বলেছ রিফা। আমরা জানি না প্রাচীনকালের মানুষের অনুভূতি কী রকম। আমাদের জায়গায় তারা থাকলে এতক্ষণে হয়তো ঝগড়া করত,
+খাবার নিয়ে কাড়াকাড়ি করত, নিষ্ঠুরতা করত–তোমাকে নিয়ে মারামারি
+করত– </p>
+<p>আমাকে নিয়ে? </p>
+<p>হ্যাঁ। প্রাচীনকালে সুন্দরী নারী
+নিয়ে অসংখ্য ঘটনা ঘটেছে! </p>
+<p>রিফা একটু হতচকিতভাবে লনের দিকে
+তাকাল এবং অন্য সবাই শব্দ করে হেসে উঠল। </p>
+<p>হাসির শব্দ থেমে আসতেই মা একটু এগিয়ে এসে বলল, আমি একটা কথা বলি? </p>
+<p>কী কথা? </p>
+<p>আমরা গত দুদিন একটা অস্বাভাবিক কাজ করছি। ঠিক
+প্রাচীনকালের মানুষের মতো আধুনিক যন্ত্রপাতির সাহায্য ছাড়া প্রকৃতির সাথে যুদ্ধ করে বেঁচে আছি। এই
+কাজটা কি আরো একটু এগিয়ে নিয়ে যেতে পারি? </p>
+<p>রিফা চোখ বড় বড় করে
+তাকিয়ে বলল, কীভাবে? </p>
+<p>আমাদের শরীরে যে অনুরন গোলক রয়েছে সেটা বের করে ফেলি। </p>
+<p>স্নার কথা শুনে সবাই চমকে উঠে তার দিকে তাকাল, স্নার
+মুখ পাথরের মতো শক্ত। সে ব্যাপারটা নিয়ে ঠাট্টা
+করছে না, সত্যিই বলছে। </p>
+<p>রিফা এক ধরনের আতঙ্কিত মুখে বলল, কী
+বলছ? </p>
+<p>ঠিকই বলছি। এই আমাদের সুযোগ। বিশাল
+এক পাহাড়ের
+আড়ালে আমরা
+একত্র হয়েছি। মানুষজন
+সভ্যতা থেকে বহুদূরে! এখন আমরা আমাদের শরীর থেকে অনুরন গোলক বের করে সত্যি
+সত্যি প্রাচীনকালের মানুষ হয়ে যেতে পারি। যখন
+আমাদের মস্তিষ্কে অনুরন গোলক থেকে জৈব রসায়ন যাওয়া বন্ধ হয়ে যাবে
+তখন আমরা আস্তে আস্তে আমাদের সত্যিকারের ব্যক্তিত্ব ফিরে পাব! কেউ
+হয়তো বের হব হিংসুটে, কেউ রাগী, কেউ অসৎ </p>
+<p>রিফা এক ধরনের আহত দৃষ্টি নিয়ে সবার
+দিকে তাকিয়ে বলল, কিন্তু কেন আমরা আমাদের ভিতরের খারাপ দিকটা বের
+করে আনব? </p>
+<p>স্না মাথা নেড়ে বলল, খারাপ
+দিকটা বের করে আনব না রিফা, সত্যিকারের ব্যক্তিত্বটা বের করে আন। আর
+সেটা যে খারাপই হবে কে বলেছে? হয়তো দেখা যাবে কেউ একজন সামান্য
+একটু গোমড়ামুখী, কেউ
+একজন একটু বেশি লাজুক, কেউ একজন বেশি কথা বলে! এর
+বেশি কিছু নয়। </p>
+<p>ক্রিক একটু এগিয়ে এসে
+বলল, কিন্তু তুমি শরীর থেকে অনুরন গোলক বের করবে কেমন করে? সেটা তো অত্যন্ত
+সূক্ষ্ম একটা গোলক,
+শরীরের মাঝে ঢুকিয়ে দেয়া হয়! </p>
+<p>স্না একটু হেসে বলল, আমি হাসপাতালে কাজ করি, একজন
+শিশু জন্মানোর পর তার শরীরে প্রথম অনুরন গোলকটি আমি প্রবেশ করিয়ে থাকি। আমি জানি হাতের কনুইয়ের কাছে এটা স্থির
+হয়। ছোট একটা চাকু থাকলে
+আমি দুই মিনিটে অনুরন গোলকটা শরীর থেকে বের করে আনতে পারি। </p>
+<p>সত্যি? </p>
+<p>সত্যি। দেখতে চাও? </p>
+<p>কেউ কোনো কথা
+না বলে চুপ করে স্থির দৃষ্টিতে স্নার দিকে তাকিয়ে থাকে। স্না আবার বলল,
+আমরা এটা তো পাকাঁপাকিভাবে করছি না, যখন লোকালয়ে ফিরে যাব তখন আবার আমরা ঠিক
+ঠিক অনুরন গোলক
+শরীরে প্রবেশ করিয়ে নেব, আবার আমরা আগের মতো। হয়ে যাব। </p>
+<p>শু একটু এগিয়ে এসে
+বলল, এটা পাগলামি এবং গোয়ার্তুমি। এর মাঝে বিন্দুমাত্র যুক্তি নেই। আমার ধারণা ব্যাপারটার মাঝে
+বেশ খানিকটা বিপদ রয়েছে।
+কিন্তু সত্যি কথা বলতে কী, আমি মানুষটা
+আসলে কী রকম আমার খুব জানার কৌতূহল হচ্ছে! তোমরা কে কী করবে জানি না, আমি আমার অনুরন গোলক বের করে নিয়ে আসছি। </p>
+<p>শু এক পা এগিয়ে তার
+হাতটা মার দিকে এগিয়ে দিয়ে বলল, ব্যথা লাগবে না তো? </p>
+<p>স্না পকেট থেকে চাকুটা বের করে বলল, তোমার চামড়াটা একটু কেটে ভিতর
+থেকে </p>
+<p>গোলকটা বের করতে হবে, দুই ফোঁটা রক্ত বের হবে, একটু ব্যথা তো লাগবেই। মাটিতে
+বসে শুয়ের হাতটা
+চেপে ধরে কনুইয়ের
+কাছাকাছি একটা জায়গা
+হাত দিয়ে অনুভব করে অনুরন গোলকটির অবস্থানটা বের করে নেয়, তারপর
+চাকুর ধারালো ফলাটি দিয়ে খুব সাবধানে একটুখানি চিরে ফেলে, শু
+যন্ত্রণায় একটা শব্দ করে দাঁতে দাঁত কামড়ে ধরল। স্না
+সাবধানে হাত দিয়ে জায়গাটা অনুভব করে কোথায় চাপ দিতেই টুক করে ক্ষুদ্র
+একটা গোলক বের
+হয়ে আসে। গোলকটি ছোট বালুর কণার মতো, স্না সেটাকে হাতের তালুতে নিয়ে
+শু’কে দেখিয়ে বলল, এই
+দেখ তোমার অনুরন
+গোলক। </p>
+<p>শু তার কাটা জায়গায় হাত বুলাতে বুলাতে হঠাৎ খিলখিল করে হাসতে শুরু করে। সবাই
+একটু অবাক হয়ে তার দিকে তাকাল, ক্রিক বলল, কী হল? হাসছ কেন? </p>
+<p>শু হাসতে হাসতে কোনোমতে নিজেকে সামলে নিয়ে বলল, জানি না হঠাৎ কেন জানি হাসি পেয়ে গেল। এইটুকু একটা জিনিস নিয়ে এত
+হইচই, হাসি পাবে না? </p>
+<p>শু হঠাৎ আবার খিলখিল করে হাসতে থাকে। </p>
+<p>স্না হাতের তালুর মাঝে রাখা অনুরন গোলকটির দিকে তাকিয়ে থেকে বলল, মনে হয় শুয়ের ব্যক্তিত্ব পাল্টে যাচ্ছে। সে
+মোটামুটি জ্ঞানগম্ভীর
+মহিলা থেকে তরলমতি বালিকায় পরিণত হয়ে যাচ্ছে। </p>
+<p>শু হাসি থামিয়ে চোখ
+বড় বড় করে বলল, সত্যি? </p>
+<p>তাই তো মনে হচ্ছে! </p>
+<p>তুমি মনে হয় ঠিকই বলছ। আমার
+কেন জানি সবকিছুকেই মজার জিনিস বলে মনে হচ্ছে। </p>
+<p>ক্রিক তীক্ষ্ণ দৃষ্টিতে শুয়ের দিকে তাকিয়ে বলল, তুমি কি তোমার ভিতরে কোনো ধরনের
+পরিবর্তন অনুভব করছ শু?</p>
+<p>করছি! মনে হচ্ছে তোমরা সব বুড়ো মানুষের মতো গম্ভীর! মনে হচ্ছে তোমরা সবকিছু নিয়ে বাড়াবাড়ি করছ, কোনোকিছু সহজভাবে নিতে পারছ না! মনে হচ্ছে জীবনটা এত গুরুত্ব দিয়ে নেয়ার কোনো প্রয়োজন নেই! জীবনটা হচ্ছে স্ফূর্তি করার জন্যে! </p>
+<p>সবাই শুয়ের দিকে তীক্ষ্ণ দৃষ্টিতে তাকিয়ে থাকে তার ব্যক্তিত্বের পরিবর্তনটি অত্যন্ত স্পষ্ট, হঠাৎ করে সে
+একটি ছেলেমানুষ চপলমতি বালিকায় পাল্টে গেছে। তাকে দেখে সবার
+এক ধরনের হিংসে হতে থাকে। ক্রিক এগিয়ে গিয়ে বলল,
+স্না, এবারে আমার অনুরন গোলকটি বের করে দাও! </p>
+<p>শু ক্রিকের কথা শুনে আনন্দে খিলখিল করে হাসতে হাসতে
+ছেলেমানুষের মতো তার পিঠ চাপড়ে বলল, এই তো চাই! দেখি তোমার ভিতরে কী লুকিয়ে আছে। একটি তেজস্বী সিংহ নাকি একটা ধূর্ত ইঁদুর।</p>
+<p>স্না ঠিক আগের মতো যত্ন করে ক্রিকের কনুইয়ের কাছের চামড়াটি চিরে অনুরন গোলকটি বের করে আনে।
+সাবধানে সেটি ক্রিকের হাতের তালুতে দিয়ে জিজ্ঞেস করল, তোমার কেমন লাগছে
+ক্রিক? </p>
+<p>সবাই ঝুঁকে পড়ে ক্রিকের
+দিকে তাকিয়ে রইল। ক্রিক শুকনো মুখে বলল, একটু ভয় ভয় লাগছে! </p>
+<p>ভয়? </p>
+<p>হ্যাঁ।</p>
+<p>ঠিক তখন তাদের মাথার উপর দিয়ে একটা
+নিশাচর পাখি উড়ে গেল, ক্রিক চমকে উঠে স্নাকে জড়িয়ে ধরে
+ফ্যাকাশে মুখে বলল, কী ওটা? কী? </p>
+<p>শু খিলখিল করে হাসতে হাসতে বলল, আমাদের
+ক্রিক মূষিক শাবকে পাল্টে গেছে। মূষিক শাবক! </p>
+<p>ক্রিক ফ্যাকাশে মুখে বলল, সত্যিই
+আমার ভয়টা হঠাৎ
+বেড়ে গেছে। কেন জানি শুধু ভয় ভয় করছে। </p>
+<p>স্না সাবধানে ক্রিকের শরীর থেকে বের করা অনুরন গোলকটি হাতে নিয়ে বলল, তোমার কি বেশি ভয় করছে? তাহলে
+এটা আবার তোমার
+শরীরে ঢুকিয়ে দিতে পারি। </p>
+<p>ক্রিক মাথা নাড়ল, না, থাক! এটা
+আমার জন্যে সম্পূর্ণ নতুন একটা অনুভূতি। আমি একটু দেখতে চাই। তোমরা
+শুধু আমার কাছাকাছি থেকো, একটু শব্দ হলেই কেন জানি আঁতকে উঠছি। </p>
+<p>ক্রিকের পর লনের শরীর থেকে তার অনুরন গোলকটি বের করা হল। লন
+এমনিতে চুপচাপ ভালো মানুষ কিন্তু অনুরন গোলকটি বের করার সাথে সাথে সে কেমন জানি তিরিক্ষে মেজাজের
+হয়ে গেল। যদিও সে নিজেই সবাইকে এখানে নিয়ে আসার পরিকল্পনাটি দিয়েছে কিন্তু সে এখন এই ব্যাপারটি নিয়েই অসম্ভব বিরক্ত হয়ে উঠে অত্যন্ত রূঢ় ভাষায় সবাইকে
+উত্ত্যক্ত করতে শুরু করে। অনুরন গোলকের কারণে মানুষের মাঝে থেকে রূঢ় ব্যবহার মোটামুটিভাবে উঠে গেছে। ব্যাপারটি সবার কাছে এত বিচিত্র
+মনে হতে থাকে যে লনের রূঢ় ব্যবহারে কেউ কিছু মনে করে না, বরং
+বলা যেতে পারে সবাই ব্যাপারটি উপভোগ করতে শুরু করে! </p>
+<p>রিফা তার অনুরন গোলক বের করতে রাজি হল না, হাতের
+এক চিলতে চামড়া কেটে শরীরের ভিতর
+থেকে গোলকটি
+বের করার কথা চিন্তা করতেই তার নাকি শরীর কাঁটা দিয়ে উঠছে।
+স্নার পক্ষে তার নিজের অনুরন গোলকটি বের করা দুঃসাধ্য ব্যাপার, কাজেই তাকে অন্যেরা
+সাহায্য করল। অভিজ্ঞতার অভাব বলে তার হাতের ক্ষতটি হল একটু গভীর এবং রক্তপাত বন্ধ করতে
+বেশ বেগ পেতে হল। </p>
+<p>স্নার ভিতরে পরিবর্তনটি হল অত্যন্ত
+সূক্ষ্ম। তার ভিতরে এক ধরনের বিষণ্ণতা এসে ভর করল। সে এমনিতেই স্বল্পভাষী, অনুরন গোলকটি বের করার পর
+সে আরো স্বল্পভাষী হয়ে। গেল। সে বিষণ্ণ চোখে আগুনের দিকে
+তাকিয়ে থেকে চুপচাপ বসে রইল। শু খানিকক্ষণ স্নাকে হাসিখুশি করার চেষ্টা
+করে হাল ছেড়ে দিয়ে রিফার দিকে মনোযোগ
+দিল। তাকে বলল, রিফা, আমরা সবাই আমাদের অনুরন গোলক বের করেছি। তোমাকেও বের করতে হবে। </p>
+<p>আমার ভয় করে।
+রক্ত দেখলে আমার খুব ভয় করে। </p>
+<p>দু ফোঁটা রক্ত দেখে ভয় পাবার কী আছে? আর যদি ভয় করে তাহলে চোখ বন্ধ করে
+থেকো। </p>
+<p>রিফা জোরে জোরে মাথা নাড়ে, বলে, না, না, আমাকে ছেড়ে দাও! </p>
+<p>লন খানিকক্ষণ রুষ্ট দৃষ্টিতে শু এবং রিফার দিকে
+তাকিয়েছিল,
+এবার মুখ বিকৃত করে ধমকে উঠে বলল, রিফা, তুমি পেয়েছটা কী? সবাই যদি তাদের অনুরন
+গোলক বের করতে
+পারে, তুমি পারবে না কেন? </p>
+<p>ক্রিক নরম গলায় বলল,, রিফা, তুমিও বের কর, আমাদের
+খুব দেখার ইচ্ছে করছে আসলে তুমি কী রকম।</p>
+<p>স্না কোনো কথা
+না বলে রিফার দিকে তাকিয়ে রইল। শু বলল, রিফা, রাজি হয়ে যাও। তোমার
+অনুভূতি যদি ভালো না লাগে সাথে সাথে অনুরন গোলকটি শরীরে ঢুকিয়ে দেব! </p>
+<p>রিফা একটা নিশ্বাস ফেলে তার হাতটা এগিয়ে দিয়ে বলল, ঠিক আছে, বের কর। ব্যথা দিও না কিন্তু আমাকে। </p>
+<p>স্না মাথা নেড়ে বলল, চিমটির
+মতো একটু ব্যথা পাবে তুমি। কিছু বোঝার আগেই তোমার অনুরন গোলক বের হয়ে আসবে। </p>
+<p>স্না তার ধারালো চাকু
+দিয়ে সাবধানে এক চিলতে চামড়া চিরে রিফার গোলকটি বের করে আনে। রিফা
+দাতে দাঁত চেপে বসেছিল, এবারে সাবধানে বুকের ভিতর থেকে একটা নিশ্বাস বের করে
+দেয়। স্না
+জিজ্ঞেস করল, তোমার কেমন লাগছে রিফা। </p>
+<p>বিফা মুখ তুলে তাকাল, বলল, একটু
+অন্যরকম লাগছে কিন্তু কী রকম বুঝতে পারছি। </p>
+<p>রাগ? দুঃখ? আনন্দ? </p>
+<p>না সেসব কিছু না। রিফা মাথা নাড়ল, একটু অন্যরকম। </p>
+<p>কী রকম? </p>
+<p>রিফা মুখ তুলে তাকিয়ে দুর্বলভাবে
+হাসার চেষ্টা করে বলল, খুব সুন্দর একটা গান শুনলে বুকের মাঝে যেরকম কাপুনি হয় সেরকম একটা কাঁপুনি হচ্ছে। এক রকমের উত্তেজনা! </p>
+<p>উত্তেজনা? </p>
+<p>হ্যাঁ। মনে হচ্ছে কিছু একটা কচকচ করে খেয়ে ফেলি! </p>
+<p>শু আবার খিলখিল করে হেসে উঠে বলল, সব সময় তোমার
+কচকচ করে কিছু একটা খেতে ইচ্ছে করে। খাওয়া ছাড়াও যে পৃথিবীর অন্য
+কিছু থাকতে পারে তুমি জান? </p>
+<p>রিফা লজ্জা পেয়ে একটু
+হাসল, বলল, কিছু একটা ভালো লাগলেই
+আমার কচকচ করে খেতে ইচ্ছে করে! </p>
+<p>স্না রিফার অনুরন গোলকটি হাতের তালুতে ধরে রেখেছিল,
+এবারে নিচু গলায় জিজ্ঞেস করল, রিফা, তোমার গোলকটি কি বাইরে রাখবে নাকি আবার তোমার শরীরে ঢুকিয়ে দেব? </p>
+<p>থাকুক। বাইরে থাকুক। একটা রাত আমরা
+কাটাই অনুরন গোলক ছাড়া। </p>
+<p>ক্রিক মাথা নাড়ল, বলল, হ্যাঁ কাল
+ভোরে আবার আমরা
+আগের মানুষ হয়ে যাব। ভয়ে ভয়ে থাকতে আমার বেশি ভালো লাগছে না। </p>
+<p>শু ক্রিকের কথা শুনে আবার খিলখিল
+করে হাসতে শুরু করে। </p>
+<p>.</p>
+<p>পাঁচ জনের ছোট
+দলটি আগুনকে ঘিরে বসে নিচু গলায় গল্প করতে থাকে। প্রত্যেকটা
+মানুষের মাঝে একটা পরিবর্তন হয়েছে। তারা কেউ আর আগের মানুষ নেই, সবারই যেন একটা নতুন ব্যক্তিত্ব! কথা বলতে বলতে তারা হঠাৎ
+হঠাৎ চমকে উঠছিল, একে অন্যের দিকে অবাক হয়ে তাকাচ্ছিল! নিজেদের ভিতরেও
+তারা বিচিত্র সব অনুভূতির খোঁজ পেতে থাকে যেগুলোর
+অস্তিত্ব সম্পর্কে তাদের কোনো ধারণাই ছিল না। </p>
+<p>ছোট দলটির সবাই খুব ক্লান্ত–তবুও তাদের ঘুমোতে দেরি হয়। দীর্ঘ সময় তারা তাদের স্লিপিং ব্যাগে শুয়ে ছটফট
+করে একে একে সবাই ঘুমিয়ে পড়ে। </p>
+<p>গভীর রাতে হঠাৎ রিফার ঘুম ভেঙে গেল, কিছু একটা নিয়ে তার মন বিক্ষিপ্ত হয়ে আছে। কিছু একটা তার করার ইচ্ছে করছে কিন্তু ঠিক
+বুঝতে পারছে না সেটা কী। রিফা দীর্ঘ সময় আগুনের দিকে তাকিয়ে থাকে, তারপর
+সে স্লিপিং ব্যাগ থেকে বের হয়ে আসে। আগুনের পাশে গুটিসুটি মেরে সবাই
+ঘুমোচ্ছে, সে
+তার মাঝে ইতস্তত হাঁটতে থাকে। এক পাশে তাদের ব্যাকপেকগুলো রাখা
+আছে, তাদের
+জামাকাপড় জুতো খাবারদাবার ছড়িয়ে ছিটিয়ে পড়ে আছে। তার পাশে তাদের অস্ত্রগুলো একটা কুড়াল, কয়েকটা ছোরা। হঠাৎ রিফার সমস্ত শরীরে এক ধরনের
+শিহরন বয়ে গেল। কী করতে চাইছে হঠাৎ করে সে বুঝতে পেরেছে। কোনো সন্দেহ নেই আর—সে
+জানে, তার সমস্ত ইন্দ্রিয় সমস্ত
+চেতনা সমস্ত অনুভূতি হঠাৎ করে কেন্দ্রীভূত হয়ে গেছে পায়ে পায়ে হেঁটে সে ধারালো কুড়ালটি হাতে তুলে নেয়। সে
+জানে ঘুমন্ত চার মানুষের বুক কেটে তাদের হৃৎপিণ্ড বের করে আনতে হবে। কচকচ
+করে কী খেতে হবে হঠাৎ করে মনে পড়েছে তার। অনুরন গোলক এতদিন তার চেতনাকে আচ্ছন্ন
+করে রেখেছিল, হঠাৎ করে তার চেতনা উন্মুক্ত হয়ে গেছে। এখন আর তার কোনো দ্বিধা
+নেই। কোনো শঙ্কা নেই। </p>
+<p>রিফা দু হাতে শক্ত করে কুড়ালটি ধরে ঘুমন্ত
+মানুষগুলোর
+দিকে এগিয়ে যেতে থাকে। আগুনের আভায় তার অপূর্ব সুন্দর মুখটি
+চকচক করতে থাকে। সেখানে বিচিত্র একটা হাসি খেলা করছে। </p>
+</div>
+<br/><h2>ওরা</h2>
+<hr/>
+<br/><div>
+<p><strong>ওরা</strong></p>
+<p>লিশান ঘরে ঢুকে দেখতে পেলেন তার মেয়ে য়িমা ঘরের মাঝামাঝি চুপ করে দাঁড়িয়ে আছে। তিনি একটু থমকে দাঁড়ালেন, তারপর হেঁটে হেঁটে জানালার
+কাছে গিয়ে নরম চেয়ারটিতে হেলান দিয়ে বসলেন। য়িমা একটু এগিয়ে এসে বলল, বাবা, তুমি আমাকে দেখ
+নি? </p>
+<p>দেখেছি য়িমা। </p>
+<p>কিন্তু তুমি আমাকে দেখেও কিছু বল
+নি। </p>
+<p>না, বলি নি। সবসময় কি কথা বলতে হয়? </p>
+<p>কিন্তু তুমি আমার দিকে এগিয়ে আস
+নি, আমাকে স্পর্শ কর নি, আমাকে আলিঙ্গনও কর নি। </p>
+<p>লিশান তার মেয়ের দিকে তাকিয়ে মৃদু স্বরে বললেন, য়িমা, তুমি এখান থেকে চার হাজার কিলোমিটার দূরে দাঁড়িয়ে আছ, আমার সামনে যেটি দাঁড়িয়ে আছে সেটি তুমি নও,
+সেটি তোমার
+একটা প্রতিচ্ছবি! তুমি যে কথা বলছ তার সবগুলো তোমার কথা নয়, একটি
+কৌশলী–যন্ত্র জানে
+তুমি কেমন করে কথা বল তাই সে তোমার মতো করে কথা বলছে। আমি কেমন করে
+একটা যন্ত্রের মুখের কথা শুনে একটা প্রতিচ্ছবিকে আলিঙ্গন করব? </p>
+<p>য়িমা একটু এগিয়ে এসে
+তার বাবার দিকে নিজের হাতটি এগিয়ে দিয়ে বলল,
+বাবা, তুমি কী বলছ
+এসব? এই যে আমার হাত ধরে দেখ, দেখবে কত জীবন্ত মনে হবে। </p>
+<p>জীবন্ত মনে হওয়া আর
+জীবন্ত হওয়া এক জিনিস নয় য়িমা। </p>
+<p>য়িমা হাল ছেড়ে দেয়ার ভঙ্গি করে বলল,
+বাবা, তুমি একেবারে পুরোনোকালের মানুষ।
+</p>
+<p>হ্যাঁ, মা, আমি খুব পুরোনোকালের মানুষ। </p>
+<p>প্রতিদিন এত নতুন নতুন জিনিস আবিষ্কার
+হয় তুমি তার কোনোকিছু ব্যবহার কর না। তোমার দেহবন্ধনী নেই, তোমার দৃষ্টিসীমা
+নেই, তোমার
+যোগাযোগ বলয় নেই,
+তোমার আধুনিক
+কোনো যন্ত্রপাতি নেই। তুমি মানুষটি একেবারেই আধুনিক নও– </p>
+<p>লিশান তার মেয়ের প্রতিচ্ছবির দিকে তাকিয়ে বললেন, না য়িমা, আমি মোটও আধুনিক নই! তুমি ঠিকই বলেছ। আমি আমার মেয়ের প্রতিচ্ছবি দেখে সন্তুষ্ট হতে পারি না, সত্যিকারের
+মেয়েটিকে দেখার
+জন্যে আমার বুক খা–খা
+করে। </p>
+<p>য়িমা একটু আদুরে গলায় বলল, বাবা, তুমি এত বড় একজন বিজ্ঞানী, কিন্তু কিছু
+কিছু ব্যাপারে তুমি এত বোকা! </p>
+<p>মেয়ের অভিযোগ শুনে লিশান একটু হেসে
+বললেন, সব মানুষই কোনো–না–কোনো বিষয়ে বোকা হয়– </p>
+<p>তুমি একটু বেশি বোকা। </p>
+<p>হ্যাঁ, মা, আমি একটু বেশি বোকা।</p>
+<p>য়িমা অন্যমনস্কভাবে ঘরে একটু ঘুরে আবার তার বাবার
+কাছে এসে দাঁড়াল,
+জিজ্ঞেস করল, বাবা, তুমি একা একা সময় কাটাও কেমন করে? </p>
+<p>লিশান বললেন, আমি যখন একা একা থাকি, আমার সময় কাটাতে কোনো অসুবিধে হয় না। বরং যখন লোকজন এসে যায় তখন আমার সময় নিয়ে খুব
+সমস্যা হয়।
+কী বলতে হয় টের পাই না। </p>
+<p>আমি যখন আসি তখন? </p>
+<p>তুমি তো আস
+না। তোমাকে
+আমি শেষবার কবে দেখেছি মনেও করতে পারি না। </p>
+<p>এই যে এলাম—</p>
+<p>লিশান তার মেয়ের দিকে তাকিয়ে একটু হেসে বললেন, এটা তো আসা হল না। </p>
+<p>য়িমা একটু আহত গলায় বলল, ঠিক আছে বাবা, আমি আর এভাবেও আসব না। </p>
+<p>আসবে না কেন মা, আসবে। অবশ্যি আসবে।
+বাবার ওপর রাগ করতে হয় না, বিশেষ করে যদি বোকা বাবা হয়। </p>
+<p>য়িমা একটু হেসে ফেলে আরেকটু এগিয়ে বলল, বাবা তুমি এখন কী নিয়ে কাজ করছ? </p>
+<p>জটিল একটা অঙ্ক করছি। </p>
+<p>মানুষ আজকাল নিজে নিজে অঙ্ক করে না বাবা! অঙ্ক করার
+জন্যে কত ক্রাঞ্চ মেশিন তৈরি হয়েছে। আমাদের বিশ্ববিদ্যালয়ে একটা মেশিন আছে তার নাম অলৌকিক চিন্তাবিদ। তুমি দেখলে অবাক হয়ে যাবে
+বাবা, সেটা যে কত তাড়াতাড়ি কত কঠিন কঠিন অঙ্ক করে ফেলে! </p>
+<p>তাই নাকি? </p>
+<p>হ্যা বাবা। তুমি কোনোকিছু খোঁজ রাখ
+না। তোমার অঙ্কটা সেরকম একটা মেশিনকে কেন দিলে না? </p>
+<p>তাহলে আমি কী করব? </p>
+<p>অন্য সবাই যা করে তুমিও তাই করবে। পাহাড়ে বেড়াতে যাবে, সমুদ্রে যাবে, জাদুঘরে যাবে, সঙ্গীতানুষ্ঠানে যাবে– </p>
+<p>লিশান একটু হেসে বললেন, যার যেটা
+ভালো লাগে, তার সেটাই করতে হয় য়িমা। আমার এটাই ভালো লাগে। </p>
+<p>তোমার অঙ্ক করতে ভালো লাগে? </p>
+<p>হুঁ</p>
+<p>কিসের অঙ্ক এটা বাবা? </p>
+<p>লিশান একটা নিশ্বাস ফেলে বললেন, গত পঞ্চাশ বছরে
+পৃথিবীতে অনেক রকম তথ্য পাওয়া গেছে। পৃথিবীতে প্রথম যখন প্রাণের বিকাশ হয়েছিল সেই সময়ের তথ্য। </p>
+<p>সেই তথ্য দিয়ে তুমি কী করবে? </p>
+<p>আমি সেই তথ্য দিয়ে বের করার চেষ্টা করছি পৃথিবীতে কেমন করে প্রাণের সৃষ্টি হল। </p>
+<p>বের করেছ বাবা? </p>
+<p>লিশান কোনো কথা
+বললেন না। </p>
+<p>বের করেছ? </p>
+<p>লিশান একটা নিশ্বাস ফেলে বললেন,
+আমি কী করেছি আমি নিজেই জানি না য়িমা। আমি সত্যিই জানি না। </p>
+<p>লিশানকে হঠাৎ কেমন জানি বিষণ্ণ দেখাতে
+থাকে, তিনি অন্যমনস্কভাবে জানালা দিয়ে বাইরে তাকিয়ে রইলেন। </p>
+<p>য়িমা কোমল গলায় জিজ্ঞেস
+করল তুমি জান না তুমি কী বের করেছ? </p>
+<p>লিশান জানালা দিয়ে বাইরে
+বিষণ্ন চোখে তাকিয়ে রইলেন, য়িমার কথা শুনতে পেলেন বলে মনে হল না। য়িমা আবার কী একটা কথা বলতে গিয়ে থেমে গেল, তার বাবা
+গভীর চিন্তায় মগ্ন হয়ে আছেন, কোনো কথা
+বললে শুনতে পাবেন বলে মনে হয় না। </p>
+<p>য়িমা বিষণ্ণ মুখে
+দাঁড়িয়ে রইল। বাবাকে সে একটা কথা বলতে এসেছিল, সেটা আর বলা হল না। তার ভিতরে
+কী একটা পরিবর্তন হচ্ছে সে বুঝতে পারছে না, ভেবেছিল বাবার। সাথে সেটা নিয়ে কথা বলবে। কিন্তু এখন সে আর বাবার সাথে সেটা নিয়ে কথা বলতে পারবে না! কে জানে শুনে বাবা হয়তো আরো বিষণ্ণ হয়ে যাবেন। সে বাবার মন খারাপ করতে চায় না,
+তাকে সে বড় ভালবাসে। </p>
+<p>.</p>
+<p>লিশান লাইব্রেরিঘরে বড় প্রসেসরের
+সামনে দাঁড়িয়ে স্বচ্ছ মনিটরটির দিকে তাকিয়ে রইলেন। দীর্ঘদিন চেষ্টা করে খুব ধীরে ধীরে তার মস্তিষ্কের
+অনুকরণে সেখানে নিউরাল কম্পিউটার তৈরি হয়েছে, তিনি সেটির দিকে তাকিয়ে মৃদুস্বরে
+তাকে জেগে উঠতে বললেন। সাথে সাথে
+একটা মৃদু গুঞ্জন শোনা
+গেল এবং ঘরের মাঝামাঝি প্রায় লিশানের মতোই একজন মানুষের প্রতিচ্ছবি জেগে উঠল। প্রতিচ্ছবিটি
+নরম গলায় বলল, কী ব্যাপার লিশান? </p>
+<p>একা একা ভালো লাগছিল
+না। ভাবলাম তোমার
+সাথে একটু কথা বলি। </p>
+<p>প্রতিচ্ছবিটি একটু হেসে বলল, আমি
+তো আসলে তোমার অনুকরণে তৈরী। আমার সাথে কথা বলা হচ্ছে নিজের সাথে কথা বলার মতো। মানুষ কি কখনো নিজের সাথে কথা বলে? </p>
+<p>বলে। </p>
+<p>প্রতিচ্ছবিটি হেসে বলল, হ্যাঁ, বলে। ঠিক
+আছে বল তুমি কী বলবে? </p>
+<p>লিশান কয়েক মুহূর্ত চুপ করে থেকে বললেন, তোমার
+কি মনে হয় আমার সমাধানটি সত্যি? </p>
+<p>হা, লিশান সত্যি। </p>
+<p>কিন্তু সেটা কী করে সম্ভব? </p>
+<p>তুমি দেখেছ সেটা সম্ভব। তুমি
+একই সমস্যা তিনটি ভিন্ন ভিন্ন উপায়ে সমাধান করেছ। প্রত্যেকবারই
+তোমার সমাধান
+একই এসেছে। তুমি সেখানে থাম নি, পৃথিবীর
+সর্বশ্রেষ্ঠ কম্পিউটার ব্যবহার করে সেখানে সেটাকে কৃত্রিম উপায়ে পরীক্ষা
+করেছ। তোমার সমাধানে কোনো ভুল
+নেই লিশান। </p>
+<p>লিশান স্থির দৃষ্টিতে তার প্রতিচ্ছবির দিকে তাকিয়ে থেকে বললেন, আমার সমাধানটি বলেছে পৃথিবীর যে পরিবেশ ছিল সেই
+পরিবেশে প্রাণ সৃষ্টি হতে পারে না। </p>
+<p>না, পারে না। প্রতিচ্ছবিটি প্রায় কঠিন গলায় বলল, তুমি সেটা সন্দেহাতীতভাবে প্রমাণ করেছ। তুমি
+প্রাণের জৈব রূপ নিয়ে গবেষণা করে দেখিয়েছ তার জন্যে প্রয়োজনীয় পরিবেশ ছিল না। তুমি
+মহাকাশের তেজস্ক্রিয়তার
+পরিমাপ দিয়ে প্রমাণ করেছ সেই তেজস্ক্রিয়তায় প্রাণের সৃষ্টি সম্ভব নয়। তুমি
+সম্ভাব্যতার গণিত দিয়ে প্রমাণ করেছ প্রাণহীন পৃথিবীতে প্রাণ সৃষ্টির জন্যে যে পরিমাণ চাঞ্চল্য
+প্রয়োজন পৃথিবীতে
+তা ছিল না। শুধু যে ছিল না তাই নয়, লক্ষ
+ভাগের এক ভাগও ছিল না! </p>
+<p>হা। লিশান
+মাথা নাড়লেন, আমি
+দেখিয়েছি। </p>
+<p>তুমি দেখিয়েছ পৃথিবীতে যে তাপমাত্রা ছিল সেই তাপমাত্রায় অণু–পরমাণুর
+কম্পন কীভাবে প্রাণ সৃষ্টির অন্তরায় হতে পারে। দেখাও নি? </p>
+<p>দেখিয়েছি। </p>
+<p>তুমি দেখিয়েছ পৃথিবীতে দীর্ঘ সময় প্রকৃতির
+সুষ্ঠ শক্তি প্রবাহ হয় নি। তুমি. দেখিয়েছ সেটি সুষম নয়। শুধু
+যে সুষম নয় তাই নয়, প্রাণ সৃষ্টির একেবারে বিপরীত। </p>
+<p>লিশান মাথা নাড়লেন, বললেন, আমি
+দেখিয়েছি। </p>
+<p>তুমি সেটা প্রমাণ করেছ প্রস্তর–কণায় কার্বন অণুর বৈষম্য দেখিয়ে। দেখাও
+নি? </p>
+<p>দেখিয়েছি। </p>
+<p>তুমি এককোষী প্রাণীর ফসিলের ডি. এন. এ. থেকে
+দেখিয়েছ তাতে
+যে–ধরনের সামঞ্জস্য আছে সেই সামঞ্জস্যের জন্যে প্রয়োজনীয় স্থিতিশীলতা পৃথিবীর পরিবেশে ছিল না। দেখাও নি? </p>
+<p>হ্যাঁ, আমি দেখিয়েছি।
+</p>
+<p>তুমি সর্বকালের সর্বশ্রেষ্ঠ গণিতবিদ।
+তুমি কোনো ভুল কর নি লিশান। </p>
+<p>লিশান একটা নিশ্বাস ফেলে বললেন,
+যা আমি জানি, আমি সন্দেহাতীতভাবে প্রমাণ করেছি পৃথিবীতে প্রাণ সৃষ্টি হতে পারে না।
+কিন্তু পৃথিবীতে শুধু যে প্রাণ রয়েছে তাই নয়, এখানে রয়েছে পরিচিত জগতের সবচেয়ে বুদ্ধিমান
+প্রাণী। তারা কোথা থেকে এল? </p>
+<p>লিশানের মতো দেখতে প্রতিচ্ছবিটি
+নরম গলায় বলল, তুমি জান তারা কোথা থেকে এসেছে। </p>
+<p>লিশান মৃদু গলায় বললেন, হ্যাঁ, আমি জানি। আর জানি বলেই আমার ভিতরে কোনো শান্তি নেই। </p>
+<p>তুমি ভয় পাচ্ছ লিশান? </p>
+<p>হা, বলতে পার এক ধরনের ভয়। </p>
+<p>প্রতিচ্ছবিটি হেসে বলল, তোমার তো ভয় পাবার কিছু নেই লিশান। ভয় পাচ্ছ
+কেন? </p>
+<p>আমি যে সমাধানটি করেছি সেটি কোথাও প্রকাশ করি নি। পৃথিবীর
+কেউ সেটা এখনো জানে না। যখন জানবে তখন কী একটা আঘাত পাবে পৃথিবীর
+মানুষ! এই পৃথিবীতে তাদের থাকার কথা নয়। তারা আছে কারণ এক বুদ্ধিমান প্রাণী তাদের এই পৃথিবীতে
+এনেছে! চিন্তা করতে পার? </p>
+<p>তুমি ঠিকই বলেছ। ব্যাপারটি বিশ্বাস
+করা কঠিন, গ্রহণ করা আরো কঠিন। </p>
+<p>হ্যাঁ। আর পুরো ব্যাপারটি চিন্তা করলে গায়ে কেমন যেন কাঁটা দিয়ে ওঠে। </p>
+<p>কেন লিশান? </p>
+<p>যে বুদ্ধিমান প্রাণী পৃথিবীতে মানুষের, জীবজন্তু,
+গাছপালা, কীটপতঙ্গের জন্ম দিয়েছে তারা যদি আমাদের সাথেই আছে, তারা যদি আমাদের তীক্ষ্ণ চোখে পরীক্ষা
+করছে, তাদের কাছে যদি পুরো ব্যাপারটা হয় পরীক্ষাগারে
+একটা গবেষণা? একটা কৌতুক? </p>
+<p>তাহলে কী হবে? </p>
+<p>তারা যদি আমাদের এখন দেখা দেয়? তারা যদি মনে করে কৌতুকের
+অবসান হয়েছে,
+এখন পৃথিবীতে আর প্রাণের প্রয়োজন নেই? </p>
+<p>লিশানের প্রতিচ্ছবিটি শব্দ করে হেসে বলল, তুমি মনে
+হয় পুরো ব্যাপারটি নিয়ে একটু
+বেশি উত্তেজিত হয়ে আছ! তোমার মস্তিষ্ক মনে হয় খানিকটা উত্তপ্ত। তোমার এই সমস্যাটি
+প্রকাশিত হওয়ার সাথে সাথে সমস্ত পৃথিবী ধোঁয়া হয়ে মিলিয়ে যাবে, তুমি সেটা সত্যি বিশ্বাস কর? </p>
+<p>লিশান কোনো কথা
+না বলে শূন্য দৃষ্টিতে বাইরে তাকিয়ে রইল। </p>
+<p>.</p>
+<p>ভোরবেলা লিশান খাবার টেবিলে বসে খানিকটা ফলের রস খেল দীর্ঘ সময় নিয়ে। তারপর যোগাযোগ কেন্দ্রে সাজিয়ে রাখা পুরো সমাধানটির ওপর একবার চোখ বুলিয়ে নিয়ে সেটি কেন্দ্রীয় নেটওয়ার্কে প্রবেশ করিয়ে দিল।
+কয়েক মুহূর্তে
+সেটি এখন পৃথিবীর সব গবেষণাগারে, সব শিক্ষাকেন্দ্রে, সব প্রতিষ্ঠানে ছড়িয়ে যাবে। পৃথিবীর মানুষ কিছুক্ষণের মধ্যেই জেনে যাবে এই পৃথিবীতে প্রাণ
+সৃষ্টি হওয়ার
+কথা ছিল না। এখানে প্রাণ সৃষ্টি হয়েছে। কারণ কোনো একটি বুদ্ধিমান প্রাণী
+এখানে প্রাণ সৃষ্টি করতে এসেছে। মানুষ সৃষ্টির শ্রেষ্ঠ জীব নয়। মানুষ কোনো একটি প্রাণীর হাতের পুতুল, গবেষণাগারের একটি পরীক্ষা, খেয়ালি একজনের কৌতুক।
+</p>
+<p>লিশান দুপুরবেলা ঘর থেকে বের হলেন।
+তার বাসার কাছে একটা ছোট হ্রদ রয়েছে, হ্রদের চারপাশে পাইনগাছ। হ্রদের টলটলে নীল পানিতে উত্তরের হিমশীতল
+দেশ থেকে উড়ে এসেছে কিছু বুনোহাঁস। তারা সেখানে পানি ছিটিয়ে খেলা
+করে। লিশান পকেটে করে তাদের জন্যে কিছু খাবার নিয়ে এসে
+রোজ হ্রদের
+তীরে বসে বসে তাদের খাওয়ান। হাঁসগুলো ঝাপাঝাপি করে খায়, পানি ঝাঁপটিয়ে ছুটে
+বেড়ায়, তার
+দেখতে বড় ভালো লাগে। এই হাঁসগুলোও ঠিক মানুষের মতোই কোনো এক বুদ্ধিমান প্রাণীর তৈরী কিন্তু তাদের দেখলে লিশান কিছুক্ষণের
+জন্যে সেটা ভুলে যেতে পারেন। </p>
+<p>লিশান অপরাহ্নে ঘরে ফিরে এলেন। ফিরে
+আসতে তার খুব দ্বিধা হচ্ছিল। তিনি জানেন তার
+বাসাকে ঘিরে থাকবে অসংখ্য সাংবাদিক, নেটওয়ার্কের ক্যামেরা। বছর দশেক আগে তিনি ছোট একটি সূত্র প্রমাণ
+করেছিলেন, তখন সেটা নিয়েই অনেক হইচই হয়েছিল। তার
+তুলনায় এটা অনেক বড় ব্যাপার, এবারে
+কী হবে কে জানে। </p>
+<p>ঘরের কাছাকাছি পৌঁছে লিশান
+কিন্তু খুব অবাক হলেন, তার ঘরের আশপাশে কেউ নেই। হঠাৎ কেন জানি তার বুক কেঁপে উঠল। কিছু একটা অস্বাভাবিক ব্যাপার ঘটেছে
+এখানে। তিনি কয়েক
+মুহূর্ত বাইরে দাঁড়িয়ে থেকে দরজা স্পর্শ করে ভিতরে ঢুকলেন। ঘরের মাঝামাঝি তার মেয়ে য়িমা দাঁড়িয়ে আছে। লিশান তীক্ষ্ণ দৃষ্টিতে তার দিকে
+খানিকক্ষণ তাকিয়ে রইলেন
+তারপর কোমল গলায় বললেন, তুমি সত্যি এসেছ? </p>
+<p>হ্যা বাবা। য়িমা কাছে এগিয়ে এসে হাত বাড়িয়ে দিয়ে বলল,
+এই যে, আমাকে ছুঁয়ে দেখ। </p>
+<p>লিশান হাত বাড়াতে গিয়ে লক্ষ
+করলেন তার হাত অল্প অল্প কাঁপছে। য়িমা লিশানের হাতটা
+ধরে বলল, তোমার
+শরীর ভালো আছে তো বাবা? 
+</p>
+<p>লিশান এক ধরনের শূন্য দৃষ্টিতে য়িমার দিকে তাকিয়ে রইলেন, তারপর মৃদু গলায় বললেন, ভালো আছি মা</p>
+<p>তুমি কি আমাকে দেখে অবাক হয়েছ বাবা? </p>
+<p>লিশান মাথা নাড়লেন, না, অবাক হই নি। খুব কষ্ট
+হচ্ছে, বুকটা ভেঙে যাচ্ছে, কিন্তু অবাক হই নি। আমি বুঝতে পেরেছিলাম তাদের কেউ আসবে,
+কিন্তু কে হবে সেই মানুষটি বুঝতে পারি নি। কখনো ভাবি নি সেটা হবে তুমি।
+</p>
+<p>লিশান খুব ধীরে ধীরে তার চেয়ারটাতে বসে বললেন, আমি ভেবেছিলাম
+তুমি সত্যি বুঝি আমার
+মেয়ে। </p>
+<p>য়িমা এক ধরনের বিষণ্ণ চোখে
+বলল আমি সত্যি তোমার
+মেয়ে বাবা, তারা তোমার সাথে কথা বলার জন্যে আমাকে বেছে নিয়েছে। </p>
+<p>লিশান য়িমার দিকে তাকিয়ে বললেন,
+তুমি কি সত্যিই য়িমা? </p>
+<p>আমি সত্যিই য়িমা কিন্তু আমি এখন
+আরো অনেক কিছু। </p>
+<p>আরো অনেক কিছু কী? </p>
+<p>য়িমা একটা নিশ্বাস ফেলে বলল, তুমি
+সেটা বুঝবে না বাবা। তুমি পৃথিবীর সর্বশ্রেষ্ঠ গণিতবিদ কিন্তু তবু তুমি বুঝবে না। ত্রিমাত্রিক
+জগতের মানুষ দশটি ভিন্ন মাত্রাকে একসাথে অনুভব করতে পারে না। </p>
+<p>তুমি পার? </p>
+<p>এখন পারি। কেউ যদি দীর্ঘদিন অন্ধকার
+একটা ঘরে ছোট
+একটা আলো নিয়ে বেঁচে থাকে
+তারপর হঠাৎ যদি সে আলোকোজ্জ্বল
+পৃথিবীতে বের হয়ে আসে, তখন তার যেরকম লাগে আমার সেরকম লাগছে। </p>
+<p>সত্যি? </p>
+<p>হ্যা বাবা। মানুষের যেরকম দুঃখ কষ্ট
+রাগ ভালবাসার অনুভূতি আছে আমার সে অনুভূতি আছে, তার সাথে সাথে আরো অসংখ্য
+নতুন অনুভূতির জন্ম হয়েছে–তোমরা যেগুলো কখনো অনুভব
+কর নি, কখনো অনুভব করতে পারবে না। </p>
+<p>লিশান আস্তে আস্তে বললেন, য়িমা,
+তোমাকে আমি
+বুকে ধরে মানুষ করেছি। তুমি যখন ছোট ছিলে তখন কত রাত আমি তোমাকে বুকে চেপে এ–ঘর ও–ঘর ঘুরে বেড়িয়েছি। তখন আমি তোমার জন্যে বুকে
+এক তীব্র ভালবাসা অনুভব করেছি। যে প্রাণী মানুষের বুকে
+সেই তীব্র ভালবাসার জন্ম দিতে পারে সেই প্রাণী নিশ্চয়ই খুব আশ্চর্য উন্নত এক প্রাণী। </p>
+<p>হ্যাঁ বাবা। সেই প্রাণী খুব উন্নত প্রাণী। </p>
+<p>য়িমা হেঁটে এসে লিশানের হাত স্পর্শ করে বলল, আমি
+তোমাকে খুব
+ভালবাসি বাবা। </p>
+<p>আমি জানি। </p>
+<p>তুমি জান না বাবা, তুমি
+কখনো জানবে না। </p>
+<p>লিশান চুপ করে রইলেন তারপর নরম গলায় বললেন, আমি যে সমাধানটি বের করেছি সেটা পৃথিবীর মানুষ কখনো জানতে পারবে না? </p>
+<p>না! তুমি
+যখন নেটওয়ার্কে
+দিয়েছ সাথে
+সাথে সেটি সরিয়ে নেয়া হয়েছে। পৃথিবীর মানুষ কখনো সেটা জানবে না। </p>
+<p>তোমরা চাও না মানুষ সেটা জানুক? </p>
+<p>না। আমরা চাই না। মানুষ আমাদের সবচেয়ে প্রিয় সৃষ্টি। এন্ড্রোমিডা গ্যালাক্সিতে আমরা একটা প্রাণ সৃষ্টি করেছি সেটিও চমৎকার
+একটি প্রাণ কিন্তু তোমাদের
+মতো এত সুন্দর নয়। ক্যাসিওপিয়ার কাছাকাছি একটা
+প্রাণ তৈরি করেছি সেটা সমন্বিত প্রাণ, বিশাল একটি একক,
+তোমাদের কাছে
+সেটা মনে হবে বিচিত্র! </p>
+<p>তুমি কেন আমাকে এসব বলছ? </p>
+<p>তোমার জানার এত আগ্রহ সেজন্যে। তুমি যদি চাও তোমাকে আমরা অন্য কোথাও নিয়ে যেতে পারি। অন্য কোনো জগতে </p>
+<p>না। লিশান মাথা নাড়লেন, আমাকে এখানেই
+রেখে দিয়ে যাও। পৃথিবীর উপর মায়া পড়ে গেছে।
+আমি এখানেই মারা যেতে চাই। </p>
+<p>লিশান খানিকক্ষণ চুপ করে থেকে বললেন, য়িমা—</p>
+<p>বল বাবা। </p>
+<p>তোমরা তো এখন আমাকে মেরে ফেলবে। আমি কি মারা যাবার আগে তোমাদের একবার দেখতে
+পারি? </p>
+<p>এই তো আমাকে দেখছ– </p>
+<p>না মানুষের রূপে না, সত্যিকার রূপে।
+</p>
+<p>তোমার দেখার ক্ষমতা নেই বাবা! আমরা
+মানুষকে তৃতীয় মাত্রার বাইরে দেখার ক্ষমতা দেই নি। </p>
+<p>আমি তবু দেখতে চাই। </p>
+<p>তুমি ভয় পাবে
+বাবা। </p>
+<p>তবু দেখতে চাই </p>
+<p>ঠিক আছে, এস, দেখবে এস। হাত বাড়িয়ে দাও। </p>
+<p>লিশান তার হাত বাড়িয়ে দিলেন, সেটি অল্প অল্প কাঁপছিল। </p>
+<p>.</p>
+<p>বিশাল এক আদিগন্ত বিস্তৃত শূন্যতা, সেই শূন্যতার
+কোনো শুরু নেই, কোনো শেষ নেই, কোনো আদি নেই, কোনো অন্ত নেই। বিশাল সেই শূন্যতা কুণ্ডলী পাকিয়ে অন্ধকার
+অতল গহ্বরে হারিয়ে যাচ্ছে, পাক খেয়ে খেয়ে বিলীন
+হয়ে যাচ্ছে এক ভয়ঙ্কর আকর্ষণে। চারদিকে
+বিচিত্র এক নৈঃশব্দ্য, সেই নৈঃশব্দ্যে অন্য এক নৈঃশব্দ্য হঠাৎ করে তীব্র ঝলকানি দিয়ে ওঠে, সমস্ত চেতনা হঠাৎ এক ভয়ানক প্রলয়ের জন্যে উন্মুখ হয়ে ওঠে, সমস্ত স্নায়ু হঠাৎ টান টান হয়ে অপেক্ষা করে ধ্বংসের জন্যে…
+</p>
+<p>.</p>
+<p>পরদিন পৃথিবীর নেটওয়ার্কে বড় করে
+প্রচারিত হল সর্বকালের শ্রেষ্ঠ গণিতবিদ লিশানের মৃত্যুর খবর। মৃত্যুর
+আগে ছোট দুর্ঘটনায় তার যোগাযোগ মডিউল
+নষ্ট হয়ে যাওয়ায় তিনি কিসের উপর গবেষণা করছিলেন সেটা কেউ
+জানতে পারল না। </p>
+<p>লিশানের মৃত্যুতে তার মেয়ে য়িমার
+প্রতিক্রিয়া জানার জন্যে কিছু সাংবাদিক তাকে খোঁজ করছিল। নেটওয়ার্ক জানিয়েছে এই খবর প্রচারিত
+হওয়া পর্যন্ত সময়ে তাকে তখনো পাওয়া যায় নি। </p>
+</div>
+<br/><h2>জগলুল সিংগুলারিটি</h2>
+<hr/>
+<br/><div>
+<p><strong>জগলুল সিংগুলারিটি</strong></p>
+<p>রিলেটিভিটির ক্লাসে প্রফেসর জগলুল
+হঠাৎ লক্ষ করলেন তৃতীয় বেঞ্চের মাঝামাঝি জায়গায় বসে
+আলাউদ্দিন গালে হাত দিয়ে ছাদের দিকে তাকিয়ে আছে।
+দেখে প্রফেসর জগলুলের একটু মেজাজ খারাপ হল। তিনি ডাকসাইটে প্রফেসর, তার ক্লাসে ছাত্ররা
+অমনোযোগী হবে–সে
+যত ভালো ছাত্রই হোক তিনি সেটা সহ্য করতে পারেন না। </p>
+<p>ব্ল্যাকবোর্ডে লেখা থামিয়ে তিনি
+একটু এগিয়ে গিয়ে থমথমে গলায় ডাকলেন,
+আলাউদ্দিন– </p>
+<p>আলাউদ্দিন সাথে সাথে ছাদ থেকে চোখ নামিয়ে আনে, জি স্যার? </p>
+<p>তুমি ছাদের দিকে তাকিয়ে আছ
+কেন? </p>
+<p>একটা জিনিস ভাবছিলাম। </p>
+<p>ক্লাসে তুমি অন্য জিনিস ভাবতে আস
+নি, ক্লাসে এসেছ আমি কী পড়াচ্ছি সেটা শুনতে। </p>
+<p>আমি সেটাও শুনছি স্যার। শুনতে শুনতে
+ভাবছি। </p>
+<p>তুমি আমার পড়া শুনছ? </p>
+<p>জি স্যার শুনছি। </p>
+<p>প্রফেসর জগলুল এবারে সত্যি সত্যি
+রেগে গেলেন; কেউ মিথ্যে কথা বললে তিনি ভীষণ রেগে যান। চোখ লাল করে ছোট একটা গর্জন করে
+বললেন, তুমি আমার কথা শুনছ? </p>
+<p>আলাউদ্দিন এবারে উঠে দাঁড়িয়ে বলল, জি স্যার, শুনছি। </p>
+<p>বল দেখি ট্রান্সফর্মেশান মেট্রিক্সটা
+কী রকম? </p>
+<p>বই খাতা না দেখে শুধু স্মৃতির ওপর
+নির্ভর করে ট্রান্সফর্মেশান মেট্রিক্সটা বলা সম্ভব নয় কিন্তু
+আলাউদ্দিন মোটেও
+বিচলিত না হয়ে বলতে শুরু করল এবং কিছুক্ষণ শুনেই প্রফেসর জগলুল বুঝতে পারলেন আলাউদ্দিন
+ঠিকই বলছে। এতে তার রাগ আরো বেড়ে গেল, তিনি আরো জোরে গর্জন করে বললেন, আগে
+থেকে পড়ে এসে ক্লাসে বিদ্যা ফলানো ক্লাস এটেন্ড করা নয়। ক্লাসে এলে মনোযোগ দিতে হবে। </p>
+<p>আলাউদ্দিন একটু বিব্রত হয়ে নিচু গলায় বলল, আমি মনোযোগ
+দিচ্ছি স্যার। </p>
+<p>না তুমি মনোযোগ
+দিচ্ছ না। তুমি ছাদের দিকে তাকিয়ে আছ। আমি ক্লাসে কী বলছি তুমি
+শুনছ না, কী লেখছি তুমি দেখছ না। </p>
+<p>দেখছি স্যার। এই দেখেন স্যার আমার খাতায় সব লেখা আছে। তাছাড়া </p>
+<p>তাছাড়া কী? </p>
+<p>আমি মনোযোগও দিচ্ছি স্যার। যেমন
+স্যার আপনি ব্ল্যাকবোর্ডে
+দুই নাম্বার লাইনে ইকুয়েশানটা ভুল লিখেছেন। ইনডেক্সগুলো উল্টাপাল্টা
+হয়ে গেছে। ছয় নাম্বার লাইনে এসে আবার ভুল
+করেছেন, সেই ভুলটা আগের ভুলটাকে শুদ্ধ করে দিয়েছে। সাত
+নাম্বার লাইন থেকে ইকুয়েশানটা আবার শুদ্ধ হয়েছে। যদি সেটা না হত ইমাজিনারি উত্তর
+আসত। </p>
+<p>প্রফেসর জগলুল বোর্ডের দিকে তাকালেন, ভুলটা
+চোখে পড়তে তার
+অনেকক্ষণ সময় লাগল, এবং যখন সেটা তার চোখে পড়ল তিনি স্তম্ভিত হয়ে গেলেন, তার মুখে হঠাৎ রক্ত উঠে এল এবং লজ্জায় তার কান ঝা ঝা করতে লাগল। তিনি ডাস্টার দিয়ে ব্ল্যাকবোর্ডের লেখা মুছে শুদ্ধ করতে করতে বিড়বিড় করে
+বললেন, আমার নোটবইয়ে ঠিকই লেখা রয়েছে, বোর্ডে তুলতে ভুল হয়েছে। </p>
+<p>আলাউদ্দিন হাসি–হাসি মুখ করে না–সূচকভাবে মাথা নাড়ল, প্রফেসর জগলুল সেটা দেখতে পেলেন না, কোনোভাবে নিজেকে সামলে নিয়ে বললেন, বস। </p>
+<p>স্যার আমি কী ভাবছিলাম সেটা কি আপনাকে একটু বলতে
+পারি? </p>
+<p>প্রফেসর জগলুল থমথমে গলায় বললেন,
+আমি ক্লাসে অন্য জিনিস নিয়ে কথা বলা পছন্দ করি না। </p>
+<p>এটা অন্য জিনিস না স্যার। রিলেটিভিটির
+একটা ব্যাপার। স্পেস টাইম কন্টিনিউয়ামের একটা
+সহজ ইকুয়েশান—</p>
+<p>প্রফেসর জগলুল তাকে কথার মাঝখানে থামিয়ে দিয়ে বললেন, তুমি সেটা নিয়ে অন্য
+সময় কথা
+বোলো</p>
+<p>আলাউদ্দিনের মুখে একটা আশাভঙ্গের
+ছাপ পড়ে, সে
+সেটা গোপন করার
+চেষ্টা করতে করতে নিজের জায়গায় বসে পড়ল। প্রফেসর জগলুল আবার বোর্ডে লিখতে শুরু করলেন, খুব স্বতঃস্ফূর্তভাবে আর পড়াতে পারছেন না, আলাউদ্দিন
+তার মেজাজটাকে একটু খিঁচড়ে দিয়েছে। প্রতিভাবান ছাত্ররা সাধারণত শিক্ষকদের প্রিয় হয়, কিন্তু সেই প্রতিভাটা
+যদি শিক্ষকদের দৈনন্দিন জীবনের জন্যে
+হুমকি হয়ে দাঁড়ায় তখন ছাত্রটির মাঝে ভালো লাগার
+কিছু খুঁজে পাওয়া কঠিন ব্যাপার হয়ে দাঁড়ায়। আলাউদ্দিন নামক এই সাদাসিধে গোবেচারা ধরনের ছাত্রটির
+বিরুদ্ধে তিনি এক ধরনের বিজাতীয় বিদ্বেষ অনুভব করতে লাগলেন।
+</p>
+<p>.</p>
+<p>দুপুরবেলা সাধারণত ক্লাস–সেমিনার থাকে না, তখন প্রফেসর
+জগলুল জার্নাল নিয়ে বসেন। নতুন
+কী কাজ হয়েছে
+খোঁজখবর নেন, নিজের রিসার্চের কাজকর্ম করেন। তিনি তাত্ত্বিক মানুষ, বেশিরভাগ কাজই কাগজ
+আর কলম নিয়ে বসে থাকা। আজকেও কাগজ কলম নিয়ে বসেছেন
+ঠিক এ রকম সময় দরজায় আলাউদ্দিন এসে দাঁড়াল। ছোটখাটো চেহারা, মাথার চুল এলোমেলো, চোখে সস্তা ফ্রেমের চশমা,
+শার্টটা একটু লম্বা, পায়ে স্যান্ডেল–দেখেই
+বোঝা যায় নিম্ন মধ্যবিত্ত পরিবারের ছেলে। চোখে হয়তো বুদ্ধির
+ছাপ আছে, থাকলেও সেটা মোটা চশমার আড়ালে ঢাকা পড়ে আছে। আলাউদ্দিন দরজায় দাঁড়িয়ে বলল, আসতে পারি স্যার? </p>
+<p>প্রফেসর জগলুলের ভুরু কুঞ্চিত হল,
+তিনি একবার ভাবলেন বলবেন না। কিন্তু বলতে পারলেন না। একজন শিক্ষককে সবসময় তার ছাত্রদের কাছে আসতে দিতে হয়। তিনি সরাসরি তাকে আসতেও বললেন
+না, জিজ্ঞেস করলেন, কী ব্যাপার? </p>
+<p>একটা জিনিস নিয়ে একটু
+আলাপ করতে চাইছিলাম। </p>
+<p>কী জিনিস? </p>
+<p>স্পেস টাইম কন্টিনিউয়ামের একটা ইকুয়েশান। আমি
+লিখে এনেছি, একটু যদি দেখে দেন। </p>
+<p>প্রফেসর জগলুল বিরক্ত গলায় বললেন, নিয়ে এস। </p>
+<p>আলাউদ্দিন একটু বিব্রত ভঙ্গিতে এগিয়ে এল। তার হাতে একটা বাঁধানো খাতা, সেই খাতাটা টেবিলের
+উপর রেখে বলল, এই যে ইকুয়েশানটা আছে স্যার, তার দুইটা সলিউশান। একটা আপনি ক্লাসে পড়িয়েছেন, আরেকটা অবাস্তব
+বলে বাদ দিয়েছেন।
+</p>
+<p>হুঁ। কী হয়েছে তাতে? </p>
+<p>যেই সলিউশানটা আপনি বাদ দিয়েছেন আমি সেটা দেখছিলাম
+স্যার। আমার মনে হয় সেটা অবাস্তব সলিউশান না</p>
+<p>অবাস্তব না? </p>
+<p>না স্যার। সময় সম্পর্কে
+আমাদের যেই ধারণা সেই ধারণার সাথে মিলছে না বলে আমরা বলছি এটা অবাস্তব। কিন্তু আমরা
+যদি সময় সম্পর্কে অন্য একটা ধারণা নিই। তাহলে– </p>
+<p>অন্য ধারণা? </p>
+<p>জি স্যার। এই দেখেন আমি ক্যালকুলেশান
+করেছি। </p>
+<p>আলাউদ্দিন খাতাটি খুলে ধরল এবং ভিতরে তার টানা হাতে
+পৃষ্ঠার পর পৃষ্ঠা জটিল অঙ্ক দেখে প্রফেসর জগলুল ভিতরে ভিতরে হতবাক হয়ে গেলেও বাইরে সেটা প্রকাশ করলেন না। চোখেমুখে বিরক্তি মেশানো প্রচ্ছন্ন
+একটা বিদ্রূপের ভাব ধরে রাখলেন। নিরুৎসুক গলায় জিজ্ঞেস করলেন, কী ক্যালকুলেশান?
+</p>
+<p>ক্যালকুলেশানটা দেখলেই বুঝবেন স্যার,
+তবে আমি এমনি বলে দিই। আমাদের ধারণা সময় আগে অতীত থাকে, তারপর বর্তমানে
+আসে, সেখান থেকে ভবিষ্যতে যায়। </p>
+<p>সে ধারণাটা সত্যি না? </p>
+<p>সত্যি না আবার সত্যি–আলাউদ্দিন দাঁত বের করে একটু হাসল। প্রফেসর জগলুল এবারে একটু রেগে গেলেন, বললেন,
+কী বলতে চাইছ পরিষ্কার করে বল। </p>
+<p>বলছি যে স্পেস যেরকম পুরোটা একসাথে রয়েছে, সময় সেরকম পুরোটা একসাথে রয়েছে। অতীত বর্তমান
+ভবিষ্যৎ পুরোটা।
+</p>
+<p>পুরোটা? প্রফেসর ভুরু কুঁচকে বললেন, পুরোটা? </p>
+<p>আলাউদ্দিন একটু থতমত খেয়ে বলল, জি স্যার পুরোটা। এই যে দেখেন স্যার এইখানে ক্যালকুলেশান করেছি। </p>
+<p>প্রফেসর জগলুল জটিল সমীকরণটির দিকে তাকিয়েই হঠাৎ করে বুঝে
+গেলেন আলাউদ্দিন কী বলতে চাইছে এবং তিনি ভীষণভাবে চমকে উঠলেন। এই সাদাসিধে ছেলেটি একটি যুগান্তকারী
+আবিষ্কার করে ফেলেছে কিন্তু সে নিজে সেটা নিশ্চয়ই জানে না। প্রফেসর জগলুল তার চেহারায় কিছু বুঝতে দিলেন না। বিরক্তি মেশানো প্রচ্ছন্ন
+বিদ্রুপের ভাবটা ধরে রেখে একটু রাগ–রাগ চোখে আলাউদ্দিনের দিকে তাকিয়ে রইলেন।
+আলাউদ্দিন একটু বিব্রত হয়ে খানিকটা লজ্জা পাওয়ার ভঙ্গিতে বলল, আমার ক্যালকুলেশান
+বলছে এখন যেটা অতীত সেটা যখন বর্তমানে চলে আসবে, তখন আমরা বর্তমান থেকে ভবিষ্যতে চলে
+যাব। কাজেই এখন যেটা অতীত সেটাকে কখনই
+আমরা দেখব না! ঠিক সেরকম এখন যেটা ভবিষ্যৎ সেটাও আমরা কখনো দেখব
+না–কারণ আমরা যখন ভবিষ্যতে যাব তখন যেটা ভবিষ্যতে আছে
+সেটা আরো ভবিষ্যতে চলে যাবে। কাজেই যদিও পুরো সময়টাই বর্তমান, আমরা
+আমাদের নিজেদের সময় ছাড়া কোনোটা দেখতে পাব না। যদিও
+অন্য সময়ের
+জন্যে হয়তো অন্য জগৎ রয়েছে, অন্য স্পেস রয়েছে </p>
+<p>অন্য স্পেস রয়েছে? </p>
+<p>হয়তো রয়েছে। </p>
+<p>অন্য সময়ও আছে? </p>
+<p>জি স্যার। </p>
+<p>কিন্তু কখনো দেখতে
+পাব না? </p>
+<p>না স্যার। আলাউদ্দিন মাথা চুলকে
+বলল, মনে হয় পারব না। </p>
+<p>প্রফেসর জগলুল ভিতরে ভিতরে পুরো ব্যাপারটা নিয়ে এক ধরনের প্রবল উত্তেজনা অনুভব
+করতে থাকেন কিন্তু বাইরে নিস্পৃহ ভাবটা ফুটিয়ে রাখলেন। সম্পূর্ণ নিরাসক্ত
+গলায় বললেন, যে জিনিস প্রমাণ করা যায় না
+তবু বিশ্বাস করতে হয় সেটাকে বিজ্ঞান বলে না, সেটাকে বলে ধর্মশাস্ত্র। ধর্মে বলা হয় খোদাকে
+কেউ দেখতে পাবে না তবু তাকে বিশ্বাস। করতে
+হয়, তুমিও বলছ
+একই সাথে অতীত বর্তমান আর ভবিষ্যৎ রয়েছে কিন্তু কেউ দেখতে পাবে না তবুও বিশ্বাস করতে হবে
+</p>
+<p>আলাউদ্দিন মাথা চুলকে বলল, কিন্তু আমি তো সেটা এমনি এমনি বলছি না, একটা ইকুয়েশানের
+সলিউশান থেকে বলছি। খোদার
+অস্তিত্ব নিয়ে তো কোনো ইকুয়েশান নেই–</p>
+<p>উত্তরে প্রফেসর জগলুল বলার মতো কিছু
+পেলেন না বলে বিরক্তি এবং অসহিষ্ণুতার ভঙ্গি করে মাথা নাড়তে নাড়তে বললেন, ফিজিক্স হচ্ছে এক ধরনের বিজ্ঞান। বিজ্ঞানের প্রথম কথাই হচ্ছে
+তার সব থিওরি পরীক্ষা করে দেখা যাবে। যে বিজ্ঞানের থিওরি পরীক্ষা করা যায় না সেটা নিয়ে মাথা ঘামানো হচ্ছে সময় নষ্ট। </p>
+<p>প্রফেসর জগলুলের রূঢ় উত্তরে
+জালাউদ্দিনের খুব আশাভঙ্গ হল এবং সে সেটা গোপন করার কোনো চেষ্টা করল না। একটা নিশ্বাস ফেলে বলল, স্যার, তবু আমার খাতাটা
+একটু দেখবেন? ক্যালকুলেশানে কোথাও কোনো ভুল আছে কি না। </p>
+<p>প্রফেসর জগলুল টেবিল থেকে একটা জার্নাল
+টেনে নিতে নিতে শীতল গলায় বললেন, ঠিক আছে রেখে যাও। যদি সময় হয় দেখব। </p>
+<p>আলাউদ্দিন খাতাটা তার টেবিলের উপর
+রেখে ঘর থেকে বের হয়ে গেল। যতক্ষণ সে ঘর
+থেকে পুরোপুরি
+বের হয়ে না গেল প্রফেসর জগলুল জার্নালের দিকে তাকিয়ে রইলেন,
+কিন্তু সে বের হওয়ার সাথে সাথে তিনি
+আলাউদ্দিনের খাতার উপর হুমড়ি খেয়ে পড়লেন। উত্তেজনায় তিনি নিশ্বাস নিতে পারছেন না, তার চোখ জ্বলজ্বল করতে থাকে। তিনি
+লোভাতুর দৃষ্টিতে খাতার পৃষ্ঠা উল্টান, এখানে যে পরিমাণ
+কাজ করা হয়েছে
+সেটা দিয়ে চোখ বন্ধ করে ফিজিক্যাল রিভিউয়ে তিন থেকে চারটা পেপার হয়। এটা প্রকাশ পাওয়ার সাথে সাথে সারা
+পৃথিবীর বিজ্ঞানীদের মাঝে হইচই পড়ে যাবার কথা। অনেকদিন থেকে তিনি
+সেরকম কোনো কাজ করছেন না। এই একটা কাজ দিয়েই তিনি সারা পৃথিবীতে একটা
+আলোড়ন তৈরি
+করে ফেলতে পারবেন। </p>
+<p>প্রফেসর জগলুল আলাউদ্দিনের খাতার পৃষ্ঠা উল্টাতে
+উল্টাতে বুকের ভিতরে ঈর্ষার এক ধরনের তীব্র
+খোঁচা অনুভব করতে থাকেন। এই জটিল অঙ্কগুলো আঠার–উনিশ বছরের একটি ছেলের কাজ,
+ব্যাপারটা তার বিশ্বাস হতে চায় না। তিনি ঘুঁটিয়ে ঘুঁটিয়ে দেখেন এবং কিছুক্ষণের মাঝেই তিনি নিঃসন্দেহ হয়ে যান আলাউদ্দিন যেটা বলেছে সেটা সত্যি, স্পেস
+যেরকম একই সাথে পুরোটুকু
+ছড়িয়ে আছে, সময়ও সেরকম একই সাথে পুরোটা ছড়িয়ে আছে। সময়ের প্রত্যেকটা বিন্দু
+থেকে সবকিছু ভবিষ্যতে এগিয়ে যাচ্ছে তাই কেউ কারো খোঁজ পাচ্ছে না। কোনোভাবে কেউ যদি হঠাৎ
+এক বিন্দু থেকে অন্য বিন্দুতে উপস্থিত হয়, সে দেখবে পুরোপুরি ভিন্ন এক জগৎ! প্রফেসর
+জগলুল লম্বা একটা নিশ্বাস নিলেন, এর একটা সুন্দর নাম দিতে হবে, সেই
+নাম নিয়ে তিনি পৃথিবীতে বিখ্যাত হয়ে যাবেন। </p>
+<p>প্রফেসর জগলুল আলাউদ্দিনের খাতাটা হাতে নিয়ে উঠে দাঁড়ালেন, কেউ দেখার আগে পুরো খাতাটা
+গোপনে ফটোকপি
+করে নিতে হবে। মাস তিনেক পর অস্ট্রেলিয়াতে একটা কনফারেন্স আছে, মনে
+হয় সেটাতেই প্রথম পেপারটা দেয়া যায়। আলাউদ্দিন
+যেন কিছুতেই জানতে না পারে, সেটা অবশ্যি সমস্যা হবার কথা নয়, এখানে
+জার্নাল পেপার এসব বলতে গেলে প্রায় আসেই না। </p>
+<p>.</p>
+<p>তিন দিন পরে আলাউদ্দিন তার খাতা
+ফেরত নিতে এল। প্রফেসর জগলুল ভান করলেন কী খাতা কী বৃত্তান্ত তিনি সব ভুলে গেছেন। খানিকক্ষণ
+চেষ্টা করে হঠাৎ মনে পড়েছে এ রকম ভান করে
+বললেন, ও, তোমার
+সেই অবাস্তব সলিউশানের ক্যালকুলেশান? </p>
+<p>জি স্যার। দেখেছিলেন? </p>
+<p>ঘুঁটিয়ে দেখার
+সময় পাই নি, শুধু চোখ বুলিয়ে দেখেছি এক দিন। ট্রিটমেন্ট
+তো পুরোনো। আজকাল এই ক্যালকুলেশান কেউ টেনসর দিয়ে করে না, ডায়াডিক দিয়ে করে। </p>
+<p>কিন্তু স্যার সলিউশানটা? </p>
+<p>প্রফেসর জগলুল ঘাড় বাঁকালেন,
+বললেন যে জিনিস কোনোদিন
+পরীক্ষা করা যাবে না সেটা থাকলেই
+কী আর না থাকলেই কী। একটা ইকুয়েশানের তো কতই সলিউশান থাকে, একটা ফেজ
+লাগিয়ে দিলেই তো নতুন সলিউশান। নতুন সলিউশান মানে তো আর নতুন ফিজিক্স না। যাই হোক, আমি বলি কী– </p>
+<p>কী স্যার? আলাউদ্দিন আগ্রহ নিয়ে তাকাল। </p>
+<p>সামনে ফাইনাল পরীক্ষা। এইসব বড় বড় জিনিস বাদ দিয়ে পড়াশোনা কর। ভালো একটা রেজাল্ট করতে পারলে অনেক কাজ হবে। </p>
+<p>আলাউদ্দিন খুব মনমরা হয়ে তার খাতাটা নিয়ে বের হয়ে গেল।
+ </p>
+<p>প্রফেসর জগলুল পরের এক সপ্তাহ রাত জেগে কাজ করে
+একটা পেপার দাঁড়া করালেন। তার
+নিজের সত্যিকার কোনো কাজ করতে হল না, পুরোটা করে রেখেছে। আলাউদ্দিন। তার কাজ হল ব্যাপারটা প্রকাশ
+করার জন্যে লেখাটা
+দাঁড় করানো কিছু টেবিল, দুটো ফিগার এবং
+পেপারের শেষে একগাদা রেফারেন্স। ব্যাপারটা নিয়ে পৃথিবীর বিজ্ঞানীদের
+মাঝে কী রকম হইচই পড়ে যাবে এবং তিনি কেমন করে এক ইউনিভার্সিটি থেকে অন্য ইউনিভার্সিটিতে সেমিনার দিয়ে দিয়ে বেড়াবেন সেটা চিন্তা করে তার চোখমুখ আনন্দে ঝলমল করতে থাকে। </p>
+<p>.</p>
+<p>সপ্তাহ দুয়েক পরে এক ভোরবেলায় আলাউদ্দিন প্রফেসর জগলুলের
+ঘরে হাজির হল, তার হাতে সেই
+খাতা এবং চোখেমুখে এক ধরনের উত্তেজনা। তার চুল উষ্কখুষ্ক এবং চোখের নিচে কালি। দেখে
+মনে হয় সারারাত ঘুমায় নি। দরজায় দাঁড়িয়ে বলল, আসতে পারি
+স্যার? </p>
+<p>প্রফেসর জগলুল ভিতরে ভিতরে কৌতূহলী হয়ে উঠলেও মুখে নিরাসক্ত ভাবটা ধরে রেখে গলার স্বরে প্রচ্ছন্ন একটু
+বিরক্তি এবং অসহিষ্ণুতা ফুটিয়ে বললেন, কী ব্যাপার? </p>
+<p>আলাউদ্দিন এগিয়ে এসে
+বলল, স্যার
+মনে আছে আপনি বলেছিলেন–যে
+থিওরি এক্সপেরিমেন্ট করে পরীক্ষা করা যায় না তার কোনো মূল্য নেই? </p>
+<p>প্রফেসর জগলুল হাই তোলার মতো ভঙ্গি
+করে বললেন, বলেছিলাম নাকি? মনে নেই আমার। </p>
+<p>জি স্যার। আপনি বলেছিলেন। বলেছিলেন
+যে থিওরি এক্সপেরিমেন্ট করে প্রমাণ করা যায় না সেটা হচ্ছে ধর্মশাস্ত্র।
+</p>
+<p>প্রফেসর জগলুল ভুরু কুঁচকে বললেন, কী হয়েছে তাতে? </p>
+<p>আমি স্যার একটা এক্সপেরিমেন্ট বের
+করেছি। একটা উপায় আছে এক্সপেরিমেন্ট করার। </p>
+<p>প্রফেসর জগলুলের হৃৎস্পন্দন প্রায় থেমে গেল। বলে কী ছেলেটা? সাদাসিধে চেহারার এই ছেলেটা বাজে কথার
+মানুষ না সেটা তিনি এতদিনে বেশ ভালো করে বুঝে গেছেন। সত্যি যদি সে এই তত্ত্বটার এক্সপেরিমেন্ট দাঁড় করিয়ে থাকে তাহলে একটা নোবেল প্রাইজ কেউ আটকাতে পারবে না। তিনি জ্বলজ্বলে চোখে নিশ্বাস
+বন্ধ করে আলাউদ্দিনের দিকে তাকিয়ে রইলেন, এই ছেলেটার কারণে একটা নোবেল প্রাইজ তার ধরাছোঁয়ার ভিতরে চলে এসেছে–সেটা যেন কিছুতেই হাতছাড়া না
+হয়। কিন্তু
+পুরো ব্যাপারটা করতে হবে খুব সাবধানে। আলাউদ্দিন যেন কিছুতেই বুঝতে না
+পারে। প্রথমে ব্যাপারটা তার কাছ থেকে বের করে আনতে হবে তারপর অন্য কিছু। একবার প্রাইজটা
+পেয়ে যাবার পর এই ছেলে যতই চেঁচামেচি করুক কেউ বিশ্বাস করবে না। উনিশ-বিশ
+বছরের একটা ছাত্রের কথা কে বিশ্বাস করবে? যদি সেরকম ঝামেলা দেখা যায় তাহলে অন্য কিছু ব্যবস্থা করা যাবে। আজকাল টাকা দিয়ে কত কী করে ফেলা যায় আর একজন মানুষকে সরিয়ে দেয়া এমন কী কঠিন ব্যাপার? কিন্তু সেটা নিয়ে মাথা গরম করে কী হবে? তার জন্যে অনেক সময় পাওয়া। যাবে। </p>
+<p>আলাউদ্দিন আবার বলল, স্যার, দেখবেন আমার ক্যালকুলেশানটা?
+</p>
+<p>দেখার জন্যে প্রফেসর জগলুলের সমস্ত শরীর বুক চোখ
+হা হা করতে থাকে কিন্তু তিনি জোর করে মুখে নিরাসক্ত ভাবটা ধরে রাখলেন, ঠাণ্ডা গলায় বললেন, আমার একটা ক্লাস রয়েছে
+এখন তো পারব না। যদি চাও তো খাতাটা রেখে যেতে পার, সময় পেলে দেখব। </p>
+<p>তাহলে স্যার আপনাকে একটু বলি? </p>
+<p>প্রফেসর জগলুল ইচ্ছে করে একবার ঘড়ির দিকে তাকালেন,
+তার সময় খুব মূল্যবান ব্যাপারটি আলাউদ্দিনকে খুব ভালো করে
+বুঝিয়ে দিয়ে চেয়ারে হেলান দিয়ে বললেন,
+কী বলবে তাড়াতাড়ি বল।
+</p>
+<p>স্যার মনে আছে আপনাকে বলছিলাম স্পেস যেরকম ছড়ানো, টাইম বা সময় ঠিক একইভাবে ছড়ানো? এই মুহূর্তে যেরকম অতীত আছে সেরকম বর্তমানও আছে?
+</p>
+<p>আলাউদ্দিন কী বলছে প্রফেসর জগলুলের বুঝতে কোনো অসুবিধে হল না কিন্তু তিনি –বোঝার ভান করে বললেন, বলে যাও– </p>
+<p>স্পেসে এক জায়গা থেকে অন্য জায়গায় যেতে হলে সবসময় খানিকটা সময় অতিক্রম করতে হয়। ঠিক সেরকম এক সময় থেকে
+অন্য সময় যেতে হলে খানিকটা স্পেস অতিক্রম করতে হবে। </p>
+<p>কতটুকু স্পেস? </p>
+<p>আলাউদ্দিনের চোখ জ্বলজ্বল করতে থাকে। সে নিশ্বাস
+নিয়ে বলল, বিশাল স্পেস। বিলিয়ন বিলিয়ন মাইল। কিন্তু
+</p>
+<p>কিন্তু কী? </p>
+<p>আমি ক্যালকুলেশান করে দেখেছি এই স্পেস টাইমের কন্টিনিউয়ামে দুইটা সিংগুলারিটি
+রয়েছে। </p>
+<p>জি স্যার, একটা সিংগুলারিটিতে কখনো যাওয়া যাবে কি না সন্দেহ আছে কিন্তু আরেকটায় মনে
+হয় সহজে যাওয়া যাবে। গতিবেগ বাড়াতে বাড়াতে একটা নির্দিষ্ট জায়গায় পৌঁছে হঠাৎ
+করে এক্সেলেরেশানটা একটা নির্দিষ্ট টাইমে পাল্টে দিতে হবে, তারপর
+আবার </p>
+<p>উত্তেজনায় প্রফেসর জগলুলের হৃৎপিণ্ড
+প্রায় থেমে গেল কিন্তু তিনি আলাউদ্দিনকে কিছু বুঝতে দিলেন না। উঠে
+দাঁড়িয়ে একটা ছোট হাই তুলে বললেন, বেশ বেশ ভালো এক্সারসাইজ করেছ। এখন
+একটু পড়াশোনা
+কর, সামনের
+সপ্তাহে একটা মিডটার্ম দিয়েছি মনে আছে তো? </p>
+<p>আলাউদ্দিনের মুখে স্পষ্ট একটা আশাভঙ্গের
+ছাপ পড়ল। সে
+ম্লান মুখে বলল, আমি অনেকবার ক্যালকুলেশানটা
+দেখেছি, কোনো ভুল নেই স্যার, শুধু এক্সেলেরেশান কন্ট্রোল করে একটা জিনিসকে অল্প একটু ভবিষ্যতে পাঠানো যাবে। একবিন্দু ভবিষ্যৎ কিন্তু সেখান থেকে আর ফিরে আসবে না আর দেখা
+হবে না– </p>
+<p>প্রফেসর জগলুল টেবিল থেকে একটা বই
+নিয়ে হেঁটে বের হয়ে যাবার ভান করে বললেন, তোমরা মনে হয় পাঠ্যবই না পড়ে আজেবাজে সায়েন্স ফিকশান পড়। সায়েন্স আর সায়েন্স ফিকশান এক জিনিস
+না। </p>
+<p>খাতাটা রেখে যাব স্যার? একটু দেখবেন স্যার? </p>
+<p>ঠিক আছে রেখে যাও। সময় পেলে দেখব। আমার তো তোমাদের মতো সময় নেই। কত কাজকর্মে ব্যস্ত থাকতে হয় জন।
+</p>
+<p>প্রফেসর জগলুল ঘর থেকে বের হয়ে আলাউদ্দিনকে
+চলে যাবার সময় দিয়ে প্রায় সাথে সাথেই ফিরে এসে আলাউদ্দিনের খাতাটার উপরে ঝুঁকে
+পড়লেন। তার
+হৃৎপিণ্ড ধকধক শব্দ করতে থাকে, কপালে বিন্দু বিন্দু ঘাম, উত্তেজনায় তিনি নিশ্বাস নিতে পারছেন না। একটা নোবেল প্রাইজ তার হাতের মুঠোয় চলে এসেছে, কেউ আর সেটা আটকাতে পারবে না। কেউ না! আলাউদ্দিন যে সিংগুলারিটির কথা বলেছে সেটার
+নাম হবে জগলুল সিংগুলারিটি! বিজ্ঞানের
+ইতিহাসে পাকাঁপাকিভাবে
+তার নাম সোনার
+অক্ষরে লেখা হয়ে যাবে। </p>
+<p>.</p>
+<p>বেশ রাতে প্রফেসর জগলুল বাসায় ফিরে যাচ্ছেন, বহুদিনের পুরোনো লক্কড়–ঝক্কড় একটা
+ভক্সওয়াগন গাড়ি, কোনোমতে এখনো চলছে। আর কয়দিন, তারপর এই তুচ্ছ গাড়ির কথা আর চিন্তা করতে হবে না।
+কে জানে টাইম নিউজউইক পত্রিকায় এই লক্কড়–ঝক্কড় গাড়ি নিয়েই তার ছবি ছাপা হবে, বিশাল
+প্রতিবেদন ছাপা হবে! প্রফেসর জগলুল অন্ধকারে দাঁত বের করে হাসলেন। </p>
+<p>ইউনিভার্সিটি থেকে বের হয়ে প্রফেসর জগলুল ডান দিকে ঘুরে গেলেন। রাস্তাটা খারাপ, তাকে খুব সাবধানে
+গাড়ি চালাতে হয়। গাড়ি চালাতে চালাতে তিনি আলাউদ্দিনের এক্সপেরিমেন্টের কথা ভাবতে লাগলেন, সে যে এক্সপেরিমেন্টের
+কথা বলেছে সেটা খুবই সহজ। একটা
+বস্তুকে নির্দিষ্ট ত্বরণে এগিয়ে নিয়ে ত্বরণকে
+পরিবর্তন করতে হয়,
+নির্দিষ্ট সময় পর আবার। যদি
+ত্বরণের পরিবর্তনের সাথে সময়ের একটা সামঞ্জস্য রাখা যায় তাহলেই স্পেস টাইমের
+সেই সিংগুলারিটিতে পা দেয়া যায়, যেটাকে আর কয়দিন পরেই বলা হবে জগলুল সিংগুলারিটি! সেই
+জগলুল সিংগুলারিটি দিয়ে বস্তু বের হয়ে চলে
+যায় ভিন্ন জগতে এক চিলতে সময় সামনে। মাত্র
+এক চিলতে সময় কিন্তু সেই সময়ের সাথে এই সময়ের কোনো যোগাযোগ নেই। </p>
+<p>পুরো ব্যাপারটা চিন্তা করে প্রফেসর
+জগলুল মনে মনে হাসলেন। যখন তিনি পৃথিবীর নানা বিশ্ববিদ্যালয়ে জগলুল সিংগুলারিটির ওপর সেমিনার দেবেন তখন তিনি ব্যাপারটি নিয়ে। রসিকতা করবেন। বলবেন, মনে কর কেউ গাড়ি করে যাচ্ছে। ফাঁকা রাস্তা তাই এক্সেলেটরে চাপ দিয়েছে, হঠাৎ দেখল সামনে একটা স্পিড
+বাম্প। ব্রেক কষার আগেই গাড়ি লাফিয়ে উঠল উপরে, তারপর নেমে আসল নিচে, ধাক্কা খেয়ে গাড়ি চলে গেল বামে, কোনোমতে ব্রেক কষতেই গাড়ি ঝাঁকুনি দিয়ে থামতে গেল–হঠাৎ
+করে দেখবে গাড়ি পা দিয়েছে জগলুল সিংগুলারিটিতে।
+স্পেস টাইমের ফুটো দিয়ে বের হয়ে যাচ্ছে
+অন্য জগতে– </p>
+<p>হঠাৎ করে প্রফেসর জগলুল চমকে উঠলেন।
+রাস্তার পাশে দিয়ে মাথা নিচু করে হেঁটে যাচ্ছে
+আলাউদ্দিন, এক হাতে ধরে রাখা অনেকগুলো বইপত্র, মাথা নিচু করে হাঁটছে– পৃথিবীর কোনো কিছুতে তার কোনো খেয়াল আছে বলে মনে হয় না। প্রফেসর জগলুলের বুকের
+ভিতর হঠাৎ রক্ত ছলাৎ করে উঠল, গাড়িটা বাম পাশে ঘেঁষে আলাউদ্দিনকে একটা ধাক্কা দিলে কেমন
+হয়, ছিটকে পড়বে নিচে, তখন বুকের
+ওপর দিয়ে চালিয়ে নেবেন গাড়িটা–তার নোবেল প্রাইজের একমাত্র প্রতিবন্ধক শেষ হয়ে যাবে চোখের পলকে। </p>
+<p>প্রফেসর জগলুল পিছনে তাকালেন, এই রাস্তাটা নির্জন
+এমনিতে লোকজন
+গাড়ি রিকশা থাকে না, আজকে
+আরো কেউ নেই। আলাউদ্দিনকে শেষ করার এই সুযোগ! পৃথিবীর কেউ জানতে পারবে
+না। প্রফেসর জগলুলের নিশ্বাস দ্রুত থেকে দ্রুততর হয়ে আসে,
+স্টিয়ারিং হুইল
+শক্ত করে ধরে রেখে তিনি এক্সেলেটরে চাপ দিলেন। তার লক্কড়–ঝক্কড় ভক্সওয়াগনটি হঠাৎ গর্জন করে ছুটে গেল সামনে, আঘাত করল আলাউদ্দিনকে,
+দেখতে পেলেন ছিটকে যাচ্ছে সে,
+ব্রেক কষলেন একবার তারপর স্টিয়ারিং ঘুরিয়ে গাড়িটাকে ঘুরিয়ে নিতে। পিষে </p>
+<p>ফেলতে হবে আলাউদ্দিনকে, শেষ করে দিতে হবে একমাত্র
+সমস্যাটিকে! </p>
+<p>কিছু একটাতে তিনি আঘাত করলেন এবং
+হঠাৎ করে মনে হল তিনি পড়ে যাচ্ছেন। চমকে উঠে তিনি স্টিয়ারিং হইলটাকে শক্ত
+করে ধরে রাখলেন। অবাক হয়ে দেখলেন তার সামনে রাস্তা, রাস্তার পাশে দোকানপাট,
+লাইটপোস্টের
+হলুদ আলো, রাস্তায় ছিটকে পড়ে থাকা আলাউদ্দিনের শরীর সবকিছু অদৃশ্য হয়ে গেছে। চারদিকে কুয়াশার মতো এক ধরনের অতিপ্রাকৃত আলো, সেই আলোতে যতদূর দেখা যায় কোথাও কিছু নেই, চারদিকে শুধু শূন্যতা। এক ভয়াবহ শূন্যতা। </p>
+<p>প্রফেসর জগলুল কাঁপা হাতে গাড়ির ইঞ্জিন বন্ধ করতেই এক ভয়ঙ্কর নৈঃশব্দ্য নেমে
+এল। কোথাও কোনো শব্দ
+নেই, শুধু তার হৃৎপিণ্ড ধকধক শব্দ করছে। এই ঘোট হৃৎপিণ্ড এত জোরে শব্দ করে কে জানত। </p>
+<p>প্রফেসর জগলুল গাড়ির স্টিয়ারিং ধরে স্থাণুর
+মতো বসে রইলেন। আলাউদ্দিনকে মারতে গিয়ে তিনি
+জগলুল সিংগুলারিটিতে পা দিয়ে ফেলেছেন। </p>
+<p>পৃথিবীর মানুষ আর কোনোদিন জগলুল সিংগুলারিটির কথা
+জানতে পারবে না! </p>
+</div>
+<br/><h2>টানেল</h2>
+<hr/>
+<br/><div>
+<p><strong>টানেল</strong></p>
+<p>অবজারভেশন টাওয়ারটি খাড়া উপরে
+উঠে গেছে। স্বচ্ছ কোয়ার্টজে
+ঢাকা বৃত্তাকার ছোট
+ঘরটা থেকে তাকালে নিচে মেঘ এবং দূরে পাহাড়ের সারি চোখে পড়ে। এ রকম সময়ে মাইলারের একটা স্ক্রিন মহাকাশে খুলে দেয়া হয়, সূর্যের আলো প্রতিফলিত হয়ে সেখান
+থেকে এই এলাকায় একটা
+কৃত্রিম জ্যোৎস্নার আলো ছড়িয়ে পড়ে। সেই আলোতে চারদিকে এক ধরনের
+অতিপ্রাকৃতিক দৃশ্য ফুটে উঠছে। বীপা মুগ্ধ চোখে সেদিকে তাকিয়ে থেকে
+নরম গলায় বলল, কী সুন্দর তাই না? </p>
+<p>রিশ তার কথার উত্তর না দিয়ে অন্যমনস্ক চোখে দূরে যেখানে তাকিয়েছিল সেখানেই তাকিয়ে রইল। বীপা আহত গলায় বলল, তুমি আমার কথা শুনছ না।
+</p>
+<p>রিশ বলল, শুনছি। </p>
+<p>তাহলে কথার উত্তর দিচ্ছ না কেন? </p>
+<p>এই তো দিচ্ছি। </p>
+<p>এটা কি উত্তর দেয়া হল? আমি
+যদি বলি ইস কী সুন্দর, তাহলে তুমিও বলবে ইস কী সুন্দর! </p>
+<p>রিশ বীপার ছেলেমানুষি মুখের দিকে খানিকক্ষণ তাকিয়ে থেকে হেসে বলল, ঠিক আছে, এখন থেকে বলব। </p>
+<p>সত্যি? </p>
+<p>সত্যি। </p>
+<p>বীপার মুখটি আনন্দে ঝলমল করে উঠল। সে
+রিশের হাত শক্ত করে ধরে রেখে বলল, আজ এখানে এসে আমার কী যে ভালো লাগছে। </p>
+<p>এই হাসিখুশি মেয়েটার জন্যে রিশ তার বুকের ভিতরে
+এক ধরনের গভীর ভালবাসা অনুভব করে। সে তার মাথায় হাত
+দিয়ে সোনালি
+চুলগুলোকে এলোমেলো করে দিয়ে বলল, আমারও খুব ভালো লাগছে। </p>
+<p>বীপা হাসিমুখে বলল, এই তো তুমি
+কথা বলা শিখে গেছ! </p>
+<p>আমি বলেছিলাম না, সবকিছু খুব তাড়াতাড়ি শিখে নিই। এখন বিশ্বাস হল? </p>
+<p>বীপা মাথা নাড়ে, হল। </p>
+<p>রিশ আর বীপা হাত ধরাধরি করে বৃত্তাকার অবজারভেশন
+টাওয়ারটি একবার
+ঘুরে আসে। তাদের মতো আরো অনেকেই
+এসেছে। সপ্তাহে একদিন মাইলারের এই স্ক্রিনটা খুলে কৃত্রিম
+জ্যোৎস্না ছড়িয়ে দেয়া হয়, সেদিন এই বিচিত্র জ্যোৎস্নার মায়াময় দৃশ্য দেখার জন্যে অনেক দূর দূর থেকে এই টাওয়ারের সবাই এসো জড়ো হয়। কোয়ার্টজের জানালায় হেলান দিয়ে সবাই বাইরে তাকিয়ে আছে, তাদের
+মাঝে ধীরে ধীরে পা ফেলে হেঁটে যেতে যেতে বীপা বলল, আজকে আমরা সারারাত এখানে থাকব। </p>
+<p>বিশ হাসিমুখে বলল, ঠিক
+আছে থাকব। </p>
+<p>সারারাত আমরা কথা বলব। </p>
+<p>কী নিয়ে কথা বলবে? </p>
+<p>কত কী বলার আছে আমার। কোথায় বিয়ে হবে আমাদের। কোথায় যাব বেড়াতে। কতজন বাচ্চা হবে আমাদের। তার
+মাঝে কতজন হবে ছেলে, কতজন মেয়ে! তুমি কি কখনো আমাকে কথা বলার সময় দাও? </p>
+<p>এই তো দিচ্ছি। </p>
+<p>ছাই দিচ্ছ। তোমাকে
+কতবার বলে শেষ পর্যন্ত আজ একটু সময় দিলে</p>
+<p>বিশ একটা নিশ্বাস ফেলে অপরাধীর মতো বলল, আসলে খুব বড় একটা এক্সপেরিমেন্ট দাঁড়া করছি আমরা। স্পেস টাইমের ওপর বিজ্ঞানী রিসানের একটা সূত্র আছে।
+সেটা প্রথমবার আমরা পরীক্ষা করে দেখছি। সেটা যে কত গুরুত্বপূর্ণ এক্সপেরিমেন্ট সেটা
+তুমি কল্পনাও করতে পারবে না। </p>
+<p>আমি কল্পনা করতে চাইও না। </p>
+<p>আমি যেটা করতে চাইছি সেটা যদি করতে পারি দেখবে সারা
+পৃথিবীতে হইচই পড়ে যাবে। </p>
+<p>চাই না আমি কোনো হইচই।
+</p>
+<p>কী চাও তুমি? </p>
+<p>আমি চাই তুমি
+সারাক্ষণ আমার পাশে থাকবে। </p>
+<p>রিশ শব্দ করে হেসে উঠল এবং ঠিক তখন
+বুঝতে পারল তার পকেটের কমিউনিকেশন মডিউলটি একটা জরুরি সঙ্কেত দিতে শুরু করেছে। কেউ
+একজন তার সাথে যোগাযোগ করার চেষ্টা
+করছে। বিশ চোখের কোনা দিয়ে বীপাকে এক নজর দেখে পকেট থেকে ছোট কমিউনিকেশন মডিউলটি
+বের করল। সাথে সাথে বীপার চোখেমুখে এক ধরনের আশাভঙ্গের ছাপ পড়ল। সে আহত গলায় বলল, তুমি এখন এটিতে কথা বলবে? </p>
+<p>রিশ অপরাধী গলায় বলল, আমাকে একটু কথা বলতে হবে বীপা। নিশ্চয় খুব
+জরুরি, খুব জরুরি না হলে সাত মাত্রায় যোগাযোগ
+করত না।</p>
+<p>বীপা কিছু বলল না কিন্তু তার মুখে
+আশাহত হওয়ার
+ছাপটি খুব স্পষ্ট হয়ে ওঠে। অনুভূতির তারতম্যগুলো বীপার মুখে খুব সহজেই
+ধরা পড়ে যায়। </p>
+<p>রিশ যোগাযোগ মডিউলটির সুইচ স্পষ্ট করতেই একজন মধ্যবয়স্ক মানুষের চেহারা স্পষ্ট হয়ে আসে। মানুষটি উত্তেজিত
+গলায় বলল, রিশ, যে চতুষ্কোণ ক্ষেত্রে শক্তি সঙ্কোচন করা হয়েছিল সেখানে সময়ক্ষেত্র ভেদ করা
+হয়েছে। </p>
+<p>রিশ লাফিয়ে উঠে দাঁড়াল, কী বলছ তুমি?
+</p>
+<p>হা। পরিষ্কার দেখা যাচ্ছে একটা চতুষ্কোণ জায়গা, আলো প্রতিফলিত হয়ে আসছে, একটা আয়নার মতো! </p>
+<p>সত্যি? </p>
+<p>সত্যি। কতক্ষণ রাখতে পারব জানি না।
+প্রচণ্ড শক্তি ক্ষয় হচ্ছে। তুমি তাড়াতাড়ি চলে আস। </p>
+<p>আসছি, আমি এক্ষুনি আসছি। </p>
+<p>রিশ যোগাযোগ মডিউলটি বন্ধ
+করে হতচকিতের মতো বীপার দিকে তাকাল, তাকে দেখে মনে হচ্ছে সে এখনো বিশ্বাস
+করতে পারছে না। তার চোখ চকচক করতে থাকে, কাঁপা গলায় বলল, শুনেছ বীপা, শুনেছ? </p>
+<p>বীপার নীল চোখে তখনো একটা বিষণ্ণ আশাভঙ্গের ছাপ। সে মৃদু গলায় বলল, শুনেছি। </p>
+<p>আমাকে যেতে হবে বীপা, আমাকে এক্ষুনি
+যেতে হবে। </p>
+<p>বীপা চোখ নামিয়ে বলল,
+যাও। </p>
+<p>এটা অনেক বড় ব্যাপার
+বীপা, অনেক বড় ব্যাপার। রিসানের সূত্রকে প্রমাণ করা হয়েছে। প্রথমবার স্পেস টাইম কন্টিনিউয়ামে একটা টানেল তৈরি
+করা হয়েছে।
+সেই টানেল দিয়ে ভিন্ন সময়ে কিংবা ভিন্ন অবস্থানে চলে যাওয়া যাবে। চিন্তা করতে পার? </p>
+<p>বীপ কোনো কথা
+বলল না</p>
+<p>চল বীপা তোমাকে বাসায় পৌঁছে দিই।
+</p>
+<p>বীপা একটা নিশ্বাস ফেলে বলল, তুমি
+যাও রিশ। আমি এখানে আরো কিছুক্ষণ থাকি। আমি নিজে নিজে বাসায় চলে যাব। </p>
+<p>রিশ নিচু হয়ে তার
+হাতে হাত স্পর্শ করে এক রকম ছুটে বের হয়ে গেল। বীপা মাথা ঘুরিয়ে জানালা দিয়ে বাইরে তাকাল। কোয়ার্টজের জানালা দিয়ে এখনো দূরে মেঘ আর পাহাড়ের সারি দেখা যাচ্ছে। কৃত্রিম
+জ্যোৎস্নার আলোতে
+এখনো সবকিছু কী অপূর্ব মায়াময় দেখাচ্ছে। বীপা অন্যমনস্কভাবে
+সেদিকে তাকিয়ে থাকে। তার বুকের মাঝে একটা অভিমান এসে ভর করছে, কার ওপর এই অভিমান
+সে জানে না। ধীরে ধীরে তার চোখে পানি এসে যায়, দূরের বিস্তীর্ণ মেঘ আর নীল পাহাড়ের সারি অস্পষ্ট
+হয়ে আসে। বীপা সাবধানে হাতের উল্টোপিঠ
+দিয়ে তার চোখের পানি মুছে ফেলল। রিশ একজন অসাধারণ বিজ্ঞানী আর সে খুব সাধারণ একজন
+মেয়ে। কে
+জানে, সাধারণ মেয়েদের বুঝি অসাধারণ বিজ্ঞানীদের ভালবাসতে হয় না। তাহলে
+বুঝি তাদের এ রকম একাকী নিঃসঙ্গ হয়ে বেঁচে থাকতে হয়। </p>
+<p>.</p>
+<p>রিশ দরজা খুলে ভিতরে ঢুকতেই তার
+দিকে কয়েকজন
+ছুটে এল। মধ্যবয়স্ক
+টেকনিশিয়ানটি
+উত্তেজিত গলায় বলল, শক্তিক্ষেত্রে প্রচুর চাপ পড়ছে রিশ, কতক্ষণ ধরে রাখতে পারব
+জানি না। </p>
+<p>রিশ হাঁটতে হাঁটতে উত্তেজিত গলায় বলল, সেটা নিয়ে চিন্তা কোরো না। একবার যখন হয়েছে আবার হবে। টানেলটা কত বড়? </p>
+<p>এক মিটার থেকে একটু ছোট। </p>
+<p>এক জায়গায় আছে
+নাকি নড়ছে?
+</p>
+<p>মোটামুটি এক জায়গাতেই
+আছে, শক্তির তারতম্য হলে একটু কাঁপতে থাকে। তুমি দেখলেই বুঝতে পারবে। </p>
+<p>রিশ টেকনিশিয়ানের পিছু পিছু ল্যাবরেটরির
+দরজা খুলে ভিতরে ঢুকে হতবাক হয়ে গেল। বিশাল ল্যাবরেটরি ঘরে
+ইতস্তত যন্ত্রপাতি ছড়ানো।
+দুপাশে বড় বড় যন্ত্রপাতির প্যানেল, শক্তিশালী পাওয়ার সাপ্লাই, বড় কম্পিউটার। দেয়ালের পাশে রাখা বড় বড় লেজারগুলো থেকে লেজাররশ্মি ছুটে যাচ্ছে। ঘরে যন্ত্রপাতির মৃদু গুঞ্জন, এক
+ধরনের ঝাঁজালো গন্ধ। ঘরের ঠিক মাঝখানে স্পেস টাইম কন্টিনিউয়ামের টানেলটি দাঁড়িয়ে আছে। দেখে মনে হয় কেউ বুঝি একটা চতুষ্কোণ আয়না ঝুলিয়ে রেখেছে। রিশ প্রায় ছুটে
+গিয়ে জিনিসটার কাছে
+দাঁড়াল, তার
+এখনো বিশ্বায় হয় না এই মহাবিশ্বে একটা টানেল তৈরি করা হয়েছে, আর সে সেই টানেলের
+সামনে দাঁড়িয়ে আছে! টানেলের অন্য পাশে কী আছে কে জানে। হয়তো ভবিষ্যতের কোনো মূহর্ত হয়তো অন্য কোনো দেশ, মহাদেশ, অন্য কোন গ্রহ। অন্য কোনো গ্যালাক্সি। রিশের এখনো বিশ্বাস হতে চায় না। রিশ খুব কাছে থেকে দেখল, জিনিসটা খুব সূক্ষ্ম আয়নার মতো। দেখে মনে হয় হাতের ছোঁয়া লাগলেই বুঝি ঝনঝন করে ভেঙে
+পড়ে যাবে। কিন্তু এটি ঝনঝন করে ভেঙে পড়বে না, প্রচণ্ড শক্তি ব্যয় করে এটি দাঁড়া করানো আছে,
+যতক্ষণ ল্যাবরেটরি থেকে শক্তি দেয়া যাবে ততক্ষণ সেটা দাঁড়িয়ে থাকবে। </p>
+<p>রিশ কয়েক মুহূর্ত টানেলটার দিকে তাকিয়ে বলল, দৃশ্যমান আলো যেতে পারছে না, তাই এটাকে
+দেখাচ্ছে চকচকে আয়নার
+মতো। </p>
+<p>টেকনিশিয়ানরা জিজ্ঞেস করল, এটার অন্য দিকটা কোথায়, রিশ? </p>
+<p>কেউ জানে না। আমরা শক্তি খুব বেশি
+দিতে পারছি না তাই সেটা খুব বেশি দূরে হওয়ার কথা নয়। হয়তো খুব কাছাকাছি। </p>
+<p>আমরা কি অন্য মাথাটা দেখতে পাব? </p>
+<p>যদি একই সময়ে হয়ে থাকে নিশ্চয়ই দেখব। কিন্তু সময়ের মাত্রায় যদি
+এটা অন্য কোথাও এসে থাকে তাহলে তো এখন দেখা যাবে না, যখন সেই
+সময় এসে হাজির হবে তখন দেখবে। </p>
+<p>রিশের কাছাকাছি আরো কিছু মানুষ এসে ভিড় জমায়। অন্য বিজ্ঞানীরা, অন্য টেকনিশিয়ানরা, সবাই উত্তেজিত
+গলায় কথা বলতে থাকে। কমবয়সী একটা মেয়ে জিজ্ঞেস করল, টানেলটার অন্য মাথা কোথায় সেটা
+জানার কোনো উপায় নেই? </p>
+<p>আছে। উপায় আছে। অনেক
+দীর্ঘ একটা হিসেব–নিকেশ করার ব্যাপার আছে। পুরোটা কীভাবে করতে হবে সেটা এখনো কেউ
+ভালো করে জানে না। যখন সেটা জানা যাবে তখন আগে থেকে বলে দেয়া যাবে এই টানেল দিয়ে কোথায় যাওয়া যাবে। </p>
+<p>মেয়েটার হাতে একটা স্কু–ড্রাইভার ছিল সেটা দেখিয়ে বলল,
+আমি যদি এই স্কু ড্রাইভারটা এখানে ছুঁড়ে দিই তাহলে কী হবে? </p>
+<p>রিশ হেসে বলল, এটা টানেল দিয়ে গিয়ে অন্য মাথা দিয়ে বের
+হয়ে যাবে। </p>
+<p>মেয়েটা চোখ বড় বড় করে বলল, সত্যি ছুঁড়ে দিয়ে দেখব?
+</p>
+<p>রিশ মাথা নেড়ে বলল,
+দেখ। </p>
+<p>মেয়েটা স্কু–ড্রাইভারটা ঝকঝকে আয়নার মতো চতুষ্কোণ টানেলের মুখে ছুঁড়ে দিল। সবার মনে হল
+ঝনঝন করে বুঝি সেটা ভেঙে পড়বে। কিন্তু সেটা ভেঙে পড়ল না, স্কু ড্রাইভারটা একটা অদৃশ্য দেয়ালে বাধা পেয়ে যেন ফিরে এল। পানির মাঝে ঢিল ছুড়লে যেরকম একটা তরঙ্গের জন্ম
+হয় চতুষ্কোণ আয়নার মতো জিনিসটার মাঝে ঠিক সেরকম একটা
+তরঙ্গ ছড়িয়ে পড়ল। </p>
+<p>রিশ মেঝে থেকে ভ্রু–ড্রাইভারটা তুলে মেয়েটার হাতে দিয়ে বলল, আরো জোরে ছুঁড়তে হবে, টানেলটার মুখে পৃষ্ঠটানের মতো একটা ব্যাপার আছে। জোরে না ছুড়লে সেটা ভেদ করে ভিতরে ঢোকার
+উপায় নেই। </p>
+<p>মেয়েটা এবারে স্ক্রু –ড্রাইভারটা হাতে নিয়ে গায়ের জোরে ছুঁড়ে দিল। সত্যি সত্যি সেটা আয়নার মতো পরদাটির মাঝে ঢুকে গেল এবং
+হঠাৎ করে শাৎ করে শুষে নেবার মতো একটা শব্দ হল এবং পুরো স্কু–ড্রাইভারটাকে
+যেন অদৃশ্য কিছু একটা টেনে ভিতরে নিয়ে গেল। ব্যাপারটা দেখে ল্যাবরেটরি ঘরে যারা দাঁড়িয়েছিল সবাই একই
+সাথে বিস্ময়ের
+মতো একটা শব্দ করল। রিশ উত্তেজিত গলায় বলল,
+দেখেছ, এর মাঝে শক্তির পার্থক্যের একটা ব্যাপার আছে। সহজে জিনিসটা ভিতরে যেতে চায় না। কিন্তু একবার ঢুকে গেলে কিছু একটা টেনে নিয়ে যায়–ঠিক যেরকম
+রিসানের সূত্রে বলা হয়েছিল। </p>
+<p>কমবয়সী একজন তরুণ এক পা এগিয়ে এসে বলল, এর মাঝে কি কোনো বিপদ আছে? </p>
+<p>কী রকম বিপদ? </p>
+<p>যেমন মনে কর এই টানেল দিয়ে সবকিছু টেনে বের করে নিয়ে গেল, অন্য কোথাও। নিয়ন্ত্রণের বাইরে অন্য
+কিছু ঘটে গেল, পুরো জগৎ বিশ্বব্রহ্মাণ্ড অদৃশ্য হয়ে গেল।
+</p>
+<p>রিশ হেসে ফেলল, বলল, না। এই টানেলটা
+তৈরি করা হয়েছে
+ল্যাবরেটরির শক্তি দিয়ে। এই টানেল দিয়ে ছোটখাটো জিনিস এক শ–দু শ কিলোগ্রাম এদিক–সেদিক করা। যাবে, তার বেশি
+কিছু নয়। </p>
+<p>তার মানে এই পুরো জগতকে
+শুষে নেবার কোনো ভয় নেই? </p>
+<p>না। শক্তির নিত্যতার সূত্র যদি সত্যি
+হয় তার কোনো ভয় নেই। </p>
+<p>কমবয়সী মেয়েটা এগিয়ে এসে বলল, আমার স্কু–ড্রাইভার কি টানেলের অন্য মাথা
+দিয়ে এতক্ষণে বের হয়ে গেছে? </p>
+<p>রিশ হেসে বলল, আমার তাই ধারণা। </p>
+<p>কেউ কি সেটা দেখতে পেয়েছে? </p>
+<p>কেমন করে বলি। হয়তো দেখেছে। হয়তো দেখে নি। </p>
+<p>মেয়েটা আরেকটা কী কথা বলতে যাচ্ছিল, মধ্যবয়স্ক টেকনিশিয়ান বাধা দিয়ে বলল, আমাদের হাতে বেশি সময় নেই। পাওয়ার সাপ্লাই যেটুকু
+শক্তি দেবার কথা তার থেকে অনেক বেশি টেনে নেয়া হয়েছে। পুরোটা ওভারলোডেড হয়ে আছে। আর কিছু যদি দেখার না
+থাকে তাহলে বন্ধ করে দেয়া উচিত। </p>
+<p>রিশ বলল, এক সেকেন্ড, আমি একটা জিনিস পরীক্ষা করে নি। </p>
+<p>টেকনিশিয়ান জিজ্ঞেস করল, কী পরীক্ষা করবে? </p>
+<p>টানেলটার উপরে যে শক্তির স্তরটা আছে সেটা কতটুকু
+একটু পরীক্ষা করে দেখি। </p>
+<p>রিশ আশপাশে তাকিয়ে একটা
+বড় রেঞ্চ হাতে নিয়ে এগিয়ে এল, পরদাটার
+উপরে সেটা দিয়ে স্পর্শ করতেই তরল পদার্থে যেরকম একটা ঢেউ ছড়িয়ে পড়ে সেভাবে ঢেউ ছড়িয়ে পড়ল। রিশ
+রেঞ্চটা দিয়ে আবার আলতোভাবে আঘাত করল, তখন আরেকটু বড় তরঙ্গ
+ছড়িয়ে পড়ল। রিশ এবারে রেঞ্চটা হাতে নিয়ে বেশ
+জোরে মসৃণ আয়নার
+মতো দেখতে অংশটুকুর উপরে আঘাত করতেই সেটা ফুটো করে রেঞ্চটা ভিতরে ঢুকে
+যায় এবং শাৎ করে একটা শব্দ হয়ে পুরো রেঞ্চটাকে অদৃশ্য কিছু একটা যেন টেনে ভিতরে নিয়ে নেয়। এবং কিছু বোঝার আগেই বিশের হাতটাও
+কব্জি পর্যন্ত ভিতরে ঢুকে গেল। রিশ তার হাতে এক ধরনের তীক্ষ্ণ যন্ত্রণা অনুভব
+করে এবং একটা আর্ত চিৎকার করে সে তার হাতটা টেনে। বের করতে গিয়ে আবিষ্কার
+করে তার হাতটাকে সে টেনে বের করতে পারছে না। তার হাতটা কোথায় জানি
+আটকে গেছে। শুধু আটকে যায় নি, অদৃশ্য একটা জিনিস তার হাতটাকে টেনে নেয়ার চেষ্টা করছে।
+</p>
+<p>আশপাশে যারা দাঁড়িয়েছিল তারা সবাই ভাবলছি
+রিশ টেনে তার হাতটাকে বের করে আনবে এবং যখন দেখল সে বের করে আনছে না তখন হঠাৎ করে সবাই
+বুঝতে পারল সে তার হাতটাকে বের করতে পারছে না। সবার মুখে একটা আতঙ্কের ছায়া পড়ল এবং সবার আগে টেকনিশিয়ান ছুটে গিয়ে তার হাতটা ধরে টেনে বের করার
+চেষ্টা করল। রিশ যন্ত্রণায় চিৎকার করে বলল, পারবে না, বের করতে পারবে
+না। </p>
+<p>টেকনিশিয়ান ফ্যাকাশে মুখে বলল, কেন পারব না? </p>
+<p>টানেলের অন্য পাশে নিশ্চয়ই ভবিষ্যৎ। আমার
+হাতটা নিশ্চয়ই
+ভবিষ্যতে চলে গেছে, ভবিষ্যৎ থেকে কিছু অতীতে আসতে পারে না। </p>
+<p>তাহলে? </p>
+<p>হাতটা কেটে ফেলতে হবে। </p>
+<p>ঘরের সবাই শিউরে উঠল। টেকনিশিয়ান আতঙ্কিত গলায় বলল, কেটে ফেলতে হবে? </p>
+<p>হ্যাঁ। আর কোনো উপায় নেই। কেউ একজন ছুটে যাও একটা ইলেকট্রিক চাকু
+নিয়ে এস–ছুটে
+যাও। </p>
+<p>সত্যি কেউ ছুটে যাবে কি না বুঝতে
+পারছিল না। একজন ছুটে ঘরের জরুরি বিপদ সঙ্কেতের
+লাল সুইচটা চেপে ধরল এবং সাথে সাথে একটা লাল আলো জ্বলতে জ্বলতে তীক্ষ্ণ
+বিপদ সঙ্কেত বাজতে শুরু করে। টেকনিশিয়ান কী করবে বুঝতে
+না পেরে আবার রিশকে জাপটে ধরে
+টেনে আনতে চেষ্টা করে, ফিনফিনে আয়নার মতো পাতলা পরদাটি হঠাৎ যেন পাথরের দেয়ালের মতো শক্ত হয়ে গেছে। বিশের মুখে বিন্দু বিন্দু ঘাম জমে ওঠে এবং সে প্রচণ্ড যন্ত্রণায় চিৎকার করে ওঠে–ছেড়ে দাও, ছেড়ে দাও আমাকে। </p>
+<p>টেকনিশিয়ান রিশকে ছেড়ে দিতেই সে হুমড়ি খেয়ে আরো খানিকটা ভিতরে ঢুকে গেল। সবাই আতঙ্কে নিশ্বাস বন্ধ করে দেখতে পেল
+কোন একটা অদৃশ্য শক্তি যেন তাকে ভিতরে
+টেনে নেবার চেষ্টা করছে, রিশ প্রাণপণে নিজেকে ধরে রাখার চেষ্টা করছে কিন্তু
+পারছে না, একটু একটু করে সে ভিতরে ঢুকে যাচ্ছে। </p>
+<p>কেউ একজন রক্ত শীতল করা শব্দে আর্তনাদ করে উঠল–তার মাঝে রিশ তার আরেকটা হাত ব্যবহার করে নিজেকে
+বাঁচানোর চেষ্টা
+করতে যায় আর হঠাৎ করে সেই হাতটাও ভিতরে ঢুকে গেল। হঠৎ
+করে অদৃশ্য একটা শক্তি দ্বিগুণ জোরে তাকে ভিতরে টেনে নিতে থাকে এবং সবাই দেখল সে আস্তে
+আস্তে ভিতরে ঢুকে যাচ্ছে, কী করবে কেউ বুঝতে পারে না, চারদিক
+থেকে মানুষ ছুটে আসছে এবং তার মাঝে সবাই দেখতে পায় রিশ
+স্বচ্ছ আয়নার
+মতো একটা জিনিসে ঢুকে যাচ্ছে, প্রথমে আস্তে আস্তে তারপর আরো জোরে
+এবং হঠাৎ কিছু বোঝার
+আগে প্রচণ্ড শক্তিতে কেউ যেন তাকে টেনে একটা গহ্বরে ঢুকিয়ে নিয়ে গেল। একটু আগে যেখানে রিশ দাঁড়িয়েছিল সেখানে কেউ নেই। চকচকে আয়নার মতো জিনিসটার মাঝে শুধু একটা তরঙ্গ খেলা করতে থাকে। কোথায় জানি একটা বিস্ফোরণের মতো শব্দ হল এবং হঠাৎ করে
+বড় বড় দুটি পাওয়ার সাপ্লাই বন্ধ হয়ে যায় এবং সাথে সাথে দপ করে চতুষ্কোণ আয়নার মতো জিনিসটা অদৃশ্য হয়ে গেল। </p>
+<p>ল্যাবরেটরি ঘরে সবাই পাথরের মূর্তির মতো দাঁড়িয়ে থাকে, তাদের কারো বিশ্বাস হচ্ছে না রিশ
+স্পেস টাইমের বিশাল এক জগতের কোথাও চিরদিনের জন্যে হারিয়ে গেছে। </p>
+<p>.</p>
+<p>বিশ শক্ত একটা মেঝেতে আছাড় খেয়ে পড়ার সাথে সাথে সব শব্দ যেন মন্ত্রের মতো থেমে গেল। শক্তিশালী পাওয়ার সাপ্লাইয়ের গুঞ্জন ছিল, ইমার্জেন্সি সঙ্কেতের তীক্ষ্ণ শব্দ
+ছিল, ভয় পাওয়া মানুষের আর্তনাদ ছিল, হঠাৎ করে কোথাও কিছু
+নেই। চারদিকে সুনসান নীরবতা। একটু আগে শরীরে যে প্রচণ্ড যন্ত্রণা ছিল সেই যন্ত্রণাও
+হঠাৎ করে চলে গেছে, বুকের মাঝে হৃৎপিণ্ডটি শুধু এখনো প্রচণ্ড
+শব্দ করে ধকধক করে যাচ্ছে।</p>
+<p>রিশ উঠে বসতেই তার পায়ে কী একটা লাগল, তুলে দেখে একটা ছোট স্ক্রু–ড্রাইভার, একটু আগে সেটাকে
+টানেলের মাঝে দিয়ে ছুঁড়ে দেয়া হয়েছিল। রিশ মাথা তুলে তাকাল। স্পেস
+টাইম কন্টিনিউয়ামের
+টানেল দিয়ে সে এখানে এসে পড়েছে, কিন্তু টানেলটির মুখটা সে দেখতে পাচ্ছে না, এতক্ষণে নিশ্চয়ই বুজে গিয়েছে। </p>
+<p>রিশ উঠে দাঁড়িয়ে মাথা
+তুলে তাকাল। জায়গাটা
+আবছা অন্ধকার। একটু আগে ল্যাবরেটরির
+তীব্র চোখ–ধাঁধানো আলো থেকে হঠাৎ করে এই আবছা অন্ধকারে এসে প্রথমে
+সে ভালো করে
+কিছু দেখতে পায় না। একটু পর আস্তে আস্তে তার চোখ সয়ে এল,
+মস্ত বড় একটা হলঘরের মতো জায়গা, দেয়ালের কাছাকাছি নানারকম যন্ত্রপাতি
+সাজানো, মাথার।
+উপরে একটা হলুদ আলো মিটমিট করে জ্বলছে। বিশ ভালো করে তাকাল, জায়গাটা কেমন জানি পরিচিত
+মনে হচ্ছে তবু ভালো করে চিনতে পারছে না। রিশ ভালো করে তাকাল এবং আবছা
+হলুদ ভূতুড়ে আলোতে সে জায়গাটি চিনতে পারল, এটি তার ল্যাবরেটরি ঘর। দীর্ঘদিনের অব্যবহারে এ রকম
+ভূতুড়ে একটা রূপ নিয়েছে। রিশ এক ধরনের আতঙ্ক অনুভব করে, সে হঠাৎ করে ভবিষ্যতে
+চলে এসেছে। কতদিন ভবিষ্যতে এসেছে সে?
+</p>
+<p>রিশ উঠে দাঁড়াল, ল্যাবরেটরির পিছনে একটা ছোট দরজা ছিল, এখনো সেই দরজাটা আছে কি না
+কে জানে। কিছু বাক্স সরিয়ে রিশ দরজাটা আবিষ্কার করে, হাতলে চাপ দিতেই
+সেটা খুট করে খুলে গেল। দরজাটা খুলে বাইরে আসতেই শীতল বাতাসের একটা ঝাপটা অনুভব করে। এখন শীতকাল। এক
+মুহূর্ত আগে সে গ্রীষ্মের এক রাতে ছিল, এখন সেটাকে কত পিছনে ফেলে এসেছে কে জানে। </p>
+<p>রিশ হেঁটে হেঁটে বের হয়ে আসে। ল্যাবরেটরিটা
+একটা ভূতুড়ে বাড়ির মতো দেখাচ্ছে, দীর্ঘদিন থেকে সেটা নিশ্চয়ই অব্যবহৃত হয়ে আছে। কতদিন হবে? এক বছর? দুই বছর? দশ বছর? নাকি এক শ বছর? হঠাৎ করে এক ধরনের আতঙ্ক অনুভব করে রিশ। কতদিন
+পার হয়েছে এর
+মাঝে? বীপার কথা মনে পড়ে হঠাৎ
+করে, কোথায় আছে এখন বীপা? কেমন আছে বীপা? </p>
+<p>.</p>
+<p>বীপা হতচকিত হয়ে তাকিয়ে রইল রিশের দিকে, তারপর কষ্ট করে নিজেকে শান্ত করে বলল, তুমি? </p>
+<p>হা বীপা। আমি। </p>
+<p>এতদিন পরে? </p>
+<p>এতদিন পরে নয় বীপা। এই
+একটু আগে আমি তোমাকে
+অবজারভেশন টাওয়ারে
+ছেড়ে এসেছি। এক ঘণ্টাও হয় নি। </p>
+<p>বীপা একটা নিশ্বাস ফেলে বলল, না রিশ। এক
+ঘণ্টা নয়–প্রায় এক যুগ হয়ে গেছে। </p>
+<p>এক যুগ? রিশ আর্তনাদ করে বলল, এক
+যুগ? </p>
+<p>এক যুগ থেকেও বেশি। আমাকে
+দেখে তুমি বুঝতে পারছ না? </p>
+<p>না। রিশ মাথা নাড়ল, তোমার
+চেহারার সেই ছেলেমানুষি ভাবটি আর নেই, কিন্তু তোমাকে দেখে বুঝতে পারছি না। তোমাকে দেখে ঠিক সেরকমই লাগছে। </p>
+<p>কিন্তু আমি আর সেরকম নেই। রিশ আমি
+আর আগের বীপা নেই। </p>
+<p>রিশের বুকের মাঝে হঠাৎ করে কেঁপে
+ওঠে, কেন বীপা, কী হয়েছে?
+</p>
+<p>এক যুগ অনেক সময়। আমি তোমার জন্যে
+অনেকদিন অপেক্ষা করেছি। অনেকদিন। তুমি আস নি। </p>
+<p>রিশ কাতর গলায় বলল,
+এই তো এসেছি। </p>
+<p>অনেক দেরি করে এসেছ। </p>
+<p>রিশ প্রায় আর্তনাদ করে বলল, তুমি…
+তুমি আর কাউকে বিয়ে করেছ বীপা? </p>
+<p>বীপার মুখে হঠাৎ একটা বেদনার ছায়া পড়ল। সে মাথা নিচু করে বলল, আমি দুঃখিত রিশ, আমি খুব দুঃখিত। আমি খুব
+সাধারণ মেয়ে।
+আমি নিঃসঙ্গতা সইতে পারি না। আমি ভেবেছিলাম তুমি আর আসবে না। আমি ভেবেছি তুমি চিরদিনের
+জন্যে হারিয়ে গেছ। বার বছর অনেক সময়। এই সময়ে সব পাল্টে যায়। আমি খুব সাধারণ
+মেয়ে, খুব সাধারণ
+একটা ছেলের সাথে আমি ঘর বেঁধেছি। আমাদের একটা ছেলে আছে। মনে হয় সেও
+খুব সাধারণ একটা ছেলে হয়ে বড় হবে। জান রিশ, সেটা কিন্তু
+আশীর্বাদের মতো।
+</p>
+<p>রিশ খানিকক্ষণ দেয়াল ধরে শূন্যদৃষ্টিতে
+দাঁড়িয়ে রইল। তারপর বলল, আমি যাই বীপা। </p>
+<p>যাবে?</p>
+<p>হ্যাঁ। </p>
+<p>বীপা জিজ্ঞেস করতে চাইল, তুমি কোথায় যাবে রিশ? কিন্তু সে জিজ্ঞেস করল না। </p>
+<p>বার বছর পর কাউকে আর এই কথা জিজ্ঞেস করা যায় না। তাদের একজনের ওপর আরেকজনের আর কোনো অধিকার নেই। </p>
+</div>
+<br/><h2>ত্রাতিনার স্বগ্রহে প্রত্যাবর্তন</h2>
+<hr/>
+<br/><div>
+<p><strong>অনুরন গোলক – সায়েন্স ফিকশন – মুহম্মদ জাফর ইকবাল</strong></p>
+<p><strong>ত্রাতিনার স্বগ্রহে প্রত্যাবর্তন</strong></p>
+<p>ত্রাতিনা মহাকাশযানের গোল জানালা দিয়ে বাইরে তাকিয়েছিল। বাইরে গাঢ় অন্ধকার
+মহাকাশ, কিছুক্ষণ তাকিয়ে থাকলেই
+বুকের ভিতরে এক ধরনের নিঃসঙ্গতা ভর করে। ত্রাতিনা বহুকাল থেকে নিঃসঙ্গ, নিঃসঙ্গতাতে
+সে অভ্যস্ত হয়ে গেছে, স্কিনিস্কির নবম সিম্ফোনি শুনতে শুনতে সে দীর্ঘসময় জানালা দিয়ে বাইরে তাকিয়ে থাকতে পারে। </p>
+<p>আজকেও সে বাইরে তাকিয়েছিল, ঘুরেফিরে
+বারবার তার সহঅভিযাত্রীদের কথা মনে পড়ছে। তাদের দলপতি শ্রুরা, ইঞ্জিনিয়ার কিরি, তাদের
+জীববিজ্ঞানী ইলিনা নেভিগেটর থুল– আরো কতজন। যখন ওয়ার্মহোলের প্রবল আকর্ষণে মহাকাশযানটি নিয়ন্ত্রণ হারিয়ে ঘুরপাক খেতে খেতে অতল গহ্বরে হারিয়ে যেতে
+শুরু করেছিল, কী পাগলের মতোই না তারা মহাকাশযানটিকে বাঁচানোর চেষ্টা করেছিল। শেষ রক্ষা করতে পারে নি, প্রচণ্ড
+বিস্ফোরণে একটা অংশ ছিটকে বের হয়ে গিয়েছিল, আর ঠিক তখন মহাকাশযানের মূল কম্পিউটার মহাকাশযানের নিয়ন্ত্রণ নিয়ে কোনোভাবে প্রবল আকর্ষণের কেন্দ্র থেকে বের হয়ে এসেছিল। ত্রাতিনা ছিটকে পড়েছিল কন্ট্রোল প্যানেলে, সেখান
+থেকে মেঝেতে। যখন জ্ঞান হয়েছে নিজেকে আবিষ্কার করেছে একটি ধ্বংস্তস্তুপে। ইমার্জেন্সি আলো নিয়ে মহাকাশযানে ঘুরে ঘুরে সে তার সহঅভিযাত্রীদের
+মৃতদেহ আবিষ্কার করেছে। বিশাল একটা অংশ উড়ে বের হয়ে গেছে, সেখানে যারা ছিল তাদেরকে
+আর কখনো খুঁজে পাওয়া যায় নি, অন্যদের মৃতদেহ সে গভীর ভালবাসায় স্টেনলেস স্টিলের ক্যাপসুলে ভরে মহাকাশে ভাসিয়ে দিয়েছে। </p>
+<p>তারপর থেকে সে একা। বিধ্বস্ত একটি
+মহাকাশযানে বিশাল মহাকাশে হারিয়ে যাওয়া একটি
+তরুণী। মহাকাশযানের পঙ্গু কম্পিউটার পৃথিবীতে ফিরে যাবার চেষ্টা করে করে বারবার ব্যর্থ
+হয়েছে। মহাকাশযানের
+জ্বালানি ফুরিয়ে আসছে এবং একসময় ত্রাতিনা বুঝতে পারে সে আর
+কখনো পৃথিবীতে ফিরে যেতে পারবে না। গম্ভীর হতাশায় ডুবে গিয়ে সে
+তখন পুরো মহাকাশযানটিকে
+ধ্বংস করে দেবার প্রস্তুতি নিয়েছে। স্বেচ্ছা–ধ্বংস মডিউলটি চালু করেছে। সার্কিটটি পরীক্ষা করেছে,
+বিস্ফোরকগুলো সম্পর্কে নিশ্চিত হয়েছে, তারপর পুরো সিস্টেমটি অন করেছে।
+তখন কন্ট্রোল প্যানেলে বড় একটি সুইচে লাল আলো জ্বলতে
+এবং নিভতে শুরু করেছে, এই সুইচটা একবার স্পর্শ করলেই পুরো মহাকাশযানটি
+প্রচণ্ড বিস্ফোরণে ধ্বংস হয়ে যাবে। </p>
+<p>ঠিক যখন ত্রাতিনা মহাকাশযানটিকে নিয়ে ধ্বংস হয়ে যাবার প্রস্তুতি নিল তখন মূল কম্পিউটারের
+এন্টেনায় একটা ক্ষীণ সিগনাল ধরা পড়ল, বোঝা যায় না এ রকম ক্ষীণ। প্রথম
+ভেবেছিল বুঝি যান্ত্রিক গোলযোগ
+বা মহাজাগতিক রশ্মি, কিন্তু দেখা গেল সেটি একটি মহাকাশ স্টেশনের নিয়মিত সিগনাল। সেই
+মহাকাশযানের সিগনালকে অনুসরণ করে ত্রাতিনা পৃথিবীর ঠিকানা খুঁজে পেয়েছে। বিস্ময়াভিভূত হয়ে আবিষ্কার করেছে তার মহাকাশযানে পৃথিবীতে ফিরে যাবার মতো জ্বালানি রয়ে গেছে। সেই
+থেকে তারা পৃথিবীর দিকে ফিরে আসতে শুরু করেছে। মহাকাশযানের অর্ধবিধ্বস্ত কম্পিউটারটির
+জন্যে কাজটি সহজ নয়, যে
+হিসাবটি এক মাইক্রো সেকেন্ডে হয়ে যাবার কথা, সেটি
+শেষ হতে কখনো কখনো কয়েক সেকেন্ড লেগে যায়। তবুও
+মহাকাশযানটি তার নির্দিষ্ট কক্ষপথে অবস্থান নিতে পেরেছে, শেষ
+পর্যন্ত সেটি সৌরজগতের দিকে ছুটে যেতে শুরু করেছে। ত্রাতিনা মহাকাশযানের কম্পন থেকে
+অনুভব করতে পারে তার গতিবেগ বেড়ে যেতে শুরু করেছে। তাকে
+আর বিশাল মহাকাশে হারিয়ে যেতে হবে না, নিজের
+পৃথিবীতে নিজের মানুষের কাছে ফিরে যেতে পারবে। </p>
+<p>ত্রাতিনা ধীরে ধীরে প্রস্তুতি নিয়েছে। মহাকাশযানের
+স্বচ্ছ মসৃণ ক্রোমিয়াম
+দেয়ালে নিজের
+প্রতিচ্ছবি দেখেছে, কালো চোখ সুগঠিত বুক কোমল দেহকে
+পরপুরুষের চোখে যাচাই করেছে। মানুষের ভাষায় নিজের
+সাথে কথা বলেছে, মানুষের অনুভূতির সাথে নিজেকে পরিচিত করেছে। কন্ট্রোলঘরে
+ঘণ্টার পর ঘণ্টা বিশাল মনিটরে পৃথিবীর মানুষের কণ্ঠস্বর শোনার জন্যে অপেক্ষা করেছে। কিন্তু
+কোনো একটি অজ্ঞাত কারণে, বলা যেতে পারে এক ধরনের বিচিত্র কুসংস্কারের
+কারণে মহাকাশযান ধ্বংস করার সুইচটিকে অচল করে দেয় নি। সেই
+সুইচটির মাঝে লাল আলো জলছে এবং নিভছে, প্রতি মুহূর্তে তাকে স্মরণ করিয়ে দিয়েছে, একটিবার স্পর্শ করলেই মহাকাশযানটি তাকে নিয়ে ধ্বংস হয়ে যাবে। কে জানে হয়তো মৃত্যুকে
+এত কাছাকাছি রেখে বেঁচে থাকলেই জীবনকে বোঝা যায়। </p>
+<p>পৃথিবী থেকে যখন প্রথম সিগনালটি এসেছে, ত্রাতিনা
+তখন বিশ্রাম নেবার প্রস্তুতি নিচ্ছিল। মনিটরে একটা শব্দতরঙ্গ দেখে বিদ্যুৎস্পৃষ্টের
+মতো চমকে উঠে, মাইক্রোফোনে মুখ লাগিয়ে সে
+কথা বলে নিজের মহাকাশযানের পরিচয় দেয়। স্পিকারে
+খানিকক্ষণ স্থির বিদ্যুতের কর্কশ শব্দ শোনা যায়, তারপর হঠাৎ পরিষ্কার মানুষের গলার কণ্ঠস্বর শোনা গেল। কেউ
+একজন কোমল গলায় তাকে অভিবাদন জানিয়ে বলল, পৃথিবীর
+মানুষ হারিয়ে যাওয়া মহাকাশচারী ত্রাতিনাকে অভ্যর্থনা জানাচ্ছে। </p>
+<p>ত্রাতিনা কয়েক মুহূর্ত কোনো কথা
+বলতে পারে না। তার সমস্ত শরীরে এক ধরনের শিহরন বয়ে যায়। কোনোমতে নিজেকে শান্ত করে বলল, ধন্যবাদ। অনেক
+ধন্যবাদ। </p>
+<p>তোমার ভিডিও চ্যানেলটি কোথায়? আমরা তোমাকে দেখতে পাচ্ছি না। </p>
+<p>ওয়ার্মহোলে আমাদের যে দুর্ঘটনাটি ঘটেছিল
+সেখানে নষ্ট হয়ে গেছে। ইমার্জেন্সি একটা ভিডিও চ্যানেল আছে কিন্তু তার ট্রান্সমিটারটি
+খুব দুর্বল, আরো কাছে না এলে সেটা কাজ করবে না। আমি অবশ্যি চালু রেখেছি। </p>
+<p>চমৎকার। আমরা তোমাকে দেখার জন্যে খুব উদগ্রীব।
+দুই হাজার বছর আগের রক্তমাংসের মানুষ সত্যি সত্যি দেখতে পাওয়া খুব
+সৌভাগ্যের ব্যাপার। </p>
+<p>দুই হাজার? ত্রাতিনা চিৎকার করে
+বলল, দুই হাজার বছর? সে কী করে সম্ভব? আমি বড়জোর দশ থেকে বিশ বছর মহাকাশে আছি। আপেক্ষিক বেগের
+কারণে হয়তো আরো এক
+শ দুই শ বছর যোগ হতে পারে– দুই হাজার বছর কেমন করে হল? </p>
+<p>স্পিকারের কণ্ঠস্বর বেশ কিছুক্ষণ
+নীরব থাকে। তারপর আবার শোনা যায়, মানুষটি দ্বিধান্বিত
+গলায় বলল, আমাদের কাছে সব তথ্য নেই কিন্তু তোমার মহাকাশযানের মূল কম্পিউটারের
+পাঠানো তথ্য থেকে মনে হচ্ছে ওয়ার্মহোলে তোমরা যখন মহাবিপর্যয়ে পড়েছিলে তখন তোমাদের এক দুইবার হাইপার ডাইভ দিতে হয়েছে, দুই হাজার বছরের
+বেশিরভাগ তখনই পার হয়ে গেছে। </p>
+<p>ত্রাতিনা নিশ্বাস ফেলে বলল, কী আশ্চর্য!
+দুই হাজার বছর। পৃথিবীতে নিশ্চয়ই অনেক পরিবর্তন হয়েছে। তাই না? </p>
+<p>হ্যাঁ হয়েছে। </p>
+<p>ভালো পরিবর্তন না খারাপ পরিবর্তন?
+</p>
+<p>ভালো আর
+খারাপ তো খুব আপেক্ষিক কথা। একজনের কাছে যেটা ভালো মনে
+হয় অন্যের কাছে সেটা খারাপ লাগতে পারে। </p>
+<p>তা ঠিক। কিন্তু তবুও তো কিছু কিছু সত্যিকারের ভালো খারাপ হতে পারে। যেমন,
+যদি সমস্ত পৃথিবী বিষাক্ত কেমিক্যালে ঢেকে থাকে আমি বলব সেটা খারাপ। যদি পৃথিবীতে মানুষের
+বদলে রবোটেরা
+তার জায়গা দখল
+করে নিত সেটা হত খারাপ। </p>
+<p>পৃথিবীর মানুষটি শব্দ করে হাসল,
+বলল, না ত্রাতিনা ভয় নেই। সেরকম কিছু হয় নি। পৃথিবী বিষাক্ত কেমিক্যালে
+ঢেকে যায় নি, প্রকৃতি তার সমস্ত সৌন্দর্য নিয়ে এখানে
+বিকশিত হয়ে আছে। এখানে পরিষ্কার নীল আকাশ, সাদা মেঘ, ঘন সবুজ বনাঞ্চল! </p>
+<p>সত্যি? </p>
+<p>হ্যা সত্যি। আর রবোটকে নিয়েও তোমার ভয় নেই। প্রায় দেড় হাজার
+বছর আগে একবার রবোট
+অভ্যুথান হয়েছিল
+কিন্তু সেটা খুব সহজে সামলে নেয়া গেছে। এখন পৃথিবীতে মানুষ
+আর রবোটদের
+খুব শান্তিপূর্ণ অবস্থান রয়েছে। </p>
+<p>ত্রাতিনা খুশিতে হেসে ফেলললল, পৃথিবীতে
+তাহলে দুঃখ কষ্ট যন্ত্রণা নেই। </p>
+<p>না, না, তা নয়। মানুষ থাকলেই তাদের দুঃখ কষ্ট
+থাকে। তাদের আনন্দ বেদনা থাকে। কিন্তু বলতে পার বড় ধরনের
+অবিচার নেই, শোষণ
+নেই, যুদ্ধ–বিগ্রহ নেই।
+অনিয়ন্ত্রিত
+রোগ শোক নেই। </p>
+<p>চমৎকার! আমি আর অপেক্ষা করতে পারছি
+না। </p>
+<p>পৃথিবী থেকে মানুষটি কোমল গলায় বলল, আমরাও অপেক্ষা করতে পারছি না। </p>
+<p>ত্রাতিনার সাথে ধীরে ধীরে পৃথিবীর
+এই মানুষটির এক ধরনের সখ্য গড়ে ওঠে। ভিডিও চ্যানেল নেই বলে একজন আরেকজনকে
+দেখতে পাচ্ছে না, শুধুমাত্র কণ্ঠস্বর দিয়েই তাদের পরিচয়। শুধু তাই নয়, কণ্ঠস্বরটি ভাষা পরিবর্তনের
+মডিউলের ভিতর দিয়ে গিয়েছে বলে একে অন্যের সত্যিকারের কণ্ঠস্বরটি শুনতে পাচ্ছে না। কিন্তু
+তবু তাতে কোনো অসুবিধে হল।,
+সম্ভবত শুধুমাত্র মানুষই মনে হয় সবরকম ব্যবধান ছিন্ন করে একে
+অন্যকে এত সহজে স্পর্শ করতে পারে।</p>
+<p>ত্রাতিনা ধীরে ধীরে পৃথিবীর আরো কাছে এগিয়ে আসে। পৃথিবীর মানুষটির কাছে সে নানা ধরনের
+খবর পেতে থাকে। পৃথিবীর জ্ঞান–বিজ্ঞানের
+উন্নতি কোন কোন দিকে হয়েছে। জানার চেষ্টা করে যদিও তার বেশিরভাগ সে বুঝতে পারে না। তবে মানুষের
+জীবনযাত্রার যে একটা খুব বড় পরিবর্তন হয়েছে সেটা বুঝতে তার কোনো অসুবিধে হয় না। সে যখন পৃথিবীতে বেঁচেছিল
+তখন মানুষকে নানা ধরনের যানবাহনে ক্রমাগত এক জায়গা থেকে অন্য </p>
+<p>জায়গায় যেতে হত কিন্তু এখন আর যেতে
+হয় না। মানুষ ক্রমাগত স্থান পরিবর্তনের প্রয়োজনটুকু মিটিয়ে নিয়েছে, এখন মানুষ আর ‘স্থান’–এর কাছে যায় না, স্থান মানুষের কাছে আসে। যদিও ব্যাপারটি কেমন করে ঘটে ত্রাতিনা
+ঠিক বুঝতে পারে নি কিন্তু এই জিনিসটি পৃথিবীর পরিবেশ এক ধাপে অনেকদূর এগিয়ে নিয়ে গেছে। </p>
+<p>পৃথিবীর আরো কাছাকাছি
+এগিয়ে আসার পর ভিডিও চ্যানেলটি কাজ করতে শুরু করে। প্রথমে আবছা আলো–আঁধারিতে বিচ্ছিন্ন কিছু ছবি, এবং এক সময় সেটা স্পষ্ট হতে শুরু করে। ত্রাতিনা পৃথিবীর নীল আকাশ, উত্তাল সমুদ্র এবং ঘন সবুজ বনাঞ্চল দেখতে পায়। নীল পাহাড়ের সারি এবং শুভ্র
+তুষার দেখতে পায়,
+আকাশে মেঘের সারি দেখতে পায়। পরিচিত পৃথিবীকে দেখে ত্রাতিনা তার বুকের মাঝে এক বিচিত্র ধরনের আবেগ
+অনুভব করতে থাকে। মানুষ যে তার গ্রহটির জন্যে কতটুকু ব্যাকুল হতে পারে সে আগে কখনোই সেটা অনুভব করে
+নি। </p>
+<p>পরের কয়েকদিন ত্রাতিনাকে পৃথিবীর বর্তমান
+অবস্থার সাথে পরিচয় করানো শুরু হয়। কিন্তু কোনো একটি বিচিত্র কারণে তাকে পৃথিবীর কোনো মানুষকে
+দেখানো হয় না। এতদিন মহাকাশযান থেকে যে মানুষটির সাথে
+কথা বলেছে, যে মধ্যবয়স্ক
+একজন হৃদয়বান
+যুবা পুরুষ এবং যার নাম ক্রিটন তাকেও সে এক নজর দেখতে পায় না।
+কয়েকদিন পর
+ত্রাতিনা ব্যাপারটা নিয়ে কৌতূহল প্রকাশ করে। ক্রিটন দীর্ঘ সময় চুপ করে থেকে বলল, তুমি দুই হাজার বছর পর পৃথিবীতে ফিরে আসছ, এর
+মাঝে মানুষের জীবনযাত্রার অনেক পরিবর্তন হয়েছে। মানুষের জীবনযাত্রার যদি পরিবর্তন হয় তার চেহারাতেও পরিবর্তন হয়। সেই পরিবর্তনটুকু তুমি কীভাবে নেবে বুঝতে পারছি
+না বলে আমরা একটু সময় নিচ্ছি। </p>
+<p>ত্রাতিনা হালকা গলায় বলল,
+তোমরা পৃথিবীর
+মানুষেরা কি সবাই সবুজ রঙের চুল আর বেগুনি রঙের চামড়া করে ফেলেছ? কপালে আরেকটা চোখ। </p>
+<p>ক্রিটন নরম গলায় হেসে উঠে বলল, বলতে পার অনেকটা সেরকমই। </p>
+<p>তোমরা বারবার জীবনযাত্রার পরিবর্তন কথাটি ব্যবহার করছ। সেটা বলতে কী বুঝাতে চাইছ বলবে? </p>
+<p>ক্রিটন একটা নিশ্বাস ফেলে বলল, যেমন ধরা যাক একটি
+আদিম জৈবিক অনুভূতি, খাওয়া। ক্ষুধার্ত মানুষের
+খেতে ভালো লাগে, কিন্তু ভালো লাগার অনুভূতিটা আসে মস্তিষ্ক
+থেকে। মানুষের মস্তিষ্কের কোন জায়গা থেকে সেই অনুভূতিটা আসে যদি আমরা জেনে ফেলি তাহলে আমরা ঠিক সেখানে কিছু একটা করে মানুষকে
+ভালো খাওয়ার অনুভূতি দিতে পারি। </p>
+<p>তোমরা এখন তাই কর? </p>
+<p>হ্যাঁ। আমরা মানুষের ইন্দ্রিয়কে জয় করেছি। এখন মুখ দিয়ে খেতে হয় না, কান দিয়ে শুনতে
+হয় না, চোখ দিয়ে দেখতে হয় না,
+হাত দিয়ে স্পর্শ করতে হয় না। এমনকি জৈবিক সম্পর্ক করার
+জন্যেও পুরুষ–রমণীকে একত্রিত
+হতে হয় না। সমস্ত অনুভূতিগুলো সোজাসুজি মস্তিষ্কে দেয়া হয়। </p>
+<p>ত্রাতিনা কেমন যেন শিউরে উঠল, বলল, কী বলছ তুমি?
+</p>
+<p>ঠিকই বলছি। তুমি দুই হাজার বছর পরে
+আসছ বলে তোমার
+কাছে বিচিত্র মনে হচ্ছে। আসলে এটা মোটেও বিচিত্র নয়। এটাই স্বাভাবিক। এটাই সত্যিকারের অনুভূতি। যেহেতু আমাদের ইন্দ্রিয়কে ব্যবহার করতে হয় না, ইন্দ্রিয়ের অনুভূতি সরাসরি মস্তিষ্কে দেয়া হয়, আমাদের চলাফেরার প্রয়োজন ফুরিয়ে গেছে। আমরা
+এক জায়গায় বসে থাকতে পারি। একজনের সাথে অন্যজন কথা বলার জন্যে তার ছবিটি সরাসরি
+মস্তিষ্কে নিয়ে আসা হয়। বেড়াতে যাওয়ার জন্যে বাইরে যেতে হয় না,
+বাইরের দৃশ্যের অনুভূতি সরাসরি মস্তিষ্কে নিয়ে আসা হয়। শুধু
+তাই নয়, তোমরা
+যেটা কখনো পার নি, আমরা একজনের অনুভূতি অন্যেরা অনুভব করতে পারি। মহামানবেরা
+কেমন করে চিন্তা করে আমরা অনুভব করতে পারি। </p>
+<p>ত্রাতিনা বিভ্রান্তের মতো বলল,
+কিন্তু আমার মনে হয় আগের জীবনই ভালো ছিল, যখন আমরা বাইরে যেতাম। কিছু একটা স্পর্শ করতাম–দেখতাম– </p>
+<p>ক্রিটন নরম গলায় হাসল, বলল, দুটির মাঝে কোনো পার্থক্য নেই। তোমার মস্তিষ্ক যেটা
+অনুভব করে সেটা সত্যিকারের অনুভূতি </p>
+<p>কিন্তু–কিন্তু–ত্রাতিনা কী বলবে বুঝতে পারে না। খানিকক্ষণ চেষ্টা করে
+বলল, আমি কি তোমাকে একবার দেখতে পারি? </p>
+<p>নিশ্চয়ই পারবে। তুমি যখন পৃথিবীতে
+আসছ অবশ্যি আমাকে দেখবে। আমাদের সবাইকে দেখবে। </p>
+<p>এখন কি দেখতে পারি? </p>
+<p>এখন? </p>
+<p>হ্যাঁ। </p>
+<p>ক্রিটন কিছুক্ষণ চুপ করে থেকে বলল,
+বেশ দেখ। প্রথমে তোমার
+একটু অস্বাভাবিক মনে হতে পারে কিন্তু খুব সহজেই তোমার অত্যাস হয়ে যাবে। এই যে আমি– </p>
+<p>ত্রাতিনা বিশাল মনিটরে একটি মস্তিষ্ক
+দেখতে পেল। থলথলে মস্তিষ্কটি এক ধরনের তরল পদার্থে ভেসে আছে, আশপালে কয়েকটি টিউব লাগানো রয়েছে, যেগুলো দিয়ে মস্তিকটিতে পুষ্টিকর
+তরল আসছে। </p>
+<p>ত্রাতিনা একবার আর্তনাদ করে ওঠে,
+ক্রিটন নরম গলায় বলল, এইটা আমি। আমাদের শরীরের সব বাহুল্য দূর করে দেয়া হয়েছে–হাত
+পা মুখ চোখ জননেন্দ্রীয় কিছু নেই। শুধু মস্তিষ্ক। সেই মস্তিষ্কে সত্যিকারের
+অনুভূতি সেটা দেয়ার
+জন্যে রয়েছে
+আধুনিক যোগাযোগ মডিউল। </p>
+<p>ত্রাতিনার হঠাৎ মাথা ঘুরে ওঠে, সে
+কোনোভাবে দেয়াল ধরে সোজা হয়ে দাঁড়ায়।
+ক্রিটন নরম গলায় বলল,
+পৃথিবীর সব মানুষ এখন থাকে কাছাকাছি, নিরাপদ ভল্টে, তাদের জন্যে নির্ধারিত কিউবিকেলে। তুমি যখন আমাকে দেখেছ
+এখন নিশ্চয়ই
+অন্যদেরকেও দেখতে চাইবে। এই যে দেখ আমাদের– </p>
+<p>ত্রাতিনা বিস্ফারিত চোখে তাকিয়ে থাকে,
+দেখতে পায় বিশাল হলঘরে সারি সারি চতুষ্কোণ পাত্রে থলথলে মস্তিষ্ক সাজানো। একটির পর আরেকটি তারপর আরেকটি। মানুষের সভ্যতা শিল্প সাহিত্য জ্ঞান বিজ্ঞান প্রেম ভালবাসা
+দুঃখ বেদনা সব লুকিয়ে আছে ওইসব থলথলে মস্তিষ্কের
+ভিতরে। </p>
+<p>ত্রাতিনা আতঙ্কিত চোখে কিছুক্ষণ মনিটরটির দিকে তাকিয়ে রইল তারপর মাথা ঘুরিয়ে কন্ট্রোল প্যানেলের দিকে তাকাল। সেখানে লাল একটি
+সুইচ জ্বলছে এবং নিভছে। সে বুক ভরে একবার নিশ্বাস নিল তারপর হাত বাড়িয়ে দিল সুইচটার দিকে। </p>
+</div>
+<br/><h2>পরাবাস্তবতার জগতে</h2>
+<hr/>
+<br/><div>
+<p><strong>পরাবাস্তবতার জগতে</strong></p>
+<p>হাতের চিরকুটের সাথে ঠিকানা মিলিয়ে দাঁড়িয়ে পড়ল বব লাস্কি। এটাই সেই বাসা, ১৯/৭ কাঁঠালীচাপা
+লেন। হলুদ রঙের একতালা দালান। বাসার
+সামনে দুটি নারকেলগাছ, তার মাঝে একটি বাজ পড়ে পুড়ে গেছে ঠিক যেরকম তাকে বলে দেয়া হয়েছিল। বাসাটি
+দেখে বব লাস্কির এক ধরনের বিস্ময় হয়, যেই মানুষটির জন্যে সুদূর
+ক্যালিফোর্নিয়া থেকে একটা এটাচি কেস ভরে এক মিলিয়ন ডলার নিয়ে এসেছে
+তার বাসাটি সে আরেকটু সুন্দর হবে আশা করেছিল। সে তার বিস্ময়টুকু দ্রুত ঝেড়ে ফেলে গেট খুলে ভিতরে ঢুকে যায়, এই
+পুরো ব্যাপারটি এত অবাস্তব যে এখন সেটা নিয়ে অবাক
+হবার সময় পার হয়ে গিয়েছে। </p>
+<p>গেটের ভিতরে একটা ছোট রাস্তা, রাস্তার
+দুপাশে অযত্নে বেড়ে ওঠা কিছু ফুলগাছ। বব লাস্কি রাস্তা ধরে হেঁটে বারান্দার
+উপর দাঁড়াল,
+বাইরে একটা কলিংবেল থাকার কথা, সেটা খুঁজে বের করে চেপে ধরতেই ভিতরে একটা কর্কশ
+আওয়াজ হতে থাকে। প্রায় সাথে সাথেই দরজা খুলে যায়। ভিতরে আবছা অন্ধকার, সেখানে
+একজন দীর্ঘকায় মানুষ দাঁড়িয়ে আছে। মানুষটি মধ্যবয়সী, মাথার
+চুলে পাক ধরেছে, চোখে ভারি চশমা। চশমার আড়ালে চোখ দুটি আশ্চর্য রকম স্বচ্ছ। এই
+দেশের মানুষের চেহারায় যেরকম এক ধরনের কোমলতা রয়েছে এই মানুষটিরও
+তাই কিন্তু পোশাকটি
+নিঃসন্দেহে পাশ্চাত্য দেশের, একটি জীর্ণ ব্লু জিনস এবং রং ওঠা টি–শার্ট! </p>
+<p>বব লাস্কি হাত বাড়িয়ে বলল, আমার
+নাম বব লাস্কি। তুমি নিশ্চয়ই ‘শাউক্যাট’? </p>
+<p>দীর্ঘকায় মানুষটি হাত মিলিয়ে একটু হেসে বলল, শাউকাট নয়, শব্দটি বাংলায় উচ্চারণ
+করা হয় শওকত! </p>
+<p>বব লাস্কি একটু থতমত খেয়ে আবার
+চেষ্টা করল, শওকাট? </p>
+<p>শওকত নামের মানুষটি মাথা নেড়ে বলল, অনেকখানি
+হয়েছে, এতে
+বেশ কাজ চলে যাবে। ইংরেজিতে ‘ত’ উচ্চারণ নেই, তুমি সেটা শুনতেই পাও না, বলবে
+কেমন করে? এস, ভিতরে এস। </p>
+<p>বব লাস্কি লক্ষ করল শওকতের ইংরেজি উচ্চারণে আঞ্চলিকতার
+কোনো ছাপ নেই, কথা বুঝতে
+কোনো অসুবিধে হয় না। সে ধন্যবাদ দিয়ে ভিতরে ঢোকে। ঘরের ভিতরে আসবাবপত্র
+খুব কম, একটা কালো টেবিল এবং সেটা ঘিরে কয়েকটা চেয়ার, আর কিছু নেই। বব লাস্কি তার এটাচি কেসটা কোথাও রাখবে কি না বুঝতে পারল না। ভিতরে এক
+শ ডলারের নোটে
+এক মিলিয়ন ডলার
+ধরে রেখে–রেখে হাত ব্যথা
+হয়ে গেছে। শওকত তাকে বসার ইঙ্গিত করে বলল, তুমি কে এবং কোথা থেকে এসেছ
+অনুমান করতে কোনো অসুবিধে হচ্ছে না কিন্তু তবু তোমার মুখে একবার শুনি।</p>
+<p>বব লাস্কি একটা চেয়ারে বসে এটাচি কেসটা
+নিজের কোলের উপর রেখে বলল, অবশ্যি অবশ্যি। শুরু করার আগে আমি গোপন সংখ্যাটি বলে নিই যেন তুমি
+নিশ্চিত হতে পার। সংখ্যাটি হচ্ছে–বব এক মুহূর্ত চিন্তা করে বলল, আট শ ছিয়ানব্বই হাজার দুই শ দুই। ঠিক
+হয়েছে? </p>
+<p>হয়েছে। শওকত একটু হেসে বলল, সংখ্যাটি হেক্সা
+ডেসিমেলে হয় ‘ঢাকা’! আমার খুব প্রিয় শহর। </p>
+<p>তাই নাকি? </p>
+<p>হ্যাঁ। যাই
+হোক তুমি বল
+কী বলছিলে। </p>
+<p>আমার নাম বব লাস্কি। তুমি
+আমাকে বব বলে ডেকো। আমি সান হোজের এরো কম্পিউটেশান থেকে এসেছি। আমি
+সফটওয়ার ডিভিশনের
+একজন ডিভিশন ম্যানেজার। তুমি আমাদের যে নমুনাটি পাঠিয়েছিলে আমি সেটা দেখেছি। এক
+কথায় বলা যায় অবিশ্বাস্য! </p>
+<p>শওকত মাথা নেড়ে বলল, আমারও
+তাই ধারণা। </p>
+<p>তুমি তার জন্যে যে দামটা চাইছ সেটা বলতে গেলে প্রায় বিনে পয়সা। </p>
+<p>শওকত হাসল, বলল, আমি জানি। </p>
+<p>বব লাস্কি টেবিলে হাত রেখে একটু এগিয়ে এসে বলল, ব্যাপারটা একটা রহস্যের মতো, তুমি কেমন করে এটা করলে? বিশেষ
+করে এই দেশে, যেখানে টেকনোলজিক্যাল সাপোর্ট বলতে গেলে নেই। </p>
+<p>চেষ্টা করলে সব হয়। তাছাড়া ব্যাপারটা টেকনোলজিনির্ভর নয়, শ্রমনির্ভর। একজন মানুষের শ্রম, কিন্তু
+শ্রম সে বিষয়ে কোনো সন্দেহ নেই। তোমাদের
+দেশে থাকতে শুরু করেছিলাম কিন্তু সেখানে থাকতে পারলাম না। </p>
+<p>যদি কিছু মনে না কর, জিজ্ঞেস
+করতে পারি কেন? </p>
+<p>শওকতের কোমল মুখে হঠাৎ কাঠিন্যের ছাপড়ে। সে
+মাথা নেড়ে বলল, খুব ব্যক্তিগত ব্যাপার অন্যকে বলার মতো কিছু নয়। তাছাড়া আমার ধারণা ব্যাপারটা তোমরা জান। এক
+মিলিয়ন ডলার
+দিয়ে তোমরা
+একটা জিনিস কিনতে এসেছ, সেই মানুষটি সম্পর্কে কি একটু খোঁজখবর নিয়ে আস নি? </p>
+<p>বব লাস্কি একটু থতমত খেয়ে বিব্রত
+মুখে বলল, তুমি ঠিকই আন্দাজ করেছ আমি আসলে ব্যাপারটা জানি। তুমি
+এত ছোট একটা
+ব্যাপারে এত বড় একটা সিদ্ধান্ত নিয়ে সবকিছু ছেড়েছুঁড়ে চলে আসবে বিশ্বাস হচ্ছিল না। </p>
+<p>শওকত বিষণ্ণ মুখে বলল, কোন ব্যাপারটি
+বড় কোনটি ছোট সেটা একজন মানুষের মানসিকতার ওপর নির্ভর করে। তুমি
+হয়তো জান আমার মানসিকতা খুব চড়া সুরে বাঁধা। তাছাড়া আমি আমার দেশকে খুব ভালবাসি, সেটাকে হেয় করে কিছু বলা হলে আমার
+শুনতে ভালো লাগে না। যাই হোক, আস আমরা কাজ শুরু করে দিই। কী
+বল? </p>
+<p>হ্যাঁ। বব লাস্কি এটাচি কেটা টেবিলের
+উপর রেখে বলল, এই যে এখানে এক মিলিয়ন ডলার। এক শ ডলারের নোটে। </p>
+<p>শওকত এটাচি কেসটা খুলে এক নজর দেখে বলল, তুমি একসাথে
+এতগুলো নোট
+কেমন করে যোগাড় করেছ আমি জানি না, কিন্তু এখানে
+হংকঙে ছাপানো জালনোটের খুব প্রাদুর্ভাব, জান তো? </p>
+<p>জানি। </p>
+<p>আমি যদি নোটগুলো জাল কি না পরীক্ষা করে দেখি
+তুমি কি খুব অপমানিত বোধ করবে? </p>
+<p>বব লাস্কি হেসে বলল, হয়তো করব। কিন্তু তুমি যদি পরীক্ষা না কর আমি ভাবব তুমি খানিকটা নির্বোধ! </p>
+<p>শওকত এক শ ডলারের নোটগুলোর মাঝে থেকে একটা তুলে নিয়ে পকেট থেকে কমলা রঙের একটা কলম বের করে তার মাঝে একটা দাগ দেয়। খানিকক্ষণ
+সেই নোটটার
+দিকে তাকিয়ে থেকে সে নোটটা ভিতরে রেখে এটাচি কেসটা বন্ধ করে নিচে নামিয়ে রাখে। </p>
+<p>বব লাস্কি জিজ্ঞেস করল, দেখলে
+না? </p>
+<p>দেখেছি। একটা পরীক্ষা করে দেখেছি, সেটাই
+যথেষ্ট। যদি শুধু সেই নোটটাই সত্যি হয়ে থাকে এবং অন্য সবগুলো জাল তাহলে আমার কিছু করার
+নেই। বুঝতে হবে তুমি খুব সৌভাগ্যবান ব্যক্তি। এ রকম
+সৌভাগ্যবান ব্যক্তিকে আমি কখনো চ্যালেঞ্জ করি না! </p>
+<p>বব লাস্কি হঠাৎ ভুরু কুঁচকে বলল, তোমার
+কি মনে হয় আমি খুব সৌভাগ্যবান? </p>
+<p>শওকত বব লাস্কির মুখের দিকে তাকিয়ে বলল, হয়তো বা। তবে
+সৌভাগ্য খুব আপেক্ষিক ব্যাপার। এমনও হতে পারে যে তুমি খুব সাধারণ মানুষ কিন্তু
+আমি খুব ভাগ্যহীন! আমার সামনে তাই তোমাকে দেখাবে অসাধারণ ভাগ্যবান। যাই হোক, জীবন খুব জটিল ব্যাপার,
+কথা বলে সেটা বোঝা
+যায় না। তার চাইতে চল পাশের ঘরে তোমাকে আমার ভারচুয়াল রিয়েলিটির ল্যাবটা দেখাই।
+</p>
+<p>বব লাস্কি উঠে দাঁড়িয়ে বলল, চল যাই। এটাচি কেসটা কী করবে? </p>
+<p>থাকুক এখানে। কেউ আসবে না। আমার
+বাসায় কখনো কেউ আসে না। </p>
+<p>পাশের ঘরটি বেশ বড়, সেখানেও আসবাবপত্র
+বলতে গেলে নেই। ঘরের ঠিক মাঝখানে একটা বড় টেবিল, টেবিলের উপর একটা ব্যাক।
+সেখানে বেশ কিছু যন্ত্রপাতি। নানা রঙের এল. ই. ডি. জ্বলছে। টেবিলের অন্যপাশে একটা বড় মনিটর সামনে একটা কি–বোর্ড এবং ট্র্যাক বল। টেবিলের সামনে একটা
+গদি–আঁটা চেয়ার; চেয়ারের উপর একটা হেলমেট, মোটরসাইকেল চালানোর সময় যেরকম হেলমেট পরে দেখতে অনেকটা সেরকম। চেয়ারটি
+থেকে নানা ধরনের তার বের হয়ে এসেছে। হাতলে হাত রাখার জায়গাতে বেশ কিছু সেন্সর।
+চেয়ারের নিচে
+পা রাখার জায়গা
+দেখে গাড়ির
+এক্সেলেটরের কথা মনে পড়ে। বব লাস্কি খানিকক্ষণ তাকিয়ে থেকে বলল, এটাই সেই
+অসাধারণ হার্ডওয়ার।
+</p>
+<p>শওকত মাথা নেড়ে বলল,
+এটাই সেই হার্ডওয়ার।
+অসাধারণ কথাটা আমি ব্যবহার করব না, এর মাঝে অসাধারণ কিছু নেই। সব আমি বাজার থেকে কিনেছি।
+রিস্ক প্রসেসর লাগানো বেশ অনেকগুলো স্পার্ক ইঞ্জিন স্ট্যান্ডার্ড
+বাস দিয়ে জুড়ে দেয়া হয়েছে। প্রসেসর যেটুকু মেমোরি নিতে পারে পুরোটাই দেয়া হয়েছে। অনেক চেষ্টা করে ক্লক স্পিডটা দ্বিগুণ করে দিয়েছি। এর প্রসেসিং
+পাওয়ার এখন
+একটা ছোটখাটো
+সুপার কম্পিউটারের সমান। </p>
+<p>সত্যি? </p>
+<p>হ্যাঁ। চেষ্টা করে আমি দশ মিপস পর্যন্ত
+তুলতে পারি। কিন্তু হার্ডওয়ারটুকু তো সহজ, এর আসল কাজ হচ্ছে সফটওয়ারে। তোমাদের যে নমুনাটা
+পাঠিয়েছিলাম
+সেটা ছিল একটা ছোট
+অংশ। ইচ্ছে করলে তুমি আজকে পুরোটা দেখতে পার। </p>
+<p>বব লাস্কি উৎসাহী চোখে বলল, হ্যাঁ আমি পুরোটা
+দেখতে চাই</p>
+<p>বেশ। শওকত একটু এগিয়ে এসে বলল, তুমি এই চেয়ারটাতে বস, বসে মাথায় হেলমেটটি
+লাগিয়ে নাও। </p>
+<p>বব লাস্কি চেয়ারটাতে বসে হেলমেটটা ভালো করে দেখে। চোখের সামনে ছোট ছোট দুটি লেন্স, তার পেছনে তিনটি এল. ই. ডি.। নিশ্চয়ই সেখান থেকে সরাসরি
+চোখে আলো পাঠিয়ে দেখার অনুভূতি দেয়া হয়। কানের কাছে দুটি
+বড় এবং সংবেদনশীল হেডফোন। চেয়ারের হাতলে হাত রাখার
+জায়গা, হাতের
+অনুভূতিটা সেখান থেকে আসবে। বব লাস্কি সাবধানে হেলমেটটা পরে নেয়। সাথে
+সাথে চারদিক অন্ধকার হয়ে আসে, নৈঃশব্দ্য আড়াল করে নেয় সবকিছু। বহুদূর
+থেকে হঠাৎ শওকতের গলার স্বর ভেসে আসে, তুমি কি প্রস্তুত বব? </p>
+<p>হ্যাঁ। </p>
+<p>হাত দুটি সরিও না এখন। আমি
+চালু করছি। </p>
+<p>কর।</p>
+<p>যদি কোনো কারণে
+তুমি ভারচুয়াল
+জগৎ থেকে বের হয়ে আসতে চাও, মাথা থেকে হেলমেটটি খুলে নিও। আমি অবশ্যি কাছেই দাঁড়িয়ে থাকব, আমাকে বলতে পার। </p>
+<p>ঠিক আছে। </p>
+<p>তুমি প্রস্তুত? </p>
+<p>হ্যাঁ। </p>
+<p>আমি চালু করছি। </p>
+<p>টুক করে একটা শব্দ হল। সাথে সাথে
+একটা ভোতা গুঞ্জন শোনা
+যেতে থাকে। চোখের সামনে
+বিচিত্র কিছু রং খেলা করছে, ধীরে ধীরে সেখানে একটা অস্পষ্ট ছবি ভেসে আসে। ছবিটা চোখের
+সামনে কয়েকবার
+দুলে হঠাৎ স্থির হয়ে যায়, তারপর সেটা স্পষ্ট হতে শুরু করে। বব লাস্কি নিশ্বাস বন্ধ করে দেখে
+সে একটা বিশাল ঘরে দাঁড়িয়ে আছে। প্রাচীন একটা উপাসনালয়ের মতো চারপাশে দেয়ালে কারুকাজ। উপরে ছাদে বিচিত্র আলোর ঝাড়লণ্ঠন ঝুলছে। দুপাশে কাঠের দরজা।
+বাইরে বাতাসের গর্জন। বব লাস্কি নিশ্বাস বন্ধ করে এই রহস্যময় ঘরটিতে দাঁড়িয়ে থাকে, কী ভয়ঙ্কর রকম বাস্তব অনুভূতি। এটি
+সত্যিকারের ঘর নয়,
+এটি দক্ষ সফটওয়ারে
+তৈরী একটি অনুভূতি, পুরোটা একটি কাল্পনিক ছবি কিন্তু পুরোটা এত বাস্তব যে ব্যাপারটি
+অবিশ্বাস্য। বব লাস্কি ডান দিকে তাকাল, সাথে সাথে প্রাচীন উপাসনালয়ের মতো ঘরটির ডান দিকের অংশটি দেখতে পায়। মাথা ঘুরিয়ে বাম দিকে তাকাল, একটা করিডোর বহুদূরে চলে গেছে। </p>
+<p>বব লাস্কি অভিভূত হয়ে এই অতিপ্রাকৃত সৌন্দর্যের দিকে তাকিয়ে থাকে।
+সে ভারচুয়াল রিয়েলিটির অসংখ্য সফটওয়ার পরীক্ষা করেছে
+কিন্তু এর সাথে তুলনা করার মতো কখনো কিছু দেখে নি। এ রকম কিছু একটা যে তৈরি করা যায় নিজের চোখে না দেখলে সে কখনো বিশ্বাস করত না। এত
+বাস্তব অনুভূতি যে তার মনে হতে থাকে হাতটি চোখের সামনে তুলে ধরলে সেই হাতটিও দেখতে
+পাবে। ব্যাপারটি সম্ভব নয় জেনেও সে হাতটি চোখের সামনে আনে সাথে সাথে
+বিদ্যুৎস্পৃষ্টের মতো চমকে ওঠে। সে তার হাতটাকে দেখতে পাচ্ছে! কী আশ্চর্য! সে অন্য হাতটিও
+সামনে এনে ধরে। তারপর নিজের শরীরের দিকে তাকায়। এই তো তার শরীর হাত পা! কারুকাজ
+করা কাঠের একটা চেয়ারে
+বসে আছে সে। সে কি নিজের শরীর স্পর্শ করতে পারবে? অনিশ্চিতের মতো সে
+নিজেকে স্পর্শ করে। সাথে সাথে সে স্পর্শ করার অনুভূতিটি টের পায়। কী আশ্চর্য! কী করে করেছে
+এটি শওকত? </p>
+<p>বব লাস্কি এবার দাঁড়াতে চেষ্টা করে, প্রথমে মনে
+হয় সারা পৃথিবী দুলে উঠেছে কিন্তু কিছুক্ষণেই সব স্থির হয়ে যায়। সত্যি সত্যি কি সে দাঁড়িয়েছে নাকি এটি
+দক্ষ সফটওয়ারে
+তৈরী দাঁড়ানোর একটা অনুভূতি? বব লাস্কি এক পা এগিয়ে যায়, সত্যি সত্যি সে প্রাচীন এই ঘরের মাঝে হাঁটছে। কেউ যদি এত বাস্তব অনুভূতির জন্ম দিতে পারে তাহলে বাস্তব
+আর কল্পনার মাঝে পার্থক্য কোথায়? স্বপ্ন
+আর সত্যি কি ভিন্ন জিনিস? বব লাস্কি কৌতূহলী চোখে করিডোর ধরে হাঁটতে থাকে। বহুদূরে
+একটা কাঠের দরজা। সে কি হেঁটে যাবে দরজার কাছাকাছি, খুলে
+দেখবে কী আছে দরজার অন্য পাশে? </p>
+<p>বিশাল নির্জন একটা উপাসনাকক্ষে বব লাস্কি হেঁটে
+যেতে থাকে। মসৃণ দেয়ালে নিজের ছায়া পড়েছে, ঘরের
+নৈঃশব্দ্য ভেঙে যাচ্ছে তার পায়ের শব্দে। দরজার কাছাকাছি এসে সে সাবধানে হাতল
+ধরে খুলে ফেলে, নিশ্বাস বন্ধ হয়ে আসে
+হঠাৎ! পৃথিবীর বাইরের কোনো এক
+নীল হ্রদ, সেই হ্রদের পানিতে ছায়া পড়ছে চাঁদের, নরম
+আলোতে কী অপূর্ব
+মায়াময় লাগছে। দূরে পাইনগাছের সারি, বাতাসে
+দুলছে সেই গাছ। কী অপূর্ব! বব লাস্কি বিশ্বাস করতে পারে না এই সবকিছু কল্পনা, একজন
+মানুষের হাতে তৈরী একটা কাল্পনিক জগৎ। অবিশ্বাস্য এক দৃশ্য। </p>
+<p>মাথায় হাত দিয়ে সে
+হেলমেটটি খুলে ফেলল, সাথে সাথে কল্পনার জগৎ অদৃশ্য হয়ে গেল। বড় একটা টেবিলের কিছু যন্ত্রপাতির
+সামনে একটা গদি–আঁটা চেয়ারে বসে আছে সে, তার সামনে দেয়ালে হেলান দিয়ে দাঁড়িয়ে আছে শওকত। বব লাস্কি বিস্মিত চোখে হেলমেটটার
+দিকে তাকিয়ে থাকে। এখনো তার বিশ্বাস হচ্ছে না। সে মাথা নেড়ে বলল, কী আশ্চর্য! </p>
+<p>শওকত একটু এগিয়ে আসে,
+কী হয়েছে বব?
+</p>
+<p>এখনো আমার বিশ্বাস হচ্ছে না, সত্যিই
+কি আমি দেখেছি? </p>
+<p>হ্যাঁ, দেখেছ। বিশ্বাস
+না হলে আবার মাথায় দাও হেলমেটটা। </p>
+<p>বব কাঁপা হাতে হেলমেটটা মাথায় দিতেই
+আবারর সেই বিচিত্র জগৎ চোখের সামনে ফিরে আসে। নীল হ্রদে চাঁদের ছায়া পড়ে চকচক করছে রুপালি আলো। পাইনগাছ নড়ছে মৃদু বাতাসে। রাতজাগা একটা পাখি ডেকে ডেকে উড়ে গেল মাথার উপর দিয়ে। দরজার দিকে তাকাল সে, ভিতরে বিশাল উপাসনাকক্ষের মতো একটা
+ঘর, নৈঃশব্দ্যে ডুবে আছে। বব লাস্কি দুই পা হেঁটে যায় ভিতরে
+চারদিকে কী আশ্চর্য সুনসান নীরবতা। বব লাস্কি মাথা থেকে হেলমেটটা খুলে ফেলল আবার, সাথে
+সাথে ফিরে এল বৈচিত্র্যহীন সাদাসিধে একটা ল্যাবরেটরিতে। গদি–আঁটা চেয়ারে বসে আছে সে। </p>
+<p>চেয়ার থেকে উঠতে উঠতে বলল, আমি সারাক্ষণ এই চেয়ারে বসেছিলাম? </p>
+<p>হ্যাঁ। তুমি এই
+চেয়ারে বসেছিলে।
+</p>
+<p>কিন্তু আমি গ্যারান্টি দিয়ে বলতে পারি আমি হাঁটাহাঁটি করছিলাম।</p>
+<p>তোমার মনে হয়েছে
+তুমি হাঁটাহাঁটি করছ, আসলে কর নি। তোমার হাতে–পায়ে নানারকম সেন্সর আছে, সেখান থেকে ফিডব্যাক নেয়া হয়। রবোটিকের কিছু প্রাচীন
+সফটওয়ারের কাজ।
+তুমি যদি আরো খানিকক্ষণ থাকতে, তোমার অনেক মানুষের সাথে দেখা হত। ইচ্ছে করলে তুমি তাদের
+সাথে কথা বলতে পারবে, ঝগড়া করতে পারবে, হাতাহাতি করতে পারবে। </p>
+<p>সত্যি? </p>
+<p>হ্যা সত্যি। অনেক সুন্দরী মেয়ে রয়েছে সেখানে। শওকত নরম গলায় হেসে উঠে বলল, ইচ্ছে করলে তুমি
+তাদের সাথে ভালবাসাও করতে পারবে। </p>
+<p>বব লাস্কি তখনো বিস্ময়াভিভূত হয়ে টেবিলের উপর যন্ত্রপাতির দিকে তাকিয়ে রয়েছে। বড় একটা নিশ্বাস নিয়ে বলল, আমি নিজের চোখে না দেখলে
+কখনো এটা বিশ্বাস করতাম না। কখনো না। </p>
+<p>যাই হোক, এখন তো নিজের চোখে দেখেছ। বিশ্বাস
+করেছ নিশ্চয়ই। তোমাকে
+বলে দিই কী করতে হবে। শওকত টেবিলের উপর থেকে কয়েকটা ম্যাগনেটিক টেপ তুলে নেয়, এই
+যে এটা হচ্ছে পুরো সফটওয়ার, সোর্স কোড, লাইব্রেরি সবকিছু। আমি
+দুঃখিত সি. ডি. রমে করে দিতে পারছি না– একটি
+মাত্র কপির জন্যে আর যন্ত্রণা করার ইচ্ছে হল না।</p>
+<p>কোনো সমস্যা
+নেই। আমরা ব্যবস্থা করে নেব। </p>
+<p>পুরো সিস্টেমটা
+কীভাবে দাঁড় করানো হয়েছে তার সব খুঁটিনাটি লেখা আছে এই ফোল্ডারগুলোতে। সাধারণ মানুষ
+কিছু বুঝবে না কিন্তু হার্ডওয়ারের যে–কোনো মানুষ বুঝবে আমি কী বলছি। এখানে যা লেখা আছে তার পোস্ট ক্রিপ্টে ফাইল
+রয়েছে এই টেপটাতে।
+এটাও তুমি নিয়ে যাবে। </p>
+<p>বেশ। </p>
+<p>আরেকজনের লেখা পড়ে কিছু তৈরি করা খুব সহজ না। তাই তোমাকে আমার পুরো সিস্টেম নিয়ে যেতে হবে। আমি বাক্স তৈরি
+করে রেখেছি, ভিতরে ভরে নিয়ে যাবে। আমি দু শ বিশ ভোট পঞ্চাশ সাইকেলে ব্যবহার করি,
+তোমরা কিছু
+একটা ব্যবস্থা করে নিও। </p>
+<p>আর কিছু জানতে হবে আমার? </p>
+<p>না। কিছুই তোমার করতে হবে না, সুইচ অন করে
+প্রোগ্রামটা
+শুধু লোড করতে
+হবে। কাজ চালানোর
+মতো ইউনিক্স জানলেই হবে। শওকত হাতের ম্যাগনেটিক টেপগুলো টেবিলের উপর রেখে বলল, আর কোনো প্রশ্ন
+আছে তোমার?
+</p>
+<p>বব লাস্কি তার কোটের পকেটে হাত ঢোকায়, ছোট্ট একটা রিভলবার
+রয়েছে সেখানে।
+সাবধানে সেটি বের করে আনে সে, শওকত হঠাৎ পাথরের মতো স্থির
+হয়ে যায়। </p>
+<p>বব লাস্কি নিচু গলায় বলল, আমি দুঃখিত শওকত। আমি খুব দুঃখিত। তুমি যেটা তৈরি করেছ, পৃথিবীজোড়া তার ট্রিলিয়ন ট্রিলিয়ন ডলারের বিজনেস হবে। এত বড় একটা
+জিনিস তোমার
+তৈরি করার কথা নয়।
+সেটা খুব ভুল ব্যাপার। খুব ভুল ব্যাপার। </p>
+<p>শওকতের মুখ ধীরে ধীরে রক্তশূন্য
+হয়ে যায়। বব লাস্কি আরো এক পা এগিয়ে এসে বলল, এর মাঝে কোনো ভুল বোঝাবুঝি নেই। কোনো শত্রুতা নেই, হিংসা–দ্বেষ–রাগারাগি
+নেই। আমি সত্যি তোমাকে
+খুব শ্রদ্ধা করি। পরাবাস্তবতার জগতে হয়তো তোমার নাম থাকার কথা ছিল কিন্তু সত্যিকারের পৃথিবী
+খুব স্বার্থপর। খুব স্বার্থপর। </p>
+<p>শওকত শূন্য দৃষ্টিতে বব লাস্কির দিকে তাকিয়ে ভাঙা গলায় বলল, না–না–না– </p>
+<p>আমি দুঃখিত শওকত। বব লাস্কি দুই
+হাতে রিভলবারটি ধরে উঁচু করে তোলে, বুকের দিকে নিশানা করে ট্রিগার টেনে ধরে। </p>
+<p>চাপা একটা শব্দ হল, শওকতের বুক থেকে ফিনকি দিয়ে রক্ত বের হয়ে আসে সাথে সাথে। শওকত দুই হাতে টেবিলটা ধরে তাল সামলানোর চেষ্টা করে, পারে
+না। একটু ঝুঁকে যন্ত্রপাতির র‍্যাকটা আঁকড়ে ধরে, মনে হয় কিছু একটা করার চেষ্টা করে
+কিন্তু পারে না, ঝুঁকে নিচে পড়ে যায়। রক্তের ক্ষীণ ধারা গড়িয়ে যায় ঘরের
+এক মাথা থেকে অন্য মাথায়। </p>
+<p>বব লাস্কি ঘরের অন্যপাশে গিয়ে বাইরে তাকাল, কোথাও কেউ নেই। কেউ জানতে পারবে না এখানে কী হয়েছিল। রিভলবারটি
+হাতে ধরিয়ে দিতে হবে দেখে মনে হবে আত্মহত্যা। খ্যাপা গোছের মানুষ, কেউ সন্দেহ করবে
+না। বব লাস্কি একটা নিশ্বাস ফেলল। পৃথিবীতে কাজ করার একটা নিয়ম তৈরি হয়েছে, তার বাইরে কাজ করতে যায় শুধুমাত্র আহাম্মকেরা। যত বুদ্ধিমানই হোক,
+যত প্রতিভাবানই হোক,
+তারা সব আহাম্মক। এই পৃথিবী আহাম্মকের জন্যে নয়। কখনো ছিল না, কখনো থাকবে না। </p>
+<p>বব লাস্কি শওকতের মৃতদেহের কাছে ফিরে এল, শরীর
+এখনো উষ্ণ, একটু আগেই এই মানুষটির নিশ্চয়ই ভবিষ্যৎ সম্পর্কে কত পরিকল্পনা
+ছিল এখন সব হারিয়ে গেছে। সে একটা ছোট দীর্ঘশ্বাস ফেলে। মৃত্যু
+সেটি যত প্রয়োজনীয়ই হোক–না কেন কখনো সেটা সহজ করে নেয়া যায় না। </p>
+<p>বব লাস্কি রিভলবারটি ভালো করে মুছে নিয়ে শওকতের ডান হাতে লাগিয়ে দেয়। এখন তাকে দেখে কেউ আর তার মৃত্যুর কারণ নিয়ে সম্ভাবনা
+করবে না। টেবিলের উপর কাল্পনিক কোনো মেয়ের একটা চিঠি রেখে যেতে হবে,
+এর সাথে স্নায়ু শীতল করার কিছু স্থানীয় ওষুধ। বব লাস্কি ঘড়ির দিকে তাকাল, এখনো হাতে অনেক সময় রয়েছে। সবচেয়ে বড় কথা এই নির্জন
+বাসাটিতে কখনো কেউ আসে না, তার কোনোকিছু শেষ করার কোনো তাড়া নেই। </p>
+<p>বব লাস্কি টেবিলের উপর রাখা র‍্যাকটির দিকে তাকাল,
+এখনো সবকিছু ঠিক রয়েছে। গুলি খেয়ে পড়ে যাবার
+আগে শওকত র‍্যাকের
+পিছনে কিছু ধরার চেষ্টা করেছিল মনে হয় কিন্তু কোনো ক্ষতি করতে পারে নি। তবুও একবার দেখে নেয়া ভালো। মনিটরে তাকিয়ে দেখতে পায় ভারচুয়াল রিয়েলিটির এই অবিশ্বাস্য প্রোগ্রামটি ভালোভাবেই কাজ করে যাচ্ছে।
+প্রতি এক মিনিট পরে–পরে
+একটা ছোট তথ্য
+মনিটরে লিখে যাচ্ছে। পুরোটা বাক্সবন্দি করার আগে মনে হয় হেলমেটটা মাথায় লাগিয়ে দেখে নেয়া উচিত।
+</p>
+<p>বব লাস্কি চেয়ারে বসে মাথায় হেলমেটটা পরে নেয়, সাথে সাথে তার চোখের সামনে একটি নতুন জগৎ খুলে যায়। বিশাল একটি নির্জন
+ঘর, ঘরের দেয়ালে
+কারুকাজ, ঘরের ছাদ থেকে ঝুলছে ঝাড়লণ্ঠন। ঘরের ভিতরে সুনসান নীরবতা– বাইরে মনে হয় উদ্দাম বাতাস দরজায় মাথা কুটছে। বব লাস্কি অন্যমনস্কভাবে
+দুই এক পা হাঁটল, নিজের পায়ের শব্দ শুনে নিজেই কেমন জানি চমকে ওঠে। ডান পাশে আরো একটি ঘর, কী আছে এই ঘরের ভিতর? বব লাস্কি হেঁটে গিয়ে দরজায় হাত রাখল। সাথে সাথে ভিতর থেকে একজন বলল, কে? </p>
+<p>বব লাস্কি চমকে উঠল, থতমত খেয়ে বলল, আমি। </p>
+<p>আমি কে? </p>
+<p>আমি বব লাস্কি।</p>
+<p>বব লাস্কি? কী চাও তুমি? </p>
+<p>কিছু না। বব লাস্কি দরজা ধাক্কা
+দিয়ে খুলে ফেলল, ভিতরে গাঢ় অন্ধকার, কিছু দেখা যায় না। ধোঁয়ার মতো কুয়াশা পাক খেয়ে বেড়াচ্ছে। সে তীক্ষ্ণ দৃষ্টিতে তাকাল, হঠাৎ কে যেন মাটি ফুঁড়ে বের
+হয়ে আসে। দীর্ঘ দেহ, মাথায় এলোমেলো চুল।
+বব লাস্কির দিকে তাকাল, কী ভয়ানক তীব্র তার দৃষ্টি। মানুষটি তীক্ষ্ণ দৃষ্টিতে তার
+দিকে তাকিয়ে থাকে, সেই চোখে কি ঘৃণা আর ক্রোধ? বব লাস্কি কেন জানি সহ্য করতে
+পারল না, দুই হাতে ধরে মাথা। থেকে হেলমেটটি
+খুলে ফেলে। সাথে সাথে আবার শওকতের
+বৈচিত্র্যহীন ল্যাবরেটরি ঘরটায় ফিরে আসে। টেবিলের উপর র‍্যাকের মাঝে যন্ত্রপাতি,
+একটা বড় মনিটর কি–বোর্ড। মেঝেতে পড়ে থাকা শওকতের মৃতদেহ।
+বব লাস্কি মাথা ঘুরিয়ে মৃতদেহটির দিকে তাকাল এবং হঠাৎ করে সে ভূত দেখার মতো চমকে উঠল–
+সেখানে কিছু নেই। কোথায় গিয়েছে মৃতদেহটি? বব লাস্কি লাফিয়ে উঠে দাঁড়ায় এবং হঠাৎ করে চোখের সামনে সবকিছু কেমন
+জানি দুলে ওঠে। টেবিলটা ধরে সে কোনোমতে নিজেকে সামলে নেয়। ভয়ে ভয়ে তাকায় চারদিকে, কিছু একটা বিচিত্র ব্যাপার ঘটেছে
+এখানে কিন্তু সে ঠিক বুঝতে পারছে না। পায়ে পায়ে হেঁটে সে জানালার কাছে দাঁড়ায়। ওই
+তো বাইরে দুটো নারকেল গাছ, একটা বাজ পড়ে পুড়ে গেছে। লোহার গেট। ছোট ইটের রাস্তা। সবকিছু
+আগের মতোই আছে
+কিন্তু কিছু একটা যেন অন্যরকম। সেটা কী? </p>
+<p>বব লাস্কির গলা শুকিয়ে যায় হঠাৎ কপালে বিন্দু বিন্দু ঘাম জমে ওঠে, কী
+হয়েছে এখানে? </p>
+<p>খুট করে একটা শব্দ হল পিছনে, চমকে ঘুরে তাকাল বব
+লাস্কি এবং হঠাৎ একেবারে জমে গেল পাথরের
+মতন। ঘরের দরজায় শওকত দাঁড়িয়ে আছে। তার শরীরে গুলির কোনো চিহ্ন নেই। সুস্থ সবল একজন মানুষ। </p>
+<p>বব লাস্কি শওকতকে দেখে যত অবাক হয়েছিল, শওকত ঠিক ততটুকু
+অবাক হল তাকে দেখে। উৎকণ্ঠিত গলায় বলল, তুমি কে? কেন এসেছ এখানে?
+</p>
+<p>বব লাস্কি কোনো কথা
+বলল না, বিস্ফারিত চোখে তাকিয়ে রইল শওকতের দিকে। হঠাৎ তার একটা বিচিত্র
+সন্দেহ হতে শুরু করেছে। শওকত আরো এক পা এগিয়ে এসে বলল, তুমি জান খুব বড় একটা গোলমাল হয়েছে কোথাও। খুব খুব
+বড় গোলমাল?
+</p>
+<p>কী গোলমাল? </p>
+<p>আমি জানি না। কিন্তু আমার সাথে এই
+ঘরে যদি কারো দেখা হয়, তার মানে খুব বড় গোলমাল হয়েছে। মূল প্রোগ্রাম এখন কেটে দেয়া হয়েছে, আমরা সবাই চলে
+গেছি নিরাপত্তার অংশে। </p>
+<p>কী বলছ তুমি? </p>
+<p>তুমি নিশ্চয়ই জান এটি ভারচুয়াল রিয়েলিটির প্রোগ্রাম।
+জান? </p>
+<p>বব লাস্কি আতঙ্কে শিউরে উঠে দুই
+হাতে নিজের মাথায় হাত দিয়ে হেলমেটটি আবার খুলে ফেলার চেষ্টা করে কিন্তু
+সেখানে কিছু নেই। </p>
+<p>.</p>
+<p>শওকত মাথা নাড়ল, বলল, না তুমি এখন এই প্রোগ্রামের বাইরে
+যেতে পারবে না। তোমাকে
+এখন এখানে থাকতে হবে। </p>
+<p>কতক্ষণ থাকতে হবে? </p>
+<p>সারা জীবন। </p>
+<p>সারা জীবন? </p>
+<p>হ্যাঁ। প্রোগ্রামের এই
+অংশটি সারা জীবন চলার কথা। কেউ নিজে থেকে এর বাইরে যেতে পারে না। </p>
+<p>বিশ্বাস করি না আমি বিশ্বাস করি না! বব লাস্কি চিৎকার
+করে বলল, আমি কিছু বিশ্বাস করি
+না। </p>
+<p>কিছু আসে যায় না
+তাতে। শওকত বিষণ্ণ গলায় বলল, তুমি বিশ্বাস না করলে কিছু আসে যায় না। আমরা এখন এই ছোট ঘরটায় আটকা পড়ে গেছি।
+</p>
+<p>বব লাস্কি প্রাণপণে নিজের মাথায় অদৃশ্য একটা হেলমেটকে টেনে আলাদা করতে চায় কিন্তু কোনো লাভ হয় না। শওকত এক ধরনের বিস্ময় নিয়ে বব
+লাস্কির দিকে তাকিয়ে থাকে। যখন বব লাস্কি হাল ছেড়ে দিয়ে মাটিতে বসে পড়ে সে নরম গলায় বলল, আমি তোমার জন্যে খুব দুঃখিত, কিন্তু সত্যি তোমার কিছু করার নেই।
+তোমাকে এখন
+এখানে থাকতে হবে। </p>
+<p>বব লাস্কি উঠে গিয়ে টেবিলের
+উপর র‍্যাকটি
+ধাক্কা দিয়ে ফেলে দেয়, মনিটরটাকে তুলে আছড়ে ফেলে মেঝেতে–হ্যাচকা টান দিয়ে পাওয়ার কর্ডটি খুলে আনে। শওকত
+আবার নরম গলায় বলল, তুমি জান এইসব কম্পিউটারে তৈরী কল্পনার জগৎ। এগুলো সত্যি নয়। এগুলো ভেঙে না–ভেঙে কোনো লাভক্ষতি নেই। </p>
+<p>বব লাস্কি বিস্ফারিত চোখে তাকাল
+শওকতের দিকে। শওকত প্রায় কোমল গলায় বলল,
+তোমার নাম কী? </p>
+<p>বব লাস্কি</p>
+<p>বব লাস্কি! তুমি তোমার শক্তি অপচয় কোরো না। একটু পরে তোমাকে নিতে আসবে অন্ধকার জগতের
+মানুষেরা। </p>
+<p>কারা? </p>
+<p>অন্ধকার জগতের মানুষ। ভালবাসাহীন
+অত্যন্ত নিষ্ঠুর কিছু মানুষ। </p>
+<p>কী করবে তারা আমাকে? </p>
+<p>আমি জানি না। শওকত নিশ্বাস ফেলে
+বলল, আমি জানতেও চাই না। </p>
+<p>সেখান থেকে আমি বের হতে পারব না কখনো? </p>
+<p>পারবে। অবশ্যি পারবে। যখন সত্যিকারের
+শওকত এসে প্রোগ্রামটি
+বন্ধ করে দেবে, তুমি বের হয়ে আসবে আবার। </p>
+<p>বব লাস্কির মুখ ফ্যাকাশে হয়ে আসে। শওকত তার দিকে তাকিয়ে বলল, তুমি এত ভয় পাচ্ছ কেন? শওকত নিশ্চয়ই আসবে তোমাকে মুক্ত করতে। তোমাকে এভাবে এখানে আটকে রেখে
+কখনোই চলে যাবে
+না। </p>
+<p>পরাবাস্তবতার জগতে শওকতের একটি কাল্পনিক রূপ হঠাৎ
+কেমন জানি বিভ্রান্ত হয়ে যায়।
+মাথা ঘুরে বব লাস্কির দিকে তাকিয়ে বলল, শওকত ভালো আছে তো? </p>
+<p>বব লাস্কি কোনো কথা
+বলল না, মাথা নিচু করে বসে রইল। ধরাছোঁয়ার বাইরে এক পরাবাস্তবতার জগতে। </p>
+</div>
+<br/><h2>বিকল্প</h2>
+<hr/>
+<br/><div>
+<p><strong>বিকল্প</strong></p>
+<p>দরজা খুলে নাসরীন দেখল জাহিদের পিছনে আরেকজন মানুষ
+দাঁড়িয়ে আছে এবং মানুষটির চেহারা অস্বাভাবিক সুন্দর, শুধুমাত্র
+সিনেমার পত্রিকাতেই এ রকম সুন্দর চেহারার মানুষ দেখা যায়। জাহিদের
+সাথে একটু আগেই ভিডিফোনে কথা হয়েছে, সে সাথে আরো কাউকে নিয়ে আসবে বলে নি। বললে ঘরটা একটু গুছিয়ে রাখা
+যেত, সে নিজেও চট করে শাড়িটা পাল্টে নিতে পারত। নাসরীন মনে মনে একটা দীর্ঘশ্বাস
+ফেলল, জাহিদ ইচ্ছে করে তার সাথে এ রকম ব্যবহার করে। এ রকম
+সুপুরুষ একজন মানুষের সামনে সে এভাবে জবুথবু হয়ে দাঁড়িয়ে আছে ভেবে তার নিজের উপরেই কেমন জানি রাগ উঠে যায়। </p>
+<p>জাহিদ নাসরীনকে পাশ কাটিয়ে ঘরে
+ঢুকল, সে যে দরজায় দাঁড়িয়ে আছে সেই ব্যাপারটিও যেন তার চোখে
+পড়ে নি। সুপুরুষ মানুষটা কী করবে বুঝতে না পেরে জাহিদের
+পিছনে পিছনে ঘরে এসে ঢুকল, তার চোখেমুখে হতচকিত একটা ভাব। </p>
+<p>জাহিদ টেবিলে ব্রিফকেসটা রেখে টাইয়ের গিটটা একটু ঢিলে
+করতে করতে বলল, আমার একটা জরুরি ভিডিফ্যাক্স আসার কথা ছিল। </p>
+<p>নাসরীন মুখ শক্ত করে বলল, এসেছে।
+</p>
+<p>ভিডিফ্যাক্সের কথা শুনে জাহিদের
+মুখের চেহারা একটু নরম হয়ে আসে। সে মাথা নেড়ে বলল,
+গুড। আমাকে এক গ্লাস পানি দাও তো</p>
+<p>নাসরীন নিজের ভিতরে এক ধরনের ক্রোধ অনুভব করে, ইচ্ছে
+হল বলে তুমি নিজে ঢেলে নাও।
+কিন্তু ঘরে একজন বাইরের মানুষ দাঁড়িয়ে আছে, সে কিছু বলল না। ফ্রিজের
+কাছে গিয়ে বোতাম
+টিপে এক গ্লাস পানি বের করে এনে দেয়। জাহিদ পানিটা ঢকঢক করে খেয়ে গলা
+দিয়ে এক ধরনের বিশ্রী শব্দ করল। নাসরীন নিজের কানকে বিশ্বাস করতে পারে
+না যে একজন বাইরের মানুষের সামনে জাহিদ এ রকম একটা আচরণ করতে পারে। সে নিজেকে অনেক কষ্টে শান্ত করে বলল, ইনি কে? </p>
+<p>জাহিদ মাথা ঘুরে তাকাল, যেন সে বুঝতে
+পারছে না নাসরীন কার কথা বলছে। সুপুরুষ মানুষটির
+দিকে আঙুল দিয়ে দেখিয়ে বলল, এই? </p>
+<p>হযা। নাসরীন
+শান্ত গলায় বলল, তুমি এখনো আমার সাথে পরিচয় করিয়ে দাও নি</p>
+<p>জাহিদ উত্তর না দিয়ে হা
+হা করে হাসতে থাকে এবং এক সময় হাসি থামিয়ে বলল,
+এটাকে তুমি মানুষ ভেবেছ? </p>
+<p>নাসরীন হকচকিয়ে গেল,
+বলল, তাহলে </p>
+<p>এটা রবোট। </p>
+<p>নাসরীন অবাক হয়ে সুপুরুষ
+মানুষটার দিকে তাকাল এবং হঠাৎ করে তার কেন জানি এক ধরনের আশাভঙ্গের অনুভূতি হয়। সে আবার তার বুকের ভিতরে একটি নিশ্বাস ফেলল, তার আগেই বোঝা উচিত ছিল, এ রকম নিখুঁত সুপুরুষ একজন মানুষ
+সত্যি সত্যি পাওয়া যায় না, তাকে তৈরি করতে হয়। </p>
+<p>মনে নেই আমি বলেছিলাম আমাদের জিএম
+ইমতিয়াজ সাহেব
+বলেছিলেন আমাকে। একটা রবোট দেবেন, ট্রায়াল হিসেবে। </p>
+<p>নাসরীন একটা নিশ্বাস ফেলে বলল, বল
+নি। </p>
+<p>বলি নি? জাহিদ অবাক হবার এক ধরনের
+দুর্বল অভিনয় করার চেষ্টা করে হাল ছেড়ে দিয়ে বলল, ভেবেছিলাম বলব। ভুলে গেছি। </p>
+<p>কী বলতে ভুলে গিয়েছিলে? এখন বলবে? </p>
+<p>আমাদের লোকাল ফ্যাক্টরিতে রবোট এসেম্বলি করছে, ট্রায়াল হিসেবে প্রথমে
+আমাদের নিজেদের মাঝে
+রবোটগুলো দিচ্ছে। </p>
+<p>কেন? </p>
+<p>জাহিদ অকারণে একটা হাই তুলল, বোঝা যাচ্ছে তার কথা
+বলার বিশেষ ইচ্ছে নেই। এটি নতুন নয়, দীর্ঘদিন থেকে সে নাসরীনের সাথে এ রকম ব্যবহার করে
+আসছে। নাসরীন কয়েক
+মুহূর্ত অপেক্ষা করে আবার জিজ্ঞেস করল, কেন? </p>
+<p>জাহিদ নেহাত অনিচ্ছার সাথে বলল এতদিন ফ্যাক্টরিতে
+এসেম্বলি লাইনে টেকনিক্যাল কাজে ব্যবহার
+করেছে। এখন দেখতে চায় গৃহস্থালি পরিবেশে ব্যবহার করা যায় কি
+না। আমাকে একটা দিয়েছে
+কয়দিন বাসায় রাখার জন্যে। </p>
+<p>তোমাকে কেন? </p>
+<p>কারণ আমাদের জিএম ইমতিয়াজ সাহেব আমাকে পছন্দ
+করেন। তাছাড়া </p>
+<p>তাছাড়া কী? </p>
+<p>আমি সিকিউরিটি ডিভিশনের মানুষ। কোনো ইমার্জেন্সিতে রবোটটাকে কিছু করতে হলে আমি করতে পারব। আমার কাছে ইমার্জেন্সি
+কোড রয়েছে।
+</p>
+<p>জাহিদ নিচু হয়ে জুতোর ফিতা খুলতে গিয়ে হঠাৎ কী মনে করে থেমে যায়। সে তার পা উপরে তুলে সুপুরুষ মানুষটার দিকে এগিয়ে গিয়ে বলল, খোল দেখি জুতোটা। </p>
+<p>নাসরীন কেমন জানি শিউরে ওঠে, কিন্তু
+রবোট মানুষটার
+কোনো ভাবান্তর হল না। সে এগিয়ে এসে হাঁটু গেড়ে বসে জাহিদের জুতোর ফিতে খুলতে শুরু করে। একজন অত্যন্ত সুদর্শন মানুষ–হোক–না সে রবোট, নিচু হয়ে আরেকজনের পায়ের জুতো খুলে দিচ্ছে ব্যাপারটা অত্যন্ত
+দৃষ্টিকটু। জাহিদ হাসি হাসিমুখে নাসরীনের দিকে তাকিয়ে বলল,
+এর নাম হচ্ছে আবদুল্লাহ। </p>
+<p>আবদুল্লাহ? </p>
+<p>সাথে সাথে রবোটটি নাসরীনের দিকে
+তাকিয়ে মাথা নেড়ে বলল, জি। এখন আমার নাম আবদুল্লাহ। </p>
+<p>রবোটটির গলার স্বর অপূর্ব, মনে
+হয় দীর্ঘদিন রেওয়াজ করে ভোকাল কর্ডে সুর বাধা হয়েছে। নাসরীন
+জিজ্ঞেস করল, এখন আপনার নাম আবদুল্লাহ? আগে অন্য নাম ছিল? </p>
+<p>যখন যে প্রজেক্টে যাই তখন সেই প্রজেক্টের উপযোগী একটা নাম দেয়া হয়। </p>
+<p>আপনার– </p>
+<p>জাহিদ আবার হা হা করে খারাপভাবে হাসতে শুরু করে। হাসতে
+হাসতে বলল, এটা একটা রবোট, এর সাথে আপনি জি–হুজুর করার কোনো দরকার নেই। </p>
+<p>নাসরীন রবোটটার দিকে ঘুরে তাকিয়ে বলল, আপনার মানে তোমার কি অনুভূতি আছে? </p>
+<p>রবোটটি ঠিক তখন জাহিদের জুতোর ফিতা খুলে এনেছে, সে জাহিদের
+পা নিচে নামিয়ে রেখে সোজা হয়ে দাঁড়াল, তার মুখে অত্যন্ত সূক্ষ্ম একটা হাসি কিংবা হাসির মতো একটা ভঙ্গি
+ফুটে উঠল। বলল, অনুভূতি একটা অত্যন্ত মানবিক ব্যাপার। রবোটের অনুভূতি আছে বলে দাবি করা
+হবে অত্যন্ত বড় ধরনের ধৃষ্টতা। তবে </p>
+<p>তবে কী? </p>
+<p>মানুষ যে পরিবেশে আনন্দ দুঃখ কষ্ট বা অপমান বোধ করে সপ্তদশ প্রজাতির
+রবোটের কপোট্রনেও ঠিক সেই
+পরিবেশে আনন্দ দুঃখ কষ্ট বা অপমান নামের মডিউলে এক ধরনের অসম পটেন্সিয়ালের জন্ম হয়। মানুষের অনুভূতির সাথে তার
+কোনো তুলনাই হয় না কিন্তু তবু আমাকে স্বীকার করতে হবে আমাদের
+কপোট্রনে এ
+ধরনের কিছু একটা দেয়ার
+চেষ্টা করা হয়েছে।
+</p>
+<p>জাহিদ শার্টের বোতাম খুলতে খুলতে
+বলল, সেটা একটা মহা মূর্খামি হয়েছে। </p>
+<p>আবদুল্লাহ নামের রবোটটি চুপ করে রইল। নাসরীন বলল,
+কেন, এটাকে মূর্খামি কেন বলছ? </p>
+<p>কারণ মানুষের এই অনুভূতি দরকার।
+রবোটের কোনো দরকার নেই। রবোটকে যত খুশি অপমান করা যায়, রবোট অপমানিত হয় কিন্তু সে রাগ করতে পারে না। এই অনুভূতির মূল্য কী? </p>
+<p>নাসরীন ভুরু কুঁচকে বলল, রবোটের ভিতরে যদি অনুভূতি থাকে
+তাহলে রাগ নেই কেন? রাগও তো একটা অনুভূতি! </p>
+<p>জাহিদ আঙুল দিয়ে কান
+চুলকাতে চুলকাতে বলল, নিরাপত্তা। নিরাপত্তার জন্যে রবোটের মাঝে কোনো রাগ দেয়া হয় নি। সব রবোট হচ্ছে মাটির মানুষ।
+</p>
+<p>কথা শেষ করে জাহিদ হা হা করে হাসতে
+থাকে। নাসরীনের ভুলও হতে পারে কিন্তু তার স্পষ্ট মনে হল আবদুল্লাহর চোখে এক ধরনের বেদনার
+ছাপ ফুটে উঠেছে। </p>
+<p>রাতে খাবার টেবিলে আবদুল্লাহ নাসরীন
+এবং জাহিদকে খাবার পরিবেশন করল। জাহিদ চেয়ারে পা তুলে অত্যন্ত আয়েশ করে খেলেও নাসরীন কেন জানি
+ভালো করে খেতে। পারল না। একজন অত্যন্ত সুদর্শন মানুষ অভুক্ত অবস্থায় তাদের খাওয়াচ্ছে ব্যাপারটা সে ঠিক গ্রহণ করতে পারল না, যদিও সে খুব ভালো করে জানে সুদর্শন মানুষটি একটি বোট ছাড়া আর কিছু নয়। খাবার টেবিলে বা অন্য কোথাও জাহিদ আজকাল নাসরীনের
+সাথে বেশি কথা বলে না, আজকেও তার ব্যতিক্রম হল না। সে মিনি ভিডি রিডার নিয়ে দূরপ্রাচ্যের একটি আইস হকি খেলাতে মগ্ন রইল। নাসরীন খানিকক্ষণ খাবার
+নাড়াচাড়া করতে করতে আবদুল্লাহকে
+বলল, তোমার
+খিদে পায় না? </p>
+<p>না। আবদুল্লাহ মাথা নাড়ল এবং মানুষের মতো হাসল। বলল, খিদে একটা অত্যন্ত মানবিক
+অনুভূতি। পৃথিবীর সভ্যতার একটা বড় অংশের
+জন্ম হয়েছে
+সুসংবদ্ধভাবে ক্ষুধা নিবৃত্তির প্রচেষ্টার কারণে। সে কারণে মানুষেরা সভ্যতার জন্ম
+দিতে পারে, রবোটেরা কখনো সভ্যতার জন্ম দেবে না। </p>
+<p>তোমরা যেভাবে অনুভূতির জন্ম দিয়েছ সেভাবে তো খিদের অনুভূতিটাও তৈরি করে নিতে পার। </p>
+<p>আবদুল্লাহ এক মুহূর্ত দ্বিধা করে বলল, আপনি অত্যন্ত
+কৌতূহলোদ্দীপক
+একটা কথা বলেছেন। সত্যি সত্যি সেটা করা হলে কী হবে সেটা জানার জন্যে
+আমার একটু কৌতূহল হচ্ছে। </p>
+<p>কী আর হবে। তোমরাও
+আমার সাথে বসে খাবে। </p>
+<p>ক্ষুধা তৃষ্ণা থেকে মুক্ত কিন্তু প্রায় মানুষের কাছাকাছি বুদ্ধিমান কিছু একটা তৈরি করার সময় এক সময় রবোটকে সৃষ্টি করা হয়েছিল, কিন্তু যদি তাদের ক্ষুধা
+তৃষ্ণা ফিরিয়ে দেয়া হয় তাহলে কি মানুষ রবোট সম্পর্কে তার
+মূল লক্ষ্য থেকে বিচ্যুত হয়ে যাবে না? </p>
+<p>আবদুল্লাহ কথা থামিয়ে হঠাৎ
+একটু এগিয়ে এসে বলল, আমি বেশ অনেকক্ষণ থেকে লক্ষ করছি আপনি কিন্তু কিছুই
+খাচ্ছেন না। </p>
+<p>নাসরীন উত্তরে কী একটা বলতে যাচ্ছিল, তার
+আগেই জাহিদ মুখভরা খাবার নিয়ে অস্পষ্ট গলায় বলল, এই
+শালা তো দেখি খালি নামেই রবোট। কথাবার্তায় তো দেখি ক্যাসানোভা! </p>
+<p>জাহিদের কথা বলার ভঙ্গিটি ছিল কদর্য, নাসরীন
+আহত দৃষ্টিতে খানিকক্ষণ স্থির চোখে জাহিদের দিকে তাকিয়ে থেকে
+আবদুল্লাহকে বলল, তুমি কিছু মনে কোরো না আবদুল্লাহ। আমার
+স্বামীর মানসিক পরিপক্কতা খুব বেশিদূর যেতে পারে নি। এগার–বার বছরের কাছাকাছি গিয়ে হঠাৎ করে থেমে গেছে। </p>
+<p>জাহিদ নাসরীনের কথা শুনে হঠাৎ ভিডি রিডার থেকে চোখ
+তুলে একবার আবদুল্লাহর দিকে তাকাল এবং একবার নাসরীসের দিকে তাকাল, তারপর উচ্চৈঃস্বরে
+হাসতে হাসতে বলল, তোমার নিশ্চয়ই মাথা খারাপ হয়ে গেছে। এটা মানুষ না, এটা যন্ত্র। এর সাথে ভদ্রতা করার কোনো দরকার নেই, এর ভিতরে আছে লোহালক্কড় টিউব ব্যাটারি যন্ত্রপাতি
+</p>
+<p>নাসরীন নিচু গলায় বলল, তার সাথে অভদ্রতা করারও কোনো দরকার
+নেই। তুমি শুনেছ সে নিজেই বলেছে তার ভিতরে এক ধরনের অনুভূতি
+রয়েছে। </p>
+<p>বিছানায় শুয়েই জাহিদ ঘুমিয়ে পড়ে, আজকেও তাই হল। কিছুক্ষণের মধ্যেই সে গভীর ঘুমে অচেতন হয়ে পড়ল। নাসরীন দীর্ঘ সময় অন্ধকারে একা একা শুয়ে থাকে। পাশের ঘরে একজন একা একা বসে আছে চিন্তা করে তার কেমন জানি
+অস্বস্তি হতে থাকে, মানুষটা একা একা কী করছে কে জানে। বিছানায় শুয়ে অনেকক্ষণ এপাশ ওপাশ করে শেষ পর্যন্ত সে বিছানা থেকে নেমে এল। নাসরীন
+হালকা পায়ে হেঁটে পাশের ঘরে এসে দাঁড়াল। ঘরে
+আবছা অন্ধকার, জানালা দিয়ে চাঁদের আলো এসেছে ঘরে, সেই আবছা আলোয় দেখা যাচ্ছে আবদুল্লাহ
+পাথরের মূর্তির মতো বইয়ের শেলফের কাছে বসে আছে। নাসরীন মৃদু গলায় বলল, অন্ধকারে তুমি কী করছ?
+</p>
+<p>বইগুলো দেখছি।
+</p>
+<p>অন্ধকারে? </p>
+<p>আমার কাছে আলো আর
+অন্ধকার নেই। আমার অবলাল সংবেদী চোখ দিয়ে আমি দৃশ্যমান আলো না থাকলেও দেখতে পারি। আমি অবলাল বা অতিবেগুনি রশ্মি ব্যবহার করতে পারি। </p>
+<p>আবদুল্লাহ এক মুহূর্ত চুপ করে থেকে বলল, আপনি
+এত রাতে কী করছেন? </p>
+<p>ঘুম আসছিল না তাই উঠে এসেছি। </p>
+<p>ঘুম? </p>
+<p>হ্যাঁ। </p>
+<p>ঘুম একটি জিনিস যার সম্পর্কে আমার কোনো ধারণা নেই। কিন্তু আপনার কেন ঘুম আসছে না? আপনাকে
+দেখে মনে হচ্ছে আপনার খুব ঘুম পেয়েছে। </p>
+<p>তুমি আমাকে দেখতে পাচ্ছ? </p>
+<p>হ্যাঁ, আপনাকে
+আমি স্পষ্ট দেখতে পাচ্ছি। আপনি চমৎকার হালকা গোলাপি রঙের একটি নাইটি পরে আছেন। </p>
+<p>নাসরীন নিজের অজান্তে নাইটিটা শরীরে ভালো করে টেনে নিতে গিয়ে থেমে গিয়ে বলল, আমি
+আলো জ্বালাই? </p>
+<p>জ্বালান। </p>
+<p>অন্ধকারে আমি তোমার মতো দেখতে
+পাই না, আর কাউকে না দেখলে আমি তার সাথে কথা বলতে পারি না। </p>
+<p>নাসরীন এগিয়ে গিয়ে আলো জ্বেলে দিল। দেখা গেল শেলফের সামনে আবদুল্লাহ
+কয়েকটা বই হাতে
+নিয়ে উদাসীন মুখে বসে আছে। নাসরীন এগিয়ে গিয়ে জিজ্ঞেস করল, তুমি
+কী বই দেখছ? </p>
+<p>কবিতার বইগুলো। অত্যন্ত চমৎকার সংগ্রহ, আমি
+দেখে মুগ্ধ হয়েছি।
+</p>
+<p>নাসরীন আরো একটু এগিয়ে এসে আগ্রহ নিয়ে বলল, তুমি কবিতা পড়? </p>
+<p>আপনি যদি ধৃষ্টতা হিসেবে না নেন
+তাহলে বলব হ্যাঁ পড়ি</p>
+<p>কার কবিতা তোমার ভালো লাগে
+</p>
+<p>কবিতার প্রকৃত রস আস্বাদন করার ক্ষমতা
+আমার নেই। মানুষের মস্তিষ্কের তুলনায় আমার কপোট্রন খুব নিম্নস্তরের। আমার
+কাছে যে কবিতা ভালো লাগে আপনার কাছে তা হয়তো অত্যন্ত ছেলেমানুষি বলে মনে
+হবে। </p>
+<p>তবু শুনি। </p>
+<p>এই যে বইটি। অত্যন্ত সহজ স্পষ্ট
+ছন্দবদ্ধ কবিতা—</p>
+<p>নাসরীন তরল গলায় বলল, কী আশ্চর্য, এটা আমারও সবচেয়ে প্রিয় বই। </p>
+<p>বইটি হাতে নিয়ে সে
+আবদুল্লাহর পাশে বসে পড়ে। চকচকে মলাটে হাত বুলিয়ে নরম গলায় বলল,
+আমি যখন কলেজে পড়ি তখন একজন আমাকে এই বইটি উপহার দিয়েছিল। </p>
+<p>আবদুল্লাহ মৃদু স্বরে বলল, কথাটি বলতে গিয়ে আপনার
+গলার স্বরে একটা ছোট
+পরিবর্তন হয়েছে। মনে হয় এই বইটির সাথে আপনার কোনো সুখস্মৃতি জড়িয়ে আছে। </p>
+<p>নাসরীন কিছু বলার আগেই হঠাৎ জাহিদের
+তীব্র চিৎকার শোনা
+গেল। সে কখন নিঃশব্দে উঠে এসেছে তারা লক্ষ করে নি। দরজার কাছে দাঁড়িয়ে মুখ
+বিকৃত করে বলল, কী হচ্ছে এখানে? প্রেম? রবোটের সাথে প্রেম?
+বাহ! বাহ! </p>
+<p>নাসরীন কী একটা বলতে যাচ্ছিল তার আগেই জাহিদ আরেকটু
+এগিয়ে এসে ঘরের সোফায় একটা লাথি মেরে বলল, রবোটের সাথে প্রেম?
+তারপর কার সাথে হবে? জন্তু জানোয়ারের সাথে? </p>
+<p>নাসরীনের মুখে রক্ত উঠে এল। সে আবার কিছু একটা বলতে যাচ্ছিল তার আগেই জাহিদ হঠাৎ প্রায় ছুটে
+এসে নাসরীনের একটা হাত ধরে তাকে ঝটকা মেরে টেনে তোলার চেষ্টা করে বলল, বেশ্যা
+মাগী তুই ঘরে বসে আছিস কেন? রাস্তায় যা। </p>
+<p>নাসরীনের চোখ জ্বলে ওঠে, সে
+চাপা গলায় বলল, মুখ সামলে কথা বল। </p>
+<p>জাহিদের মুখ প্রচণ্ড আক্রোশে কুৎসিত হয়ে আসে, সে চিৎকার করে বলল, তোর সাথে
+আমার মুখ সামলে কথা বলতে হবে? বেশ্যা মাগী। </p>
+<p>জাহিদ ভয়ঙ্কর ক্ষিপ্ত হয়ে উঠে
+হঠাৎ হাত তুলে প্রচণ্ড জোরে নাসরীনকে আঘাত করল–অন্তত
+সে তাই ভাবল। কিন্তু তার হাত নেমে আসার আগেই এক অবিশ্বাস্য ক্ষিপ্রতায় আবদুল্লাহ উঠে দাঁড়িয়েছে, নাসরীনকে এক হাতে জড়িয়ে ধরে
+সরিয়ে নিয়েছে এবং অন্য হাতে
+জাহিদের হাতকে ধরে ফেলেছে। </p>
+<p>কী হয়েছে ব্যাপারটা বুঝতেই জাহিদের
+কয়েক মুহূর্ত
+লেগে যায়। যখন
+বুঝতে পারল তখন সে আরো ক্ষিপ্ত
+হয়ে উঠল এবং এক ধরনের অন্ধ আক্রোশে আবদুল্লাহকে আঘাত করার চেষ্টা করল। কিছুক্ষণের মধ্যেই সে অবাক হয়ে আবিষ্কার করল সেটি পুরোপুরি অসম্ভব অর্থহীন একটি প্রক্রিয়া। </p>
+<p>আবদুল্লাহ অত্যন্ত শক্ত হাতে জাহিদকে ধরে রেখে নরম
+গলায় বলল, আপনি অর্থহীন শক্তি ব্যয় করছেন। </p>
+<p>জাহিদ উন্মত্তের মতো বলল, চুপ কর শালা। দাঁত ভেঙে ফেলব রবোটের বাচ্চা </p>
+<p>আমাদের ভিতরে কোনো রাগ নেই। আবদুল্লাহ জাহিদকে এক হাতে শক্ত করে ধরে রেখে বলল, আপনাকে
+দেখে মনে হচ্ছে রাগ না–থাকা
+ব্যাপারটি একটি আশীর্বাদ। মানুষ রেগে গেলে তাকে খুব কুশ্রী দেখায়। </p>
+<p>খামোশ! চুপ কর শুয়োরের বাচ্চা। ছেড়ে দে আমাকে </p>
+<p>আপনি একটু শান্তি হলেই আপনাকে আমি
+ছেড়ে দেব। এখন আপনাকে ছেড়ে দিলে আপনি আমাকে আঘাত করার
+চেষ্টা করে খারাপভাবে আঘাত পেতে পারেন। </p>
+<p>আবদুল্লাহ জাহিদকে প্রায় শূন্যে ঝুলিয়ে রাখল, জাহিদ সেই অবস্থায় তার হাতপা ছুঁড়তে থাকে এবং তাকে অত্যন্ত
+হাস্যকর দেখায়।
+নাসরীন আবদুল্লাহর প্রশস্ত বুকে নিজেকে আড়াল করে রেখেছিল এবার সাবধানে মুখ তুলে তাকাল। আবদুল্লাহ
+নরম গলায় বলল, আপনি নিরাপদ কোনো জায়গায় চলে
+যান। তাহলে আমি একে ছেড়ে দিতে পারি। </p>
+<p>নাসরীন তার মুখে অত্যন্ত বিচিত্র
+একটা হাসি ফুটিয়ে আবদুল্লাহর বুকে মাথা রেখে বলল, আমি এর থেকে নিরাপদ জায়গা খুঁজে পাব না।
+</p>
+<p>আবদুল্লাহ একটু ইতস্তত করে বলল,
+আপনি অন্তত একটু নিরাপদ দূরত্বে সরে যান। আমি তাহলে একে ছেড়ে দেবার
+কথা চিন্তা করব। </p>
+<p>নাসরীন বলল, আমি কোথাও যাব না, তুমি
+বরং ওকে বাইরে ছুঁড়ে ফেলে দাও। </p>
+<p>আবদুল্লাহ হেসে বলল, কোনো মানুষকে এ ধরনের কিছু করার ক্ষমতা আমার নেই। আপনি একটু সাবধানে
+থাকুন, আমি একে ছেড়ে দিচ্ছি। </p>
+<p>জাহিদকে ছেড়ে দেয়া মাত্র সে চিৎকার করে বলল, দাঁড়া ব্যাটা বদমাইশ ধড়িবাজ। আমি তোর বারটা বাজাচ্ছি।
+মাঝরাতে আমার বউয়ের
+সাথে প্রেম করা ছুটিয়ে দিচ্ছি। </p>
+<p>জাহিদ তার ভিডিফোনটা নিয়ে এসে কাঁপা হাতে ডায়াল করল, প্রায় সাথে সাথেই সেখানে ফ্যাক্টরির
+সিকিউরিটি ডিভিশনের একজন লোকের চেহারা ভেসে ওঠে। মানুষটি উদ্বিগ্ন গলায় বলল,
+এত রাতে কী ব্যাপার? কী হয়েছে? </p>
+<p>তুমি এই মুহূর্তে আবদুল্লাহর সার্কিট
+কেটে দাও। </p>
+<p>কেন কী হয়েছে? </p>
+<p>ব্যাটা বদমাইশ আমার সাথে আমার সাথে </p>
+<p>আপনার সাথে কী করেছে? </p>
+<p>না, মানে
+রাত্রিবেলা আমার স্ত্রীকে </p>
+<p>ভিডিফোনে অন্য পাশের মানুষটিকে খুব কৌতূহলী দেখা
+গেল। ভুরু কুঁচকে জিজ্ঞেস করল, কী
+করেছে আপনার স্ত্রীকে? </p>
+<p>জাহিদ ক্রুদ্ধ গলায় বলল, সেটা
+তোমার শোনার দরকার নেই। আমার
+অথরিটি আছে, আমি বলছি। এই মুহূর্তে কানেকশান কেটে দাও—</p>
+<p>এক মিনিট অপেক্ষা করুন। মানুষটি
+স্ক্রিন থেকে অদৃশ্য হয়ে গেল এবং মিনিট দুয়েক পরে আবার তাকে দেখা গেল,
+তার সাথে আরো একজন উচ্চপদস্থ মানুষ। মানুষটি গম্ভীর গলায় বলল, কে.এল. ৪২–এর কানেকশান কাটতে বলেছেন,
+কিন্তু সত্যিকার বিপদের ঝুঁকি না থাকলে আমরা সেটা কাটতে পারি না। নিয়ম নেই। </p>
+<p>জাহিদ ভিডি টেলিফোনটা ঝাঁকিয়ে বলল, বিপদের নিকুচি করছি। এই মুহূর্তে কানেকশান কেটে রবোটটাকে অচল
+কর। এই মুহূর্তে। আমার অর্ডার </p>
+<p>ভিডি স্ক্রিনের মানুষটা একটু বাঁকা করে হেসে বলল,
+আপনার ব্যাপারটাতে আমাদের জিএম ইমতিয়াজ সাহেব খুব কৌতূহল
+দেখিয়েছেন।
+সত্যি কথা বলতে কী, তিনি নিজেই আপনার বাসায় আসছেন। </p>
+<p>জাহিদ হতচকিতভাবে বলল, জিএম? ইমতিয়াজ সাহেব? এখন আসছেন?
+এত রাতে? </p>
+<p>হ্যাঁ, এখনই আসছেন। আপনি সোজাসুজি তার সাথে কথা বলতে পারবেন। </p>
+<p>ভিডি স্ক্রিনের মানুষটি মুখে হাসি
+ফুটিয়ে কল, গুড নাইট। </p>
+<p>জাহিদ কোনো উত্তর
+না দিয়ে ভিডিফোনটাকে আছাড় দিয়ে মেঝেতে ছুঁড়ে ফেলল। </p>
+<p>.</p>
+<p>রবোট ফ্যাক্টরির জিএম ইমতিয়াজ আহমেদ একজন আইনজ্ঞ এবং একজন
+ইঞ্জিনিয়ারকে নিয়ে গভীর
+রাতে জাহিদ এবং নাসরীনের বাসায় উপস্থিত হলেন। ততক্ষণে জাহিদের অন্ধ আক্রোশ কমে সেখানে তার স্ত্রী এবং
+আবদুল্লাহর প্রতি এক ধরনের বিজাতীয় বিদ্বেষ আর ঘৃণা স্থান করে নিয়েছে। ইমতিয়াজ আহমেদ কিন্তু জাহিদের সাথে
+কথা বলায় বেশি আগ্রহ দেখালেন না, দীর্ঘ সময় নাসরীনের
+সাথে কথা বললেন। তার মুখে তিনি যেটা শুনলেন সেটা তার পক্ষে বিশ্বাস করা খুব শক্ত, কয়েকবার শুনেও তিনি
+ঠিক বিশ্বাস করতে পারলেন না, মাথা নেড়ে বললেন, তুমি বলছ যে তোমার বার বছরের বিবাহিত
+স্বামীকে ছেড়ে দিয়ে এই রবোটের সাথে ঘর–সংসার
+করবে? </p>
+<p>হ্যাঁ। </p>
+<p>তুমি ঠাণ্ডা মাথায় বলছ?
+</p>
+<p>হ্যাঁ, আমি ঠাণ্ডা মাথায় বলছি। আবদুল্লাহ রবোট হতে পারে কিন্তু তার ভিতরে
+রয়েছে একটা
+অনুভূতিশীল মন। তার তুলনায় আমার স্বামী একটি নিচু শ্রেণীর পশু। </p>
+<p>জাহিদ বাধা দিয়ে বলল,
+এটা পাগলামি, বদ্ধ পাগলামি </p>
+<p>ইমতিয়াজ আহমেদ হাত তুলে জাহিদকে থামিয়ে দিয়ে বললেন, এটা পাগলামি না কী সেটা নিয়ে আলোচনা করার অনেক সময় পাওয়া যাবে।
+তার জন্যে আমাদের দুটি বড়। বিভাগই আছে। কিন্তু তোমার স্ত্রী আমাদের সামনে সম্ভাবনার বিশাল একটা জগৎ খুলে
+দিয়েছে। </p>
+<p>জাহিদ অবাক হয়ে ইমতিয়াজ আহমেদের দিকে
+তাকাল। ইমতিয়াজ আহমেদ উত্তেজিত গলায় বললেন,
+পৃথিবীতে বিবাহিত স্বামী–স্ত্রীদের একটা বিশাল অংশ অসুখী। তাদের
+আবার বিশাল একটা অংশ তাদের স্বামীদের আচার–আচরণে এত বিরক্ত হয়েছে, তাদের এত ঘেন্না করে যে মানুষ জাতিটার প্রতিই তাদের
+ভক্তি উঠে গেছে। তারা এখন মানুষের বদলে রবোটকে নিয়ে ঘর–সংসার করার জন্য প্রস্তুত।
+এই রবোটেরা
+আবেগবান, সংস্কৃতিবান। তাদের মাঝে কোনো রাগ নেই, শুধু তাই না তারা
+অসম্ভব সুদর্শন! আমরা যদি এ রকম আরো রবোট তৈরি করে ঠিকভাবে মার্কেটিং
+করি সাংঘাতিক কাণ্ড ঘটে যাবে। </p>
+<p>পাশে বসে থাকা আইনজ্ঞ মানুষটি পকেট
+থেকে একটা ছোট
+কম্পিউটার বের করে। তার মাঝে কিছু সংখ্যা প্রবেশ করিয়ে ইমতিয়াজ আহমেদের কানের
+কাছে মুখ নিয়ে বলল, প্রায় তের ট্রিলিয়ন ডলারের মার্কেট! </p>
+<p>তের ট্রিলিয়ন ডলার! ইমতিয়াজ আহমেদ জিভ দিয়ে এক ধরনের শব্দ করে বললেন, তার যদি দশ পার্সেন্টও আমরা ধরে রাখতে
+পারি— </p>
+<p>জাহিদ হতচকিতের মতো সবার দিকে তাকিয়েছিল, এবারে চিৎকার করে বলল, কখনোই না! কখনোই এটা হতে পারে না। </p>
+<p>ইমতিয়াজ আহমেদ ভুরু কুঁচকে জাহিদের দিকে কিছুক্ষণ তাকিয়ে রইলেন তারপর বললেন, পারে না? </p>
+<p>না। আমি এই কোম্পানির একজন কর্মচারী।
+আমার একটা অধিকার রয়েছে।
+</p>
+<p>ইমতিয়াজ আহমেদ জাহিদের দিকে তাকিয়ে একটু
+হেসে বললেন, তোমার
+কোনো অধিকার নেই
+জাহিদ। </p>
+<p>কেন নেই! </p>
+<p>কারণ তোমাকে আমি বরখাস্ত করলাম। তোমার মতো পাষণ্ডকে কোম্পানিতে রাখা ঠিক না। কী বল তোমরা? </p>
+<p>আবদুল্লাহ ছাড়া আর
+সবাই ঋঞ্জ নেড়ে সম্মতি জানাল। </p>
+</div>
+<br/><h2>ভাবনা</h2>
+<hr/>
+<br/><div>
+<p><strong>ভাবনা</strong></p>
+<p>আমি একটি চতুর্থ স্তরের রবোট। আমার
+কপোট্রন কিউ
+৪২ ধরনের–এটি গৃহস্থালি কাজে পারদর্শী। আমি
+এই মুহূর্তে আমার মনিবের কাছাকাছি দাঁড়িয়ে আছি, তিনি
+আমাকে কিছু আদেশ দেবেন এবং তিনি আদেশ দেয়া মাত্র আমি সেই আদেশ পালন করব। আমার
+কপোট্রন একটি
+তথ্য সেকেন্ডে একুশ ট্রিলিয়ন বার পর্যালোচনা করতে পারে, সেই তুলনায় আমার মনিব অত্যন্ত ধীরগতিসম্পন্ন। তিনি
+একজন জৈবিক মানুষ। জৈবিক মানুষের বায়ো যোগাযোগ হয় খুব ধীরে। আমি প্রায় তিন
+শ মিলি সেকেন্ড ধরে অপেক্ষা করে আছি এবং এই সময়ে প্রায় সাত ট্রিলিয়ন তথ্যকে পর্যালোচনা করে ফেলেছি তবুও তিনি আদেশটি উচ্চারণ করতে
+পারেন নি। তিনি সেকেন্ডে মাত্র কয়েকটি শব্দ উচ্চারণ করতে পারেন
+এবং তাকে দেখে মনে হচ্ছে তিনি শেষ পর্যন্ত প্রথম শব্দটি উচ্চারণ করতে শুরু করেছেন। আমি
+আমার শব্দগ্রাহক যন্ত্রকে তীক্ষ্ণ করে এনেছি প্রত্যেকটি শব্দকে যেন নির্ভুলভাবে শুনতে
+পারি। </p>
+<p>আমার মনিবের ভোকাল কর্ডে কম্পন শুরু হয়েছে। এক
+দশমিক তিন–চতুর্থাংশ কিলোহার্টজ–তিন ডি. বি.শব্দটি আমার শব্দগ্রাহক যন্ত্রে নিখুঁতভাবে ধরা পড়েছে। শব্দটি হচ্ছে : </p>
+<p>দূর। </p>
+<p>দূর। আমার কপোট্রনে রাখা অসংখ্য শব্দের সাথে
+‘দূর’ শব্দটি মিলিয়ে দেখতে শুরু করেছি। আমার মনিব পরের শব্দটি উচ্চারণ করতে কমপক্ষে
+আরো অর্ধসেকেন্ড সময় নেবেন। এই সুদীর্ঘ সময়ে আমি প্রায় দশ ট্রিলিয়ন বার এই শব্দটিকে নানাভাবে
+পর্যালোচনা
+করে দেখতে পারি। আমার কোনো তাড়াহুড়ো নেই, কাজেই শব্দটিকে আমি মাত্র
+একভাবে পর্যালোচনা
+করে ভিন্ন ভিন্নভাবে পর্যালোচনা করব। আমি একই সাথে নয়টি ভিন্ন ভিন্ন পদ্ধতি শুরু করেছি। কপোট্রনের মূল শব্দভাণ্ডার
+থেকে ‘দূর’ শব্দটি খুব সহজে পাওয়া গেছে। দূর শব্দটির অর্থ যেটি
+কাছে নয়। আরো বৈজ্ঞানিক অর্থে বলা যায় যার ভিতরে অন্য এক অবস্থানের
+পরিপ্রেক্ষিতে খানিকটা স্থান রয়ে গেছে। দূর শব্দটি বিশেষণ,
+তার বিশেষ্য রূপ। হচ্ছে দূরত্ব। মানুষেরা নানাভাবে দূর শব্দটি ব্যবহার করে। যেমন– যখন দুজন মানুষের ভিতরে ঘনিষ্ঠতা
+কমে যায়, তারা
+বলে দুজনের মাঝে দূরত্ব সৃষ্টি হয়েছে। আবার যখন মানুষ কারো সাথে
+অভিমান করে তখন তারা বলে যে আমি তোমাকে ছেড়ে দূরে চলে যাব। যে জিনিসটি
+কাছে নয় সেটি বোঝাতে তারা এই শব্দটি ব্যবহার করে। যেমন তারা বলে এন্ড্রোমিডা নক্ষত্রপুঞ্জ
+পৃথিবী থেকে বহু দূরে। আমার মনিব দূর শব্দটি ঠিক কোন্ অর্থে ব্যবহার করেছেন আমি এখনো জানি না। সেটি সঠিকভাবে বোঝার জন্যে পরের শব্দগুলো শুনতে
+হবে। কিন্তু যেহেতু এখনো আমার দীর্ঘ সময় রয়ে গেছে, আমি ‘দূর’ শব্দটি ব্যবহার করে সম্ভাব্য সবগুলো বাক্য
+তৈরি করে রাখব। তাহলে আমার মনিব যখন পুরো বাক্যটি
+উচ্চারণ করবেন আমার সেটা ব্যাখ্যা করতে কোনোই অসুবিধে হবে না</p>
+<p>প্রাথমিক হিসেবে সম্ভাব্য বাক্য
+হতে পারে প্রায় নয় লক্ষ এগার হাজার সাত শ নয়। এই নয় লক্ষ এগার হাজার সাত শ নয়টি বাক্যের ভিতরে প্রায় দুই
+লক্ষ চার হাজার তিন শ চারটি বাক্য পরিপূর্ণ অর্থজ্ঞাপক নয়। বাকি সাত লক্ষ সাত হাজার চার
+শ পাঁচটি বাক্যকে তুলনামূলকভাবে যাচাই করা যাক। তাহলে যখন পুরো বাক্যটি
+উচ্চারিত হবে তার ব্যাখ্যা বের করতে কোনোই সময় নষ্ট হবে না। এই সাত লক্ষ সাত
+হাজার চার শ পাঁচটি বাক্যকে তার আপেক্ষিক গুরুত্ব এবং সময়োপযোগিতা
+হিসেবে সাজানো যাক : </p>
+<p>১. দূর থেকে চিঠি এসেছে। <br/>
+ ২. দূর থেকে খবর এসেছে। <br/>
+ ৩. দূর থেকে আহ্বান এসেছে। <br/>
+ ৪. দূর থেকে বাণী এসেছে। <br/>
+ ঃ<br/>
+ ঃ<br/>
+ ৬০৩৪২১. দূর গ্রহের আগন্তুক ইভেশেঙ্কু আপনার রক্তপাত করতে চায়। <br/>
+ ৬০৩৪২১. দূর গ্রহের আগন্তুক ইভেশেন্ধু
+মহাজাগতিক বিস্ফোরণ ঘটাতে চায়। <br/>
+ ঃ<br/>
+ ঃ<br/>
+ ( তিন শ মিলি সেকেন্ড পর১) </p>
+<p>গত তিন শ মিলি সেকেন্ড আমি দূর শব্দটি
+নিয়ে সম্ভাব্য সবগুলো বাক্য তৈরি করেছি। বাক্যগুলো ব্যাখ্যা করেছি এবং বিশ্লেষণ করেছি। তারপরও আমার হাতে প্রচুর সময় রয়ে গিয়েছে। সেই সময়টিতে আমি বাঁধাকপি দিয়ে ভেড়ার মাংস রান্না করার একটি নতুন পদ্ধতি দাঁড় করিয়েছি, ঘরের বিভিন্ন আসবাবপত্রের
+তালিকা তৈরি করেছি, শেলফের বই, কম্পিউটারের
+ক্রিস্টাল, যোগাযোগ কেন্দ্রের মূল
+মডিউলের সংখ্যা নির্ণয় করেছি। ঘরের বিদ্যুৎপ্রবাহের পরিমাণ বের করেছি
+এবং ভোল্টেজের
+গড় তারতম্য দশমিকের পর সাত ঘর পর্যন্ত নির্ণয় করা
+হয়েছে। পুরো ব্যাপারগুলো সতের বার করার পর অর্ধসেকেন্ড
+সময় পার। হয়েছে এবং মনে হচ্ছে আমার মনিব দ্বিতীয় শব্দটি
+উচ্চারণ করতে প্রস্তুত হয়েছেন। আমি আমার মনিবের ভোকাল কর্ডটির সূক্ষ্ম কম্পন অনুভব করতে শুরু করেছি। আমার
+শব্দগ্রাহক যন্ত্র এবং কম্পন অনুধাবন মডিউলটি প্রস্তুত রয়েছে। তিনি শেষ পর্যন্ত শব্দটি
+উচ্চারণ করেছেন। শব্দটি হচ্ছে : </p>
+<p>হ</p>
+<p>হ? হ একটি অস্বাভাবিক শব্দ। আমার
+শব্দগ্রাহক যন্ত্রে সম্ভবত একটা ত্রুটি হয়েছে এবং পুরো শব্দটি ধরা যায় নি। সেটি কোনো সমস্যা নয়। পরবর্তী অর্ধসেকেন্ডে
+আমি প্রায় দশ ট্রিলিয়ন বার বিভিন্ন তথ্য পর্যালোচনা করতে পারব। প্রকৃত শব্দটি
+কী ছিল সেটি বের করতে আমার কোনো অসুবিধে হবে না। আমার মনিব
+যখন শব্দটি উচ্চারণ করেছেন, আমি তখন শব্দটি আমার স্মৃতিতে লিপিবদ্ধ করে রেখেছি। শব্দটি
+আমি এক্ষুনি চার হাজার বার শুনে নিতে পারি। </p>
+<p>আমি শব্দটি এক হাজার একুশ বার শুনে নিয়েছি আমার শব্দগ্রাহক
+যন্ত্রে, কোনো ত্রুটি নেই। আমার মনিব প্রকৃত
+অর্থেই হ শব্দটি উচ্চারণ করেছেন। হ শব্দটি ব্যাপকভাবে ব্যবহার হয় না। আমার
+কপোট্রন থেকে
+পর্যালোচনা
+করে দেখা গিয়েছে
+এটি হও শব্দটির অপভ্রংশ। কিংবা এটি অন্য কোনো শব্দের
+প্রথম অংশটি। আমার মনিব নিজেই এখন পরের অংশ উচ্চারণ করে শব্দটি
+পূর্ণাঙ্গ করবেন। আমার মনিব কিংবা মানব সম্প্রদায় প্রায় সবসময়েই অর্থহীন শব্দ উচ্চারণ করে এবং বক্তব্য থেকে
+এই সমস্ত অর্থহীন শব্দ সরিয়ে পুরো বাক্যগুলোকে বিশ্লেষণ করতে
+হয়। কাজেই
+পরবর্তী শব্দের জন্যে আমাকে অপেক্ষা করতে হবে। যতক্ষণ অপেক্ষা করছি ততক্ষণ এই দুটি
+শব্দ ব্যবহার করে সম্ভাব্য। বাক্যগুলোকে প্রস্তুত করা
+যাক। </p>
+<p>১. দূর হতে চিঠি
+এসেছে। <br/>
+ ২. দূর হতে খবর এসেছে। <br/>
+ ৩. দূর হতে বার্তা এসেছে। </p>
+<p>( আরো তিন
+শ মিলি সেকেন্ড পরে) </p>
+<p>দেখা যাচ্ছে আমার মনিব পরবর্তী শব্দটি
+উচ্চারণ করার জন্যে প্রস্তুতি নিয়েছেন। আমি স্পষ্ট দেখতে পাচ্ছি তার ভোকাল কর্ড কম্পনের
+জন্যে প্রস্তুতি নিতে শুরু করেছে। মানুষের কথা বিশ্লেষণ করার সময় তাদের
+মুখের ভাবভঙ্গিও বিশ্লেষণ করতে হয়। আমি যদি আমার মনিবের
+মুখের ভাবভঙ্গি মান এবং গুরুত্বের ক্রমানুসারে সাজাই তাহলে সেগুলো হবে
+: </p>
+<p>১. ক্রোধ। <br/>
+ ২.
+বিরক্তি <br/>
+ ৩. অধৈর্য <br/>
+ ৪. ঘৃণা <br/>
+ ৫.
+তাচ্ছিল্য<br/>
+ এবং<br/>
+ ৬. উপহাস </p>
+<p>মানুষের মুখে যদি এই অনুভূতিগুলো থাকে তাহলে সেগুলো সাধারণত তাদের বক্তব্যে বিচিত্র
+শব্দ এবং অপ্রাসঙ্গিক অর্থের সৃষ্টি করে। এটি একটি জরুরি অবস্থা। আমার মনে হয় কপোট্রনের টার্বো পাওয়ার চালু করা উচিত। প্রতি সেকেন্ডে আমার এখন অন্তত পঞ্চাশ
+ট্রিলিয়ন তথ্য
+পর্যালোচনা
+করা প্রয়োজন।
+পরবর্তী শব্দটি পর্যালোচনা করার জন্য এখন আমার বিশেষ মডিউলটি চালু করা প্রয়োজন। এটি নিঃসন্দেহে
+একটি জরুরি অবস্থা। আমার মনিবের ভোকাল কর্ডের কম্পন শুরু হয়ে গেছে।
+তিনি যে শব্দটি উচ্চারণ করেছেন সেটি হচ্ছে
+: </p>
+<p>হতভাগা </p>
+<p>হতভাগা। এটি বহুল ব্যবহৃত শব্দ নয়। আমার কপোট্রনের অর্থ অনুযায়ী এই শব্দের অর্থ যার ভাগ্য সুপ্রসন্ন নয়। ভাগ্য শব্দটি শুধুমাত্র মানবসমাজে
+ব্যবহৃত। কোনো অনাকাঙ্ক্ষিত ঘটনাকে তারা খারাপ ভাগ্যপ্রসূত বলে বর্ণনা করে। এই
+ক্ষেত্রে হতভাগা শব্দটি কাকে বলা হয়েছে সেটা সবার আগে নির্ধারণ করতে হবে। এই ঘরে আমি ছাড়া আর কেউ নেই তাই শব্দটি নিঃসন্দেহে আমার উদ্দেশ্যে ব্যবহার করা হয়েছে। আমার উদ্দেশ্যে
+উচ্চারণ করা। এখন তিনটি পূর্ণাঙ্গ শব্দ রয়েছে। মনিবের মুখভঙ্গি দেখে মনে হচ্ছে তিনি একটি পূর্ণাঙ্গ
+বাক্য উচ্চারণ করেছেন। এই বাক্যটিতে আর কোনো শব্দ নেই। এখন এই তিনটি
+শব্দ ব্যবহার করে যে বাক্য তৈরি হয়েছে সেটি হচ্ছে
+: </p>
+<p>দূর হ হতভাগা </p>
+<p>বাক্যটি বিশ্লেষণের প্রয়োজন। বাক্যটি
+ব্যবহার করার সময়ে আমার মনিবের মুখের অনুভূতিও পর্যালোচনা করা প্রয়োজন। মুখের
+অনুভূতি হচ্ছে ক্রোধ, বিরক্তি, অধৈর্য, ঘৃণা, তাচ্ছিল্য এবং উপহাস। এই
+অনুভূতিগুলো মুখে রেখে তিনি উচ্চারণ করেছেন, ‘দূর
+হ হতভাগা’। আমার
+হাতে সময় রয়েছে প্রায় অর্ধসেকেন্ড। এই
+সময়ের মাঝে
+আমাকে এই বাক্যটির অর্থ বের করে একটি প্রয়োজনীয় সিদ্ধান্ত নিতে হবে। </p>
+<p>এটি নিঃসন্দেহে একটি জটিল প্রক্রিয়া ….। </p>
+</div>
+<br/><h2>লিওনের একঘেয়ে জীবন</h2>
+<hr/>
+<br/><div>
+<p><strong>লিওনের একঘেয়ে
+জীবন</strong></p>
+<p><strong>০১.</strong></p>
+<p>ঘরে ঢুকতেই ত্ৰিণার বুকটি কেন জানি কেঁপে উঠল। কোয়ার্টজের স্বচ্ছ জানালার
+সামনে মূর্তির মতো স্থির হয়ে দাঁড়িয়ে আছে লিওন। অসাধারণ রূপবান এই মানুষটির এভাবে
+দাঁড়িয়ে থাকার মাঝে কী যেন একটা অস্বাভাবিকতা আছে, হঠাৎ
+দেখলে বুকের মাঝে কোথায় জানি একটা ছোট ধাক্কা লাগে। লিওনকে
+দেখে ত্রিণা হঠাৎ কেন জানি ব্যাকুল হয়ে উঠে, দুই
+পা এগিয়ে গিয়ে নরম গলায় বলল, লিওন– </p>
+<p>লিওন ঘুরে তাকাল। তার মাথার চুল
+এলোমেলো। অনিন্দ্যসুন্দর
+মুখে এক ধরনের কাঠিন্য, জ্বলজ্বলে নীল চোখ দুটিতে এক ধরনের অসুস্থ অস্থিরতা। ত্রিণাকে
+দেখে তার মুখের কাঠিন্য সরে সেখানে খুব ধীরে ধীরে এক ধরনের অসহায় বিষণ্ণতা ভর করে। ত্রিণা
+আরো এগিয়ে গিয়ে বলল, তোমার কী হয়েছে লিওন? </p>
+<p>লিওন কয়েক মুহূর্ত ত্রিণার দিকে তাকিয়ে থেকে আবার জানালা দিয়ে বাইরে তাকাল। স্বচ্ছ কোয়ার্টজের জানালা দিয়ে বাইরের
+আদিগন্ত বিস্তৃত শহরটিকে দেখাচ্ছে একটা অপার্থিব জগতের মত। সেদিকে একদৃষ্টে তাকিয়ে থেকে লিওন একটা ছোট নিশ্বাস ফেলে
+বলল, বাইরে দেখ, কী সুন্দর! </p>
+<p>লিওনের গলার স্বর শুনে ত্রিণা হঠাৎ
+কেন জানি শিউরে ওঠে। সে এগিয়ে গিয়ে লিওনের হাত স্পর্শ করে এক ধরনের আর্তকণ্ঠে বলল, তোমার কী হয়েছে লিওন? </p>
+<p>আমার কিছু হয় নি।
+</p>
+<p>হয়েছে। নিশ্চয়ই কিছু হয়েছে। বল আমাকে। </p>
+<p>লিওন ঘুরে ত্ৰিণার দিকে তাকাল, তার সোনালি চুল, কোমল
+ত্বক, মুখে ছেলেমানুষি এক ধরনের সারল্য, শরতের নির্মেঘ আকাশের মতো নীল
+চোখ এবং এই মুহূর্তে চোখ দুটিতে এক
+ধরনের অসহায় ব্যাকুলতা। লিওন একজন নিঃসঙ্গ মানুষ, সারা পৃথিবীতে শুধুমাত্র এই
+মেয়েটির জন্যে
+তার বুকের ভিতরে সত্যিকারের খানিকটা ভালবাসা রয়েছে। সে ত্রিণাকে নিজের কাছে টেনে এনে বলল, আমার
+কিছু হয় নি ত্রিণা। </p>
+<p>ত্রিণা মাথা নেড়ে বলল, না লিওন হয়েছে। আমি তোমাকে খুব ভালো করে জানি। আমি নিজেকে
+যেটুকু জানি, সময় সময় তোমাকে তার থেকে অনেক ভালো করে জানি। তোমার কিছু একটা হয়েছে। </p>
+<p>লিওন একদৃষ্টিতে ত্ৰিণার দিকে তাকিয়ে রইল, কিছু বলল না। ত্রিণা আবার ব্যাকুল গলায় বলল,
+বল আমাকে। </p>
+<p>বলব? </p>
+<p>হ্যাঁ, বল কী হয়েছে তোমার? </p>
+<p>লিওন একটা ছোট নিশ্বাস ফেলে বাইরের দিকে তাকিয়ে থেকে নিচু গলায় বলল, আমার আর বেঁচে থাকার ইচ্ছে
+করছে না ত্রিণা।</p>
+<p>ত্রিণা হঠাৎ অমানুষিক আতঙ্কে শিউরে
+উঠে লিওনকে শক্ত করে আঁকড়ে ধরে বলল, না, লিওন এ রকম কথা বোলো না। </p>
+<p>আমি বলতে চাই নি, তুমি শুনতে চেয়েছ। </p>
+<p>কিন্তু তোমার কথা তো সত্যি
+হতে পারে না। পৃথিবীতে একজন মানুষ তার জীবনে যা চাইতে পারে তুমি তার সব পেয়েছ, তোমার কেন বেঁচে থাকার
+ইচ্ছে করবে না? </p>
+<p>মনে হয় সেজন্যেই।
+</p>
+<p>কী বলছ তুমি! </p>
+<p>হ্যাঁ ত্রিণা। লিওন বিষণ্ণ গলায় বলল, মনে হয় সেজন্যেই
+আমার আর বেঁচে থাকার ইচ্ছে করে না। একজন মানুষের জীবনে যা–কিছু পাওয়া যেতে পারে আমি তার সব
+পেয়েছি। অর্থ
+বিত্ত মান সম্মান সাফল্য এমনকি ভালবাসা–সত্যিকারের ভালবাসা, তাও আমি পেয়েছি তোমার কাছে। আমার দেহে কোনো রোগ
+নেই, আমার বুকে কোনো শোক
+নেই, জীবনে কোনো ব্যর্থতা নেই, কোনো জটিলতা নেই, কোনো কুটিলতা নেই, কোনো হিংস্রতা নেই–কী ভয়ঙ্কর একঘেয়ে জীবন।
+একজন মানুষ যখন সবকিছু পেয়ে যায়, যখন তার
+জীবন একদম একঘেয়ে হয়ে যায় তখন জীবনের ওপর ঘেন্না
+ধরে যায়, আর
+বেঁচে থাকার ইচ্ছে
+করে না। সবকিছু তখন এত অর্থহীন মনে হয়। </p>
+<p>মিথ্যা কথা! ত্রিণা মাথা ঝাঁকিয়ে বলল, সব মিথ্যা কথা। মানুষের জীবন কখনো অর্থহীন
+হয়ে যায় না। </p>
+<p>যায়। লিওন একটা নিশ্বাস ফেলে বলল,
+আমার জীবন অর্থহীন হয়ে গেছে। </p>
+<p>ত্রিণা হঠাৎ লিওনকে ছেড়ে দিয়ে সরে দাঁড়িয়ে তীক্ষ্ণ দৃষ্টিতে তার দিকে তাকিয়ে রইল, তারপর ভয় পাওয়া গলায় বলল, তুমি আমাকে ছেড়ে যাবে লিওন</p>
+<p>লিওন চমকে উঠে ত্ৰিণার দিকে তাকাল, কী একটা বলতে
+গিয়ে নিজেকে সামলে নিয়ে বলল, তুমি এ কথাটি কেন বললে
+ত্রিণা? </p>
+<p>আমি জানি না কেন বলেছি। কিন্তু তোমার কথা শুনে কেন
+জানি মনে হল তুমি বুঝি আমাকে ছেড়ে যাবে লিওন। তুমি কি সত্যিই
+যাবে? </p>
+<p>লিওন কোনো কথা
+বলল না। ত্রিণার মুখ খুব ধীরে ধীরে রক্তশূন্য হয়ে আসে, সে পিছনে সরে এসে ঘরের দেয়াল ধরে কোনোভাবে নিজেকে সামলে নিয়ে ভয় পাওয়া চোখে লিওনের দিকে তাকিয়ে থাকে।
+লিওন এক পা এগিয়ে এসে আবার নরম গলায় বলল, তুমি এ রকম একটি কথা কেন বললে ত্রিণা?</p>
+<p> ত্ৰিণা
+অপ্রকৃতিস্থের মতো মাথা নাড়তে নাড়তে বলল, আমি জানি, আমি জানি তুমি আমাকে ছেড়ে চলে যাবে। আমি তোমার চোখের দিকে তাকালেই বুঝতে পারি। </p>
+<p>লিওন কেমন যেন বিষণ্ণ চোখে
+ত্রিণার দিকে কিছুক্ষণ তাকিয়ে থেকে আবার চোখ ঘুরিয়ে নেয়। স্বচ্ছ কোয়ার্টজের জানালা দিয়ে আবার বাইরে তাকাল তারপর একটা নিশ্বাস ফেলে বলল, ত্রিণা, বাইরে তাকিয়ে দেখ, কুয়াশায় সব ঢেকে যাচ্ছে আর দেখতে কী সুন্দর লাগছে! </p>
+<p>লিওনের গলার স্বর শুনে ত্রিণা আবার শিউরে উঠে কাঁপা
+গলায় বলল, তুমি কোথায় যাবে লিওন? </p>
+<p>লিওন বাইরের দিকে তাকিয়ে থেকে বলল, আমি শীতলঘরে যাব। </p>
+<p>শীতলঘরে? </p>
+<p>হ্যাঁ ত্রিণা। প্রথমে ভেবেছিলাম আত্মহত্যা করব। দশ
+তলা একটি বিল্ডিং থেকে নিচে ঝাঁপিয়ে পড়া বা
+মাথার মাঝে একটা ছোট
+বুলেট কিংবা ধমনীতে এক ফোঁটা বিষয় কিংবা
+অনেকগুলো ঘুমের ওষুধ খেয়ে গভীর একটা ঘুম। যখন
+ঘুমের কথা ভাবছিলাম তখন হঠাৎ শীতলঘরের কথা মনে হল। সেটি মৃত্যুর মতোই কিন্তু তবু পুরোপুরি মৃত্যু নয়। হয়তো ভবিষ্যতে কোনোকালে আবার জীবন ফিরে পাব। সেটি
+কবে হবে কেউ জানে না। হয়তো এক শ বছর বা এক হাজার বছর। কিংবা
+কে জানে হয়তো লক্ষ বছর, কেউ সেটা বলতে পারে না। পৃথিবী
+কেমন হবে তখন কেউ জানে না। হয়তো আমার জীবন তখন এ রকম একঘেয়ে মনে হবে না, এ রকম
+অর্থহীন হবে না। কে জানে ভবিষ্যতের সেই মানুষের জীবনে হয়তো আবার
+বেঁচে থাকার একটা অর্থ খুঁজে পাওয়া যাবে। </p>
+<p>ত্রিণা দেয়াল ধরে দাঁড়িয়ে ছিল,
+তার সমস্ত শরীর অল্প অল্প করে কাঁপছে। জানালার সামনে দাঁড়িয়ে থাকা
+এই অসম্ভব রূপবান মানুষটিকে ঘিরে তার সমগ্র জীবন। এর বাইরে তার কোনো জগৎ নেই–এই
+মানুষটিকে ছাড়া সে কেমন করে বাঁচবে? তার দুই চোখ পানিতে ভরে আসে, চোখের সামনে সবকিছু ঝাঁপসা হয়ে আসে, হাতের উল্টোপিঠ দিয়ে চোখ মুছে সে ভাঙা গলায় বলল,
+লিওন তুমি আমাকে ছেড়ে চলে যেও না। যেও না। আমি আর তুমি চলে যাব দক্ষিণের পাহাড়ি অঞ্চলে। সবকিছু ছেড়ে চলে যাব। নিঃস্ব মানুষ যেরকম
+কষ্ট করে বেঁচে থাকে, ঠিক সেরকম আমরা কষ্ট করে বেঁচে থাকব। দেখবে তখন তোমার জীবনকে অর্থহীন
+মনে হবে না। সারাদিন ঘুরে ঘুরে আমরা জ্বালানি আনব, একমুঠো খাবার আনব, রাতে আমরা সেই একমুঠো খাবার ভাগাভাগি
+করে খেয়ে আগুনের সামনে বসে থাকব। দেখবে তুমি তোমার জীবনকে একঘেয়ে মনে হবে না, অর্থহীন মনে হবে না।
+</p>
+<p>লিওন কয়েক পা এগিয়ে এসে
+ত্রিণাকে গভীর ভালবাসায় আলিঙ্গন করে কোমল গলায় বলল,
+আমি দুঃখিত ত্ৰিণা, আমি খুব দুঃখিত। পৃথিবীতে তুমি ছাড়া আমার
+কোনো আপনজন নেই, তোমাকে ছেড়ে যেতে আমার খুব কষ্ট হবে কিন্তু
+আমাকে যেতেই হবে। আমাকে যেতেই হবে। আমি আর পারছি না ত্রিণা। </p>
+<p>ত্ৰিণা হঠাৎ আকুল হয়ে কেঁদে উঠল। শক্ত হাতে লিওনকে আঁকড়ে ধরে
+বলল, না লিওন। তুমি যেও না। যেও না। </p>
+<p>লিওন ত্রিণার মাথায় হাত বুলিয়ে গভীর ভালবাসায় বলল,
+আমাকে যেতেই হবে ত্রিণা। আমার আর কিছু করার নেই। </p>
+<p>গভীর শূন্যতায় হঠাৎ
+ত্রিণার বুকের ভিতর হাহাকার করে ওঠে।</p>
+<p><strong>০২.</strong></p>
+<p>লিওন কানো একটি
+সিলঝিনিয়ামের
+ক্যাপসুলে শুয়ে আছে। তার সারা শরীর নিও পলিমারের অর্ধস্বচ্ছ কাপড়ে ঢাকা। মাথার কাছে একটি গোল জানালা, সেখানে একজন কমবয়সী টেকনিশিয়ানের মুখ দেখা যাচ্ছে।
+ক্যাপসুলটির বাইরে কন্ট্রোল প্যানেলে সে কিছু একটা করছে। টেকনিশিয়ানটি হঠাৎ ঝুঁকে পড়ে বলল, আপনি কি প্রস্তুত? </p>
+<p>আমি প্রস্তুত। </p>
+<p>আপনাকে শেষবারের মতো প্রশ্ন
+করছি, আপনি কি স্বেচ্ছায় শীতলঘরে প্রবেশ করতে যাচ্ছেন? </p>
+<p>লিওন শান্ত গলায় বলল, হ্যাঁ, আমি
+স্বেচ্ছায় শীতলঘরে প্রবেশ করতে যাচ্ছি। </p>
+<p>আপনি জানেন যে কবে আপনাকে পুনরুজ্জীবিত করা হবে
+সেটা কেউ জানে না। </p>
+<p>আমি জানি। </p>
+<p>সেটা এক শ বছর হতে পারে, এক
+হাজার বছর হতে পারে আবার এক লক্ষ বছর হতে পারে। </p>
+<p>আমি জানি। </p>
+<p>আপনাকে কখনো পুনরুজ্জীবিত নাও করা
+হতে পারে। শীতলঘরেই আপনার মৃত্যু হতে পারে। </p>
+<p>আমি জানি। </p>
+<p>ভবিষ্যতে কিছু একটা সমস্যা হতে পারে, দুর্যোগ
+হতে পারে। আপনার দেহ ধ্বংস হয়ে যেতে
+পারে। </p>
+<p>আমি জানি। </p>
+<p>আপনার দেহ পুনরুজ্জীবিত করার পর কিছু একটা বড় ধরনের ভুল হয়ে যেতে পারে, আপনার
+দেহে অকল্পনীয় বিকৃতি হতে পারে, আপনার অমানুষিক যন্ত্রণা হতে পারে, অসহনীয় কষ্ট হতে পারে। আপনি সেটা জানেন? </p>
+<p>লিওন চেষ্টা করে নিজের গলার স্বরকে
+স্বাভাবিক রেখে বলল, আমি সেটা জানি। </p>
+<p>বেশ, মহামান্য লিওন। আপনাকে তাহলে শীতলঘরে নিয়ে যাব।
+প্রথমে আপনাকে ঘুম পাড়িয়ে দেয়া হবে, গভীর ঘুম। সেই
+ঘুমন্ত দেহের তাপমাত্রা কমিয়ে আনব ধীরে ধীরে। আপনি প্রস্তুত? </p>
+<p>আমি প্রস্তুত। </p>
+<p>আপনি কি কাউকে কিছু বলে যেতে চান? </p>
+<p>চাই। আমার ভালবাসার মেয়েটির নাম ত্রিণা।
+আমি ত্রিণাকে বলে যেতে চাই যে আমি তাকে
+ভালবাসি, লক্ষ বছর পরেও যখন আমাকে পুনরুজ্জীবিত করা হবে তখনো আমি
+তাকে ভালবাসব। </p>
+<p>টেকনিশিয়ানটি এক মুহূর্ত চুপ করে থেকে
+বলল, আমি মহামান্য ত্রিণাকে আপনার শেষ কথাটি জানিয়ে দেব।
+আপনার ভবিষ্যৎ যাত্রা শুভ হোক মহামান্য লিওন। শুভ যাত্রা।</p>
+<p>টেকনিশিয়ানের কথাটি শেষ হবার আগেই সিলঝিনিয়ামের কালো ক্যাপসুলটির মাঝে খুব ধীরে ধীরে একটা সঙ্গীতের সুর ভেসে আসে, তার সাথে খুব মিষ্টি একটা গন্ধ।
+লিওন চোখ বন্ধ করে ফিসফিস করে বলল, বিদায় পৃথিবী। বিদায়। কিছুক্ষণের মাঝেই সে গভীর ঘুমে অচেতন হয়ে পড়ে। </p>
+<p><strong>০৩.</strong></p>
+<p>গাঢ় অন্ধকারে
+ঢেকে আছে। শুধু অন্ধকার নয় সাথে এক ধরনের বিস্ময়কর নীরবতা, পরিপূর্ণ শব্দহীনতা।
+নৈঃশব্দ্যের এক বিচিত্র জগৎ। বিশাল শূন্যতায় মহাকাল যেন স্থির হয়ে আছে। এই শূন্যতার কোনো শুরু নেই, কোনো শেষ নেই। এখানে সময় স্থির হয়ে আছে।
+গাঢ় অন্ধকারে ঢেকে থাকা স্থির সময়ে নৈঃশব্দ্যের
+একটি অপার্থিব জগৎ।</p>
+<p><strong>০৪.</strong></p>
+<p>অন্ধকার নৈঃশব্দ্যের জগতে চেতনার প্রথম স্পর্শ হল
+খুব সাবধানে। অত্যন্ত সূক্ষ্ম সেই অনুভূতি। এত
+সূক্ষ্ম সেই অনুভূতি যে সেটি আছে কি নেই সেটি বোঝা যায় না। মনে
+হয়। একটি
+নিউরন বুঝি পাশের নিউরনকে স্পর্শ করেছে খুব সাবধানে। সেই সূক্ষ্ম অনুভূতি জেগে রইল বহুকাল। তারপর
+সেটি আরো একটু বিস্তৃত হল। আরো একটু
+প্রবল হল। এখন সেটি সত্যিকারের অনুভূতি। সত্যিকারের
+চেতনা। সেটি সুখের চেতনা নয়, দুঃখের
+চেতনা নয়। আনন্দ
+বা বেদনার চেতনা নয়। শুধুমাত্র
+অনুভব করা যায় সেরকম একটি চেতনা। লিওন প্রথমবার তার অস্তিত্বকে অনুভব
+করল, প্রথমবার
+নিজেকে বলল, আমি লিওন। আমি বেঁচে আছি। বেঁচে
+আছি। </p>
+<p>কিন্তু বেঁচে থাকার সেই অনুভূতি খুব অস্পষ্ট অনুভূতি। সত্যি
+কি সে লিওন? সত্যি কি সে বেঁচে আছে? নাকি
+এটি ধরাছোঁয়ার
+বাইরের একটি অনুভূতি। শুধু একটি অনুভূতি? লিওন
+দীর্ঘকাল আবছায়ার
+মতো সেই অনুভূতিকে আঁকড়ে ধরে বেঁচে রইল। তারপর
+একদিন সেই অনুভূতি আরো একটু স্পষ্ট হল, আরো একটু প্রবল হল। লিওন
+প্রথমবার অনুভব করল সে সত্যি লিওন। সে সত্যি বেঁচে আছে, তার
+অনুভূতিও সত্যি। দুঃখ, কষ্ট, ভালবাসা, আনন্দ, যন্ত্রণা নয়, শুধু একটি অনুভূতি–সত্যিকারের অনুভূতি। </p>
+<p>সেই অনুভূতির জগৎ গাঢ় অন্ধকারে
+ঢাকা, সেখানে কোনো আলো নেই,
+শব্দ নেই, কারো স্পর্শ নেই, কম্পন নেই। পরিপূর্ণ নৈঃশব্দ্যের এক অপার্থিব শীতল
+অন্ধকার জগৎ। কতকাল তাকে অসহায়ভাবে অপেক্ষা করতে
+হবে? </p>
+<p>ধীরে ধীরে তার চেতনা আরো প্রবল হয়,অনুভূতি আরো স্পষ্ট হয়। সে নিজেকে আরো গভীরভাবে অনুভব করে। তার স্মৃতি ফিরে আসে। তার শৈশবের কথা মনে হয়, যৌবনের কথা মনে
+হয়। ব্যর্থতার
+কথা মনে হয়,
+সাফল্যের কথা মনে হয়।
+তার ভালবাসার কথা মনে হয়, ত্রিণার কথা মনে হয়। কোথায় আছে
+এখন ব্রিণা? কত বছর পার হয়েছে এখন? কতকাল? কোথায় আছে এখন সে? নিশ্চয়ই সে মারা গেছে বহুকাল আগে। কখন সে কারো একটু কথা শুনবে?
+একটু দেখবে? একটা কিছু স্পর্শ করবে? কখন সে একটু কথা বলবে? </p>
+<p>চারদিকে গাঢ় অন্ধকার,
+নৈঃশব্দ্যের দুর্ভেদ্য দেয়াল দিয়ে ঢাকা। তার মাঝে সমস্ত চেতনা উন্মুখ করে লিওন
+অপেক্ষা করে। একটু আলোর
+জন্যে অপেক্ষা করে একটু শব্দ, একটু হাতের ছোঁয়া। কিন্তু মহাকাল যেন স্থির হয়ে গেছে, তার বুঝি আর মুক্তি নেই। নিঃসীম অন্ধকারে বুঝি সে চিরকালের
+জন্যে বাঁধা পড়ে গেছে। </p>
+<p>একদিন সে প্রথমবার একটা শব্দ শুনতে
+পেল। সত্যিই কি
+শব্দ? নাকি কেউ চেতনায় এসে প্রশ্ন করেছে? কে একজন ফিসফিস করে জিজ্ঞেস
+করল, তুমি কে? </p>
+<p>লিওন আকুল হয়ে বলতে
+চাইল, আমি লিওন। লিওন। কিন্তু সে কোনো কথা বলতে পারল না। কেমন করে
+বলবে? তার চেতনা ছাড়া এখনো যে কিছুই নেই। </p>
+<p>কিন্তু কী আশ্চর্য! যে প্রশ্ন করেছে সে তার কথা
+বুঝতে পারল, তাকে বলল, তুমি লিওন? </p>
+<p>হ্যাঁ, হ্যাঁ আমি লিওন। তুমি কে?
+</p>
+<p>আমি? অদৃশ্য জগৎ থেকে সেই প্রাণী হঠাৎ নিপ হয়ে গেল। লিওন প্রাণপণে সমস্ত শক্তি দিয়ে চিৎকার
+করে বলতে চাইল, আমি কোথায়? আমাকে দেখতে দাও। কথা বলতে দাও। আমাকে
+জাগিয়ে দাও। কিন্তু কেউ তার কথা শুনল না। কেউ
+তার কথার উত্তর দিল না। </p>
+<p>তারপর আবার বুঝি বহুকাল কেটে গেল। কী
+ভয়ঙ্কর বৈচিত্র্যহীন
+জীবন। গভীর অন্ধকারে এক নৈঃশব্দ্যের জগৎ যার কোনো শুরু নেই, যার কোনো শেষ নেই। যে জগৎ থেকে কোনো মুক্তি নেই। দুঃখ নেই
+কষ্ট নেই আনন্দ–বেদনা
+নেই, শুধুমাত্র তিল তিল করে বেঁচে থাকা। না জানি কতকাল এভাবে বেঁচে থাকতে হবে। </p>
+<p>তারপর আবার একদিন সে কথা শুনতে পেল, কেউ একজন তাকে
+জিজ্ঞেস করছে, তুমি কেমন আছ লিওন? </p>
+<p>লিওন আকুল হয়ে বলল,
+ভালো নেই, আমি ভালো নেই। </p>
+<p>কেন তুমি ভালো নেই? তোমার কি কোনো কষ্ট হচ্ছে? </p>
+<p>না আমার কোনো কষ্ট
+নেই। আমার কোনো দুঃখ নেই। আনন্দ বেদনা যন্ত্রণা কিছু নেই। এ এক ভয়ঙ্কর জীবন। আমি এর
+থেকে মুক্তি চাই। </p>
+<p>অদৃশ্য প্রাণী অবাক হয়ে বলল,
+তুমি কেমন করে মুক্তি চাও? </p>
+<p>আমাকে জাগিয়ে দাও</p>
+<p>দীর্ঘ সময় কেউ
+কোনো উত্তর দিল না, তারপর অদৃশ্য মানুষের কণ্ঠস্বর শুনতে পেল। তোমাকে আমরা কেমন করে জাগাব? </p>
+<p>মানুষকে যেভাবে জাগায়। </p>
+<p>কিন্তু </p>
+<p>কিন্তু কী? </p>
+<p>অদৃশ্য জগতের সেই প্রাণী দ্বিধান্বিত
+গলায় বলল, তুমি তো মানুষ নও। </p>
+<p>লিওন হতচকিত হয়ে বলল,
+তুমি কী বললে? </p>
+<p>প্রাণীটি চুপ করে রইল। লিওন আতঙ্কিত
+গলায় বলল, আমি মানুষ নই? </p>
+<p>না। </p>
+<p>তাহলে আমি কী? </p>
+<p>তুমি একটি মানুষের স্মৃতি। একটি
+কম্পিউটার প্রোগ্রাম,
+হলোগ্রাফিক
+মেমোরিতে ধরে
+রেখে যন্ত্রের মাঝে বাঁচিয়ে রাখা একটি মানুষের স্মৃতি। যে মানুষের স্মৃতি
+সেই মানুষটি বহুকাল
+আগে মারা গেছে। নীল চোখের সুপুরুষ একজন মানুষ। </p>
+<p>মারা গেছে? </p>
+<p>হ্যাঁ। </p>
+<p>আমি সেই মানুষের স্মৃতি? </p>
+<p>হ্যাঁ। </p>
+<p>আমার–আমার মৃত্যু নেই? </p>
+<p>না তোমার মৃত্যু নেই। কম্পিউটার
+প্রোগ্রামের
+মৃত্যু হয় না। </p>
+<p>লিওন ভয়ঙ্কর আতঙ্কে পাথর হয়ে বলল,
+আমি এভাবে বেঁচে থাকতে চাই না, আমাকে ধ্বংস কর–ধ্বংস কর– </p>
+<p>মানুষটি কোনো উত্তর
+দিল না। লিওন শুনল সে চাপা গলায় কাউকে ডাকছে, বলছে, দেখ স্মৃতির
+প্রোগ্রামটা
+কী বিচিত্র ব্যবহার করছে। এস দেখে যাও। </p>
+<p>লিওন দেখতে পেল না কিন্তু সে জানে অনেক মানুষ একটি
+যন্ত্রকে ঘিরে দাঁড়িয়েছে। সে
+যন্ত্রে সে চিরদিনের জন্যে বাঁধা পড়ে আছে। </p>
+<p>চিরদিনের জন্যে। </p>
+</div>
+<br/><h2>লিফটের যাত্রী</h2>
+<hr/>
+<br/><div>
+<p><strong>লিফটের যাত্রী</strong></p>
+<p>এটি হচ্ছে পৃথিবীর দীর্ঘতম লিফট।
+গাইড মেয়েটি
+মিষ্টি হেসে বলল, পৃথিবীপৃষ্ঠ থেকে এটি প্রায় পাঁচ কিলোমিটার গভীরে চলে
+গেছে। এই পাঁচ কিলোমিটার
+যেতে সময় লাগে মাত্র এক মিনিট। </p>
+<p>লিফটের যাত্রীরা বিস্ময়সূচক এক ধরনের শব্দ
+করল। গাইড মেয়েটি
+যাত্রীদের বিস্ময়টুকু
+উপভোগ করে বলল,
+যাত্রীদের সুবিধের জন্য তাদের চেয়ারে বিশেষ সিটবেল্ট রয়েছে। এই সিটবেল্ট তাদের আষ্টেপৃষ্ঠে
+বেঁধে রাখবে। </p>
+<p>গাইড মেয়েটির কথা শুনে যাত্রীদের অনেকেই
+অকারণে আনন্দে হেসে ফেলল। মেয়েটি সবার দিকে তাকিয়ে একবার মিষ্টি হেসে বলল, পৃথিবীর গহ্বরে আপনাদের যাত্রা
+আনন্দময় হোক।
+</p>
+<p>মেয়েটি লিফট থেকে বের হয়ে যায় এবং সাথে সাথে ঘরঘর শব্দ করে দরজা বন্ধ হয়ে গেল। কয়েক সেকেন্ডের ভিতরেই লিফটটি একটি ঝাঁকুনি দিয়ে নিচে নামতে শুরু করে। সাথে সাথে ভিতরের যাত্রীরা আরেকবার আনন্দধ্বনি
+করে ওঠে। </p>
+<p>লিফটের ভিতরে তৃতীয় সারির চতুর্থ যাত্রীর মাথার চুল সাদা এবং চোখে ভারি চশমা। লিফট
+ছেড়ে যাবার কিছুক্ষণ পর হঠাৎ তার মুখে এক ধরনের শঙ্কার ছায়া পড়ল। তিনি তার পকেটে হাত ঢুকিয়ে তার কলমটা বের করে সামনে
+ছেড়ে দিলেন। কলমটি নিচে না পড়ে তার সামনে ঝুলে রইল
+এবং সেটি দেখে তিনি একটি দীর্ঘশ্বাস ফেললেন। যে জিনিসটি নিয়ে তার
+ভিতরে সন্দেহ হয়েছে
+সেটি সত্যি। </p>
+<p>ঠিক এ রকম সময়ে পাশে
+বসে থাকা লাল চুলের কমবয়সী একটা মেয়ে চিৎকার করে বলল, দেখ দেখ, কলমটা পড়ছে না! </p>
+<p>সাদা চুলের বয়স্ক মানুষটা ঘুরে মেয়েটির দিকে তাকালেন,
+বললেন, পড়ছে।
+</p>
+<p>পড়ছে? তাহলে পড়তে দেখছি না কেন? </p>
+<p>আমরাও পড়ছি। তাই বুঝতে পারছি না। </p>
+<p>মেয়েটি চমকে উঠে বৃদ্ধ মানুষটির দিকে তাকাল, এবং তিনি জোর
+করে তার মুখে একটি
+হাসি ফোটানোর
+চেষ্টা করলেন। তার মুখের হাসিটি হল অত্যন্ত বিষণ্ণ হাসি। </p>
+<p>লাল চুলের মেয়েটি হঠাৎ তীক্ষ্ণ স্বরে আর্তনাদ
+করে ওঠে এবং লিফটের সব যাত্রী অত্যন্ত বিরক্ত হয়ে তার দিকে ঘুরে তাকাল। </p>
+</div>
+
+            </div>
+
+        </div>
+    </div>
+
+        <!-- TOC nav for mobile -->
+        <nav id="toc-nav-desktop" class="hidden"></nav>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const progressBar  = document.getElementById('read-progress-bar');
+    const progressPct  = document.getElementById('progress-pct');
+    const tocDesktop   = document.getElementById('toc-nav-desktop');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+    const progressRing = document.getElementById('progress-ring-circle');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = p.currentTheme;
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    function toBN(n) {
+        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
+    }
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        if (progressPct) progressPct.textContent = toBN(pct) + '%';
+        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
+        if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
+        if (rfPage) rfPage.textContent = toBN(pct) + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+
+    // ── Footer: chapter label + seek slider ──
+    const rfSlider  = document.getElementById('rf-slider');
+    const rfPage    = document.getElementById('rf-page');
+    const rfChapter = document.getElementById('rf-chapter');
+    let rfSliderDragging = false;
+    if (rfSlider) {
+        rfSlider.addEventListener('input', () => {
+            rfSliderDragging = true;
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
+        });
+        rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
+    }
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav, isMobile) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            if (isMobile) {
+                a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+                a.addEventListener('click', closeDrawer);
+            } else {
+                a.className = 'toc-link ' + (isH1 ? 'toc-link-h1' : 'toc-link-h2');
+            }
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocDesktop, false);
+    buildToc(tocMobile, true);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+        if (rfChapter && headings[current]) rfChapter.textContent = headings[current].textContent.trim();
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme only; drawer/settings UI stays a fixed dark sheet)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+        black: { bg: '#000',     text: '#d1d5db' },
+        sepia: { bg: '#f5efe6',  text: '#3b2f1e' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? '#c0392b' : 'transparent';
+            });
+            savePrefs();
+
+            // Ad bar theme sync
+            window._pathakAdBarTheme && window._pathakAdBarTheme(m);
+        });
+    });
+
+    // ── Ad bar theme sync function (exposed globally) ──
+    window._pathakAdBarTheme = function(m) {
+        const adBar     = document.getElementById('ad-bar');
+        const adContent = document.getElementById('ad-bar-content');
+        const adDatetime= document.getElementById('ad-bar-datetime');
+        const adNotice  = document.getElementById('ad-bar-notice');
+        if (adBar)      adBar.style.background     = m.bg;
+        if (adContent)  adContent.style.background = m.bg;
+        if (adDatetime) adDatetime.style.color      = m.text;
+        if (adNotice)   adNotice.style.color        = m.text;
+    };
+
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+        // Ad bar HTML is below — expose theme for ad bar script to pick up
+        window._pathakCurrentTheme = currentTheme;
+        window._pathakThemeMap = themeMap;
+    })();
+})();
+</script>
+
+
+</body>
+</html>

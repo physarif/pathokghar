@@ -1,0 +1,3908 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/trisna.html">
+    <title>তৃষ্ণা - পাঠক ঘর</title>
+    <meta name="description" content="জহির রায়হানের **'তৃষ্ণা'** উপন্যাসটি বাংলা সাহিত্যের একটি অন্যতম মনস্তাত্ত্বিক ও বাস্তবতাবাদী সৃষ্টি। জহির রায়হান মূলত চলচ্চিত্রকার হিসেবে তুমুল জনপ্রিয় হলেও ">
+    <meta property="og:title" content="তৃষ্ণা - পাঠক ঘর">
+    <meta property="og:description" content="জহির রায়হানের **'তৃষ্ণা'** উপন্যাসটি বাংলা সাহিত্যের একটি অন্যতম মনস্তাত্ত্বিক ও বাস্তবতাবাদী সৃষ্টি। জহির রায়হান মূলত চলচ্চিত্রকার হিসেবে তুমুল জনপ্রিয় হলেও ">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e', black:'#000' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', sepia:'#3b2f1e', dark:'#e5e7eb', black:'#d1d5db' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .dark body { background: #1a1a1b; color: #e5e7eb; }
+
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.7rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+        .dark #book-content { color: #e5e7eb; }
+    
+    /* ── Book read header hero ── */
+    .book-read-header {
+        margin-bottom: 1.5rem;
+    }
+    .book-read-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.65rem;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 1.4rem 1.25rem 1.2rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .dark .book-read-box {
+        background: #2a2a2b;
+        border-color: #3a3a3b;
+    }
+    .book-read-cover {
+        width: 100px;
+        height: 136px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        object-fit: cover;
+        background: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .book-read-cover svg { opacity: 0.35; }
+    .book-read-title-link {
+        text-decoration: none;
+        display: block;
+    }
+    .book-read-title-link:hover .book-read-title { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-title-link:active .book-read-title { opacity: 0.7; }
+    .book-read-title {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #1a1a1b;
+        line-height: 1.4;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+    .dark .book-read-title { color: #f3f4f6; }
+    .book-read-author-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+    .book-read-author-link:hover .book-read-author { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-author-link:active .book-read-author { opacity: 0.6; }
+    .book-read-author {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #c0392b;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+</style>
+</head>
+<body>
+
+<style>
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    #read-progress-bar {
+        position: fixed;
+        top: 0; left: 0;
+        height: 2px;
+        width: 0%;
+        background: #c0392b;
+        z-index: 1000;
+        transition: width 0.1s linear;
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h1 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #9ca3af;
+        text-align: center;
+        margin: 0 0 0.25rem;
+        letter-spacing: 0.04em;
+    }
+    #book-content h1::after {
+        content: '';
+        display: block;
+        width: 2.8em;
+        height: 3px;
+        background: #c0392b;
+        border-radius: 2px;
+        margin: 0.4rem auto 0;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #7a2115;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid #d9a5a0;
+        border-bottom: 1px solid #d9a5a0;
+    }
+    /* Night mode heading adjust */
+    body.theme-dark  #book-content h1,
+    body.theme-black #book-content h1 { color: #6b7280; }
+    body.theme-dark  #book-content h2,
+    body.theme-black #book-content h2 { color: #f2938a; border-color: rgba(169,50,38,0.4); }
+    body.theme-dark  #book-content h1::after { background: #a93226; }
+    body.theme-black #book-content h1::after { background: #922b21; }
+    body.theme-sepia #book-content h1 { color: #a08060; }
+    body.theme-sepia #book-content h2 { color: #7a2115; border-color: rgba(160,64,48,0.35); }
+    body.theme-sepia #book-content h1::after { background: #a04030; }
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: rgba(192,57,43,0.05);
+        border: 1px solid rgba(192,57,43,0.15);
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p,
+    body.theme-black #book-content p {
+        background: rgba(169,50,38,0.1);
+        border-color: rgba(169,50,38,0.25);
+    }
+    body.theme-sepia #book-content p {
+        background: rgba(160,64,48,0.08);
+        border-color: rgba(160,64,48,0.2);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #c0392b;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #c0392b;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(192,57,43,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    .dark #book-content blockquote {
+        background: rgba(192,57,43,0.08);
+        color: #bbb;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #c0392b;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    .dark #book-content td { border-color: #3a3a3b; }
+    .dark #book-content tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(192,57,43,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: #e57373;
+        font-weight: 600;
+        background: rgba(192,57,43,0.18);
+        border-radius: 0.375rem;
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: #fff;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transition: color 0.15s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.6);
+    }
+    #toc-nav-desktop .toc-link {
+        display: block;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.375rem;
+        color: #4b5563;
+        text-decoration: none;
+        transition: background-color 0.15s, color 0.15s;
+    }
+    .dark #toc-nav-desktop .toc-link { color: #d1d5db; }
+    #toc-nav-desktop .toc-link:hover { background: #f3f4f6; }
+    .dark #toc-nav-desktop .toc-link:hover { background: #1f2937; }
+    #toc-nav-desktop .toc-link-h1 {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: #1f2937;
+    }
+    .dark #toc-nav-desktop .toc-link-h1 { color: #f3f4f6; }
+    #toc-nav-desktop .toc-link-h2 {
+        padding-left: 1.25rem;
+        font-size: 0.6875rem;
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.6rem 0.5rem 0.6rem 0.35rem;
+        background: #1a1a1b;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-back {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.25rem;
+        text-decoration: none;
+        transition: background 0.15s;
+    }
+    #rh-back:active { background: rgba(255,255,255,0.12); }
+    #rh-title {
+        flex: 1;
+        min-width: 0;
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: transparent;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+    #reader-header .rh-actions button:active { background: rgba(255,255,255,0.12); }
+    body.theme-dark  #reader-header,
+    body.theme-black #reader-header,
+    body.theme-sepia #reader-header { background: #141414; }
+
+    /* ── Reader footer: chapter label + page/percent + seek slider ── */
+    #reader-footer {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 55;
+        background: #1a1a1b;
+        padding: 0.5rem 1rem 0.65rem;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-footer { transform: translateY(100%); }
+    body.theme-dark  #reader-footer,
+    body.theme-black #reader-footer,
+    body.theme-sepia #reader-footer { background: #141414; }
+    #rf-labels {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.7);
+        margin-bottom: 0.35rem;
+    }
+    #rf-chapter {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #rf-page { flex-shrink: 0; }
+    #rf-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        background: rgba(255,255,255,0.22);
+        outline: none;
+        margin: 0;
+        cursor: pointer;
+    }
+    #rf-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        margin-top: -6px;
+    }
+    #rf-slider::-moz-range-thumb {
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        border: none;
+    }
+    #rf-slider::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; }
+    #rf-slider::-moz-range-track { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.22); }
+
+    /* Content needs bottom clearance so the fixed footer never covers text */
+    #read-main-content { padding-bottom: 4.5rem; }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: #303134;
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.55);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: #e57373;
+        border-bottom-color: #c0392b;
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ── Breadcrumb dark mode ── */
+    .read-breadcrumb-full { margin-left: -1.25rem; margin-right: -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
+    .dark #bc-category { color: #9ca3af !important; }
+    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
+    .dark #read-breadcrumb li > span { color: #4b5563; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #e57373;
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: 34px; height: 34px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        flex-shrink: 0;
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+    }
+    .theme-circle.active { border-color: #c0392b; }
+    .theme-circle svg { display: none; }
+    .theme-circle.active svg { display: block; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: #fff; }
+    .settings-row-val { font-size: 0.74rem; color: rgba(255,255,255,0.5); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: rgba(192,57,43,0.35); border-color: #c0392b; color: #fff; }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+</style>
+
+<!-- Progress bar (kept for internal % calc, hidden — footer slider replaces it visually) -->
+<div id="read-progress-bar" style="display:none;"></div>
+
+<!-- ══ Reader header (Lithium-style app bar) ══ -->
+<header id="reader-header">
+    <a href="/book/trisna.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <h1 id="rh-title">তৃষ্ণা</h1>
+    <div class="rh-actions">
+        <button id="rh-menu-btn" aria-label="মেনু" title="মেনু"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+    </div>
+</header>
+
+<!-- ══ Reader footer (chapter + page/percent + seek slider) ══ -->
+<footer id="reader-footer">
+    <div id="rf-labels">
+        <span id="rf-chapter"></span>
+        <span id="rf-page">০%</span>
+    </div>
+    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
+</footer>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                    <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
+                    <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
+                    <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn active" id="align-justify" title="জাস্টিফাই" style="background:#fde8e6;border-color:#c0392b;color:#c0392b;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <h2>
+ প্রথম
+ </h2>
+<br/>
+<h2>
+ একটি সুন্দর সকাল
+ </h2>
+<hr/>
+<br/>
+
+<div>
+<p>
+ একটি সুন্দর সকাল।
+ </p>
+<br/>
+<p>
+ বুড়ো রাত বিদায় নেবার আগে বৃষ্টি থেমে গেছে। তবু তার শেষ চিহ্নটুকু এখানে সেখানে ছড়ানো। চিকন ঘাসের ডগায় দু একটি পানির ফোঁটা সূর্যের সোনালি আভায় চিকচিক করছে।
+ </p>
+<br/>
+<p>
+ চারপাশে রবিশস্যের ক্ষেত। হলদে ফুলে ভরা। তারপর এক পূর্ণ-যৌবনা নদী। ওপাড়ে তার কাশবন। এপাড়ে অসংখ্য খড়ের গাদা।
+ </p>
+<br/>
+<p>
+ ছেলেটির বুকে মুখ রেখে, খড়ের কোলে দেহটা এলিয়ে দিয়ে, মেয়েটি ঘুমোচ্ছে। ওর মুখে কোন অভিব্যক্তি নেই। ঠোঁটের শেষ সীমানায় শুধু একটুখানি হাসি চিবুকের কাছে এসে হারিয়ে গেছে। ওর হাত ছেলেটির হাতের মুঠোর মধ্যে শক্ত করে ধরে রাখা। দুজনে ঘুমোচ্ছে ওরা।
+ </p>
+<br/>
+<p>
+ ছেলেটিও ঘুমিয়ে।
+ </p>
+<br/>
+<p>
+ তার মুখে দীর্ঘ পথ চলার ক্লান্তি। মনে হয় অনেকক্ষণ বৃষ্টিতে ভিজেছিলো ওরা। চুলের প্রান্তে এখনো তার কিছু রেশ জড়ানো রয়েছে।
+ </p>
+<br/>
+<p>
+ সহসা গাছের ডালে বুনো পাখির পাখা ঝাপটানোর শব্দ শোনা গেলো। মটরশুটির ক্ষেত থেকে একটা সাদা ধবধবে খরগোশের বাচ্চা ছুটে পালিয়ে গেলো কাছের অরণ্যের দিকে।
+ </p>
+<br/>
+<p>
+ খড়ের কোলে জেগে উঠলো অনেকগুলো পায়ের ঐক্যতান। সমতালে এগিয়ে এলো ওরা। যেখানে ছেলেটি আর মেয়েটি এই পৃথিবীর অনেক চড়াই উৎরাই আর অসংখ্য পথ মাড়িয়ে এসে অবশেষে এই স্নিগ্ধ সকালের সোনা-রোদে পরস্পরের কাছে অঙ্গীকার করে ছিলো।
+ </p>
+<br/>
+<p>
+ ভালোবাসি।
+ </p>
+<br/>
+<p>
+ বলেছিলো। এই রাত যদি চিরকালের মতো এমনি থাকে। এই রাত যদি আর কোনদিন ভোর না হয় আমি খুশি হব।
+ </p>
+<br/>
+<p>
+ বলেছিলো। ওই যে দূরের তারাগুলো, যারা মিটিমিটি জ্বলছে তারা যদি হঠাৎ ভুল করে নিভে যেতো, তাহলে খুব ভালো হতো।
+ </p>
+<br/>
+<p>
+ আমরা অন্ধকারে দুজনে দুজনকে দেখতাম।
+ </p>
+<br/>
+<p>
+ বলেছিলো। হয়তো কিছুই বলে নি ওরা।
+ </p>
+<br/>
+<p>
+ শুধু শুয়েছিলো।
+ </p>
+<br/>
+<p>
+ আঠার জোড়া আইনের পা ধীরে ধীরে চারপাশ থেকে এসে বৃত্তাকারে ঘিরে দাঁড়ালো ওদের।
+ </p>
+<br/>
+<p>
+ ওরা তখনো ঘুমুচ্ছে।
+ </p>
+<br/>
+<p>
+ তারপর।
+ </p>
+<br/>
+<p>
+ আমার কোন জাত নেই।
+ </p>
+<br/>
+<p>
+ মাংসল হাতজোড়া ভেজা টেবিলের ওপর ছড়িয়ে দিয়ে বুড়ো আহমদ হোসেন বললো। আমার কোন জাত নেই। আমি না হিন্দু, না মুসলমান, না ইহুদি, না খৃষ্টান। আমার জাত তুলে কেউ ডেকেছে কি এক ঘুষিতে নাক ভেঙ্গে দেবো বলে দিলাম।
+ </p>
+<br/>
+<p>
+ আশেপাশের টেবিলে যারা ছিলো তারা বিরক্তির সঙ্গে এক নজর তাকালো ওর দিকে।
+ </p>
+<br/>
+<p>
+ ছোকরা গোছের একজন দূর থেকে চিৎকার করে বললো, বুড়ো ব্যাটার ভীমরতি হয়েছে। রোজ এক কথা। বলি এ পর্যন্ত কটা লোকের নাক ভেঙ্গেছো শুনি?
+ </p>
+<br/>
+<p>
+ আহমদ হোসেনের কানে সে কথা পৌঁছলো না। কপালে জেগে ওঠা ঘামের ফোঁটাগুলো বাঁ হাতে মুছে নিয়ে সে আবার বলতে লাগলো। আমি কিছু জানি না। না জাত না ধর্ম। না তোমাদের আইন-কানুন। এর সবটুকুই ফাঁকি। চোখে ধুলো মেরে মানুষ ঠকানোর কারসাজি। শুনতে যদি ভালো না লাগে, নিষেধ করে দাও তোমাদের এই আস্তাকুঁড়ে আর আসবো না। এখানে চা খেতে না এলেও আমার দিন কাটবে।
+ </p>
+<br/>
+<p>
+ আহা চটছেন কেন, আমি কি আপনাকে আসতে বারণ করেছি কোন দিন। না, করছি। চা-খানার মালিক নওশের আলী তাকে শান্ত করার চেষ্টা করলো।
+ </p>
+<br/>
+<p>
+ কিন্তু, বুড়ো চুপ করলো না।
+ </p>
+<br/>
+<p>
+ কাপ থেকে খানিকটা চা পিরিচে ঢেলে নিয়ে মুখের কাছে এনে আবার পিরিচটা নামিয়ে রাখলো সে। হয়েছে, ওসব মিষ্টি কথায় মন ভোলাতে চেও না। ছেলেটাকে যখন কুড়ি বছর ইকে দিলো তখন কোথায় ছিলে সব? পাঁচটা নয়, দশটা নয়, একটি মাত্র ছেলে আমার। কোর্ট শুদ্ধ লোক বললো, বেকসুর খালাস পেয়ে যাবে, আর হাকিম কিনা সাজা দিয়ে দিলে আঁ।
+ </p>
+<br/>
+<p>
+ পনের বছর আগে সাজা পাওয়া এবং একমাত্র ছেলের চিন্তায় আহমদ হোসেনের চোখজোড়া সজল হয়ে এলো। বার্ধক্যের চাপে কুঞ্চিত মাংসের বেষ্টনী ভেদ করে জলের ফোঁটা গড়িয়ে পড়লো। বাদামি চায়ের ঈষৎ উষ্ণ লিকারে।
+ </p>
+<br/>
+<p>
+ বুড়ো কাঁদছে।
+ </p>
+<br/>
+<p>
+ শওকত তার চেয়ারে নড়েচড়ে বসলো। ওর ইচ্ছে হলো এ মুহূর্তে একবার বুড়ো আহমদ হোসেনের পাশে বসতে। চায়ের কাপটা এক পাশে সরিয়ে দিয়ে দুটো কথা বলতে ওর সঙ্গে।
+ </p>
+<br/>
+<p>
+ কিন্তু থাক।
+ </p>
+<br/>
+<p>
+ যে কাঁদছে সে কাঁদুক। কান্নার সাগরে সান্ত্বনার সীমা খুঁজে নেবে বুড়ো আহমদ হোসেন।
+ </p>
+<br/>
+<p>
+ শওকত জানে, এই দিন যখন শেষ হয়ে যাবে, যখন কালো বোরখায় ঢাকা রাত আসবে, তখন আর এমনি করে কাঁদবে না আহমদ হোসেন। তখন এই শহরের প্লাস্টার ঝরা সরু আঁকাবাঁকা গলিতে নামহীন অসংখ্য ছেলেমেয়ের জন্ম-মৃত্যুর হিসেব লিখে বেড়াবে সে।
+ </p>
+<br/>
+<p>
+ কত হলো?
+ </p>
+<br/>
+<p>
+ একান্ন লক্ষ বত্রিশ হাজার চুরানব্বই জন।
+ </p>
+<br/>
+<p>
+ কোনো রাতে সহসা কোনো রাস্তার মোড়ে দেখা হয়ে গেলে বুক পকেট থেকে হিসেবের খাতাটা বের করে বলবে। একান্ন লক্ষ বত্রিশ হাজার চুরানব্বই জন ক্ষয়ে যাওয়া গুটিকয় কালচে দাঁতের ফাঁকে বিকৃত এক হাসির আমেজ ছড়িয়ে সে বলবে। যাবে একদিন। চলো না কাল রাতে।
+ </p>
+<br/>
+<p>
+ না।
+ </p>
+<br/>
+<p>
+ ভয় হচ্ছে বুঝি? ওখানে গেলে কেউ তোমাকে চিনে ফেলবে।
+ </p>
+<br/>
+<p>
+ বদনামের ভয়, তাই না? কিন্তু কি জানো, ওখানে যারা যায় তারা কারো কথা মনে রাখে না! এটাই ও জায়গায় বিশেষত্ব। আজ পনেরো বছর ধরে দেখে আসছি। আগে আর যায়। বামুন কায়েখ বলো, আর মোল্লা মৌলভী বলো, সব বাটাকে চিনে রেখেছি। দিনের বেলা কোট-প্যান্ট পরে সাহেব সেজে অফিসে যায় আর যেই না সন্ধে হলো, অমনি বাবু মুখে রুমাল খুঁজে চট করে ঢুকে পড়ে গলিতে! বলে আবার হাসবে আহমদ হোসেন। একটা আধপোড়া বিড়িতে আগুন ধরিয়ে নিয়ে আবার সে শুরু করবে, এই শহরের নাম না জানা অসংখ্য দেহপসারিণীয় গল্প।
+ </p>
+<br/>
+<p>
+ দিন যত যাচ্ছে পিঁপড়ের মতো বাড়ছে ওরা বুঝলে? বাদামতলীর নাম শুনলে তো নাক সিটকাও। আর এই যে নিওন বাতির শহর রমনা ভাবছো এটা একেবারে পিঁপড়ে শূন্য তাই না? খোদার কছম বলছি এখানকার পিঁপড়েগুলো আরো বেশি পাজী। শালার সাহেবের বাচ্চারা ওদের গা গার্ল বলে ডাকে। যেন, নাম পাল্টে দিলেই ধর্ম পাল্টে গেলো আর কি? বলে বিকট শব্দে হেসে উঠবে বুড়ো আহমদ হোসেন। তারপর হিসেবের খাতাটা বুক পকেটে রেখে দিয়ে আর কোন কথা নাবলৈ হঠাৎ সে আবার চলতে শুরু করবে। এক পথ থেকে আরেক পথ। অন্য পথের মোড়ে।
+ </p>
+<br/>
+<p>
+ বুড়ো আহমদ হোসেন তখনো কাঁদছে।
+ </p>
+<br/>
+<p>
+ চায়ের দাম চুকিয়ে দিয়ে কিছুক্ষণ পরে বাইরে বেরিয়ে এলো শওকত।
+ </p>
+<br/>
+
+
+<p>
+ লম্বা দেহ। ছিপছিপে শরীর। দূর থেকে দেখলে মনে হয়, বাতাসের ভার সহ্য করতে পারবে না। কিন্তু কাছে এসে একটু ভালোভাবে লক্ষ্য করলে দেখা যাবে, শুকনো শরীরের মাংসপেশীগুলো অত্যন্ত সবল এবং সজীব। ময়লা রঙের চামড়ার গায়ে সংবা লোমের অরণ্য। হাতে-পায়ে, বুকে এবং কণ্ঠনালীর সীমানা পর্যন্ত সে অরণ্যের বিস্তৃতি। রুক্ষ হাতের তালু। খসখসে। অগুনিত রেখায় ভরী। চোখজোড়া বড় বড়। মণির রঙ বাদামি। কিন্তু তার মধ্যে কোন মাধুর্য নেই। আছে এক তীক্ষ্ণ তীব্র জ্বালা! মণির চারপাশে যে সাদা অংশটুকু রয়েছে তার মাঝে ছিটেফোঁটা লাল ছড়ানো। কখনো সেটা বাড়ে। কখনো কমে। চোখের খুব কাছাকাছি ভ্রূ-জোড়ার অবস্থিতি। মোটা। মিশকালো। ধনুর মতো বাঁকা কিন্তু লম্বায় ছোট চলতে চলতে হঠাৎ যেন থেমে গেছে ওটা। সহসা দেখলে মনে হয়, সারা মুখে কোথাও কোন লাবণ্য নেই। কিন্তু সন্ধানী দৃষ্টি দিয়ে যাচাই করলে ধীরে ধীরে একটা অজ্ঞ সৌন্দর্য ধরা পড়ে। যার সঙ্গে আর কারো তুলনা করা যেতে পারে না। মাঝারি নাক। মাংসল। আর ঠিক নাকের মাঝখানটায় একটা কাটা দাগ। চওড়া কপাল বয়সের সঙ্গে তাল রেখে সামনের অনেকখানি চুল ঝরে পড়ায় সেটাকে আরো প্রশস্ত দেখায়। মুখের গড়নটা ডিম্বাকৃক্তি পুরু ঠোঁট জামের মুতো কালো। তেমনি মসৃণ আর তেলতেলে। যখন ও হাসে, তখন মুক্তোর মতো দাঁতগুলো ঝলমল করে উঠে। চিবুকের হাড়জোড় সুস্পষ্টভাবে উঁচু আর তার নিচের অংশটুকু হঠাৎ যেন একটা খাদের মধ্যে নেমে গেছে। খাদের শেষ প্রান্তে একটা বড় তিল। মার্থাভরা একরাশ ঘন চুল। অমসৃণ এবং অনাদৃত। রাস্তায় বেরিয়ে এসে আকাশের দিকে তাকালো শওকত? একখানা যাত্রীবাহী বিমান প্রচণ্ড শব্দ করে উড়ে চলেছে পোতাশ্রয়ের দিকে। এক্ষুণি নামবে। তার মা বিলীন হয়ে যাওয়ার আগেই কে যেন পাশ থেকে ডাকলো। বাড়ি যাবেন নাকি?
+ </p>
+<br/>
+<p>
+ শওকত চেয়ে দেখলো, মার্থা গ্রাহাম!
+ </p>
+<br/>
+<p>
+ মার্থা একটা রিক্সায় বসে। শওকতকে দেখে ওটা ঘুরিয়ে দাঁড় করিয়েছে সে। ওর হাতে একটা পাউরুটি আর ছোট একটা চায়ের পাকেট।
+ </p>
+<br/>
+<p>
+ মার্থা ডাকলো, ব্যাপার কি, এই রাস্তার ওপরে একঠায় দাঁড়িয়ে রয়েছেন বাসায় যাবেন শা, আসুন।
+ </p>
+<br/>
+<p>
+ শওকত সহসা হেসে উঠলো। আশ্চর্য!
+ </p>
+<br/>
+<p>
+ কি?
+ </p>
+<br/>
+<p>
+ মনে হচ্ছে আমাকে বাসায় ফিরিয়ে নেয়ার জন্যে রোজ আপনি এখানে রিক্সা নিয়ে দাঁড়িয়ে থাকেন।
+ </p>
+<br/>
+<p>
+ লজ্জায় মার্থার কালো মুখখানা বেগুনি হয়ে গেলো। কিন্তু মুহূর্তে নিজেকে সামলে নিয়ে সে বললো, আমিও কিন্তু এর উল্টোটি বলতে পারতাম। কিন্তু বলবো না। তাহলে আপনি রাগ করবেন। মার্থার গলার স্বরে কোথায় যেন এক টুকরো ব্যথা ঈষৎ উঁকি দিয়ে গেলো।
+ </p>
+<br/>
+<p>
+ শওকত ততক্ষণে উঠে বসেছে রিক্সায়।
+ </p>
+<br/>
+<p>
+ গলির মোড়ে কামারের দোকানের সামনে কয়েকটা লম্বা টুলের ওপরে যারা হাত-পা ছড়িয়ে বসেছিলো, তারা দেখলো। আজও একখানা রিক্সা থেকে নামলো আধা আর শওকত।
+ </p>
+<br/>
+<p>
+ আড়চোখে একবার ওদের দিকে তাকালো শওকত। ওরা দেখছে। ইশারায় দেখাচ্ছে অন্যদের। যাক, ভালোই হলো। আজ রাতটার জন্যেও কিছু মুখরোচক খোরাক পেলো ওরা। তাসের আড়া কথার কাকলিতে ভরে উঠবে। উষ্ণ চায়ের লিকার আর নয়া পয়সায় কেলা নোনতা বিস্কিটের সঙ্গে জমবে ভালো। মার্থা গ্রাহামকে নিয়ে অনেক রাত পর্যন্তু গল্প করবে ওরা।
+ </p>
+<br/>
+<p>
+ কিন্তু কেন? আমি তো ওদের সাতপাঁচে থাকিনে? আমি তো সেই সকালে কাজে বেরিয়ে যাই, আবার রাতে ফিরি। আমি তো কাউকে নিয়ে মার্থা ঘামাইনে! কারো পাকা ধানে মই দেইনে। তবু কেন ওরা আমাকে নিয়ে অত হল্লা করে?
+ </p>
+<br/>
+<p>
+ বলতে গিয়ে ওর নিকৃষ্ট কালো চোখের মণি জোড়ায় দুফোঁটা পানি ছলছল করে উঠেছিলো। সপ্রশ্ন দৃষ্টি মেলে শওকতের দিকে তাকিয়েছিলো মার্থা গ্রাহাম।
+ </p>
+<br/>
+<p>
+ সহসা কোন উত্তর দিতে পারে নি শওকত। ওর শুধু বুড়ো আহমদ হোসেনের কথা বার বার মনে পড়ছিলো। মার্থা প্রসঙ্গে আলোচনা করতে গিয়ে একদিন বলেছিলো, ওটা একটা রোগ। ওটাও এক রকমের ক্ষুধা, বুঝলে? আজ পনেরো বছর ধরে এই শহরের অলিতে গলিতে পইপই করে ঘুরে বেড়াচ্ছি। ওদের খুব ভালো করে চেনা আছে আমার। বাদামতলীর ঘাট বলো, ছক্কু মিয়ার চা-খানা কিম্বা খান সাহেবের কাফে হংকং বলল আর তোমাদের ওই বিলেতি ঢঙের যত দিশি ক্লাব সব ব্যাটার ধর্ম এক, বুঝলে। সবাই এক রোগে ভুগছে, এক ক্ষুধায় জ্বলছে। শোন, কাছে এসো, কানে কানে একটা মোক্ষম কথা বলে রাখি তোমায়, বয়সকালে কাজে দেবে। শোন, কোনদিন যদি কোনখানে কোন ছেলে কিম্বা বুড়োকে দেখো কোন মেয়ের নামে বদনাম রটাচ্ছে, তাহলে জানবে এর মধ্যে নিশ্চয়ই কোন কিন্তু রয়েছে। বলতে গিয়ে বিকট শব্দে হেসে উঠেছিলো বুড়ো আহমদ হোসেন। দাড়ির জঙ্গলে আঙুলের চিরুনি বুলিয়ে নিয়ে পরক্ষণে আবার বলেছিলো। সেই ছেলে কিম্বা বুড়ো বুঝলে? তারা যদি কোনদিন একান্ত নিরালায় সে মেয়েটিকে হঠাৎ কাছে পেয়ে যায়, তাহলে কিন্তু জিহ্বা দিয়ে চেটে চেটে তার পায়ের গোড়ালি জোড়ায় ব্যথা ধরিয়ে দেবে। গুলতানী নয় বাবা, নিজ চোখে দেখা সব। এই শহরের কোন্ বুড়ো কোন্ মেয়েকে নিয়ে কোন রেস্তোরাঁয় যায় আর কোন মাঠে হাওয়া খায়, সব জানা আছে আমার। বলতে গিয়ে একরাশ থুথু ছিটিয়েছে আহমদ হোসেন।
+ </p>
+<br/>
+<p>
+ মার্থাকে নিয়ে রিক্সা থেকে নামলো শওকত। পকেটে হাত দিতে যেতে মার্থা থামিয়ে দিয়ে বললো। দাঁড়ান, আমি দিচ্ছি।
+ </p>
+<br/>
+<p>
+ বুকের মধ্যে লুকিয়ে রাখা ছোট্ট ব্যাগটা থেকে কয়েক আনা খুচরা পয়সা বের করলো মার্থা। সামনের লাল রকটার ওপরে একটা কুষ্ঠ রোগী কবে এসে ঠাঁই নিয়েছে কেউ জানে না। হাত পায়ের নখগুলো তার ঝরে গেছে অনেক আগে। সারা গায়ে দগদগে ঘা। চোয়াল। জোড়া ফুটো হয়ে সরে গেছে ভেতরে। আর সেই ছিদ্র বেয়ে লাবাস্রোত গড়িয়ে গড়িয়ে পড়ছে নিচে। কাঁধে। বুকে। উরুতে। চারপাশে অসংখ্য মাছির বাসা। ভনভন করে উড়ছে। বসছে। আবার উড়ছে।
+ </p>
+<br/>
+<p>
+ রিক্সা বিদায় দিয়ে মার্থা আর শওকত ভেতরে এলো। দেড় হাত চওড়া অপরিসর বারান্দার মুখে কে যেন একটা কয়লার চুলো জ্বালিয়ে রেখেছে। তার ধুয়োয় চারপাশটা অন্ধকার হয়ে আছে। স্বাস নিতে বেশ কষ্ট হচ্ছে ওদের। সহসা দুজন মহিলা দুপাশের করিডোর থেকে বেরিয়ে চিৎকার করতে করতে উঠোনের দিকে এগিয়ে গেলো।
+ </p>
+<br/>
+<p>
+ আরে, মেরে ফেললো তো।
+ </p>
+<br/>
+<p>
+ ক্যায়া হুঁয়া?
+ </p>
+<br/>
+<p>
+ কি অইছে আঁ?
+ </p>
+<br/>
+<p>
+ মার, মার। মার না।
+ </p>
+<br/>
+<p>
+ আরে ছাড়, ছেড়ে দে বলছি, নইলে মেরে হাড্ডি মাংস গুঁড়ো করে দেবো বলে দিলাম।
+ </p>
+<br/>
+<p>
+ আরে আয়ি বড়ি মারনে ওয়ালী।
+ </p>
+<br/>
+<p>
+ ত্রিকোণ উঠোনোর মাঝখানে মহিলারা প্রচণ্ড কলহে মেতে উঠেছে। এ ওর চুল ধরে টানছে। এ ওর পিঠের ওপর একটানা কিল-ঘুষি মারছে।
+ </p>
+<br/>
+<p>
+ দুটো নেড়ি কুত্তা ওদের পেছনে দাঁড়িয়ে বার বার লাফাচ্ছে আর ঘেউ ঘেউ করছে।
+ </p>
+<br/>
+<p>
+ মাওলানা সাহেব বারান্দায় নামাজ পড়ছিলেন। নামাজ থামিয়ে তিনি চিৎকার করে উঠলেন। জাহান্নামে যাবে সব। হাবিয়া দোজখে যাবে।
+ </p>
+<br/>
+<p>
+ এর চেয়ে বড় দোজখ আর কোথাও আছে নাকি? কে যেন জবাব দিলো জটলার ভেতর থেকে। বাইরের এই হট্টগোল শুনে মাওলানা সাহেবের তৃতীয় স্ত্রী পর্দার আড়াল থেকে মুখ বের করে তাকিয়েছিলো। সেদিকে চোখ পড়তে মাওলানা সাহেব গর্জে উঠলেন। তু ক্যায়া দেখতি হ্যায় আঁ? আন্দার যা।
+ </p>
+<br/>
+<p>
+ মেয়েটি সভয়ে পর্দার নিচে আত্মগোপন করলো। উঠোনের কোলাহল চরমে উঠেছে।
+ </p>
+<br/>
+<p>
+ মার্থা এক নজর তাকালো শওকতের দিকে। তারপর আরো দুটো সরু করিডোর পেরিয়ে আরো অনেক দরজা পেছনে ফেলে ঘরে এসে ভেতর থেকে খিল এঁটে দিলো সে।
+ </p>
+<br/>
+<p>
+ শওকত এগিয়ে গেলো সিঁড়ির দিকে।
+ </p>
+<br/>
+<p>
+ জায়গাটা একেবারে অন্ধকার। আলো থেকে এলে পাশের মানুষটাকেও ভালো করে দেখা যায় না। পকেট থেকে একটা দিয়াশলাই বের করে জ্বালালো সে, আর তার আলোতে যেন ভূত দেখলো শওকত। সিঁড়ির নিচে জড়ো করে রাখা একগাদা আবর্জনার মাঝখানে জুয়াড়িদের একজন লোক খলিল মিস্ত্রীর বউকে জড়িয়ে ধরে শুয়ে রয়েছে। অভাবিত আলোর স্পর্শে অস্ফুট আর্তনাদ করে উঠলো ওরা। তারপর ছুটে পালিয়ে গেলো দুজন দুদিকে।
+ </p>
+<br/>
+<p>
+ বুড়ো আহমদ হোসেন আজ এখানে থাকলে হয়তো পকেট থেকে হিসেবের খাতাটা বের করে তাতে আরো একটা নাম যোগ করতো আর বলতো এ আর এমন কি দেখলে ভায়া। শোন, এক সাহেবের গল্প বলি। ব্যাটা দিশি সাহেব। বিলিতি নয়। সেই সাত বছর আগের কথা বলছি, তখন পঞ্চাশের ঘরে বয়স ছিলো ওর। তিন মেয়েকে বিয়ে দিয়েছে। তাদের ঘরে নাতি-পুতিও হয়েছে। একদিন এক স্বদেশী মদের দোকানে বিদেশী মদ খেতে খেতে ব্যাটা বললে, দেখো আহমেদ, আমরা কি রোজ এক রেস্তোরাঁয় বসে খানা খাই? মোটেই না। আজ কাফে হংকংয়ে। কাল লা-শানীতে। পার কসবায়। রোজ মুখের স্বাদ পাল্টাচ্ছে। খাবারের ঘ্রাণ বদলে যাচ্ছে। সেখানেই তো আনন্দ। তুমি কি মনে করো মানুষ কি চিরকাল এক রকম খাবার খেয়ে সুখে থাকতে পারে?
+ </p>
+<br/>
+<p>
+ এখানে এসে একবার থামবে বুড়ো আহমদ হোসেন। বার্ধক্যের চাপে কুঞ্চিত চোখজোড়া আরো ছোট করে এনে, দাঁড়িয়ে অরণ্যে এক বন্য হাসি ছড়িয়ে সে আবার বলবে। ওর কথার গূঢ় অর্থ কিছু বুঝলে? আরে ভায়া, চোর যে চুরি করে, তারও একটা দর্শন আছে। খুনি যে খুন করে সেও জানে বিনা কারণে সে খুন করে নি। হাতের কাঠিটা মাটিতে পড়ে যেতে আবার অন্ধকার ঘনিয়ে এলো চারপাশে। আর আলো জ্বালতে সাহস পেলো না শওকত। দিয়াশলাইটা পকেটে ঢুকিয়ে রেখে ধীরে ধীরে উপরে উঠে এলো সে। বারান্দায় পাটি পেতে বসে আজমল আলীর বুড়ো মা নাতি-পুতিদের ডালিম কুমারের গল্প বলছে।
+ </p>
+<br/>
+<p>
+ তারপর ডালিম কুমার সাদা ধবধবে একটা ঘোড়ায় চড়ে, ছুটছে তো, ছুটছে তো ছুটছে। হঠাৎ সামনে পড়লো একটা বিরাট নদী। আর তার মধ্যে ইয়া বড় বড় ঢেউ। দেখে তো ডালিম কুমার মহাভাবনায় পড়ে গেলো।
+ </p>
+<br/>
+<p>
+ আরো দুটো সরু বারান্দা পেছনে ফেলে নিজের ঘরে এসে ঢুকলো শওকত। তারপর একখানা চেয়ার টেনে নিয়ে ধপ্ করে বসে পড়লো।
+ </p>
+<br/>
+
+
+<p>
+ এ বাড়িতে কত ভাড়াটে আছে কেউ বলতে পারবে না। কটা ঘর হিসেব করে দেখতে গেলে একটা লোক হয়তো একদিন ধরেও কোন খেই পাবে না। এক করিডোর দিয়ে ঘুরে ঘুরে বার বার সে ওই একই করিডোরে ফিরে আসবে। কিম্বা ঘর গুনতে গুনতে সে কোথায় গিয়ে হারিয়ে যাবে, আর ফিরে আসার পথ পাবে না।
+ </p>
+<br/>
+<p>
+ অনেকের সঙ্গে এ কবছরে আলাপ হয়েছে শওকতের। কারো নাম জানে। কারো জানে না। কারো সঙ্গে হঠাৎ রাস্তায় দেখা হলে স্মরণশক্তির বরাত ফ্লোরে হয়তো চেহারা দেখে চিনে ফেলে। এ বাড়ির ভাড়াটে। দু একটা কুশল সংবাদ বিনিময়। তারপর দুমাস নমাস আবার চার চক্ষুর মিলন হলো। তখন হয়তো চেনার চেষ্টা করেও বার বার ভুল হয়?
+ </p>
+<br/>
+<p>
+ দুয়ারে পায়ের শব্দ হতে ঘুরে তাকালো শওকত। মার্থা গ্রাহাম ভেতরে দাঁড়িয়ে। হাতে ধরে রাখা পিরিচে এক টুকরো পাউরুটি।
+ </p>
+<br/>
+<p>
+ ব্যাপার কি, অন্ধকারে বসে আছেন? মার্থা অবাক হলো। ঘরের কোণে রাখা হ্যারিকেনটা তুলে এনে শওকতের কাছ থেকে কাকি চেয়ে নিয়ে ঘরে আলো জ্বালালো মার্থা।
+ </p>
+<br/>
+<p>
+ হারিকেনটা টেবিলের ওপর রেখে দিয়ে বললো, রুটিটা খেয়ে নিন।
+ </p>
+<br/>
+<p>
+ হাতমুখ ধুয়ে অনেকটা সজীব হয়ে এসেছে মার্থা। পায়ের রঙটা কালো তেলতেলে। টানা টানা একজোড়া চোখ, হাল্কা ছিমছাম দেহ। তাকালে মনেই হয় না যে ওর বয়স তিরিশের গা ঘেঁষে এসে দাঁড়িয়েছে কালো মুখের ওপরে পাউডারের হাল্কা প্রলেপ বুলিয়েছে সে। ঠোঁটের কোণে ঈষৎ লাল লিপিস্টিক। হাত কাটা একটা গাউন পরেছে মার্থা। সোনালি চুলগুলো কাঁধের দুপাশে ছড়ানো। প্লেট থেকে রুটির টুকরোটা ওর হাতে তুলে দিয়ে মার্থা আর বললো চাকুরির কোন খোঁজ পেলেন?
+ </p>
+<br/>
+<p>
+ না।
+ </p>
+<br/>
+<p>
+ সেই ওষুধের কোম্পানিতে যাওয়ার কথা ছিলো আজ দুপুরে গিয়েছিলেন?
+ </p>
+<br/>
+<p>
+ হ্যাঁ।
+ </p>
+<br/>
+<p>
+ ওরা কি বলো?
+ </p>
+<br/>
+<p>
+ বললো, লোক নিয়ে নিয়েছে। কিছুক্ষণ কেউ কোন কথা বলতে পারলো না। শওকত এক দৃষ্টিতে হ্যারিকেনটার সলতেটার দিকে তাকিয়ে রইলো। মার্থা তার হাতের নখগুলো চেয়ে চেয়ে দেখলো। বাইরে বারান্দায় খুক করে শব্দ হতে সেদিকে ফিরে তাকালো মার্থা।
+ </p>
+<br/>
+<p>
+ কয়েক জোড়া সন্ধানী দৃষ্টি জানালার পাশ থেকে অন্ধকারে আত্মগোপন করলো। হারিকেনের আলোয় দাঁড়ানো মার্থা মৃদু হাসলো। তারপর সামনে ঝুঁকে পড়ে চাপা স্বরে বললো। একটা কথা বলবো, কিছু মনে করবেন নাতো?
+ </p>
+<br/>
+<p>
+ শওকত মুখ তুলে তাকালো এর দিকে, বলুন।
+ </p>
+<br/>
+<p>
+ মার্থা ইতস্তত করে বললো। যতদিন চাকরি না পান, আমার ওখানে খাবেন। কি দরকার শুধু শুধু দুটো চুলো জ্বালিয়ে?
+ </p>
+<br/>
+<p>
+ শওকত সহসা কোন জবাব দিতে পারলো না।
+ </p>
+<br/>
+<p>
+ ওকে চুপ করে থাকতে দেখে মার্থা আবার বললো, আমি এখন চলি, দেরি হলে আবার রাতকানা লোকটা বেঁকিয়ে উঠবে। আপনি কি বাইরে বেরুবেন?
+ </p>
+<br/>
+<p>
+ না, শওকত আস্তে করে জবাব দিলো।
+ </p>
+<br/>
+<p>
+ একটু পরে শূন্য পিরিচটা হাতে তুলে নিয়ে ঘর থেকে বেরিয়ে গেলো মার্থা। বলে গেলো, ওই কথা রইলো কিন্তু। শেষে ভুলে যাবেন না।
+ </p>
+<br/>
+<p>
+ ও চলে যাবার পর অনেকক্ষণ একঠায় বসে রইলো শওকত। মার্থাকে নিয়ে চিন্তে করলো। সেই কবে, কতদিন আগে আজ মনেও নেই। হয়তো সাত-আট বছর হবে। কিন্তু এগারো-বারো দেখতে তখন আরো অনেক সুন্দরী ছিলো মার্থা। রোজ সন্ধেবেলা বেকারিতে রুটি কিনতে আসতো। তখন থেকে ওকে চেনে শওকত। সেই সময় ওর সঙ্গে আলাপ পরিচয় হয়। মাঝে মাঝে মাকে সঙ্গে নিয়ে আসতো মার্থা। সে এক দজ্জাল শহিলা। মার্থা কিন্তু স্বীকার করতে চায় না। বলে, না মায়ের মনটা ছিলো ভীষণ নরখ। আপনারা তাকে খুব কাছে থেকে দেখেন নি কিনা তাই চিনতে ভুল করেছেন। আসলে কি জানেন, আমার মায়ের জীবনটা বড় দুঃখ কেটেছে। ভরা যৌবনে, মানে সেই যুদ্ধের শেষের দিকে মা হঠাৎ বাবাকে ছেড়ে দিয়ে এক নিগ্রোকে বিয়ে করে বসলেন। আমার বয়স তখন বারোতে পড়ি পড়ি করছে। মা আমাকে ত্যাগ করলেন না। সঙ্গে নিয়ে রাখলেন। আর এই নিগ্রোটা, বুঝলেন? অদ্ভুত লোক ছিলো সে। মাকে ভীষণ ভালোবাসতো। দূর থেকে কতদিন আমি তাকিয়ে তাকিয়ে দেখেছি। মাঝে মাঝে মনে হতো, মার বয়স বুঝি আমার চেয়েও কমে গেছে। মা ঘরময় ছুটোছুটি করতো। গলা ছেড়ে হাসভা। অকারণে বিছানায় গড়াগড়ি দিতো আর হঠাৎ কখনো কি খেয়াল হতো জানি না, দৌড়ে এসে আমাকে বুকের মধ্যে জড়িয়ে ধরে চুমোয় চুমোয় সারা মুখ ভরে দিতো আমার। একদিন একটা মজার কাণ্ড ঘটেছিলো। এখনো বেশ স্পষ্ট মনে আছে আমার। সেদিন, জানি না কি একটা সুখবর ছিলো। আমি বাইরে গিয়েছিলাম। ফিরে এসে দেখি, সেই নিগ্রোটা মাকে দুহাতে কোলে তুলে নিয়ে ঘরময় নেচে বেড়াচ্ছে। আমাকে দোরগোড়ায় দেখতে পেয়ে মা ভীষণ লজ্জা পেলো। চাপা স্বরে বললো, আহ কি করছো। ছেড়ে দাও? মার্থা দেখছে সব। আহ, ছাড়ো না! মার্থা।
+ </p>
+<br/>
+<p>
+ নিগ্রোটার কিন্তু কোন ভাবান্তর হলো না। সে একবার শুধু ফিরে তাকালো আমায় দিকে, তারপর মাকে নিয়ে পাশের ঘরে চলে গেলো। মা তার কোলের মধ্যে চটি করে বসে লজ্জায় রাঙা মুখখানা আমার থেকে আড়াল করে বললো, ছিঃ মেয়েটা কি ভাবছে বলতো।
+ </p>
+<br/>
+<p>
+ নিগ্রোটা কিছু বলালো না। শুধু ভেতর থেকে দরাটা অঙ্ক করে দিলো।
+ </p>
+<br/>
+<p>
+ তারপর।
+ </p>
+<br/>
+<p>
+ কি আশ্চর্য। একদিন সকালে নিগ্রোটা তার কাজে বেরিয়ে গেলো। আর ফিরলো না।
+ </p>
+<br/>
+<p>
+ একদিন। দুদিন এমনি করে একটি মাস, একটা বছর কেটে গেলো। যে গেলো সে আর এলো না। মা কান্নাকাটি করলেন। গির্জায় গিয়ে কতবার কত নামে যিশুকে ডাকলেন। কিন্তু কিছুই হলো না। পরে একদিন শুনলাম, সেই নিগ্রোটা তার দেশে, তার ছেলেমেয়ে আর বৌয়ের কাছে ফিরে গেছে।
+ </p>
+<br/>
+<p>
+ সেই থেকে মা যেন কেমন বদলে গেছেন। আর সব কিছুতেই আমাকে সন্দেহ করতে লাগলেন তিনি। আমি কোন ছেলের সঙ্গে একটু হেসে কথা বলতে গেলে তিনি ভীষণ রাগ করতেন। যেন আমি মস্ত বড় একটা অন্যায় কাজ করে ফেলছি এমনি একটা ভাব করতেন তিনি।
+ </p>
+<br/>
+<p>
+ হ্যাঁ, তাই যেদিন ওর মা সঙ্গে আসতো, সেদিন একেবারে চুপটি করে থাকতো মার্থা। কারো সঙ্গে কথা বলতো না। কোনদিকে তাকাতো না। আর যেদিন সে একা আসতো, সেদিন ওকে দেখে অবাক হতো সবাই। হাসছে। কথা বলছে। গুনগুন করে গানের কলি ভজছে। আর দুষ্টুমিভরা দৃষ্টি মেলে তাকাচ্ছে এদিক সেদিক।
+ </p>
+<br/>
+<p>
+ তারপর একদিন এক অক্সেন ওয়ালার ছেলে পিটার গোমেসের সঙ্গে বিয়ে হয়ে গেলো ওর। ভিক্টোরিয়া পার্কে গির্জায় অনেক আত্মীয় পরিজন পরিবেষ্টিত হয়ে পিটারের হাতে বিয়ের আংটি পরিয়ে দিলো মার্থা গ্রাহাম।
+ </p>
+<br/>
+<p>
+ তখন ওর চেহারায় অন্য এক জীবনের চমক এসেছে। স্বামীকে নিয়ে মার্কেটিংয়ে বেরোয় মার্থা। সিনেমায় যায়, রেস্তোরাঁয় খায়। রাতে বল নাচে।
+ </p>
+<br/>
+<p>
+ কিছুদিনের মধ্যে বেশ মুটিয়ে গেলো মার্থা। তারপর অনেকদিন ওর কোন খোঁজ পায়নি শওকত মাঝে একবার শুনেছিলো, একটা মৃত সন্তান প্রসব করেছে সে। ঢাকা ছেড়ে চাটগয়ে আছে স্বামীর সঙ্গে।
+ </p>
+<br/>
+<p>
+ এর মধ্যে একদিন বেকারিতে রুটি কিনতে এসে হু হু করে কেঁদে উঠলেন মার্থার মা। হিসেবের খাতাটা বন্ধ করে রেখে বোকার মতো ওর দিকে চেয়েছিলো শওকত। মার্থা মারা গেছে।
+ </p>
+<br/>
+<p>
+ আমার মেয়ে মার্থা, ও আর বেঁচে নেই। ব্যাগ থেকে একটা রুমাল বের করে চোখ মুছলেন তিনি। রুমাল ভিজে গেলো কিন্তু অর অবাঞ্ছিত বন্যা থামলো না।
+ </p>
+<br/>
+<p>
+ হারিকেনের সলতেটা আরো কমিয়ে দিয়ে ঘর ছেড়ে বারান্দায় বেরিয়ে এলো শওকত।
+ </p>
+<br/>
+<p>
+ নিচের সেই কলহ এখন থেমে গেছে। যার যার ঘরে ফিরে গেছে ওরা। নেড়ি কুত্তা দুটো উঠোনের এক কোণে যেখানে কয়েক জন জুয়াড়ি তাসের আসর জমিয়ে বসেছে সেখানে চুপচাপ দাঁড়িয়ে।
+ </p>
+<br/>
+<p>
+ একটা চোখ বন্ধ করে দিয়ে আরেক চোখের খুব কাছে এগিয়ে এনে সাবধানে তাস দেখছে খলিল মিস্ত্রী। কেউ যদি দেখে ফেলে সেই ভয়ে। সব কিছুতে অমনি সাবধানতা গ্রহণ করে সে। রোজ সকালে যখন কাজে বেরিয়ে যায় তখন বাইরে থেকে ঘরে তালা দিয়ে যায় খলিল মিস্ত্রী। বউ ভিতরে থাকে। রাতে বাইরে থেকে আসার সময় ঠোঙায় করে বউয়ের জন্যে সন্দেশ নিয়ে আসে খলিল। ওর চোখেমুখে আনন্দের চমক। তালা খুলে ঘরে ঢুকে বউকে অনেক আদর করে খলিল মিস্ত্রী। কাছে বসিয়ে সন্দেশ খাওয়ায়।
+ </p>
+<br/>
+<p>
+ বুড়ো আহমদ হোসেন বলে, এটাও একটা রোগ, বুঝলে? এক রকমের ক্ষুধা। একজনকে অনন্তকাল ধরে একান্ত আপন করে পাওয়ার অশান্ত ক্ষুধা। ঈর্ষা থেকে এর জন্ম। ঈর্ষার এর মৃত্যু। এ ব্যাটারা কবিতা পড়ে না বলেই এদের এই অধঃগতি। মনে নেই সেই কবিতাটা? সকলের তরে সকলে আমরা, প্রত্যেকে আমরা পরের তরে। আবার সেই হাসি। কালচে দাঁতের ফাঁকে হাসছে বুড়ো আহমদ হোসেন।
+ </p>
+<br/>
+<p>
+ শওকত দেখলো, তিনটে তাসকে পরম যত্নে হাতের চেটোর মধ্যে আঁকড়ে ধরে খুঁটিয়ে দেখছে খলিল মিস্ত্রী। সে যদি জানতো, যে লোকটি তার পাশে বসে তাস খেলেছে; যার সঙ্গে দিনের পর দিন সে হাসি-ঠাট্টা আর কৌতৃকে মশগুল হয়ে পড়েছে, সে লোকটা আজ সন্ধ্যার অন্ধকারে সিঁড়ির নিচে তার বউকে নিয়ে শুয়েছিলো। সে যদি জানতো, যে। তালা দিয়ে সে তার বউকে রোজ বন্ধ করে যায় তার আরেকটা চাবি এর মধ্যে তৈরি হয়ে। গেছে, তাহলে?
+ </p>
+<br/>
+<p>
+ খলিল মিস্ত্রী এর কিছু জানে না। হয়তো কোনদিন জানবেও না। তার অজ্ঞানতা তাকে শান্তি দিক।
+ </p>
+<br/>
+<p>
+ নিচে, থিয়েটার কোম্পানির ছেলেমেয়েরা গ্রামোফোনের রেকর্ড বাজিয়ে নাচের মহড়া দিচ্ছে। কয়েকটা ছেলে-বুড়ো-মেয়ে এসে জুটেছে সেখানে। মহড়া দেখছে। হাসছে। কথা বলছে।
+ </p>
+<br/>
+<p>
+ বেশ আছে ওরা। শওকত ভাবলো।
+ </p>
+<br/>
+<p>
+ বউ-মারা কেরানিটা উঠোন পেরিয়ে উপরে আসছে। রোজকার মতো আজও দেশি মদ গিলে এসেছে সে। পা টলছে। ঠোঁট নড়ছে। পরনের পাঞ্জাবিটা পানের পিকে ভরা। শওকতের গা ঘেঁষে নিজের ঘরের দিকে এগিয়ে গেলো সে। এর পরের-অনুচ্ছেদটুকু অনায়াসে অনুমান করে নিতে পারে শওকত।
+ </p>
+<br/>
+<p>
+ বউ-মারা কেরানিটা ধীরে ধীরে তার ঘরে ঢুকবে। কিছুক্ষণ কোন সাড়া পাওয়া যাবে। তারপর হঠাৎ তার রুগ্ন বউটির কান্নার আওয়াজ শোনা যাবে। বালিশে মুখ চেপে কাঁদবে সে।
+ </p>
+<br/>
+<p>
+ তাসের জুয়ো যেমনি চলছিলো, তেমনি চলবে।
+ </p>
+<br/>
+<p>
+ নাচের মহড়া থামবে না।
+ </p>
+<br/>
+<p>
+ মাওলানা সাহেব বারান্দায় বসে একমনে তছবি পড়ে যাবেন।
+ </p>
+<br/>
+<p>
+ শুধু উঠোনে বসে থাকা নেড়ি কুত্তা দুটো উপরের দিকে ঘেউ ঘেউ করবে। আর বাইরের রকে বসা কুষ্ঠ রোগীটার দু চোয়ালের ছিদ্র দিয়ে একটানা লাভা ঝরবে।
+ </p>
+<br/>
+<p>
+ নির্লিপ্ত রাত্রির নীরবতায় শিহরণ তুলে রুগ্ন বউটি আরো অনেকক্ষণ ধরে কাঁদবে। তারপর যখন তার কান্না বন্ধ হয়ে যাবে, তখন রাতকানা লোকটার দোকান-ঘরে তালা দিয়ে বাড়ি ফিরে আসবে মার্থা। মার্থা গ্রাহাম। মায়ের দেয়া নাম।
+ </p>
+<br/>
+<p>
+ আলনা থেকে ময়লা জামাটা নামিয়ে নিয়ে পরলো শওকত। শুকনো চুলের ভেতরে আঙ্গুলের চিরুনি বুলিয়ে নিলো। বাইরে বেরুবে সে। গন্তব্যের কোন নির্দিষ্ট সীমা নেই।
+ </p>
+<br/>
+<p>
+ হয়তো একবার সেই পুরানো বেকারিতে যাবে। কিম্বা, লঞ্চ কোম্পানির অফিসে না হয় গুজরাটী সাহেবের ওষুধের দোকানে।
+ </p>
+<br/>
+<p>
+ একটা চাকুরি ওর বড় দরকার। ভাবতে গিয়ে নিজের মনে স্নান হাসলো শওকত। গত উনিশ বছর ধরে অনেক চড়াই উত্রাই পেরিয়েও এখনো জীবনের একটা স্থিতি এলো না। প্রথমে খিদিরপুরের জাহাজ ঘাটে, তারপর এক বাঙালি বাবুর আটা-কলে। মাঝে কিছুকাল একটা রেলওয়ে অফিসে! হাইল ক্লার্ক। তারপর কোন এক নামজাদা রেস্তোরাঁ কাউন্টারে। ছমাস। সেটা ছেড়ে এক মলম কোম্পানির দালালি করেছে অনেক দিন। এক শহরে থেকে অন্য শহরে। ট্রেনে, টমাৱে। এরপর বছর দুয়েক জনৈক সূতো ব্যবসায়ীর সঙ্গে কাজ করেছে শওকত। তারপর আগাখানী আহমদ ভাইয়ের আধুনিক বেকারিতে। ওখানে বেশ ছিলো কিন্তু শেষ পর্যন্ত টিকতে পারলো না। ছেড়ে দিয়ে একটা আধা সরকারী ফার্মে টাইম ক্লার্কের চাকুরি নিলো শওকত। দশটা-পাঁচটা অফিস। মন্দ লাগতো না। কিন্তু ফাটা কপাল। বেতন বাড়ানোর ব্যাপার নিয়ে একদিন বড় সাহেবের সঙ্গে তুমুল ঝগড়া হয়ে গেলো। আর তার খেসারত দিতে গিয়ে সাত দিনের নোটিশে সে অফিস ছাড়তে হলো। সেই থেকে আবার বেকার।
+ </p>
+<br/>
+<p>
+ ঘর থেকে বারান্দায় পা দিতেই একজন মোটা মহিলা ঝাড় হাতে চিৎকার করতে করতে সামনে দিয়ে জুটে গেলো। একটা বাচ্চা ছেলেকে তাড়া করছে সে। একটা বিড়াল ওদের পিছু পিছু দৌড়চ্ছে। সিঁড়ি দিয়ে নামার বাকে তিন হাত উঁচুতে দুপাশে দুটো জানালা। একটা জানালা থেকে আরেকটা জানালায় কে যেন এক টুকরো কাগজ ছুঁড়ে দিলো। সেটা যথাস্থানে না পোঁছে শওকতের সামনে এসে পড়লো। একেবারে পায়ের কাছে।
+ </p>
+<br/>
+<p>
+ মুখ তুলে উপরে তাকালো শওকত।
+ </p>
+<br/>
+<p>
+ স্কুল মাস্টার মতিন সাহেবের মেয়ে জাহানারা জানালার পেছন থেকে মুখ বের করে তাকে দেখে সঙ্গে সঙ্গে মুখটা সরিয়ে নিলো।
+ </p>
+<br/>
+<p>
+ আড়চোখে অন্য জানালার দিকে দৃষ্টি সরিয়ে নিলো শওকত।
+ </p>
+<br/>
+<p>
+ আজমল আলীর ছেলে হারুন ভয় পেয়ে তাড়াতাড়ি জানালাটা বন্ধ করে দিলো।
+ </p>
+<br/>
+<p>
+ সিঁড়ি থেকে কাগজের টুকরোটা হাতে তুলে নিলো শওকত! খুলে দেখলো একখানা চিঠি।
+ </p>
+<br/>
+<p>
+ মেয়েলী হাতের গুটি গুটি লেখা। রাতে সবাই ঘুমিয়ে পড়লে ছাদে এলো। অনেক কথা আছে। দেখা হলে সব বলবো।
+ </p>
+<br/>
+<p>
+ চিঠিখানা ধীরে ধীরে আবার বন্ধ করলো শওকত। উপরে চেয়ে দেখলো, জাহানারার অর্ধেকটা মুখ আর একজোড়া ভয়ার্ত চোখ অধীর আগ্রহে ওর দিকে তাকিয়ে রয়েছে!
+ </p>
+<br/>
+<p>
+ চিঠিটা বন্ধু জানালার কার্নিশে রেখে দিয়ে নিচে নেমে গেল শওকত। করিডোরে একটা বাচ্চা ছেলে টা টা করে কাঁদছে। ঝাড়ু হাতে মহিলা গজ গজ করতে করতে ফিরে যাচ্ছে উপরের দিকে। বিড়ালটা এখনো ওর পিছু পিছু চলেছে।
+ </p>
+<br/>
+<p>
+ মার্থার ঘরের দরজায় ছোট্ট একটা তালা ঝুলছে। সূর্য উঠার সঙ্গে সঙ্গে বেরিয়ে গেছে সে। আজ দু বছর ধরে রাতকানা লোকটার ওষুধের দোকানে কাজ করছে সে। চাটগাঁয়ের খালেদ খান যেদিন তাকে সহায়-সম্বলহীন অবস্থায় ফেলে পালিয়ে গেলো সেদিন চারপাশে অন্ধকার দেখেছিলো মার্থা।
+ </p>
+<br/>
+<p>
+ এ চাকুরিটা পেয়ে বেঁচে গেছে সে।
+ </p>
+<br/>
+<p>
+ মৃত মার্থা। তাকে দেখে প্রথম দিন চমকে উঠেছিলো শওকত।
+ </p>
+<br/>
+<p>
+ কুড়ি একুশ বছরের একটা সুদর্শন ছেলের সঙ্গে এ বাড়িতে এসে উঠলো মার্থা। ঘর ভাড়া নিলো। স্বামী-স্ত্রী বলে পরিচয় দিলো সবার কাছে। বেশ ছিলো ওরা।
+ </p>
+<br/>
+<p>
+ একদিন ওকে একা পেয়ে শওকত জিজ্ঞেস করলো। মার কাছ থেকে শুনেছিলাম আপনি মারা গেছেন। সামনে এখন ভূত দেখছি নাতো?
+ </p>
+<br/>
+<p>
+ মা মার কথা বলবেন না। মার্থা ঐ কুকে বললো। নিজের ব্যাপারে সবাই অমন অন্ধ হয়। মা যখন বাবাকে ছেড়ে সেই নিগ্রোটার সঙ্গে পালিয়ে গিয়েছিলো, তখন কোন অন্যায় হয়নি আর আমি গোমেসকে ছেড়ে মস্ত বড় পাপ করে ফেলেছি, তাই না?
+ </p>
+<br/>
+<p>
+ ও! শওকত সঙ্গে সঙ্গে জবাব দিলো। তাহলে লোকে যা বলছে সব সত্যি।
+ </p>
+<br/>
+<p>
+ কি?
+ </p>
+<br/>
+<p>
+ আপনি এই ছেলেটিকে বিয়ে করেছেন।
+ </p>
+<br/>
+<p>
+ না, বিয়ে এখনো হয়নি। হাবে। এখানে এসে থামলো না মার্থা! যেন তার মনের অনেক জমে থাকা কৃথা কারো কাছে ব্যক্ত করে হাল্কা হতে চাইছিলো সে। তাই বললো, মায়ের ইচ্ছেকে সম্মান দিতে গিয়ে গোমেসকে বিয়ে করেছিলাম আমি। মিথ্যে বলবো না, ওর সঙ্গে আমি সুখেই ছিলাম। আমি খা চাইতাম সব দিতো সে। যা বলতাম সব করতো। স্বামী হিসেবে ওর কোন দোষ আমি এখনো দিইনে। খালেদের সঙ্গে গোমেস নিজে আমাকে আলাপ করিয়ে দিয়েছিলো। একদিন রাতে এটা বল নাচের আসরে। বলতে গিয়ে থামলো মার্থা, মুহূর্ত কয়েকের জন্যে কি যেন চিন্তা করলো সে। তারপর হঠাৎ করে বললো। কি আশ্চর্য দেখুন তো, আপনারা সবাই আমাকে কালো বলে ক্ষ্যাপাতেন। মা বলতেন, আমার গায়ের রঙটা নাকি রীতিমত কুৎসিত। গোমেস অবশ্য এ ব্যাপারে কিছুই বলতো না। আর খালেদ, ওর কথা কি বলবো আপনাকে, ও অতি বড় ভালোবাসে আমায়, নইলে আমার গায়ের এই কালো রঙের কেউ এত প্রশংসা করতে পারে? আমার চোখের মধ্যে ও কি পেয়েছিলো জানি না। বলতে গিয়ে ঈষৎ প্রজ্জা পেলো মার্থা। মুখখানা নামিয়ে নিয়ে বললো। ও বলতে। এত সুন্দর চোখ ও নাকি এ জীবনে দেখেনি। জানেন? রোজ একটা করে ও চিঠি দিতো আমায়, আর কোনদিল আমাকে একা কাছে পেলে এমন বাড়াবাড়ি করতো যে, আমি নিজেই অপ্রস্তুত হয়ে যেতাম।
+ </p>
+<br/>
+<p>
+ এরপর অনেকক্ষণ চুপ করে থেকে মার্থা বললো। আজ বিকালে এ আসুক আপনার সঙ্গে আলাপ করে দেবো।
+ </p>
+<br/>
+<p>
+ তারপর। একমাস। দুমাস তিন মাস।
+ </p>
+<br/>
+<p>
+ ইতিহাসের পুনরাবৃত্তি ঘটে সত্যি। কিন্তু মার্থার জীবনে তার মায়ের ইতিহাসের পুনরাবৃত্তি অমন অবিকলভাবে ঘটে যাবে সে কথা মার্থা কেন শওকতও কোনদিন কল্পনা করতে পারে নি।
+ </p>
+<br/>
+<p>
+ করিডোর পেরিয়ে উঠোন, গিজ গিজ করছে লোকে।
+ </p>
+<br/>
+<p>
+ কেউ কাঠ কাটছে। কেউ থালাবাসন মাজছে। কেউ জুলো ধরিয়েছে। কেউ চান করছে।
+ </p>
+<br/>
+<p>
+ বউ-মারা কেরানির মার খাওয়া বউটি কলের পাশে দাঁড়িয়ে। মাথায় একটা লম্বা ঘোমটা। যেন তার ক্ষতভরা মুখখানা সবার কাছ থেকে আড়াল করে রাখার জন্যে এটা অত লম্বা করে টেনে দিয়েছে সে।
+ </p>
+<br/>
+<p>
+ থিয়েটার পার্টির একটি মেয়ে বারান্দায় দাঁড়িয়ে চুল ঝাড়ছে। ঘরের মধ্যে একটা পুরানো গ্রামোফোনে রেকর্ড বাজাচ্ছে ওর সঙ্গীরা ভালবাসা মোরে ভিখারি করেছে, তোমারে করেছে রাণী। উঠোন পেরিয়ে সামনের করিডোরে এসে পড়লো শওকত।
+ </p>
+<br/>
+<p>
+ বউ-মারা কেরানিটা বাজার থেকে ফিরছে।
+ </p>
+<br/>
+<p>
+ জুয়াড়িদের একজন তাকে জিজ্ঞেস করলো। মাছ কত দিয়ে কিনেছেন?
+ </p>
+<br/>
+<p>
+ কেরানি জবাব দিলো, বারো আনা।
+ </p>
+<br/>
+<p>
+ জুয়াড়ি বললো। খুব সস্তায় পাইলেন দেখি।
+ </p>
+<br/>
+<p>
+ বাড়ির সদর দরজা পেরিয়ে নেমে এলো শওকত।
+ </p>
+<br/>
+<p>
+ এক ফালি রোদের মধ্যে কুষ্ঠ রোগীটা চুপচাপ বসে। হাত পায়ের নখ খুঁটছে আর পিটপিট করে তাকাচ্ছে চারপাশে। অদূরে কয়েকটা বাচ্চা ছেলেমেয়ে মার্বেল নিয়ে খেলছে।
+ </p>
+<br/>
+<p>
+ শওকত রাস্তায় নেমে পকেট থেকে একটা বিড়ি বের করে তাতে আগুন ধরালো।
+ </p>
+<br/>
+</div>
+<h2>
+ দ্বিতীয়
+ </h2>
+<br/>
+<h2>
+ কয়লা কুড়োন ছেলেমেয়ের দল
+ </h2>
+<hr/>
+<br/>
+
+<div>
+<p>
+ কয়লা কুড়োন ছেলেমেয়ের দল ঝুড়ি মাথায় বাড়ি ফিরছে।
+ </p>
+<br/>
+<p>
+ নিজেদের মধ্যে অনর্গল কথা বলে চলেছে এরা। রেলওয়ে ইয়ার্ডের কালো ধোয়ার ফাঁকে আকাশ দেখা যায় না। চারপাশে ইঞ্জিনের সিটি আর পুশ পুশ শব্দ। বিকেলের রোদে চিকচিক করছে রেল লাইনগুলো। একটা দুটো করে সেগুলো ডিঙিয়ে সামনে এগিয়ে যাচ্ছিলো শওকত? মুখ তুলে তাকালে দেখলো, অদূরে একটা পানির ট্যাঙ্কের নিচে হারুন আর জাহানারা। নিবিড় ভঙ্গীতে পায়চারি করছে আর কি যেন আলাপ করছে ওরা।
+ </p>
+<br/>
+<p>
+ শওকতের পায়ের গতি শ্লথ হয়ে গেলো।
+ </p>
+<br/>
+<p>
+ চারপাশে কত লোক আসছে, যাচ্ছে, কারো প্রতি ক্ষেপ নেই। নিবিষ্ট মনে দুজনে দুজনের কথা শুনছে। বলছে। এরই নাম বুঝি ভালাবাসা শওকত ভালো। আর ভাবতে গিয়ে নিজের জীবনের একটা অসম্পূর্ণ ছবি সহসা স্মৃতির কোণে উঁকি দিয়ে গেলো ওর। শহরে নয় গ্রামে।
+ </p>
+<br/>
+<p>
+ আমন ধানের মরশুম তখন। সারা মাঠ জুড়ে সোনালি ফসলের সমারোহ। চাষিরা দল বেঁধে ধান কাটছে। গলা ছেড়ে গান গাইছে। ভারায় ভারায় ধান কাধে করে বয়ে এনে বাড়ির উঠোনে পালা দিচ্ছে ওয়া। ওদের মুখে হাসি, কোমরে লাল গামছা জড়ানো। সবার চলার মধ্যে একটা চপল ভঙ্গী। ব্যস্ততার ভাব। চাষী-বউদের পরনে লাল পাড়ের চেক শাড়ি। উঠোনে গরু দিয়ে ধান মাড়াচ্ছে ওরা। রোদে মেলে দিয়ে শোকোচ্ছে সেগুলো। দল বেঁধে ধান ভানছে ঢেঁকিতে।
+ </p>
+<br/>
+<p>
+ সবার চোখে মুখে মানে এক অসীম আনন্দের আমেজ। তার মাঝে একটি মেয়ে। অনেকটা যেন এই জাহানারার মতো দেখতে। শেখদের ছোট মেয়ে আয়েশা। বারো ছাড়িয়ে তোয়োয় পড়ছে। যৌবনের প্রথম ঢেউ এসে সবে তার দেহে প্রথম চুম্বন এঁকে দিয়ে গেছে। তার অপুষ্ট বুকে আর অপূর্ণ অধরে তখনো কারো ছোয়া লাগে নি। শীতের শিশির ঝরা সকালে বাড়ি বাড়ি মোয়া বিক্রি করে বেড়াতো সে। হঠাৎ কখনো গাছের ডালে পাখি ডেকে উঠলে চমকে সেদিকে তাকাতো। দূরে কোন রাখালিয়া বাঁশির শব্দ শুনলে ক্ষণিকের জন্যে থমকে দাঁড়াতে মেয়েটি। ধান ক্ষেতের আলপথ ধরে হাঁটতে গিয়ে কখনো কোন দমকা বাতাসে গায়ের আঁচলখানা সরে যেতে লজ্জায় রাঙা হয়ে চারপাশে সভয়ে দেখতে আয়েশা। কেউ দেখে ফেললো নাতো?
+ </p>
+<br/>
+<p>
+ তখনো সারা গাঁয়ে নবান্নের উৎস। চাষী-বউরা রসের সিন্নি রেঁধে মসজ্জিদে পাঠাচ্ছে। বাড়ি বাড়ি নতুন গুড়ের পিঠে তৈরি করছে ওরা। রাতভর পুঁথি পড়া আর কবি গানের আসর।
+ </p>
+<br/>
+<p>
+ এমনি সময়ে আয়েশার খবর শুনে আঁতকে উঠলে সবাই। গ্রাম ছেড়ে দলে দলে মাঠে ছুটে এলো ছেলে বুড়ো মেয়ে। সোনালি ধানের বুক উঁচু ক্ষেত। তার মাঝখানে শুয়ে জীবনের শেষ ঘুম ঘুমাচ্ছে আয়েশা। চারপাশের পাকা ধান গাছগুলো
+ </p>
+<br/>
+<p>
+ জুড়ে মাটির সঙ্গে মিশে আছে। অনেকগুলো পাকা ধান ঝরে পড়ে আছে শুকনো মাটির বুকে! যে টুকরিতে করে মোয়া বিক্রি করতো সেটাও পাওয়া গেলো অদূরে। মোয়গুলো সব ছড়িয়ে আছে চারপাশে। সোনালী ধানের কোলে শুয়ে আছে আয়েশা! ওর সারা মুখে অসংখ্য আঁচড়ের দাগ। ওর অপুষ্ট স্তনের কোল ঘেঁষে দুটো ক্ষত। রক্তের একজোড়া ফিনকি বোটা ছুঁয়ে গড়িয়ে পড়েছে একগোছা ধানের শীষের উপরে।
+ </p>
+<br/>
+<p>
+ হঠাৎ একটা ট্রেনের তীব্র হুইসেলের শব্দে সম্বিত ফিরে পেলো শওকত। ও যে লাইনে দাঁড়িয়ে সেদিকে এগিয়ে আসছে ট্রেনটা ইঞ্জিনের ভেতর থেকে মুখ বের করে বুড়ো ডাইভার চিৎকার করে উঠলো আন্ধ্যে হোয়া?
+ </p>
+<br/>
+<p>
+ শওকত তাকিয়ে দেখলো, জাহানারা আর হারুন অবাক হয়ে ওর দিকে চেয়ে রয়েছে। এতক্ষণের একান্ত ঘনিষ্ট আলাপে ওদের ছন্দপতন ঘটলো।
+ </p>
+<br/>
+<p>
+ শওকত নিজেই যেন লজ্জা পেলো। কোন দিকে যাবে ঠিক করতে না পেরে যেদিক থেকে এসেছিলো সেদিকে ফিরে গেল শওকত।
+ </p>
+<br/>
+
+
+<p>
+<strong>
+ কা
+ </strong>
+<strong>
+ উন্টারে অনেক
+ </strong>
+<strong>
+ লো
+ </strong>
+<strong>
+ কের ভি
+ </strong>
+<strong>
+ ড়
+ </strong>
+</p>
+<br/>
+<p>
+ সবার সঙ্গে একগাল হেসে কথা বলছে মার্থা। সবার সব রকমের চাহিদা চটপট পূরণ করতে হচ্ছে ওকে। ক্রেতাদের হাত থেকে প্রেসক্রিপশনটা নিয়ে এক নজর চোখ বুলিয়েই শো কেসের দিকে এগিয়ে যাচ্ছে সে। স্যরি কড লিভার অয়েল ফুরিয়ে গেছে। বিকাডেক্স আছে। বসুন, এক্ষুণি দিচ্ছি।
+ </p>
+<br/>
+<p>
+ কি বললেন? হ্যাঁ, সকালে একটা। দুপুরে একটা ব্রার রাতে ঘুমোবার আগে একটা। আচ্ছা থ্যাঙ্কস। পয়সাগুলো নিয়ে গিয়ে রাতকানা লোকটার হাতে পৌঁছে দিয়ে আবার কাউন্টারে ফিরে আসচ্ছে মার্থা।
+ </p>
+<br/>
+<p>
+ গুড ইভিনিং মিস্টার হোসেন, আপনার শরীর এখন কেমন আছে, ভালোতো?
+ </p>
+<br/>
+<p>
+ মার্থার চোখেমুখে অফুরন্ত হাসির ফোয়ারা।
+ </p>
+<br/>
+<p>
+ ওটাই ওর কাজ।
+ </p>
+<br/>
+<p>
+ ক্রেতাদের অসন্তুষ্ট করলে চলবে না। তাদেরকে সব সময় খুব আদরে সোহাগে সম্বোধন করতে হবে। যেন একবার এ দোকানে এলে বারবার ফিরে আসে।
+ </p>
+<br/>
+<p>
+ বুড়ো আহমদ হোসেন বলে, শালার বিকার। বিকার। সব ব্যাটা বিকারে ভুগছে। মেয়ে দেখিয়ে টাকা রোজগারের ফন্দি, খদ্দের বাড়ানোর কারসাজি। পনেরো বছর ধরে অলি-গলি সব চষে ফেললাম আর এই সহজ জিনিসটা বুঝতে পারিনে। শোন, এক কেরানির কিচ্ছা বলি। বেতন মাসে দেড়শো টাকা পায়। পরিবারে পুষ্যি হলো আটজন। সত্তর টাকা বাড়ি ভাড়া দিতে হয়, রইলো কত? আশি টাকা। ওই আশি টাকায় আটটি মানুষ এই শহরে বেঁচে থাকতে পারে? পারে না। কিন্তু পারছে। ঠিক পেরে যাচ্ছে। বলবে সেটা কেমন করে। তাহলে শোন, সেই কেরানির একটি মেয়ে আছে। মেয়েটি সবে পনেরোয় পড়ি পড়ি করছে। যখনি টাকার টান পড়ে তখনি পিতৃদেব কন্যাকে সাজিয়ে-গুজিয়ে সামনের মেসে পাঠিয়ে দেন। না, কোন খারাপ উদ্দেশ্য নিয়ে নয়। টাকা ধার চাইতে। আর ওই যে মেসের কথা বললাম, ওখানে থাকে আট দশটি জোয়ান ছেলে। তিরিশের ধারে পাশে বয়স। বউ চালাবার মুরোদ নেই বলে বিয়ে করতে সাহস পাচ্ছে না, কিন্তু হাজার হোক পুরুষ মানুষতো, মেয়ে দেখলেই মজে যায়। হাতে টাকা না থাকলেও অন্যের কাছ থেকে ধার করে এনে মেয়েটিকে ধার দেয়। তারপর ধরো একদিন সে টাকা ফেরত চাইতে এলো কেউ। পিতৃদেব বাড়িতে থেকেও নেই। দরজা খুলে মেয়েটি সামনে এসে দাঁড়ালো। করুণ চোখ জোড়া মেলে তাকালো ছেলেটির দিকে।
+ </p>
+<br/>
+<p>
+ ব্যাস। আর কি চাই। ছেলের মস্তিষ্ক ততক্ষণে গুলিয়ে গেছে। বলতে গিয়ে বিকার গ্রস্ত রোগীর মতো বার বার হাসে বুড়ো আহমদ হোসেন।
+ </p>
+<br/>
+<p>
+ বাইরের ফুটপাথে দাঁড়িয়ে অনেকক্ষণ ধরে কাউন্টারে দাঁড়ান মার্থার ব্যস্ততা লক্ষ্য করলো শওকত। তারপর ভেতরে পা দিতেই মার্থার চোখ পড়লো ওর দিকে।
+ </p>
+<br/>
+<p>
+ এসসা, আস্তে করে ওকে কাছে ডাকলো মার্থা। দেয়াল ঘড়িটার দিকে এক নজর তাকিয়ে নিয়ে বললো, মিনিট দশেক তোমাকে বসতে হবে। তারপর আমার ছুটি।
+ </p>
+<br/>
+<p>
+ আরেকজন খদ্দেরের হাত থেকে প্রেসক্রিপশন নিয়ে আবার কাজে লেগে গেলো মার্থা। শওকত বললো, আমি তাহলে একটু ঘুরে আসি।
+ </p>
+<br/>
+<p>
+ ঘুরে আসার নাম করে আবার চলে যেও না যেন। শশা-কেস থেকে কি একটা ওষুধ খুঁজতে গিয়ে জবাব দিলো মার্থা।
+ </p>
+<br/>
+<p>
+ শওকত বললো, না এই বাইরের ফুটপাথে ঘুরবো।
+ </p>
+<br/>
+<p>
+ মার্থা বললো, থ্যাঙ্কস্। ওকে নয়, একজন গ্রাহককে। কাল রাত থেকে ওরা আপনির পালা চুকিয়ে দিয়ে দুজনে দুজনকে তুমি বলে সম্বোধন করছে।
+ </p>
+<br/>
+<p>
+ প্রেম নয়। এমনি।
+ </p>
+<br/>
+<p>
+ কাল রাতে ভাত খেতে বসে মার্থা বলছিলো, না, আপনি আর আমাকে আপনি আপনি করবে না তো, ভীষণ খারাপ লাগে।
+ </p>
+<br/>
+<p>
+ ঠিক আছে, আজ থেকে না হয় তোমাকে তুমিই বলবো।
+ </p>
+<br/>
+<p>
+ শওকত সঙ্গে সঙ্গে জবাব দিয়েছে। অবশ্য তুমি যদি আবার আপনি করে ডাকো, তাহলে কিন্তু সব গোলমাল হয়ে যাবে।
+ </p>
+<br/>
+<p>
+ কেন? আমি আপনার চেয়ে বয়সে ছোট। আমি যদি আপনি বলি, সেটা ভালোই দেখাবে।
+ </p>
+<br/>
+<p>
+ ভালো মন্দ বুঝিনে বাবা। বুড়ো আহমদ হোসেনের কাছে গিয়ে একদিন শুনে এসো। ছোট বড় বলে কিছু নেই। খোদা আমাদের সবাইকে এক সঙ্গে তৈরি করেছেন। শুধু দুনিয়াতে পাঠবার সময় একটু আগে পরে পাঠাচ্ছেন। বুঝলে?
+ </p>
+<br/>
+<p>
+ শুনে শব্দ করে হেসে উঠেছিলো মার্থা। তোমার কি মার্থা খারাপ হয়েছে?
+ </p>
+<br/>
+<p>
+ হয়নি। তবে এভাবে আরো মাস কয়েক বেকার থাকলে মার্থাটা আপনা থেকেই খারাপ হয়ে যাবে। বলতে গিয়ে গলায় ভাত আটকে গিয়েছিলো ওর।
+ </p>
+<br/>
+<p>
+ এক গ্লাস পানি ওর দিকে এগিয়ে দিয়ে মার্থা উৎকণ্ঠিত স্বরে বলেছিলো, কি হলো?
+ </p>
+<br/>
+<p>
+ ও কিছু না। পানিটা খেয়ে নিয়ে শওকত জবাব দিয়েছিলো। অন্যের রোজগারের ভাত ততা, গলা দিয়ে সহজে নামতে চাইছে না। কথাটা বলে ফেলে নিজেই অপ্রস্তুত হয়ে গিয়েছিলো সে।
+ </p>
+<br/>
+<p>
+ মার্থা কিন্তু সহসা কোন জবাব দিতে পারে নি। শুধু একবার চমকে তাকিয়েছিলো ওর দিকে। তারপর অনেকক্ষণ চুপ করে থেকে ধীরে ধীরে বলেছিলো, আমি তো তোমাকে বিনে পয়সায় খাওয়াচ্ছিনে। যে দিন টাকা আসলে হাতে, হিসেব করে সব চুকিয়ে দিয়ো।
+ </p>
+<br/>
+<p>
+ তারপর আর একটা কথাও বলে নি মার্থা।
+ </p>
+<br/>
+<p>
+ সকালে যখন ওর ঘরে চা আর নাস্তা পৌঁছে দিতে গিয়েছিলো তখন চুপ করে ছিলো সে। ওকে নিঃশব্দে চলে যেতে দেখে শওকত পেছন থেকে ডেকেছিলো, শোন।
+ </p>
+<br/>
+<p>
+ কি।
+ </p>
+<br/>
+<p>
+ বিকেলে দোকানে থাকবে তো?
+ </p>
+<br/>
+<p>
+ কেন?
+ </p>
+<br/>
+<p>
+ না এমনি। ভাবছিলাম ওদিকে একবার যাবো।
+ </p>
+<br/>
+<p>
+ দশ মিনিটের কথা বলে আধঘণ্টা পরে বাইরে বেরিয়ে এলো মার্থা। শওকত তখনো ফুটপাতে পায়চারি করছে।
+ </p>
+<br/>
+<p>
+ অনেক দেরি করিয়ে দিলাম তোমার, পেছন থেকে এসে বললো মার্থা। তুমি নিশ্চয় ফুটপাতে দাঁড়িয়ে দাঁড়িয়ে আমার শ্রাদ্ধ করছিলে, তাই না?
+ </p>
+<br/>
+<p>
+ হ্যাঁ, করছিলাম বৈকি।
+ </p>
+<br/>
+<p>
+ সত্যি? মার্থারের চোখে মুখে হাসি। আজ সকালের মার্থা যেন বিকেলে এসে অনেক বদলে গেছে। একটা ফুটপাত ছেড়ে আরেকটাতে পা দিয়ে মার্থা বললো, শোন, এখন বাসায় ফিরবো না। একটা ছবি দেখবো আজ।
+ </p>
+<br/>
+<p>
+ ছবি।
+ </p>
+<br/>
+<p>
+ সিনেমা?
+ </p>
+<br/>
+<p>
+ হ্যাঁ? তোমার যদি কোন আপত্তি না থাকে। অবশ্য টিকেটের টাকাটা আমি পরে তোমার কাছ থেকে কেটে নেবো। ভয় পেয়ো না। বন্ধু-বান্ধবদের মধ্যে এ রকম বাকি-বকেয়া চলে।
+ </p>
+<br/>
+<p>
+ শওকত বুঝলো। সুযোগ পেয়ে ওকে একটা খোঁচা দিলো মার্থা। সারাদিন কি করে কাটালে? পথ চলতে চলতে মার্থা আবার শুধালো।
+ </p>
+<br/>
+<p>
+ শওকত বললো, রোজ যেমন কাটে।
+ </p>
+<br/>
+<p>
+ কোথাও গিয়েছিলে?
+ </p>
+<br/>
+<p>
+ হ্যাঁ।
+ </p>
+<br/>
+<p>
+ কিছু হলো।
+ </p>
+<br/>
+<p>
+ না।
+ </p>
+<br/>
+<p>
+ কিছুক্ষণ চুপ করে রইলো দুজনে। সিনেমা হলের সামনে এসে মার্থা বললো, আজ আমি তোমার কথা একজনকে বলেছি।
+ </p>
+<br/>
+<p>
+ কে।
+ </p>
+<br/>
+<p>
+ তুমি চিনবে না। আমাদের একজন পার্মেনেন্ট খদ্দের, সরকারী অফিসের কর্তা ব্যক্তি, দুচারটে লোককে চাকুরি দেয়ার ক্ষমতা আছে ওর।
+ </p>
+<br/>
+<p>
+ কি বললে?
+ </p>
+<br/>
+<p>
+ বললাম, তোমার একটা চাকুরি দরকার। এর আগে আরো অনেক জায়গায় কাজ করেছে।
+ </p>
+<br/>
+<p>
+ অভিজ্ঞতা আছে প্রচুর।
+ </p>
+<br/>
+<p>
+ কি বলে আমার পরিচয় দিলে? এ প্রশ্নের উত্তর না দিয়ে তাড়াতাড়ি ব্যাগ থেকে টাকা বের করলো মার্থা। তুমি এখানে দাঁড়াও, আমি টিকেট কিনে এক্ষুণি আসছি। চারপাশের লোকজনকে দুহাতে সরিয়ে কাউন্টারের দিকে এগিয়ে গেলো মার্থা।
+ </p>
+<br/>
+<p>
+ রাতে যখন সিনেমা দেখে বাড়ি ফিরলো ওরা, তখন পুরো পাড়াটা ক্লান্ত কাকের মতো ঝিমুচ্ছে। শুধু কুষ্ঠ রোগীটা এখনো জেগে। ওর চোখে ঘুম নেই।
+ </p>
+<br/>
+<p>
+ উঠোনে পা দিয়ে মার্থা চাপা গলায় বললো, ছাদে একটা মেয়ের ছায়া দেখলাম।
+ </p>
+<br/>
+<p>
+ ওর দৃষ্টি অনুসরণ করে ছাদের দিকে তাকালো শওকত।
+ </p>
+<br/>
+<p>
+ কোথায়?
+ </p>
+<br/>
+<p>
+ আমাদের পায়ের শব্দ শুনে সরে গেছে।
+ </p>
+<br/>
+<p>
+ ও কিছু না।
+ </p>
+<br/>
+<p>
+ আলকাতরার মততা অন্ধকারে হাঁটতে গিয়ে পকেট থেকে দিয়াশলাইটা বের করে আগুন জ্বালালো শওকত।
+ </p>
+<br/>
+<p>
+ মার্থা হঠাৎ প্রশ্ন করলো, আচ্ছা তুমি ভূতে বিশ্বাস করো? মানে ঘোষ্ট।
+ </p>
+<br/>
+<p>
+ হঠাৎ ভূতের কথা কেন?
+ </p>
+<br/>
+<p>
+ না, এমনি। বল না, বিশ্বাস করো?
+ </p>
+<br/>
+<p>
+ করি।
+ </p>
+<br/>
+<p>
+ কোন দিন দেখেছো?
+ </p>
+<br/>
+<p>
+ হ্যাঁ।
+ </p>
+<br/>
+<p>
+ নিজ চোখে?
+ </p>
+<br/>
+<p>
+ হুঁ।
+ </p>
+<br/>
+<p>
+ সত্যি? মার্থা চোখ বড় বড় করে তাকালো ওর দিকে।
+ </p>
+<br/>
+<p>
+ শওকত আরেকটা কাঠি জ্বালতে জ্বলতে বললো, দরজা খোল।
+ </p>
+<br/>
+<p>
+ দিয়াশলাই-এর স্বল্প আলোতে তালা খুলে ঘরে ঢুকলো ওরা। মার্থা একটা মোমবাতি জ্বেলে টেবিলের ওপরে রাখলো।
+ </p>
+<br/>
+<p>
+ সত্যি, তুমি নিজ চোখে দেখেছো?
+ </p>
+<br/>
+<p>
+ কি।
+ </p>
+<br/>
+<p>
+ ভূত!
+ </p>
+<br/>
+<p>
+ হ্যাঁ। ইচ্ছে করলে তোমাকেও দেখাতে পারি। ওই দেখো বলে মার্থার পেছনের দেয়ালে পড়া তার নিজের লম্বা ছায়াটাকে হাতের ঈশারায় দেখালো শওকতকে।
+ </p>
+<br/>
+<p>
+ নিজের ছায়াটার দিকে তাকিয়ে শব্দ করে হেসে দিলো মার্থা। বাব্বাহ, আমি ভেবেছিলাম বুঝি সত্যি। বলতে গিয়ে হঠাৎ থেমে গেলো সে। তার মুখের হাসি মিলিয়ে গেলো। শওকতের দিকে এক মুহূর্ত তাকিয়ে থেকে ধীরে ধীরে বললো, আমি দেখতে ভূতের মতো, তাই না?
+ </p>
+<br/>
+<p>
+ শওকত অপ্রস্তুত হয়ে জবাব দিলো, আমি কি তাই বললাম নাকি? ওর কথাগুলো মার্থারের কানে গেলো না। মনে হলো সে যেন কি চিন্তা করছে।
+ </p>
+<br/>
+<p>
+ শওকত বললো, চুপ করে গেলে যে
+ </p>
+<br/>
+<p>
+ মার্থা স্নান হেসে বললো, জানো, ছোট বেলায় রাস্তার ছেলেমেয়েরা আমাকে কালো পেত্নী বলে ডাকতো। আমি দেখতে খুব বিশ্রী, তাই না?
+ </p>
+<br/>
+<p>
+ বারে, কালো হলে বুঝি কেউ দেখতে বিশ্রী হয়? শওকত সঙ্গে সঙ্গে জবাব দিলো। সত্যি বলছি, তুমি কিন্তু রীতিমত সুন্দরী।
+ </p>
+<br/>
+<p>
+ মার্থা মুখ তুলে তাকালো ওর দিকে। ওর চিবুকে আর চোখে এক ঝলক লজ্জা আর ঠোঁটময় এক টুকরো কৌতূকের হাসি কাঁপছে। উঠে দাঁড়াতে গিয়ে আস্তে করে বললো, সে আমি আর সেই বাচ্চাটি নেই বুঝলে। যাকগে, এ কথা বলার জন্যে তোমাকে আজ একটা স্পেশাল খাবার খাওয়াবো। তুমি হাত মুখ ধুয়ে নাও। আমি ওগুলো গরম করে নিচ্ছি।
+ </p>
+<br/>
+<p>
+ আরেকটা মোমবাতি ধরিয়ে নিয়ে পাশের ঘরে চলে গেলো মার্থা। পাশাপাশি দুখানা ঘর ওর। একটাতে ও শোয়।
+ </p>
+<br/>
+<p>
+ আরেকটাকে বৈঠকখানা হিসাবে ব্যবহার করে। খান কয়েক বেতের চেয়ার। একটা টেবিল। আর কোন আসবাব নেই ঘরে। দেয়ালে দুটো ছবি টাঙ্গাননা। একটা মাতা মেরির, শিশু যিশুকে কোলে নিয়ে বসে আছেন তিনি, আরেকটা ক্রুশে বিদ্ধ পিতা যিশুর ছবি। খেতে বসে মার্থা বললো, তুমি এক কাজ করবে?
+ </p>
+<br/>
+<p>
+ কি?
+ </p>
+<br/>
+<p>
+ তোমার ঘরটা ছেড়ে দাও।
+ </p>
+<br/>
+<p>
+ তারপর?
+ </p>
+<br/>
+<p>
+ এ ঘরে এসে থাকো। মার্থা সহজ গলায় বললো, দুটো কামরা আমার কোন কাজেই আসে না। একটাতে তুমি অনায়াসে থাকতে পারো। ভয় নেই, মাসে মাসে ভাড়ার টাকাটা ঠিক কেটে রাখবো। তাতে করে আমার সুবিধে হবে, আর তুমিও আপাতত নগদ বাড়ি ভাড়া দেবার হাত থেকে বেঁচে যাবে।
+ </p>
+<br/>
+<p>
+ পাগল না মার্থা খারাপ! শওকত সঙ্গে সঙ্গে প্রতিবাদ করলো।
+ </p>
+<br/>
+<p>
+ শওকত শান্ত স্বরে বললো, তাহলে আর এ বাড়িতে থাকতে হবে না। সবাই মিলে ঝেটিয়ে বের করবে।
+ </p>
+<br/>
+<p>
+ ও। মার্থা এতক্ষণে বুঝতে পারলো ব্যাপারটা। খানিকক্ষণ চুপ করে থেকে বললো, ঠিক আছে, মাঝখানের দরজাটা না হয় বন্ধ করে দেবো আমরা। তোমার এক ঘর, আমার এক ঘর। অন্য অনেক ভাড়াটেরা তো ওভাবেই আছে। কি, রাজি?
+ </p>
+<br/>
+<p>
+ শওকত ম্লান হেসে বললো, দাঁড়াও, চট করে কিছু বলতে পারছি না। একটু চিন্তা করতে হবে। সব কিছুতেই তোমার অমন চিন্তা করতে হয় কেন বলতো? মার্থার কণ্ঠস্বরে শাসনের ভঙ্গী। আর কোনকথা শুনতে রাজি নই। কাল পরশুর মধ্যে তুমি শিফট করছে।
+ </p>
+<br/>
+<p>
+ এর কোন উত্তর দিতে পারলো না শওকত। শুধু মনে মনে ভাবলো মার্থা যেন ওর সব কিছুর ওপরে ধীরে ধীরে তার কর্তৃত্বের হাত বাড়িয়ে দিচ্ছে। ভাবতে গিয়ে মৃদু হাসলো শওকত। মার্থা ঈষৎ বিস্ময় নিয়ে জিজ্ঞেস করলো, হাসছো কেন?
+ </p>
+<br/>
+<p>
+ শওকত হাসি থামিয়ে বললো, এমনি।
+ </p>
+<br/>
+<p>
+ মার্থা মাথা নাড়লো, মোটেই না নিশ্চয়ই তুমি কিছু ভাবছিলে। মোমের আলো মার্থার মসৃণ ত্বকে একটা স্নিগ্ধ আভার জন্ম দিয়েছিলো।
+ </p>
+<br/>
+<p>
+ শওকত আস্তে করে বললো, ভাবছিলাম তুমি একটা আস্ত পাগল। রাতে কোলাহলের শব্দে ঘুম ভেঙ্গে গেলো শওকতের। জেগে উঠে মনে হলো পুরো বাড়িটা ভেঙ্গে পড়বে। ছাদে, বারান্দায়, সিঁড়িতে, উঠোনে ছেলে বুড়ো মেয়ের ভিড়। সবাই কলকল করে কথা বলছে। হাত-পা ছুঁড়ছে। কিন্তু কারো কথা স্পষ্ট করে বোঝবার কোন উপায় নেই।
+ </p>
+<br/>
+<p>
+ জেগে উঠেই মার্থার কথা মনে হলো শওকতের। তাড়াতাড়ি দরজা খুলে বারান্দায় বেরিয়ে এলো সে। সেখানে লোকজনের ভিড়। ওদের কোন কথা শোনা কিম্বা ওদের কাছ থেকে কিছু জানার অপেক্ষা করলো না শওকত। ভিড় ঠেলে সিঁড়ির দিকে এড়িয়ে এলো সে। ওর ধাক্কা খেয়ে কে একজন চিৎকার করে উঠলো। আরে অ মিয়া চোখে দেহেন না। ধাকান ক্যান।
+ </p>
+<br/>
+<p>
+ মাঝ সিঁড়িতে মাৰ্ধার সঙ্গে দেখা হলো। সে উপরে আসছিলো। তার চোখেমুখে উৎকণ্ঠা।
+ </p>
+<br/>
+<p>
+ কি হয়েছে? উৎকণ্ঠিত স্বরে প্রশ্ন করলো মার্থা।
+ </p>
+<br/>
+<p>
+ কি হয়েছে প্রায় সঙ্গে সঙ্গে বললো শওকত।
+ </p>
+<br/>
+<p>
+ ওহ্। মার্থা যেন হাঁফ ছেড়ে বাঁচলো। একটা লম্বা নিঃশ্বাস ফেলে নিজেকে অনেকটা হালকা করে নিলো সে। আমি ভেবেছিলাম বুঝি তোমার কিছু হয়েছে। ওর বিবর্ণ মুখখানা এতক্ষণে স্বাভাবিকতায় ফিরে এসেছে। উহ, আমি যা ভয় পেয়েছিলাম। বলতে গিয়ে সমস্ত শরীরটা কেঁপে উঠলো ওর।
+ </p>
+<br/>
+<p>
+ শওকত বললো, কিন্তু।
+ </p>
+<br/>
+<p>
+ জুয়াড়িদের একজন চিৎকার করে উঠলো। ওসব কিন্তু টিন্তু বুঝিনে। বাড়িটা একটা বেশ্যাখানা নয় যে, যার যেমন খুশি তাই করবে। মাওলানা সাহেব বললেন, তওবা, তওবা। এসব কোন্ দেশী বেলেল্লাপনা আঁ।
+ </p>
+<br/>
+<p>
+ শওকত আর মার্থা এতক্ষণ নিজেদের নিয়ে এত ব্যস্ত ছিলো যে এই হট্টগোলের আসল হেতু খোঁজার অবকাশ পায় নি। হাতের কাছে মোহসীন মোহসিন মোল্লকে পেয়ে শওকত জিজ্ঞেস করলো, কি হয়েছে।
+ </p>
+<br/>
+<p>
+ অ খোদা, এতক্ষণেও কিছু শোনেন নি আপনি। মোহসিন মোল্লা অবাক হলো। ও কি কিছু বলার আগে মোবারক আলী বললো, কমু কি হালার, কলিকালের কথা। ছাদের উপরে মতিন সাবের মাইয়া আর আজমল সাহেবের ছেইলা। বলতে গিয়ে ফ্যাসফ্যাস গলায় হাসলো সে।
+ </p>
+<br/>
+<p>
+ মোহসিন মোল্লা ওর অসম্পূর্ণ কথাটা শেষ করে দিয়ে বললো, প্রেম করছিলো। ধরা পড়েছে।
+ </p>
+<br/>
+<p>
+ মার্থা তাকালো শওকতের দিকে। ওর চোখমুখ রাঙা হয়ে উঠেছে। জাহানারাদের ঘরের দরজা জানালাগুলো সব বন্ধ। লজ্জায় বাইরে বেরোবার সাহস পাচ্ছে না হয়তো। বুড়ো মাস্টার, কারো সাতে পাঁচে থাকে না সেই সকালে বেরিয়ে যায়, বিকেলে ফেরে, প্রয়োজনের অতিরিক্ত একটা কথা বলেনা। আজ দশ বছরের ওপরে হলো এ বাড়িতে আছে কিন্তু কারো সঙ্গে কিছু নিয়ে একটু বচসাও করেনি কোনদিন। এ সময়ে তার মনের অবস্থাটা সহজে অনুমান করতে পারে শওকত।
+ </p>
+<br/>
+<p>
+ মার্থা বললো, নাচিয়েদের ওখানে সেলিনা বলে একটা মেয়ে আছে না! ও নাকি প্রথমে দেখেছিলো বেশ কদিন আগে। জাহানারার মাকে ও হুশিয়ার করে দিয়েছিলো। কিন্তু ওর কথা কেউ বিশ্বাস করে নি।
+ </p>
+<br/>
+<p>
+ আজমল আলীর ঘরে বাতি জ্বলছে। ছেলের বাবা তিনি। তার এত লজ্জার কিছু নেই। জোয়ান বয়সে ছেলেরা অমন এক আধটু ফষ্টিনষ্টি করে। তবু ছেলেকে যে তিনি শাসন করেন নি তা নয়। উত্তম-মধ্যম কিছু দিয়েছেন। কিন্তু তাঁর স্ত্রী ইতিমধ্যে ক্ষেপে গিয়ে চিৎকার শুরু করে দিয়েছেন। জাহানারাদের চৌদ্দ পুরুষের শ্রাদ্ধ না করা পর্যন্ত শান্তি পাচ্ছেন না তিনি।
+ </p>
+<br/>
+<p>
+ মতিন মাষ্টারের বদ্ধ ঘরে বাতি জ্বলছিলো। এবার সেটাও নিভে গেলো। প্রতিবাদ করার মতো কিছু নেই ওদের। মেয়ে দোষ করেছে। হাতেনাতে ধরা পড়েছে। লোকে এখন কুৎসা গাইবেই। জোর করে ওদের মুখ বন্ধ করার কোন মন্ত্র কারো জানা নেই।
+ </p>
+<br/>
+<p>
+ বারান্দা আর উঠোনের ভিড়টা অনেকখানি হাল্কা হয়ে গেছে।
+ </p>
+<br/>
+<p>
+ নিজের নিজের ঘরে ফিরে গেছে অনেকে। কিন্তু কথার খৈ ফুটা এখনো বন্ধ হয়নি।
+ </p>
+<br/>
+<p>
+ শওকত দেখলো বউ-মারা কেরানির বউটা বারান্দার এক কোণে চুপচাপ দাঁড়িয়ে। ঘোমটার ফাঁকে চারপাশে চেয়ে চেয়ে দেখছে সে।
+ </p>
+<br/>
+<p>
+ জুয়াড়িরা বারান্দায় তাস নিয়ে বসে গেছে। বাকি রাতটা আর ঘুমিয়ে কি হবে। ভোরে ভোরে যারা কাজে বেরিয়ে যায় ওদেরই দুএকজন ইতিমধ্যে কলতলায় স্নান পর্ব সারার কাজে লেগে গেছে। শওকত বললো, ঘরে যাও মার্থা।
+ </p>
+<br/>
+<p>
+ মার্থা বললো, আমার আর ঘুম আসবে না। তার চেয়ে এক কাজ করি শোন, তুমি বসো। আমি চট করে দুকাপ চা বানিয়ে নিয়ে আসি।
+ </p>
+<br/>
+<p>
+ শওকত কোন জবাব দিবার আগে সিঁড়ি বেয়ে নিচে নেমে গেলো মার্থা। বাইরে দুএকটা কাক ডাকতে শুরু করে দিয়েছে। ভোর হবার আর দেরি নেই।
+ </p>
+<br/>
+</div>
+<h2>
+ তৃতীয়
+ </h2>
+<br/>
+<h2>
+ আর চলে না
+ </h2>
+<hr/>
+<br/>
+
+<div>
+<p>
+ না। আর চলে না। এভাবে আর আমি পারছি না মার্থা। শওকতের গলার স্বর ভারি হয়ে এলো। ভাবছি কোথাও চলে যাব।
+ </p>
+<br/>
+<p>
+ কোথায়?
+ </p>
+<br/>
+<p>
+ কোথায় জানি না। উঠে দাঁড়িয়ে ঘরের মধ্যে পায়চারি করতে লাগলো শওকত। কোন মফঃস্বল শহরে গেলে হয়তো কিছু জুটে যাবে।
+ </p>
+<br/>
+<p>
+ মার্থা স্নান হাসলো। ওর দিকে কিছুক্ষণ চেয়ে থেকে আস্তে করে বললো। অমন স্বার্থপরের মতো চিন্তা করো কেন?
+ </p>
+<br/>
+<p>
+ এতে আবার স্বার্থপরের কি হলো? সুরে দাঁড়িয়ে ওর দিকে এগিয়ে এলো শওকত।
+ </p>
+<br/>
+<p>
+ না, তেমন কিছু হয় নি। মুখখাঁনা জানালার দিকে নিয়ে বাইরে তাকালো মার্থা। জাহানারাদের ঘরটা ওখান থেকে দেখা যায়। সে রাতের ঘটনার পরে জাহানারাকে ঘরের ভেতরে বন্ধ করে রেখেছে ওর মা। একদিন এক মিনিটের জন্যেও মেয়েটাকে বাইরে বেরুতে দেয় নি।
+ </p>
+<br/>
+<p>
+ ওকে চুপ থাকতে দেখে শওকত পেছন থেকে আবার বললো, স্বার্থপর কেন বললে?
+ </p>
+<br/>
+<p>
+ মার্থা বাইরে তাকিয়ে থেকে বললো, বললাম তো এমনি। কেন, তোমার কি খুব লেগেছে? জানালার কাছ থেকে সরে এলো সে। ওর গলার স্বরে ঈষৎ ঝাজ।
+ </p>
+<br/>
+<p>
+ শওকত বললো, তোমাকে বললে তোমারও লাগতো। ওর গলার স্বরে ঈষৎ গাম্ভীর্য। দুজনে অনেকক্ষণ চুপ করে রইলো ওরা। নিচের নাচিয়ের দল জোরে গ্রামোফোন বাজাচ্ছে আর হল্লা করছে। মাঝে মাঝে কি যেন কৌতুকে শব্দ করে হেসে উঠছে ওরা।
+ </p>
+<br/>
+<p>
+ সহসা, মার্থা বললো, ওরা বেশ আছে। বলতে গিয়ে গলাটা কেঁপে উঠলো ওর।
+ </p>
+<br/>
+<p>
+ শওকত নড়েচড়ে বসলো। মনে হলো যেন একটা দীর্ঘশ্বাস ছাড়লো সে। ছোট্ট করে বললো, হুঁ।
+ </p>
+<br/>
+<p>
+ মার্থা জানালার পাশ থেকে মুখ ঘুরিয়ে একবার দেখলো তাকে, তারপর আবার বাইরে মুখখানা ফিরিয়ে নিলো সে। মোহসিন মোল্লার বউ তার ছমাসের বাচ্চাটাকে কোলে নিয়ে দুধ খাওয়াচ্ছে আর কি একটা ছড়া কাটছে গুন্ গুন্ করে। সে দিকে চেয়ে থেকে মার্থা বললে, আমারো আর কিছু ভালো লাগছে না। ভাবছি কোথাও চলে যাবো।
+ </p>
+<br/>
+<p>
+ যেতে ইচ্ছে হলে যাও না। আমি কি তোমাকে ধরে রেখেছি নাকি। আমাকে ওসব কথা শুনাচ্ছো কেন? শওকতের কণ্ঠস্বরে বিরক্তির আমেজ। চেয়ার ছেড়ে উঠে দাঁড়িয়ে আবার ঘরময় পায়চারি শুরু করে দিলো সে। নাকি আমাকে ভয় দেখাচ্ছো, তুমি চলে গেলে আমি খাবো কোথায়? চলব কেমন করে।
+ </p>
+<br/>
+<p>
+ আমি কি সে কথা বলেছি তোমায়? শওকত নিজেও ভাবতে পারেনি মার্থা অত জোরে চিৎকার করে উঠবে। ওর চোখে দুফোঁটা পানি টলমল করছে। ঠোঁট জোড়া কাঁপছে। রাগে কিম্বা অভিমানে। দুনিয়াতে শুধু নিজের দিকটাকেই বড় করে দেখতে শিখেছো, অন্যের কথা একটুও ভাবো না।
+ </p>
+<br/>
+<p>
+ বাইরে বারান্দায় দুএকজন উৎসাহী শ্রেতার ভিড় জমতে দেখে শওকত চাপা গলায় বললো, চিৎকার করছো কেন, আস্তে কথা বলা যায় না?
+ </p>
+<br/>
+<p>
+ টপ করে একটা ফোঁটা মাটিতে পড়ে যাওয়ার মুহূর্তে মুখখানা ওর দিকে থেকে আড়াল করে নিলো মার্থা। হয়তো একটা দীর্ঘশ্বাস ছাড়লো। কিছুক্ষণ নীরবে দাঁড়িয়ে রইলো সে, তারপর অত্যন্ত মৃদুগলায় বললো, চলি। বলে আর সেখানে অপেক্ষা করলো না সে।
+ </p>
+<br/>
+<p>
+ টেবিলের ওপরে রাখা হ্যারিকেনের হলদে সলতেটার দিকে নীরবে তাকিয়ে রইলো শওকত। নিচে কুকুর দুটো সেই কখন থেকে চিৎকার শুরু করে দিয়েছে। এখনো থামেনি। বারান্দায় যারা কান পেতে ছিলো, তারা হতাশ হয়ে ফিরে গেছে ঘরে। বউ-মারা কেরানির বউটা মার খেয়ে কাঁদছে।
+ </p>
+<br/>
+<p>
+ অস্থিরভাবে অনেকক্ষণ ঘরময় পায়চারি করলো শওকত। কিছুই ভালো লাগছে না। ইচ্ছে করছে দুটো ইট খুলে নিয়ে কুকুর দুটোর মার্থা লক্ষ্য করে মেরে ওদের চিরদিনের জন্যে চুপ করিয়ে দিতে। কিম্বা, বউ-মারা কেরানির বউটির গলা টিপে ধরে বলতে, চুপ করো। না, তাও নয়। ইচ্ছে করছে বুড়ো আহমদ হোসেনের কাছে ছুটে গিয়ে বলতে, কোথায় নিয়ে যাবে বলছিলে আমায়। নিয়ে চলো। হঠাৎ পায়চারি থামিয়ে টেবিলের ওপর থেকে হ্যারিকেনটা তুলে নিলো শওকত। তারপর অকস্মাৎ ওটাকে মেঝের ওপরে ছুঁড়ে মারলো সে। ঝন্‌ ঝন্ শব্দে হ্যারিকেনের কাঁচটা ভেঙ্গে টুকরো টুকরো হয়ে গেলো।
+ </p>
+<br/>
+<p>
+ শব্দটা বেশ ভালো লাগলো শওকতের।
+ </p>
+<br/>
+<p>
+ চারপাশে গাঢ় অন্ধকার।
+ </p>
+<br/>
+<p>
+ মনে হলো যেন সতের বছর আগে ফিরে গেছে শওকত–সারা কোলকাতা অন্ধকার ব্ল্যাক আউট। খিদিরপুরের ডকে একটা আলোও জ্বলছে না।
+ </p>
+<br/>
+<p>
+ মাটির নিচে অন্ধকার সেন্টারের মধ্যে হাত-পা গুটিয়ে বসে আছে সে। শুধু সে নয়। আরো অনেকে। ছেলে বুড়ো মেয়ের গাদাগাদি। একটা প্লেনের শব্দ হলো। দুটো। তিনটে। অনেকগুলো প্লেন ঝাঁক বেঁধে উড়ে গেলো মার্থার ওপর দিয়ে। পর পর কয়েকটা ভয়াবহ বিস্ফোরণের শব্দে কানে তালা লেগে গেলো ওর।
+ </p>
+<br/>
+<p>
+ উপর থেকে কিছু মাটি ধসে পলো নিচে। গায়ের ওপরে। পাশের বুড়োটা চিৎকার করে উঠলো। ইয়া আল্লাহ।
+ </p>
+<br/>
+<p>
+ একটা ছেলে একটা যুবতী মেয়েকে জড়িয়ে ধরে পড়ে আছে চুপচাপ, হয়তো শক্তি সঞ্চয়ের চেষ্টা করছে। একজন মা তার বাচ্চাটাকে সজোরে বুকের মধ্যে চেপে ধরে রেখেছে। দাঁতে দাঁত লেগেছে। ওর একটা ছোট ছেলে সভয়ে তাকাচ্ছে চারদিকে।
+ </p>
+<br/>
+<p>
+ বাইরে তখন জাপানিরা বোমা ফেলছে।
+ </p>
+<br/>
+<p>
+ কতক্ষণ মনে নেই। অনেকক্ষণ হবে হয়তো। ধীরে ধীরে সব শান্ত হয়ে গেলো। একটি অস্থির নীরবতা। তারপর আবার সাইরে বেজে উঠলো। প্রথমে একটা। তারপর, অনেকগুলো একসঙ্গে।
+ </p>
+<br/>
+<p>
+ মাটির গুহা থেকে একে-একে বাইরে বেরিয়ে এলো ওরা। তখনো অন্ধকার। আর ধুঁয়ো। মাথায় লোহার টুপি পরা এ-আর-পির লোকগুলো ছুটোছুটি করছে চারপাশে। ওদের হাতে টর্চ, পায়ে বুটজুতো।
+ </p>
+<br/>
+<p>
+ অন্ধকারে হাঁটতে গিয়ে পায়ের সঙ্গে কী যেন লাগছে ওর। ঝুঁকে পড়ে ভালো করে দেখলো শওকত। একটি মেয়ে। হ্যাঁ, ষােলো-সতেরো বছরের যে মেয়েটা সারাদিন ডকে ভিক্ষে করে বেড়াতো-সে। নরম বুকটা রক্তে ভিজে আরো নরম হয়ে গেছে। না। বেঁচে নেই? অনেকক্ষণ আগেই মরে গেছে।
+ </p>
+<br/>
+<p>
+ শওকতের মনে হলো, বুক-উঁচু ধানক্ষেতের মাঝখানে শুয়ে-থাকা মেয়ে আমেনা। না আমেনা নয়, ভিখারিনি মেয়ে সকিনা।
+ </p>
+<br/>
+<p>
+ সকিনাও নয়। মার্থা।
+ </p>
+<br/>
+<p>
+ অন্ধকারে একটা দীর্ঘ ছায়ার মতো দোরগোড়ায় দাঁড়িয়ে মার্থা।
+ </p>
+<br/>
+<p>
+ মার্থা বললো, বেহায়ার মতো আবার এলাম। শওকতের কাছ থেকে কোনো সাড়া না পেয়ে ইতস্তত চারপাশে তাকালো সে। বাতি কী হলো?
+ </p>
+<br/>
+<p>
+ আমি নিভিয়ে দিয়েছি। আস্তে করে জবাব দিলো শওকত। ভেতরে এসো না, কাচে পা কাটবে। শেষের কথাটা বিশেষ জোরের সঙ্গে বললো সে।
+ </p>
+<br/>
+<p>
+ মার্থা একবার মেঝের দিকে তাকালো। কিছু দেখতে পেলো না। তারপর মৃদু গলায় বললো ভতরে আমি আসবো না। ভয় নেই। তোমাকে একটা কথা জানাতে এসেছিলাম। কাল বিকেলে একবার দোকানে এসো। যে-লোকটাকে তোমার চাকরির কথা বলেছিলাম সে আসবে। ওর সঙ্গে আলাপ করিয়ে দেবো তোমার। কথাটা শেষ করে আর সেখানে দাঁড়ালো না মার্থা। উত্তরের অপেক্ষা করলো না। খোলা দরজাটা ভেজিয়ে দিয়ে চলে গেলো সে।
+ </p>
+<br/>
+<p>
+ না। মার্থাটা ভীষণ ঝিমঝিম করছে।
+ </p>
+<br/>
+<p>
+ কিছুই ভালো লাগছে না ওর।
+ </p>
+<br/>
+<p>
+ রাত এখন কটা বাজে কে জানে। কুকুরগুলো এখন আর চিৎকার করছে না। বউ-মারা কেরানির বউ কান্না থামিয়ে চুপ করে আছে। হয়তো ঘুমুচ্ছে সে। কিম্বা মাতাল স্বামীর সেবা করছে। সারা বাড়িতে কেমন একটা ভয়াবহ নির্জনতা। যেন মানুষজন কেউ নেই।
+ </p>
+<br/>
+<p>
+ হঠাৎ নিজেকে বড় একা মনে হলো ওর। মনে হলো এই অন্ধকার-ঘরে একা থাকতে ভয় লাগছে আজ। বন্ধ-দরজাটা খুলে বাইরে বেরিয়ে এলো শওকত। সারাবাড়িতে গোরস্তানের নীরবতা আর কবরের মতো অন্ধকার। বাড়ির বিড়ালটাও আজ ঘুমুচ্ছে। একবারও তার ডাক শোনা যাচ্ছে না।
+ </p>
+<br/>
+<p>
+ সিঁড়ির প্রত্যেকটা ধাপ গুণে গুণে নিচে নেমে এলো সে। সামনে কিছু দেখতে পাচ্ছে। হাত দিয়ে পাশের দেয়ালটাকে একবার পরখ করে নিলো। ঠিক আছে। ধীরে ধীরে মার্থার ঘরের সামনে এসে দাঁড়ালো শওকত।
+ </p>
+<br/>
+<p>
+ আস্তে করে একটা টোকা দিলে দরজায়।
+ </p>
+<br/>
+<p>
+ কোনো সাড়া নেই।
+ </p>
+<br/>
+<p>
+ আরেকটা দিলো। এবার একটু জোরে।
+ </p>
+<br/>
+<p>
+ ভেতরে নড়াচড়ার শব্দ হলো। কে! মার্থার গলার স্বর।
+ </p>
+<br/>
+<p>
+ শওকত সঙ্গে সঙ্গে বললো, আমি মার্থা! আমি। গলা দিয়ে আওয়াজ বেরুলো না ওর। শুধু একটা মৃতি ক্ষীণ ধ্বনি বাতাসে ঈষৎ কাঁপন জাগিয়ে মিলিয়ে গেলো।
+ </p>
+<br/>
+<p>
+ মার্থা তার ঘরে বাতি জ্বালালো।
+ </p>
+<br/>
+<p>
+ দিয়াশলাই-এর কাঠির শব্দটাও কান পেতে শুনলো শওকত। ধীরে ধীরে ভেতর থেকে দরজাটা খুললো সে। হাতে ওর একটা মোমবাতি।
+ </p>
+<br/>
+<p>
+ শওকতকে দোরগোড়ায় দাঁড়িয়ে থাকতে দেখে অবাক হলো মার্থা। বিস্ময়ভরা চোখে ওর দিকে তাকিয়ে থেকে কী যেন বলতে যাচ্ছিলো সে। কিন্তু বলতে পারলো না। শওকত ওর হাতের মোমটা ফুঁ দিয়ে নিভিয়ে দিলো। তারপর মুহূর্তে মার্থাকে দু-হাতে বুকের মধ্যে টেনে নিলো সে। শক্ত কাঠের মতো একটা দেই। নিজেকে ছাড়িয়ে নিতে চেষ্টা করলো মার্থা পারলো না। ওর শুকনো ঠোঁটে একটা তীব্র চুম্বন এঁকে দিলো শওকত। আরেকটা। আরো একটা।
+ </p>
+<br/>
+<p>
+ না। জোর করে এর আলিঙ্গন থেকে নিজেকে মুক্ত করে নিলো মার্থা। তারপর ছুটে গিয়ে বিছানায় পড়লো। বালিশে মুখ গুজে ডুকরে কেঁদে উঠলো সে। মার্থা কাঁদছে।
+ </p>
+<br/>
+<p>
+ অসহায়ভাবে একবার বিছানার দিকে তাকালো শওকত। মার্থাকে এভাবে কোনোদিন কাঁদতে দেখেনি সে। কী করবে ভেবে পেলো না। একটু পরে শওকত অনুভব করলো ওর হাত-পা ভীষণভাবে কাঁপাচ্ছে। আর হৃৎপিণ্ডটা গলার কাছে এসে ধুকধুক শব্দ করছে। হঠাৎ শওকতের মনে হলো মার্থার কাঁদার শব্দে যদি বাড়ির সবাই জেগে গিয়ে এদিকে আসে তাহলে? না। মার্থার এভাবে ডুকরে কান্নার কোনো কারণ খুঁজে পেলো না শওকত যেন কেউ মারা গেছে ওর। মার্থা বিলাপ করছে। শওকত সভয়ে তাকালো চারদিকে। তারপর ধীরে ধীরে বাইরে বেরিয়ে এলো সে।
+ </p>
+<br/>
+<p>
+ অন্ধকার, একহাত দূরে কী আছে বোঝা যায় না। পুরো বাড়িটা তমিস্রায় ঢেকে আছে। একটা ইঁদুর কিচকিচ শব্দ তুলে পায়ের ওপর দিয়ে ছুটে পালিয়ে গেল। ভয় থমকে দাঁড়ালো সে। নিজের নিশ্বাসের আওয়াজ ছাড়া আর কিছু শুনতে পাচ্ছে না। কিছুদূর এগিয়ে যাওয়া পর শওকতের মনে হলো-আশেপাশের দেয়ালগুলো যেন দেখতে পাচ্ছে সে। এ দিকে আলো বাড়ছে। শওকত অবাক হলো, সিঁড়ির দিকে না গিয়ে পথ ভুল করে উঠানে চলে এসেছে সে। এবার রীতিমতো ভয় করতে লাগলো ওর। হাত-পাগুলো অস্বাভাবিকভাবে কাপছে। পথ হাতড়ে আবার সিঁড়ির দিকে ফিরে এলো শওকত
+ </p>
+<br/>
+<p>
+ কোথায় একটা বাচ্চাছেলে হঠাৎ ঘুম থেকে জেগে গিয়ে ট্যাঁ-ট্যাঁ করে কাঁদছে। মা ছড়া কেটে শান্ত করার চেষ্টা করছে তাকে। ঘরে ফিরে এসে দরজায় খিল এই দিলো কত। সারা গা বেয়ে ঘাম শুরছে ওর। যেন একটা প্রচণ্ড জ্বর এসে গায়ে এইমাত্র ছেড়ে গেলো। দূরজায় হেলান দিয়ে কিছুক্ষণ চুপচাপ দাঁড়িয়ে রইলো সে। গলার নিচে ধুকধুক শব্দটা কমেছে। শাস-প্রশ্বাস স্বাভাবিক হয়ে এসেছে ওর। কললি থেকে এক গ্লাস পানি চলে ঢকঢক করে সবটা খেয়ে নিলো শওকত।
+ </p>
+<br/>
+<p>
+ পরদি যখন ঘুম ভাঙলো, তখন অনেক বেলা হয়ে গেছে। আড়মোড়া দিয়ে পাশ ফিরে শুলো সে! চোখ খুললো। মেঝেতে অনেকগুলো কাঁচের টুকরো ছড়ান। দিনের আলোয় চিকচিক করছে। আবার চোখ বন্ধু করলো লওকত। সারাদেহে কী এক আলস্য। বিছানা ছেড়ে উঠতে ইচ্ছে করছে না। শুয়ে শুয়ে কাল রাতের কথা ভাবলো সে। আর তক্ষুণি মার্থার কথা মনে পড়লো ওর। মনে পড়লো রাতে ওর ঘরে যাওয়ার কথা। সঙ্গে সঙ্গে উঠে বসলো শওকত। দরজা খুলে বারান্দায় বেরিয়ে এলো। দালানের মার্থার ওপর দিয়ে কড়া রোদ এলে পড়েছে উঠোনে। এত বেলা পর্যন্ত এর আগে কোনোদিন বিছানায় শুয়ে থাকেনি সে। মার্থা কি এসেছিলো সকালে? হয়তো এসেছিলো। ওর কোনো সাড়াশব্দ না-পেয়ে ফিরে গেছে। কিন্তু দরজায় ধাক্কা দিলে নিশ্চয় জেগে যেতো শওকত? না, মার্থা আসেনি। কাল রাতের সে ঘটনার পর হয়তো মনে মনে ওকে ঘৃণা করছে মার্থা।
+ </p>
+<br/>
+<p>
+ মার্থা আর আসবে না।
+ </p>
+<br/>
+<p>
+ ভাবতে গিয়ে বুকের নিচে একটা চিনচিন ব্যথা অনুভব করলো সে।
+ </p>
+<br/>
+<p>
+ নাচিয়ে দলের মেজো সেলিনা কলওলায়া চান করছে। একটা তোয়েলে দিয়ে মুখ রগড়াচ্ছে মেয়েটা। শূন্যদৃষ্টি মেলে তার দিকে তাকিয়ে রইলো শওকত। ওর দিকে চোখ পড়তে লজ্জা পেয়ে তাড়াতাড়ি নগ্ন পা-জোড়া ভেজা কাপড়ে ঢেকে দিলো সেলিনা। শওকতের কোনো ভাবন্তর হলো না। মেয়েটা আড়চোখে আবার তাকালো। মৃদু হাসলো সে।
+ </p>
+<br/>
+<p>
+ বারান্দা থেকে সরে গ্লোবার ঘরে এলো শওকত। কি করবে বুঝতে পারচ্ছে না। খিধে পেয়েছে ভীষণ। কিছু খাওয়া দরকার। মগে করে পানি এনে বারান্দায় মুখ ধুতে বসলো সে।
+ </p>
+<br/>
+<p>
+ আজমল আলীর ঘরের সামনে লোকজনের ভিড়। দেশের বাড়ি থেকে কয়েকজন আত্মীয়-স্বজন এসেছে। হারুনের বিয়ে ঠিক করে ফেলেছে ওরা। না। জাহানারার সঙ্গে নয়। আজমল আলীর নিজের বোনঝির সঙ্গে। স্কুলে পড়ে মেয়েটা। বিষয়-সম্পত্তি আছে।
+ </p>
+<br/>
+<p>
+ হাতমুখ মুছে কাপড় পালটালো শওকত। প্ৰরময় কাচের টুকরোগুলো এখনো ছড়িয়ে রয়েছে। শাক। জাহান্নামে যাক সব। বাইরে বেরুবার পথে ভাঙা হ্যারিকেনটাকে অকারণে একটা লাথি মেরে ঘরের কোণে সরিয়ে দিয়ে গেলো সে।
+ </p>
+<br/>
+<p>
+ মার্থার ঘরের দরজায় একটা তালা ঝুলছে। ভোরে-ভোরে বেরিয়ে গেছে সে। জাহান্নামে যাক মার্থা। আপনমনে বিড়বিড় করে উঠলো শওকত।
+ </p>
+<br/>
+<p>
+ বাহার যা রাহে ক্যায়া? পেছনে মিহি কষ্ঠের আওয়াজ শুনে থমকে দাঁড়ালো সে।
+ </p>
+<br/>
+<p>
+ নাচিয়ে দলের মেয়ে সেলিনা তার ঘরের দরজায় দাঁড়িয়ে একখানা তোয়ালে দিয়ে মার্থার চুল ঝাড়ছে। সামনে পড়ে থাকা একরাশ ঘন কালো কুস্তল পিঠের ওপর সরিয়ে দিয়ে মেয়েটি আবার বললো, বাহার যা রাহে কায়া।
+ </p>
+<br/>
+<p>
+ শওকত ফ্যালফ্যাল করে তাকিয়ে রইলো ওর দিকে। এ প্রশ্ন হঠাৎ কেন, বুঝতে পারলো না সে। কাঁচা হলুদের মত গায়ের রঙ! তামাটে চোখ। গাঢ় বাদামি ধর। মার্থার চেয়ে দেখতে অনেক বেশি সুন্দর সেলিনা। অনেক বেশি জীবন্ত।
+ </p>
+<br/>
+<p>
+ কায়া দেখ রাঁহে। মুখ টিপে পরিমিত হাসালো মেয়েটি। আকারণে লজ্জায় রাঙা হয়ে তাড়াতাড়ি বুকের কাপড়টা টানতে গিয়ে আরো একটু সরিয়ে দিলো।
+ </p>
+<br/>
+<p>
+ শওকত আস্থে করে বললো, কিছু না। বলে যাবার জন্যে পা বাড়ালো সে! কোথায় যাচ্ছেন বললেন না। এবার উর্দুতে নয়, বাংলায় প্রশ্ন করলো মেয়েটি।
+ </p>
+<br/>
+<p>
+ শওকত ঘুড়ে দাঁড়িয়ে বললো, বাইরে যাচ্ছি, কাজে। কেন, কিছু বলবেন নাকি?
+ </p>
+<br/>
+<p>
+ হ্যাঁ।
+ </p>
+<br/>
+<p>
+ বলুন।
+ </p>
+<br/>
+<p>
+ ভেতরে আসুন, বলছি। অপূর্ব ভঙ্গিতে জোড়া বাঁকালো মেয়েটি। ঠোঁটের কোণে এক রহস্যময় হাসি।
+ </p>
+<br/>
+<p>
+ ইতস্তত করে ভেতরে এলে শওকত। আমার একটু তাড়া আছে। কী বলবেন তাড়াতাড়ি বলুন।
+ </p>
+<br/>
+<p>
+ বলছি। অমন অধীর হচ্ছেন কেন, বসুন। চুলগুলো ধীরে ধীরে খোঁপাবদ্ধ করলো মেয়েটি।
+ </p>
+<br/>
+<p>
+ ছোট্ট ঘর। প্রায় শূন্য। একটা চৌকি। এলোমেলো বিছানা। তাকে কতকগুলো শিশি-বোতল জড়ো করার একটা ভাঙা আয়না। চিরুনি। কোণায় দড়ির ওপরে কতগুলো ময়লা কাপড়। পুরানো একটা ট্রাঙ্ক। চিত্রতারকাদের ছবিতে ভরা কয়েকটা ক্যালেঞ্জার।
+ </p>
+<br/>
+<p>
+ কাল রাতে নিয়ে এসেছিলেন কেন? দেহটা ভেঙে দরজায় হেলান দিয়ে দাঁড়ালো মেয়েটি; সারা ও তার দুষ্টমি-ভরা হাসি।
+ </p>
+<br/>
+<p>
+ শওকতের মাথায় যেন বাজ পড়লো। ইতস্তত করে বললো, তার মানে?
+ </p>
+<br/>
+<p>
+ কাল রাতে নিচে এসেছিলেন কেন? প্রত্যেকটা কথার ওপর জোর দিয়ে টেনে-টেনে প্রশ্ন করলো মেয়েটি।
+ </p>
+<br/>
+<p>
+ অবাক হয়ে ওর দিকে কিছুক্ষণ তাকিয়ে রইলো শওকত। তারপর দৃঢ় গলায় বললো, আপনি কি বলতে চান?
+ </p>
+<br/>
+<p>
+ আমি কি বলতে চাই। অপূর্ব গ্ৰীবাভঙ্গি করলে সেলিনা। বাঁকা চোখে ওর দিকে একটু তাকিয়ে অকারণে রাঙা হলো সে। তারপর খিলখিল করে হেসে উঠে বললো, আমি বলতে চাই কাল রাতে আপনি নিচে এসেছিলেন?
+ </p>
+<br/>
+<p>
+ হ্যাঁ, এসেছিলাম।
+ </p>
+<br/>
+<p>
+ মার্থার ঘরের সামনে দাঁড়িয়েছিলেন।
+ </p>
+<br/>
+<p>
+ হ্যাঁ, দাঁড়িয়েছিলাম।
+ </p>
+<br/>
+<p>
+ ওর ঘরের দরজায় টোকা দিয়েছিলেন। দু-বার।
+ </p>
+<br/>
+<p>
+ হ্যাঁ, দিয়েছিলাম।
+ </p>
+<br/>
+<p>
+ মার্থার হাতে মোমবাতি ছিলো। ফুঁ দিয়ে সেটা নিভিয়ে দিয়েছিলেন।
+ </p>
+<br/>
+<p>
+ শওকতের গলা দিয়ে আর কথা সরলো না। বিস্ময়ে বিমূঢ় হয়ে মেয়েটির দিকে তাকিয়ে রইলো সে। একটা ডাইনি। একটা পিশাচ। শওকতের মানে হলো ওর কলজেটা গলার কাছে এসে আবার ধুকধুক শুরু করে দিয়েছি।
+ </p>
+<br/>
+<p>
+ কি, চুপ করে গেলেন যে! বাদামি অধর-জোড়া জিভ দিয়ে ভিজিয়ে নিলো সে। গলা দিয়ে একটা অদ্ভুত স্বর বের করে বললো, জাহানারার মত ইচ্ছে করলে আপনাকে ধরিয়ে দিতে পারতাম। দিইনি, মায়া হয়েছিলো তাই।
+ </p>
+<br/>
+<p>
+ শওকতের মনে হল ওর স্নায়ুগুলো যেন ধীরে ধীরে অবশ হয়ে আসছে। পা-ক্রোড় ভীষণ ভারী হয়ে গেছে। নাড়তে পারছে না।
+ </p>
+<br/>
+<p>
+ সেলিনা ওর হাতের তোয়ালেটা সামনে বাড়িয়ে দিয়ে বললো, নিন, বড় বেশি ঘামাচ্ছেন! মুছে নিন, আবার শক্ত করে হেসে উঠলো সে। আমি বাইরে বেরুবো। বসন, কাপড়টা পালটে নিই। বলে দরজার সামনে থেকে ঘরের কোণে যেখানে একটা দড়ির ওপরে অনেকগুলো ময়লা কাপড় ঝোলানো সেদিকে এগিয়ে গেলো সে। যেতে যেতে বললো, এদিকে তাকাবেন না কিন্তু।
+ </p>
+<br/>
+<p>
+ শওকতের সবকিছু তাগোল পাকিয়ে গেছে। ভাবনার গ্রন্থিগুলো যেন সব ছিঁড়ে গেছে ওর। তবু ভাবতে চেষ্টা করলো সে। এখন কী করবে। পেছালে সেলিনার কাপড় পালটানোর খসখস শব্দ।
+ </p>
+<br/>
+<p>
+ সহসা শওকত বললো, রাতে ঘুমোন না নাকি?
+ </p>
+<br/>
+<p>
+ ঘুম। বিচিত্র এক ধ্বনি বেরুল মেয়েটির কণ্ঠে। ঘুম আমার আসে না।
+ </p>
+<br/>
+<p>
+ কেন?
+ </p>
+<br/>
+<p>
+ দরজায় খিল এঁটে ঘুমোতে পারি না বলে। সেলিনা আবার খিলখিল হেসে উঠলো। কাঁচা হলুদ মাংসের দেহটা হরিদ্রা শাড়িতে পেঁচিয়ে নিয়ে শওকতের সামনে এসে দাঁড়ালো সে। আরো বসতে ইচ্ছে করছে বুঝি?
+ </p>
+<br/>
+<p>
+ শওকত সঙ্গে সঙ্গে উঠে দাঁড়ালো। দাঁড়াতে গিয়ে মার্থাটা ঝিমঝিম করে উঠলো ওর। করিডোরে কয়েকটা বাচ্চাছেলে মাটির পুতুল নিয়ে খেলা করছে বসে বসে। কলতলায় কতকগুলো এঁটো বাসন ছড়ানো, কয়েকটা কাক সেখানে খাবারের কণা খুঁজছে। কুকুরটা মাঝে মাঝে চিৎকার করে তাড়া দিচ্ছে ওদের। ছুটে যাচ্ছে কিন্তু ধরতে পারছে না। নিষ্ফল আক্রোশে শুধু লাফাচ্ছে।
+ </p>
+<br/>
+<p>
+ আরো দুটো করিডোর পেরিয়ে বাইরে বেরিয়ে এলো ওরা। কুষ্ঠরোগীটা রকের উপর বসে বসে ঝিমুচ্ছে। চারপাশে ভনভন করছে মাছি।
+ </p>
+<br/>
+<p>
+ না। লোকটা পচে গলে পড়বে। কিন্তু মরবে না।
+ </p>
+<br/>
+<p>
+ শওকত আপন মনে বিড়বিড় করলো। সেলিনা ওর খুব কাছ ঘেঁষে হাঁটছে। ওর কাঁধটা এসে মাঝে মাঝে ধাক্কা দিচ্ছে ওর গায়ে। শওকতের সমস্ত শরীর শিরশির করে উঠলো। সহসা দৌড়ে গিয়ে একটা চলন্ত বাসের ওপরে উঠে পড়লো সে। পেছনে তাকালো না। তাকাবার সাহস হলো না ওর।
+ </p>
+<br/>
+<p>
+ সংক্ষিপ্ত ব্লাউজের নিচে আড়াল-করে-রাখা একজোড়া উদ্ধত যৌবন ওকে পেছন থেকে ব্যঙ্গ করছে। করুক। সামনে এগিয়ে গিয়ে একটা শূন্য সিটের ওপর বসে পড়লো শওকত। কিন্তু পেছনে তাকানোর লোভের হাত থেকে নিষ্কৃতি পেলো না। আড়চোখে দেখলো, হরিদ্রা শাড়ির আঁচল বাতাসে পতপত করে উড়ছে। স্তম্ভিত বিস্ময়ে বাসটার দিকে কিছুক্ষণ তাকিয়ে তেকে ধীরে ধীরে বাসার পথে ফিরে যাচ্ছে সেলিনা।
+ </p>
+<br/>
+</div>
+<h2>
+ চতুর্থ
+ </h2>
+<br/>
+<h2>
+ বলো বলে যাও
+ </h2>
+<hr/>
+<br/>
+
+<div>
+<p>
+ হুঁ, তারপর, বলো বলে যাও, থামলে কেন? চায়ের কাপটা শব্দ করে পিরিচের ওপরে নামিয়ে রাখলো বুড়ো আহমদ হোসেন। ঘিঞ্জি-গলির মাথায়, দরমায়-ঘেরা রেস্তোরাঁর অসমতল টুলের ওপরে দুজনে বসে।
+ </p>
+<br/>
+<p>
+ শওকত বললো, বললাম তো সব। আর কী বলবো।
+ </p>
+<br/>
+<p>
+ মুখের মধ্যে আঙুল ঢুকিয়ে দিয়ে, কী যেন আটকে ছিলো সেটা বের করলো বুড়ো আহমদ হোসেন। ভেজা আঙুলটা নাকের কাছে এনে ঝুঁকলো। তারপর বিড়বিড় করে বললো, শালার তুমি একটা উল্লুক। মেয়েটাকে চুমু দিতে গিছলে কেন, কামড়ে দিতে পারলে না। কসম করে বলছি, তাহলে আর কাঁদতো না ও। আরে বাবা, এসব মেয়ে আমার অনেক দেখা আছে। সতেরো বছর ধরে দেখছি।
+ </p>
+<br/>
+<p>
+ শওকত সঙ্গে সঙ্গে প্রতিবাদ করলো। না না, তুমি মার্থাকে জানো না। ও খুব ভালো মেয়ে।
+ </p>
+<br/>
+<p>
+ ভালো? কথাটা বলতে গিয়ে অট্টহাসিতে ফেটে পড়লো বুড়োটা। কোন ব্যাটা আছে এই শহরে, বুকে হাত দিয়ে বলতে পারে আমি ভালো। সব জোচ্চোর। বদমাশ। আমার ছেলেটাকে যেদিন কুড়ি বছর ঠুকে দিলো সেদিন বুঝে ফেলেছি, চিনি ফেলেছি সবাইকে।
+ </p>
+<br/>
+<p>
+ বাদামতলির নিষিদ্ধ এলাকায় কী একটা খুনের মামলায় জড়িত হয়ে ছেলে তার জেল খাটছে। তার কথা মনে পড়ায় সহসা কথার বল্গায় লাগাম টানলো বুড়ো। বার্ধক্যের ছানি পড়া চোখজোড়া ছলছল করছে। অকস্মাৎ চিৎকার করে উঠলো সে। বাদামতলি খারাপ।
+ </p>
+<br/>
+<p>
+ বাদামতলি খারাপ। আর তোমরা কী? ওই তো ব্যাটা আলি খান কন্ট্রাক্টর। ফরসা জামা-কাপড় পরে ঘুরে বেড়ায়। বুঁইঝুঁই গাড়ি হাঁকায়। আলিশান বাড়িতে থাকে। তিন তিনটে বউ ঘরে শালার। কেউ খোঁজ রাখে? রোজ রাতে দুই বউকে ব্যাটা বড় বড় সাহেবদের বাড়িতে ভেট পাঠিয়ে কন্ট্রাক্ট বাগায়। একটাকে রেখে গিয়েছে নিজের জন্যে। ওটা কাউকে ছুঁতে দেয় না। কেউ বেঁ জ রাখে? বলতে গিয়ে খকখক করে কিছুক্ষণ কাশলো সে। মুখে-আসা থুতুগুলো আবার গিলে নিয়ে বললো-যাকগে, তোমার একটা চাকরির দরকার বলছিলে, তাই না?
+ </p>
+<br/>
+<p>
+ হ্যাঁ, যাই পাও একটা জুটিয়ে দাও। যদি তোমার খোঁজে থাকে। উৎসাহে টেবিলের ওপরে ঝুঁকে এলো শওকত।
+ </p>
+<br/>
+<p>
+ শেষ চাটুকু একঢেকে গিলে নিয়ে বুড়ো আহমদ হোসেন বললো, দিতে পারি যদি করতে রাজি থাকো। চাকরি নয়। তবে চাকরিও বলতে পারো।
+ </p>
+<br/>
+<p>
+ কি? শওকতের কণ্ঠে উৎকণ্ঠা।
+ </p>
+<br/>
+<p>
+ টুলের ওপরে একখানা পা তুলে নিয়ে উরু চুলকাতে চুলকোতে কী যেন ভাবলো বুড়ো। ভেবে বললো, কিছু না এই এদিকের মাল ওদিক করা আর কী?
+ </p>
+<br/>
+<p>
+ তার মানে?
+ </p>
+<br/>
+<p>
+ শওকতের সপ্রশ্ন দৃষ্টির দিকে তাকিয়ে হেফাঁকলা দাঁত বের করে নতুন বিয়ে করা বউ–এর মতো হাসলো বুড়ো আহমদ হোসেন। শোনো, তাহলে খুলেই বলি। তোমার কাজ হবে, যেই সন্ধে হলো অমনি, কয়েকটা জায়গা দেখিয়ে দেবো তোমায়, ওখানে গিয়ে দাঁড়িয়ে থাকা। তারপর কয়েকটা লোক দেখিয়ে দেবো তোমায়, প্রথম প্রথম অবশ্যই তোমার চিনে নিতে কষ্ট হবে, তারপর মাসখানেক কাজ করলেই ওদের ভাবভঙ্গি দেখে তুমি ঠিক বের করে নিতে পারবে। এই বের করাটাই হচ্ছে আসল কাজ। তারপর, একটা কথা শিখিয়ে দেবো তোমায়, এই কথা গিয়ে ওদের কানে কানে বলবে। ব্যাস্। তারপরের কাজটা এক্কেবারে পানির মত সহজ! কতকগুলো বাড়ি দেখিয়ে দেবো তোমায়। লোকগুলোকে সঙ্গে করে এনে সেই বাড়িগুলোতে পৌঁছে দিয়ে যাবে। ছানিপাড়া চোখ পিটপিট করে ওর দিকে তাকিয়ে রইলো বুড়ো আহমদ হোসেন। কি, রাজি?
+ </p>
+<br/>
+<p>
+ শওকত উসখুস করালো কাজটা ঠিক বুঝলাম না।
+ </p>
+<br/>
+<p>
+ বুঝবে, বুঝবে, বুঝবে না কেন। আবার একগাল হাসলো বুড়োটা। শোনো, তাহলে আরো খুলে বলি। ওই-যে বাড়িগুলোর কথা বল্লাম, ওখানে খাসাখাসা কতকগুলো মেয়ে থাকে। আহা অমন উসখুস করছো কেন, পুরোটা শুনে নাও না। তুমি নিজে তো আর কিছু করছো না, তোমার কী এলো গেলো। তুমি তো শুধু বকরা ধরে আনবে। নগদানগদি টাকা।
+ </p>
+<br/>
+<p>
+ মেয়ের দালালি করতে বলছো আমায়? বিচিত্র ভঙ্গিতে হাসলো শওকত।
+ </p>
+<br/>
+<p>
+ বুড়ো আহমদ হোসেন ঘোঁত করে উঠলো। এইতো এবার মুখ খারাপ করতে হয় আমার। আরে বাবা, যে-শালারা এসব কাজ করে বেড়ায় তারা লেখাপড়ায় তোমার চাইতে কম না, অনেক বেশি। নিজেকে কী অমন কেউকেটা ভাবো যে কাজটা নিতে লজ্জা করছে? আর এই ছুঁড়িগুলো, এরা তোমার ওই নালা-খন্দ খেকে কড়ি আনা নয়। সব ভদ্র ঘরের মেয়ে। স্কুল-কলেজে পড়ে। ঘর-সংসার করে। ইচ্ছে করলে কোনোদিন তুমি নিজেও গিয়ে দু-এক রাত শুয়ে আসতে পারো ওদের সঙ্গে। তোমার কী? টাকা রোজগার হলেই হলো। ওরাও তো টাকার জন্যেই করছে এসব।
+ </p>
+<br/>
+<p>
+ চলি এবার! এই অস্বস্তিকর প্রস্তাবের নাগাল থেকে বেরিয়ে যাওয়ার না মনটা আঁকুপাকু করছে শওকতের। সে উঠে দাঁড়ালো।
+ </p>
+<br/>
+<p>
+ ব্যস। পছন্দ হলো না তো। বুড়ো আহমদ হোসেন শুয়োরের মতো ঘোঁতঘোঁত করে বললো, তা পছন্দ হবে কেন। যাও মার্থার কাছেই যাও, গিয়ে মার্থার ঠোঁট চোষো গিয়ে, তাতেই পেট ভরবে। আমার কাছে এসে আর পেনপেন কোরো না। ঘুষি মেরে একদম নাকের ডগা গুঁড়ো করে দেবো।
+ </p>
+<br/>
+<p>
+ শেষের কথাগুলো একতের মনে গেলো না। ততক্ষণ রাস্তায় নেমে গেছে সে। মার্থার কাছেই যাবে সে। হ্যাঁ, মার্থার কাছে।
+ </p>
+<br/>
+<p>
+ মার্থা ওকে ঘৃণা করবে। করুক। ওর কাছে মাফ চাইবে সে। বলবে, আমাকে ক্ষমা করে দাও মার্থা। আমি না-বুঝে অন্যায় করে ফেলেছি। তুমি যা ভাবছো আমি তা নই। সারাটা জীবন আমি দেশের একপ্রান্ত থেকে আরেক প্রান্তে ঘুরে বেড়িয়েছি। এক কাজ ছেড়ে অন্য কাজ নিয়েছি। কোথাও শান্তি পাইনি। আমি তোমার কাছে শুধু একটু শান্তি পেতে গিয়েছিলাম। আর কোনো উদ্দেশ্য আমার ছিলো না। মার্থা, তুমি কেন আমাকে কাছে টেনে নিলে না মার্থা।
+ </p>
+<br/>
+<p>
+ মার্থা কাউন্টারে দাঁড়িয়ে। ক্রেতাদের সঙ্গে সেই আগের মতো হেসে-হেসে কথা বলছে সে। তেমনি সহজ। স্বাভাবিক।
+ </p>
+<br/>
+<p>
+ ফুটপাতে দাঁড়িয়ে অনেকক্ষণ ধরে ওকে দেখলো শওকত। বিকেলে আসতে বলেছিলো সে। এখন রাত। যে-লোকটার আসার কথা ছিলো সে বোধহয় এসে চলে গেছে। ভেতরে যাবে কিনা ভাবলো। ভাবতে গিয়ে কাল রাতের কথা আবার মনে হলো ওর। আর সঙ্গে সঙ্গে একটা ভয়ের রাক্ষস এলে গ্রাস করতে চাইলো ওকে। পা কাঁপলো। মার্থা ব্যাগঝিম করে উঠলো। বুকটা ধুকধুক করছে।
+ </p>
+<br/>
+<p>
+ মার্থা কাউন্টার ছেড়ে বাইরে বেরিয়ে আসছে। ওর মনে হলে এখনি একটা দৌড় দিয়ে পালাতে পারলে বেঁচে যায় সে। কিন্তু, মার্থা সোজা ওর সামনে এসে দাঁড়ালো। কী ব্যাপার, ভেতরে না গিয়ে এতক্ষণ ধরে এখানে দাঁড়িয়ে রয়েছো কেন? চলো। মার্থার গলার স্বর আর মুখের ভাব-ভঙ্গি দেখে অনেকটা আশ্বস্তু হলো শওকত? ভেতরে যেতে যেতে মার্থা আবার বললো, এত দেরি করে এলে কেন, ভদ্রলোক তোমার জন্যে অনেকক্ষণ অপেক্ষা করে চলে গেছেন। বসো এখানে। বসো এখানে। ওকে একটা চেয়ারে বসিয়ে দিয়ে আবার কাউন্টারে চলে গেলো মার্থা।
+ </p>
+<br/>
+<p>
+ রাতকানা লোকটা চশমার ফাঁকে বারকয়েক তাকালো ওর দিকে। কেমন যেন একটা সন্দেহের দৃষ্টি যেন এক একটা মস্তবড় অন্যায় করে ফেলেছে। আর ওই রাতকানা লোকটাকে সব বলে দেয়নি তো? নইলে লোকটা গোঁফের নিচে অল্পঅল্প করে হাসছে আর ঘুরিয়ে-ফিরিয়ে দেখছে কেন ওকে। পা থেকে মার্থা পর্যন্ত।
+ </p>
+<br/>
+<p>
+ এসো। কতক্ষণ পরে মনে নেই, মার্থা এসে ডাকলো ওকে। ওর দিকে তাকিয়ে একটু অবাক হলো শওকত। এতক্ষণ চোখে পড়েনি, মার্থা আজ সেজেছে। বিয়ের আগে সেই বেকারীতে আসার সময় যেমন সাজতো সে, তেমনি। হঠাৎ যেন বয়সটা অনেষ্ক কমে গেছে ওর।
+ </p>
+<br/>
+<p>
+ রাস্তায় নেমে কিছুদূর পথ কোনো কথা বললো না মার্থা। ওকে বেশ গম্ভীর মনে হলো। শওকত ভাবলো, আর দেরি না করে এই পথচলার ফাঁকে ওর কাছে ক্ষমা চেয়ে নিলে হয়।
+ </p>
+<br/>
+<p>
+ মার্থা অকস্মাৎ একটা দীর্ঘশ্বাস ছাড়লো। বললো, তোমার করিটা বোধহয় হবে না।
+ </p>
+<br/>
+<p>
+ হবে না? ওর কথাটারই যেন প্রতিক্তি করলো শওকত।
+ </p>
+<br/>
+<p>
+ মার্থা বললো, হোতো। এখনো হয়। ওর কথায় যদি আমি রাজি হয়ে যাই।
+ </p>
+<br/>
+<p>
+ কে জানে হয়তো মেয়েমানুষ সঙ্গে থাকলে সব জায়গায় এমনি আদর-সোহাগ পাওয়া যায়। শওকত ভাবলো।
+ </p>
+<br/>
+<p>
+ কী কথা? শওকতের দম বন্ধ হয়ে এলো।
+ </p>
+<br/>
+<p>
+ মার্থা বললো, থাক, নাইবা শুনলে।
+ </p>
+<br/>
+<p>
+ শওকত গুনে ছাড়বে। বললো, বলোই না।
+ </p>
+<br/>
+<p>
+ মার্থা বললো, লোকটা আমাকে দিন কয়েকের জুন্যে ওর সঙ্গে কক্সবাজার বেড়াতে যেতে বলছিলো।
+ </p>
+<br/>
+<p>
+ কেন?
+ </p>
+<br/>
+<p>
+ মার্থা ম্লান হাসলো। তোমাকে চাকরি দেয়ার জন্যে।
+ </p>
+<br/>
+<p>
+ ততক্ষণে একটা সেলুনের সামনে এসে দাঁড়িয়েছে ওরা। শওকত বললো, এখানে কী?
+ </p>
+<br/>
+<p>
+ মার্থা ওর মুখের দিকে ইঙ্গিত করে বললো, মুখের দাড়িগুলো কত লম্বা হয়ে গেছে। একবার আয়নায় গিয়ে দেখো। চলো, শেভ করে নাও।
+ </p>
+<br/>
+<p>
+ এখন, এই রাতে?
+ </p>
+<br/>
+<p>
+ হ্যাঁ, এখন, যাও ঢোকো। মার্থার চোখেমুখে শাসানের ভঙ্গি। ভালোই লাগলো শওকতের, কাল রাতের কথা হয়তো ভুলে গেছে মার্থা। খোদা, ওকে সব ভুলিয়ে দাও।
+ </p>
+<br/>
+<p>
+ সেলুনের লোকগুলো টেরিয়ে-টেরিয়ে দেখছে মার্থাকে। হাতজোড়া কোলে নিয়ে মার্থা এককোণে চুপচাপ বসে। যে-লোকটা ওর মুখে সাবান ঘষছে তার যেন কোনো তাড়া নেই। অফুরন্ত অবসর। অথচ এর আগে যখন সেলুনে দাড়ি কামাতে এসেছে সে, তখন লোকগুলো এত তাড়াহুড়ো করেছে যে, অর্ধেকটা দাড়ি থেকে গেছে মুখে। ব্যাগ থেকে পয়সা বের করে পাওনা চুকিয়ে দিলো মার্থা, তারপর আবার রাস্তায় নেমে এলো ওরা।
+ </p>
+<br/>
+<p>
+ মার্থা বললো, আজ আর বাসায় ফিরে গিয়ে রান্নাবান্না করতে পারবো না। চলো একটা রেস্টুরেন্টে গিয়ে খেয়ে নেবো। মার্থার গলায়, কথায়, অভিব্যক্তিতে সামান্য জড়তা নেই। অথচ কাল রাতে বালিশে মুখ গুঁজে মেয়ে কেমন ডুকরে কাঁদছিলো। শওকতের মাথায় আবার সবকিছু তালগোল পাকাতে শুরু করেছে। একটা জট খুলতে গিয়ে সহস্র জটে জড়িয়ে যাচ্ছে চিন্তার সূতোগুলো।
+ </p>
+<br/>
+<p>
+ রেস্টুরেন্টের একটা কোণ বেছে পাখার নিচে গিয়ে বসলো ওরা।
+ </p>
+<br/>
+<p>
+ মার্থা শুধালো, কী খাবে বলো।
+ </p>
+<br/>
+<p>
+ শওকত শুধালো, তুমি কী খাবে বলো।
+ </p>
+<br/>
+<p>
+ মার্থা বললো, আমি শুধু এক কাপ চা খাবো। আমার ক্ষিদে নেই।
+ </p>
+<br/>
+<p>
+ বারে আমি একা খাবো।
+ </p>
+<br/>
+<p>
+ হ্যাঁ। তুমি খাবে আর আমি বসে-বসে তোমার খাওয়া দেখবো। এতক্ষণে এক টুকরো হাসি ঝিলিক দিয়ে গেলো ওর মুখে। কী খাবে বলো।
+ </p>
+<br/>
+<p>
+ কাবাব-পরটা।
+ </p>
+<br/>
+<p>
+ অর্ডার দেয়ার বিছুক্ষণের মধ্যে এসে গেলো। মার্থা তার কথামতো বসে-বসে ওর খাওয়া দেখলো। মাঝে মাঝে দু-একটা কথা বললো সে। বললো, সকালে অমন মোষের মতো ঘুমুচ্ছিলে কেন? দরজায় কত ধাক্কা দিলাম, জাগলে না। দুপুরে নিশ্চয়ই খাওয়া-দাওয়া হয়নি। নাহ, তোমাকে নিয়ে আর পারি না আমি। দ্যাখো তো শেভ করে নেয়ায় তোমাকে এখন কত ভালো দেখাচ্ছে। কী রকম বিশ্রী আর রোগা রোগা লাগছিলো। বললো, পরটা রেখে দিলে কেন, খেয়ে নাও। আরেকটা কাবাব আনতে বলবো?
+ </p>
+<br/>
+<p>
+ কাল রাতের একটু চিহ্নও নেই মার্থার চোখেমুখে। তবু রিকশায় উঠে শওকত ভাবলো মার্থার কাছ থেকে এই ফাঁকে ক্ষমা চেয়ে নিতে হয়।
+ </p>
+<br/>
+<p>
+ শওকত ডাকলো, মার্থা।
+ </p>
+<br/>
+<p>
+ মার্থা বললো, কী।
+ </p>
+<br/>
+<p>
+ শওকত ঢোক গিললো। একটা কথা বলবো?
+ </p>
+<br/>
+<p>
+ বলো।
+ </p>
+<br/>
+<p>
+ তুমি নিশ্চয়ই আমার উপর রাগ করেছে তাই না?
+ </p>
+<br/>
+<p>
+ কেন। রাগ করবো কেন? মুখ ঘুরিয়ে শওকতের দিকে তাকালো সে। পরক্ষণে যেন রাগ করার কারণটা মনে পড়ে গেলো ওর। আর সঙ্গে সঙ্গে মুখখানা কেমন কালো হয়ে এলো মার্থার।
+ </p>
+<br/>
+<p>
+ শওকত লক্ষ্য করলো।
+ </p>
+<br/>
+<p>
+ মার্থা বললো, ওহ! বলে চুপ করে রইলো সে।
+ </p>
+<br/>
+<p>
+ অন্ধকার গলি দিয়ে এগিয়ে চলেছে রিকশাটা। দুজনে নীরব। কী অসহ্য এই নীরবতা। শওকতের মনে হলো এখনি ভেঙে পড়বে সে। মার্থা ধীরে ধীরে বললো, সত্যি এটা তোমার কাছ থেকে আশা করিনি।
+ </p>
+<br/>
+<p>
+ শওকত মরিয়া হয়ে বললো, মার্থা, আমাকে মাফ করে দাও তুমি, তুমি যা ভাবছো আমি তা নই। বিশ্বাস করো।
+ </p>
+<br/>
+<p>
+ ওর একখানা হাত নিজের মুঠোর মধ্যে তুলে নিলো মার্থা। মৃদু হেসে বললো, পাগল। তুমি একটা আস্ত পাগল। যে-জিনিসটা চাইলেই পেতে, তাকে অমন চোরের মতো পেতে চাও কেন? জানো, কাল রাতে আমার মনে হয়েছিলো তুমিও আর পাঁচটা লোকের মতো। নিতান্ত সাধারণ। তোমার চোখজোড়া কী বিশ্রী লাগছিলো, মনে হচ্ছিলো একটা মাতাল। গুণ্ডা। ছোটলোক। সত্যি, তোমার ওপরে হঠাৎ ভীষণ ঘেন্না এসে গিয়েছিলো আমার। আমি সেটা সহ্য করতে পারিনি, তাই কেঁদেছিলাম। ওর হাতখানা মুঠোর মধ্যে শক্ত করে ধরলো মার্থা।
+ </p>
+<br/>
+<p>
+ শওকত একটা সুবোধ বালকের মতো বললো, আর আমি অমন করবো না মার্থা।
+ </p>
+<br/>
+<p>
+ মার্থা হাসলো। পাগল।
+ </p>
+<br/>
+<p>
+ রিকশাটা বাড়ির কাছাকাছি এসে পড়েছে। পুরো পাড়াটা ঝিমুচ্ছে ঘুমের ঘোরে।
+ </p>
+<br/>
+<p>
+ শওকত আস্তে করে ডাকলো, মার্থা।
+ </p>
+<br/>
+<p>
+ মার্থা ওর হাতটা কোলের কাছে টেনে এনে বললো, বলো।
+ </p>
+<br/>
+<p>
+ শওকত ইতস্তত করলো। এখন একটা চুমো দিই।
+ </p>
+<br/>
+<p>
+ না।
+ </p>
+<br/>
+<p>
+ কেন?
+ </p>
+<br/>
+<p>
+ রিকশাওয়ালাটা কি মানুষ না নাকি? মার্থা ফিসফিস করে বললো, ঘরে গিয়ে দিয়ো। যত ইচ্ছে দিয়ো।
+ </p>
+<br/>
+<p>
+ রিকশা থেকে নামলো ওরা।
+ </p>
+<br/>
+<p>
+ কুষ্ঠরোগীটা রকের ওপর বসে। আজ ওর প্রতি হঠাৎ বড় মায়া হলো শওকতের। মার্থার দিকে চেয়ে বললো, লোকটাকে একদিন হাসপাতালে নিয়ে গেলে হয়। এখনো ঠিকমতো চিকিৎসে করলে হয়তো ভালো হয়ে যাবে। কী বলো?
+ </p>
+<br/>
+<p>
+ কিন্তু মার্থা ওর কথার কোনো জবাব দিলো না। রিকশার পয়সাটা ঢুকিয়ে দিয়ে আস্তে করে বললো, এসো।
+ </p>
+<br/>
+<p>
+ অন্ধকার করিডোরে দাঁড়িয়ে মার্থা আবার বললো, ম্যাচিশটা জ্বালাও তো। তালা খুলি।
+ </p>
+<br/>
+<p>
+ পকেট থেকে দিয়াশলাই-এর বাক্সটা বের করে জ্বালালো শওকত। খুট করে একটা শব্দ হলো পেছনে। শওকত ফিরে তাকালো। পেছনে দরজার আড়ালে একটা ছায়া। কাঁচা হলুদের মতো যার গায়ের রঙ। তামাটে যার চোখ। আর গাঢ় বাদামি যার অধর। শওকতের মার্থাটা আবার ঝিমঝিম করে উঠলো। একটা ভয়ের রাক্ষস এসে ধীরে ধীরে গ্রাস করছে ওকে।
+ </p>
+<br/>
+<p>
+ দরজা খুলে ভেতরে ঢুকলো মার্থা। মিষ্টি গলায় ডাকলো, এসো।
+ </p>
+<br/>
+<p>
+ না। এখন না। মার্থা। শওকত ঢোক গিললো। তারপর আর একমুহূর্তও সেখানে দাঁড়ালো না সে। মার্থা অবাক হয়ে দেখলো অন্ধকার সিঁড়ির মোড়ে হারিয়ে গেলো শওকত।
+ </p>
+<br/>
+<p>
+ ভয়ের রাক্ষস তাড়া করছে ওকে।
+ </p>
+<br/>
+
+
+<p>
+ সংক্ষিপ্ত ব্লাউজের নিচে আড়াল-রাখা একজোড়া উদ্ধত যৌবন, নিচে তার ঘরে নাচের মহড়া দিচ্ছে। এখান থেকে তার ঘুঙুরের শব্দ শুনতে পাচ্ছে শওকত।
+ </p>
+<br/>
+<p>
+ মার্থা বললো, দেরি করছো কেন, ওঠো। তাড়াতাড়ি বাড়িটা দেখে আসি গিয়ে। আমাকে আবার দুটোর মধ্যে দোকানে যেতে হবে। এ বেলা ছুটি নিয়েছি। শওকতের শুকনো চুলের দিকে চোখ পড়তে বললো, মাথায় তেল দাও। ভালো করে চুলগুলো আঁচড়ে নাও। এমন ছন্নছড়ার মতো থাকো!
+ </p>
+<br/>
+<p>
+ না। আর এই ছন্নছাড়া জীবন নয়। এবার নিজেকে গুছিয়ে নিতে চায় শওকত। অনেক চড়াই-উৎরাই পেরিয়েছে। জীবনের সহস্র সর্পিল পথের বাঁকে থেমেছে। দেখেছে। ঘুরেছে অনেক। আজ বড় ক্লান্ত সে।
+ </p>
+<br/>
+<p>
+ ওরা অনেক টাকা ভাড়া চাইবে। শওকত ধীরে ধীরে বললো, কমপক্ষে দেড়শ টাকা।
+ </p>
+<br/>
+<p>
+ মার্থা বললো, চলো না, একবার গিয়ে দেখি তো।
+ </p>
+<br/>
+<p>
+ গত কয়েকদিন ধরে অনেক বাড়ি দেখেছে ওরা। অনেক অলিগলি ঘুরেছে। বাড়ি পছন্দ হলেও ভাড়ার অঙ্ক শুনে চুপসে গেছে মন।
+ </p>
+<br/>
+<p>
+ বাবুবাজারের বাড়িটা পেলে মন্দ হতো না। শওকত চুলে তেল দিতে-দিতে বললো। ভাড়াটাও কম ছিলো।
+ </p>
+<br/>
+<p>
+ কিন্তু অত টাকা আগাম দেবে কোত্থেকে? ওর দিকে চিরুনিটা বাড়িয়ে দিলো মার্থা। আমাদের তো আর একগাদা জমা-টাকা নেই। কথাটা বলে স্নান হাসলো সে। তাছাড়া বাড়ি ভাড়াতে সব টাকা খরচ হয়ে গেলে, খাওয়া-পরা চলবে কেমন করে। পরের কথাটা বলতে গিয়ে থামলো মার্থা। লজ্জায় মুখখানা রাঙা হলো ওর। আস্তে করে বললো, বিয়ের পর সংসারটা তো আর অমন ছোট থাকবে না। বাড়বে। বলে রাঙা মুখখানা অন্য দিকে সরিয়ে নিল সে।
+ </p>
+<br/>
+<p>
+ শওকত মনে-মনে হিসেব করে দেখলো, সত্যিই তো। মাসে দেড়শ টাকা করে পায় মার্থা। একশ টাকা বাড়ি ভাড়া দিতে গেলে আর থাকে কত। ভাবতে গিয়ে নিজেকে অপরাধী মনে হলো ওর। ও যদি একটা চাকরি পেতো।
+ </p>
+<br/>
+<p>
+ আচ্ছা মার্থা, ও লোকটা তোমাকে কক্সবাজার নিয়ে যেতে চায় কেন?
+ </p>
+<br/>
+<p>
+ কোন্ লোকটা।
+ </p>
+<br/>
+<p>
+ ওই যে, যাকে আমার চাকরির কথা বলেছিলে।
+ </p>
+<br/>
+<p>
+ ও, মার্থা সহসা গম্ভীর হয়ে গেলো। একটু পরে ম্লান হেসে বললো, কেন নিয়ে যেতে বোঝ না?
+ </p>
+<br/>
+<p>
+ ওর চোখের দিকে চোখ পড়তে শওকত আর কোনো কথা বলতে পারলো না। মুখখানা রক্তশূন্য ফ্যাকাশে হয়ে গেলো ওর।
+ </p>
+<br/>
+<p>
+ মার্থা সেটা লক্ষ্য করে বললো, এতসব নিয়ে তুমি মার্থা ঘামিয়ো না তো! যা হবার হবে। চলো। চারপাশে সন্তর্পণে অকিয়ে ওর খুব কাছে এগিয়ে এসে মুহূর্তে ওকে একটু আদর করে দিয়ে আবার বললো, চলো।
+ </p>
+<br/>
+<p>
+ শওকত বললো, যাই বলো বিয়ের পরে কিন্তু এ বাড়িতে থাকা চলবে না।
+ </p>
+<br/>
+<p>
+ মার্থা বললো, ঠিক আছে। আমি তো অমত করিনি। তুমি যেখানে নিয়ে যাবে আমি যাবো। আপাতত একটা বাড়ি খুঁজে তো বের করি। চলো।
+ </p>
+<br/>
+<p>
+ সেলিনার ঘরের দরজাটা খোলা। ভেতরে এখনো নাচের মহড়া দিচ্ছে সে। কাঁচা হলুদ মাংস বেয়ে ফোঁটা ফোঁটা ঘাম ঝরছে ওর। নানা রঙের বুটি-আঁকা অপরিসর কামিজের নিচে যৌবনের ভাজগুলো থরেথরে সাজানো। তাকাবে-না তাকাবে-না করেও একবার তাকাতে হলো। তাড়াতাড়ি চোখজোড়া ফিরিয়ে নিলো সে। না, ওকে আর ভয় করবে না শওকত। মার্থা রয়েছে সঙ্গে। নতুন বাড়িতে গিয়ে মার্থাকে নিয়ে নতুন জীবনের ভিত পাতবে সে। না, আর ভয় করবে না।
+ </p>
+<br/>
+<p>
+ ওরা রিকশা নিলো না। হেঁটে চললো।
+ </p>
+<br/>
+<p>
+ মার্থা বললো, এই তো অল্প একটু পথ।
+ </p>
+<br/>
+<p>
+ শওকত তার কথা শেষ করলো। হেঁটেই যাওয়া যাবে। শওকত জানে, কদিন থেকে বেশ হিসেবি হয়ে উঠেছে মার্থা। আটআনা পয়সা বাঁচতে পারলে মন্দ কী। কাজে আসবে।
+ </p>
+<br/>
+<p>
+ এ পথে উদ্দেশ্যবিহীন বহু হেঁটেছে শওকত। মার্থাকে নিয়ে আজকের এই হেঁটে যাওয়ার সঙ্গে তাদের কোনো মিল নেই। এই শহরে কত লোক। কত বাড়ি। তারই এককোণে একটা বাসায় পোজে বেরিয়েছে ওরা। মার্থা আর শওকত।
+ </p>
+<br/>
+<p>
+ শওকত আর মার্থা। একটা পছন্দমতো ঘর। কিছু আশা। কিছু স্বপ্ন। অনেক ভালোবাসা। আর হয়তো অশেষ দৈন্যে-ভরা একটুকরো সংসার। তাই হোক।
+ </p>
+<br/>
+<p>
+ সামনের রাস্তা দিয়ে একটা লম্বা মিছিল যাচ্ছে। ছাত্ররা স্ট্রাইক করেছে। গলা উঁচিয়ে চিৎকার করে শ্লোগান দিচ্ছে ওরা। হাতে হাতে অসংখ্য যান। প্লাকার্ড। মিছিলটা বেরিয়ে না-যাওয়া পর্যন্ত থামালো না।
+ </p>
+<br/>
+<p>
+ মার্থা আস্তে করে শুধালো, কী ভাবছে।
+ </p>
+<br/>
+<p>
+ কত বললো, কিছু না।
+ </p>
+<br/>
+<p>
+ মার্থা বললো, আমি কী ভাবছি বল তো।
+ </p>
+<br/>
+<p>
+ শওকত চিন্তা করে নিয়ে বললো, তুমি। তুমি ভাবছো একটা বাড়ির কথা।
+ </p>
+<br/>
+<p>
+ না। মোটেই না, মৃদু হেসে মার্থা নাড়লো মার্থা। আমি ভাবছি বাড়িটা পেলে কেমন করে সাজাবো তাই।
+ </p>
+<br/>
+<p>
+ শওকত তাকিয়ে দেখলো মার্থার চোখে স্বপ্ন। আজকাল আগের চেয়ে অনেক বেশি সুন্দর লাগে ওকে।
+ </p>
+<br/>
+</div>
+<h2>
+ পঞ্চম
+ </h2>
+<br/>
+<h2>
+ বাড়ি দেখে দুজনেই পছন্দ হলো
+ </h2>
+<hr/>
+<br/>
+
+<div>
+<p>
+ বাড়ি দেখে দুজনেই পছন্দ হলো। হোক না কবুতরের খোঁপের মত ছোট-ছোট দুটো কামরা। তবু ভাড়া কম। মাসে পঁচাত্তর টাকা।
+ </p>
+<br/>
+<p>
+ দু-মাসের আগাম দিতে হবে, দেড়শ! সে টাকা দিয়ে বাড়ির ভেতরটা মেরামত আর চুনকাম করে দেবে বাড়িওয়ালা। এঘর ওঘর ঘুরে-ঘুরে দেখলে মার্থা। পেছনে ছোট একটুকরা উঠোন। সরু বারান্দা। রান্নাঘরে এসে ঢুকলো মার্থা। উপরের টিনগুলো ফুটো হয়ে গেছে। এক দিকে তাকাতে দেখে বাড়িওয়ালা বললো, এর জন্যে ঘাবড়াবেন না। আগাম পেলে সব মেরামত করে দেবো। আগে যারা ছিলো–এক নম্বরের পাজি লোক, ভাড়ার টাকা নিয়ে খিটিমিটি করতে। তাই আমিও আর মেরামতে হাত দেইনি। আপনাদের জন্যে সব দেবো আমি। একটু অসুবিধেও হাত দেবো না, দেখবেন।
+ </p>
+<br/>
+<p>
+ শওকতের দিকে তাকালো মার্থা।
+ </p>
+<br/>
+<p>
+ শওকত বললো, ভালোই তো লাগছে।
+ </p>
+<br/>
+<p>
+ বাড়িওয়ালা বললো, আপনারা দেখুন। দোকানটা খালি ফেলে এসেছি। চলি। যাবার দেখা করে যাবেন।
+ </p>
+<br/>
+<p>
+ শওকত ঘাড় নাড়লো। বাড়িওয়ালা চলে গেলে মার্থা বললো, লোকটা বেশ।
+ </p>
+<br/>
+<p>
+ শওকত বলে, হুঁ।
+ </p>
+<br/>
+<p>
+ মার্থা বললো, আমাদের আর দেখার কী আছে।
+ </p>
+<br/>
+<p>
+ শওকত বললো, চলো।
+ </p>
+<br/>
+<p>
+ আগে চোখে পড়েনি। সরু পথ দিয়ে বাইরে বেরিয়ে দেখলো বাসার সামনে একটা ছোট স্টেশনারি দোকান আছে বাড়িওয়ালার। দোকান ঘরটাও বাড়িরই একটা অংশ। মাঝখানে একটা দরজা আছে ভেতরে খাওয়ার। এখন সেটা বন্ধু। বাড়িওয়ালা বললো, কেমন দেখলেন?
+ </p>
+<br/>
+<p>
+ শওকত বললো, ভালো।
+ </p>
+<br/>
+<p>
+ মার্থা তখন খুঁটিয়ে খুঁটিয়ে দোকানঘরটাকে লক্ষ্য করছিলো। সহসা বললো, এটা আপনার নিজের বুঝি?
+ </p>
+<br/>
+<p>
+ বাড়িওয়ালা একগাল হাসলো। হ্যাঁ। তারপর বললো, ঠিকমতো দেখাশোনা করতে পারি না। নানা ঝামেলা। ভালো খদ্দের পেলে ভাবছি বিক্রি করে দেবো।
+ </p>
+<br/>
+<p>
+ মার্থা তাকালো শওকতের দিকে।
+ </p>
+<br/>
+<p>
+ শওকত বললো, চলো।
+ </p>
+<br/>
+<p>
+ বাড়িওয়ালা বললো, তাহলে বাড়ি আপনারা ভাড়া নিচ্ছেন। পাকা কথা, কী বলেন?
+ </p>
+<br/>
+<p>
+ মার্থা বললো, দোকানটা সত্যিসত্যি বিক্রি করবেন নাকি
+ </p>
+<br/>
+<p>
+ বাড়িওয়ালা একটু অবাক হয়ে কিছুক্ষণ তাকিয়ে রইলো ওর দিকে। অস্পষ্ট স্বরে বললো, হ্যাঁ।
+ </p>
+<br/>
+<p>
+ মার্থা বললো, কত দিয়ে বেচবেন?
+ </p>
+<br/>
+<p>
+ শওকত ঠিক বুঝতে পারলো না কি চায় মার্থা।
+ </p>
+<br/>
+<p>
+ বাড়িওয়ালা বললো, তা, হাজার তিনেক তো বটে।
+ </p>
+<br/>
+<p>
+ টাকার অঙ্কুটা মনে-মনে একবার উচ্চারণ করালো মার্থা।
+ </p>
+<br/>
+<p>
+ ঠোঁট নাড়লো। কোনো শব্দ বেরুলো না।
+ </p>
+<br/>
+<p>
+ শওকত বললো, চলি।
+ </p>
+<br/>
+<p>
+ মার্থা বললো, কাল আবার আসবো।
+ </p>
+<br/>
+<p>
+ বাড়িওয়ালা একগাল হেসে বিদায় দিলো ওদের।
+ </p>
+<br/>
+<p>
+ আশ্চর্য! কী লাগামহীন স্বপ্ন দেখতে পারে মানুষ দু-মাসের আগাম ভাড়া দেড়শ টাকা হাতে নেই। তিনহাজার টাকা দিয়ে দোকান কেনার জন্যে উতলা হয়ে পড়েছে মার্থা।
+ </p>
+<br/>
+<p>
+ শওকত বললো, স্রেফ পাগলামো।
+ </p>
+<br/>
+<p>
+ মার্থা বললো, হোক পাগলামো। তন্তু সুন্দর। একবার চিন্তা করে দ্যাখো না। দোকানটা পেলে আর কোনো ঝামেলাই থাকবে না আমাদের। আমি কাউন্টারে বসে দোকান চালাবো। তুমি বাইরে থেকে জিনিসপত্র কিনে এনে দেবে। হিসেবটা দেখবে। কী চমৎকার হবে তাই না?
+ </p>
+<br/>
+<p>
+ যতসব বাজে চিন্তা। শওকত বিড়বিড় করলো। কিন্তু মার্থার প্রস্তাবটা একেবারে উড়িয়ে দিতে পারলো না। নিজের মনকে একটু যাচাই করতে গিয়ে দেখলো, মার্থা মন্দ বলেনি। দোকানটা যদি কিনতে পারে ওরা, তাহলে আর অন্যের মুখের দিকে চেয়ে দিন কাটাতে হবে না ওদের। কিন্তু, একসঙ্গে অতগুলো টাকা
+ </p>
+<br/>
+<p>
+ মার্থা বললো, আহ, টাকার কথাটা তুলে এ সুন্দর স্বপ্নটাকে মাটি করে দিয়ে নাতো। ধরে নাও, টাকাটা আমরা পেলাম। সে যেখান থেকেই পাই। চুরি করে হোক, ডাকাতি করে হোক। সে পরে দেখা যাবে’খন। ধরো না, দোকানটা আমরা কিনেছি। তুমি-আমি পেছনের ঘর দুটোতে থাকি। আর সারারাত বিছানায় শুয়ে শুয়ে ভাবি, কেমন করে কেমন করে দোকানটা আরো সাজানো, আরো বড়ো করে তুলবো। ওকে আমাদের কোলের ছেলের মতো, বলতে গিয়ে সহলা হেসে উঠলো মার্থা। হাসির গমকে সমস্ত দেহটা দুলে উঠলো ওর। চোখের কোণে জেগে উঠলো একজোড়া হল মুক্তো।
+ </p>
+<br/>
+<p>
+ শওকত অবাক হয়ে বললো, হঠাৎ কান্না।
+ </p>
+<br/>
+<p>
+ মার্থা ওর কথার মাঝখানে বললো, কুটো পড়েছে। তারপর দু-হাতের তালু দিয়ে চোখজোড়া ভীষণভাবে রগড়াতে লাগলো সে। রুমালে ফুঁ দিয়ে দু-চোখে গরম তাপ দিলো।
+ </p>
+<br/>
+<p>
+ শওকত বললো, অযথা চোখ দুটো লাল করছো কেন?
+ </p>
+<br/>
+<p>
+ মার্থা মৃদু হেসে রুমালটা সরিয়ে নিলো। সোজা ওর দিকে তাকিয়ে বিচিত্র ভঙ্গিতে বললো, দোকানটা কিন্তু কিনতেই হবে কী বলো?
+ </p>
+<br/>
+<p>
+ কেনার মতো টাকা নেই আমাদের। সংক্ষেপে জবাব দিলো শওকত।
+ </p>
+<br/>
+<p>
+ মার্থা আগের মতো হেসে বললো, দুনিয়াতে কেউ টাকা নিয়ে জন্মে না।
+ </p>
+<br/>
+<p>
+ শওকত প্রতিবাদের স্বরে বললো, জন্যে কী! বড়লোকের ঘরের ছেলেমেয়েরা।
+ </p>
+<br/>
+<p>
+ আর যাদের বাপ-মা বড়লোক ছিলো না। তারা? মার্থার দৃষ্টি শওকতের মুখের দিকে।
+ </p>
+<br/>
+<p>
+ ওরা নিজেরা খেটে রোজগার করে।
+ </p>
+<br/>
+<p>
+ কি দিয়ে?
+ </p>
+<br/>
+<p>
+ বিদ্যা বুদ্ধি আর শ্রম দিয়ে।
+ </p>
+<br/>
+<p>
+ আমরাও তাই করবো। চেয়ার ছেড়ে উঠে দাঁড়িয়ে ঘরময় পায়চারি করতে লাগলো মার্থা। ওর চোখেমুখে আনন্দের দ্যুতি। যেন এ-মুহূর্তে তিনহাজার টাকা হাতের মুঠোর মধ্যে পেয়ে গেছে সে। হাতজোড়া বুকের কাছে আড়াআড়িভাবে রেখে জানালার কাছে গিয়ে দাঁড়ালো সে। জুতোর গোড়ালি-জোড়া-জোরে জোরে মাটিতে ঠুকলো। কী যেন ভাবলো। তিন হাজার টাকা। মাত্র তিনটে হাজার টাকা রোজগার করতে পারবো না আমরা ঘুরে দাঁড়িয়ে শওকতের দিকে এগিয়ে এলো মার্থা।
+ </p>
+<br/>
+<p>
+ আজ সকালে যারা দেড়শ টাকার চিন্তা করতে গিয়ে বিব্রতবোধ করছিলো, এখন-তারা তিনহাজার টাকা সমস্যার কথা ভেবে মনে-মনে হয়রান হচ্ছে।
+ </p>
+<br/>
+<p>
+ মার্থা পাগল। কিন্তু শওকত নিজেও জানে না, কোন্ অসতর্ক মুহূর্তে সে নিজেও সেই পাগলামোর জালে জড়িয়ে পড়েছে।
+ </p>
+<br/>
+<p>
+ সে ভাবছে বুড়ো আহমদ হোসেনের কথা।
+ </p>
+<br/>
+<p>
+ অন্ধকারে যে একটুকরো আলোর ছটা।
+ </p>
+<br/>
+<p>
+ কী হবে যদি ওর প্রস্তাবে রাজি হয়ে যায় শওকত। জীবনভর তো আর কোনো কাজ করবে না সে। যতদিন তিনহাজার টাকা যোগাড় না হয় ততদিন। তারপর সব ছেড়ে দিয়ে। মার্থাকে নিয়ে সংসার পাতবে সে।
+ </p>
+<br/>
+<p>
+ মার্থা তখনো অনর্গল বকে চলেছে। রাতকানা লোকটা সারাদিন খাটিয়ে মারে। তবু তার কতরকম ধমক শুনতে হয়। জাহান্নামে যাক সে। আর ওখানে কাজ করবো না আমি। নিজের দোকান, নিজের সব।
+ </p>
+<br/>
+<p>
+ শওকত সহসা বললো, ঘাবড়িয়ো না মার্থা, টাকা জোগাড় হয়ে যাবে।
+ </p>
+<br/>
+<p>
+ কেমন করে? আচমকা থমকে দাঁড়ালো মার্থা। চোখজোড়া বড় করে তাকালো ওর দিকে।
+ </p>
+<br/>
+<p>
+ শওকত বললো, আমরা দিনরাত খাটব।
+ </p>
+<br/>
+<p>
+ ওর মসৃণ চুলগুলোর মধ্যে হাত বুলিয়ে দিয়ে ম্লান হাসলো মার্থা। খেপেছো। একটু আগের মার্থাকে যেন এখন চেনাই যায় না। উতলা মনের নিচে এত গভীর একটা খাদ লুকোনো ছিলো তা কে জানতো। মার্থা ধীরে ধীরে বললো। ওসব পাগলামো থাক। শোনো, অনেক রাত হয়ে গেছে। যাও এবার ঘুমোও গিয়ে।
+ </p>
+<br/>
+<p>
+ শওকত অনেকক্ষণ ধরে তাকিয়ে রইলো মার্থার দিকে। তারপর বললো, কাল থেকে আমি একটা চাকরিতে জয়েন করছি মার্থা।
+ </p>
+<br/>
+<p>
+ তাই নাকি? আগে বলোনি তো। মার্থার চোখেমুখে আনন্দের আভা। শওকত সেটা লক্ষ্য করে বললো, বুড়ো আহমদ হোসেন জোগাড় করে দিয়েছে।
+ </p>
+<br/>
+<p>
+ কোথায়?
+ </p>
+<br/>
+<p>
+ সেটা এখনো জানি না। কাল রাতে জানবো।
+ </p>
+<br/>
+<p>
+ সত্যি বলছো। চোখের মণিজোড়া হাসিতে চিকচিক করছে মার্থার।
+ </p>
+<br/>
+<p>
+ শওকত ঢোক গিলে বললো, সত্যি।
+ </p>
+<br/>
+<p>
+ একটা পুরানো টিনের কৌটো থেকে অতি যত্ন করে রাখা কতকগুলো নোট বের করে আনলো মার্থা। শওকতের দিকে বাড়িয়ে দিয়ে বললো, গুণে দ্যাখো তো কত।
+ </p>
+<br/>
+<p>
+ শওকত অবাক হয়ে বললো, এগুলো কোথায় পেয়েছে।
+ </p>
+<br/>
+<p>
+ কেউ নিশ্চয়ই দান করেনি, মার্থা শান্তগলায় বললো। এতদিন ধরে চাকরি করছি। দু চারটা টাকা জমাতে পারিনে বুঝি। মার্থার কণ্ঠে কৈফিয়তের সুর।
+ </p>
+<br/>
+<p>
+ নোটগুলো গুণতে গিয়ে শওকত বললো, দেখে তো পুরানো মনে হয় না। মনে হচ্ছে একেবারে কড়কড়ে নতুন।
+ </p>
+<br/>
+<p>
+ মার্থা সঙ্গে সঙ্গে বললো, কী যে বলল। দাও, তোমাকে দিয়ে গোনা হবে না। আমি গুনছি। ওর হাত থেকে ওগুলো কেড়ে নিয়ে গুনলো মার্থা, পঁচিশ টাকা।
+ </p>
+<br/>
+<p>
+ আর পঁচিশ টাকা হলে বাড়ি ভাড়ার আগামটা হয়ে যায়। শওকত বললো।
+ </p>
+<br/>
+<p>
+ মার্থা সঙ্গে সঙ্গে প্রতিবাদ করলো। না না, আগে দোকান, তারপর বাড়ি ভাড়া নেবো।
+ </p>
+<br/>
+<p>
+ শওকত কোনো উত্তর দেবার আগেই মার্থা আবার বললো, তিন হাজার টাকার আর কত বাকি থাকে?
+ </p>
+<br/>
+<p>
+ শওকত মনে-মনে হিসেব করে বললো, আটাশশ পঁচাত্তর টাকা। বলে হেসে উঠলো সে।
+ </p>
+<br/>
+<p>
+ নোটগুলো এর যথাস্থানে রেখে দিয়ে মার্থা বললো, বোসো, আমি হাতমুখ ধুয়েনি।
+ </p>
+<br/>
+<p>
+ আলনা থেকে ভোয়ালেটা তুলে নিয়ে মুখহাত ধুতে গেলে মার্থা। দুহাতে মুখ ঢেকে চুপচাপ কিছুক্ষণ বসে রইলো শওকত। রোজ যাবে যাবে করেও আজ পর্যন্ত বুড়ো আহমদ হোসেনের কাছে যাওয়া হয়ে উঠলো না। অথচ মার্থার কাছে মিথ্যে কথা বানিয়ে বলেছে সে। বলেছে ও চাকরি করছে। কাজ চলছে ওর।
+ </p>
+<br/>
+<p>
+ অফিস কোথায় তোমার? মার্থা প্রশ্ন করেছে। শওকত বিব্রতকর্তা বলেছে। এ চাকরিতে কোনো অফিস নেই। রাস্তায় রাস্তায় কাজ।
+ </p>
+<br/>
+<p>
+ কাজটা কী? মার্থা শুধিয়েছে আবার।
+ </p>
+<br/>
+<p>
+ শওকত বলেছেকাটা, শানে ওটা হচ্ছে তোমার, এ জায়গার জিনিসপত্র আরেক জায়গায় আনা-নেয়া করা। মানে ওই-যে কী বলে সুন্নাইং বিজনেন্স। ও-রকমরই অনেকটা।
+ </p>
+<br/>
+<p>
+ ও। মার্থা থামেনি। আরো প্রশ্ন করেছে। কেন কত দেবে কিছু ঠিক হয়নি?
+ </p>
+<br/>
+<p>
+ না। ভুবে আলেছে লিশের স্বধা জানাবে।
+ </p>
+<br/>
+<p>
+ আগাগোড়া সবটাই মিথ্যা। কেন এ মিথ্যের হাতে নিজেকে এভাবে সমর্পণ করলো ভেবে পায় না একজ। কোনো প্রয়োজন ছিল না। ও চাকরি করছে না, নিলে নিশ্চয় এর ওপর রাগ করতো না মার্থা। তবু আসলে বুড়ো আহমদ হোসেনের কাছে যেতে ভয় হয় শওকতের। একটা অজানা ভয়ে শিরদাঁড়া শিরশির করে ওঠে। ওর মনে হয় ওই আলেয়ার জালে নিজেকে একবার ডালে জীবনভর হয়তো তার ছাড়া পাবে না।
+ </p>
+<br/>
+<p>
+ মার্থা কাল বলেছিলো। ধরো তুমি যা ভাবছো তার অনেক বেশি টাকা বেতন পেয়ে গেলে তুমি। তখন কী করবে? না, হাসি নয়। ধরোই না ছাই। কী বাধা আছে চিন্তা করতে। ওরাতো এখনো টাকার অঙ্ক বলেনি। ধরো অনেক টাকা বেতন পেলে তুমি। কী করবে তখন।
+ </p>
+<br/>
+<p>
+ খুব কয় করে খরচ করবো আর বাকিটা জমাবো।
+ </p>
+<br/>
+<p>
+ গুনে মার্থার চোখজোড়া ঝলমল করে উঠেছে। জানো, আমিও তাই ভাবছিলাম।
+ </p>
+<br/>
+<p>
+ এ কদিন শওকত কম ভাবেনি। নানারকম উদ্ভট চিন্তায় ঘণ্টার পর ঘণ্টা কাটিয়ে দিয়েছে। যদি এমন হতো হয়তো কোনো বড়লোক আত্মীয় মারা গেছে। আর সমস্ত স্থাবর অস্থাবর সম্পত্তির উত্তরাধিকারী করে গেছে তাকে। না। হিসেব করে দেখা গেলো তেমন কোনো আত্মীয়-অস্তিত্ব কল্পনায় ছাড়া বাস্তবে নেই। এমন তো হতে পারতো যে হঠাৎ একটা লটারী জিতে গেছে শওকত না। সে সম্ভাবনাও আপাতত নেই। মাত্র তিন হাজার টাকা। দুনিয়াতে এত টাকা অথচ পাবার কোনো উপায় নেই।
+ </p>
+<br/>
+<p>
+ না, কথাটা সত্য নয়। বুড়ো আহমদ বলেছিলো, তোমরা হলে সব এক একটা উল্লুক। নইলে টাকা রোজগারের জন্যে চিন্তে করতে হয়। টাকা তো সব কাদার নিয়ে গড়াগড়ি দিচ্ছে। কাদা ঘাঁটো। টাকা পাবে। কাদায় হাত দিবে না, টাকা রোজগার করবে, সে তো চুল না বাছা।
+ </p>
+<br/>
+<p>
+ না, এবার কাদায় নামবে শওকত। প্রয়োজন হলে সবটুকু নর্দমাই হাতড়ে বেড়াবে সে। তিনহাজার টাকা। তারপর।
+ </p>
+<br/>
+<p>
+ মার্থা ততক্ষণে হাতমুখ ধুয়ে এসে বাইরে বেরুবার জন্যে তৈরি হয়ে নিয়েছে। চেহারায় একটু পাউডারের প্রলেপ বুলিয়ে নিয়ে মার্থা বললো, চলো।
+ </p>
+<br/>
+<p>
+ চারপাশের দিকে আজকাল আর নজর পড়ে না শওকতের। কেউ জুয়ার আড্ডায় বসেছে কি বসেনি, কেউ গলা ছেড়ে ঝগড়া করছে কি করছে না, সেদিকে তাকায় না শওকত। ওসব যেন অর্থহীন হয়ে গেছে তার কাছে। হারুনের বিয়ে হয়ে যাওয়ার পর জাহানারার দিন কেমন করে কাটছে। সেই মাতাল কেরানিটা এখনও কি রোজ রাতে তার বউকে মারছে। সে সবের খোঁজ নেয় না সে। যতক্ষণ কিছু ভাবে, ভাবে তিনহাজার টাকার কথা। যতক্ষণ কথা বলে, বলে মার্থার সঙ্গে। পৃথিবী যেন হঠাৎ অনেক ছোট হয়ে গেছে। চিন্তার ধারাগুলো আর বিক্ষিপ্ত নয়, যেন একটা বিন্দুর চারপাশে সারাক্ষণ অস্থিরভাবে ঘুরে মরছে। একটা ঘর। একটা দোকান। একটা সংসার। আর তার জন্যে মাত্র তিনহাজার টাকা।
+ </p>
+<br/>
+<p>
+ হাতে একটা থলে নিয়ে বেরিয়ে এলো মার্থা।
+ </p>
+<br/>
+<p>
+ শওকত বললো, এটা দিয়ে কি হবে?
+ </p>
+<br/>
+<p>
+ মার্থা বললো, কাজ আছে। শোন, আজ রাতে ফিরতে দেরী হবে আমার।
+ </p>
+<br/>
+<p>
+ কেন? এত অবাক হয়ে তাকালো।
+ </p>
+<br/>
+<p>
+ মার্থা ইতস্তুত করে বললো, রাতকানা লোকটা বলেছে দোকান বন্ধ হবার পর কিছু হিসেপত্র করতে হবে। তাই। শওকত চুপ করে রইলো। কিছু বললো না।
+ </p>
+<br/>
+<p>
+ মার্থা মুখ ঘুরিয়ে তাকালো ওর দিকে। মৃদু হেসে বললো, তুমি কিন্তু ঘুমিয়ে পড়ো না যেন। আমি যত তাড়াতাড়ি পারি আসতে চেষ্টা করবো।
+ </p>
+<br/>
+<p>
+ শওকত বললো, আমারো অবশ্য আজ একটু রাত হবে। ওরা বলছিলো রাতেও কাজ করতে।
+ </p>
+<br/>
+<p>
+ রাতে কেন?
+ </p>
+<br/>
+<p>
+ তাহলে বাড়তি কিছু টাকা দেবে। টাকার কথা শুনে মার্থা আর কোনো প্রশ্ন করলো না।
+ </p>
+<br/>
+<p>
+ শুধু একবার হাতের থলেটার দিকে
+ </p>
+<br/>
+</div>
+<h2>
+ ষষ্ঠ
+ </h2>
+<br/>
+<h2>
+ আঠারো জোড়া আইনের পা
+ </h2>
+<hr/>
+<br/>
+
+<div>
+<p>
+ পর পর কয়েকদিন বুড়ো আহমদ হোসেনের আখড়ার কাছে এসে ফিরে গেলো শওকত। সারাপথ মনটাকে ধরে রাখলেও বুড়ো আহমদ হোসেনের নজরের সীমানার আসার সঙ্গে সঙ্গে সমস্ত সত্তা যেন বিদ্রোহ করে উঠে ওর।
+ </p>
+<br/>
+<p>
+ মার্থা বলে। তোমার কী হয়েছে বলো তো। দিন দিন অমন শুকিয়ে যাচ্ছো কেন।
+ </p>
+<br/>
+<p>
+ শওকত সংক্ষেপে উত্তর কারে। কাজের চাপে।
+ </p>
+<br/>
+<p>
+ মার্থা মমতার স্বরে বলে। থাক, ও কাজে দরকার নেই। এটা ছেড়ে দাও! কাজ করে শেষে মরবে নাকি?
+ </p>
+<br/>
+<p>
+ শওকত ম্লান হাসে। মার্থা যদি জানতো!
+ </p>
+<br/>
+<p>
+ অথচ মার্থা নিজেও খাটছে দিনরাত। আজকাল বাসায় ফিরতে ওরও অনেক রাত হয়ে যায়। তখন বড় ক্লান্ত দেখায় ওকে।
+ </p>
+<br/>
+<p>
+ শওকত প্রশ্ন করে। কী ব্যাপার। তুমিও কি কোনো বাড়তি কাজ নিয়েছো নাকি?
+ </p>
+<br/>
+<p>
+ না অমন কিছু নয়। মার্থা মৃদু হেসে বলে। রাতকানা লোকটার হিসেব দেখে দিই। সে জন্যে আলাদা করে মাসে মাসে কিছু টাকা দেবে বলেছে। শোনো, হঠাৎ প্রসঙ্গটা পালটে দেয় মার্থা। এক ভদ্রলোক বলেছিলো, ধারে কিছু টাকা জোগাড় করে দেবে। নেবো?
+ </p>
+<br/>
+<p>
+ ভদ্রলোকটি কে?
+ </p>
+<br/>
+<p>
+ তুমি চিনবে। মার্থা হেসে বলেছে। অবশ্য বলছিলো, মাসে মাসে সুদ দিতে হবে।
+ </p>
+<br/>
+<p>
+ থাক। সুদে টাকা ধার নেবার দরকার নেই। শওকত বিমর্ষ গলায় বলেছে। শেষে সুদের টাকা জোগাতে গিয়ে মরবে।
+ </p>
+<br/>
+<p>
+ ঠিক আছে নেবো না। মার্থা আবার প্রসঙ্গটা পালটে দিয়ে বলেছে। জানো, কাল রাতে দোকানটা আবার গিয়ে দেখে আসছি আমি। বাড়িওয়ালা বলছিলো, ভালো করে চালাতে পারলে মাসে দেড়শ দুশ টাকা আসে?
+ </p>
+<br/>
+<p>
+ শওকত কোনো উত্তর দেয়নি সে কথায়।
+ </p>
+<br/>
+<p>
+ সে তখন ভাবছিলো অন্য কথা। মাস যখন শেষ হয়ে যাবে আর মার্থা যখন বলবে, কই, কত টাকা পেলে। তখন ওকে কি জবাব দেবে শওকত।
+ </p>
+<br/>
+<p>
+ না। আজ বুড়ো আহমদ হোসেনের সঙ্গে দেখা করে তারপর বাড়ি ফিরবে সে।
+ </p>
+<br/>
+<p>
+ চটের ঘেরা দেয়া টিনের রেস্তোরাঁটায় ঢোকার মুখে একটা নেড়ি কুত্তা বসে কান চুলকোচ্ছে তার। কয়লার চুলোয় কুণ্ডলী পাকিয়ে ধোঁয়া উঠছে। বাইরে থেকে বুড়ো আহমদ হোসেনের গলার আওয়াজ শুনতে পেলো শওকত। বুড়ো আসর জমিয়ে বসেছে। চেঁচিয়ে চেঁচিয়ে কথা বলছে আর হাসছে সে।
+ </p>
+<br/>
+<p>
+ শওকতকে দেখে হঠাৎ গম্ভীর হয়ে গেলো। চোখ জোড়া পিটপিট করে তাকালো ওর দিকে। দাড়ির অরণ্যে হাত বুলিয়ে নিয়ে কাউন্টারে দাঁড়ানো ছোড়াটাকে ডেকে বললো গেলাশটা গরম পানি দিয়ে ধুয়ে সাহেবকে এক কাপ চা দে। ওর গলার স্বরে বিদ্রূপের ব্যঞ্জনা।
+ </p>
+<br/>
+<p>
+ শওকত যেন হোঁচট খেলো।
+ </p>
+<br/>
+<p>
+ বুড়ো বললো, এতদিন পর হঠাৎ কি মনে করে।
+ </p>
+<br/>
+<p>
+ শওকত সংক্ষেপে বললো, এমনি। বলে বসলো সে।
+ </p>
+<br/>
+<p>
+ বুড়ো তখনো ওর দিকে তাকিয়ে। কিছু বলবে?
+ </p>
+<br/>
+<p>
+ হুঁ।
+ </p>
+<br/>
+<p>
+ কী।
+ </p>
+<br/>
+<p>
+ আমি বিয়ে করছি।
+ </p>
+<br/>
+<p>
+ বিয়ে? বুড়ো আহমদ হোসেন প্রচণ্ড শব্দে হেসে উঠলো। ওর হাসির চমকে দোরগোড়ায় বসে থাকা নেড়ি কুত্তাটা ঘেউ ঘেউ করলো। ছোকড়ার হাতের গ্লাস থেকে কিছু চা ঢলকে পড়ে গেলো মাটিতে। বিয়ে করছে কোকে, সে মেয়েটা কে, যার ঠোঁট কামড়ে দিয়েছিলে? ফোকলা দাঁতের ফাঁকে একরাশ থুতু ছিটিয়ে দিলো সে।
+ </p>
+<br/>
+<p>
+ বেয়ারা এসে চায়ের গ্লাসটা সামনে নামিয়ে রাখলো। গ্লাসটা ওর হাতে ধরিয়ে দিয়ে বুড়ো বললো, নাও, চা খাও। যাবার সময় অবশ্য পয়সাটা দিয়ে যেও। যাকগে, বিয়ে করছে ভালো কথা কিন্তু সে কথা আমাকে শোনাতে এসেছো কেন?
+ </p>
+<br/>
+<p>
+ শওকত বললো, তোমাকে শোনাতে আসিনি। এসেছি এমনি। ঘুরতে ঘুরতে তোমার সঙ্গে দেখা হয়ে গেলো তাই বললাম।
+ </p>
+<br/>
+<p>
+ না। জমলো না। আসল কথাটা মুখ ফুটে বুড়োকে বলতে পারলো না শওকত। আরো অনেকক্ষণ বসে থেকে আরো আজে বাজে কথা বকে যখন বাইরে বেরিয়ে এলো শওকত, তখন সন্ধে হয়ে গেছে। রাস্তার দুপাশের দোকানগুলোতে একটা দুটো করে বাতি জ্বলে উঠছে। সহসা নিজেকে কেমন যেন হাল্কা বোধ করলো শওকত। ভালোই হলো। বুড়ো আহমদ হোসেনকে কথাটি বললে হয়তো এখনি ওর সঙ্গে বাইরে বেরিয়ে পড়তে হতো। একটা অজানা অচেনা অন্ধকার পথ। যার কিছুই জানে না সে। হয়তো একদিন ধীরে ধীরে সে পথের মোড়ে তিল তিল করে নিজেকে হারিয়ে ফেলতো শওকত। ফিরে যাবার ইচ্ছে থাকলেও পথ খুঁজে পেতো না। গুমরে মরতো। তারচেয়ে এই ভালো হলো।
+ </p>
+<br/>
+<p>
+ শওকত ভাবলো একবার বাসায় ফিরে যাবে। কিন্তু মার্থার বাসায় ফিরতে অনেক দেরি হবে। রাত বারোটার আগে ফিরবে না সে। অত রাত পর্যন্ত কি করে মেয়েটা। বলছিল রাতকানা লোকটার সঙ্গে হিসেবের খাতা নিয়ে বসে। রোজ রোজ কিসের হিসেব ভাবতে গিয়ে রাস্তার মোড়ে থমকে দাঁড়ালো শওকত। একটা সন্দেহের রাক্ষস ধীরে ধীরে আচ্ছন্ন করে নিচ্ছে ওকে। না না, মার্থা ও ধ ধরনের মেয়ে নয়। ওকে নিয়ে অকারণে শঙ্কিত হচ্ছে শওকত। মিছেমিছি ওর সম্পর্কে এতসব আজে বাজে চিন্তা করছে সে।
+ </p>
+<br/>
+<p>
+ শওকত আর হাঁটতে শুরু করলে? কতক্ষণ এভাবে পথে পথে ঘুরলো মনে নেই। ইতিউতি অনেক কিছু ভালো সে। তারপর যখন পথে পা বাড়ালো তখন রাস্তা-ঘাটগুলো প্রায় ফাঁকা হয়ে এসেছে! গলির লোকজন অন্য দিল এতক্ষণে গভীর ঘুমে অচেতন হয়ে থাকে। কিন্তু আজ সেখানে কিছু প্রাণের সাড় পেলো শওকত। কুষ্ঠ রোগীটা যেখানে বসে খাকে সে রকের ওপর অনেকগুলো লোকের ভিড়। শওকত অবাক হলো। বাসার সামনে একটা জীপ দাঁড়িয়ে। আশেপাশে কয়েকজন খাকি পোষাক পরা পুলিশের লোক। সবার চোখ বাড়ির ভেতরে। শওকতের পায়ের গতি শ্লথ হয়ে এলো। ধীরে ধীরে জটলার এক কোণে এসে দাঁড়ালো সে। না। কুষ্ঠ রোগীটার কিছু হয়নি। গলিত মাংসের পিণ্ডটা একপাশে গুটিসুটি হয়ে বসে আছে আর পিটপিট করে তাকাচ্ছে সবার দিকে।
+ </p>
+<br/>
+<p>
+ বাড়ির সামনে। করিডোরে। উঠোনে লোকের ভিড়। ছেলে বুড়ো মেয়ে। ঘর ছেড়ে বাইরে বেরিয়ে এসেছে সবাই। খলখল করে কথা বলছে। হাসছে দুঃখ করছে। ওদের কথা শুনে শরীরের রক্তটা ধীরে ধীরে হিমের মতো ঠাণ্ডা হয়ে আসতে লাগলো ওর।
+ </p>
+<br/>
+<p>
+ শওকত অস্ফুট স্বরে উচ্চারণ করলো। মার্থা।
+ </p>
+<br/>
+<p>
+ উঠোনে অনেকগুলো পরিচিত মুখ সন্দেহকাতর চোখে বার বার ফিরে ফিরে তাকাচ্ছে ওর দিকে। শওকতের মাথা ঝিম ঝিম করে উঠলো। মার্থা। একি করলো মার্থা।
+ </p>
+<br/>
+<p>
+ রাতকানা লোকটার দোকান থেকে ওষুধ চুরি করে নিয়ে বিক্রি করতে গিয়ে ধরা পড়েছে মার্থা। ওকে থানায় আটকে রেখে বাসা সার্চ করতে এসেছে পুলিশ। ঘরের মধ্যেও অনেকগুলো চোরাই ওষুধ পাওয়া গেছে। চৌকির নিচে একটা বাক্সের মধ্যে লুকোনো ছিলো। আর পাওয়া গেছে একটা টিনের কৌটার মধ্যে রাখা নগদ সাতশ টাকা। টাকা আর ওষুধ সব সঙ্গে করে নিয়ে গেছে পুলিশের লোকেরা। উঠোনের মাঝখানে ঝিম ধরে দাঁড়িয়ে রইলো শওকত? চিন্তার সুতোগুলো যেন একটা একটা ছিঁড়ে যাচ্ছে। কিছু ভাবতে পারছে না সে। কি করবে বুঝে উঠতে পারছে না। চারপাশের অনেকগুলো সন্দেহকাতর দৃষ্টি খুঁটে খুঁটে দেখছে ওকে। হাসছে। কথা বলছে। বিদ্রূপের ধ্বনি জন্ম দিচ্ছে। নাচের মেয়ে সেলিনা। সংক্ষিপ্ত ব্লাউজের নিচে চেপে রাখা উদ্ধত যৌবন তার দিকে চেয়ে চেয়ে মিটিমিটি হাসছে। শওকতের মনে হলো ওদের দৃষ্টির নিচে যেন সমস্ত শরীরটা পুড়ে যাচ্ছে ওর। আর বেশিক্ষণ এখানে দাঁড়িয়ে থাকলে হয়তো চিৎকার করে ওদের ওপর ঝাঁপিয়ে পড়বে সে। মার্থা। মার্থা এটা কি করলো।
+ </p>
+<br/>
+<p>
+ পরদিন দুপুরে রাস্তায় বেরিয়ে এসে একবার আকাশের দিকে তাকালো শওকত। ওর চোখ সোজা সূর্যের ওপরে গিয়ে পড়লো। সূর্যটি আগুনের মতো জ্বলছে। আর তার লকলকে শিখার উত্তাপে চারপাশের বাড়ির দেয়ালের ইটগুলো গরম হয়ে গেছে। গরমের হাত থেকে আত্মরক্ষার জন্য ঘরের দরজা জানালাগুলো বন্ধ করে রেখেছে বাড়ির গিন্নীরা। মেঝেটা পানি দিয়ে বারবার ধুয়ে মুছে নিচ্ছে কিন্তু গুমোট গরমের হাত থেকে রেহাই পাচ্ছে না।
+ </p>
+<br/>
+<p>
+ বাইরে বাতাস নেই।
+ </p>
+<br/>
+<p>
+ মাঝে মাঝে হয়তো একটুখানি বইছে। কিন্তু সে হাওয়া গায়ে এসে লাগতে সহসা শিউরে উঠলো শওকত। মনে হলো কে যেন এক কড়াই গরম তেল ঢেলে দিলো ওর দেহের ওপর। রাস্তার পিচগুলো সূর্যের তাপে গলে গলে সরে যাচ্ছে নর্দমার দিকে। মানুষের পা, মোটর গাড়ির চাকা আর গরুর খুরের সঙ্গে উত্তপ্ত আলকাতরাগুলো উঠে গিয়ে সমস্ত রাস্তা জুড়ে অসংখ্য ক্ষতের সৃষ্টি করেছে। রাস্তার পাশে বস্তির একদল ছেলে হল্লা করে মার্বেল খেলছে। অর্ধ উলঙ্গ দেহ বেয়ে ঘাম ঝরছে ওদের। দূরে একটা বাড়ির কার্নিশের কোণে বসে একা একটা কাক গলা ছেড়ে চিৎকার করছে।
+ </p>
+<br/>
+<p>
+ গাছের ডালপালাগুলো একটুও নড়ছে না।
+ </p>
+<br/>
+<p>
+ মানুষ গরু সবাই ছায়া খুঁজছে।
+ </p>
+<br/>
+<p>
+ শওকতের মনে হলো পুরো শহরটায় যেন আগুন লেগেছে। দালান-বাড়িঘরগুলো সকলকে আগুনের শিখার নিচে দাউ দাউ করে পুড়ে ছাই করে দিচ্ছে।
+ </p>
+<br/>
+<p>
+ কে জানে মার্থা এখন কোথায়। হয়তো হাজতে কি কোর্টে। ওর জামিন নেওয়ার জন্যে নিশ্চয় কেউ যাবে না। হয়তো মনে মনে শওকতের কথা ভাবছে মার্থা। ভাবছে সে যাবে। না। শওকত কি করবে কিছু ভাবতে পারছে না।
+ </p>
+<br/>
+<p>
+ সে শুধু পথ হাঁটছে। উদ্দেশ্যবিহীন পথে ঘুরে বেড়াচ্ছে সে।
+ </p>
+<br/>
+<p>
+ তারপর ধীরে ধীরে বেলা গড়িয়ে গেলো। গাছের পাতাগুলো একটা দুটো করে নড়তে শুরু করলো। আকাশের কোণে কয়েক টুকরো মেঘ উঁকি দিলো।
+ </p>
+<br/>
+<p>
+ রাস্তায় মৃদু মৃদু বাতাস বইছে। বাড়ির আলিসায় ঝোলানো কাপড়গুলো একটু একটু দুলছে। অনেক দূরের আকাশে অনেকগুলো চিল বাতাসে ডানা মেলে একবার উপরে উঠছে আর নিচে নামছে আর মাঝে মাঝে চিঁ চিঁ শব্দে কাকে যেন ডাকছে।
+ </p>
+<br/>
+<p>
+ তখনো পথে পথে হাঁটলো শওকত।
+ </p>
+<br/>
+<p>
+ রাস্তায় কয়েকটা বাতাসের কুণ্ডলী সৃষ্টি হয়ে ধুলো উড়লো। শুকনো পাতা ডাল থেকে ঝরে ছুটে গেলো। এ পথের মোড় থেকে অন্য পথের মোড়ে। জানালা-দরজা বন্ধ করার শব্দ শোনা যাচ্ছে।
+ </p>
+<br/>
+<p>
+ আলিসায় ঝোলানো শাড়িটা পতপত করে উড়ছে। প্রচণ্ড বাতাসের দাপটে পুরো শহরটা যেন ভেঙ্গে পড়তে চাইছে এখন। রাস্তার লোকজন আশ্রয়ের খোঁজে ছুটছে।
+ </p>
+<br/>
+<p>
+ প্রথমে বড় বড় ফোঁটা তারপর বেগে নেমে এলো বৃষ্টি। সামনের বড় রাস্তায় পেছনের ছোট গলিতে। বাড়ির ছাদে। কার্নিশে। বৃষ্টি নেমেছে। সারা গায়ে বৃষ্টি মেখে ঘরে এসে ঢুকলো শওকত। সমস্ত বাড়িতে কোন মানুষের সাড়াশব্দ নেই। রাতনামার সঙ্গে সঙ্গে দরজার খিল এঁটে দিয়েছে ওরা। বৃষ্টির ছাট এসে বারান্দায় পানি জমে গেছে। বাড়ির উঠোনের মধ্যে ঢুকে অনন্ত বাতাস অজগরের মতো ফুঁসছে।
+ </p>
+<br/>
+<p>
+ ঘরে ঢুকে ভেজা জামাটা খুলতে যাবে এমন সময় শওকত শুনলো মাতাল কেরানির বউটা কাঁদছে। মাতালটা চিৎকার করছে আর মারছে ওকে। বাইরে প্রচণ্ড শব্দে বাজ পড়লো একটা। জানালার পাশে সরে এলো শওকত। তীক্ষ্ণ দৃষ্টিতে কিছুক্ষণ তাকিয়ে রইলো বন্ধ দরজাটার দিকে।
+ </p>
+<br/>
+<p>
+ করুণ বিলাপের স্বরে কাঁদছে বউটা। মাতাল কেরানি এখনো মারছে ওকে। বিদ্যুতের চমক এসে শওকতের চোখে লাগলো। সহসা ঘর ছেড়ে বাইরে বেরিয়ে এলো শওকত। দৌড়ে গিয়ে একটা প্রচণ্ড লাথি মারলো ভেজানো দরজাটার ওপর। খিল ভেঙ্গে দরজাটা খুলে গেলো।
+ </p>
+<br/>
+<p>
+ বাইরে বিদ্যুৎ চমকে উঠলো। আর সেই বিদ্যুতের আলোয় শওকত দেখলো পাশে টেবিলের ওপরে রাখা একটা দা। আর দেখলো মাতাল কেরানি আর তার বউটা একজোড়া শবের মতো দরজার দিকে তাকিয়ে।
+ </p>
+<br/>
+<p>
+ শওকতের মাথায় খুন চেপে গেলো। হঠাৎ দাওটা হাতে তুলে নিয়ে মাতালটার ওপরে ঝাঁপিয়ে পড়লো সে। তারপর প্রচণ্ড ঘৃণায় ওর মাথায় আঘাত করতে লাগলো। এ যেন তার আজীবন সঞ্চয় করা আক্রোশ। যে সমস্ত জ্ঞান হারিয়ে ফেলেছে সে। ভালো মন্দ পাপ পুণ্য ভুলে গেছে সব। বাইরে আবার বিদ্যুৎ চমকালো। একটা তীব্র আর্তনাদ করে মাতাল স্বামীর বুকের উপর লুটিয়ে পড়লো তার বউ।
+ </p>
+<br/>
+<p>
+ মুহূর্তে কোন জ্ঞান ফিরে পেলো শওকত। হাতের দাটা রক্তে চপচপ করছে। মানুষের মগজ ইস্পাতের গা বেয়ে চুইয়ে চুইয়ে পড়ছে। হাতে দাটা ছুঁড়ে ফেলে দিয়ে ছুটে বাইরে বেরিয়ে এলো শওকত। লম্বা লম্বা শ্বাস নিচ্ছে ও রীতিমত হাঁপাচ্ছে। সরু বারান্দাটা পেরিয়ে নিজের ঘরের সামনে আসতে চমকে উঠলো শওকত।
+ </p>
+<br/>
+<p>
+ দোরগোড়ায় দাঁড়িয়ে সেলিনা। নাচের মেয়ে সেলিনা। কাঁচা হলুদের মতো আর গায়ের রঙ। তামাটে চোখ। গাঢ় বাদামি অধর। শওকতের ঘরের সামনে দাঁড়িয়ে অবাক চোখে ওর দিকে তাকিয়ে রয়েছে মেয়েটা। বাইরে তখনো বাজ পড়ছে। ঝড় হচ্ছে। বিদ্যুৎ চমকাচ্ছে। পানির ছাট এসে ভিজে গেছে বারান্দাটা।
+ </p>
+<br/>
+<p>
+ হঠাৎ সেলিনার একখানা হাত শক্ত করে মুঠোর মধ্যে ধরে টানতে টানতে ওকে সিঁড়ির দিকে নিয়ে গেলো শওকত। সিঁড়ি বেয়ে নিচে করিডোরে। করিডোর পেরিয়ে উঠোন। উঠোন পেরিয়ে আরেকটা করিডোর। তারপর রাস্তা। মেয়েটা একটুও বাধা দিলো না। একটা প্রশ্ন করলো না কোথায় নিয়ে যাচ্ছো।
+ </p>
+<br/>
+<p>
+ রকের ওপরে বসে থাকা কুষ্ঠ রোগীটা বৃষ্টির ছাট থেকে রক্ষা পাওয়ার জন্যে এক কোণে সরে সে যন্ত্রণায় কোঁকাচ্ছে। মুহূর্তের জন্যে একবার তার দিকে ফিরে তাকালো শওকত? তারপর সেলিনার হাতটা আরো শক্ত করে ধরে সেই অন্ধকার রাতে, সেই প্রচণ্ড ঝড়ের মধ্যে সামনে ছুটতে লাগলো শওকত! রাস্তায় পড়ে থাকা একটা ইটের টুকরোর সঙ্গে হোঁচট খেয়ে অস্ফুট কাতারোক্তি করে মাটিতে ছিটকে পড়লো সেলিনা। দুহাতে ওকে আবার তুলে নিলো শওকত। তারপর, এই ঝড়, এই বৃষ্টি, এই অন্ধকার আর এই শহরকে দুহাতে ঠেলতে ঠেলতে আবার জুটতে লাগলো ওরা। বৃষ্টির আলিঙ্গনে সারাদেহ ভিজে চুপসে গেছে ওদের। এ বৃষ্টি যেন মার্থার চোখে জল। অন্ধকার হাজতে বলে হয়তো তখন নীরবে কাঁদছে।
+ </p>
+<br/>
+
+
+<p>
+ তারপর।
+ </p>
+<br/>
+<p>
+ তারপর একটা সুন্দর সকাল।
+ </p>
+<br/>
+<p>
+ বুড়ো রাত বিদায় নেবার আগে বৃষ্টি থেমে গেছে। তবু তার শেষ চিহ্নটুকু এখানে সেখানে এখনো ছড়ানো। চিকন ঘাসের ডগায় দুএকটা পানির ফোঁটা সুর্যের সোনালি আভায় চিকচিক করছে।
+ </p>
+<br/>
+<p>
+ শওকতের বুকে মুখ রেখে; খড়ের কোলে দেহটা এলিয়ে দিয়ে; সেলিনা ঘুমাচ্ছে। ওর মুখে কোন অভিব্যক্তি নেই। ঠোঁটের শেষ সীমানা শুধু একটুখানি হাসি চিবুকের কাছে এসে হারিয়ে গেছে। ওর হাত শওকতের হাতের মুঠোর মধ্যে শক্ত করে ধরে রাখা। দুজনের ঘুমোচ্ছে ওরা।
+ </p>
+<br/>
+<p>
+ শওকতের মুখে দীর্ঘ পথ-চলার ক্লান্তি। মনে হয় অনেকক্ষণ বৃষ্টিতে ভিজেছিলো ওরা। চুলের প্রান্তে এখনো তার কিছু রেশ জড়ানো রয়েছে। সহসা, গাছের ডালের বুনো পাখির পাখা ঝাপটানোর শব্দ শোনা গেলো। মটরশুটির ক্ষেত থেকে একটা সাদা খরগোশের বাচ্চা ছুটে পালিয়ে গেলো কাছের অরণ্যের দিকে। খড়ের কোলে জেগে উঠলো অনেকগুলো পায়ের ঐক্যতান।
+ </p>
+<br/>
+<p>
+ আঠারো জোড়া আইনের পা ধীরে ধীরে চারপাশ থেকে এসে বৃত্তাকারে ঘিরে দাঁড়ালো ওদের। ওরা তখনো ঘুমোচ্ছ।
+ </p>
+<br/>
+</div>
+
+            </div>
+
+        </div>
+    </div>
+
+        <!-- TOC nav for mobile -->
+        <nav id="toc-nav-desktop" class="hidden"></nav>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const progressBar  = document.getElementById('read-progress-bar');
+    const progressPct  = document.getElementById('progress-pct');
+    const tocDesktop   = document.getElementById('toc-nav-desktop');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+    const progressRing = document.getElementById('progress-ring-circle');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = p.currentTheme;
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    function toBN(n) {
+        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
+    }
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        if (progressPct) progressPct.textContent = toBN(pct) + '%';
+        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
+        if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
+        if (rfPage) rfPage.textContent = toBN(pct) + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+
+    // ── Footer: chapter label + seek slider ──
+    const rfSlider  = document.getElementById('rf-slider');
+    const rfPage    = document.getElementById('rf-page');
+    const rfChapter = document.getElementById('rf-chapter');
+    let rfSliderDragging = false;
+    if (rfSlider) {
+        rfSlider.addEventListener('input', () => {
+            rfSliderDragging = true;
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
+        });
+        rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
+    }
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav, isMobile) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            if (isMobile) {
+                a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+                a.addEventListener('click', closeDrawer);
+            } else {
+                a.className = 'toc-link ' + (isH1 ? 'toc-link-h1' : 'toc-link-h2');
+            }
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocDesktop, false);
+    buildToc(tocMobile, true);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+        if (rfChapter && headings[current]) rfChapter.textContent = headings[current].textContent.trim();
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme only; drawer/settings UI stays a fixed dark sheet)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+        black: { bg: '#000',     text: '#d1d5db' },
+        sepia: { bg: '#f5efe6',  text: '#3b2f1e' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? '#c0392b' : 'transparent';
+            });
+            savePrefs();
+
+            // Ad bar theme sync
+            window._pathakAdBarTheme && window._pathakAdBarTheme(m);
+        });
+    });
+
+    // ── Ad bar theme sync function (exposed globally) ──
+    window._pathakAdBarTheme = function(m) {
+        const adBar     = document.getElementById('ad-bar');
+        const adContent = document.getElementById('ad-bar-content');
+        const adDatetime= document.getElementById('ad-bar-datetime');
+        const adNotice  = document.getElementById('ad-bar-notice');
+        if (adBar)      adBar.style.background     = m.bg;
+        if (adContent)  adContent.style.background = m.bg;
+        if (adDatetime) adDatetime.style.color      = m.text;
+        if (adNotice)   adNotice.style.color        = m.text;
+    };
+
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+        // Ad bar HTML is below — expose theme for ad bar script to pick up
+        window._pathakCurrentTheme = currentTheme;
+        window._pathakThemeMap = themeMap;
+    })();
+})();
+</script>
+
+
+</body>
+</html>

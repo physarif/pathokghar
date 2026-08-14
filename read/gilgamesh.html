@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/gilgamesh.html">
+    <title>গিলগামেশ - পাঠক ঘর</title>
+    <meta name="description" content="**'গিলগামেশ'** বইটি মূলত পৃথিবীর ইতিহাসের প্রাচীনতম মহাকাব্য *'এপিক অব গিলগামেশ'* (The Epic of Gilgamesh)-এর একটি চমৎকার বাংলা রূপান্তর। মেসোপটেমীয় সভ্যতার এই ">
+    <meta property="og:title" content="গিলগামেশ - পাঠক ঘর">
+    <meta property="og:description" content="**'গিলগামেশ'** বইটি মূলত পৃথিবীর ইতিহাসের প্রাচীনতম মহাকাব্য *'এপিক অব গিলগামেশ'* (The Epic of Gilgamesh)-এর একটি চমৎকার বাংলা রূপান্তর। মেসোপটেমীয় সভ্যতার এই ">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e', black:'#000' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', sepia:'#3b2f1e', dark:'#e5e7eb', black:'#d1d5db' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .dark body { background: #1a1a1b; color: #e5e7eb; }
+
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.7rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+        .dark #book-content { color: #e5e7eb; }
+    
+    /* ── Book read header hero ── */
+    .book-read-header {
+        margin-bottom: 1.5rem;
+    }
+    .book-read-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.65rem;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 1.4rem 1.25rem 1.2rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .dark .book-read-box {
+        background: #2a2a2b;
+        border-color: #3a3a3b;
+    }
+    .book-read-cover {
+        width: 100px;
+        height: 136px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        object-fit: cover;
+        background: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .book-read-cover svg { opacity: 0.35; }
+    .book-read-title-link {
+        text-decoration: none;
+        display: block;
+    }
+    .book-read-title-link:hover .book-read-title { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-title-link:active .book-read-title { opacity: 0.7; }
+    .book-read-title {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #1a1a1b;
+        line-height: 1.4;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+    .dark .book-read-title { color: #f3f4f6; }
+    .book-read-author-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+    .book-read-author-link:hover .book-read-author { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-author-link:active .book-read-author { opacity: 0.6; }
+    .book-read-author {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #c0392b;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+</style>
+</head>
+<body>
+
+<style>
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    #read-progress-bar {
+        position: fixed;
+        top: 0; left: 0;
+        height: 2px;
+        width: 0%;
+        background: #c0392b;
+        z-index: 1000;
+        transition: width 0.1s linear;
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h1 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #9ca3af;
+        text-align: center;
+        margin: 0 0 0.25rem;
+        letter-spacing: 0.04em;
+    }
+    #book-content h1::after {
+        content: '';
+        display: block;
+        width: 2.8em;
+        height: 3px;
+        background: #c0392b;
+        border-radius: 2px;
+        margin: 0.4rem auto 0;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #7a2115;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid #d9a5a0;
+        border-bottom: 1px solid #d9a5a0;
+    }
+    /* Night mode heading adjust */
+    body.theme-dark  #book-content h1,
+    body.theme-black #book-content h1 { color: #6b7280; }
+    body.theme-dark  #book-content h2,
+    body.theme-black #book-content h2 { color: #f2938a; border-color: rgba(169,50,38,0.4); }
+    body.theme-dark  #book-content h1::after { background: #a93226; }
+    body.theme-black #book-content h1::after { background: #922b21; }
+    body.theme-sepia #book-content h1 { color: #a08060; }
+    body.theme-sepia #book-content h2 { color: #7a2115; border-color: rgba(160,64,48,0.35); }
+    body.theme-sepia #book-content h1::after { background: #a04030; }
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: rgba(192,57,43,0.05);
+        border: 1px solid rgba(192,57,43,0.15);
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p,
+    body.theme-black #book-content p {
+        background: rgba(169,50,38,0.1);
+        border-color: rgba(169,50,38,0.25);
+    }
+    body.theme-sepia #book-content p {
+        background: rgba(160,64,48,0.08);
+        border-color: rgba(160,64,48,0.2);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #c0392b;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #c0392b;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(192,57,43,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    .dark #book-content blockquote {
+        background: rgba(192,57,43,0.08);
+        color: #bbb;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #c0392b;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    .dark #book-content td { border-color: #3a3a3b; }
+    .dark #book-content tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(192,57,43,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: #e57373;
+        font-weight: 600;
+        background: rgba(192,57,43,0.18);
+        border-radius: 0.375rem;
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: #fff;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transition: color 0.15s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.6);
+    }
+    #toc-nav-desktop .toc-link {
+        display: block;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.375rem;
+        color: #4b5563;
+        text-decoration: none;
+        transition: background-color 0.15s, color 0.15s;
+    }
+    .dark #toc-nav-desktop .toc-link { color: #d1d5db; }
+    #toc-nav-desktop .toc-link:hover { background: #f3f4f6; }
+    .dark #toc-nav-desktop .toc-link:hover { background: #1f2937; }
+    #toc-nav-desktop .toc-link-h1 {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: #1f2937;
+    }
+    .dark #toc-nav-desktop .toc-link-h1 { color: #f3f4f6; }
+    #toc-nav-desktop .toc-link-h2 {
+        padding-left: 1.25rem;
+        font-size: 0.6875rem;
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.6rem 0.5rem 0.6rem 0.35rem;
+        background: #1a1a1b;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-back {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.25rem;
+        text-decoration: none;
+        transition: background 0.15s;
+    }
+    #rh-back:active { background: rgba(255,255,255,0.12); }
+    #rh-title {
+        flex: 1;
+        min-width: 0;
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: transparent;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+    #reader-header .rh-actions button:active { background: rgba(255,255,255,0.12); }
+    body.theme-dark  #reader-header,
+    body.theme-black #reader-header,
+    body.theme-sepia #reader-header { background: #141414; }
+
+    /* ── Reader footer: chapter label + page/percent + seek slider ── */
+    #reader-footer {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 55;
+        background: #1a1a1b;
+        padding: 0.5rem 1rem 0.65rem;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-footer { transform: translateY(100%); }
+    body.theme-dark  #reader-footer,
+    body.theme-black #reader-footer,
+    body.theme-sepia #reader-footer { background: #141414; }
+    #rf-labels {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.7);
+        margin-bottom: 0.35rem;
+    }
+    #rf-chapter {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #rf-page { flex-shrink: 0; }
+    #rf-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        background: rgba(255,255,255,0.22);
+        outline: none;
+        margin: 0;
+        cursor: pointer;
+    }
+    #rf-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        margin-top: -6px;
+    }
+    #rf-slider::-moz-range-thumb {
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        border: none;
+    }
+    #rf-slider::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; }
+    #rf-slider::-moz-range-track { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.22); }
+
+    /* Content needs bottom clearance so the fixed footer never covers text */
+    #read-main-content { padding-bottom: 4.5rem; }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: #303134;
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.55);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: #e57373;
+        border-bottom-color: #c0392b;
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ── Breadcrumb dark mode ── */
+    .read-breadcrumb-full { margin-left: -1.25rem; margin-right: -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
+    .dark #bc-category { color: #9ca3af !important; }
+    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
+    .dark #read-breadcrumb li > span { color: #4b5563; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #e57373;
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: 34px; height: 34px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        flex-shrink: 0;
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+    }
+    .theme-circle.active { border-color: #c0392b; }
+    .theme-circle svg { display: none; }
+    .theme-circle.active svg { display: block; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: #fff; }
+    .settings-row-val { font-size: 0.74rem; color: rgba(255,255,255,0.5); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: rgba(192,57,43,0.35); border-color: #c0392b; color: #fff; }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+</style>
+
+<!-- Progress bar (kept for internal % calc, hidden — footer slider replaces it visually) -->
+<div id="read-progress-bar" style="display:none;"></div>
+
+<!-- ══ Reader header (Lithium-style app bar) ══ -->
+<header id="reader-header">
+    <a href="/book/gilgamesh.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <h1 id="rh-title">গিলগামেশ</h1>
+    <div class="rh-actions">
+        <button id="rh-menu-btn" aria-label="মেনু" title="মেনু"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+    </div>
+</header>
+
+<!-- ══ Reader footer (chapter + page/percent + seek slider) ══ -->
+<footer id="reader-footer">
+    <div id="rf-labels">
+        <span id="rf-chapter"></span>
+        <span id="rf-page">০%</span>
+    </div>
+    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
+</footer>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                    <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
+                    <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
+                    <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn active" id="align-justify" title="জাস্টিফাই" style="background:#fde8e6;border-color:#c0392b;color:#c0392b;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <h1>প্ৰস্তাবনা</h1>
+
+<p>ছিল সে এক রাজা—</p>
+<p>নাম যে ‘গিলগামেশ’,</p>
+<p>বন্ধু ‘এন্‌কিদু’</p>
+<p>সাজা পেল শেষমেশ।</p>
+<p>গিলগামেশ—এন্‌কিদু</p>
+<p>প্ৰাণের বন্ধু বটে,</p>
+<p>কাব্যকথায় মৃদু।</p>
+<p>সে—কাহিনীই রটে।</p>
+
+<p>এভাবে শুরু করলে কিন্তু মন্দ হত না, পড়তে হয়তো বেশি ভালো লাগত। তা ছাড়া গল্পটি তো কবিতাতেই রচিত, তাই পদ্যে বলতে পারলেই ঠিক হত। তা হোক না কবিতায় লেখা, ছন্দোমিল দিয়ে পরপর পঙক্তি সাজানো, আমি না হয় একটু স্বাধীনতাই নিলাম!</p>
+<p>সাদামাটা গদ্যে, সোজাসুজি, সরলভাবেই গল্পটা শোনাতে চাই। গল্পটা নিজেই এত সুন্দর যে পদ্যেই হোক আর গদ্যেই হোক, শুনতে ভালো লাগবেই। কিন্তু মুশকিল বেধেছে আরেক জায়গায়; গল্পেরও আগে যে অনেক সময় গল্প থাকে, তখন? আমাদের এখানেও যে তেমনি গল্পের আড়ালে একটা গল্প রয়ে গেছে! সেটাই তো তা হলে আগেভাগে বলে ফেলতে হয়, তাই না?</p>
+<p>আসল গল্পে যাওয়ার আগে একটু ধৈর্য ধরে এগুলো শুনতে হবে। এসব কথা কিন্তু গিলগামেশকে নিয়ে নয়, তার বন্ধু এনকিদ্‌কে নিয়েও নয়। এই গল্প হচ্ছে সেই সময়কে নিয়ে যখন তারা বেঁচে ছিল পৃথিবীতে। সেজন্যেই আদি কাহিনীটি—যা দিয়ে আমি এখন শুরু করছি—তা হবে সুদূর অতীতের কথা, প্রাচীন পৃথিবীর এক অদ্ভুত রোমাঞ্চকর ইতিহাস।</p>
+<h1>১</h1>
+
+<p>সময়টা এখনকার এই ১৯৮৭ সাল নয়, স্থানটাও আজকের এই পৃথিবী নয়। অনেক, অ— নে—ক আগেকার সে বড়ো অচেনা পৃথিবী। কত আগে? সন-তারিখ দিয়ে স্পষ্টভাবে বলা যাবে না। তবে একটা আন্দাজ করা যায় বৈকি! ধর, এখন থেকে হাজার চারেক বছর আগে। তার মানে—বুদ্ধ-কনফুসিয়াস-খ্রিষ্ট—মুহম্মদ ঐরা কেউই তখনো জন্মগ্রহণ করেন নি, গ্রিক সভ্যতার পত্তন হয় নি, ভারতীয় বা চীনা সভ্যতারও না। ভাবতে পার, সে কতকার আগের ঘটনা?</p>
+<p>তবে, যতই প্রাচীন কাল হোক না কেন, মানুষ কিন্তু তখনো ছিল পৃথিবীতে। মানুষের জন্মকাহিনী যে প্রাচীনতর। আর ছিল কী? ছিল মহাপরাক্রান্তা প্রকৃতি: অরণ্য ও পর্বত; মহাসমুদ্রের নিঃসীম জলরাশি, তার অশান্ত কল্লোল; ছিল আকশে আকাশে ছুটে বেড়ানো বদমেজাজী দৈত্যের মতো ভীষণ কালো কেশরীফোলানো মেঘ; ছিল ঝড় ও বজ্ৰ-বিদ্যুতের হুঙ্কার, আগ্নেয়গিরির অগ্ন্যুৎপাতে ফুটন্ত লাভার লাল গনগনে রাগী চোখ; ছিল সমুদ্রের জলোচ্ছাস! সূর্যের প্রখর কিরণ ঝলসে দিত চারদিক, বয়ে আনত খরা; অরণ্যে নেচে বেড়াত বাড়বাগ্নির লকলকে লেলিহান জিভ; নদীর দুৰ্নিবার ঢলে ছিল বন্যার সর্বগ্রাসী প্লাবন। আর এ সবেরই পাশাপাশি ছিল বন্য জীবজন্তুর দল; জলে কুমির তো ডাঙায় বাঘ, ছিল সাপের অতর্কিত দংশনে অনিবাৰ্য মৃত্যু, ছিল শ্যেনচক্ষু ঈগলের নিষ্ঠুর আক্রমণ। মানুষ সেই আদ্যিকালের বুড়ো পৃথিবীতে এভাবেই প্রকৃতি ও চরাচরের সঙ্গে যুদ্ধ করতে করতে বেঁচে থেকেছে। অবশ্য, এ-হেন বিভীষিকাই শুধু নয়, আনন্দের উৎসও ছড়ানো ছিল জীবনে; সুখের, তৃপ্তির, শান্তির স্বাদও পেয়েছে মানুষ—পরিমাণে তা যেমনই স্বল্প হোক-না কেন। প্রকৃতির ভয়ঙ্কর মূর্তিই তারা শুধু দেখে নি, সেই রুদ্রতার ভিতরে কখনো কখনো রূপের ছটাও হয়তো— বা তারা দেখতে পেয়েছে; নিস্তব্ধ অরণ্যানীর মাথার ওপরে পূর্ণ চাঁদের মুকুরে ঢলঢল জ্যোৎস্না দেখে, কে জানে, অবাক বিস্ময়ে হয়তো চোখে তাদের পলক পড়ে নি। তা ছাড়া এত কিছুর উপরে তাদের কাছে সবচেয়ে সত্য ছিল জীবনের আরেক রূপ: মানুষের সঙ্গে মানুষের মনের বন্ধন। সে-বাঁধন কখনো বন্ধুত্বের, কখনো শক্রতার; কখনো ভালবাসার, কখনো ঘৃণার। তবু মানুষ কখনো আরেক জন মানুষকে অচেনা ভাবে নি। একের শোকে অন্যে দুঃখ পেয়েছে, একের আনন্দে শরিক হয়েছে অন্যেও। অন্যের মনের সঙ্গে নিজের মনের সংযোগ স্থাপনে, অন্যকে আপন মনে করার পিছনে যে—অনুভূতি বা বোধ কাজ করে তারই তো আমরা নাম দিয়েছি মনুষ্যত্ববোধ, তাই না? এই বোধ সেই অতীতকালেও ছিল। তাই, তখনো মানুষ পরস্পরে মিলেমিশে থেকেছে, সমাজ তৈরি করেছে, কোন সমস্যার কী সমাধান তা নিয়েও ভাবনা-চিন্তা করেছে যৌথভাবে।</p>
+<p>সেকালে মানুষের আসল সমস্যা তো ছিল একটাই: কী ভাবে পৃথিবীতে টিকে থাকা যাবে, মৃত্যুর হাত থেকে রেহাই মিলবে কী করে। সে কিন্তু স্পষ্টই বুঝতে পেরেছিল যে, তার চেয়ে অসহায় জীব দুনিয়াতে আর একটিও নেই। তার গায়ের শক্তি সীমিত: তার নখর নেই, তীক্ষ্ন দাঁত নেই, শিকারী পাখির মতো এমনকি তার সূচিমুখ চঞ্চ পর্যন্ত নেই; সে হরিণের মতো ছুটতে পারে না, বাঘের মতো লাফ দিতে পারে না, পাখির মতো উড়তে পারে না, কিংবা সরীসৃপের মতো হঠাৎ দেখা দিয়ে হঠাৎ উধাও হয়ে যাওয়ায় তার ক্ষমতায় নেই। ফলে শারীরিক বিচারে তার চেয়ে অসহায় আর কে? সবই ঠিক, তবুও সে তার চারপাশের সমস্ত কিছুর চাইতে শ্রেষ্ঠ ছিল। সেই শ্রেষ্ঠত্বের কেন্দ্র ছিল মাত্র একটি জায়গায়, আর সেটাই ছিল তার একমাত্র সম্বল। তা হল তার বুদ্ধি ও মেধাশক্তি। কেবলমাত্র একেই সে কাজে লাগিয়ে ধীরে ধীরে জীবনযুদ্ধে জয়ী হয়ে উঠেছে।</p>
+<p>তার বুদ্ধিই তাকে বলেছিল: বাপু, তোমার গায়ে তো দেখছি একেবারেই কোনো শক্তি নেই, হিংস্র জীবজন্তু আর নিদয়া প্রকৃতির কাছে তুমি যে বড়ই অসহায়! আবার ঐ বুদ্ধিই পথ বাৎলে দিয়েছিল: শোন, শক্তিতে যখন তুমি পারবেই না তখন যারা বেশি শক্তিশালী তাদের বরং খোসামোদ করা, খুশি করতে চেষ্টা কর, তা হলেই তারা তোমার গায়ে হাত তুলবে না। এখন, বেশি শক্তিশালী কে, বেশি শক্তিশালী কী? এর উত্তর এক কথায়— বিশ্বপ্রকৃতি ও চরাচরের সবকিছুই। আকাশ-বাতাস, চন্দ্ৰ-সূৰ্য-তারকাদি—গ্রহনক্ষত্র, গাছপালা-পশুপাখি, সাগর ও পাহাড়, নদ-নদী ও অরণ্য-সব। সব<span>ই তখন তাদের কাছে হয়ে গেল দেব-দেবী; দেব-দেবীর দয়া ও আশীৰ্বাদ লাভের জন্য সে পূজার রীতিনীতি ও উপায় পর্যন্ত উদ্ভাবন করল। সন্দেহ নেই, এ সমস্ত কিছুই তার কল্পনা। জীবনই তাকে এরকম আজগুবি চিন্তা ও ধ্যান-ধারণা শিখিয়েছিল বাঁচবার তাগিদে!</span></p>
+<p>প্রাকৃতিক দুর্যোগে তো বটেই, এমনকি নিজের শারীরিক অসুখবিসুখেও সে তার কল্পিত দেব-দেবীর রাগ ও বিরক্তি দেখতে পেয়েছে, রোগজীবাণুর অস্তিত্ব তার বুদ্ধিতে তখনো ধরা দেয় নি।</p>
+<p>বিশ্বব্ৰহ্মাণ্ড তো চলছে তার নিজস্ব নিয়মে, সে এক প্রবল পরাক্রমী অন্ধ শক্তি; মানুষের চাওয়া-পাওয়ার সঙ্গে তার কোনোই যোগাযোগ নেই। তবু সুফল যদি কখনো ফলেছে, মানুষ ভেবেছে-এ তারই পূজোর ফল, দেবতার ক্ৰোধ কমেছে, দয়া হয়েছে। তাই দেবদেবী, তন্ত্রমন্ত্রে বিশ্বাস কখনো-কখনো মনের মধ্যে দৃঢ়ভাবে গেঁথে বসেছে। এত কিছু সত্ত্বেও একটা জিজ্ঞাসার সে কিন্তু কোনোই উত্তর পায় নি; সেই প্রশ্নের বিষয় হল: মৃত্যু। মানুষ মরে কেন, মরে কোথায় যায়? মৃত্যুর পরে মানুষ কোথায় যায় সে সম্বন্ধেও সে ভাবনা-চিন্তা করে অনেক সময় সিদ্ধান্তে পৌঁছেছে। কিন্তু সে মরবো কেন, আর মৃত্যুকে এড়ানোই—বা কেন যাবে না—এই জিজ্ঞাসার কোনো বিরাম নেই। জন্ম ও মৃত্যুর রহস্য তার অজানাই থেকে গেছে। সে-রহস্য মানুষ আজো উন্মোচন করতে পারে নি, এখনো তার অন্বেষণ চলছে। মানুষ তো মরতে চায় না, কখনোই চায় নি। সে চায় অমর হতে। তার স্বপ্ন চিরকাল পৃথিবীর বুকে বেঁচে থাকা। তাই অমরত্বের কল্পনা ও আশা নিয়ে মানুষ যুগে যুগে সোনার হরিণের পেছনে ছুটে চলেছে, আজো ছুটছে—ক্লান্তিহীন, বিরতিহীন, অবিরাম।</p>
+
+<h1>২</h1>
+
+<p>আমাদের বর্তমান কাহিনীটি পৃথিবীর প্রাচীনতম সাহিত্যের অন্তর্গত। পৃথিবীর আদিতম মহাকাব্য এই গিলগামেশ উপাখ্যান। গ্রিসের ইলিয়দ ও ওদিসি, এবং ভারতবর্ষীয় উপমহাদেশের রামায়ণ ও মহাভারত—এই চারটি মহাকাব্যের চেয়ে গিলগামেশ অনেক বেশি প্রাচীন। বলা যেতে পারে, পৃথিবীর প্রথম পুরাণ এই ‘গিলগামেশ মহাকাব্য’; পশ্চিমী পণ্ডিতেরা একে ‘এপিক অব গিলগামেশ’ নামে অভিহিত করেছেন।</p>
+<p>অদ্ভুত এই গল্প, ভয়ঙ্কর সুন্দর; দুই অভিন্ন হৃদয় বন্ধুর কাহিনীকে ঘিরে দানা বেঁধে উঠেছে অমরত্ব লাভের অন্বেষণ, সেইসঙ্গে আছে বিধ্বংসকারী মহাপ্লাবনের কাহিনী। দেবদেবী, দত্যি—দানো, স্বৰ্গ-মর্ত— নরক, তার সঙ্গে সঙ্গে মানুষের সাধারণ আশা-আকাঙ্ক্ষা, দুঃখ ও বেদনা, আনন্দ ও হাহাকার-সবই মিলেমিশে একাকার হয়ে গেছে এর মধ্যে।</p>
+<p>কে রচনা করেছিলেন এই উপাখ্যান, আমরা জানি না। জানা সম্ভবও নয়, কেননা কোনো একজন ব্যক্তি বা কবি তো এর রচয়িতা নন। লোকের মুখে মুখে বহু পুরুষ ধরে বংশপরম্পরায় যুগে যুগে গিলগামেশকে নিয়ে অজস্ৰ কাহিনী প্রচলিত হয়ে গিয়েছিল; তারপর খ্রিষ্টপূর্ব ২০০০ অব্দের কাছাকাছি কোনো একসময়ে তা সর্বপ্রথম ভাষায় লিপিবদ্ধ করা হয়। কোনো একজন লোক যে একা বসে বসে লিখেছিলেন, তা মনে হয় না; বহু সময় ধরে বহু ব্যক্তি ঐ কাজ সমাধা করেছিলেন হয়তো। এতে আশ্চর্য হবার কিছু নেই। সমস্ত প্রাচীন মহাকাব্য সম্বন্ধেই এ-কথা খাটে। পৃথিবীতে প্রাচীন মহাকাব্য যে—কটি বর্তমান তন্মধ্যে দুটি আমাদের উপমহাদেশেই রচিত হয়েছিল; রামায়ণ আর মহাভারত। কারা রচনা করেছিলেন। তাও আমরা জানি। বাল্মীকি লিখেছিলেন রামায়ণ, আর মহাভারতের কবির নাম কৃষ্ণদ্বৈপায়ন ব্যাস। এর অর্থ কিন্তু এই নয় যে, রামায়ণ ও মহাভারত কেবল বাল্মীকি ও ব্যাসদেবেরই রচনা ধারণ করে আছে; আসলে কালে কালে আরো কত কবির অজস্র পঙক্তি যে এই দুই মহাকাব্যের ভিতরে মিশে গিয়ে তাদের লাবণ্য ও শ্ৰী বৃদ্ধি করেছে তার ইয়ত্তা নেই। ইলিয়দ ও ওদিসি এবং তাদের রচয়িতা গ্রিক মহাকবি ওমেরোস (ইংরেজিতে এঁকে হোমার বলা হয়, বাংলা ‘ঠাকুর’ যেমন ইংরেজিতে ‘টেগোর’ সেইরকম) সম্বন্ধেও অনুরূপ ধারণাই ব্যক্ত করা চলে।</p>
+<p>অর্থাৎ সংক্ষেপে কথাটা এই দাঁড়ায় যে: পৃথিবীর প্রাচীন মহাকাব্যগুলোর কোনোটাই প্রকৃতপক্ষে কোনো একক ব্যক্তিপ্রতিভার ফসল নয়, কোনো একটি বিশেষ দেশের প্রাচীন কালের জনসমাজে তা ক্রমশ তৈরি হয়ে উঠেছিল, লোকমুখে প্রচলিত হতে হতে যখন তা সমগ্ৰ জনগোষ্ঠীর মধ্যে ছড়িয়ে পড়ে তখনই কোনো—এক সময়ে কোনো এক প্রতিভাবান কবিপুরুষ তা লিপিবদ্ধ করে রাখেন, পরবর্তী কালের আরো অনেক কবি তাতে আরো অনেক কিছু যোগ করতে থাকেন—এইভাবে ধীরে ধীরে কালপ্রবাহে মহাকাব্যটি পরিপূর্ণ একটি রূপ পরিগ্রহ করে, সম্পূর্ণ একটি আকার পায়। রবীন্দ্রনাথের ব্যাখ্যা অনুযায়ী, এগুলো সেই জাতের মহৎ সাহিত্য যার ‘ভিতর দিয়া একটি সমগ্ৰ দেশ, একটি সমগ্র যুগ, আপনার হৃদয়কে, আপনার অভিজ্ঞতাকে ব্যক্ত করিয়া তাহাকে মানবের চিরন্তন সামগ্রী করিয়া তোলে।’ কোনো দেশের ‘সহস্ৰ বৎসরের হৃৎপিণ্ড স্পন্দিত’ হয়ে ওঠে এ-জাতীয় রচনায়। গিলগামেশ মহাকাব্যও এর ব্যতিক্রম নয়।</p>
+<p>কোন সেই দেশ যেখানে বন্ধুত্বের এমন বিজয়গৌরব এবং অমরতার অন্বেষণ অত সুপ্রাচীন অতীতেও লোকে হৃদয় ও মেধা দিয়ে বরণ করে নিয়েছিল, লিখতে পেরেছিল। তাই নিয়ে অমর এক মহাকাব্য? দেশটির নাম বড়ো অদ্ভূত; বাংলা করলে দাঁড়াবে; দ্বি-নদমধ্যা, অর্থাৎ দুই নদের মধ্যখানে যা অবস্থিত এমন দেশ। পঞ্চ নদের সমাহারে যেমন ‘পাঞ্জাব’ নামের উদ্ভব, এই নামটি উদ্ভূত হয়েছে সেভাবেই।</p>
+<p>দেশটি হল মেসোপটেমিয়া। মধ্যপ্রাচ্যে এখন যেখানে ইরাক, প্রাচীন কালে তারই নাম ছিল মেসোপটেমিয়া। কেননা, ইউফ্রেতিস আর তাইগ্রিস নামে দুটি নদের মধ্যবর্তী দোআব অঞ্চলে ও তার আশপাশের ভূখণ্ডে দেশটি বিস্তৃত ছিল।</p>
+
+<h1> ৩</h1>
+
+<p>একটু পূর্বেই যে—কথা বললাম এখানে তা আরেকটু বিশদভাবে ব্যাখ্যা করা দরকার। বলেছি, দেশটির নাম ‘মেসোপটেমিয়া’। আসলে ‘দেশ’ শব্দের বদলে ‘অঞ্চল’ শব্দ ব্যবহার করাই বেশি সঙ্গত। কেন, বলি।</p>
+<p>ইউফ্রেতিস্—তাইগ্রিস অঞ্চলে ‘মেসোপটেমিয়া’ নামটা দিয়েছিলেন গ্রিক ঐতিহাসিকরা পরবর্তী কালে। ঐ অঞ্চলের জনগণ কিন্তু নিজেরা কখনো ও-নাম ব্যবহার করে নি। কোথাকার অধিবাসী তা বোঝাতে তারা বলতো ‘দেশ’-যার অর্থ, সন্দেহ নেই, খুবই ব্যাপক ও ধোঁয়াটে। আর নইলে বলত—‘সুমের’, ‘আক্কাদ’, ‘আসুর’, বা ‘ব্যাবিলন’। অর্থের দিক থেকে এগুলো খুবই স্পষ্ট বটে, তবে খুবই সংকীর্ণ। কেননা ওগুলো এতদঞ্চলের কিছু শহরের নাম মাত্র। লক্ষ করা দরকার যে, ঐ এলাকার জনসাধারণের ধারণায় নিজেদের বাসস্থান শহরগুলোর অস্তিত্বই ছিল সর্বাপেক্ষা জরুরি, বিন্তীর্ণ সম্পূৰ্ণ কোনো ভৌগোলিক ভূ— সীমা নয়। তাই ‘মেসোপটেমিয়া’ বলতে যে বিশাল অঞ্চল গ্রিক ঐতিহাসিকগণ বুঝিয়েছেন এবং যার নামানুযায়ী একটা সভ্যতার নামকরণ পর্যন্ত আমরা করেছি, সেই মেসোপেটেমীয় সভ্যতা আর সুমেরীয় বা আক্কাদীয় কিংবা আসিরীয় বা ব্যাবিলনীয় সভ্যতা সবই এক অর্থে সমার্থক। তফাৎ শুধু এই—মেসোপটেমীয় সভ্যতা বললে সার্বিকভাবে ঐ এলাকার সভ্যতাকে আমরা বুঝি যার ভিতরে উপর্যক্ত সব কটি সভ্যতাই রয়ে গেছে; আর সুমেরীয়— আক্কাদীয় বা আসিরীয়-ব্যাবিলনীর সভ্যতা পৃথক পৃথকভাবে উল্লেখ করলে আমরা বিভিন্ন যুগে আবির্ভূত ঐ সব নগরকেন্দ্রিক সভ্যতাকে বুঝে থাকি।</p>
+<p>বলেছি, গিলগামেশা উপাখ্যানটি মেসোপটেমিয়া অঞ্চলের। আরো স্পষ্টভাবে বললে বলা যায় যে, তার জন্মভূমি সুমের এলাকা (অর্থাৎ দক্ষিণ মেসোপটেমিয়া); আরো স্পষ্টতর তথ্য হচ্ছে: গিলগামেশ মহাকাব্য ব্যাবিলনীয় সাহিত্যের অন্তর্গত।</p>
+<p>পৃথিবীর এই প্রাচীনতম মহাকাব্যটির নায়ক গিলগামেশ বস্তৃত ঐতিহাসিক চরিত্র। খ্রিষ্টপূর্ব আনুমানিক সপ্তবিংশ শতাব্দীতে সুমেরু অঞ্চলের উরুক শহরের (বর্তমানে এর নাম ওয়াকা) রাজা ছিলেন তিনি। কথিত আছে, ১২৬ বৎসর তিনি রাজ্য শাসন করেছিলেন। এই সুমেরীয় নৃপতি এত বিখ্যাত ছিলেন যে, বহু শতাব্দীব্যাপী সমুদয় মেসোপটেমিয়া অঞ্চলেিএঁকে নিয়ে অজস্র গল্প, কিংবদন্তি ও উপকথা জন্মলাভ করেছিল; প্রসঙ্গত, ‘গিলগামেশ’ ও ‘এনকিদু’ শব্দ দুটিও সুমেরীয়; প্রথমটির অর্থ—‘পিতা’ বা ‘পুরুষশ্রেষ্ঠ’, আর দ্বিতীয়টির অর্থ—‘নলখাগড়া বনের রাজা’।</p>
+<p>প্রাচীন আসিরিয়ার (উত্তর মেসোপটেমিয়া অঞ্চল) রাজধানী নিনেভেহ্‌ শহরে আসিরীয়— রাজ আসুর্‌বনিপলের এক বিরাট পাঠাগার ছিল। উনবিংশ শতকের পঞ্চাশ দশকে প্রত্নতত্ত্ববিদদের দ্বারা তা আবিষ্কৃত হয়েছে। রাজা আসুরবানিপলের রাজত্বকালেই (খ্রিষ্টপূর্ব ৬৬৯-৬২৮) আসিরিয়া পৃথিবীতে শ্রেষ্ঠ এক রাজশক্তিতে উন্নীত হয়েছিল। যাই হোক, আজ থেকে প্রায় সোয়া শ বছর পূর্বে আবিষ্কৃত ঐ পাঠাগারটিতেই গিলগামেশ মহাকাব্যের সন্ধান মেলে। কাহিনীর নায়ক গিলগামেশ নামে জনৈক বীর নৃপতি, এবং কাহিনীটি পদ্যে রচিত বলে পণ্ডিতেরা একে ‘গিলগামেশ মহাকাব্য’ আখ্যা দিয়েছেন; নইলে প্রাপ্ত রচনাটির ভিতরে এই নামকরণ কোথাও পাওয়া যায় নি।</p>
+<p>তখন কাগজ আবিষ্কৃত হয় নি, ফলে কাগজের উপরে কোনো কিছু লিপিবদ্ধ করার প্রশ্নই ওঠে না। মেসোপটেমিয়ায় পাথরও ছিল না যে লোকজন তার উপরে কিছু খোদাই করে লিখবে। মেসোপটেমিয়াবাসীগণ অন্য পন্থা অবলম্বন করেছিল। এঁটেল মাটির তৈরি তক্তিতে তারা ছুঁচালো কাঠি দিয়ে দাগ কেটে কেটে লিখত। এই লিপির নাম বাণমুখ বা কীলক লিপি, ইংরেজিতে বলে কিউনিফর্ম। সর্বমোট ১২টি তক্তির উপরে বাণমুখ লিপিতে কাব্যটি লিপিবদ্ধ হয়েছিল। যে ভাষায় গিলগামেশ রচিত তার নাম: আক্কাদীয়। এই ভাষাটি মেসোপটেমিয়া ভূখণ্ডে খ্রিষ্টপূর্ব ৩০০০ অব্দের দিকে প্রচলিত ছিল। পৃথিবীর প্রাচীনতম লেখ্য ভাষা সুমেরীয় থেকেই এর উৎপত্তি এবং দুই সহস্র খ্রিষ্টপূর্বাব্দে তা সারা মেসোপটেমিয়ার লোকজনদের মুখের ভাষারূপে চালু ছিল। গিলগামেশ চরিত্রটি সুমেরীয় এবং কাহিনীটির ভাষা আক্কাদীয় হলেও ‘গিলগামেশ মহাকাব্য’ নামে যে রচনাটি আমরা পেয়েছি তা কিন্তু ব্যাবিলনীয়। সমস্ত বিশেষজ্ঞই এ বিষয়ে একমত।</p>
+<p>ভাবতে অবাক লাগে, সে কোন দূর অতীতের কাহিনী। কম তো নয়, এখন থেকে চার হাজার বছর পিছনের ঘটনা! এর মধ্যে কত সভ্যতা এল এবং ধ্বংস হল, কত রাজ্যের উত্থান ও পতন ঘটেছে, কত কীর্তি বিস্মৃতির অতলে তলিয়ে গেছে। মধ্যপ্রাচ্যে মেসোপটেমীয় সভ্যতা নামে মানবেতিহাসের যে এক গৌরবোজ্জ্বল অধ্যায় কখনো রচিত হয়েছিল সে— তথ্যও তো পৃথিবীর লোক জানে নি বহুকাল। ভাগ্যিস প্রত্নতাত্ত্বিক খননকার্য শুরু হয়েছিল ১৮৪৩ সালে! মৃত্তিকাগর্ভের ঘনান্ধকার আড়াল থেকে উঠে এসেছিল, যেন সদ্য ঘুম-ভেঙে, আমাদেরই ভুলে-যাওয়া পূৰ্বপুরুষের দল। তাদের সব আলাদা: মুখের ভাষা, হাতের লেখা, কাপড়চোপড়, ধ্যানধারণা। তাই কি? না, মিল আছে একটা জায়গায়। কোথায়?</p>
+<p>মিল আছে হৃদয়ে, প্রাণের অনুভূতিতে। ব্যাবিলনীয় সভ্যতার সর্বশ্রেষ্ঠ এই সাহিত্যকীর্তি সে-খবরটাই আমাদের জানিয়ে দেয়। এ তো বোঝাই যায় যে এটা একটা গল্প, তার মানে ব্যাপারটা সত্যি সত্যিই ঘটে নি কখনো! অর্থাৎ সবটুকুই কল্পনা, সবটাই বানানো। এ— ধরনের কাহিনীতে যেমন থাকে এখানেও তা রয়েছে; দেব-দৈত্য জাতীয় অলীক ও অবাস্তব প্রসঙ্গ, নানান আজগুবি কাণ্ডকারখানা। এ—সব ‘সত্যি’ বলে বিশ্বাস করার কোনোই কারণ নেই। কিন্তু তাতে কী যায় আসে? বানানো গালগল্পের খোলস ছিঁড়ে জীবনের কিছু গভীর সত্য সামনে এসে দাঁড়ায়। দেখি, দেব-দেবী বা অসুর-শক্তি--কিছুই প্ৰণিধানযোগ্য নয়, মূল সত্য: মানুষ! আসল কথা—মানুষের প্রাণের বেদনা। মানুষ যে বড়ো একা ও অসহায় এই পৃথিবীতে; তাই সে খোঁজে প্রাণের সঙ্গী আরেক মানুষ। শান্তি ও সংগ্রামে, সাফল্য ও হতাশায়, আনন্দ ও শোকে অন্যের সঙ্গে জড়ােজড়ি করে সে জীবনকে অনুভব করতে চায়, মিলেমিশে বাঁচতে চায়। আনন্দে সে হাসে, দুঃখে সে কাঁদে। ‘কান্না-হাসির দোল দোলানো’ ভুবন আজকের মতো তখনো ছিল পৃথিবীর বুকে।</p>
+<p>বিজয়াভিযান, সাফল্য ও বীরত্বের স্বাভাবিক দম্ভ ছাপিয়ে এনকিদুর জন্যে গিলগামেশের কান্না আমাদের কানে এসে কেবলই বাজতে থাকে, বাজতে থাকে, বাজতে থাকে, আর আমাদের বুক ভেঙে যায়। দুঃখে শোকে হতাশায়। অমরতা কেউ কি কখনো খুঁজে পায়? ভাবি, গিলগামেশ কী বোকা! পরীক্ষণেই ফের মনে হয়; আমরা সবাই তো ওরই দলে। আমাদের এন্‌কিদুকে মৃত্যুর হাত থেকে ছিনিয়ে আনার জন্যে আমরাও কীই—না করতে পারি! অথচ কিছুই করা যায় না, সবই ব্যর্থ হয়! তার পরে কিছুরই কি আর কোনো অর্থ থাকে? প্রিয়জনের স্মৃতি ও তার জন্যে বুকভরা হাহাকার ছাড়া কিছুই থাকে না।</p>
+<p>গিলগামেশ এই মহাসত্যের কাহিনী।</p>
+<h1>জন্মকথা</h1>
+
+<p>পৃথিবীর সর্বশেষ প্রান্তে গিয়েও যিনি সবকিছু দেখে এসেছিলেন এই কাহিনী তাকে নিয়েই। গিলগামেশ তাঁর নাম।</p>
+<p>আজ থেকে হাজার হাজার বছর পূর্বের ঘটনা। মেসোপটেমিয়ার দক্ষিণ অঞ্চলের একটি শহর, নাম উরুক। ইউফ্রেতিস ও তাইগ্রিস নামে দুটো নদের মধ্যখানের দোআব অঞ্চল, তারই উপরে গড়ে উঠেছে শহরটি। গিলগামেশ তার রাজা। তিনি আমাদের মতো সম্পূর্ণ মানুষ নন, দেবতা ও মানুষে মাখামাখি। কারণ তাঁর পিতা ছিলেন মরদেহী মানব, উরুক শহরের ধর্মযাজক লুগালাবান্দা; আর মা হলেন স্বর্গের দেবী, অমর, দেবী নিনসাল। তাই গিলগামেশের দুই-তৃতীয়াংশ হল দেবতা আর এক-তৃতীয়াংশ মানুষ। তাই মানুষের মতো দুঃখ-শোক সবই তিনি পাবেন, অথচ তিনি মৃত্যুবরণ করবেন না কখনো; তিনি দেবতাদের ন্যায় অমর।</p>
+<p>আর এনকিদুর জন্ম বিশাল অরণ্যানীর গভীরে। বনের জীবজন্তু পশুপক্ষী তার খেলার সঙ্গী। তাদের সঙ্গে হেসে খেলে সে বড়ো হয়ে উঠেছে, তারাই তার সবচেয়ে আপনজন, তার প্রাণের বন্ধু। এনকিদুর জানা ছিল না যে, সে মানুষ।</p>
+<p>গিলগামেশা ছিলেন একইসঙ্গে দেব ও মানব, আর এন্‌কিদু—একাধারে বনের পশু ও মানব। এই গল্প হচ্ছে সেই গল্প যেখানে এঁরা উভয়েই ক্ৰমে ক্ৰমে মানুষে, পরিপূর্ণরূপে মানুষে রূপান্তরিত হয়ে গেলেন।</p>
+
+<p>পরাক্রমশালী রাজা ছিলেন গিলগামেশ। তার শৌৰ্য-বীর্যের খ্যাতি ছড়িয়ে পড়েছিল দেশবিদেশে। তার দেহের আকার ছিল বিশাল। তিনি ছিলেন প্রচণ্ড সাহসী, দেখতে ছিলেন সুন্দর ও কান্তিমান। এক কথায় যথার্থ সুপুরুষ ছিলেন তিনি। যে— শহরটিতে তার রাজ্য সেই উরুকের জন্য তার ভালবাসার অন্ত ছিল না। শহরের চতুর্দিকে তার তৈরি প্রাচীরবেষ্টনীর প্রশংসা ও গুণগান সারা সুমের, আক্কাদ, আসুর, ব্যাবিলনিয়ায় লোকের মুখে মুখে ফিরত। রাজ্যের সুখ ও সমৃদ্ধির কথা তিনি চিন্তা করতেন। প্ৰজারা যাতে শান্তিতে থাকে সেদিকেও খেয়াল ছিল তাঁর। সবদিক ভেবে দেখলে বলতে হয়, রাজা হিসেবে গিলগামেশ প্ৰশংসা পাওয়ারই যোগ্য।</p>
+<p>কিন্তু পৃথিবীতে এমন তো কোনো রাজা নেই, ছিলও না কখনো, যে সব সময়েই সৎ বিবেকবান ও প্রজাবৎসল নৃপতিরূপে নিজেকে প্রমাণ করেছে। আমাদের গিলগামেশেরও দোষ ছিল অনেক। অন্য রাজাদের সঙ্গে তুলনায় হয়তো তাকে রাজশ্রেষ্ঠ বলা উচিত, তবু যেসব দোষ যতটুকুই ছিল তাতেই কিন্তু প্রজাদের যন্ত্রণার শেষ ছিল না। খামখেয়ালি ছিলেন অত্যধিক, আর তাঁর আত্মাভিমান অতিশয় তীব্র ছিল। ফলে একবার মাথায় কোনো খেয়াল চাপলে তা চরিতাৰ্থ না করে ক্ষান্ত হতেন না; আর সেই খেয়াল-তা যেমনই অন্যায়, অশোভন, নির্লজ্জ ও ভয়ানক হোক-না কেন তা মেটাতে বাধ্য হত তার প্রজারাই।</p>
+<p>সৎ ও অসৎ উভয় গুণেরই সন্নিপাত তাঁর চরিত্রে এমনভাবে ঘটেছিল যে তিনি বীর যোদ্ধা ও সুশাসক হওয়া সত্ত্বেও বিভিন্ন সময়ে তাঁর বিভিন্ন খামখেয়ালিপনা প্রজাদের আর সহ্য হচ্ছিল না। রাজার খামখেয়ালি অত্যাচারের হাত থেকে নিস্কৃতি পাবার জন্য প্রজারা ব্যাকুল হয়ে উঠল। তাদের ধৈর্যের বাঁধ ভেঙে গিয়েছিল।</p>
+<p>তা হলে এখন উপায় কী? রাজাকে পরাজিত করার শক্তি তাদের ছিল না। তা ছাড়া, রাজা গিলগামেশের সদ্‌গুণাবলি তারা পছন্দও করত। সত্যি বলতে গিলগামেশকে তারা যে ঘৃণা করত তা নয়, শুধু একটা কথা তারা বুঝতে পেরেছিল: রাজার কোন প্রতিদ্বন্দ্বী না থাকায় তাঁর বড়ো অহংকার হয়ে গেছে, নিজেকে তিনি অপরাজেয় মনে করছেন; আর সেজন্যই উচিত-অনুচিত, ন্যায়-অন্যায় বোধ তার মধ্যে কাজ করছে না। গিলগামেশের সর্বনাশ বা ধ্বংস তাদের কাম্য নয়, তারা শুধু চাইছিল--রাজার একটা উচিত শিক্ষা হওয়া দরকার।</p>
+<p>অনেক ভাবনা-চিন্তার পর তারা দেখল যে দেবরাজ আনুর কাছে বিচার ভিক্ষা করাই সমীচীন। আনু স্বর্গের দেবতাদের রাজা। উরুক শহরে দেবতা আনুর একটি মন্দির ছিল। সেই উপাসনাভবনে গিয়ে প্রজারা প্রার্থনা জানাল: ‘স্বৰ্গ ও মর্তের রক্ষাকারী হে দেব, আপনি আমাদের বাঁচান। আমাদের মনের শান্তি সব কেড়ে নিয়েছে গিলগামেশ। তার খেয়ালের জ্বালায় আমরা বাঁচি না! উরুকের দেয়াল তৈরির জন্যে খাটুনির ঠেলায় আমরা আধমরা হয়ে যাচ্ছিলাম। তবু মনে তৃপ্তি ছিল এই ভেবে যে, প্রাচীর তৈরি শেষ হলে বড় সুন্দর দেখাবে, অন্য দেশের লোকে সুনাম গাইবে আমাদের। কিন্তু আমাদের পাঁচিল শেষ করতে দেওয়া হল না, আধাখেচড়া হয়ে পড়ে আছে। কী আফসোস! তারপর মন গেলেই আমাদের জোয়ান ছেলেদের সে ফৌজে ধরে নিয়ে যায় জোর করে, আমরা কিছুই করতে পারি না। হে দেব আনু, আপনি আমাদের উপরে দয়া করুন। নারীদের সম্মানও সে মাঝে মাঝে বজায় রাখে না। আমরা নিরুপায়, আপনার কাছে তাই বিচারের আশায় এসেছি। আপনি দয়ালু ও মহান, এসব অন্যায়ের একটা বিহিত করুন।’</p>
+<p>প্রজাদের কান্নায় প্রাণ কেঁদে উঠল দেবতা আনুর। ভাবলেন, সত্যিই তো, অন্যায়ের প্রতিকার কিছু-একটা করা দরকার। তখন তিনি দেবী আরুরুকে ডেকে পাঠালেন। এক সময়ে, সেই কোন সুপ্রাচীন অতীতে, এই আরুরু দেবীই মাটি ছেনে তা দিয়ে প্রথম মানুষ সৃষ্টি করেছিলেন। এবারেও ডাক পড়ল সেই দেবীর। দেবীকে আনু বলেন: ‘আরুরু, শোন, মাটি দিয়ে তুমি গিলগামেশের এক প্রতিদ্বন্দ্বী তৈরি কর তো—ওরই মতো একরোখা ষাঁড় হওয়া দরকার। মানে, বুঝতে পারছ তো, আরেকটা গিলগামেশাই তোমাকে তৈরি করতে হবে—নইলে ঐ বেআক্কেলটাকে শক্তিতে তো কেউ হারাতে পারবে না। দরকার পড়লে তাকে শায়েস্তা করতে পারে এমন একজন তো কেউ থাকা দরকার, কী বল, নইলে প্রজারা বাঁচবে কী করে?’</p>
+<p>দায়িত্বের ভার নিয়ে দেবী আরুরু চলে এলেন। স্বৰ্গীয় বারিতে হাত ধুয়ে একতাল মাটি নিয়ে বসলেন তিনি। শুরু হল মূর্তি গড়া। যে— গুরুত্বপূর্ণ কর্তব্য তাঁর উপরে দেওয়া হয়েছে তা মনোযোগ দিয়ে পালন করতে লাগলেন। ধীরে ধীরে সম্পূর্ণ হয় মূর্তিনির্মাণ। বড় ভীষণ ও সুন্দর সে মূর্তি; নাম রাখলেন এনকিদু: বিশাল শরীর, যেন শরীরের প্রতি পেশিতে পুঞ্জীভূত শক্তি লুকিয়ে আছে, মনের মধ্যে ভয় কাকে বলে জানে না, যেন মূর্তিমান কোনো যুদ্ধদেব। আকার-প্রকারে সবই হল মানুষের মতন, শুধু তার শরীর ঢেকে দেওয়া হল প্রচুর লোমে, আর মাথায় মেয়েদের মতো লম্বা চুল কাঁধ ছাপিয়ে নেমে এল পিঠের ওপরে। জীবজন্তু যেমন উলঙ্গ, বিবস্ত্র থাকে, এনকিদুও তাই—গায়ের দীর্ঘ লোমই যেন তার পোশাক। মানুষ কী, দেখতে কেমন— সে জানল না। মনুষ্যসমাজে প্রচলিত রীতিনীতিও তার অজানা রইল; এমনকি পুরুষ ও স্ত্রী, পতি ও পত্নী, পুত্র ও কন্যা, বা ভ্রাতা ও ভগ্নী ইত্যাদি সম্পর্ক সম্বন্ধেও তার কোনো ধারণা বা জ্ঞান ছিল না। বিশাল আদিগন্ত অরণ্যের মধ্যে তাকে ছেড়ে দেওয়া হল, তার সঙ্গী হল শুধু বিশাল প্রকৃতি: পাহাড় ও ঝর্না, বৃক্ষ ও তরুলতা, এবং জীবজন্তু-পক্ষী ও সরীসৃপের মধ্যে সে বেড়ে উঠতে লাগল। সকলেই তার বন্ধু, সেও প্রকৃতির ও বন্য সমাজের একজন। হরিণের সঙ্গে সে পাল্লা দিয়ে ছােটে, বাঘ ও সিংহের সঙ্গে যায় হ্রদে জল পান করতে, তৃণভোজী জন্তুর মতো ঘাস ও লতাপাতা খেয়ে বাঁচে। সে মানুষ অথচ সবটুকু মানুষ নয়, সে পশু অথচ আকারে পশুও নয়। মানুষ ও পশু উভয়ই খেলা করতে লাগল এনকিদুর শরীরে ও মনে।</p>
+<p>উরুকের অধিবাসীরা কিন্তু কেউই তার কথা জানল না। আর রাজার তো জানার প্রশ্নই ওঠে না। সকলেরই অলক্ষ্যে অথচ দেবতাদের পরিকল্পনায় এভাবেই গিলগামেশের একমাত্র শক্র ও একমাত্র বন্ধু এন্‌কিদু প্রকৃতির কোলে মানুষ হতে লাগল।</p>
+
+<h1> এনকিদুর নগরযাত্রা</h1>
+
+<p>এমনিভাবে দিন যায়। নিজ নিজ খাতে বয়ে চলে আমাদের দুই নায়কের জীবন। রাজা গিলগামেশ থাকেন তার উরুক শহরে। তার চারপাশে থাকে কোলাহল ও বিলাসিত, প্রাচুর্য ও শক্তির দম্ভ। আর এনকিদুর জীবন চলতে থাকে পুরোনো ছন্দে, প্রকৃতির মুক্ত পরিবেশে।</p>
+<p>এরই মধ্যে একটি ব্যাপার ঘটল, আর তাতেই ওলট-পালট হয়ে গেল সবকিছু।</p>
+
+<p>যে—বনের মধ্যে এনকিদু থাকে সেখানে আশপাশের গ্রামাঞ্চল থেকে মাঝে মাঝে শিকারীরা আসত। শিকার করতে। তারা ফাঁদ পেতে রেখে দিত, ফাঁদে খরগোশ বা শুয়োর বা শিয়াল কিংবা এরকম কোনো পশু বা পাখি যাই ধরা পড়ত তাই নিয়ে ঘরে ফিরে যেত খুশি হয়ে।</p>
+<p>একবার ঠিক এমনিভাবেই এক শিকারী এসেছে বনের মধ্যে। উদ্দেশ্য, প্রথম শিকারের স্থান নির্দিষ্ট করে সেখানে ফাঁদ পেতে রাখা। বনের ভিতরে ইতস্তত যখন সে ঘুরে বেড়াচ্ছে তখন সে এক অদ্ভুত দৃশ্য দেখল। দেখতে পেল—বনে পশুদের সঙ্গে খেলা করতে করতে অন্য ধরনের একটা জীব ছুটে গেল ঝর্নার ধারে, জন্তুগুলোর সঙ্গে সেও একইভাবে হামাগুড়ি দিয়ে ঝর্নার জলে মুখ ডুবিয়ে পানি খেতে লাগল। এ— ধরনের জীব সে আগে কোথাও দেখে নি, এমনকি এরকম প্রাণীর অস্তিত্বের কথা পর্যন্ত সে শোনে নি। ভীষণ ভয় পেয়ে গেল সে। গা শিউরে উঠল, ভয়ে গলা শুকিয়ে গেল, হাত-পা অবশ হয়ে গেল, বুকের ভিতরে যেন হাতুড়ি পিটতে লাগল তার। মাথায় উঠল শিকার করা, কোনো রকমে বন থেকে বেরিয়ে সোজা দৌড় গ্রামের দিকে।</p>
+<p>পরের দিন। আবার সে এল শিকার ধরতে। গর্ত খুঁড়ে জাল পেতে রেখে সে বেরিয়ে গেল অন্য কাজে। বিকেলে ফিরে এল ফের। শিকারের জায়গার কাছাকাছি হতেই যা তার নজরে পড়ল তাতে বুকের রক্ত যেন জমে গেল। সে দেখতে পেল: গা-ভরতি লোম, দেখতে মানুষের মতো, কিন্তু মানুষ নিশ্চয়ই নয়, কেননা মানুষের গায়ে তো আর অত লোম থাকে না, অথচ জন্তুটার হাতও আছে দুটো, ক্ষিপ্ৰ গতিতে সে ফাঁদের দড়িদড়া হাত দিয়ে ছিঁড়ে ফেলে ফাঁদে— পড়া জানোয়ারগুলো ছেড়ে দিচ্ছে। ভয়ে কাছে যেতে সাহস হল না শিকারীর। দুঃখে তার চোখ ফেটে পানি আসছে—সারাটা দিনের মেহনত এইভাবে নষ্ট হল? সে বিস্মিতও কম হয় নি, কেননা চলাফেরায় এত ক্ষিপ্ৰতা কোনো প্রাণীর যে থাকতে পারে তা তার জানা ছিল না। ভয়, বিস্ময় ও হতাশা নিয়ে এদিনও ঘরে ফিরল সে। মনের মধ্যে সংশয় কিন্তু এখনো যায় নি—সে যা দেখল তা মনের ভুল, কি চোখের ধোঁকাবাজি নয় তো?</p>
+<p>পরের দিন। আবার সে গেল বনের ভিতরে। এদিনও সেই একই ঘটনার পুনরাবৃত্তি। পরপর তিন দিন একই মূর্তিকে সে দেখল। এ তো আর চোখের ভ্রম হতে পারে না। এনকিদু কিন্তু শিকারীকে একবারও দেখতে পায় নি।</p>
+<p>তৃতীয় দিনেও যখন একই প্রাণীর দেখা পেল, তখন সত্যি সত্যিই ভয়ানক ঘাবড়ে গেল সে। সে যে ভুল দেখে নি তাতে কোনোই সন্দেহ নেই; এদিকে আবার সে বুঝতেও পারছে না ঐ জীবটি কী! ভেবে ভেবে কিছু ঠিক করতে না পেরে সে তার বুড়ো বাপকে একে একে সব ঘটনা খুলে বলল! বৃদ্ধের মাথাতেও কিছু ঢুকল না। তখন অনেক ভাবনা-চিন্তা করে ছেলেকে বলল; ‘শোন খোকা, আমি তো কোনো উপায় ঠাওরাতে পারছি না; তুই নাহয় একবার উরুকে যা, গিয়ে আমাদের রাজা গিলগামেশকে ব্যাপারটা বল। আমার তো মনে হচ্ছে-তুই যাকে দেখেছিস সে বনের পশু নয়, আমাদের মতোই মানুষ, তবে যে-কোনো কারণেই হোক সেন এখন বনের পশুই হয়ে গেছে। তাকে মানুষের সমাজে ফিরিয়ে এনে মানুষ বানানো দরকার। আমার বুদ্ধি তো বাবা এ কথাই বলে। তুই যা, গিলগামেশের কানে কথাটা তোলে। তিনি হয়তো কিছু একটা উপায় বের করবেন।’</p>
+<p>পুরোনো সেই দিনে এখনকার মতো তো রাস্তাঘাট ছিল না, গাড়িঘোড়া ছিল না। শিকারীর গ্রাম থেকে উরুক অনেক দূরের পথ। হেঁটেই চলল সে। ভোরের আলো ফুটতে—না-ফুটতে, অন্ধকার থাকতে থাকতেই সে বেরিয়ে পড়েছিল। সারাটা দিন সে হেঁটেছিল, সূর্য ডুবে যাওয়ার পরও বহুক্ষণ পথ চলতে হয়েছিল তাকে, তারপর সে পৌছেছিল উরুকে।</p>
+<p>গিলগামেশের সঙ্গে সাক্ষাৎ করে সবকিছু খুলে বলল সে। তার বাবা যে কী রকম ভয় পেয়েছে, ঘাবড়ে গেছে ব্যাপারটা শুনে—তাও জানল। সেইসঙ্গে এনকিদুর প্রচণ্ড শক্তি ও ক্ষিপ্ৰতারও প্ৰশংসা করল।</p>
+<p>রাজা সব শুনলেন মন দিয়ে। কিন্তু তেমন বিচলিত হলেন বলে মনে হল না। অরণ্যে বসবাসকারী নানান জাতের আজগুবি প্রাণীর কথা তিনি প্রচুর শুনেছেন, কখনোই বিশ্বাস করেন নি। ওরকমই একটা নতুন মুখরোচক গপ্পো শোনাতে এসেছে শিকারী ছেলেটি, এতে এমন কিছু মাথা ঘামানোর প্রয়োজন নেই—এ ধরনেরই একটা কিছু ভাবলেন তিনি। মুখে বললেন: ‘বুঝলাম সব, তোমরা বেশ ঘাবড়ে গেছ দেখছি। এক কাজ কর—ঐ প্রাণীটিকে ধরে-বেঁধে শহরে নিয়ে আসার ব্যবস্থা কর। তার যেমন শক্তির কথা বললে তাতে জোর-জবরদস্তি করে আনতে পারবে বলে মনে হয় না। একটা উপায় বাতলে দিচ্ছি। শহর থেকে কোনো পরমাসুন্দরী নগরনটী বেছে নিয়ে যাও। মেয়েটির ভয় পাবার কিছু নেই, সে যেন ওর মুখোমুখি হয়। জানোই তো সুন্দর মুখের জয় সর্বত্র। ঐ রূপ দেখেই সে গলে যাবে, তারপর মেয়েটার সঙ্গে আলাপ—পরিচয় ও বন্ধুত্ব হলে মেয়েটাই তাকে বশ করে বন থেকে শহরে আনতে পারবে। তোমার কথা শুনে মনে হল, ঐ জীবটি কোনো পশু নয়, কেবল জীবজন্তুদের সঙ্গে বসবাস করে অন্য রকম হয়ে গেছে। মেয়েটার সঙ্গে ওর ভাব হয়ে গেলে ও নিজেও বুঝতে পারবে যে সে অন্য পশুদের মতো নয়, আর বনের জীবজন্তুরাও দেখতে পাবে যে তাদের এতদিনকার বন্ধু আসলে অন্য জাতের জীব, মোটেই তাদের মতো নয়। একবার এটা বুঝতে পারলেই পশুরা আর তাকে নিজেদের দলে নেবে না, তখন সে একেবারেই সঙ্গীহীন একা হয়ে পড়বে, বাধ্য হয়ে মেয়েটির সঙ্গে উরুক চলে আসতে হবে তাকে। যাও এখন। যা বললাম। সে অনুযায়ী কাজ কর।’</p>
+<p>শিকারী ছেলেটি তাই করল। নগরের প্রমোদভবন থেকে একজন সেরা নটী বেছে নিয়ে সে রওয়ানা হল। বনে পৌঁছে মেয়েটিকে বলল: ‘এবারে আমার দায়িত্ব শেষ হল, এখন তোমার পালা! ভয় করো না, বনের মধ্যে নিৰ্ভয়ে গিয়ে ঢোক। রাজা বলেছেন, কেউ তোমার গায়ে হাত দেবে না, প্ৰাণের ভয় নেই। ঐ প্রাণীটিকে যেভাবেই হোক বশ করে আন ৷ ’</p>
+<p>পরিকল্পনা মতো নগরনটী একাই গেল ঘন অরণ্যের মধ্যে। ঘুরে বেড়ায়, ফলমূল খায়। বনফুলের মালা গেঁথে গলায় পরে, গাছের ছায়ায় বিশ্রাম নেয়। শিকারী তাকে বলেছিল যে, এনকিদু ঝর্নায় জল খেতে আসে। ফলে মেয়েটি ঝর্নার কাছাকাছিই ঘোরাফেরা করে। এভাবেই দুটো দিন কাটল। ভাগ্য তার প্রসন্ন হল তৃতীয় দিনে। অনেক পায়ের শব্দ শুনতে পেল সে। এক পাল জন্তু ঝর্নার জল পান করতে আসছে, গাছের আড়াল থেকে সেই জঙ্গলের মধ্যে এনকিদুকেও চোখে পড়ল।</p>
+<p>সে যেমন এনকিদুকে দেখেছে, এনকিদুও যাতে তাকে দেখতে পায় তেমন একটা জায়গায় মেয়েটি দাঁড়িয়ে রইল। উদ্দেশ্য ব্যর্থ হল না। এনকিদুর চোখ আটকে গোল মেয়েটির দেহের উপরে। সে ভয়ানক অবাক হয়ে গেল। এরকম কোনো জীব তো সে দেখে নি কখনো। তার মনে হল-মেয়েটির সঙ্গে তার দেহের যেন অনেক মিল আছে। কেবল তার নিজের সারা গায়ে কি বিচ্ছিরি বড়ো বড়ো লোম, আর ওর দেহ কী মসৃণ ঝকঝকে সুন্দর। এনকিদু ছুটে গেল মেয়েটির কাছে। তার মনে হল, তার সম্মুখে দাঁড়িয়ে আছে কী সুন্দর কী অপূর্ব এক প্রাণী। আনন্দে সে জড়িয়ে ধরল মেয়েটিকে। নগরনটীর রূপ দেখে যেন তার আর চোখ ভরে না।</p>
+<p>যাদের সঙ্গে সে ঝর্নার ধারে জল পান করতে এসেছিল। সেইসব জীবজন্তু পিপাসা মিটিয়ে দল বেঁধে ফিরে গেল। শুধু গেল না সে—এনকিদু। মেয়েটিকে সে সঙ্গ দিতে লাগল, মেয়েটির বন্ধু হল। তারা ঘুরে বেড়ায় একসঙ্গে, খাওয়াদাওয়া- খেলা সবই একসঙ্গে। মহা আনন্দে দিন কাটতে লাগল তাদের। আনন্দ ও উল্লাসের ঘোরে এভাবে কেটে গেল একটা দুটো করে সাতটা দিন। তার পর হঠাৎ বনের বন্ধুদের জন্যে মন কেমন করে উঠল এনকিদুর। নগরনটীকে ফেলে রেখে তখন সে দৌড়ল অরণ্যের গভীরে, তার খেলার সঙ্গী-সাথীদের কাছে।</p>
+<p>কিন্তু হায়, হায়, এ কী? বন্ধুরা যে তাকে দেখে সরে যায়, মুখ ফিরিয়ে থাকে। ভাবখানা এমন যে, মনে হয় এনকিদুকে ওরা কোনো দিন চোখেই দেখে নি। এনকিদু ওদের পিছু ধাওয়া করে, ওরা আরো ক্ষিপ্ৰবেগে তার ধরা-ছোঁয়ার বাইরে চলে যায়। আশ্চর্য ব্যাপার! শক্তি বা ক্ষিপ্ৰতায় এনকিদু তো কখনো ওদের চেয়ে পিছিয়ে ছিল না। তবে? হঠাৎ তার মনে হয়—তার পা আর আগের মতো চলছে না, অল্প শ্রমেই ক্লান্তি আসছে দেহে অবসাদ নামছে মনে। চোখের উপর থেকে একটা পর্দা সরে গেল যেন; উপলব্ধি করল সে: অদ্ভুত কাণ্ড, আমি তো আর পশু নই, আমি যে ‘মানুষ’ হয়ে গেছি।</p>
+<p>এ-কথা যে—মুহুর্তে সে বুঝতে পারল তখনি থমকে দাঁড়িয়ে পড়ল। ওদের পিছনে ছোটার তো আর কোনো মানে হয় না। ওরা বনের জন্তু আর সে মানুষ— ওরা তাকে আর নোবেই—বা কেন? একরাশ ক্লান্তির বোঝা আর মনের দুঃখ বয়ে নিয়ে মেয়েটির কাছে সে আবার ফিরে এল। অসহায়ভাবে নগরনটীর পায়ের কাছে বসে পড়ল সে, মুখে কথা নেই, চোখে মিনতি।</p>
+<p>ওর মনের কথা বুঝতে মেয়েটির অসুবিধে হয় না। সান্ত্বনা দেয় সে; ভয় কী, এনকিদু? ঘাবড়াবার কী আছে? তুমি জান না কত সুন্দর তুমি দেখতে, দেবতার মতো সুন্দর। তুমি ঐ সব জীবজন্তুর পেছন-পেছন দৌড়বে—এ কি একটা কথা হল? তুমি বরং আমার সঙ্গে চল। আমরা উরুক শহরে যাব। খুব বড় শহর, সেখানে মানুষের বসবাস। সেখানে মন্দির আছে, তার ভিতরে সিংহাসনে দেব-দেবীরা বসে আছেন। তা ছাড়া, ওখানে অত্যাচারী সেই লোকটাও থাকে—বলব কি, ঠিক যেন একটা বুনো ষাঁড় দাপাদাপি করে বেড়াচ্ছে। লোকটার নাম? কেন, গিলগামেশ।’</p>
+<p>কী ভয়ানক একা এখন এনকিদু! তার খুব খারাপ লাগতে লাগল। সব বন্ধুরা তাকে ছেড়ে চলে গেছে। এখন সে করে কী? নগরনটীর কথায় বুকে সে বল পায়। ভাবে, শহরে গেলেই সে নতুন বন্ধু পেতে পারে, পেতে পারে নতুন সঙ্গী। তারপর তার মনে পড়ে যায়, সে তো আর এখন বনের জানোযার নয়, সে যে ‘মানুষ’ হয়ে গেছে।</p>
+<p>‘ঠিক আছে, তাই হোক।’ সে উত্তর দেয়, ‘আমাকে তোমাদের ঐ উরুক শহরেই নিয়ে চল, মন্দিরের দেব ও দেবীদের কাছে। আর ঐ গিলগামেশা না। কার কথা যেন বললে-ওসব বাজে জিনিস। আমি ডরাই না। বেশি মাতব্বরি করতে এলে উচিত শিক্ষা দিয়ে দেব। ফালতু বাহাদুরি ফলানো আবার সহ্য হয় না আমার।’</p>
+<p>অতঃপর যাত্রা করল তারা: এন্‌কিদু আর রূপসী নগরনটী। মেয়েটির মনে আনন্দ, কেননা সে তার দায়িত্ব চমৎকারভাবে পালন করতে পেরেছে—সে এনকিদুকে সঙ্গে করে নিয়ে যাচ্ছে। এনকিদুর মনে কাজ করছে এক ধরনের চাপা উল্লাস, কেননা সে চলেছে এক নতুন জীবনের দিকে। সেই জীবন সে জানে না, কিন্তু ইতোমধ্যেই অনেক আশা ও স্বপ্ন যেন জেগে উঠছে তাকে ঘিরে।</p>
+<p>প্ৰথমে তারা গিয়ে উঠল শিকারীদের গ্রামে।</p>
+
+<h1> স্বপ্নের রূপায়ণ</h1>
+
+<p>সেই রাত্রিরই ঘটনা। </p>
+<p>প্রাসাদে ঘুমিয়ে আছেন বীর রাজা গিলগামেশ। ঘুমের ভিতরে স্বপ্ন দেখলেন তিনি। অদ্ভুত স্বপ্ন। তাঁর ঘুম ভেঙে গেল, মনে মনে ভাবতে লাগলেন—কেন। তিনি অমন স্বপ্ন দেখলেন, কী তার অর্থঃ ব্যাখ্যা পেলেন না তিনি। তখন ছুটে গেলেন তার মা নিনসানের কাছে। বললেন: ‘মা, অদ্ভুত একটা স্বপন দেখে দৌড়ে এসেছি তোমার কাছে। এর কী অর্থ বলে দাও; দেখলাম-আকাশ থেকে একটা তারা খসে পড়ল আর অমনি সারা উরুকের লোক তার চারপাশে ঘিরে দাঁড়িয়ে খুশিতে হৈচৈ করতে লেগে গেল। ঘুমের মধ্যেই বুঝতে পারলাম, আমার খুব হিংসা হচ্ছে, রাগ হচ্ছে। আমি তখন ওটাকে বয়ে নিয়ে গিয়ে দূরে কোথায় ফেল দেব ভাবলাম। কিন্তু তুলতে গিয়ে দেখি— অসম্ভব ভারী, আমার গায়ে যে এত প্রচণ্ড শক্তি তবু আমি ওটাকে নড়াতে পারলাম না। ভীষণ দুর্বল লাগছিল আমার। এমনি সময়ে ঘুমটা ভেঙে গেল! আমি তো আর কখনো এ ধরনের স্বপ্ন দেখি নি। মা, তুমি তো দেবী, আমাকে এর অর্থ বলে দাও।’</p>
+<p>নিনসান উত্তর দিলেন: ‘যে—তারাটা খসে পড়ল সে তোমারই সমকক্ষ। স্বৰ্গ থেকেই তাকে পাঠানো হয়েছে। তুমি তাকে তোমার পথ থেকে সরাতে চাইবে, কিন্তু তাকে সরানো তোমার শক্তিতে কুলোবে না। তুমি ব্যর্থ হবে। এই হল তোমার স্বপ্নের অৰ্থ।’</p>
+<p>মায়ের মুখ থেকে এই ভয়ানক ব্যাখ্যা শুনে চেঁচিয়ে ওঠেন গিলগামেশ; ‘সে কি? এ তুমি কী বলছ মা? জীবনে তো আমি কোনো কিছুতে কখনো ব্যর্থ হইনি।’</p>
+<p>ছেলেকে আশ্বাস দিতে চান মা, দেবী নিনসান। কিন্তু তার কণ্ঠে কোনো আবেগ নেই, তাঁর মনে কোন দুশ্চিন্তা সেই। ধরে ধীরে তিনি ফের বলতে থাকেন, একঘেঁয়ে তাঁর কণ্ঠস্বর: ‘এই তারকা আসলে একজন লোক। সে তোমার সাখী হবে। তবে মনে রেখো—সে কিন্তু সব ব্যাপারেই তোমার সমকক্ষ। অবশ্য সে তোমার বন্ধু হবে, কখনোই তোমাকে ছেড়ে যাবে না; আর তুমিও কখনো তাকে পরিত্যাগ করার কথা ভাববে না।’</p>
+<p>স্বপ্নের এই অভূতপূর্ব ব্যাখ্যা শুনে চুপ করে রইলেন গিলগামেশ।</p>
+<p>পরের দিন। রাত্ৰিবেলা।</p>
+<p>এ-রাতেও স্বপ্ন দেখলেন গিলগামেশ। এও বেশ অদ্ভুত ধরনের। তিনি দেখলেন—একটা কুড়ুল পড়ে আছে, তার চারপাশে লোকজন ভিড় করে দাঁড়িয়ে আছে। তিনি এগিয়ে গিয়ে কুড়ুলটা তুলতে চেষ্টা করলেন; এ আর এমন কি, সামান্য একটা কুড়ুল বৈ তো নয়। কিন্তু আশ্চর্য! তিনি পারলেন না। হঠাৎ এত অসম্ভব ক্লান্তি তিনি বোধ করতে লাগলেন যে নিজেই হতবাক হয়ে গেলেন। জীবনে তো তিনি কোনো দিন এত ক্লান্ত হন নি!</p>
+<p>আবার দৌড়লেন মার কাছে। ছেলের মুখে সব শুনে মা বললেন: ‘কুড়ুলটা হচ্ছে একটা লোক। সে তোমার সমান শক্তিধর অথচ তোমার বন্ধুও। সে আসবে। অতি চমৎকার লোক সে। সে তোমার ক্লান্তি থেকে তোমাকে টেনে তুলবে।’</p>
+<p>মায়ের মুখের ভরসা শুনে গিলগামেশের মন ভরে গেল। আশা ও আনন্দে। মনে মনে বলে ওঠেন, ‘তোমার কথাই যেন সত্যি হয় মা। এত দুর্বল লাগে কেন আমার? মনে হয়, আমার ভিতরের সব শক্তি যেন কে শুষে নিয়েছে। আসলে, আমি কী একা, কী ভীষণ একা! একজন সাথীর জন্যে কত দিনের স্বপ্ন আমার—যে বিপদে আমায় সাহায্য করবে, পরামর্শ দেবে, সব সময়ে আমার পাশে এসে দাঁড়াবে। এই নিঃসঙ্গতা আর আমার সহ্য হয় না।’</p>
+<p>শিকারীর গ্রামে আনন্দের মধ্যে দিন কাটতে লাগল এনকিদুর। সে এখন অন্যান্য সকলের মতোই মানুষ। তার হায়ের সমস্ত লোম ছেঁটে ফেলা হয়েছে। মেয়েটি সবান দিয়ে ডলে ডলে তার হায়ের ময়লা তুলেছে, সুগন্ধী আতরজলে স্নান করিয়েছে তাকে। ভালো কাপড়জামা দিয়েছে তাকে; এনকিদুকে শিখিয়েছে কী করে জামাকাপড় পরতে হয়। পরিপাটি করে চুল আঁচড়ে দিয়েছে মাথায় সুবাসিত তেল মাখিয়ে। গায়ে তার আতর ছিটিয়ে দিয়েছে। সে এখন রুটি খেতে পারে, রাখালদের সঙ্গে উৎসব-ভোজে মদ্য পান করতে পারে।</p>
+<p>তবু মাঝে মাঝেই মনমরা হয়ে যায় এনকিদু। ফেলে—আসা অরণ্যজীবনের সুখস্মৃতি এসে হানা দেয়, পুরনো বন্ধুদের কাছে ছুটে যেতে চায় সে; হরিণের কাছে, সিংহ ও ব্যাঘ্রের কাছে। আবার তাকে বোঝাতে থাকে নগরনটী। বলে, ‘কেন তোমার মন খারাপ করে, এন্‌কিদু? তুমি তো জান যে, ওরা আর তোমাকে ওদের মিতা মনে করে না, কেননা ওরা এখন বুঝতে পেরেছে যে তুমি মানুষ। আসলেই তো তাই। তাই—বা কেন, বরং বলি-তুমি দেবতার মতো মনোহর, তুমি দেবতার মতো সুন্দর, তুমি গিলগামেশের মতো অপ্রতিরোধ্য ভয়ঙ্কর। আর দু-চারটে দিন মাত্র, তারপর আমরা উরুক রওয়ানা হব। দেবরাজ আনুর মন্দির আছে সেখানে; মহাতেজা গিলগামেশ সেখানে রাজ্য শাসন করছেন। তাঁকে দেখলেই তুমি যে কী, তুমি যে কে, তা সঙ্গে সঙ্গে চিনতে পারবে। দিঘির জলে যেমন তুমি তোমার মুখ দেখতে পাও, গিলগামেশের পানে তাকালেই তুমি তোমার সবটুকু ছবি আয়নার মতো স্পষ্ট দেখতে পাবে।’</p>
+<p>এ— ধরনের কথা সে আগে শোনে নি কখনো। মেয়েটির সব কথা মনোযোগ দিয়ে শুনতে থাকে সে। আনু, গিলগামেশ...এরা কারা? এরা কেমন? ভাবতে থাকে। আর কী রকম যেন এক অসহায়ত্ব ও দুর্বলতা বোধ করতে থাকে দেহে ও মনে।</p>
+<p>গ্রামে যে কদিন রইল এনকিদু সকলের সঙ্গে মিলেমিশে বন্ধু হয়ে গেল। শিকারীদের আর কোনো ভয় নেই। রাত্রে পাহারা দেওয়ার কাজ করে এনকিদু। নিজে থেকেই সে এই কাজ বেছে নিয়েছে। সারা গ্রামবাসী নিশ্চিন্তে ঘুমাতে পারে। রাতের আঁধারে পা টিপে-টিপে কোনো সিংহ আর এদিকে আসে না। চুরি করতে এসেছিল কয়েকটি শিকারী নেকড়ে, তাদের ধরে বেঁধে রাখল এনকিদু। গাঁয়ের লোকজন তো মহা খুশি!</p>
+<p>এরই মধ্যে একদিন দূর-গাঁয়ের এক মুসাফির এল ঐ গ্রামে। দুপুরের খাওয়ার সময়ে সে অতিথি হল ঐ শিকারীর ঘরে। জানা গেল, সে যাচ্ছে উরুক। সে বিয়ে করবে, তাই শহরে কনে খুঁজতে যাচ্ছে। কনে খুঁজে পেলে তাকে রাজা গিলগামেশের কাছে পাঠাতে হবে দিন কয়েক সেবা করার জন্য, তারপর বিয়ে করে গ্রামে ফিরে আসবে।</p>
+<p>এ-কথা শুনে এনকিদু কেমন ফ্যাকাশে হয়ে যায়। রাজার কথা উঠতেই তার কেমন ভয়-ভয় করতে লাগল। সে চুপিচুপি জিজ্ঞাসা করে: ‘গিলগামেশের প্রাসাদে কেন পাঠাতে হবে কনেকে? সে মেয়ে তো সেবা করবে স্বামীর, রাজার তো নয়!’ নগরনটী ব্যাখ্যা করে বুঝিয়ে দেয়: ‘গিলগামেশ যে রাজা, তাই! রাজা তো দেবতা, তাই না? তাই উরুকের নিয়ম আর রাজার নির্দেশ: বিয়ের কনে আগে যাবে রাজার বাড়ি, প্রথমে রাজাকে সেবা করে খুশি করবে, তার পরে সে যাবে স্বামীর ঘর করতে, নিজের সেবা দিয়ে সুখী করবে স্বামীর সংসার।’</p>
+<p>অদ্ভুত ব্যাপার তো! এনকিদু ভাবে-হবেও—বা, এটাই বুঝি দুনিয়ার রীতি, আমি তো আর কখনো সমাজে থাকি নি। তবু সে জিজ্ঞেস করে; ‘বেশ মজার ব্যাপার! তা এটাই বুঝি সবখানের রীতি?’</p>
+<p>এবার জবাব দেয় মুসাফির; ‘না, মোটেই না। এ নিয়ম চালু করেছে পাজি গিলগামেশ। এই রীতি আমাদের কারো পছন্দ নয়। কিন্তু কী করব? রাজার হুকুম। আমরা গরিবগুর্‌বো প্ৰজা, হুকুম না মানলে গর্দান যাবে।’</p>
+<p>এতক্ষণে যেন আলোর আভাস দেখে এনকিদু। সে বুঝতে পারে, এ অন্যায়। ভিতর থেকে কে যেন তাকে বলে ওঠে: এনকিদু, অন্যায়ের প্রতিকার করাই তো তোমার কাজ, ঝাঁপিয়ে পড় কাজে। উরুক যাওয়ার জন্যে ব্যস্ত হয়ে ওঠে সে।</p>
+<p>মুসাফিরটির সঙ্গে উরুক গিয়ে তারা পৌছায়। শহরের মধ্যিখানে ছাউনি— ঘেরা গোলাকার বিশাল চত্বর। হাটবাজারের জায়গা। সেখানে পৌছুতেই যেন হৈচৈ বেধে গেল। এনকিদুর আগমনের অপেক্ষাতেই যেন ছিল সকলে। চোখমুখ দেখেই বোঝা যায়, সবাই খুব খুশি হয়েছে। নিজেদের মধ্যে তারা বলাবলি করে; ‘আরো দেখ, দেখ, ও যে অবিকল গিলগামেশ! কেবল মাথায় একটুখানি ছােট, তাই না? তবে রাজার চেয়ে আরো বেশি গাঁট্টাগোট্টা, আর অনেক শক্তি ধরে, মনে হচ্ছে। হবে না— ই বা কেন? ও যে বুনো মানুষ গো, বাঘ-সিংহের দুধ খেয়ে যে মানুষ! ওর সঙ্গে কি গিলগামেশের তুলনা চলে?’</p>
+<p>মোট কথা, সাদাসিধে নগরবাসী খোলা মনেই অভ্যর্থনা জানোল তাকে।</p>
+
+<p>এনকিদু যে দিন উরুক পৌঁছয় সে দিনটা ছিল উৎসবের। সারা শহরে উৎসব ও আনন্দের ঢেউ বইছে। শুভ নববর্ষের প্রথম শুভদিন।</p>
+<p>রাস্তাঘাট সাজানো হয়েছে সুন্দরভাবে। ঘরে ঘরে আনন্দের হৈ-হুল্লাড়, গান— বাজনার আওয়াজ আসছে। সবচেয়ে সুন্দর সাজে সাজানো হয়েছে রাজমন্দির। রাজপথে ভিড় জমে গেছে। রাজা গিলগামেশ শুভদিনে মন্দিরে যাবেন। মন্দিরে উপাসনা হবে, সেই সঙ্গে সম্পন্ন হবে রাজার বিবাহ-অনুষ্ঠান। রাজা হবে বর, তিনি দেবতা সাজবেন; আর একটি মেয়ে দেবী সাজবে। দেব-দেবীর বিয়ে। সত্যিকারের বিয়ে নয়, বিয়ে-বিয়ে খেলা। পরে অবশ্য মেয়েটিকে অন্য কেউ সত্যি সত্যি বিয়ে করে ঘরকন্না করবে, সংসারধর্ম পালন করবে।</p>
+<p>রাস্তায় এত ভিড়, বাজারে এত লোকজন এ জন্যেই। রাজার আগমনের অপেক্ষায় আছে সকলে। বাজারের মধ্যে একটা বাড়ি আছে: কুমারী-প্রাসাদ! অবিবাহিতা মেয়েদের আজ জমায়েত করা হয়েছে এখানে। রাজা আসবেন, তারপর ‘দেবী’ হিসেবে একটি মেয়ে বেছে মন্দিরে সঙ্গে করে নিয়ে যাবেন। দেবমন্দিরে তাদের বিবাহ হবে।</p>
+<p>গিলগামেশা এলেন রাত্ৰিবেলায়। উল্লাসে জনতা ফেটে পড়ল। রাজার পিছন পিছন নাচতে-নাচতে গাইতে— গাইতে এল গায়ক ও নাচিয়ের দল, বাজনাদাররা এল বিভিন্ন বাদ্যযন্ত্র বাজাতে-বাজাতে। রাজপথ দিয়ে গর্বভরে হেঁটে আসছেন রাজা। দু-পাশে প্রজারা সারবন্দি দাড়িয়ে আছে, সম্মান জানাচ্ছে তাদের বীর রাজাকে।</p>
+<p>অবশেষে তিনি এসে দাঁড়ালেন কুমারী-প্রাসাদের সামনে। বিশাল তোরণদ্বার দিয়ে ঢুকতে যাবেন ভিতরে, হঠাৎ দেখেন—তাঁর পথ আগলে দাঁড়িয়ে আছে কে একজন। কী, এত বড়ো সাহস! দু-চোখে যেন আগুনের ফুলকি ছুটল রাজার। ওদিকে এনকিদুও হুঙ্কার ছাড়ল: ‘আর এক পা-ও না। যে—পথে এসেছ, সে-পথেই ফিরে যাও রাজা।’</p>
+<p>সমস্ত নগরবাসী স্তব্ধ বিস্ময়ে চোখ বড়ো বড়ো করে দেখতে লাগল কী হয়। মনে কিন্তু তাদের চাপা আনন্দ। এইবার? এইবার বোঝ গিলগামেশ, তোমার অন্যায়েরও প্রতিকার আছে।</p>
+
+<p>যা হবার তাই হল। লাগল বিষম যুদ্ধ। কেউ তো কারো চেয়ে কম নয়; যেমন গিলগামেশ, তেমনই এনকিদু। প্রচণ্ড সে যুদ্ধ! মনে হতে লাগল যেন দুই প্ৰকাণ্ড নেকড়ে ঝাঁপিয়ে পড়েছে এ ওর ওপরে। লড়াই চলল। সারা রাত; সকাল হল, বেলা বাড়ল, দুপুর গড়িয়ে বিকেল হল—তখনো চলছে যুদ্ধ। দুই বীরের হুঙ্কারে দর্শক জনতা ভয় পেয়ে গেল, তাদের পায়ের আঘাতে ধুলোর কুয়াশায় চারদিক ঢেকে গেল। ঘরের মধ্যে শিশু কেঁদে উঠল। ভয়ে, তাদের আঁকড়ে ধরে মায়েরা জেগে বসে রইল সারাক্ষণ। অধীর প্রতীক্ষায় রুদ্ধশ্বাস হয়ে সকলে লড়াই দেখছে রাজা গিলগামেশ আর তাদের পরিত্রাতা এনকিদুর।</p>
+<p>হঠাৎ পড়ে গেলেন গিলগামেশ। ক্লান্ত তিনি। অথচ মনে মনে বাহবা দিচ্ছেন এনকিদুকে; বাহ, বীরের মতো বীর বটে! এনকিদু মহাবিক্রমে এগিয়ে গেল তাঁর দিকে। ঝুঁকে পড়ে স্পষ্ট দৃষ্টিতে তাঁর চোখে চোখ রাখল।</p>
+<p>গিলগামেশও ভালো করে তাকালেন ওর মুখপানে। এ কী দেখছেন গিলগামেশ? এ কার মুখ? কে তার সামনে এসে দাঁড়িয়েছে? কার সঙ্গেই-বা তিনি যুদ্ধ করে এলেন এই একটা রাত আর একটা দিন? আশ্চর্য তো! তার মনে হল: তার সামনে এসে দাঁড়িয়েছে আরেক জন গিলগামেশ, যেন আর একজন তিনি, অথবা অবিকল যমজ কোনো ভাই। অবাক এন্‌কিদুও। কাকে দেখছে সে? যুদ্ধের ঘোরে সে ভালোভাবে মুখের দিকে তাকিয়ে দেখে নি বলে আফসোস হল। এ যে আরেক জন এনকিদু। সে কি তা হলে নিজের সঙ্গেই লড়াই করল। এ দুদিন ধরে?</p>
+<p>চোখে চোখ রেখে তারা দুজন—গিলগামেশা ও এন্‌কিদু জড়িয়ে ধরল। দুজনকে, পরস্পর পরস্পরকে। ক্লান্তিতে, ঘামে, আনন্দে, তৃপ্তিতে হো-হো করে হেসে উঠল উভয়েই।</p>
+<p>তৃপ্তির নিশ্বাস ফেলল জনতা। দুই শক্রকে হাসতে দেখে তারাও হাসতে লাগল খুশিতে। জীবননাশী শক্রতায় যে -সংগ্রামের শুরু হয়েছিল, তা সমাপ্ত হল আমৃত্যু সখ্যে।</p>
+<p>গিলগামেশ আর এন্‌কিদু তখনো হাসছে, অমলিন বন্ধুতার হাসি। তখনো জড়িয়ে ধরে আছে দুজন দুজনকে।</p>
+<h1> দু'বন্ধুর অভিযান</h1>
+
+<p>গিলগামেশ আর এনকিদু যেন একে অন্যের ছায়া। যেখানেই গিলগামেশ সেখানেই এনকিদু। তাদের আহার-বিহার, কাজ ও বিশ্রাম সবই একসঙ্গে। এক জন আরেক জনকে ছাড়া যেন অসম্পূর্ণ। এইভাবেই দিন কেটে চলে।</p>
+<p>এক দিন গিলগামেশের মাথায় খেয়াল চাপে, তিনি শিকারে যাবেন। রাজারাজড়ারা সব যুগেই শিকার ভালবাসে। ফলে এতে আশ্চর্যের কিছু নেই। কিন্তু তিনি এনকিদুকে ডেকে যখন তাঁর পরিকল্পনা খুলে বললেন তখন এনকিদুর মুখ ফ্যাকাশে হয়ে গেল দুর্ভাবনায়। সে বারবার মাথা নেড়ে বলছিল: ‘না, না, কী দরকার? কোনো কােজ নেই এসব করে।’</p>
+<p>কী বলেছিলেন গিলগামেশঃ কিসের জন্যে এত দ্বিধা এনকিদুর? </p>
+<p>গিলগামেশ বলেছিলেন: ‘ভাই এনকিদু, চল, শিকারের জোগাড়যন্তর করা যাক। জান, এবার কোথায় যাব? সাত পাহাড়ের ওপারের দেওদার-বনে। একটা দেওদার কেটে উরুকে বয়ে নিয়ে আসব।’</p>
+<p>ভয় আর দুর্ভাবনা এতেই হয়েছিল। কেননা, এনকিদু জানত—সাত পাহাড় পার হয়ে ওখানে পৌছুনো বেশ কঠিন; দ্বিতীয়ত, দেওদার-বন আসলে এক পবিত্র অরণ্য, দেবতাদের সম্পত্তি; তৃতীয়ত, ভয়ঙ্কর দৈত্য সব সময়ে ঐ বন পাহারা দিচ্ছে।</p>
+<p>বন্ধুর কথা শুনে এনকিদু তার আপত্তি জানায়। বলে: ‘ব্যাপারটা তো অত সোজা নয়। ওখানে সব সময় হুম্বাবা দত্যি পাহারা দিচ্ছে। দেবতা এনজিল তার মনিব, হুম্বাবা তারই হুকুমে ওখানে রয়েছে।’</p>
+<p>গিলগামেশ তবু বলেন: ‘তাতে কি? আমি সেখানে অবশ্যই যাব। দৈত্য বধ করে আমি আমার কীর্তি স্থাপন করব জগতে।’</p>
+<p>‘গিলগামেশ্ব, তুমি একটা কথা বুঝছি না। এতে আমাদের ক্ষতি হব’, এনকিদু বন্ধুকে বিরত করতে চেষ্টা করে, ‘এমনকি আমরা মারা যেতেও পারি।’</p>
+<p>হেসে ওঠেন গিলগামেশ। অট্টহাসিতে ফেটে পড়েন। ‘ভিতু’ বলে ঠাট্টা করেন বন্ধুকে। তারপর গর্বভরে চেঁচিয়ে ওঠেন—‘ভয়টয় কাকে বলে তা-ই এ পর্যন্ত জানা হল না!’</p>
+<p>এনকিদু কিন্তু তখনো বুঝিয়ে চলে। সে বলতে থাকে: ‘গিলগামেশা, আমার কথাগুলো কি একটু মন দিয়ে শুনবে ভাই? আমি ভালোমতো জানি বলেই তোমাকে এত করে বলছি। এককালে আমি তো ঐ সব বনেজঙ্গলে দিনের পর দিন, রাতের পর রাত ঘুরে বেড়িয়েছি। হুম্বাবা যে কী ভয়ানক আমি জানি যে! সে কখনো ঘুমায় না। এনজিল তাকে বনদৈত্য হিসেবে নিযুক্ত করেছেন, সে তার দায়িত্ব চমৎকারভাবে পালন করছে। ওর গলার আওয়াজ শুনলে মনে হয় জলোচ্ছাস ও প্রবনের গর্জন— বাঘ—সিংহের হুঙ্কার পর্যন্ত ঢাকা পড়ে যায় তার নিচে, এত প্ৰচণ্ড ও ভয়ানক সে— গর্জন। তার মুখ দিয়ে সব সময়েই আগুনের হালকা বেরুচ্ছে, এত তার উত্তাপ যে মাটি পুড়ে যায়, যার ওপরেই পড়ে তাকেই ছারখার করে দেয়—বৃক্ষলতা কীট-পতঙ্গ কিছুই জীবিত থাকে না, মুহুর্তের মধ্যে সব নিশ্চিহ্ন হয়ে যায়। আমি জানি হুম্বাবার মুখ হচ্ছে মৃত্যুর মুখ। তা ছাড়া—তুমি জান, একটা কীট-পতঙ্গ পর্যন্ত যদি বাইরে থেকে এসে ঐ বনের ভিতরে ঢুকতে যায়, অমনি হুম্বাবা তা জেনে ফেলে? স্রেফ তার হাতের একটা ইশারাই যথেষ্ট, ওগুলো এক লহমায় পটল তোলে। আমরা বনে ঢুকব আর সে জানতে পারবে না, না?’</p>
+<p>গিলগামেশকে বোঝানো যাবে না। তার মাথায় কিছু ঢোকে না। তাঁর চিন্তা একটাই-দৈত্যবধ করে পৃথিবীতে অক্ষয় কীর্তি স্থাপন। এনকিদুর কথার জবাবে বলে উঠলেন: ‘ওটা তোমার কোনো কথাই হল না, এনকিদু। মৃত্যু নিয়ে এত ভাববার কী আছে? দেব-দেবীরাই একমাত্র অমর, তা ছাড়া পৃথিবীতে যা—কিছু দেখছ সবই তো মরণশীল। তাই না? মানুষ যে ভয় পায়, তার কিন্তু কোনো অর্থ নেই। খামোখা কোনো কিছুতে ভয় পেয়ে কোনো লাভ নেই। আচ্ছা, তোমার নিজের কথাটাই একবার ভেবে দেখ-,—আমার সঙ্গে যে-লড়াই করেছিলে তার শক্তি পেয়েছিলে কোত্থেকে? ফালতু এটা-ওটা ভেবে অযথা মন খারাপ কোরো না। আমি নাহয় তোমার আগে থাকিব-বিপদ-আপদের প্রথম ঝাপটা নাহয় আমার ওপর দিয়েই যাবে। ঠিক আছে? মোদ্দা কথা, হুম্বাবার বিরুদ্ধে লড়াইয়ে আমাকে যেতেই হবে। তুমি মনের মধ্যে দ্বিধাদ্বন্দ সব ঝেড়ে ফেল। দত্যিটাকে মেরে ঐ পবিত্র দেওদার গাছগুলো নিয়ে আসতেই হবে।’</p>
+<p>এর উত্তরে কী বলবে এনকিদু? বলার কিছু নেই। শেষ পর্যন্ত সে সম্মতই হল। গিলগামেশা তখন মহাখুশি৷ চোখে তার স্বপ্ন ভাসে; বলতে থাকেন; ‘আমি ওখানে যাব। সকলের কীর্তি ম্লান করে দিয়ে আমি আমার কীর্তির শিখা জ্বালিয়ে রাখব ওখানে। আর যেখানে কারো কোনো কীর্তিচিহ্ন নেই, সেখানে আমি দেবতাদের কীর্তি প্ৰতিষ্ঠা করব।</p>
+<p>অতঃপর গিলগামেশ ও এনকিদু দু জনে বাজারের দিকে পা বাড়ালেন। উরুকে যারা জ্ঞানীগুণী আছেন তাদেরকে খবরটা জানাতে হবে, পরামর্শ চাইতে হবে।</p>
+<p>বাজারের চত্বরে বুনোমাথা বুড়োরা সব জমায়েত হয়েছিল। আর একসঙ্গে সকলে জড়ো হলেই যা হয়, সবাই গল্পগুজব শুরু করেছে। স্বাভাবিকভাবেই তাদের আড্ডায় হুম্বাবার প্রসঙ্গ সব সময়েই থাকে, আজকেও ছিল।</p>
+<p>গিলগামেশ সেখানে পৌঁছেই বুঝতে পারলেন কিসের আলোচনা চলছে। একটুও সুযোগ নষ্ট না করে তিনি সোজাসুজি কথা পাড়লেন; বললেন: ‘ভাইসব, আপনারা যার কথা বলছেন, আমি তার সঙ্গে মোলাকাত করতে যাচ্ছি। আমরা তাকে যতখানি সাংঘাতিক ও ভয়ঙ্কর মনে করি, সে যে অতখানি ভয় পাবার মতো কিছু নয়—এটাই আমি প্রমাণ করতে চাই। দেবতারা যে গণ্ডি টেনে দিয়েছেন তা মোটেই অলঙ্ঘনীয় নয়, এটাই প্রমাণ করব ঐ দেওদার-বনে গিয়ে; তার ডেরাতে গিয়েই তাকে আমি পরাজিত করে আসব। আপনারা আমাকে আশীৰ্বাদ করুন।’</p>
+<p>রাজার কথায় বৃদ্ধের স্পষ্ট অনুভব করল যে, যুদ্ধের জন্য গিলগামেশের সমস্ত পেশি নাচছে, সংহত হয়ে আছে সমস্ত সাহস, মনের গতি একমুখিন্‌ হয়ে আছে। তারা রাজাকে সাহসের কথা বলে ভরসা দিল, অনুপ্রাণিত করল। এনকিদুর দ্বিধার কথা শুনে কেউ কেউ রীতিমতো পরিহাস করল তাকে; বলল, তার অতিবুদ্ধি ও সাবধানতা আসলে কাপুরুষতা! গিলগামেশও হেসে বললেন: ‘দেখলে তো এনকিদু ভোটে কিন্তু তুমি হেরে গেলে!’</p>
+<p>সকলে মিলে তখন দেবতাদের কাছে প্রার্থনা জানাল, তারা যেন তাদের রাজাকে অক্ষত দেহে ফিরিয়ে এনে দেন। গিলগামেশ লক্ষ করলেন যে, এত কিছু সত্ত্বেও এনকিদুর মুখ থেকে দুশ্চিন্তার কালো ছায়া সরে গেল না। কী ভাবছে। এত এনকিদু? এত চিন্তা তার কিসের? ভেবে পান না গিলগামেশা, জিজ্ঞেস করেন।</p>
+<p>এনকিদু তখন উত্তর দেয়: ‘কী আশ্চর্য দেখছ, বহু পূর্বে যেমন হয়েছিল আমি এখন ঠিক তেমনি দুর্বল বোধ করছি। আমার হাত-পায় কোনো ক্ষমতা নেই মনে হচ্ছে।’</p>
+<p>‘তা হলে? এখনো বুঝতে পারছি না যে এই শয়তানিটা ঐ হুম্বাবাই করেছে। তাকে না মেরে উপায় নেই, সে আমাদের উপর সর্বদা তার জাদুপ্রভাব খাটায়।’</p>
+<p>এন্‌কিদু জবাব দিতে পারে না। কী ঘটবে তা তার জানা নেই, শুধু মন বলছে— মহা অশুভ কিছু একটা অপেক্ষা করে আছে। চোখ তার জলে ভরে যায়। বিড়বিড় করে শুধু বলে, ‘হায় গিলগামেশা, এত অচেনা রাস্তায় আগে তো কখনো তুমি চল নি ভাই!’</p>
+<p>গিলগামেশা তা শুনতে পান না।</p>
+
+<p>অভিযানে তা হলে বেরিয়ে পড়াই ঠিক হল। যোদ্ধার দল রাজার অস্ত্রশস্ত্র বয়ে আনতে লাগল, জড়ো করতে লাগল রাজার পায়ের কাছে। তিনি তার সুতীক্ষ্ন তরবারি তুলে নিলেন, তীর-ধনুক ও তূণীর এবং খরশান কুঠারও বেঁধে নিলেন নিজের দেহে। যাত্রা শুরু হল।</p>
+<p>প্রবীণ জ্ঞানবৃদ্ধদের দল আশিসবাণী উচ্চারণ করতে লাগলেন। জনতার জয়ধ্বনিতে আকাশ-বাতাস মুখরিত হয়ে উঠল। তারা বলতে লাগল।: ‘মহারাজ, এনকিদুকে আগে দিন। তিনিই আপনার দিশারী হোন, কেননা অরণ্যের পথঘাট ও নিয়মকানুন তিনিই সবচেয়ে ভালো জানেন। যে— বন্ধু আগে—আগে চলেন তিনিই তাঁর পিছনের বন্ধুকে বিপদ থেকে বাঁচিয়ে দেন। সূর্যদেব শামাশ্‌ আপনাদের সঙ্গে থাকুন।’</p>
+<p>এনকিদু নিজেও জানে, অভিযান যখন একবার শুরু হল তাকেই হাল ধরতে হবে। তাতে সে খুশিই। কিন্তু কোন পথ দিয়ে গেলে হুম্বাবার কাছে পৌঁছুনো যাবে, তা তার জানা নেই। ওদিকে গিলগামেশের অবস্থা স্বৰ্গ হাতে পাওয়ার মতো। এনকিদু যখন তার পাশে আছে তখন জয়ী তো তিনি হবেনই—এ ব্যাপারে তার মনে সন্দেহের লেশমাত্র নেই।</p>
+<p>রাস্তায় নেমে তারা প্রথমেই রওয়ানা হলেন গিলগামেশ-মাতা নিনসানের বাড়ি। দেবী নিনসানের উপদেশ ও আশীৰ্বাদ তাদের পাথেয় হবে। পথের দিশা তার কাছেই সম্ভবত পাওয়া যাবে।</p>
+<p>কিন্তু তার পূর্বে আকস্মিকভাবেই একটা বুদ্ধি খেলে গেল এনকিদুর মাথায়। সে বলল, ‘গিলগামেশ, আমরা প্রথমে সূর্যদেব শামাশের কাছে যাই চল। তাঁর আশীৰ্বাদ নিয়ে তারপরে তোমার মার কাছে যাব ৷’</p>
+<p>সেভাবেই কাজ করা হল। শামাশের মন্দিরে গিয়ে প্রার্থনা জানালেন রাজা, তাঁর আশিস চাইলেন, দয়া ভিক্ষা করলেন। নতজানু হয়ে মিনতি জানালেন: ‘হে দেব, আপনি আমাদের সহায় হোন। আমি দেওদার-বেন যাব, আপনি অন্তরীক্ষে বসেই আমার পাশে থাকুন।</p>
+<p>শামাশা রাজি হলেন না। বললেন: ‘ওটা তো অন্যের জায়গা। কে তোমাকে যেতে বলেছে? তুমি যাচ্ছই—বা কেন?’</p>
+<p>কারণ ব্যাখ্যা করে বললেন গিলগামেশ: ‘পরমপূজ্য হে সূৰ্যদেব, আপনি তো জানেন-মানুষ মরণশীল। আমরা রোগে মরি, শোকে মরি। বন্যায় ডুবে মরি, খরায় শুকিয়ে মরি। সবচেয়ে উঁচু যে-লোক, তার মাথাও তো কখনো স্বর্গে গিয়ে ঠেকে না; সবচেয়ে গাঁচ্চাগোট্টা চওড়া যে—লোক সেও কখনো বিশাল পৃথিবীর আয়তনের সমান হতে পারে না। আমরা মানুষেরা সর্ব অর্থেই অতিশয় ক্ষুদ্রাতিক্ষুদ্র জীব। যদি কোনো কীর্তি স্থাপন করতে পারি, শুধু তখনই বিশালত্বের অধিকারী হই! সে-জন্যে আমি চাই অক্ষয় কীর্তি রেখে যেতে। আর তার জন্যেই মানুষের অগম্য ঐ দেওদারবনে আমি যাব।—যেখানে কোনো মানুষ কখনো যায় নি, আমিই প্রথম সেখানে যাব।’ </p>
+<p>কিন্তু দুৰ্ভাগ্য, শামশ্‌ রাজি হলেন না। সাহায্যের কোনো অঙ্গীকারই তার কাছ থেকে মিলল না।</p>
+<p>ব্যৰ্থতার বোঝা বুকে চেপে তারা তখন দেবী নিনসানের কাছে গিয়ে হাজির হলেন।</p>
+<p>গিলগামেশ-জননী এই দেবী! পুত্রকে পেয়ে কত আদর করলেন। রাজার মনে হল, তিনি আবার সেই ছোট্টবেলার শিশু হয়ে গেছেন। মায়ের মুখের প্রতিটি কথা অর্মতের মতো মনে হচ্ছিল। তিনি ছেলেকে সাবধান করে দিলেন, ভরসা দিলেন, উপদেশ দিলেন, আশীৰ্বাদ করলেন যেন সে জয়ী হয়ে ফিরে আসে। তারপর চললেন সূৰ্যদেবের মন্দিরে প্রার্থনার উদ্দেশ্যে।</p>
+<p>পূজার পবিত্র পোশাক পরলেন দেবী নিনসান, মাথায় মুকুট পরলেন। মন্দিরকক্ষে ধূপ-ধুনো জ্বেলে দিয়ে উপাসনায় বসলেন। শামাশের উদ্দেশ্যে বলতে লাগলেন: ‘হে দেব শামাশ, আপনি আমায় এ কী সমস্যায় ফেলেছেন, দেখুন। আমার ছেলের বুকে এই অস্থিরতা তো আপনিই দিয়েছেন, যার জন্যে সে আজ হুম্বাবাকে বধ করতে দৌড়াচ্ছে। ও তো বোঝে না, কী ভয়ানক সেই কাজ! আপনি মনে মনে যা চাইছেন আমার ছেলে তো তাকেই সফল করতে বেরিয়েছে। অথচ ওর ক্ষমতা আর কতটুকু? ও তো আর দেবতা নয়। অথচ আপনি নাকি ওর পিছনে থাকবেন না, বলছেন। তা কী করে হয়, দেব? আমি সন্তানহীনা হই, তাই কি আপনি চান? না প্ৰভু, তা হয় না। আপনাকে সাহায্য করতেই হবে। আপনি রাজি না হলে উপাসনা ছেড়ে আমি উঠব না। আমার ছেলেকে আপনি বিপদ-আপদ থেকে না বাঁচালে আর কে বাঁচাবে?’</p>
+<p>গিলগামেশ-মাতার বিলাপ ও অনুনয়ে শামশ অবশেষে সম্মত হলেন। নিনসান তখন মন্দিরের ভিতর থেকে এনকিদুকে ডাক দিলেন। সে হাজির হলে তাকে বললেন: ‘বাবা এন্‌কিদু, তুমি আমার ছেলে নও, ঠিকই। কিন্তু আমি তোমাকে গিলগামেশ থেকে ভিন্ন চোখে দেখি না। তোমরা দুজনে একসঙ্গে বেরিয়েছ, যাও। আমি আশীৰ্বাদ করি তোমাদের। আমার ছেলের ওপর সব সময়ে তুমি নজর রেখো। তোমার ওপর ভরসা রেখেই ওকে আমি ছেড়ে দিচ্ছি। বিপদ-আপদ থেকে তুমিই ওকে বাঁচাবে, জানি।’</p>
+<p>এই কথা বলে দেবী নিনসান এনকিদুর গলার চারদিকে মন্ত্র পড়ে— পড়ে হাত বুলিয়ে দিতে লাগলেন। নতুন দায়িত্বের ভার পেয়ে এনকিদুর বুক উল্লাস, গর্ব ও গিলগামেশের প্রতি ভালবাসায় পূর্ণ হয়ে উঠল।</p>
+<p>অনাস্বাদিতপূর্ব আনন্দে দু’জনেরই মন ভরে আছে। তাঁরা দেবী নিনসানের নিকট হতে বিদায় নিয়ে পথে নামলেন।</p>
+
+<h1> দৈত্য বধ</h1>
+
+<p>তিন দিন তিন রাত তারা পথ চললেন, গিলগামেশ আর এন্‌কিদু। তিন অহোরাত্রে তাঁরা ছ’ সপ্তাহের পথ অতিক্রম করলেন। সাত পাহাড়ের দেশ পিছু ফেলে। তাঁরা দেওদার-বনের সীমানায় এসে পৌঁছে গেলেন। হুম্বাবার এক ভৃত্য সেখানে সর্বদা পাহারা দেয়, তাকে তাঁরা কেউ দেখতে পেলেন না; তাদের অলক্ষ্যে সে হুম্বাবাকে সতর্ক করে দিল খবর পাঠিয়ে। না গিলগামেশা, না। এনকিদু— কেউ তা বুঝতে পারলেন না।</p>
+<p>অরণ্যের মুখেই এক বিশালাকার দরজা। তার সামনে দাঁড়িয়ে পড়লেন দুই বীর। হঠাৎ কোত্থেকে প্রচণ্ড ভয় এসে অধিকার করল রাজাকে, তার বন্ধুর মনে কিন্তু ভয়ডর কিছুরই লেশমাত্র তখন নেই। এতকাল যে ভীত ছিল সে হয়ে গেল নিৰ্ভয়, আর যে ছিল সাহসী তারই কিনা সমস্ত সাহস উবে গেল।</p>
+<p>এনকিদু হাত রাখল। দরজার উপরে, আস্তে আস্তে চাপ দিয়ে একটুখানি ফাঁক করে উঁকি দিল সে। ফিসফিস করে ডাক দিল গিলগামেশকে; ‘জলদি কর। আমরা যদি এখন যাই তা হলে আচমকা দত্যিটাকে ধরে ফেলতে পারি। জানো তাে, ও বাইরে যাবার সময় পরপর সাত প্রস্থ কাপড়জামা শরীরে চড়ায়। এখন, মনে হচ্ছে, কেবল ফতুয়া পরে বসে আছে। বাইরে বেরুবার আগেই ওকে পাকড়াও করা দরকার।’</p>
+<p>কথা বলতে বলতে এনকিদুর মনে হল যে, তার হাত অবশ হয়ে যাচ্ছে, আঙুলে কব্জিতে জোর পাচ্ছে না। দরজার উপর থেকে হাত সরিয়ে নেবার আগে বিশাল দরজা সজোরে বন্ধ হয়ে গেল তার হাতের আঙুলগুলোকে পিষে দিয়ে। অবশ্য তার হাত, আঙুলে প্রচণ্ড যন্ত্রণা হচ্ছে। ভয়ে সে ফ্যাকাশে হয়ে গেল, যেন মৃত্যুর পরোয়ানা এসে গেছে।</p>
+<p>হাতের যন্ত্রণায় কাতরাতে থাকে এনকিদু। একদিন, দু দিন করে বারটা দিন কেটে যায়। গিলগামেশকে সে মিনতি করে, বোঝায় যে, দরকার নেই এত ঝামেলায়, ঘরের ছেলে ঘরে ফিরে যাওয়াই ভালো। কিন্তু কোনো ফল হয় না।</p>
+<p>গিলগামেশ তাকে সান্ত্বনা দেন, বলেন: ‘এত ঘাবড়াবার কী আছে? হাতে ব্যথা লেগেছে, আস্তে আস্তে সেরে যাবে। তা বলে ফিরে যাওয়া যায় নাকি? লোকে ‘ভীতু’ বলবে। আর তা সইতে হবে? হুম্বাবাকে তার বাড়ির মধ্যে গিয়ে নাহয় নাই ধরব, আমরা বাইরে ঝোপের মধ্যে লুকিয়ে থাকব—সে যখন বেরিয়ে আসবে তখন ধরব।’</p>
+<p>দিন যায়। তারা সেদিন সবুজ পাহাড়ের পাদদেশে এসে দাঁড়িয়েছেন। এই সেই পাহাড় যার মাথায় পবিত্র দেওদারের সারি; দেবতারা এখানে এসে সভা করেন। ঘন অরণ্যের ভিতরে একটি পায়ে-চলা-পথ চলে গেছে। হুম্বাবা এই পথ দিয়ে আসে যায়। ধীরে ধীরে আঁধার ঘনিয়ে আসছে, সন্ধ্যা নামছে, নিথর, ভয়ঙ্কর, সুবিশাল। গিলগামেশ বলে ওঠেন: ‘জান, এই বনকে কেউ বলে নরক, আবার কেউ কেউ বলে—স্বৰ্গ। দুয়ের মধ্যে তফাতটা কোথায় বলতে পার? আসলে আমার কী মনে হয় জান? দেখ, চারদিকে কী অপরূপ আঁধার নামছে, একটু পরেই নিশ্ছিদ্র অন্ধকারে ঢেকে যাবে সব, তাই না? তমসা, বুঝলে এনকিদু, তমসাই এর নাম হওয়া উচিত৷’</p>
+<p>সেখানেই একপাশে একটা জায়গা তাঁরা বেছে নেন রাত কাটাবার জন্যে। নিরিবিলিতে ভালোমতো একটু ঘুমানো দরকার। শুয়ে পড়ার অল্পক্ষণ পরেই তাঁরা গভীর ঘুমে ঢলে পড়েন।</p>
+<p>তখন বোধহয় মধ্যরাত্রিই হবে। হঠাৎ ঘুম ভেঙে যায় রাজার। জিজ্ঞেস করেন: ‘এনকিদু, তুমি কি আমাকে জাগিয়েছ? ঘুম থেকে ওঠাল কে আমায়?’</p>
+<p>‘কই, না তো!’ এনকিদুর চোখে তখনো তন্দ্রর ঘোর। ‘কেন, কী হয়েছে?’ </p>
+<p>গিলগামেশা বললেন: ‘তা হলে নিৰ্ঘাত এ স্বপ্নের কারসাজি। আমি কী দেখলাম জান? দেখলাম—বিশাল এক পর্বত হুড়মুড় করে আমার ওপরে গড়িয়ে এসে পড়ল। তার পরই হঠাৎ দেখি, কোত্থেকে এক অপূর্ব সুন্দর ভদ্রলোক এসে হাজির, তিনিই আমাকে ঐ বিশাল পাহাড়ের তলা থেকে টেনে বের করলেন, আমাকে আবার দু'পায়ে শক্তভাবে মাটির ওপরে দাঁড় করিয়ে দিলেন। অদ্ভুত স্বপ্ন না?’</p>
+<p>‘বাহ্, চমৎকার!’ এন্‌কিদুর গলায় খুশি ঝরে পড়ে, ‘এ তো খুবই সুলক্ষণ, রাজা। ঐ পর্বতই হচ্ছে হুম্বাবা। তার মানে, স্পষ্ট হল যে—হুম্বাবার আক্রমণ আমরা এড়াতে পারব এবং জয়ীও হতে পারব।’</p>
+<p>খুশি হয়ে একে অন্যকে জড়িয়ে ধরেন। তারপর শুয়ে পড়েন। এখনো অনেকটা রাত বাকি। আবার তারা ঘুমিয়ে পড়েন।</p>
+<p>কতক্ষণ ঘুমিয়েছেন কেউ বলতে পারেন না। এবারে ঘুম ভেঙে যায় এনকিদুর। এবারেও দুঃস্বপ্ন। ধড়মড় করে উঠে বসে। গিলগামেশকে ডেকে তোলে।</p>
+<p>‘তার মানে, তুমি তো দেখছি আমাকে ডেকে তোল নি! স্বপ্নেরই চালাকি এবারেও। খুবই খারাপ স্বপ্ন দেখলাম।’</p>
+<p>‘বল, বল, কী দেখলে?’ উৎকণ্ঠিত গিলগামেশ। </p>
+<p>জবাব দেয় এনকিদু: ‘দেখলাম-আকাশ ভেঙে পড়ছে, মাটি কাঁপছে, দিনের বেলা আলোর জায়গায় আঁধার হয়ে গেল চতুর্দিকে, সে কী ভীষণ অন্ধকার! কড়াৎকড়াৎ করে বাজ পড়ছে, বিদ্যুৎ চমকাচ্ছে, কোথায় যেন দাউদাউ করে আগুন ধরে গেল, চারদিক থেকে মৃত্যুর আর্তনাদ শুনতে পেলাম। তারপর হঠাৎ করেই এক লহমায় সব চুপ মেরে গেল, এক্কেবারে নিস্তব্ধ, যেন এতক্ষণ কিচ্ছুটি ঘটে নি।</p>
+<p>কী বলবেন এখন গিলগামেশ্য। তিনি তো বুঝতে পেরেছেন স্বপ্নের অর্থ। তার কাছে স্পষ্ট হয়ে গেছে যে, এনকিদুর বিপদ আসন্ন। কিন্তু তা ওকে বলবেন কী করে? উলটে বরং ভরসাই দিলেন-যাতে মনের সাহস অক্ষুন্ন থাকে এনকিদুর।</p>
+<p>দুজনের কারো চোখেই আর ঘুম এল না। অন্ধকার কেটে যাচ্ছে; ভোরের আলো ফুটে উঠতে শুরু করল অল্পক্ষণ পরেই।</p>
+<p>উঠে পড়েন দুজনেই। আর সুখনিদ্রা নয়। কুড়ুল হাতে নিয়ে তারা সোজা চলে গেলেন দেওদার গাছগুলোর কাছে। শুভস্য শীঘ্রম। আর দেরি নয়। সজোরে কোপ বসিয়ে দিলেন একটা গাছের গোড়ায়।</p>
+<p>প্রচণ্ড শক্তিতে আঘাতের পর আঘাত হানছেন গিলগামেশা! প্রথম বৃক্ষটি ভূপাতিত না করা পর্যন্ত ক্ষান্তি নেই। কিছুক্ষণ পরে গাছ কাটা হল, প্রচণ্ড শব্দে বিশাল বৃক্ষটি মুখ থুবড়ে পড়ে গেল মাটিতে।</p>
+<p>কিসের এমন শব্দ? বনদৈত্য হুম্বাবা আওয়াজ শুনেই দৌড়ে বেরিয়ে এসেছে ঘর থেকে। রাগে তার সারা দেহ কাঁপছে, হুঙ্কার দিতে—দিতে এগিয়ে আসছে সে।</p>
+<p>দেখতে সে অতিকায়, ভয়াল, ভীষণদর্শন। কপালের মধ্যিখানে একটা চোখ, সে চোখের দৃষ্টি যার ওপরে গিয়ে পড়বে সে সঙ্গে সঙ্গে পাথরে পরিণত হবে।</p>
+<p>সত্যিকারের অর্থে এই প্রথমবার যথার্থ ভয় পেলেন গিলগামেশ। দৈত্যের প্রচণ্ড বিক্রম সহ্য করা তার পক্ষে অসম্ভব, বুঝতেই পারলেন। তবে ভয় পেলেও বুদ্ধি হারান নি। মনে মনে প্রার্থনা জানালেন সূর্যদেবের কাছে: ‘হে দেব শামাশ, আমি তো আপনার আশীৰ্বাদ নিয়েই কাজে হাত দিয়েছি। তা হলে মাঝপথে আমাকে ফেলে রেখে চলে যাচ্ছেন কেন? আমি তো কোনো অপরাধ করি নি; দেব, আমাকে সাহায্য করুন, উপায় বাতলে দিন।’</p>
+<p>সূর্যদেব শামাশা অন্তরীক্ষ থেকে ঠিকই লক্ষ রেখেছিলেন। তিনি প্রচণ্ড ঝটিকা ও ঘূর্ণিবায়ু পাঠিয়ে দিলেন। এমন হল যে, বাতাসের চাপে হুম্বাবা তার চোখ খুলতে পারে না, সে প্রায় অন্ধ হয়ে গেল।</p>
+<p>এভাবে হুম্বাবার চোখের সর্বনাশা চাহনি থেকে তারা তো বাঁচলেন বটেই, উপরন্তু এই সুযোগে ধীরে ধীরে দত্যির একেবারে কাছাকাছি তারা চলে গেলেন। একই স্থানে দাঁড়িয়ে হাত-পা ছুঁড়ছে হুম্বাবা, বাতাসের মার থেকে নিজেকে বাঁচাতে চাইছে। অত বড়ো বিশাল শরীর, অথচ এখন কী অসহায়! তবু এরই মধ্যে সে ঝাঁপিয়ে পড়ল এনকিদুর উপর। প্রচণ্ড বিক্রমে ফেলে দিল মাটিতে, তারপর আরেক বার শেষ আঘাত হানতে যাবে এমন সময়ে রক্তাক্ত হাঁটু নিয়েই উঠে দাঁড়াল এনকিদু। গিলগামেশ যেন স্তব্ধ হয়ে গেছেন সব দেখে—শুনে। স্থানুর মতো দাঁড়িয়ে আছেন। এনকিদুর সাহায্যে এগিয়ে আসার কথাও মনে পড়ছে না। অকস্মাৎ দেখলেন, প্রচণ্ড শব্দে মাটিতে পড়ে গেল হুম্বাবা। এনকিদূর আঘাত দৈত্য সহ্য করতে পারে নি। দৈত্যের পড়ে যাওয়ার শব্দে এতক্ষণে যেন সংবিৎ ফিরে পেলেন গিলগামেশ। বিদ্যুৎবেগে হুম্বাবার মাথার কাছে ছুটে গেলেন, হাতে ঝলসে উঠল ক্ষুরধার কুঠার। ভয়ে কেঁদে উঠল হুম্বাবা, মিনতি করতে লাগল।: ‘প্ৰাণে মারবেন না দয়া করে হুজুর, আপনারা যা বলবেন সব করব। এতকাল দেবতার নোকরি যেভাবে করেছি, সেভাবে আপনাদেরও খেদমত করব, হুজুর। এই গাছগুলো দিয়ে আপনাদের ঘর-বাড়ি বানিয়ে দেব। দয়া করুন, আমাকে বাঁচান, প্ৰাণে মারবেন না, হুজুর।’</p>
+<p>হুম্বাবার কাতর অনুনয়ে গিলগামেশের দয়া হল। তিনি ভাবতে লাগলেন, ছেড়েই দেব নাকি? হয়তো ছেড়েই দিতেন দৈত্যকে, কিন্তু তখনই তীব্র সাবধানবাণী উচ্চারিত হল এনকিদুর কণ্ঠে। সে চেঁচিয়ে উঠেছে: ‘দেরি নয়, গিলগামেশ, একটুও দেরি নয়। ওকে শেষ করে দাও। বিশ্বাস করলে মহা ভুল করবে। এক্ষুণি শেষ কর, শত্রুর শেষ রাখতে নেই, জান না?’</p>
+<p>প্রভাতী সূর্যালোকে ঝিকমিক করে উঠল ধারাল কুঠারের ইস্পাত—ফলা। মুহূর্ত পরেই দেহ থেকে ছিটকে বিচ্ছিন্ন হয়ে পড়ল হুম্বাবার মাথা। একটা গাছের মাথায় আটকে গিয়ে তা ঝুলতে লাগল।</p>
+
+<p>অভিযান শেষ হল। যুদ্ধও শেষ। এন্‌কিদু আহত হয়েছে। তার বিশ্রামের প্রয়োজন। সে—দিনটিও তারা থেকে গেলেন ওখানে। ক্লান্তি, বিশ্রাম ও নিদ্রার ভিতরে একটি দিন ও রাত অতিবাহিত হয়ে গেল।</p>
+
+<h1> স্বৰ্গবৃষ বধ</h1>
+
+<p>সকাল হল। রাস্তায় নামতে হবে ফের। উরুকের দীর্ঘ পথ। প্রস্তুতি নিতে হয় যাওয়ার। স্নানাহার সেরে গোছগাছ করতে হবে।</p>
+<p>গিলগামেশ আর এনকিদু স্নান করতে নামলেন দিঘিতে। স্নান করছেন, এমন সময় আবির্ভাব হল তাঁর। দেবী ইশতার এসে দাঁড়ালেন দিঘির পাড়ে।</p>
+<p>ইশতার প্রেমের দেবী এবং যুদ্ধেরও। তা ছাড়া তিনি উরুকের নগর লক্ষ্মী দেবীও বটে। দু বন্ধু তো অবাক।</p>
+<p>দেবী বলতে লাগলেন: ‘গিলগামেশ, খুব তো ধীরে সুস্থির স্নান করছ। এদিকে মাথার উপর খাড়া ঝুলছে, সে খবর রাখ?</p>
+<p>হতভম্ব গিলগামেশ এত হতবাক যে মুখ দিয়ে প্রায় কথা বেরোয় না, কেবল বলতে পারেন: ‘কি রকম?’</p>
+<p>‘হুম্বাবাকে মেরে ফেলায় দেবতারা প্ৰচণ্ড রেগে গেছেন তোমার ওপরে। তাদের অভিশাপ শাস্তি হয়ে যে-কোনো মুহুর্তে তোমার ওপরে নেমে আসতে পারে। তোমার হয়ে যে কেউ কথা বলবে এমন একজন ও ওখানে নেই।</p>
+<p>‘তা হলে? এখন উপায়?’ গিলগামেশ ঘাবড়ে গেছেন তা নয়, তবে একটু চিন্তা হয় বৈকি!</p>
+<p>‘উপায় অবশ্য একটা আছে৷’ বলে খানিকক্ষণ চুপ করে থাকেন দেবী ইশতার। তারপর বললেন: ‘তুমি যদি আমাকে বিয়ে কর, তা হলে আমি তোমার পক্ষ নিয়ে বুঝিয়ে সুঝিয়ে ঠাণ্ডা করতে পারি। প্রথমে আমি আমার বাবা আনুকে রাজি করাব, তারপর যা করার তিনিই করবেন।’</p>
+<p>গিলগামেশ কিছু বলেন না। এন্‌কিদুও চুপ করে থাকে। রাজার দিক থেকে কোন সাড়া না পেয়ে দেবী ফের বলতে থাকেন: ‘আমি নিজে ব্যক্তিগতভাবে তোমাকে যেসব মূল্যবান উপহার দেব, সেগুলো কোন ধরনের হবে তা তুমি বুঝতেই পারো। সোনা দিয়ে তৈরি একটা গাড়ি দেব তোমাকে, তার গায়ে দামিদামি মণিমুক্তো হীরে জহরতের চুমকি বসানো; বাতাসের চেয়েও বেশি বেগবান ঘোড়া সেই গাড়ি টানবে। আশপাশের সব রাজরাজড়ার দল সব সময়ে তোমাকে কুর্নিশ করবে, তোমার হুকুমে ওঠ—বস করবে।’</p>
+<p>গিলগামেশা এতক্ষণে ব্যাপারটা বুঝতে পেরেছেন। ইশতারের চালাকি বুঝতে পেরে একেবারে ক্ষিপ্ত হয়ে উঠলেন। প্রচণ্ড জেদে চাপা গর্জন করে উঠলেন: ‘না, তোমাকে আমি বিয়ে করতে পারব না। তুমি দেবী হলে কী হবে, তুমি তো একটা বুড়ি। শুনেছ কোথাও যে বুড়িকে কেউ বিয়ে করে? তা ছাড়া তোমাকে পোষা আমার কম্মো? তুমি দেবী, আমি মানুষ, আর খুব নরম-নরম কথা বলে এখন আমার মন গলাতে চাইছ, পরে আমার কী দশা হবে জানি না?’</p>
+<p>‘কী দশা হবে?’ দেবী ইশতার বোঝাতে চান। ‘আমি তোমাকে ভালবাসব, তোমার সেবাযত্ন করব, তোমার রাজ্য সুখসমৃদ্ধিতে ভরে যাবে।’</p>
+<p>‘বিশ্বাস করি না। মিথ্যে কথা। তোমার স্নেহ-ভালবাসা যার ওপরে পড়বে, তার সর্বনাশ। আমি জানি, আমাকে তোমার কেনা গোলাম হয়ে থাকতে হবে, আর তা না হলে—আমাকে তুমি ধ্বংস করে দেবে। তোমার মতো নিষ্ঠুর দেবী আর আছে নাকি? দয়া করে এবারে কেটে পড়, ওসব বিয়েটিয়ে করা আমার দ্বারা হবে না। সাফ কথা বলে দিচ্ছি।’</p>
+<p>দেবী ইশতারকে এমন জঘন্য অপমান আর কেউ কখনো করে নি। ক্রোধে ও প্রতিশোধের ইচ্ছায় দেবী পাগলের মতো হয়ে গেলেন। তাঁকে “ব‘ড়ি’ বলে গাল দিয়েছে। ঐ শয়তান রাজা গিলগামেশ-এত বড়ো সাহস!</p>
+<p>ইশতার ছুটে গেলেন তার বাবার কাছে। দেবরাজ আনু সব শুনে মহা বিরক্ত হলেন মেয়ের উপরে। বললেন: ‘বেশ হয়েছে, তোর উচিত সাজা হয়েছে। অপরের পাকা ধানে মই দিতে তোমাকে কে বলেছে? মাতব্বরি করে গিলগামেশের কাছে যেতে কে তোমাকে বলেছিল? হতচ্ছাড়া মেয়ে কোথাকার! এখন আবার ছিচকাঁদুনি গাইতে এসেছে আমার কাছে! বেরোও আমার সামনে থেকে। আমি কিছুটি জানি না এ—সবের।’</p>
+<p>কিন্তু বললেই তো আর হয় না। মেয়ে রেগে কেঁদে কেটে ভাসিয়ে দিল: ‘বাপ হয়ে তুমি আমাকে এমন গালমন্দ করছ? আমাকে দেখে একটুও মায়া হয় না? তুমি এমন নিষ্ঠুর! তা তুমি বকাঝকা মারধর সবই করতে পার ইচ্ছে করলে, হাজার হোক আমি তো তোমার মেয়ে | তা বলে অন্যে আমাকে যা—তা বলে অপমান করবে। আর তুমি বাপ হয়ে সহ্য করবে? হায় রে আমার পোড়া কপাল!’</p>
+<p>মেয়ের চোখের জল কতক্ষণ আর সহ্য করা যায়? তবু বুদ্ধিমান দেবরাজ চুপ করেই রইলেন। এইবার তার একগুঁয়ে বদমেজাজী মেয়ে মোক্ষম অস্ত্র ছাড়ল: ‘তা হলে তুমি কিছু করবে না—এই তো? ঠিক আছে! এই আমি চললাম নরকের সদর দরজা খুলে দিতে। যত বদমাইশ-পাপিষ্ঠেরা বেরিয়ে পড়ে তােমার সুখের পৃথিবী একটু তছনছ করুক, মনের সুখে চেয়ে চেয়ে দেখ৷’</p>
+<p>সর্বনাশা। কথা! এবার ঘাবড়ে গেলেন আনু। ‘ওরে যাস নে, থাম, থাম।।’ তিনি চেঁচিয়ে ওঠেন। ইশতার কাছে এলে বলেন: ‘তা আমাকে কী করতে হবে শুনি।’</p>
+<p>জবাব দেন ইশতার; ‘তেমন কিছু না। তুমি শুধু স্বর্গের ষাঁড়কে লেলিয়ে দেবে গিলগামেশের পেছনে। ব্যস, আর কিছুটি না। আমি চাই প্রতিশোধ নিতে-ঐ বদমাইশটার একটু শিক্ষা হোক।’</p>
+<p>চুপ করে থাকেন আনু। ‘ঠিক আছে, তা না হয় পাঠালাম। কিন্তু জন তো, ষাঁড় একবার ছাড়া পেয়ে মর্তে যাওয়া মানেই—পৃথিবীতে সাত বছরের জন্যে দুর্ভিক্ষ নেমে আসবে। তখন? তোমার ভাঁড়ারে খাবার আছে? একা গিলগামেশের জন্যে লোক তো আর শুকিয়ে মরতে পারে না! মানুষের আহাৰ্য চাই, জীবজন্তুরও চাই। সে— সব ব্যবস্থা করেছ?’</p>
+<p>দেবী তো খুশি৷ যাক, বাবার মন তা হলে নরম হচ্ছে। উত্তর দিলেন: ‘হ্যাঁ, বাবা, ও সব আমি আগে থেকে ভেবেছি। সব ঠিকঠাক আছে, কোনো চিন্তা করো না। অনাহারে একটি প্ৰাণীও মারা যাবে না।’</p>
+<p>‘ঠিক আছে, তবে তোর কথাই থাকুক। কী আর করা?’ অসহায় উত্তর দেন দেবরাজ আনু।</p>
+
+<p>স্বৰ্গ থেকে মর্তে নেমে গেল স্বৰ্গবৃষ। নামা মাত্রই চোখের পলকে বিদ্যুৎ বেগে হত্যা করল তিন শ’ লোককে। হাহাকারে আর্তনাদে দশ দিক পূর্ণ হয়ে উঠল।</p>
+<p>উত্তেজনায়, ক্রোধে ষাঁড়টি তখন প্রচণ্ড বেগে তার লেজ আস্ফালন করছে, দু চোখ দিয়ে যেন তার আগুন ছুটছে, দু কশে ফেনা, নাক দিয়ে আওয়াজ বেরুচ্ছে ভীষণ রবে।</p>
+<p>এবার পালা গিলগামেশের। শক্তির পরীক্ষা। শিং উঁচিয়ে অকল্পনীয় দ্রুততায় ছুটে এল স্বৰ্গীয় জীব। তুমুল লড়াই শুরু হয়ে গেল। ষাঁড় ও গিলগামেশের মধ্যে। এনকিদু দাঁড়িয়ে আছে চুপচাপ, কিন্তু নীরব দর্শক সে নয়। সে জানে, এই ভয়ানক যুদ্ধে রাজা মারাও যেতে পারেন; কিন্তু তার দেহে প্ৰাণ থাকতে বন্ধু গিলগামেশকে তো সে মরতে দিতে পারে না। আসলে এনকিদু দাঁড়িয়ে আছে সুযোগের অপেক্ষায়। একবার যদি শিং দুটো ধরতে পারে তা হলেই স্বৰ্গ-মর্ত্য যেখানকার হোক না কেন, শ্ৰীমান ষাঁড়কে সে একচোট শিক্ষা দিয়ে দেবে। অথচ সেই সুযোগটাই হাতে আসছে না। হঠাৎ মাথায় বুদ্ধি খেলে গেল এনকিদুর। সে চট করে দৌড়ে গিয়ে লেজটা মুচড়ে ধরল ষাঁড়ের।</p>
+<p>আশ্চর্য! ষাঁড় বেচারা তো অবাক! জীবনে কেউ কখনো তার ল্যাজে হাত দেয় নি। সুড়সুড়ি লাগল তার, যেন কেউ তাকে কাতুকুতু দিয়েছে। থমকে দাঁড়িয়ে গেল দেহ টানটান করে। আর এই সামান্যতম সুযোগটুকুই তো খুঁজছিল এনকিদু। ষাড়ের হতভম্ব হয়ে যাওয়ার সুযোগে সে বিদ্যুতের বেগে দৌড়ে গিয়ে জাপটে ধরল। তার দুটো শিং, ঘাড়টা মচকে টেনে ধরে আরেক হাত দিয়ে ছোরা অমূল ঢুকিয়ে দিল ঘাঁড়ের তলা দিয়ে হৃৎপিণ্ডে। এত বড় একটা ঘটনা ঘটে গেল ম্যাজিকের মতো মুহুর্তের মধ্যে। সঙ্গে সঙ্গে মারে পড়ে গেল স্বর্গের ঐ বিশালদেহী ষাঁড়।</p>
+<p>দূর থেকে সমস্তটাই তাকিয়ে দেখছিলেন দেবী ইশতার। একি? এ যে অকল্পনীয়! উরুকের নগরপ্রাচীরের উপরে দাঁড়িয়ে তিনি প্রচণ্ড রোষে অভিশাপ দিলেন: ‘আমাকে যারা অপমান করেছে, স্বর্গের ষাড় যারা মেরে ফেলেছে তারা নিপাত যাক!’</p>
+<p>বিদ্যুৎঝলকের মতো তীব্র এই অভিশাপ-বাণী এনকিদুর কানে এসে লাগল। রাগে তার মাথা ঠিক রইল না। ষাঁড়ের একটা ঠ্যাং ধড় থেকে ছিড়ে নিয়ে সে ছুঁড়ে মারল ইশতারের পানে, সজোরে সেটা গিয়ে লাগল দেবীর মুখে। এনকিদু তখন চেঁচাচ্ছে: ‘একবার তোমাকে ধরতে পারি— তোমার শয়তানি আর দেবীগিরি ঘুচিয়ে দেব, য়াঁড়টার মতো টুকরো-টুকরো করব তোমাকেও।’</p>
+<p>চেঁচাতে-চেঁচাতে কাঁদতে-কাঁদতে পালিয়ে গেলেন দেবী ইশতার। গালাগাল দিতে-দিতে, অভিশাপ দিতে— দিতে। এখন ঐ বর্বর গিলগামেশ আর এনকিদুর হাত থেকে ষাড়টাকে উদ্ধার করে অত্যন্ত সম্মানের সঙ্গে তাকে সমাহিত করতে হবে। হোন না ষাঁড়, তবু তো স্বর্গের তো!</p>
+<p>কিন্তু এমনই দুর্ভাগ্য, ইশতারের মনোবাঞ্ছা পূর্ণ হল না। ষাড়ের দেহটা কাঁধে নিয়ে শহরে চলল দু বন্ধু। ওদের হাত থেকে যে ছিনিয়ে আনবেন সে-ক্ষমতা দেবীর নেই। অগত্যা ঐ একটি ঠ্যাং নিয়ে দেবী ইশতার ও তাঁর সখীবৃন্দ—স্বর্গের অন্সরীরা মিলে মহা কান্নাকাটি করে বিলাপ করতে লাগলেন।</p>
+<h1> এনকিদুর মৃত্যু</h1>
+
+<p>ভুল তো একটা সত্যিই হয়ে গেছে, মহা ভুল। স্বর্গের দেব-দেবী নিয়ে আর যাই হোক রসিকতা করা চলে না। এনকিদুর স্পর্ধা এবং গিলগামেশের শক্তির দর্প দেবতারা সহ্য করবেনই—বা কেন?</p>
+<p>যেদিন স্বৰ্গ বৃষ নিধন হল সেদিন রাত থেকেই এনকিদুর হাতের অবস্থা খারাপ হতে শুরু করল। হুম্বাবা দৈত্য কে খতম করতে গিয়ে যে— হাত টায় আঘাত পেয়েছিল এন্‌কিদু। যন্ত্রণা শুরু হল, জ্বর এসে গেল। গায়ে, খুবই বেশি জ্বর। জ্বরের ঘোরে ভুল বকছে। এনকিদু, আর তার পাশটিতে মুখ শুকনো করে বসে আছেন গিলগামেশ।</p>
+<p>আধো ঘুম, আধো জাগরণ, জ্ঞান হারানো, ফের জ্ঞান ফিরে পাওয়া-এ সবেরই ভিতরে অদ্ভুত একটা স্বপ্ন দেখল এনকিদু। অদ্ভুত এবং ভীতিকর।</p>
+<p>এনকিদু দেখল, স্বর্গে দেবতারা বসে আছেন। সকলেই গম্ভীর ও চিন্তিত। আসলে তাঁরা বিচারসভায় সমবেত হয়েছেন বিচার হবে গিলগামেশ ও এনকিদুর। দুটি অপরাধ তাদের; হুম্বাবা-বধ এবং স্বৰ্গবৃষ-হত্যা কিন্তু প্রকৃত অপরাধী কে? গিলগামেশ না এনকিদু? একটা দিদ্ধান্ত দেবতারা এসে গেলেন— দোষীকে শাস্তি হিসেবে মৃত্যুদণ্ড মাথা পেতে নিতেই হবে। এখন শুধু বিচার-বিবেচনা করে সাব্যস্ত করা — সত্যিকারের দোষী কে? যাই হোক, বিচারসভার কাজ শুরু হল। সকলেই তর্ক করছেন, কথা বলছেন, যুক্তি খাড়া করছেন, উত্তর-প্রত্যুত্তর দেওয়া নেওয়া চলছে; কিন্তু সবাই একমত হয়ে সিদ্ধান্তে যে আসবেন তা আর হচ্ছে না।</p>
+<p>সকলকে থামিয়ে তখন দেবরাজ আনু মুখ খুললেন। বললেন: ‘আপনারা যাই বলুন, আমার বিবেচনায় গিলগামেশই বেশি দোষী; কেননা সে শুধু হুম্বাবাকেই মারে নি, পবিত্র দেওদার গাছ পর্যন্ত কেটেছে!’</p>
+<p>এতক্ষণ তো কেবল তর্কবিতর্ক চলছিল, এবারে শুরু হল ঝগড়া। প্রত্যেকে প্ৰত্যেককে দোষ দিতে লাগলেন।</p>
+<p>দেবরাজ আনুর কথা শেষ হতে—না— হতে পবনদেব এনলিল প্রতিবাদ করে উঠলেন: ‘কী বললেন? গিলগামেশ? কেন, তার অপরাধ কী? রাস্তা দেখিয়ে নিয়ে তো গেল ঐ হতচ্ছাড়া। দোষী যদি কেউ হয়ই তো সে এনকিদু।’</p>
+<p>‘বাহ, সাধু, সাধু! তীব্র ব্যঙ্গ ঝনঝন করে উঠল। সূর্যদেব শামাশের কণ্ঠে! ‘চমৎকার! পবনদেব এনলিল, আপনার কথা বলতে লজ্জা করছে না? হুম্বাবার মুখের উপরে হাওয়ার ধাক্কা অনবরত ছুড়েছিল কে?’</p>
+<p>কেন লজ্জা কিসের? ওহি নিজে কি সাধু রে! আবার অন্যের বিচার করছেন, দেখ! সমস্ত নষ্টের মূল তো আপনি। আপনার আশীৰ্বাদ না পেলে ওর সাহস করে কোনো কাজেই তো হাত দিত না। আপনিই ওদের বরাবর সাহায্য করে এসছেন, আবার এখন ভালোমানুষি ফলাচ্ছেন।’ এনলিল রেগেমেগে উত্তর দিলেন সূর্যদেবকে।</p>
+<p>তর্ক, চেঁচামেচি চলতে লাগল, এমন সময়ে এনকিদুর ঘুম ভেঙে গেল।</p>
+
+<p>ঘুম ভাঙতেই সে স্বপ্নের কথা খুলে বলল, গিলগামেশকে। বলল: ‘গিলগামেশ। আমি আর বাঁচব না ভাই। মৃত্যুই আমার ললাটলিপি বুঝে গেছি। চোখ দিয়ে জল পড়তে লাগল তার। বুক ভেঙে যেতে লাগল রাজারও, তবু তিনি আশ্বাস দিতে লাগলেন: ‘কী যে ছাইপাশ বল! জ্বরের ঘোরে আজেবাজে দুঃস্বপ্ন দেখেছ। এতে ঘাবড়াবার কী আছে? স্বপ্ন আবার সত্যি হয় নাকি, বিশেষ করে অসুখের ঘোরে স্বপন দেখলে? নাও, এবার একটু চুপটি করে শুয়ে ঘুমুতে চেষ্টা কর।’</p>
+<p>আসলে এনকিদু যতটা না, তার চেয়ে বেশি ভয় পেলেন গিলগামেশ। এনকিদু মারা গেলে তাঁর অবস্থা কী হবে? একটা বন্ধু থাকবে না, মনের কথা খুলে বলার লোক থাকবে না। একজনও, সলাপরামর্শ করা যাবে না। কারো সঙ্গে। কী ভয়াবহ নিঃসঙ্গতা! গিলগামেশা বাঁচবেন কী করে? এদিকে পুনরায় ভৃল বকতে শুরু করেছে এনকিদু। স্বপ্নের ঘোরে একবার সে কথা বলছে শামাশের সঙ্গে, একবার বকাঝকা করছে নগরনটীকে আমার সেই শিকারী ছোকরাকে, গালাগাল দিচ্ছে হুম্বাবাবেও। এনকিদুর চোখের সামনে তার ফেলে—আসা অতীত যেন পুনর্বার এসে দাঁড়াল। সে খেলা করতে লাগল সিংহের সঙ্গে, পাল্লা দিয়ে হরিণের পাশে পাশে ছুটতে লাগল, সরোবরে নেমে জল পান করল, বিশ্রাম করল তার বন্ধু বন্য পশুদের সঙ্গে শুয়ে নিরিবিলি গাছের ছায়ায়। এইভাবে প্ৰহরের পর প্রহর গড়িয়ে চলল রাতের অন্ধকারে। পাশে বসে আছেন রাজা গিলগামেশ, বন্ধুর দুঃখে চোখে জল।</p>
+<p>এক সময় জানালার ফোকর গলে সকালের আলো এসে পড়ল। ফিকে আলোয় ভরে গেল সারা ঘর। কে যেন বলে উঠল: ‘ছিঃ এনকিদু! শুধু শুধু অপরের নামে দোষ দিতে নেই। তুমি যে বুনো জীবন ফেলে এসে মানুষ হতে পেরেছ, এ তো ঐ শিকারী যুবক আর নগরনটীরই কল্যাণে। নইলে এখনো তো তুমি বনে বনেই ঘুরে বেড়াতে, ঘাস-লতা—পাতা খেয়ে বাঁচতে হত তোমাকে, ঘুমুতে হত ফাঁকা আকাশের নিচে ঘাসের ওপর। বন্ধুত্ব কাকে বলে তাও তো জানতে পারতে না তুমি। হৃদয় কাকে বলে, ভালবাসার সুখ ও কষ্ট কোনোটাই তো জানা হত না, কেননা গিলগামেশের সঙ্গে তোমার তা হলে দেখাই যে হত না। ’</p>
+<p>তন্দ্ৰা ছুটে গেল এনকিদুর। তার মনে হল, সূর্যদেব শামাশ এতক্ষণ তাকে উপদেশ দিচ্ছিলেন। আনন্দে মনপ্ৰাণ তার নেচে উঠল। সত্যিই তো! দেবতার উদ্দেশে মনে-মনে প্ৰণাম জানাল সে। শিকারী এবং মেয়েটির কাছে মনে মনে মার্জনা ভিক্ষা করল, আন্তরিকভাবে আশীৰ্বাদ করল তাদের।</p>
+<p>দিন কাটতে লাগল এভাবে। রোগ প্রশমনের কোনো লক্ষণ নেই। দিনের পর দিন দুর্বল থেকে দুর্বলতর হতে লাগল এনকিদু। এমন সময় আরেক রাত্রে আরেকটি স্বপ্ন দেখল সে। এও বড়ো বিচিত্র স্বপ্ন। তার মনে হল— স্বর্গ ও মর্ত্য ছেয়ে এক মহা ক্ৰন্দনধ্বনি উত্থিত হচ্ছে, আর অদ্ভুত এক জীব, তার মুখ সিংহের অথচ ডানা ও নখর ঈগল পাখিরা। অলৌকিক ভয়াবহ জীবটি হঠাৎ কোত্থেকে চলে এসে ছোঁ মেরে তাকে উঠিয়ে নিয়ে উড়ে চলল। ইতোমধ্যে তারও দু পাশ দিয়ে পাখা গজিয়েছে, আর দেখতেও সে অবিকল ঐ বিদঘুটে জীবের মতোই হয়ে গেছে। তখনই তার প্রথম মনে হল যে, সে আর বেঁচে নেই এবং তাকে নিয়ে নরকেই কোনো দূত উড়ে যাচ্ছে তার ডেরায়, যেখানে থেকে কেউ আর কখনো ফিরে আসে না। অবশেষে তারা অন্ধকার সেই রাজ্যে গিয়ে পৌছল। সেখানে কারো শরীর নেই, শুধু ছায়ার মতো একটা অবয়ব আছে। এনকিদু দেখতে পেল—সে এক কল্পনাতীত মজার ব্যাপার, রাজরাজড়া-মন্ত্রী-অমাত্য-রাজপুত্র-রাজকুমারী সবাই, এমনকি পুরুতঠাকুরেরা পর্যন্ত তাকে ঘিরে দাঁড়িয়ে আছে! কারো গায়ে কিন্তু পৃথিবীর পোশাক নেই, সকলেরই দেহে ডানা গজিয়েছে এবং দেখতে সকলেই বদখত, ভয়ালদর্শন। তারা আছে নোংরাভাবে, থাকছে নোংরাভাবে, থাকছে নোংরার ভিতরেই এবং খাচ্ছেও নোংরা। অখাদ্য-কুখাদ্য, ধুলো—বালি ইত্যাদি। অল্প একটু দূরে সুন্দর সিংহাসনের ওপরে বসে আছেন নরকের রাণী, পাশে এক কিঙ্করী দাঁড়িয়ে একটা লম্বা ফর্দ পড়ে যাচ্ছে। ঐ ফর্দে নরকের বাসিন্দা প্রত্যেকের ভালো-মন্দ সব রকম কাজের খতিয়ান লেখা আছে।</p>
+<p>স্বপ্নের বাকি অংশটুকু আর দেখতে পেল না এনকিদু। তার ঘুম ভেঙে গিয়েছিল। জেগে উঠেই সে গিলগামেশকে বলতে লাগল কী সে দেখেছে। বলল: ‘দেবতাদের শাস্তি আমার ওপরেই পড়ল ভাই। তুমি যে দুই-তৃতীয়াংশ দেবতা, তাই অমর।’</p>
+<p>শুনে কাঁদতে লাগলেন গিলগামোশ। বিলাপ করতে লাগলেন: ‘অমন কথা আর বলো না ভাই। তুমি আমার সাহস ছিলে, ‍বুদ্ধি ছিলেন, তুমি ছিলে আমার প্রাণের সঙ্গী। তুমি আমার পাশে থাকলে আমি কষ্টকে কষ্ট মনে করি নি, দুঃখকে দুঃখ বলে ভাবি নি, বিপদকে অগ্রাহ্য করেছি, সতর্কবাণীকে উপহাস করেছি। দৈত্য ও ষাঁড়কে নিহত করা সম্ভব হয়েছিল সে তো তুমি ছিলে বলেই। আর এখন তুমি আমাকে ছেড়ে কোথায় চললে ভাই?</p>
+<p>কিন্তু প্রিয়জনের বুকফাটা কান্নাতে মৃত্যুর পথ তো আর রুদ্ধ হয় না। অসুখ বাড়তে লাগল এনকিদুর। দীর্ঘ ন’টা দিন মৃত্যুর সঙ্গে যুদ্ধ করতে-করতে ক্রমেই সে দুর্বল হয়ে পড়তে লাগল। গিলগামেশ শোকে-ভয়ে পাগলের মতো হয়ে গেলেন, প্রিয় বন্ধুর মৃত্যুশয্যার পাশে বসে থেকে মরণের রূঢ় রুদ্র রূপ চেয়ে-চেয়ে দেখতে লাগলেন। কিছুই তো তার করার নেই শুধু শোকে ছিন্নভিন্ন হওয়া ছাড়া।</p>
+<p>অবশেষে এক সময় নিশ্বাস-প্রশ্বাস স্তব্ধ হয়ে গেল এন্‌কিদুর। বন্ধুর মৃতদেহ আঁকড়ে ধরে বসে রইলেন গিলগামেশ। আর্তনাদ করে চেঁচিয়ে-চেঁচিয়ে কাঁদতে লাগলেন। মাথার চুল ছিঁড়তে লাগলেন। শোকে উন্মাদপ্রায় হয়ে নিজের গায়ের জামাকাপড় পর্যন্ত টেনে টেনে ছিঁড়ে ফেললেন।</p>
+<p>সারাটা রাত বন্ধুর শব নিয়ে বসে থাকলেন। দেখলেন, দেহ থেকে রূপ কী করে ধীরে ধীরে ঝরে যাচ্ছে। বিড়বিড় করে বলতে লাগলেন: ‘এই তা হলে মৃত্যুঃ মরণের মুখ যে এত ভয়ানক আগে কখনো জানতে পারি নি। আমার ভয় হচ্ছে। তার মানে— একদিন আমিও এভাবেই ঝরে যাব?’</p>
+<p>রাতের অন্ধকার কেটে একসময় সকাল হল। রাজার চোখের জল শুকিয়ে দিয়েছিল।</p>
+<p>বৃথা, শূন্য, ব্যর্থ মনে হতে লাগল সবকিছু। বন্ধুর মৃতদেহ সামনে রেখে এক ভয়ানক প্রতিজ্ঞা করে বসলেন তিনি, মনে-মনে অমন দুঃসাহসিক, যুক্তিহীন, বেদনার্ত প্রতিজ্ঞা কোনো দিন করে নি।</p>
+
+<h1> মহাপ্ৰস্থানের পথে</h1>
+
+<p>এনকিদুর দেহে যে আর প্রাণ নেই। এ-কথা বিশ্বাস করা শক্ত। এনকিদু যে মারা গেছে এই নিষ্ঠুর কঠিন বাস্তব কোনো রকমেই মেনে নিতে পারেন না গিলগামেশ। বারংবার তার মনে হয়: এই তো তুমি ছিলে এনকিদু, এখানো তুমি আছ—এই তো তোমার দেহ আমার সামনে পড়ে আছে, স্পর্শ করতে পারছি, আদর করে গায়ে— মাথায় হাত বোলাচ্ছি; তুমি আছ অথচ তুমি নেইও, কেননা কিছুই তো তুমি জানতে পারছি না। এনকিদু, আমার শোক আমার দুঃখ আমার কান্না আমার ভালবাসা কিছুই আর তোমাকে ছুঁতে পারছে না; এত নিষ্ঠুর তো তুমি কখনো ছিলে না ভাই, যেখানে গেছি। ছায়ার মতো আমার সঙ্গে থেকেছ—শৌর্যে-বীর্যে আনন্দে-উল্লাসে, স্বৰ্গ বৃষ হত্যা আর হুম্বাবা বধ, সবের মধ্যেই তুমি ছিল। আর আজ তুমি কোথায় এনকিদু? বন্ধুকে ফেলে রেখে কেউ কি এভাবে চলে যায়? তুমি কি দেখতে পাচ্ছ না। তুমি না থাকায় আমি কী রকম অসহায় নিঃসঙ্গ দুর্বল এবং ভীরু হয়ে গেছি? কিন্তু যেখানেই তুমি যাও না কেন সে কি এমনই জায়গা যে মৃত্যু না হলে যাওয়া যায় না? তা হলে কখনোই কি আর তোমাকে আমি দেখতে পাব না? এ আমি কী করে মেনে নিই এনকিদু? তুমি আমায় এ— কোন বিপদে ফেলে রেখে চলে গেলে বল তো?</p>
+<p>গিলগামেশ ভাবেন, বন্ধুর মরা দেহে ফের প্রাণ ফিরিয়ে আনতে হবে। মৃত্যু—তা যেমনই অজানা হোক-না কেন তার কাছ থেকে এনকিদুকে ফিরিয়ে নিয়ে আসতে হবে।</p>
+<p>কী উপায়ে যে তা সম্ভব জানা নেই। কিন্তু তার ভিতর থেকে যেন কেউ বলে উঠল, জীবন ও মৃত্যুর রহস্য একমাত্র উৎনা পিশতিমের পক্ষেই জােনা সম্ভব। কে এই উৎনা পিশতিম? গিলগামেশ তাকে কখনো দেখেন নি, কেউ তাকে কখনো দেখে নি। কিন্তু লোকে বলে এবং বিশ্বাস করে যে, পৃথিবীর শেষ প্রান্তে একটা দ্বীপ আছে, সেই দ্বীপে যে বুড়ো থুত্থুড়ে লোকটি বাস করেন তিনি উৎনা পিশতিম এবং তিনিই একমাত্র মানুষ যিনি মৃত্যুর হাত এড়াতে পেরেছেন। হয়তো সত্যিই তাই। কথাটা গিলগামেশও বিশ্বাস করে এসেছেন আর সকলের মতোই। অতএব, এখন প্রয়োজন—অক্ষয় বুড়ো উৎনা পিশতিমকে খুঁজে বের করা। কিন্তু কেউই যে জানে না, কোন দিকে কোনখানে সেই দ্বীপ।</p>
+<p>পড়ে রইল উরুক শহর, পড়ে রইল রাজ্য ও রাজকার্য। রাজা গিলগামেশ বুকভরা শোক নিয়ে পথে নামলেন। তিনি যে রাজা, তার কর্তব্য আছে, আছে দায়িত্ব—-এসব কিছুই মনে রইল না। স্মৃতির মধ্যে কেবল এনকিদুর ছবি ভাসছে, শুনতে পাচ্ছেন তার মুখের কথা, চোখে যেন স্পষ্ট দেখতে পাচ্ছেন বন্ধুর নিম্প্রাণ দেহ।</p>
+<p>পথে বেরুবার পূর্বে তিনি তাঁর মহার্ঘ রাজসিক পোশাক-পরিচ্ছদ খুলে ফেলেছিলেন। জীবজন্তুর গায়ের ছাল জড়িয়ে নিলেন গায়েম হাতে রইল ধারাল কুঠার—যাত্রাপথে বিপদ-আপদের সঙ্গী। চোখে ঘুম নেই, আহার ছেড়েছেন, শরীর রোগ হয়েছে, মুখ- চোখ বসে গেছে।</p>
+<p>এভাবেই পথচলা শুরু হল গিলগামেশের। এখন আর রাজা গিলগামেশ নন, শোকবিহবল সাধারণ মানুষ গিলগামেশ চলেছেন অমৃতের সন্ধানে। পথে নামার আগে শুধু একবার প্রার্থনা করেছিলেন চন্দ্রের দেবতা সিনের কাছে। আর কিছু নয়।</p>
+<p>যেতে— যেতে একসময় তিনি পৃথিবীর শেষ প্রান্তে পৌঁছুলেন। এর মধ্যে কত দিন-রাত্রি কেটে গেছে তার কোনো হিসেব নেই। বুকের মধ্যে শোকের দাহ এখনো জ্বলছে গিলগামেশের। এসে তো পৌছুলেন, কিন্তু তারপর?</p>
+<p>গিলগামেশ দেখলেন, সামনে আর কোনো পথ নেই। মাটি ফুঁড়ে দাঁড়িয়ে আছে বিশাল পর্বত মাশু্ পূর্বে-পশ্চিমে বিস্তৃত তার দেহ, পূর্ব আর পশ্চিম আকাশে উঠে গেছে গগনভেদী তার দুই শর্ষিচূড়া। একটি চূড়ার আড়ালে সন্ধে হলে সূর্য যুবে যায়, আর পরের দিনে ভোরে আরেকটি চূড়ার আড়াল থেকে সে ফের বেরিয়ে আসে। পৰ্বতের মাথা যদি স্বর্গে গিয়ে ঠেকে, তো পা গিয়ে ঠেকেছে পাতালে।</p>
+<p>পাহাড়ের সামনেই বিশাল তোরণতদ্বার, আর তার প্রহরায় রয়েছে ভয়ালদর্শন প্রহরীর দল। দেখতে বড় ভয়ানক এবং অদ্ভুত। বৃশ্চিকমানব তারা-দেহের অর্ধেক তাদের কাঁকড়াবিছে, বাকি অর্ধেকটা মানুষ। তাদের চোখের দৃষ্টি ক্রুর, তাদের চোখে চোখ পড়লে মৃত্যু অবধারিত।</p>
+<p>গিলগামেশ তাদের ভয়নক চেহারায় ভয় পেয়েছিলেন ঠিকই, কিন্তু অল্পক্ষণ পরেই সাহস সঞ্চয় করে এগিয়ে গেলেন। ঐ ভীষণদর্শন প্রাণীগুলো তো অবাক! এত সাহসী কেউ আছে নাকি? কিন্তু গিলগামেশের দিকে ভালো করে তাকিয়ে দেখতেই তারা বুঝে ফেলল, তাদের সামনে যিনি দাঁড়িয়ে আছেন তিনি দেখতে মানুষ হলেও সবটুকু মানুষ নন, তার দেহে দেবতার রক্ত আছে, আর সেজন্যেই অমর। অতএব তাদের সাধ্য নেই তাঁর ক্ষতি করার।</p>
+<p>গিলগামেশ এগিয়ে গেলেন মাথা নিচু করে। তাঁর ভঙ্গি বিনয় ও অনুনয়ের, যেন তিনি তোরণদ্বারে প্রহরীদের খোশামোদ করতে চাইছেন। আসলে তিনি ওদের সঙ্গে দৃষ্টিবিনিময় করতে চাইছিলেন না, তাঁর ভয় ছিল—কোনো অঘটন যদি ঘটে যায়! তাই ঐ সতর্কতা।</p>
+<p>তোরণদ্বার রুদ্ধ করে দাঁড়িয়ে গেল বৃশ্চিকমানব প্রহরীর দল। ‘রোখ যাও’, হুঙ্কার দিল তারা।</p>
+<p>গিলগামেশ দাঁড়িয়ে পড়তেই প্রশ্ন ছুঁড়তে লাগল একের পর এক; কে তুমি? কেন এসেছ? কোথায় যাবে? কী জন্যে যাবে?</p>
+<p>বিনীতভাবে উত্তর দেন গিলগামেশ: ‘আমি যেতে চাই আমাদের পিতৃপুরুষের কাছে, উৎনা পিশতিমের কাছে। আমি জেনে নিতে চাই জীবন ও মৃত্যুর রহস্য। আমার বন্ধু মারা গেছে, আমি তার জন্য জীবন ফিরিয়ে আনতে চাই।’</p>
+<p>ওরা তখন হো-হে করে হেসে ওঠে। বলে: ‘অদ্ভুত, ভারি অদ্ভুত! এমন কথা আমরা কখনো শুনি নি। যাই হোক, এই পাহাড় পেরিয়ে যাওয়া মানা। কেননা, ওদিকে শুধু মৃত্যুর রাজত্ব। ওপারে কোনো আলো পৌছয় না, কেবল অন্ধকার এবং ভয়ানক ঠাণ্ডা। আবার, সকাল হলে সে তখন এক অসহ্য গরম আবহাওয়া। আমরা পর্যন্ত যা জানি না তা তুমি জানবে কী করে, বল? ফিরে যাও। নইলে শুধু দুঃখই পাবে, কষ্টই সারা হবে।’</p>
+<p>‘দুঃখ? নতুন দুঃখ কী আর দেবে তোমরা? কোনো দুঃখই আমার বন্ধু— হারানোর শোকের চেয়ে তো বেশি নয়। আর কষ্ট? আমার বন্ধুর জন্য যে-কোনো কষ্টই আমি স্বীকার করতে পারি, কোন কষ্টই কষ্ট নয়।’ উত্তর আসে গিলগামেশের কাছ থেকে।</p>
+<p>তারপর অনুনয় করেন: ‘প্ৰচণ্ড গরম বা ঠাণ্ডা। যাই হোক না কেন, স—ব আমি সহ্য করব। আপনারা কেবল রাস্তা ছাড়ুন, আমাকে একটিবার যেতে দিন।’</p>
+<p>‘ঠিক আছে, যাও।’ বিরক্তিভরা কণ্ঠে বলে ওঠে বৃশ্চিকমানবদের সর্দার। তার স্ত্রী বলে: ‘বাছা, দেখো, অন্ধকারে সাবধানে থেকে ৷’</p>
+
+<p>বৃশ্চিকমানবেরা রাস্তা ছেড়ে দাঁড়িয়েছে। পাহাড়ের গভীর সুড়ঙ্গের মধ্যে গিয়ে ঢুকলেন গিলগামেশ। কী নিঃসীম অন্ধকার। যত এগিয়ে যান আঁধার ততই বাড়ে। না সামনে কিছু দেখা যায়, না পিছনে। দেহে ক্লান্তি আসে, মনে ভয় আসে। গিলগামেশ তখন বন্ধু এনকিদুর নাম জপ করেন, তার কথা ভাবতে থাকেন। এনকিদুর জন্যেই তো তিনি পথে নেমেছেন, তাই এনকিদুই তাকে ভরসা দিক, সাহস যোগাক। পথচলার বিরাম নেই তার, কিন্তু রাস্তা যেন ফুরোতেই চায় না। এই পথ তবে কি অন্তহীন? না; গিলগামেশের মনে হয়, অতি ক্ষীণ একটা আলোর রেখা যেন দূরে দেখা যাচ্ছে। এবং মৃদু বাতাসের ঝাপটাও যেন চোখে-মুখে অনুভব করেন।</p>
+<p>ঘনান্ধকার পথ অবশেষে শেষ হয় এক সময়। অতল— গহ্বর সুড়ঙ্গ থেকে বেরিয়ে যেখানে তিনি এসে দাঁড়ান, সেখানে চারদিকে তাকিয়ে তো গিলগামেশ অবাক। সূর্যস্নাত যেন কোন সকাল, ঝকঝক করছে চারিদিক, আর তিনি দাঁড়িয়ে আছেন যেন কোনো পরীর রাজ্যে। অপূর্ব এক বাগানের মধ্যে তিনি দাঁড়িয়ে, যেন কোনো নন্দনকানন, ও-রকম উদ্যান শুধু স্বর্গেই শোভা পায়। অপরূপ লতাপাতা গাছ— গাছালি, গাছ থেকে ফল ঝুলছে মণিমাণিক্যের।</p>
+<p>বিস্ময়ের ঘোর কাটতে-না-কাটতেই শুনতে পান তাকে উদ্দেশ করেই যেন ...কেউ কিছু বলছেন। কণ্ঠস্বর চিনতে কষ্ট হয় না, এ যে সূর্যদেব শামাশের গলা:</p>
+<p>‘গিলগামেশা, এর বেশি আর যেও না। এখন যেখানে তুমি আছ সেটা হচ্ছে এক প্রমোদোদ্যান। যত দিন খুশি এখানে থেকে যাও, বিশ্রাম নাও, আনন্দ কর। কিন্তু এর বেশি আর কোথাও যেতে চেও না তুমি। এই বাগানে তুমিই প্রথম, এর পূর্বে কোনো মানুষকে কখনো এখানে আসতে দেওয়া হয় নি। এর বেশি আর কী তুমি আশা কর? মৃত্যুহীন জীবন-যা তুমি খুঁজে বেড়াচ্ছ, সেই অমরতা কখনো তুমি খুঁজে পাবে না।’ তাই কি হয়? এত শ্রম আর এত সাধনার পরে গিলগামেশ ফিরে যান কী করে? শামাশের নিষেধ শোনার উপায় নেই তার। হয়তো দেবতা রেগে যাবেন, তবু তিনি নিরুৎপায়।</p>
+<p>এগিয়ে চলেন গিলগামেশ। পিছনে পড়ে থাকে পৃতিবীর সবচেয়ে সেরা প্রমোদোদ্যান। বেশি দূর যেতে হয় না, চোখে পড়ে একটা বড়ো বাড়ি। দেখতে অনেকটা পান্থশালার মতো। শরীর ক্লান্ত, হেঁটে হেঁটে পায়ে ব্যথা। আশান্বিত হয়ে ভাবলেন, দু-চার দিন এখানেই নাহয় বিশ্রাম নিই।</p>
+<p>পান্থশালার দরজার কাছে পৌঁছুতেই, হায়, মুখের উপরে দড়াম করে খোলা দরজা বন্ধ হয়ে গেল। একটু পরেই শোনা যায় এক নারীকণ্ঠ: ‘তুমি কে গা? ঝড়ো কাকের মতো চেহারা, চালচুলো নেই, আবার সরাইখানায় ঢুকতে চাও? আল্লাদ তো মন্দ নয়।’ এতক্ষণে ব্যাপারটা স্পষ্ট হয় গিলগামেশের কাছে। তিনি বোঝেন যে বেচারি মেয়েটি তাকে বাউণ্ডুলে— ভবঘুরে ঠাউরেছে, ভেবেছে খুনে বা ডাকাত—বাজে ধরনের লোক, পয়সাকড়ি দেবে না, তাই ঝামেলা কাটাবার জন্য দরজা বন্ধ করে দিয়েছে ভিতর থেকে।</p>
+<p>‘তুমি কে কথা বলছ?’ জিজ্ঞাসা করেন গিলগামেশ্য। </p>
+<p>জবাব আসে: ‘আমি আবার কে? আমিই এই সরাইখানা চালাই। আমার নাম সিদুরি।’</p>
+<p>‘সুন্দর নাম, ভারি সুন্দর নাম তোমার, সিদুরি। তুমি কিন্তু আমাকে যা ভেবেছি আমি তা নই। কিন্তু আমি কি দেখতে এতই কুৎসিত, ভয়াবহ হয়ে গেছি যে ভয় পেয়ে তুমি রদজা বন্ধ করে দিলে?’ গিলগামেশের কন্ঠে যন্ত্রনার আভাস মেলে।</p>
+<p>উত্তর দেয় না সিদুরি, শুধু বলে: ‘তুমি কে? আগে তো বাপু কখনো এখানে দেখি নি। পরিচয়টা শুনি!’</p>
+<p>‘আমি গিলগামেশ। আমার বন্ধু আর আমি মিলে হম্বাবা দত্যি আর বেহেশতী ষাঁড় মেরেছি।’</p>
+<p>‘সে কি? তুমি গিলগামেশ হলে তোমার এমন চেহারা কেন? এত রোগা কেন তুমি, দেখতে এমন উদভ্ৰান্ত, পাগলের মতো কেন?’</p>
+<p>‘বিশ্বাস হয় না? সত্যিই আমি গিলগামেশা। দুঃখে-শোকে এমন চেহারা হয়েছে। আমার প্রাণের বন্ধু, যে সৰ্বক্ষণ ছায়ার মতো আমার সঙ্গে থেকেছে সে এখন মৃত্য।’ সিদুরি বলে: ‘ও, এই কথা? এতে কী হয়েছে? মানুষ তো আজ নাহয় কাল মরবেই, তার জন্যে শোকে পাগল হয় নাকি কেউ? বন্ধু নেই যখন, তখন তাকে ভুলে যাও। যে মারা যায়। তাকে কেউই মনে রাখে না। তুমিও যেমন!’</p>
+<p>আর্তনাদ করে ওঠেন গিলগামেশ: ‘না, না, এসব কী বলছি? তাই কি হয়, ভুলে কি কেউ যায়?’ তারপর কান্নায় ভেঙে পড়েন: ‘এনকিদু, শোন, শোন, কী পাগলের মতো কথা এরা বলে দেখছ? এরা জানে না তুমি আমার কী ছিলে!”</p>
+<p>বড়ো মায়া লাগে সিদুরির, মন খারাপ হয়ে যায়। দরজা খুলে দিয়ে বলে: ‘এস, ভিতরে এস, ঠাণ্ডা হও।’</p>
+<p>বিশ্রামের জন্য যা-কিছু প্রয়োজন তার ব্যবস্থা করে সিদুরি। গিলগামেশকে আহার্য ও পানীয় দেয় সে। দীর্ঘ পরিশ্রম ও ক্লান্তির পর যাতে ভালোমতো একটু ঘুমুতে পারে তাই সুন্দর করে বিছানা পাতে। যত্ন করে ঘুম পাড়ায়। আহা বেচারা কত দুঃখী। একটু ঘুমুক, একটু শান্তি পাক।</p>
+<p>এক সময়ে ঘুম ভাঙে গিলগামেশের। ধোঁয়াটে স্মৃতি স্পষ্ট হয়ে ফের ফিরে আসে। কৃতজ্ঞতা বােধ করেন মেয়েটির প্রতি, সিদুরি তাকে অনেক আদর-যত্ন করেছে; কান্তি অনেক কমে গেছে। কর্তব্যের কথা মনে পড়ে তার। এবার তা হলে বেরুতে হয়, সুখে কাল কাটাবার সময় এখনো আসে নি।</p>
+<p>সিদুরে তাঁকে বোঝায়: ‘মিথ্যের পিছনে পাগলের মতো কোথায় ছুটছ? কে কবে শুনেছে যে মরা মানুষকে বাঁচানো যায়? দেবতারা মানুষ তৈরি করে তার জন্যে রেখেছে মৃত্যু, আর নিজেদের জন্যে জীবন—এ তো সবাই জানে! তবে? মানুষ কি কখনো অমরতা পায়? তার চেয়ে সব ভুলে গিয়ে নতুন জীবন শুরু কর, আমাদের এখান থেকে যাও, তোমার কোনো কষ্ট হতে দেব না—খাবেদাবে ঘুমাবে, ব্যস!’</p>
+<p>মগজে যেন আগুন ধরে যায় গিলগামেশের। এ কি অন্যায় প্রলোভন তাঁকে তাঁর কর্তব্য থেকে সরিয়ে নিতে চাইছে। ধমকে উঠেন তিনি: ‘বাজে বকো না, সিদুরি। সামনে আমার বিরাট কাজ পড়ে আছে, এনকিদুকে বাঁচাতেই হবে। আমি যাব। ফালতু কথা ছেড়ে দাও, আমাকে কোনোমতেই তুমি বাঁধতে পারবে না। এখন লক্ষ্মীমেয়ের মতো বল তো-উৎনা পিশতিমের দেখা কী করে কোথায় পাব?’</p>
+<p>সিদুরিও রেগে যায়, বিরক্তও হয়। এ এক আচ্ছা পাগলের পাল্লায় সে পড়েছে! আবার গিলগামেশের অবস্থা দেখে মায়াও হয় তার। সে বলে: ‘তাঁর বাড়ি নদীর ওপার। আগে তাঁর মাঝি উর্শানাবিকে খুঁজে বের কর। তোমার মতো আত্মপ্রেম অন্ধ হয়ে কেউ সেখানে যেতে চায় তবে ঐ মাঝিটির সাহায্য তাকে নিতেই হবে।’</p>
+<p>‘কী বললে, আত্মপ্রেমে অন্ধ? হায, হায়, আমার দুঃখ এখনো বুঝলে না। আমি অন্ধ হয়েছি আত্মপ্রেমে নয়, প্রিয়জন হারানোর শোকে।’</p>
+<p>সিদুরি বলে: ‘উৎনা পিশতিম যে-নদীর পারে থাকেন সে-নদী মৃত্যুসায়র। মৃত্যুসােয়র পাড়ি দিয়ে তোমাকে তার কাছে পৌঁছুতে হবে। জীবন্ত কোনো লোক ঐ নদী পেরুতে পারে না। এই মুহার্তে অবশ্য উর্শানাবি আমার এই সরাইখানাতেই আছেন। তুমি তাঁর সঙ্গে আলাপ করে দেখতে পার-যদি তিনি রাজি হন।</p>
+<p>গিলগামেশকে সিদুরিই নিয়ে যায় উর্শানাবির কাছে। বুড়ো মানুষ, শীর্ণকায়, মাথার চুল সব পাকা, গায়ের রং ঈষৎ তামাটে। গিলগামেশ তাকে জিজ্ঞেস করেন: ‘বুড়ো দাদু, তুমি কি আমাকে নদী পার করে দিতে পারবো?’</p>
+<p>বৃদ্ধ কিন্তু প্রশ্নের জবাব দেন না। পাল্টা প্রশ্ন করে বসেন তাকে। বলেন: সে কথা পরে। তার আগে আমার যে গুটিকয়েক কথা জানা দরকার; কী হয়েছে তোমার ভাই? তোমার গাল তুবড়ে গেছে, দুটো চোখ গর্তে ঢুকে গেছে। মনে হচ্ছে, অনেক দুঃখ-শোক পেয়েছ। কিন্তু কী সে দুঃখ যা অন্য মানুষজনেব চেয়ে আলাদা করে ফেলেছে তোমাকে? কিসের জন্যে তুমি দৌড়ে এসেছ এতখানি?’</p>
+<p>‘প্রশ্ন করে—করে আমার দুঃখ বাড়িয়ে না, ভাই। জবাব দিতে বুক ভেঙে যায়। আমি তার জীবন ফিরিয়ে নিতে চাই।’</p>
+<p>‘কার?’ পুনরায় জিজ্ঞাসা করেন উর্শানাবি। ঠোঁটে তাঁর মৃদু হাসি খেলে যায়, যেন তিনি জানেন কী বলবেন গিলগামেশ।</p>
+<p>‘আমার বন্ধুর। এনকিদুর।’ শিশুর মতো সরলতায় সমস্ত ঘটনা আগাগোড়া তিনি বলে যান। তার চোখে একটার পর একটা স্মৃতি ছবি হয়ে ভাসতে থাকে; প্রশ্ন করেন ফের; ‘এখন আপনি বলুন কী করে নদী পার হব? কী করে উৎনা পিশতিমের কাছে গিয়ে হাজির হতে পারব?’</p>
+<p>অলৌকিক বৃদ্ধ মাঝি হাসতে থাকেন। বলেন; পথ না হয় বাতলে দিচ্ছি, কিন্তু তুমি যা চাও, তা কি কোনো মানুষ কখনো পেয়েছে?’</p>
+<p>‘পাই বা না-পাই, পরে দেখা যাবে। আগে তো উৎনা পিশতিমের সঙ্গে কথা বলি।’ তখন উর্শানাবি তাকে উপদেশ দেন: ‘আমার নৌকো তুমি পাবে না। বনে গিয়ে গাছ কেটে ভেলা তৈরি কর। তোমার তো কুড়ুল আছেই, অসুবিধে হবে না। তারপর লগি তৈরি কর, ছ’ কুড়ি। লগির সংখ্যা এত বেশি লাগবে তার কারণ–একটা লগি মাত্র একবারই তুমি ব্যবহার করবে, পানি থেকে সেটা আর তুমি ওঠাতে পারবে না। আর সাবধান—মৃত্যুসায়রের জল যেন তোমার দেহের কোথাও না লাগে।</p>
+
+<p>গিলগামেশের ভেলা ভাসল নদীতে, মৃত্যুসায়রের বুকে। বুড়ো উর্শানাবি যা—যা বলেছেন সবই মেনে চলছেন তিনি। একটা লাগি একবারই মাত্র ব্যবহার করলেন। এক শ’ বিশটি লাগির মধ্য এক শ উনিশটি এভাবে যখন শেষ হয়ে গেল তখন দেখলেন, নদীর ওপার এখনো অনেক দূর। হাতে মাত্র একটি লাগি অবশিষ্ট আছে, ওটি যখন খরচ হয়ে যাবে তখন করবেন কী? ভাবনা-চিন্তা করে বুদ্ধি বের করলেন একটা। লগিটা খরচ করা চলবে না। তিনি গায়ের পোশাক খুলে লগির মাথায় বাঁধলেন, পাল তৈরি করা হয়ে গেল।</p>
+<p>পালে বাতাস লেগে ভেলা ভেসে চলল তীরের পানে।</p>
+<h1>মহাপ্লাবনের কথা</h1>
+
+<p>মৃত্যুসায়রের ধারে বসে আছেন উৎনা পিশতিম অলস ভঙ্গিতে বসে আছেন: হাতে কোনো কাজ নেই, তাকিয়ে আছে সমুখের জলরাশির দিকে। হঠাৎ নজরে পড়ে মৃত্যুসায়রের বুকে কী যেন ভাসছে—এ তো তার নৌকো নয়। কেউ যেন আসছে তাঁর দিকে— ও তো তাঁর মাঝি নয়। হতবাক হয়ে যান উৎনা পিশতিম। ভাবেন, একি দেখছি! নিজের চোখকেই যেন বিশ্বাস হতে চায় না, এতই অবিশ্বাস্য ঐ দৃশ্য।</p>
+<p>ভেলার উপরে গায়ের জামার পাল খাটিয়ে মৃত্যুসায়রে ভাসতে ভাসতে গিলগামেশ অবশেষে এসে পৌঁছন যেখানে তিনি আসতে চাইছিলেন। তীরে এসে তার ভেলা মাটিতে ঠেকে থেমে যায়।</p>
+<p>ডাঙায় নামার আগেই উৎনা পিশতিমকে দেখতে পান গিলগামেশ। দেখেই তাকে ভালো লাগে, এমনকি কোনো বাকবিনিময়ের পূর্বেই। চোখে সাত্ত্বনা ও প্রশান্তির ছায়া দেখেন গিলগামেশ। দ্বীপের মাটিতে পা রাখতেই উৎনা পিশতিমা এগিয়ে এসে গিলগামেশের কাঁধে হাত রাখেন। কোনো প্রশ্ন করেন না, কিছুই জানতে চান না। তাঁর সমস্ত ভঙ্গিই যেন অতিবাৎসল্যের প্রতিমূর্তি। উৎনা পিশতিমের হাতের ছোঁয়াই যেন এক বিরাট আশ্বাস।</p>
+<p>কিছুই জিজ্ঞেস করা হয় নি গিলগামেশকে, তবু তিনি চুপ করে থাকতে পারেন না। ভিতরের চাপে তিনি মুখ খোলেন, নিজেই বুঝিয়ে বলেন কেন তিনি এসেছেন: ‘আমার বন্ধুর মৃত্যু আমাকে আপনার কাছে টেনে এনেছে। তার মতো বন্ধু আমার আর কেউ ছিল না, অথচ সে মারা গেল। সে যে নেই, তা আমি বিশ্বাসই করতে পারি না। সে ছিল আমার ভাইয়ের মতো। হঠাৎ দেখলাম-সে, ঝরে গেল, ঠিক যেন গাছের শুকনো পাতা। আমি যে কী ভয় পেলাম, আপনাকে বুঝিয়ে বলতে পারব না। আমি যে তাকে কখনো ছাড়তে চাই নি, অথচ সে আমাকে ছেড়ে চলে গেল—এর কারণটা কী? তবে কি মৃত্যুরও পরে এমন কিছু আছে যেখানে তার খোঁজে আমি যাব।—এটাই সে চায়? বন্ধুতার শেষ কথাটি কী? সেটা তো কখনো বিচ্ছেদ হতে পারে না। তা হলে তার চলে যাওয়ার অর্থ? এই প্রশ্নগুলোর উত্তর পেতেই আজ আমি আপনার কাছে এসেছি। আমি ভয়ানক ক্লান্ত, জানেন। সাগর, অরণ্য, পর্বত আমাকে পেরুতে হয়েছে, পার হতে হয়েছে মরুভূমি; হরিণ ভালুক হায়েনা শিকার করেছি পেটের জ্বালা মেটাতে; শেষকালে মৃত্যুসায়রও পাড়ি দিতে হল। এ সবই শুধুই আপনার কাছে আসার জন্যে, আমার ক’টা প্রশ্নের উত্তর পাবার জন্যে।’</p>
+<p>উৎনা পিশতিম মন দিয়ে গিলগামেশের কথা শোনেন। তারপর ধীরে ধীরে বলতে থাকেন: ‘এ যে এক অসাধ্যসাধন! দু'টি জিনিস লক্ষ করে আমি আশার আলো দেখতে পাচ্ছি। প্রথমত, মৃত বন্ধুকে জীবনদানের জন্যে কেউ এত পরিশ্রম যে করতে পারে; দ্বিতীয়ত, অন্ধও যে আলোর নিশানা দিতে পারে—এই বোধশক্তি অন্তত তোমার আছে। ঠিকই তো, নইলে আমার কাছেই—বা আসবে কেন? দেখছি না, আমার ডান চোখটা বহুকাল যাবৎ অকেজো হয়ে আছে, আর বাঁ দিকেরটাও ক্রমে— ক্রমে তার আলো হারাচ্ছে।’</p>
+<p>গিলগামেশের হৃদয়-মন পূর্ণ হয়ে যায় বৃদ্ধের কথা শুনে। আশ্বাস, যুক্তি, সান্ত্বনা ও দয়া স্পর্শ করে থাকে তাঁর কথাগুলো। তিনি গিলগামেশকে উদ্দেশ করে পুনরায় বলতে থাকেন: ‘একা, সবাই একা, বুঝলে গিলগামেশ। যিনি এই বিশ্বব্ৰহ্মাণ্ড তৈরি করেছেন তিনিও বড়ো নিঃসঙ্গ, তার কোনো দোসর নেই। অমরতা মানে তো নিঃসঙ্গতা, গিলগামেশ। সে একাকিত্ব যে কী ভয়ানক, তুমি বুঝবে না। ’</p>
+<p>গিলগামেশ অনুনয় করেন: ‘তা হোক, তবু আমি বন্ধুর জীবন ফিরে পেতে চাই আপনি আমাকে তার উপায় বলুন। আপনি নিজেই তো মানুষ, এনকিদুর মতোই। কিন্তু আপনি তো মৃত্যুর হাত এড়াতে পেরেছেন। তা হলে? আপনি কী করে পারলেন সেকথাই নাহয় বলুন। আমি সেই উপায়েই বন্ধুর জীবন আদায় করে নেব।’</p>
+<p>গভীর হয়ে যান উৎনা পিশতিম, দীর্ঘশ্বাস ফেলেন। কিছুক্ষণ চুপ করে থেকে জবাব দেন: ‘তুমি যা চাইছ আমি নিজে তো কখনো তা চাই নি, গিলগামেশ। আমার ইচ্ছা বা সাধনার ফলে এটা ঘটে নি, এ ঘটেছে অন্যের ইচ্ছার ফলে।’</p>
+<p>নদীর তীরে হাঁটতে হাঁটতে কথা বলছিলেন তারা। উৎনা পিশতিম ধীরে ধীরে বলেন; ‘সে এক বিরাট কাহিনী। শোনই তা হলে।</p>
+<p>চোখে তাঁর বহু দূর অতীতের স্মৃতি জমা হয়।</p>
+
+<p>ইউফ্রিতিস নদের ধারে একটা শহর ছিল। তার নাম শুর্‌রুপাক। সে বহুকাল আগের কথা, সুপ্রাচীন অতীতের ঘটনা। অনেক দেব-দেবী বসবাস করতেন সেই শহরে। তারাই পৃথিবী চালাচ্ছেন, তাদেরই হুকুমে মানুষ চলছে—যদিও সত্যি সত্যি কেউ তা জানছে না। হঠাৎ কী কারণে যেন তাদের মনে হল যে, এক নিদারুণ বন্যা, সমস্ত পৃথিবী ডুবে যায় এরকম এক ভয়াবহ বন্যা, সৃষ্টি করলে কেমন হয়? দেবরাজ আনু ছিলেন সেখানে, তার পরামর্শদাতা যুদ্ধের দেবতা এনলিল আছেন, দেবী ইশতারও হাজির, তা ছাড়া অন্যান্য দেব-দেবী তো আছেনই। পরিকল্পনা হয় সকলের মিলিত সম্মতিতেই। দেবতা এয়া ব্যাপারটা জানতেন, কেননা তিনিও তো হাজির ছিলেন সভায়।</p>
+<p>একদিন আমি ঘরে বসে আছি। হঠাৎ হু-হু বাতাস বইতে শুরু করল, শো-শো গর্জন করে ঝড় উঠল। ঐ ঝড়ের মধ্যে দেবতা এয়া আমার বাড়িতে এলেন। তিনি আমাকে ভালোবসতেন, তাই সাবধান করে দিতে এসেছিলেন। দেব-দেবীর পৃথিবীধ্বংসী পরিকল্পনার কথা খোলাখুলিভাবে আমাকে তিনি জানালেন, তারপর জলদমন্দ্র কণ্ঠে, হাওয়ার স্বরে বললেন: ‘ওহে শুর্‌রুপাকের বীর জওয়ান, বলি শোন। তোমার এই বাড়িঘরের মিথ্যে মায়া করে লাভ নেই। ভেঙে ফেল, কেননা ওদের তুমি হাজার চাইলেও রাখতে পারবে না। সব কিছুরই মায়ামমতা ছেড়ে দিয়ে এখন একটা নৌকো তৈরি করতে শুরু করা। ছোটখাটো নয়, বিশাল নৌকো। কেননা, ঐ নৌকোর ওপরেই তোমার সমুদয় প্রিয় জিনিস—যেগুলো ভেসে যাক, ডুবে হারিয়ে যাক তুমি চাও না, সেগুলো তুমি তুলে নেবে। তাই অত্যন্ত মজবুত করেই নৌকোটা বানাতে হবে তোমাকে।’</p>
+<p>আমি তো সব শুনে প্রচণ্ড ভয় পেয়ে গেছি। বন্যার আকারে এ কোন অলক্ষুণে মহামারী নেমে আসছে আমাদের ওপরে? সতর্কবাণী ও উপদেশ বিতরণ করে দেবতা চলে যাবেন, এমন সময় আমি বলে উঠলাম: ‘হে দেব, আপনি যা—যা বললেন আমি সবই করব। কিন্তু একটা কথা আমাকে বলে যান। যখন লোকজন, মাতব্বর— মোড়লেরা আমাকে জিজ্ঞেস করবে। যে ব্যাপারটা কী, তখন আমি কী জবাব দেব?’</p>
+<p>দেবতা এয়া আমায় শিখিয়ে দিলেন: ‘তুমি বলবে যে, যুদ্ধদেব এনলিল তোমাকে ঘৃণা করেন এবং তাই শহর থেকে বহিষ্কার করে দিয়েছেন, তুমি শহরে কখনো আর ঢুকতে পারবে না। সেই সঙ্গে এ-কথাও বলে যে, দেবতা এয়া অবশ্য এর জন্যে প্রচণ্ড বৃষ্টিপাত ঘটাবেন।’</p>
+<p>দেব-দেবীদের চিন্তা-ভাবনার ধরন তো এই! ধ্বংসের কথা নিয়েও বেশি মাথা ঘামানোর প্রয়োজন পড়ে না, এমনই যুক্তিহীন পাষাণহৃদয় তারা। যাই হোক, ভয় এবং উৎকণ্ঠাতেই তখন আমি প্রায় আধমরা হয়ে গেছি। দেবতার নির্দেশমতো নৌকো তৈরি করতে শুরু করে দিলাম।</p>
+<p>হ্যাঁ, বিশাল নৌকোই বানালাম বটে! লম্বাচওড়ায় আয়তনে সব দিক দিয়েই যথার্থ অর্থে বিশাল। সাতটা তলা, প্রত্যেক তলায় ন’টা করে ঘর। আকার হল চৌকোণা জাহাজের মতো। যেমন মজবুত, তেমনি সুন্দর। আমি দুর্দিনের সঞ্চয় খাদ্য ও পানীয় মজুত করতে লাগলাম সেখানে। দামি মণিমুক্ত সযত্নে তুলে রাখলাম। তারপর গৃহপালিত পশু-পাখি জীবজন্তু তুললাম নৌকোর ওপরে। আমার পরিবার-পরিজন সকলেই উঠে এল নৌকোয়। তা ছাড়া ঘনিষ্ঠ আরো যারা আসতে চায়, থাকতে চায় আমার সঙ্গে, তাদেরও তুলে নিলাম আমি। শহরের কিছু কারিগর এল, এমনকি একজন মাঝিও এসে জুটল। এভাবেই আমার নৌকো ভরে উঠল। একসময় দেবতা এয়া বললেন—‘নৌকোয় ওঠার দরজা বন্ধ করে দাও।’ তাই দিলাম। তারপর তো শুরু হল বৃষ্টি। বৃষ্টির সঙ্গে পাল্লা দিয়ে হাওয়ার বেগ বাড়তে লাগল। সে যে কী বৃষ্টি, সে যে কী ঝড় ও বজ্ৰপাত ! যে না দেখেছে তাকে বুঝিয়ে বলা শক্ত। একনাগাড়ে, মুহুর্তের জন্যও বিরতি না দিয়ে ঝড়বৃষ্টি চলল ছ’দিন আর সাত রাত ধরে। সমস্ত পৃথিবী ডুবে গেল বন্যার মহাপ্লাবনে। ঝড়ের ধাক্কায় বিশালাকার সব মহীরুহ পর্যন্ত শিকড় উপড়ে ছিন্নবিছিন্ন হয়ে পড়ে রইল। কোনো প্রাণই রক্ষা পেল না,—না মানুষ, না অন্য জীবজন্তু! ঝড়ে উড়ে গিয়ে, জলে ডুবে গিয়ে কোনো কিছুরই চিহ্ন রইল না। শুধু ভয়ানক ক্রুদ্ধ বদরাগী আকাশের তলে মহাপ্লাবনের কুলহীন অসীম জলরাশি খেলা করতে লাগল। নিজেদের অশুভ কীর্তি দেখে দেবকুল পর্যন্ত ভয় পেয়ে গেলেন, ধ্বংস যে এত সর্বব্যাপী ও ভয়াবহ হতে পারে তারা কল্পনাও করেন নি। অথচ তখন তো আর কিছু করারও উপায় নেই। তারা ভাবতে লাগলেন, হায়, হায়, এ কী সর্বনাশ। কাজ আমরা করলাম! পৃথিবীর পালয়িত্রী দেবী ইশতার দুঃখে শোকে যন্ত্রণায় কাঁদতে লাগলেন: ‘এ আমি কী করলাম! যাদের রক্ষা করার দায়িত্বভার আমার কাঁধে, তাদের আমি ধ্বংস করে বসলাম রক্ষক না হয়ে?’ দেব-দেবীরা যখন কন্নাকাটি করেন তখন তারা দেখতে আরো ভয়ানক হয়ে যান।</p>
+<p>যাই হোক, সাত দিনের দিন ঝড়-বৃষ্টি থামল। অসহনীয় নিস্তব্ধতা আমার চারিদিকে। ক্রুদ্ধ নির্বিবেক প্রকৃতি এখন শান্ত, চরাচরে কোনো শব্দ নেই। সে এক ভয়াবহ নৈঃশব্দ্য! আমার নৌকোর ওপরে ছাড়া প্ৰাণের কোনো স্পন্দন কোথাও নেই, স—ব মৃত। আমি নৌকোর পাটাতনের ওপর আছড়ে পড়ে কাঁদতে লাগলাম। দেবতাদের নিষ্ঠুরতার ভয় পেয়ে, নিজের একাকিত্বে ভয় পেয়ে, আমার স্বজন মনুষ্য— সমাজের অবলুপ্তিতে ভয় পেয়ে বুক—ফাটা কান্না কাঁদতে লাগলাম আমি। কান্না ছাড়া কীই—বা আমার করার ছিল?</p>
+<p>সাত দিনের দিন আমার নৌকো ভাসতে— ভাসতে একটা পাহাড়ের গায়ে এসে ঠেকে গেল। চারদিকে জল ছাড়া তো কিছু নেই। রুক্ষ কঠিন পাহাড়ে তো নামা যাবে না, আমাদের দরকার মাটি, আমাদের দরকার ডাঙা। কী করা যায়? ভেবেচিন্তে আমি একটা কবুতর ছেড়ে দিলাম, উদ্দেশ্য- —ডাঙা পেলে সে তো আর ফিরে আসবে না এবং আমি তা হলে বুঝতে পারব যে কাছাকাছি কোনোখানে নিশ্চয়ই ডাঙা রয়েছে। কিন্তু কবুতরটা ফিরে এল। এর পরে একটা চাতকপাখি উড়িয়ে দিলাম, কিন্তু সেটাও ফিরে এল। শেষকালে একটা দাঁড়কাক পাঠালাম, এটা কিন্তু আর ফিরে এল না। দেব-দেবীদের উদ্দেশে তখন আমরা মানত— করা পশু বলি দিলাম।</p>
+<p>ডাঙা খুঁজে পাবার পর নৌকোর সমস্ত লোকজন নেমে গেল। তাদের সঙ্গে জীবজন্তু পশুপাখিও নামল। সকলের নতুন বসত হবে ফের। নামা হল না। শুধু আমার এবং আমার স্ত্রীর। আমি নামি নি, কেননা ভেবেছিলোম-পরে নামব, মৃত্যুর রূপ দেখে আর কষ্ট পেতে চাই না। আসলে ঘটল অন্য রকম। নৌকো ছেড়ে নামি নি, নৌকোর ওপরেই আছি, হঠাৎ শো-শো হাওয়ার ভয় পাওয়ানো নিশেন উড়িয়ে পবনদেব এনলিল এসে হাজির ৷ এসে বললেন: ‘উৎনা পিশতিম, এয়া দেব আমাকে তোমার কাছে এ-কথা বলার জন্য পাঠিয়েছেন যে তুমি তার সবিশেষ স্নেহের পাত্র। তুমি এবং তোমার স্ত্রীর এখানে নামা চলবে না। আবার তোমরা দুজনে জলে ভাসবে, ভাসতে— ভাসতে দিগন্ত পার হয়ে অবশেষে অন্য এক দ্বীপে গিয়ে পৌছুবে, পৃথিবীর শেষ প্রান্তে, এক সাগরের মোহনায়। সেখানেই তোমরা স্বামী-স্ত্রী বসবাস করবে। এয়া আরো বলেছেন যে, এখন থেকে তোমরা দু'জন আর মরদেহী মানুষ নও, তোমরা দেবতাদের মতোই অমরত্ব লাভ করেছ।’</p>
+<p>বুঝলে গিলগামেশা, এই আমার অমরত্ব লাভের ইতিহাস। আমি একা, নিঃসঙ্গ। আমি কি পেরেছি আমার চোখের সামনে যারা জীবন ছেড়ে চলে গিয়েছিল তাদের পুনরায জীবনের কাছে ফিরিয়ে আনতে? পারি নি।</p>
+<p>উৎনা পিশতিমা থামলেন। শেষ হল তার কাহিনী, গিলগামেশেরও কিছু বলার নেই। তিনি তার উত্তর পেয়ে গেছেন। তিনি যা ভেবেছিলেন তা ভুল; উৎনা পিশতিমের কাছে কোনো গোপন রহস্যের চাবিকাঠি লুকানো নেই। উৎনা পিশতিম অমর হয়েছেন কোনো বিশেষ গুণ বা ক্ষমতা অর্জন করে নয়, এ ব্যাপারে তার কোনো কৃতিত্ব নেই; এ শুধুই দেবতাদের কৃপা মাত্র।</p>
+<p>গিলগামেশের মনে হল—তিনি কী নির্বোধ! সূৰ্যদেব শামাশ তাঁকে সাবধান করেছিলেণ, বৃশ্চিকমানবেরা তাঁকে প্রতিহত করতে চেষ্টা করেছিল, এমনকি সিদুরিও মানা করেছিল তাঁকে। তারা প্ৰত্যেকে সত্য কথাই বলেছিল, অথচ তিনি শোনেন নি। তীরে এসে ভরাডুবি হল তার, পথের শেষে এসে যেন ঠিকানা হারিয়ে ফেললেন। হতাশ, ব্যথিত, ক্লান্ত গিলগামেশ পাথেরর মূর্তির মতো স্তব্ধ হয়ে বসে রইলেন উৎনা পিশতিমের সামনে।</p>
+
+<h1> পরাজিত গিলগামেশ</h1>
+
+<p>উৎনা পিশতিমা সবই বুঝতে পারেন, তবু তাঁর কিছু করার নেই। সান্ত্বনাই-বা কী দেবেন? কিছু না বলে কেবল কাঁধে হাত রাখেন গিলগামেশের। স্পর্শেই বুঝিয়ে দিতে চান নিজের সহানুভূতি ও অসহায়ত্ব। নীরবে হাঁটতে থাকেন, কারো মুখে কোনো কথা নেই;</p>
+<p>গিলগামেশকে বাড়িতে নিয়ে আসেন তিনি। দরজা ধরে স্বামীর প্রতীক্ষায় দাঁড়িয়ে ছিলেন তাঁর স্ত্রী। ঘরে ঢুকে গিলগামেশকে তিনি বলেন: ‘তোমার শরীরে বড়ো ধকল গেছে, ভাই। এবার তোমার বিশ্রাম দরকার, গিলগামেশ, একটানা নিখাদ লম্বা একটা ঘুম দরকার তোমার। তুমি একটু ঘুমোও, কেমন?’</p>
+<p>আশ্চর্য! তাঁর কথা শেষ হতে না হতেই গিলগামেশ গভীর ঘুমে তলিয়ে গেলেন। উৎনা পিশতিম কিছুক্ষণ তাকিয়ে রইলেন তাঁর দিকে। ঠোঁটে ব্যঙ্গ ও বিরক্তির চাপা হাসি খেলে গেল। স্ত্রীকে ডেকে বলতে লাগলেন: ‘দেখ, এই মানুষটার দিকে তাকিয়ে দেখ, বৌ। সোমত্ত জওয়ান। আশ্চর্য কী জান—ও অমরতা খুঁজে বেড়াচ্ছে, অথচ দেখ, সামান্য ঘুমটা পর্যন্ত কী জরুরি ওর জন্যে! অমরতা কি এতই সোজা? ও ছ’ দিন সাত রাত নিঃসাড়ে ঘুমুবে। আমি বলছি, দেখে নিও। অথচ জেগে উঠে ও তা বিশ্বাস করবে না। মানুষের এমনই মিথ্যে অহমিকা! যাক গে, সে—জন্যে তো একটা প্রমাণ রাখতে হয়। তুমি এক কাজ কর বৌ, প্রত্যেক দিন একটা করে রুটি সেঁকে ওর বিছানার পাশে রেখে দিও; তা হলেই ঘুম ভেঙে জেগে উঠে ও বুঝতে পারবে যে আমরা মিথ্যে বলি নি।’</p>
+
+<p>বৃদ্ধ যা বলেছিলেন ঠিক তাই ঘটল।</p>
+<p>গিলগামেশ ঘুম ভেঙে উঠেই সলজ্জ কণ্ঠে বললেন: ‘কী কাণ্ড দেখুন তো! একটু তন্দ্ৰ মতো এসেছিল৷’</p>
+<p>‘একটু নয়, অনেকখানি, উত্তর দেন উৎনা পিশতিম।</p>
+<p>‘কী যে বলেন! একটুখানি চোখ লেগে এসেছিল আর অমনি আপনি ঝাঁকুনি দিয়ে আমাকে জাগিয়ে দিলেন।’ সরল উত্তর গিলগামেশের।</p>
+<p>‘তাই নাকি?’ মলিন হাসি হাসেন বৃদ্ধ। আঙুল দিয়ে দেখিয়ে দেন বিছানার পাশে রাখা রুটিগুলো! বুঝিয়ে বলেন যে, আসলে এক নাগাড়ে সাত দিন ধরে ঘুমিয়েছেন গিলগামেশ। এবং গিলগামেশেরও তা বিশ্বাস না করে উপায় থাকে না।</p>
+<p>উৎনা পিশতিম বলেন: ‘যাক গে, এবার উঠে হাত-মুখ ধোও। তোমাকে তো আবার ঘরে ফেরার তোড়জোড় করতে হবে।</p>
+<p>হতাশায় চোখে প্রায় জল আসে গিলগামেশের। মিনতিভরা কণ্ঠে বলে ওঠেন: ‘তা হলে এমনি খালি হাতেই কি আমি ফিরে যাব? মৃত্যুর তাড়া খেয়ে কি এমনিভাবেই ঘুরে বেড়াব আমি?’</p>
+<p>উত্তর দেন না উৎনা পিশতিম। বিরক্ত হন। উত্ত্যক্ত কণ্ঠে ডাক দেন উর্শানাবি মাঝিকে। তাকে বকাঝকা করেন: ‘কে তোমাকে রাস্তা বাতলে দিতে বলেছিল, শুনি? যাও, একে ওপারে পৌছে দেবার ব্যবস্থা কর। আর ওর বন্ধুর যেসব স্মৃতি ওর কাছে আছে ওপারে নেমে সব পুড়িয়ে ফেলবার ব্যবস্থা কর; এমন কোনো কিছু যেন ওর কাছে না থাকে যাতে বন্ধুবিয়োগের শোক বারবার মনে পড়ে যায়। ওর এখন নিজের দেশে ফেরা খুবই প্রয়োজন, সারা রাজ্যের লোক ওর পথ চেয়ে বসে আছে ৷’</p>
+<p>তবু নাছোড়বান্দার ন্যায় শেষ চেষ্টা করেন গিলগামেশ। বেহায়ার মতো পুনর্বার বৃদ্ধকে বলে ওঠেন: ‘আর তো কিছু না, আমি তো কেবলমাত্র একটি বিশেষ জ্ঞান চেয়েছিলাম আপনার কাছে ৷’</p>
+<p>‘ফালতু প্রশংসা করে আমার দুঃখ আর বাড়িয়ে না, বাপু! তোমাকে বাঁচাবার মতো কোনো বিদ্যে আমার জানা নেই।’ কড়া উত্তর উৎনা পিশতিমের।</p>
+
+<p>উর্শানাবি বকুনি খেয়ে মাথা নিচু করে তাঁর নৌকো নিয়ে আসেন। গিলগামেশের মুখেও কোনো কথা নেই। আর বৃদ্ধ উৎনা পিশতিম, যেন গভীর চিন্তামগ্ন, মাটির দিকে তাকিয়ে পায়চারি করতে থাকেন।</p>
+<p>গিলগামেশ ধীরে ধীরে এগিয়ে যান নৌকোর দিকে। নৌকোয় পা রাখবেন এমন সময় উৎনা পিশতিমের স্ত্রী হঠাৎ স্বামীকে উদ্দেশ করে ভৎসনা করে ওঠেন: ‘এটা কেমন কাজ হল তোমার? একটা মানুষ অসাধ্যসাধন করে এত দূর এল আর তাকে তুমি বকেঝকে একেবারে খালি হাতে ফিরিয়ে দিচ্ছ? একটা কি একটা বিবেচনা হল?’</p>
+<p>এতক্ষণ সযত্নে বহু কষ্টে, বহু বিবেচনায় ও ধৈর্যে যে— গুপ্ত রহস্য গোপন রেখে দিতে সক্ষম হয়েছিলেন স্ত্রীর তিরস্কারে আর তা সম্ভব হল না। অসহায় বোধ করেন উৎনা পিশতিম। এক ধরনের মায়াও অনুভব করেন গিলগামেশের জন্যে।</p>
+<p>কিছুক্ষণ চুপ করে থাকেন, তারপর হাল ছেড়ে দিয়ে মরিয়া হয়ে বলে ওঠেন: ‘ঠিক আছে। জীবনে যা কাউকে বলি নি, তা-ই তোমাকে বলছি শোন। এই মৃত্যুসায়রের তলায় একটা লতা আছে—জীয়নলতা। তার গায়ে কাঁটাও আছে যেমন থাকে গোলাপের। অসাবধান হলে কাঁটা বিধে যায় হাতে, কিন্তু ঐ লতাই হচ্ছে নতুন জীবনের চাবিকাঠি। যদি কোনো লোক এই লতা পেয়ে যায়, তবে এর স্বাদ জিভে নেওয়া মাত্র সে নবজীবন পেয়ে যাবে, নবযৌবন লাভ করবে।’</p>
+<p>আর কিছু শোনার প্রয়োজন নেই গিলগামেশের। যা জানবার ছিল তা তিনি জেনে নিয়েছেন। এখন বাকি শুধু অরূপরতনের আশায় মৃত্যুসায়রে ডুব দেওয়া। তিনি কিছু ভারি পাথর বেঁধে নিলেন পায়ে, তারপর ঝাঁপ দিলেন নদীতে। জলের তলায় সত্যিই দেখলেন, গোলাপি বর্ণের একটি লতা পড়ে আছে, জল ভেদ করে সূর্যরশ্মি সেখানে গিয়ে তার শরীরে নানান বর্ণের ঝিকমিক তুলছে। লতাটি অপরূপ সুন্দর দেখতে। গিলগামেশ সঙ্গে সঙ্গে বুঝতে পারলেন যে ঐটিই তাঁর জীবনলতা। তিনি আবেগে আনন্দে উত্তেজনায় লতাটি যেই ধরেছেন আমনি তাঁর আঙুলে কাটা ফুটে গেল। রক্তের ফোটা জমে উঠল আঙুলে, মৃত্যুসায়রের জলে শোণিতবিন্দু মিশে গেল। পায়ে পাথরের ভার ছিঁড়ে ফেলে গিলগামেশ জলেল ওপরে ভেসে উঠে সাঁতরে চললেন ওপারের দিকে।</p>
+<p>উর্শানাবিকে লতাটি দেখাতে— দেখাতে চেঁচিয়ে উঠেছিলেন আনন্দে; ‘হ্যাঁ হ্যাঁ, এই তো সেই জীয়নলতা। যে এর স্বাদ পাবে সঙ্গে সঙ্গে সে নতুন যৌবন লাভ করবে। এই লতা নিয়ে আমি উরুক শহরে ফিরে যাব, সকলকে চাখতে দেব এর স্বাদ। আঃ কী আনন্দ! এত দিনে আমার পরিশ্রমের পুরস্কার পেলাম।’</p>
+<p>আর কী কাজ? যা তিনি চেয়েছিলেন তাই এখন তার হাতের মুঠোয়। মৃত্যুর কথা ভুলে গেলেন গিলগামেশ, নৈঃসঙ্গ্যের আশঙ্কাও আর মনে পড়ল না। এখন শুধু ঘরমুখো দৌড়, যত দ্রুত পারা যায়। উরুক গিয়ে পৌঁছনো।</p>
+<p>জোর পা চালালেন তিনি। পিছনে পড়ে রইল বৃদ্ধ উৎনা পিশতিম ও তাঁর বৃদ্ধা পত্নী, মৃত্যুসায়র ও তার কর্ণধার। এখন তার দৃষ্টি শুধুই সম্মুখে। উরুকের পথে হাঁটছেন আনন্দিতচিত্ত গিলগামেশ। যেতে— যেতে শরীরে ক্লান্তি এল, মন চাইল বিশ্রাম নিতে। তখন সূর্য ডুবছে, পশ্চিম আকাশ সিঁদুরের রক্তিমাভায় রঞ্জিত। ভাবলেন, ঐ তো সামনে একটা দিঘি, স্নান করে নিয়ে রাতটা এখানে বিশ্রাম করি। স্নান করলে ক্লান্তি দূর হবে, পরবর্তী দিনে পথ চলতেও সুবিধে হবে, কষ্ট হবে না—এসব যুক্তিও মনে এল।</p>
+<p>দিঘির পাড়ে জামাকাপড় খুলে রাখলেন গিলগামেশ, জীবনলতাটি রাখলেন সযত্নে মাটিতে, কাপড়-চোপড়েরই পাশে। তারপর নিস্তব্ধ অপরূপ সন্ধ্যায় শীতল জলে অবগাহনের জন্য তিনি সরোবরে নামলেন। শরীর-মন জুড়িয়ে গেল জলের স্নিগ্ধ স্পর্শে। এত শ্রম ও ক্লান্তির শেষে যেন কার বেদনাহর অমৃতপরশ।</p>
+<p>ওদিকে কিন্তু এক মহাবিপর্যয়ের আয়ােজন ততক্ষণে প্রায় সম্পূর্ণ হয়ে এসেছে। জীবনলতার অপূর্ব সুরভিত কাঁপন চারপাশের বৃক্ষলতা—প্রাণী সকলের মধ্যে সাড়া জাগিয়ে তুলেছিল। অল্প দূরেই ছিল একটি সাপ। কিসের সুরভি, কোত্থেকে আসছে?—খোঁজ করতে—করতে সে এসে হাজির দিঘির পাড়ে। তারপর জীবনলতার সন্ধান পেতে তার সময় লাগে না। সাপটি ধীরে ধীরে এগিয়ে যায়, লতাটি গিলে ফেলে, এবং তার পরে স্বভাবসিদ্ধ মন্থরতায় চলে যায় যেখান থেকে এসেছিল সেখানে।</p>
+<p>স্নান শেষ হয় গিলগামেশের। সরোবর ছেড়ে পারে ওঠেন। মনের আনন্দ আজি বাঁধে মানে না। তাড়াহুড়োর প্রয়োজন এত দিনে ফুরিয়েছে। ধীরেসুস্থিরে কাপড়াচোপড় পরে নেন। তারপর হাত বাড়ান জীয়নলতার দিকে।</p>
+<p>সে কি? জীয়নলতা কই? মাথায় আকাশ ভেঙে পড়ে তার। হঠাৎ চোখে পড়ে পাশেই একটা নতুন জিনিস যেটা আগে ছিল না সেখানে। দেখেন, সাপের একটা মরা খোলস। বুঝতে অসুবিধে হয় না কিছুই! জীয়নলতার আস্বাদনে নতুন যৌবন নিয়ে সাপটি কখন এসে চলে গেছে, ফেলে রেখে গেছে মৃত বার্ধক্যের স্মৃতি, পুরোনো জীবন—তার খোলস।</p>
+
+<p>মাটিতে বসে পড়েন গিলগামেশ। এ কী সৰ্বনাশ হল তার! ব্যর্থ, রিক্ত, প্ররিশ্রান্ত, নিষ্ঠুর নিয়তির দ্বারা প্রতারিত গিলগামেশ আকুল নয়নে কাঁদতে থাকেন। সর্বস্বান্ত হওয়ার শোক, সৰ্বস্ব লুন্ঠিত হওয়ার বেদনা তার দেহমান ভেঙে দিতে থাকে।</p>
+<h1>উপসংহার</h1>
+
+<p>ব্যৰ্থ, পরাজিত গিলগামেশ। তার সমস্ত সাধনা ও পরিশ্রম নিয়তির বিধানে ব্যর্থ হল। বিশ্ববিধানের কাছে তিনি পরাজিত হলেন। ভাগ্যের কী নির্মম পরিহাস! জয়নলতা এসেছিল হাতে মুঠোয় অথচ হাত ফসকে পালিয়ে গেল। দোষ কাকে দেবেন? কারো দোষ নেই। হয়তো একেই বলে ললাটলিখন, কিংবা বিধিলিপি।</p>
+<p>পরাজয়ের বেদনা বুকে নিয়ে ভগ্নহৃদয়ে পথ হাঁটেন গিলগামেশা। ফিরে চলেন নিজের রাজ্যে, উরুক শহরে। এখন তার মনে সংশয় দোল খায়—তাঁর দুঃখ তো লোকে বুঝবে না, তার ব্যর্থতাকে লোকে উপহাস করবে হয়তো।</p>
+<p>নগর প্রবেশের পথে তোরণদ্বারে দেখা হল এক অন্ধ ব্যক্তির সঙ্গে ৷ তাকে জিজ্ঞাসা করলেন: আচ্ছা ভাই, তুমি কি এনকিদুর নাম কখনো শুনেছ?’</p>
+<p>‘এনকিদু? সে কে?’ মাথা নাড়ে অন্ধ পুরুষ। বুক ঠেলে কান্না উঠে আসতে চায় গিলগামেশের। হায় রে, তার কথা কারো কি মনে নেই? শুধু মনে রেখেছেন তিনিই?</p>
+<p>‘কেন? জান ন! এনকিদু কে ছিলেন?’ গিলগামেশ ইতিহাসের সুতো ধরিয়ে দিতে চান অন্ধ লোকটির হাতে।</p>
+<p>কিন্তু কোনোই ভাবান্তর হয় না তার। সে বলে: ‘হবেও-বা। মরে গেলেই তো হারিয়ে গেল। যা হারিয়ে যায়। তাকে আগলে কতক্ষণই — বা বসে থাকি বলো? আর বসে থেকে লাভ ও তো নেই।’</p>
+<p>কী বলবেন গিলগামেশঃ নিজের দুঃখ অপরের ওপরে জোর করে চাপানো যায় না। তাঁর শোক যে শুধু তাঁরই। অন্য লোক উঝবে কে তার মর্ম? মহান ও নিষ্ঠুর এক সত্যের মুখোমুখি এসে দাঁড়ান গিলগামেশ। এত দিনে মনে হয় যে এ—ই স্বাভাবিক—শোক সত্য, দুঃখ সত্য, মৃত্যু সত্য এবং সত্য ভুলে যাওযা, সব মানুষই হারিয়ে যায়, সবাইকেই ভুলে যায় মানুষ।</p>
+
+<p>উরুক শহরে প্রবেশ করেন রাজা গিলগামেশ; এত দিন পরে হঠাৎ করে কেউ তাকে চিনতে পারে না। তিনি দেখেন—অনেক কিছু পালটে গেছে এত দিনে, তাঁর শহরটি আরো সুন্দর হয়েছে, বড় হয়েছে।</p>
+<p>নতুন আলোয় ঢেকে যায় গিলগামেশের চোখ। নতুন স্বপ্ন জেগে ওঠে। বুকে, নতুন আশা। —তিনি ভুলে যান তার সমস্ত অতীত, তার শোক ও ব্যর্থতা, স-ব। এ—ই নিয়ম। এমনি করেই মানুষ বেঁচে থাকে।</p>
+
+<h1> শেষ কথা</h1>
+
+<p>সব মানুষকেই কি মানুষ ভুলে যায়? না, যায় না। শিল্পী বেঁচে থাকেন, কবি বেঁচে থাকেন, বিজ্ঞানী বেঁচে থাকেন। মানুষের চিন্তায়, মানুষের স্বপ্নে। যেমন বেঁচে আছেন এ কাহিনীর নাম-না—জানা লেখক, এবং তার সঙ্গে সঙ্গে গিলগামেশা ও তাঁর বন্ধু এনকিদু! বেঁচে আছে মানুষের জন্য মানুষের ভালবাসা।</p>
+<p>থাকে না, কিছুই থাকে না, তবু হয়তো থেকে যায় ভালবাসা। মানুষ তো অমর নয়, যেমন নয় এনকিদু! কিন্তু তার জন্যে গিলগামেশের ভালবাসা,– সে তো অমর। আমরাও মরে যাই, তার পরেও ভালোবাসার জ্যোৎস্না জেগে থাকে আমাদের প্রিয়জনদের বুকে, আমরা চলে গেলেও।</p>
+<h1>স্থান ও পাত্র-পাত্রীর পরিচয়</h1>
+
+<p>আনু:দেবরাজ। স্বর্গের সর্বোত্তম ও সর্বাপেক্ষা প্রবীণ। এঁরই কন্যা দেবী ইশতার।</p>
+<p>আরুরু: দেবমাতা। মাটি থেকে মানুষকে তিনিই তৈরী করেছেন।</p>
+<p>ইশতার: আনুর কন্যা। যৌবনের বা প্রেমের এবং যুদ্ধবিগ্রহের দেবী। সেইসঙ্গে উরুক শহরের নগরলক্ষ্মী দেবী। অন্নপূর্ণা দেবীও, কেননা পৃথিবীকে লালনপালন করবার ভার এঁরাই ওপরে।</p>
+<p>উৎনা পিশতিম: শুর্‌রুপাক নগরের রাজা ও জ্ঞানী পুরুষ। তাঁর নামের অর্থ— জীবনকে যিনি দেখেছেন। দেবতা এয়া-র কৃপায় মহাপ্লাবনে একমাত্র ইনিই এবং এঁর দাক্ষিণ্যপুষ্ট লোকেরাই রক্ষা পেয়েছিলেন।</p>
+<p>উর্শানাবি: উৎনা পিশমিতের নৌকোর মাঝি। পাতালের নদী মৃত্যুসায়রে সে নৌকো চালায়।</p>
+<p>এনকিদু: গিলগামেশের বন্ধু। দেবরাজ আনুর নির্দেশে দেবমাতা আরুরু এঁকে তৈরী করেন। জীবজন্তুদের পৃষ্ঠপোষক।</p>
+<p>এনলির: পবনেদেব। সেই সঙ্গে স্থলভূমিরও দেবতা।</p>
+<p>এয়া: জ্ঞানের দেবতা। মানবসমাজের শুভার্থী ও বন্ধুম সমস্ত রকমের শিল্পকলার পৃষ্ঠপোষক।</p>
+<p>গিলগামেশ: উরুকের শাসক রাজবংশের পঞ্চম রাজা। মহাপ্লাবনের পরে ইনিরাজ্যশাসন করেছিলেন। উরুকের জনৈক ধর্মযাজক লুগালবান্দা এঁর পিতা এবং দেবী নিনসান এর জননী। এর দুই-তৃতীয়াংশ দেবতা ও এক-তৃতীয়াংশ মানুষ হওয়ায় ইনি অমর।</p>
+<p>নিনসান: গিলগামেশের জননী। ইনিও ছােটখাটো একজন দেবী, জ্ঞানবুদ্ধির জন্য স্বনামধন্যা। ‘নিনসান’ নামটি সুমেরীয়।</p>
+<p>বৃশ্চিকমানব: মাশু পর্বতের গাত্রদ্বারে প্রহরী।</p>
+<p>মাশু: দুই গিরিশৃঙ্গবিশিষ্ট একটি পর্বত।: </p>
+<p>লুগালবান্দা: গিলগামেশের পিতা। এই নামটি সুমেরীয়। </p>
+<p>শামাশ: সূর্যদেব। মুসাফিরদের পৃষ্ঠপোষক।</p>
+<p>শুর্‌রুপাক: মহাপ্লাবনের পূর্বে মেসোপটেমিয়া অঞ্চলে যে—পাঁচটি বিখ্যাত নগর ছিল, তাদের একটি। উৎনা পিশতিম এর রাজা ছিলেন। বর্তমানে এই স্থানের নাম তেল ফারা (Tell Fara)—ইউফ্রেতিস-তীরবর্তী দিওয়ানিয়াহ্‌ শহরের চল্লিশ মাইল দক্ষিণ-পূর্বে অবস্থিত।</p>
+<p>সিদুরি: পাতালের সরাইখানার পরিচারিকা।</p>
+<p>সিন্‌: চন্দ্ৰদেব। </p>
+<p>স্বর্গবৃষ: দেবী ইশতারের অনুরোধে দেবরাজ আনু এই ষাঁড়টি গিলগামেশকে শাস্তিদানের নিমিত্ত তৈরি করেন।</p>
+<p>হুম্বাবা: বনদৈত্য, অরণ্যের রক্ষক।</p>
+<p>মানুষ অমর নয়, সে জানে। তারপরও সে মরতে চায় না, অমর হতে চায়। হয়তো ভাবে—আমি অমৃতের সন্তান, অমর হব না কেন। তাই জীবন ও মৃত্যুর রহস্য সে খুঁজে ফেরে। আজকের আধুনিক যুগেই শুধু নয়, হাজার হাজার বছর পূর্বে সভ্যতার উষালগ্নেও।</p>
+<p>‘গিলগামেশ’-এর কাহিনী বিশ্বের প্রাচীনতম উপাখ্যান। এখন পর্যন্ত জানা প্রথম গল্প পৃথিবীর। এ গল্পেরও বিষয় মরণশীল মানবের অমরত্ব—সন্ধান।</p>
+<p>হায়াৎ মামুদ সে— কাহিনী শুনিয়েছেন তাঁর অননুকরণীয় কথনশৈলীতে। বাংলা ভাষায় এ পর্যন্ত এমন গিলগামেশ-কাহিনী আর কেউ লেখেন নি। ছোটদের জন্য লেখা, অথচ বড়োদেরও উপভোগ্য একইভাবে।</p>
+
+
+
+<p>ই সেকেন্ডারি এডুকেশন কোয়ালিটি অ্যান্ড অ্যাকসেস এনহান্সমেন্ট প্রজেক্ট (SEQAEP) এর</p>
+<p>পাঠাভ্যাস উন্নয়ন কর্মসূচির জন্য মুদ্রিত</p>
+<p>বিক্রির জন্য নয়</p>
+
+            </div>
+
+        </div>
+    </div>
+
+        <!-- TOC nav for mobile -->
+        <nav id="toc-nav-desktop" class="hidden"></nav>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const progressBar  = document.getElementById('read-progress-bar');
+    const progressPct  = document.getElementById('progress-pct');
+    const tocDesktop   = document.getElementById('toc-nav-desktop');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+    const progressRing = document.getElementById('progress-ring-circle');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = p.currentTheme;
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    function toBN(n) {
+        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
+    }
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        if (progressPct) progressPct.textContent = toBN(pct) + '%';
+        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
+        if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
+        if (rfPage) rfPage.textContent = toBN(pct) + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+
+    // ── Footer: chapter label + seek slider ──
+    const rfSlider  = document.getElementById('rf-slider');
+    const rfPage    = document.getElementById('rf-page');
+    const rfChapter = document.getElementById('rf-chapter');
+    let rfSliderDragging = false;
+    if (rfSlider) {
+        rfSlider.addEventListener('input', () => {
+            rfSliderDragging = true;
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
+        });
+        rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
+    }
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav, isMobile) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            if (isMobile) {
+                a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+                a.addEventListener('click', closeDrawer);
+            } else {
+                a.className = 'toc-link ' + (isH1 ? 'toc-link-h1' : 'toc-link-h2');
+            }
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocDesktop, false);
+    buildToc(tocMobile, true);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+        if (rfChapter && headings[current]) rfChapter.textContent = headings[current].textContent.trim();
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme only; drawer/settings UI stays a fixed dark sheet)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+        black: { bg: '#000',     text: '#d1d5db' },
+        sepia: { bg: '#f5efe6',  text: '#3b2f1e' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? '#c0392b' : 'transparent';
+            });
+            savePrefs();
+
+            // Ad bar theme sync
+            window._pathakAdBarTheme && window._pathakAdBarTheme(m);
+        });
+    });
+
+    // ── Ad bar theme sync function (exposed globally) ──
+    window._pathakAdBarTheme = function(m) {
+        const adBar     = document.getElementById('ad-bar');
+        const adContent = document.getElementById('ad-bar-content');
+        const adDatetime= document.getElementById('ad-bar-datetime');
+        const adNotice  = document.getElementById('ad-bar-notice');
+        if (adBar)      adBar.style.background     = m.bg;
+        if (adContent)  adContent.style.background = m.bg;
+        if (adDatetime) adDatetime.style.color      = m.text;
+        if (adNotice)   adNotice.style.color        = m.text;
+    };
+
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+        // Ad bar HTML is below — expose theme for ad bar script to pick up
+        window._pathakCurrentTheme = currentTheme;
+        window._pathakThemeMap = themeMap;
+    })();
+})();
+</script>
+
+
+</body>
+</html>

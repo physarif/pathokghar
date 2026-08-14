@@ -1,0 +1,2368 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/atmo-porichoy-tagore.html">
+    <title>আত্মপরিচয় - পাঠক ঘর</title>
+    <meta name="description" content="রবীন্দ্রনাথ ঠাকুরের আত্মজীবনীমূলক গ্রন্থ **'আত্মপরিচয়'** কেবল কোনো সাধারণ স্মৃতিকথা নয়, এটি কবির আত্মবিকাশ ও দর্শন উপলব্ধির একটি দলিল। ১৯৪৩ সালে প্রথম প্রকাশি">
+    <meta property="og:title" content="আত্মপরিচয় - পাঠক ঘর">
+    <meta property="og:description" content="রবীন্দ্রনাথ ঠাকুরের আত্মজীবনীমূলক গ্রন্থ **'আত্মপরিচয়'** কেবল কোনো সাধারণ স্মৃতিকথা নয়, এটি কবির আত্মবিকাশ ও দর্শন উপলব্ধির একটি দলিল। ১৯৪৩ সালে প্রথম প্রকাশি">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e', black:'#000' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', sepia:'#3b2f1e', dark:'#e5e7eb', black:'#d1d5db' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .dark body { background: #1a1a1b; color: #e5e7eb; }
+
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.7rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+        .dark #book-content { color: #e5e7eb; }
+    
+    /* ── Book read header hero ── */
+    .book-read-header {
+        margin-bottom: 1.5rem;
+    }
+    .book-read-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.65rem;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 1.4rem 1.25rem 1.2rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .dark .book-read-box {
+        background: #2a2a2b;
+        border-color: #3a3a3b;
+    }
+    .book-read-cover {
+        width: 100px;
+        height: 136px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        object-fit: cover;
+        background: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .book-read-cover svg { opacity: 0.35; }
+    .book-read-title-link {
+        text-decoration: none;
+        display: block;
+    }
+    .book-read-title-link:hover .book-read-title { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-title-link:active .book-read-title { opacity: 0.7; }
+    .book-read-title {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #1a1a1b;
+        line-height: 1.4;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+    .dark .book-read-title { color: #f3f4f6; }
+    .book-read-author-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+    .book-read-author-link:hover .book-read-author { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-author-link:active .book-read-author { opacity: 0.6; }
+    .book-read-author {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #c0392b;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+</style>
+</head>
+<body>
+
+<style>
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    #read-progress-bar {
+        position: fixed;
+        top: 0; left: 0;
+        height: 2px;
+        width: 0%;
+        background: #c0392b;
+        z-index: 1000;
+        transition: width 0.1s linear;
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h1 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #9ca3af;
+        text-align: center;
+        margin: 0 0 0.25rem;
+        letter-spacing: 0.04em;
+    }
+    #book-content h1::after {
+        content: '';
+        display: block;
+        width: 2.8em;
+        height: 3px;
+        background: #c0392b;
+        border-radius: 2px;
+        margin: 0.4rem auto 0;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #7a2115;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid #d9a5a0;
+        border-bottom: 1px solid #d9a5a0;
+    }
+    /* Night mode heading adjust */
+    body.theme-dark  #book-content h1,
+    body.theme-black #book-content h1 { color: #6b7280; }
+    body.theme-dark  #book-content h2,
+    body.theme-black #book-content h2 { color: #f2938a; border-color: rgba(169,50,38,0.4); }
+    body.theme-dark  #book-content h1::after { background: #a93226; }
+    body.theme-black #book-content h1::after { background: #922b21; }
+    body.theme-sepia #book-content h1 { color: #a08060; }
+    body.theme-sepia #book-content h2 { color: #7a2115; border-color: rgba(160,64,48,0.35); }
+    body.theme-sepia #book-content h1::after { background: #a04030; }
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: rgba(192,57,43,0.05);
+        border: 1px solid rgba(192,57,43,0.15);
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p,
+    body.theme-black #book-content p {
+        background: rgba(169,50,38,0.1);
+        border-color: rgba(169,50,38,0.25);
+    }
+    body.theme-sepia #book-content p {
+        background: rgba(160,64,48,0.08);
+        border-color: rgba(160,64,48,0.2);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #c0392b;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #c0392b;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(192,57,43,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    .dark #book-content blockquote {
+        background: rgba(192,57,43,0.08);
+        color: #bbb;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #c0392b;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    .dark #book-content td { border-color: #3a3a3b; }
+    .dark #book-content tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(192,57,43,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: #e57373;
+        font-weight: 600;
+        background: rgba(192,57,43,0.18);
+        border-radius: 0.375rem;
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: #fff;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transition: color 0.15s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.6);
+    }
+    #toc-nav-desktop .toc-link {
+        display: block;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.375rem;
+        color: #4b5563;
+        text-decoration: none;
+        transition: background-color 0.15s, color 0.15s;
+    }
+    .dark #toc-nav-desktop .toc-link { color: #d1d5db; }
+    #toc-nav-desktop .toc-link:hover { background: #f3f4f6; }
+    .dark #toc-nav-desktop .toc-link:hover { background: #1f2937; }
+    #toc-nav-desktop .toc-link-h1 {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: #1f2937;
+    }
+    .dark #toc-nav-desktop .toc-link-h1 { color: #f3f4f6; }
+    #toc-nav-desktop .toc-link-h2 {
+        padding-left: 1.25rem;
+        font-size: 0.6875rem;
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.6rem 0.5rem 0.6rem 0.35rem;
+        background: #1a1a1b;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-back {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.25rem;
+        text-decoration: none;
+        transition: background 0.15s;
+    }
+    #rh-back:active { background: rgba(255,255,255,0.12); }
+    #rh-title {
+        flex: 1;
+        min-width: 0;
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: transparent;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+    #reader-header .rh-actions button:active { background: rgba(255,255,255,0.12); }
+    body.theme-dark  #reader-header,
+    body.theme-black #reader-header,
+    body.theme-sepia #reader-header { background: #141414; }
+
+    /* ── Reader footer: chapter label + page/percent + seek slider ── */
+    #reader-footer {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 55;
+        background: #1a1a1b;
+        padding: 0.5rem 1rem 0.65rem;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-footer { transform: translateY(100%); }
+    body.theme-dark  #reader-footer,
+    body.theme-black #reader-footer,
+    body.theme-sepia #reader-footer { background: #141414; }
+    #rf-labels {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.7);
+        margin-bottom: 0.35rem;
+    }
+    #rf-chapter {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #rf-page { flex-shrink: 0; }
+    #rf-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        background: rgba(255,255,255,0.22);
+        outline: none;
+        margin: 0;
+        cursor: pointer;
+    }
+    #rf-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        margin-top: -6px;
+    }
+    #rf-slider::-moz-range-thumb {
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        border: none;
+    }
+    #rf-slider::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; }
+    #rf-slider::-moz-range-track { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.22); }
+
+    /* Content needs bottom clearance so the fixed footer never covers text */
+    #read-main-content { padding-bottom: 4.5rem; }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: #303134;
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.55);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: #e57373;
+        border-bottom-color: #c0392b;
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ── Breadcrumb dark mode ── */
+    .read-breadcrumb-full { margin-left: -1.25rem; margin-right: -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
+    .dark #bc-category { color: #9ca3af !important; }
+    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
+    .dark #read-breadcrumb li > span { color: #4b5563; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #e57373;
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: 34px; height: 34px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        flex-shrink: 0;
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+    }
+    .theme-circle.active { border-color: #c0392b; }
+    .theme-circle svg { display: none; }
+    .theme-circle.active svg { display: block; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: #fff; }
+    .settings-row-val { font-size: 0.74rem; color: rgba(255,255,255,0.5); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: rgba(192,57,43,0.35); border-color: #c0392b; color: #fff; }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+</style>
+
+<!-- Progress bar (kept for internal % calc, hidden — footer slider replaces it visually) -->
+<div id="read-progress-bar" style="display:none;"></div>
+
+<!-- ══ Reader header (Lithium-style app bar) ══ -->
+<header id="reader-header">
+    <a href="/book/atmo-porichoy-tagore.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <h1 id="rh-title">আত্মপরিচয়</h1>
+    <div class="rh-actions">
+        <button id="rh-menu-btn" aria-label="মেনু" title="মেনু"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+    </div>
+</header>
+
+<!-- ══ Reader footer (chapter + page/percent + seek slider) ══ -->
+<footer id="reader-footer">
+    <div id="rf-labels">
+        <span id="rf-chapter"></span>
+        <span id="rf-page">০%</span>
+    </div>
+    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
+</footer>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                    <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
+                    <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
+                    <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn active" id="align-justify" title="জাস্টিফাই" style="background:#fde8e6;border-color:#c0392b;color:#c0392b;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <section><div>
+
+<div>
+<h2>১
+</h2>
+</div>
+<p>আমার জীবনবৃত্তান্ত লিখিতে আমি অনুরুদ্ধ হইয়াছি। এখানে আমি অনাবশ্যক বিনয় প্রকাশ করিয়া জায়গা জুড়িব না। কিন্তু গােড়াতে এ কথা বলিতেই হইবে, আত্মজীবনী লিখিবার বিশেষ ক্ষমতা বিশেষ লােকেরই থাকে, আমার তাহা নাই। না থাকিলেও ক্ষতি নাই, কারণ, আমার জীবনের বিস্তারিত বর্ণনায় কাহারও কোনো লাভ দেখি না।
+</p><p>সেইজন্য এ স্থলে আমার জীবনবৃত্তান্ত হইতে বৃত্তান্তটা বাদ দিলাম। কেবল, কাব্যের মধ্য দিয়া আমার কাছে আজ আমার জীবনটা যেভাবে প্রকাশ পাইয়াছে, তাহাই যথেষ্ট সংক্ষেপে লিখিবার চেষ্টা করিব। ইহাতে যে অহমিকা প্রকাশ পাইবে সেজন্য আমি পাঠকদের কাছে বিশেষ করিয়া ক্ষমা প্রার্থনা করি।
+</p><p>আমার সুদীর্ঘকালের কবিতা লেখার ধারাটাকে পশ্চাৎ ফিরিয়া যখন দেখি তখন ইহা স্পষ্ট দেখিতে পাই—এ একটা ব্যাপার, যাহার উপরে আমার কোনো কর্তৃত্ব ছিল না। যখন লিখিতেছিলাম তখন মনে করিয়াছি, আমিই লিখিতেছি বটে, কিন্তু আজ জানি কথাটা সত্য নহে। কারণ, সেই খণ্ডকবিতাগুলিতে আমার সমগ্র কাব্যগ্রন্থের তাৎপর্য সম্পূর্ণ হয় নাই—সেই তাৎপর্যটি কী তাহাও আমি পূর্বে জানিতাম না। এইরূপে পরিণাম না জানিয়া আমি একটির সহিত একটি কবিতা যােজনা করিয়া আসিয়াছি— তাহাদের প্রত্যেকের যে ক্ষুদ্র অর্থ কল্পনা করিয়াছিলাম, আজ সমগ্রের সাহায্যে নিশ্চয় বুঝিয়াছি, সে অর্থ অতিক্রম করিয়া একটি অবিচ্ছিন্ন তাৎপর্য তাহাদের প্রত্যেকের মধ্য দিয়া প্রবাহিত হইয়া আসিয়াছিল। তাই দীর্ঘকাল পরে একদিন লিখিয়াছিলাম―
+</p>
+<div>
+<div>
+<p>এ কী কৌতুক নিত্যনূতন <br/><span>ওগো কৌতুকময়ী। </span><br/>
+আমি যাহা-কিছু চাহি বলিবারে <br/><span>বলিতে দিতেছ কই</span><br/>
+অন্তরমাঝে বসি অহরহ <br/>
+মুখ হতে তুমি ভাষা কেড়ে লহ, <br/>
+মোর কথা লয়ে তুমি কথা কহ <br/><span>মিশায়ে আপন সুরে। </span><br/>
+কী বলিতে চাই সব ভুলে যাই, <br/>
+তুমি যা বলাও আমি বলি তাই, <br/>
+সংগীতস্রোতে কূল নাহি পাই— <br/><span>কোথা ভেসে যাই দূরে।</span>
+</p>
+</div>
+</div>
+<p>বিশ্ববিধির একটা নিয়ম এই দেখিতেছি যে, যেটা আসন্ন, যেটা উপস্থিত, তাহাকে সে খর্ব করিতে দেয় না। তাহাকে এ কথা জানিতে দেয় না যে, সে একটা সোপানপরম্পরার অঙ্গ। তাহাকে বুঝাইয়া দেয় যে, সে আপনাতে আপনি পর্যাপ্ত। ফুল যখন ফুটিয়া উঠে তখন মনে হয়, ফুলই যেন গাছের একমাত্র লক্ষ্য― এমনি তাহার সৌন্দর্য, এমনি তাহার সুগন্ধ যে, মনে হয় যেন সে বনলক্ষ্মীর সাধনার চরমধন। কিন্তু সে যে ফল ফলাইবার উপলক্ষমাত্র সে কথা গোপনে থাকে― বর্তমানের গৌরবেই সে প্রফুল্ল, ভবিষ্যৎ তাহাকে অভিভূত করিয়া দেয় না। আবার ফলকে দেখিলে মনে হয়, সেই যেন সফলতার চূড়ান্ত; কিন্তু ভাবী তরুর জন্য সে যে বীজকে গর্ভের মধ্যে পরিণত করিয়া তুলিতেছে, এ কথা অন্তরালেই থাকিয়া যায়। এমনি করিয়া প্রকৃতি ফুলের মধ্যে ফুলের চরমতা, ফলের মধ্যে ফলের চরমতা রক্ষা করিয়া তাহাদের অতীত একটি পরিণামকে অলক্ষ্যে অগ্রসর করিয়া দিতেছে।
+</p><p>কাব্যরচনা সম্বন্ধেও সেই বিশ্ববিধানই দেখিতে পাই― অন্তত আমার নিজের মধ্যে তাহা উপলব্ধি করিয়াছি। যখন যেটা লিখিতেছিলাম তখন সেইটেকেই পরিণাম বলিয়া মনে করিয়াছিলাম। এইজন্য সেইটুকু সমাধা করার কাজেই অনেক যত্ন ও অনেক আনন্দ আকর্ষণ করিয়াছে। আমিই যে তাহা লিখিতেছি এবং একটা-কোনো বিশেষ ভাব অবলম্বন করিয়া লিখিতেছি, এ সম্বন্ধেও সন্দেহ ঘটে নাই। কিন্তু আজ জানিয়াছি, যে-সকল লেখা উপলক্ষমাত্র— তাহারা যে অনাগতকে গড়িয়া তুলিতেছে সেই অনাগতকে তাহারা চেনেও না। তাহাদের রচয়িতার মধ্যে আর-একজন কে রচনাকারী আছেন, যাঁহার সম্মুখে সেই ভাবী তাৎপর্য প্রত্যক্ষ বর্তমান। ফুৎকার বাঁশির এক-একট। ছিদ্রের মধ্য দিয়া এক-একটা সুর জাগাইয়া তুলিতেছে এবং নিজের কর্তৃত্ব উচ্চস্বরে প্রচার করিতেছে, কিন্তু কে সেই বিচ্ছিন্ন সুরগুলিকে রাগিণীতে বাঁধিয়া তুলিতেছে? ফুঁ সুর জাগাইতেছে বটে, কিন্তু ফুঁ তো বাঁশি বাজাইতেছে না। সেই বাঁশি যে বাজাইতেছে তাহার কাছে সমস্ত রাগরাগিণী বর্তমান আছে, তাহার অগােচরে কিছুই নাই।
+</p>
+<div>
+<div>
+<p>বলিতেছিলাম বসি এক ধারে <br/>
+আপনার কথা আপন জনারে, <br/>
+শুনতেছিলাম ঘরের দুয়ারে <br/><span>ঘরের কাহিনী যত; </span><br/>
+তুমি সে ভাষারে দহিয়া অনলে <br/>
+ডুবায়ে ভাসায়ে নয়নের জলে <br/>
+নবীন প্রতিমা নব কৌশলে <br/><span>গড়িলে মনের মতো।</span>
+</p>
+</div>
+</div>
+
+<p> এই শ্লোকটার মানে বােধ করি এই যে, যেটা লিখিতে যাইতেছিলাম সেটা সাদা কথা, সেটা বেশি কিছু নহে— কিন্তু সেই সােজা কথা, সেই আমার নিজের কথার মধ্যে এমন একটা সুর আসিয়া পড়ে, যাহাতে তাহা বড়ো হইয়া ওঠে, ব্যক্তিগত না হইয়া বিশ্বের হইয়া ওঠে। সেই যে সুরটা, সেটা তো আমার অভিপ্রায়ের মধ্যে ছিল না। আমার পটে একটা ছবি দাগিয়াছিলাম বটে, কিন্তু সেইসঙ্গে-সঙ্গে যে-একটা রঙ ফলিয়া উঠিল, সেই রঙ ও সে রঙের তুলি তো আমার হাতে ছিল না।
+</p>
+<div>
+<div>
+<p>নূতন ছন্দ অন্ধের প্রায় <br/>
+ভরা আনন্দে ছুটে চলে যায়, <br/>
+নূতন বেদনা বেজে ওঠে তায় <br/><span>নূতন রাগিণী ভরে। </span><br/>
+যে কথা ভাবি নি বলি সেই কথা, <br/>
+যে ব্যথা বুঝি না জাগে সেই ব্যথা, <br/>
+জানি না এনেছি কাহার বারতা <br/><span>কারে শুনাবার তরে।</span>
+</p>
+</div>
+</div>
+<p>আমি ক্ষুদ্র ব্যক্তি যখন আমার একটা ক্ষুদ্র কথা বলিবার জন্য চঞ্চল হইয়া উঠিয়াছিলাম তখন কে একজন উৎসাহ দিয়া কহিলেন, ‘বলো বলো, তােমার কথাটাই বলো। ঐ কথাটার জন্যই সকলে হাঁ করিয়া তাকাইয়া আছে।’ এই বলিয়া তিনি শ্রোতৃবর্গের দিকে চাহিয়া চোখ টিপিলেন; স্নিগ্ধ কৌতুকের সঙ্গে একটুখানি হাসিলেন এবং আমারই কথার ভিতর দিয়া কী-সব নিজের কথা বলিয়া লইলেন।
+</p>
+<div>
+<div>
+<p>কে কেমন বােঝে অর্থ তাহার,<br/>
+কেহ এক বলে, কেহ বলে আর,<br/>
+আমারে শুধায় বৃথা বার বার—<br/><span>দেখে তুমি হাস বুঝি।</span>
+</p>
+</div> <div>
+<p>কে গো তুমি, কোথা রয়েছ গোপনে<br/><span>আমি মরিতেছি খুঁজি।</span>
+</p>
+</div>
+</div>
+<p>শুধু কি কবিতা-লেখার একজন কর্তা কবিকে অতিক্রম করিয়া তাহার লেখনী চালনা করিয়াছেন? তাহা নহে। সেইসঙ্গে ইহাও দেখিয়াছি যে, জীবনটা যে গঠিত হইয়া উঠিতেছে, তাহার সমস্ত সুখদুঃখ, তাহার সমস্ত যোগবিয়োগের বিচ্ছিন্নতাকে কে-একজন একটি অখণ্ড তাৎপর্যের মধ্যে গাঁথিয়া তুলিতেছেন। সকল সময়ে আমি তাঁহার আনুকূল্য করিতেছি কিনা জানি না, কিন্তু আমার সমস্ত বাধা-বিপত্তিকেও, আমার সমস্ত ভাঙাচোরাকেও তিনি নিয়তই গাঁথিয়া জুড়িয়া দাঁড় করাইতেছেন। কেবল তাই নয়, আমার স্বার্থ, আমার প্রবৃত্তি, আমার জীবনকে যে অর্থের মধ্যে সীমাবদ্ধ করিতেছে তিনি বারে বারে সে সীমা ছিন্ন করিয়া দিতেছেন— তিনি সুগভীর বেদনার দ্বারা, বিচ্ছেদের দ্বারা, বিপুলের সহিত, বিরাটের সহিত তাহাকে যুক্ত করিয়া দিতেছেন। সে যখন এক- দিন হাট করিতে বাহির হইয়াছিল তখন বিশ্বমানবের মধ্যে সে আপনার সফলতা চায় নাই— সে আপনার ঘরের সুখ ঘরের সম্পদের জন্যই কড়ি সংগ্রহ করিয়াছিল। কিন্তু সেই মেঠো পথ, সেই ঘোরে সুখদুঃখের দিক হইতে কে তাহাকে জোর করিয়া পাহাড়-পর্বত অধিত্যকা-উপত্যকার দুর্গমতার মধ্য দিয়া টানিয়া লইয়া যাইতেছে।
+</p>
+<div>
+<div>
+<p>এ কী কৌতুক নিত্য-নূতন<br/><span>ওগো কৌতুকময়ী!</span><br/>
+যে দিকে পান্থ চাহে চলিবারে<br/><span>চলিতে দিতেছ কই?</span><br/>
+গ্রামের যে পথ ধায় গৃহপানে,<br/>
+চাষিগণ ফিরে দিবা-অবসানে,<br/>
+গোঠে ধায় গোরু, বধূ জল আনে
+</p>
+</div> <div>
+<p><span>শতবার যাতায়াতে —</span><br/>
+একদা প্রথম প্রভাতবেলায়<br/>
+সে পথে বাহির হইনু হেলায়,<br/>
+মনে ছিল দিন কাজে ও খেলায়<br/><span>কাটায়ে ফিরিব রাতে।</span><br/>
+পদে পদে তুমি ভুলাইলে দিক,<br/>
+কোথা যাব আজি নাহি পাই ঠিক,<br/>
+ক্লান্তহৃদয় ভ্রান্ত পথিক<br/><span>এসেছি নূতন দেশে।</span><br/>
+কখনো উদার গিরির শিখরে<br/>
+কভু বেদনার তমােগহ্বরে<br/>
+চিনি না যে পথ সে পথের ’পরে<br/><span>চলেছি পাগলবেশে।</span>
+</p>
+</div>
+</div>
+<p>এই যে কবি, যিনি আমার সমস্ত ভালােমন্দ, আমার সমস্ত অনুকূল ও প্রতিকূল উপকরণ লইয়া আমার জীবনকে রচনা করিয়া চলিয়াছেন, তাঁহাকেই আমার কাব্যে আমি ‘জীবনদেবতা’ নাম দিয়াছি। তিনি যে কেবল আমার এই ইহজীবনের সমস্ত খণ্ডতাকে ঐক্যদান করিয়া বিশ্বের সহিত তাহার সামঞ্জস্যস্থাপন করিতেছেন, আমি তাহা মনে করি না। আমি জানি, অনাদিকাল হইতে বিচিত্র বিস্মৃত অবস্থার মধ্য দিয়া তিনি আমাকে আমার এই বর্তমান প্রকাশের মধ্যে উপনীত করিয়াছেন— সেই বিশ্বের মধ্য দিয়া প্রবাহিত অস্তিত্বধারায় বৃহৎ স্মৃতি তাঁহাকে অবলম্বন করিয়া আমার অগােচরে আমার মধ্যে রহিয়াছে। সেইজন্য এই জগতের তরুলতা-পশুপক্ষীর সঙ্গে এমন একটা পুরাতন ঐক্য অনুভব করিতে পারি, সেইজন্য এতবড়াে রহস্যময় প্রকাণ্ড জগৎকে অনাত্মীয় ও ভীষণ বলিয়া মনে হয় না।
+</p>
+
+<div>
+<div>
+<p>আজ মনে হয় সকলেরি মাঝে<br/><span>তোমারেই ভালোবেসেছি;</span><br/>
+জনতা বাহিয়া চিরদিন ধরে<br/><span>শুধু তুমি আমি এসেছি।</span><br/><span>চেয়ে চারি দিক পানে―</span><br/><span>কী যে জেগে ওঠে প্রাণে</span><br/>
+তোমার-আমার অসীম মিলন<br/><span>যেন গো সকলখানে।</span><br/>
+কত যুগ এই আকাশে যাপিনু<br/><span>সে কথা অনেক ভুলেছি,</span><br/>
+তারায় তারায় যে আলো কাঁপিছে<br/><span>সে আলোকে দোঁহে দুলেছি।</span><br/>
+তৃণরোমাঞ্চ ধরণীর পানে<br/><span>আশ্বিনে নব-আলোকে</span><br/>
+চেয়ে দেখি যবে আপনার মনে<br/><span>প্রাণ ভরি উঠে পুলকে।</span><br/><span>মনে হয় যেন জানি</span><br/><span>এই অকথিত বাণী―</span><br/>
+মূক মেদিনীর মর্মের মাঝে<br/><span>জাগিছে যে ভাবখানি।</span><br/>
+এই প্রাণে-ভরা মাটির ভিতরে<br/><span>কত যুগ মোরা যেপেছি,</span><br/>
+কত শরতের সোনার আলোকে<br/><span>কত তৃণে দোহে কেঁপেছি।...</span>
+</p>
+</div> <div>
+<p>লক্ষ বরষ আগে যে প্রভাত<br/><span>উঠেছিল এই ভুবনে</span><br/>
+তাহার অরুণকিরণকণিকা<br/><span>গাঁথ নি কি মাের জীবনে?</span><br/><span>সে প্রভাতে কোন্‌খানে</span><br/><span>জেগেছিনু কে বা জানে?</span><br/>
+কী মুরতি-মাঝে ফুটালে আমারে<br/><span>সেদিন লুকায়ে প্রাণে?</span><br/>
+হে চির-পুরানাে, চিরকাল মােরে<br/><span>গড়িছ নূতন করিয়া।</span><br/>
+চিরদিন তুমি সাথে ছিলে মাের,<br/><span>রবে চিরদিন ধরিয়া।</span>
+</p>
+</div>
+</div>
+<p>তত্ত্ববিদ্যায় আমার কোনো অধিকার নাই। দ্বৈতবাদ-অদ্বৈতবাদের কোনাে তর্ক উঠিলে আমি নিরুত্তর হইয়া থাকিব। আমি কেবল অনুভবে দিক দিয়া বলিতেছি, আমার মধ্যে আমার অন্তদেবতার একটি প্রকাশের আনন্দ রহিয়াছে― সেই আনন্দ সেই প্রেম আমার সমস্ত অঙ্গপ্রত্যঙ্গ, আমার বুদ্ধিমন, আমার নিকট প্রত্যক্ষ এই বিশ্বজগৎ, আমার অনাদি অতীত ও অনন্ত ভবিষ্যৎ পরিপ্লুত করিয়া আছে। এ লীলা তাে আমি কিছুই বুঝি না, কিন্তু আমার মধ্যেই নিয়ত এই এক প্রেমের লীলা। আমার চোখে যে আলাে ভালাে লাগিতেছে, প্রভাত-সন্ধ্যার যে মেঘের ছটা ভালো লাগিতেছে, তৃণতরুলতার যে শ্যামলতা ভালো লাগিতেছে, প্রিয়জনের যে মুখচ্ছবি ভালো লাগিতেছে— সমস্তই সেই প্রেমলীলার উদ্‌বেল তরঙ্গমালা। তাহাতেই জীবনের সমস্ত সুখ সমস্ত আলো-অন্ধকারের ছায়া খেলিতেছে।
+</p><p>আমার মধ্যে এই যাহা গড়িয়া উঠিতেছে এবং যিনি গড়িতেছেন, এই উভয়ের মধ্যে যে-একটি আনন্দের সম্বন্ধ, যে-একটি নিত্যপ্রেমের বন্ধন আছে, তাহা জীবনের সমস্ত ঘটনার মধ্য দিয়া উপলব্ধি করিলে সুখদুঃখেয় মধ্যে একটি শান্তি আসে। যখন বুঝিতে পারি, আমার প্রত্যেক আনন্দের উচ্ছ্বাস তিনি আকর্ষণ করিয়া লইয়াছেন, আমার প্রত্যেক দুঃখবেদনা তিনি নিজে গ্রহণ করিয়াছেন, তখন জানি যে, কিছুই ব্যর্থ হয় নাই, সমস্তই একটা জগদ্‌ব্যাপী সম্পূর্ণতার দিকে ধন্য হইয়া উঠিতেছে।
+</p><p>এইখানে আমার একটি পুরাতন চিঠি হইতে একটা জায়গা উদ্‌ধৃত করিয়া দিই—
+</p><p>ঠিক যাকে সাধারণ ধর্ম বলে, সেটা যে আমি আমার নিজের মধ্যে সুস্পষ্ট দৃঢ়রূপে লাভ করতে পেরেছি, তা বলতে পারি নে। কিন্তু মনের ভিতরে ভিতরে ক্রমশ যে একটা সজীব পদার্থ সৃষ্ট হয়ে উঠছে, তা অনেক সময় অনুভব করতে পারি। বিশেষ কোনো একটা নির্দিষ্ট মত নয়— একটা নিগূঢ় চেতনা, একটা নূতন অন্তরিন্দ্রিয়। আমি বেশ বুঝতে পারছি, আমি ক্রমশ আপনার মধ্যে আপনার একটা সামঞ্জস্য স্থাপন করতে পারব— আমার সুখ-দুঃখ, অন্তর-বাহির, বিশ্বাস-আচরণ, সমস্তটা মিলিয়ে জীবনটাকে একটা সমগ্রতা দিতে পারব। শাস্ত্রে যা লেখে তা সত্য কি মিথ্যা বলতে পারি নে; কিন্তু সে-সমস্ত সত্য অনেক সময় আমার পক্ষে সম্পূর্ণ অনুপযোগী, বস্তুত আমার পক্ষে তার অস্তিত্ব নেই বললেই হয়। আমার সমস্ত জীবন দিয়ে যে জিনিসটাকে সম্পূর্ণ আকারে গড়ে তুলতে পারব সেই আমার চরমসত্য। জীবনের সমস্ত সুখদুঃখকে যখন বিচ্ছিন্ন ক্ষণিকভাবে অনুভব করি তখন আমাদের ভিতরকার এই অনন্ত সৃজনরহস্য ঠিক বুঝতে পারি নে― প্রত্যেক কথাটা বানান করে পড়তে হলে যেমন সমস্ত পদটার অর্থ এবং ভাবের ঐক্য বোঝা যায় না; কিন্তু নিজের ভিতরকার এই সৃজনশক্তির অখণ্ড ঐক্যসূত্র যখন একবার অনুভব করা যায় তখন এই সৃজ্যমান অনন্ত বিশ্বচরাচরের সঙ্গে নিজের যোগ উপলব্ধি করি; বুঝতে পারি যেমন গ্রহনক্ষত্রচন্দ্রসূর্য জ্বলতে জ্বলতে ঘুরতে ঘুরতে চিরকাল ধরে তৈরি হয়ে উঠছে, আমার ভিতরেও তেমনি অনাদিকাল ধরে একট। সৃজন চলছে; আমার সুখ দুঃখ বাসনাবেদনা তার মধ্যে আপনার আপনার স্থান গ্রহণ করছে। এই থেকে কী হয়ে উঠবে জানি নে, কারণ আমরা একটি ধূলিকণাকেও জানি নে। কিন্তু নিজের প্রবহমান জীবনটাকে যখন নিজের বাইরে অনন্ত দেশকালের সঙ্গে যোগ করে দেখি তখন জীবনের সমস্ত দুঃখগুলিকেও একটা বৃহৎ আনন্দ সূত্রের মধ্যে গ্রথিত দেখতে পাই—আমি আছি, আমি হচ্ছি, আমি চলছি, এইটেকে একটা বিরাট ব্যাপার বলে বুঝতে পারি, আমি আছি এবং আমার সঙ্গে সঙ্গেই আর-সমস্তই আছে, আমাকে ছেড়ে এই অসীম জগতের একটি অণুপরমাণুও থাকতে পারে না, আমার আত্মীয়দের সঙ্গে আমার যে যোগ, এই সুন্দর শৎপ্রভাতের সঙ্গে তার চেয়ে কিছুমাত্র কম ঘনিষ্ঠ যোগ নয়—সেই জন্যই এই জ্যোতির্ময় শূন্য আমার অন্তরাত্মাকে তার নিজের মধ্যে এমন করে পরিব্যাপ্ত করে নেয়। নইলে সে কি আমার মনকে তিলমাত্র স্পর্শ করতে পারত? নইলে তাকে কি আদি সুন্দর বলে অনুভব করতেম?... আমার সঙ্গে অনন্ত জগৎ-প্রাণের যে চিরকালের নিগূঢ় সম্বন্ধ, সেই সম্বন্ধের প্রত্যক্ষগম্য বিচিত্র ভাষা হচ্ছে বর্ণগন্ধগীত। চতুর্দিকে এই ভাষার অবিশ্রাম বিকাশ আমাদের মনকে লক্ষ্য-অলক্ষ্যভাবে ক্রমাগতই আন্দোলিত করছে, কথাবার্তা দিনরাত্রিই চলছে।
+</p><p><br/>এই পত্রে আমার অন্তর্নিহিত যে সৃজনশক্তির কথা লিখিয়াছি, যে শক্তি আমার জীবনের সমস্ত সুখদুঃখকে সমস্ত ঘটনাকে ঐক্যদান তাৎপর্যদান করিতেছে, আমার রূপরূপান্তর জন্মজন্মান্তরকে একসূত্রে গাঁথিতেছে, যাহার মধ্য দিয়া বিশ্বচরাচরের মধ্যে ঐক্য অনুভব করিতেছি, তাহাকেই ‘জীবনদেবতা’ নাম দিয়া লিখিয়াছিলাম—
+</p>
+
+<div>
+<div>
+<p>ওহে অন্তরতম, <br/>
+মিটেছে কি তব সকল তিয়াষ <br/><span>আসি অন্তরে মম? </span><br/>
+দুঃখসুখের লক্ষ ধারায় <br/>
+পাত্র ভরিয়া দিয়েছি তােমায়, <br/>
+নিঠুর পীড়নে নিঙাড়ি বক্ষ <br/><span>দলিতদ্রাক্ষা-সম। </span><br/>
+কত যে বরন, কত যে গন্ধ, <br/>
+কত যে রাগিণী, কত যে ছন্দ, <br/>
+গাঁথিয়া গাঁথিয়া করেছি বয়ন <br/><span>বাসরশয়ন তব―</span><br/>
+গলায়ে গলায়ে বাসনার সােনা <br/>
+প্রতিদিন আমি করেছি রচনা <br/>
+তােমার ক্ষণিক খেলার লাগিয়া <br/><span>মুরতি নিত্যনব।</span>
+</p>
+</div>
+</div>
+<p>আশ্চর্য এই যে, আমি হইয়া উঠিতেছি, আমি প্রকাশ পাইতেছি। আমার মধ্যে কী অনন্ত মাধুর্য আছে, যেজন্য আমি অসীম ব্রহ্মাণ্ডের অগণ্য সূর্যচন্দ্রগ্রহতারকার সমস্ত শক্তি দ্বারা লালিত হইয়া, এই আলােকের মধ্যে আকাশের মধ্যে চোখ মেলিয়া দাঁড়াইয়াছি― আমাকে কেহ ত্যাগ করিতেছে না। মনে কেবল এই প্রশ্ন উঠে, আমি আমার এই আশ্চর্য অস্তিত্বের অধিকার কেমন করিয়া রক্ষা করিতেছি— আমার উপরে যে প্রেম, যে আনন্দ অশ্রান্ত রহিয়াছে, যাহা না থাকিলে আমার থাকিবার কোনো শক্তিই থাকিত না, আমি তাহাকে কি কিছুই দিতেছি না?
+</p>
+<div>
+<div>
+<p>আপনি বরিয়া লয়েছিলে মােরে<br/><span>না জানি কিসের আশে।</span>
+</p>
+</div> <div>
+<p>লেগেছে কি ভালো, হে জীবননাথ,<br/>
+আমার রজনী আমার প্রভাত<br/>
+আমার নর্ম আমার কর্ম<br/><span>তােমার বিজন বাসে?</span><br/>
+বরষা শরতে বসন্তে শীতে<br/>
+ধ্বনিয়াছে হিয়া যত সংগীতে<br/>
+শুনেছ কি তাহা একেলা বসিয়া<br/><span>আপন সিংহাসনে?</span><br/>
+মানসকুসুম তুলি অঞ্চলে<br/>
+গেঁথেছ কি মালা, পরেছ কি গলে,<br/>
+আপনার মনে করেছ ভ্রমণ<br/><span>মম যৌবনবনে?</span><br/>
+কী দেখিছ বঁধু মরমমাঝারে<br/><span>রাখিয়া নয়ন দুটি?</span><br/>
+করেছ কি ক্ষমা যতেক আমার<br/><span>স্খলন পতন ত্রুটি?</span><br/>
+পূজাহীন দিন, সেবাহীন রাত,<br/>
+কত বার বার ফিরে গেছে নাথ,<br/>
+অর্ঘ্যকুসুম ঝরে পড়ে গেছে<br/><span>বিজন বিপিনে ফুটি।</span><br/>
+যে সুরে বাঁধিলে এ বীণার তার<br/>
+নামিয়া নামিয়া গেছে বার বার,<br/>
+হে কবি, তােমার রচিত রাগিণী<br/><span>আমি কি গাহিতে পারি?</span>
+</p>
+</div> <div>
+<p>তোমার কাননে সেচিবারে গিয়া<br/>
+ঘুমায়ে পড়েছি ছায়ায় পড়িয়া,<br/>
+সন্ধ্যাবেলায় নয়ন ভরিয়া<br/><span>এনেছি অশ্রুবারি।</span>
+</p>
+</div>
+</div>
+<p>যদি এমন হয় যে, আমার বর্তমান জীবনের মধ্যে এই জীবনদেবতার সেবার সম্ভাবনা যতদূর ছিল তাহা নিঃশেষ হইয়া গিয়া থাকে, যে আগুন তিনি জ্বালাইয়া রাখিতে চান আমার বর্তমান জীবনের ইন্ধন যদি ছাই হইয়া গিয়া আর তাহা রক্ষা করিতে না পারে, তবে এ আগুন তিনি কি নিবিতে দিবেন? এ অনাবশ্যক ছাই ফেলিয়া দিতে কতক্ষণ? কিন্তু তাই বলিয়া এই জ্যোতিঃশিখা মরিবে কেন? দেখা তো গিয়াছে, ইহা অবহেলার সামগ্রী নহে। অন্তরে অন্তরে তো বুঝা গিয়াছে, ইহার উপরে অনিমেষ আনন্দের দৃষ্টির অবসান নাই।
+</p>
+<div>
+<div>
+<p>এখনি কি শেষ হয়েছে প্রাণেশ,<br/><span>যা-কিছু আছিল মোর—</span><br/>
+যত শোভা যত গান যত প্রাণ,<br/><span>জাগরণ ঘুমঘোর?</span><br/>
+শিথিল হয়েছে বাহুবন্ধন,<br/>
+মদিরাবিহীন মম চুম্বন,<br/>
+জীবনকুঞ্জে অভিসারনিশা<br/><span>আজি কি হয়েছে ভোর?</span><br/>
+ভেঙে দাও তবে আজিকার সভা,<br/>
+আনো নব রূপ, আনো নব শোভা,<br/>
+নূতন করিয়া লহো আরবার<br/><span>চিরপুরাতন মোরে।</span>
+</p>
+</div> <div>
+<p>নূতন বিবাহে বাঁধিবে আমায়<br/><span>নবীন জীবনডোরে।</span>
+</p>
+</div>
+</div>
+<p>নিজের জীবনের মধ্যে এই-যে আবির্ভাবকে অনুভব করা গেছে― যে আবির্ভাব অতীতের মধ্য হইতে অনাগতের মধ্যে প্রাণের পালের উপরে প্রেমের হাওয়া লাগাইয়া আমাকে কাল-মহানদীর নৃতন নূতন ঘাটে বহন করিয়া লইয়া চলিয়াছেন, সেই জীবনদেবতার কথা বললাম।
+</p><p>এই জীবনযাত্রার অবকাশকালে মাঝে মাঝে শুভমুহূর্তে বিশ্বের দিকে যখন অনিমেষ দৃষ্টি মেলিয়া ভালো করিয়া চাহিয়া দেখিয়াছি তখন আরএক অনুভূতি আমাকে আচ্ছন্ন করিয়াছে। নিজের সঙ্গে বিশ্বপ্রকৃতির এক অবিচ্ছিন্ন যােগ, এক চিরপুরাতন একাত্মকতা আমাকে একান্তভাবে আকর্ষণ করিয়াছে। কতদিন নৌকায় বসিয়া সূর্যকরােদ্দীপ্ত জলে স্থলে আকাশে আমার অন্তরাত্মাকে নিঃশেষে বিকীর্ণ করিয়া দিয়াছি; তখন মাটিকে আর মাটি বলিয়া দূরে রাখি নাই, তখন জলের ধারা আমার অন্তরের মধ্যে আনন্দগানে বহিয়া গেছে। তখনি এ কথা বলিতে পারিয়াছি―
+</p>
+<div>
+<div>
+<p>হই যদি মাটি, হই যদি জল, <br/>
+হই যদি তৃণ, হই ফুলফল, <br/>
+জীবসাথে যদি ফিরি ধরাতল <br/><span>কিছুতেই নাই ভাবনা, </span><br/>
+যেথা যাব সেথা অসীম বাঁধনে <br/><span>অন্তবিহীন আপনা।</span>
+</p>
+</div>
+</div>
+<p>তখনি এ কথা বলিয়াছি—
+</p>
+<div>
+<div>
+<p>আমারে ফিরায়ে লহো, অয়ি বসুন্ধরে,<br/>
+কোলের সন্তানে তব কোলের ভিতরে<br/>
+বিপুল অঞ্চলতলে। ওগাে মা মৃন্ময়ি,<br/>
+তােমার মৃত্তিকা-মাঝে ব্যাপ্ত হয়ে রই,
+</p>
+</div> <div>
+<p>দিগ্বিদিকে আপনাকে দিই বিস্তারিয়া<br/>
+বসন্তের আনন্দের মতাে।
+</p>
+</div>
+</div>
+<p>এ কথা বলিতে কুণ্ঠিত হই নাই—
+</p>
+<div>
+<div>
+<p><span>তােমার মৃত্তিকা-সনে </span><br/>
+আমারে মিশায়ে লয়ে অনন্ত গগনে <br/>
+অশ্রান্তচরণে করিয়াছ প্রদক্ষিণ <br/>
+সবিতৃমণ্ডল, অসংখ্য রজনীদিন <br/>
+যুগযুগান্তর ধরি; আমার মাঝারে <br/>
+উঠিয়াছে তৃণ তব, পুষ্প ভারে ভারে <br/>
+ফুটিয়াছে, বর্ষণ করেছে তরুরাজি <br/>
+পত্র ফুল ফল গন্ধরেণু।
+</p>
+</div>
+</div>
+<p>আমার স্বাতন্ত্রগর্ব নাই― বিশ্বের সহিত আমি আমার কোনো বিচ্ছেদ স্বীকার করি না।
+</p>
+<div>
+<div>
+<p>মানব-আত্মার দম্ভ আর নাহি মোের <br/>
+চেয়ে তাের স্নিগ্ধশ্যাম মাতৃমুখ-পানে; <br/>
+ভালােবাসিয়াছি আমি ধূলিমটি তাের।
+</p>
+</div>
+</div>
+<p>আশা করি, পাঠকেরা ইহা হইতে এ কথা বুঝিবেন, আমি আত্মাকে বিশ্বপ্রকৃতিকে বিশ্বেশ্বরকে স্বতন্ত্র স্বতন্ত্র কোঠায় খণ্ড খণ্ড করিয়া রাখিয়া আমার ভক্তিকে বিভক্ত করি নাই।
+</p><p>আমি, কি আত্মার মধ্যে কি বিশ্বের মধ্যে, বিস্ময়ের অন্ত দেখি না। আমি জড় নাম দিয়া, সসীম নাম দিয়া, কোনাে জিনিসকে এক পাশে ঠেলিয়া রাখিতে পারি নাই। এই সীমার মধ্যেই, এই প্রত্যক্ষের মধ্যেই, অনন্তের যে প্রকাশ তাহাই আমার কাছে অসীম বিস্ময়াবহ। আমি এই জলস্থল তরুলতা পশুপক্ষী চন্দ্রসূর্য দিনরাত্রির মাঝখান দিয়া চোখ মেলিয়া চলিয়াছি, ইহা আশ্চর্য। এই জগৎ তাহার অণুতে পরমাণুতে, তাহার প্রত্যেক ধূলিকণায় আশ্চর্য। আমাদের পিতামহগণ যে অগ্নিবায়ু-সূর্যচন্দ্র-মেঘবিদ্যুৎকে দিব্যদৃষ্টি দ্বারা দেখিয়াছিলেন, তাঁহারা যে সমস্তজীবন এই অচিন্তনীয় বিশ্বমহিমার মধ্য দিয়া সজীব ভক্তি ও বিস্ময় লইয়া চলিয়া গিয়াছিলেন, বিশ্বের সমস্ত স্পর্শই তাঁহাদের অন্তরবীণায় নব নব স্তবসংগীত ঝংকৃত করিয়া তুলিয়াছিল—ইহা আমার অন্তঃকরণকে স্পর্শ করে। সূর্যকে যাহারা অগ্নিপিণ্ড বলিয়া উড়াইয়া দিতে চায় তাহারা যেন জানে যে, অগ্নি কাহাকে বলে! পৃথিবীকে যাহারা ‘জলরেখাবলয়িত’ মাটির গােলা বলিয়া স্থির করিয়াছে তাহারা যেন মনে করে যে জলকে জল বলিলেই সমস্ত জল বােঝা গেল এবং মাটিকে মাটি বলিলেই সে মাটি হইয়া যায়!
+</p><p>প্রকৃতি সম্বন্ধে আমার পুরাতন তিনটি পত্র হইতে তিন জায়গা তুলিয়া দিব―
+</p><p>এমন সুন্দর দিনরাত্রিগুলি আমার জীবন থেকে প্রতিদিন চলে যাচ্ছে—এর সমস্তটা গ্রহণ করতে পারছি নে। এই-সমস্ত রঙ, এই আলাে এবং ছায়া, এই আকাশব্যাপী নিঃশব্দ সমারােহ, এই দ্যুলােক-ভূলােকের মাঝখানে সমস্ত-শূন্য-পরিপূর্ণ-করা শান্তি এবং সৌন্দর্য―এর জন্যে কি কম আয়ােজনটা চলছে? কতবড়ো উৎসবের ক্ষেত্রটা! এতবড়ো আশ্চর্য কাণ্ডটা প্রতিদিন আমাদের বাইরে হয়ে যাচ্ছে, আর আমাদের ভিতরে ভালো করে তার সাড়াই পাওয়া যায় না! জগৎ থেকে এতই তফাতে আমরা বাস করি! লক্ষ লক্ষ যােজন দূর থেকে লক্ষ লক্ষ বৎসর ধরে অনন্ত অন্ধকারের পথে যাত্রা করে একটি তারার আলাে এই পৃথিবীতে এসে পৌঁছয়, আর আমাদের অন্তরে এসে প্রবেশ করতে পারে না! মনটা যেন আরো শতলক্ষ যােজন দূরে! রঙিন সকাল এবং রঙিন সন্ধ্যাগুলি দিগ্‌বধূদের ছিন্ন কণ্ঠহার হতে এক-একটি মানিকের মতো সমুদ্রের জলে খসে খসে পড়ে যাচ্ছে, আমাদের মনের মধ্যে একটাও এসে পড়ে না!... যে পৃথিবীতে এসে পড়েছি, এখানকার মানুষগুলি সব অদ্ভুত জীব। এরা কেবলই দিনরাত্রি নিয়ম এবং দেয়াল গাঁথছে― পাছে দুটো চোখে কিছু দেখতে পায় এইজন্যে পর্দা টাঙিয়ে দিচ্ছে― বাস্তবিক পৃথিবীর জীবগুলো ভারি অদ্ভুত। এরা যে ফুলের গাছে এক-একটি ঘেরাটোপ পরিয়ে রাখে নি, চাঁদের নীচে চাঁদোয়া খাটায় নি, সেই আশ্চর্য। এই স্বেচ্ছা-অন্ধগুলো বন্ধ পালকির মধ্যে চড়ে পৃথিবীর ভিতর দিয়ে কী দেখে চলে যাচ্ছে!
+</p><p><br/>এক সময় যখন আমি এই পৃথিবীর সঙ্গে এক হয়ে ছিলেম, যখন আমার উপর সবুজ ঘাস উঠত, শরতের আলো পড়ত, সূর্যকিরণে আমার সুদূর-বিস্তৃত শ্যামল অঙ্গের প্রত্যেক রোমকূপ থেকে যৌবনের সুগন্ধ উত্তাপ উথিত হতে থাকত, আমি কত দূরদূরান্তর দেশদেশান্তরের জলস্থল ব্যাপ্ত করে উজ্জ্বল আকাশের নীচে নিস্তব্ধভাবে শুয়ে পড়ে থাকতেম, তখন শরৎসূর্যালোকে আমার বৃহৎ সর্বাঙ্গে যে-একটি আনন্দরস যে-একটি জীবনীশক্তি অত্যন্ত অব্যক্ত অর্ধচেতন এবং অত্যন্ত প্রকাণ্ড বৃহৎ-ভাবে সঞ্চারিত হতে থাকত, তাই যেন খানিকটা মনে পড়ে। আমার এই-যে মনের ভাব, এ যেন এই প্রতিনিয়ত অঙ্কুরিত মুকুলিত পুলকিত সূর্যসনাথ আদিম পৃথিবীর ভাব। যেন আমার এই চেতনার প্রবাহ পৃথিবীর প্রত্যেক ঘাসে এবং গাছের শিকড়ে শিকড়ে শিরায় শিরায় ধীরে ধীরে প্রবাহিত হচ্ছে, সমস্ত শস্যক্ষেত্র রোমাঞ্চিত হয়ে উঠছে, এবং নারকেল গাছের প্রত্যেক পাতা জীবনের আবেগে থর থর করে কাঁপছে।
+</p><p><br/>এই পৃথিবীটি আমার অনেক দিনকার এবং অনেক জন্মকার ভালোবাসার লোকের মতো আমার কাছে চিরকাল নতুন।··· আমি বেশ মনে করতে পারি, বহুযুগ পূর্বে তরুণী পৃথিবী সমুদ্রস্নান থেকে সবে মাথা তুলে উঠে তখনকার নবীন সূর্যকে বন্দনা করছেন― তখন আমি এই পৃথিবীর নূতন মাটিতে কোথা থেকে এক প্রথম জীবনোচ্ছ্বাসে গাছ হয়ে পল্লবিত হয়ে উঠেছিলেম। তখন পৃথিবীতে জীবজন্তু কিছুই ছিল না, বৃহৎ সমুদ্র দিনরাত্রি দুলছে এবং অবােধ মাতার মতো আপনার নবজাত ক্ষুদ্র ভূমিকে মাঝে মাঝে উন্মত্ত আলিঙ্গনে একেবারে আবৃত করে ফেলছে। তখন আমি এই পৃথিবীতে আমার সর্বাঙ্গ দিয়ে প্রথম সূর্যালােক পান করেছিলেম—নবশিশুর মতো একটা অন্ধ জীবনের পুলকে নীলাম্বর তলে আন্দোলিত হয়ে উঠেছিলেম, এই আমার মাটির মাতাকে আমার সমস্ত শিকড়গুলি দিয়ে জড়িয়ে এর স্তন্যরস পান করেছিলেম। একটা মূঢ় আনন্দে আমার ফুল ফুটত এবং নবপল্লব উদ্‌গত হত। যখন ঘনঘটা করে বর্ষার মেঘ উঠত তখন তার ঘনশ্যামচ্ছটায় আমার সমস্ত পল্লবকে একটি পরিচিত করতলের মতো স্পর্শ করত। তার পরেও নব নব যুগে এই পৃথিবীর মাটিতে আমি জন্মেছি। আমরা দুজনে একলা মুখোমুখি করে বসলেই আমাদের সেই বহুকালের পরিচয় যেন অল্পে অল্পে মনে পড়ে। আমার বসুন্ধরা এখন একখানি রৌদ্রপীতহিরণ্য অঞ্চল প’রে ঐ নদীতীরের শস্যক্ষেত্রে বসে আছেন— আমি তাঁর পায়ের কাছে, কোলের কাছে গিয়ে লুটিয়ে পড়ছি। অনেক ছেলের মা যেমন অর্ধমনস্ক অথচ নিশ্চল সহিষ্ণুভাবে আপন শিশুদের আনাগােনার প্রতি তেমন দৃক্‌পাত করেন না, তেমনি আমার পৃথিবী এই দুপুরবেলায় ঐ আকাশপ্রান্তের দিকে চেয়ে বহু আদিমকালের কথা ভাবছেন— আমার দিকে তেমন লক্ষ করছেন না, আর আমি কেবল অবিশ্রাম বকেই যাচ্ছি।
+</p><p>প্রকৃতি তাহার রূপরস বর্ণগন্ধ লইয়া, মানুষ তাহার বুদ্ধিমন তাহার স্নেহপ্রেম লইয়া আমাকে মুগ্ধ করিয়াছে— সেই মােহকে আমি অবিশ্বাস করি না, সেই মােহকে আমি নিন্দা করি না। তাহা আমাকে বদ্ধ করিতেছে না, তাহা আমাকে মুক্তই করিতেছে; তাহা আমাকে আমার বাহিরেই ব্যাপ্ত করিতেছে। নৌকার গুণ নৌকাকে বাঁধিয়া রাখে নাই, নৌকাকে টানিয়া টানিয়া লইয়া চলিয়াছে। জগতের সমস্ত আকর্ষণপাশ আমাদিগকে তেমনি অগ্রসর করিতেছে। কেহ-বা দ্রুত চলিতেছে বলিয়া সে আপন গতিসম্বন্ধে সচেতন, কেহ-বা মন্দগমনে চলিতেছে বলিয়া মনে করিতেছে বুঝি-বা সে এক জায়গায় বাঁধাই পড়িয়া আছে। কিন্তু সকলকেই চলিতে হইতেছে— সকলই এই জগৎসংসারের নিরন্তর টানে প্রতিদিনই ন্যূনাধিক পরিমাণে আপনার দিক হইতে ব্রহ্মের দিকে ব্যাপ্ত হইতেছে। আমরা যেমনই মনে করি, আমাদের ভাই, আমাদের প্রিয়, আমাদের পুত্র আমাদিগকে একটি জায়গায় বাঁধিয়া রাখে নাই; যে জিনিসটাকে সন্ধান করিতেছি, দীপালােক কেবলমাত্র সেই জিনিসটাকে প্রকাশ করে তাহা নহে, সমস্ত ঘরকে আলােকিত করে― প্রেম প্রেমের বিষয়কে অতিক্রম করিয়াও ব্যাপ্ত হয়। জগতের সৌন্দর্যের মধ্য দিয়া, প্রিয়জনের মাধুর্যের মধ্য দিয়া ভগবানই আমাদিগকে টানিতেছেন— আর-কাহারো টানিবার ক্ষমতাই নাই। পৃথিবীর প্রেমের মধ্য দিয়াই সেই ভূমানন্দের পরিচয় পাওয়া, জগতের এই রূপের মধ্যেই সেই অপরূপকে সাক্ষাৎ প্রত্যক্ষ করা, ইহাকেই তো আমি মুক্তির সাধনা বলি। জগতের মধ্যে আমি মুগ্ধ, সেই মােহেই আমার মুক্তিরসের আস্বাদন।―
+</p>
+<div>
+<div>
+<p>বৈরাগ্যসাধনে মুক্তি, সে আমার নয়।<br/>
+অসংখ্যবন্ধন-মাঝে মহানন্দময়<br/>
+লভিব মুক্তির স্বাদ। এই বসুধার<br/>
+মৃত্তিকার পাত্রখানি ভরি বারম্বার<br/>
+তােমার অমৃত ঢালি দিবে অবিরত
+</p>
+</div> <div>
+<p>নানাবর্ণগন্ধময়। প্রদীপের মতাে<br/>
+সমস্ত সংসার মাের লক্ষ বর্তিকায়<br/>
+জ্বালায়ে তুলিবে আলো তােমারি শিখায়<br/>
+তােমার মন্দির মাঝে। ইন্দ্রিয়ের দ্বার<br/>
+রুদ্ধ করি যােগাসন, সে নহে আমার।<br/>
+যে কিছু আনন্দ আছে দৃশ্যে গন্ধে গানে<br/>
+তােমার আনন্দ রবে তারি মাঝখানে।<br/>
+মােহ মাের মুক্তিরূপে উঠিবে জ্বলিয়া,<br/>
+প্রেম মাের ভক্তিরূপে রহিবে ফলিয়া।
+</p>
+</div>
+</div>
+<p>আমি বালকবয়সে ‘প্রকৃতির প্রতিশােধ’ লিখিয়াছিলাম— তখন আমি নিজে ভালো করিয়া বুঝিয়াছিলাম কি না জানি না— কিন্তু তাহাতে এই কথা ছিল যে, এই বিশ্বকে গ্রহণ করিয়া, এই সংসারকে বিশ্বাস করিয়া, এই প্রত্যক্ষকে শ্রদ্ধা করিয়া আমরা যথার্থভাবে অনন্তকে উপলব্ধি করিতে পারি। যে জাহাজে অনন্তকোটি লােক যাত্রা করিয়া বাহির হইতেছে তাহা হইতে লাফ দিয়া পড়িয়া সাঁতারের জোরে সমুদ্র পার হইবার চেষ্টা সফল হইবার নহে।
+</p>
+<div>
+<div>
+<p>হে বিশ্ব, হে মহাতরী, চলেছ কোথায়?<br/>
+আমারে তুলিয়া লও তােমার আশ্রয়ে।<br/>
+একা আমি সঁতারিয়া পারিব না যেতে।<br/>
+কোটি কোটি যাত্রী ওই যেতেছে চলিয়া—<br/>
+আমিও চলিতে চাই উহাদেরি সাথে।<br/>
+যে পথে তপন শশী আলাে ধরে আছে<br/>
+সে পথ করিয়া তুচ্ছ, সে আলো ত্যজিয়া<br/>
+আপনারি ক্ষুদ্র এই খদ্যোত-আলােকে<br/>
+কেন অন্ধকারে মরি পথ খুঁজে খুঁজে।
+</p>
+</div> <div>
+<p>···
+</p>
+</div>
+<div>
+<p>পাখি যবে উড়ে যায় আকাশের পানে<br/>
+মনে করে এনু বুঝি পৃথিবী ত্যজিয়া;<br/>
+যত ওড়ে, যত ওড়ে, যত ঊর্ধ্বে যায়,<br/>
+কিছুতে পৃথিবী তবু পারে না ছাড়িতে—<br/>
+অবশেষে শ্রান্তদেহে নীড়ে ফিরে আসে।
+</p>
+</div>
+</div>
+<p>পরিণত বয়সে যখন ‘মালিনী’ নাট্য লিখিয়াছিলাম, তখনো এইরূপ দূর হইতে নিকটে, অনিদিষ্ট হইতে নির্দিষ্টে, কল্পনা হইতে প্রত্যক্ষের মধ্যেই ধর্মকে উপলব্ধি করিবার কথা বলিয়াছি—
+</p>
+<div>
+<div>
+<p>বুঝিলাম ধর্ম দেয় স্নেহ মাতারূপে,<br/>
+পুত্ররূপে স্নেহ লয় পুন; দাতারূপে<br/>
+করে দান, দীনরূপে করে তা গ্রহণ;<br/>
+শিষ্যরূপে করে ভক্তি, গুরুরূপে করে<br/>
+আশীর্বাদ; প্রিয়া হয়ে পাষাণ-অন্তরে<br/>
+প্রেম-উৎস লয় টানি, অনুরক্ত হয়ে<br/>
+করে সর্বত্যাগ। ধর্ম বিশ্বলোকালয়ে<br/>
+ফেলিয়াছে চিত্তজাল, নিখিল ভুবন<br/>
+টানিতেছে প্রেমক্রোড়ে— সে মহাবন্ধন<br/>
+ভরেছে অন্তর মোর আনন্দবেদনে।
+</p>
+</div>
+</div>
+<p>নিজের সম্বন্ধে আমার যেটুকু বক্তব্য ছিল, তাহা শেষ হইয়া আসিল, এইবার শেষ কথাটা বলিয়া উপসংহার করিব—
+</p>
+<div>
+<div>
+<p>মর্তবাসীদের তুমি যা দিয়েছ, প্রভু,<br/>
+মর্তের সকল আশা মিটাইয়া তবু<br/>
+রিক্ত তাহা নাহি হয়। তার সর্বশেষ<br/>
+আপনি খুঁজিয়া ফিরে তোমারি উদ্দেশ।
+</p>
+</div> <div>
+<p>নদী ধায় নিত্যকাজে; সবকর্ম সারি<br/>
+অন্তহীন ধারা তার চরণে তােমারি<br/>
+নিত্য জলাঞ্জলিরূপে ঝরে অনিবার।<br/>
+কুসুম আপন গন্ধে সমস্ত সংসার<br/>
+সম্পূর্ণ করিয়া তবু সম্পূর্ণ না হয়—<br/>
+তােমারি পূজায় তার শেষ পরিচয়।<br/>
+সংসারে বঞ্চিত করি তব পূজা নহে;<br/>
+কবি আপনার গানে যত কথা কহে<br/>
+নানা জনে লহে তার নানা অর্থ টানি,<br/>
+তােমাপানে ধায় তার শেষ অর্থখানি!
+</p>
+</div>
+</div>
+<p>আমার কাব্য ও জীবন সম্বন্ধে মূলকথাটা কতক কবিতা উদ্‌ধৃত করিয়া, কতক ব্যাখ্যা দ্বারা বােঝাইবার চেষ্টা করা গেল। বােঝাইতে পারিলাম কি না জানি না— কারণ, বােঝানো-কাজটা সম্পূর্ণ আমার নিজের হাতে নাই— যিনি বুঝিবেন তাঁহার উপরেও অনেকটা নির্ভর করিবে। আশঙ্কা আছে, অনেক পাঠক বলিবেন, কাব্যও হেঁয়ালি রহিয়া গেল, জীবনটাও তথৈবচ। বিশ্বশক্তি যদি আমার কল্পনায় আমার জীবনে এমন বাণীরূপে উচ্চারিত হইয়া থাকেন যাহা অন্যের পক্ষে দুর্বোধ তবে আমার কাব্য আমার জীবন পৃথিবীর কাহারো কোনাে কাজে লাগিবে না— সে আমারই ক্ষতি, আমারই ব্যর্থতা। সেজন্য আমাকে গালি দিয়া কোনাে লাভ নাই, আমার পক্ষে তাহার সংশােধন অসম্ভব― আমার অন্য কোনো গতি ছিল না।
+</p><p>বিশ্বজগৎ যখন মানবের হৃদয়ের মধ্য দিয়া, জীবনের মধ্য দিয়া, মানবভাষায় ব্যক্ত হইয়া উঠে তখন তাহা কেবলমাত্র প্রতিধ্বনি-প্রতিচ্ছায়ার মতাে দেখা দিলে বিশেষ কিছু লাভ নাই। কেবলমাত্র ইন্দ্রিয়দ্বারা আমরা জগতের যে পরিচয় পাইতেছি তাহা জগৎপরিচয়ের কেবল সামান্য একাংশমাত্র― সেই পরিচয়কে আমরা ভাবুকদিগের, কবিদিগের, মন্ত্রদ্রষ্টা ঋষিদিগের চিত্তের ভিতর দিয়া কালে কালে নবতররূপে গভীরতররূপে সম্পূর্ণ করিয়া লইতেছি। কোন্ গীতিকাব্যরচয়িতার কোন্ কবিতা ভালাে, কোনটা মাঝারি, তাহাই খণ্ড খণ্ড করিয়া দেখানো সমালােচকের কাজ নহে। তাঁহার সমস্ত কাব্যের ভিতর দিয়া বিশ্ব কোন্ বাণীরূপে আপনাকে প্রকাশ করিতেছে তাহাই বুঝিবার যােগ্য। কবিকে উপলক্ষ করিয়া বীণাপাণি বাণী, বিশ্বজগতের প্রকাশশক্তি, আপনাকে কোন্ আকারে ব্যক্ত করিয়াছেন তাহাই দেখিবার বিষয়।
+</p><p>জগতের মধ্যে যাহা অনির্বচনীয় তাহা কবির হৃদয়দ্বারে প্রত্যহ বারংবার আঘাত করিয়াছে, সেই অনির্বচনীয় যদি কবির কাব্যে বচন লাভ করিয়া থাকে— জগতের মধ্যে যাহা অপরূপ তাহা কবির মুখের দিকে প্রত্যহ আসিয়া তাকাইয়াছে, সেই অপরূপ যদি কবির কাব্যে রূপলাভ করিয়া থাকে— যাহা চোখের সম্মুখে মূর্তিরূপে প্রকাশ পাইতেছে তাহা যদি কবির কাব্যে ভাবরূপে আপনাকে ব্যাপ্ত করিয়া থাকে― যাহা অশরীরভাবরূপে নিরাশ্রয় হইয়া ফিরে, তাহাই যদি কবির কাব্যে মূর্তি পরিগ্রহ করিয়া সম্পূর্ণতালাভ করিয়া থাকে—তবেই কাব্য সফল হইয়াছে এবং সেই সফল কাব্যই কবির প্রকৃত জীবনী। সেই জীবনীর বিষয়ীভূত ব্যক্তিটিকে কাব্যরচয়িতার জীবনের সাধারণ ঘটনাবলীর মধ্যে ধরিবার চেষ্টা করা বিড়ম্বনা।
+</p>
+<div>
+<div>
+<p>বাহির হইতে দেখো না এমন করে,<br/><span>আমায় দেখো না বাহিরে।</span><br/>
+আমায় পাবে না আমার দুখে ও সুখে,<br/>
+আমার বেদনা খুঁজো না আমার বুকে,<br/>
+আমায় দেখিতে পাবে না আমার মুখে,<br/><span>কবিরে খুঁজিছ যেথায় সেথা সে নাহি রে।···</span>
+</p>
+</div> <div>
+<p>যে আমি স্বপনমুরতি গোপনচারী,<br/>
+যে আমি আমারে বুঝিতে বোঝাতে নারি,<br/>
+আপন গানের কাছেতে আপনি হারি,<br/><span>সেই আমি কবি, এসেছ কাহারে ধরিতে?</span><br/>
+মানুষ-আকারে বদ্ধ যে জন ঘরে,<br/>
+ভূমিতে লুটায় প্রতি নিমেষের ভরে,<br/>
+যাহারে কাঁপায় স্তুতি নিন্দার জ্বরে;<br/><span>কবিরে খুঁজিছ তাহারি জীবনচরিতে?</span>
+</p>
+</div>
+</div>
+<p><span>১৩১১</span>
+</p>
+
+
+</div></section>
+<section><div>
+
+<div>
+<h2>২
+</h2>
+</div>
+<p>অকালে যাহার উদয় তাহার সম্বন্ধে মনের আশঙ্কা ঘুচিতে চায় না। আপনাদের কাছ হইতে আমি যে সমাদর লাভ করিয়াছি সে একটি অকালের ফল— এইজন্য ভয় হয় কখন সে বৃন্তচ্যুত হইয়া পড়ে।
+</p><p>অন্যান্য সেবকদের মতো সাহিত্যসেবক কবিদেরও খোরাকি এবং বেতন এই দুই রকমের প্রাপ্য আছে। তাঁরা প্রতিদিনের ক্ষুধা মিটাইবার মতো কিছু কিছু যশের খোরাকি প্রত্যাশা করিয়া থাকেন— নিতান্তই উপবাসে দিন চলে না। কিন্তু এমন কবিও আছেন তাঁহাদের আপ-খোরাকি বন্দোবস্ত— তাঁহারা নিজের আনন্দ হইতে নিজের খোরাক জোগাইয়া থাকেন, গৃহস্থ তাঁহাদিগকে একমুঠা মুড়িমুড়কিও দেয় না।
+</p><p>এই তো গেল দিনের খোরাক— ইহা দিন গেলে জোটে এবং দিনের সঙ্গে ইহার ক্ষয় হয়। তার পরে বেতন আছে। কিন্তু সে তো মাস না গেলে দাবি করা যায় না। সেই চিরদিনের প্রাপ্যটা, বাঁচিয়া থাকিতেই আদায় করিবার রীতি নাই। এই বেতনটার হিসাব চিত্রগুপ্তের খাতাঞ্চিখানাতেই হইয়া থাকে। সেখানে হিসাবের ভুল প্রায় হয় না।
+</p><p>কিন্তু বাঁচিয়া থাকিতেই যদি আগাম শোধের বন্দোবস্ত হয় তবে সেটাতে বড়ো সন্দেহ জন্মায়। সংসারে অনেক জিনিস ফাঁকি দিয়া পাইয়াও সেটা রক্ষা করা চলে। অনেকে পরকে ফাঁকি দিয়া ধনী হইয়াছে এমন দৃষ্টান্ত একেবারে দেখা যায় না তাহা নহে। কিন্তু যশ জিনিসটাতে সে সুবিধা নাই। উহার সম্বন্ধে তামাদির আইন খাটে না। যেদিন ফাঁকি ধরা পড়িবে সেইদিনই ওটি বাজেয়াপ্ত হইবে। মহাকালের এমনি বিধি। অতএব জীবিতকালে কবি যে সম্মান লাভ করিল সেটি সম্বন্ধে নিশ্চিন্ত হইবার জো নাই।
+</p>
+
+<p> শুধু এই নয়। বাঁচিয়া থাকিতেই যদি মাহিনা চুকাইয়া লওয়া হয় তবে সেটা সম্পূর্ণ কবির হাতে গিয়া পড়ে না। কবির বাহির-দরজায় একটা মানুষ দিনরাত আড্ডা করিয়া থাকে, সে দালালি আদায় করিয়া লয়। কবি যতবড়ো কবিই হউক, তাহার সমস্তটাই কবি নয়। তাহার সঙ্গে সঙ্গে যে-একটি অহং লাগিয়া থাকে, সকল-তাতেই সে আপনার ভাগ বসাইতে চায়। তাহার বিশ্বাস, কৃতিত্ব সমস্ত তাহারই এবং কবিত্বের গৌরব তাহারই প্রাপ্য। এই বলিয়া সে থলি ভর্তি করিতে থাকে। এমনি করিয়া পূজার নৈবেদ্য পুরুত চুরি করে। কিন্তু মৃত্যুর পরে ঐ অহং-পুরুষটার বালাই থাকে না, তাই পাওনাটি নিরাপদে যথাস্থানে গিয়া পৌঁছে।
+</p><p>অহংটাই পৃথিবীর মধ্যে সকলের চেয়ে বড়ো চোর। সে স্বয়ং ভগবানের সামগ্রীও নিজের বলিয়া দাবি করিতে কুণ্ঠিত হয় না। এইজন্যই তো ঐ দুবৃত্তটাকে দাবাইয়া রাখিবার জন্য এত অনুশাসন। এইজন্যই তাে মনু বলিয়াছেন— সম্মানকে বিষের মতো জানিবে, অপমানই অমৃত। সম্মান যেখানেই লােভনীয় সেখানেই সাধ্যমত তাহার সংস্রব পরিহার করা ভালো।
+</p><p>আমার তো বয়স পঞ্চাশ পার হইল। এখন বনে যাইবার ডাক পড়িয়াছে। এখন ত্যাগেরই দিন। এখন নূতন সঞ্চয়ের বােঝা মাথায় করিলে তাে কাজ চলিবে না। অতএব এই পঞ্চাশের পরেও ঈশ্বর যদি আমাকে সম্মান জুটাইয়া দেন তবে নিশ্চয় বুঝিব, সে কেবল ত্যাগশিক্ষারই জন্য। এ সম্মানকে আমি আপনার বলিয়া গ্রহণ করিতে পারিব না। এই মাথার বোঝা আমাকে সেইখানেই নামাইতে হইবে যেখানে আমার মাথা নত করিবার স্থান। অতএব এটুকু আমি আপনাদিগকে ভরসা দিতে পারি যে, আপনারা আমাকে যে সম্মান দিলেন তাহাকে আমার অহংকারের উপকরণরূপে ব্যবহার করিয়া অপমানিত করিব না।
+</p>
+
+<p> আমাদের দেশে বর্তমানকালে পঞ্চাশ পার হইলে আনন্দ করিবার কারণ আছে― কেননা দীর্ঘায়ু বিরল হইয়া আসিয়াছে। যে দেশের লোক অল্পবয়সেই মারা যায়, প্রাচীন বয়সের অভিজ্ঞতার সম্পদ হইতে সে দেশ বঞ্চিত হয়। তারুণ্য তো ঘোড়া আর প্রবীণতাই সারথি। সারথিহীন ঘোড়ায় দেশের রথ চালাইলে কিরূপ বিষম বিপদ ঘটিতে পারে আমরা মাঝে মাঝে তাহার পরিচয় পাইয়াছি। অতএব এই অল্পায়ুর দেশে যে মানুষ পঞ্চাশ পার হইয়াছে তাহাকে উৎসাহ দেওয়া যাইতে পারে।
+</p><p>কিন্তু কবি তো বৈজ্ঞানিক দার্শনিক ঐতিহাসিক বা রাষ্ট্রনীতিবিৎ নহে। কবিত্ব মানুষের প্রথমবিকাশের লাবণ্যপ্রভাত। সম্মুখে জীবনের বিস্তার যখন আপনার সীমাকে এখনো খুঁজিয়া পায় নাই, আশা যখন পরমরহস্যময়ী—তখনই কবিত্বের গান নব নব সুরে জাগিয়া উঠে। অবশ্য, এই রহস্যের সৌন্দর্যটি যে কেবল প্রভাতেরই সামগ্রী তাহা নহে, আয়ু-অবসানের দিনান্তকালেও অনন্তজীবনের পরমরহস্যের জ্যোতির্ময় আভাস আপনার গভীরতর সৌন্দর্য প্রকাশ করে। কিন্তু সেই রহস্যের স্তব্ধ গাম্ভীর্য গানের কলোচ্ছ্বাসকে নীরব করিয়াই দেয়। তাই বলিতেছি কবির বয়সের মূল্য কি?
+</p><p>অতএব বার্ধক্যের আরম্ভে যে আদর লাভ করিলাম তাহাকে প্রবীণ বয়সের প্রাপ্য অর্ঘ্য বলিয়া গণ্য করিতে পারি না। আপনারা আমার এ বয়সেও তরুণের প্রাপ্যই আমাকে দান করিয়াছেন। তাহাই কবির প্রাপ্য। তাহা শ্রদ্ধা নহে, ভক্তি নহে, তাহা হৃদয়ের প্রীতি। মহত্ত্বের হিসাব করিয়া আমরা মানুষকে ভক্তি করি, যোগ্যতার হিসাব করিয়া তাহাকে শ্রদ্ধা করিয়া থাকি, কিন্তু প্রীতির কোনো হিসাবকিতাব নাই। সেই প্রেম যখন যজ্ঞ করিতে বসে তখন নির্বিচারে আপনাকে রিক্ত করিয়া দেয়।
+</p>
+
+<p> বুদ্ধির জোরে নয়, বিদ্যার জোরে নয়, সাধুত্বের গৌরবে নয়, যদি অনেক কাল বাঁশি বাজাইতে বাজাইতে তাহারই কোনো একটা সুরে আপনাদের হৃদয়ের সেই প্রীতিকে পাইয়া থাকি তবে আমি ধন্য হইয়াছি— তবে আমার আর সংকোচের কোনো কথা নাই। কেননা, আপনাকে দিবার বেলায় প্রীতির যেমন কোনো হিসাব থাকে না, তেমনি যে লোক ভাগ্যক্রমে তাহা পায় নিজের যোগ্যতার হিসাব লইয়া তাহারও কুন্ঠিত হইবার কোনো প্রয়োজন নাই। যে মানুষ প্রেম দান করিতে পারে ক্ষমতা তাহারই― যে মানুষ প্রেম লাভ করে তাহার কেবল সৌভাগ্য।
+</p><p>প্রেমের ক্ষমতা যে কতবড়ো আজ আমি তাহা বিশেষরূপে অনুভব করিতেছি। আমি যাহা পাইয়াছি তাহা সস্তা জিনিস নহে। আমরা ভৃত্যকে যে বেতন চুকাইয়া দিই তাহা তুচ্ছ, স্তুতিবাদকে যে পুরস্কার দিই তাহা হেয়। সেই অবজ্ঞার দান আমি প্রার্থনা করি নাই, আপনারাও তাহা দেন নাই। আমি প্রেমেরই দান পাইয়াছি। সেই প্রেমের একটি মহৎ পরিচয় আছে। আমরা যে জিনিসটার দাম দিই তাহার ত্রুটি সহিতে পারি না― কোথাও ফুটা বা দাগ দেখিলে দাম ফিরাইয়া লইতে চাই। যখন মজুরি দিই তখন কাজের ভুলচুকের জন্য জরিমানা করিয়া থাকি। কিন্তু প্রেম অনেক সহ্য করে, অনেক ক্ষমা করে; আঘাতকে গ্রহণ করিয়াই সে আপনার মহত্ত্ব প্রকাশ করে।
+</p><p>আজ চল্লিশ বৎসরের ঊর্ধ্বকাল সাহিত্যের সাধনা করিয়া আসিয়াছি— ভুলচুক যে অনেক করিয়াছি এবং আঘাতও যে বারংবার দিয়াছি তাহাতে কোনোই সন্দেহ থাকিতে পারে না। আমার সেই-সমস্ত অপূর্ণতা, আমার সেই-সমস্ত কঠোরতা-বিরুদ্ধতার ঊর্ধ্বে দাঁড়াইয়া আপনারা আমাকে যে মাল্য দান করিয়াছেন তাহা প্রীতির মাল্য ছাড়া আর-কিছুই হইতে পারে না। এই দানেই আপনাদের যথার্থ গৌরব এবং সেই গৌরবেই আমি গৌরবান্বিত।
+</p>
+
+<p> যেখানে প্রাকৃতিক নির্বাচনের নিয়ম প্রবল সেখানে প্রাকৃতিক প্রাচুর্যের প্রয়োজন আছে। যেখানে অনেক জন্মে সেখানে মরেও বেশি— তাহার মধ্য হইতে কিছু টিকিয়া যায়। কবিদের মধ্যে যাঁহারা কলানিপুণ, যাঁহারা আর্টিস্ট্, তাঁহারা মানসিক নির্বাচনের নিয়মে সৃষ্টি করেন, প্রাকৃতিক নির্বাচনকে কাছে ঘেঁষিতে দেন না। তাঁহারা যাহা-কিছু প্রকাশ করেন তাহা সমস্তটাই একেবারে সার্থক হইয়া উঠে।
+</p><p>আমি জানি আমার রচনার মধ্যে সেই নিরতিশয় প্রাচুর্য আছে যাহা বহুপরিমাণে ব্যর্থতা বহন করে। অমরত্বের তরণীতে স্থান বেশি নাই, এইজন্য বোঝাকে যতই সংহত করিতে পারিব বিনাশের পারের ঘাটে পৌঁছিবার সম্ভাবনা ততই বেশি হইবে। মহাকালের হাতে আমরা যত বেশি দিব ততই বেশি সে লইবে ইহা সত্য নহে। আমার বোঝা অত্যন্ত ভারী হইয়াছে— ইহা হইতেই বুঝা যাইতেছে ইহার মধ্যে অনেকটা অংশে মৃত্যুর মার্কা পড়িয়াছে। যিনি অমরত্বরথের রথী তিনি সোনার মুকুট, হীরার কন্ঠি, মানিকের অঙ্গদ ধারণ করেন, তিনি বস্তা মাথায় করিয়া লন না।
+</p><p>কিন্তু আমি কারুকরের মতো সংহত অথচ মূল্যবান গহনা গড়িয়া দিতে পারি নাই। আমি, যখন যাহা জুটিয়াছে তাহা লইয়া কেবল মোট বাঁধিয়া দিয়াছি; তাহার দামের চেয়ে তাহার ভার বেশি। অপব্যয় বলিয়া যেমন একটা ব্যাপার আছে অপসঞ্চয়ও তেমনি একটি উৎপাত। সাহিত্যে এই অপরাধ আমার ঘটিয়াছে। যেখানে মালচালানের পরীক্ষাশালা সেই কাস্টম্‌হৌসের হাত হইতে ইহার সমস্তগুলি পার হইতে পারিবে না। কিন্তু সেই লোকসানের আশঙ্কা লইয়া ক্ষোভ করিতে চাই না। যেমন একদিকে চিরকালটা আছে তেমনি আর এক দিকে ক্ষণকালটাও আছে। সেই ক্ষণকালের প্রয়োজনে ক্ষণকালের উৎসবে, এমন-কি, ক্ষণকালের অনাবশ্যক ফেলাছড়ার ব্যাপারেও যাহা জোগান দেওয়া গেছে, তাহার স্থায়িত্ব নাই বলিয়া যে তাহার কোনো ফল নাই তাহা বলিতে পারি না। একটা ফল তাে এই দেখিতেছি, অন্তত প্রাচুর্যের দ্বারাতেও বর্তমানকালের হৃদয়টিকে আমার কবিত্বচেষ্টা কিছু পরিমাণে জুড়িয়া বসিয়াছে এবং আমার পাঠকদের হৃদয়ের তরফ হইতে আজ যাহা পাইলাম তাহা যে অনেকটা পরিমাণে সেই দানের প্রতিদান তাহাতে সন্দেহ নাই।
+</p><p>কিন্তু এই দানও যেমন ক্ষণস্থায়ী তাহার প্রতিদানও চিরদিনের নহে। আমি যে ফুল ফুটাইয়াছি তাহারও বিস্তর ঝরিবে আপনারা যে মালা দিলেন তাহারও অনেক শুকাইবে। বাঁচিয়া থাকিতেই কবি যাহা পায় তাহার মধ্যে ক্ষণকালের এই দেনাপাওনা শােধ হইতে থাকে। অদ্যকার সম্বর্ধনার মধ্যে সেই ক্ষণকালের হিসাবনিকাশের অঙ্ক যে প্রচুর পরিমাণে আছে তাহা আমি নিজেকে ভুলিতে দিব না।
+</p><p>এই ক্ষণকালের ব্যবসায়ে ইচ্ছায় অনিচ্ছায় অনেক ফাঁকি চলে। বিস্তর ব্যর্থতা দিয়া ওজন ভারী করিয়া তােলা যায়― যতটা মনে করা যায় তাহার চেয়ে বলা যায় বেশি― দর অপেক্ষা দস্তুরের দিকে বেশি দৃষ্টি পড়ে, অনুভবের চেয়ে অনুকরণের মাত্রা অধিক হইয়া উঠে। আমার সুদীর্ঘকালের সাহিত্য-কারবারে সেই-সকল ফাঁকি জ্ঞানে অজ্ঞানে অনেক জমিয়াছে সে কথা আমাকে স্বীকার করিতেই হইবে।
+</p><p>কেবল একটি কথা আজ আমি নিজের পক্ষ হইতে বলিব, সেটি এই যে, সাহিত্যে আজ পর্যন্ত আমি যাহা দিবার যােগ্য মনে করিয়াছি তাহাই দিয়াছি, লােকে যাহা দাবি করিয়াছে তাহাই জোগাইতে চেষ্টা করি নাই। আমি আমার রচনা পাঠকদের মনের মতো করিয়া তুলিবার দিকে চোখ না রাখিয়া আমার মনের মতাে করিয়াই সভায় উপস্থিত করিয়াছি। সভার প্রতি ইহাই যথার্থ সম্মান। কিন্তু এরূপ প্রণালীতে আর যাহাই হউক, শুরু হইতে শেষ পর্যন্ত বাহবা পাওয়া যায় না, আমি তাহা পাইও নাই। আমায় যশেয় ভোজে কাজ সমাপনের বেলায় যে মধুর জুটিয়াছে, বরাবর এ রসের আয়ােজন ছিল না। যে ছন্দে যে ভাষায় একদিন কাব্যরচনা আরম্ভ করিয়াছিলাম তখনকার কালে তাহা আদর পায় নাই এবং এখনকার কালেও যে তাহা আদরের যােগ্য তাহা আমি বলিতে চাই না। কেবল আমায় বলিবার কথা এই যে, যাহা আমার তাহাই আমি অন্যকে দিয়াছিলাম— ইহার চেয়ে সহজ সুবিধার পথ আমি অবলম্বন করি নাই। অনেক সময়ে লােককে বঞ্চনা করিয়াই খুশি করা যায়— কিন্তু সেই খুশিও কিছুকাল পরে ফিরিয়া বঞ্চনা করে— সেই সুলভ খুশির দিকে লােভদৃষ্টিপাত করি নাই।
+</p><p>তাহার পরে আমার রচনায় অপ্রিয় বাক্যও আমি অনেক বলিয়াছি এবং অপ্রিয় বাক্যে যাহা নগদ-বিদায় তাহাও আমাকে বার বার পিঠ পাতিয়া লইতে হইয়াছে। আপনার শক্তিতেই মানুষ আপনার সত্য উন্নতি করিতে পারে, মাগিয়া পাতিয়া কেহ কোনােদিন স্থায়ী কল্যাণ লাভ করিতে পারে না, এই নিতান্ত পুরাতন কথাটিও দুঃসহ গালি না খাইয়া বলিবার সুযােগ পাই নাই। এমন ঘটনা উপরি-উপরি অনেকবারই ঘটিল। কিন্তু যাহাকে আমি সত্য বলিয়া জানিয়াছি তাহাকে হাটে বিকাইয়া দিয়া লােকপ্রিয় হইবার চেষ্টা করি নাই। আমার দেশকে আমি অন্তরের সহিত শ্রদ্ধা করি, আমার দেশের যাহা শ্রেষ্ঠ সম্পদ তাহার তুলনা আমি কোথাও দেখি নাই; এইজন্য দুর্গতির দিনের যে-কোনাে ধূলিজঞ্জাল সেই আমাদের চিরসাধনার ধনকে কিছুমাত্র আচ্ছন্ন করিয়াছে তাহার প্রতি আমি লেশমাত্র মমতা প্রকাশ করি নাই— এইখানে আমার শ্রোতা ও পাঠকদের সঙ্গে ক্ষণে ক্ষণে আমার মতের গুরুতর বিরোধ ঘটিয়াছে। আমি জানি, এই বিরােধ অত্যন্ত কঠিন এবং ইহার আঘাত অতিশয় মর্মান্তিক; এই অনৈক্যে বন্ধুকে শত্রু ও আত্মীয়কে পর বলিয়া আমরা কল্পনা করি। কিন্তু এরূপ আঘাত দিবার যে আঘাত তাহাও আমি সহ্য করিয়াছি। আমি অপ্রিয়তাকে কৌশলে এড়াইয়া চলিবার চেষ্টা করি নাই।
+</p><p>এইজন্যই আজ আপনাদের নিকট হইতে যে সমাদর লাভ করিলাম তাহাকে এমন দুর্লভ বলিয়া শিরোধার্য করিয়া লইতেছি। ইহা স্তুতিবাক্যের মূল্য নহে, ইহা প্রীতিরই উপহার। ইহাতে যে ব্যক্তি মান পায় সেও সম্মানিত হয়, আর যিনি মান দেন তাঁহারও সম্মান বৃদ্ধি হয়। যে সমাজে মানুষ নিজের সত্য আদর্শকে বজায় রাখিয়া নিজের সত্য মতকে খর্ব না করিয়াও শ্রদ্ধা লাভ করিতে পারে সেই সমাজই যথার্থ শ্রদ্ধাভাজন―যেখানে আদর পাইতে হইলে মানুষ নিজের সত্য বিকাইয়া দিতে বাধ্য হয় সেখানকার আদর আদরণীয় নহে। কে আমার দলে কে আমার দলে নয়, সেই বুঝিয়া যেখানে প্রতি-সম্মানের ভাগ বণ্টন হয় সেখানকার সম্মান অস্পৃশ্য; সেখানে যদি ঘৃণা করিয়া লােক গায়ে ধুলা দেয় তবে সেই ধুলাই যথার্থ ভুষণ, যদি রাগ করিয়া গালি দেয় তবে সেই গালিই যথার্থ সম্বর্ধনা।
+</p><p>সম্মান যেখানে মহৎ, যেখানে সত্য, সেখানে নম্রতায় আপনি মন নত হয়। অতএব আজ আপনাদের কাছ হইতে বিদায় হইবার পূর্বে এ কথা অন্তরের সহিত আপনাদিগকে জানাইয়া যাইতে পারিব যে, আপনাদের প্রদত্ত এই সম্মানের উপহার আমি দেশের আশীর্বাদের মতো মাথায় করিয়া লইলাম― ইহা পবিত্র সামগ্রী, ইহা আমার ভােগের পদার্থ নহে, ইহা আমার চিত্তকে বিশুদ্ধ করিবে; আমার অহংকারকে আলােড়িত করিয়া তুলিবে না।
+</p><p><span>ফাল্গুন ১৩১৮</span>
+</p>
+
+
+</div></section>
+<section><div>
+
+<div>
+<h2>৩
+</h2>
+</div>
+<p>সকল মানুষেরই ‘আমার ধর্ম’ বলে একটা বিশেষ জিনিস আছে। কিন্তু সেইটিকেই সে স্পষ্ট করে জানে না। সে জানে আমি খৃস্টান, আমি মুসলমান, আমি বৈষ্ণব, আমি শাক্ত ইত্যাদি। কিন্তু সে নিজেকে যে ধর্মাবলম্বী বলে জন্মকাল থেকে মৃত্যুকাল পর্যন্ত নিশ্চিন্ত আছে সে হয়তো সত্য তা নয়। নাম গ্রহণেই এমন একটা আড়াল তৈরি করে দেয় যাতে নিজের ভিতরকার ধর্মটা তার নিজের চোখেও পড়ে না।
+</p><p>কোন্ ধর্মটি তার? যে ধর্ম মনের ভিতরে গোপনে থেকে তাকে সৃষ্টি করে তুলছে। জীবজন্তুকে গড়ে তোলে তার অন্তর্নিহিত প্রাণধর্ম। সেই প্রাণধর্মটির কোনো খবর রাখা জন্তুর পক্ষে দরকারই নেই। মানুষের আর-একটি প্রাণ আছে, সেটা শারীরপ্রাণের চেয়ে বড়ো— সেইটে তার মনুষ্যত্ব। এই প্রাণের ভিতরকার সৃজনীশক্তিই হচ্ছে তার ধর্ম। এইজন্যে আমাদের ভাষায় ‘ধর্ম’ শব্দ খুব একটা অর্থপূর্ণ শব্দ। জলের জলত্বই হচ্ছে জলের ধর্ম, আগুনের আগুনত্বই হচ্ছে আগুনের ধর্ম। তেমনি মানুষের ধর্মটিই হচ্ছে তার অন্তরতম সত্য।
+</p><p>মানুষের প্রত্যেকের মধ্যে সত্যের একটি বিশ্বরূপ আছে, আবার সেই সঙ্গে তার একটি বিশেষ রূপ আছে। সেইটেই হচ্ছে তার বিশেষ ধর্ম। সেইখানেই সে ব্যক্তি সংসারের বিচিত্রতা রক্ষা করছে। সৃষ্টির পক্ষে এই বিচিত্রতা বহুমূল্য সামগ্রী। এইজন্যে একে সম্পূর্ণ নষ্ট করবার শক্তি আমাদের হাতে নেই। আমি সাম্যনীতিকে যতই মানি-নে কেন, তবু অন্য-সকলের সঙ্গে আমার চেহারার বৈষম্যকে আমি কোনোমতেই লুপ্ত করতে পারি নে। তেমনি সাম্প্রদায়িক সাধারণ নাম গ্রহণ করে আমি যতই মনে করিনা কেন যে, আমি সম্প্রদায়ের সকলেরই সঙ্গে সমান ধর্মের, তবু আমার অন্তর্যামী জানেন মনুষ্যত্বের মূলে আমার ধর্মের একটি বিশিষ্টতা বিরাজ করছে। সেই বিশিষ্টতাতেই আমার অন্তর্যামীর বিশেষ আনন্দ।
+</p><p>কিন্তু পূর্বেই বলেছি, যেটা বাইরে থেকে দেখা যায় সেটা আমার সাম্প্রদায়িক ধর্ম। সেই সাধারণ পরিচয়েই লােকসমাজে আমার ধর্মগত পরিচয়। সেটা যেন আমার মাথার উপরকার পাগড়ি। কিন্তু যেটা, আমার মাথার ভিতরকার মগজ, যেটা অদৃশ্য, যে পরিচয়টি আমার অন্তর্যামীর কাছে ব্যক্ত, হঠাৎ বাইরে থেকে কেউ যদি বলে, তার উপরকার প্রাণময় রহস্যের আবরণ ফুটো হয়ে সেটা বেরিয়ে পড়েছে এমন-কি, তার উপাদান বিশ্লেষণ করে তাকে যদি বিশেষ একটা শ্রেণীর মধ্যে বদ্ধ করে দেয়, তা হলে চমকে উঠতে হয়।
+</p><p>আমার সেই অবস্থা হয়েছে। সম্প্রতি কোনো কাগজে একটি সমালােচনা বেরিয়েছে, তাতে জানা গেল আমার মধ্যে একটি ধর্মতত্ত্ব আছে এবং সেই তত্ত্বটি বিশেষ শ্রেণীর।
+</p><p>হঠাৎ কেউ যদি আমাকে বলত আমার প্রেতমূর্তিটা দেখা যাচ্ছে, তা-হলে সেটা যেমন একটা ভাবনার কথা হত এও তার চেয়ে কম নয়। কেননা মানুষের মর্তলীলা সাঙ্গ না হলে প্রেতলীলা শুরু হয় না। আমার প্রেতটি দেখা দিয়েছে এ কথা বললে এই বােঝায় যে, আমার বর্তমান আমার পক্ষে আর সত্য নয়, আমার অতীতটাই আমার পক্ষে একমাত্র সত্য। আমার ধর্ম আমার জীবনেরই মূলে। সেই জীবন এখনো চলছে― কিন্তু মাঝে থেকে কোনাে-এক সময়ে তার ধর্মটা এমনি থেমে গিয়েছে যে, তার উপর টিকিট মেরে তাকে জাদুঘরে কৌতুহলী দর্শকদের চোখের সম্মুখে ধরে রাখা যায়, এই সংবাদটা বিশ্বাস করা শক্ত।
+</p><p>কয়েক বৎসর পূর্বে অন্য একটি কাগজে অন্য একজন লেখক আমার রচিত ধর্মসংগীতের একটি সমালােচনা বের করেছিলেন। তাতে বেছে বেছে আমার কাঁচাবয়সের কয়েকটি গান দৃষ্টান্তস্বরূপ চেপে ধরে তিনি তাঁর ইচ্ছামত সিদ্ধান্ত গড়ে তুলেছিলেন। যেখানে আমি থামি নি সেখানে আমি থেমেছি এমন ভাবের একটা ফোটোগ্রাফ তুললে মানুষকে অপদস্থ করা হয়। চলতি ঘােড়ার আকাশে-পা-তােলা ছবির থেকে প্রমাণ হয় না যে, বরাবর তার পা আকাশেই তোলা ছিল এবং আকাশেই তোলা আছে। এইজন্যে চলার ছবি ফোটোগ্রাফে হাস্যকর হয়, কেবল মাত্র আর্টিস্টের তুলিতেই তার রূপ ধরা পড়ে।
+</p><p>কিন্তু কথাটা হয়তো সম্পূর্ণ সত্য নয়। হয়তো যার মূলটা চেতনার অগােচরে তার ডগার দিকের কোনো-একটা প্রকাশ বাইরে দৃশ্যমান হয়েছে। সেইরকম দৃশ্যমান হবামাত্র বাইরের জগতের সঙ্গে তার একটা ব্যবহার আরম্ভ হয়েছে। যখনই সেই ব্যবহার আরম্ভ হয় তখনই জগৎ আপনার কাজের সুবিধার জন্য তাকে কোনাে-একটা বিশেষ শ্রেণীর চিহ্নে চিহ্নিত করে তবে নিশ্চিন্ত হয়। নইলে তার দাম ঠিক করা বা প্রয়ােজন ঠিক করা চলে না।
+</p><p>বাইরের জগতে মানুষের যে পরিচয় সেইটেতেই তার প্রতিষ্ঠা। বাইরের এই পরিচয়টি যদি তার ভিতরের সত্যের সঙ্গে কোনো অংশে না মেলে তা হলে তার অস্তিত্বের মধ্যে একটা আত্মবিচ্ছেদ ঘটে। কেননা মানুষ যে কেবল নিজের মধ্যে আছে তা নয়, সকলে তাকে যা জানে সেই জানার মধ্যেও সে অনেকখানি আছে। ‘আপনাকে জানো’ এই কথাটাই শেষ কথা নয়, ‘আপনাকে জানাও’ এটাও খুব বড়াে কথা। সেই আপনাকে জানাবার চেষ্টা জগৎ জুড়ে রয়েছে। আমার অন্তর্নিহিত ধর্মতত্ত্বও নিজের মধ্যে নিজেকে ধারণ করে রাখতে পারে না— নিশ্চয়ই আমার গােচরে ও অগোচরে নানারকম করে বাইরে নিজেকে জানিয়ে চলেছে।
+</p><p>এই জানিয়ে চলার কোনােদিন শেষ নেই। এর মধ্যে যদি কোনো সত্য থাকে তা হলে মৃত্যুর পরেও শেষ হবে না। অতএব চুপ করে গেলে ক্ষতি কী এমন কথা উঠতে পারে। নিজের কাব্যপরিচয় সম্বন্ধে তো চুপ করেই সকল কথা সহ্য করতে হয়। তার কারণ, সেটা রুচির কথা। রুচির প্রমাণ তর্কে হতে পারে না। রুচির প্রমাণ কালে। কালের ধৈর্য অসীম, রুচিকেও তার অনুসরণ করতে হয়। নিজের সমস্ত পাওনা সে নগদ আদায় করবার আশা করতে পারে না। কিন্তু যদি আমার কোনো একটা ধর্মতত্ত্ব থাকে তবে তার পরিচয় সম্বন্ধে কোনাে ভুল রেখে দেওয়া নিজের প্রতি এবং অন্যের প্রতি অন্যায় আচরণ করা। কারণ যেটা নিয়ে অন্যের সঙ্গে ব্যবহার চলছে, যার প্রয়ােজন এবং মূল্য সত্যভাবে স্থির হওয়া উচিত, সেটা নিয়ে কোনাে যাচনদার যদি এমন কিছু বলেন যা আমার মতে সংগত নয়, তবে চুপ করে গেলে নিতান্ত অবিনয় হবে।
+</p><p>অবশ্য এ কথা মানতে হবে যে ধর্মতত্ত্ব সম্বন্ধে আমার যা-কিছু প্রকাশ সে হচ্ছে পথ-চল্‌তি পথিকের নােটবইয়ের টোকা কথার মতো। নিজের গম্যস্থানে পৌছে যাঁরা কোনো কথা বলেছেন তাঁদের কথা একেবারে সুস্পষ্ট। তাঁরা নিজের কথাকে নিজের বাইরে ধরে রেখে দেখতে পান। আমি আমার তত্ত্বকে তেমন করে নিজের থেকে বিচ্ছিন্ন করে দেখি নি। সেই তত্ত্বটি গড়ে উঠতে উঠতে বেড়ে চলতে চলতে নানা রচনায় নিজের যে-সমস্ত চিহ্ন রেখে গেছে সেইগুলিই হচ্ছে তার পরিচয়ের উপকরণ। এমন অবস্থায় মুশকিল এই যে, এই উপকরণগুলিকে সমগ্র করে তােলবার সময় কে কোন্‌গুলিকে মুড়াের দিকে বা ল্যাজার দিকে কেমন করে সাজাবেন সে তাঁর নিজের সংস্কারের উপর নির্ভর করে।
+</p><p>অন্যে যেমন হয় তা করুন, কিন্তু আমিও এই উপকরণগুলিকে নিজের হাতে জোড়া দিয়ে দেখতে চাই এর থেকে কোন্ ছবিটি ফুটে বেরােয়।
+</p><p><br/>কথা উঠেছে আমার ধর্ম বাঁশির তানেই মােহিত, তার ঝোঁকটা প্রধানত শান্তির দিকেই, শক্তির দিকে নয়। এই কথাটাকে বিচার করে দেখা আমার নিজের জন্যেও দরকার।
+</p><p>কারো কারো পক্ষে ধর্ম জিনিসটা সংসারের রণে ভঙ্গ দিয়ে পালাবার ভদ্র পথ। নিষ্ক্রিয়তার মধ্যে এমন একটা ছুটি নেওয়া যে ছুটিতে লজ্জা নেই, এমন-কি, গৌরব আছে। অর্থাৎ, সংসার থেকে জীবন থেকে যে-যে অংশ বাদ দিলে কর্মের দায় চোকে, ধর্মের নামে সেই-সমস্তকে বাদ দিয়ে একটা হাঁফ ছাড়তে পারার জায়গা পাওয়াকে কেউ কেউ ধর্মের উদ্দেশ্য মনে করেন। এঁরা হলেন বৈরাগী। আবার ভোগীর দলও আছেন। তাঁরা সংসারের কতকগুলি বিশেষ রসসম্ভোগকে আধ্যাত্মিকতার মধ্যে চোলাই করে নিয়ে তাই পান করে জগতের আর-সমস্ত ভুলে থাকতে চান। অর্থাৎ একদল এমনএকটি শান্তি চান যে শান্তি সংসারকে বাদ দিয়ে, আর অন্যদল এমন একটি স্বর্গ চান যে স্বর্গ সংসারকে ভুলে গিয়ে। এই দুই দলই পালাবার পথকেই ধর্মের পথ বলে মনে করেন।
+</p><p>আবার এমন দলও আছেন যাঁরা সমস্ত সুখদুঃখ সমস্ত দ্বিধাদ্বন্দ্ব -সমেত এই সংসারকেই সত্যের মধ্যে জেনে চরিতার্থতা লাভ করাকেই ধর্ম বলে জানেন। সংসারকে সংসারের মধ্যেই ধরে দেখলে তার সেই পরম অর্থটি পাওয়া যায় না যে অর্থ তাকে সর্বত্র ওতপ্রোত করে এবং সকল দিকে অতিক্রম করে বিরাজ করছে। অতএব কোনো অংশে সত্যকে ত্যাগ করা নয় কিন্তু সর্বাংশে সেই সত্যের পরম অর্থটিকে উপলব্ধি করাকেই তাঁরা ধর্ম বলে জানেন।
+</p><p>ইস্কুল পালানোর দুটো লক্ষ্য থাকতে পারে; এক, কিছু না করা; আর-এক, মনের মতো খেলা করা। ইস্কুলের মধ্যে যে একটা সাধনার দুঃখ আছে সেইটে থেকে নিষ্কৃতি পাবার জন্যেই এমন করে প্রাচীর লঙ্ঘন, এমন করে দরোয়ানকে ঘুষ দেওয়া। কিন্তু আবার ঐ সাধনার দুঃখকে স্বীকার করবারও দুরকম দিক আছে। একদল ছেলে আছে তারা নিয়মকে শাসনের ভয়ে মানে, আর এক দল ছেলে অভ্যস্ত নিয়মপালনটাতেই আশ্রয় পায়― তারা প্রতিদিন ঠিক দস্তুরমত, ঠিক সময়মত, উপরওয়ালার আদেশমত যন্ত্রবৎ কাজ করে যেতে পারলে নিশ্চিন্ত হয় এবং তাতে যেন একটা-কিছু লাভ হল বলে আত্মপ্রসাদ অনুভব করে। কিন্তু এই দুই দলেরই ছেলে নিয়মকেই চরম বলে দেখে, তার বাইরে কিছুকে দেখে না।
+</p><p>কিন্তু এমন ছেলেও আছে ইস্কুলের সাধনার দুঃখকে স্বেচ্ছায় এমনকি, আনন্দে যে গ্রহণ করে, যেহেতু ইস্কুলের অভিপ্রায়কে সে মনের মধ্যে সত্য করে উপলব্ধি করেছে। এই অভিপ্রায়কে সত্য করে জানছে বলেই সে যে মুহূর্তে দুঃখকে পাচ্ছে সেই মুহূর্তে দুঃখকে অতিক্রম করছে, যে মুহূর্তে নিয়মকে মানছে সেই মুহূর্তে তার মন তার থেকে মুক্তিলাভ করছে। এই যুক্তিই সত্যকার মুক্তি। সাধনা থেকে এড়িয়ে গিয়ে মুক্তি হচ্ছে নিজেকে ফাঁকি দেওয়া। জ্ঞানের পরিপূর্ণতার একটি আনন্দচ্ছবি এই ছেলেটি চোখের সামনে দেখতে পাচ্ছে বলেই উপস্থিত সমস্ত অসম্পূর্ণতাকে, সমস্ত দুঃখকে, সমস্ত বন্ধনকে সে সেই আনন্দেরই অন্তর্গত করে জানছে। এ ছেলের পক্ষে পালানো একেবারে অসম্ভব। তার যে আনন্দ দুঃখকে স্বীকার করে সে আনন্দ কিছু না করার চেয়ে বড়ো, সে আনন্দ খেলা করার চেয়ে বড়ো। সে আনন্দ শান্তির চেয়ে বড়ো, সে আনন্দ বাঁশির তানের চেয়ে বড়ো।
+</p><p>এখন কথা হচ্ছে এই যে, আমি কোন্ ধর্মকে স্বীকার করি। এখানে একটা কথা মনে রাখতে হবে, আমি যখন আমার ধর্ম কথাটা ব্যবহার করি তখন তার মানে এ নয় যে আমি কোনো একটা বিশেষ ধর্মে সিদ্ধিলাভ করেছি। যে বলে আমি খৃস্টান সে যে খৃস্টের অনুরূপ হতে পেরেছে তা নয়― তার ব্যবহারে প্রত্যহ খৃস্টানধর্মের বিরুদ্ধতা বিস্তর দেখা যায়। আমার কর্ম, আমার বাক্য কখনো আমার ধর্মের বিরুদ্ধে যে চলে না এত বড়ো মিথ্যা কথা বলতে আমি চাই নে। কিন্তু প্রশ্ন এই যে, আমার ধর্মের আদর্শটি কী।
+</p><p>বাইরে আমার রচনার মধ্যে এর উত্তর নানা জায়গাতেই আছে। অন্তরেও যখন নিজেকে এই প্রশ্ন করি তখন আমার অন্তরাত্মা বলে―আমি তাে কিছুকেই ছাড়বার পক্ষপাতী নই, কেননা সমস্তকে নিয়েই আমি সম্পূর্ণ।
+</p>
+<div>
+<div>
+<p>আমি যে সব নিতে চাই রে— <br/><span>আপনাকে ভাই মেলব যে বাইরে।</span>
+</p>
+</div>
+</div>
+<p>যখন কোনো অংশকে বাদ দিয়ে তবে সত্যকে সত্য বলি তখন তাকে অস্বীকার করি। সত্যের লক্ষণই এই যে, সমস্তই তার মধ্যে এসে মেলে। সেই মেলার মধ্যে আপাতত যতই অসামঞ্জস্য প্রতীয়মান হােক তার মূলে একটা গভীর সামঞ্জস্য আছে, নইলে সে আপনাকে আপনি হনন করত। অতএব, সামঞ্জস্য সত্যের ধর্ম বলে বাদসাদ দিয়ে গোঁজামিলন দিয়ে একটা ঘর-গড়া সামঞ্জস্য গড়ে তুললে সেটা সত্যকে বাধাগ্রস্ত করে তোলে। এক সময়ে মানুষ ঘরে বসে ঠিক করেছিল যে পৃথিবী একটা পদ্মফুলের মতো― তার কেন্দ্রস্থলে সুমেরু পর্বতটি যেন বীজকোষ— চারি দিকে এক-একটি পাপড়ির মতো এক-একটি মহাদেশ প্রসারিত। এরকম কল্পনা করবার মূল কথাটা হচ্ছে এই যে, সত্যের একটি সুষমা আছে― সেই সুষমা না থাকলে সত্য আপনাকে আপনি ধারণ করে রাখতে পারে না। এ কথাটা যথার্থ। কিন্তু এই সুষমাটা বৈষম্যকে বাদ দিয়ে নয়— বৈষম্যকে গ্রহণ করে এবং অতিক্রম করে― শিব যেমন সমুদ্রমন্থনের সমস্ত বিষকে পান করে তবে শিব। তাই সত্যের প্রতি শ্রদ্ধা করে পৃথিবীটি বস্তুত যেমন অর্থাৎ নানা অসমান অংশে বিভক্ত, তাকে তেমনি করেই জানবার সাহস থাকা চাই। ছাঁট-দেওয়া সত্য এবং ঘর-গড়া সামঞ্জস্যের প্রতি আমার লােভ নেই। আমার লােভ আরো বেশি, তাই আমি অসামঞ্জস্যকেও ভয় করি নে।
+</p><p>যখন বয়স অল্প ছিল তখন নানা কারণে লােকালয়ের সঙ্গে আমার ঘনিষ্ঠ সম্বন্ধ ছিল না, তখন নিভৃতে বিশ্বপ্রকৃতির সঙ্গেই ছিল আমার একান্ত যোগ। এই যােগটি সহজেই শান্তিময়, কেননা এর মধ্যে দ্বন্দ্ব নেই, বিরােধ নেই, মনের সঙ্গে মনের― ইচ্ছার সঙ্গে ইচ্ছার সংঘাত নেই। এই অবস্থা ঠিক শিশুকালেরই সত্য অবস্থা। তখন অন্তঃপুরের অন্তরালে শান্তি এবং মাধুর্যেরই দরকার। বীজের দরকার মাটির বুকের মধ্যে বিরাট পৃথিবীর পর্দার আড়ালে শান্তিতে রস শােষণ করা। ঝড়বৃষ্টি-রৌদ্রছায়ার ঘাত প্রতিঘাত তখন তার জন্যে নয়। তেমনি এই বিশ্বপ্রকৃতির মধ্যে প্রচ্ছন্ন অবস্থায় ধর্মবােধের যে আভাস মেলে সে হচ্ছে বৃহতের আস্বাদনে। এইখানে শিশু কেবল তাঁকেই দেখে যিনি কেবল শান্তম্, তাঁরই মধ্যে বেড়ে ওঠে যিনি কেবল সত্যম্।
+</p><p>বিশ্বপ্রকৃতির সঙ্গে নিজের প্রকৃতির মিলটা অনুভব করা সহজ, কেননা সে দিক থেকে কোনাে চিত্ত আমাদের চিত্তকে কোথাও বাধা দেয় না। কিন্তু এই মিলটাতেই আমাদের তৃপ্তির সম্পূর্ণতা কখনােই ঘটতে পারে না। কেননা আমাদের চিত্ত আছে, সেও আপনার একটি বড়ো মিল চায়। এই মিলটা বিশ্বপ্রকৃতির ক্ষেত্রে সম্ভব নয়, বিশ্বমানবের ক্ষেত্রেই সম্ভব। সেইখানে আপনাকে ব্যাপ্ত করে আপনার বড়ো-আমির সঙ্গে আমরা মিলতে চাই। সেইখানে আমরা আমাদের বড়ো পিতাকে, সখাকে, স্বামীকে, কর্মের নেতাকে, পথের চালককে চাই। সেইখানে কেবল আমার ছোটো-আমিকে নিয়েই যখন চলি, তখন মনুষ্যত্ব পীড়িত হয়; তখন মৃত্যু ভয় দেখায়, ক্ষতি বিমর্ষ করে, তখন বর্তমান ভবিষ্যৎকে হনন করতে থাকে, দুঃখশােক এমন একান্ত হয়ে ওঠে যে তাকে অতিক্রম করে কোথাও সান্ত্বনা দেখতে পাই নে। তখন প্রাণপণে কেবলই সঞ্চয় করি, ত্যাগ করবার কোনো অর্থ দেখি নে, ছােটো ছােটো ঈর্ষাদ্বেষে মন জর্জরিত হয়ে ওঠে― তখন—
+</p>
+<div>
+<div>
+<p>শুধু দিনযাপনের শুধু প্রাণধারণের গ্লানি, <br/><span>শরমের ডালি, </span><br/>
+নিশি নিশি রুদ্ধ ঘরে ক্ষুদ্রশিখা স্তিমিত দীপের <br/><span>ধূমাঙ্কিত কালি।</span>
+</p>
+</div>
+</div>
+<p>এই বড়ো-আমিকে চাওয়াব আবেগ ক্রমে আমার কবিতার মধ্যে যখন ফুটতে লাগল, অর্থাৎ অঙ্কুররূপে বীজ যখন মাটি ফুঁড়ে বাইরের আকাশে দেখা দিলে, তারই উপক্রম দেখি, ‘সােনার তরী’র ‘বিশ্বনৃত্যে’—
+</p>
+<div>
+<div>
+<p>বিপুল গভীর মধুর মন্দ্রে <br/><span>কে বাজাবে সেই বাজনা। </span><br/>
+উঠিবে চিত্ত করিয়া নৃত্য <br/><span>বিস্মৃত হবে আপনা। </span><br/>
+টুটিবে বন্ধ, মহা আনন্দ, <br/>
+নব সংগীতে নূতন ছন্দ, <br/>
+হৃদয়সাগরে পূর্ণচন্দ্র <br/><span>জাগাবে নবীন বাসনা।</span>
+</p>
+</div>
+</div>
+<p>কিন্তু এতেও বাজনার সুর। যদিও এ সুর মন্দ্র বটে, কিন্তু মধুরমন্দ্র। যাই হােক কবিতার গতিটা এখানে প্রকৃতির ধাপ থেকে মানুষের ধাপে উঠছে। বিরাটের চিন্ময়তার পরিচয় লাভ করছে। তাই ঐ কবিতাতেই আছে—
+</p>
+<div>
+<div>
+<p>ওই কে বাজায় দিবসনিশায়<br/><span>বসি অন্তর-আসনে</span><br/>
+কালের যন্ত্রে বিচিত্র সুর—<br/><span>কেহ শোনে, কেহ না শােনে;</span>
+</p>
+</div> <div>
+<p>অর্থ কী তার ভাবিয়া না পাই,<br/>
+কত গুণী জ্ঞানী চিন্তিছে তাই,<br/>
+মহান মানবমানস সদাই<br/><span>উঠে পড়ে তারি শাসনে।</span>
+</p>
+</div>
+</div>
+<p>বিশ্বমানবের ইতিহাসকে যে একজন চিন্ময় পুরুষ সমস্ত বাধাবিঘ্ন ভেদ করে দুর্গম বন্ধুর পথ দিয়ে চালনা করছেন এখানে তাঁরই কথা দেখি। এখন হতে নিরবচ্ছিন্ন শান্তির পালা শেষ হল।
+</p><p>কিন্তু বিরােধ বিপ্লবের ভিতর দিয়ে মানুষ যে ঐক্যটি খুঁজে বেড়াচ্ছে সেই ঐক্যটি কী। সে হচ্ছে শিবম্। এই-যে মঙ্গল এর মধ্যে একটা মস্ত দ্বন্দ্ব। অঙ্কুর এখানে দুই ভাগ হয়ে বাড়তে চলেছে, সুখদুঃখ, ভালােমন্দ। মাটির মধ্যে যেটি ছিল সেটি এক, সেটি শান্তম্, সেখানে আলো-আঁধারের লড়াই ছিল না। লড়াই যেখানে বাধল সেখানে শিবকে যদি না জানি তবে সেখানকার সত্যকে জানা হবে না। এই শিবকে জানার বেদনা বড়ো তীব্র। এইখানে ‘মহদ্‌ভয়ং বজ্রমুদ্যতম্। কিন্তু এই বড়ো বেদনার মধ্যেই আমাদের ধর্মবােধের যথার্থ জন্ম। বিশ্বপ্রকৃতির বৃহৎ-শান্তির মধ্যে তার গর্ভবাস। আমার নিজের সম্বন্ধে নৈবেদ্যের দুটি কবিতায় এ কথা বলা আছে।
+</p>
+<div>
+<p>১
+</p>
+</div>
+<div>
+<div>
+<p>মাতৃস্নেহবিগলিত স্তন্যক্ষীররস<br/>
+পান করি হাসে শিশু আনন্দে অলস―<br/>
+তেমনি বিহ্বল হর্ষে ভাবরসরাশি<br/>
+কৈশােরে করেছি পান, বাজায়েছি বাঁশি<br/>
+প্রমত্ত পঞ্চম সুরে―প্রকৃতির বুকে<br/>
+লালনললিত চিত্ত শিশুসম সুখে<br/>
+ছিনু শুয়ে, প্রভাত-শর্বরী-সন্ধ্যা-বধূ
+</p>
+</div> <div>
+<p>নানা পাত্রে আনি দিত নানাবর্ণ মধু<br/>
+পুষ্পগন্ধে-মাখা। আজি সেই ভাবাবেশ<br/>
+সেই বিহ্বলতা যদি হয়ে থাকে শেষ,<br/>
+প্রকৃতির স্পর্শমােহ গিয়ে থাকে দূরে―<br/>
+কোনো দুঃখ নাহি। পল্লী হতে রাজপুরে<br/>
+এবার এনেছ মােরে, দাও চিত্তে বল।<br/>
+দেখাও সত্যের মূর্তি কঠিন নির্মল।
+</p>
+</div>
+</div>
+<div>
+<p>২
+</p>
+</div>
+<div>
+<div>
+<p>আঘাত-সংঘাত মাঝে দাঁড়াইনু আসি। <br/>
+অঙ্গদ কুন্দল কন্ঠী অলংকাররাশি <br/>
+খুলিয়া ফেলেছি দূরে। দাও হস্তে তুলি <br/>
+নিজহাতে তােমার অমােঘ শরগুলি, <br/>
+তােমার অক্ষয় তূণ। অস্ত্রে দীক্ষা দেহ <br/>
+রণগুরু। তােমার প্রবল পিতৃস্নেহ <br/>
+ধ্বনিয়া উঠুক আজি কঠিন আদেশে। <br/>
+করো মােরে সম্মানিত নব-বীরবেশে, <br/>
+দুরূহ কর্তব্যভারে, দুঃসহ কঠোর <br/>
+বেদনায়। পরাইয়া দাও অঙ্গে মাের <br/>
+ক্ষতচিহ্ন অলংকার। ধন্য করো দাসে <br/>
+সফল চেষ্টায় আর নিষ্ফল প্রয়াসে। <br/>
+ভাবের ললিত ক্রোড়ে না রাখি নিলীন <br/>
+কর্মক্ষেত্রে করি দাও সক্ষম স্বাধীন।
+</p>
+</div>
+</div>
+<p>যে শ্রেয় মানুষের আত্মাকে দুঃখের পথে দ্বন্দ্বের পথে অভয় দিয়ে এগিয়ে নিয়ে চলে সেই শ্রেয়কে আশ্রয় করেই প্রিয়কে পাবার আকাঙ্ক্ষাটি ‘চিত্রা’য় ‘এবার ফিরাও মােরে’ কবিতাটির মধ্যে সুস্পষ্ট ব্যক্ত হয়েছে। বাঁশির সুরের প্রতি ধিক্‌কার দিয়েই সে কবিতার আরম্ভ―
+</p>
+<div>
+<div>
+<p><span>যেদিন জগতে চলে আসি,</span><br/>
+কোন্ মা আমারে দিলি শুধু এই খেলবার বাঁশি।<br/>
+বাজাতে বাজাতে তাই মুগ্ধ হয়ে আপনার সুরে<br/>
+দীর্ঘদিন দীর্ঘরাত্রি চলে গেনু একান্ত সুদূরে<br/>
+ছাড়ায়ে সংসারসীমা।
+</p>
+</div>
+</div>
+<p>মাধুর্যের যে শান্তি এ কবিতার লক্ষ্য তা নয়। এ কবিতায় যার অভিসার সে কে?
+</p>
+<div>
+<div>
+<p><span>কে সে? জানি না কে। চিনি নাই তারে—</span><br/>
+শুধু এইটুকু জানি― তারি লাগি রাত্রি-অন্ধকারে<br/>
+চলেছে মানবযাত্রী যুগ হতে যুগান্তরপানে<br/>
+ঝড়ঝঞ্ঝা-বজ্রপাতে, জ্বালায়ে ধরিয়া সাবধানে<br/>
+অন্তর-প্রদীপখানি। শুধু জানি, যে শুনেছে কানে<br/>
+তাহার আহ্বানগীত, ছুটেছে সে নির্ভীক পরানে<br/>
+সংকট-আবর্তমাঝে, দিয়েছে সে বিশ্ব বিসর্জন,<br/>
+নির্যাতন লয়েছে সে বক্ষ পাতি, মৃত্যুর গর্জন<br/>
+শুনেছে সে সংগীতের মতো। দহিয়াছে অগ্নি তারে,<br/>
+বিদ্ধ করিয়াছে শূল, ছিন্ন তারে করেছে কুঠারে,<br/>
+সর্ব প্রিয়বস্তু তার অকাতরে করিয়া ইন্ধন<br/>
+চিরজন্ম তারি লাগি জ্বেলেছে সে হােমহুতাশন―<br/>
+হৃৎপিণ্ড করিয়া ছিন্ন রক্তপদ্ম অর্ঘ্য উপহারে<br/>
+ভক্তিভরে জন্মশােধ শেষ পূজা পূজিয়াছে তারে<br/>
+মরণে কৃতার্থ করি প্রাণ।
+</p>
+</div>
+</div> এর পর থেকে বিরাটচিত্তের সঙ্গে মানবচিত্তের ঘাত-প্রতিঘাতের কথা ক্ষণে ক্ষণে আমার কবিতার মধ্যে দেখা দিতে লাগল। দুইয়ের এই সংঘাত যে কেবল আরামের, কেবল মাধুর্যের তা নয়। অশেষের দিক থেকে যে আহ্বান এসে পৌঁছয় সে তো বাঁশির ললিত সুরে নয়। তাই সেই সুরের জবাবেই আছে—
+<div>
+<div>
+<p>রে মােহিনী, রে নিষ্ঠুরা ওরে রক্তলােভাতুরা <br/><span>কঠোর স্বামিনী, </span><br/>
+দিন মাের দিনু তােরেশেষে নিতে চাস হ’রে <br/><span>আমার যামিনী? </span><br/>
+জগতে সবারই আছেসংসারসীমার কাছে <br/><span>কোনােখানে শেষ, </span><br/>
+কেন আসে মর্মচ্ছেদি সকল সমাপ্তি ভেদি <br/><span>তােমার আদেশ? </span><br/>
+বিশ্বজোড়া অন্ধকার সকলেরি আপনার <br/><span>একেলার স্থান, </span><br/>
+কোথা হতে তারো মাঝে বিদ্যুতের মতাে বাজে <br/><span>তােমার আহ্বান?</span>
+</p>
+</div>
+</div>
+<p>এ আহ্বান এ তো শক্তিকেই আহ্বান; কর্মক্ষেত্রেই এর ডাক; রসসম্ভোগের কুঞ্জকাননে নয়—সেইজন্যেই এর শেষ উত্তর এই—
+</p>
+<div>
+<div>
+<p>হবে, হবে, হবে জয় হে দেবী, করি নে ভয়,<br/><span>হব আমি জয়ী।</span><br/>
+তােমার আহ্বানবাণী সফল করিব রানী,<br/><span>হে মহিমাময়ী।</span><br/>
+কাঁপিবে না ক্লান্ত কর, ভাঙিবে না কণ্ঠস্বর,<br/><span>টুটিবে না বীণা,</span>
+</p>
+</div> <div>
+<p>নবীন প্রভাত লাগি দীর্ঘরাত্রি র’ব জাগি―<br/><span>দীপ নিবিবে না।</span><br/>
+কর্মভার নবপ্রাতে নবসেবকের হাতে<br/><span>করি যাব দান,</span><br/>
+মাের শেষ কণ্ঠস্বরে যাইব ঘােষণা করে<br/><span>তােমার আহ্বান।</span>
+</p>
+</div>
+</div>
+<p>আমার ধর্ম আমার উপচেতন-লােকের অন্ধকারের ভিতর থেকে ক্রমে ক্রমে চেতন-লােকের আলােতে যে উঠে আসছে এই লেখাগুলি তারই স্পষ্ট ও অস্পষ্ট পায়ের চিহ্ন। সে চিহ্ন দেখলে বােঝা যায় যে, পথ সে চেনে না এবং সে জানে না ঠিক কোন্ দিকে সে যাচ্ছে। পথটা সংসারের কি অতিসংসারের তাও সে বােঝে নি। যাকে দেখতে পাচ্ছে তাকে নাম দিতে পারছে না, তাকে নানা নামে ডাকছে। যে লক্ষ্য মনে রেখে সে পা ফেলছিল বার বার, হঠাৎ আশ্চর্য হয়ে দেখছে, আর-একটা দিকে কে তাকে নিয়ে চলছে।
+</p>
+<div>
+<div>
+<p>পদে পদে তুমি ভুলাইলে দিক, <br/>
+কোথা যাব আজি নাহি পাই ঠিক, <br/>
+ক্লান্তহৃদয় ভ্রান্ত পথিক <br/><span>এসেছি নূতন দেশে। </span><br/>
+কখনাে উদার গিরির শিখরে <br/>
+তবু বেদনার তমােগহ্বরে <br/>
+চিনি না যে পথ সে পথের ’পরে <br/><span>চলেছি পাগল বেশে।</span>
+</p>
+</div>
+</div>
+<p>এই আবছায়া রাস্তায় চলতে চলতে যে একটি বােধ কবির সামনে ক্ষণে ক্ষণে চমক দিচ্ছিল তার কথা তখনকার একটা চিঠিতে আছে, সেই চিঠির দুই-এক অংশ তুলে দিই— কে আমাকে গভীর গম্ভীর ভাবে সমস্ত জিনিস দেখতে বলছে, কে আমাকে অভিনিবিষ্ট স্থির কর্ণে সমস্ত বিশ্বাতীত সংগীত শুনতে প্রবৃত্ত করছে, বাইরের সঙ্গে আমার সূক্ষ্ম ও প্রবলতম যােগসূত্রগুলিকে প্রতিদিন সজাগ সচেতন করে তুলছে?···
+</p><p>আমরা বাইরের শাস্ত্র থেকে যে ধর্ম পাই সে কখনােই আমার ধর্ম হয়ে ওঠে না। তার সঙ্গে কেবলমাত্র একটা অভ্যাসের যােগ জন্মে। ধর্মকে নিজের মধ্যে উদ্ভূত করে তােলাই মানুষের চিরজীবনের সাধনা। চরম বেদনায় তাকে জন্মদান করতে হয়, নাড়ির শোণিত দিয়ে তাকে প্রাণদান করতে চাই, তার পরে জীবনে সুখ পাই আর না-পাই আনন্দে চরিতার্থ হয়ে মরতে পারি।
+</p><p><br/>এমনি করে ক্রমে ক্রমে জীবনের মধ্যে ধর্মকে স্পষ্ট করে স্বীকার করবার অবস্থা এসে পৌছল। যতই এটা এগিয়ে চলল ততই পূর্বজীবনের সঙ্গে আসন্ন জীবনের একটা বিচ্ছেদ দেখা দিতে লাগল। অনন্ত আকাশে বিশ্বপ্রকৃতির যে শান্তিময় মাধুর্য-আসনটা পাতা ছিল, সেটাকে হঠাৎ ছিন্নবিচ্ছিন্ন করে বিরােধ-বিক্ষুব্ধ মানবলােকে রুদ্রবেশে কে দেখা দিল? এখন থেকে দ্বন্দ্বের দুঃখ, বিপ্লবের আলােড়ন। সেই নূতন বােধের অভ্যুদয় যে কী রকম ঝড়ের বেশে দেখা দিয়েছিল এই সময়কার ‘বর্ষশেষ’ কবিতার মধ্যে সেই কথাটি আছে—
+</p>
+<div>
+<div>
+<p>হে দুর্দম, হে নিশ্চিত, হে নূতন, নিষ্ঠুর নূতন,<br/><span>সহজ প্রবল।</span><br/>
+জীর্ণ পুষ্পদল যথা ধ্বংস ভ্রংশ করি চতুর্দিকে<br/><span>বাহিরায় ফল—</span><br/>
+পুরাতন পর্ণপুট দীর্ণ করি বিকীর্ণ করিয়া<br/><span>অপূর্ব আকারে,</span>
+</p>
+</div> <div>
+<p>তেমনি সবলে তুমি পরিপূর্ণ হয়ে প্রকাশ―<br/><span>প্রণমি তোমারে।</span><br/>
+তােমারে প্রণমি আমি, হে ভীষণ, সুস্নিগ্ধ শ্যামল,<br/><span>অক্লান্ত অম্লান’।</span><br/>
+সদ্যোজাত মহাবীর, কী এনেছ করিয়া বহন<br/><span>কিছু নাহি জানো।</span><br/>
+উড়েছে তােমার ধ্বজা মেঘরন্ধ্রচ্যুত তপনের<br/><span>জলদর্চিরেখা—</span><br/>
+করজোড়ে চেয়ে আছি ঊর্ধ্বমুখে, পড়িতে জানি না<br/><span>কী তাহাতে লেখা।</span><br/>
+হে কুমার, হাস্যমুখে তােমার ধনুকে দাও টান<br/><span>ঝনন রনন,</span><br/>
+বক্ষের পঞ্জর ভেদি অন্তরেতে হউক কম্পিত<br/><span>সুতীব্র স্বনন।</span><br/>
+হে কিশোর, তুলে লও তােমার উদার জয়ভেরী<br/><span>করহ আহ্বান।</span><br/>
+আমরা দাঁড়াব উঠে, আমরা ছুটিয়া বাহিরিব,<br/><span>অর্পিব পরান।</span><br/>
+চাব না পশ্চাতে মােরা, মানিব না বন্ধন ক্রন্দন,<br/><span>হেরিব না দিক,</span><br/>
+গনিব না দিনক্ষণ, করিব না বিতর্ক বিচার,<br/><span>উদ্দাম পথিক।</span>
+</p>
+</div>
+</div>
+<p>রাত্রির প্রান্তে প্রভাতের যখন প্রথম সঞ্চার হয় তখন তার আভাসটা যেন কেবল অলংকার রচনা করতে থাকে। আকাশের কোণে কোণে মেঘের গায়ে গায়ে নানারকম রঙ ফুটতে থাকে, গাছের মাথার উপরটা ঝিক্‌মিক্‌ করে, ঘাসে শিশিরগুলো ঝিল্‌মিল্‌ করতে শুরু করে, সমস্ত ব্যাপারটা প্রধানত আলংকারিক। কিন্তু তাতে করে এটুকু বােঝা যায় যে রাতের পালা শেষ হয়ে দিনের পালা আরম্ভ হল। বােঝা যায় আকাশের অন্তরে অন্তরে সূর্যের স্পর্শ লেগেছে; বােঝা যায় সুপ্তরাত্রির নিভৃত গম্ভীর পরিব্যাপ্ত শান্তি শেষ হল, জাগরণের সমস্ত বেদনা সপ্তকে সপ্তকে মিড় টেনে এখনই অশান্ত সুরের ঝংকারে বেজে উঠবে। এমনি করে ধর্মবােধের প্রথম উন্মেষটা সাহিত্যের অলংকারেই প্রকাশ পাচ্ছিল, তা মানসপ্রকৃতির শিখরে শিখরে কল্পনার মেঘে মেঘে নানাপ্রকার রঙ ফলাচ্ছিল, কিন্তু তারই মধ্য থেকে পরিচয় পাওয়া যাচ্ছিল যে, বিশ্বপ্রকৃতির অখণ্ড শান্তি এবার বিদায় হল, নির্জনে অরণ্যে পর্বতে অজ্ঞাতবাসের মেয়াদ ফুরােল, এবারে বিশ্বমানবের রণক্ষেত্রে ভীষ্মপর্ব। এই সময়ে বঙ্গদর্শনে ‘পাগল’ বলে যে গদ্য প্রবন্ধ বের হয়েছিল সেইটে পড়লে বােঝা যাবে, কী কথাটা কল্পনার অলংকারের ভিতর দিয়ে নিজেকে প্রকাশ করবার চেষ্টা করছে।―
+</p><p>আমি জানি, সুখ প্রতিদিনের সামগ্রী, আনন্দ প্রত্যহের অতীত। সুখ শরীরের কোথাও পাছে ধুলা লাগে বলিয়া সংকুচিত, আনন্দ ধুলায় গড়াগড়ি দিয়া নিখিলের সঙ্গে আপনার ব্যবধান ভাঙিয়া চুরমার করিয়া দেয়; এইজন্য সুখের পক্ষে ধুলা হেয়, আনন্দের পক্ষে ধুলা ভূষণ। সুখ কিছু পাছে হারায় বলিয়া ভীত। আনন্দ, যথাসর্বস্ব বিতরণ করিয়া পরিতৃপ্ত। এইজন্য সুখের পক্ষে রিক্ততা দারিদ্র্য, আনন্দের পক্ষে দারিদ্র্যই ঐশ্বর্য। সুখ, ব্যবস্থার বন্ধনের মধ্যে আপনার শ্রীটুকুকে সতর্কভাবে রক্ষা করে। আনন্দ, সংহারের মুক্তির মধ্যে আপন সৌন্দর্যকে উদারভাবে প্রকাশ করে। এইজন্য সুখ বাহিরের নিয়মে বদ্ধ, আনন্দ সে বন্ধন ছিন্ন করিয়া আপনার নিয়ম আপনিই সৃষ্টি করে। সুখ, সুধাটুকুর জন্য তাকাইয়া বসিয়া থাকে। আনন্দ, দুঃখের বিষয়কে অনায়াসে পরিপাক করিয়া ফেলে। এইজন্য, কেবল ভালোটুকুর দিকেই সুখের পক্ষপাত— আর আনন্দের পক্ষে ভালোমন্দ দুই-ই সমান।
+</p><p>এই সৃষ্টির মধ্যে একটি পাগল আছেন, যাহা-কিছু অভাবনীয়, তাহা খামখা তিনিই আনিয়া উপস্থিত করেন।··· নিয়মের দেবতা সংসারের সমস্ত পথকে পরিপূর্ণ চক্রপথ করিয়া তুলিবার চেষ্টা করিতেছেন, আর এই পাগল তাহাকে আক্ষিপ্ত করিয়া কুণ্ডলী-আকার করিয়া তুলিতেছেন। এই পাগল আপনার খেয়ালে সরীসৃপের বংশে পাখি এবং বানরের বংশে মানুষ উদ্‌ভাবিত করিতেছেন। যাহা হইয়াছে, যাহা আছে, তাহাকেই চিরস্থায়িরূপে রক্ষা করিবার জন্য সংসারে একটা বিষম চেষ্টা রহিয়াছে— ইনি সেটাকে ছারখার করিয়া দিয়া, যাহা নাই তাহারই জন্য পথ করিয়া দিতেছেন। ইঁহার হাতে বাঁশি নাই, সামঞ্জস্য সুর ইঁহার নহে, বিষাণ বাজিয়া উঠে, বিধিবিহিত যজ্ঞ নষ্ট হইয়া যায়, এবং কোথা হইতে একটি অপূর্বতা উড়িয়া আসিয়া জুড়িয়া বসে।···
+</p><p>আমাদের প্রতিদিনের একরঙা তুচ্ছতার মধ্যে হঠাৎ ভয়ংকর, তাহার জ্বলজ্জটাকলাপ লইয়া দেখা দেয়। সেই ভয়ংকর, প্রকৃতির মধ্যে একটা অপ্রত্যাশিত উৎপাত, মানুষের মধ্যে একটা অসাধারণ পাপ আকারে জাগিয়া উঠে। তখন কত সুখমিলনের জাল লণ্ডভণ্ড, কত হৃদয়ের সম্বন্ধ ছারখার হইয়া যায়। হে রুদ্র, তোমার ললাটের যে ধ্বকধ্বক অগ্নিশিখার স্ফুলিঙ্গমাত্রে অন্ধকারে গৃহের প্রদীপ জ্বলিয়া উঠে, সেই শিখাতেই লোকালয়ে সহস্রের হাহাধ্বনিতে নিশীথরাত্রে গৃহদাহ উপস্থিত হয়। হায় শম্ভু, তোমার নৃত্যে, তোমার দক্ষিণ ও বাম পদক্ষেপে সংসারে মহাপুণ্য ও মহাপাপ উৎক্ষিপ্ত হইয়া উঠে। সংসারের উপরে প্রতিদিনের জড়হস্তক্ষেপে যে একটা সামান্যতার একটানা আবরণ পড়িয়া যায়, ভালোমন্দ দুয়েরই প্রবল আঘাতে তুমি তাহাকে ছিন্নবিচ্ছিন্ন করিতে থাক ও প্রাণের প্রবাহকে অপ্রত্যাশিতের উত্তেজনায় ক্রমাগত তরঙ্গিত করিয়া শক্তির নব নব লীলা ও সৃষ্টির নব নব মূর্তি প্রকাশ করিয়া তােল। পাগল, তােমার এই রুদ্র আনন্দে যােগ দিতে আমার ভীত হৃদয় যেন পরাঙ্মুখ না হয়। সংহারের রক্ত-আকাশের মাঝখানে তােমার রবিকরােদ্দীপ্ত তৃতীয় নেত্র যেন ধ্রুবজ্যোতিতে আমার অন্তরের অন্তরকে উদ্‌ভাসিত করিয়া তােলে। নৃত্য করো, হে উন্মাদ নৃত্য করো। সেই নৃত্যের ঘূর্ণবেগে আকাশের লক্ষকোটিযােজনব্যাপী উজ্জলিত নীহারিকা যখন ভ্রাম্যমাণ হইতে থাকিবে, তখন আমার বক্ষের মধ্যে ভয়ের আক্ষেপে যেন এই রুদ্রসংগীতের তাল কাটিয়া না যায়। হে মৃত্যুঞ্জয়, আমাদের সমস্ত ভালাে এবং সমস্ত মন্দের মধ্যে তোমারই জয় হউক।
+</p><p>আমাদের এই খেপা দেবতার আবির্ভাব যে ক্ষণে ক্ষণে তাহা নহে, সৃষ্টির মধ্যে ইহার পাগলামি অহরহ লাগিয়াই আছে— আমরা ক্ষণে ক্ষণে তাহার পরিচয় পাই মাত্র। অহরহই জীবনকে মৃত্যু নবীন করিতেছে, ভালােকে মন্দ উজ্জ্বল করিতেছে, তুচ্ছকে অভাবনীয় মূল্যবান করিতেছে। যখন পরিচয় পাই, তখন রূপের মধ্যে অপরূপ, বন্ধনের মধ্যে মুক্তির প্রকাশ আমাদের কাছে জাগিয়া উঠে।
+</p><p><br/>তার পরে আমার রচনায় বার বার এই ভাবটা প্রকাশ পেয়েছে— জীবনে এই দুঃখবিপদ-বিরােধমৃত্যুর বেশে অসীমের আবির্ভাব―
+</p>
+<div>
+<div>
+<p>কহ মিলনের এ কি রীতি এই,<br/><span>ওগাে মরণ, হে মাের মরণ,</span><br/>
+তার সমারােহভার কিছু নেই,<br/><span>নেই কোনাে মঙ্গলাচরণ?</span><br/>
+তব পিঙ্গলছবি মহাজট<br/><span>সে কি চুড়া করি বাঁধা হবে না?</span>
+</p>
+</div> <div>
+<p>তব বিজয়ােদ্ধত ধ্বজপট<br/><span>সে কি আগে-পিছে কেহ ব’বে না?</span><br/>
+তব মশাল-আলােকে নদীতট<br/><span>আঁখি মেলিবে না রাঙাবরন?</span><br/>
+ত্রাসে কেঁপে উঠিবে না ধরাতল<br/><span>ওগাে মরণ, হে মাের মরণ।</span><br/>
+যবে বিবাহে চলিলা বিলােচন<br/><span>ওগাে মরণ, হে মাের মরণ,</span><br/>
+তাঁর কতমত ছিল আয়ােজন<br/><span>ছিল কতশত উপকরণ।</span><br/>
+তাঁর লটপট করে বাঘছাল,<br/><span>তাঁর বৃষ রহি রহি গরজে,</span><br/>
+তাঁর বেষ্টন করি জটাজাল<br/><span>যত ভুজঙ্গদল তরজে।</span><br/>
+তাঁর ববম্‌ববম্‌ বাজে গাল<br/><span>দোলে গলায় কপালাভরণ,</span><br/>
+তাঁর বিষাণে ফুকারি উঠে তান<br/><span>ওগো মরণ, হে মাের মরণ।···</span><br/>
+যদি কাজে থাকি আমি গৃহমাঝ<br/><span>ওগাে মরণ, হে মাের মরণ,</span><br/>
+তুমি ভেঙে দিয়ে মাের সব কাজ<br/><span>কোরো সব লাজ অপহরণ।</span><br/>
+যদি স্বপনে মিটায়ে সব সাধ<br/><span>আমি শুয়ে থাকি সুখশয়নে,</span>
+</p>
+</div> <div>
+<p>যদি হৃদয়ে জড়ায়ে অবসাদ<br/><span>থাকি অধজাগরূক নয়নে―</span><br/>
+তবে শঙ্খে তোমার তুলাে নাদ<br/><span>করি প্রণয়শ্বাস ভরণ,</span><br/>
+আমি ছুটিয়া আসিব ওগো নাথ,<br/><span>ওগো মরণ, হে মাের মরণ।</span>
+</p>
+</div>
+</div>
+<p>‘খেয়া’তে ‘আগমন’ বলে যে কবিতা আছে, সে কবিতায় যে মহারাজ এলেন তিনি কে? তিনি যে অশান্তি। সবাই রাত্রে দুয়ার বন্ধ করে শান্তিতে ঘুমিয়ে ছিল, কেউ মনে করে নি তিনি আসবেন। যদিও থেকে থেকে দ্বারে আঘাত লেগেছিল, যদিও মেঘগর্জনের মতো ক্ষণে ক্ষণে তাঁর রথচক্রের ঘর্ঘরধ্বনি স্বপ্নের মধ্যেও শােনা গিয়েছিল তবু কেউ বিশ্বাস করতে চাচ্ছিল না যে, তিনি আসছেন, পাছে তাদের আরামের ব্যাঘাত ঘটে। কিন্তু দ্বার ভেঙে গেল— এলেন রাজা।
+</p>
+<div>
+<div>
+<p>ওরে দুয়ার খুলে দে রে, <br/><span>বাজা শঙ্খ বাজা। </span><br/>
+গভীর রাতে এসেছে আজ <br/><span>আঁধার ঘরের রাজা। </span><br/>
+বজ্র ডাকে শূন্য তলে, <br/>
+বিদ্যুতেরি ঝিলিক ঝলে, <br/>
+ছিন্নশয়ন টেনে এনে <br/><span>আঙিনা তাের সাজা, </span><br/>
+ঝড়ের সাথে হঠাৎ এল <br/><span>দুঃখরাতের রাজা।</span>
+</p>
+</div>
+</div>
+<p>ঐ ‘খেয়া’তে ‘দান’ বলে একটি কবিতা আছে। তার বিষয়টি এই যে, ফুলের মালা চেয়েছিলুম, কিন্তু কী পেলুম।
+</p>
+
+<div>
+<div>
+<p>এ তো মালা নয় গাে এ যে <br/><span>তােমার তরবারি। </span><br/>
+জ্বলে ওঠে আগুন যেন, <br/><span>বজ্র-হেন ভারী― </span><br/>
+এ যে তােমার তরবারি।
+</p>
+</div>
+</div>
+<p>এমন যে দান এ পেয়ে কি আর শান্তিতে থাকবার জো আছে। শান্তি যে বন্ধন যদি তাকে অশান্তির ভিতর দিয়ে না পাওয়া যায়।
+</p>
+<div>
+<div>
+<p>আজকে হতে জগৎমাঝে <br/><span>ছাড়ব আমি ভয়, </span><br/>
+আজ হতে মাের সকল কাজে <br/><span>তােমার হবে জয়―</span><br/>
+আমি ছাড়ব সকল ভয়। <br/>
+মরণকে মোর দোসর করে <br/>
+রেখে গেছ আমার ঘরে, <br/>
+আমি তারে বরণ করে <br/><span>রাখব পরানময়। </span><br/>
+তোমার তরবারি আমার <br/><span>করবে বাঁধন ক্ষয়। </span><br/>
+আমি ছাড়ব সকল ভয়।
+</p>
+</div>
+</div>
+<p>এমন আরাে অনেক গান উদ্‌ধৃত করা যেতে পারে যাতে বিরাটের সে অশান্তির সুর লেগেছে। কিন্তু সেইসঙ্গে এ কথা মানতেই হবে সেটা কেবল মাঝের কথা, শেষের কথা নয়। চরম কথাটা হচ্ছে শান্তং শিবমদ্বৈতম্। রুদ্রতাই যদি রুদ্রের চরম পরিচয় হত তা হলে সেই অসম্পূর্ণতায় আমাদের আত্মা কোনাে আশ্রয় পেত না— তা হলে জগৎ রক্ষা পেত কোথায়। তাই তো মানুষ তাঁকে ডাকছে, রুদ্র যত্তে দক্ষিণং মুখং তেন মাং পাহি নিত্যম্— রুদ্র, তােমার যে প্রসন্ন মুখ, তার দ্বারা আমাকে রক্ষা করো। চরম সত্য এবং পরম সত্য হচ্ছে ঐ প্রসন্ন মুখ। সেই সত্যই হচ্ছে সকল রুদ্রতার উপরে। কিন্তু এই সত্যে পৌঁছতে গেলে রুদ্রের স্পর্শ নিয়ে যেতে হবে। রুদ্রকে বাদ দিয়ে যে প্রসন্নতা, অশান্তিকে অস্বীকার করে যে শান্তি, সে তাে স্বপ্ন, সে সত্য নয়।
+</p>
+<div>
+<div>
+<p>বজ্রে তােমার বাজে বাঁশি,<br/><span>সে কি সহজ গান।</span><br/>
+সেই সুরেতে জাগব আমি<br/><span>দাও মােরে সেই কান।</span><br/>
+ভুলব না আর সহজেতে,<br/>
+সেই প্রাণে মন উঠবে মেতে<br/>
+মৃত্যুমাঝে ঢাকা আছে।<br/><span>যে অন্তহীন প্রাণ।</span><br/>
+সে ঝড় যেন সই আনন্দে<br/><span>চিত্তবীণার তারে</span><br/>
+সপ্ত সিন্ধু দশ দিগন্ত<br/><span>নাচাও যে ঝংকারে।</span><br/>
+আরাম হতে ছিন্ন করে<br/>
+সেই গভীরে লও গাে মােরে<br/>
+অশান্তির অন্তরে যেথায়<br/><span>শান্তি সুমহান।</span>
+</p>
+</div>
+</div>
+<p>‘শারদোৎসব’ থেকে আরম্ভ করে ‘ফাল্গুনী’ পর্যন্ত যতগুলি নাটক লিখেছি, যখন বিশেষ করে মন দিয়ে দেখি তখন দেখতে পাই, প্রত্যেকের ভিতরকার ধুয়ােটা ঐ একই। রাজা বেরিয়েছেন সকলের সঙ্গে মিলে শারদোৎসব করবার জন্যে। তিনি খুঁজছেন তাঁর সাথি। পথে দেখলেন, ছেলেরা শরৎপ্রকৃতির আনন্দে যােগ দেবার জন্যে উৎসব করতে বেরিয়েছে। কিন্তু একটি ছেলে ছিল— উপনন্দ— সমস্ত খেলাধুলো ছেড়ে সে তার প্রভুর ঋণ শোধ করবার জন্যে নিভৃতে বসে একমনে কাজ করছিল। রাজা বললেন, তাঁর সত্যকার সাথি মিলেছে, কেননা ঐ ছেলেটির সঙ্গেই শরৎপ্রকৃতির সত্যকার আনন্দের যােগ— ঐ ছেলেটি দুঃখের সাধনা দিয়ে আনন্দের ঋণ শােধ করছে― সেই দুঃখেরই রূপ মধুরতম। বিশ্বই যে এই দুঃখতপস্যায় রত; অসীমের যে দান সে নিজের মধ্যে পেয়েছে অশ্রান্ত প্রয়াসের বেদনা দিয়ে সেই দানের সে শোধ করছে। প্রত্যেক ঘাসটি নিরলস চেষ্টার দ্বারা আপনাকে প্রকাশ করছে, এই প্রকাশ করতে গিয়েই সে আপন অন্তর্নিহিত সত্যের ঋণ শােধ করছে। এই-যে নিরন্তর বেদনায় তার আত্মোৎসর্জন, এই দুঃখই তো তার শ্রী, এই তো তার উৎসব, এতেই তো সে শরৎপ্রকৃতিকে সুন্দর করেছে, আনন্দময় করেছে। বাইরে থেকে দেখলে একে খেলা মনে হয়, কিন্তু এ তো খেলা নয়, এর মধ্যে লেশমাত্র বিরাম নেই। যেখানে আপন সত্যের ঋণশোধে শৈথিল্য, সেখানেই প্রকাশে বাধা, সেইখানেই কদর্যতা, সেইখানেই নিরানন্দ। আত্মার প্রকাশ আনন্দময়। এইজন্যেই সে দুঃখকে মৃত্যুকে স্বীকার করতে পারে― ভয়ে কিংবা আলস্যে কিংবা সংশয়ে এই দুঃখের পথকে যে লােক এড়িয়ে চলে জগতে সেই আনন্দ থেকে বঞ্চিত হয়। শারদোৎসবের ভিতরকার কথাটাই এই— ও তো গাছতলায় বসে বসে বাঁশির সুর শোনাবার কথা নয়।
+</p><p>‘রাজা’ নাটকে সুদর্শনা আপন অরূপ রাজাকে দেখতে চাইলে; রূপের মােহে মুগ্ধ হয়ে ভুল রাজার গলায় দিলে মালা; তার পরে সেই ভুলের মধ্যে দিয়ে, পাপের মধ্যে দিয়ে, যে অগ্নিদাহ ঘটালে, যে বিষম যুদ্ধ বাধিয়ে দিলে, অন্তরে বাহিরে যে ঘাের অশান্তি জাগিয়ে তুললে, তাতেই তো তাকে সত্য মিলনে পৌঁছিয়ে দিলে। প্রলয়ের মধ্যে দিয়ে সৃষ্টির পথ। তাই উপনিষদে আছে, তিনি তাপের দ্বারা তপ্ত হয়ে এই সমস্ত কিছু সৃষ্টি করলেন। আমাদের আত্মা যা সৃষ্টি করছে তাতে পদে পদে ব্যথা। কিন্তু তাকে যদি ব্যথাই বলি তবে শেষ কথা বলা হল না, সেই ব্যথাতেই সৌন্দর্য, তাতেই আনন্দ।
+</p><p>যে বােধে আমাদের আত্মা আপনাকে জানে সে বােধের অভ্যুদয় হয় বিরােধ অতিক্রম করে, আমাদের অভ্যাসের এবং আরামের প্রাচীরকে ভেঙে ফেলে। যে বোধে আমাদের মুক্তি, দুর্গং পথস্তৎ কবয়ো বদন্তি― দুঃখের দুর্গম পথ দিয়ে সে তার জয়ভেরী বাজিয়ে আসে― আতঙ্কে সে দিগদিগন্ত কাঁপিয়ে তােলে, তাকে শত্রু বলেই মনে করি, তার সঙ্গে লড়াই করে তবে তাকে স্বীকার করতে হয়― কেননা নায়মাত্মা বলহীনেন লভ্যঃ। ‘অচলায়তনে’ এই কথাটাই আছে।—
+</p><p>মহাপঞ্চক। তুমি কি আমাদের গুরু।
+</p><p>দাদাঠাকুর। হাঁ তুমি আমাকে চিনবে না কিন্তু আমিই তােমাদের গুরু।
+</p><p>মহাপঞ্চক। তুমি গুরু? তুমি আমাদের সমস্ত নিয়ম লঙ্ঘন করে এ কোন্ পথ দিয়ে এলে। তােমাকে কে মানবে।
+</p><p>দাদাঠাকুর। আমাকে মানবে না জানি, কিন্তু আমিই তােমাদের গুরু।
+</p><p>মহাপঞ্চক। তুমি গুরু? তবে এই শত্রুবেশে কেন।
+</p><p>দাদাঠাকুর। এই তাে আমার গুরুর বেশ। তুমি যে আমার সঙ্গে লড়াই করবে— সেই লড়াই আমার গুরুর অভ্যর্থনা।
+</p><p>মহাপঞ্চক। আমি তােমাকে প্রণাম করব না।
+</p><p>দাদাঠাকুর। আমি তােমার প্রণাম গ্রহণ করব না— আমি তােমাকে প্রণত করব।
+</p>
+
+<p> মহাপঞ্চক। তুমি আমাদের পূজা নিতে আস নি।
+</p><p>দাদাঠাকুর। আমি তােমাদের পূজা নিতে আসি নি, অপমান নিতে এসেছি।
+</p><p><br/>আমি তাে মনে করি আজ য়ুরােপে যে যুদ্ধ বেধেছে সে ঐ গুরু এসেছেন বলে। তাঁকে অনেক দিনের টাকার প্রাচীর, মানের প্রাচীর, অহংকারের প্রাচীর ভাঙতে হচ্ছে। তিনি আসবেন বলে কেউ প্রস্তুত ছিল না। কিন্তু তিনি যে সমারােহ করে আসবেন তার জন্যে আয়ােজন অনেকদিন থেকে চলছিল। য়ুরােপের সুদর্শনা যে মেকি রাজা সুবর্ণের রূপ দেখে তাকেই আপন স্বামী বলে ভুল করেছিল— তাই তাে হঠাৎ আগুন জ্বলল, তাই তাে সাত রাজার লড়াই বেধে গেল— তাই তো যে ছিল রানী তাকে রথ ছেড়ে, তার সম্পদ ছেড়ে, পথের ধুলাের উপর দিয়ে হেঁটে মিলনের পথে অভিসারে যেতে হচ্ছে। এই কথাটাই ‘গীতালি’র একটি গানে আছে―
+</p>
+<div>
+<div>
+<p>এক হাতে ওর কৃপাণ আছে<br/><span>আর এক-হাতে হার।</span><br/><span>ও যে ভেঙেছে তাের দ্বার।</span><br/>
+আসে নি ও ভিক্ষা নিতে,<br/>
+লড়াই করে নেবে জিতে<br/><span>পরানটি তােমার।</span><br/><span>ও যে ভেঙেছে তাের দ্বার।</span><br/>
+মরণেরি পথ দিয়ে ওই<br/><span>আসছে জীবনমাঝে</span><br/><span>ও যে আসছে বীরের সাজে</span>
+</p>
+</div> <div>
+<p>আধেক নিয়ে ফিরবে না রে<br/>
+যা আছে সব একেবারে<br/><span>করবে অধিকার।</span><br/><span>ও যে ভেঙেছে তোর দ্বার।</span>
+</p>
+</div>
+</div>
+<p>এই-যে দ্বন্দ্ব, মৃত্যু এবং জীবন, শক্তি এবং প্রেম, স্বার্থ এবং কল্যাণ― এই-যে বিপরীতের বিরোধ, মানুষের ধর্মবোধই যার সত্যকার সমাধান দেখতে পায়― যে সমাধান পরম শান্তি, পরম মঙ্গল, পরম এক, এর সম্বন্ধে বার বার আমি বলেছি। ‘শান্তিনিকেতন’ গ্রন্থ থেকে তার কিছু কিছু উদ্ধার করে দেখানো যেতে পারত। কিন্তু যেখানে আমি স্পষ্টত ধর্মব্যাখ্যা করেছি সেখানে আমি নিজের অন্তরতম কথা না বলতেও পারি, সেখানে বাইরের শোনা কথা নিয়ে ব্যবহার করা অসম্ভব নয়। সাহিত্য রচনায় লেখকের প্রকৃতি নিজের অগোচরে নিজের পরিচয় দেয়, সেটা তাই অপেক্ষাকৃত বিশুদ্ধ। তাই কবিতা ও নাটকেরই সাক্ষ্য নিচ্ছি।
+</p><p>জীবনকে সত্য বলে জানতে গেলে মৃত্যুর মধ্যে দিয়ে তার পরিচয় চাই। যে মানুষ ভয় পেয়ে মৃত্যুকে এড়িয়ে জীবনকে আঁকড়ে রয়েছে, জীবনের ’পরে তার যথার্থ শ্রদ্ধা নেই বলে জীবনকে সে পায় নি। তাই সে জীবনের মধ্যে বাস করেও মৃত্যুর বিভীষিকায় প্রতিদিন মরে। যে লোক নিজে এগিয়ে গিয়ে মৃত্যুকে বন্দী করতে ছুটেছে, সে দেখতে পায়, যাকে সে ধরেছে সে মৃত্যুই নয়, সে জীবন। যখন সাহস করে তার সামনে দাঁড়াতে পারি নে, তখন পিছন দিকে তার ছায়াটা দেখি। সেইটে দেখে ডরিয়ে ডরিয়ে মরি। নির্ভয়ে যখন তার সামনে গিয়ে দাঁড়াই তখন দেখি, যে সর্দার জীবনের পথে আমাদের এগিয়ে নিয়ে যায় সেই সর্দারই মৃত্যুর তোরণদ্বারের মধ্যে আমাদের বহন করে নিয়ে যাচ্ছে। ‘ফাল্গুনী’র গোড়াকার কথাটা হচ্ছে এই যে, যুবকেরা বসন্তউৎসর করতে বেরিয়েছে। কিন্তু এ উৎসব তো শুধু আমোদ করা নয়, এ তো অনায়াসে হবার জো নেই। জরার অবসাদ, মৃত্যুর ভয় লঙ্ঘন করে তবে সেই নবজীবনের আনন্দে পৌছনো যায়। তাই যুবকেরা বললে, আনবো সেই জরা বুড়োকে বেঁধে, সেই মৃত্যুকে বন্দী করে। মানুষের ইতিহাসে তো এই লীলা এই বসন্তোৎসব বারে বারে দেখতে পাই। জরা সমাজকে ঘনিয়ে ধরে, প্রথা অচল হয়ে বসে, পুরাতনের অত্যাচার নূতন প্রাণকে দলন করে নির্জীব করতে চায় তখন মানুষ মৃত্যুর মধ্যে ঝাঁপ দিয়ে পড়ে, বিপ্লবের ভিতর দিয়ে নববসন্তের উৎসবের আয়োজন করে। সেই আয়োজনই তো য়ুরোপে চলছে। সেখানে নূতন যুগের বসন্তের হোলিখেলা আরম্ভ হয়েছে। মানুষের ইতিহাস আপন চিরনবীন অমর মূর্তি প্রকাশ করবে বলে মৃত্যুকে তলব করেছে। মৃত্যুই তার প্রসাধনে নিযুক্ত হয়েছে। তাই ‘ফাল্গুনী’তে বাউল বলছে―
+</p><p>যুগে যুগে মানুষ লড়াই করেছে, আজ বসন্তের হাওয়ায় তারই ঢেউ।··· যারা ম’রে অমর, বসন্তের কচি পাতায় তারাই পত্র পাঠিয়েছে। দিগ্‌দিগন্তে তারা রটাচ্ছে— ‘আমরা পথের বিচার করি নি, আমরা পাথেয়ের হিসাব রাখি নি, আমরা ছুটে এসেছি, আমরা ফুটে বেরিয়েছি। আমরা যদি ভাবতে বসতুম, তাহলে বসন্তের দশা কী হত।’
+</p><p><br/>বসন্তের কচি পাতায় এই যে পত্র, এ কাদের পত্র? যে-সব পাতা ঝরে গিয়েছে তারাই মৃত্যুর মধ্য দিয়ে আপন বাণী পাঠিয়েছে। তারা যদি শাখা আঁকড়ে থাকতে পারত, তা হলে জরাই অমর হত— তা হলে পুরাতন পুঁথির তুলট কাগজে সমস্ত অরণ্য হলদে হয়ে যেত, সেই শুকনো পাতার সর সর শব্দে আকাশ শিউরে উঠল। কিন্তু পুরাতনই মৃত্যুর মধ্য দিয়ে আপন চিরনবীনতা প্রকাশ করে, এই তো বসন্তের উৎসব। তাই বসন্ত বলে― যারা মৃত্যুকে ভয় করে, তারা জীবনকে চেনে না; তারা জরাকে বরণ করে জীবনমৃত হয়ে থাকে, প্রাণবান বিশ্বের সঙ্গে তাদের বিচ্ছেদ ঘটে।―
+</p><p>চন্দ্রহাস। এ কী, এ যে তুমি।···সেই আমাদের সর্দার। বুড়ো কোথায়।
+</p><p>সর্দার। কোথাও তো নেই।
+</p><p>চন্দ্রহাস। কোথাও না?···তবে সে কী।
+</p><p>সর্দার। সে স্বপ্ন।
+</p><p>চন্দ্রহাস। তবে তুমিই চিরকালের?
+</p><p>সর্দার। হাঁ।
+</p><p>চন্দ্রহাস। আর আমরাই চিরকালের?
+</p><p>সর্দার। হাঁ।
+</p><p>চন্দ্রহাস। পিছন থেকে যারা তােমাকে দেখলে তারা যে তােমাকে কত লােকে কত রকম মনে করলে তার ঠিক নেই।···তখন তােমাকে হঠাৎ বুড়ো বলে মনে হল। তার পর গুহার মধ্য থেকে বেরিয়ে এলে। এখন মনে হচ্ছে যেন তুমি বালক। যেন তােমাকে এই প্রথম দেখলুম! এ তো বড়ো আশ্চর্য, তুমি বারে বারেই প্রথম, তুমি ফিরে ফিরেই প্রথম।
+</p><p><br/>মানুষ তার জীবনকে সত্য করে, বড়ো করে, নূতন করে পেতে চাচ্ছে। তাই মানুষের সভ্যতায় তার যে জীবনটা বিকশিত হয়ে উঠছে, সে তো কেবলই মৃত্যুকে ভেদ করে। মানুষ বলেছে—
+</p>
+<div>
+<div>
+<p>মরতে মরতে মরণটারে <br/>
+শেষ করে দে একেবারে, <br/>
+তার পরে সেই জীবন এসে <br/><span>আপন আসন আপনি লবে।</span>
+</p>
+</div>
+</div> মানুষ জেনেছে―
+<div>
+<div>
+<p><span>নয় এ মধুর খেলা, </span><br/>
+তােমায় আমায় সারাজীবন <br/><span>সকাল-সন্ধ্যাবেলা। </span><br/>
+কতবার যে নিবল বাতি, <br/><span>গর্জে এল ঝড়ের রাতি, </span><br/>
+সংসারের এই দোলায় দিলে <br/><span>সংশয়েরি ঠেলা। </span><br/>
+বারে বারে বাঁধ ভাঙিয়া, <br/><span>বন্যা ছুটেছে, </span><br/>
+দারুণ দিনে দিকে দিকে, <br/><span>কান্না উঠেছে। </span><br/>
+ওগো রুদ্র, দুঃখে সুখে, <br/>
+এই কথাটি বাজুল বুকে―<br/>
+তােমার প্রেমে আঘাত আছে <br/><span>নাইকো অবহেলা।</span>
+</p>
+</div>
+</div>
+<p>আমার ধর্ম কী, তা যে আজও আমি সম্পূর্ণ এবং সুস্পষ্ট করে জানি, এমন কথা বলতে পারি নে― অনুশাসন-আকারে তত্ত্ব-আকারে কোনো পুঁথিতে-লেখা ধর্ম সে তাে নয়। সেই ধর্মকে জীবনের মর্মকোষ থেকে বিচ্ছিন্ন ক’রে, উদ্‌ঘাটিত ক’রে, স্থির ক’রে দাঁড় করিয়ে দেখা ও জানা আমার পক্ষে অসম্ভব― কিন্তু অলস শান্তি ও সৌন্দর্যরসভােগ যে সেই ধর্মের প্রধান লক্ষ্য বা উপাদান নয়, এ কথা নিশ্চয় জানি। আমি স্বীকার করি, আনন্দাদ্ধ্যের খল্বিমানি ভূতানি জায়ন্তে এবং আনন্দং প্রয়ন্তি অভিসংবিশন্তি— কিন্তু সেই আনন্দ দুঃখকে-বর্জন-করা আনন্দ নয়, দুঃখকে-আত্মসাৎ-করা আনন্দ। সেই আনন্দের যে মঙ্গলরূপ তা অমঙ্গলকে অতিক্রম করেই, তাকে ত্যাগ করে নয়, তার যে অখণ্ড অদ্বৈত রূপ তা সমস্ত বিভাগ ও বিরােধকে পরিপূর্ণ করে তুলে, তাকে অস্বীকার করে নয়।
+</p>
+<div>
+<div>
+<p>অন্ধকারের উৎস হতে উৎসারিত আলো<br/><span>সেই তো তােমার আলাে।</span><br/>
+সকল দ্বন্দ্ববিরােধমাঝে জাগ্রত যে ভালো<br/><span>সেই তাে তােমার ভালো।</span><br/>
+পথের ধুলায় বক্ষ পেতে রয়েছে যেই গেহ<br/><span>সেই তো তোমার গেহ।</span><br/>
+সমরঘাতে অমর করে রুদ্র নিঠুর স্নেহ<br/><span>সেই তো তােমার স্নেহ।</span><br/>
+সব ফুরালে বাকি রহে অদৃশ্য যেই দান।<br/><span>সেই তো তােমার দান।</span><br/>
+মৃত্যু আপন পাত্র ভরি বহিছে যেই প্রাণ<br/><span>সেই তাে তােমার প্রাণ।</span><br/>
+বিশ্বজনের পায়ের তলায় ধূলিময় যে ভূমি<br/><span>সেই তো তােমার ভূমি।</span><br/>
+সবায় নিয়ে সবার মাঝে লুকিয়ে আছ তুমি<br/><span>সেই তো আমার তুমি।</span>
+</p>
+</div>
+</div>
+<p>সত্যম্ জ্ঞানম্ অনন্তপম্। শান্তং শিবম্ অদ্বৈতম্। ইহুদী পুরাণে আছে— মানুষ একদিন অমৃতলােকে বাস করত। সে লােক স্বর্গলােক। সেখানে দুঃখ নেই, মৃত্যু নেই। কিন্তু যে স্বর্গকে, দুঃখের ভিতর দিয়ে, মন্দের সংঘাত দিয়ে, না জয় করতে পেরেছি সে স্বর্গ তাে জ্ঞানের স্বর্গ নয়― তাকে স্বর্গ বলে জানিই নে। মায়ের গর্ভের মধ্যে মাকে পাওয়া যেমন মাকে পাওয়াই নয়, তাঁকে বিচ্ছেদের মধ্যে পাওয়াই পাওয়া।
+</p>
+<div>
+<div>
+<p><span>গর্ভ ছেড়ে মাটির ’পরে </span><br/><span>যখন পড়ে, </span><br/>
+তখন ছেলে দেখে আপন মাকে। <br/><span>তোমার আদর যখন ঢাকে </span><br/>
+জড়িয়ে থাকি ভারি নাড়ীর পাকে, <br/><span>তখন তোমায় নাহি জানি। </span><br/><span>আঘাত হানি </span><br/>
+তোমারি আচ্ছাদন হতে যেদিন দূরে ফেলাও টানি <br/><span>সে বিচ্ছেদে চেতনা দেয় আনি— </span><br/><span>দেখি বদনখানি।</span>
+</p>
+</div>
+</div>
+<p>তাই সেই অচেতন স্বর্গলোকে জ্ঞান এল। সেই জ্ঞান আসতেই সত্যের মধ্যে আত্মবিচ্ছেদ ঘটল। সত্যমিথ্যা-ভালোমন্দ-জীবনমৃত্যুর দ্বন্দ্ব এসে স্বর্গ থেকে মানুষকে লজ্জা-দুঃখ-বেদনার মধ্যে নির্বাসিত করে দিলে। এই দ্বন্দ্ব অতিক্রম করে যে অখণ্ড সত্যে মানুষ আবার ফিরে আসে তার থেকে তার আর বিচ্যুতি নেই। কিন্তু এই-সমস্ত বিপরীতের বিরোধ মিটাতে পারে কোথায়? অন্তরের মধ্যে। তাই উপনিষদে আছে, সত্যং জ্ঞানম্ অনন্তম্। প্রথমে সত্যের মধ্যে জড় জীব সকলেরই সঙ্গে এক হয়ে মানুষ বাস করে— জ্ঞান এসে বিরোধ ঘটিয়ে মানুষকে সেখান থেকে টেনে স্বতন্ত্র করে— অবশেষে সত্যের পরিপূর্ণ অনন্ত রূপের ক্ষেত্রে আবার তাকে সকলের সঙ্গে মিলিয়ে দেয়। ধর্মবোধের প্রথম অবস্থায় শান্ত মানুষ তখন আপন প্রকৃতির অধীন— তখন সে সুখকেই চায়, সম্পদকেই চায়, তখন শিশুর মতো কেবল তার রসভোগের তৃষ্ণা, তখন তার লক্ষ্য প্রেয়। তার পরে মনুষ্যত্বের উদ্‌বোধনের সঙ্গে তার দ্বিধা আসে; তখন সুখ এবং দুঃখ, ভালো এবং মন্দ, এই দুই বিরোধের সমাধান সে খোঁজে—তখন দুঃখকে সে এড়ায় না, মৃত্যুকে সে ডরায় না। সেই অবস্থায় শিবম্, তখন তার লক্ষ্য শ্রেয়। কিন্তু এইখানেই শেষ নয়― শেষ হচ্ছে প্রেম, আনন্দ। সেখানে সুখ ও দুঃখের ভোগ ও ত্যাগের, জীবন ও মৃত্যুর গঙ্গাযমুনা-সংগম। সেখানে অদ্বৈতম্। সেখানে কেবল যে বিচ্ছেদের ও বিরোধের সাগর পার হওয়া, তা নয়। সেখানে তরী থেকে তীরে ওঠা। সেখানে যে আনন্দ সে তো দুঃখের ঐকান্তিক নিবৃত্তিতে নয়, দুঃখের ঐকান্তিক চরিতার্থতায়। ধর্মবোধের এই-যে যাত্রা এর প্রথমে জীবন, তার পরে মৃত্যু, তার পরে অমৃত। মানুষ সেই অমৃতের অধিকার লাভ করেছে। কেননা জীবের মধ্যে মানুষই শ্রেয়ের ক্ষুরধারনিশিত দুর্গম পথে দুঃখকে মৃত্যুকে স্বীকার করেছে। সে সাবিত্রীর মতো যমের হাত থেকে আপন সত্যকে ফিরিয়ে এনেছে। সে স্বর্গ থেকে মর্তলোকে ভূমিষ্ঠ হয়েছে, তবেই অমৃতলোককে আপনার করতে পেরেছে। ধর্মই মানুষকে এই দ্বন্দ্বের তুফান পার করিয়ে দিয়ে এই অদ্বৈতে অমৃতে আনন্দে প্রেমে উত্তীর্ণ করিয়ে দেয়। যারা মনে করে তুফানকে এড়িয়ে পালানোই মুক্তি তারা পারে যাবে কী করে। সেইজন্যেই তো মানুষ প্রার্থনা করে, অসতো মা সদ্‌গময়, তমসো মা জ্যোতির্গময়, মৃত্যোর্মামৃতং গময়। ‘গময়’ এই কথার মানে এই যে, পথ পেরিয়ে যেতে হবে, পথ এড়িয়ে যাবার জো নেই।
+</p><p>আমার রচনার মধ্যে যদি কোনো ধর্মতত্ত্ব থাকে তবে সে হচ্ছে এই যে, পরমাত্মার সঙ্গে জীবাত্মার সেই পরিপূর্ণ প্রেমের সম্বন্ধ-উপলব্ধিই ধর্মবোধ যে প্রেমের এক দিকে দ্বৈত আর-এক দিকে অদ্বৈত, এক দিকে বিচ্ছেদ আর-এক দিকে মিলন, এক দিকে বন্ধন আর-এক দিকে মুক্তি। যার মধ্যে শক্তি এবং সৌন্দর্য, রূপ এবং রস, সীমা এবং অসীম এক হয়ে গেছে; যা বিশ্বকে স্বীকার ক’রেই বিশ্বকে সত্যভাবে অতিক্রম করে এবং বিশ্বের অতীতকে স্বীকার ক’রেই বিশ্বকে সত্যভাবে গ্রহণ করে, যা যুদ্ধের মধ্যেও শান্তকে মানে, মন্দের মধ্যেও কল্যাণকে জানে এবং বিচিত্রের মধ্যেও এককে পূজা করে। আমার ধর্ম যে আগমনীর গান গায় সে এই—
+</p>
+<div>
+<div>
+<p>ভেঙেছ দুয়ার, এসেছ জ্যোতির্ময়,<br/><span>তােমারি হউক্ জয়।</span><br/>
+তিমিরবিদার উদার অভ্যুদয়,<br/><span>তােমারি হউক জয়।</span><br/>
+হে বিজয়ী বীর, নবজীবনের প্রাতে<br/>
+নবীন আশার খড়্গ তোমার হাতে,<br/>
+জীর্ণ আবেশ কাটো সুকঠোর ঘাতে,<br/><span>বন্ধন হোক ক্ষয়।</span><br/><span>তােমারি হউক জয়।</span><br/>
+এস দুঃসহ, এস এস নির্দয়,<br/><span>তােমারি হউক জয়।</span><br/>
+এস নির্মল, এস এস নির্ভয়,<br/><span>তােমারি হউক জয়।</span><br/>
+প্রভাতসূর্য, এসেছ রুদ্র সাজে,<br/>
+দুঃখের পথে তােমার তূর্য বাজে,<br/>
+অরুণবহ্নি জ্বালাও চিত্তমাঝে,<br/><span>মৃত্যুর হােক লয়।</span><br/><span>তােমারি হউক জয়।</span>
+</p>
+</div>
+</div>
+<p><span>আশ্বিন-কার্তিক ১৩২৪</span>
+</p>
+
+
+</div></section>
+<section><div>
+
+<div>
+<h2>৪
+</h2>
+</div>
+<p>নিজের সত্য পরিচয় পাওয়া সহজ নয়। জীবনের বিচিত্র অভিজ্ঞতার ভিতরকার মূল ঐক্যসূত্রটি ধরা পড়তে চায় না। বিধাতা যদি আমার আয়ু দীর্ঘ না করতেন, সত্তর বৎসরে পৌঁছবার অবকাশ না দিতেন, তা হলে নিজের সম্বন্ধে স্পষ্ট ধারণা করবার অবকাশ পেতাম না। নানাখানা করে নিজেকে দেখেছি, নানা কাজে প্রবর্তিত করেছি, ক্ষণে ক্ষণে তাতে আপনার অভিজ্ঞান আপনার কাছে বিক্ষিপ্ত হয়েছে। জীবনের এই দীর্ঘ চক্রপথ প্রদক্ষিণ করতে করতে বিদায়কালে আজ সেই চক্রকে সমগ্ররূপে যখন দেখতে পেলাম তখন একটা কথা বুঝতে পেরেছি যে, একটিমাত্র পরিচয় আমার আছে, সে আর কিছুই নয়, আমি কবি মাত্র। আমার চিত্ত নানা কর্মের উপলক্ষে ক্ষণে ক্ষণে নানা জনের গোচর হয়েছে। তাতে আমার পরিচয়ের সমগ্রতা নেই। আমি তত্ত্বজ্ঞানী শাস্ত্রজ্ঞানী গুরু বা নেতা নই— একদিন আমি বলেছিলাম, ‘আমি চাই নে হতে নববঙ্গে নবযুগের চালক’— সে কথা সত্য বলেছিলাম। শুভ্র নিরঞ্জনের যাঁরা দূত তাঁরা পৃথিবীর পাপ ক্ষালন করেন, মানবকে নির্মল নিরাময় কল্যাণব্রতে প্রবর্তিত করেন, তাঁরা আমার পূজ্য; তাঁদের আসনের কাছে আমার আসন পড়ে নি। কিন্তু সেই এক শুভ্র জ্যোতি যখন বহুবিচিত্র হন, তখন তিনি নানা বর্ণের আলোকরশ্মিতে আপনাকে বিচ্ছুরিত করেন, বিশ্বকে রঞ্জিত করেন, আমি সেই বিচিত্রের দূত। আমরা নাচি নাচাই, হাসি হাসাই, গান করি, ছবি আঁকি— যে আবিঃ বিশ্বপ্রকাশের অহৈতুক আনন্দে অধীর আমরা তারই দূত। বিচিত্রের লীলাকে অন্তরে গ্রহণ করে তাকে বাইরে লীলায়িত করা— এই আমার কাজ। মানবকে গম্যস্থানে চালাবার দাবি রাখি নে, পথিকদের চলার সঙ্গে চলার কাজ আমার। পথের দুই ধারে যে ছায়া, যে সবুজের ঐশ্বর্য, যে ফুল পাতা, যে পাখির গান, সেই রসের রসদে জোগান দিতেই আমরা আছি। যে বিচিত্র বহু হয়ে খেলে বেড়ান দিকে দিকে, সুরে গানে, নৃত্যে চিত্রে, বর্ণে বর্ণে, রূপে রূপে, সুখদুঃখের আঘাতে-সংঘাতে, ভালো-মন্দের দ্বন্দ্বে― তাঁর বিচিত্র রসের বাহনের কাজ আমি গ্রহণ করেছি, তাঁর রঙ্গশালার বিচিত্র রূপকগুলিকে সাজিয়ে তোলবার ভার পড়েছে আমার উপর, এইই আমার একমাত্র পরিচয়। অন্য বিশেষণও লোকে আমাকে দিয়েছেন― কেউ বলেছেন তত্ত্বজ্ঞানী, কেউ আমাকে ইস্কুলমাস্টারের পদে বসিয়েছেন। কিন্তু বাল্যকাল থেকেই কেবলমাত্র খেলার ঝোঁকেই ইস্কুল-মাস্টারকে এড়িয়ে এসেছি― মাস্টারি পদটাও আমার নয়। বাল্যে নানা সুরের ছিদ্র-করা বাঁশি হাতে যখন পথে বেরলুম তখন ভোরবেলায় অম্পষ্টের মধ্যে স্পষ্ট ফুটে উঠতে চাচ্ছিল, সেইদিনের কথা মনে পড়ে। সেই অন্ধকারের সঙ্গে আলোর প্রথম শুভদৃষ্টি; প্রভাতের বাণীবন্যা সেদিন আমার মনে তার প্রথম বাঁধ ভেঙেছিল, দোল লেগেছিল চিত্তসরোবরে। ভালো করে বুঝি বা না বুঝি, বলতে পারি বা না পারি, সেই বাণীর আঘাতে বাণীই জেগেছে। বিশ্বে বিচিত্রের লীলায় নানা সুরে চঞ্চল হয়ে উঠছে নিখিলের চিত্ত, তারই তরঙ্গে বালকের চিত্ত চঞ্চল হয়েছিল, আজও তার বিরাম নেই। সত্তর বৎসর পূর্ণ হল, আজও এ চপলতার জন্য বন্ধুরা অনুযোগ করেন, গাম্ভীর্যের ত্রুটি ঘটে। কিন্তু বিশ্বকর্মার ফরমাশের যে অন্ত নেই। তিনি যে চপল, তিনি যে বসন্তের অশান্ত সমীরণে অরণ্যে অরণ্যে চিরচঞ্চল। গাম্ভীর্যে নিজেকে গড়খাই করে আমি তো দিন খোয়াতে পারি নে। এই সত্তর বৎসর নানা পথ আমি পরীক্ষা করে দেখেছি, আজ আমার আর সংশয় নেই, আমি চঞ্চলের লীলাসহচর। আমি কী করেছি, কী রেখে যেতে পারব সে কথা জানি নে। স্থায়িত্বের আবদার করব না। খেলেন তিনি কিন্তু আসক্তি রাখেন না— যে খেলাঘর নিজে গড়েন তা আবার নিজেই ঘুচিয়ে দেন। কাল সন্ধ্যাবেলায় এই আম্রকাননে যে আলপনা দেওয়া হয়েছিল চঞ্চল তা এক রাত্রের ঝড়ে ধুয়ে মুছে দিয়েছেন, আবার তা নতুন করে আঁকতে হল। তাঁর খেলাঘরের যদি কিছু খেলনা জুগিয়ে দিয়ে থাকি তা মহাকাল সংগ্রহ করে রাখবেন এমন আশা করি নে। ভাঙা খেলনা আবর্জনার স্তূপে যাবে। যতদিন বেঁচে আছি সেই সময়টুকুর মতোই, মাটির ভাঁড়ে যদি কিছু আনন্দরস জুগিয়ে থাকি সেই যথেষ্ট। তার পরের দিন রসও ফুরোবে, ভাঁড়ও ভাঙবে, কিন্তু তাই বলে ভোজ তো দেউলে হবে না। সত্তর বৎসর পূর্ণ হবার দিন, আজ আমি রসময়ের দোহাই দিয়ে সবাইকে বলি যে, আমি কারো চেয়ে বড়ো কি ছোটো সেই ব্যর্থ বিচারে খেলার রস নষ্ট হয়; পরিমাপকের দল মাপকাঠি নিয়ে কলরব করছে, তাদেরকে ভোলা চাই। লোকালয়ে খ্যাতির যে হরির লুঠ ধুলোয় ধুলোয় লোটায় তা নিয়ে কাড়াকাড়ি করতে চাই নে। মজুরির হিসেব নিয়ে চড়া গলায় তর্ক করবার বুদ্ধি যেন আমার না ঘটে।
+</p><p>এই আশ্রমের কর্মের মধ্যেও যেটুকু প্রকাশের দিক তাই আমার, এর যে যন্ত্রের দিক যন্ত্রীর তা চালনা করছেন। মানুষের আত্মপ্রকাশের ইচ্ছাকে আমি রূপ দিতে চেয়েছিলাম। সেইজন্যেই তার রূপভূমিকার উদ্দেশে একটি তপোবন খুঁজেছি। নগরের ইঁটকাঠের মধ্যে নয়, এই নীলাকাশ উদয়াস্তের প্রাঙ্গণে এই সুকুমার বালক বালিকাদের লীলাসহচর হতে চেয়েছিলাম। এই আশ্রমে প্রাণসম্মিলনের যে কল্যাণময় সুন্দর রূপ জেগে উঠছে সেটিকে প্রকাশ করাই আমার কাজ। এর বাইরের কাজও কিছু প্রবর্তন করেছি, কিন্তু সেখানে আমার চরম স্থান নয়, এর যেখানটিতে রূপ সেখানটিতে আমি। গ্রামের অব্যক্ত বেদনা যেখানে প্রকাশ খুঁজে ব্যাকুল আমি তার মধ্যে। এখানে আমি শিশুদের যে ক্লাস করেছি সেটা গৌণ। প্রকৃতির লীলাক্ষেত্রে শিশুদের সুকুমার জীবনের এই-যে প্রথম আরম্ভ-রূপ, এদের জ্ঞানের অধ্যবসায়ের আদি সূচনায় যে উষারুণদীপ্তি, যে নবােদ্‌গত উদ্যমের অঙ্কুর, তাকে অবারিত করবার জন্য আমার প্রয়াস― না হলে আইনকানুন-সিলেবাসের জঞ্জাল নিয়ে মরতে হত। এই-সব বাইরের কাজ গৌণ, সেজন্য আমার বন্ধুরা আছেন। কিন্তু লীলাময়ের লীলার ছন্দ মিলিয়ে এই শিশুদের নাচিয়ে গাইয়ে, কখনো ছুটি দিয়ে, এদের চিত্তকে আনন্দে উদ্‌বােধিত করার চেষ্টাতেই আমার আনন্দ, আমার সার্থকতা। এর চেয়ে গম্ভীর আমি হতে পারব না। শঙ্খঘণ্টা বাজিয়ে যাঁরা আমাকে উচ্চ মঞ্চে বসাতে চান, তাঁদের আমি বলি, আমি নীচেকার স্থান নিয়েই জন্মেছি, প্রবীণের প্রধানের আসন থেকে খেলার ওস্তাদ আমাকে ছুটি দিয়েছেন। এই ধুলো-মাটি-ঘাসের মধ্যে আমি হৃদয় ঢেলে দিয়ে গেলাম, বনস্পতি-ওষধির মধ্যে। যারা মাটির কোলের কাছে আছে, যারা মাটির হাতে মানুষ, যারা মাটিতেই হাঁটতে আরম্ভ ক’রে শেষকালে মাটিতেই বিশ্রাম করে, আমি তাদের সকলের বন্ধু, আমি কবি।
+</p>
+<div><div><span>শান্তিনিকেতন
+২৫ বৈশাখ ১৩৩৮</span></div>
+</div>
+</div></section>
+<section><div>
+
+<div>
+<h2>৫
+</h2>
+</div>
+<p>যে সংসারে প্রথম চোখ মেলেছিলুম সে ছিল অতি নিভৃত। শহরের বাইরে শহরতলির মতো, চারি দিকে প্রতিবেশীর ঘরবাড়িতে কলরবে, আকাশটাকে আঁট করে বাঁধে নি।
+</p><p>আমাদের পরিবার আমার জন্মের পূর্বেই সমাজের নোঙয় তুলে দূরে বাঁধা-ঘাটের বাইরে এসে ভিড়েছিল। আচার অনুশাসন ক্রিয়াকর্ম; সেখানে সমস্তই বিরল।
+</p><p>আমাদের ছিল মস্ত একটা সাবেক কালের বাড়ি, তার ছিল গোটাকতক ভাঙা ঢাল বর্শা মর্চে-পড়া তলোয়ার খাটানো দেউড়ি, ঠাকুরদালান, তিন-চারটে উঠোন, সদর-অন্দরের বাগান, সম্বৎসরের গঙ্গাজল ধরে রাখবার মোটা মোটা জালা-সাজানো অন্ধকার ঘর। পূর্বযুগের নানা পালপার্বণের পর্যায় নানা কলরবে সাজেসজ্জায় তার মধ্য দিয়ে একদিন চলাচল করেছিল, আমি তার স্মৃতিরও বাইরে পড়ে গেছি। আমি এসেছি যখন এ বাসায় তখন পুরাতন কাল সদ্য বিদায় নিয়েছে, নতুন কাল সবে এসে নামল, তার আসবাবপত্র তখনো এসে পৌঁছয় নি।
+</p><p>এ বাড়ি থেকে এদেশীয় সামাজিক জীবনের স্রোত যেমন সরে গেছে তেমনি পূর্বতন ধনের স্রোতেও পড়েছে ভাঁটা। পিতামহের ঐশ্বর্যদীপাবলী নানা শিখায় একদা এখানে দীপ্যমান ছিল, সেদিন বাকি ছিল দহনশেষের কালো দাগগুলো, আর ছাই, আর একটিমাত্র কম্পমান ক্ষীণ শিখা। প্রচুর-উপকরণ-সমাকীর্ণ পূর্বকালের আমোদ-প্রমোদ-বিলাস-সমারোহের সরঞ্জাম কোণে কোণে ধূলিমলিন জীর্ণ অবস্থায় কিছু কিছু বাকি যদি বা থাকে তাদের কোনো অর্থ নেই। আমি ধনের মধ্যে জন্মাই নি, ধনের স্মৃতির মধ্যেও না।
+</p>
+
+<p> এই নিরালায় এই পরিবারে যে স্বাতন্ত্র্য জেগে উঠেছিল সে স্বাভাবিক, মহাদেশ থেকে দূরবিচ্ছিন্ন দ্বীপের গাছপালা-জীবজন্তুরই স্বাতন্ত্র্যের মতো। তাই আমাদের ভাষায় একটা কিছু ভঙ্গি ছিল, কলকাতায় লোক যাকে ইশারা করে বলত ঠাকুরবাড়ির ভাষা। পুরুষ ও মেয়েদের বেশভূষাতেও তাই, চালচলনেও।
+</p><p>বাংলা ভাষাটাকে তখন শিক্ষিতসমাজ অন্দরে মেয়েমহলে ঠেলে রেখেছিলেন; সদরে ব্যবহার হত ইংরেজি― চিঠিপত্রে, লেখাপড়ায়, এমন-কি মুখের কথায়। আমাদের বাড়িতে এই বিকৃতি ঘটতে পারে নি। সেখানে বাংলা ভাষার প্রতি অনুরাগ ছিল সুগভীর, তার ব্যবহার ছিল সকল কাজেই।
+</p><p>আমাদের বাড়িতে আর-একটি সমাবেশ হয়েছিল সেটি উল্লেখযোগ্য। উপনিষদের ভিতর দিয়ে প্রাক্‌পৌরাণিক যুগের ভারতের সঙ্গে এই পরিবারের ছিল ঘনিষ্ঠ সম্বন্ধ। অতি বাল্যকালেই, প্রায় প্রতিদিনই বিশুদ্ধ উচ্চারণে অনর্গল আবৃত্তি করেছি উপনিষদের শ্লোক। এর থেকে বুঝতে পারা যাবে, সাধারণত বাংলাদেশে ধর্মসাধনায় ভাবাবেগের যে উদ্‌বেলতা আছে আমাদের বাড়িতে তা প্রবেশ করে নি। পিতৃদেবের প্রবর্তিত উপাসনা ছিল শান্ত সমাহিত।
+</p><p>এই যেমন এক দিকে তেমনি অন্য দিকে আমার গুরুজনদের মধ্যে ইংরেজি সাহিত্যের আনন্দ ছিল নিবিড়। তখন বাড়ির হাওয়া শেক্‌স্‌পীয়রের নাট্যরস-সম্ভোগে আন্দোলিত, সার্‌ ওয়াল্‌টর স্কটের প্রভাবও প্রবল। দেশপ্রীতির উন্মাদনা তখন দেশে কোথাও নেই। রঙ্গলালের ‘স্বাধীনতাহীনতায় কে বাঁচিতে চায় হে’ আর তার পরে হেমচন্দ্রের ‘বিংশতি কোটি মানবের বাস’ কবিতায় দেশমুক্তিকামনার সুর ভোরের পাখির কাকলির মতো শোনা যায়। ‘হিন্দুমেলা’র পরামর্শ ও আয়োজনে আমাদের বাড়ির সকলে তখন উৎসাহিত, তার প্রধান কর্মকর্তা ছিলেন নবগােপাল মিত্র। এই মেলায় গান ছিল মেজদাদার লেখা ‘জয় ভারতের জয়’, গণদাদার লেখা ‘লজ্জায় ভারত যশ গাইব কী করে’, বড়দাদার ‘মলিন মুখচন্দ্রমা ভারত তােমারি’। জ্যোতিদাদা এক গুপ্তসভা স্থাপন করেছেন, একটি পােড়াে-বাড়িতে তার অধিবেশন; ঋগ্‌বেদের পুঁথি, মড়ার মাথার খুলি আর খােলা তলােয়ার নিয়ে তার অনুষ্ঠান; রাজনারায়ণ বসু তার পুরােহিত; সেখানে আমরা ভারতউদ্ধারের দীক্ষা পেলেম।
+</p><p>এই-সকল আকাঙ্ক্ষা উৎসাহ উদ্‌যােগ এর কিছুই ঠেলাঠেলি ভিড়ের মধ্যে নয়। শান্ত অবকাশের ভিতর দিয়ে ধীরে ধীরে এর প্রভাব আমাদের অন্তরে প্রবেশ করেছিল। রাজসরকারের কোতােয়াল হয় তখন সতর্ক ছিল না নয় উদাসীন ছিল, তারা সভার সভ্যদের মাথার খুলিভঙ্গ বা রসভঙ্গ করতে আসে নি।
+</p><p>কলকাতা শহরের বক্ষ তখন পাথরে বাঁধানো হয় নি, অনেকখানি কাঁচা ছিল। তেলকলের ধোঁওয়ায় আকাশের মুখে তখনো কালি পড়ে নি। ইমারত-অরণ্যের ফাঁকায় ফাঁকায় পুকুরের জলের উপর সূর্যের আলাে ঝিকিয়ে যেত, বিকেলবেলায় অশথের ছায়া দীর্ঘতর হয়ে পড়ত, হাওয়ায় দুলত নারকেলগাছের পত্র-ঝালর, বাঁধা নালা বেয়ে গঙ্গার জল ঝর্নার মতাে ঝরে পড়ত আমাদের দক্ষিণ-বাগানের পুকুরে। মাঝে মাঝে গলি থেকে পালকি-বেহারার হাঁইহুঁই শব্দ আসত কানে, আর বড়ো রাস্তা থেকে সহিদের হেইয়ো হাঁক। সন্ধ্যাবেলায় জ্বলত তেলের প্রদীপ, তারই ক্ষীণ আলােয় মাদুর পেতে বুড়ি দাসীর কাছে শুনতুম রূপকথা। এই নিস্তব্ধপ্রায় জগতের মধ্যে আমি ছিলুম এক কোণের মানুষ, লাজুক নীরব নিশ্চঞ্চল।
+</p><p>আরো একটা কারণে আমাকে খাপছাড়া করেছিল। আমি ইস্কুলপালানাে ছেলে, পরীক্ষা দিই নি, পাস করি নি; মাস্টার আমার ভাবীকালের সম্বন্ধে হতাশ্বাস। ইস্কুলঘরের বাইরে যে অবকাশটা বাধাহীন সেইখানে আমার মন হাঘরেদের মতাে বেরিয়ে পড়েছিল।
+</p><p>ইতিপূর্বেই কোন্ একটা ভরসা পেয়ে হঠাৎ আবিষ্কার করেছিলুম লােকে যাকে বলে কবিতা সেই ছন্দ-মেলানো মিল-করা ছড়াগুলো সাধারণ কলম দিয়েই সাধারণ লােকে লিখে থাকে। তখন দিনও এমন ছিল ছড়া যারা বানাতে পারত তাদের দেখে লােক বিস্মিত হত। এখন যারা না পারে তারাই অসাধারণ বলে গণ্য। পয়ার ত্রিপদী মহলে আপন অবাধ অধিকারবােধের অক্লান্ত উৎসাহে লেখায় মাতলুম। আট-অক্ষর ছয়-অক্ষর দশ-অক্ষরের চৌকো চৌকো কতরকম শব্দভাগ নিয়ে চলল ঘরের কোণে আমার ছন্দ-ভাঙাগড়ার খেলা। ক্রমে প্রকাশ পেল দশজনের সামনে।
+</p><p>এই লেখাগুলি যেমনি হােক এর পিছনে একটি ভূমিকা আছে― সে হচ্ছে একটি বালক, সে কুনো, সে একলা, সে একঘরে, তার খেলা নিজের মনে। সে ছিল সমাজের শাসনের অতীত, ইস্কুলের শাসনের বাইরে। বাড়ির শাসনও তার হালকা। পিতৃদেব ছিলেন হিমালয়ে, বাড়িতে দাদারা ছিলেন কর্তৃপক্ষ। জ্যোতিদাদা, যাঁকে আমি সকলের চেয়ে মানতুম, বাইরে থেকে তিনি আমাকে কোনো বাঁধন পরান নি। তাঁর সঙ্গে তর্ক করেছি, নানা বিষয়ে আলােচনা করেছি বয়স্যের মতো। তিনি বালককেও শ্রদ্ধা করতে জানতেন। আমার আপন মনের স্বাধীনতার দ্বারাই তিনি আমার চিত্তবিকাশের সহায়তা করেছেন। তিনি আমার ’পরে কর্তৃত্ব করবার ঔৎসুক্যে যদি দৌরাত্ম্য করতেন তা হলে ভেঙেচুরে তেড়েবেঁকে যা-হয় একটা কিছু হতুম, সেটা হয়তো ভদ্রসমাজের সন্তোষজনকও হত, কিন্তু আমার মতো একেবারেই হত না।
+</p><p>শুরু হল আমার ভাঙাছন্দে টুকরো কাব্যের পালা, উল্কাবৃষ্টির মতো; বালকের যা-তা ভাবের এলােমেলো কাঁচা গাঁথুনি। এই রীতিভঙ্গের ঝোঁকটা ছিল সেই একঘরে ছেলের মজ্জাগত। এতে যথেষ্ট বিপদের শঙ্কা ছিল। কিন্তু এখানেও অপঘাত থেকে রক্ষা পেয়ে গেছি। তার কারণ আমার ভাগ্যক্রমে সেকালে বাংলা সাহিত্যে খ্যাতির হাটে ভিড় ছিল অতি সামান্য― প্রতিযগিতার উত্তেজনা উত্তপ্ত হয়ে ওঠে নি। বিচারকের দণ্ড থেকে অপ্রশংসার অপ্রিয় আঘাত নামত, কিন্তু কটুক্তি ও কুৎসার উত্তেজনা তখনো সাহিত্যে ঝাঁঝিয়ে ওঠে নি।
+</p><p>সেদিনকার অল্পসংখ্যক সাহিত্যিকের মধ্যে আমি ছিলেম বয়সে সব চেয়ে ছোটো, শিক্ষায় সব চেয়ে কাঁচা। আমার ছন্দগুলি লাগাম-ছেঁড়া, লেখবার বিষয় ছিল অস্ফুট উক্তিতে ঝাপসা, ভাষার ও ভাবের অপরিণতি পদে পদে। তখনকার সাহিত্যিকেরা মুখের কথায় বা লেখায় প্রায়ই আমাকে প্রশ্রয় দেন নি― আধো-আধো বাধো-বাধো কথা নিয়ে বেশ একটু হেসেছিলেন। সে হাসি বিদূষকের নয়, সেটা বিদূষণব্যবসায়ের অঙ্গ ছিল না। তাঁদের লেখায় শাসন ছিল, অসৌজন্য ছিল না লেশমাত্র। বিমুখতা যেখানে প্রকাশ পেয়েছে সেখানেও বিদ্বেষ দেখা দেয় নি। তাই প্রশ্রয়ের অভাবসত্ত্বেও বিরুদ্ধরীতির মধ্য দিয়েও আপন লেখা আপন মতে গড়ে তুলেছিলেম।
+</p><p>সেদিনকার খ্যাতিহীনতার স্নিগ্ধ প্রথম প্রহর কেটে গেল। প্রকৃতির শুশ্রুষা ও আত্মীয়দের স্নেহের ঘনচ্ছায়ায় ছিলেম বসে। কখনো কাটিয়েছি তেতালার ছাদের প্রান্তে কর্মহীন অবকাশে মনে মনে আকাশকুসুমের মালা গেঁথে, কখনো গাজিপুরের বৃদ্ধ নিমগাছের তলায় বসে ইঁদারার জলে বাগান সেচ দেবার করুণ ধ্বনি শুনতে শুনতে অদূর গঙ্গার স্রোতে কল্পনার অহৈতুক বেদনায় বোঝাই করে দূরে ভাসিয়ে দিয়ে। নিজের মনের আলো-আঁধারের মধ্য থেকে হঠাৎ পরের মনের কনুইয়ের ধাক্কা খাবার জন্যে বড়ো রাস্তায় বেরিয়ে পড়তে হবে এমন কথা সেদিন ভাবিও নি। অবশেষে একদিন খ্যাতি এসে অনাবৃত মধ্যাহ্নরোদ্রে টেনে বের করলে। তাপ ক্রমেই বেড়ে উঠল, আমার কোণের আশ্রয় একেবারে ভেঙে গেল। খ্যাতির সঙ্গে সঙ্গে যে গ্লানি এসে পড়ে আমার ভাগ্যে অন্যদের চেয়ে তা অনেক বেশি আবিল হয়ে উঠেছিল। এমন অনবরত, এমন অকুণ্ঠিত, এমন অকরুণ, এমন অপ্রতিহত অসম্মাননা আমার মতাে আর-কোনো সাহিত্যিককেই সইতে হয় নি। এও আমার খ্যাতি-পরিমাপের বৃহৎ মাপকাঠি। এ কথা বলবার সুযােগ পেয়েছি যে প্রতিকূল পরীক্ষায় ভাগ্য আমাকে লাঞ্ছিত করেছে কিন্তু পরাভবের অগৌরবে লজ্জিত করে নি। এ ছাড়া আমার দুর্‌গ্রহ কালো বর্ণের এইযে পটটি ঝুলিয়েছেন এরই উপরে আমার বন্ধুদের সুপ্রসন্ন মুখ সমুজ্জ্বল হয়ে উঠেছে। তাঁদের সংখ্যা অল্প নয় সে কথা বুঝতে পারি আজকের এই অনুষ্ঠানেই। বন্ধুদের কাউকে জানি, অনেককেই জানি নে, তাঁরাই কেউ কাছে থেকে কেউ দূরে থেকে এই উৎসবে মিলিত হয়েছেন― সেই উংসাহে আমার মন আনন্দিত। আজ আমার মনে হচ্ছে তাঁরা আমাকে জাহাজে তুলে দিতে ঘাটে এসে দাঁড়িয়েছেন— আমার খেয়াতরী পাড়ি দেবে দিবালােকের পরপারে তাঁদের মঙ্গলধ্বনি কানে নিয়ে।
+</p><p>আমার কর্মপথের যাত্রা সত্তর বছরের গােধূলিবেলায় একটা উপসংহারে এসে পৌঁছল। আলো ম্লান হবার শেষমুহূর্তে এই জয়ন্তীঅনুষ্ঠানের দ্বারা দেশ আমার দীর্ঘজীবনের মূল্য স্বীকার করবেন।
+</p><p>ফসল যতদিন মাঠে ততদিন সংশয় থেকে যায়। বুদ্ধিমান মহাজন খেতের দিকে তাকিয়েই আগাম দাদন দিতে দ্বিধা করে, অনেকটা হাতে রেখে দেয়। ফসল যখন গােলায় উঠল তখনই ওজন বুঝে দামের কথা পাকা হতে পারে। আজ আমার বুঝি সেই ফলন-শেষের হিসাব চুকিয়ে দেবার দিন।
+</p><p>যে মানুষ অনেক কাল বেঁচে আছে সে অতীতেরই শামিল। বুঝতে পারছি আমার সাবেক-বর্তমান এই হাল-বর্তমান থেকে বেশ খানিকটা তফাতে। যে-সব কবি পালা শেষ করে লোকান্তরে, তাঁদেরই আঙিনার কাছটায় আমি এসে দাঁড়িয়েছি তিরোভাবের ঠিক পূর্বসীমানায়। বর্তমানের চলতি রথের বেগের মুখে কাউকে দেখে নেবার যে অস্পষ্টতা সেটা আমার বেলা এতদিনে কেটে যাবার কথা। যতখানি দূরে এলে কল্পনার ক্যামেরায় মানুষের জীবনটাকে সমগ্রলক্ষবদ্ধ করা যায় আধুনিকের পুরোভাগ থেকে আমি ততটা দূরেই এসেছি।
+</p><p>পঞ্চাশের পরে বানপ্রস্থের প্রস্তাব মনু করেছেন। তার কারণ মনুর হিসাবমত পঞ্চাশের পরে মানুষ বর্তমানের থেকে পিছিয়ে পড়ে। তখন কোমর বেঁধে ধাবমান কালের সঙ্গে সমান ঝোঁকে পা ফেলে ছোটার যতটা ক্লান্তি ততটা সফলতা থাকে না, যতটা ক্ষয় ততটা পূরণ হয় না। অতএব তখন থেকে স্বতঃপ্রবৃত্ত হয়ে তাকে সেই সর্বকালের মোহানার দিকে যাত্রা করতে হবে যেখানে কাল স্তব্ধ। গতির সাধনা শেষ করে তখন স্থিতির সাধনা।
+</p><p>মনু যে মেয়াদ ঠিক করে দিয়েছেন এখন সেটাকে ঘড়ি ধরে খাটানো প্রায় অসাধ্য। মনুর যুগে নিশ্চয়ই জীবনে এত দায় ছিল না, তার গ্রন্থি ছিল কম। এখন শিক্ষা বল, কর্ম বল, এমনকি আমোদপ্রমোদ খেলাধুলা, সমস্তই বহুব্যাপক। তখনকার সম্রাটেরও রথ যতবড়ো জমকালো হোক, এখনকার রেলগাড়ির মতো তাতে বহু গাড়ির এমন দ্বন্দ্বসমাস ছিল না। এই গাড়ির মাল খালাস করতে বেশ একটু সময় লাগে। পাঁচটায় আপিসে ছুটি শাস্ত্রনির্দিষ্ট বটে, কিন্তু খাতাপত্র বন্ধ করে দীর্ঘনিশ্বাস ফেলে বাড়িমুখো হবার আগেই বাতি জ্বালাতে হয়। আমাদের সেই দশা। তাই পঞ্চাশের মেয়াদ বাড়িয়ে না নিলে ছুটিমঞ্জুর অসম্ভব। কিন্তু সত্তরের কোঠায় পড়লে আর ওজর চলে না। বাইরের লক্ষণে বুঝতে পারছি আমার সময় চলল আমাকে ছাড়িয়ে― কম করে ধরলেও অন্তত দশ বছর আগেকার তারিখে আমি বসে আছি। দুরের নক্ষত্রের আলোর মতো, অর্থাৎ সে যখনকার সে তখনকার নয়।
+</p><p>তবু একেবারে থামবার আগে চলার ঝোঁকে অতীতকালের খানিকটা ধাক্কা এসে পড়ে বর্তমানের উপরে। গান সমস্তটাই সমে এসে পৌঁছলে তার সমাপ্তি; তবু আরো কিছুক্ষণ ফর্মাশ চলে পালটিয়ে গাবার জন্যে। সেটা অতীতেরই পুনরাবৃত্তি। এর পরে বড়োজোর দুটো-একটা তান লাগানো চলে, কিন্তু চুপ করে গেলেও লোকসান নেই। পুনরাবৃত্তিকে দীর্ঘকাল তাজা রাখবার চেষ্টাও যা আর কইমাছটাকে ডাঙায় তুলে মাসখানেক বাঁচিয়ে রাখবার চেষ্টাও তাই।
+</p><p>এই মাছটার সঙ্গে কবির তুলনা আরো একটু এগিয়ে নেওয়া যাক। মাছ যতক্ষণ জলে আছে ওকে কিছু কিছু খোরাক জোগানো সৎকর্ম, সেটা মাছের নিজের প্রয়োজনে। পরে যখন তাকে ডাঙায় তোলা হল তখন প্রয়োজনটা তার নয়, অপর কোনো জীবের। তেমনি কবি যতদিন একটা স্পষ্ট পরিণতিতে পৌঁছয় ততদিন তাকে কিছু কিছু উৎসাহ দিতে পারলে ভালোই―সেটা কবির নিজেরই প্রয়োজনে। তার পরে তার পূর্ণতায় যখন একটা সমাপ্তির যতি আসে তখন তার সম্বন্ধে যদি কোনো প্রয়োজন থাকে সেটা তার নিজের নয়, প্রয়োজন তার দেশের।
+</p><p>দেশ মানুষের সৃষ্টি। দেশ মৃন্ময় নয়, সে চিন্ময়। মানুষ যদি প্রকাশমান হয় তবেই দেশ প্রকাশিত। সুজলা সুফলা মলয়জ শীতলা ভূমির কথা যতই উচ্চকণ্ঠে রটাব ততই জবাবদিহির দায় বাড়বে, প্রশ্ন উঠবে প্রাকৃতিক দান তো উপাদান মাত্র, তা নিয়ে মানবিক সম্পদ কতটা গড়ে তোলা হল। মানুষের হাতে দেশের জল যদি যায় শুকিয়ে, ফল যদি যায় মরে, মলয়জ যদি বিষিয়ে ওঠে মারীবীজে, শস্যের জমি যদি হয় বন্ধ্যা, তবে কাব্যকথায় দেশের লজ্জা চাপা পড়বে না। দেশ মাটিতে তৈরি নয়, দেশ মানুষে তৈরি।
+</p>
+
+<p> তাই দেশ নিজের সত্তা-প্রমাণেরই খাতিরে অহরহ তাকিয়ে আছে তাদেরই জন্যে যারা কোনো সাধনায় সার্থক। তারা না থাকলেও গাছপালা জীবজন্তু জন্মায়, বৃষ্টি পড়ে, নদী চলে, কিন্তু দেশ আচ্ছন্ন থাকে মরুবালুতলে ভূমির মতো।
+</p><p>এই কারণেই দেশ যার মধ্যে আপন ভাষাবান প্রকাশ অনুভব করে তাকে সর্বজনসমক্ষে নিজের বলে চিহ্নিত করবার উপলক্ষ রচনা করতে চায়। যেদিন তাই করে, যেদিন কোনো মানুষকে আনন্দের সঙ্গে সে অঙ্গীকার করে, সেদিনই মাটির কোল থেকে দেশের কোলে সেই মানুষের জন্ম।
+</p><p>আমার জীবনের সমাপ্তিদশায় এই জয়ন্তী-অনুষ্ঠানের যদি কোনো সত্য থাকে তবে তা এই তাৎপর্য নিয়ে। আমাকে গ্রহণ করার দ্বারা দেশ যদি কোনোভাবে নিজেকে লাভ না করে থাকে তবে আজকের এই উৎসব অর্থহীন। যদি কেউ এ কথায় অহংকারের আশঙ্কা করে আমার জন্যে উদ্‌বিগ্ন হন তবে তাঁদের উদ্‌বেগ অনাবশ্যক। যে খ্যাতির সম্বল অল্প তার সমারোহ যতই বেশি হয় ততই তার দেউলে হওয়া দ্রুত ঘটে। ভুল মস্ত হয়ে দেখা দেয়, চুকে যায় অতি ক্ষুদ্র হয়ে। আতশবাজির অভ্রবিদারক আলোটাই তার নির্বাণের উজ্জ্বল তর্জনীসংকেত।
+</p><p>এ কথায় সন্দেহ নেই যে পুরস্কারের পাত্র-নির্বাচনে দেশ ভুল করতে পারে। সাহিত্যের ইতিহাসে ক্ষণমুখরা খ্যাতির মৌন-সাধন বার বার দেখা গেছে। তাই আজকের দিনের আয়োজনে আজই অতিশয় উল্লাস যেন না করি এই উপদেশর বিরুদ্ধে যুক্তি চলে না। তেমনি তা নিয়ে এখনি তাড়াতাড়ি বিমর্ষ হবারও আশু কারণ দেখি না। কালে কালে সাহিত্যবিচারের রায় একবার উলটিয়ে আবার পালটিয়েও থাকে। অব্যবস্থিতচিত্ত মন্দগতি কালের সব-শেষ বিচারে আমার ভাগ্যে যদি নিঃশেষে ফাঁকিই থাকে তবে এখনি আগাম শোচনা করতে বসা কিছু নয়। এখনকার মতো এই উপস্থিত অনুষ্ঠানটাই নগদ লাভ। তার পরে চরম জবাবদিহির জন্য প্রপৌত্ররা রইলেন। আপাতত বন্ধুদের নিয়ে আশ্বস্তচিত্তে আনন্দ করা যাক, অপর পক্ষে যাঁদের অভিরুচি হয় তাঁরা ফুৎকারে বুদ্‌বুদ্‌ বিদীর্ণ করার উৎসাহে আনন্দ করতে পারেন। এই দুই বিপরীত ভাবের কালোয় সাদায় সংসারের আনন্দধারায় যমের কন্যা যমুনা ও শিবজটা-নিঃসৃত গঙ্গা মিলে থাকে। ময়ুর আপন পুচ্ছগর্বে নৃত্য করে খুশি, আবার শিকারি আপন লক্ষ্যবেধগর্বে তাকে গুলি করে মহা আনন্দিত।
+</p><p>আধুনিককালে পাশ্চাত্য দেশে সাহিত্যে কলাসৃষ্টিতে লোকচিত্তের সম্মতি অতি ঘন ঘন বদল হয় এটা দেখা যাচ্ছে। বেগ বেড়ে চলেছে মানুষের যানে বাহনে, বেগ অবিশ্রাম ঠেলা দিচ্ছে মানুষের মনপ্রাণকে।
+</p><p>যেখানে বৈষয়িক প্রতিযোগিতা উগ্র সেখানে এই বেগের মূল্য বেশি। ভাগ্যের হরির লুট নিয়ে হাটের ভিড়ে ধুলোর ’পরে যেখানে সকলে মিলে কাড়াকাড়ি, সেখানে যে মানুষ বেগে জেতে মালেও তার জিত। তৃপ্তিহীন লোভের বাহন বিরামহীন বেগ। সমস্ত পশ্চিম মাতালের মতো টলমল করছে সেই লোভে। সেখানে বেগবৃদ্ধি ক্রমে লাভের উপলক্ষ না হয়ে স্বয়ং লক্ষ্য হয়ে উঠছে। বেগেরই লোভ আজ জলে স্থলে আকাশে হিস্টিরিয়ার চীৎকার করতে করতে ছুটে বেরোল।
+</p><p>কিন্তু প্রাণপদার্থ তো বাষ্পবিদ্যুতের ভূতে-তাড়া-করা লোহার এঞ্জিন নয়। তার একটি আপন ছন্দ আছে। সেই ছন্দে দুই-এক মাত্রা টানা সয়, তার বেশি নয়। মিনিটকয়েক ডিগবাজি খেয়ে চলা সাধ্য হতে পারে, কিন্তু দশ মিনিট যেতে না যেতে প্রমাণ হবে যে, মানুষ বাইসিক্‌লের চাকা নয়, তার পদাতিকের চাল পদাবলীর ছন্দে। গানের লয় মিষ্টি লাগে যখন সে কানের সজীব ছন্দ মেনে চলে। তাকে দূন থেকে চৌদূনে চড়ালে সে কলা-দেহ ছেড়ে কৌশল-দেহ নেবার জন্যই হাঁসফাঁস করতে থাকে। তাগিদ যদি আরো বাড়াও তা হলে রাগিণীটা পাগলাগারদের সদর গেটের উপর মাথা ঠুকে মারা যাবে। সজীব চোখ তো ক্যামেরা নয়, ভালো করে দেখে নিতে সে সময় নেয়। ঘণ্টায় বিশপঁচিশ মাইল দৌড়ের দেখা তার পক্ষে কুয়াশা দেখা। একদা তীর্থযাত্রা বলে সজীব পদার্থ আমাদের দেশে ছিল। ভ্রমণের পূর্ণস্বাদ নিয়ে সেটা সম্পন্ন হত। কলের গাড়ির আমলে তীর্থ রইল, যাত্রা রইল না; ভ্রমণ নেই, পৌঁছনো আছে; শিক্ষাটা বাদ দিয়ে পরীক্ষাটা পাস করা যাকে বলে। রেল-কোম্পানির কারখানায় কলে ঠাসা তীর্থযাত্রার ভিন্ন ভিন্ন দামের বটিকা সাজানো, গিলে ফেললেই হল— কিন্তু হলই না যে সে কথা বোঝবারও ফুরসুত নেই। কালিদাসের যক্ষ যদি মেঘদূতকে বরখাস্ত করে দিয়ে এরোপ্লেন-দূতকে অলকায় পাঠাতেন তা হলে অমন দুই-সর্গভরা মন্দাক্রান্তা ছন্দ দু-চারটে শ্লোক পার না হতেই অপঘাতে মরত। কলে-ঠাসা বিরহ তো আজ পর্যন্ত বাজারে নামে নি।
+</p><p>মেঘদূতের সেই শোকাবহ পরিণামে শোক করবে না এমনতরো বলবান পুরুষ আজকাল দেখতে পাওয়া যাচ্ছে। কেউ কেউ বলছেন, এখন কবিতার যে আওয়াজটা শোনা যাচ্ছে সে নাভিশ্বাসের আওয়াজ। ওর সময় হয়ে এল। যদি তা সত্য হয় তবে সেটা কবিতার দোষে নয়, সময়ের দোষে। মানুষের প্রাণটা চিরদিনই ছন্দে বাঁধা, কিন্তু তার কালটা কলের তাড়ায় সম্প্রতি ছন্দ-ভাঙা।
+</p><p>আঙুরের খেতে চাষি কাঠি পুঁতে দেয়, তারই উপর আঙুর লতিয়ে উঠে আশ্রয় পায়, ফল ধরায়। তেমনি জীবনযাত্রাকে সবল ও সফল করবার জন্যে কতকগুলি রীতিনীতি বেঁধে দিতে হয়। এই রীতিনীতির অনেকগুলিই নির্জীব নীরস উপদেশ-অনুশাসনের খুঁটি। কিন্তু বেড়ায়-লাগানো জিয়ল কাঠের খুঁটি যেমন রস পেলেই বেঁচে ওঠে তেমনি জীবনযাত্রা যখন প্রাণের ছন্দে শান্তগমনে চলে তখন শুকনো খুঁটিগুলো অন্তরের গভীরে পৌঁছবার অবকাশ পেয়ে ক্রমেই প্রাণ পেতে থাকে। সেই গভীরেই সঞ্জীবনরস। সেই রসে তত্ত্ব ও নীতির মতো পদার্থও হৃদয়ের আপন সামগ্রীরূপে সজীব ও সজ্জিত হয়ে ওঠে, মানুষের আনন্দের রঙ তাতে লাগে। এই মানন্দের প্রকাশের মধ্যেই চিরন্তনতা। এক দিনের নীতিকে আর-একদিন আমরা গ্রহণ নাও করতে পারি কিন্তু সেই নীতি যে প্রীতিকে, যে সৌন্দর্যকে আনন্দের সত্য ভাষায় প্রকাশ করেছে সে আমাদের কাছে নূতন থাকবে। আজও নূতন আছে মোগল-সাম্রাজ্যের শিল্প― সেই সাম্রাজ্যকে, তার সাম্রাজ্যনীতিকে আমরা পছন্দ করি আর না করি।
+</p><p>কিন্তু যে যুগে দলে দলে গরজের তাড়ায় অবকাশ ঠাসা হয়ে নিরেট হয়ে যায় সে যুগ প্রয়োজনের সে যুগ প্রীতির নয়। প্রীতি সময় নেয় গভীর হতে। আধুনিক এই ত্বরা-তাড়িত যুগে প্রয়োজনের তাগিদ কচুরিপানার মতোই সাহিত্যধারার মধ্যেও ভূরি ভূরি ঢুকে পড়েছে। তারা বাস করতে আসে না, সমস্যাসমাধানের দরখাস্ত হাতে ধন্না দিয়ে পড়ে। সে দরখাস্ত যতই অলংকৃত হোক তবু সে খাঁটি সাহিত্য নয়, সে দরখাস্তই। দাবি মিটলেই তার অন্তর্ধান।
+</p><p>এমন অবস্থায় সাহিত্যের হাওয়া বদল হয় এবেলা-ওবেলা। কোথাও আপন দরদ রেখে যায় না, পিছনটাকে লাথি মেরেই চলে, যাকে উঁচু করে গড়েছিল তাকে ধূলিসাৎ করে তার ’পরে অট্টহাসি। আমাদের মেয়েদের পাড়ওয়ালা শাড়ি, তাদের নীলাম্বরী, তাদের বেনারসি চেলি, মোটের উপর দীর্ঘকাল বদল হয় নি— কেননা ওরা আমাদের অন্তরের অনুরাগকে আঁকড়ে আছে। দেখে আমাদের চোখের ক্লান্তি হয় না। হত ক্লান্তি, মনটা যদি রসিয়ে দেখবার উপযুক্ত সময় না পেয়ে বেদরদি ও অশ্রদ্ধাপরায়ণ হয়ে উঠত। হৃদয়হীন অগভীর বিলাসের আয়োজনে অকারণে অনায়াসে ঘন ঘন ফ্যাশানের বদল। এখনকার সাহিত্যে তেমনি রীতির বদল। হৃদয়টা দৌড়তে দৌড়তে প্রীতিসম্বন্ধের রাখী গাঁথতে ও পরাতে পারে না। যদি সময় পেত সুন্দর করে বিনিয়ে বিনিয়ে গাঁথত। এখন ওকে ব্যস্ত লোকেরা ধমক দিয়ে বলে, রেখে দাও তোমার সুন্দর। সুন্দর পুরানো, সুন্দর সেকেলে। আনো একটা যেমনতেমন করে পাক-দেওয়া শণের দড়ি—সেটাকে বলব রিয়ালিজ্‌ম এখনকার দুদ্দাড়-দৌড়-ওয়ালা লোকের ঐটেই পছন্দ। স্বল্পায়ু ফ্যাশান হঠাৎ নবাবের মতো উদ্ধত— তার প্রধান অহংকার এই যে, সে অধুনাতন, অর্থাৎ তার বড়াই গুণ নিয়ে নয়, কাল নিয়ে।
+</p><p>বেগের এই মোটর কলটা পশ্চিমদেশের মর্মস্থানে। ওটা এখনো পাকা দলিলে আমাদের নিজস্ব হয় নি। তবু আমাদেরও দৌড় আরম্ভ হল। ওদের ও হাওয়াগাড়ির পায়দানের উপর লাফ দিয়ে আমরা উঠে পড়েছি। আমরাও খর্বকেশিনী খর্ববেশন সাহিত্যকীর্তির টেকনিকের হাল ফ্যাশন নিয়ে গম্ভীরভাবে আলোচনা করি, আমরাও অধুনাতনের স্পর্ধা নিয়ে পুরাতনের মানহানি করতে অত্যন্ত খুশি হই।
+</p><p>এই সব চিন্তা করেই বলেছিলুম, আমার এ বয়সে খ্যাতিতে আমি বিশ্বাস করি নে। এই মায়ামৃগীর শিকারে বনেবাদাড়ে ছুটে বেড়ানো যৌবনেই সাজে। কেননা সে বয়সে মৃগ যদি-বা নাও মেলে মৃগয়াটাই যথেষ্ট। ফুল থেকে ফল হতেও পারে, না হতেও পারে, তবু আপন স্বভাবকেই চাঞ্চল্যে সার্থক করতে হয় ফুলকে। সে অশান্ত, বাইরের দিকেই তার বর্ণগন্ধের নিত্য উদ্যম। ফলের কাজ অন্তরে, তার স্বভাবের প্রয়োজন অপ্রগল্‌ভ শান্তি। শাখা থেকে মুক্তির জন্যেই তার সাধনা— সেই মুক্তি নিজেরই আন্তরিক পরিণতির যোগে।
+</p><p>আমার জীবনে আজ সেই ফলেরই ঋতু এসেছে, যে ফল আশু বৃন্তচ্যুতির অপেক্ষা করে। এই ঋতুটির সুযোগ সম্পূর্ণ গ্রহণ করতে হলে বাহিরের সঙ্গে অন্তরের শান্তিস্থাপন চাই! সেই শান্তি খ্যাতি-অখ্যাতির দ্বন্দ্বের মধ্যে বিধ্বস্ত হয়।
+</p>
+
+<p> খ্যাতির কথা থাক্। ওটার অনেকখানিই অবাস্তবের বাষ্পে পরিস্ফীত। তার সংকোচন-প্রসারণ নিয়ে যে মানুষ অতিমাত্র ক্ষুব্ধ হতে থাকে সে অভিশপ্ত। ভাগ্যের পরম দান প্রীতি, কবির পক্ষে শ্রেষ্ঠ পুরস্কার তাই। যে মানুষ কাজ দিয়ে থাকে খ্যাতি দিয়ে তার বেতন শােধ চলে, আনন্দ দেওয়াই যার কাজ প্রীতি না হলে তার প্রাপ্য শােধ হয় না।
+</p><p>অনেক কীর্তি আছে যা মানুষকেই উপকরণ করে গড়ে তােলা যেমন রাষ্ট্র। কর্মের বল সেখানে জনসংখ্যায়, তাই সেখানে মানুষকে দলে টানা নিয়ে কেবলই দ্বন্দ্ব চলে। বিস্তারিত খ্যাতির বেড়াজাল ফেলে মানুষ ধরা নিয়ে ব্যাপার। মনে করো, লয়েড জর্জ্। তাঁর বুদ্ধিকে তাঁর শক্তিকে অনেক লােক যখন মানে তখনই তাঁর কাজ চলে। বিশ্বাস আলগা হলে বেড়াজাল গেল ছিঁড়ে, মানুষ-উপকরণ পুরোপুরি জোটে না।
+</p><p>অপর পক্ষে কবির সৃষ্টি যদি সত্য হয়ে থাকে সেই সত্যের গৌরব সেই সৃষ্টির নিজেরই মধ্যে, দশজনের সম্মতির মধ্যে নয়। দশজনে তাকে স্বীকার করে নি এমন প্রায়ই ঘটে থাকে। তাতে বাজার-দরের ক্ষতি হয়, কিন্তু সত্যমূল্যের কমতি হয় না।
+</p><p>ফুল ফুটেছে এইটেই ফুলের চরম কথা। যার ভালো লাগল সেই জিতল, ফুলের জিত তার আপন আবির্ভাবেই। সুন্দরের অন্তরে আছে একটি রসময় রহস্যময় আয়ত্তের অতীত সত্য, আমাদের অন্তরেরই সঙ্গে তার অনির্বচনীয় সম্বন্ধ। তার সম্পর্কে আমাদের আত্মচেতনা হয় মধুর, গভীর, উজ্জ্বল। আমাদের ভিতরের মানুষ বেড়ে ওঠে, রাঙিয়ে ওঠে, রসিয়ে ওঠে। আমাদের সত্তা যেন তার সঙ্গে রঙে রসে মিলে যায়―একেই বলে অনুরাগ।
+</p><p>কবির কাজ এই অনুরাগে মানুষের চৈতন্যকে উদ্দীপ্ত করা, ঔদাসীন্য থেকে উদ্‌বোধিত করা। সেই কবিকেই মানুষ বড়ো বলে যে এমন-সকল বিষয়ে মানুষের চিত্তকে আশ্লিষ্ট করেছে যার মধ্যে নিত্যতা আছে, মহিমা আছে, মুক্তি আছে, যা ব্যাপক এবং গভীর। কলা ও সাহিত্যের ভাণ্ডারে দেশে দেশে কালে কালে মানুষের অনুরাগের সম্পদ রচিত ও সঞ্চিত হয়ে উঠেছে। এই বিশাল ভুবনে বিশেষ দেশের মানুষ বিশেষ কাকে ভালােবেসেছে সে তার সাহিত্য দেখলেই বুঝতে পারি। এই ভালােবাসার দ্বারাই তাে মানুষকে বিচার করা।
+</p><p>বীণাপাণির বীণায় তার অনেক। কোনােটা সােনার, কোনােটা তামার, কোনােটা ইস্পাতের। সংসারের কণ্ঠে হালকা ও ভারী, আনন্দের ও প্রমােদের যতরকমের সুর আছে সবই তার বীণায় বাজে। কবির কাব্যেও সুরের অসংখ্য বৈচিত্র্য। সবই যে উদাত্তধ্বনির হওয়া চাই এমন কথা বলি নে। কিন্তু সমস্তের সঙ্গে সঙ্গেই এমন কিছু থাকা চাই, যার ইঙ্গিত ধ্রুবের দিকে, সেই বৈরাগ্যের দিকে যা অনুরাগকেই বীর্যবান ও বিশুদ্ধ করে। ভর্তৃহরির কাব্যে দেখি ভােগের মানুষ আপন সুর পেয়েছে, কিন্তু সেইসঙ্গেই কাব্যের গভীরের মধ্যে বসে আছে ত্যাগের মানুষ আপন একতারা নিয়ে― এই দুই সুরের সমবায়েই রসের ওজন ঠিক থাকে, কাব্যেও, মানবজীবনেও। দূরকাল ও বহুজনকে যে সম্পদ দান করার দ্বারা সাহিত্য স্থায়ীভাবে সার্থক হয়, কাগজের নৌকায় বা মাটির গামলায় তো তার বােঝাই সইবে না। আধুনিক-কাল-বিলাসীরা অবজ্ঞার সঙ্গে বলতে পারেন এ-সব কথা আধুনিক কালের বুলির সঙ্গে মিলছে না― তা যদি হয় তা হলে সেই আধুনিক কালটারই জন্যে পরিতাপ করতে হবে। আশ্বাসের কথা এই যে, সে চিরকালই আধুনিক থাকবে এত আয়ু তার নয়।
+</p><p>কবি যদি ক্লান্তমনে এমন কথা মনে করে যে কবিত্বের চিরকালের বিষয়গুলি আধুনিক কালে পুরােনো হয়ে গেছে তা হলে বুঝব আধুনিক কালটাই হয়েছে বৃদ্ধ ও রসহীন। চিরপরিচিত জগতে তার সহজ অনুরাগের রস পৌঁচচ্ছে না, তাই জগৎটাকে আপনার মধ্যে নিতে পারল না। যে কল্পনা নিজের চারি দিকে আর রস পায় না, সে যে কোনো চেষ্টাকৃত রচনাকেই দীর্ঘকাল সরস রাখতে পারবে এমন আশা করা বিড়ম্বনা। রসনায় যার রুচি মরেছে চিরদিনের অন্নে সে তৃপ্তি পায় না, সেই একই কারণে কোনো একটা আজগবি অন্নেও সে চিরদিন রস পাবে এমন সম্ভাবনা নেই।
+</p><p>আজ সত্তর বছর বয়সে সাধারণের কাছে আমার পরিচয় একটা পরিণামে এসেছে। তাই আশা করি যাঁরা আমাকে জানবার কিছুমাত্র চেষ্টা করেছেন এতদিনে অন্তত তাঁরা একথা জেনেছেন যে, আমি জীর্ণ জগতে জন্মগ্রহণ করি নি। আমি চোখ মেলে যা দেখলুম চোখ আমার কখনো তাতে ক্লান্ত হল না, বিস্ময়ের অন্ত পাই নি। চরাচরকে বেষ্টন করে অনাদিকালের যে অনাহতবাণী অনন্তকালের অভিমুখে ধ্বনিত তাকে আমার মনপ্রাণ সাড়া দিয়েছে, মনে হয়েছে যুগে যুগে এই বিশ্ববাণী শুনে এলুম। সৌরমণ্ডলীর প্রান্তে এই আমাদের ছোটো শ্যামল পৃথিবীকে ঋতুর আকাশদূতগুলি বিচিত্ররসের বর্ণসজ্জায় সাজিয়ে দিয়ে যায়, এই আদরের অনুষ্ঠানে আমার হৃদয়ের অভিষেকবারি নিয়ে যোগ দিতে কোনোদিন আলস্য করি নি। প্রতিদিন উষাকালে অন্ধকার রাত্রির প্রান্তে স্তব্ধ হয়ে দাঁড়িয়েছি এই কথাটি উপলব্ধি করবার জন্যে যে, যত্তে রূপং কল্যাণতমং তত্তে পশ্যামি। আমি সেই বিরাট সত্তাকে আমার অনুভবে স্পর্শ করতে চেয়েছি যিনি সকল সত্তার আত্মীয়সম্বন্ধের ঐক্যতত্ত্ব, যাঁর খুশিতেই নিরন্তর অসংখ্যরূপের প্রকাশে বিচিত্রভাবে আমার প্রাণ খুশি হয়ে উঠছে― বলে উঠছে ‘কোহ্যেবান্যাৎ কঃ প্রাণাৎ যদেষ আকাশ আনন্দো ন স্যাৎ’— যাতে কোনো প্রয়োজন নেই তাও আনন্দের টানে টানবে এই অত্যাশ্চর্য ব্যাপারের চরম অর্থ যাঁর মধ্যে, যিনি অন্তরে অন্তরে মানুষকে পরিপূর্ণ করে বিদ্যমান বলেই প্রাণপন কঠোর আত্মত্যাগকে আমরা আত্মঘাতী পাগলের পাগলামি বলে হেসে উঠলুম না।―
+</p>
+<div>
+<div>
+<p><span>যাঁর লাগি রাত্রি-অন্ধকারে </span><br/>
+চলেছে মানবযাত্রী যুগ হতে যুগান্তর-পানে। <br/><span>যাঁর লাগি </span><br/>
+রাজপুত্র পরিয়াছে ছিন্ন কন্থা, বিষয়ে বিরাগী <br/>
+পথের ভিক্ষুক; মহাপ্রাণ সহিয়াছে পলে পলে <br/>
+সংসারের ক্ষুদ্র উৎপীড়ন, তুচ্ছের কুৎসার তলে <br/>
+প্রত্যহের বীভৎসতা। <br/><span>যাঁর পদে মানী সঁপিয়াছে মান, </span><br/>
+ধনী সঁপিয়াছে ধন, বীর সঁপিয়াছে আত্মপ্রাণ। <br/>
+যাঁহারি উদ্দেশে কবি বিরচিয়া লক্ষ লক্ষ গান <br/>
+ছড়াইছে দেশে দেশে।
+</p>
+</div>
+</div>
+<p>ঈশোপনিষদের প্রথম যে মন্ত্রে পিতৃদেব দীক্ষা পেয়েছিলেন সেই মন্ত্রটি বার বার নতুন নতুন অর্থ নিয়ে আমার মনে আন্দোলিত হয়েছে, বার বার নিজেকে বলেছি তেন ত্যক্তেন ভুঞ্জীথাঃ, মা গৃধঃ। আনন্দ করো তাই নিয়ে যা তোমার কাছে সহজে এসেছে; যা রয়েছে তোমার চারি দিকে তারই মধ্যে চিরন্তন, লোভ কোরো না। কাব্যসাধনায় এই মন্ত্র মহামূল্য। আসক্তি যাকে মাকড়সার মতো জালে জড়ায় তাকে জীর্ণ করে দেয়; তাতে গ্লানি আসে, ক্লান্তি আনে। কেননা, আসক্তি তাকে সমগ্র থেকে উৎপাটন করে নিজের সীমার মধ্যে বাঁধে; তার পরে তোলা ফুলের মতো অল্পক্ষণেই সে ম্লান হয়। মহৎ সাহিত্য ভোগকে লোভ থেকে উদ্ধার করে, সৌন্দর্যকে আসক্তি থেকে, চিত্তকে উপস্থিত গরজের দণ্ডধারীদের কাছ থেকে। রাবণের ঘরে সীতা লোভের দ্বারা বন্দী, রামের ঘরে সীতা প্রেমের দ্বারা মুক্ত, সেখানেই তাঁর সত্যপ্রকাশ। প্রেমের কাছে দেহের অপরূপ রূপ প্রকাশ পায় লোভের কাছে তার স্থূল মাংস।
+</p><p>অনেক দিন থেকেই লিখে আসছি, জীবনের নানা পর্বে নানা অবস্থায়। শুরু করেছি কাঁচা বয়সে― তখনো নিজেকে বুঝি নি। তাই আমার লেখার মধ্যে বাহুল্য এবং বর্জনীয় জিনিস ভূরি ভূরি আছে তাতে সন্দেহ নেই। এ-সমস্ত আবর্জনা বাদ দিয়ে বাকি যা থাকে আশা করি তার মধ্যে এই ঘােষণাটি স্পষ্ট যে, আমি ভালোবেসেছি এই জগৎকে, আমি প্রণাম করেছি মহৎকে― আমি কামনা করেছি মুক্তিকে যে মুক্তি পরম-পুরুষের কাছে আত্মনিবেদনে— আমি বিশ্বাস করেছি মানুষের সত্য মহামানবের মধ্যে যিনি ‘সদা জনানাং হৃদয়ে সন্নিবিষ্ট’। আমি আবাল্য-অভ্যস্ত ঐকান্তিক সাহিত্যসাধনার গণ্ডীকে অতিক্রম করে একদা সেই মহামানবের উদ্দেশে যথাসাধ্য আমার কর্মের অর্ঘ্য, আমার ত্যাগের নৈবেদ্য আহরণ করেছি— তাতে বাইরের থেকে যদি বাধা পেয়ে থাকি অন্তরের থেকে পেয়েছি প্রসাদ। আমি এসেছি এই ধরণীর মহাতীর্থে— এখানে সর্বদেশ সর্বজাতি ও সর্বকালের ইতিহাসের মহাকেন্দ্রে আছেন নরদেবতা, তাঁরই বেদীমূলে নিভৃতে বসে আমার অহংকার, আমার ভেদবুদ্ধি ক্ষালন করবার দুঃসাধ্য চেষ্টায় আজও প্রবৃত্ত আছি।
+</p><p>আমার যা-কিছু অকিঞ্চিৎকর তাকে অতিক্রম করেও যদি আমার চরিত্রের অন্তরতম প্রকৃতি ও সাধনা লেখায় প্রকাশ পেয়ে থাকে, আনন্দ দিয়ে থাকে, তবে তার পরিবর্তে আমি প্রীতি কামনা করি, আর কিছু নয়। এ কথা যেন জেনে যাই, অকৃত্রিম সৌহার্দ্য পেয়েছি সেই তাঁদের কাছে যারা আমার সমস্ত ত্রুটি সত্ত্বেও জেনেছেন সমস্ত জীবন আমি কী চেয়েছি, কী পেয়েছি, কী দিয়েছি, আমার অপূর্ণ জীবনে অসমাপ্ত সাধনায় কী ইঙ্গিত আছে।
+</p><p>সাহিত্যে মানুষের অনুরাগসম্পদ সৃষ্টি করাই যদি কবির যথার্থ কাজ হয়, তবে এই দান গ্রহণ করতে গেলে প্রীতিরই প্রয়ােজন। কেননা, প্রীতিই সমগ্র করে দেখে। আজ পর্যন্ত সাহিত্যে যাঁরা সম্মান পেয়েছেন তাঁদের রচনাকে আমরা সমগ্রভাবে দেখেই শ্রদ্ধা অনুভব করি। তাকে টুকরো টুকরো ছিঁড়ে ছিঁড়ে ছিদ্র সন্ধান বা ছিদ্র খনন করতে স্বভাবত প্রবৃত্তি হয় না। জগতে আজ পর্যন্ত অতিবড়ো সাহিত্যিক এমন কেউ জন্মান নি, অনুরাগবঞ্চিত পরুষ চিত্ত নিয়ে যাঁর শ্রেষ্ঠ রচনাকেও বিদ্রুপ করা, তার কদর্থ করা, তার প্রতি অশােভন মুখবিকৃতি করা যে-কোনো মানুষ না পারে। প্রীতির প্রসন্নতাই সেই সহজ ভূমিকা যার উপরে কবির সৃষ্টি সমগ্র হয়ে, সুস্পষ্ট হয়ে প্রকাশমান হয়।
+</p><p>মর্তলােকের শ্রেষ্ঠ দান এই প্রীতি আমি পেয়েছি এ কথা প্রণামের সঙ্গে বলি। পেয়েছি পৃথিবীর অনেক বরণীয়দের হাত থেকে― তাঁদের কাছে কৃতজ্ঞতা নয়, আমার হৃদয় নিবেদন করে দিয়ে গেলেম। তাঁদের দক্ষিণ হাতের স্পর্শে বিরাট মানবেরই স্পর্শ লেগেছে আমার ললাটে― আমার যা-কিছু শ্রেষ্ঠ তা তাঁদের গ্রহণের যােগ্য হােক।
+</p><p>আর আমার স্বদেশের লােক, যাঁরা অতি নিকটের অতি পরিচয়ের অস্পষ্টতা ভেদ করেও আমাকে ভালােবাসতে পেরেছেন আজ এই অনুষ্ঠানে তাঁদেরই বহুযত্নরচিত অর্ঘ্য সজ্জিত। তাঁদের সেই ভালােবাসা হৃদয়ের সঙ্গে গ্রহণ করি।―
+</p>
+<div>
+<div>
+<p>জীবনের পথ দিনের প্রান্তে এসে<br/><span>নিশীথের পানে গহনে হয়েছে হারা।</span><br/>
+অঙ্গুলি তুলি তারাগুলি অনিমেষে<br/><span>মাভৈঃ বলিয়া নীরবে দিতেছে সাড়া।</span><br/>
+ম্লান দিবসের শেষের কুসুম তুলে<br/>
+এ কূল হইতে নবজীবনের কূলে<br/><span>চলেছি আমার যাত্রা করিতে সারা।</span>
+</p>
+</div> <div>
+<p>হে মাের সন্ধ্যা, যাহা কিছু ছিল সাথে<br/><span>রাখিনু তােমার অঞ্চলতলে ঢাকি।</span><br/>
+আঁধারের সাথি, তােমার করুণ হাতে<br/><span>বাঁধিয়া দিলাম আমার হাতের রাখী।</span><br/>
+কত যে প্রাতের আশা ও রাতের গীতি,<br/>
+কত যে সুখের স্মৃতি ও দুখের প্রীতি,<br/><span>বিদায়বেলায় আজিও রহিল বাকি।</span><br/>
+যা-কিছু পেয়েছি, যাহা কিছু গেল চুকে,<br/><span>চলিতে চলিতে পিছে যা রহিল পড়ে,</span><br/>
+যে মণি দুলিল যে ব্যথা বিঁধিল বুকে,<br/><span>ছায়া হয়ে যাহা মিলায় দিগন্তরে,</span><br/>
+জীবনের ধন কিছুই যাবে না ফেলা,<br/>
+ধুলায় তাদের যত হােক অবহেলা<br/><span>পূর্ণের পদপরশ তাদের ’পরে।</span>
+</p>
+</div>
+</div>
+<p><span>পৌষ ১৩৩৮</span>
+</p>
+
+
+</div></section>
+<section><div>
+
+<div>
+<h2>৬
+</h2>
+</div>
+<p>বটগাছের দেহগঠনের উপকরণ অন্যান্য বনম্পতির মূল উপকরণ থেকে অভিন্ন। সকল উদ্ভিদেরই সাধারণ ক্ষেত্রে সে আপন খাদ্য আহরণ করে থাকে। সেই-সকল উপকরণকে এবং খাদ্যকে আমরা ভিন্ন নাম দিতে পারি, নানা শ্রেণীতে তাদের বিশ্লেষণ করে দেখতে পারি। কিন্তু অসংখ্য উদ্ভিদ্‌রূপের মধ্যে বিশেষ গাছকে বটগাছ করেই গড়ে তুলছে যে প্রবর্তনা, তন্দুদর্শং গৃঢ়মনুপ্রবিষ্টং, সেই অদৃশ্যকে সেই নিগূঢ়কে কী নাম দেব জানি নে। বলা যেতে পারে সে তার স্বাভাবিকী বলক্রিয়া। এ কেবল ব্যক্তিগত শ্রেণীগত পরিচয়কে জ্ঞাপন করবার স্বভাব নয়, সেই পরিচয়কে নিরন্তর অভিব্যক্ত করবার স্বভাব। সমস্ত গাছের সত্তায় সে পরিব্যাপ্ত, কিন্তু সেই রহস্যকে কোথাও ধরা-ছোঁওয়া যায় না। ঘ্রাজিরেকস্য দদৃশে ন রূপম্― সেই একের বেগ দেখা যায়, তার কাজ দেখা যায়, তার রূপ দেখা যায় না। অসংখ্য পথের মাঝখানে অভ্রান্ত নৈপুণ্যে একটিমাত্র পথে সে আপন আশ্চর্য স্বাতন্ত্র্য সংগোপনে রক্ষা করে চলেছে; তার নিদ্রা নেই; তার স্খলন নেই।
+</p><p>নিজের ভিতরকার এই প্রাণময় রহস্যের কথা আমরা সহজে চিন্তা করি নে, কিন্তু আমি তাকে বার বার অনুভব করেছি। বিশেষভাবে আজ যখন আয়ুর প্রান্তসীমায় এসে পৌঁছেছি তখন তার উপলব্ধি আরো স্পষ্ট হয়ে উঠছে।
+</p><p>জীবনের যেটা চরম তাৎপর্য, যা তার নিহিতার্থ, বাইরে যা ক্রমাগত পরিণামের দিকে রূপ নিচ্ছে, তাকে বুঝতে পারছি সে প্রাণস্য প্রাণং, সে প্রাণের অন্তরতর প্রাণ। আমার মধ্যে সে যে সহজে যাত্রার পথ পেয়েছে তা নয়, পদে পদে তার প্রতিকূলতা ঘটেছে। এই জীবনযন্ত্র যে-সকল মাল-মসলা দিয়ে তৈরি, গুণী তার থেকে আপন সুর সব সময়ে নিখুঁত করে বাজিয়ে তুলতে পারেন নি। কিন্তু জেনেছি, মােটের উপর আমার মধ্যে তাঁর যা অভিপ্রায় তার প্রকৃতি কী। নানা দিকের নানা আকর্ষণে মাঝে মাঝে ভুল করে বুঝেছি, বিক্ষিপ্ত হয়েছে আমার মন অন্য পথে, মাঝে মাঝে হয়তো অন্য পথের শ্রেষ্ঠত্বগৌরবই আমাকে ভুলিয়েছে। এ কথা ভুলেছি প্রেরণা অনুসারে প্রত্যেক মানুষের পথের মূল্যগৌরব স্বতন্ত্র। ‘নটীর পূজা’ নাটিকায় এই কথাটাই বলবার চেষ্টা করেছি। বুদ্ধদেবকে নটী যে অর্ঘ্য দান করতে চেয়েছিল সে তার নৃত্য। অন্য সাধকেরা তাঁকে দিয়েছিল যা ছিল তাদেরই অন্তরতর সত্য, নটী দিয়েছে তার সমস্ত জীবনের অভিব্যক্ত সত্যকে। মৃত্যু দিয়ে সেই সত্যের চরম মূল্য প্রমাণ করেছে। এই নৃত্যকে পরিপূর্ণ করে জাগিয়ে তুলেছিল তার প্রাণমনের মধ্যে তার প্রাণের প্রাণ।
+</p><p>আমার মনে সন্দেহ নেই আমার মধ্যে সেইরকম সৃষ্টিসাধনকারী একাগ্র লক্ষ্য নির্দেশ করে চলেছেন একটি গূঢ় চৈতন্য, বাধার মধ্যে দিয়ে, আত্মপ্রতিবাদের মধ্যে দিয়ে। তাঁরই প্রেরণায় অর্ঘ্যপাত্রে জীবনের নৈবেদ্য আপন ঐক্যকে বিশিষ্টতাকে সমভাবে প্রকাশ করে তুলতে পারে যদি তার সেই সৌভাগ্য ঘটে। অর্থাৎ যদি তার গুহাহিত প্রবর্তনার সঙ্গে তার অবস্থা তার সংস্থানের অনুকূল সামঞ্জস্য ঘটতে পারে, যদি বাজিয়ের সঙ্গে বাজনার একাত্মকতায় ব্যবধান না থাকে। আজ পিছন ফিরে দেখি যখন, তখন আমার প্রাণযাত্রার ঐক্যে সেই অভিব্যক্তকে বাইরের দিক থেকে অনুসরণ করতে পারি; সেইসঙ্গে অন্তরের মধ্যে উপলব্ধি করতে পারি তাকে জীবনের কেন্দ্রস্থলে যে অদৃশ্য পুরুষ একটি সংকল্পধারায় জীবনের তথ্যগুলিকে সত্যসূত্রে গ্রথিত করে তুলছে।
+</p><p>আমাদের পরিবারে আমার জীবনরচনার যে ভূমিকা ছিল তাকে অনুধাবন করে দেখতে হবে। আমি যখন জন্মেছিলুম তখন আমাদের সমাজের যে-সকল প্রথার মধ্যে অর্থের চেয়ে অভ্যাস প্রবল তার গতায়ু অতীতের প্রাচীরবেষ্টন ছিল না আমাদের ঘরের চারি দিকে। বাড়িতে পূর্বপুরুষদের প্রতিষ্ঠিত পূজার দালান শূন্য পড়ে ছিল, তার ব্যবহারপদ্ধতির অভিজ্ঞতামাত্র আমার ছিল না। সাম্প্রদায়িক গুহাচর যে-সকল অনুকল্পনা, যে-সমস্ত কৃত্রিম আচার বিচার মানুষের বুদ্ধিকে বিজড়িত করে আছে, বহু শতাব্দী জুড়ে নানা স্থানে নানা অদ্ভুত আকারে এক জাতির সঙ্গে অন্য জাতির দুর্বারতম বিচ্ছেদ ঘটিয়েছে, পরস্পরের মধ্যে ঘৃণা ও তিরস্কৃতির লাঞ্ছনাকে মজ্জাগত অন্ধসংস্কারে পরিণত করে তুলেছে, মধ্যযুগের অবসানে যার প্রভাব সমস্ত সভ্যদেশ থেকে হয় সরে গিয়েছে নয় অপেক্ষাকৃত নিষ্কণ্টক হয়েছে, কিন্তু যা আমাদের দেশের সর্বত্র পরিব্যাপ্ত থেকে কী রাষ্ট্রনীতিতে কী সমাজব্যবহারে মারাত্মক সংঘাতরূপ ধরেছে, তার চলাচলের কোনো চিহ্ন সদরে বা অন্দরে আমাদের ঘরে কোনােখানে ছিল না। এ কথা বলবার তাৎপর্য এই যে, জন্মকাল থেকে আমার যে প্রাণরূপ রচিত হয়ে উঠেছে তার উপরে কোনো জীর্ণ যুগের শাস্ত্রীয় অবলেপন ঘটে নি। তার রূপকারকে আপন নবীন সৃষ্টিকার্যে প্রাচীন অনুশাসনের উদ্যত তর্জনীর প্রতি সর্বদা সতর্ক লক্ষ্য রাখতে হয় নি।
+</p><p>এই বিশ্বরচনায় বিস্ময়করতা আছে, চারি দিকেই আছে অনির্বচনীয়তা; তার সঙ্গে মিশ্রিত হতে পারে নি আমার মনে কোনাে পৌরাণিক বিশ্বাস, কোনো বিশেষ পার্বণবিধি। আমার মনের সঙ্গে অবিমিশ্র যােগ হতে পেরেছে এই জগতের। বাল্যকাল থেকে অতি নিবিড়ভাবে আনন্দ পেয়েছি বিশ্বদৃশ্যে। সেই আনন্দবােধের চেয়ে সহজ পূজা আর কিছু হতে পারে না, সেই পূজার দীক্ষা বাইরে থেকে নয়, তার মন্ত্র নিজেই রচনা করে এসেছি।
+</p><p>বাল্যবয়সের শীতের ভােরবেলা আজও আমার মনে উজ্জ্বল হয়ে আছে। রাত্রের অন্ধকার যেই পাণ্ডুবর্ণ হয়ে এসেছে আমি তাড়াতাড়ি গায়ের লেপ ফেলে দিয়ে উঠে পড়েছি। বাড়ির ভিতরের প্রাচীরঘেরা বাগানের পূর্ব প্রান্তে এক-সার নারকেলের পাতার ঝালর তখন অরুণ-আভায় শিশিরে ঝলমল করে উঠছে। একদিনও পাছে এই শােভার পরিবেশন থেকে বঞ্চিত হই সেই আশঙ্কায় পাতলা জামা গায়ে দিয়ে বুকের কাছে দুই হাত চেপে ধরে শীতকে উপেক্ষা করে ছুটে যেতুম। উত্তর দিকে ঢেঁকিশালের গায়ে ছিল একটা পুরোনো বিলিতি আমড়ার গাছ, অন্য কোণে ছিল কুলগাছ জীর্ণ পাতকুয়োর ধারে―কুপথ্যলােলুপ মেয়েরা দুপুরবেলায় তার তলায় ভিড় করত। মাঝখানে ছিল পূর্বযুগের দীর্ণ ফাটলের রেখা নিয়ে শেওলায়-চিহ্নিত শান-বাঁধানো চানকা। আর ছিল অযত্নে উপেক্ষিত অনেকখানি ফাঁকা জায়গা, নাম করবার যােগ্য আরকোনো গাছের কথা মনে পড়ে না। এই তো আমার বাগান, এই ছিল আমার যথেষ্ট। এইখানে যেন ভাঙা-কানা-ওয়ালা পাত্র থেকে আমি পেতুম পিপাসার জল। সে জল লুকিয়ে ঢেলে দিত আমার ভিতরকার এক দরদী। বস্তু যা পেয়েছি তার চেয়ে রস পেয়েছি অনেক বেশি। আজ বুঝতে পারি এইজন্যেই আমার আসা। আমি সাধু নই, সাধক নই, বিশ্বরচনার অমৃত-স্বাদের আমি যাচনদার, বার বার বলতে এসেছি ‘ভালো লাগল আমার’। বিকেলে ইস্কুল থেকে ফিরে এসে গাড়ি থেকে নামমাত্র পুবের দিকে তাকিয়ে দেখেছি তেতলার ছাদের উপরকায় আকাশে নিবিড় হয়ে ঘনিয়ে এসেছে ঘননীলবর্ণ মেঘের পুঞ্জ। মুহূর্তমাত্রে সেই মেঘপুঞ্জের চেয়ে ঘনতর বিস্ময় আমার মনে পুঞ্জীভূত হয়ে উঠেছে। এক দিকে দূরে মেঘমেদুর আকাশ, অন্য দিকে ভূতলে-নতুন-আসা বালকের মন বিস্ময়ে আনন্দিত। এই আশ্চর্য মিল ঘটাবার প্রয়ােজন ছিল, নইলে ছন্দ মেলে না। জগতে কাজ করবার লােকের ডাক পড়ে, চেয়ে দেখার লােকেরও আহ্বান আছে। আমার মধ্যে এই চেয়ে-দেখার ঔৎসুক্যকে নিত্য পূর্ণ করবার আবেগ আমি অনুভব করেছি। এ দেখা তো নিষ্ক্রিয় আলস্যপরতা নয়। এই দেখা এবং দেখানাের তালে তালেই সৃষ্টি।
+</p><p>ঋগ্‌বেদে একটি আশ্চর্য বচন আছে―
+</p><p>অভ্রাতৃব্যো অনাত্বমনাপিরিন্দ্র জনুষা সনাদসি। যুধেদাপিত্বমিচ্ছসে। হে ইন্দ্র, তোমার শত্রু নেই, তােমার নায়ক নেই, তােমার বন্ধু নেই, তবু প্রকাশ হবার কালে যােগের দ্বারা বন্ধুত্ব ইচ্ছা কর।
+</p><p>যত বড়ো ক্ষমতাশালী হােন-না কেন সত্যভাবে প্রকাশ পেতে হলে বন্ধুতা চাই, আপনাকে ভালো লাগানো চাই। ভালাে লাগাবার জন্য নিখিল বিশ্বে তাই তো এত অসংখ্য আয়ােজন। তাই তাে শব্দের থেকে গান জাগছে, রেখার থেকে রূপের অপরূপতা। সে যে কী আশ্চর্য সে আমরা ভুলে থাকি।
+</p><p>এ কথা বলব, সৃষ্টিতে আমার ডাক পড়েছে এইখানেই, এই সংসারের অনাবশ্যক মহলে। ইন্দ্রের সঙ্গে আমি যােগ ঘটাতে এসেছি যে যোগ বন্ধুত্বের যোগ। জীবনের প্রয়ােজন আছে অন্নে বস্ত্রে বাসস্থানে, প্রয়োজন নেই আনন্দরূপে অমৃতরূপে। সেইখানে জায়গা নেয় ইন্দ্রের সখারা।
+</p>
+<div>
+<div>
+<p>অন্তি সন্তং ন জহাতি <br/>
+অন্তি সন্তং ন পশ্যতি। <br/>
+দেবশ্য পশ্য কাব্যং <br/>
+ন মমার ন জীর্যতি।
+</p>
+</div>
+</div>
+<p>কাছে আছেন তাঁকে ছাড়া যায় না, কাছে আছেন তাঁকে দেখা যায় না, কিন্তু দেখা সেই দেবের কাব্য; সে কাব্য মরে না, জীর্ণ হয় না।
+</p><p>জন্তুদের উপর সৃষ্টিকর্তার ক্রিয়া অব্যবহিত। তার থেকে তারা সরে এসে তাঁকে দেখতে পায় না। কেবলমাত্র নিয়মের সম্বন্ধে মানুষের সঙ্গে তাঁর যদি সম্বন্ধ হত, তা হলে সেই জন্তুদের মতােই কেবল অপরিহার্য ঘটনার ধারার দ্বারা বেষ্টিত হয়ে মানুষ তাঁকে পেত না। কিন্তু দেবতার কাব্যে নিয়মজালের ভিতর থেকেই নিয়মের অতীত যিনি তিনি আবির্ভূত। সেই কাব্যে কেবলমাত্র আছে তাঁর বিশুদ্ধ প্রকাশ।
+</p><p>এই প্রকাশের কথায় ঋষি বলেছেন―
+</p>
+<div>
+<div>
+<p>অবির্ বৈ নাম দেবতর্ তেনান্তে পরীবৃতা। <br/>
+তস্যা রূপেণেমে বৃক্ষা হরিতা হরিতস্রজঃ।
+</p>
+</div>
+</div>
+<p>সেই দেবতার নাম অবি, তাঁর দ্বারা সমস্তই পরিবৃত― এই-যে সব বৃক্ষ, তাঁরই রূপের দ্বারা এরা হয়েছে সবুজ, পরেছে সবুজের মালা।
+</p><p>ঋষি কবি দেখতে চেয়েছিলেন কবির প্রকাশকে কবির দৃষ্টিতেই। সবুজের মালা-পরা এই আবির আবির্ভাবের এমন কোনো কারণ দেখানাে যায় না যার অর্থ আছে প্রয়ােজনে। বলা যায় না কেন খুশি করে দিলেন। এই খুশি সকল পাওনার উপরের পাওনা। এর উপরে জীবিকাপ্রয়াসী জন্তুর কোনো দাবি নেই। ঋষি কবি বলেছেন, বিশ্বস্রষ্টা তাঁর অর্ধেক দিয়ে সৃষ্টি করেছেন নিখিল জগৎ। তার পরে ঋষি প্রশ্ন করেছেন, তদস্যার্ধং কতমঃ স কেতুঃ, তাঁর বাকি সেই অর্ধেক যায় কোন্ দিকে কোথায়? এ প্রশ্নের উত্তর জানি। বৃষ্টি আছে প্রত্যক্ষ, এই সৃষ্টির একটি অতীত ক্ষেত্র আছে অপ্রত্যক্ষ। বস্তুপুঞ্জকে উত্তীর্ণ হয়ে সেই মহা অবকাশ না থাকলে অনির্বচনীয়কে পেতুম কোন্‌খানে। সৃষ্টির উপরে অদৃষ্টের স্পর্শ নামে সেইখানেই, আকাশ থেকে পৃথিবীতে যেমন নামে আলোক। অত্যন্ত কাছের সংস্রবে কাব্যকে পাই নে, কাব্য আছে রূপকে ধ্বনিকে পেরিয়ে যেখানে আছে স্রষ্টার সেই অর্ধেক যা বস্তুতে আবদ্ধ নয়। এই বিরাট অবাস্তবে ইন্দ্রের সঙ্গে ইন্দ্রসখার ভাবের মিলন ঘটে। ব্যক্তের বীণাযন্ত্র আপন বাণী পাঠায় অব্যক্তে।
+</p><p>নানা কাজে আমার দিন কেটেছে, নানা আকর্ষণে আমার মন চারি দিকে ধাবিত হয়েছে। সংসারের নিয়মকে জেনেছি, তাকে মানতেও হয়েছে, মূঢ়ের মতাে তাকে উচ্ছৃঙ্খল কল্পনায় বিকৃত করে দেখি নি; কিন্তু এই-সমস্ত ব্যবহারের মাঝখান দিয়ে বিশ্বের সঙ্গে আমার মন যুক্ত হয়ে চলে গেছে সেইখানে যেখানে সৃষ্টি গেছে সৃষ্টির অতীতে। এই যােগে সার্থক হয়েছে আমার জীবন।
+</p><p>একদিন আমি বলেছিলুম―
+</p>
+<div>
+<p>মরিতে চাহি না আমি সুন্দর ভুবনে।
+</p>
+</div>
+<p>ঋগ্‌বেদের কবি বলেছেন
+</p>
+<div>
+<div>
+<p>অসুনীতে পুনরম্মাসু চক্ষুঃ <br/>
+পুনঃ প্রাণমিহ নো ধেহি ভােগম্। <br/>
+জ্যোক্ পশ্যেম সূর্যমুচ্চরন্তম্ <br/>
+অনুমতে মৃড়য়া নঃ স্বস্তি।
+</p>
+</div>
+</div>
+<p>প্রাণের নেতা আমাকে আবার চক্ষু দিয়ো, আবার দিয়ো প্রাণ, দিয়াে ভোগ, উচ্চরন্ত সূর্যকে আমি সর্বদা দেখব, আমাকে স্বস্তি দিয়ো।
+</p><p>এই তো বন্ধুর কথা, বন্ধুর প্রকাশ ভালাে লেগেছে। এর চেয়ে স্তবগান কি আর-কিছু আছে? দেবস্য পশ্য কাব্যম্। মন বলছে কাব্যকে দেখাে, এ দেখার অন্ত চিন্তা করা যায় না।
+</p><p>এখানে এই প্রশ্ন উঠতে পারে, তাঁর সঙ্গে কি আমার কর্মের যােগ হয় নি।
+</p><p>হয়েছে, তার প্রমাণ আছে। কিন্তু সে লােহালক্কড়ে বাঁধা যন্ত্রশালার কর্ম নয়। কর্মরূপে সেও কাব্য। একদিন শান্তিনিকেতনে আমি যে শিক্ষাদানের ব্রত নিয়েছিলুম তার সৃষ্টিক্ষেত্র ছিল বিধাতার কাব্যক্ষেত্রে; আহ্বান করেছিলুম এখানকার জল স্থল আকাশের সহযােগিতা। জ্ঞানসাধনাকে প্রতিষ্ঠিত করতে চেয়েছিলুম আনন্দের বেদীতে। ঋতুদের আগমনী গানে ছাত্রদের মনকে বিশ্বপ্রকৃতির উৎসবপ্রাঙ্গণে উদ্‌বােধিত করেছিলুম।
+</p><p>এখানে প্রথম থেকেই বিরাজিত ছিল সৃষ্টির স্বত-উদ্ভাবনার তত্ত্ব। আমার মনে যে সজীব সমগ্রতার পরিকল্পনা ছিল, তার মধ্যে বুদ্ধিবৃত্তিকে রাখতে চেয়েছিলুম সম্মানিত করে। তাই বিজ্ঞানকে আমার কর্মক্ষেত্রে যথাসাধ্য সমাদরে স্থান দিতে চেয়েছি।
+</p><p>বেদে আছে―
+</p>
+<div>
+<p>যস্মাদৃতে ন সিধ্যতি যজ্ঞো বিপশ্চিতশ্চন স ধীনাং যােগমিন্বতি।
+</p>
+</div>
+<p>অর্থাৎ, যাঁকে বাদ দিয়ে বড়ো বড়ো জ্ঞানীদেরও যজ্ঞ সিদ্ধ হয় না। তিনি বুদ্ধিযােগের দ্বারাই মিলিত হন, মন্ত্রের যােগে নয়, জাদুমূলক অনুষ্ঠানের যােগে নয়। তাই ধী এবং আনন্দ এই দুই শক্তিকে এখানকার সৃষ্টিকার্যে নিযুক্ত করতে চিরদিন চেষ্টা করেছি।
+</p><p>এখানে যেমন আহ্বান করেছি প্রকৃতির সঙ্গে আনন্দের যােগ, তেমনি একান্ত ইচ্ছা করেছি এখানে মানুষের সঙ্গে মানুষের যােগকে অন্তঃকরণের যােগ করে তুলতে। কর্মের ক্ষেত্রে যেখানে অন্তঃকরণের যােগধারা কৃশ হয়ে ওঠে সেখানে নিয়ম হয়ে ওঠে একেশ্বর। সেখানে সৃষ্টিপরতার জায়গায় নির্মাণপরতা আধিপত্য স্থাপন করে। ক্রমশই সেখানে যন্ত্রীর যন্ত্র কবির কাব্যকে অবজ্ঞা করবার অধিকার পায়। কবির সাহিত্যিক কাব্য যে ছন্দ ও ভাষাকে আশ্রয় করে প্রকাশ পায় সে একান্তই তার নিজের আয়ত্তাধীন। কিন্তু যেখানে বহু লােককে নিয়ে সৃষ্টি সেখানে সৃষ্টিকার্যের বিশুদ্ধতা-রক্ষা সম্ভব হয় না। মানবসমাজে এইরকম অবস্থাতেই আধ্যাত্মিক তপস্যা সাম্প্রদায়িক অনুশাসনে মুক্তি হারিয়ে পাথর হয়ে ওঠে। তাই এইটুকু মাত্র আশা করতে পারি যে ভবিষ্যতে প্রাণহীন দলীয় নিয়মজালের জটিলতা এই আশ্রমের মূলতত্ত্বকে একেবারে বিলুপ্ত করে দেবে না।
+</p><p>জানি নে আর কখনাে উপলক্ষ হবে কি না, তাই আজ আমার আশি বছরের আয়ুক্ষেত্রে দাঁড়িয়ে নিজের জীবনের সত্যকে সমগ্রভাবে পরিচিত করে যেতে ইচ্ছা করেছি। কিন্তু সংকল্পের সঙ্গে কাজের সম্পূর্ণ সামঞ্জস্য কখনোই সম্ভবপর হয় না। তাই নিজেকে দেখতে হয় অন্তর্দিকের প্রবর্তনা ও বহির্দিকের অভিমুখিতা থেকে। আমি আশ্রমের আদর্শ রূপে বার বার তপোবনের কথা বলেছি। সে তপোবন ইতিহাস বিশ্লেষণ করে পাই নি। সে পেয়েছি কবির কাব্য থেকেই। তাই স্বভাবতই সে আদর্শকে আমি কাব্যরূপেই প্রতিষ্ঠিত করতে চেয়েছি। বলতে চেয়েছি ‘পশ দেবস্য কাব্যম্, মানবরূপে দেবতার কাব্যকে দেখো। আবাল্যকাল উপনিষদ আবৃত্তি করতে করতে আমার মন বিশ্বব্যাপী পরিপূর্ণতাকে অন্তরদৃষ্টিতে মানতে অভ্যাস করেছে। সেই পূর্ণতা বস্তুর নয়, সে আত্মার; তাই তাকে স্পষ্ট জানতে গেলে বস্তুগত আয়োজনকে লঘু করতে হয়। যাঁরা প্রথম অবস্থায় আমাকে এই আশ্রমের মধ্যে দেখেছেন তাঁরা নিঃসন্দেহ জানেন এই আশ্রমের স্বরূপটি আমার মনে কিরকম ছিল। তখন উপকরণবিরলতা ছিল এর বিশেষত্ব। সরল জীবনযাত্রা এখানে চার দিকে বিস্তার করেছিল সত্যের বিশুদ্ধ স্বচ্ছতা। খেলাধুলায় গানে অভিনয়ে ছেলেদের সঙ্গে আমার সম্বন্ধ অবারিত হত নবনবোন্মেষশালী আত্মপ্রকাশে। যে শান্তকে শিবকে অদ্বৈতকে ধ্যানে অন্তরে আহ্বান করেছি তখন তাঁকে দেখা সহজ ছিল কর্মে। কেননা, কর্ম ছিল সহজ, দিনপদ্ধতি ছিল সরল, ছাত্রসংখ্যা ছিল স্বল্প, এবং অল্প যে-কয় জন শিক্ষক ছিলেন আমার সহযোগী তাঁরা অনেকেই বিশ্বাস করতেন, এতস্মিন্নু খলু অক্ষরে আকাশ ওতশ্চ প্রোতশ্চ— এই অক্ষরপুরুষে আকাশ ওতপ্রোত। তাঁরা বিশ্বাসের সঙ্গেই বলতে পারতেন, তমেবৈকং জানথ আত্মানম্— সেই এককে জানো, সর্বব্যাপী আত্মাকে জানো, আত্মন্যেব, আপন আত্মাতেই, প্রথাগত আচার-অনুষ্ঠানে নয়, মানবপ্রেমে, শুভকর্মে, বিষয়বুদ্ধিতে নয়, আত্মার প্রেরণায়। এই আধ্যাত্মিক শ্রদ্ধার আকর্ষণে তখনকার দিনকৃত্যের অর্থদৈন্যে ছিল ধৈর্যশীল ত্যাগধর্মের উজ্জ্বলতা।
+</p>
+
+<p> সেই একদিন তখন বালক ছিলাম। জানি নে কোন্ উদয়পথ দিয়ে প্রভাতসূর্যের আলােক এসে সমস্ত মানবসম্বন্ধকে আমার কাছে অকস্মাৎ আত্মার জ্যোতিতে দীপ্তিমান করে দেখিয়েছিল। যদিও সে আলােক প্রাত্যহিক জীবনের মলিনতায় অনতিবিলম্বে বিলীন হয়ে গেল, তবু মনে আশা করেছিলুম পৃথিবী থেকে অবসর নেবার পূর্বে একদিন নিখিল মানবকে সেই এক আত্মার আলােকে প্রদীপ্তরূপে প্রত্যক্ষ দেখে যেতে পারব। কিন্তু অন্তরের উদয়াচলে সেই জ্যোতিপ্রবাহের পথ নানা কুহেলিকায় আচ্ছন্ন হয়ে গেল। তা হােক, তবু জীবনের কর্মক্ষেত্রে আনন্দের সঞ্চিত সম্বল কিছু দেখে যেতে পারলুম; এই আশ্রমে একদিন যে যজ্ঞভূমি রচনা করেছি সেখানকার নিঃস্বার্থ অনুষ্ঠানে সেই মানবের আতিথ্য রক্ষা করতে পেরেছি যাকে উদ্দেশ করে বলা হয়েছে ‘অতিথিদেবো ভব’। অতিথির মধ্যে আছেন দেবতা। কর্মসফলতার অহংকার মনকে অধিকার করে নি তা বলতে পারি নে, কিন্তু সেই দুর্বলতাকে অতিক্রম করে উদ্‌বেল হয়েছে আত্মােৎসর্গের চরিতার্থতা। এখানে দুর্লভ সুযােগ পেয়েছি বুদ্ধির সঙ্গে শুভবুদ্ধিকে নিষ্কাম সাধনায় সম্মিলিত করতে।
+</p><p>সকল জাতির সকল সম্প্রদায়ের আমন্ত্রণে এখানে আমি শুভবুদ্ধিকে জাগ্রত রাখবার শুভ অবকাশ ব্যর্থ করি নি। বার বার কামনা করেছি―
+</p>
+<div>
+<div>
+<p>য একোহবর্ণো বহুধা শক্তিযােগাৎ<br/>
+বর্ণাননেকান্ নিহিতার্থো দধাতি<br/>
+বিচৈতি চান্তে বিশ্বমাদৌ স দেবঃ<br/>
+স নাে বুদ্ধ্যা শুভয়া সংযুনক্তু।
+</p>
+</div>
+</div>
+<div><div><span>শান্তিনিকেতন
+১ বৈশাখ ১৩৪৭</span></div></div>
+
+
+</div></section>
+<section><div>
+
+<div>
+<h2>ওঁ
+</h2>
+</div>
+<div>বোলপুর</div>
+<p>বিনয় সম্ভাষণ পূর্ব্বক নিবেদন―
+</p><p>আমার কাছে আমার ছবি একখানিও নাই। অন্যত্র হইতে সংগ্রহ করাও আমার পক্ষে সহজসাধ্য নহে। Hopsing কোম্পানি আমার ছবি তুলিয়াছিলেন তাঁহাদের কাছে থাকিতেও পারে।
+</p><p>আমার জীবনের ঘটনা বিশেষ কিছুই নাই এবং আমার জীবনচরিত্র লিপিবদ্ধ করিবার যোগ্য নহে।
+</p><p>আমার জন্মের তারিখ ৬ই মে ১৮৬১ খৃষ্টাব্দ। বাল্যকালে ইস্কুল পালাইয়াই কাটাইয়াছি। নিতান্তই লেখার বাতিক ছিল বলিয়া শিশুকাল হইতে কেবল লিখিতেছি। যখন আমার বয়স ১৬ সেই সময় ভারতী পত্রিকা বাহির হয়। প্রধানত এই পত্রিকাতেই আমার গদ্য লেখা অভ্যস্ত হয়।
+</p>
+
+<p> আমার ১৭ বছর বয়সে মেজদাদার সঙ্গে বিলাত যাই― এই সুযোগে ইংরাজি শিক্ষার সুবিধা হইয়াছিল। লণ্ডন বিশ্ববিদ্যালয়ে কিছুকাল অধ্যাপক হেন্‌রি মর্লির ক্লাসে ইংরাজি সাহিত্য চর্চ্চা করিয়াছিলাম।
+</p><p>এক বৎসরের কিছু ঊর্দ্ধকাল বিলাতে থাকিয়া দেশে ফিরিয়া আসি। জাহাজে “ভগ্নহৃদয়” নামক এক কাব্য লিখিতে শুরু করি— দেশে আসিয়া তাহা শেষ হয়।অল্পকালের মধ্যে সন্ধ্যা সঙ্গীত, প্রভাত সঙ্গীত, প্রকৃতির প্রতিশোধ প্রকাশিত হইয়াছিল। আমার ২৩ বৎসর বয়সে শ্রীমতী মৃণালিনী দেবীর সহিত আমার বিবাহ হয়।
+</p><p>ছবি ও গান, কড়ি ও কোমল, মানসী, রাজা ও রাণী, সোনার তরী প্রভৃতি কাব্যগুলি পরে পরে বাহির হইয়াছে— তাহাদের প্রকাশের তারিখ প্রভৃতি আমার মনে নাই।
+</p><p>সোনার তরী কবিতাগুলি প্রায় সাধনা পত্রিকায় লিখিত হইয়াছিল। আমার ভ্রাতুষ্পুত্র শ্রীযুক্ত সুধীন্দ্রনাথ তিন বৎসর এই কাগজের সম্পাদক ছিলেন ― চতুর্থ বৎসরে ইহার সম্পূর্ণভার আমাকে লইতে হইয়াছিল। সাধনা পত্রিকায় অধিকাংশ লেখা আমাকে লিখিতে হইত এবং অন্য লেখকদের রচনাতেও আমার হাত ভূরি পরিমাণে ছিল।
+</p><p>এই সময়েই বিষয় কর্ম্মের ভার আমার প্রতি অর্পিত হওয়াতে সর্ব্বদাই আমাকে জলপথে ও স্থলপথে পল্লীগ্রামে ভ্রমণ করিতে হইত ― কতকটা সেই অভিজ্ঞতার উৎসাহে আমাকে ছোট গল্প রচনায় প্রবৃত্ত করিয়াছিল।
+</p><p>সাধনা বাহির হইবার পূর্ব্বেই হিতবাদী কাগজের জন্ম হয়। যাঁহারা ইহার জন্মদাতা ও অধ্যক্ষ ছিলেন তাঁহাদের মধ্যে কৃষ্ণকমল বসু, সুরেন্দ্রবাবু, নবীন চন্দ্র বড়ালই প্রধান ছিল। কৃষ্ণকমল বাবুওসম্পাদক ছিলেন। সেই পত্রে প্রতি সপ্তাহেই আমি ছোট গল্প সমালোচনা ও সাহিতিপ্রবন্ধ লিখিতাম। আমার ছোট গল্প লেখার সূত্রপাত ঐখানেই। ছয় সপ্তাহকাল লিখিয়াছিলাম।
+</p><p>সাধনা চারিবৎসর চলিয়াছিল। বন্ধ হওয়ার কিছুদিন পরে একবৎসর ভারতীর সম্পাদক ছিলাম, এই উপলক্ষ্যেও গল্প ও অন্যান্য প্রবন্ধ কতকগুলি লিখিতে হয়।
+</p><p>আমার পরলোকগত বন্ধু শ্রীশচন্দ্র মজুমদারের বিশেষ অনুরোধে বঙ্গদর্শন পত্র পুনরুজ্জীবিত করিয়া তাহার সম্পাদনভার গ্রহণ করি। এই উপলক্ষ্যে বড় উপন্যাস লেখায় প্রবৃত্ত হই। তরুণ বয়সে ভারতীতে বৌ ঠাকুরাণীর হাট লিখিয়াছিলাম ইহাই আমার প্রথম বড় গল্প।
+</p><p>এই সময়েই আমি বোলপুর শান্তিনিকেতন আশ্রমে ব্রহ্মচর্য্যাশ্রম নামক বিদ্যালয়ের প্রতিষ্ঠা করি। ব্রহ্মবান্ধব উপাধ্যায় তখন আমার সহায় ছিলেন ― তখন তাঁহার মধ্যে রাষ্ট্রনৈতিক উৎসাহের অঙ্কুরমাত্রও কোনোদিন দেখি নাই ― তিনি তখন একদিকে বেদান্ত অন্যদিকে রোমান ক্যথলিক খৃষ্টানধর্মের মধ্যে নিমগ্ন ছিলেন। কোনোকালেই বিদ্যালয়ের অভিজ্ঞতা আমার না থাকাতে উপাধ্যায়ের সহায়তা আমার পক্ষে বিশেষ ফলপ্রদ হইয়াছিল। বিদ্যালয়ের দুই এক বৎসর চলার পর ১৩০৭ শালে আমার স্ত্রীর মৃত্যু হয়।
+</p><p>বঙ্গদর্শন পাঁচ বৎসর চালাইয়া তাহার সম্পাদকতা পরিত্যাগ করিয়াছি। এক্ষণে বিদ্যালয় লইয়া নিযুক্ত আছে।
+</p><p>উপাধ্যায় ৺মোহিতচন্দ্র সেন মহাশয়ের সহিত আমার আলাপ করাইয়া দিয়াছিলেন। তিনি আমার বিদ্যালয়ের প্রতি বিশেষ শ্রদ্ধাবান্ ছিলেন ― কিছুকাল ইহাকে তিনি চালনা করিয়াছিলেন। এই সময় তিনি আমার কাব্যগ্রন্থাবলী বিস্তর পরিশ্রমে Edit করিয়াছিলেন। সেই গ্রন্থে বিষয় ভেদ অনুসারে আমার সমস্ত কবিতাকে ভিন্ন ভিন্ন ভাগে বিভক্ত করিয়া তিনি প্রকাশ করিয়াছেন।
+</p>
+<div><img alt="" src="images/c13_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c14_Rule_Segment___Circle_open___10px.svg_10px_Rule_Segment___Circle_open___10px.svg.png"/><img alt="" src="images/c13_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/></div>
+<p>আমার জীবন ও রচনার ইতিহাস সংক্ষেপে উপরে লিখিয়া দিলাম। সন তারিখের কোনো ধার ধারিনা। আমার অতি বাল্যকালেই মা মারা গিয়াছিলেন ― তখন বোধহয় আমার বয়স ১১।১২ বৎসর হইবে। তাঁহার মৃত্যুর দুই এক বৎসর পূর্ব্বে আমার পিতা আমাকে সঙ্গে করিয়া অমৃতসর হইয়া ডালহৌসী পর্ব্বতে ভ্রমণ করিতে যান ― সেই আমার বাহিরের জগতের সহিত প্রথম পরিচয়। সেই ভ্রমণটি আমার রচনার মধ্যে নিঃসন্দেহ যথেষ্ট প্রভাব বিস্তার করিয়াছিল। সেই তিন মাস পিতৃদেবের সহিত একত্র সহবাসকালে তাঁহার নিকট হইতে ইংরাজি ও সংস্কৃতভাষা শিক্ষা করিতাম এবং মুখে মুখে জ্যোতিষ শাস্ত্র আলোচনা ও নক্ষত্র পরিচয়ে অনেক সময় কাটিত। এই যে স্কুলের বন্ধন ছিন্ন করিয়া মুক্ত প্রকৃতির মধ্যে তিনমাস স্বাধীনতার স্বাদ পাইয়াছিলাম ইহাতেই ফিরিয়া আসিয়া বিদ্যালয়ের সহিত আমার সংস্রব বিচ্ছিন্ন হইয়া গেল। এই শেষ বয়সে বিদ্যালয় স্থাপন করিয়া তাহার শোধ দিতেছি ― এখন আমার আর পালাইবার পথ নাই ― ছাত্ররাও যাহাতে সর্ব্বদা পালাইবার পথ না খোঁজে সেইদিকেই আমার দৃষ্টি।
+</p><p>ইতি ২৮শে ভাদ্র ১৩০৭
+</p>
+<div><div>ভবদীয় 
+<span>শ্রীরবীন্দ্রনাথঠাকুর</span></div></div>
+
+</div></section>
+<section><div>
+
+
+<div>
+<h2>সংযােজন
+</h2>
+</div> <div>
+<p>সম্মান
+</p>
+</div>
+<p>যখন বালক ছিলেম তখন চন্দননগরে আমার প্রথম আসা। সে আমার জীবনের আরেক যুগে। সেদিন লোকের ভিড়ের বাইরে ছিলেম প্রচ্ছন্ন, কোনো ব্যক্তি, কোনো দল আমাকে অভ্যর্থনা করে নি। কেবল আদর পেয়েছিলেম বিশ্ব প্রকৃতির কাছ থেকে। গঙ্গা তখন পূর্ণগৌরবে ছিলেন, তাঁর প্রাণধারায় সংকীর্ণতা ঘটে নি, ছায়া স্নিগ্ধ শ্যামলতায় তাঁর দুই তীরের গ্রামগুলি শান্তি ও সন্তোষের রসে ভরা ছিল।
+</p><p>তার পূর্বে শিশুকাল থেকে সর্বদাই ছিলেম কলকাতার ইঁটের খাঁচায়। মুক্ত আকাশে অলোকের যে সদাব্রত, তার নানা বাধা-পাওয়া দাক্ষিণ্যের খণ্ড অংশ পৌঁছত আমার ভাগে। আমার অর্ধাশনক্লিষ্ট মন এখানে এসে মুক্তির অমৃত অঞ্জলি ভ’রে পান করেছে। চিরদিন যারা এই শ্যামলার আঁচলে বাঁধা হয়ে থাকত, তারা একে তেমন সম্পূর্ণ দেখে নি। আমি এসেছিলেম যেন দূরের অতিথি, তাই আমার জন্যে ছিল বিশেষ আয়োজন। সেদিন গঙ্গাতীরের পূর্ব দিগন্তে বনরেখার উপরের পথে প্রতিদিন সকালে সোনার আলোয় মাধুর্যের যে ডালি আসত সে আর কারো চোখে তেমন করে পড়ে নি আর সূর্যাস্তের নানা রঙের তুলিতে গঙ্গার জলধারায় রেখায় রেখায় যে লেখন দেখা দিত সে বিশেষ করে আমারই জন্যে।
+</p><p>সেই অতিথিবৎসলা বিশ্বপ্রকৃতি তাঁর অবারিত আঙিনায় সেদিন যখন বালককে বসালেন, তাকে কানে কানে বললেন, ‘তোমার বাঁশিটি বাজাও।’ বালক সে দাবি মেনেছিল।
+</p><p>ছেলেমানুষের বাঁশি ছেলেমানুষি সুরে যেখানে বাজত সে আমার মনে আছে। মেরান সাহেবের বাগানবাড়ি বড়ো যত্নে তৈরি, তাতে আড়ম্বর ছিল না কিন্তু সৌন্দর্যের ভঙ্গি ছিল বিচিত্র। তার সর্বোচ্চ চুড়ায় একটি ঘর ছিল, তার দ্বারগুলি মুক্ত, সেখান থেকে দেখা যেত ঘন বকুলগাছের আগ্‌ডালের চিকন পাতায় আলোর ঝিলিমিলি। চারি দিক থেকে দুরন্ত বাতাসের লীলা সেখানে বাধা পেত না। আর ছাদের উপর থেকে মনে হত মেঘের খেলা যেন আমাদের পাশের আঙিনাতেই। এইখানে ছিল আমার বাসা, আর এইখানেই আমার মানসীকে ডাক দিয়ে বলেছিলেম―
+</p>
+<div>
+<div>
+<p>এইখানে বাঁধিয়াছি ঘর <br/><span>তোর তরে কবিতা আমার।</span>
+</p>
+</div>
+</div>
+<p>সে ঘর নেই, সে বাড়ি আজ লৌহদন্তদন্তুর কলের কবলে কবলিত। সে গঙ্গা আজ অবমাননায় সংকুচিত, বন্দী হয়েছে কল-দানবের হাতে— ত্রেতাযুগে জানকী যেমন বন্দী হয়েছিলেন দশমুণ্ডের দুর্গে। দেবী আজ শৃঙ্খলিতা।
+</p><p>সেদিন যে বালক জীবনের ঊষালোকে আপনাকে স্পষ্ট করে চেনে নি এবং চেনে নি এই সংসারকে, তার উপরে একে একে অন্তত পঞ্চাশ বছরের চাপ পড়েছে। এই চাপে সেই বালক সম্পূর্ণ লোপ পায় নি। আমি আজ নানা কাজে হাত দিয়েছি, এবং নানা দেশের কাছ থেকে খ্যাতি অর্জন করেছি। কিন্তু অন্তরের মধ্যে সেই বালক এখনো আছে কাঁচা― সংসারের যে হাটে সব জিনিসের দর যাচাই হয় সেখানকার রাস্তাঘাটে ও চালচলনে এখনো সে পাকা হয় নি; প্রকৃতির খেলার প্রাঙ্গণটার দিকে এখনো তার টান― তা ছাড়া খ্যাতির মধ্যে সে আপনার খাঁটি পরিচয় পায় না। খ্যাতির মতো বন্ধন নেই, দশের মুখের কথার জাল থেকে মনকে সম্পূর্ণ ছাড়িয়ে রাখা শক্ত। বালকের মনের যে ডানা সেদিন আকাশে ছাড়া পেয়েছিল তার সঙ্গে খ্যাতির দড়ি বাঁধা ছিল না। আজো সেদিনকার সেই খ্যাতিহীন মুক্তির আকাশের জন্যে তার মন ব্যাকুল হয়। সেইজন্যেই এত করে মনে পড়ে চন্দননগরের গঙ্গার তীর, সেই মোরানের বাগানবাড়ির উপরিতলের খােলা ঘরটি যেখানে বাতাস আলো এবং বালকের কল্পনার পরস্পর অবাধ মেলামেশার মাঝখানে জনতার খ্যাতিনিন্দার কলরব আবর্ত তৈরি করে নি।
+</p><p>মানুষের কাছ থেকে দরদ ও আদর পাবার লােভ আমার নেই। এ কথা বললে অত্যুক্তি করা হবে। মনে ভাবি, বিধাতার স্নেহের দান মানুষের সমাদর বেয়েই ঝরে আসে। যখন মানুষ বলে, তুমি যা দিয়েছ তাতে খুশি হয়েছি― তখন সেই খুশির কথাটা একটা মস্ত পুরস্কার। এ পুরস্কার চাই নে ব’লে স্পর্ধা করতে পারি নে।
+</p><p>কিন্তু সংসারে যশের পুরস্কার বালকের জন্যে নয়, তার জন্যে মুক্তি। জনসভায় আসন বজায় রাখতে হলে তার উপযুক্ত সাজসজ্জা চাই, জনসভার দস্তুর বাঁচিয়ে চলবার আয়ােজন অনেক। বালকের বসন-ভূষণের বাহুল্য নেই, যেটুকু তার আছে তা যদি ছেঁড়া হয় বা তাতে ধুলাে লাগে তবু সেটা বেমানান হয় না। সার্কাসের খেলােয়াড়ের মতাে সে অন্যের জন্যে খেলে না, তার খেলা তার আপনারই জন্যে। এই কারণে তার খেলাতে কর্মের বাঁধন নেই, খেলাতে তার ছুটি। বিশ্বের মধ্যে যে চিরবালক জলে স্থলে আকাশে আলােতে ছায়াতে অবহেলায় খেলা করেন, যিনি সেই খেলার বদলে শিরােপা চান না, মর্তের বালক তাঁকে না চিনেও না জেনেও তাঁকেই পায় আপন খেলার সাথী, তাই দেশের লােকের কথায় তার কোনাে দরকার হয় না।
+</p><p>কিন্তু বয়স্কের কীর্তি তো বালকের খেলার মতো নয়। বহুলােকের সঙ্গে তার বহুতর যােগ। এখানে বন্ধুকে না হলে চলে না, এখানে সহায়কে না পেলে ক্লান্তির ভারে পিঠের হাড় বেঁকে যায়। কাজের দিনে প্রাঙ্গণে ধুলােয় একলা বসে অকিঞ্চনের আয়ােজনে তার শক্তি পাওয়া যায় না, পাঁচজনকে ডাক দিতে হয়। বালককালে যেদিন চন্দননগরে এসেছিলেম সেদিন এসেছিলেম বিশ্বপ্রকৃতির খেলাঘরে! সেদিনকার দান দেবতার প্রত্যক্ষ দান, সে আমি আকাশে বাতাসে, বনের ছায়ায়, গঙ্গার কলস্রোতে পেয়েছি। আজ এসেছি জনসভায় কবিত্ব নিয়ে নয়, কর্মের ভার নিয়ে― এর যোগ্য দান আজ আমি মানুষের কাছে দাবি করতে পারি। যেদিন সেই ছাতের উপর খোলা আকাশের নীচে মনের স্বপ্নকে ছন্দের গাঁথনিতে একলা বসে রূপ দিয়েছি, সেদিন ছিলেম সৃষ্টিকর্তার সৃষ্টিখেলার সহযোগী। তিনি আমার মনের আনন্দ জুগিয়েছিলেন। আজ আমি কর্মীরূপে কর্ম ফেঁদে বসেছি। এ কর্ম মানুষের কর্ম, মানুষকে তাই সহযোগিতার জন্যে ডাক দেব। আজ আমাকে আপনারা যে সম্মান দিতে এসেছেন সে যদি সেই সহযোগিতার আহ্বানে সাড়া হয় তবে জানব কর্মের ক্ষেত্রে সার্থক হয়েছি। তা যদি না হয়, এর সঙ্গে যদি সহযোগিতা না থাকে তবে এই সম্মানের ভার দুর্বিষহ। বহুদূর থেকে নারদের পুষ্পমাল্য ইন্দুমতীকে সাংঘাতিক আঘাত করেছিল― বস্তুত সে মালারই ভার নয়, সে দূরত্বের ভার। দূরে থেকে যে সম্মান, সে সম্মানের ভার বহন করে সংসারে মুক্তচিত্তে বিচরণ করতে ক’জন পারে? মানুষ সকলের চেয়ে সুখে থাকে যখন সে আপনাকে ভোলে; যখন খ্যাতির ধাক্কায় ধাক্কায় তার নিজের দিকে তার নিজেকে কেবলই জাগিয়ে রাখে, তখন আত্মার যে নিভৃতে তার গভীরতম কৃতার্থতা সেখানে যাবার পথ অবরুদ্ধ হয়।
+</p><p>বালককালে বাঁশির উপরে দখল ছিল না; বাজিয়েছিলেম যেমন-তেমন করে, পথে লোক জড়ো হয় নি। তার পরে যৌবনে বাঁশিতে সুর লাগল বলে যখন নিজের মনে সন্দেহ রইল না, তখন সকলকে নিঃসংকোচে বলেছি ‘তোমরা শোনো।’ তেমনি কর্মের আরম্ভে একদিন কর্মকে সম্পূর্ণ চিনি নি। কোন্ রূপের আদর্শে তার প্রতিষ্ঠা হবে সেদিন জানতেম না— সেদিন পথের লোকে উপেক্ষা করে চলে গেছে, আমিও বাইরের লোককে ডাক দিই নি। শেষে কর্ম যখন আপন প্রাণশক্তিতে মূর্তিপরিগ্রহ করলে ভখন তার পরিচয় গোপন রইল না। তখন নিঃসংশয় দৃষ্টিতে তাকে দেখতে পেলেম। তখন সকলকে ডেকে বলেছি ‘তোমরা এসো।’ বাঁশির সুর বিকাশ লাভ করে একদিন যেমন বিশ্বের সকলের হয়— কর্মও তেমনি বিশ্বের পরিণতিতে বিশ্বের সামগ্রী হয়ে ওঠে। সেই বিশ্বের ধর্ম যখন কর্মের মধ্যে দেখা যায় তখন, শুধু সম্মান নয়, সহায়তা দাবি করবার অধিকার জন্মে। সেই অধিকার আজ এই সভায় সকলের কাছে নিবেদন করে বিদায় গ্রহণ করি।
+</p><p><span>২১ বৈশাখ ১৩৩৪</span>
+</p>
+
+
+</div></section>
+<section><div>
+
+<div>
+<h2><span>গ্রন্থপরিচয়</span>
+</h2>
+</div>
+<p>বর্তমান গ্রন্থে প্রকাশিত প্রথম প্রবন্ধটি ‘বঙ্গভাষার লেখক’ (১৩১১) গ্রন্থে প্রথম মুদ্রিত হয়। রবীন্দ্রনাথের সহিত দ্বিজেন্দ্রলালের যে বিরােধ এক সময়ে বাংলা সাময়িক সাহিত্যকে বিক্ষুব্ধ করিয়া তুলিয়াছিল, এই প্রবন্ধ হইতেই এক রূপ তাহার সূচনা হয়। দ্বিজেন্দ্রলাল এই প্রবন্ধে রবীন্দ্রনাথের ‘দম্ভ ও অহমিকা’র সন্ধান পাইয়াছিলেন।<sup><a href="#cite_note-1-n141">[১]</a></sup> বঙ্গদর্শন-সম্পাদকের অহ্বানে, রবীন্দ্রনাথ এই অভিযােগের উত্তরে যাহা বলিয়াছিলেন, তাহার এক অংশ, মূল প্রবন্ধের পরিপূরকরূপে নিম্নে মুদ্রিত হইল—
+</p><p>আমি মনে জানি, অহংকার প্রকাশ করিবার অভিপ্রায় আমার ছিল না।
+</p><p>বহুদিন হইল জর্মন কবিশ্রেষ্ঠ গ্যয়টের কোনো রচনার ইংরেজি তর্জমাতে একটা কথা পড়িয়াছিলাম; যতদূর মনে পড়ে, তাহার ভাবখানা এই যে, বাগানের মধ্যে যে শক্তি গােলাপ হইয়া ফোটে সেই একই শক্তি মানুষের মনে ও বাক্যে কাব্য হইয়া প্রকাশ পায়।
+</p><p>এই বিশ্বশক্তিকে নিজের জীবনের মধ্যে ও রচনার মধ্যে অনুভব করা অহংকার নহে। বরঞ্চ অহংকারের ঠিক উলটা। কেননা, এই বিশ্বশক্তি কোনাে ব্যক্তিবিশেষের বিশেষ সম্পত্তি নহে, তাহা সকলের মধ্যেই কাজ করিতেছে।
+</p><p>তাই যদি হয় তবে এতবড়ো একটা অত্যন্ত সাধারণ কথাকে বিশেষ ভাবে বলিতে বসা কেন?
+</p><p>ইহার উত্তর এই যে, অত্যন্ত সাধারণ কথারও যখন জীবনের বিশেষ অবস্থায় বিশেষ উপলব্ধি হয় তখন তাহা আমাদিগকে হঠাৎ একটা আলােকের মতো চমৎকৃত করিয়া দেয়। যাহা সাধারণ তাহাকেই বিশেষ করিয়া যখন জানিতে পাই তখন তাহার বিস্ময় বড়ো বেশি করিয়া আঘাত করে। মৃত্যুর মতাে অত্যন্ত বিশ্বব্যাপী নিশ্চিত ও পুরাতন পদার্থেরও বিশেষ পরিচয় আমাদিগকে একটা সদ্যোনূতন আবির্ভাবের মতো চমক লাগাইয়া দেয়। এইজন্য বিশেষ অবস্থায় সাধারণ কথাকেও বিশেষ করিয়া বলিবার আকাঙ্ক্ষা মনে উদয় হইয়া থাকে। বস্তুত সাহিত্যের বারােআনা কথাই নিতান্ত জানা কথাকেই নিজের মধ্যে নূতন করিয়া জানিয়া নিজের মতো নূতন করিয়া বলা।
+</p><p>সম্প্রতি অধ্যাপক কেয়ার্ডের একটি গ্রন্থে পড়িতেছিলাম:
+</p><p>Though man is essentially self-conscious, he always <i>is</i> more than he <i>thinks</i> or <i>knows;</i> and his thinking and knowing are ruled by ideas of which he is at first unaware, but which, nevertheless, affect everything he says or does. Of these ideas we may, therefore, expect to find some indication even in the earliest stage of his development; but we cannot expect that in that stage they will appear in their proper form or be known for what they really are.
+</p><p>যে আইডিয়া সম্বন্ধে আমরা প্রথমে অচেতন ছিলাম তাহাই যে আমাদিগকে বলাইয়াছে ও করাইয়াছে এবং আমাদের অপরিণত অবস্থারও কথা ও কাজকে আমাদের অজ্ঞাতসারে সেই আইডিয়াই শক্তি প্রবর্তিত করিয়াছে— আমার ক্ষুদ্র আত্মজীবনীতে এই কথাটার উপলব্ধিকে আমি কোনো-এক রকম করিয়া বলিবার চেষ্টা করিয়াছি। কথাটা সত্য কি মিথ্যা সে কথা স্বতন্ত্র, কিন্তু ইহা অলংকার নহে, কারণ, ইহা কাহারও একলার সামগ্রী নহে। তবে কিনা যখন নানা কারণে নিজের জীবনবিকাশের মধ্যে এই আইডিয়াকে স্পষ্ট করিয়া প্রত্যক্ষ করা যায় তখন তাহাকে নিতান্ত সাধারণ কথা ও জানা কথা বলিয়া আর উপেক্ষা করিতে পারি না।
+</p>
+<div>—রবীন্দ্রবাবুর বক্তব্য। বঙ্গদর্শন মাঘ ১৩১৪</div> রবীন্দ্রনাথের পঞ্চাশত্তম বর্ষ পূর্ণ হওয়ার উপলক্ষে ‘দেশের প্রতিভূস্বরূপ’ বঙ্গীয়-সাহিত্য-পরিষৎ ১৩১৮ সালের ১৪ মাঘ কলিকাতা টাউনহলে কবিসংবর্ধনা করেন। এই অনুষ্ঠানের অনুষঙ্গরূপে বঙ্গীয়-সাহিত্যপরিষৎ মন্দিরে একটি আনন্দসম্মিলন (২০ মাঘ ১৩১৮) অনুষ্ঠিত হইয়াছিল, এই গ্রন্থের দ্বিতীয় প্রবন্ধটি সেখানে পঠিত হয়। প্রবন্ধটি ভারতী পত্রিকায় (ফাল্গুন ১৩১৮) ‘অভিভাষণ’ নামে প্রকাশিত হইয়াছিল।
+<p>রবীন্দ্রনাথের ধর্মমতের কোনো একটি সমালোচনার<sup><a href="#cite_note-2-n142">[২]</a></sup> উত্তরে এই গ্রন্থের তৃতীয় প্রবন্ধটি লিখিত হয়। রচনাটি ‘আমার ধর্ম’ নামে সবুজ পত্রে (আশ্বিন-কার্তিক ১৩২৪) প্রকাশিত হইয়াছিল। এই প্রবন্ধে<sup><a href="#cite_note-3-n143">[৩]</a></sup> রবীন্দ্রনাথের ধর্মসংগীতের অন্য যে একটি সমালোচনার উল্লেখ আছে, তাহা বিপিনচন্দ্র পাল -কর্তৃক লিখিত<sup><a href="#cite_note-4-n144">[৪]</a></sup>।
+</p><p>সপ্ততিতম জন্মোৎসবে শান্তিনিকেতনে রবীন্দ্রনাথের অভিভাষণের কবিকর্তৃক সংশোধিত অনুলিপি এই গ্রন্থের চতুর্থ প্রবন্ধরূপে মুদ্রিত হইল। এই অভিভাষণ প্রবাসীতে (জ্যৈষ্ঠ ১৩৩৮) প্রকাশিত হইয়াছিল।
+</p><p>সপ্ততিবর্ষপূর্তি উপলক্ষে কলিকাতা টাউন-হলে যে রবীন্দ্রজয়ন্তী (১১ পৌষ ১৩৩৮) অনুষ্ঠিত হয় সেই উৎসবে পাঠ করিবার জন্য এই গ্রন্থের পঞ্চম প্রবন্ধটি লিখিত হইয়াছিল। এবং ‘প্রতিভাষণ’ নামে পুস্তিকাকারে মুদ্রিত হইয়াছিল। রচনাটি দীর্ঘ বলিয়া তথায় পঠিত হইতে পারে নাই, ছাত্র-ছাত্রীগণ-কর্তৃক সেনেট হলে অনুষ্ঠিত (১৫ পৌষ ১৩৩৮) রবীন্দ্র জয়ন্তী উৎসবে এই প্রতিভাষণ করি পাঠ করেন।
+</p><p>‘আশি বছরের আয়ুঃক্ষেত্রে’ -প্রবেশ উপলক্ষে এই গ্রন্থের ষষ্ঠ প্রবন্ধটি লেখা হইয়াছিল। প্রবন্ধটি প্রবাসীতে (জ্যৈষ্ঠ ১৩৪৭) ‘জন্মদিনে’ নামে প্রকাশিত হয়।
+</p><p>১৩১৭ সালে ‘বেঙ্গলী’ পত্রের সহকারী সম্পাদক পদ্মিনীমােহন নিয়ােগী -কর্তৃক অনুরুদ্ধ হইয়া রবীন্দ্রনাথ একটি চিঠিতে তাঁহার যে সংক্ষিপ্ত জীবনকথা লিপিবদ্ধ করেন, প্রাসঙ্গিক বােধে তাহা গ্রন্থপরিশেষে মুদ্রিত হইল। চিঠিখানি প্রবাসীতে (কার্তিক ১৩৪৮) প্রকাশিত হইয়াছিল। এই চিঠিতে মুদ্রিত রবীন্দ্রনাথের স্ত্রীবিয়ােগের কাল, ১৩০৭ স্থলে ১৩০৯ জানিতে হইবে।
+</p><p>এই গ্রন্থের পঞ্চম প্রবন্ধটি সংক্ষিপ্ত আকারে ‘রবীন্দ্র-রচনাবলী’র প্রথম খণ্ডে অবতরণিকা’রূপে মুদ্রিত হইয়াছে; অন্য রচনাগুলি রবীন্দ্রনাথের কোনো গ্রন্থে ইতিপূর্বে মুদ্রিত হয় নাই— পুলিনবিহারী সেন -কর্তৃক সাময়িক পত্র হইতে সংকলিত হইয়া গ্রন্থে প্রকাশিত হইল।
+</p><p><span>১৩৮৬</span>
+</p><p>বর্তমান সংস্করণে কবি-কর্তৃক চন্দননগরে কথিত ভাষণ শ্রীহরিহর শেঠের ‘রবীন্দ্রনাথ ও চন্দননগর’ (আশ্বিন ১৩৬৮) গ্রন্থ হইতে সংগ্রথিত হইল।
+</p><p><span>১৪০০</span>
+</p>
+
+
+</div><ol><li><span><a href="#cite_ref-1-n134">↑</a></span> <span>কাব্যের উপভােগ: বঙ্গদর্শন মাঘ ১৩১৪</span>
+</li>
+<li><span><a href="#cite_ref-2-n137">↑</a></span> <span>‘ধর্ম প্রচারে রবীন্দ্রনাথ’, প্রবর্তক, দ্বিতীয় বর্ষ, নবম সংখ্যা; পুনর্মুদ্রণ— নারায়ণ, আষাঢ় ১৩২৪। এই প্রসঙ্গে দ্রষ্টব্য, ‘ধর্ম প্রচারে রবীন্দ্রনাথ’, প্রবর্তক, দ্বিতীয় বর্ষ, চতুর্থ সংখ্যা; এবং রবীন্দ্রনাথের ‘আমার ধর্ম’ প্রবন্ধের প্রত্যুত্তরে লিখিত ‘রবীন্দ্রনাথের ধর্ম’, প্রবর্তক, দ্বিতীয় বর্ষ, দ্বাবিংশ সংখ্যা।</span>
+</li>
+<li><span><a href="#cite_ref-3-n138">↑</a></span> <span>পৃ ৪০</span>
+</li>
+<li><span><a href="#cite_ref-4-n139">↑</a></span> <span>‘রবীন্দ্রনাথের ব্রহ্মসংগীত’, বিজয়া, ১৩২০</span>
+</li>
+</ol></section>
+
+            </div>
+
+        </div>
+    </div>
+
+        <!-- TOC nav for mobile -->
+        <nav id="toc-nav-desktop" class="hidden"></nav>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const progressBar  = document.getElementById('read-progress-bar');
+    const progressPct  = document.getElementById('progress-pct');
+    const tocDesktop   = document.getElementById('toc-nav-desktop');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+    const progressRing = document.getElementById('progress-ring-circle');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = p.currentTheme;
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    function toBN(n) {
+        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
+    }
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        if (progressPct) progressPct.textContent = toBN(pct) + '%';
+        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
+        if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
+        if (rfPage) rfPage.textContent = toBN(pct) + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+
+    // ── Footer: chapter label + seek slider ──
+    const rfSlider  = document.getElementById('rf-slider');
+    const rfPage    = document.getElementById('rf-page');
+    const rfChapter = document.getElementById('rf-chapter');
+    let rfSliderDragging = false;
+    if (rfSlider) {
+        rfSlider.addEventListener('input', () => {
+            rfSliderDragging = true;
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
+        });
+        rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
+    }
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav, isMobile) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            if (isMobile) {
+                a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+                a.addEventListener('click', closeDrawer);
+            } else {
+                a.className = 'toc-link ' + (isH1 ? 'toc-link-h1' : 'toc-link-h2');
+            }
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocDesktop, false);
+    buildToc(tocMobile, true);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+        if (rfChapter && headings[current]) rfChapter.textContent = headings[current].textContent.trim();
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme only; drawer/settings UI stays a fixed dark sheet)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+        black: { bg: '#000',     text: '#d1d5db' },
+        sepia: { bg: '#f5efe6',  text: '#3b2f1e' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? '#c0392b' : 'transparent';
+            });
+            savePrefs();
+
+            // Ad bar theme sync
+            window._pathakAdBarTheme && window._pathakAdBarTheme(m);
+        });
+    });
+
+    // ── Ad bar theme sync function (exposed globally) ──
+    window._pathakAdBarTheme = function(m) {
+        const adBar     = document.getElementById('ad-bar');
+        const adContent = document.getElementById('ad-bar-content');
+        const adDatetime= document.getElementById('ad-bar-datetime');
+        const adNotice  = document.getElementById('ad-bar-notice');
+        if (adBar)      adBar.style.background     = m.bg;
+        if (adContent)  adContent.style.background = m.bg;
+        if (adDatetime) adDatetime.style.color      = m.text;
+        if (adNotice)   adNotice.style.color        = m.text;
+    };
+
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+        // Ad bar HTML is below — expose theme for ad bar script to pick up
+        window._pathakCurrentTheme = currentTheme;
+        window._pathakThemeMap = themeMap;
+    })();
+})();
+</script>
+
+
+</body>
+</html>

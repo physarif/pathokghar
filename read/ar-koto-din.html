@@ -1,0 +1,3406 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/ar-koto-din.html">
+    <title>আর কত দিন - পাঠক ঘর</title>
+    <meta name="description" content="জহির রায়হানের **‘আর কত দিন’** (১৯৭০) একটি অত্যন্ত শক্তিশালী এবং কালজয়ী রাজনৈতিক-যুদ্ধভিত্তিক উপন্যাস। উপন্যাসটির মূল পটভূমি গড়ে উঠেছে দ্বিতীয় বিশ্বযুদ্ধের ভয়াবহ">
+    <meta property="og:title" content="আর কত দিন - পাঠক ঘর">
+    <meta property="og:description" content="জহির রায়হানের **‘আর কত দিন’** (১৯৭০) একটি অত্যন্ত শক্তিশালী এবং কালজয়ী রাজনৈতিক-যুদ্ধভিত্তিক উপন্যাস। উপন্যাসটির মূল পটভূমি গড়ে উঠেছে দ্বিতীয় বিশ্বযুদ্ধের ভয়াবহ">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e', black:'#000' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', sepia:'#3b2f1e', dark:'#e5e7eb', black:'#d1d5db' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .dark body { background: #1a1a1b; color: #e5e7eb; }
+
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.7rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+        .dark #book-content { color: #e5e7eb; }
+    
+    /* ── Book read header hero ── */
+    .book-read-header {
+        margin-bottom: 1.5rem;
+    }
+    .book-read-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.65rem;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 1.4rem 1.25rem 1.2rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .dark .book-read-box {
+        background: #2a2a2b;
+        border-color: #3a3a3b;
+    }
+    .book-read-cover {
+        width: 100px;
+        height: 136px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        object-fit: cover;
+        background: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .book-read-cover svg { opacity: 0.35; }
+    .book-read-title-link {
+        text-decoration: none;
+        display: block;
+    }
+    .book-read-title-link:hover .book-read-title { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-title-link:active .book-read-title { opacity: 0.7; }
+    .book-read-title {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #1a1a1b;
+        line-height: 1.4;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+    .dark .book-read-title { color: #f3f4f6; }
+    .book-read-author-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+    .book-read-author-link:hover .book-read-author { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-author-link:active .book-read-author { opacity: 0.6; }
+    .book-read-author {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #c0392b;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+</style>
+</head>
+<body>
+
+<style>
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    #read-progress-bar {
+        position: fixed;
+        top: 0; left: 0;
+        height: 2px;
+        width: 0%;
+        background: #c0392b;
+        z-index: 1000;
+        transition: width 0.1s linear;
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h1 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #9ca3af;
+        text-align: center;
+        margin: 0 0 0.25rem;
+        letter-spacing: 0.04em;
+    }
+    #book-content h1::after {
+        content: '';
+        display: block;
+        width: 2.8em;
+        height: 3px;
+        background: #c0392b;
+        border-radius: 2px;
+        margin: 0.4rem auto 0;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #7a2115;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid #d9a5a0;
+        border-bottom: 1px solid #d9a5a0;
+    }
+    /* Night mode heading adjust */
+    body.theme-dark  #book-content h1,
+    body.theme-black #book-content h1 { color: #6b7280; }
+    body.theme-dark  #book-content h2,
+    body.theme-black #book-content h2 { color: #f2938a; border-color: rgba(169,50,38,0.4); }
+    body.theme-dark  #book-content h1::after { background: #a93226; }
+    body.theme-black #book-content h1::after { background: #922b21; }
+    body.theme-sepia #book-content h1 { color: #a08060; }
+    body.theme-sepia #book-content h2 { color: #7a2115; border-color: rgba(160,64,48,0.35); }
+    body.theme-sepia #book-content h1::after { background: #a04030; }
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: rgba(192,57,43,0.05);
+        border: 1px solid rgba(192,57,43,0.15);
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p,
+    body.theme-black #book-content p {
+        background: rgba(169,50,38,0.1);
+        border-color: rgba(169,50,38,0.25);
+    }
+    body.theme-sepia #book-content p {
+        background: rgba(160,64,48,0.08);
+        border-color: rgba(160,64,48,0.2);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #c0392b;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #c0392b;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(192,57,43,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    .dark #book-content blockquote {
+        background: rgba(192,57,43,0.08);
+        color: #bbb;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #c0392b;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    .dark #book-content td { border-color: #3a3a3b; }
+    .dark #book-content tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(192,57,43,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: #e57373;
+        font-weight: 600;
+        background: rgba(192,57,43,0.18);
+        border-radius: 0.375rem;
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: #fff;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transition: color 0.15s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.6);
+    }
+    #toc-nav-desktop .toc-link {
+        display: block;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.375rem;
+        color: #4b5563;
+        text-decoration: none;
+        transition: background-color 0.15s, color 0.15s;
+    }
+    .dark #toc-nav-desktop .toc-link { color: #d1d5db; }
+    #toc-nav-desktop .toc-link:hover { background: #f3f4f6; }
+    .dark #toc-nav-desktop .toc-link:hover { background: #1f2937; }
+    #toc-nav-desktop .toc-link-h1 {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: #1f2937;
+    }
+    .dark #toc-nav-desktop .toc-link-h1 { color: #f3f4f6; }
+    #toc-nav-desktop .toc-link-h2 {
+        padding-left: 1.25rem;
+        font-size: 0.6875rem;
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.6rem 0.5rem 0.6rem 0.35rem;
+        background: #1a1a1b;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-back {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.25rem;
+        text-decoration: none;
+        transition: background 0.15s;
+    }
+    #rh-back:active { background: rgba(255,255,255,0.12); }
+    #rh-title {
+        flex: 1;
+        min-width: 0;
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: transparent;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+    #reader-header .rh-actions button:active { background: rgba(255,255,255,0.12); }
+    body.theme-dark  #reader-header,
+    body.theme-black #reader-header,
+    body.theme-sepia #reader-header { background: #141414; }
+
+    /* ── Reader footer: chapter label + page/percent + seek slider ── */
+    #reader-footer {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 55;
+        background: #1a1a1b;
+        padding: 0.5rem 1rem 0.65rem;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-footer { transform: translateY(100%); }
+    body.theme-dark  #reader-footer,
+    body.theme-black #reader-footer,
+    body.theme-sepia #reader-footer { background: #141414; }
+    #rf-labels {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.7);
+        margin-bottom: 0.35rem;
+    }
+    #rf-chapter {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #rf-page { flex-shrink: 0; }
+    #rf-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        background: rgba(255,255,255,0.22);
+        outline: none;
+        margin: 0;
+        cursor: pointer;
+    }
+    #rf-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        margin-top: -6px;
+    }
+    #rf-slider::-moz-range-thumb {
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        border: none;
+    }
+    #rf-slider::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; }
+    #rf-slider::-moz-range-track { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.22); }
+
+    /* Content needs bottom clearance so the fixed footer never covers text */
+    #read-main-content { padding-bottom: 4.5rem; }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: #303134;
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.55);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: #e57373;
+        border-bottom-color: #c0392b;
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ── Breadcrumb dark mode ── */
+    .read-breadcrumb-full { margin-left: -1.25rem; margin-right: -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
+    .dark #bc-category { color: #9ca3af !important; }
+    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
+    .dark #read-breadcrumb li > span { color: #4b5563; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #e57373;
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: 34px; height: 34px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        flex-shrink: 0;
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+    }
+    .theme-circle.active { border-color: #c0392b; }
+    .theme-circle svg { display: none; }
+    .theme-circle.active svg { display: block; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: #fff; }
+    .settings-row-val { font-size: 0.74rem; color: rgba(255,255,255,0.5); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: rgba(192,57,43,0.35); border-color: #c0392b; color: #fff; }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+</style>
+
+<!-- Progress bar (kept for internal % calc, hidden — footer slider replaces it visually) -->
+<div id="read-progress-bar" style="display:none;"></div>
+
+<!-- ══ Reader header (Lithium-style app bar) ══ -->
+<header id="reader-header">
+    <a href="/book/ar-koto-din.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <h1 id="rh-title">আর কত দিন</h1>
+    <div class="rh-actions">
+        <button id="rh-menu-btn" aria-label="মেনু" title="মেনু"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+    </div>
+</header>
+
+<!-- ══ Reader footer (chapter + page/percent + seek slider) ══ -->
+<footer id="reader-footer">
+    <div id="rf-labels">
+        <span id="rf-chapter"></span>
+        <span id="rf-page">০%</span>
+    </div>
+    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
+</footer>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                    <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
+                    <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
+                    <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn active" id="align-justify" title="জাস্টিফাই" style="background:#fde8e6;border-color:#c0392b;color:#c0392b;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <h2>
+ প্রথম
+ </h2>
+<br/>
+<h2>
+ তবু মানুষের এই দীনতার বুঝি শেষ নেই
+ </h2>
+<hr/>
+<br/>
+
+<div>
+<p>
+ তবু মানুষের এই দীনতার বুঝি শেষ নেই।
+ </p>
+<br/>
+<p>
+ শেষ নেই মৃত্যুরও।
+ </p>
+<br/>
+<p>
+ তবু মানুষ মানুষকে হত্যা করে।
+ </p>
+<br/>
+<p>
+ ধর্মের নামে।
+ </p>
+<br/>
+<p>
+ বর্ণের নামে।
+ </p>
+<br/>
+<p>
+ জাতীয়তার নাম।
+ </p>
+<br/>
+<p>
+ সংস্কৃতির নামে।
+ </p>
+<br/>
+<p>
+ এই বর্বরতাই অনাদিকাল ধরে আমাদের এই পৃথিবীর শান্তিকে বিপন্ন করেছে।
+ </p>
+<br/>
+<p>
+ হিংসার এই বিষ লক্ষ কোটি মানব সন্তানকে নির্মমভাবে হত্যা করেছে।
+ </p>
+<br/>
+<p>
+ জীবনকে জানবার আগে।
+ </p>
+<br/>
+<p>
+ বুঝবার আগে।
+ </p>
+<br/>
+<p>
+ উপভোগ করার আগে।
+ </p>
+<br/>
+<p>
+ ঘৃণার আগুনে পুড়িয়ে নিঃশেষ করেছে অসংখ্য প্রাণ।
+ </p>
+<br/>
+
+
+<p>
+ কিন্তু মানুষ মরতে চায় না।
+ </p>
+<br/>
+<p>
+ ওরা বাঁচতে চায়।
+ </p>
+<br/>
+<p>
+ এই বাঁচার আগ্রহ নিয়েই গুহা-মানর তার ও হেড়ে বাইরে বেরিয়ে এসেছে।
+ </p>
+<br/>
+<p>
+ সমুদ্র সাঁতরেছে।
+ </p>
+<br/>
+<p>
+ পাহাড় পর্বত পেরিয়েছে।
+ </p>
+<br/>
+<p>
+ ইতিহাসের এক দীর্ঘ যন্ত্রণাময় পক্ষ পেরিয়ে সেই গুহা-মানর এগিয়ে এসেছে অন্ধকার থেকে আলোতে।
+ </p>
+<br/>
+<p>
+ বর্বরতা থেকে সভ্যতার পথে।
+ </p>
+<br/>
+<p>
+ মানুষের এ এক চিরন্তন যাত্রী।
+ </p>
+<br/>
+<p>
+ জ্ঞানের জন্যে।
+ </p>
+<br/>
+<p>
+ আলোর জন্যে।
+ </p>
+<br/>
+<p>
+ সুখের জন্যে।
+ </p>
+<br/>
+<p>
+ তবু আলো নেই।
+ </p>
+<br/>
+<p>
+ তবু অন্ধকার।
+ </p>
+<br/>
+
+
+<p>
+ অন্ধকারের নিচে সমাহিত মৃত নগরী।
+ </p>
+<br/>
+<p>
+ প্রাণহীন।
+ </p>
+<br/>
+<p>
+ যেন যুদ্ধে ক্ষতবিক্ষত তার অবয়ব।
+ </p>
+<br/>
+<p>
+ দীর্ঘ প্রশস্ত পথগুলোতে কবরের শূন্যতা।
+ </p>
+<br/>
+<p>
+ ভাঙ্গা কাচের টুকরো। ইটের টুকরো। আর মৃতদেহ।
+ </p>
+<br/>
+<p>
+ কুকুরের।
+ </p>
+<br/>
+<p>
+ বিড়ালের।
+ </p>
+<br/>
+<p>
+ পাখির।
+ </p>
+<br/>
+<p>
+ আর মানুষের।
+ </p>
+<br/>
+<p>
+ একটা।
+ </p>
+<br/>
+<p>
+ দুটো।
+ </p>
+<br/>
+<p>
+ তিনটে।
+ </p>
+<br/>
+<p>
+ অগণিত। জীবনের স্পন্দনহীন নগরী শুধু এক শব্দের তাদের হাতে বন্দি।
+ </p>
+<br/>
+<p>
+ যেন অসংখ্য হিংস্র জানোয়ার বন্য ক্ষুধার তাড়নায় চিৎকার করছে।
+ </p>
+<br/>
+<p>
+ যেন অনেকগুলো পাগলা কুকুর।
+ </p>
+<br/>
+<p>
+ কিম্বা রক্তপিপাসু সিংহ।
+ </p>
+<br/>
+<p>
+ বাঘ। অথবা একদল মারমুখো শূকর শূকরী।
+ </p>
+<br/>
+
+
+<p>
+ আর সেই বন্যতার ভয়ে ভীত একদল মানুষ নোংরা অন্ধকারে একটি ঘরের ভেতরে; ইঁদুর যেমন করে তার গর্তের মধ্যে জড়সড় হয়ে বসে থাকে, তেমনি বসে আছে।
+ </p>
+<br/>
+<p>
+ আতঙ্কে অস্থির মুখ, শ্বাস-প্রশ্বাস নিতে যেন কষ্ট হচ্ছে ওদের।
+ </p>
+<br/>
+<p>
+ একদল ছেলে বুড়ো মেয়ে।
+ </p>
+<br/>
+<p>
+ যুবক। যুবতী।
+ </p>
+<br/>
+<p>
+ আর একটি সন্তান-সম্ভবা মহিলা।
+ </p>
+<br/>
+<p>
+ অন্ধকারের আশ্রয়ে নিজেদের গোপন করে রাখার আপ্রাণ চেষ্টা করছে ওরা।
+ </p>
+<br/>
+<p>
+ একটা বাচ্চা ছেলে খুকখুক করে কাশলো।
+ </p>
+<br/>
+<p>
+ সঙ্গে সঙ্গে সবাই ঘুরে তাকালো ওর দিকে।
+ </p>
+<br/>
+<p>
+ দৃষ্টিতে যেন আগুন ঝরছে। খবরদার, আর শব্দ করো না।
+ </p>
+<br/>
+<p>
+ যদি না পারো দুহাতে চেপে রাখো।
+ </p>
+<br/>
+<p>
+ নইলে ওরা আমাদের অস্তিত্বের কথা টের পেয়ে যাবে।
+ </p>
+<br/>
+<p>
+ তাহলে কারো রক্ষা নেই।
+ </p>
+<br/>
+<p>
+ অন্তঃসত্ত্বা মহিলাটি স্যাঁতস্যাঁতে মেঝেতে ওয়ে। যন্ত্রণাকাতর মুখে চারপাশে তাকাচ্ছে সে।
+ </p>
+<br/>
+<p>
+ সবাই তাকে দেখছে। শব্দ করো না।
+ </p>
+<br/>
+<p>
+ কয়েকটা আরশুলা আপন মনে ঘুরে বেড়াচ্ছে দেয়ালের গায়ে।
+ </p>
+<br/>
+<p>
+ সহসা কার যেন পায়ের শব্দ শোনা গেলো বাইরে।
+ </p>
+<br/>
+<p>
+ মুহূর্তে সবার মুখ ফেকাসে হয়ে গেলো। শ্বা
+ </p>
+<br/>
+<p>
+ স বন্ধ হলো।
+ </p>
+<br/>
+<p>
+ এই বুঝি মৃত্যু এলো।
+ </p>
+<br/>
+<p>
+ দরজার কড়াটা নড়ে উঠলো। শুনুন। দরজা খুলুন। আমি আপনাদের নিয়ে যেতে এসেছি। পাশের বাড়ির বুড়ি মায়ের কণ্ঠস্বর। বিশ্বাস করুন। আমি আপনাদের বাঁচাতে এসেছি। কোন ভয় নেই। দরজা খুলুন।
+ </p>
+<br/>
+<p>
+ কয়েকটা নীরব মুহূর্ত।
+ </p>
+<br/>
+<p>
+ ভেতর থেকে কেউ কোন উত্তর দিলো না ওরা।
+ </p>
+<br/>
+<p>
+ কে যেন চাপা স্বরে বললো, না না, দরজা খুলো না। ওদের কোন বিশ্বাস নেই। বাইরে শব্দ শুনতে পাচ্ছে না? ওরা ওই বুড়িটাকে পাঠিয়েছে। আমাদের খুন করবে।
+ </p>
+<br/>
+<p>
+ সেই শব্দের দানব ধীরে ধীরে কাছে, আরো কাছে এগিয়ে আসছে।
+ </p>
+<br/>
+<p>
+ শুনুন। দরজা খুলুন। নইলে সর্বনাশ হয়ে যাবে। দোহাই আপনাদের দরজা খুলুন। আবার সেই বুড়ি মার কণ্ঠস্বর।
+ </p>
+<br/>
+<p>
+ একটা ছেলে সামনে এগিয়ে যেতে আরেকজন পেছন থেকে ধরে ফেললো। কোথায় যাচ্ছে?
+ </p>
+<br/>
+<p>
+ দরজা খুলে দেবো।
+ </p>
+<br/>
+<p>
+ না। না। না। অনেকগুলো কণ্ঠস্বর এক সঙ্গে প্রতিবাদ করলো।
+ </p>
+<br/>
+<p>
+ না। না। না।
+ </p>
+<br/>
+<p>
+ কেন?
+ </p>
+<br/>
+<p>
+ ওরা আমাদের মেরে ফেলবে।
+ </p>
+<br/>
+<p>
+ মরতে হলে বিশ্বাস করেই মরবো। ছেলেটি ছুটে গিয়ে দরজাটা খুলে দিলো।
+ </p>
+<br/>
+<p>
+ এক ঝলক আলো এসে পড়লো আতঙ্কিত মুখগুলোর ওপরে। একটা চাপা আর্তনাদ করে ওরা পরস্পরের বাহুর নিচে আশ্রয় নেয়ার চেষ্টা করলো। না। না। আমরা আলো চাই না।
+ </p>
+<br/>
+<p>
+ দুয়ারে দাঁড়িয়ে বুড়ি মা। হাতে তার জ্বলন্ত একটা মোমবাতি। চোখ জোড়া শান্ত। মিঞ্চ।
+ </p>
+<br/>
+<p>
+ আমরা বেঁচে থাকতে আপনাদের ভয়ের কিছু নেই। কেউ স্পর্শ করতে পারবে না। আসুন। আমার সঙ্গে আসুন আপনারা।
+ </p>
+<br/>
+<p>
+ অনেকগুলো ভয়ার্ত চোখ। বিশ্বাস আর অবিশ্বাসের দোলায় দুলছে।
+ </p>
+<br/>
+<p>
+ আসুন। আমার সঙ্গে আসুন।
+ </p>
+<br/>
+<p>
+ আসন্ন মৃত্যুর চেয়ে অনিশ্চিত ভবিষ্যতকে ওরা শ্রেয় মনে করলো।
+ </p>
+<br/>
+<p>
+ হয়ত ভাই, ধীরে ধীরে উঠে দাঁড়ালো ওরা।
+ </p>
+<br/>
+<p>
+ বুড়ি মাকে অনুসরণ করে এগিয়ে এলো সামনে। অন্তঃসত্ত্বা মহিলাটিকে দুজনে দুদিক থেকে সাবধানে তুলে নিলে। ধুলোয় ভর্তি অপরিসর করিডোর দিয়ে কয়েকটা ইঁদুর ছুটে বেরিয়ে গেলো এপাশ থেকে ওপাশে। চমকে উঠলো সবাই।
+ </p>
+<br/>
+<p>
+ মোমবাতির সলতেটা বার কয়েক কেঁপে আবার স্থির হয়ে গেলো।
+ </p>
+<br/>
+<p>
+ ও কিছু না। ইঁদুর। বুড়ি মা সবার দিকে তাকিয়ে ভরসা দিলো।
+ </p>
+<br/>
+<p>
+ করিডোরটা যেখানে শেষ হয়ে গেছে সেখানে একটা সরু সিঁড়ি। সিঁড়ির মাথায় এসে বুড়ি মা দেখলেন তাঁর তিন সন্তান সামনে দাঁড়িয়ে। কাছে যেতে ওরা এক পাশে সরে দাঁড়ালো।
+ </p>
+<br/>
+<p>
+ মনে হলো মায়ের আচরণে ওরা সন্তুষ্ট হইতে পারে নি। মা এগিয়ে গেলেন সামনে।
+ </p>
+<br/>
+<p>
+ একটা ছোট্ট গলির মতো ঘর। রান্নাঘর ওটা।
+ </p>
+<br/>
+<p>
+ বারো তেরো বছরের একটি মেয়ে চুলোয় অ্যাঁচ দিচ্ছিলো। ঘুরে তাকালো ওদের দিকে।
+ </p>
+<br/>
+<p>
+ তার চোখেমুখে কৌতূহল।
+ </p>
+<br/>
+<p>
+ ঘরের মাঝখানে ছাদের কাছাকাছি কাঠ দিয়ে তৈরি একটা বাক্সঘর।
+ </p>
+<br/>
+<p>
+ সিঁড়ি লাগানো।
+ </p>
+<br/>
+<p>
+ বুড়ি মা বললেন, ভয়ের কিছু নেই। আপনারা এর মধ্যে লুকিয়ে থাকুন। আমি বাইরে থেকে তালাবদ্ধ করে দেব। কেউ টের পাবে না।
+ </p>
+<br/>
+<p>
+ আশ্রিত মানুষগুলো বিশ্বাস আর অবিশ্বাসের দোলায় দুলছে।
+ </p>
+<br/>
+<p>
+ আমি জানি ওর মধ্যে থাকতে আপনাদের ভীষণ অসুবিধে হবে। কিন্তু প্রাণের চেয়ে প্রিয়, আর কিছু নেই পৃথিবীতে।
+ </p>
+<br/>
+<p>
+ কাঠের সিঁড়ি বেয়ে ধীরে ধীরে বাক্সঘরের মধ্যে উগেলো ওরা।
+ </p>
+<br/>
+<p>
+ ঊনিশ জন মানুষ।
+ </p>
+<br/>
+<p>
+ বাচ্চা। বুড়ো। পুরুষ। মেয়ে। যুবক। যুবতী।
+ </p>
+<br/>
+<p>
+ আর আসন্ন সন্তান-সম্ভবা মহিলাটি।
+ </p>
+<br/>
+<p>
+ বাইরে থেকে তালাবদ্ধ করে দিলেন বুড়ি মা। সিঁড়িটা এক পাশে সরিয়ে রাখলেন।
+ </p>
+<br/>
+<p>
+ রাস্তায় সহস্র ধ্বনির একত্রিত পাশবিক চিৎকার।
+ </p>
+<br/>
+<p>
+ পশুরা হল্লা করছে।
+ </p>
+<br/>
+<p>
+ এটা তুমি ঠিক করলে না মা।
+ </p>
+<br/>
+<p>
+ দোরগোড়ায় সন্তানের কাছ থেকে বাধাপ্রাপ্ত হলেন বুড়ি মা।
+ </p>
+<br/>
+<p>
+ কেন? কি হয়েছে? স্বপ্রশ্ন দৃষ্টিতে সন্তানের দিকে তাকালেন তিনি।
+ </p>
+<br/>
+<p>
+ প্রথম জন বললো, কেউ যদি টের পায় তাহলে?
+ </p>
+<br/>
+<p>
+ দ্বিতীয় জন বললো, তাহলে ওরা আমাদেরকেও মেরে ফেলবে।
+ </p>
+<br/>
+<p>
+ তৃতীয় জন বললো, এটা ঠিক করলে না মা।
+ </p>
+<br/>
+<p>
+ মা তিনজনের দিকে তাকালেন। ধীরে ধীরে বললেন, কতগুলো নিরপরাধ মানুষকে আমাদের চোখের সামনে মেরে ফেলবে আর আমরা চেয়ে দেখবো। তপুর কথা ভাব একবার। তোমাদের ভাই। সে এখন কোথায়? তাকে যদি কেউ মেরে ফেলে। সহসা থামলেন বুড়ি মা।
+ </p>
+<br/>
+<p>
+ মুহূর্তে তাঁর মুখখানা বিষাদে ছেয়ে গেলো। আস্তে করে ধালেন, তপুর কোন খোঁজ বের করতে পারলে না তোমরা
+ </p>
+<br/>
+<p>
+ না।
+ </p>
+<br/>
+<p>
+ পশুরা হল্লা করছে বাইরে।
+ </p>
+<br/>
+</div>
+<h2>
+ দ্বিতীয়
+ </h2>
+<br/>
+<h2>
+ মায়ের মন আতঙ্কে শিউরে উঠলো
+ </h2>
+<hr/>
+<br/>
+
+<div>
+<p>
+ মায়ের মন আতঙ্কে শিউরে উঠলো।
+ </p>
+<br/>
+<p>
+ এখানেও জীবনের কোন অস্তিত্ব নেই।
+ </p>
+<br/>
+<p>
+ প্রশস্ত পথ জুড়ে ভাঙ্গা কাচের টুকরো। ইটের টুকরো।
+ </p>
+<br/>
+<p>
+ আর মৃতদেহ।
+ </p>
+<br/>
+<p>
+ কুকুরের।
+ </p>
+<br/>
+<p>
+ বিড়ালের।
+ </p>
+<br/>
+<p>
+ পাখির।
+ </p>
+<br/>
+<p>
+ আর মানুষের।
+ </p>
+<br/>
+<p>
+ চারপাশে একবার তাকালো তপু।
+ </p>
+<br/>
+<p>
+ ধ্বনির পশুরা তাড়া করছে ওকে।
+ </p>
+<br/>
+<p>
+ ডানে। বাঁয়ে। সামনে। পেছনে।
+ </p>
+<br/>
+
+
+<p>
+ চারপাশে থাকে।
+ </p>
+<br/>
+<p>
+ তপু ছুটছে। পালাচ্ছে সে প্রাণপণে।
+ </p>
+<br/>
+<p>
+ সহসা সামনে একটা খোলা দরজা পেয়ে ভেতরে ঢুকে পড়লো সে। ওটা একটা সিঁড়িঘর। ঘোরান সিঁড়ির উৎস মুখে লুকিয়ে থাকার মতো এক টুকরো অন্ধকার। ভেতরে এসে তার আত্মগোপন করলো তপু।
+ </p>
+<br/>
+<p>
+ শব্দের রাক্ষসগুলো তাকে খুঁজে বেড়াচ্ছে।
+ </p>
+<br/>
+<p>
+ নিঃশ্বাস বন্ধ করে নীরবে বসে বসে নিজের হৃৎপিণ্ডের দ্রুত ধাবমান গতিটাকে আয়ত্বের অধীন আনার চেষ্টা করতে লাগলো সে। ভাঙ্গার শব্দ শুনলো।
+ </p>
+<br/>
+<p>
+ কাছে কোথায় যেন সব কিছু ভেঙ্গে চুরমার করে ফেলছে ওরা।
+ </p>
+<br/>
+<p>
+ একটা আর্তনাদ শোনা গেলো। না। না।
+ </p>
+<br/>
+<p>
+ তপু এবার যে ঘরে এসে আশ্রয় নিলো তার কোন কিছুই অক্ষত নেই।
+ </p>
+<br/>
+<p>
+ বিছানা। আসবাব। বই। কাপড়। কাচ। টুকরো টুকরো হয়ে ছড়িয়ে আছে মেঝেতে।
+ </p>
+<br/>
+<p>
+ তপুর মনে হলো ওর হাত পা সব ধীরে ধীরে অবশ হয়ে আসছে।
+ </p>
+<br/>
+<p>
+ দাঁড়াবার শক্তি হারিয়ে ফেলছে সে। ধীরে ধীরে চারপাশে তাকালো।
+ </p>
+<br/>
+<p>
+ কাকে যেন খুঁজলো। অস্পষ্ট স্বরে ডাকলো সে। ইভা।
+ </p>
+<br/>
+<p>
+ কোন সাড়া নেই।
+ </p>
+<br/>
+<p>
+ পাশের বাথরুমে খোলা কল থেকে একটানা পানি পড়ার শব্দ হচ্ছে। বেসিন উপচে পানি গড়িয়ে পড়ছে নিচে। বাথটবে কয়েকটা মৃতদেহ। রক্ত আর পানির মধ্যে ডুবে আছে।
+ </p>
+<br/>
+<p>
+ ইভার মা।
+ </p>
+<br/>
+<p>
+ বাবা।
+ </p>
+<br/>
+<p>
+ ছোট ভাই।
+ </p>
+<br/>
+<p>
+ মরিয়া হয়ে ইভাকে খুঁজতে লাগলো তপু।
+ </p>
+<br/>
+<p>
+ কয়েকটা কাচের টুকরো ছিটকে গেলো মেঝের ওপর।
+ </p>
+<br/>
+<p>
+ ইভা। ইভা।
+ </p>
+<br/>
+<p>
+ আবার সেই পশুদের চিৎকার।
+ </p>
+<br/>
+<p>
+ কবাটের আড়ালে আত্মগোপন করতে গিয়ে পিঠের সঙ্গে নরোম কি যেন ঠেকলো তার। সভয়ে পিছিয়ে আসতে ইভার চেতনাহীন দেহটা মেঝের ওপরে গড়িয়ে পড়লো।
+ </p>
+<br/>
+<p>
+ ইভা! তপু চমকে উঠলো।
+ </p>
+<br/>
+<p>
+ ইভার ধমনি দেখলো সে।
+ </p>
+<br/>
+<p>
+ বুকে মাথা রেখে তার হৃদপিণ্ডের শব্দ শোনার চেষ্টা করলো। বেঁচে আছে।
+ </p>
+<br/>
+<p>
+ দুহাত ভরে বেসিন থেকে পানি এনে ওর মুখের ওপর ছিটিয়ে দিলো সে।
+ </p>
+<br/>
+<p>
+ ইভা চোখ মেলে তাকিয়ে চিৎকার করে আবার চোখ বন্ধ করলো। না। না। দোহাই তোমাদের আমাকে মেরো না। আমাকে মেরো না।
+ </p>
+<br/>
+<p>
+ তপু ডাকলো। শোন ইভা, আমি তপু। চেয়ে দেখো, আমি তপু। জবার মতো লাল চোখ জোড়া আবার খুললো মেয়েটি। যেন কিছুই বিশ্বাস করতে পারছে না সে। সহসা শিশুর মতো কেঁদে উঠে তপুর বুকে মুখ লুকালো মেয়েটি।
+ </p>
+<br/>
+<p>
+ আকাশ কালো করা জমাট মেঘগুলো বৃষ্টির রূপ নিয়ে অফুরন্ত ধারায় ঝরে পড়ছে। মাটিতে। আর অসংখ্য অগণিত লোক সেই বর্ষণের তীব্রতাকে উপেক্ষা করে এক হাঁটু পানি আর কাদা ডিঙ্গিয়ে হেঁটে চলেছে।
+ </p>
+<br/>
+<p>
+ নানা বর্ণের।
+ </p>
+<br/>
+<p>
+ নানা বয়সের।
+ </p>
+<br/>
+<p>
+ কেউ দীর্ঘ পথ চলায় ক্লান্ত।
+ </p>
+<br/>
+<p>
+ কেউ জরাগ্রস্থ।
+ </p>
+<br/>
+<p>
+ কেউ আবার হিংস্র দানবের নখরাঘাতে ক্ষতবিক্ষত।
+ </p>
+<br/>
+<p>
+ ওরা পালাচ্ছে।
+ </p>
+<br/>
+<p>
+ আমরা এখন কোথায়? একজন আর একজনকে প্রশ্ন করলো। আমরা এখন কোথায়?
+ </p>
+<br/>
+<p>
+ ইন্দোনেশিয়ায়। না ভিয়েতনামে। না সাইপ্রাসে।
+ </p>
+<br/>
+<p>
+ কোথায় আমরা।
+ </p>
+<br/>
+<p>
+ জানি না।
+ </p>
+<br/>
+<p>
+ আমার বাড়িঘরগুলো ওরা জ্বালিয়ে দিয়েছে। জমি দখল করে নিয়েছে। আলু ওদের ক্ষমা করবে ভেবেছো। কোন দিনও না।
+ </p>
+<br/>
+<p>
+ ঘর। বাড়ি। মাটি ছেড়ে আসা মানুষগুলো এক হাঁটু পানি আর কাদা ডিঙ্গিয়ে হেঁটে চলেছে। আর তাদের মাঝখানে বুড়ি মা ঘুরে ঘুরে সবার কাছে যাচ্ছেন। সকলকে দেখছেন। সবার চেহারার দিকে খুঁটিয়ে তাকাচ্ছেন তিনি। তাঁর সন্তানকে খুঁজছেন। আপনারা কেউ দেখেছেন কি তাকে? আসার পথে কোথাও দেখেছেন কি? মাথায় ঝাক ঝাঁকড়া চুল। শ্যামলা রঙ। দেখতে বেশ লম্বা। আপনারা কেউ দেখেছেন কি? সবার কাছে একটি প্রশ্নই করেছেন বুড়ি মা। হা হা। ওর কপালের বাঁ পাশে একটা কাটা দাগ আছে। ছোট বেলায় বিছানা থেকে পড়ে কেটে গিয়েছিলো। আপনার সঙ্গে ওর দেখা হয়েছিলো কি?
+ </p>
+<br/>
+<p>
+ সবার কাছে ওই একটি প্রশ্ন করে করে ক্লান্ত হয়ে পড়েছেন মা। কিন্তু কেউ সঠিক উত্তর দিতে পাচ্ছে না।
+ </p>
+<br/>
+<p>
+ সবাই নিজের ভাবনা আর চিন্তায় মগ্ন। নিজেকে নিয়ে ব্যস্ত। অন্যের কথা নিয়ে দু’দণ্ড আলাপ করার অবকাশ নেই।
+ </p>
+<br/>
+<p>
+ আপনি দেখেছেন কি? ওর নাম তপু। হ্যাঁ, আমার ছেলের নাম। ও নামে কাউকে দেখেছেন কি?
+ </p>
+<br/>
+<p>
+ তপু, তাই না? হ্যাঁ মনে হচ্ছে দেখা হয়েছিলো। মানে ঠিক কোথায় দেখা হয়েছিলো স্মরণ করতে পাচ্ছি না। অত কি আর মনে থাকে মা। গ্রামকে গ্রাম ওরা পুড়িয়ে ছাই করে দিলো। কত মেরেছে জিজ্ঞেস করছো? তার কি কোন হিসেব আছে। এক বছর নদীতে কোন স্রোত ছিল না। মরা মানুষের গাদাগাদিতে সব বন্ধ হয়ে গিয়েছিলো। শকুনরা ছিড়ে ছিড়ে খেয়েছে দু’বছর ধরে। এখনো খাচ্ছে।
+ </p>
+<br/>
+<p>
+ মা আতঙ্কে শিউরে উঠলেন।
+ </p>
+<br/>
+<p>
+ নিজের সন্তানের নির্মম মৃত্যুর কথা ভেবে অবিরাম বৃষ্টি ধারার মাঝখানে নীরবে দাঁড়িয়ে
+ </p>
+<br/>
+<p>
+ দু’চোখ থেকে ঝরে পড়া অশ্রু, বৃষ্টির পানির সঙ্গে মিশে, দু’গণ্ড বেয়ে গড়িয়ে পড়লো নিচে।
+ </p>
+<br/>
+<p>
+ তুমি কাঁদছো কেন গো। কেঁদে কি হবে। আমার দিকে চেয়ে দেখো। আমি তো কাঁদি না। অফুরন্ত মিছিলের একজন বললো। ওরা আমার ছেলেটাকে মেরে ফেলেছে হিরোশিমায়। আমার মাকে খুন করেছে জেরুজালেমর রাস্তায়। আমার বোনটা এক সাদা কুত্তার বাড়িতে বাঁদী ছিলো। তার প্রভু তাকে ধর্ষণ করে মেরেছে আফ্রিকাতে। আমার বাবাকে হত্যা করেছে ভিয়েতনামে। আর আমার ভাই, তাকে ফাঁসে ঝুলিয়ে মেরেছে ওরা। কারণ সে মানুষকে ভীষণ ভালবাসতো।
+ </p>
+<br/>
+<p>
+ কিন্তু আমি তো কাঁদি না। তুমি কাঁদছ কেন?
+ </p>
+<br/>
+<p>
+ বিষণ্ণ বুড়ি মা স্তব্ধ দৃষ্টিতে তাকিয়ে রইলেন সেই লোকটার দিকে। লোকটা থামলো না। এক হাঁটু পানি আর কাদা ডিঙ্গিয়ে সে এগিয়ে গেলো সামনে। সহস্র শরণার্থীর অবিরাম মিছিলে।
+ </p>
+<br/>
+
+
+<p>
+ পাগলা কুকুরের হলা বেড়েই চলেছে।
+ </p>
+<br/>
+<p>
+ মরিয়া হয়ে ওরা তাড়া করছে তপুকে। ইভাকে।
+ </p>
+<br/>
+<p>
+ ওরা দুজনের ছুটছে। প্রাণপণে।
+ </p>
+<br/>
+<p>
+ টুকরো টুকরো ইটে ভরা শহুরে রাস্তাগুলোতে আলো ঝলমল করছে। আর ওরা অন্ধকার খুঁজছে।
+ </p>
+<br/>
+<p>
+ একটুখানি অন্ধকার পেলে তার ভেতরে দু’জনে আত্মগোপন করবে ওরা। সহসা তপু একটা ইটের টুকরো তুলে নিলো হাতে। রাস্তার পাশে জ্বলা বাতি লক্ষ্য করে ইটটা ছুঁড়ে মারলো সে।
+ </p>
+<br/>
+<p>
+ বাতি নিভে গেলো।
+ </p>
+<br/>
+<p>
+ কাচের টুকরোগুলো ছিটকে গেলো নিচে।
+ </p>
+<br/>
+<p>
+ আরেকটা বাত্তি নিভে গেলো।
+ </p>
+<br/>
+<p>
+ এক নতুন খেলায় মেতেছে ওরা।
+ </p>
+<br/>
+<p>
+ ইভা আর তপু।
+ </p>
+<br/>
+<p>
+ ইট সগ্রহ করে এগিয়ে দিচ্ছে ইভা।
+ </p>
+<br/>
+<p>
+ আর একটার পর একটা বাতি ভেঙ্গে চলেছে তপু।
+ </p>
+<br/>
+<p>
+ ঝলমলে আলো সরে গিয়ে অন্ধকার নেমে এলো পথে। আর সেই অন্ধকারের এককোণে নীরবে লুকালো ওরা দুজনে।
+ </p>
+<br/>
+<p>
+ পাগলা কুকুরগুলো হন্যে হয়ে খুঁজেছে ওদের।
+ </p>
+<br/>
+<p>
+ শূকরছানাগুলো চিৎকার জুড়েছে সারা পথ জুড়ে।
+ </p>
+<br/>
+<p>
+ তপুর সারা দেহ গড়িয়ে অঝোরে ঘাম ঝরছে।
+ </p>
+<br/>
+<p>
+ ইভার বুকটা ওঠানামা করছে দ্রুত তালে।
+ </p>
+<br/>
+<p>
+ ইভা। তপু ডাকলো।
+ </p>
+<br/>
+<p>
+ কি। ওর দিকে চোখ তুলে তাকালো ইভা।
+ </p>
+<br/>
+<p>
+ ভয় লাগছে।
+ </p>
+<br/>
+<p>
+ না। তুমি পাশে থাকলে আমি ভয় পাই না।
+ </p>
+<br/>
+<p>
+ আচ্ছা ইভা। তপু আবার বললো, তুমি আমাকে ভালবাসতে গেলে কেন বল তো?
+ </p>
+<br/>
+<p>
+ জানি না। ইভা মিষ্টি করে হাসলো। ভালো লেগেছে। ভালো লাগে। তাই ভালোবাসি।
+ </p>
+<br/>
+
+
+<p>
+ গির্জার ঘণ্টাগুলো মৃদু শব্দে বেজে উঠলো।
+ </p>
+<br/>
+<p>
+ বুড়ো পাদ্রি সিঁড়ি বেয়ে নিচে নেমে এলেন।
+ </p>
+<br/>
+<p>
+ দোরগোড়ায় কারা যেন করাঘাত করছে।
+ </p>
+<br/>
+<p>
+ বুড়ো পাদ্রি মুহূর্তের জন্যে কি যেন ভাবলেন।
+ </p>
+<br/>
+<p>
+ তারপর এগিয়ে এসে দরজাটা খুলে দিলেন তিনি।
+ </p>
+<br/>
+<p>
+ ইভা আর তপু বাইরে দাঁড়িয়ে।
+ </p>
+<br/>
+<p>
+ ওদের বিপর্যস্ত চেহারা আর বসনের দিকে তাকিয়ে অস্ফুট আর্তনাদ করে উঠলেন বুড়ো পাদ্রি।
+ </p>
+<br/>
+<p>
+ আমরা আপনার এখানে একটু আশ্রয় পেতে পারি কি? শুধু একটা রাতের জন্যে?
+ </p>
+<br/>
+<p>
+ ওদের মুখের দিকে খানিকক্ষণ তাকিয়ে রইলেন বুড়ো পাদ্রি।
+ </p>
+<br/>
+<p>
+ দূরে শূকর শূকরীর হল্লা শুনলেন।
+ </p>
+<br/>
+<p>
+ ইঙ্গিতে ওদের ভেতরে আসতে বললেন তিনি।
+ </p>
+<br/>
+<p>
+ দরজাটা ভালোভাবে বন্ধ করে দিলেন।
+ </p>
+<br/>
+<p>
+ গির্জার ভেতরে এক প্রশান্ত নীরবতা।
+ </p>
+<br/>
+<p>
+ শুধু ওদের পায়ে চলার শব্দগুলো উঁচু দেয়ালের গায়ে লেগে করুণ এক প্রতিধ্বনির সৃষ্টি করছে।
+ </p>
+<br/>
+<p>
+ একটা ছোট্ট ঘরের মধ্যে এনে ওদের আশ্রয় দিলেন বুড়ো পাদ্রি।
+ </p>
+<br/>
+<p>
+ এখানে কেউ তোমাদের খোঁজ পাবে না। নিশ্চিত থাকতে পারো।
+ </p>
+<br/>
+<p>
+ বুড়ো পাদ্রি শুধোলেন, তোমরা কি ক্ষুধার্ত কিছু খাবে?
+ </p>
+<br/>
+<p>
+ ওরা ঘাড় নেড়ে যায় দিলো।
+ </p>
+<br/>
+<p>
+ দরজাটা ভেজিয়ে দিয়ে বুড়ো পাদ্রি ফিরে যাচ্ছিলেন, হয়তো খাবারের খোজে। সহসা নিচে প্রার্থনালয় থেকে অসংখ্য কষ্ঠের চিৎকার ধ্বনি শুনলেন।
+ </p>
+<br/>
+<p>
+ বিস্মিত হলেন তিনি।
+ </p>
+<br/>
+<p>
+ সামনে এসে দেখলেন।
+ </p>
+<br/>
+<p>
+ প্রার্থনালয় ভরে গেছে সাদা ধবধবে মানুষের ভিড়ে।
+ </p>
+<br/>
+<p>
+ বুড়ো পাদ্রিকে দেখে চিকার করে উঠলো ওরা।
+ </p>
+<br/>
+<p>
+ ওই নিগ্রোগুলোকে ওখান থেকে বের করে দাও। আমাদের হাতে ছেড়ে দাও।
+ </p>
+<br/>
+<p>
+ না, না, ওরা তো নিগ্রো নয়। বুড়ো পাদ্রি বিড়বিড় করে বললেন। তোমরা ভুল করছে। ওরা নিগ্রো নয়।
+ </p>
+<br/>
+<p>
+ মিথ্যে কথা। সাদা ধবধবে মানুষগুলো আবার চিৎকার জুড়ে দিলো। আমরা দেখেছি, একটা নিগ্রো ছেলে আর মেয়েকে তুমি গির্জার মধ্যে আশ্রয় দিয়েছে। বের করে দাও ওদের।
+ </p>
+<br/>
+<p>
+ বুড়ো পাদ্রি ব্রিত বোধ করলেন।
+ </p>
+<br/>
+<p>
+ ফিরে এসে ভেজানো দরজাটা খুলে ইভা আর তপুকে দেখলেন তিনি।
+ </p>
+<br/>
+<p>
+ দেখলেন। একটি নিগ্রো ছেলে আর একটি উয়ে ভীত সন্ত্রস্ত দৃষ্টিতে তাঁর দিকে তাকিয়ে আছে।
+ </p>
+<br/>
+<p>
+ মুহূর্তের জন্যে হতবিহ্বল হয়ে গেলেন বুড়ো পাদ্রি।
+ </p>
+<br/>
+<p>
+ বিশ্বাস হলো না।
+ </p>
+<br/>
+<p>
+ আবার দেখলেন।
+ </p>
+<br/>
+<p>
+ আবার তাকালেন।
+ </p>
+<br/>
+<p>
+ না। নিগ্রো ছেলে আর মেয়ে তো নয়। ইভা আর তপু বসে। ভয়ার্ত দৃষ্টিতে দেখছে তাঁকে। এতক্ষণে শ্বাস নিলেন তিনি প্রাণ ভরে।
+ </p>
+<br/>
+<p>
+ প্রার্থনালয়ের কাছে সেই সাদা ধবধবে মানুষগুলোর মুখোমুখি দাঁড়াবার অভিলাষে ফিরে এসে বুড়ো পাদ্রি দেখলেন, প্রার্থনালয় শূন্য। শূন্য চেয়ারগুলোতে একটি মানুষের অস্তিত্বও নেই। বার কয়েক মাথা নাড়লেন তিনি।
+ </p>
+<br/>
+<p>
+ অস্বস্তিতে।
+ </p>
+<br/>
+<p>
+ তারপর পকেট থেকে ক্ষুদ্র বাইবেলটা বের করে জোরে জোরে আবৃত্তি করতে লাগলেন বুড়ো পাদ্রি।
+ </p>
+<br/>
+<p>
+ বদ্ধঘরের মধ্যে নীরবে বসে বসে অনেকক্ষণ ধরে বুড়ো পাদ্রির বাইবেল পাঠ শুনলো ইভা আর তপু।
+ </p>
+<br/>
+<p>
+ সহসা তপু শুধালো, কি ভাবছে ইভা।
+ </p>
+<br/>
+<p>
+ ইভা বললো, যদি পৌঁছতে না পারি?
+ </p>
+<br/>
+<p>
+ নিশ্চয়ই পারবো। তবু সাহস দিলো তাকে।
+ </p>
+<br/>
+<p>
+ ইভা আবার বললো, কিন্তু সেখানেও যদি কথাটা শেষ করলো না সে। শুধু মুখ তুলে তাকালো তপর দিকে।
+ </p>
+<br/>
+<p>
+ ওখানে ভয়ের কিছু নেই ইভা। তবু ধীরে ধীরে জবাব দিলো।
+ </p>
+<br/>
+<p>
+ ওখানে আমার মা আছেন। বাবা আছেন। আমার তিনটে ভাই আছে আর একটি বোন। ওরা সবাই তোমাকে পেলে খুব খুশি হবে ইভা। তুমি দেখে নিও। ওরা ভীষণ ভালবাসবে তোমায়।
+ </p>
+<br/>
+<p>
+ আমি শুধু তোমার ভালবাসা চাই। আরো ঘনিষ্ঠ হয়ে এলো ইভা। সারাটা জীবন শুধু তোমাকে ভালবাসতে চাই। আমি তোমার সন্তানের মা হতে চাই তপু। আমি একটা সুন্দর ঘর বাঁধতে চাই। আমি সুখ চাই। শান্তি চাই। বলতে বলতে দুচোখ ভরে অশ্রু জমে এলো তার।
+ </p>
+<br/>
+<p>
+ তপু ধীরে ধীরে ইভার মুখখানা কাছে টেনে নিলো। চোখের কোণে জমে থাকা অর্শ বিন্দুগুলো আঙ্গুলের স্পর্শে আদর করে মুছে দিয়ে বললো, কেঁদো না ইভা। কাঁদছো কেন? ইভা আস্তে করে বললো, বাবা মার কথা ভীষণ মনে পড়ছে তাই।
+ </p>
+<br/>
+<p>
+ বাক্সঘরের মধ্যে আশ্রিত ঊনিশ জন মানুষ।
+ <br/>
+ বাচ্চা। বুড়ো। পুরুষ। মেয়ে। যুবক। যুবতী।
+ <br/>
+ আর আসন্ন সন্তান-সম্ভবা মহিলাটি।
+ </p>
+<br/>
+<p>
+ খোয়াড়ের মধ্যে হাঁস মোরগগুলো যেমন গাদাগাদি হয়ে থাকে তেমনি। তেমনি আছে ওরা। কতগুলো মানুষ।
+ </p>
+<br/>
+<p>
+ জীবন আর মৃত্যুর মাঝখানে। সাধারণ এক আতঙ্কের দ্বন্দে ক্ষতবিক্ষত। একটু নড়াচড়া করার পরিসর নেই। মাথা সোজা কঝে বর্সবে সে সুযোগ নেই। কারণ বুকের কাছ থেকে মাথাটা তুলতে গেলেই ছাদের সঙ্গে লাগে।
+ </p>
+<br/>
+<p>
+ মই বেয়ে উঠে বাক্সঘরের দরজা খুললেন বুড়ি মা।
+ </p>
+<br/>
+<p>
+ এক টুকরো আলো এসে ছড়িয়ে পড়লে ওদের চোখেমুখে। কয়েক ঢেউ বাতাসে পোকা-মাকড়ের মতো মানুষগুলো নড়েচড়ে উঠলো। বুড়ি মা খাবার নিয়ে এসেছেন।
+ </p>
+<br/>
+<p>
+ ঊনিশ জোড়া ক্ষুধার্ত চোখ ঝাঁপিয়ে পড়লো খাবারের থালার উপরে। খাবারগুলো গোগ্রাসে গিলতে লাগলো ওরা।
+ </p>
+<br/>
+<p>
+ বুড়ি মা স্নেহার্দ্র দৃষ্টিতে কিছুক্ষণ ওদের দিকে তাকিয়ে রইলেন। তারপর বললেন, বাইরে এখন গোলমাল কিছুটা কমেছে। আপনারা নিচে নেমে এসে কিছুক্ষণ চলাফেরা করুন।
+ </p>
+<br/>
+<p>
+ হাত পাগুলো ছড়িয়ে বসুন।
+ </p>
+<br/>
+<p>
+ ঊনিশ জোড়া চোখ কৃতজ্ঞতায় ভরে উঠলো।
+ </p>
+<br/>
+<p>
+ ওদের নিচে নামার জন্যে মইটা ধরে দাঁড়ালেন বুড়ি মা।
+ </p>
+<br/>
+<p>
+ কিন্তু বাক্স থেকে বেরুতে গিয়ে ওরা অনুভব করলো হাত পাগুলো আর সোজা করতে পারছে না। বুকের কাছ থেকে মাথাটা তুলতে গিয়ে দেখলো মেরুদণ্ডে টান পড়ছে। ব্যথা লাগছে।
+ </p>
+<br/>
+<p>
+ দীর্ঘদিন একটা বাক্সের মধ্যে হাত পা গুটিয়ে বন্দি হয়ে থাকতে থাকতে ওরা ধীরে ধীরে দ্বিপদ থেকে চতুষ্পদু হয়ে গেছে।
+ </p>
+<br/>
+<p>
+ তবু হাত পাগুলো সোজা করে দাঁড়াবার আপ্রাণ চেষ্টা করতে লাগলো ওরা।
+ </p>
+<br/>
+<p>
+ চতুষ্পদ মানুষগুলো।
+ </p>
+<br/>
+<p>
+ সহসা বাইরে আবার সেই হিংস্রতার ধ্বনি শোনা গেল।
+ </p>
+<br/>
+<p>
+ সচকিত হলো ঊনিশটি প্রাণ।
+ </p>
+<br/>
+<p>
+ বিকলাঙ্গ মানুষগুলো পাখির মতো কিচমিচ শব্দ তুলে মইটার উপরে হুমড়ি খেয়ে পড়লো। তালাটা বন্ধ করে দিয়ে পাশের ঘরে চলে গেলেন মা।
+ </p>
+<br/>
+<p>
+ বুড়ো বাবা বিছনায় বসে বসে তছবি গুনছেন।
+ </p>
+<br/>
+<p>
+ তিন সন্তান উৎকর্ণ হয়ে বন্য ধ্বনি শুনছে।
+ </p>
+<br/>
+<p>
+ চৌদ্দ বছরের মেয়েটি হঠাৎ বললো, বাবা, কারা যেন কড়া নাড়ছে। বুড়ো বাবা অস্বস্তিতে ছবি নামিয়ে রাখলেন। তিনি সন্তানের দিকে তাকিয়ে চাপা স্বরে বললেন, বাতিগুলো সব নিভিয়ে দাও। বলতে গিয়ে গলাটা কেঁপে উঠলো তার।
+ </p>
+<br/>
+<p>
+ মা চৌদ্দ বছরের মেয়েটিকে কাছে টেনে নিলেন। কানে কানে বললেন, ওঘরে গিয়ে ওদের একেবারে চুপ থাকতে বলে এসো। যেন কোন রকম শব্দ না করে, যাও। বলে স্বামীর দিকে তাকলেন তিনি। দরজায় করাঘাতের মাত্রা উচ্ছ্বল হয়ে পড়ছে। বুড়ো বাবা সিঁড়ি বেয়ে নিচে নেমে গেলেন। দরজা খুলে দেবেন তিনি।
+ </p>
+<br/>
+<p>
+ বুড়ি মা।
+ </p>
+<br/>
+<p>
+ তাঁর তিন সন্তান।
+ </p>
+<br/>
+<p>
+ আর চৌদ্দ বছরের মেয়েটি।
+ </p>
+<br/>
+<p>
+ সবাই গভীর উৎকণ্ঠা বুকে নিয়ে সিঁড়ির মাথায় নীরবে দাঁড়িয়ে। বুড়ো বাবা দরজা খুললেন। বাইরে থেকে বন্য হিংস্রতা চিৎকার করে উঠলো। বাড়ির ভেতর থেকে ওদের বের করে দাও।
+ </p>
+<br/>
+<p>
+ এখানে কেউ নেই। বিশ্বাস করে। এখানে কেউ নেই। বুড়ো বাবা এক নিঃশ্বাসে বলে গেলেন।
+ </p>
+<br/>
+<p>
+ মিথ্যে কথা।
+ </p>
+<br/>
+<p>
+ মিথ্যে কথা।
+ </p>
+<br/>
+<p>
+ মিথ্যে কথা।
+ </p>
+<br/>
+<p>
+ এক সঙ্গে অনেকগুলো কণ্ঠ চিত্তার জুড়লো তোমরা কাদের আশ্রয় দিয়েছে আমরা জানি। নিজেদের ভালো চাও তো ওদের আমাদের হাতে দিয়ে দাও।
+ </p>
+<br/>
+<p>
+ তোমরা ভুল করছে। আমাদের এখানে কেউ নেই।
+ </p>
+<br/>
+<p>
+ কিন্তু ওরা বিশ্বাস করতো না। বুড়ো বাবাকে ধাক্কা দিয়ে ফেলে ভেতরে এসে ঢুকলো ওরা। তারপর পুরো বাড়িটা তচনচ করে ফেলতে লাগলো।
+ </p>
+<br/>
+<p>
+ বাক্সঘরে তখন কবরের নীরবতা।
+ </p>
+<br/>
+<p>
+ মৃত্যুর পদধ্বনি শুনতে পেয়ে পাথরের মতো স্তব্ধ হয়ে গেলো ওরা।
+ </p>
+<br/>
+<p>
+ ভয়ে।
+ </p>
+<br/>
+<p>
+ আতঙ্কে।
+ </p>
+<br/>
+<p>
+ আর সেই মুহূর্তে অন্তঃসত্ত্বা মহিলাটির প্রসব বেদনা উঠেছে। একটি সন্তানের জন্ম দিচ্ছে সে। ঊনিশ জন মৃতপ্রায় মানুষ চরম উৎকণ্ঠার সঙ্গে শিশুটির জন্য প্রতিরোধের আপ্রাণ চেষ্টা করছে।
+ </p>
+<br/>
+<p>
+ না। না। এখন নয়।
+ </p>
+<br/>
+<p>
+ এখন নয়।
+ </p>
+<br/>
+<p>
+ মুমূর্ষু মহিলাটি যন্ত্রণার অস্থিরতায় বারবার নিজের ঠোঁট কামড়াচ্ছে আর ঘর্মাক্ত দেহটাকে আয়ত্তে আনার আপ্রাণ চেষ্টা করছে।
+ </p>
+<br/>
+<p>
+ সেও চায় না এ মুহূর্তে শিশুটির জন্ম হোক।
+ </p>
+<br/>
+<p>
+ কিন্তু! সবাইকে হতাশ করে দিয়ে ঊনিশ জন মানুষের অভিসম্পাত কুড়োতে কুড়োতে শিশুটি ভূমিষ্ট হলো।
+ </p>
+<br/>
+<p>
+ আর সঙ্গে সঙ্গে, দেহের সমস্ত শক্তি দিয়ে, ঊনিশ জনের একজন সেই বাচ্চাটির গলা টিপে ধরলো।
+ </p>
+<br/>
+<p>
+ নিচে মৃত্যুর পদধ্বনি শোনা যাচ্ছে। ওরা এখন এ ঘরে এসে আশ্রিত মানুষগুলোকে খুঁজছে। প্রসূতির চোখ জোড়া হয়তো পৃথিবীর প্রতি ঘৃণায় একবার কুঞ্চিত হলো। তারপর বিবর্ণ মণিতে প্রাণের চিহ্ন রইলো না। আর বাচ্চাটার সঙ্গে সঙ্গে তার মা-ও মারা গেলো।
+ </p>
+<br/>
+<p>
+ মৃত মহিলার স্বামী হতবিহ্বল দৃষ্টিতে কিছুক্ষণ আকিয়ে রইলো সেদিকে। সহসা কান্নার আবেগে ভেঙ্গে পড়তে গিয়ে নিজেই মুখখানা দুহাতে চেপে ধরলো।
+ </p>
+<br/>
+<p>
+ না। না। এখন নয়।
+ </p>
+<br/>
+<p>
+ এখন কান্নাও নয়।
+ </p>
+<br/>
+<p>
+ এখন শুধু নীরবে দুটি মৃত্যুকে প্রত্যক্ষ করো আর নিজেদের আসন্ন মরণ সম্ভাবনার কথা ভেবে ঈশ্বরকে মনে মনে ডাকে।
+ </p>
+<br/>
+<p>
+ মৃত্যুর বন্যতার শব্দ এখন আর শোনা যাচ্ছে না।
+ </p>
+<br/>
+<p>
+ ওরা কান পাতলো।
+ </p>
+<br/>
+<p>
+ ভাল করে শোনার চেষ্টা করলো।
+ </p>
+<br/>
+<p>
+ শুনলো। বুড়ি মা নিচে থেকে বলছেন। আর ভয়ের কিছু নেই, ওরা চলে গেছে।
+ </p>
+<br/>
+<p>
+ বুড়ি মার কণ্ঠস্বর শুনে মৃত মহিলার স্বামী পরক্ষণে চিৎকার করে কেঁদে উঠলো।
+ </p>
+<br/>
+<p>
+ তার মৃত স্ত্রীর জন্যে। তার মৃত নবজাতকটির জন্যে।
+ </p>
+<br/>
+</div>
+<h2>
+ তৃতীয়
+ </h2>
+<br/>
+<h2>
+ ইভা আর তপু তখন ছুটছে
+ </h2>
+<hr/>
+<br/>
+
+<div>
+<p>
+ ইভা আর তপু তখন ছুটছে।
+ </p>
+<br/>
+<p>
+ পালাচ্ছে ওরা।
+ </p>
+<br/>
+<p>
+ দীর্ঘ পথ চলায় ওরা ক্লান্ত। বিবর্ণ বিধ্বস্ত।
+ </p>
+<br/>
+<p>
+ তবু জীবনের জন্য।
+ </p>
+<br/>
+<p>
+ বাঁচার জন্যে। সুখের জন্যে।
+ </p>
+<br/>
+<p>
+ ওরা দুটছে।
+ </p>
+<br/>
+<p>
+ সহসা থমকে দাঁড়ালো ওরা।
+ </p>
+<br/>
+<p>
+ ইভা আর তপু।
+ </p>
+<br/>
+<p>
+ দেখলো। সামনে সীমাহীন সমুদ্র। আর সেই সমুদ্রের সৈকতে, অফুরন্ত ঢেউয়ের পটভূমিকায় একটি ক্রুশ আড়াআড়িভাবে পড়ে আছে। ক্রুশের পেছনে লাল টকটকে সূর্য অস্ত যাচ্ছে।
+ </p>
+<br/>
+<p>
+ কে? ক্রুশবিদ্ধ লোকটির দিকে তাকিয়ে সহসা প্রশ্ন করলো ইভা। অনেকক্ষণ কোন জবাব দিলো না তপু। সে শুধু চেয়ে চেয়ে দেখলো।
+ </p>
+<br/>
+<p>
+ তারপর বললো, যিশু। যিশু।
+ </p>
+<br/>
+<p>
+ হ্যাঁ। যিশুখৃষ্ট। ওরা গতকাল তাঁকে হত্যা করেছে।
+ </p>
+<br/>
+<p>
+ দুজোড় চোখ বিমূঢ় দৃষ্টিতে তাকিয়ে রইলো সেদিকে।
+ </p>
+<br/>
+<p>
+ যেন এক অনন্ত সময়ের সমুদ্রে হারিয়ে গেছে ওরা।
+ </p>
+<br/>
+<p>
+ সহসা আবার সেই হিংস্র বন্য ধ্বনি তাড়া করে এালো।
+ </p>
+<br/>
+<p>
+ পাগলা কুকুরগুলো খোঁজ পেয়ে গেছে ওদের।
+ </p>
+<br/>
+<p>
+ শূকর শূকরীরা চিৎকার করে আসছে পেছনে।
+ </p>
+<br/>
+<p>
+ ইভার একখানা হাত মুঠোর মধ্যে নিয়ে আবার ছুটলো তপু।
+ </p>
+<br/>
+<p>
+ প্রাণপণে ছুটছে ওরা।
+ </p>
+<br/>
+<p>
+ সহসা। কিসের সঙ্গে যেন হোঁচট খেয়ে মাটিতে পড়ে গেলো ওরা। চারপাশে অসংখ্য মৃতদেহ।
+ </p>
+<br/>
+<p>
+ ছেলে। বুড়ো। মেয়ে। শিশু।
+ </p>
+<br/>
+<p>
+ অপু আর ইভা চমকে উঠলো।
+ </p>
+<br/>
+<p>
+ দেখলো। সেই অসংখ্য মৃতদেহের মাঝখানে ওদের দুজনের মৃতদেহও পড়ে আছে।
+ </p>
+<br/>
+<p>
+ নিজের মৃত মুখের দিকে তাকিয়ে রইলো ইভা।
+ </p>
+<br/>
+<p>
+ তাকালো তপু।
+ </p>
+<br/>
+<p>
+ বুশেনওয়ান্ডে।
+ </p>
+<br/>
+<p>
+ না। অসউইজে।
+ </p>
+<br/>
+<p>
+ না। স্ট্যালিনগ্রাডে? অথবা ভিয়েতনামে?
+ </p>
+<br/>
+<p>
+ ভয়ে শিউরে উঠে তপুর বুকে মুখ লুকালো ইভা।
+ </p>
+<br/>
+<p>
+ সহসা কাছাকাছি কোথায় যেন প্রাণের অস্তিত্ব অনুভব করলে তপু। একটা বাচ্চা ছেলে কাদছে।
+ </p>
+<br/>
+<p>
+ দুজনে মাথা তুলে তাকালো ওরা। ধীরে ধীরে উঠে দাঁড়ালো। মৃতদেহগুলোর মাঝখান দিয়ে সামনে এগিয়ে গেলো ইভা আর তপু। কিছুদূর এসে দেখলো। একটি মৃত মা মাটি আঁকড়ে পড়ে আছে। তার স্তন থেকে চুইয়ে পড়া দুধে আর রক্তে মাটি ভিজে গেছে।
+ </p>
+<br/>
+<p>
+ পাশে চার পাঁচ বছরের একটি আহত ছেলে শূন্য দৃষ্টি মেলে চেয়ে আছে ওদের দিকে।
+ </p>
+<br/>
+<p>
+ আর।
+ </p>
+<br/>
+<p>
+ একটি শিশু আকাশের দিকে হাত পা ছুঁড়ে তীব্র কান্না জুড়ে দিয়েছে।
+ </p>
+<br/>
+<p>
+ মৃত মায়ের স্তনের ওপর পরনের কাপড়টা টেনে দিলো ইভা। মাটি ঢেকে দিলো।
+ </p>
+<br/>
+<p>
+ আহত ছেলেটিকে কোলে নিলো তপু।
+ </p>
+<br/>
+<p>
+ শিশুটিকে বুকে জড়িয়ে ধরলো ইভ।
+ </p>
+<br/>
+<p>
+ তারপর আবার ছুটতে লাগলো ওরা।
+ </p>
+<br/>
+<p>
+ সামনে অগুনতি লোক। বাস্তুহারাদের অফুরন্ত মিছিল।
+ </p>
+<br/>
+<p>
+ নানা বর্ণের।
+ </p>
+<br/>
+<p>
+ নানা গোত্রের।
+ </p>
+<br/>
+<p>
+ নানা ধর্মের।
+ </p>
+<br/>
+<p>
+ দীর্ঘ পথ চলায় ক্লান্ত। শীর্ণ। জীর্ণ।
+ </p>
+<br/>
+<p>
+ ক্ষতবিক্ষত অবয়ব।
+ </p>
+<br/>
+<p>
+ ওদের মাঝখানে এসে কিছুক্ষণের জন্যে হতবিহবল হয়ে গেলো ইভা আর তপু।
+ </p>
+<br/>
+<p>
+ তোমরা কোত্থেকে আসছে।
+ </p>
+<br/>
+<p>
+ ইন্দোনেশিয়া থেকে।
+ </p>
+<br/>
+<p>
+ ভিয়েতনাম থেকে।
+ </p>
+<br/>
+<p>
+ গ্রিস থেকে।
+ </p>
+<br/>
+<p>
+ সাইপ্রাস থেকে।
+ </p>
+<br/>
+<p>
+ জেরুজালেম থেকে।
+ </p>
+<br/>
+<p>
+ হিরোশিমা থেকে।
+ </p>
+<br/>
+<p>
+ কোথায় যাচ্ছে? কোথায় যাবে তোমরা?
+ </p>
+<br/>
+<p>
+ আমরা অন্ধকার থেকে আলোতে যেতে চাই।
+ </p>
+<br/>
+<p>
+ আমরা আলো চাই।
+ </p>
+<br/>
+<p>
+ তোমরা কোথায় যাচ্ছে একজন বুড়ো প্রশ্ন করলে ওদের।
+ </p>
+<br/>
+<p>
+ তপু ইতস্তত করে বললো। আমার মা বাবা ভাই বোনের কাছে।
+ </p>
+<br/>
+<p>
+ তোমার নাম? তোমার নাম কি? সহসা আরেকজন শুধালো।
+ </p>
+<br/>
+<p>
+ আমার নাম তপু।
+ </p>
+<br/>
+<p>
+ তপু। লোকটা এগিয়ে এলো সামনে। ও হ্যাঁ। তোমার মায়ের সঙ্গে আমাদের পথে দেখা হয়েছিলো, তিনি তোমার কথা জিজ্ঞেস করছিলেন আমাদের। তোমার খোঁজ জানতে চাইছিলেন।
+ </p>
+<br/>
+<p>
+ বাচ্চাটা আবার কেঁদে উঠতে ইভা তাকে শান্ত করার চেষ্টা করতে লাগলো।
+ </p>
+<br/>
+<p>
+ মিছিল এগিয়ে গেলো সামনে।
+ </p>
+<br/>
+
+
+<p>
+ বুড়ি মা আশ্রিত মানুষগুলোর জন্যে রান্নার আয়োজন করছিলেন। তেরো চৌদ্দ বছরের মেয়েটি সাহায্য করছিলো তাঁকে।
+ </p>
+<br/>
+<p>
+ বুড়ো বাবা তাঁর ঘরে একখানা জায়নামাজের উপরে বসে তছবি শুনছিলেন আনমনে।
+ </p>
+<br/>
+<p>
+ আর বক্সঘরের বাসিন্দারা ওয়োপোকার মত হাত পা গুটিয়ে ঝিমুহিল বসে বসে।
+ </p>
+<br/>
+<p>
+ এমন সময়।
+ </p>
+<br/>
+<p>
+ ঠিক এমনি সময় তপুর মৃত্যুর খবর নিয়ে এলো তিন সন্তানের একজন। সকলকে ডেকে এক ঘরে জড়ো করলো সে। তারপর ধীরে ধীরে বললো।
+ </p>
+<br/>
+<p>
+ বললো। তপু মারা গেছে। তলুকে মেরে ফেলেছে ওরা।
+ </p>
+<br/>
+<p>
+ মুহূর্তে চমকে উঠলো সবাই।
+ </p>
+<br/>
+<p>
+ বুড়ি মা, বাবা চৌদ্দ বছরের মেয়েটি আর দুই ভাই।
+ </p>
+<br/>
+<p>
+ বুকের উপরে হাত দুখানা জড়ো করে ক্ষীণ একটা আর্তনাদের ধ্বনি তুলে ধীরে ধীরে মাটিতে বসে পড়লেন বুড়ি মা।
+ </p>
+<br/>
+<p>
+ শুকনো দুচোখ ভিজে এলো।
+ </p>
+<br/>
+<p>
+ মনে হলো যেন সন্তানের মৃত্যুকে প্রত্যক্ষ করছেন তিনি।
+ </p>
+<br/>
+<p>
+ তপু মনে পড়ে আছে রাস্তার উপরে উপুড় হয়ে।
+ </p>
+<br/>
+<p>
+ তপুর মৃতদেহ একটি গাছের সঙ্গে ঝুলছে।
+ </p>
+<br/>
+<p>
+ ঘরের ভেতরে চিৎ হয়ে পড়ে আছে তপু। চারপাশে রক্তের স্রোত বইছে।
+ </p>
+<br/>
+<p>
+ তপুকে ওরা ঘরের কড়িকাঠের সঙ্গে ঝুলিয়ে মেরেছে।
+ </p>
+<br/>
+<p>
+ তপুর মৃতদেহটা ওরা কেটে টুকরো টুকরো করে ফেলেছে।
+ </p>
+<br/>
+<p>
+ তপু মনে পড়ে আছে একটা নর্দমার ভেতর।
+ </p>
+<br/>
+<p>
+ এক মুহূর্তে তপুর করুণ মৃত্যু দৃশ্যগুলো চোখের সামনে যেন দেখতে পেলো ওরা।
+ </p>
+<br/>
+<p>
+ বুড়ি মা। বাবা। তিন সন্তান আর চৌদ্দ বছরের মেয়েটি। সহসা একজন ছুটে গিয়ে ঘরের কোণে রাখা দাটা হাতে তুলে নিলো আরেক ভাই নিলো একটা ছুরি।
+ </p>
+<br/>
+<p>
+ তৃতীয় জন একটা লোহার শিক।
+ </p>
+<br/>
+<p>
+ তিন জোড়া চোখে প্রতিহিংসার আগুন জ্বলছে।
+ </p>
+<br/>
+<p>
+ দরজার দিকে এগিয়ে গেলো ওরা।
+ </p>
+<br/>
+<p>
+ সহসা পেছন থেকে দুটে এসে ওদের পথ রোধ করে দাঁড়ালেন বুড়ো বাবা। না। ওদের তোমরা হত্যা করতে পারবে না।
+ </p>
+<br/>
+<p>
+ কেন?
+ </p>
+<br/>
+<p>
+ কেন?
+ </p>
+<br/>
+<p>
+ কেন?
+ </p>
+<br/>
+<p>
+ তিন কণ্ঠ এক হয়ে প্রশ্ন করলো।
+ </p>
+<br/>
+<p>
+ ওরা তো কোন দোষ করে নি। বুড়ো বাবা জবাব দিলেন। ওরা তোমাদের আশ্রিত। ওরা অসহায়। ওদের কেন হত্যা করবে।
+ </p>
+<br/>
+<p>
+ কারণ ওরা সেই ধর্মের লোক যারা আমার ভাইকে খুন করেছে।
+ </p>
+<br/>
+<p>
+ ওদের জাত এক।
+ </p>
+<br/>
+<p>
+ ধর্ম এক।
+ </p>
+<br/>
+<p>
+ বর্ণ এক।
+ </p>
+<br/>
+<p>
+ গোষ্ঠী এক।
+ </p>
+<br/>
+<p>
+ ভাষা এক।
+ </p>
+<br/>
+<p>
+ ওদের খুন করে আমরা প্রতিশোধ নেবো।
+ </p>
+<br/>
+<p>
+ না। বুড়ো বাবা যেন সিংহের মতো গর্জন করে উঠলেন। জাত, ধর্ম, বর্ণ, গোষ্ঠী আর ভাষা এক বলে ওরা দোষী নয়। ওরা তো তপুকে খুন করে নি।
+ </p>
+<br/>
+<p>
+ ওরা করে নি, ওদের জাতভাইরা করেছে। সহসা বাঘিনীর মতো স্বামীর উপরে ঝাঁপিয়ে পড়লেন বুড়ো মা। সরে যাও সামনে থেকে। সরে যাও।
+ </p>
+<br/>
+<p>
+ বাক্সঘরের মধ্যে জানোয়ারের মতো থাকা মানুষগুলো তখন পরম নির্ভরতায় ঘুমুচ্ছে।
+ </p>
+<br/>
+<p>
+ মই বেয়ে উপরে উঠে এলো তিন ভাই।
+ </p>
+<br/>
+<p>
+ ধীরে ধীরে দরজাটা খুললো ওরা।
+ </p>
+<br/>
+<p>
+ ওদের চোখে মুখে রক্তের নেশা। মনে হলো যেন মানুষের চেহারা সরে গিয়ে কতগুলো হিংস্র বন্য পশুর মুখ ওদের কাঁধের ওপর ঝুলছে।
+ </p>
+<br/>
+<p>
+ একটা বাচ্চা ছেলে ঘুমন্তু মায়ের স্তন নিয়ে খেলা করছিলো। সহসা শব্দ করে হেসে উঠলো সে।
+ </p>
+<br/>
+<p>
+ তাঁর হাসির শব্দে চমকে উঠলো তিন তস্কর।
+ </p>
+<br/>
+<p>
+ হাত থেকে দা আর ছুরি নিচে মেঝেতে খসে পড়ার আওয়াজে বাক্সঘরের বাসিন্দারা জেগে গেলে সবাই। ওরা অবাক হয়ে খোলা দরজায় দাঁড়ানো তিন ভাই এর দিকে তাকালো।
+ </p>
+<br/>
+<p>
+ ওদের সে দৃষ্টি যেন সহ্য করতে পারলো না তিন ভাই।
+ </p>
+<br/>
+<p>
+ ধীরে ধীরে মাথা নামিয়ে নিলো।
+ </p>
+<br/>
+<p>
+ একজন বললো, ও কিছু না। তোমরা কেমন আছে দেখতে এসেছিলাম। ঘুমোও এখন। ঘুমিয়ে পড়ো।
+ </p>
+<br/>
+<p>
+ দরজাটা আবার বন্ধ করে দিলো।
+ </p>
+<br/>
+</div>
+<h2>
+ চতুর্থ
+ </h2>
+<br/>
+<h2>
+ চারপাশে ধুধু বালির চর
+ </h2>
+<hr/>
+<br/>
+
+<div>
+<p>
+ চারপাশে ধুধু বালির চর।
+ </p>
+<br/>
+<p>
+ আর আলকাতরার মতো যেন অন্ধকার।
+ </p>
+<br/>
+<p>
+ ভয়াবহ ক্লান্তির অবসাদে ভেঙ্গে পড়া তপু আর ইভার দুচোখে গভীর উৎকণ্ঠা।
+ </p>
+<br/>
+<p>
+ একটি জীবন কিছুক্ষণের মধ্যে পৃথিবীর বুক থেকে বিদায় নেবে। কুড়িয়ে পাওয়া আহত ছেলেটি একটু পরে মারা যাবে। তার চোখ জোড়া বিবর্ণ হয়ে এসেছে, শুকনো ঠোঁট জোড়া ঈষৎ নেড়ে কি যেন বলতে চাইছে সে।
+ </p>
+<br/>
+<p>
+ একটু পানি জোগাড় করতে পারে? ইভা অনুনয়ের সঙ্গে তাকালো তপুর দিকে। ওর মুখে দেব।
+ </p>
+<br/>
+<p>
+ উঠে দাঁড়ালো তপু। সমস্ত অবসাদ ঝেড়ে ফেলে দিয়ে মৃতপ্রায় ছেলেটির জন্যে পানির খোজে বেরিয়ে পড়লো সে।
+ </p>
+<br/>
+<p>
+ তপু ছুটছে।
+ </p>
+<br/>
+<p>
+ চারপাশে শুধু শুকনো বালি আর বালি।
+ </p>
+<br/>
+<p>
+ এক ফোঁটা পানির অস্তিত্ব নেই কোথাও।
+ </p>
+<br/>
+<p>
+ আরো অনেকক্ষণ পর যখন অবসন্ন দেহ আর হতাশ মন নিয়ে ফিরে এলো তপু, তখন আহত ছেলেটি মারা গেছে।
+ </p>
+<br/>
+<p>
+ তৃষ্ণার্ত ঠোঁট জোড়া তার ঈষৎ খোলা।
+ </p>
+<br/>
+<p>
+ পাশে বসে আছে ইভা।
+ </p>
+<br/>
+<p>
+ আর মাটিতে শুয়ে থাকা শিশুটি আকাশের দিকে হাত পা ছুঁড়ে খেলা করছে। মুখে তার নিষ্পাপ হাসি।
+ </p>
+<br/>
+<p>
+ ইভা কাঁদছে। দুগণ্ড বেয়ে ফোঁটা ফোঁটা পানি ঝরছে তার।
+ </p>
+<br/>
+<p>
+ তপু কিছু বললো না। ওর মাথার উপরে নীরবে একখানা হাত রাখলো শুধু।
+ </p>
+<br/>
+<p>
+ তারপর।
+ </p>
+<br/>
+<p>
+ তারও অনেক অনেক পরে আহত ছেলেটির শেষ কৃত্যের জন্যে একটা কবর খোঁড়ার চেষ্টা করলো ওরা।
+ </p>
+<br/>
+<p>
+ মাটি এখন মনে হলো পাথরের মতো শক্ত।
+ </p>
+<br/>
+<p>
+ ছোট্ট একটা কবর খুঁড়তে গিয়ে রীতিমত হাঁপিয়ে উঠলো দুজনে। কিছু মাটি তোলার পর অবাক হয়ে দেখলো চারপাশ থেকে স্রোতের মতো পানি এসে কবরটা ভরে যাচ্ছে।
+ </p>
+<br/>
+<p>
+ দুহাতে পানি ফেলে দিয়ে কবরটাকে শুকোবার চেষ্টা করলো তপু, পারলো না।
+ </p>
+<br/>
+<p>
+ অফুরন্ত পানি শুধু বেড়েই চলেছে।
+ </p>
+<br/>
+<p>
+ ধীরে ধীরে সেই পানির মধ্যে মৃতদেহটাকে নামিয়ে দিলো ওরা। তারপর বাচ্চাটাকে বুকে তুলে নিয়ে আবার অন্ধকারের মধ্যে পা বাড়ালো দুজনে।
+ </p>
+<br/>
+<p>
+ ইভা মৃদুস্বরে বললো, আমি আর পারছি না।
+ </p>
+<br/>
+<p>
+ তপু বললো। আর একটু পথ। এই পথটুকু পেরিয়ে গেলে আর কোন ভয় নেই ইভা। আমরা তখন নিরাপদ সীমানার মধ্যে গিয়ে পৌঁছবো।
+ </p>
+<br/>
+
+
+<p>
+ সামনে একটা জলে ভরা নাতিদীর্ঘ ঝিল।
+ </p>
+<br/>
+<p>
+ দুপাশ তার মখমলের মতো নরম সবুজ ঘাসে ভরা।
+ </p>
+<br/>
+<p>
+ এখানে সেখানে দুএকটা গাছ। ইতস্তত ছড়ানো।
+ </p>
+<br/>
+<p>
+ ঘাসের ওপর এসে বসলো ওরা।
+ </p>
+<br/>
+<p>
+ তপু আর ইভা।
+ </p>
+<br/>
+<p>
+ বাচ্চাটা ঘুমিয়ে পড়েছে।
+ </p>
+<br/>
+<p>
+ তাকে বুকের মধ্যে নিয়ে ধীরে ধীরে শুয়ে পড়লো ইভা।
+ </p>
+<br/>
+<p>
+ জানো, ভীষণ ক্লান্তি লাগছে।
+ </p>
+<br/>
+<p>
+ তপুও শুয়ে পড়লো।
+ </p>
+<br/>
+<p>
+ উপরে বিরাট বিশাল সীমাহীন আকাশ।
+ </p>
+<br/>
+<p>
+ আকাশের দিকে চেয়ে চেয়ে তপু বললো, এখন আর আমাদের কোন ভয় নেই ইভা।
+ </p>
+<br/>
+<p>
+ ইভা ওর দিকে চেয়ে মিষ্টি একটু হাসলো। আমি এখন কি ভাবছি বলতে?
+ </p>
+<br/>
+<p>
+ কি ভাবছে?
+ </p>
+<br/>
+<p>
+ বিয়ের পরে আমাদের জীবনটা কেমন হবে, তাই। আমাকে হেড়ে কিন্তু তুমি কোথাও যেতে পারবে না। যেখানে যাবে আমাকেও সঙ্গে নিয়ে যাবে। সারাক্ষণ তোমার পাশে পাশে থাকবো।
+ </p>
+<br/>
+<p>
+ কি মজা হবে তাই না?
+ </p>
+<br/>
+<p>
+ আর আমি কি ভাবছি জানো?
+ </p>
+<br/>
+<p>
+ কি?
+ </p>
+<br/>
+<p>
+ আমি যখন সারাদিনের কাজ শেষ করে বাড়ি ফিরবো, তখন দরজায় দাঁড়িয়ে চিৎকার করে তোমার নাম ধরে ডাকব। আশে পাশের বাড়ির লোকগুলো সবাই চমকে তাকাবে সে দিকে। তুমি দরজা খুলেই আমার গলা জড়িয়ে ধরে বলবে, এতে দেরি হলো যে
+ </p>
+<br/>
+<p>
+ আমি বলবো। কি বলবো বল তো?
+ </p>
+<br/>
+<p>
+ তুমি বলবে অনেক কাজ ছিলো তাই।
+ </p>
+<br/>
+<p>
+ না না। আমি বলবো। কাজের মাঝখানে তোমাকে নিয়ে একটা মিষ্টি কবিতা লিখেছি, তাই।
+ </p>
+<br/>
+<p>
+ তুমি শব্দ করে হেসে উঠে বলবে। কই দেখি, দেখি। দেখাও না।
+ </p>
+<br/>
+<p>
+ না, এখন না।
+ </p>
+<br/>
+<p>
+ কখন?
+ </p>
+<br/>
+<p>
+ যখন পাড়া-প্রতিবেশীরা সবাই ঘুমিয়ে পড়বে। এই পৃথিবীর একটি মানুষও জেগে থাকবে না। তুমি আমি পাশাপাশি বসবো। দুজনে দুজনকে দেখবো। তখন শোনাববা তোমাকে।
+ </p>
+<br/>
+<p>
+ কি সুন্দর তাই না। ইভা ধীরে ধীরে বললো।
+ </p>
+<br/>
+<p>
+ বাচ্চা ছেলেটা ইভার বুকে মুখ গুঁজে নীরবে ঘুমুচ্ছে।
+ </p>
+<br/>
+<p>
+ তপু আর ইভার চোখেও ঘুম নেমে এলো একটু পরে। বহুদিন পরে ঘুমুছে ওরা।
+ </p>
+<br/>
+<p>
+ শহরটা এখনো মৃত।
+ </p>
+<br/>
+<p>
+ ক্ষতবিক্ষত।
+ </p>
+<br/>
+<p>
+ এখানে সেখানে এখনো অনেক মৃতদেহ ছড়িয়ে আছে।
+ </p>
+<br/>
+<p>
+ কুকুরের।
+ </p>
+<br/>
+<p>
+ বিড়ালের।
+ </p>
+<br/>
+<p>
+ মানুষের।
+ </p>
+<br/>
+<p>
+ অবাক হয়ে চারপাশে তাকালো তপু আর ইভা।
+ </p>
+<br/>
+<p>
+ জনশূন্য পথ দিয়ে চলতে গিয়ে ক্ষণিকের ভুলে যাওয়া আতঙ্কটা যেন ধীরে ধীরে আবার উঁকি দিতে লাগলো ওদের মনের মধ্যে। তপুর দিকে তাকালে ইভা।
+ </p>
+<br/>
+<p>
+ আমার ভয় করছে।
+ </p>
+<br/>
+<p>
+ না। না। ভয়ের কোনই কারণ নেই ইভা। আমরা এসে পড়েছি।
+ </p>
+<br/>
+<p>
+ একটা বাড়ির সামনে এসে ওরা দাঁড়ালো।
+ </p>
+<br/>
+<p>
+ আমাদের বাড়ি। তপু আস্তে করে বললো।
+ </p>
+<br/>
+<p>
+ ইভা মুখ তুলে বাড়িটাকে এক পলক নিরিখ করলো।
+ </p>
+<br/>
+<p>
+ বার কয়েক কড়া নাড়লো তপু।
+ </p>
+<br/>
+<p>
+ কোন সাড়াশব্দ নেই।
+ </p>
+<br/>
+<p>
+ আবার কড়া নাড়লো।
+ </p>
+<br/>
+<p>
+ আবার।
+ </p>
+<br/>
+<p>
+ সহসা শব্দ করে দরজাটা খুলে গেলো।
+ </p>
+<br/>
+<p>
+ তপু দেখলো। তার মা। বুড়ি মা।
+ </p>
+<br/>
+<p>
+ তিন ভাই।
+ </p>
+<br/>
+<p>
+ আর চৌদ্দ বছরের সেই মেয়েটি।
+ </p>
+<br/>
+<p>
+ তপুকে দেখে চমকে উঠলো সবাই।
+ </p>
+<br/>
+<p>
+ মা। বাবা। ভাই। বোন।
+ </p>
+<br/>
+<p>
+ ছুটে এসে জড়িয়ে ধরলেন মা। তপু! তপু! তুই বেঁচে আছিস?
+ </p>
+<br/>
+<p>
+ না। না। পরক্ষণেই প্রচণ্ড শব্দে আর্তনাদ করে উঠলো ইভা।
+ </p>
+<br/>
+<p>
+ তপু চমকে তাকিয়ে দেখলো।
+ </p>
+<br/>
+<p>
+ বুড়ি মায়ের হাতজোড়া রক্তাক্ত। যেন এই একটু আগে, এক সমুদ্র রক্তের মধ্যে হাতজোড়া ডুবিয়ে এসেছেন তিনি।
+ </p>
+<br/>
+<p>
+ বাবার হাতে একটা চকচকে দা। দা-এর ডগা থেকে তাজা রক্ত ঝরে ঝরে পড়ছে। ভাইদের হাতে লোহার শিক। তাজা খুনে ভরা।
+ </p>
+<br/>
+<p>
+ না। না। মায়ের আলিঙ্গন থেকে ছিটকে বেরিয়ে এলো তপু।
+ </p>
+<br/>
+<p>
+ ইভা ততক্ষণে বাচ্চা ছেলেটাকে বুকের মধ্যে জড়িয়ে ধরে আবার ছুটতে আরম্ভ করেছে।
+ </p>
+<br/>
+<p>
+ তীব্রবেগে তাকে অনুসরণ করলো তপু।
+ </p>
+<br/>
+<p>
+ না। না। না।
+ </p>
+<br/>
+<p>
+ শব্দের রাক্ষসগুলো আবার তাড়া করছে পেছন থেকে।
+ </p>
+<br/>
+<p>
+ পাগলা কুকুর নয়।
+ </p>
+<br/>
+<p>
+ শূকর শূকরী নয়।
+ </p>
+<br/>
+<p>
+ কতগুলো মানুষ।
+ </p>
+<br/>
+<p>
+ কতগুলো চেনা মুখ।
+ </p>
+<br/>
+<p>
+ মায়ের। বাবার। ভাইয়ের। বোনের।
+ </p>
+<br/>
+<p>
+ পেছন থেকে ছুটে আসছে। ছুটে আসছে ওদের হত্যা করার জন্যে। প্রাণপণে ছুটছে তপু আর ইভা।
+ </p>
+<br/>
+<p>
+ বাচ্চা ছেলেটা বুকের মধ্যে কাঁদতে শুরু করেছে। তার তীব্র কান্নার শব্দে মনে হলো যেন মৃত শহরটা থরথর করে কাঁপছে। ওকে আরো জোরে বুকের মধ্যে চেপে ধরলো ইভা।
+ </p>
+<br/>
+<p>
+ আমি আর পারি না। আর পারি না। গভীর যন্ত্রণায় পাগলের মতো চিৎকার করে উঠলো ইভা।
+ </p>
+<br/>
+<p>
+ তপু এসে হাত ধরলো ওর।
+ </p>
+<br/>
+<p>
+ ওরা ছুটছে।
+ </p>
+<br/>
+<p>
+ শব্দের রাক্ষসগুলো তাড়া করছে পেছন থেকে।
+ </p>
+<br/>
+<p>
+ ওরা ছুটছে।
+ </p>
+<br/>
+<p>
+ তারপর।
+ </p>
+<br/>
+
+
+<p>
+ অনেক অনেক অন্ধকার পথের শেষে। সহসা নিজেদের সেই অফুরন্ত মিছিলের মাঝখানে আবিষ্কার করলো ওরা।
+ </p>
+<br/>
+<p>
+ তপু আর ইভা।
+ </p>
+<br/>
+<p>
+ একটা সীমাহীন সমুদ্রের পাড় ধরে মানুষগুলো এগিয়ে চলেছে সামনে।
+ </p>
+<br/>
+<p>
+ ছেলে। বুড়ো। মেয়ে। শিশু। যুবক। যুবতী।
+ </p>
+<br/>
+<p>
+ দীর্ঘ পথ চলায় ক্লান্ত অবসন্ন।
+ </p>
+<br/>
+<p>
+ জীর্ণ। শীর্ণ। বিবর্ণ।
+ </p>
+<br/>
+<p>
+ ক্ষতবিক্ষত দেই। আর অবয়ব।
+ </p>
+<br/>
+<p>
+ আমরা কোথায়?
+ </p>
+<br/>
+<p>
+ ভিয়েতনামে না ইন্দোনেশিয়ায়।
+ </p>
+<br/>
+<p>
+ জেরুজালেমে না সাইপ্রাসে।
+ </p>
+<br/>
+<p>
+ ভারতে না পাকিস্তানে।
+ </p>
+<br/>
+<p>
+ কোথায় আমরা?
+ </p>
+<br/>
+<p>
+ জানো, ওরা আমার ছেলেটাকে হত্যা করেছে হিরোশিমায়।
+ </p>
+<br/>
+<p>
+ ওরা আমার মাকে খুন করেছে জেরুজালেমের রাস্তায়।
+ </p>
+<br/>
+<p>
+ আমার বোনটাকে ধর্ষণ করে মেরেছে ওরা আফ্রিকাতে।
+ </p>
+<br/>
+<p>
+ আমার বাবাকে মেরেছে বুখেনওয়াল্ডে গুলি করে।
+ </p>
+<br/>
+<p>
+ আর আমার ভাই। তাকে ওরা ফাঁসে ঝুলিয়ে হত্যা করেছে। কারণ সে মানুষকে ভীষণ ভালোবাসতো।
+ </p>
+<br/>
+<p>
+ বলতে গিয়ে দুচোখের কোণে দুফোঁটা অঞ মুক্তোর মত চিকচিক করে উঠলো বুড়োটার।
+ </p>
+<br/>
+<p>
+ ওর পাশে এসে দাঁড়ালো অপু আর ইভা।
+ </p>
+<br/>
+<p>
+ তারপর সমুদ্রের পাড় ধরে ধীরে ধীরে এগিয়ে এলো ওরা।
+ </p>
+<br/>
+<p>
+ সামনে।
+ </p>
+<br/>
+</div>
+
+            </div>
+
+        </div>
+    </div>
+
+        <!-- TOC nav for mobile -->
+        <nav id="toc-nav-desktop" class="hidden"></nav>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const progressBar  = document.getElementById('read-progress-bar');
+    const progressPct  = document.getElementById('progress-pct');
+    const tocDesktop   = document.getElementById('toc-nav-desktop');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+    const progressRing = document.getElementById('progress-ring-circle');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = p.currentTheme;
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    function toBN(n) {
+        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
+    }
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        if (progressPct) progressPct.textContent = toBN(pct) + '%';
+        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
+        if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
+        if (rfPage) rfPage.textContent = toBN(pct) + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+
+    // ── Footer: chapter label + seek slider ──
+    const rfSlider  = document.getElementById('rf-slider');
+    const rfPage    = document.getElementById('rf-page');
+    const rfChapter = document.getElementById('rf-chapter');
+    let rfSliderDragging = false;
+    if (rfSlider) {
+        rfSlider.addEventListener('input', () => {
+            rfSliderDragging = true;
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
+        });
+        rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
+    }
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav, isMobile) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            if (isMobile) {
+                a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+                a.addEventListener('click', closeDrawer);
+            } else {
+                a.className = 'toc-link ' + (isH1 ? 'toc-link-h1' : 'toc-link-h2');
+            }
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocDesktop, false);
+    buildToc(tocMobile, true);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+        if (rfChapter && headings[current]) rfChapter.textContent = headings[current].textContent.trim();
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme only; drawer/settings UI stays a fixed dark sheet)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+        black: { bg: '#000',     text: '#d1d5db' },
+        sepia: { bg: '#f5efe6',  text: '#3b2f1e' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? '#c0392b' : 'transparent';
+            });
+            savePrefs();
+
+            // Ad bar theme sync
+            window._pathakAdBarTheme && window._pathakAdBarTheme(m);
+        });
+    });
+
+    // ── Ad bar theme sync function (exposed globally) ──
+    window._pathakAdBarTheme = function(m) {
+        const adBar     = document.getElementById('ad-bar');
+        const adContent = document.getElementById('ad-bar-content');
+        const adDatetime= document.getElementById('ad-bar-datetime');
+        const adNotice  = document.getElementById('ad-bar-notice');
+        if (adBar)      adBar.style.background     = m.bg;
+        if (adContent)  adContent.style.background = m.bg;
+        if (adDatetime) adDatetime.style.color      = m.text;
+        if (adNotice)   adNotice.style.color        = m.text;
+    };
+
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+        // Ad bar HTML is below — expose theme for ad bar script to pick up
+        window._pathakCurrentTheme = currentTheme;
+        window._pathakThemeMap = themeMap;
+    })();
+})();
+</script>
+
+
+</body>
+</html>

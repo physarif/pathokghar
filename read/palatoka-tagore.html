@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/palatoka-tagore.html">
+    <title>পলাতকা - পাঠক ঘর</title>
+    <meta name="description" content="রবীন্দ্রনাথ ঠাকুরের কাব্যগ্রন্থ **'পলাতকা'** (প্রকাশকাল ১৯১৮) বাংলা সাহিত্যের এক অসাধারণ সৃষ্টি। এই কাব্যগ্রন্থের কবিতাগুলো প্রথাগত কাব্যরীতি থেকে কিছুটা ভিন্ন ">
+    <meta property="og:title" content="পলাতকা - পাঠক ঘর">
+    <meta property="og:description" content="রবীন্দ্রনাথ ঠাকুরের কাব্যগ্রন্থ **'পলাতকা'** (প্রকাশকাল ১৯১৮) বাংলা সাহিত্যের এক অসাধারণ সৃষ্টি। এই কাব্যগ্রন্থের কবিতাগুলো প্রথাগত কাব্যরীতি থেকে কিছুটা ভিন্ন ">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e', black:'#000' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', sepia:'#3b2f1e', dark:'#e5e7eb', black:'#d1d5db' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .dark body { background: #1a1a1b; color: #e5e7eb; }
+
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.7rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+        .dark #book-content { color: #e5e7eb; }
+    
+    /* ── Book read header hero ── */
+    .book-read-header {
+        margin-bottom: 1.5rem;
+    }
+    .book-read-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.65rem;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 1.4rem 1.25rem 1.2rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .dark .book-read-box {
+        background: #2a2a2b;
+        border-color: #3a3a3b;
+    }
+    .book-read-cover {
+        width: 100px;
+        height: 136px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        object-fit: cover;
+        background: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .book-read-cover svg { opacity: 0.35; }
+    .book-read-title-link {
+        text-decoration: none;
+        display: block;
+    }
+    .book-read-title-link:hover .book-read-title { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-title-link:active .book-read-title { opacity: 0.7; }
+    .book-read-title {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #1a1a1b;
+        line-height: 1.4;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+    .dark .book-read-title { color: #f3f4f6; }
+    .book-read-author-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+    .book-read-author-link:hover .book-read-author { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-author-link:active .book-read-author { opacity: 0.6; }
+    .book-read-author {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #c0392b;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+</style>
+</head>
+<body>
+
+<style>
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    #read-progress-bar {
+        position: fixed;
+        top: 0; left: 0;
+        height: 2px;
+        width: 0%;
+        background: #c0392b;
+        z-index: 1000;
+        transition: width 0.1s linear;
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h1 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #9ca3af;
+        text-align: center;
+        margin: 0 0 0.25rem;
+        letter-spacing: 0.04em;
+    }
+    #book-content h1::after {
+        content: '';
+        display: block;
+        width: 2.8em;
+        height: 3px;
+        background: #c0392b;
+        border-radius: 2px;
+        margin: 0.4rem auto 0;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #7a2115;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid #d9a5a0;
+        border-bottom: 1px solid #d9a5a0;
+    }
+    /* Night mode heading adjust */
+    body.theme-dark  #book-content h1,
+    body.theme-black #book-content h1 { color: #6b7280; }
+    body.theme-dark  #book-content h2,
+    body.theme-black #book-content h2 { color: #f2938a; border-color: rgba(169,50,38,0.4); }
+    body.theme-dark  #book-content h1::after { background: #a93226; }
+    body.theme-black #book-content h1::after { background: #922b21; }
+    body.theme-sepia #book-content h1 { color: #a08060; }
+    body.theme-sepia #book-content h2 { color: #7a2115; border-color: rgba(160,64,48,0.35); }
+    body.theme-sepia #book-content h1::after { background: #a04030; }
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: rgba(192,57,43,0.05);
+        border: 1px solid rgba(192,57,43,0.15);
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p,
+    body.theme-black #book-content p {
+        background: rgba(169,50,38,0.1);
+        border-color: rgba(169,50,38,0.25);
+    }
+    body.theme-sepia #book-content p {
+        background: rgba(160,64,48,0.08);
+        border-color: rgba(160,64,48,0.2);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #c0392b;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #c0392b;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(192,57,43,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    .dark #book-content blockquote {
+        background: rgba(192,57,43,0.08);
+        color: #bbb;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #c0392b;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    .dark #book-content td { border-color: #3a3a3b; }
+    .dark #book-content tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(192,57,43,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: #e57373;
+        font-weight: 600;
+        background: rgba(192,57,43,0.18);
+        border-radius: 0.375rem;
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: #fff;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transition: color 0.15s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.6);
+    }
+    #toc-nav-desktop .toc-link {
+        display: block;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.375rem;
+        color: #4b5563;
+        text-decoration: none;
+        transition: background-color 0.15s, color 0.15s;
+    }
+    .dark #toc-nav-desktop .toc-link { color: #d1d5db; }
+    #toc-nav-desktop .toc-link:hover { background: #f3f4f6; }
+    .dark #toc-nav-desktop .toc-link:hover { background: #1f2937; }
+    #toc-nav-desktop .toc-link-h1 {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: #1f2937;
+    }
+    .dark #toc-nav-desktop .toc-link-h1 { color: #f3f4f6; }
+    #toc-nav-desktop .toc-link-h2 {
+        padding-left: 1.25rem;
+        font-size: 0.6875rem;
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.6rem 0.5rem 0.6rem 0.35rem;
+        background: #1a1a1b;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-back {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.25rem;
+        text-decoration: none;
+        transition: background 0.15s;
+    }
+    #rh-back:active { background: rgba(255,255,255,0.12); }
+    #rh-title {
+        flex: 1;
+        min-width: 0;
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: transparent;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+    #reader-header .rh-actions button:active { background: rgba(255,255,255,0.12); }
+    body.theme-dark  #reader-header,
+    body.theme-black #reader-header,
+    body.theme-sepia #reader-header { background: #141414; }
+
+    /* ── Reader footer: chapter label + page/percent + seek slider ── */
+    #reader-footer {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 55;
+        background: #1a1a1b;
+        padding: 0.5rem 1rem 0.65rem;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-footer { transform: translateY(100%); }
+    body.theme-dark  #reader-footer,
+    body.theme-black #reader-footer,
+    body.theme-sepia #reader-footer { background: #141414; }
+    #rf-labels {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.7);
+        margin-bottom: 0.35rem;
+    }
+    #rf-chapter {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #rf-page { flex-shrink: 0; }
+    #rf-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        background: rgba(255,255,255,0.22);
+        outline: none;
+        margin: 0;
+        cursor: pointer;
+    }
+    #rf-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        margin-top: -6px;
+    }
+    #rf-slider::-moz-range-thumb {
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        border: none;
+    }
+    #rf-slider::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; }
+    #rf-slider::-moz-range-track { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.22); }
+
+    /* Content needs bottom clearance so the fixed footer never covers text */
+    #read-main-content { padding-bottom: 4.5rem; }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: #303134;
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.55);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: #e57373;
+        border-bottom-color: #c0392b;
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ── Breadcrumb dark mode ── */
+    .read-breadcrumb-full { margin-left: -1.25rem; margin-right: -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
+    .dark #bc-category { color: #9ca3af !important; }
+    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
+    .dark #read-breadcrumb li > span { color: #4b5563; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #e57373;
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: 34px; height: 34px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        flex-shrink: 0;
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+    }
+    .theme-circle.active { border-color: #c0392b; }
+    .theme-circle svg { display: none; }
+    .theme-circle.active svg { display: block; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: #fff; }
+    .settings-row-val { font-size: 0.74rem; color: rgba(255,255,255,0.5); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: rgba(192,57,43,0.35); border-color: #c0392b; color: #fff; }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+</style>
+
+<!-- Progress bar (kept for internal % calc, hidden — footer slider replaces it visually) -->
+<div id="read-progress-bar" style="display:none;"></div>
+
+<!-- ══ Reader header (Lithium-style app bar) ══ -->
+<header id="reader-header">
+    <a href="/book/palatoka-tagore.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <h1 id="rh-title">পলাতকা</h1>
+    <div class="rh-actions">
+        <button id="rh-menu-btn" aria-label="মেনু" title="মেনু"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+    </div>
+</header>
+
+<!-- ══ Reader footer (chapter + page/percent + seek slider) ══ -->
+<footer id="reader-footer">
+    <div id="rf-labels">
+        <span id="rf-chapter"></span>
+        <span id="rf-page">০%</span>
+    </div>
+    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
+</footer>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                    <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
+                    <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
+                    <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn active" id="align-justify" title="জাস্টিফাই" style="background:#fde8e6;border-color:#c0392b;color:#c0392b;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <section><div>
+
+ <div>
+<h2>পলাতকা
+</h2>
+</div>
+<div><div>
+<p><span>ঐ যেখানে শিরীষ গাছে</span><br/><span>ঝুরু-ঝুরু কচি পাতার নাচে</span><br/><span>ঘাসের 'পরে ছায়াখানি কাঁপায় থরথর</span><br/><span>ঝরা ফুলের গন্ধে ভরভর—</span><br/><span>ঐখানে মোর পোষা হরিণ চরত আপন-মনে</span><br/><span>হেনা-বেড়ার কোণে</span><br/><span>শীতের রোদে সারা সকাল বেলা।</span><br/><span>তারি সঙ্গে করত খেলা</span><br/><span>পাহাড়-থেকে-আনা</span><br/><span>ঘনরাঙা-রোঁয়ায়-ঢাকা একটি কুকুর-ছানা।</span><br/><span>যেন তারা দুই বিদেশের দুটি ছেলে</span><br/>
+মিলেছে এক পাঠশালাতে, এক সাথে তাই বেড়ায় হেসে-খেলে।<br/><span>হাটের দিনে পথের কত লোকে</span><br/><span>বেড়ার কাছে দাঁড়িয়ে যেত, দেখত অবাক চোখে।</span>
+</p>
+</div> <div>
+<p><span>ফাগুন মাসে জাগল পাগল দখিন-হাওয়া,</span><br/>
+শিউরে ওঠে আকাশ যেন কোন্‌-প্রেমিকের-রঙিন-চিঠি-পাওয়া।<br/><span>শালের বনে ফুলের মাতন হল শুরু,</span><br/><span>পাতায় পাতায় ঘাসে ঘাসে লাগল কাঁপন দুরুদুরু।</span><br/><span>হরিণ যে কার উদাস-করা বাণী</span><br/><span>হঠাৎ কখন শুনতে পেলে আমরা তা কি জানি!</span><br/><span>তাই যে কালো চোখের কোণে</span><br/><span>চাউনি তাহার উতল হল অকারণে;</span><br/><span>তাই সে থেকে থেকে</span><br/><span>হঠাৎ আপন ছায়া দেখে</span><br/><span>চমকে দাঁড়ায় বেঁকে।</span><br/><span>একদা এক বিকাল বেলায়</span><br/>
+আমলকীবন অধীর যখন ঝিকিমিকি আলোর খেলায়,<br/><span>তপ্ত হাওয়া ব্যথিয়ে ওঠে আমের বোলের বাসে,</span><br/>
+মাঠের পরে মাঠ হয়ে পার ছুটল হরিণ নিরুদ্দেশের আশে—<br/><span>সম্মুখে তার জীবন মরণ সকল একাকার,</span><br/><span>অজানিতের ভয় কিছু নেই আর।</span><br/><span>ভেবেছিলেম, আধার হলে পরে</span><br/><span>ফিরবে ঘরে</span>
+</p>
+</div> <div>
+<p><span>চেনা হাতের আদর পাবার তরে।</span><br/><span>কুকুরছানা বারে বারে এসে</span><br/><span>কাছে ঘেঁষে ঘেঁষে</span><br/><span>কেঁদে-কেঁদে চোখের চাওয়ায় শুধায় জনে জনে,—</span><br/>
+‘কোথায় গেল, কোথায় গেল, কেন তারে না দেখি অঙ্গনে?’<br/><span>আহার ত্যেজে বেড়ায় সে যে, এল না তার সাথি।</span><br/><span>আঁধার হল, জ্বলল ঘরে বাতি;</span><br/><span>উঠল তারা; মাঠে মাঠে নামল নীরব রাতি।</span><br/>
+আতুর চোখের প্রশ্ন নিয়ে ফেরে কুকুর বাইরে ঘরে,—<br/><span>‘নাই সে কেন, যায় কেন সে, কাহার তরে?’</span><br/>
+কেন যে তা সে’ই কি জানে? গেছে সে যার ডাকে<br/><span>কোনো কালে দেখে নাই যে তাকে।</span><br/>
+আকাশ হতে, আলোক হতে, নতুন পাতার কাঁচা সবুজ হতে<br/><span>দিশাহারা দখিন-হাওয়ার স্রোতে</span><br/><span>রক্তে তাহার কেমন এলোমেলো</span><br/><span>কিসের খবর এল!</span><br/>
+বুকে যে তার বাজল বাঁশি বহু যুগের ফাগুন-দিনের সুরে—<br/><span>কোথায় অনেক দূরে</span><br/><span>রয়েছে তার আপন চেয়ে আরো আপন জন</span><br/><span>তারেই অন্বেষণ</span>
+</p>
+</div> <div>
+<p><span>জন্ম হতে আছে যেন মর্মে তারি লেগে,</span><br/><span>আছে যেন ছুটে চলার বেগে,</span><br/><span>আছে যেন চলচপল চোখের কোণে জেগে।</span><br/><span>কোনো কালে চেনে নাই সে যারে</span><br/>
+সেই তো তাহার চেনাশোনার খেলাধুলা ঘোচায় একেবারে।<br/><span>আঁধার তারে ডাক দিয়েছে কেঁদে,</span><br/><span>আলোক তারে রাখল না আর বেঁধে।</span>
+</p>
+</div>
+</div>
+</div></section>
+<section><div>
+
+<div>
+<h2><span>চিরদিনের দাগা</span>
+</h2>
+</div>
+<div><div>
+<p><span>ও পার হতে এ পার পানে খেয়ানৌকো বেয়ে</span><br/><span>ভাগ্য-নেয়ে</span><br/><span>দলে দলে আনছে ছেলে মেয়ে।</span><br/><span>সবাই সমান তারা</span><br/><span>এক সাজিতে ভ’রে আনা চাঁপা ফুলের পারা।</span><br/><span>তাহার পরে অন্ধকারে</span><br/><span>কোন্‌ ঘরে সে পৌঁছিয়ে দেয় কারে!</span><br/>
+তখন তাদের আরম্ভ হয় নব নব কাহিনীজাল বোনা—<br/><span>দুঃখে সুখে দিন মুহূর্ত গোনা।</span><br/><span>একে একে তিনটি মেয়ের পরে</span><br/><span>শৈল যখন জন্মালো তার বাপের ঘরে</span><br/>
+জননী তার লজ্জা পেল; ভাবল কোথা থেকে<br/><span>অবাঞ্ছিত কাঙালটারে আনল ঘরে ডেকে।</span><br/><span>বৃষ্টিধারা চাইছে যখন চাষি</span><br/><span>নামল যেন শিলাবৃষ্টিরাশি।</span><br/>
+বিনা দোষের অপরাধে শৈলবালার জীবন হল শুরু,<br/><span>পদে পদে অপরাধের বোঝা হল গুরু।</span>
+</p>
+</div> <div>
+<p><span>কারণ বিনা যে অনাদর আপ্‌নি ওঠে জেগে</span><br/><span>বেড়েই চলে সে যে আপন বেগে।</span><br/><span>মা তারে কয় ‘পোড়ারমুখি’, শাসন করে বাপ—</span><br/><span>এ কোন্‌ অভিশাপ</span><br/><span>হতভাগী আনলি বয়ে—শুধু কেবল বেঁচে-থাকার পাপ।</span><br/><span>যতই তারা দিত ওরে গালি</span><br/>
+নির্মলারে দেখত মলিন মাখিয়ে তারে আপন কথার কালী।<br/><span>নিজের মনের বিকারটিরেই শৈল ওরা কয়,</span><br/><span>ওদের শৈল বিধির শৈল নয়।</span><br/><span>আমি বৃদ্ধ ছিনু ওদের প্রতিবেশী।</span><br/>
+পাড়ায় কেবল আমার সঙ্গে দুষ্টু মেয়ের ছিল মেশামেশি!<br/><span>‘দাদা’ ব’লে</span><br/><span>গলা আমার জড়িয়ে ধ’রে বসত আমার কোলে।</span><br/><span>নাম শুধালে শৈল আমায় বলত হাসি হাসি,—</span><br/><span>‘আমার নাম যে দুষ্টু, সর্বনাশী!’</span><br/><span>যখন তারে শুধাতেম তার মুখটি তুলে ধ’রে</span><br/><span>‘আমি কে তোর বল্‌ দেখি ভাই, মোরে’</span><br/><span>বলত, ‘দাদা, তুই যে আমার বর!’—</span><br/><span>এমনি করে হাসাহাসি হ’ত পরস্পর।</span><br/>
+বিয়ের বয়স হল, তবু কোনোমতে হয় না বিয়ে তার—
+</p>
+</div> <div>
+<p><span>তাহে বাড়ায় অপরাধের ভার।</span><br/><span>অবশেষে বর্মা থেকে পাত্র গেল জুটি।</span><br/><span>অল্পদিনের ছুটি;</span><br/><span>শুভকর্ম সেরে তাড়াতাড়ি</span><br/><span>মেয়েটিরে সঙ্গে নিয়ে রেঙ্গুনে তার দিতে হবে পাড়ি।</span><br/><span>শৈলকে যেই বলতে গেলেম হেসে</span><br/>
+‘বুড়ো বরকে হেলা করে নবীনকে ভাই, বরণ করলি শেষে?’<br/><span>অমনি যে তার দু চোখ গেল ভেসে</span><br/><span>ঝর্‌ঝরিয়ে চোখের জলে। আমি বলি, ‘ছি ছি,</span><br/><span>কেন শৈল, কাঁদিস মিছিমিছি—</span><br/><span>করিস অমঙ্গল!’</span><br/><span>বলতে গিয়ে চক্ষে আমার রাখতে নারি জল।</span><br/><span>বাজল বিয়ের বাঁশি,</span><br/>
+অনাদরের ঘর ছেড়ে হায় বিদায় হল দুষ্টু সর্বনাশী।<br/><span>যাবার বেলা বলে গেল, ‘দাদা, তোমার রইল নিমন্ত্রণ—</span><br/>
+তিন-সত্যি—যেয়ো যেয়ো!’ ‘যাব, যাব, যাব বৈকি বোন!’<br/><span>আর কিছু না ব’লে</span><br/><span>আশীর্বাদের মোতির মালা পরিয়ে দিলেম গলে।</span><br/><span>চতুর্থ দিন প্রাতে</span><br/><span>খবর এল, ইরাবতীর সাগর-মোহানাতে</span>
+</p>
+</div> <div>
+<p><span>ওদের জাহাজ ডুবে গেছে কিসের ধাক্কা খেয়ে।</span><br/><span>আবার ভাগ্য-নেয়ে</span><br/>
+শৈলরে তার সঙ্গে নিয়ে কোন্‌ পারে হায় গেল নৌকো বেয়ে!<br/><span>কেন এল, কেনই গেল, কেই বা তাহা জানে।</span><br/><span>নিমন্ত্রণটি রেখে গেল শুধু আমার প্রাণে।</span><br/><span>যাব, যাব, যাব দিদি, অধিক দেরি নাই—</span><br/>
+তিন-সত্যি আছে তোমার, সে কথা কি ভুলতে পারি ভাই?<br/><span>আরো একটি চিহ্ন তাহার রেখে গেছে ঘরে</span><br/><span>খবর পেলেম পরে।</span><br/><span>গালিয়ে বুকের ব্যথা</span><br/><span>লিখে রাখি এইখানে সেই কথা।—</span><br/>
+দিনের পরে দিন চলে যায়, ওদের বাড়ি যাই নে আমি আর,<br/><span>নিয়ে আপন একলা প্রাণের ভার</span><br/><span>আপন-মনে</span><br/><span>থাকি আপন কোণে—</span><br/><span>হেনকালে একদা মোর ঘরে</span><br/><span>সন্ধ্যাবেলায় বাপ এল তার কিসের তরে।</span><br/><span>বললে, ‘খুড়ো, একটা কথা আছে,</span><br/><span>বলি তোমার কাছে।</span>
+</p>
+</div> <div>
+<p><span>শৈল যখন ছোটো ছিল একদা মোর বাক্স খুলে দেখি,</span><br/><span>হিসাব-লেখা খাতার ’পরে একি</span><br/>
+হিজিবিজি কালির আঁচড়! মাথায় যেন পড়ল ক্রোধের বাজ।<br/><span>বোঝা গেল শৈলরই এই কাজ।</span><br/><span>মারা-ধরা গালি-মন্দ কিছুতে তার হয় না কোনো ফল—</span><br/><span>হঠাৎ তখন মনে এল শাস্তির কৌশল।</span><br/><span>মানা ক’রে দিলেম তারে</span><br/><span>তোমার বাড়ি যাওয়া একেবারে।</span><br/>
+সবার চেয়ে কঠিন দণ্ড! চুপ করে সে রইল বাক্যহীন<br/><span>বিদ্রোহিণী বিষম ক্রোধে। অবশেষে বারো দিনের দিন</span><br/><span>গরবিনী গর্ব ভেঙে বললে এসে, আমি</span><br/><span>আর কখনো করব না দুষ্টামি।</span><br/><span>আঁচড়-কাটা সেই হিসাবের খাতা,</span><br/><span>সেই কখানা পাতা,</span><br/>
+আজকে আমার মুখের পানে চেয়ে আছে তারি চোখের মতো!<br/><span>হিসাবের সেই অঙ্কগুলার সময় হল গত—</span><br/><span>সে শাস্তি নেই, সে দুষ্টু নেই;</span><br/><span>রইল শুধু এই</span><br/><span>চিরদিনের দাগা</span><br/><span>শিশু-হাতের আঁচড় ক’টি আমার বুকে লাগা!’</span>
+</p>
+</div>
+</div>
+</div></section>
+<section><div>
+
+<div>
+<h2><span>﻿মুক্তি</span>
+</h2>
+</div>
+<div><div>
+<p><span>ডাক্তারে যা বলে বলুক-নাকো,</span><br/><span>রাখো রাখো খুলে রাখো</span><br/><span>শিওরের ঐ জানলা দুটো—গায়ে লাগুক হাওয়া।</span><br/><span>ওষুধ? আমার ফুরিয়ে গেছে ওষুধ খাওয়া।</span><br/><span>তিতো কড়া কত ওষুধ খেলেম এ জীবনে,</span><br/><span>দিনে দিনে ক্ষণে ক্ষণে।</span><br/><span>বেঁচে থাকা সেই যেন এক রোগ—</span><br/><span>কতরকম কবিরাজি, কতই মুষ্টিযোগ;</span><br/><span>একটুমাত্র অসাবধানেই বিষম কর্মভোগ—</span><br/>
+‘এইটে ভালো ওইটে মন্দ’ যে যা বলে সবার কথা মেনে,<br/><span>নামিয়ে চক্ষু, মাথায় ঘোমটা টেনে,</span><br/>
+বাইশ বছর কাটিয়ে দিলেম এই তোমাদের ঘরে।<br/><span>তাই তো ঘরে পরে</span><br/><span>সবাই আমায় বললে, ‘লক্ষ্মী সতী</span><br/><span>ভালোমানুষ অতি!’</span><br/>
+এ সংসারে এসেছিলেম ন বছরের মেয়ে,<br/><span>তার পরে এই পরিবারের দীর্ঘ গলি বেয়ে</span>
+</p>
+</div> <div>
+<p>দশের-ইচ্ছা-বোঝাই-করা এই জীবনটা টেনে টেনে শেষে<br/><span>পৌঁছিনু আজ পথের প্রান্তে এসে।</span><br/><span>সুখের দুখের কথা</span><br/><span>একটুখানি ভাবব এমন সময় ছিল কোথা!</span><br/>
+এই জীবনটা ভালো কিম্বা মন্দ কিম্বা যা-হোক-একটা-কিছু<br/><span>সে কথাটা বুঝব কখন, দেখব কখন ভেবে আগুপিছু!</span><br/><span>একটানা এক ক্লান্ত সুরে</span><br/><span>কাজের চাকা চলছে ঘুরে ঘুরে।</span><br/><span>বাইশ বছর রয়েছি সেই এক চাকাতেই বাঁধা</span><br/><span>পাকের ঘোরে আঁধা।</span><br/>
+জানি নাই তো আমি যে কী, জানি নাই এ বৃহৎ বসুন্ধরা<br/><span>কী অর্থে যে ভরা।</span><br/><span>শুনি নাই তো মানুষের কী বাণী</span><br/>
+মহাকালের বীণায় বাজে। আমি কেবল জানি—<br/><span>রাঁধার পরে খাওয়া আবার খাওয়ার পরে রাঁধা,</span><br/><span>বাইশ বছর এক চাকাতেই বাঁধা।</span><br/>
+মনে হচ্ছে, সেই চাকাটা ঐ-যে থামল যেন—<br/><span>থামুক তবে। আবার ওষুধ কেন?</span><br/>
+বসন্তকাল বাইশ বছর এসেছিল বনের আঙিনায়।<br/><span>গন্ধে-বিভোল দক্ষিণবায়</span><br/><span>দিয়েছিল জলস্থলের মর্মদোলায় দোল—</span>
+</p>
+</div> <div>
+<p><span>হেঁকেছিল ‘খোল্‌ রে দুয়ার খোল্‌’।</span><br/>
+সে যে কখন আসত যেত জানতে পেতেম না যে।<br/><span>হয়তো মনের মাঝে</span><br/>
+সংগোপনে দিত নাড়া; হয়তো ঘরের কাজে<br/><span>আচম্বিতে ভুল ঘটাত; হয়তো বাজত বুকে</span><br/><span>জন্মান্তরের ব্যথা; কারণ-ভোলা দুঃখে সুখে</span><br/>
+হয়তো পরান রইত চেয়ে যেন রে কার পায়ের শব্দ শুনে<br/><span>বিহ্বল ফাল্গুনে।</span><br/>
+তুমি আসতে আপিস থেকে, যেতে সন্ধ্যাবেলায়<br/><span>পাড়ায় কোথা শতরঞ্জ-খেলায়।</span><br/><span>থাক্‌ সে কথা।</span><br/>
+আজকে কেন মনে আসে প্রাণের যত ক্ষণিক ব্যাকুলতা!<br/><span>প্রথম আমার জীবনে এই বাইশ বছর পরে</span><br/><span>বসন্তকাল এসেছে মোর ঘরে।</span><br/><span>জানলা দিয়ে চেয়ে আকাশ-পানে</span><br/>
+আনন্দে আজ ক্ষণে ক্ষণে জেগে উঠছে প্রাণে—<br/><span>আমি নারী, আমি মহীয়সী,</span><br/>
+আমার সুরে সুর বেঁধেছে জ্যোৎস্নাবীণায় নিদ্রাবিহীন শশী।<br/><span>আমি নইলে মিথ্যা হত সন্ধাতারা ওঠা,</span><br/><span>মিথ্যা হত কাননে ফুল ফোটা।</span>
+</p>
+</div> <div>
+<p><span>বাইশ বছর ধ’রে</span><br/>
+মনে ছিল, বন্দী আমি অনন্তকাল তোমাদের এই ঘরে।<br/><span>দুঃখ তবু ছিল না তার তরে;</span><br/>
+অসাড় মনে দিন কেটেছে, আরো কাটত আরো বাঁচলে পরে।<br/><span>যেথায় যত জ্ঞাতি</span><br/><span>লক্ষ্মী ব’লে করে আমার খ্যাতি;</span><br/><span>এই জীবনে সেই যেন মোর পরম সার্থকতা—</span><br/><span>ঘরের কোণে পাঁচের মুখের কথা!</span><br/><span>আজকে কখন মোর</span><br/><span>কাটল বাঁধন-ডোর।</span><br/>
+জনম মরণ এক হয়েছে ঐ-যে অকূল বিরাট মোহানায়<br/><span>ঐ অতলে কোথায় মিলে যায়</span><br/><span>ভাঁড়ার-ঘরের দেয়াল যত</span><br/><span>একটু ফেনার মতো।</span><br/><span>এতদিনে প্রথম যেন বাজে</span><br/><span>বিয়ের বাঁশি বিশ্ব-আকাশ-মাঝে।</span><br/><span>তুচ্ছ বাইশ বছর আমার ঘরের কোণের ধুলায় পড়ে থাক্‌।</span><br/><span>মরণ-বাসর-ঘরে আমায় যে দিয়েছে ডাক</span><br/><span>দ্বারে আমার প্রার্থী সে যে, নয় সে কেবল প্রভু—</span><br/><span>হেলা আমায় করবে না সে কভু।</span><br/><span>চায় সে আমার কাছে</span>
+</p>
+</div> <div>
+<p>আমার মাঝে গভীর গোপন যে সুধারস আছে।<br/><span>গ্রহতারার সভার মাঝখানে সে</span><br/>
+ঐ-যে আমার মুখে চেয়ে দাঁড়িয়ে হোথায় রইল নির্নিমেষে।<br/><span>মধুর ভুবন, মধুর আমি নারী,</span><br/><span>মধুর মরণ, ওগো আমার অনন্ত ভিখারি!</span><br/><span>দাও, খুলে দাও দ্বার,</span><br/>
+ব্যর্থ বাইশ বছর হতে পার করে দাও কালের পারাবার।
+</p>
+</div>
+</div>
+</div></section>
+<section><div>
+
+<div>
+<h2><span><b>ফাঁকি</b></span>
+</h2>
+</div>
+<div>
+<div>
+<p><span>বিনুর বয়স তেইশ তখন, রোগে ধরল তারে।</span><br/><span>ওষুধে ডাক্তারে</span><br/><span>ব্যাধির চেয়ে আধি হল বড়ো;</span><br/>
+নানা ছাপের জমল শিশি, নানা মাপের কৌটো হল জড়ো।<br/><span>বছর-দেড়েক চিকিৎসাতে করলে যখন অস্থি জরজর</span><br/><span>তখন বললে, ‘হাওয়া বদল করো।’</span><br/>
+এই সুযোগে বিনু এবার চাপল প্রথম রেলের গাড়ি,<br/><span>বিয়ের পরে ছাড়ল প্রথম শ্বশুরবাড়ি।</span><br/>
+নিবিড় ঘন পরিবারের আড়ালে আবডালে<br/><span>মোদের হত দেখাশুনো ভাঙা লয়ের তালে;</span><br/><span>মিলন ছিল ছাড়া-ছাড়া—</span><br/><span>চাপা-হাসি টুকরো-কথার নানান জোড়াতাড়া।</span><br/>
+আজকে হঠাৎ ধরিত্রী তার আকাশ-ভরা সকল আলো ধ’রে<br/><span>বর-বধূরে নিলে বরণ করে।</span><br/><span>রোগা মুখের মস্ত বড়ো দুটি চোখে</span><br/><span>বিনুর যেন নতুন করে শুভদৃষ্টি হল নতুন লোকে।</span><br/><span>রেল-লাইনের ওপার থেকে</span><br/><span>কাঙাল যখন ফেরে ভিক্ষা হেঁকে</span>
+</p>
+</div> <div>
+<p><span>বিনু আপন বাক্স খুলে</span><br/><span>টাকা শিকে যা হাতে পায় তুলে</span><br/><span>কাগজ দিয়ে মুড়ে</span><br/><span>দেয় সে ছুঁড়ে ছুঁড়ে।</span><br/><span>সবার দুঃখ দূর না হলে পরে</span><br/>
+আনন্দ তার আপনারই ভার বইবে কেমন ক’রে!<br/><span>সংসারের ঐ ভাঙা ঘাটের কিনার হতে</span><br/>
+আজ আমাদের ভাসান যেন চিরপ্রেমের স্রোতে—<br/><span>তাই যেন আজ দানে ধ্যানে</span><br/><span>ভরতে হবে সে যাত্রাটি বিশ্বের কল্যাণে।</span><br/><span>বিনুর মনে জাগছে বারে-বার,</span><br/>
+নিখিলে আজ একলা শুধু আমিই কেবল তার;<br/><span>কেউ কোথা নেই আর</span><br/><span>শ্বশুর ভাসুর সামনে পিছে ডাইনে বাঁয়ে—</span><br/><span>সেই কথাটা মনে ক’রে পুলক দিল গায়ে।</span><br/>
+বিলাসপুরের ইস্টেশনে বদল হবে গাড়ি;<br/><span>তাড়াতাড়ি</span><br/>
+নামতে হ’ল; ছ ঘণ্টা কাল থামতে হবে যাত্রীশালায়।<br/><span>মনে হল, এ এক বিষম বালাই।</span><br/><span>বিনু বললে, ‘কেন, এই তো বেশ।’</span><br/><span>তার মনে আজ নেই যে খুশির শেষ।</span>
+</p>
+</div> <div>
+<p>পথের বাঁশি পায়ে পায়ে তারে যে আজ করেছে চঞ্চলা—<br/><span>আনন্দে তাই এক হল তার পৌঁছনো আর চলা।</span><br/><span>যাত্রীশালার দুয়ার খুলে আমায় বলে,</span><br/><span>‘দেখো, দেখো, এক্কাগাড়ি কেমন চলে!</span><br/><span>আর দেখেছ? বাছুরটি ঐ, আ ম’রে যাই, চিকন নধর দেহ—</span><br/><span>মায়ের চোখে কী সুগভীর স্নেহ!</span><br/><span>ঐ যেখানে দিঘির উচু পাড়ি—</span><br/><span>সিসুগাছের তলাটিতে পাঁচিল-ঘেরা ছোট্ট বাড়ি</span><br/><span>ঐ-যে রেলের কাছে—</span><br/>
+ইস্টেশনের বাবু থাকে? আহা, ওরা কেমন সুখে আছে!’<br/><span>যাত্রীঘরে বিছানাটা দিলেম পেতে;</span><br/>
+বলে দিলেম, ‘বিনু, এবার চুপটি করে ঘুমোও আরামেতে।’<br/><span>প্ল্যাট্‌ফরমে চেয়ার টেনে</span><br/>
+পড়তে শুরু করে দিলেম ইংরেজি এক নভেল কিনে এনে।<br/><span>গেল কত মালের গাড়ি, গেল প্যাসেঞ্জার,</span><br/><span>ঘণ্টা তিনেক হয়ে গেল পার।</span><br/><span>এমন সময় যাত্রীঘরের দ্বারের কাছে</span><br/><span>বাহির হয়ে বললে বিনু, ‘কথা একটা আছে।’</span><br/>
+ঘরে ঢুকে দেখি কে এক হিন্দুস্থানি মেয়ে<br/><span>আমার মুখে চেয়ে</span><br/>
+সেলাম করে বাহির হয়ে রইল ধরে বারান্দাটার থাম।
+</p>
+</div> <div>
+<p><span>বিনু বললে, ‘রুক্‌মিনি ওর নাম।</span><br/><span>ঐ-যে হোথায় কুয়োর ধারে সার-বাঁধা ঘরগুলি</span><br/><span>ঐখানে ওর বাসা আছে, স্বামী রেলের কুলি।</span><br/><span>তেরো-শো কোন্ সনে</span><br/><span>দেশে ওদের আকাল হল; স্বামী স্ত্রী দুইজনে</span><br/><span>পালিয়ে এল জমিদারের অত্যাচারে।</span><br/>
+সাত বিঘে ওর জমি ছিল কোন্-এক গাঁয়ে<br/><span>কী-এক নদীর ধারে’—</span><br/><span>বাধা দিয়ে আমি বললেম হেসে,</span><br/>
+‘রুক্‌মিনির এই জীবন-চরিত শেষ না হতেই গাড়ি পড়বে এসে;<br/><span>আমার মতে, একটু যদি সংক্ষেপেতে সারো</span><br/><span>অধিক ক্ষতি হবে না তায় কারো।’</span><br/><span>বাঁকিয়ে ভুরু, পাকিয়ে চক্ষু, বিনু বললে খেপে—</span><br/><span>‘কখ্‌খনো না, বলব না সংক্ষেপে।</span><br/>
+আপিস যাবার তাড়া তো নেই, ভাব্‌না কিসের তবে?<br/><span>আগাগোড়া সবটা শুনতে হবে।’</span><br/><span>নভেল-পড়া নেশাটুকু কোথায় গেল মিশে।</span><br/><span>রেলের কুলির লম্বা কাহিনী সে</span><br/><span>বিস্তারিত শুনে গেলেম আমি।</span><br/><span>আসল কথা শেষে ছিল, সেইটে কিছু দামি।</span><br/><span>কুলির মেয়ের বিয়ে হবে, তাই</span>
+</p>
+</div> <div>
+<p><span>পৈঁচে তাবিজ বাজুবন্ধ গড়িয়ে দেওয়া চাই;</span><br/>
+অনেক টেনেটুনে তবু পঁচিশ টাকা খরচ হবে তারি;<br/><span>সে ভাবনাটা ভারি</span><br/><span>রুক্‌মিনিরে করেছে বিব্রত।</span><br/><span>তাই এবারের মতো</span><br/><span>আমার ’পরে ভার</span><br/><span>কুলি-নারীর ভাব্‌না ঘোচাবার।</span><br/><span>আজকে গাড়ি-চড়ার আগে একেবারে থোকে</span><br/><span>পঁচিশ টাকা দিতেই হবে ওকে।</span><br/><span>অবাক কাণ্ড এ কী!</span><br/><span>এমন কথা মানুষ শুনেছে কি!</span><br/>
+জাতে হয়তো মেথর হবে কিম্বা নেহাত ওঁচা,<br/><span>যাত্রীঘরের করে ঝাড়ামোছা,</span><br/><span>পঁচিশ টাকা দিতেই হবে তাকে!</span><br/><span>এমন হলে দেউলে হতে ক দিন বাকি থাকে!</span><br/><span>‘আচ্ছা আচ্ছা, হবে হবে। আমি দেখছি, মোট</span><br/><span>একশো টাকার আছে একটা নোট,</span><br/><span>সেটা আবার ভাঙানো নেই!’</span><br/><span>বিনু বললে, ‘এই</span><br/><span>ইস্টিশনেই ভাঙিয়ে নিলেই হবে।’</span><br/><span>‘আচ্ছা, দেব তবে’</span>
+</p>
+</div> <div>
+<p>এই ব’লে সেই মেয়েটাকে আড়ালেতে নিয়ে গেলেম ডেকে;<br/><span>আচ্ছা করেই দিলেম তারে হেঁকে—</span><br/><span>‘কেমন তোমার নোকরি থাকে দেখব আমি!</span><br/>
+প্যাসেঞ্জারকে ঠকিয়ে বেড়াও! ঘোচাব নষ্টামি!’<br/><span>কেঁদে যখন পড়ল পায়ে ধ’রে</span><br/><span>দু টাকা তার হাতে দিয়ে দিলেম বিদায় করে।</span><br/><span>জীবন-দেউল আঁধার করে নিবল হঠাৎ আলো।</span><br/><span>ফিরে এলেম দু মাস যেই ফুরালো।</span><br/><span>বিলাসপুরে এবার যখন এলেম নামি,</span><br/><span>একলা আমি।</span><br/><span>শেষ নিমেষে নিয়ে আমার পায়ের ধূলি</span><br/><span>বিনু আমায় বলেছিল, ‘এ জীবনের যা-কিছু আর ভুলি</span><br/><span>শেষ দুটি মাস অনন্তকাল মাথায় রবে মম</span><br/><span>বৈকুণ্ঠেতে নারায়ণীর সিঁথের ’পরে নিত্যসিঁদুর-সম।</span><br/><span>এই দুটি মাস সুধায় দিলে ভরে,</span><br/><span>বিদায় নিলেম সেই কথাটি স্মরণ করে।’</span><br/><span>ওগো অন্তর্যামী,</span><br/><span>বিনুরে আজ জানাতে চাই আমি</span>
+</p>
+</div> <div>
+<p><span>সেই দু মাসের অর্ঘ্যে আমার বিষম বাকি—</span><br/><span>পঁচিশ টাকার ফাঁকি।</span><br/><span>দিই যদি আজ রুক্‌মিনিরে লক্ষ টাকা</span><br/><span>তবুও তো ভরবে না সেই ফাঁকা।</span><br/>
+বিনু যে সেই দু-মাসটিরে নিয়ে গেছে আপন সাথে—<br/><span>জানল না তো, ফাঁকিসুদ্ধ দিলেম তারই হাতে।</span><br/>
+বিলাসপুরে নেমে আমি শুধাই সবার কাছে,<br/><span>‘রুক্‌মিনি সে কোথায় আছে?’</span><br/><span>প্রশ্ন শুনে অবাক মানে—</span><br/><span>রুক্‌মিনি কে তাই-বা ক জন জানে!</span><br/>
+অনেক ভেবে ‘ঝামরু কুলির বউ’ বললেম যেই<br/><span>বললে সাবে, ‘এখন তারা এখানে কেউ নেই।’</span><br/><span>শুধাই আমি, ‘কোথায় পাব তাকে?’</span><br/>
+ইস্টেশনের বড়োবাবু রেগে বলেন, ‘সে খবর কে রাখে?’<br/><span>টিকিটবাবু বললে হেসে, ‘তারা মাসেক আগে</span><br/><span>গেছে চলে দার্জিলিঙে কিম্বা খসরুবাগে,</span><br/><span>কিম্বা আরাকানে।’</span><br/><span>শুধাই যত ‘ঠিকানা তার কেউ কি জানে’—</span><br/>
+তারা কেবল বিরক্ত হয়, তার ঠিকানায় কার আছে কোন্ কাজ!<br/><span>কেমন ক’রে বোঝাই আমি— ওগো, আমার আজ</span>
+</p>
+</div> <div>
+<p>সবার চেয়ে তুচ্ছ তারে সবার চেয়ে পরম প্রয়োজন;<br/><span>ফাঁকির বোঝা নামাতে মোর আছে সেই একজন।</span><br/><span>‘এই দুটি মাস সুধায় দিলে ভরে’</span><br/><span>বিনুর মুখের শেষ কথা সেই বইব কেমন ক’রে!</span><br/><span>রয়ে গেলেম দায়ী,</span><br/><span>মিথ্যা আমার হল চিরস্থায়ী!</span>
+</p>
+</div>
+</div>
+</div></section>
+<section><div>
+
+<div>
+<h2><span><b>মায়ের সম্মান</b></span>
+</h2>
+</div>
+<div>
+<p>অপূর্বদের বাড়ি
+</p>
+</div>
+<div>
+<div>
+<p><span>অনেক ছিল চৌকি টেবিল, পাঁচটা-সাতটা গাড়ি;</span><br/><span>ছিল কুকুর, ছিল বেড়াল, নানান রঙের ঘোড়া</span><br/><span>কিছু না হয় ছিল ছ-সাত জোড়া;</span><br/><span>দেউড়ি-ভরা দোবে চোবে ছিল চাকর দাসী;</span><br/><span>ছিল সহিস বেহারা চাপরাশি।—</span><br/><span>আর ছিল এক মাসি।</span><br/><span>স্বামীটি তার সংসারে বৈরাগী,</span><br/><span>কেউ জানে না গেছেন কোথায় মোক্ষ পাবার লাগি</span><br/><span>স্ত্রীর হাতে তার ফেলে</span><br/><span>বালক দুটি ছেলে।</span><br/>
+অনাত্মীয়ের ঘরে গেলে স্বামীর বংশে নিন্দা লাগে পাছে<br/><span>তাই সে হেথায় আছে</span><br/><span>ধনী বোনের দ্বারে।</span><br/><span>একটিমাত্র চেষ্টা যে তার কী করে আপ্‌নারে</span><br/><span>মুছবে একেবারে।</span><br/><span>পাছে কারো চক্ষে পড়ে, পাছে তারে দেখে</span><br/>
+কেউ-বা ব’লে ওঠে ‘আপদ জুটল কোথা থেকে’—
+</p>
+</div> <div>
+<p>আস্তে চলে, আস্তে বলে, সবার চেয়ে জায়গা জোড়ে কম,<br/><span>সবার চেয়ে বেশি পরিশ্রম।</span><br/>
+কিন্তু যে তার কানাই বলাই নেহাত ছোট্ট ছেলে—<br/><span>তাদের তরে রেখেছিলেন মেলে</span><br/><span>বিধাতা যে প্রকাণ্ড এই ধরা;</span><br/>
+অঙ্গে তাদের দুরন্ত প্রাণ, কণ্ঠ তাদের কলরবে ভরা।<br/><span>শিশুচিত্ত-উৎস-ধারা বন্ধ করে দিতে</span><br/><span>বিষম ব্যথা বাজে মায়ের চিতে।</span><br/>
+কাতর চোখে করুণ সুরে মা বলে ‘চুপ চুপ’<br/><span>একটু যদি চঞ্চলতা দেখায় কোনোরূপ।</span><br/><span>ক্ষুধা পেলে কান্না তাদেব অসভ্যতা;</span><br/><span>তাদের মুখে মানায় নাকো চেঁচিয়ে কথা;</span><br/><span>খুশি হলে রাখবে চাপি,</span><br/><span>কোনোমতেই করবে নাকো লাফালাফি!</span><br/><span>অপূর্ব আর পূর্ণ ছিল এদের একবয়সি;</span><br/>
+তাদের সঙ্গে খেলতে গেলে এরা হত পদে পদেই দোষী।<br/><span>তারা এদের মারত ধড়াধ্বড়,</span><br/><span>এরা যদি উল্টে দিত চড়</span><br/><span>থাকত নাকো গণ্ডগোলের সীমা—</span><br/><span>উভয় পক্ষেরই মা</span><br/><span>কানাই বলাই দোঁহার ’পরে পড়ত ঝড়ের মতো,</span>
+</p>
+</div> <div>
+<p><span>বিষম কাণ্ড হত</span><br/><span>ডাইনে বাঁয়ে দু ধার থেকে মারের পরে মেরে।</span><br/>
+বিনা দোষে শাস্তি দিয়ে কোলের বাছাদেরে<br/><span>ঘরের দুয়ার বন্ধ ক’রে মাসি</span><br/><span>থাকত উপবাসী;</span><br/><span>চোখের জলে বক্ষ যেত ভাসি।</span><br/>
+অবশেষে দুটি ছেলে মেনে নিল নিজেদের এই দশা।<br/><span>তখন তাদের চলা-ফেরা ওঠা-বসা</span><br/><span>স্তব্ধ হল, শান্ত হল, হায়</span><br/><span>পাখিহারা পক্ষীনীড়ের প্রায়।</span><br/><span>এ সংসাবে বেঁচে থাকার দাবি</span><br/>
+ভাঁটায় ভাঁটায় নেবে নেবে একেবারে তলায় গেল নাবি;<br/><span>ঘুচে গেল ন্যায়-বিচারের আশা,</span><br/><span>রুদ্ধ হল নালিশ করার ভাষা।</span><br/><span>সকল দুঃখ দুটি ভাইয়ে করল পরিপাক</span><br/><span>নিঃশব্দ নির্বাক্।</span><br/><span>চক্ষে আঁধার দেখত ক্ষুধার ঝোঁকে—</span><br/>
+পাছে খাবার না থাকে আর পাছে মায়ের চোখে<br/><span>জল দেখা দেয়, তাই</span><br/>
+বাইরে কোথাও লুকিয়ে থাকত, বলত ‘ক্ষুধা নাই’।<br/><span>অসুখ করলে দিত চাপা। দেব্‌তা মানুষ কারে</span>
+</p>
+</div> <div>
+<p><span>একটুমাত্র জবাব করা ছাড়ল একেবারে।</span><br/><span>প্রথম যখন ইস্কুলেতে প্রাইজ পেল এরা</span><br/><span>ক্লাসে সবার সেরা,</span><br/><span>অপূর্ব আর পূর্ণ এল শূন্য হাতে বাড়ি।</span><br/><span>প্রমাদ গণি দীর্ঘনিশাস ছাড়ি</span><br/><span>মা ডেকে কয় কানাই-বলাইয়েরে,—</span><br/><span>‘ওরে বাছা, ওদের হাতেই দে রে</span><br/><span>তোদের প্রাইজ দুটি।</span><br/><span>তার পরে যা ছুটি</span><br/><span>খেলা করতে চৌধুরীদের ঘরে।</span><br/><span>সন্ধ্যা হলে পরে</span><br/><span>আসিস ফিরে, প্রাইজ পেলি কেউ যেন না শোনে।’</span><br/><span>এই ব’লে মা নিয়ে ঘরের কোণে</span><br/><span>দুটি আসন পেতে</span><br/>
+আপন হাতের খইয়ের মোওয়া দিল তাদের খেতে।<br/><span>এমনি করে অপমানের তলে</span><br/>
+দুঃখদহন বহন ক’রে দুটি ভাইয়ে মানুষ হয়ে চলে।<br/><span>এই জীবনের ভার</span><br/>
+যত হাল্কা হতে পারে করলে এরা চূড়ান্ত তাহার।<br/><span>সবার চেয়ে ব্যথা এদের মায়ের অসম্মান—</span><br/><span>আগুন তারই শিখার সমান</span>
+</p>
+</div> <div>
+<p><span>জ্বলছে এদের প্রাণ-প্রদীপের মুখে।</span><br/><span>সেই আলোটি দোঁহায় দুঃখে সুখে</span><br/><span>যাচ্ছে নিয়ে একটি লক্ষ্য-পানে—</span><br/>
+জননীরে করবে জয়ী সকল মনে প্রাণে।<br/><span>কানাই বলাই</span><br/><span>কালেজেতে পড়ছে দুটি ভাই।</span><br/><span>এমন সময় গোপনে এক রাতে</span><br/><span>অপূর্ব তার মায়ের বাক্স ভাঙল আপন হাতে,</span><br/><span>করল চুরি পান্নামোতির হার—</span><br/><span>থিয়েটারের শখ চেপেছে তার।</span><br/>
+পুলিশ-ডাকাডাকি নিয়ে পাড়া যেন ভূমিকম্পে নড়ে;<br/><span>যখন ধরা পড়ে-পড়ে</span><br/><span>অপূর্ব সেই মোতির মালাটিরে</span><br/><span>ধীরে ধীরে</span><br/><span>কানাইদাদার শোবার ঘরে বালিশ দিয়ে ঢেকে</span><br/><span>লুকিয়ে দিল রেখে।</span><br/><span>যখন বাহির হল শেষে</span><br/><span>সবাই বললে এসে—</span><br/><span>‘তাই না শাস্ত্রে করে মানা</span><br/>
+দুধে কলায় পুষতে সাপের ছানা!
+</p>
+</div> <div>
+<p>ছেলেমানুষ, দোষ কি ওদের, মা আছে এর তলে।<br/><span>ভালো করলে মন্দ ঘটে কলিকালের ফলে।’</span><br/><span>কানাই বলাই জ্ব’লে ওঠে প্রলয়বহ্নিপ্রায়,</span><br/><span>খুনোখুনি করতে ছুটে যায়।</span><br/><span>মা বললেন, ‘আছেন ভগবান,</span><br/><span>নির্দোষীদের অপমানে তাঁরই অপমান।’</span><br/><span>দুই ছেলেরে সঙ্গে নিয়ে বাহির হলেন মাসি;</span><br/>
+রইল চেয়ে দোবে চোবে, রইল চেয়ে সকল চাকর দাসী,<br/><span>ঘোড়ার সহিস, বেহারা চাপরাসি।</span><br/><span>অপমানের তীব্র আলোক জ্বেলে</span><br/><span>মাকে নিয়ে দুটি ছেলে</span><br/><span>পার হল ঘোর দুঃখদশা চ’লে চ’লে কঠিন কাঁটার পথে।</span><br/><span>কানাই বলাই মস্ত উকিল বড়ো আদালতে।</span><br/>
+মনের মতো বউ এসেছে, একটি দুটি আসছে নাৎনি নাতি—<br/><span>জুটল মেলা সুখের দিনের সাথি।</span><br/><span>মা বললেন, ‘মিটবে এবার চিরদিনের আশ—</span><br/><span>মরার আগে করব কাশীবাস।’</span><br/><span>অবশেষে একদা আশ্বিনে</span><br/><span>পুজোর ছুটির দিনে</span>
+</p>
+</div> <div>
+<p><span>মনের মতো বাড়ি দেখে</span><br/><span>দুই ভাইয়েতে মাকে নিয়ে তীর্থে এল রেখে।</span><br/><span>বছর-খানেক না পেরতেই শ্রাবণ মাসের শেষে</span><br/><span>হঠাৎ কখন মা ফিরলেন দেশে।</span><br/>
+বাড়িসুদ্ধ অবাক্ সবাই; মা বললেন, ‘তোরা আমার ছেলে<br/><span>তোদের এমন বুদ্ধি হল, অপূর্বকে পুরতে দিবি জেলে?</span><br/><span>কানাই বললে, ‘তোমার ছেলে ব’লেই</span><br/>
+তোমার অপমানের জ্বালা মনের মধ্যে নিত্য আছে জ্বলেই।<br/><span>মিথ্যে চুরির দাগা দিয়ে সবার চোখের ’পরে</span><br/><span>আমার মাকে ঘরের বাহির করে</span><br/><span>সেই কথাটা এ জীবনে ভুলি যদি তবে</span><br/><span>মহাপাতক হবে।’</span><br/>
+মা বললেন, ‘ভুলবি কেন? মনে যদি থাকে তাহার তাপ<br/><span>তা হলে কি তেমন ভীষণ অপমানের চাপ</span><br/><span>চাপানো যায় আর-কাহারও ’পরে</span><br/><span>বাইরে কিম্বা ঘরে?</span><br/><span>মনে কি নেই সেদিন যখন দেউড়ি দিয়ে</span><br/><span>বেরিয়ে এলেম তোদের দুটি সঙ্গে নিয়ে</span><br/>
+তখন আমার মনে হল, আমি যদি স্বপ্নমাত্র হই,<br/><span>জেগে দেখি আমি যদি কোথাও কিছুই নই—</span>
+</p>
+</div> <div>
+<p><span>তা হলে হয় ভালাে।</span><br/><span>মনে হল, শত্রু আমার আকাশ-ভরা আলাে,</span><br/><span>দেব্‌তা আমার শত্রু, আমার শত্রু বসুন্ধরা,</span><br/><span>মাটির ডালি আমার অসীম লজ্জা দিয়ে ভরা!</span><br/><span>তাই তাে বলি বিশ্বজোড়া সে লাঞ্ছনা</span><br/><span>তেমন করে পায় না যেন কোনাে জনা,</span><br/><span>বিধির কাছে এই করি প্রার্থনা।’</span><br/><span>ব্যাপারটা কী ঘটেছিল অল্প লােকেই জানে,</span><br/><span>ব’লে রাখি সে কথা এইখানে।</span><br/><span>বারাে বছর পরে</span><br/><span>অপূর্ব রায় দেখা দিল কানাইদাদার ঘরে।</span><br/><span>একে একে তিনটে থিয়েটার</span><br/><span>ভাঙাগড়া শেষ করে সে হল ক্যাশিয়ার</span><br/><span>সদাগরের আপিসেতে। সেখানে আজ শেষে</span><br/>
+তবিল-ভাঙার জাল হিসাবের দায়ে ঠেকেছে সে।<br/><span>হাতে বেড়ি পড়ল বুঝি, তাই সে এল ছুটে</span><br/><span>উকিল দাদার ঘরে, সেথায় পড়ল মাথা কুটে।</span><br/>
+কানাই বললে, ‘মনে কি নেই?’ অপূর্ব কয় নতমুখে,—<br/><span>‘অনেক দিন সে গেছে চুকেবুকে।’</span><br/><span>‘চুকে গেছে!’ কানাই উঠল বিষম রাগে জ্ব’লে, জ্ব’লে,—</span>
+</p>
+</div> <div>
+<p>‘এত দিনের পরে যেন আশা হচ্ছে চুকে যাবে ব’লে।’<br/><span>নীচের তলায় বলাই আপিস করে;</span><br/><span>অপূর্ব রায় ভয়ে ভয়ে ঢুকল তারই ঘরে।</span><br/><span>বললে, ‘আমায় রক্ষা করো।’</span><br/><span>বলাই কেঁপে উঠল থরোথরো।</span><br/>
+অধিক কথা কয় না সে যে; ঘণ্টা নেড়ে ডাকল দরোয়ানে।<br/><span>অপূর্ব তার মেজাজ দেখে বেরিয়ে এল মানে মানে।</span><br/><span>অপূর্বদের মা তিনি হন মস্ত ঘরের গৃহিণী যে;</span><br/><span>এদের ঘরে নিজে</span><br/><span>আসতে গেলে হয় যে তাঁদের মাথা নত।</span><br/><span>অনেক রকম ক’রে ইতস্তত</span><br/><span>পত্র দিয়ে পূর্ণকে তাই পাঠিয়ে দিলেন কাশী।</span><br/><span>পূর্ণ বললে, ‘রক্ষা করো মাসি।’</span><br/><span>এরই পরে কাশী থেকে মা আসলেন ফিরে।</span><br/><span>কানাই তাঁরে বলে ধীরে ধীরে,—</span><br/><span>‘জান তো মা, তোমার বাক্য মোদের শিরোধার্য,</span><br/><span>এটা কিন্তু নিতান্ত অকার্য।</span><br/><span>বিধি তাদের দেবে শাস্তি, আমরা করব রক্ষে,</span><br/><span>উচিত নয় মা, সেটা কারো পক্ষে।’</span>
+</p>
+</div> <div>
+<p><span>অপ্রসন্নমুখে।</span><br/>
+বললে, ‘হেথায় নিজে এসে মাসি তোমার পড়ুন পায়ে ধরে,<br/><span>দেখব তখন বিবেচনা ক’রে।’</span><br/><span>মা বললেন, ‘তোরা বলিস কী এ!</span><br/><span>একটা দুঃখ দূর করতে গিয়ে</span><br/><span>আরেক দুঃখে বিদ্ধ করবি মর্ম!</span><br/><span>এই কি তোদর ধর্ম!’</span><br/><span>এত বলি বাহির হয়ে চলেন তাড়াতাড়ি।</span><br/>
+তারা বলে, ‘যাচ্ছ কোথায়?’ মা বললেন, ‘অপূর্বদের বাড়ি।<br/><span>দুঃখে তাদের বক্ষ আমার ফাটে,</span><br/>
+রইব আমি তাদের ঘরে যতদিন না বিপদ তাদের কাটে।’<br/><span>‘রোসো রোসো, থামো থামো, করছ এ কী!</span><br/><span>আচ্ছা, ভেবে দেখি।</span><br/><span>তোমার ইচ্ছা যবে</span><br/><span>আচ্ছা নাহয় যা বলছ তাই হবে।’</span><br/><span>আর কি থামেন তিনি?</span><br/><span>গেলেন একাকিনী</span><br/><span>অপূর্বদের ঘরে তাদের মাসি।</span><br/><span>ছিল না আর দোবে চোবে, ছিল না চাপরাসি;</span><br/>
+প্রণাম করল লুটিয়ে পায়ে বিপিনের মা, পুরোনো সেই দাসী।
+</p>
+</div>
+</div>
+</div></section>
+<section><div>
+
+<div>
+<h2><span><b>নিষ্কৃতি</b></span>
+</h2>
+</div>
+<div>
+<div>
+<p>মা কেঁদে কয়, ‘মঞ্জুলী মোর ঐ তো কচি মেয়ে,<br/><span>ওরই সঙ্গে বিয়ে দেবে?— বয়সে ওর চেয়ে</span><br/><span>পাঁচগুনো সে বড়ো;</span><br/><span>তাকে দেখে বাছা আমার ভয়েই জড়সড়।</span><br/><span>এমন বিয়ে ঘটতে দেব নাকো।’</span><br/><span>বাপ বললে, ‘কান্না তোমার রাখো।</span><br/><span>পঞ্চাননকে পাওয়া গেছে অনেক দিনের খোঁজে,</span><br/><span>জান না কি মস্ত কুলীন ও যে!</span><br/><span>সমাজে তো উঠতে হবে, সেটা কি কেউ ভাবো?</span><br/><span>ওকে ছাড়লে পাত্র কোথায় পাব?’</span><br/><span>মা বললে, ‘কেন, ঐ যে চাটুজ্জেদের পুলিন,</span><br/><span>নাই-বা হল কুলীন—</span><br/><span>দেখতে যেমন তেমনি স্বভাবখানি,</span><br/><span>পাস ক’রে ফের পেয়েছে জলপানি—</span><br/><span>সোনার টুকরো ছেলে।</span><br/>
+এক পাড়াতে থাকে ওরা, ওরই সঙ্গে হেসে খেলে<br/>
+মেয়ে আমার মানুষ হল; ওকে যদি বলি আমি আজই<br/><span>এখ্‌খনি হয় রাজি।’</span><br/><span>বাপ বললে, ‘থামো</span><br/><span>আরে আরে, রামোঃ।</span><br/><span>ওরা আছে সমাজের সব-তলায়।</span>
+</p>
+</div> <div>
+<p><span>বামুন কি হয় পইতে দিলেই গলায়!</span><br/><span>দেখতে শুনতে ভালো হলেই পাত্র হল! রাধে!</span><br/><span>স্ত্রীবুদ্ধি কি শাস্ত্রে বলে সাধে!’</span><br/><span>যেদিন ওরা গিনি দিয়ে দেখলে ক’নের মুখ</span><br/><span>সেদিন থেকে মঞ্জুলিকার বুক</span><br/><span>প্রতি পলের গোপন কাঁটায় হল রক্তে মাখা।</span><br/><span>মায়ের স্নেহ অন্তর্যামী, তার কাছে তো রয় না কিছুই ঢাকা;</span><br/><span>মায়ের ব্যথা মেয়ের ব্যথা চলতে খেতে শুতে</span><br/><span>ঘরের আকাশ প্রতি ক্ষণে হানছে যেন বেদনা-বিদ্যুতে।</span><br/><span>অটলতার গভীর গর্ব বাপের মনে জাগে—</span><br/><span>সুখে দুঃখে দ্বেষে রাগে</span><br/><span>ধর্ম থেকে নড়েন তিনি নাই হেন দৌর্বল্য।</span><br/><span>তাঁর জীবনের রথের চাকা চলল</span><br/><span>লোহার বাঁধা রাস্তা দিয়ে প্রতি ক্ষণেই,</span><br/>
+কোনোমতেই ইঞ্চি-খানেক এ দিক - ও দিক একটু হবার জো নেই।<br/><span>তিনি বলেন, তাঁর সাধনা বড়োই সুকঠোর,</span><br/><span>আর কিছু নয়, শুধুই মনের জোর,</span><br/><span>অষ্টাবক্র জমদগ্নি প্রভৃতি সব ঋষির সঙ্গে তুল্য—</span><br/><span>মেয়েমানুষ বুঝবে না তার মূল্য।</span>
+</p>
+</div> <div>
+<p><span>অন্তঃশীলা অশ্রুনদীর নীরব নীরে</span><br/><span>দুটি নারীর দিন বয়ে যায় ধীরে।</span><br/><span>অবশেষে বৈশাখে এক রাতে</span><br/><span>মঞ্জুলিকার বিয়ে হল পঞ্চাননের সাথে।</span><br/>
+বিদায়বেলায় মেয়েকে বাপ ব’লে দিলেন মাথায় হস্ত ধরি,<br/><span>‘হও তুমি সাবিত্রীর মতো, এই কামনা করি।’</span><br/><span>কিমাশ্চর্যমতঃপরং, বাপের সাধন-জোরে</span><br/>
+আশীর্বাদের প্রথম অংশ দু মাস যেতেই ফলল কেমন করে,<br/><span>পঞ্চাননকে ধরল এসে যমে;</span><br/><span>কিন্তু মেয়ের কপালক্রমে</span><br/>
+ফলল না তার শেষের দিকটা, দিলে না যম ফিরে—<br/><span>মঞ্জুলিকা বাপের ঘরে ফিরে এল সিঁদুর মুছে শিরে।</span><br/><span>দুঃখে সুখে দিন হয়ে যায় গত</span><br/><span>স্রোতের জলে ঝরে-পড়া ভেসে-যাওয়া ফুলের মতো।</span><br/><span>অবশেষে হল—</span><br/><span>মঞ্জুলিকার বয়স ভরা ষোলো।</span><br/><span>কখন শিশুকালে</span><br/><span>হৃদয়লতার পাতার অন্তরালে</span><br/><span>বেরিয়েছিল একটি কুঁড়ি</span>
+</p>
+</div> <div>
+<p><span>প্রাণের গোপন রহস্যতল কুঁড়ি</span><br/><span>জানত না তো আপ্‌নাকে সে,</span><br/>
+শুধায় নি তার নাম কোনোদিন বাহির হতে খেপা বাতাস এসে;<br/><span>সেই কুঁড়ি আজ অন্তরে তার উঠছে ফুটে</span><br/><span>মধুর রসে ভরে উঠে।</span><br/><span>সে যে প্রেমের ফুল</span><br/><span>আপন রাঙা পাপড়ি-ভারে আপনি সমাকুল।</span><br/><span>আপ্‌নাকে তার চিনতে যে আর নাইকো বাকি,</span><br/><span>তাই তো থাকি থাকি</span><br/><span>চমকে ওঠে নিজের পানে চেয়ে।</span><br/>
+আকাশ-পারের বাণী তারে ডাক দিয়ে যায় আলোর ঝর্না বেয়ে;<br/><span>রাতের অন্ধকারে</span><br/><span>কোন্-অসীমের-রোদন-ভরা বেদন লাগে তারে!</span><br/><span>বাহির হতে তার</span><br/><span>ঘুচে গেছে সকল অলংকার,</span><br/><span>অন্তর তার রাঙিয়ে ওঠে স্তরে স্তরে—</span><br/><span>তাই দেখে সে আপনি ভেবে মরে;</span><br/><span>কখন কাজের ফাঁকে</span><br/><span>জানলা ধ’রে চুপ করে সে বাইরে চেয়ে থাকে—</span><br/><span>যেখানে ঐ সজনে গাছের ফুলের ঝুরি বেড়ার গায়ে</span><br/><span>রাশি রাশি হাসির ঘায়ে</span><br/><span>আকাশটারে পাগল করে দিবসরাতি!</span>
+</p>
+</div> <div>
+<p><span>যে ছিল তার ছেলেবেলার খেলাঘরের সাথি</span><br/><span>আজ সে কেমন করে</span><br/><span>জলস্থলের হৃদয়খানি দিল ভরে!</span><br/><span>অরূপ হয়ে সে যেন আজ সকল রূপে রূপে</span><br/><span>মিশিয়ে গেল চুপে চুপে।</span><br/><span>পায়ের শব্দ তারই</span><br/><span>মর্মরিত পাতায় পাতায় গিয়েছে সঞ্চারি।</span><br/><span>কানে কানে তারই করুণ বাণী</span><br/><span>মৌমাছিদের পাখার গুন্‌গুনানি।</span><br/><span>মেয়ের নীরব মুখে</span><br/><span>কী দেখে মা, শেল বাজে তার বুকে।</span><br/><span>না-বলা কোন্ গোপন কথার মায়া</span><br/>
+মঞ্জুলিকার কালো চোখে ঘনিয়ে তোলে জল-ভরা এক ছায়া;<br/><span>অশ্রু-ভেজা গভীর প্রাণের ব্যথা</span><br/><span>এনে দিল অধরে তার শরৎনিশির স্তব্ধ ব্যাকুলতা।</span><br/><span>মায়ের মুখে অন্ন রোচে নাকো—</span><br/>
+কেঁদে বলে, ‘হায় ভগবান, অভাগীরে ফেলে কোথায় থাকো!’<br/><span>একদা বাপ দুপুর বেলায় ভোজন সাঙ্গ করে</span><br/><span>গুড়গুড়িটার নলটা মুখে ধরে</span><br/><span>ঘুমের আগে, যেমন চিরাভ্যাস,</span>
+</p>
+</div> <div>
+<p><span>পড়তেছিলেন ইংরেজি এক প্রেমের উপন্যাস।</span><br/><span>মা বললেন, বাতাস ক’রে গায়ে,</span><br/><span>কখনো-বা হাত বুলিয়ে পায়ে,</span><br/><span>‘যার খুশি সে নিন্দে করুক, মরুক বিষে জ্ব’রে,</span><br/><span>আমি কিন্তু পারি যেমন ক’রে</span><br/><span>মঞ্জুলিকার দেবই দেব বিয়ে।’</span><br/>
+বাপ বললেন কঠিন হেসে, ‘তোমরা মায়ে ঝিয়ে<br/><span>এক লগ্নেই বিয়ে কোরো আমার মরার পরে;</span><br/><span>সেই কটা দিন থাকো ধৈর্য ধরে।’</span><br/><span>এই ব’লে তাঁর গুড়গুড়িতে দিলেন মৃদু টান।</span><br/><span>মা বললেন, ‘উঃ, কী পাষাণ প্রাণ,</span><br/><span>স্নেহমায়া কিচ্ছু কি নেই ঘটে!’</span><br/><span>বাপ বললেন, ‘আমি পাষাণ বটে।</span><br/><span>ধর্মের পথ কঠিন বড়ো, ননির পুতুল হলে</span><br/><span>এতদিনে কেঁদেই যেতেম গ’লে।’</span><br/><span>মা বললেন, ‘হায় রে কপাল! বোঝাবই বা কারে?</span><br/><span>তোমার এ সংসারে</span><br/><span>ভরা ভোগের মধ্যখানে দুয়ার এঁটে</span><br/><span>পলে পলে শুকিয়ে মরবে ছাতি ফেটে</span><br/><span>একলা কেবল একটুকু ঐ মেয়ে,</span><br/><span>ত্রিভুবনে অধর্ম আর নেই কিছু এর চেয়ে।</span><br/>
+তোমার পুঁথির শুকনো পাতায় নেই তো কোথাও প্রাণ—
+</p>
+</div> <div>
+<p>দরদ কোথায় বাজে সেটা অন্তর্যামী জানেন ভগবান।’<br/><span>বাপ একটু হাসল কেবল, ভাবলে, ‘মেয়েমানুষ</span><br/><span>হৃদয়তাপের-ভাপে-ভরা ফানুষ।</span><br/><span>জীবন একটা কঠিন সাধন, নেই সে ওদের জ্ঞান।’</span><br/><span>এই বলে ফের চলল পড়া ইংরেজি সেই প্রেমের উপাখ্যান।</span><br/><span>দুখের তাপে জ্ব’লে জ্ব’লে অবশেষে নিবল মায়ের তাপ;</span><br/><span>সংসারেতে একা পড়লেন বাপ।</span><br/><span>বড়ো ছেলে বাস করে তার স্ত্রীপুত্রদের সাথে</span><br/><span>বিদেশে পাটনাতে।</span><br/><span>দুই মেয়ে তার কেউ থাকে না কাছে,</span><br/><span>শ্বশুরবাড়ি আছে।</span><br/><span>একটি থাকে ফরিদপুরে,</span><br/><span>আরেক মেয়ে থাকে আরো দূরে</span><br/><span>মাদ্রাজে কোন্ বিন্ধ্যগিরির পার।</span><br/><span>পড়ল মঞ্জুলিকার ’পরে বাপের সেবা-ভার।</span><br/><span>রাঁধুনে ব্রাহ্মণের হাতে খেতে করেন ঘৃণা;</span><br/><span>স্ত্রীর রান্না বিনা</span><br/><span>অন্নপানে হত না তাঁর রুচি—</span><br/>
+সকাল বেলায় ভাতের পালা, সন্ধ্যা বেলায় রুটি কিম্বা লুচি,<br/><span>ভাতের সঙ্গে মাছের ঘটা,</span>
+</p>
+</div> <div>
+<p><span>ভাজাভুজি হত পাঁচটা-ছটা;</span><br/><span>পাঁঠা হত রুটি-লুচির সাথে।</span><br/><span>মঞ্জুলিকা দুবেলা সব আগাগোড়া রাঁধে আপন হাতে।</span><br/><span>একাদশী ইত্যাদি তার সকল তিথিতেই</span><br/><span>রাঁধার ফর্দ এই।</span><br/><span>বাপের ঘরটি আপনি মোছে ঝাড়ে;</span><br/><span>রৌদ্রে দিয়ে গরম পোশাক আপনি তোলে পাড়ে।</span><br/><span>ডেস্কে বাক্সে কাগজপত্র সাজায় থাকে থাকে,</span><br/><span>ধোবার বাড়ির ফর্দ টুকে রাখে।</span><br/><span>গয়লানি আর মুদির হিসাব রাখতে চেষ্টা করে,</span><br/>
+ঠিক দিতে ভুল হলে তখন বাপের কাছে ধমক খেয়ে মরে।<br/><span>কাসুন্দি তার কোনোমতেই হয় না মায়ের মতো,</span><br/><span>তাই নিয়ে তার কত</span><br/><span>নালিশ শুনতে হয়।</span><br/><span>তা ছাড়া তার পান-সাজাটা মনের মতো নয়।</span><br/><span>মায়ের সঙ্গে তুলনাতে পদে-পদেই ঘটে যে তার ত্রুটি।</span><br/><span>মোটামুটি—</span><br/><span>আজকালকার মেয়েরা কেউ নয় সেকালের মতো।</span><br/><span>হয়ে নীরব নত,</span><br/><span>মঞ্জুলী সব সহ্য করে, সর্বদাই সে শান্ত,</span><br/><span>কাজ করে অক্লান্ত।</span><br/><span>যেমন করে মাতা বারম্বার</span>
+</p>
+</div> <div>
+<p><span>শিশু ছেলের সহস্র আবদার</span><br/><span>হেসে সকল বহন করেন স্নেহের কৌতুকে,</span><br/><span>তেমনি করেই সুপ্রসন্ন মুখে</span><br/><span>মঞ্জুলী তার বাপের নালিশ দণ্ডে দণ্ডে শোনে,</span><br/><span>হাসে মনে মনে।</span><br/><span>বাবার কাছে মায়ের স্মৃতি কতই মূল্যবান্</span><br/><span>সেই কথাটি মনে করে গর্বসুখে পূর্ণ তাহার প্রাণ—</span><br/><span>‘আমার মায়ের যত্ন যে জন পেয়েছে একবার</span><br/><span>আর-কিছু কি পছন্দ হয় তার!’</span><br/><span>হােলির সময় বাপকে সেবার বাতে ধরল ভারি।</span><br/><span>পাড়ায় পুলিন করছিল ডাক্তারি,</span><br/><span>ডাকতে হল তারে।</span><br/><span>হৃদয়যন্ত্র বিকল হতে পারে</span><br/><span>ছিল এমন ভয়।</span><br/>
+পুলিনকে তাই দিনের মধ্যে বারে বারেই আসতে যেতে হয়।<br/><span>মঞ্জুলী তার সনে</span><br/><span>সহজ ভাবে কইবে কথা যতই করে মনে</span><br/><span>ততই বাধে আরো!</span><br/><span>এমন বিপদ কারাে</span><br/><span>হয় কি কোনােদিন!</span><br/><span>গলাটি তার কাঁপে কেন, কেন এতই ক্ষীণ!</span>
+</p>
+</div> <div>
+<p><span>চোখের পাতা কেন</span><br/><span>কিসের ভারে জড়িয়ে আসে যেন!</span><br/><span>ভয়ে মরে বিরহিণী</span><br/>
+শুনতে যেন পাবে কেহ রক্তে যে তার বাজে রিনিরিনি<br/><span>পদ্মপাতায় শিশির যেন, মনখানি তার বুকে</span><br/>
+দিবারাত্রি টলছে কেন এমনতরো ধরা-পড়ার মুখে!<br/><span>ব্যামো সেরে আসছে ক্রমে,</span><br/><span>গাঁটের ব্যথা অনেক এল কমে।</span><br/><span>রোগী শয্যা ছেড়ে</span><br/><span>একটু এখন চলে হাত পা নেড়ে।</span><br/><span>এমন সময় সন্ধ্যাবেলা</span><br/><span>হাওয়ায় যখন যূথীবনের পরানখানি মেলা,</span><br/><span>আঁধার যখন চাঁদের সঙ্গে কথা বলতে যেয়ে</span><br/><span>চুপ করে শেষ তাকিয়ে থাকে চেয়ে,</span><br/><span>তখন পুলিন রোগীসেবার পরামর্শ-ছলে</span><br/><span>মঙুলীরে পাশের ঘরে ডেকে বলে—</span><br/><span>‘জানো তুমি তোমার মায়ের সাধ ছিল এই চিতে</span><br/><span>মোদের দোঁহার বিয়ে দিতে।</span><br/><span>সে ইচ্ছাটি তাঁরি</span><br/><span>পুরাতে চাই যেমন করেই পারি।</span><br/><span>এমন করে আর কেন দিন কাটাই মিছিমিছি?’</span>
+</p>
+</div> <div>
+<p><span>‘না না, ছিছি, ছিছি।’</span><br/>
+এই ব’লে সে মঞ্জুলিকা দু হাত দিয়ে মুখখানি তার ঢেকে<br/><span>ছুটে গেল ঘরের থেকে।</span><br/><span>আপন ঘরে দুয়ার দিয়ে পড়ল মেঝের ’পরে—</span><br/>
+ঝর্‌ঝরিয়ে ঝর্‌ঝরিয়ে বুক ফেটে তার অশ্রু ঝ’রে পড়ে।<br/><span>ভাবলে, ‘পোড়া মনের কথা এড়ায় নি ওঁর চোখ।</span><br/><span>আর কেন গো? এবার মরণ হোক।’</span><br/><span>মঞ্জুলিকা বাপের সেবায় লাগল দ্বিগুণ করে</span><br/><span>অষ্টপ্রহর ধরে।</span><br/>
+আবশ্যকটা সারা হলে তখন লাগে অনাবশ্যক কাজে;<br/><span>যে বাসনটা মাজা হল আবার সেটা মাজে।</span><br/><span>দু-তিন ঘণ্টা পর</span><br/><span>একবার যে ঘর ঝেড়েছে ফের ঝাড়ে সেই ঘর।</span><br/><span>কখন যে স্নান, কখন যে তার আহার,</span><br/><span>ঠিক ছিল না তাহার।</span><br/>
+কাজের কামাই ছিল নাকো যতক্ষণ না রাত্রি এগারোটায়<br/><span>শ্রান্ত হয়ে আপনি ঘুমে মেঝের ’পরে লোটায়।</span><br/><span>যে দেখল সেই অবাক হয়ে রইল চেয়ে;</span><br/><span>বললে, ‘ধন্যি মেয়ে!’</span><br/><span>বাপ শুনে কয় বুক ফুলিয়ে, ‘গর্ব করি নেকো—</span><br/><span>কিন্তু তবু আমার মেয়ে সেটা স্মরণ রেখো।</span>
+</p>
+</div> <div>
+<p><span>ব্রহ্মচর্যব্রত</span><br/>
+আমার কাছেই শিক্ষা যে ওর। নইলে দেখতে অন্যরকম হ’ত।<br/><span>আজকালকার দিনে</span><br/><span>সংযমেরই কঠোর সাধন বিনে</span><br/><span>সমাজেতে রয় না কোনো বাঁধ;</span><br/><span>মেয়েরা তাই শিখছে কেবল বিবিয়ানার ছাঁদ।’</span><br/><span>স্ত্রীর মরণের পরে যবে</span><br/><span>সবেমাত্র এগারো মাস হবে</span><br/><span>গুজব গেল শোনা,</span><br/><span>এই বাড়িতে ঘটক করে আনাগোনা।</span><br/><span>প্রথম শুনে মঞ্জুলিকার হয় নিকো বিশ্বাস;</span><br/>
+তার পরে সব রকম দেখে ছাড়লে সে নিশ্বাস।<br/><span>ব্যস্ত সবাই, কেমনতরো ভাব—</span><br/>
+আসছে ঘরে নানারকম বিলিতি আসবাব।<br/><span>দেখলে বাপের নতুন করে সাজসজ্জা শুরু,</span><br/><span>হঠাৎ কালো ভ্রমরকৃষ্ণ ভুরু,</span><br/><span>পাকা চুল সব কখন হল কটা,</span><br/><span>চাদরেতে যখন-তখন গন্ধ মাখার ঘটা।</span><br/><span>মার কথা আজ মঞ্জুলিকার পড়ল মনে</span><br/><span>বুক-ভাঙা এক বিষম ব্যথার সনে।</span>
+</p>
+</div> <div>
+<p><span>হোক-না মৃত্যু, তবু</span><br/>
+এ বাড়ির এই হাওয়ার সঙ্গে বিরহ তাঁর ঘটে নাই তো কভু।<br/><span>কল্যাণী সেই মূর্তিখানি সুধামাখা</span><br/><span>এ সংসারের মর্মে ছিল আঁকা;</span><br/><span>সাধ্বীর সেই সাধনপুণ্য ছিল ঘরের মাঝে,</span><br/><span>তাঁরই পরশ ছিল সকল কাজে।</span><br/>
+এ সংসারে তাঁর হবে আজ পরম মৃত্যু, বিষম অপমান—<br/><span>সেই ভেবে যে মঞ্জুলিকার ভেঙে পড়ল প্রাণ।</span><br/><span>ছোড়ে লজ্জা ভয়</span><br/><span>কন্যা তখন নিঃসংকোচে কয়</span><br/><span>বাপের কাছে গিয়ে,—</span><br/><span>‘তুমি নাকি করতে যাবে বিয়ে!</span><br/>
+আমরা তোমার ছেলে মেয়ে নাৎনি নাতি যত<br/><span>সবার মাথা করবে নত?</span><br/><span>মায়ের কথা ভুলবে তবে?</span><br/><span>তোমার প্রাণ কি এত কঠিন হবে!’</span><br/><span>বাবা বললে শুল্ক হাসে,—</span><br/><span>‘কঠিন আমি কেই বা জানে না সে!</span><br/><span>আমার পক্ষে বিয়ে করা বিষম কঠোর কর্ম,</span><br/><span>কিন্তু গৃহধর্ম</span>
+</p>
+</div> <div>
+<p><span>স্ত্রী না হলে অপূর্ণ যে রয়</span><br/><span>মনু হতে মহাভারত সকল শাস্ত্রে কয়।</span><br/><span>সহজ তাে নয় ধর্মপথে হাঁটা,</span><br/><span>এ তাে কেবল হৃদয় নিয়ে নয়কো কাঁদাকাটা।</span><br/><span>যে করে ভয় দুঃখ নিতে, দুঃখ দিতে,</span><br/><span>সে কাপুরুষ কেনই আসে পৃথিবীতে?</span><br/><span>বাখরগঞ্জে মেয়ের বাপের ঘর।</span><br/><span>সেথায় গেলেন বর</span><br/><span>বিয়ের ক’ দিন আগে। বৌকে নিয়ে শেষে</span><br/><span>যখন ফিরে এলেন দেশে,</span><br/>
+ঘরেতে নেই মঞ্জুলিকা। খবর পেলেন চিঠি প’ড়ে,<br/><span>পুলিন তাকে বিয়ে ক’রে</span><br/><span>গেছে দোঁহে ফরাক্কাবাদ চ’লে,</span><br/><span>সেইখানেতেই ঘর পাতবে ব’লে।</span><br/><span>আগুন হয়ে বাপ</span><br/><span>বারে বারে দিলেন অভিশাপ।</span>
+</p>
+</div>
+</div>
+</div></section>
+<section><div>
+
+<div>
+<h2><span><b>মালা</b></span>
+</h2>
+</div>
+<div>
+<div>
+<p><span>আমি যেদিন সভায় গেলেম প্রাতে,</span><br/><span>সিংহাসনে রানীর হাতে</span><br/><span>ছিল সােনার থালা,</span><br/><span>তারই ’পরে একটি শুধু ছিল মণির মালা।</span><br/>
+কাশী কাঞ্চী কানােজ কোশল অঙ্গ বঙ্গ মদ্র মগধ হতে<br/><span>বহুমুখী জনধারার স্রোতে</span><br/><span>দলে দলে যাত্রী আসে</span><br/><span>ব্যগ্র কলােচ্ছ্বাসে।</span><br/><span>যারে শুধাই ‘কোথায় যাবে’ সেই তখনি বলে,</span><br/><span>‘রানীর সভাতলে।’</span><br/>
+যারে শুধাই ‘কেন যাবে’ কয় সে তেজে, চক্ষে দীপ্ত জ্বালা,—<br/><span>‘নেব বিজয়মালা।’</span><br/><span>কেউ বা ঘোড়ায় কেউ বা রথে</span><br/><span>ছুটে চলে, বিরাম চায় না পথে।</span><br/><span>মনে যেন আগুন উঠল খেপে,</span><br/><span>চঞ্চলিত বীণার তারে যৌবন মাের উঠল কেঁপে কেঁপে।</span><br/><span>মনে মনে কইনু হর্ষে, ‘ওগাে জ্যোতির্ময়ী,</span><br/><span>তােমার সভায় হব আমি জয়ী।</span>
+</p>
+</div> <div>
+<p><span>শূন্য ক’রে থালা</span><br/><span>নেব বিজয়মালা।’</span><br/><span>একটি ছিল তরুণ যাত্রী, করুণ তাহার মুখ,</span><br/>
+প্রভাত-তারার মতো যে তার নয়ন-দুটি কী লাগি উৎসুক!<br/><span>সবাই যখন ছুটে চলে</span><br/><span>সে যে তরুর তালে</span><br/><span>আপন-মনে বসে থাকে।</span><br/><span>আকাশ যেন শুধায় তাকে,</span><br/><span>যার কথা সে ভাবে কী তার নাম!</span><br/><span>আমি তারে যখন শুধালাম</span><br/>
+‘মালার আশায় যাও বুঝি ঐ হাতে নিয়ে শূন্য তোমার ডালা’<br/><span>সে বলে, ‘ভাই, চাই নে বিজয়মালা।’</span><br/><span>তারে দেখে সবাই হাসে;</span><br/><span>মনে ভাবে, ‘এও কেন মোদের সাথে আসে—</span><br/><span>আশা করার ভরসাও যার নাইকো মনে,</span><br/><span>আগে হতেই হার মেনে যে চলে রণে!’</span><br/><span>সবার তরে জায়গা সে দেয় মেলে,</span><br/>
+আগেভাগে যাবার লাগি ছুটে যায় না আর-সবারে ঠেলে।<br/><span>কিন্তু নিত্য সজাগ থাকে;</span><br/><span>পথ চলেছে যেন রে কার বাঁশির অধীর ডাকে</span>
+</p>
+</div> <div>
+<p><span>হাতে নিয়ে রিক্ত আপন থালা;</span><br/><span>তবু বলে, চায় না বিজয়মালা।</span><br/><span>সিংহাসনে একলা বসে রানী</span><br/><span>মূর্তিমতী বাণী।</span><br/><span>ঝংকারিয়া গুঞ্জরিয়া সভার মাঝে</span><br/><span>আমার বীণা বাজে।</span><br/><span>কখনো বা দীপকরাগে</span><br/><span>চমক লাগে,</span><br/><span>তারা বৃষ্টি করে;</span><br/>
+কখনো বা মল্লারে তার অশ্রুধারার পাগল-ঝোরা ঝরে।<br/><span>আর-সকলে গান শুনিয়ে নতশিরে</span><br/><span>সন্ধ্যাবেলার অন্ধকারে ধীরে ধীরে</span><br/><span>গেছে ঘরে ফিরে।</span><br/><span>তারা জানে, যেই ফুরাবে আমার পালা</span><br/><span>আমি পাব রানীর বিজয়মালা।</span><br/>
+আমাদের সেই তরুণ সাথি বসে থাকে ধুলায় আসন-তলে;<br/><span>কথাটি না বলে।</span><br/><span>দৈবে যদি একটি-আধটি চাঁপার কলি</span><br/><span>পড়ে স্খলি</span>
+</p>
+</div> <div>
+<p><span>রানীর আঁচল হতে মাটির ’পরে</span><br/><span>সবার অগোচরে</span><br/><span>সেইটি যত্নে নিয়ে তুলে</span><br/><span>পরে কর্ণমূলে।</span><br/><span>সভাভঙ্গ হবার বেলায় দিনের শেষে</span><br/><span>যদি তারে বলি হেসে</span><br/><span>‘প্রদীপ জ্বালার সময় হল সাঁঝে,</span><br/><span>এখনো কি রইবে সভা-মাঝে?’</span><br/>
+সে হেসে কয়, ‘সব সময়েই আমার পালা—<br/><span>আমি যে ভাই, চাই নে বিজয়মালা।’</span><br/><span>আষাঢ় শ্রাবণ অবশেষে</span><br/><span>গেল ভেসে</span><br/><span>ছিন্ন মেঘের পালে—</span><br/>
+গুরু গুরু মৃদঙ্গ তার বাজিয়ে দিয়ে আমার গানের তালে।<br/><span>শরৎ এল, শরৎ গেল চলে;</span><br/><span>নীল আকাশের কোলে</span><br/><span>রৌদ্রজলের কান্নাহাসি হল সারা;</span><br/>
+আমার সুরের থরে থরে ছড়িয়ে গেল শিউলিফুলের ঝারা।<br/><span>ফাগুন চৈত্র আম-মউলের সৌরভে আতুর,</span><br/>
+দখিন-হাওয়ার আঁচল ভরে নিয়ে গেল আমার গানের সুর।<br/><span>কণ্ঠে আমার একে একে সকল ঋতুর গান</span>
+</p>
+</div> <div>
+<p><span>হল অবসান।</span><br/><span>তখন রানী আসন হতে উঠে</span><br/><span>আমার করপুটে</span><br/><span>তুলে দিলেন শূন্য করে থালা</span><br/><span>আপন বিজয়মালা।</span><br/>
+পথে যখন বাহির হলেম মালা মাথায় প’রে<br/><span>মনে হল, বিশ্ব আমার চতুর্দিকে ঘোরে</span><br/><span>ঘূর্ণিধুলার মতো।</span><br/><span>মানুষ শত শত</span><br/><span>ঘিরল আমায় দলে দলে—</span><br/><span>কেউ বা কৌতূহলে,</span><br/><span>কেউ বা স্তুতিচ্ছলে,</span><br/><span>কেউ বা গ্লানির পঙ্ক দিতে গায়!</span><br/><span>হায় রে হায়,</span><br/>
+এক নিমেষে স্বচ্ছ আকাশ ধূসর হয়ে যায়।<br/><span>এই ধরণীর লাজুক যত সুখ</span><br/>
+ছোটোখাটো আনন্দেরই সরল হাসিটুক<br/><span>নদীচরের ভীরু হংসদলের মতো</span><br/><span>কোথায় হল গত।</span><br/><span>আমি মনে মনে ভাবি, ‘একি দহনজ্বালা</span><br/><span>আমার বিজয়মালা!’</span>
+</p>
+</div> <div>
+<p><span>ওগো রানী, তোমার হাতে আর-কিছু কি নেই?</span><br/><span>শুধু কেবল বিজয়মালা এই?</span><br/><span>জীবন আমার জুড়ায় না যে;</span><br/><span>বক্ষে বাজে</span><br/><span>তোমার মালার ভার—</span><br/><span>এই কি পুরস্কার?</span><br/><span>এ তো কেবল বাইরে আমার গলায় মাথায় পরি;</span><br/><span>কী দিয়ে যে হৃদয় ভরি</span><br/><span>সেই তো খুঁজে মরি।</span><br/><span>তৃষ্ণা আমার বাড়ে শুধু মালার তাপে;</span><br/><span>কিসের শাপে</span><br/>
+ওগো রানী, শূন্য করে তোমার সোনার থালা<br/><span>পেলেম বিজয়মালা?</span><br/>
+আমার কেমন মনে হল, আরো যেন অনেক আছে বাকি—<br/><span>সে নইলে সব ফাঁকি।</span><br/><span>এ শুধু আধখানা—</span><br/>
+কোন্ মানিকের অভাব আছে, এ মালা তাই কানা।<br/><span>হয় নি পাওয়া, সেই কথাটাই কেন মনের মাঝে</span><br/><span>এমন করে বাজে!</span><br/><span>চল্‌ রে ফিরে, বিড়ম্বিত, আবার ফিরে চল্,</span><br/><span>দেখবি খুঁজে বিজন সভাতল—</span>
+</p>
+</div> <div>
+<p><span>যদি রে তোর ভাগ্যদোষে</span><br/><span>ধুলায় কিছু পড়ে থাকে খসে।</span><br/><span>যদি সোনার থালা</span><br/><span>লুকিয়ে রাখে আর-কোনো এক মালা!</span><br/><span>সন্ধ্যাকাশে শান্ত তখন হাওয়া;</span><br/><span>দেখি, সভার দুয়ার বন্ধ, ক্ষান্ত তখন সকল চাওয়া পাওয়া।</span><br/><span>নাই কোলাহল, নাইকো ঠেলাঠেলি,</span><br/><span>তরুশ্রেণী স্তব্ধ যেন শিবের মতন যোগের আসন মেলি।</span><br/><span>বিজন পথে আঁধার গগনতলে</span><br/><span>আমার মালার রতনগুলি আর কি তেমন জ্বলে?</span><br/><span>আকাশের ঐ তারার কাছে</span><br/><span>লজ্জা পেয়ে মুখ লুকিয়ে আছে।</span><br/><span>দিনের আলোয় ভুলিয়েছিল মুগ্ধ আঁখি,</span><br/><span>আঁধারে তার ধরা পড়ল ফাঁকি।</span><br/>
+এরই লাগি এত বিবাদ, সারা দিনের এত দুখের পালা?<br/><span>লও ফিরে লও তোমার বিজয়মালা!</span><br/><span>ঘনিয়ে এল রাতি।</span><br/>
+হঠাৎ দেখি, তারার আলোয় সেই-যে আমার পথের তরুণ সাথি<br/><span>আপন-মানে</span><br/><span>গান গেয়ে যায় রানীর কুঞ্জবনে।</span>
+</p>
+</div> <div>
+<p>আমি তারে শুধাই ধীরে, ‘কোথায় তুমি এই নিভৃতের মাঝে<br/><span>রয়েছ কোন্ কাজে?’</span><br/><span>সে হেসে কয়, ‘ফুরিয়ে গেলে সভার পালা,</span><br/><span>ফুরিয়ে গেলে জয়ের মালা,</span><br/><span>তখন রানীর আসন পড়ে বকুল-বীথিকাতে—</span><br/><span>আমি একা বীণা বাজাই রাতে।’</span><br/><span>শুধাই তারে, ‘কী পেলে তাঁর কাছে?’</span><br/>
+সে কয় শুনে ‘এই-যে আমার বুকের মাঝে আলো ক’রে আছে—<br/><span>কেউ দেখে নি রানীর কোলে পদ্মপাতার ডালা,</span><br/><span>তারই মধ্যে গোপন ছিল আপন হাতের গাঁথা বরণমালা।’</span>
+</p>
+</div>
+</div>
+</div></section>
+<section><div>
+
+<div>
+<h2><span><b>ভোলা</b></span>
+</h2>
+</div>
+<div>
+<div>
+<p><span>হঠাৎ আমার হল মনে</span><br/>
+শিবের জটার গঙ্গা যেন শুকিয়ে গেল অকারণে—<br/><span>থামল তাহার হাস্য-উছল বাণী,</span><br/><span>থামল তাহার নৃত্যনূপুর-ঝর্‌ঝরানি,</span><br/><span>সূর্য-আলোর সঙ্গে তাহার ফেনার কোলাকুলি,</span><br/><span>হাওয়ার সঙ্গে ঢেউয়ের দোলাদুলি</span><br/><span>স্তব্ধ হল এক নিমেষে,</span><br/><span>বিজু যখন চলে গেল মরণপারের দেশে</span><br/><span>বাপের বাহুর বাঁধন কেটে।</span><br/>
+মনে হল, আমার ঘরের সকাল যেন মরেছে বুক ফেটে।<br/><span>ভোরবেলা তার বিষম গণ্ডগোলে</span><br/>
+ঘুম-ভাঙনের সাগর-মাঝে আর কি তুফান তোলে!<br/><span>ছুটোছুটির উপদ্রবে</span><br/><span>ব্যস্ত হত সবে,</span><br/>
+হাঁ-হাঁ করে ছুটে আসত ‘আরে আরে করিস কী তুই’ ব’লে;<br/><span>ভূমিকম্পে গৃহস্থালি উঠত যেন টলে।</span><br/><span>আজ যত তার দস্যুপনা, যা-কিছু হাঁক ডাক,</span><br/><span>চাক-ভরা মৌমাছির মতো উড়ে গেছে শূন্য করে চাক।</span><br/><span>আমার এ সংসারে</span>
+</p>
+</div> <div>
+<p>অত্যাচারের সুধা-উৎস বন্ধ হয়ে গেল একেবারে;<br/><span>তাই এ ঘরের প্রাণ</span><br/><span>লোটায় ম্রিয়মাণ</span><br/><span>জল-পালানো দিঘির পদ্ম যেন।</span><br/>
+খাট পালঙ্ক শূন্যে চেয়ে শুধায় শুধু, ‘কেন, নাই সে কেন?’<br/><span>সবাই তারে দুষ্ট, বলত, ধরত আমার দোষ;</span><br/>
+মনে করত, শাসন বিনা বড়ো হলে ঘটাবে আপশোষ।<br/><span>সমুদ্র-ঢেউ যেমন বাঁধন টুটে</span><br/><span>ফেনিয়ে গড়িয়ে গর্জে ছুটে</span><br/>
+ফিরে ফিরে ফুলে ফুলে কূলে কূলে দুলে দুলে পড়ে লুটে লুটে<br/><span>ধরার ঘরাতলে,</span><br/><span>দুরন্ত তার দুষ্টমিটি তেমনি বিষম বলে</span><br/><span>দিনের মধ্যে সহস্রবার ক’রে</span><br/><span>বাপের বক্ষ দিত অসীম চঞ্চলতায় ভ’রে।</span><br/><span>বয়সের এই পর্দা-ঘেরা শান্ত ঘরে</span><br/>
+আমার মধ্যে একটি সে কোন্ চিরবালক লুকিয়ে খেলা করে,<br/><span>বিজুর হাতে পেলে নাড়া</span><br/><span>সেই-যে দিত সাড়া।</span><br/><span>সমান বয়স ছিল আমার কোন্‌খানে তার সনে,</span><br/><span>সেইখানে তার সাথি ছিলেম সকল প্রাণে মনে।</span><br/><span>আমার বক্ষ সেইখানে এক তালে</span>
+</p>
+</div> <div>
+<p><span>উঠত বেজে তারই খেলার অশান্ত গোলমালে।</span><br/>
+বৃষ্টিধারা সাথে নিয়ে মোদের দ্বারে ঝড় দিত যেই হানা<br/><span>কাটিয়ে দিয়ে বিজুর মায়ের মানা</span><br/><span>অট্ট হেসে আমরা দোঁহে</span><br/><span>মাঠের মধ্যে ছুটে গেছি উদ্দাম বিদ্রোহে।</span><br/><span>পাকা আমের কালে</span><br/><span>তারে নিয়ে বসে গাছের ডালে</span><br/><span>দুপুর বেলায় খেয়েছি আম করে কাড়াকাড়ি—</span><br/>
+তাই দেখে সব পাড়ার লোকে বলে গেছে ‘বিষম বাড়াবাড়ি’।<br/><span>বারে বারে</span><br/>
+আমার লেখার ব্যাঘাত হত, বিজুর মা তাই বেগে বলত তাকে,<br/><span>‘দেখিস নে তোর বাবা আছেন কাজে?’</span><br/><span>বিজু তখন লাজে</span><br/>
+বাইরে চলে যেত। আমার দ্বিগুণ ব্যাঘাত হত লেখাপড়ায়;<br/><span>মনে হত, ‘টেবিলখানা কেউ কেন না নড়ায়?’</span><br/><span>ভোর না হতে রাতি</span><br/>
+সেদিন যখন বিজু গেল ছেড়ে খেলা, ছেড়ে খেলার সাথি,<br/><span>মনে হল, এতদিনে বুড়ো-বয়সখানা</span><br/><span>পুরল ষোলো আনা।</span><br/><span>কাজের ব্যাঘাত হবে না আর কোনোমতে,</span><br/><span>চলব এবার প্রবীণতার পাকা পথে</span>
+</p>
+</div> <div>
+<p><span>লক্ষ্য ক’রে বৈতরণীর ঘাট;</span><br/>
+গম্ভীরতার স্তম্ভিত ভার বহন ক’রে প্রাণটা হবে কাঠ।<br/><span>সময় নষ্ট হবে না আর দিনে রাতে,</span><br/>
+দৌড়বে মন লেখার খাতার শুকনো পাতে পাতে;<br/><span>বৈঠকেতে চলবে আলোচনা</span><br/>
+কেবলই সৎপরামর্শ, কেবলই সদ্‌বিবেচনা।<br/><span>ঘরের সকল আকাশ ব্যেপে</span><br/>
+দারুণ শূন্য রয়েছে মোর চৌকি টেবিল চেপে।<br/><span>তাই সেখানে টিকতে নাহি পারি;</span><br/><span>বৈরাগ্যে মন ভারী,</span><br/><span>উঠোনেতে করছিনু পায়চারি।</span><br/><span>এমন সময় উঠল মাটি কেঁপে—</span><br/>
+হঠাৎ কে এক ঝড়ের মতো বুকের ’পরে পড়ল আমার ঝেঁপে।<br/><span>চমক লাগল শিরে শিরে,</span><br/>
+হঠাৎ মনে হল বুঝি বিজুই আমার এল আবার ফিরে!<br/><span>আমি শুধাই, ‘কে রে! কী রে!’</span><br/><span>‘আমি ভোলা’ সে শুধু এই কয়,</span><br/><span>এই যেন তার সকল পরিচয়—</span><br/><span>আর কিছু নেই বাকি।</span><br/>
+আমি তখন অচেনারে দু হাত দিয়ে বক্ষে চেপে রাখি।<br/><span>সে বললে, ‘ঐ বাইরে তেঁতুল গাছে</span>
+</p>
+</div> <div>
+<p><span>ঘুড়ি আমার আটকে আছে,</span><br/><span>ছাড়িয়ে দাও-না এসে।’</span><br/><span>এই ব’লে সে</span><br/><span>হাত ধ’রে মোর চলল নিয়ে টেনে।</span><br/><span>ওরে ওরে, এইমত যার হাজার হুকুম মেনে</span><br/><span>কেটেছিল ন’টা বছর, তারই হুকুম আজও মর্ততলে</span><br/><span>ঘুরে বেড়ায় তেমনি নানান ছলে।</span><br/><span>ওরে ওরে, বুঝে নিলেম আজ,</span><br/><span>ফুরোয় নি মোর কাজ।</span><br/>
+আমার রাজা, আমার সখা, তামার বাছা আজও<br/><span>কত সাজেই সাজো!</span><br/><span>নতুন হয়ে আমার বুকে এলে,</span><br/><span>চিরদিনের সহজ পথটি আপনি খুঁজে পেলে!</span><br/>
+আবার আমার লেখার সময় টেবিল গেল ন’ড়ে,<br/><span>আবার হঠাৎ উল্টে প’ড়ে</span><br/><span>দোয়াত হল খালি,</span><br/><span>খাতার পাতায় ছড়িয়ে গেল কালি।</span><br/><span>আবার কুড়োই ঝিনুক শামুক নুড়ি,</span><br/><span>গোলা নিয়ে আবার ছোঁড়াছুঁড়ি।</span>
+</p>
+</div> <div>
+<p><span>আবার আমার নষ্ট সময় ভ্রষ্ট কাজে</span><br/><span>উলট-পালট গণ্ডগোলের মাঝে</span><br/><span>ফেলাছড়া ভাঙাচোরার পর</span><br/><span>আমার প্রাণের চিরবালক নতুন ক’রে বাঁধল খেলাঘর</span><br/><span>বয়সের এই দুয়ার পেয়ে খোলা।</span><br/><span>আবার বক্ষে লাগিয়ে দোলা</span><br/>
+এল তার দৌরাত্ম্য নিয়ে এই ভুবনের চিরকালের ভোলা।
+</p>
+</div>
+</div>
+</div></section>
+<section><div>
+
+<span>﻿<div>
+<h2><b>ছিন্ন পত্র</b>
+</h2>
+</div></span>
+<div>
+<div>
+<p><span>কর্ম যখন দেব্‌তা হয়ে জুড়ে বসে পূজার বেদী,</span><br/><span>মন্দিরে তার পাষাণপ্রাচীর অভ্রভেদী</span><br/><span>চতুর্দিকেই থাকে ঘিরে;</span><br/><span>তারই মধ্যে জীবন যখন শুকিয়ে আসে ধীরে ধীরে—</span><br/><span>পায় না আলো, পায় না বাতাস, পায় না ফাঁকা,</span><br/><span>পায় না কোনো রস—</span><br/><span>কেবল টাকা, কেবল সে পায় যশ,</span><br/><span>তখন সে কোন্ মোহের পাকে</span><br/>
+মরণ-দশা ঘটেছে তার সেই কথাটাই ভুলে থাকে।<br/><span>আমি ছিলেন জড়িয়ে প’ড়ে সেই বিপাকের ফাঁসে;</span><br/><span>বুহৎ সর্বনাশে</span><br/><span>হারিয়েছিলেম বিশ্ব জগৎখানি।</span><br/><span>নীল আকাশের সোনার বাণী</span><br/><span>সকাল-সাঁঝের বীণার তারে</span><br/><span>পৌঁছত না মোর বাতায়ন-দ্বারে।</span><br/>
+ঋতুর পরে আসত ঋতু শুধু কেবল পঞ্জিকারই পাতে,<br/><span>আমার আঙিনাতে</span><br/><span>আনত না তার রঙিন পাতার ফুলের নিমন্ত্রণ।</span>
+</p>
+</div> <div>
+<p><span>অন্তরে মোর লুকিয়ে ছিল কী যে সে ক্রন্দন</span><br/><span>জানব এমন পাই নি অবকাশ।</span><br/><span>প্রাণের উপবাস</span><br/><span>সংগোপনে বহন ক’রে কর্মরথে</span><br/><span>সমারোহে চলতেছিলেম নিষ্ফলতার মরুপথে।</span><br/><span>তিনটে চারটে সভা ছিল জুড়ে আমার কাঁধ;</span><br/>
+দৈনিকে আর সাপ্তাহিকে ছাড়তে হ’ত নকল সিংহনাদ;<br/><span>বীডন কুঞ্জে মীটিং হলে আমি হতেম বক্তা;</span><br/><span>রিপোর্ট্ লিখতে হ’ত তক্তা তক্তা;</span><br/><span>যুদ্ধ হত সেনেট-সিণ্ডিকেটে;</span><br/>
+তার উপরে আপিস আছে— এমনি ক’রে কেবল খেটে খেটে<br/><span>দিন রাত্রি যেত কোথায় দিয়ে।</span><br/><span>বন্ধুরা সব বলত, ‘করছ কী এ!</span><br/><span>মারা যাবে শেষে!’</span><br/><span>আমি বলতেম হেসে,—</span><br/><span>‘কী করি ভাই, খাটতে কি হয় সাধে!</span><br/><span>একটু যদি ঢিল দিয়েছি অমনি গলদ বাধে,</span><br/><span>কাজ বেড়ে যায় আরো—</span><br/><span>কী করি তার উপায় বলতে পারো?’</span><br/>
+বিশ্বকর্মার সদর আপিস ছিল যেন আমার ’পরেই ন্যস্ত,<br/><span>অহোরাত্রি এমনি আমার ভাবটা ব্যতিব্যস্ত।</span>
+</p>
+</div> <div>
+<p><span>সেদিন তখন দু-তিন রাত্রি ধরে</span><br/><span>গত-সনের রিপোর্ট্‌খানা লিখেছি খুব জোরে।</span><br/><span>বাছাই হবে নতুন সনের সেক্রেটারি,</span><br/><span>হস্তা-তিনেক মরতে হবে ভোট কুড়োতে তারি।</span><br/><span>শিতের দিনে যেমন পত্রভার</span><br/><span>খসিয়ে ফেলে গাছগুলো সব কেবল শাখা-সার</span><br/><span>আমার হল তেমনি দশা;</span><br/><span>সকাল হতে সন্ধ্যা-নাগাদ এক টেবিলেই বসা;</span><br/><span>কেবল পত্র রওনা করা,</span><br/><span>কেবল শুকিয়ে মরা।</span><br/><span>খবর আসে ‘খাবার তৈবি’, নিই নে কথা কানে;</span><br/><span>আবার যদি খবর আনে</span><br/><span>বলি ক্রোধের ভরে,—</span><br/><span>‘মরি এমন নেই অবসর, খাওয়া তো থাক্‌ পরে।’</span><br/><span>বেলা যখন তাড়াইটে প্রায়, নিঝুম হল পাড়া,</span><br/><span>আর-সকলে স্তব্ধ কেবল গোটাপাঁচেক চড়ুই পাখি ছাড়া,</span><br/><span>এমন সময় বেহারাটা ডাকের পত্র নিয়ে</span><br/><span>হাতে গেল দিয়ে।</span><br/><span>জরুরি কোন্ কাজের চিঠি ভেবে</span><br/>
+খুলে দেখি বাঁকা লাইন, কাঁচ আখর চলছে উঠে নেবে,<br/><span>নইকো দাঁড়ি কমা—</span>
+</p>
+</div> <div>
+<p><span>শেষ লাইনে নাম লেখা তার ‘মনোরমা’।</span><br/><span>আর হল না পড়া,</span><br/>
+মনে হল কোন্ বিধবার ভিক্ষাপত্র মিথ্যা কথায় গড়া—<br/><span>চিঠিখানা ছিঁড়ে ফেলে আবার লাগি কাজে।</span><br/><span>এমনি ক’রে কোন্ অতলের মাঝে</span><br/><span>হপ্তা-তিনেক গেল ডুবে।</span><br/><span>সূর্য ওঠে পশ্চিমে কি পুবে</span><br/><span>সেই কথাটাই ভুলে গেছি চলছি এমন চোটে।</span><br/><span>এমন সময় ভোটে</span><br/><span>আমার হল হার,</span><br/><span>শক্রদলে আসন আমার করলে অধিকার;</span><br/><span>তাহার পরে খালি</span><br/><span>কাগজপত্রে চলল গালাগালি।</span><br/><span>কাজের মাঝে অনেকটা ফাঁক হঠাৎ পড়ল হাতে,</span><br/>
+সেটা নিয়ে কী করব তাই ভাবছি বসে আরাম-কেদারাতে:<br/><span>এমন সময় হঠাৎ দখিন-পবন-ভরে</span><br/>
+ছেঁড়া চিঠির টুকরো এসে পড়ল আমার কোলের ’পরে।<br/><span>অন্যমনে হাতে তুলে</span><br/>
+এই কথাটা পড়ল চোখে ‘মনুরে কি গেছ এখন ভুলে’।
+</p>
+</div> <div>
+<p>মনু? আমার মনোরম? ছেলেবেলার সেই মনু কি এই?<br/><span>অমনি হঠাৎ এক নিমেষেই</span><br/><span>সকল শূন্য ভ’রে</span><br/>
+হারিয়ে-যাওয়া বসন্ত মোর বন্যা হয়ে ডুবিয়ে দিল মোরে।<br/><span>সেই তো আমার অনেক কালের পড়োশিনি,</span><br/><span>পায়ে পায়ে বাজাত মল রিনি ঝিনি।</span><br/>
+সেই তো আমার এই জনমের ভোর-গগনের তারা<br/><span>অসীম হতে এসেছে পথহারা;</span><br/>
+সেই তো আমার শিশুকালের শিউলিফুলের কোলে<br/><span>শুভ্র শিশির দোলে;</span><br/><span>সেই তো আমার মুগ্ধ চোখের প্রথম আলো,</span><br/><span>এই ভুবনের সকল ভালোর প্রথম ভালো।</span><br/><span>মনে পড়ে, ঘুমের থেকে যেমনি জেগে ওঠা</span><br/><span>অমনি ওদের বাড়ির পানে ছোটা;</span><br/><span>ওরই সঙ্গে শুরু হত দিনের প্রথম খেলা।</span><br/><span>মনে পড়ে, পিঠের ’পরে চুলটি মেলা</span><br/><span>সেই আনন্দমূর্তিখানি, স্নিগ্ধ ডাগর আঁখি,</span><br/><span>কণ্ঠ তাহার সুধায় মাখামাখি।</span><br/><span>অসীম ধৈর্যে সইত সে মোর হাজার অত্যাচার,</span><br/><span>সকল কথায় মানত মনু হার।</span><br/>
+উঠে গাছের আগ্‌ডালেতে দোলা খেতেম জোরে,<br/><span>ভয় দেখাতেম পড়ি-পড়ি ক’রে—</span>
+</p>
+</div> <div>
+<p><span>কাঁদো-কাঁদো কণ্ঠে তাহার করুণ মিনতি সে</span><br/><span>ভুলতে পারি কি সে!</span><br/><span>মনে পড়ে নীরব ব্যথা তার</span><br/><span>বাবার কাছে যখন খেতেম মার;</span><br/><span>ফেলেছে সে কত চোখের জল,</span><br/><span>মোর অপরাধ ঢাকা দিতে খুঁজত কত ছল।</span><br/><span>আরো কিছু বড়ো হলে</span><br/><span>আমার কাছে নিত সে তার বাংলা পড়া ব’লে।</span><br/><span>নামতাটা তার কেবল যেত বেধে;</span><br/>
+তাই নিয়ে মোর একটু হাসি সইত না সে, উঠত লাজে কেঁদে।<br/><span>আমার হাতে মোটা মোটা ইংরেজি বই দেখে</span><br/><span>ভাবত মনে, গেছে যেন কোন্ আকাশে ঠেকে</span><br/><span>রাশীকৃত মোর বিদ্যার বোঝা—</span><br/>
+যা-কিছু সব বিষম কঠিন আমার কাছে যেন নেহাত সোজা।<br/><span>হেন কালে হঠাৎ সে-বার,</span><br/><span>দশমীতে দ্বারিগ্রামে ঠাকুর ভাসান দেবার</span><br/><span>রাস্তা নিয়ে দুই পক্ষের চাকর-দরোয়ানে</span><br/><span>বকাবকি লাঠালাঠি বেধে গেল গলির মধ্যখানে।</span><br/><span>তাই নিয়ে শেষ বাবার সঙ্গে মনুর বাবার বাধল মকদ্দমা,</span><br/><span>কেউ কাহারে করলে না আর ক্ষমা।</span><br/><span>দুয়ার মোদের বন্ধ হল—</span>
+</p>
+</div> <div>
+<p><span>আকাশ যেন কালো মেঘে অন্ধ হল,</span><br/><span>হঠাৎ এল কোন্ দশমী সঙ্গে নিয়ে ঝঞ্জার গর্জন,</span><br/><span>মোর প্রতিমার হল বিসর্জন।</span><br/><span>দেখাশোনা ঘুচল যখন, এলেম যখন দূরে,</span><br/><span>তখন প্রথম শুনতে পেলেম কোন প্রভাতী সুরে</span><br/><span>প্রাণের বীণা বেজেছিল কাহার হাতে।</span><br/><span>নিবিড় বেদনাতে</span><br/>
+মুখখানি তার উঠল ফুটে আঁধার-পটে সন্ধ্যাতারার মতো;<br/><span>একই সঙ্গে জানিয়ে দিলে, সে যে আমার কত,</span><br/><span>সে যে আমার কতখানিই নয়!</span><br/>
+প্রেমের শিখা জ্বলল তখন নিবল যখন চোখের পরিচয়।<br/><span>কত বছর গেল চলে,</span><br/><span>আবার গ্রামে গিয়েছিলেম পরীক্ষা-পাস হলে।</span><br/>
+গিয়ে দেখি, ওদের বাড়ি কিনেছে কোন্ পাটের কুঠিয়াল,<br/><span>হল অনেক কাল।</span><br/><span>পিয়ে করে মনুর স্বামী</span><br/>
+কোন্ দেশে যে নিয়ে গেছে, ঠিকানা তার খুঁজে না পাই আমি।<br/><span>সেই মনু আজ এতকালের অজ্ঞাতবাস টুটে,</span><br/><span>কোন্ কথাটি পাঠালো তার পত্রপুটে?</span>
+</p>
+</div> <div>
+<p><span>কোন্ বেদনা দিল তারে নিষ্ঠুর সংসার—</span><br/><span>মৃত্যু সে কি? ক্ষতি সে কি? সে কি অত্যাচার?</span><br/><span>কেবল কি তার বাল্যসখার কাছে</span><br/><span>হৃদয়ব্যথার সান্ত্বনা তার আছে?</span><br/><span>ছিন্ন চিঠির বাকি</span><br/><span>বিশ্ব-মাঝে কোথায় আছে খুঁজে পাব নাকি?</span><br/><span>‘মনুরে কি গেছ ভুলে’</span><br/><span>এ প্রশ্ন কি অনন্তকাল রইবে দুলে</span><br/>
+মোর জগতের চোখের পাতায় একটি ফোঁটা চোখের জলের মতো!<br/><span>কত চিঠির জবাব লিখব কত,</span><br/><span>এই কথাটির জবাব শুধু নিত্য বুকে জ্বলবে বহ্নিশিখা—</span><br/><span>অক্ষরেতে হবে না আর লিখা।</span>
+</p>
+</div>
+</div>
+</div></section>
+<section><div>
+
+<div>
+<h2><span>কালো মেয়ে</span>
+</h2>
+</div>
+<div><div>
+<p><span>মরচে-পড়া গরাদে ঐ, ভাঙা জানলাখানি;</span><br/><span>পাশের বাড়ির কালো মেয়ে নন্দরানী</span><br/><span>ঐখানেতে বসে থাকে একা,</span><br/>
+শুকনো নদীর ঘাটে যেন বিনা কাজে নৌকোখানি ঠেকা।<br/><span>বছর বছর ক’রে ক্রমে</span><br/><span>বয়স উঠছে জমে।</span><br/><span>বর জোটে না, চিন্তিত তার বাপ;</span><br/><span>সমস্ত এই পরিবারের নিত্য মনস্তাপ</span><br/><span>দীর্ঘশ্বাসের ঘূর্ণি হাওয়ায় আছে যেন ঘিরে</span><br/><span>দিবসরাত্রি কালো মেয়েটিরে।</span><br/><span>সামনে-বাড়ির নীচের তলায় আমি থাকি মেস্’এ;</span><br/><span>বহুকষ্টে শেষে</span><br/><span>কলেজেতে পার হয়েছি একটা পরীক্ষায়।</span><br/><span>আর কি চলা যায়</span><br/><span>এমন ক’রে এগ্‌জামিনের লগি ঠেলে ঠেলে?</span><br/><span>দুই বেলাতেই পড়িয়ে ছেলে</span><br/><span>একটা বেলা খেয়েছি আধ-পেটা।</span><br/><span>ভিক্ষা করা সেটা</span>
+</p>
+</div> <div>
+<p><span>সইত না একবারে—</span><br/><span>তবু গেছি প্রিন্সিপালের দ্বারে</span><br/>
+বিনি মাইনেয়, নেহাত পক্ষে আধা মাইনেয়, ভর্তি হবার জন্যে।<br/><span>এক সময়ে মনে ছিল, আধেক রাজ্য এবং রাজার কন্যে</span><br/><span>পাবার আমার ছিল দাবি;</span><br/><span>মনে ছিল, ধনমানের রুদ্ধ ঘরের সোনার চাবি</span><br/><span>জন্মকালে বিধি যেন দিয়েছিলেন রেখে</span><br/><span>আমার গোপন শক্তি-মাঝে ঢেকে।</span><br/><span>আজকে দেখি, নব্যবঙ্গে</span><br/><span>শক্তিটা মোর ঢাকাই রইল, চাবিটা তার সঙ্গে।</span><br/><span>মনে হচ্ছে, ময়নাপাখির খাঁচায়</span><br/><span>অদৃষ্ট তার দারুণ রঙ্গে ময়ুরটাকে নাচায়;</span><br/><span>পদে পদে পুচ্ছে বাধে লোহার শলা—</span><br/><span>কোন্‌ কৃপণের রচনা এই নাট্যকলা!</span><br/>
+কোথায় মুক্ত অরণ্যানী, কোথায় মত্ত বাদল মেঘের ভেরী<br/><span>এ কী বাঁধন রাখল আমায় ঘেরি!</span><br/><span>ঘুরে ঘুরে উমেদারির ব্যর্থ আশে</span><br/><span>শুকিয়ে মরি রোদ্‌দুরে আর উপবাসে।</span><br/><span>প্রাণটা হাঁপায়, মাথা ঘোরে,</span><br/><span>তক্তপোশে শুয়ে পড়ি ধপাস্‌ ক’রে।</span><br/><span>হাত-পাখাটার বাতাস খেতে খেতে</span>
+</p>
+</div> <div>
+<p><span>হঠাৎ আমার চোখ পড়ে যায় উপরেতে—</span><br/><span>মরচে-পড়া গরাদে ঐ, ভাঙা জানলাখানি,</span><br/><span>বসে আছে পাশের বাড়ির কালো মেয়ে নন্দরানী।</span><br/><span>মনে হয় যে, রোদের পরে বৃষ্টিভরা থমকে-যাওয়া মেঘে</span><br/><span>ক্লান্ত পরান জুড়িয়ে গেল কালো পরশ লেগে।</span><br/><span>আমি যে ওর হৃদয়খানি চোখের ’পরে স্পষ্ট দেখি আঁকা—</span><br/><span>ও যেন জুঁইফুলের বাগান সন্ধ্যাছায়ায় ঢাকা;</span><br/><span>একটুখানি চাঁদের রেখা কৃষ্ণপক্ষে স্তব্ধ নিশীথরাতে</span><br/><span>কালো জলের গহন কিনারাতে;</span><br/><span>লাজুক ভীরু ঝর্নাখানি ঝিরি ঝিরি</span><br/><span>কালো পাথর বেয়ে বেয়ে লুকিয়ে ঝরে ধীরি ধীরি;</span><br/><span>রাত-জাগা এক পাখি</span><br/><span>মৃদু করুণ কাকুতি তার তারার মাঝে মিলায় থাকি থাকি;</span><br/><span>ও যেন কোন্‌ ভোরের স্বপন কান্নাভরা</span><br/><span>ঘন ঘুমের নীলাঞ্চলের বাঁধন দিয়ে ধরা।</span><br/><span>রাখাল ছেলের সঙ্গে ব’সে বটের ছায়ে</span><br/><span>ছেলেবেলায় বাঁশের বাঁশি বাজিয়েছিলেম গাঁয়ে।</span><br/><span>সেই বাঁশিটির টান</span><br/><span>ছুটির দিনে হঠাৎ কেমন আকুল করল প্রাণ।</span><br/>
+আমি ছাড়া সকল ছেলেই গেছে যে যার দেশে;<br/><span>একলা থাকি মেস্‌’এ।</span>
+</p>
+</div> <div>
+<p>সকাল-সাঁঝে মাঝে মাঝে বাজাই ঘরের কোণে<br/><span>মেঠো গানের সুর যা ছিল মনে।</span><br/><span>ঐ-যে ওদের কালো মেয়ে নন্দরানী—</span><br/><span>যেমনতরো ওর ভাঙা ঐ জানলাখানি,</span><br/><span>যেখানে ওর কালো চোখের তারা</span><br/><span>কালো আকাশতলে দিশাহারা,</span><br/><span>যেখানে ওর এলোচুলের স্তরে স্তরে</span><br/><span>বাতাস এসে করত খেলা আলস-ভরে,</span><br/><span>যেখানে ওর গভীর মনের নীরব কথাখানি</span><br/><span>আপন দোসর খুঁজে পেত আলোর নীরব বাণী,</span><br/><span>তেমনি আমার বাঁশের বাঁশি আপন-ভোলা,</span><br/>
+চার দিকে মোর চাপা দেয়াল, ঐ বাঁশিটি আমার জানলা খোলা।<br/><span>ঐখানেতেই গুটিকয়েক তান</span><br/><span>ঐ মেয়েটির সঙ্গে আমার ঘুচিয়ে দিত অসীম ব্যবধান।</span><br/><span>এ সংসারে অচেনাদের ছায়ার মতন আনাগোনা,</span><br/>
+কেবল বাঁশির সুরের দেশে দুই অজানার রইল জানাশোনা।<br/><span>যে কথাটা কান্না হয়ে বোবার মতন ঘুরে বেড়ায় বুকে</span><br/><span>উঠল ফুটে বাঁশির মুখে।</span><br/><span>বাঁশির ধারেই একটু আলো, একটুখানি হাওয়া,</span><br/>
+যে পাওয়াটি যায় না দেখা স্পৰ্শ-অতীত একটুকু সেই পাওয়া।
+</p>
+</div>
+</div>
+</div></section>
+<section><div>
+
+﻿<div>
+<h2><span>আসল</span>
+</h2>
+</div>
+<div><div>
+<p><span>বয়স ছিল আট,</span><br/><span>পড়ার ঘরে বসে বসে ভুলে যেতেম পাঠ।</span><br/><span>জানলা দিয়ে দেখা যেত, মুখুজ্জেদের বাড়ির পাশে</span><br/><span>একটুখানি পোড়ো জমি, শুকনো শীর্ণ ঘাসে</span><br/><span>দেখায় যেন উপবাসীর মতো।</span><br/><span>পাড়ার আবর্জনা যত</span><br/><span>ঐখানেতেই উঠছে জমে,</span><br/><span>এক ধাবেতে ক্রমে</span><br/><span>পাহাড়-সমান উঁচু হল প্রতিবেশীর রান্নাঘবের ছাই;</span><br/><span>গোটা-কয়েক আকন্দ গাছ, আর কোনো গাছ নাই;</span><br/><span>দশ-বারোটা শালিখ পাখি</span><br/><span>তুমুল ঝগড়া বাধিয়ে দিয়ে করত ডাকাডাকি;</span><br/><span>দুপুব বেলায় ভাঙা গলায় কাকের দলে</span><br/><span>কী যে প্রশ্ন হাঁকত শূন্যে কিসের কৌতুহলে।</span><br/><span>পাড়ার মধ্যে ঐ জমিটাই কোনো কাজের নয়;</span><br/>
+সবার যাতে নাই প্রয়োজন লক্ষ্মীছাড়ার তাই ছিল সঞ্চয়;<br/><span>তেলের ভাঙা ক্যানেস্তারা, টুকরো হাঁড়ির কানা,</span><br/><span>অনেক কালের জীর্ণ বেতের কেদারা একখানা,</span>
+</p>
+</div> <div>
+<p><span>ফুটো এনামেলের গেলাস, থিয়েটারের ছেঁড়া বিজ্ঞাপন,</span><br/><span>মরচে-পড়া টিনের লণ্ঠন,</span><br/><span>সিগারেটের শূন্য বাক্‌স, খোলা চিঠির খাম—</span><br/><span>অ-দরকারের মুক্তি হোথায়, অনাদরের অমর স্বৰ্গধাম।</span><br/><span>তখন আমার বয়স ছিল আট,</span><br/><span>করতে হত ভূবৃত্তান্ত পাঠ।</span><br/><span>পড়ার ঘরের দেয়ালে চার পাশে</span><br/><span>ম্যাপ্‌গুলো এই পৃথিবীকে ব্যঙ্গ করত নীরব পরিহাসে;</span><br/><span>পাহাড়গুলো ম’রে-যাওয়া সুঁয়োপোকার মতো,</span><br/><span>নদীগুলো যত</span><br/><span>অচল রেখার মিথ্যা কথায় অবাক্‌ হয়ে রইত থতমত,</span><br/><span>সাগরগুলো ফাঁকা,</span><br/><span>দেশগুলো সব জীবনশূন্য কালো-আখর-আঁকা।</span><br/>
+হাঁপিয়ে উঠত পরান আমার ধরণীর এই শিকল-রেখার রূপে—<br/><span>আমি চুপে চুপে</span><br/><span>মেঝের ’পরে বসে যেতেম ঐ জানলার পাশে।</span><br/><span>ঐ যেখানে শুকনো জমি শুকনো শীর্ণ ঘাসে</span><br/><span>পড়ে আছে এলোথেলো, তাকিয়ে ওরই পানে</span><br/><span>কার সাথে মোর মনের কথা চলত কানে কানে।</span><br/><span>ঐ যেখানে ছাইয়ের গাদা আছে</span><br/><span>বসুন্ধরা দাঁড়িয়ে হোথায় দেখা দিতেন এই ছেলেটির কাছে।</span>
+</p>
+</div> <div>
+<p><span>মাথার ’পরে উদার নীলাঞ্চল</span><br/><span>সোনার আভায় করত ঝলোমল।</span><br/><span>সাত-সমুদ্র তেরো-নদীর সুদূর পারের বাণী</span><br/><span>আমার কাছে দিতেন আনি।</span><br/><span>ম্যাপের সঙ্গে হত না তার মিল;</span><br/><span>বইয়ের সঙ্গে ঐক্য তাহার ছিল না এক তিল।</span><br/><span>তার চেহারা নয় তো অমন মস্ত ফাঁকা;</span><br/><span>আঁচড়-কাটা আখর-আঁকা</span><br/><span>নয় সে তো কোন্‌ মাইল-মাপা বিশ্ব—</span><br/><span>অসীম যে তার দৃশ্য, আবার অসীম সে অদৃশ্য।</span><br/><span>এখন আমার বয়স হল ষাট—</span><br/><span>গুরুতর কাজের ঝঞ্চাট।</span><br/><span>পাগল ক’রে দিল পলিটিক্‌স্‌এ;</span><br/>
+কোন্‌টা সত্য কোন্‌টা স্বপ্ন আজকে নাগাদ হয় নি জানা ঠিক সে—<br/><span>ইতিহাসের নজির টেনে সোজা</span><br/>
+একটা দেশের ঘাড়ে চাপাই আর-এক দেশের কর্মফলের বোঝা;<br/><span>সমাজ কোথায় পড়ে থাকে, নিয়ে সমাজতত্ত্ব</span><br/><span>মাসিক পত্রে প্রবন্ধ উন্মত্ত।</span><br/><span>যত লিখছি কাব্য</span><br/><span>ততই নোংরা সমালোচন হতেছে অশ্রাব্য।</span>
+</p>
+</div> <div>
+<p><span>কথায় কেবল কথারই ফল ফলে,</span><br/>
+পুঁথির সঙ্গে মিলিয়ে পুঁথি কেবলমাত্র পুঁথিই বেড়ে চলে।<br/><span>আজ আমার এই ষাট বছরের বয়স-কালে</span><br/><span>পুঁথির সৃষ্টি জগৎটার এই বন্দীশালে</span><br/><span>হাঁপিয়ে উঠলে প্রাণ</span><br/><span>পালিয়ে যাবার একটি আছে স্থান—</span><br/><span>সেই মহেশের পাশে</span><br/><span>পাড়ায় যারে পাগল ব’লে হাসে।</span><br/><span>পাছে পাছে</span><br/><span>ছেলেগুলো সঙ্গে যে তার লেগেই আছে।</span><br/><span>তাদের কলরবে</span><br/><span>নানান উপদ্রবে</span><br/><span>এক মুহূর্ত পায় না শান্তি,</span><br/><span>তবু তাহার নাই কিছুতেই ক্লান্তি।</span><br/><span>বেগার-খাটা কাজ</span><br/><span>তারই ঘাড়ে চাপিয়ে দিতে কেউ মানে না লাজ।</span><br/><span>সকাল বেলায় ধরে ভজন গলা ছেড়ে;</span><br/><span>যতই সে গায় বেসুর ততই চলে বেড়ে।</span><br/><span>তাই নিয়ে কেউ ঠাট্টা করলে এসে</span><br/><span>মহেশ বলে হেসে,—</span><br/><span>‘আমার এ গান শোনাই যাঁরে</span>
+</p>
+</div> <div>
+<p>বেসুর শুনে হাসেন তিনি, বুক ভরে সেই হাসির পুরস্কারে।<br/><span>তিনি জানেন, সুর রয়েছে প্রাণের গভীর তলায়,</span><br/><span>বেসুর কেবল পাগলের এই গলায়।’</span><br/><span>সকল প্রয়োজনের বাহির সে যে সৃষ্টিছাড়া,</span><br/><span>তার ঘরে তাই সকলে পায় সাড়া।</span><br/><span>একটা রোগা কুকুর ছিল, নাম ছিল তার ভূতো;</span><br/><span>একদা কার ঘরের দাওয়ায় ঢুকে ছিল অনাহুত—</span><br/><span>মারের চোটে জরজর</span><br/><span>পথের ধারে পড়ে ছিল মরমর;</span><br/><span>খোঁড়া কুকুরটারে</span><br/><span>বাঁচিয়ে তুলে রাখলে মহেশ আপন ঘরের দ্বারে।</span><br/><span>আর-একটি তার পোষ্য ছিল, ডাক-নাম তার সুর্মি,</span><br/>
+কেউ জানে না জাত যে কী তার, মুসলমান কি কাহার কিম্বা কুর্মি।<br/><span>সে বছরে প্রয়াগেতে কুম্ভমেলায় নেয়ে</span><br/><span>ফিরে আসতে পথে দেখে, চার বছরের মেয়ে</span><br/><span>কেঁদে বেড়ায় বেলা দুপুর দুটোয়।</span><br/><span>মা নাকি তার ওলাউঠোয়</span><br/><span>মরেছে সেই সকাল বেলায়।</span><br/><span>মেয়েটি তাই বিষম ভিড়ের ঠেলায়</span><br/><span>পাক খেয়ে সে বেড়াচ্ছিল ভয়েই ভেবাচেকা—</span><br/><span>মহেশকে যেই দেখা</span>
+</p>
+</div> <div>
+<p><span>কী ভেবে যে হাত বাড়ালো জানি না কোন্‌ ভুলে।</span><br/><span>অমনি পাগল নিল তারে কাঁধের ’পরে তুলে,</span><br/><span>ভোলানাথের জটায় যেন ধুৎরোফুলের কুঁড়ি;</span><br/><span>সে অব্‌ধি তার ঘরের কোণটি জুড়ি</span><br/><span>সুর্মি আছে ঐ পাগলের পাগলামির এক স্বচ্ছ শীতল ধারা</span><br/><span>হিমালয়ে নির্ঝরিণীর পারা।</span><br/><span>এখন তাহার বয়স হবে দশ,</span><br/><span>খেতে শুতে অষ্টপ্রহর মহেশ তারই বশ।</span><br/><span>আছে পাগল ঐ মেয়েটির খেলার পুতুল হয়ে</span><br/><span>যত্নসেবার অত্যাচারটা সয়ে।</span><br/><span>সন্ধ্যাবেলায় পাড়ার থেকে ফিরে</span><br/><span>যেমনি মহেশ ঘরের মধ্যে ঢোকে ধীরে ধীরে,</span><br/><span>পথ-হারানো মেয়ের বুকে আজও যেন জাগায় ব্যাকুলতা—</span><br/>
+বুকের ’পরে ঝাঁপিয়ে প’ড়ে গলা ধ’রে আবোল-তাবোল কথা।<br/><span>এই আদরের প্রথম বানের টান</span><br/><span>হলে অবসান</span><br/><span>ওদের বাসায় আমি যেতেম রাতে।</span><br/><span>সামান্য কোন্‌ কথা হত এই পাগলের সাথে।</span><br/><span>নাইকো পুঁথি, নাইকো ছবি, নাই কোনো আসবাব;</span><br/><span>চিরকালের মানুষ যিনি ঐ ঘরে তাঁর ছিল আবির্ভাব।</span><br/><span>তারার মতো আপন আলো নিয়ে বুকের তলে</span>
+</p>
+</div> <div>
+<p><span>যে মানুষটি যুগ হতে যুগান্তরে চলে,</span><br/><span>প্রাণখানি যাঁর বাঁশির মতো সীমাহীনের হাতে</span><br/><span>সরল সুরে বাজে দিনে রাতে,</span><br/><span>যাঁর চরণের স্পর্শে</span><br/><span>ধুলায় ধুলায় বসুন্ধরা উঠল কেঁপে হর্ষে—</span><br/><span>আমি যেন দেখতে পেতেম তাঁরে</span><br/><span>দীনের বাসায় এই পাগলের ভাঙা ঘরের দ্বারে।</span><br/><span>রাজনীতি আর সমাজনীতি, পুঁথির যত বুলি,</span><br/><span>যেতেম সবই ভুলি।</span><br/><span>ভুলে যেতেম রাজার কারা মস্ত বড়ো প্রতিনিধি</span><br/>
+বালুব ’পরে রেখার মতো গড়ছে রাজ্য, লিখছে বিধান বিধি।
+</p>
+</div>
+</div>
+</div></section>
+<section><div>
+
+<div>
+<h2><span>﻿ঠাকুরদাদার ছুটি</span>
+</h2>
+</div>
+<div><div>
+<p>তোমার ছুটি নীল আকাশে,<br/><span>তোমার ছুটি মাঠে,</span><br/>
+তোমার ছুটি থইহারা ঐ<br/><span>দিঘির ঘাটে ঘাটে।</span><br/>
+তোমার ছুটি তেঁতুল-তলায়,<br/><span>গোলাবাড়ির কোণে,</span><br/>
+তোমার ছুটি ঝোপে-ঝাপে<br/><span>পারুলডাঙার বনে।</span><br/>
+তোমার ছুটির আশা কাঁপে<br/><span>কাঁচা ধানের খেতে,</span><br/>
+তোমার ছুটির খুশি নাচে<br/><span>নদীর তরঙ্গেতে।</span><br/>
+আমি তোমার চশমা-পরা<br/><span>বুড়ো ঠাকুরদাদা</span><br/>
+বিষয়-কাজের মাকড়্‌ষাটার<br/><span>বিষম জালে বাঁধা—</span>
+</p>
+</div> <div>
+<p>আমার ছুটি সেজে বেড়ায়<br/><span>তোমার ছুটির সাজে,</span><br/>
+তোমার কণ্ঠে আমার ছুটির<br/><span>মধুর বাঁশি বাজে।</span><br/>
+আমার ছুটি তোমারই ঐ<br/><span>চপল চোখের নাচে,</span><br/>
+তোমার ছুটির মাঝখানেতেই<br/><span>আমার ছুটি আছে।</span><br/>
+তোমার ছুটির খেয়া বেয়ে<br/><span>শরৎ এল মাঝি।</span><br/>
+শিউলিকানন সাজায় তোমার<br/><span>শুভ্র ছুটির সাজি।</span><br/>
+শিশির-হাওয়া শির্‌শিরিয়ে<br/><span>কখন্‌ রাতারাতি</span><br/>
+হিমালয়ের থেকে আসে<br/><span>তোমার ছুটির সাথি।</span><br/>
+আশ্বিনের এই আলো এল<br/><span>ফুল-ফোটানো ভোরে</span><br/>
+তোমার ছুটির রঙে রঙিন<br/><span>চাদরখানি প’রে।</span><br/></p>
+</div> <div>
+<p><br/>
+আমার ঘরে ছুটির বন্যা<br/><span>তোমার লাফে ঝাঁপে—</span><br/>
+কাজকর্ম হিসাব-কিতাব<br/><span>থর্‌থরিয়ে কাঁপে।</span><br/>
+গলা আমার জড়িয়ে ধর,<br/><span>ঝাঁপিয়ে পড় কোলে,</span><br/>
+সেই তো আমার অসীম ছুটি<br/><span>প্রাণের তুফান তোলে।</span><br/>
+তোমার ছুটি কে যে জোগায়<br/><span>জানি নে তার রীত,</span><br/>
+আমার ছুটি জোগাও তুমি<br/><span>ঐখানে মোর জিত।</span>
+</p>
+</div>
+</div>
+</div></section>
+<section><div>
+
+<div>
+<h2><span>﻿হারিয়ে-যাওয়া</span>
+</h2>
+</div>
+<div><div>
+<p><span>ছোট্ট আমার মেয়ে</span><br/><span>সঙ্গিনীদের ডাক শুনতে পেয়ে</span><br/><span>সিঁড়ি দিয়ে নীচের তলায় যাচ্ছিল সে নেমে</span><br/><span>অন্ধকারে ভয়ে ভয়ে থেমে থেমে।</span><br/><span>হাতে ছিল প্রদীপখানি,</span><br/><span>আঁচল দিয়ে আড়াল ক'রে চলছিল সাব্‌ধানি।</span><br/><span>আমি ছিলাম ছাতে</span><br/><span>তারায়-ভরা চৈত্রমাসের রাতে।</span><br/><span>হঠাৎ মেয়ের কান্না শুনে উঠে</span><br/><span>দেখতে গেলেম ছুটে।</span><br/><span>সিঁড়ির মধ্যে যেতে যেতে</span><br/><span>প্রদীপটা তার নিবে গেছে বাতাসেতে।</span><br/><span>শুধাই তারে, ‘কী হয়েছে বামি?’</span><br/>
+সে কেঁদে কয় নীচে থেকে, ‘হারিয়ে গেছি আমি!’<br/></p>
+</div> <div>
+<p><br/><span>তারায়-ভরা চৈত্রমাসের রাতে</span><br/><span>ফিরে গিয়ে ছাতে</span><br/><span>মনে হল আকাশ-পানে চেয়ে,</span><br/>
+আমার বামির মতোই যেন অমনি কে এক মেয়ে<br/><span>নীলাম্বরের আঁচলখানি ঘিরে</span><br/><span>দীপশিখাটি বাঁচিয়ে একা চলছে ধীরে ধীরে।</span><br/><span>নিবত যদি আলো যদি হঠাৎ যেত থামি</span><br/>
+আকাশ ভরে উঠত কেঁদে, ‘হারিয়ে গেছি আমি!’
+</p>
+</div>
+</div>
+</div></section>
+<section><div>
+
+<div>
+<h2><span>﻿শেষ গান</span>
+</h2>
+</div>
+<div><div>
+<p>যারা আমার সাঁঝ-সকালের গানের দীপে জ্বালিয়ে দিলে আলো<br/>
+আপন হিয়ার পরশ দিয়ে, এই জীবনের সকল শাদা কালো<br/>
+যাদের আলোক-ছায়ার লীলা, মনের মানুষ বাইরে বেড়ায় যারা,<br/>
+তাদের প্রাণের ঝর্না-স্রোতে আমার পরান হয়ে হাজার-ধারা<br/>
+চলছে বয়ে চতুর্দিকে। নয় তো কেবল কালের যোগে আয়ু,<br/>
+নয় সে কেবল দিন-রজনীর সাতনলী হার, নয় সে নিশাস-বায়ু।<br/>
+নানান প্রাণের প্রীতির মিলন নিবিড় হয়ে স্বজন-বন্ধুজনে<br/>
+পরমায়ুর পাত্রখানি জীবন-সুধায় ভবছে ক্ষণে ক্ষণে।<br/>
+একের বাঁচন সবার বাঁচার বন্যাবেগে আপন সীমা হারায়<br/>
+বহু দূরে; নিমেষগুলির ফলের গুচ্ছ ভরে রসের ধারায়।<br/>
+অতীত হয়ে তবুও তারা বর্তমানের বৃন্তদোলায় দোলে—<br/>
+গর্ভবাঁধন কাটিয়ে শিশু তবু যেমন মায়ের বক্ষে কোলে<br/>
+বন্দী থাকে নিবিড় প্রেমের গ্রন্থি দিয়ে। তাই তো যখন শেষে<br/>
+একে একে আপন জনে সূর্য-আলোর অন্তরালের দেশে<br/>
+আঁখির নাগাল এড়িয়ে পালায়, তখন রিক্ত শুষ্ক জীবন মম<br/>
+শীর্ণ রেখায় মিলিয়ে আসে বর্ষাশেষের নির্ঝরিণী-সম<br/>
+শূন্য বালুর একটি প্রান্তে ক্লান্ত সলিল স্রস্ত অবহেলায়।<br/>
+তাই যারা আজ রইল পাশে এই জীবনের সূর্য-ডোবার বেলায়
+</p>
+</div> <div>
+<p>তাদের হাতে হাত দিয়ে তুই গান গেয়ে নে থাকতে দিনের আলো—<br/>
+বলে নে, ‘ভাই, এই-যে দেখা এই-যে ছোঁওয়া এই ভালো এই ভালো!<br/>
+এই ভালো আজ এ সংগমে কান্নাহাসির গঙ্গাযমুনায়<br/>
+ঢেউ খেয়েছি, ডুব দিয়েছি, ঘট ভরেছি, নিয়েছি বিদায়।<br/>
+এই ভালো রে ফুলের সঙ্গে আলোয় জাগা, গান গাওয়া এই ভাষায়—<br/>
+তারার সাথে নিশীথ-রাতে ঘুমিয়ে পড়া নূতন প্রাণের আশায়!’
+</p>
+</div>
+</div>
+</div></section>
+<section><div>
+
+<div>
+<h2><span>﻿শেষ প্রতিষ্ঠা</span>
+</h2>
+</div>
+<div>
+<div>
+<p>এই কথা সদা শুনি ‘গেছে চলে’ ‘গেছে চলে’।<br/><span>তবু রাখি বলে</span><br/><span>বোলো না ‘সে নাই’।</span><br/><span>সে কথাটা মিথ্যা, তাই</span><br/><span>কিছুতেই সহে না যে,</span><br/><span>মর্মে গিয়ে বাজে।</span><br/><span>মানুষের কাছে</span><br/><span>যাওয়া-আসা ভাগ হয়ে আছে।</span><br/><span>তাই তার ভাষা</span><br/><span>বহে শুধু আধখানা আশা।</span><br/><span>আমি চাই সেইখানে মিলাইতে প্রাণ</span><br/>
+যে সমুদ্রে ‘আছে’ ‘নাই’ পূর্ণ হয়ে রয়েছে সমান।
+</p>
+</div>
+</div>
+</div></section>
+
+            </div>
+
+        </div>
+    </div>
+
+        <!-- TOC nav for mobile -->
+        <nav id="toc-nav-desktop" class="hidden"></nav>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const progressBar  = document.getElementById('read-progress-bar');
+    const progressPct  = document.getElementById('progress-pct');
+    const tocDesktop   = document.getElementById('toc-nav-desktop');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+    const progressRing = document.getElementById('progress-ring-circle');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = p.currentTheme;
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    function toBN(n) {
+        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
+    }
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        if (progressPct) progressPct.textContent = toBN(pct) + '%';
+        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
+        if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
+        if (rfPage) rfPage.textContent = toBN(pct) + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+
+    // ── Footer: chapter label + seek slider ──
+    const rfSlider  = document.getElementById('rf-slider');
+    const rfPage    = document.getElementById('rf-page');
+    const rfChapter = document.getElementById('rf-chapter');
+    let rfSliderDragging = false;
+    if (rfSlider) {
+        rfSlider.addEventListener('input', () => {
+            rfSliderDragging = true;
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
+        });
+        rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
+    }
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav, isMobile) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            if (isMobile) {
+                a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+                a.addEventListener('click', closeDrawer);
+            } else {
+                a.className = 'toc-link ' + (isH1 ? 'toc-link-h1' : 'toc-link-h2');
+            }
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocDesktop, false);
+    buildToc(tocMobile, true);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+        if (rfChapter && headings[current]) rfChapter.textContent = headings[current].textContent.trim();
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme only; drawer/settings UI stays a fixed dark sheet)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+        black: { bg: '#000',     text: '#d1d5db' },
+        sepia: { bg: '#f5efe6',  text: '#3b2f1e' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? '#c0392b' : 'transparent';
+            });
+            savePrefs();
+
+            // Ad bar theme sync
+            window._pathakAdBarTheme && window._pathakAdBarTheme(m);
+        });
+    });
+
+    // ── Ad bar theme sync function (exposed globally) ──
+    window._pathakAdBarTheme = function(m) {
+        const adBar     = document.getElementById('ad-bar');
+        const adContent = document.getElementById('ad-bar-content');
+        const adDatetime= document.getElementById('ad-bar-datetime');
+        const adNotice  = document.getElementById('ad-bar-notice');
+        if (adBar)      adBar.style.background     = m.bg;
+        if (adContent)  adContent.style.background = m.bg;
+        if (adDatetime) adDatetime.style.color      = m.text;
+        if (adNotice)   adNotice.style.color        = m.text;
+    };
+
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+        // Ad bar HTML is below — expose theme for ad bar script to pick up
+        window._pathakCurrentTheme = currentTheme;
+        window._pathakThemeMap = themeMap;
+    })();
+})();
+</script>
+
+
+</body>
+</html>

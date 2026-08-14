@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/janalar-opashe.html">
+    <title>জানালার ওপাশে - পাঠক ঘর</title>
+    <meta name="description" content="গল্পের কেন্দ্রে রয়েছে মানুষের একাকীত্ব, সম্পর্কের জটিলতা এবং অব্যক্ত কিছু অনুভূতি। আমাদের চেনা চেনা জীবনের আড়ালে যে অচেনা গল্পগুলো লুকিয়ে থাকে, লেখক অত্যন্ত নিখ">
+    <meta property="og:title" content="জানালার ওপাশে - পাঠক ঘর">
+    <meta property="og:description" content="গল্পের কেন্দ্রে রয়েছে মানুষের একাকীত্ব, সম্পর্কের জটিলতা এবং অব্যক্ত কিছু অনুভূতি। আমাদের চেনা চেনা জীবনের আড়ালে যে অচেনা গল্পগুলো লুকিয়ে থাকে, লেখক অত্যন্ত নিখ">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e', black:'#000' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', sepia:'#3b2f1e', dark:'#e5e7eb', black:'#d1d5db' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .dark body { background: #1a1a1b; color: #e5e7eb; }
+
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.7rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+        .dark #book-content { color: #e5e7eb; }
+    
+    /* ── Book read header hero ── */
+    .book-read-header {
+        margin-bottom: 1.5rem;
+    }
+    .book-read-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.65rem;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 1.4rem 1.25rem 1.2rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .dark .book-read-box {
+        background: #2a2a2b;
+        border-color: #3a3a3b;
+    }
+    .book-read-cover {
+        width: 100px;
+        height: 136px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        object-fit: cover;
+        background: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .book-read-cover svg { opacity: 0.35; }
+    .book-read-title-link {
+        text-decoration: none;
+        display: block;
+    }
+    .book-read-title-link:hover .book-read-title { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-title-link:active .book-read-title { opacity: 0.7; }
+    .book-read-title {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #1a1a1b;
+        line-height: 1.4;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+    .dark .book-read-title { color: #f3f4f6; }
+    .book-read-author-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+    .book-read-author-link:hover .book-read-author { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-author-link:active .book-read-author { opacity: 0.6; }
+    .book-read-author {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #c0392b;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+</style>
+</head>
+<body>
+
+<style>
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    #read-progress-bar {
+        position: fixed;
+        top: 0; left: 0;
+        height: 2px;
+        width: 0%;
+        background: #c0392b;
+        z-index: 1000;
+        transition: width 0.1s linear;
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h1 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #9ca3af;
+        text-align: center;
+        margin: 0 0 0.25rem;
+        letter-spacing: 0.04em;
+    }
+    #book-content h1::after {
+        content: '';
+        display: block;
+        width: 2.8em;
+        height: 3px;
+        background: #c0392b;
+        border-radius: 2px;
+        margin: 0.4rem auto 0;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #7a2115;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid #d9a5a0;
+        border-bottom: 1px solid #d9a5a0;
+    }
+    /* Night mode heading adjust */
+    body.theme-dark  #book-content h1,
+    body.theme-black #book-content h1 { color: #6b7280; }
+    body.theme-dark  #book-content h2,
+    body.theme-black #book-content h2 { color: #f2938a; border-color: rgba(169,50,38,0.4); }
+    body.theme-dark  #book-content h1::after { background: #a93226; }
+    body.theme-black #book-content h1::after { background: #922b21; }
+    body.theme-sepia #book-content h1 { color: #a08060; }
+    body.theme-sepia #book-content h2 { color: #7a2115; border-color: rgba(160,64,48,0.35); }
+    body.theme-sepia #book-content h1::after { background: #a04030; }
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: rgba(192,57,43,0.05);
+        border: 1px solid rgba(192,57,43,0.15);
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p,
+    body.theme-black #book-content p {
+        background: rgba(169,50,38,0.1);
+        border-color: rgba(169,50,38,0.25);
+    }
+    body.theme-sepia #book-content p {
+        background: rgba(160,64,48,0.08);
+        border-color: rgba(160,64,48,0.2);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #c0392b;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #c0392b;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(192,57,43,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    .dark #book-content blockquote {
+        background: rgba(192,57,43,0.08);
+        color: #bbb;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #c0392b;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    .dark #book-content td { border-color: #3a3a3b; }
+    .dark #book-content tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(192,57,43,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: #e57373;
+        font-weight: 600;
+        background: rgba(192,57,43,0.18);
+        border-radius: 0.375rem;
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: #fff;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transition: color 0.15s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.6);
+    }
+    #toc-nav-desktop .toc-link {
+        display: block;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.375rem;
+        color: #4b5563;
+        text-decoration: none;
+        transition: background-color 0.15s, color 0.15s;
+    }
+    .dark #toc-nav-desktop .toc-link { color: #d1d5db; }
+    #toc-nav-desktop .toc-link:hover { background: #f3f4f6; }
+    .dark #toc-nav-desktop .toc-link:hover { background: #1f2937; }
+    #toc-nav-desktop .toc-link-h1 {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: #1f2937;
+    }
+    .dark #toc-nav-desktop .toc-link-h1 { color: #f3f4f6; }
+    #toc-nav-desktop .toc-link-h2 {
+        padding-left: 1.25rem;
+        font-size: 0.6875rem;
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.6rem 0.5rem 0.6rem 0.35rem;
+        background: #1a1a1b;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-back {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.25rem;
+        text-decoration: none;
+        transition: background 0.15s;
+    }
+    #rh-back:active { background: rgba(255,255,255,0.12); }
+    #rh-title {
+        flex: 1;
+        min-width: 0;
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: transparent;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+    #reader-header .rh-actions button:active { background: rgba(255,255,255,0.12); }
+    body.theme-dark  #reader-header,
+    body.theme-black #reader-header,
+    body.theme-sepia #reader-header { background: #141414; }
+
+    /* ── Reader footer: chapter label + page/percent + seek slider ── */
+    #reader-footer {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 55;
+        background: #1a1a1b;
+        padding: 0.5rem 1rem 0.65rem;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-footer { transform: translateY(100%); }
+    body.theme-dark  #reader-footer,
+    body.theme-black #reader-footer,
+    body.theme-sepia #reader-footer { background: #141414; }
+    #rf-labels {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.7);
+        margin-bottom: 0.35rem;
+    }
+    #rf-chapter {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #rf-page { flex-shrink: 0; }
+    #rf-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        background: rgba(255,255,255,0.22);
+        outline: none;
+        margin: 0;
+        cursor: pointer;
+    }
+    #rf-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        margin-top: -6px;
+    }
+    #rf-slider::-moz-range-thumb {
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        border: none;
+    }
+    #rf-slider::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; }
+    #rf-slider::-moz-range-track { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.22); }
+
+    /* Content needs bottom clearance so the fixed footer never covers text */
+    #read-main-content { padding-bottom: 4.5rem; }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: #303134;
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.55);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: #e57373;
+        border-bottom-color: #c0392b;
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ── Breadcrumb dark mode ── */
+    .read-breadcrumb-full { margin-left: -1.25rem; margin-right: -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
+    .dark #bc-category { color: #9ca3af !important; }
+    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
+    .dark #read-breadcrumb li > span { color: #4b5563; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #e57373;
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: 34px; height: 34px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        flex-shrink: 0;
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+    }
+    .theme-circle.active { border-color: #c0392b; }
+    .theme-circle svg { display: none; }
+    .theme-circle.active svg { display: block; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: #fff; }
+    .settings-row-val { font-size: 0.74rem; color: rgba(255,255,255,0.5); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: rgba(192,57,43,0.35); border-color: #c0392b; color: #fff; }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+</style>
+
+<!-- Progress bar (kept for internal % calc, hidden — footer slider replaces it visually) -->
+<div id="read-progress-bar" style="display:none;"></div>
+
+<!-- ══ Reader header (Lithium-style app bar) ══ -->
+<header id="reader-header">
+    <a href="/book/janalar-opashe.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <h1 id="rh-title">জানালার ওপাশে</h1>
+    <div class="rh-actions">
+        <button id="rh-menu-btn" aria-label="মেনু" title="মেনু"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+    </div>
+</header>
+
+<!-- ══ Reader footer (chapter + page/percent + seek slider) ══ -->
+<footer id="reader-footer">
+    <div id="rf-labels">
+        <span id="rf-chapter"></span>
+        <span id="rf-page">০%</span>
+    </div>
+    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
+</footer>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                    <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
+                    <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
+                    <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn active" id="align-justify" title="জাস্টিফাই" style="background:#fde8e6;border-color:#c0392b;color:#c0392b;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <h1>জানালার ওপাশে</h1>
+<p> হ্যালো</p>
+<p>হ্যা, বলো।</p>
+<p>আমার মেসেজ পাওনি তুমি?</p>
+<p>পেয়েছি।</p>
+<p>কয়টা পেয়েছো?</p>
+<p>গুনিনি।</p>
+<p>গুনিনি মানে?</p>
+<p>গুনিনি মানে এগজ্যাক্ট বলতে পারব না কয়টা।</p>
+<p>এগজ্যাক্ট বলতে হবে না। আনুমানিক বলো।</p>
+<p>সাত-আটটা হবে।</p>
+<p>রিপ্লাই দাওনি কেন?</p>
+<p>কি রিপ্লাই দিব?</p>
+<p>কি রিপ্লাই দিব মানে! মেসেজের রিপ্লাই দেবে।</p>
+<p>সেটাই তো। মেসেজের কি রিপ্লাই দিব!</p>
+<p>তুমি... তুমি...তুমি একটা...।</p>
+<p>ওপাশ থেকে ফোন কাটার শব্দ হলো। তারপরও অযথাই মোবাইল ফোনটা কানে চেপে বসে থাকে রাতুল। রাতুলের মাথার ওপর সিলিংফ্যানটা ভীষণ শব্দে ঘুরছে। এই শব্দে রাতুলের অস্বস্তি লাগে। তার এক ধরনের Akousticophobia আছে। Akousticophobia হলো শব্দাতঙ্ক। তার কেবল ফ্যানের এই তীব্র শো শো শব্দ সহ্য হয় না। কেমন অস্বস্তি লাগে। এক ধরনের আতঙ্ক কাজ করে। মনে হয়, ফ্যানটা সিলিং থেকে ছুটে যে কোনো মুহূর্তে মাথায় পড়বে।</p>
+<p>এইসময় ফোনটা আবার বাজলো। রাতুল ফোনের স্ক্রিন না দেখেও জানে, আনিকা। একটু আগে সে রেগেমেগে ফোন কেটে দিয়েছিল। এখন আবার করেছে। আবার কেটে দিবে। আবার করবে। এই কাটাকুটি খেলা আজ চলতেই থাকবে।</p>
+<p>‘হ্যা, বলো।’</p>
+<p>‘হ্যা বলো মানে?’ আনিকার কণ্ঠে ঝাঁঝ।</p>
+<p>রাতুল জবাব দেয় না। চুপ করে থাকে। জানালায় হেলান দিয়ে আরাম করে বসে। সে জানে, এখন সে যাই বলবে, আনিকা তার সবকিছুরই মানে জানতে চাইবে। অথচ যার কোনো মানেই নেই। ‘কি হলো? কথা বলছো না কেন?’ আনিকার কণ্ঠে ঝাঁঝ খানিকটা বাড়ে।</p>
+<p>বলো, শুনছি।</p>
+<p>বলো শুনছি মানে?</p>
+<p>তোমাকে আমি একটা প্রশ্ন করেছি। জবাব দাও।</p>
+<p>জবাব দেব। কিন্তু তার আগে তোমাকে স্বাভাবিক হতে হবে।</p>
+<p>‘স্বাভাবিক হতে হবে মানে! স্বাভাবিক হতে হবে মানে কি?’ আনিকার গলার স্বর সপ্তমে চড়ে। ‘তুমি কি বলতে চাইছো? কি বলতে চাইছো তুমি? আমি অস্বাভাবিক? আমি অসুস্থ? আমি পাগল?’</p>
+<p>আনিকা ফোন কেটে দেয়। রাতুল ফোন কানে চেপে ধরে বসে থাকে। কথা শেষ হবার পরও ফোন কানে ধরে থাকার একটা বিশেষ মজা আছে। এই মজাটা রাতুল টের পায়। তার কেন যেন মনে হয়, এই নিঃশব্দ ফোনে সে অনেকগুলো কণ্ঠ শুনতে পায়। এলোমেলো কণ্ঠ। সে এই কণ্ঠগুলো ধরতে চেষ্টা করে। কথাগুলো বুঝতে চেষ্টা করে। কিন্তু পারে না।</p>
+<p>আবারো ফোন বাজছে। রাতুল ফোনটা টেবিলের উপর রেখে দেয়। তারপর উঠে দাঁড়ায়। ফ্যানের সুইচ বন্ধ করে। রুমে একটাই মাত্র জানালা। জানালার কাঁচ কয়েক জায়গায় ভেঙে গেছে। ভাঙা জায়গাগুলো কেউ একজন পুরনো পত্রিকায় স্কচটেপ লাগিয়ে ঢেকে দিয়েছে। রাতুল অনেক কায়দা করে জানালাটা খুললো। মে মাসের মাঝামাঝি। বাইরেও ভ্যাপসা গরম। কোথাও হাওয়া নেই। কিন্তু এখন সে ফ্যান চালাতে পারবে না। ফ্যানের শব্দ তার সহ্য হয় না। অস্থির লাগে। তার চেয়েও বেশি অস্থির লাগে আনিকার ফোন পেলে। গত তিন মাসে রাতুল একটা জিনিস আবিষ্কার করে ফেলেছে, সে আর দশটা স্বাভাবিক ছেলের মতো না। সে কাউকে ভালোবাসতে পারে না। সে ঘণ্টার পর ঘণ্টা ফোনে কথা বলতে পারে না। কোনো তরুণীকে নিয়ে রিকশায় হুড তুলে দিতে পারে না। কারো হাত ধরে রাস্তায় হেঁটে যেতে পারে না। তার অস্বস্তি লাগে। হাসফাস লাগে।</p>
+<p>অথচ একসময় তার মনে হতো, সে এমন একটা মেয়ের অপেক্ষায় আছে, যে, মেয়ে তাকে আষ্টেপৃষ্ঠে জড়িয়ে রাখবে। পাগলের মতো ভালোবাসবে। সে সেই ভালোবাসায় ডুবে থাকবে। তার আর কিছু চাই না। ভালোবাসাহীনতা তার চেয়ে বেশি আর কে জানে? কিন্তু গত তিন মাস, তিনটি মাস, সে নিজেকে নতুন করে আবিষ্কার করেছে। কিংবা আনিকা তার ভেতর থেকে সত্যিকারের রাতুলকে বের করে এনেছে। এই রাতুল রাতুলের নিজের কাছেই অচেনা। অন্য কেউ।</p>
+<p>আবারও ফোনের শব্দ। রাতুল ফোন রিসিভ করে কানে চেপে ধরে, কথা বলে না।</p>
+<p>‘তুমি কি আমার সাথে কথা বলতে চাও না?’ আনিকার কণ্ঠ এবার অনেক স্থির শোনায়।</p>
+<p>‘চাই।’</p>
+<p>‘তাহলে এমন কেন করছো?’</p>
+<p>এই প্রশ্নের জবাব রাতুলের কাছে নেই। সে নিজেও জানে না সে কেন এমন করছে। আনিকার মেসেজের রিপ্লাই দিতে তার ভালো লাগে না। কথা বলতে ভালো লাগে না। কিন্তু এ কথা সে আনিকার মুখের উপর বলে দিতে পারে না। আনিকা মেয়েটাকে সে ভালোবাসে। কিন্তু কিছু একটা হয়েছে তার। সে ভেতর ভেতর টের পায়, কিন্তু ধরতে পারে না। এমন না যে সে নতুন কারো প্রেমে পড়েছে। নতুন করে প্রেমে পড়ার অবস্থাও তার নেই। গত মাসে চাকরি ছেড়ে দিয়েছে। বাসা বদলাতে হয়েছে। মুরগীর খোপের মতো এক বাসা সে ভাড়া নিয়েছে। এই বাসা ভাড়ার পেছনে রয়েছে অদ্ভুত ঘটনা। ১৪ ডিসেম্বর সকালে সায়েম আর রনির সাথে রাতুল যাচ্ছিল রায়ের বাজার বধ্যভূমি স্মৃতিসৌধে। চা খেতে বসেছিল রাস্তার পাশের ঝুপড়ি চায়ের দোকানে। উল্টোপাশে তাকাতেই চোখ আটকে গিয়েছিল রাতুলের। কতগুলো বস্তিঘর আর পাশেই বিশাল এক রেইনট্রি। ক্ষয়ে যাওয়া ইটের চাতালের উপর একটা হাতলভাঙা চাপকল। কিন্তু রাতুলের কিছু একটা হয়েছিল। চোখ ফেরাতে পারছিল না সে। মনে হচ্ছিল এই দৃশ্যটি সে আগে কোথাও দেখেছে, বহুদিন ধরে, বহুবার। চলেও এসছিল রাতুল, কিন্তু মাথার ভেতর গেঁথে গিয়েছিল দৃশ্যটি। হঠাৎ একদিন সেই বস্তির পাশের বিল্ডিংয়ের নিচতলার এক ঘুপচি ঘরে উঠে আসে সে। এই বাসার ঠিকানা আনিকার কাছে ছিল না। কিন্তু আনিকা পারে না এমন কোনো কাজ নেই। সে কিভাবে কিভাবে যেন এই বাসার ঠিকানা জোগাড় করে ফেলেছে।</p>
+<p>রাতুল জানে, আনিকা চাইলে এই মাঝরাতে বাড়া থেকে হেঁটে রায়ের বাজারের এই বাসায়ও চলে আসতে পারে ।</p>
+<p>‘কেমন করছি?’ রাতুল শান্ত গলায় প্রশ্ন করে। সে জানে তার এই প্রশ্নের কোনো অর্থ নেই।</p>
+<p>‘তুমি বুঝতে পারছো না তুমি কেমন করছো?’ আনিকার গলা অদ্ভুত শান্ত। ব্যাপারটা অস্বাভাবিক। সাধারণত রাতুল এমন শান্ত থাকে। আর আনিকা চেঁচায়।</p>
+<p>‘না।’</p>
+<p>‘সত্যি কি তাই রাতুল?’</p>
+<p>রাতুল জবাব দেয় না, চুপ করে থাকে। তার আর কথা বলতে ইচ্ছে করছে না। এই একটা বিষয় নিয়ে গত কিছুদিনে তারা অসংখ্যবার কথা বলেছে। কোনো সমাধান হয়নি। বরং কথা শেষ হয়েছে তুমুল চেঁচামেচি আর ঝগড়ায়। রাতুল অবশ্য কখনোই চেঁচামেচি করে না। সে শান্ত, চুপচাপ।</p>
+<p>‘আসলে আমি জানি না আনিকা।’</p>
+<p>‘কাম অন রাতুল।’ আনিকার কণ্ঠ শান্ত কিন্তু কঠিন। ‘আমার মনে হয় যথেষ্ট হয়েছে। দিস ইজ দ্যা টাইম টু মেক অ্যা ডিসেশন। তুমি কি আর আমার সাথে রিলেশন রাখতে চাও না?’।</p>
+<p>এই প্রশ্নের উত্তর সত্যিই রাতুলের কাছে নেই। সে কি সত্যিই আর . আনিকার সাথে সম্পর্কটা চায় না? তা তো না। আনিকার সাথে সম্পর্ক রাখতে না চাওয়ার তো কোনো কারণ নেই। আনিকা সুন্দরী শিক্ষিত মেয়ে। তার চেয়ে বড় কথা মেয়েটা রাতুলকে অসম্ভব ভালোবাসে। সেই ভালোবাসা গভীর জলের মতো, প্রতি মুহূর্তে সেই জলে ডুবে যাওয়া যায়।</p>
+<p>‘রাতুল চুপ করে থেকো না প্লিজ। যা হোক কিছু একটা বলো।’</p>
+<p>‘আনিকা...।’ রাতুল কিছু একটা বলতে গিয়েও থেমে যায়। তারপর চুপ করে থাকে। ফোনের ওপাশে নিঃশব্দ আনিকাও।</p>
+<p>‘আমার একটা ব্রেক দরকার আনিকা। আমি জানি না কেন? বাট আই নিড অ্যা ব্রেক। ব্রেক ফ্রম মাই লাইফ। ব্রেক ফ্রম সামথিং... ফ্রম সামথিং আই কান্ট রিকগনাইজ।’ রাতুল এক নিঃশ্বাসে কথাগুলো বলে। তারপর চুপ করে থাকে। কিছুক্ষণ চুপ করে থাকে আনিকাও।</p>
+<p>‘কি ধরনের ব্রেক রাতুল?’</p>
+<p>‘স্পেসিফিক কোন ধরন নেই। জাস্ট সব কিছু থেকে একটু দূরে থাকতে চাই।’</p>
+<p>‘কতদিনের জন্য?’</p>
+<p>‘এখনো জানি না।’</p>
+<p>‘কিন্তু জানা উচিত, তাই না?’ আনিকা একটু থামে। সম্ভবত নিজেকে কিছুটা গুছিয়ে নেয়। ‘তুমি মুনিরা আন্টিকে এখনো কিছু জানাওনি। ওনারা তোমাকে খুঁজছেন।</p>
+<p>ওনারা কারা?</p>
+<p>রাফি, আন্টি।</p>
+<p>কিন্তু ওদের তো আমাকে খোজার কথা না।</p>
+<p>কেন?</p>
+<p>এ প্রশ্নের উত্তরে রাতুল আবার চুপ করে থাকে। খোলা জানালা দিয়ে এক চিলতে আলো গিয়ে পড়েছে বাইরে। অনেকগুলো ঘুপচি বস্তি ঘর ওখানে। জায়গাটা প্রায় অন্ধকার। ঘন আবছা অন্ধকারেও চোখে পড়ে বাঁশের বেড়ার মাঝে নীল পলিথিনের জানালাওয়ালা খুপড়ি এক ঘর। জানালার নিচেই ময়লার ড্রেন, তার পাশে ভাঙা হাতলওয়ালা একটা চাপকল। ক্ষয়ে যাওয়া ইটের একটুকরো চাতাল। সেই চাতালে রোজ ভোরে রঙচটা সবুজ একটা শাড়ি কাঁচেন মাঝবয়সি এক মহিলা। তার পাশেই আবছা অন্ধকারে দাঁড়িয়ে আছে বড় এক রেইনট্রি। রেইনট্রির শরীর জুড়ে পেরেক ঠুকে লাগানো অজস্র টিনের বিজ্ঞাপন। অতি সাধারণ এক দৃশ্য। কিন্তু অতি সাধারণ এই দৃশ্য দেখে প্রথমদিনই কেন যেন চমকে গিয়েছিল রাতুল। দৃশ্যটি কি আগে কোথাও দেখেছে সে? কোথায়?</p>
+<p>ফোনের ওপাশে নিঃশব্দ আনিকা রাতুলের উত্তরের অপেক্ষায়। ফোনের এই নিঃশব্দ সময়গুলোতেও রাতুল যেন সেই অদ্ভুত কণ্ঠগুলো শুনতে পায়। এলোমেলো শব্দ। জানালার বাইরের দৃশ্যের মতোই ফোনের ওই কাল্পনিক শব্দগুলোকেও রাতুলের খুব চেনা মনে হয়। এই কথাগুলো কি আগে কোথাও শুনেছে রাতুল? কোথায়?</p>
+<p>‘আনিকা, পৃথিবীতে আমাকে খুঁজবার মতো একটা মাত্র মানুষ ছিলেন, রহমান চাচা। উনি বেঁচে নেই। একটু থামে রাতুল। তার চোখ স্থির হয়ে আছে জানালার বাইরে। এখন তুমি আছো। আর কেউ না।’</p>
+<p>‘আমি জানি রাতুল। কিন্তু মুনিরা আন্টি তোমাকে ভালোবাসেন।’</p>
+<p>‘হয়তো। হয়তো না। মুনি মা...।’ কি ভেবে কথাটা শেষ করে না রাতুল। মুনিরা আন্টিকে মুনি মা বলে ডাকে সে। রাতুলের ঠোটের কোনায় খুব ছোট্ট এক চিলতে হাসি ফোটে। হাসিটুকু মিলিয়ে যায় না, ঝুলে থাকে। একটু থামে রাতুল। তারপর বলে, ‘তবে আমার খুব ছোটবেলার কিছু স্মৃতি মনে আছে। তখনো মুনি মা আমার কাছে আমার সত্যিকারের মা। রহমান চাচা আমাকে কিছু বলেননি তখনো। আমি কিন্তু মুনি মার ভালোবাসাটা ঠিক টের পেতাম আনিকা। আমি স্কুলে যেতাম, ক্লাস থ্রী কি ফোর, উনি গাড়িতেও আমাকে বুকের সাথে চেপে ধরে রাখতেন। ধরো, গাড়িতে আমি ওনার পাশে বসে আছি, হঠাৎ অন্য একটা গাড়ি একটু বেশি গতিতেই ওভারটেক করলো, সাথে সাথে উনি পাগলের মতো আমাকে বুকে চেপে ধরে রাখতেন। ঘটনাটা মাথা থেকে পুরোপুরি না যাওয়া পর্যন্ত উনি আমাকে কখনোই আর গাড়ির সীটে বসতে দিতেন না। কোলের ভেতর বুকে চেপে রাখতেন।’</p>
+<p>ফোস করে নিঃশ্বাস ফেলে রাতুল। তারপর চুপ করে থাকে। আনিকাও। রাতুলের অনেক কিছুই জানে আনিকা। তারপরও প্রতিদিনই নতুন কিছু না কিছু থাকে।</p>
+<p>‘একবার কি হলো শোনো, সেবার ঈদে আমরা রহমান চাচার গ্রামের বাড়িতে গেছি। আমি, মুনি মা, রহমান চাচা। রহমান চাচার সাথে মুনি মার বিয়ের বছর পাঁচেক পর থেকে আর গ্রামে যাননি মুনি মা। রহমান চাচা একাই যেতেন। বাচ্চা-কাচ্চা হচ্ছে না বলে গ্রামের আত্মীয়-স্বজনেরা নানান কথা বলে। মুনি মা তাই গ্রামে যেতে চান না। তারওপর গ্রামে ইলেক্ট্রিসিটি নেই, ফোন নেই, দোকানপাট নেই। তো সন্ধ্যেবেলা কি করে যেন পায়ে পেরেক ঢুকিয়ে ফেললাম আমি। জং ধরা পুরনো পেরেক। গলগল করে রক্ত ছুটছে পায়ে। টিটেনাস ভ্যাকসিন দিতে হবে। কিন্তু কিভাবে সম্ভব? ডাক্তার নেই কোথাও। কাছের গঞ্জও মাইল পাঁচেক দূরে! মুনি মা পাগলের মতো হয়ে গেলেন। রহমান চাচা অনেক বুঝিয়েও তাকে আর শান্ত করতে পারেন না আমার বয়স তখন সাত কি আট। প্রচন্ড ব্যাথায় চিৎকার করে কাঁদছি আমি। একটা কাপড় দিয়ে আমার পা শক্ত করে বেঁধে দেয়া হলো। শক্ত করে বেঁধে দেয়া পায়ে এক ধরনের প্রেসার তৈরি হয়, এই প্রেসারে ব্যাথা একটু কম মনে হয়। মুনি মা আমাকে কোলে নিয়ে বিশাল উঠানের এপাশ থেকে ওপাশে হাঁটতে থাকেন। তিনি যখন আমাকে কোলে করে হাঁটেন তখন আমার পা দুলতে থাকে, এক ধরনের ছন্দ তৈরি হয়, এই ছন্দে ব্যাথাটা তেমন টের পাওয়া যায় না। সমস্যাটা হচ্ছে মুনি মা যখন একটু দাড়ান, তখনই আমি চিৎকার দিয়ে কেঁদে উঠি। আবার মুনি মা হাঁটা শুরু করেন। সেই রাতে ফজরের আজান পর্যন্ত মুনি মা আমাকে কোলে নিয়ে উঠানের এপাশ ওপাশ হেঁটেছেন। তার দু’পা ফুলে থামের মতো হয়ে গেছে আর আমি নিশ্চিন্তে তার কোলে ঘুমিয়েছি। সারা রাত।’</p>
+<p>প্লাস্টিকের জগ থেকে গ্লাসে পানি ঢালে রাতুল। অনেকগুলো বুদবুদ কাচের গ্লাসের চারপাশে ঘোরে, ঘুরে মিলিয়ে যায়। জানালায় মাথা গলিয়ে খানিকটা পানি মাথায় ঢালে রাতুল। বা হাতে তোয়ালে নিয়ে কোনোভাবে মাথা মোছে। আনিকা কোন কথা বলে না। এই গভীর রাতে দেয়াল ঘড়ির একটানা টিক টিক শব্দ খুব কানে বাজে। রাত তিনটা।</p>
+<p>‘আমি মুনি মাকে ছাড়া ঘুমাতে পারতাম না আনিকা। খেতে পারতাম না। মুনি মার ডান হাতের বাহুতে ঘুমাতাম আমি। আমি বালিশে ঘুমাতে পারতাম না, ওটাই আমার বালিশ ছিল। দিনের পর দিন ব্লাড সার্কুলেশনে সমস্যা হওয়ায় মুনি মার হাতখানাই যেতে বসেছিল। স্কুলে আমার কোনো বন্ধু ধরো আমাকে দাঁত দিয়ে ভেঙে একটুকরো চকলেট খেতে দিয়েছে। এই এতটুকু। আঙুলের করের সমান। আমি খাতার পাতা ছিড়ে ভাজ করে তাতে চকলেটটুকু পেঁচিয়ে বাসায় নিয়ে আসতাম। মুনি মা দেখে হাসতেন। তারপর আমাকে বুকের মধ্যে চেপে ধরে...।’</p>
+<p>রাতুলের গলাটা কেমন ভারি শোনায়। ভেজাও খানিকটা। চুপচাপ দেয়াল ঘড়ির দ্রুত অপসৃয়মান কাটাটির দিকে তাকিয়ে থাকে সে। ‘হঠাৎ মুনি মার শরীর খারাপ হলো, কদিন থেকেই আমাকে আর স্কুলে দিতে কিংবা আনতে গেলেন না। এমনি একদিন স্কুল থেকে বাসায় ফিরলাম আমি, মাঠে খেলতে গিয়ে পা কেটে ফেলেছি। মুনি মা ব্যালকনিতে দাঁড়িয়েছিলেন। আমি ড্রাইভার চাচার হাত ধরে খুড়িয়ে খুড়িয়ে গাড়ি থেকে নামলাম। পায়ে সাদা ব্যান্ডেজ। ঘাড় উঁচু করে দোতলার ব্যালকনিতে মুনি মার দিকে তাকালাম আমি। আমার চোখ ভর্তি অপেক্ষা, বুকভর্তি কান্না। মুনি মা এখুনি দৌড়ে এসে আমাকে বুকে জড়িয়ে ধরবে। তারপর বুক ভাসিয়ে কাঁদবে। কিন্তু মুনি মা আমার দিকে তাকালেন, খুব অবহেলায়, তারপর খুব সহজভাবে মুখ ফিরিয়ে নিলেন। ব্যালকনিতে ঝোলানো ময়না পাখির খাচায় চুপচাপ খাবার দিতে থাকলেন। আমি খানিকটা অবাক হলাম। কিন্তু কিছু মনে হয়নি তখনো। মুনি মাকে চিৎকার দিয়ে ডাকলাম। মুনি মা আমার দিকে তাকালেন, তারপর ধীরে ঘরে ঢুকে গেলেন। আমি নিচে মুনি মার অপেক্ষায় দাঁড়িয়ে রইলাম। মুনি মা এখুনি নিচে নেমে আসবেন। কিন্তু মুনি মা আর আসলেন না। আমি দাঁড়িয়েই রইলাম। কাজের বুয়া সুফিয়া খালা আসলো, সেও আমাকে উপরে নিতে পারলো না। আমি চিৎকার করে কান্না শুরু করলাম। মুনি মাকে ছাড়া আমি উপরে যাবো না। কিন্তু মুনি মা আর আসলেন না। আমি কাঁদতে কাঁদতে সিঁড়ির গোড়ায় ঘুমিয়ে পড়লাম। রহমান চাচা আসলেন ঘণ্টাখানিক পর। তিনি সিঁড়ির গোড়া থেকে আমাকে ডেকে তুললেন। আমি রহমান চাচাকে জড়িয়ে ধরে হাউমাউ করে কেঁদে উঠলাম। মুনি মার নামে নালিশ দিতে থাকলাম। রহমান চাচা চুপ করে শুনলেন। তার মুখে চিন্তার ছাপ। আমি তখনো কিছু বুঝিনি। সে রাতে খাবার টেবিলে মুনি মা আমার সাথে বসলেন না। আমি খাবার টেবিলে চুপচাপ বসে আছি। রহমান চাচা গেছেন মুনি মার ঘরে। মুনি মা কিছুতেই আসবেন না। শেষমেষ চিৎকার, চেঁচোমেচি। মুনি মা কিছু একটা ভাঙলেন। আমি সাত আট বছরের ছোট্ট বালক। কিন্তু কি করে যেন আমি সব বুঝে গেলাম, মুনি মা আমার কেউ না। আমি এদের কেউ না। রাতে আমার ঘুমানোর আলাদা বিছানা হলো। আলাদা ঘরে। আমি চুপচাপ সেই ঘরে ঢুকে দরজা বন্ধ করে অন্ধকারে বসে রইলাম সারারাত। আমি মুনি মার আঁচলের ঘ্রাণ ছাড়া ঘুমাতে পারি না। আমি মুনি মার হাতের বালিশ ছাড়া ঘুমাতে পারি না। সেই আমি দু’হাঁটু ভাজ করে বুকের কাছে এনে চুপচাপ কুণ্ডুলি পাকিয়ে শুয়ে জেগে রইলাম। ফজরের আজান অবধি।</p>
+<p>ভোরের দিকে রহমান চাচা এলেন। আমাকে বুকে চেপে ধরে বোঝালেন, মুনি মার অসুখ করেছে। এইজন্য মুনি মা অমন করছে। ঠিক হয়ে যাবে। যে ক’দিন ঠিক না হয়, আমি যেন মন খারাপ না করি, কষ্ট না পাই। আমি রহমান চাচার কথা খুব মন দিয়ে শুনলাম। কিছু বললাম না। চুপ করে মাথা নাড়লাম। তারপর উঠে স্কুলে গেলাম। স্কুল থেকে ফিরে দোতলায় উঠতেই দেখি রহমান চাচা দরজার পাশে দাঁড়িয়ে আছেন। তার গায়ের জামা ছিন্নভিন্ন। মেঝেতে ছড়িয়ে ছিটিয়ে আছে ভাঙা ফুলদানি, কাঁচের গ্লাস, প্লেট। উস্কোখুস্কো চুলে দাঁড়িয়ে ফুসছেন মুনি মা। আমাকে দেখে যেন উন্মাদ হয়ে গেলেন। অশ্রাব্য গালি গালাজ করতে করতে তেড়ে এলেন। অসহায় রহমান চাচা কোনোমতে ঠেকালেন। মুনি মাকে জাপটে ধরে আমাকে বললেন সিড়ি বেয়ে নিচে নেমে যেতে। মুনি মার ওই চেহারা দেখে আমার হাত-পা থরথর করে কাঁপছিল। আমি কোনোমতে নিচে নেমে এলাম। নিচে নামতে নামতেই মুনি মার চিৎকার শুনতে পাচ্ছিলাম, ওকে বাড়ি থেকে বের করে। এক্ষুণি বের করো। ও থাকলে আমার খোকার ক্ষতি হবে, তোমার পায়ে পড়ি, ওকে খেদাও। মুনি মা চিৎকার করে কাদছিলেন। তার কান্নায় ক্রোধ ছিল, ঘেন্না ছিল, আর্তনাদও ছিল। আমি নিচে নেমে সিঁড়ির গোড়ায় বসে থর থর করে কাপছিলাম। আমি কি বুঝেছিলাম জানি না। সেদিন রাতে আমার ঘুমানোর জায়গা হলো নিচতলায়। রাতে আমার গা কাপিয়ে জ্বর এলো। সাথে বমি। তারপর আর আমার কিছু মনে নেই। সপ্তাহখানেক পরে রহমান চাচা আমাকে স্কুলের হোস্টেলে দিয়ে আসলেন। তিনিও আমাকে কিছু বলেননি, আমিও কিছু জানতে চাইনি।’</p>
+<p>রাতুল থামে । গ্লাস থেকে নিয়ে ঢকঢক করে পানি খায়। এই সময় জানালার বাইরের বস্তির ঘর থেকে তীব্র চিৎকার ভেসে আসে। রাতুল খোলা জানালা দিয়ে বাইরে তাকায়। জানালাটা খানিক নড়ে ওঠে। একটা পুরুষ কণ্ঠের অশ্রাব্য গালি ভেসে আসে, ‘খানকি মাগী, টেকা দেই নাই? টেকা কি কম দিছি? কথা আছিলো তিনশো টেকায় পুরা রাইত।’</p>
+<p>‘রাইতের আর বাকি কি?’ একটি নারী কণ্ঠের গোঙানী। ধস্তাধস্তির শব্দ। তারপর আবার চুপ।</p>
+<p>রাতুল চোখ ফিরিয়ে দেয়াল ঘড়ির দিকে তাকায়। রাতের আসলেও বেশি বাকি নেই। রাত প্রায় চারটা। খানিকবাদেই ফজরের আজান হবে। ‘আনিকা, বিরক্ত হচ্ছো? অনেক বকবক করছি আজ?’</p>
+<p>‘তুমি বলো, আমি শুনছি।’ আনিকার গলা শীতল, স্থির।</p>
+<p>‘রহমান চাচা হোস্টেলে আমাকে নিয়মিত দেখতে আসতেন। একদিন আমাকে বললেন, মুনি মার পেটে আমার একটা ভাই হবে। এইজন্যই মুনি মা এত অসুস্থ। এইজন্যই এমন করেছেন সবার সাথে। মুনি মাকে হাসপাতালে ভর্তি করানো হয়েছে। আমার ভাইটা হলেই মুনি মা আবার আগের মতো হয়ে যাবে। তখন আমাকে বাসায় নিয়ে যাবেন। আমি যেন মন খারাপ না করি। রহমান চাচার কথা শুনে আমার বিশেষ কোনো অনুভূতি হলো না। আমি ঘাড় কাত করে সায় দিলাম শুধু। রহমান চাচা চলে গেলেন। এর কয়েক মাস পরে রাফির জন্ম। রাফির জন্মের বছরখানেক পর, আমি তখন সিক্স বা সেভেনে পড়ি, আমাকে আবার বাসায় আনা হলো। মুনি মাকে দেখে আমার কেমন একটা অদ্ভুত অনুভূতি হতে থাকে। মুনি মার চোখে কিছু একটা ছিল। আমি মুনি মার কাছে যেতাম না। কিন্তু সারাক্ষণ দূর থেকে লুকিয়ে লুকিয়ে মুনি মাকে দেখতাম। মুনি মা পাগলের মতো রাফিকে আগলে রাখতেন। রাফির কাছাকাছি কাউকে যেতে দিতেন না। মুহূর্তের জন্য চোখের আড়াল করতেন না। ভালোবাসার কি অসম্ভব ক্ষমতা যে একটা মানুষের থাকতে পারে তা মুনি মাকে না দেখলে বোঝা যেত না।</p>
+<p>একদিন দুপুরে, স্কুল থেকে ফিরে আমি মুনি মার ঘরে উঁকি দিলাম। মুনি মা নেই, রাফি মশারির ভেতর ঘুমাচ্ছে। বাচ্চাদের ছোট্ট স্ট্যান্ড মশারি। রাফির নড়াচড়ায় মশারিটা কাত হয়ে পড়ে আছে রাফির মুখে। আটকে গেছে। বারকয়েক শ্বাস টানার চেষ্টা করল রাফি, নাকের কাছে গিয়ে আটকে গেল মশারির কাপড়। কয়েকবার হাঁচি দিয়ে কেঁশে উঠল ও। আমি ভালো করে উঁকি দিয়ে দেখি ঘরে কেউ নেই। রাফি আরো জোরে শ্বাস টানার চেষ্টা করছে। আমি ভয় পেয়ে গেলাম। এদিক-ওদিক তাকিয়ে দৌড়ে গেলাম খাটের কাছে। মশারিটা তুলবো এই মুহূর্তে বাথরুমের দরজা খুলে বেরিয়ে এলেন মুনি মা। মশারি হাতে খাটের কাছে দাঁড়ানো আমার দিকে তাকালেন একবার, আরেকবার কাশতে থাকা ঘুমন্ত রাফির দিকে। তারপর চিৎকার দিয়ে এসে ছোঁ মেরে রাফিকে কোলে তুলে নিলেন। এক হাত দিয়ে রাফিকে বুকে চেপে ধরে আরেক হাতে আমার চুল মুঠো করে ধরলেন। এক ঝটকায় আছড়ে ফেললেন মেঝেতে। তারপর বা পায়ের লাথিতে আমাকে ছিটকে ফেললেন দরজার কাছে। জন্তর স্বরে চেঁচাতে লাগলেন, ‘আমি আগেই বলছিলাম, এই জানোয়ারটা আমার খোকাকে মেরে ফেলবে, এই বেজন্মাটা আমার বাবাকে মেরে ফেলবে। আমি আগেই বলছিলাম, তোমরা কেউ আমার কথা বিশ্বাস করো নাই। কেউ না। কেউ না।’</p>
+<p>‘উনি কি মানসিকভাবে অসুস্থ ছিলেন? কোনো সাইকোলোজিকাল প্রব্লেম বা এরকম কিছু?’ অনেক্ষণ পর প্রশ্ন করলো আনিকা।</p>
+<p>‘হুম। হতে পারে।’ রাতুল কিছু একটা ভাবে। শেষ রাতের নিস্তব্ধতায় ফিসফাস কিছু কথা কানে আসে। কিছু শব্দ। ওর চোখ জানালা দিয়ে বাইরে। সেখানে ক্ষয়ে যাওয়া ইটের ছোট্ট একটুকরো চাতাল। একটা হাতলভাঙা চাপকল। পাশের অন্ধকারে অজস্র পেরেকের ঘায়ে অজস্র সাইনবোর্ড শরীরে দাঁড়িয়ে বিশাল রেইনট্রি। বস্তির ঘুপচি ঘর। নীল প্লাস্টিকের জানালা। জানালার ওপাশে ঘুটঘুটে অন্ধকার। সেই অন্ধকারেও পেরেক ঠোকার খেলা। একটি শরীর আরেকটি শরীরে পেরেক ঠুকে ঠুকে সেঁটে দিচ্ছে সাইনবোর্ড। চিরন্তন অন্ধকারের সাইনবোর্ড।</p>
+<p>রাতুলের ভাবনা যেন আর শেষ হয় না। সে চুপ করে থাকে। নিঃশব্দ মোবাইল ফোনের ভেতর রাতুলের কাল্পনিক সেই কণ্ঠগুলো যেন আবার ফিরে আসে। সেই এলোমেলো ফিসফাস শব্দগুলো। রাতুল কণ্ঠগুলো বোঝার চেষ্টা করে। এই কণ্ঠগুলো সে অন্য কোথাও শুনেছে। দীর্ঘদিন শুনেছে। কিন্তু কোথায়?</p>
+<p>‘রাতুল? তুমি কি ঠিক আছো?’ অনেকক্ষণ অপেক্ষার পর আনিকা নিজেই আবার প্রশ্ন করে।</p>
+<p>‘হ্যা, আমি ঠিক আছি।’</p>
+<p>মুনিরা আন্টি কি মানসিকভাবে অসুস্থ ছিলেন?</p>
+<p>‘এই প্রশ্নের উত্তরটা একটু জটিল আনিকা। হতে পারে তিনি অসুস্থ ছিলেন আবার নাও হতে পারে। যদি মেডিকেল সায়েন্সের কথা বলো, হ্যাঁ, তাহলে হয়তো তিনি কোনো না কোনোভাবে অসুস্থ ছিলেন। Paranoid schizophrenia নামে একধরনের মানসিক অসুস্থতা আছে। তার আচরণগুলোকে হয়তো এই অসুস্থতার সাথে কোনোভাবে মেলানো যাবে। এর বাইরেও কিন্তু কিছু সহজ সাধারণ ব্যাখ্যাও আছে আনিকা। রহমান চাচার সাথে মুনি মার বিয়ের কয়েক বছরের মধ্যে তারা আবিষ্কার করলেন তারা বাবা-মা হতে পারছেন না। এটা অনেকের ক্ষেত্রেই হয়। দেরি করে সন্তান হয়। কিছু মেয়ে আছে যাদের মাতৃসত্তার প্রতি প্রবল দুর্বলতা থাকে। এই দেরিটা তারা সহ্য করতে পারে না। মুনি মা ছিলেন সেরকম একজন। বিয়ের ছ’-সাত বছরের মধ্যেও যখন মা হতে পারলেন না তখন তার মধ্যে তীব্র এক ধরনের আতঙ্ক কাজ করা শুরু করল। তিনি একের পর এক ডাক্তার দেখাতে থাকলেন এবং কোনো এক ডাক্তার তাকে বলে দিলেন যে তিনি আর মা হতে পারবেন না। এই সময় মুনি মা পাগলের মতো হয়ে গেলেন। এবং সেই সময় আমাকে নিয়ে আসেন রহমান চাচা। আমাকে পেয়ে মুনি মা তার মাতৃত্বহীনতা ভুলে থাকার চেষ্টা করতে লাগলেন। তার মাতৃ-হৃদয়ের সকল মমতা উজাড় করে দিয়েছেন। একসময় হয়তো ভুলেও গেলেন যে আমি তার নিজের সন্তান নই। কিন্তু হঠাৎ করেই, বিয়ের প্রায় বছর দশেক পরে কনসিভ করেন মুনি মা। এবং নিজের শরীরের ভেতর যে অস্তিত্ব তিনি টের পেলেন, সেই অস্তিত্ব তার নিজের, একান্তই নিজের। এই অনুভূতিতে তার মাতৃত্বের অহংকার যেমন আছে, তেমনি নিজ অস্তিত্বের প্রতি নিরংকুশ ভালোবাসাও। নিজ সন্তানের প্রতি মায়ের ভালোবাসা সবসময়ই প্রবলভাবে কেন্দ্রীভূত। এই বোধটা মুনি মার ভেতরে আরো বেশি তীব্র ছিল। আমার প্রতি তার যে ভালোবাসাটা ছিল সেটি আসলে আমার প্রতি নয়, সেটি মুনি মার নিজের প্রতি নিজের ভালোবাসা ছিল। নিজের অক্ষমতা, অতৃপ্তি, তৃষ্ণা ভুলে থাকার একটা উপায় ছিলাম আমি। কিন্তু রাফি যখন আসলো, তখন আর আমাকে দিয়ে তার সেই অতৃপ্তি কিংবা অক্ষমতা ভোলার দরকার ছিল না। একচুয়ালি, তখন আর তিনি অক্ষমই নন।’</p>
+<p>‘রাতুল, আমি স্বীকার করছি যে তোমার এই ব্যাখ্যাটা অনেকটাই যৌক্তিক। কিন্তু মুনিরা আন্টির এই যে বদলে যাওয়া এটা কিন্তু একটা ম্যাসিভ চেঞ্জ, বড় ধরনের র‍্যাডিকাল চেঞ্জ। এর ব্যাখ্যা কি? হঠাৎ করেই তোমার প্রতি ওনার এক ধরনের তীব্র ঘৃণা তৈরি হয়েছিল। এর কারণ কি?’ আনিকা একটু থামে। রাতুল কোনো জবাব দেয় না। আনিকা আবার বলে, ‘হ্যা, রাফি আসায় ওনার ভেতরে একটা পরিবর্তন হতেই পারে। তোমার প্রতি ওনার যে তীব্র ভালোবাসা ছিল, তা নাও থাকতে পারে। কিন্তু সেই তীব্র ভালোবাসার পরিবর্তে হুট করেই এমন তীব্র ঘৃণার কারণটা কি? এবং উনি কিন্তু ভাবতেন তোমর কারণে রাফির অমঙ্গল হবে কিংবা তুমি রাফির কোনো ক্ষতি করবে।’</p>
+<p>আনিকার এই প্রশ্নের কোনো জবাব খুঁজে পায় না রাতুল। সে নিজেও দিনের পর দিন এই প্রশ্নের জবাব খুঁজেছে। তার মনে নেই সে কবে প্রথম রহমান চাচার সাথে এসেছিল। তার কেবল আবছা মনে পড়ে, কোনো এক বর্ষার বিকেলে সে রহমান চাচার সাথে গাড়ি থেকে নেমেছিল। গায়ে হলুদ স্যান্ডো গেঞ্জি আর টুকটুকে লাল হাফ প্যান্ট। মুনি মা দৌড়ে এসে তাকে বুকে নিয়েছিলেন। তারপর বাথরুমে। ঘণ্টাখানেক ডলে ডলে গোসল করিয়েছিল তাকে। সেই থেকে মুনি মাকে মুনি মা বলে ডাকে রাতুল। কিন্তু রহমান চাচাকে চাচাই। এই নিয়ে কেউ তাকে কখনো কিছু বলেওনি। রহমান চাচাও না। নিঃশব্দ মোবাইল ফোনটা কানে চেপে ধরে বসে থাকে রাতুল। ফিসফাস সেই কণ্ঠগুলো যেন আবার শুনতে পায় সে। তার কান ঝালাপাল হয়ে যায়। মাথা ঝিমঝিম করে ওঠে। মনে হয় কথাগুলো সে বুঝতে পারছে। প্রায় বুঝতে পারছে। রাতুল আরো শক্ত করে ফোনটা কানের সাথে চেপে ধরে। তার সারা শরীর বেয়ে ঘামের স্রোত নামে। কিন্তু রাতুল কিছুই বুঝতে পারে না। সে আনিকার ফোনটা কেটে দেয়। মোবাইল ফোনটা অফ করে রেখে দেয় টেবিলের উপর।</p>
+<p>এই সময় সে সেই ফিসফিস কণ্ঠগুলো যেন আবার শুনতে পায় রাতুল। কিন্তু বন্ধ মোবাইল ফোনটা তো তার কানেই নেই! রাতুল প্রবল যন্ত্রণায় তার মাথা চেপে ধরে। ফিসফিস শব্দগুলো সে শুনতে পাচ্ছে, প্রায় শুনতে পাচ্ছে, হ্যাঁ শুনতে পাচ্ছে। নিচু গলায় টাকা-পয়সা নিয়ে বসচা হচ্ছে দুটি কণ্ঠেরমধ্যে।</p>
+<p>‘তিনশো টেকা দেওনের কতা আছিল। অহন দুইশো টেকা দিতেছেন কেন?’</p>
+<p>‘নে মাগী, আমি তো তোর বান্দা কাস্টোমার, আইজ কম, কাইল বেশি, নিবি।’</p>
+<p>‘না, আপনে টেকা দিয়া যান, তিনশো টেকা, আমার শইল ভালো না, ডেইলি কাম করতে পারি না।’</p>
+<p>‘হ, বয়স তো আর তোর কম অয় নাই, বুড়া বয়সে আর কত পারবি?’</p>
+<p>নারী কণ্ঠটা ফিসফিস করে কাঁদে, আঁকুতি করে। ফিসফাস শব্দগুলো বেড়েই চলে। রাতুল যেন কল্পনায় কিংবা স্মৃতিতে দেখতে পায়, এই ফিসফাস কণ্ঠগুলোর পাশে, খুব কাছেই দু’হাঁটু ভাজ করে বুকের কাছে এনে চুপচাপ কুণ্ডলি পাকিয়ে শুয়ে জেগে আছে একজোড়া নিস্পলক সন্ত্রস্ত শিশু চোখ, ছোট্ট একজোড়া ভয়ার্ত কান। ওই ভয়ার্ত কানে ফিসফাস শব্দগুলো যেন ঠেসে ঢুকে যাচ্ছে। ঢুকে যাচ্ছে। ঢুকে যাচ্ছে।</p>
+<p>নীল প্লাস্টিকের জানালাটা নড়ে ওঠে। তারপর ফাঁক হয়ে খুলে যায় পুরো জানালাটা। বাইরে ভোরের আবছা আলো ফুটতে শুরু করেছে। সেই আবছা আলোয় শীর্ণকায় লম্বা এক লোক জানালায় মাথা গলিয়ে লাফিয়ে নামে। তারপর এদিক সেদিক তাকিয়ে লুঙ্গির কোচর থেকে বিড়ি বের করে। দিয়াশলাইয়ের জ্বলন্ত কাঠিতে ধরিয়ে হনহন করে হেঁটে যায়।</p>
+<p>রাতুল নীল প্লাস্টিকের সেই জানালা থেকে চোখ ফেরাতে পারে না। তাকিয়ে থাকে। নীল প্লাস্টিকের জানালাটা আবার নড়ে ওঠে। জানালার ফাঁক গলে বের হয় একটি নারী শরীর। লাফিয়ে নামে নিচের ক্ষয়ে যাওয়া ইটের ছোট্ট চাতালে। তারপর ভাঙা চাপকল চেপে পানি তুলে বসে পড়ে কাপড় কাঁচতে। রাতুল চেহারাটা দেখতে পায় না। কিন্তু ক্রমশই ভোরের আলোয় জেগে ওঠে বিশাল রেইনট্রি। রেইনট্রির শরীর জুড়ে অজস্র পেরেক ঠোকা সাইনবোর্ড। বস্তির ঘুপছি ঘর, নীল প্লাস্টিকের জানালা। জানালার নিচে ময়লার ড্রেন। ক্ষয়ে যাওয়া ইটের ছোট্ট চাতাল। হাতলভাঙা চাপকল। চাপকলের নিচে কাপড় কেঁচে চলছেন নীল প্লাস্টিকের জানালা গলে লাফিয়ে নামা সেই মহিলা।</p>
+<p>রাতুল আর দেখতে চায় না। সে চোখ ফেরানোর প্রাণপণ চেষ্টা করে। কিন্তু চাপকলের নিচের দৃশ্যটি থেকে সে চোখ ফেরাতে পারে না। রাতুলের সারা শরীর বেয়ে ঘামের স্রোত নামে। রাতুল চোখ ফেরাতে পারে না। সে প্রাণপণ চেষ্টায় চোখ বন্ধ করে। কিন্তু তার সেই বন্ধ চোখের ভেতর দিয়ে, গুটিগুটি পায়ে রেইনট্রি গাছটি পেরিয়ে, নীল প্লাস্টিকের জানালার নিচে, ভাঙা হাতলের চাপকল আর ক্ষয়ে যাওয়া ইটের ছোট্ট চাতালের পাশে ছোট্ট শিশুটি ঠিক তখনই এসে দাঁড়ায়।</p>
+<p>হলুদ স্যান্ডো গেঞ্জি আর লাল টুকটুকে হাফ প্যান্ট তার পরনে।</p>
+<h1>পুঁটিমাছ</h1>
+<p> রফিকের পকেটে সাকুল্যে তেরো টাকা। একটা দশ টাকার নোট, একটা দু টাকার নোট আর রূপালি রঙের রঙচটা একখানা একটাকার কয়েন। মোট তেরো টাকা। সংখ্যাটাই আনলাকি। সবগুলো প্যান্টের পকেট তন্ন তন্ন করে খোজে রফিক। নেই। কোথাও টাকা পয়সার আর নাম গন্ধ পর্যন্ত নেই। পেনবক্স, টেবিলের ড্রয়ার, তোশকের তলা কোথাও নেই। জানালা দিয়ে থুক করে এক দলা থু থু ফেলে সে। বাসী মুখটা কেমন তেতো হয়ে আছে। একটা বিচ্ছিরি ব্যাপার হয়ে যাবে আজ। আজ সতেরোই ডিসেম্বর। একবছর আগের এই দিনেই নীতুর সাথে তার প্রেম। নীতুর সাথে তার পরিচয়ের ঘটনাটা অদ্ভুত। রফিক গিটার বাজিয়ে গান গাইছিল রবীন্দ্র সরোবরে। গান শেষ হতেই নীতু সোজা চলে এলো রফিকদের জটলায়।</p>
+<p>‘আপনি আমাকে গিটার শেখাবেন?’ নীতুর সোজা সাপ্টা প্রশ্নে বন্ধুদের মাঝেও রফিক যেন খানিকটা ভড়কে যায়। কিন্তু নীতুকে সে গীটার শেখানোর চেষ্টা করেছিল। যদিও শেষ পর্যন্ত আর হয়ে ওঠেনি। নীতু পড়ে রাজশাহী মেডিকেলে। সেখানেই থাকে। ছুটি-ছাটায় ঢাকায় এসে যে কদিন থাকে তাতে আর গীটার শেখা হয়ে ওঠে না। রফিকের নানা ব্যস্ততা থাকে। সময় হয় না।</p>
+<p>নীতু আফসোস করে বলতো, ‘আপনি হলেন গিয়ে বড় মানুষ, তিমি মাছ। আর আমি হলাম গিয়ে এই এত্তটুকু পুঁটিমাছ। আপনি আমাকে পাত্তা দিবেন কেন?’ সেই শুরু। এরপর থেকে নীতুর কাছে রফিকের নাম হয়ে গিয়েছিল তিমি মাছ আর রফিকের কাছে নীতু পুঁটি মাছ।</p>
+<p>রফিক জানালার সামনে দাঁড়ায়। বাইরে রোদ তেঁতে উঠেছে লঙ্কাকাণ্ড হয়ে যাবে আজ। গতকাল ছিল ষোলোই ডিসেম্বর। বিজয় দিবস। সারাদিন বন্ধুদের সাথে হৈ-হুল্লোড় শেষে মেসে এসে ঘুমিয়ে পড়েছিল সে। রাত একটার দিকে রুমমেট রোহান তাকে ঘুম থেকে জাগায়। রফিককে না পেয়ে রোহানের ফোনে ফোন করেছে নীতু। রফিক ধড়ফড় করে জেগে ওঠে। সে ভুলেই গিয়েছিল ষোলোই ডিসেম্বর রাত বারোটার পরেই সতেরো ডিসেম্বর।</p>
+<p>নিজের ফোনের দিকে তাকিয়ে আঁতকে উঠেছিল রফিক, ঊনচল্লিশবার ফোন করেছে নীতু!</p>
+<p>শেষমেষ কোনোভাবে ট্যাকেল দেয়া গিয়েছিল নীতুকে। এই একটা মাত্র দিনের জন্য রাজশাহী থেকে ঢাকায় এসেছে মেয়েটা। মেডিকেলের ফাইনাল প্রফ যে কি কঠিন জিনিস, তা কেবল বোঝে মেডিকেল স্টুডেন্টরাই। নীতুর ফাইনাল প্রফ চলে। সে তারপরও কোনোমতে সময় বের করেছে। রাতের ট্রেনে আবার রাজশাহী ফিরে যাবে। ইশ, রফিক আজ মেয়েটার সামনে গিয়ে দাঁড়াবে কি করে? সেই প্রথম দিন থেকে নীতুর একটা মাত্র চাওয়া। একটা স্বপ্ন। একটাই। এই দিনে রফিকের কাছে সে সতেরোটি গোলাপ চায়। সতেরোটি লাল টকটকে গোলাপ। রফিক অদ্ভুত দৃষ্টিতে জানালা দিয়ে বাইরে তাকায়। বা হাতে পকেট চেপে ধরে। সেখানে চুপচাপ পড়ে আছে একটা দশটাকা, একটা দুটাকা আর একখানা এক টাকার কয়েন।</p>
+<p>সাকূল্যে তেরো টাকা!</p>
+<p>একটা গোলাপের দাম কম করে হলেও আট টাকা। তার মানে আটসতেরো একশো ছত্রিশ। আরো একশো তেইশ টাকা। রফিক রোহানের শূন্য বিছানার দিকে তাকায়। খুব ভোরে বেরিয়েছে রোহান। টাকা পাওয়ার কোথাও কোনো আশা নেই আর। রফিকের সত্যি সত্যি মন খারাপ হয়ে যায়। এই মেয়েটাকে সে অসম্ভব ভালোবাসে। কিন্তু কখনো বোঝাতে পারে না। সবসময় সবকিছু গোলমাল করে ফেলে সে। কিন্তু আজ?</p>
+<p>রফিক বাথরুমে ঢোকে। গাল জুড়ে থাকা খোঁচা খোঁচা দাড়িগুলো আয়নায় দেখে। এই দাড়ি নীতুর ভীষণ পছন্দ। রফিক আয়নার দিকে। তাকিয়ে স্নান হাসে। নীতু কি জানে যে সে ইচ্ছে করেই দাড়িগুলো এমন করে রাখে?</p>
+<p>রফিক স্যান্ডেল জোড়া পায়ে গলিয়ে বেরুতে যাবে। এই মুহূর্তে নীতুর ফোন।</p>
+<p>‘পাঞ্জাবিটা পড়েছ?’</p>
+<p>রফিকের বুকের ভেতরটা ধ্বক করে ওঠে। সে পাঞ্জাবির কথা ভুলেই গিয়েছিল। মাসখানেক আগে নীতু যখন ঢাকায় এসেছিল সে নীল রঙের একটা পাঞ্জাবি কিনে দিয়েছিল রফিককে আর পইপই করে বলে দিয়েছিল, সেই পাঞ্জাবির প্যাকেট যেন রফিক না খোলে। খুলবে সতেরোই ডিসেম্বর। আজ সতেরোই ডিসেম্বর কিন্তু রফিক দিব্যি ভুলে গেছে সেই পাঞ্জাবির কথা। সে মিনমিন করে বলল, ‘এখন পড়ব, পড়েই বেরুচ্ছি।’</p>
+<p>‘আচ্ছা। আর শোনো, গোলাপের কথা মনে আছে তো?’</p>
+<p>‘আছে।’ রফিকের গলা শুকিয়ে আসে। সে প্যান্টের পকেটে হাত দেয়। পকেটে তেরো টাকা। রফিক অতি কষ্টে ঢোক গেলে।</p>
+<p>‘শোনো, দুই টাকা দামের চিমসা গোলাপ কিনবে না কিন্তু। গোলাপ কিনবে বড় বড়। সূর্যমূখীর মতো। তাজা, টকটকে লাল গোলাপ। বুঝেছ?’</p>
+<p>‘বুঝেছি।’ রফিক মিনমিন স্বরে জবাব দেয়। কি করবে ভেবে পায় না। নীতু ফোন রেখে দেয়। রফিক দরদর করে ঘামে। নীতুর সামনে গিয়ে কি করে দাঁড়াবে সে?</p>
+<p>খাটের নিচের ট্রাংক খুলে পাঞ্জাবির প্যাকেটটা বের করে রফিক। গাঢ় নীল পাঞ্জাবি। প্যাকেট খুলে পাঞ্জাবিটা বের করে ভাঁজ খোলে। ভাঁজের ভেতর থেকে টুপ করে কিছু একটা পড়ে। ভাঁজ করা সাদা একটা খাম। মেঝে থেকে খামটা তুলে নেয় রফিক। খামের ভেতর পাঁচশো টাকার দুখানা নোট। আর একটা ভাঁজ করা চিরকূট। চিরকূটের ভাঁজ খোলে রফিক। ডাক্তারদের হাতের লেখা নাকি ভয়ঙ্কর রকমের বাজে হয়।</p>
+<p>কিন্তু নীতুর হাতের লেখা গোটাগোটা অক্ষরগুরো কি যে সুন্দর!</p>
+
+<p>‘মিস্টার তিমি মাছ হতভম্ব হয়ে দাঁড়িয়ে আছেন কেন? এখুনি সিএনজি করে শাহবাগ যান। আমি শাহবাগে খোঁজ নিয়েছি। ভালো বড় গোলাপের দাম একেকটা ষোলো টাকা। কয়টা গোলাপ আনবেন, মনে আছে তো? তাড়াতাড়ি আসেন। ইতি, আপনার পুঁটি মাছ।’</p>
+
+<p>বি:দ্র: আপনার জন্য ধাঁধা, বলেন তো কে বেশি বড়? তিমি মাছ, না পুঁটি মাছ?</p>
+<h1>সাইকেল</h1>
+<p>এক</p>
+<p> আফজাল হোসেনের গাড়ির খুব শখ। কম দামি হোক ক্ষতি নেই। চকচকে হোক তাতেও ক্ষতি নেই। ধবধবে সাদা একটা গাড়ি তার চাই। সেই গাড়িতে তিনি অফিসে যাবেন। অফিসের দারোয়ান যখন বড় স্যারদের গাড়ির মতো করে তার গাড়ির জন্যও অফিসের গেট খুলে দিবে, তখন তিনি কি করবেন, তাও ভেবে রেখেছেন আফজাল হোসেন। খুব মায়াভরা একটা হাসি দিবেন। গাড়িটা খানিক থামিয়ে দারোয়ানকে জিজ্ঞেস করবেন, ‘কি হে মোবারক মিয়া, খবর কি তোমর? দিনকাল যাচ্ছে কেমন?’ মোবারক মিয়ার উত্তর যদি সন্তোষজনক হয় তাহলে পকেট থেকে পঞ্চাশ টাকার চকচকে একখানা নোট বের করে হাতে গুজে দিবেন।</p>
+<p>সমস্যা হচ্ছে, এই পঞ্চাশ টাকার চকচকে নোট প্রতিদিন দেয়া যাবে না। এত টাকা দেয়ার সাধ্য আফজাল হোসেনের নেই। গাড়ি কেনার সাধ্যও তার নেই। যদিও তার মতো ছোট পোস্টে চাকরি করে এমন অনেকেই গাড়ি-বাড়ি করে ফেলেছে। কেবল আফজাল হোসেনই পারেননি। তারা পারলে আফজাল হোসেন কেন পারেননি? এই প্রশের উত্তর অবশ্য আফজাল হোসেন দিতে চান না। কে কিভাবে অর্থ উপার্জন করবে সেটা তার নিজস্ব ব্যাপার। এই নিয়ে তিনি মাথা ঘামাতে রাজি না।</p>
+<p>তার জমানো টাকা অবশ্য কিছু ছিল। বারো-তেরো লাখ টাকা। এই টাকা তিনি জমিয়েছিলেন তিল তিল করে। একটা গাড়ির জন্য। বছর দশেক আগে একবার গাড়ি প্রায় কিনেও ফেলেছিলেন। শেষ পর্যন্ত অবশ্য হয়নি। হয়নি কারণ বড় ছেলে জহিরের হঠাৎ মোটর সাইকেলের শখ হলো। সেই শখ এমনই যে খাওয়া-দাওয়া পর্যন্ত বন্ধ। ছেলের খাওয়া-দাওয়া বন্ধ রেখে বাবা তো আর শখ পূরণ করতে পারে না। আফজাল হোসেন জমানো টাকা থেকে ছেলেকে মোটর সাইকেল কিনে দিলেন। তার গাড়ি কেনা আর হলো না। তাতে অবশ্য লোকসান কিছু হয়নি। লাভই হয়েছে। গাড়ি কেনার প্রস্তুতি হিসেবে তিনি ড্রাইভিংটা শিখে ফেলেছিলেন। ড্রাইভিং শিখতে তার তেমন কষ্ট হয়নি। সাইকেল চালানো কঠিন কাজ, ড্রাইভিং না। সেই সাইকেল তিনি গত আঠারো বছর ধরে চালাচ্ছেন। সুতরাং চার চাকার গাড়িতে তার কাছে দুধভাত।</p>
+<p>গাড়ি অবশ্য তার হবেই। ছোট ছেলে বশিরকে কানাডা পাঠিয়েছেন। সুতরাং গাড়ি হতে আর দেরি কি? এই হলো বলে। আফজাল হোসেন অবশ্য ছোট ছেলের আশায় থাকতে চাননি। নিজের জমানো টাকায়ই কিনতে চেয়েছিলেন। কিন্তু সমস্যাটা হলো বশির কাউকে কিছু না জানিয়ে হঠাৎ বিয়ে করে ফেলায়। মেয়ের বাবা বেকার ছেলের হাতে মেয়ে তুলে দিবেন না। এই নিয়ে হৈ-চৈ, কান্নাকাটি, বিষ খাওয়া অবধি হলো। বশির শেষ পর্যন্ত বায়না ধরলো তাকে বিদেশ পাঠাতে হবে। তার এক বন্ধু কানাডায় থাকে, সে বলেছে, লাখ পনেরো টাকা হলে কানাডায় বশিরের একটা ব্যবস্থা সে করে ফেলতে পারবে। স্ত্রী রাহেলা খাতুন এসে আফজাল হোসেনকে ধরলেন। ছেলের একটা ব্যবস্থা তাকে করতেই হবে। বশিরও এসে বাবার পা জড়িয়ে ধরল, বাবা, তুমি আমারে কানাডা পাঠাও বাবা, আমি এক বছরের মধ্যে তোমার গাড়ি কেনার টাকা পাঠাই দিব। আর নাইলে আমি বিষ খেয়ে মরবো বাবা। বিষ খেয়ে...।’</p>
+<p>আফজাল হোসেনের আবারো গাড়ি কেনা হলো না। তিনি বশিরকে কানাডা পাঠালেন। তার মনে মনে অবশ্য একটা আশা আছে, বশিরের পাঠানো টাকায় হয়তো আরেকটু ভালো একটা গাড়ি কেনা যাবে। তিনি কাউকে বলেন না, কিন্তু অফিস থেকে ফেরার পথে প্রায়ই গাড়ির শোরুমে যান। দূর থেকে দাঁড়িয়ে দেখেন। তার কেমন ভয় ভয় লাগে। দূরে দাঁড়িয়েই মনে মনে দাম আন্দাজ করেন। সাহস করে কাউকে কিছু জিজ্ঞেস করেন না। বশির কানাডা যাওয়ার পর থেকে তিনি আর সাইকেল চালিয়ে অফিসে যান না। সাইকেলটার অবস্থাও অবশ্য ভালো না। বহু বছরের পুরনো সাইকেল। প্রথমটা চুরি হওয়ার পর সেকেন্ড হ্যান্ড কিনেছিলেন। এক যুগ তো হবেই। লক্কর ঝক্কর হয়ে গেলেও এই সাইকেলটার কোথায় যেন প্রাণের ছোঁয়া পান আফজাল হোসেন। কিন্তু যার ছেলে কানাডা থাকে তার কি আর ভাঙা সাইকেল চালিয়ে অফিসে যাওয়া মানায়? - আফজাল হোসেন তাই সাইকেল তুলে রেখেছেন ঘরে। গত তিন বছর আর ছুঁয়ে দেখেননি। বাসে করে অফিসে যান। আর বাসের জানালা দিয়ে তাকিয়ে দেখেন রাস্তাভর্তি সাদা ধবধবে সব গাড়ি। তার চোখ চকচক করে ওঠে। একটা গাড়ি তার হলো বলে!</p>
+<p>কিন্তু বশিরের কানাডায় কি সব ঝামেলা হচ্ছে। প্রথম বছরে সে টাকা পাঠাতে পারে না। ঝামেলা সামলাতেই হিমশিম খাচ্ছে সে। টাকা পাঠাবে কি? তার পরের বছরও না। কানাডার কাগজপত্র নিয়ে কিসব গোলমাল হয়েছে, সেখানে টাকা লাগবে। বশির অবশ্য বলেছে, এবার সে টাকা পাঠাবেই। কিন্তু সেদিন মাঝরাতে হঠাৎ রাহেলা খাতুনের ডাকে ঘুম ভাঙে আফজাল হোসেনের।</p>
+<p>‘শুনছো?’</p>
+<p>হ্যা বলো।</p>
+<p>বড় বউর কাছে একটা কথা শুনলাম।</p>
+<p>‘কি কথা?’ আফজাল হোসেনের ঘুম তখনো পুরোপুরি কাটেনি। তিনি ঘুম জড়ানো কণ্ঠেই রাহেলা খাতুনের কথার জবাব দিচ্ছেন।</p>
+<p>‘বশির নাকি অর বউরে কানাডা নিয়া যাইতেছে।’</p>
+<p>‘তো সে থাকে কানাডা, বউ কই থাকবো? বউ কি সোমালিয়া থাকবো? বউ নিয়া যাওয়াই ভালো।</p>
+<p>‘তুমি বুঝতেছ না। বশির এতদিন যে টাকা-পয়সার সমস্যার কথা বলছে, ওর আসলে কোনো সমস্যাই ছিল না। ও বউরে নিয়া যাওয়ার জন্য এই সব বলছে। এখন সব ফাইনাল হইছে।’</p>
+<p>‘রাত-দুপুরে আমার এত বোঝাবুঝির দরকার নাই। ঘুমাতে দাও।’</p>
+<p>সকালে খাবার টেবিলেও রাহেলা খাতুন কথাটা তোলেন। আফজাল। হোসেন অবশ্য তাতে আশাহত হন না। পাত্তাও দেন না খুব একটা। তিনি বরং মাঝরাতে জায়নামাজ পেতে নামাজে বসেন। ছেলের জন্য দোয়া করেন। সেই দোয়ার কোথাও খুব আবডালে, আড়ালে, লুকিয়ে চুকিয়ে তার গাড়িও থাকে। আফজাল হোসেন প্রতিদিন সকালে বাসে চেপে অফিসে যান, আর জানালা দিয়ে তাকিয়ে থাকেন বাইরে, ‘ইশ, ওই যে ওই গাড়িটা, ওই সাদা গাড়িটার মতন। না না, ওটা না, ওইটা, ওই, ওইটা।</p>
+
+<p>দুই</p>
+<p> আফজাল হোসেন অফিসে যাবেন। বাসের টিকেট কেটে লম্বা লাইনে দাঁড়িয়ে আছেন, তার সিরিয়াল সাত নম্বার। এই বাসের নিয়ম-কানুন আলাদা। প্রত্যেক স্টপেজ থেকে এরা দশজনের বেশি যাত্রী নেয় না। তিনি নিশ্চিত মনে লাইনে দাঁড়িয়ে হাকিমপুরি জর্দা দিয়ে পান খাচ্ছেন। সিটিং বাস। তার কাছে টিকেটও আছে। সিরিয়ালও সাত। সুতরাং তাড়াহুড়ার কিছু নাই। আঙুলের মাথা থেকে চুন নিয়ে তিনি আরাম করে পান চিবুচ্ছেন। লাইন থেকে খানিকটা সরে গিয়ে পিচিক করে পানের পিক ফেললেন। ফিরে এসে দেখেন আঠারো-উনিশ বছরের এক ছেলে তার জায়গা দখল করে দাঁড়িয়ে আছে। আফজাল হোসেন এক দৃষ্টিতে ছেলেটার মুখের দিকে কিছুক্ষণ তাকিয়ে থাকলেন। ছেলেটা ফিরেও তাকালো না। উদাস নয়নে কোনো এক মোবাইল ফোন কোম্পানির বিলবোর্ডের বিজ্ঞাপন দেখছে। আফজাল হোসেন কিছু বললেন না। এই অভিজ্ঞতা তার আছে। আজকালকার ছেলেপুলেদের ভেতর কেমন একটা বেপরোয়া ভাব চলে এসেছে। এই ভাবকে তিনি ভয় পান। এরা কখন কি করে ফেলে তার ঠিক-ঠিকানা নেই। তিনি বিনা বাক্যব্যয়ে ছেলেটার পেছনে গিয়ে দাঁড়ালেন। তার সিরিয়াল হয়ে গেল সাত থেকে আট। অবশ্য দুশ্চিন্তার কিছু নেই। এই স্টপেজ থেকে কম করে হলেও দশজন যাত্রী বাসে উঠবে। সুতরাং বাসে সিট পেতে তার অসুবিধা হবার কথা না। আফজাল হোসেন আবার আরাম করে পান চিবুতে শুরু করলেন। সাথে হাকিমপুরি জর্দা আর কাঁচা সুপুরি।</p>
+<p>বাস এসেছে। আফজাল হোসেন পায়ে পায়ে বাসের দরজার দিকে এগোচ্ছেন। তার সামনের ছেলেটা পর্যন্ত বাসে উঠে গেছে। তিনি ডান পা-টা মাত্র উঁচু করেছেন এই মুহূর্তে হেলপার হাত বাড়িয়ে বাসের দরজা আটকে দিল।</p>
+<p>‘পরেরটায় আসেন চাচা মিয়া, এইটায় আর সিট নাই।’</p>
+<p>‘সিট নাই মানে? সিট তো আছে।’</p>
+<p>‘আছে, তয় আগের স্ট্যান্ড থেইকা জোর কইরা তিন জন বেশি উইঠা গেছে, হের লাইগা এইহান থেইকা তিন জন কম নিতে হইবো।’</p>
+<p>আফজাল হোসেন কিছু বলতে যাবেন। ভিতরে ভিতরে কথা গুছিয়ে নিচ্ছিলেন কিন্তু বাস ছেড়ে দিল। তিনি হতভম্ব হয়ে দাঁড়িয়ে রইলেন। তার অসম্ভব মন খারাপ হয়েছে। কারণে-অকারণে তার মন খারাপ হয় না। কিন্তু আজ হলো। গত কিছুদিন ধরেই এই ব্যাপারটা তিনি লক্ষ্য করছেন। তার ক্ষেত্রেই সব উল্টাপাল্টা ঘটনা ঘটে।</p>
+<p>সেদিন অফিসেও ঘটলো। পাঁচটা বেজে গেছে। অফিস থেকে সবাই বেরিয়ে যাচ্ছে। তিনি বেরোতে যাবেন, এইসময় বড় সাহবের ঘর থেকে পিয়ন আজিজ মিয়া মোটা এক ফাইল নিয়ে হাজির, ‘বড় স্যারে আপনেরে কইছে এই ফাইলডা শেষ কইরা যাইতে।’ আফাজাল হোসেন একবার দেয়াল ঘড়ির দিকে তাকালেন, পাঁচটা বেজে ছত্রিশ। কিছু বললেন না। চুপচাপ হাতের কাজটা শেষ করে বড় সাহেবের পাঠানো ফাইল নিয়ে বসলেন। শেষ পর্যন্ত অফিস থেকে বেরোলেন রাত আটটায়। পরদিন হরতাল। রাস্তায় গাড়ি-ঘোড়া বলতে কিছু নাই। ঘণ্টাখানেক দাঁড়িয়ে থেকে শেষে হাঁটা দিলেন। মতিঝিল থেকে হেঁটে মোহাম্মদপুর। এই বয়সে এত হাঁটা শরীর সহ্য করে না। সারা শরীর ব্যাথা। পা ফুলে ভয়ানক অবস্থা। চারদিন অফিসে যেতে পারলেন না।</p>
+<p>আফজাল হোসেন লম্বা লাইনের মাথায় দাঁড়িয়ে আছেন। সবার সামনে। এটা অবশ্য একটা ভালো দিক। গ্লাস অর্ধেক খালি না দেখে, অর্ধেক ভরা দেখা ভালো। এবারের বাসে ওঠা নিয়ে আর কোনো সংশয় নেই। তিনিই প্রথম। কিন্তু তার যা ভাগ্য, বাস কখন আসে কে জানে! দেখা যাবে আজ আর বাসই আসলো না। এই কোম্পানির বাকি সকল বাস আজই হয়তো কোথাও ভাড়ায় চলে গেছে। কোন মন্ত্রী-মিনিস্টারের শালার বিয়েতে গ্রাম থেকে বাসভর্তি লোকজন আসবে। সেই বাস ছাড়া পাবে ভোর রাতে। আগামীকালও হয়তো ট্রিপ দিতে পারবে না।</p>
+<p>কিন্তু আফজাল হোসেনের আশংকা সত্যি না। বাস চলে এসেছে। এবং বাসের বা দিকে জানালার পাশে তিনি একটা সিটও পেয়ে গেছেন। সিটটাও ভালো। সামনের দিকে ভালো জায়গা আছে। হাত পা শক্ত করে রোবোকপ হয়ে বসে থাকতে হয় না। হাত পা ছড়িয়ে আরাম করে বসা যায়। আজকাল ঢাকা শহরের বাসে বসার চেয়ে দাড়িয়ে থাকা ভালো। সিটের যা অবস্থা। বসার পরে সামনে পা রাখার আর জায়গা থাকে না। কোনোমতে রাখা গেলেও নট নড়নচড়ন হয়ে বসে থাকতে হয়। সেই বসা শরীরের আকার আকৃতি পর্যন্ত বদলে দেয়। বাস থেকে নামার সময় নিজেকে মতিঝিল বক ভাস্কর্যের বক পক্ষীদের মতো মনে হয়।</p>
+<p>আফজাল হোসেন আরাম করে হাত পা ছড়িয়ে বসলেন। জানালা দিয়ে ভোরের ফুরফুরে হাওয়া আসছে। শেষপর্যন্ত সকালটা উপভোগ্যই হলো তাহলে! খানিক আগের তিক্ত অভিজ্ঞতাটা প্রায় ভুলে যেতে বসেছিলেন। এই সময় খ্যাক খ্যাক শব্দে বাসটা থেমে গেল। আফজাল হোসেন প্রথমে ভেবেছিলেন এটা কোনো স্টপেজ। কিন্তু তার ভুল ভাঙতে দেরি হলো না। যাত্রী-হেল্পার মিলে শুরু হলো বাস ঠেলাঠেলি। তুমুল শব্দ করে বাস চলতে শুরু করে, আবার সাথে সাথে থেমে যায়। আফজাল হোসেন চরম বিরক্তি নিয়ে এই ঠেলাঠেলি কিছুক্ষণ দেখলেন। তারপর বাস থেকে নেমে গেলেন।</p>
+<p>চৈত্রের সকাল। ঠা ঠা করে তেঁতে উঠছে রোদ। আফজাল হোসেন খানিকটা হেঁটে সায়েন্স ল্যাবরেটরির মোড়ে গিয়ে দাঁড়ালেন। এখান থেকে মতিঝিলের বাস পাওয়া সহজ। সমস্যা হচ্ছে এখন অফিসের সময়। মতিঝিলের কোনো বাসেই পা রাখার জায়গা পর্যন্ত নেই। তিনি বৃদ্ধ মানুষ। তারপক্ষে দৌড়-ঝাপ করে বাসে ওঠা অসম্ভব। তিনি ঠায় দাঁড়িয়ে রইলেন। তারপর খাবার বাটিটা কাঁধে ঝুলিয়ে মোহাম্মদপুরের দিকে হাঁটা দিলেন। আজই বশিরকে বলতে হবে টাকা পাঠাতে। গাড়ি না হলে আর অফিসেই যাবেন না আফজাল হোসেন।</p>
+<p>আজই গিয়ে বশিরকে ফোন করবেন তিনি।</p>
+
+<p>তিন</p>
+<p> রাত তিনটা।</p>
+<p>আফজাল হোসেন রাহেলা খাতুনের পাশ থেকে চুপিচুপি উঠে এলেন। তারপর মোবাইল ফোনের টর্চলাইট জ্বালালেন। আজকাল কম দামি এই মোবাইল সেটগুলাতে অনেক সুযোগ-সুবিধা। কি সুন্দর আলো। তিনি আলো জ্বালিয়ে রান্নাঘরের পাশের ছোট্ট স্টোর রুমটা খুললেন। অন্ধকার স্টোর রুমটা বহুদিন খোলা হয় না। কেমন ভ্যাপসা একটা গন্ধ। ধুলো-বালিতে একাকার। মাকড়সার জাল ঝুলে আছে এখানে সেখানে। দুটো ধেড়ে ইঁদুর সুড়ুৎ করে বেরিয়ে গেল। একটা হাতলভাঙা চেয়ার। পুরনো লেপ, কাঁথা, তোশকের স্তুপ। বই, ম্যাগাজিন, ছেড়া স্যান্ডেল, একটা ক্রিকেট ব্যাট। তিনটা স্ট্যাম্প। ওষুধের বড় কার্টন।</p>
+<p>ওষুধের কার্টুনটার ঠিক পেছনেই দেয়ালে হেলান দিয়ে দাঁড়িয়ে আছে সাইকেলটা। একটু কাত হয়ে আছে। জং ধরা ধাতব শরীর। সাইকেল না, একটা যন্ত্রের কঙ্কাল যেন। আফজাল হোসেন সাইকেলটাকে তুলে নিয়ে রান্নাঘরের মেঝেতে গিয়ে বসলেন। ঝেড়েঝুড়ে পরিষ্কার করার চেষ্টা করছেন সাইকেলটা। ক’ফোটা নারকেল তেলও চিপে দিলেন চেইনের ভিতর। তারপর প্যাডেল ধরে ঘোরালেন। কেমন একটা উৎকট শব্দ হলো, কিন্তু ঘুরলো। খানিকটা ঘুরে থেমে গেল। আফজাল হোসেনের মুখে অদ্ভুত এক টুকরো হাসি। সেই হাসির অর্থ কি?</p>
+<p>কারো পায়ের শব্দে ফিরে তাকালেন আফজাল হোসেন। রান্নাঘরের দরজা ধরে দাঁড়িয়ে আছেন রাহেলা খাতুন। সাইকেলের জংধরা চেইনে তেল ঘষতে ঘষতে আফজাল হোসেন বিড়বিড় করে বললেন, ‘রাস্তায় যা জ্যাম। তারওপর বাসে চড়তে চড়তে শরীরটায় কেমন জং ধরে গেছে। তাই ভাবতেছি, এখন থেকে আবার সাইকেলেই অফিসে যাবো। এই বয়সে শরীর ছাইড়া দেওন ঠিক না। কি বলো জহিরের মা?’ রাহেলা খাতুন জবাব দেন না। ধীর পায়ে আফজাল হোসেনের পাশে এসে বসেন। হাত দিয়ে সাইকেলের জংধরা শরীরটা ছুঁয়ে দেখেন। আফজাল হোসেনও আর কিছু বলেন না। মোবাইল ফোনের টর্চটা শুধু নিভে যায়। অন্ধকার ঘর। ঘুটঘুটে অন্ধকার। সেই অন্ধকার ঘরেও কেউ কারো দিকে তাকাতে সাহস পান না।</p>
+<p>দুটি কম্পিত হাত কেবল শক্ত করে ধরে থাকে একটা জং ধরা ধাতব শরীর।</p>
+<h1>সোবহান সাহেব মারা গেছেন</h1>
+<p> সোবহান সাহেব মারা গেলেন ভোর বেলা। ঠিক ভোর বেলা না। ফজরের খানিক আগে। তিনি ওজু করে জায়নামাজেই বসেছিলেন। আজান হলেই নামাজ পড়বেন। বেশ কিছুদিন ধরেই শেষরাতে তার ঘুম হতো না। তিনি মটকা মেরে বিছানায় পড়ে থাকতেন। কিন্তু শেষরাতে ঘুমের আশায় বিছানায় মটকা মেরে পড়ে থাকার মতো যন্ত্রণার কিছু হয় না। এ সময় কান থাকে প্রবল সজাগ। আর বাকি পৃথিবী সুনসান। খুট করে শব্দ হলেও কানের ভেতর গিয়ে লাগে। সোবহান সাহেবের খাটের তলায় এক ধেড়ে ইদুর দিব্যি সংসার সাজিয়ে বসেছে। সোনার সংসার। সেই ইদুর শেষরাতের দিকে নাতিপুতি নিয়ে ঠাকুরমার ঝুলি খুলে বসে। কুটকুট করে গল্প করে, নাকি গুড়-মুড়ি খায় কে জানে। কিন্তু সেই খুটখাট শব্দে সোবহান সাহেবের ঘুম ভেঙে যায়। তিনি প্রবল বিরক্তিতে উঠে হুঁশহাশ করেন। সুইচ টিপে বাতি জ্বালান। ধেড়ে ইঁদুরটা দলবল নিয়ে তার সামনে দিয়ে দুলকি চালে হেঁটে যায়। ফিরেও তাকায় না। যেন সেও জানে, এই বয়সে সোবহান সাহেবকে পাত্তা দেয়ার কিছু নাই।</p>
+<p>তিনি জায়নামাজেই বসেছিলেন। মারা যাওয়ার সময় সেই জায়নামাজেই শুয়ে পড়েছিলেন। বুকের বা দিকে একটা চিনচিনে ব্যাথা। ব্যাস, আর কিছু না। তিনি তখনো বোঝেননি যে তিনি মারা যাচ্ছেন। বরং দিব্যি একটা আরাম আরাম ভাব লাগছিল শরীর জুড়ে। এপ্রিলের কড়া গরমে একটা ঠাণ্ডা ঠাণ্ডা ভাব। আরামে তার চোখ বুজে আসছিল। অথচ এখন কি-না দেখছেন তিনি মারা গেছেন। কি আশ্চর্য!</p>
+<p>সোবহান সাহেব সত্যি সত্যি আশ্চর্য হয়েছেন। আশ্চর্য হবার অবশ্য কারণও আছে। অতি যৌক্তিক কারণ। তিনি মারা গেছেন অথচ সব শুনতে পাচ্ছেন। স্পষ্ট শুনতে পাচ্ছেন সবকিছু। গুমগুম করে মেঘ ডাকছে আকাশে। দোতলায় কেউ চিৎকার করে কথা বলছে। যে খাটিয়াতে তিনি শুয়ে আছেন, সেই খাটিয়াকে ঘিরে দুটো বাচ্চা ছেলে দৌড়াচ্ছে আর ‘কু ঝিক ঝিক, কু ঝিক ঝিক’ শব্দ করছে। এমন কি পাশের বাড়ির দোতলা বা তিনতলা থেকে তীব্র শব্দে হিন্দি গান ভেসে আসছে, মুন্নি বদনাম হোয়ে, ডারলিং তেরে লিয়ে...।</p>
+<p>এই হলো ঢাকা শহর! পাশের বাসায় একটা মানুষ মারা গেছে অথচ এই নিয়ে কারো একটু সহানুভূতি পর্যন্ত নেই। থাকবে কি করে! প্রতিবেশীকে মানুষ চেনে না পর্যন্ত। মানুষের সম্পর্কগুলো দিন দিন কেমন ঠুনকো হয়ে যাচ্ছে। জীবিত থাকতে এই বিষয়গুলো নিয়ে ভাবতেন সোবহান সাহেব। শুধু ভাবতেনই না, এই নিয়ে তিনি পত্রিকাতে লিখেছেনও। লেখার শিরোনাম ছিল, ‘সম্পর্কের সেকাল-একাল।’</p>
+<p>আহা! সে কি সময়ই না ছিল। মানুষের জন্য মানুষের কি টান! সোবহান সাহেবের বাবা মারা গেলেন মাঘ মাসের এক রাতে। হাড় কাঁপানো শীত। সেই শীতে বাঘ-মহিষ পর্যন্ত ঠকঠক করে কাঁপে। সোবহান সাহেবের বাবাই বলতেন,</p>
+<p>‘পৌষের শীত মইষের গায়,</p>
+<p>মাঘের শীত বাঘের গায়।’</p>
+<p>সেই ‘বাঘ কাঁপা শীতে’ মারা গেলেন তারা বাবা। তাও মাঝরাতে। মানুষ তখন লেপ কাঁথা মুড়ি দিয়ে ঘুম। সোবহান সাহেব শীতে ঠক ঠক করে কাঁপতে কাঁপতে মেঝো চাচার ঘরের সামনে গিয়ে দাঁড়ালেন। তারপর এক চিৎকারে তার ‘দাঁত কবাটি’। দাঁত কবাটি মানে দাঁতে কবাট লেগে এখনতখন অবস্থা। কবাট হলো গিয়ে দরজা। অর্থাৎ সোবহান সাহেব পিতৃশোকে নিজেই দাঁতে দাঁত খিল লেগে যাই যাই অবস্থা। সেই রাতে আশেপাশের মানুষ লেপ-কাঁথা রেখে ঠক ঠক করে কাঁপতে কাঁপতে উঠে এলো। মৃতের দাফনের যোগাড়যন্ত্র শুরু হয়ে গেল। গাঁয়ের বৌ-ঝিয়েরা সুর করে ঘরের ভেতর মিহি স্বরে কোরআন শরিফ পড়ছে। শোকার্ত বাড়ির মানুষের খাওয়াদাওয়ার ব্যাবস্থা কি? এই বাড়িতে তো আর দিন তিনেক চুলায় আগুন জ্বালানো যাবে না। কিসের রান্না কিসের কি! গামলার পর গামলা ভাত আসতে শুরু করল সব বাড়ি থেকে। হোগলা পেতে লম্বা বারান্দার এক কোনায় ঢালা হতে থাকলো সেই ভাত। নানান রঙের ভাতের ছোট-খাটো একটা স্তুপ হয়ে গেল সেখানে। গামলার পর গামলা শালুন। মাছ, মুরগীর শালুন। সাথে চালতা দেয়া ডাল। বাড়ি ভর্তি শত শত লোক। তারা সুর করে কাঁদছে। দোয়া করছে। মৃতের জীবিতাবস্থার ভালো ভালো গুণের কথা বলছে। সেই ভাত-শালুনের স্তুপের পাশে লম্বা লাইনে বসে ভাগাভাগি করে খাচ্ছে। এই খাওয়া বেড়ে দেয়ার জন্য দু’চার জন নিজ দায়িত্বে কাজ শুরু করে দিয়েছে। বাড়ির উঠানে বিশাল নামাজের জামাত হচ্ছে। সেই জামাতের নামাজ শেষে লম্বা মোনাজাত। মোনাজাতে কান্নার ঢেউ ওঠে। সেই ঢেউ ছড়িয়ে পড়ে অন্দরমহলেও। নারী-পুরুষের কান্নায় আকাশ-বাতাস ভারী হয়ে ওঠে। হয়তো পৌছে যায় সাত আসমানেও।</p>
+<p>আহা! কি মরণটাই না ছিল।</p>
+<p>মরে গিয়েও সোবহান সাহেবের বুকের ভেতরটা আনচান করতে থাকে। বেঁচে থাকলে খুব দুঃখ দুঃখ ভাব নিয়ে হয়তো লম্বা একটা দীর্ঘশ্বাসও দিয়ে ফেলা যেত।</p>
+<p>সোবহান সাহেব শুয়ে আছেন সবুজ রঙের লোহার খাটিয়ায়। খাটিয়া আনা হয়েছে মোহাম্মদপুর জামে মসজিদ থেকে। সেই খাটিয়া রাখা হয়েছে বাসার সামনে যে ছোট্ট উঠান আছে সেখানে। পুরনো আমলের এই বাড়িটা সোবহান সাহেব বহু কষ্টে কিনেছিলেন। দোতলা বাড়ি। সামনে এক চিলতে উঠোনও আছে। সেই উঠোনের একপাশে দুটি আমগাছ, দুটি কামিনী ফুলের গাছ। এই গাছে ধবধবে সাদ ফুল ফোটে। পূর্ণিমার রাতে সেই ফুল জোছনার ফুল হয়ে ফোটে। সোবহান সাহেব চন্দ্রাহতের মতো তাকিয়ে থাকতেন। তার চোখভর্তি ঘোর। একটা পেয়ারা গাছও আছে। পেয়ারা গাছটার ডালপালা বাড়ির দোতলা পর্যন্ত উঠে গেছে। কি নরম ছায়া এই গাছের। ছোট ছোট পেয়ারা ধরে গাছে, সেই পেয়ারা চিনির মতো মিষ্টি। সোবহান সাহেব বেশ কয়েকবার লেবু চা-তে চিনির বদলে একটুকরো পেয়ারা ফেলে খেয়ে দেখেছেন। স্বাদ ভালো। তিনি এই চা মুগ্ধ হয়ে খেতেন। সমস্যা হচ্ছে, তার স্ত্রী মারা যাওয়ার পর থেকে এই চা তাকে খেতে হতো লুকিয়ে লুকিয়ে। ছেলে, ছেলের বৌ-রা দেখলে ঝামেলা আছে। তাদের ধারণা সোবহান সাহেবের মাথায় সমস্যা আছে। বয়স হলে এরকম সমস্যা অবশ্য সবারই একটু-আধটু থাকে।</p>
+<p>সোবহান সাহেব সেই পেয়ারা গাছের তলায় খাটিয়াতে শুয়ে আছেন। খাটিয়া থেকে খানিকটা দূরেই রাবেয়া খাতুনের কবর। রাবেয়া খাতুন তার স্ত্রী। বছর তিনেক আগে মারা গেছেন। সোবহান সাহেবের ছেলেরা চেয়েছিলেন মায়ের কবর গ্রামে হোক। সোবহান সাহেবের জন্য পারেননি। তিনি চেয়েছিলেন মৃত্যুর পরেও ছেলে-মেয়ের কাছাকাছি থাকতে। ব্যস্ত ছেলে-মেয়েরা কবর দেখতে যে গ্রামের বাড়ি যাবে, সোবহান সাহেবের তা বিশ্বাস করেন না। তিনি একপ্রকার জোর করেই এই উঠানের একপাশে রাবেয়া খাতুনকে কবর দিয়েছেন। এবং ছেলে-মেয়েদের বলে দিয়েছিলেন, নিজের কবরও যাতে এখানে হয়। রাবেয়া খাতুনের পাশে।</p>
+<p>শুয়ে থাকতে থাকতেই তার মনে হলো বাড়িতে একটা বড়ই গাছ লাগানো খুবই দরকার ছিল। এই যে তিনি মারা গেলেন। এখন বড়ই পাতা দরকার হবে। ‘বড়ই পাতা গরম জলে, শোয়াইয়া মশারীর তলে...’। নাহ্! কাজটা তিনি মোটেই ঠিক করেননি। দুই দিনের দুনিয়ার চিন্তায় তিনি আসল চিন্তাই বাদ দিয়েছেন। এখন বড়ই পাতা এরা কই পাবে? ঢাকা শহরে এই জিনিস পেতে ভালো ঝামেলা হওয়ার কথা। এরা তার জন্য কোনো ঝামেলা করবে বলে মনে হয় না। শেষ পর্যন্ত বড়ই পাতা ছাড়াই গোসল? সোবহান সাহেবের বুক চিরে আবারও একটা দীর্ঘশ্বাস বেরোতে চাইল। কিন্তু দীর্ঘশ্বাস কোত্থেকে বেরোবে? তার তো শ্বাসই নেই। মরা মানুষের আবার শ্বাস-দীর্ঘশ্বাস কি!</p>
+<p>এইসময় গুমগুম করে আবার মেঘ ডেকে উঠলো। সোবহান সাহেব কিছুটা চিন্তিত। তিনি সব কিছু শুনতে পেলেও কিছুই দেখতে পাচ্ছেন না। কিন্তু তার অনুমানশক্তি তীক্ষ্ণ হয়ে উঠেছে। তিনি শব্দ শুনেই অনুমান করতে পারছেন অনেক কিছু। যেমন, তার খাটের চারপাশে ‘কু ঝিক ঝিক, কু ঝিক ঝিক’ শব্দে দুটি বাচ্চা ছেলে দৌড়াচ্ছে। কিন্তু এরা যে ছেলে, সেটা সোবহান সাহেবের জানার কথা না। বাচ্চা ছেলে-মেয়ের কণ্ঠ না দেখে আলাদা করা কঠিন। কিন্তু তিনি শুধু আলাদা করতেই পারছেন না। বরং বাচ্চা ছেলে দুটার বয়সও অনুমান করতে পারছেন। এমনকি বাচ্চা দুটোর গায়ের পোষাক পর্যন্ত। কমলা রঙের হাফপ্যান্ট পড়া ছোট ছেলেটা বেশি ত্যাঁদর। সে দৌড়ানোর সময় আবার হাত বাড়িয়ে সোবহান সাহেবের পায়ের পাতা ছুঁয়ে দিচ্ছে। সোবহান সাহেব অবশ্য সেই ছোঁয়া টের পাচ্ছেন না। পাবার কথাও না।</p>
+<p>সোবহান সাহেব আকাশের মেঘ নিয়ে চিন্তিত। গুমগুম শব্দে মেঘ ডেকেই চলছে। যে কোনো সময় বৃষ্টি নেমে যেতে পারে। এরা দেরি করছে কেন? করছে কি এরা? শেষ পর্যন্ত বৃষ্টি নেমে গেলে কবরের ভেতর পানি ঢুকে যাবে। সেই কাদা পানিতে মাখামাখি হয়ে শুয়ে থাকতে কেমন লাগবে কে জানে! অনেককেই হয়তো এরকম কাদা বৃষ্টিতে কবরে যেতে হয়েছে। তাদের কেমন লেগেছিল সেটা জানার উপায় অবশ্য নেই। আচ্ছা তারাও কি মরে যাবার পরে সোবহান সাহেবের মতো এমন করে সবকিছু শুনতে পেয়েছিলেন? চিন্তা করতে পেরেছিলেন? সোবহান সাহেব আবার চিন্তায় পড়ে গেলেন। গভীর চিন্তায়। মরে যাবার পরে কি হয়, তা জানার কোনো উপায় নেই। উপায় থাকলে ভালো হতো। অনেক রহস্যই জানা যেত। সব লাশেরাই তার মতো করে ভাবতে পারে কি-না জানা যেত। চূড়ান্ত রহস্য ভেদ হতো। অবশ্য চূড়ান্ত রহস্য ভেদ না হয়ে ভালোই হয়েছে। রহস্য ছাড়া জগৎ-সংসার জমে না। জগৎ-সংসার জমতে হলে রহস্য লাগে। রহস্য ছাড়া জগৎ-সংসার হয়ে যেত নুন ছাড়া পান্তাভাতের মতো। শুধু নুন না, সেই পান্তাভাতে পেঁয়াজ মরিচও নাই।</p>
+<p>সোবহান সাহেবের লাশ মাটি দেয়া নিয়ে ঝামেলা হওয়ার কথা না। এই জন্য আজিমপুর গোরস্থানে যেতে হবে না। গ্রামেও না। তার কবরের জায়গা ঠিক করাই আছে। উঠানের এই পেয়ারা গাছের গোড়ায়ই তার কবর হবে। এটা সোবহান সাহেবের ইচ্ছা। ঘুমের মতোন শান্ত এই উঠান দেখেই বাড়ি কিনেছিলেন সোবহান সাহেব। অবশ্য এই উঠানওয়ালা বাড়ি নিয়ে ঝক্কিও তাকে কম পোহাতে হয়নি। সবারই শকুনের চোখ এই বাড়ির উপর। পাড়ার ছিচকে মাস্তান, রাজনৈতিক নেতা, ডেভলপার, এমনকি নিজের ছেলে-মেয়ে পর্যন্ত। পড়বেই বা না কেন? এই শহরে এক আঙুল জমির দামও লাখ টাকা। এই উঠানওয়ালা বাড়ি তো সেখানে আলাদীনের প্রদীপ। সোবহান সাহেব বুক দিয়ে আগলে রেখেছিলেন এই বাড়ি। বড় ছেলে আশফাক প্রমোটারদের দিয়ে বাড়ি অ্যাপার্টমেন্ট করার জন্য পাগল হয়ে উঠেছিল। সামনের উঠোনজুড়ে মোটামুটি একটা মার্কেটও করে ফেলা যায়। প্রমোটারদের দিলে তারা সব করে দিবে। সোবহান সাহেব শুধু বসে বসে টাকা গুনবেন। আশফাকের এই প্রস্তাবে বাকি তিন ছেলেরও সায় ছিল। সোবহান সাহেব সব শুনতেন তারপর গম্ভীর স্বরে বলতেন হুম।</p>
+<p>ওই ‘হুম’ এর বেশি কিছু সোবহান সাহেব আর বলতেন না। ছেলেরাও কিছু বলতে পারতো না। খেয়ে-না খেয়ে এই বাড়ি কিনেছে বাপ। তাদের আর কি বলার আছে? তারপরও ভেতরে ভেতরে তাদের প্ল্যান-পরিকল্পনা যে চলত না, তা তো নয়। সোবহান সাহেব সবই টের পেতেন। আর টের পেতেন বলেই কি-না কে জানে, টুপ করে রাবেয়া খাতুনকে কবর দিয়ে দিলেন পেয়ারা গাছের তলায়। সাথে বাড়িটারও যেন একটা বন্দোবস্ত করে ফেললেন। যে মাটিতে মায়ের কবর, সে মাটি আর যাই হোক, কোদাল চালিয়ে উপড়ে ফেলাতো আর যায় না। দু’দিন বাদে সোবহান সাহেবও যখন শুয়ে পড়বেন নিজের স্ত্রীর পাশের কবরে, তখন আর কি! বাধ্য হয়ে অন্তত এই উঠোনটুকু রাখতেই হবে ছেলেদের। দোতলা বাড়িটা ভেঙে তারা যা ইচ্ছা করুক। উঠোনটা শেষমেশ টিকেই গেল। নিজের বুদ্ধির গর্বে আরেকটু হলেই সোবহান সাহেবের বুকটা ফুলে উঠতো। ভাগ্যিস তিনি বেঁচে নেই। শুয়ে আছেন খাটিয়ার ভেতর লাশ হয়ে। কিন্তু সমস্যা হচ্ছে এখনো ছেলেদের কারো খোঁজ-খবর পর্যন্ত নেই। দোতলা থেকে অনেকগুলো এলোমেলো কণ্ঠের চিৎকার চেঁচামেচির শব্দ শুনতে পাচ্ছিলেন সোবহান সাহেব। এবং তার বেশ একটা ফুরফুরে লাগছিল। তিনি মারা যাওয়ায় তার ছেলেরা তাহলে বেশ কান্নাকাটিও করছে! বাহ্, এই না হলে মৃত্যু। নিজের ছেলে-মেয়েরা গলা ফাটিয়ে কাঁদবে। আশেপাশের লোকজন এসে শান্তনা দিবে। ছেলে-মেয়েরা কাঁদতে কাঁদতে বাবার গুণকীর্তন করবে, দু-চার বেলা না খেয়ে থাকবে। এসব দেখে মানুষজন আঁচলে চোখ মুছতে মুছতে বলবে, আহারে, আহারে।</p>
+<p>কিন্তু সোবহান সাহেব কিঞ্চিৎ হতভম্ব হয়ে গেলেন। যাকে তিনি এতক্ষণ কান্না ভাবছিলেন, আসলে তা কান্না না। চেঁচামেচি। মরে গিয়ে এই হয়েছে তার সমস্যা। আগে কানে যা শুনতেন এখন শুনছেন তার দশগুণ বেশি। শুনতে না চাইলেও শুনছেন। শরীর মরে গিয়ে সম্ভবত ইন্দ্রিয় সব জেগে উঠেছে। কিন্তু ছেলেরা চেঁচামেচি করছে কেন? অ্যাম্বুলেন্স আনার কথা হচ্ছে কেন? তিনি কি তাহলে এখনো বেঁচে আছেন? সোবহান সাহেব বিভ্রান্ত হয়ে গেলেন। তিনি কি তাহলে এ যাত্রা বেঁচে গেলেন? কিন্তু মরে তো খারাপ লাগছিল না তার। বেশ একটা উপভোগ্য ব্যাপার-স্যাপার। কষ্ট-টষ্টও তেমন নেই। আসলেই তো, মৃত্যু তো এমন সহজ হওয়ার কথা না। তাহলে কি তিনি বেঁচে আছেন? সোবহান সাহেব মোটামুটি ভালো রকমের বিপদে পড়েছেন। তিনি বুঝতেই পারছেন না, তিনি বেঁচে আছেন না মরে গেছেন।</p>
+<p>সোবহান সাহেব কিছুটা ঝিম মেরে গেছেন। বৃষ্টিটা মনে হয় শুরুই হয়ে গেল। কিন্তু কেউ তো তার দিকে খেয়ালই করছে না। এইমাত্র টুপ করে দু’ফোটা বৃষ্টি পড়লো তার বুকের বা দিকটায়। ওরা তাকে বৃষ্টির মধ্যেও বাইরে শুইয়ে রাখবে নাকি! তিনি যদি মরে গিয়ে না থাকেন তাহলে ওরা তাকে বাইরে এনে শুইয়ে রেখেছে কেন? এই যে বৃষ্টি হচ্ছে, ওরা কি দেখছে। না? এই প্রথম তার যেন খানিকটা দুঃখ দুঃখ লাগতে লাগল। অ্যাম্বুলেন্সে কি তাকে হাসপাতালে নেওয়া হবে? কিন্তু অ্যাম্বুলেন্স আনা নিয়ে এত দেরি হচ্ছে। কেন? সেই তখন থেকে সবাই অ্যাম্বুলেন্স নিয়ে কথা বলছে, কিন্তু এত দেরি হচ্ছে কেন? সোবহান সাহেব আর কিছু ভাবতে চাইলেন না। তিনি ঝিম মেরে গেছেন।</p>
+<p>উপরের চেঁচামেচির শব্দগুলো ক্রমশই নিচে নেমে আসছে। তার চার ছেলেই আছে। তাদের কথা শুনে বোঝা গেল অ্যাম্বুলেন্সের জন্য ফোন করে দেওয়া হয়েছে। কিছুক্ষণের মধ্যেই অ্যাম্বুলেন্স চলে আসবে। সোবহান সাহেব খুশি হবেন কি-না বুঝতে পারছেন না। তবে অ্যাম্বুলেন্সের জন্য ছেলেদের ছোটাছুটি দেখে তার খারাপ লাগছে না। বরং ভালোই লাগছে। ছেলেরা তাহলে চাচ্ছে তাদের বাবা বেঁচে থাকুক।</p>
+<p>‘কি হলো বাবারা, লাশ আর কতক্ষণ এমনে ফালায় রাখবা? বিষ্টিবাদলা শুরু হয়া গেল তো।’ মসজিদের ইমাম সাহেবের গলা। কিন্তু ইমাম সাহেব তাকে লাশ বলছেন কেন? সোবহান সাহেব আবারো চিন্তিত হয়ে পড়লেন। তিনি কিছুই বুঝতে পারছেন না। তিনি কি তাহলে সত্যি সত্যিই মারা গেছেন? ইমাম সাহেব তাকে যেহেতু লাশ বলে সম্বোধন করেছেন, তার মানে তিনি মারা গেছেন। কিন্তু অ্যাম্বুলেন্স কেন তাহলে?</p>
+<p>‘সিদ্ধান্ত নিতে একটু দেরি হয়ে গেল ইমাম চাচা।’ সোবহান সাহেবের বড় ছেলে আশফাকের গলা শোনা গেল।</p>
+<p>‘কি সিদ্ধান্ত বড় বেটা?’ ইমাম সাহেব জিজ্ঞেস করলেন।</p>
+<p>‘আব্বার লাশ গ্রামে দাফন হবে। এই সিদ্ধান্তর জন্যই দেরি হয়ে গেল চাচা। অ্যাম্বুলেন্সে লাশ নিয়া যাব। অ্যাম্বুলেন্স আসতেছে।’ সোবহান সাহেব দিব্যি বুঝতে পারছেন, আশফাকের পাশেই দাঁড়ানো তার বাকি তিন ছেলে। ছোট ছেলেটা অফহোয়াইট একটা পাঞ্জাবি পড়েছে। সেই পাঞ্জাবিতে কেউ পানের পিক ফেলেছে। দাগটা কটকট করছে। আশফাকের কথা শেষ হবার আগেই অ্যাম্বুলেন্সের শব্দ শুনতে পেলেন সোবহান সাহেব। অ্যাম্বুলেন্স এসেছে। গেট খোলারও শব্দ হলো।</p>
+<p>‘কিন্তু সোবহান সাব তো বলছিল এইখানেই তার কবর হইবো?’ ইমামের বিস্মিত কণ্ঠ টের পান সোবহান সাহেব।</p>
+<p>‘হ চাচা, আব্বা তো বলছিল। কিন্তু এইটুক উঠানে দুই দুইটা কবর হলে আর তো জায়গাই থাকে না। কি করবো বলেন চাচা! আমরা চার চারটা ভাই। বাচ্চা-কাচ্চা বড় হচ্ছে। অনেক কিছুই বিবেচনা করতে হয়। আশফাক থামে। কেউ কোনো কথা বলে না। ইমাম সাহেবও না। মেঝে ছেলে মুশফিকের গলা খাকড়ির আওয়াজ শোনা যায়। আশফাকই আবার শুরু করে, ‘আমরা চার ভাই-ই আলাপ আলোচনা করছি। গ্রামে তো কোনো অসুবিধা নাই। অনেক আত্মীয়-স্বজন আছে। পাড়া-প্রতিবেশী আছে। আর আমরা তো বছর বছর যাবই...।’ কথাটা শেষ করে না আশফাঁক। বুঝতে পারে না কথাটা বলা ঠিক হলো কি না। আশফাকের কথার রেশ যেন থেকে যায়। এক ধরনের প্রতিধ্বনি হয় নৈঃশব্দ্যে।</p>
+<p>নিরবতা ভাঙেন ইমাম সাহেব, ‘হ, সেইটাই মিয়ারা। মরা লাশের আবার শহর গ্রাম কি? সাড়ে তিন হাত মাটি পাইলেই হইল। বেশি মাটি দরকার আমাগো, আমরা যারা বাইচা আছি। ড্রইং রুম, বেড রুম, ডাইনিং রুম, রিডিং রুম আরো কত রুম দরকার।’ একটু থামেন ইমাম সাহেব, তারপর বলেন, ‘যাও তাইলে বাবারা, বেলা থাকতে থাকতে রওনা দেও।’ ইমাম সাহেব দ্রুত পায়ে গেট দিয়ে বেরিয়ে যাচ্ছেন। তার স্যান্ডেলের শব্দ পর্যন্ত টের পান সোবহান সাহেব।</p>
+<p>সোবহান সাহেবের কেমন একটা ঘোর ঘোর লাগে। তিনি ধীরে ধীরে যেন সকল শব্দ থেকে দূরে সরে যাচ্ছেন। চারপাশের শব্দগুলো যেন ক্রমশই অস্পষ্ট হয়ে যেতে থাকে। এই সময় খাটিয়াটা নড়ে ওঠে। খুব ধীরে। সোবহান সাহেব স্পষ্ট টের পান, তার খাটিয়াটা নড়ছে। খাটিয়াটা উঠছে। চার ছেলের শক্ত চওড়া কাঁধে সোবহান সাহেবের পলকা শরীরটা সহজেই উঠে যায়। অ্যাম্বুলেন্সের গেট খোলার শব্দ হয়। সোবহান সাহেব চার ছেলের শক্ত কাঁধে ধীরে ধীরে এগিয়ে যাচ্ছেন। উঠান থেকে বেরিয়ে যাচ্ছেন। ওরা কি তাহলে এই উঠানটা আর রাখবে না? দুটো আম গাছ, দুটো কামিনী গাছ এবং একটি পেয়ারা গাছ পেছনে পড়ে থাকে। সোবহান সাহেব চলে যাচ্ছেন। চলে যাচ্ছেন। তিনি টের পাচ্ছেন তিনি দূরে কোথাও চলে যাচ্ছেন, দূরে। বহুদূরে। তিনি আর কোন শব্দ শুনতে পাচ্ছেন না। সব কিছু কিমন নিস্তব্ধ, শব্দহীন। হঠাৎ কেমন তীব্র একটা ইচ্ছে হলো সোবহান সাহেবের। রাবেয়ার কি হবে? রাবেয়া খাতুনের? তার প্রবল ইচ্ছে হতে থাকলো খাটিয়ার ফাঁক দিয়ে রাবেয়া খাতুনের কবরটা একবার দেখার। একবার! পেয়ারা গাছটার গোড়ায়। একবার। কিন্তু কি করে দেখবেন?</p>
+<p>সোবহান সাহেব তো মারা গেছেন।</p>
+<h1>সে</h1>
+<p><span>এক</span></p>
+<p> হাসানের হাতের ভেতর শীলার হাত। শীলা হাত ছাড়িয়ে নেয়। তার ব্যাগের ভেতর ফোন বাজছে। ব্যাগ থেকে ফোন বের করে শীলা। তার কপাল কুঁচকে যায়, আম্মুর ফোন এই সময়ে!</p>
+<p>ফোনটা ধরে শীলা। হাসান তাকিয়ে থাকে।</p>
+<p>বুড়িগঙ্গার বাতাসে শীলার খোলা চুল উড়ছে। বাতাসে বুড়িগঙ্গার তীব্র কটু গন্ধ। হাসান অবশ্য এই গন্ধ টের পায় না। সে মুগ্ধদৃষ্টিতে তাকিয়ে থাকে তার সামনে দাঁড়ানো পরী মেয়েটার দিকে। এই মেয়েটাকে সে যে কি অসম্ভব ভালোবাসে! কিন্তু সমস্যা হলো শীলার সাথে তার প্রায় দেখাই হয় না। দেখা হয় দু-তিন মাস পর একদিন। আজ সেই দু-তিন মাস পরের একদিন। গতকাল রাজশাহী থেকে শীলা ঢাকায় এসেছে। তার ইন্টার্নি চলছে। মেডিকেলে ইন্টার্নি মানে রাত-দিন একাকার। তারপরও সময় পেলেই ঢাকায় ছুটে আসে শীলা। হাসান এই একটা দিনের জন্য তীর্থের কাকের মতো অপেক্ষায় থাকে। কিন্তু এই একটি দিন শীলা কাকে দিবে? মা-বাবা না হাসানকে?</p>
+<p>হাসানের শীলাকে সারাদিন চাই। সে শীলাকে নিয়ে ঘণ্টার পর ঘণ্টা রিকশায় ঘুরতে চায়, টিএসসি, রবীন্দ্র সরোবর, ক্রিসেন্ট লেকে ঘুরে বেড়াতে চায়। কিন্তু মা-বাবাকে কি করে বোঝাবে শীলা? তারাও যে শীলার অপেক্ষায় দিন কাটান।</p>
+<p>শীলার হয়েছে শ্যাম রাখি না কুল রাখি অবস্থা!</p>
+<p>আর হাসানের জন্য নতুন আপদের নাম রেজা। রেজা শীলার খালাতো ভাই। এই ছেলে থাকে আমেরিকায়। বড় চাকরি করে সেখানে। শীলার জন্য পাগল। শীলার বাবা-মাও চান রেজাকে বিয়ে করে ফেলুক শীলা। সেই ছেলে দেশে এসেছে এবার। এবারই কিছু একটা করে ফেলতে চায় সে। শীলার মায়ের একধরনের সিজোফ্রেনিয়া আছে। তার আচরণ অনেকটা বাচ্চাদের মতো। যা চান, তাই করতে হবে। ডাক্তাররাও স্পষ্ট বলে দিয়েছেন, পারলে যেন তার কোনো ইচ্ছার বিরুদ্ধে না যাওয়া হয়। এই নিয়ে হাসানের ভিতর তীব্র এক ভয় কাজ করে। শীলা যদি মায়ের কথা রাখতে গিয়ে রেজাকে বিয়ে করে ফেলে! এই পর্যন্তই। এর বেশি কিছু ভাবতে পারে না হাসান। সে জানে, চালচুলোহীন তার কথা শীলাদের বাসায় কেউ জানলে রীতিমতো কুরুক্ষেত্র হয়ে যাবে।</p>
+<p>শীলা ফোনটা কাটে। তার মুখে চিন্তার ছাপ।</p>
+<p>‘আম্মুর ফোন।’ অনেক দ্বিধা এবং সঙ্কোচ নিয়েই বলে শীলা। ‘আম্মুর ডাক্তারের কাছে অ্যাপয়েন্টমেন্ট আছে। সাথে রেজা ভাইও আছে কিন্তু আমাকে ছাড়া যেতে ভয় পাচ্ছে আম্মু।’</p>
+<p>হাসান যা আশঙ্কা করেছিল তাই। তার কেন যেন মনে হচ্ছিল ফোনটা রেখেই শীলা বলবে তাকে যেতে হবে। ইদানীং এই জিনিসটা তার হয়। সে এক ধরনের ইনসিকিউরিটিতে ভোগে। তার মনে হয় শীলা হুট করে একদিন চলে যাবে। আর ফিরে আসবে না। সে ফোন করে দেখবে শীলার ফোন বন্ধ। সেই বন্ধ ফোন আর কোনোদিন খুলবে না। হাসানের দম বন্ধ হয়ে আসে। সে আর ভাবতে পারে না।</p>
+<p>তারা বুড়িগঙ্গা ব্রিজের এখানে এসেছে দশ মিনিটও হয়নি। আর শীলা বলছে তাকে এখুনি যেতে হবে। শীলা চাইলে তো আন্টিকে কোনো একটা অজুহাতে না-ও করে দিতে পারত। করল না কেন তাহলে? ওহ। তাহলে কি আন্টির সাথে রেজা আছে বলেই? রাগে হাসানের মাথা ঝিমঝিম করছে। কিন্তু সে কিছুই বলতে পারছে না। বিষয়টা শীলার মায়ের অসুস্থতা নিয়ে। সে অনেক কষ্টে রাগটা চেপে যায়। হাসান বোঝে না, ডাক্তারের কাছে যেতে হলে শীলাকে কেন দরকার? আন্টির সাথে গাড়ি আছে, ড্রাইভার আছে, সাথে রেজাও আছে। অনায়াসে ডাক্তারের কাছে চলে যাওয়া যায়।</p>
+<p>শীলাকে কেন দরকার আসলেই বোঝে না হাসান। শীলা তো আজ ঢাকায় নাও থাকতে পারত, তাহলে?</p>
+<p>‘আচ্ছা, যাও।’ হাসান নিজেকে স্বাভাবিক রাখার চেষ্টা করে।</p>
+<p>শীলা রফিকের কাছে এসে গা ঘেঁষে দাঁড়ায়। তারপর ব্রিজের রেলিঙের উপর রাখা হাসানের হাতখানা আলতো করে ছুঁয়ে দেয়। হাসান তাকিয়ে আছে দূরে। নৌকাগুলোকে বিন্দুর মতো মনে হয় । ছুটন্ত একেকটা বিন্দু।</p>
+<p>‘সরি।’ শীলা হাসানের হাতখানা শক্ত করে ধরে। ‘কি করবো বলো, আম্মু এমন করে বলল । তাছাড়া তুমি তো জানোই, আম্মু সবকিছুতে কেমন ভয় পায়। আমি কবে আসব, সেই অপেক্ষায় সব কাজ ফেলে রাখে। ডাক্তারও দেখায় না।’</p>
+<p>‘সমস্যা নেই। তুমি যাও।’ হাসান চেষ্টা করেও নিজের কণ্ঠ স্বাভাবিক রাখতে পারে না। ‘সবাই তোমার অপেক্ষায় থাকে, কেবল আমি থাকি না। আমি ছাড়া আর সবার অপেক্ষার দাম তোমার কাছে আছে।’ শীলা অবাক হয়ে হাসানের দিকে তাকিয়ে থাকে। কিছু বলে না। হাসান চেঁচায়, ‘আমার সাথে তোমার থাকারই দরকার নাই। তিন-চার মাসে একবার দেখা হয় না, রাত-দিন তোমার কাজ কাজ আর কাজ। এক-দু’মিনিট ফোনে কথা বলারও সময় হয় না তোমার। যখনই ফোন দেই তখনই হাসপাতাল, তখনই ডিউটি, রোগী, ওয়ার্ড, এডমিশন। তিন-চার মাস পরে একদিন দেখা হলেও তোমার দশ মিনিট সময় হয় না। যাও তুমি। দরকার নাই আমার কাউকে।’</p>
+<p>চারপাশে লোকজনের ভিড় জমতে শুরু করেছে। ঢাকা শহরের লোকজনের মনে হয় কাজ-কাম খুব একটা নেই। এরা মজা দেখতে পছন্দ করে। সব জায়গায়ই মজা খুঁজে বেরায়। শীলা হাসানের দিকে একদৃষ্টিতে তাকিয়ে আছে।</p>
+<p>হাসান তার স্বরে চিৎকার করে, ‘কি দিয়েছ তুমি আমাকে? আমি কিছু বলি না দেখে তোমার বাড় বেড়ে গেছে। আমি তো একটা গাধা। আমার জায়গায় অন্য কেউ হলে, কবে চলে যেত। তারপরও তোমার কোনো স্যাটিসফেকশন নাই। তুমি ভেবেছ আমি কিছু বুঝি না, না? আমি সব বুঝি, সব। আমি দেখে এখনো আছি। অন্য কেউ হলে...।’</p>
+<p>হাসান থামে। চারপাশের ভিড়ের দিকে তাকায়। কিন্তু তার মাথায় তখন আগুন। সে চিৎকার করতে থাকে, ‘আমি সব বুঝি, তুমি এখন আর আগের তুমি নেই। আমি সব টের পাই। সব। রেজাকে বিয়ে করবা তাই তো? অনেক টাকা, অনেক। আমি বুঝি, আমি জানি...।’</p>
+<p>হাসানের কথা শেষ করার আগেই পেছন ফিরে হাঁটা শুরু করে শীলা। ভালো ভিড় জমে গেছে চারপাশে। ঘেন্নায়, অপমানে গা রি রি করছে শীলার। কি ভেবে আবার ফিরে তাকায় সে। তারপর হাসানের দিকে আগায় দু’পা।</p>
+<p>‘আর কখনো আমাকে ফোন দিবে না, কখনো না। কোনো ধরনের যোগাযোগ করার চেষ্টা করবা না।’ দাঁতে দাঁত চেপে কথাগুলো বলে শীলা।</p>
+<p>তারপর ভিড় ঠেলে হনহন করে হেঁটে চলে যায়।</p>
+
+<p>দুই</p>
+<p> হাসান ঝিম মেরে বসে আছে মেসের বারান্দায়। গ্রীলের ফাঁক দিয়ে সামনের অন্ধকার রাস্তাটা দেখা যায়। গলির রাস্তার পাশেই দোতলা মেস। উঁচু পাচিল দিয়ে ঘেরা। মেসের ঢোকার গেটের কাছে একটা ল্যাম্পপোস্ট। ল্যাম্পপোস্টের লাইটটা সম্ভবত নষ্ট। জায়গাটা অন্ধকার হয়ে আছে। দুপুরের ঘটনার পর থেকে আর ফোন করেনি শীলা। একটা এসএমএস করেছিল মোবাইল ফোনে, ‘আই হেট ইউ এন্ড এভরিথিং ইজ ওভার।’ হাসানও রাগের মাথায় জবাব দিতে ছাড়েনি। কিন্তু ঘণ্টা দুই যেতে না যেতেই হাসানের হাসফাস লাগতে থাকে। শীলাকে ছাড়া থাকতে পারে না সে। শীলা কি তাহলে সত্যি সত্যি...?</p>
+<p>আর ভাবতে পারে না হাসান। শীলাকে ফোন দেয়। শীলা ফোন ধরে না। ‘সরি’ লিখে এসএমএস করে, কোনো রিপ্লাই নেই। একবার দু’বার তিন বার। শীলা ফোন ধরে না। হাসান ফোন দিতেই থাকে। দিতেই থাকে। শীলা ফোন ধরে না। হাসানের বুকের ভেতরটা কেউ খামচে ধরে। যেন শ্বাস নিতে পারে না। সন্ধ্যা সাতটার দিকে হঠাৎ ফোন বন্ধ করে ফেলে শীলা। হাসানের পুরো পৃথিবীটা যেন কেঁপে ওঠে। শীলা কি আর কোনোদিন ফোন খুলবে না! আর কখনো শীলাকে দেখতে পাবে না সে! হাসানের মাথা আর কাজ করে না। শীলাকে ছাড়া সে থাকবে কিভাবে? কিভাবে?</p>
+<p>সেই থেকে ঝিম মেরে বসে আছে হাসান। চারপাশটা কি অর্থহীন মনে হয় তার কাছে। দমবন্ধ লাগে। বুকের ভেতর কেমন অদ্ভুত এক অনুভূতি হতে থাকে। গলার কাছে এসে দলা পাকিয়ে আঁটকে থাকে কান্না। কিছু ভালো লাগে না হাসানের। শীলাকে ছাড়া থাকতে পারবে না সে। কখনোই না। কখনোই না।</p>
+<p>শীলা কি পারবে?</p>
+<p>হাসান জানে না। কিছু জানে না। জানতেও চায় না। সে কেবল শীলার কণ্ঠ শুনতে চায়। শীলা যত ইচ্ছা বকুক, যা ইচ্ছা তাই বলুক, সে কেবল শীলার গলা শুনতে চায়। তার মনে হয় অনন্তকাল সে শীলার কণ্ঠ শোনে না। শীলা কি তাহলে রেজাকেই বিয়ে করে ফেলবে? সে কি এখন রেজার সাথে গাড়িতে করে ঘুরছে? টিএসসি, রবীন্দ্র সরোবর, ক্রিসেন্ট লেক? কিংবা হুড তোলা রিকশায়? হাসানের গলা শুকিয়ে আসে। বুক ধড়ফড় করে। সে হাউমাউ করে কেঁদে ওঠে। রুমে কেউ নেই। সে শীলার বাসাও চেনে না। কি করবে সে?</p>
+<p>এইসময় ফোনটা কেঁপে ওঠে। শীলার মেসেজ! রুদ্ধশ্বাসে মেসেজ বক্সে ঢোকে হাসান। কি লিখেছে শীলা? শীলা লিখেছে, ‘তোমার ধারণা সত্যি। আমি তোমার সাথে আর সম্পর্ক রাখতে চাই না। তোমার বাসার সামনে আমাদের ড্রাইভার দাঁড়িয়ে আছে। ওর কাছে আমাকে দেয়া তোমার কিছু জিনিস পাঠিয়ে দিলাম, নিয়ে নিও। আর চাইলে তুমিও কিছু দিয়ে দিতে পারো। ভালো থেকো। শুভ বিদায়।’</p>
+<p>কথাগুলো হাসানের বিশ্বাস হয় না। সে কি ভুল পড়ছে? হাসান শীলাকে ফোন করে। কিন্তু শীলার ফোন আবার অফ। হাসান হাউমাউ করে কেঁদে ওঠে। সে আর কিছু ভাবতে পারে না। বুকের ভেতরটা শূন্য হয়ে যায়। শূন্য। একটা লোমশ নখওয়ালা জন্তুর হাত যেন খামচে ধরে আছে তার হৃৎপিণ্ড। সে শ্বাস নিতে পারে না। ঝিম মেরে দেয়ালে হেলান দিয়ে বসে থাকে। হঠাৎ গ্রিলের ফাঁকে অন্ধকার রাস্তায় সাদা গাড়িটা খুব চোখে লাগে হাসানের। শীলার ড্রাইভার অপেক্ষায় আছে। ধীরে ধীরে উঠে দাঁড়ায় সে। এলোমেলো পায়ে সিড়ি বেয়ে নিচে নামে। হাসানের হাতে একটা নীল পাঞ্জাবি আর ভাঁজ করা চিরকূট। সে গেট দিয়ে রাস্তায় নামে।</p>
+<p>অন্ধকার রাস্তা। সাদা গাড়িটাটা সামনেই। হাসান সামনে আগায়। কিন্তু গাড়ির ভেতরটা ফাকা। কেউ নেই। ড্রাইভারটা গেল কোথায়? হাসান ডানেবায়ে খোঁজে। নেই। সে গেটের কাছে গিয়ে উঁচু দেয়ালে হেলান দিয়ে দাঁড়ায়। আকাশের দিকে তাকায়। বুকের ভেতরটা কেমন শূন্য লাগে। একা। অবশ। আকাশভর্তি তারা। ছোট। বড় । অজস্র তারা। হাসান একটা একটা করে তারা গোণে। কিন্তু তার চোখ ঝাপসা হয়ে আসা। তারাগুলো সব মিলে মিশে একাকার হয়ে যায়। হঠাৎ পেছনের অন্ধকার থেকে কেউ একজন হাসানের শার্টের কলার চেপে ধরে। তারপর এক টানে টেনে নেয় উঁচু পাঁচিলের গা ঘেষে অন্ধকার কোনে’। সটাৎ সটাৎ বৃষ্টির মতো চড় পড়তে থাকে হাসানের ভেজা গালে। ঘুটঘুটে অন্ধকারে হাসান কিছু দেখতে পায় না। সে ভ্যাবাচ্যাকা খেয়ে দাঁড়িয়ে থাকে পাঁচিলের সাথে। একজোড়া নরম ঠোট হুট করে ডুবে যায় হাসানের ভেজা ঠোটে। শুষে নিতে থাকা কান্না, অভিমান, ক্রোধ, সংশয়। সব। সবকিছু। শীলাকে শক্ত হাতে বুকের সাথে চেপে ধরে হাসান। নিঃশব্দ। আরও জোরে। আরও। শীলা টুপ করে হাসানের কপালে চুমু খায়।</p>
+<p>তারপর ফিসফিস করে বলে, “তুই এমন গাধা ক্যান?’ হাসান কথা বলে না, চুপচাপ দাঁড়িয়ে থাকে। নিঃশব্দ।</p>
+<p>সে জানে, সে এমন গাধা হয়েই থাকতে চায়।</p>
+<h1>বোধ</h1>
+<p>এক</p>
+<p> ভরা বরষার মৌসুম। বরষা মানে বরষা। কান ঝিম্ মেরে দেয়া বরষা। একটানা পনেরো দিন বৃষ্টি। রাত দিন একাকার। এই বৃষ্টি যে অদূর ভবিষ্যতে থামবে তার কোনো লক্ষণ নেই। টিনের চালের বৃষ্টি- ঝিম্‌ম্‌ম্‌ ঝিম্‌মম্। একটানা শব্দ। বৃষ্টির তিন দিনের মাথায় সবার কান তব্দা। সেই তব্দা দেয়া কানে একটা মাত্র শব্দ, ঝিমম্‌ম, ঝিমম্‌ম। আমি তখন হাফপ্যান্ট পড়া টিনটিনে বালক। লম্বা সরু সরু পা। সেই পা দেখে আমার নানি প্রায়ই শ্লোক বলেন-</p>
+<p>‘বাঁশের কঞ্চি, কইঞ্চা</p>
+<p>হইয়া গেল ধইঞ্চা</p>
+<p>ধইঞ্চা দিয়া বরই পারি</p>
+<p>পড়ে না বরই, লারি চারি...’</p>
+
+<p>এতই শুকনা যে তা দিয়ে গাছের বড়ইও পাড়া যায় না, শুধু নেড়ে চেড়ে দেখা যায়।</p>
+
+<p>শার্টের কলারের পাশ দিয়ে আমার কণ্ঠার হাড় দেখা যায়। সেই উঁচু কণ্ঠার হাড়ের ফাঁকে নাকি আধসের চাল ধরে। আমার কাজ হলো টেনে টুনে সেই উঁচু কণ্ঠার হাড় শার্টের কলার দিয়ে ঢেকে রাখা। আর সুযোগ পেলেই বড় চাচাদের ঘরে ঢুকে পড়া। ঘরে ঢুকে জানালার ফাঁক দিয়ে আমি আমার টিনটিনে লম্বা পা জোড়া বের করে দেই। ছটাৎ ছটাৎ ইয়া বড় বড় বৃষ্টির ফোঁটা পড়ে সেই টিনটিনে পায়ে। আমি মুগ্ধ হয়ে দেখি। আর অবাক হয়ে শুনি টিনের চালে ঝিম্‌মম্ ঝিম্‌মম্ একটানা শব্দ।</p>
+<p>বৃষ্টির শব্দ। আহা!!</p>
+<p>আমাদের বাড়িতে দুটো ঘর। আমাদের আর বড় চাচাদের। বড় চাচাদের ঘরখানা টিনের। এই ঘর শফিক ভাই করে দিয়েছে। শফিক ভাই বড় চাচার ছেলে। ঢাকায় চাকরি করেন। বছরে একবার দু’বার আসেন। শেষ কয়েক বছর আর আসেনি। শফিক ভাইয়ের বউ গ্রামের কাদা জল সহ্য করতে পারে না। তাদের একটা ছেলেও আছে। ছেলের নাম বোধন। বছর তিনেক বয়স। এবার নাকি শফিক ভাইয়ের বউ গ্রামের বর্ষা দেখতে চেয়েছে। খবর শোনার পর থেকে বড় চাচীর আর বিরাম নেই। সকাল-সন্ধ্যা তুমুল আয়োজন। নারকেলের চিড়ে করেন, নানা রকম পিঠে। বড় পাতিল ভর্তি পানি দেয়া জিওল মাছ, শৌল, শিং, কৈ। ফুলতোলা প্লেট, গ্লাস, বাটি, বিছানার চাদর।</p>
+<p>চাচীর সাথে সমান তালে ছোটে রুবি বু-ও। রুবি বু শফিক ভাইয়ের ছোট বোন। আমার চেয়ে বছর পাঁচেকের বড়। তবু তার সাথে আমার রোজ ঝগড়া হয়। রুবি বুর বেণী করা চুলের ভেতর আমি কাকরোলের খোসা খুঁজে দেই। রুবি বু রেগেমেগে আমাকে তাড়া করে। কিন্তু টিনটিনে আমি হাওয়ার আগে ছুটি। রুবি বু’র সাধ্য কি ছোয়?</p>
+<p>রুবি বু অবশ্য আমাকে এমনি এমনি ছেড়ে দেয় না। সেবার বড় চাচাদের ঘরে দুপুরে হঠাৎ ঘুমিয়ে পড়েছি। ঘুম থেকে উঠে ঘরে আসতেই মা রে রে করে তেড়ে আসলেন। আমি তো অবাক। হয়েছে কি? মা আমাকে টেনে নিয়ে তার হাতের তালুতে আটকানো ছোট আয়নাখানায় মুখ দেখতে দিলেন। আমি হতভম্ব। ঘুমের মধ্যে রুবি বু আমার অর্ধেক মাথা কামিয়ে ন্যাড়া করে দিয়েছে!</p>
+<p>সেই রুবি বু-ও শফিক ভাই আসবে শুনে হরিণীর মতো ছুটছে। দুটো ধবধবে সাদা বালিশের কভারও বানিয়ে ফেলেছে। সেই কভারে লাল-সবুজ সুতোয় লেখা ‘সুইট ড্রিমস’। আর শফিক ভাইয়ের ছোট্ট ছেলেটার জন্য কি সুন্দর টুকটুকে লাল ছোট্ট একটা বালিশের কভার। তার ওপর কাচা হাতে লেখা ‘বোধ বাবা’।</p>
+<p>রুবি বু বোধনের ‘ন’ দিতে ভুলে গেছে। বোধন হয়ে গেছে বোধ!</p>
+<p>বড় চাচাদের ঘরখানা চৌচালা। সামনে পেছনে খোলা বারান্দা। সেই বারান্দায় এখন বড় চাচার হাঁস, মুরগী, ছাগল আর কালো একটা গাই থাকে। এই কুচকুচে কালো গাই। গাইয়ের নাম কালু। কালুর পেট ফুলে ঢোল। আজ কালের মধ্যেই বিয়োবে কালু। বড় চাচা মানত করেছেন, একটা বকনা (মেয়ে) বাছুর হলে ময়দানের মসজিদে দু’খানা ডাব আর চার সের দুধ দিয়ে আসবেন। চাচী দু’রাকাত নফল নামাজও মানত করেছেন। এবারের বরষায় মুরগীর খোপ আর গোয়াল ঘর ভিজে চুপচুপে হয়ে গেছে। বড়চাচা তাই সবগুলোকে বারান্দায় তুলে এনেছেন। গাইয়ের চারপাশে যত্ন করে শুকনো খড় বিছিয়ে দিয়েছেন। ভেঁজা স্যাতস্যাতে মাটি যাতে গাইটাকে ছুতে না পারে।</p>
+<p>আমাদের ঘরখানা ছনের। একটানা দুদিন বৃষ্টি হলেই আর রক্ষে নেই। শুকনো ছনের আড় ভেঙে যায়। বৃষ্টির পানি চুইয়ে পড়ে এখানে সেখানে। প্রথম প্রথম সেই জায়গাগুলোতে থালা বাটি পাতেন মা। তার দুদিন পরে গামলা। একসময় গামলাতেও আর কাজ হয় না। বৃষ্টিতে ভেঙে পড়ে ছনের চাল। বাঁশের বেড়া। কেবল আমার বাবা ভেঙে পড়েন না। তিনি সেই ভাঙা ছনের চাল বৃষ্টিতে ভিজে ভিজে আবার জোড়া লাগান। সাথে জোড়া লাগান প্লাস্টিকের বস্তা। রিলিফের টিন। আমার ঘরে মন বসে না। স্যাঁতস্যাঁতে ভেজা ঘর। ঘরের মেঝেতে উঁকি দেয় বিশাল কেঁচো। ভাতের প্লেটের ভেতর লাফিয়ে পড়ে ব্যাঙ, আরশোলা। আমি তাই ছটফট করি বড় চাচাদের খটখটে শুকনো ঘরে যেতে। মাথার উপর চকচকে টিনের চাল। সেই চালে ঝিমম্‌ম ঝিমম্‌ম বৃষ্টির শব্দ। সেই শব্দে আমার কান তব্দা দেয় না। আমি মুগ্ধ হয়ে বৃষ্টির শব্দ শুনি। সাথে শুনি বড় চাচার পুঁথি পাঠ আর অদ্ভুত সব গল্প।</p>
+<p>সেই গল্প পাতার, পাখির, প্রাণের, জীবনের।</p>
+<p>বড় চাচা ‘প্রাণের’ মানুষ। ‘অবলা প্রাণের’। গাছ, পাখি, পশু বড় চাচার প্রাণ। রাস্তায় যে নেড়ি কুত্তাটা সকাল-সন্ধ্যা তার স্বরে ঘেউ ঘেউ করে। বড় চাচার পায়ের শব্দে সেও কুইকুই স্বরে মাথানিচু করে দৌড়ে আসে। তারপর বাধ্য ছেলের মতো গুটিগুটি হেঁটে যায় তার পিছু। বড় চাচা প্রতি সন্ধ্যায় পুকুরপাড়ের জামতলায় বসে থাকেন। দশাসই শরীরের কালো গাইটা দড়ি ছিড়ে তেড়েফুঁড়ে এসে বড় চাচার পাশে মাটিতে আধশোয়া হয়ে বসে। তারপর মাথাটা এলিয়ে দেয় তার কোলে। বড় চাচা আলতো হাতে ওর মাথায় হাত বুলান, কানে হাত বুলান, ঘাড়ে, পেটে, গলায় হাত বুলান। কালু চোখ বন্ধ করে ঝিম মেরে শুয়ে থাকে। বড় চাচার শক্ত হাত বিলি কেটে দেয় ওর শরীরের কালো চকচকে রেশম লোমে। হাতখানা খানিক থামতেই কালুর মাথা নড়ে ওঠে। আলতো ঢুস মারে বড় চাচার কোলে। কালো গাইয়ের শরীর জুড়ে বড় চাচার হাত আবার নড়ে ওঠে।</p>
+<p>সে হাতভর্তি মমতা, সে হাতভর্তি ভালোবাসা।</p>
+
+<p>দুই</p>
+<p> বৃষ্টিটা কমে এসেছে। কিন্তু দখিনা বাতাসে হু হু করে বাড়ছে নদীর পানি। সেই পানি নদী উপচে ভাসিয়ে দিয়েছে খাল, বিল, মাঠ, ফসলের জমি। পানির উপর ভেসে আছে সবুজ, ধানের কচি ডগা। উঁচু রাস্তাও ডুবি ডুবি। ডুবে গেছে উঠোনের অর্ধেক। সেই পানিতে টুপটাপ লাফিয়ে ওঠে খলসে পুঁটির দল। আমাদের ছনের ঘরখানার করুণ দশা। কিন্তু বাবা মা ঘর ছেড়ে কোথাও যাবেন না। সমস্যা যত আমাকে নিয়ে। এই স্যাতসেঁতে ভেজা ঘরে আমার মন বসে না। আমি চুপি চুপি বড় চাচাদের ঘরে চলে যাই। মায়ের চোখ ফাঁকি দিয়ে যেতে না পারলে বেড়ার ফাঁক দিয়ে তাকিয়ে থাকি আর গুঙিয়ে গুঙিয়ে কাঁদি। সেদিন সন্ধ্যায় হঠাৎ বড় চাচা তার লম্বা লম্বা পা ফেলে এসে দাঁড়ালেন আমাদের ঘরের সামনে।</p>
+<p>তারপর বাবাকে ডাকলেন, মকবুল, মকবুল।</p>
+<p>বাবা তখন চৌকির উপর বসে বিড়ি ফুকছিলেন। তড়িঘড়ি করে বিড়িখানায় শেষ টান দিয়ে বেড়ার ফাঁক দিয়ে ফেলে দিলেন বাইরে। তারপর এসে দাঁড়ালেন বড় চাচার সামনে।</p>
+<p>বাবার পাশ দিয়ে উঁকি দেয়া ভাঙা বেড়ার দিকে আঙুল তুলে বড় চাচা বললেন, ‘তোর গোয়ার্তুমি কি এই জনমে কমবো না? এই ঘরে তুই ওই রোগা বউ আর এটুক পোলাডারে লইয়া থাকস কোন সাহসে? ওগো কি মাইরা ফেলতে চাস?’</p>
+<p>বাবা কাঁধের গামছা দিয়ে মুখ মোছেন। তারপর ভাঙা বেড়ার দিকে মাথা ঘুড়িয়ে তাকান। আবার মুখ ফেরান। কিন্তু কিছু বলেন না। চুপ করে। থাকেন।</p>
+<p>‘কি, কথা কস না কেন? কিছু একটা ক। এমনে মুখে কুলুপ আইটা কয়দিন থাকবি?’ বাবা এবারো চুপ করে থাকেন। কথা বলেন না। পায়ের বুড়ো আঙুল দিয়ে মাটিতে অর্ধবৃত্ত আঁকতে থাকেন।</p>
+<p>বড় চাচার যেন এবার বাঁধ ভাঙে। তিনি চেঁচান, ‘জীবনে কোনোদিন একটা কথাও হুনছোস? হুনোছ নাই। যেইডা কইছি হেইডার উল্টাটা করছোস। এইজন্যই তো আইজ এই দুর্দশা।’ একটু থামেন বড় চাচা। তারপর বাবার হাত ধরে টেনে নিয়ে যান বড় চাচার কালো গাইটার সামনে। ‘দ্যাখ, গাইডারে দ্যাখ।’ বড় চাচা কালুর পেটে হাত বুলান। পেটের আকার বিশাল। আজ-কালের মধ্যেই বিয়োবে কালু।</p>
+<p>‘এই একটা গাই, অবলা প্রাণী, এই প্রাণী আমারে কোনোদিন ঠকায় নাই।’ বড় চাচা থামেন। থুক করে একদলা থুথু ফেলেন ভেজা মাটিতে। তারপর ঘুরে দাঁড়ান, ‘অবলা এই প্রাণীগুলা কাউরে ঠকায় না। অরা সব বোঝে, সব।’</p>
+<p>বড় চাচা আমার দিকে হাত তুলে দেখিয়ে বলেন, ‘বাবা যখন মারা যায়, ওই অর চেয়ে একটু বড় আছিলাম আমি। এক ফোড়া জমি-জিরাতও আছিল না। এক বেলা খাওনের আছিল না। তুই তহন মা’র পেডে। বড় মামায় আমারে একটা লাল বাছুর দিয়া কইছিল, এইডা হইলো লক্ষ্মী। এই লক্ষ্মী দেইখা শুইনা রাখিস। আমি আমার সারাজীবন তার কথা অক্ষরে অক্ষরে পালন করছি। হেই বাছুর থেইকা আমার কতগুলা গাই বাছুর যে হইছে! তোরে এতো কইরা কইলাম, আথালের গাইডা বেঁচিস না। ঘরের লক্ষ্মী। তুই গাভীন (গর্ভবতী) গাইডা টেকার লোভে হারু কসাইয়ের কাছে বেচলি! কেমনে বেচলি? হারু কসাই তো মানুষ না। ও আসলেই একটা কসাই। কিন্না (কিনে) নিয়া গাভীন গাইডার ঠিক মতো যত্নআত্মি করে নাই, রাখছে ভিজা চুপচুইপা ঘরে। একটার পর একটা রোগ হইছে গাইডার। শেষমেশ গাইডা যদি মইরা যায় হেই ডরে কাউরে কিছু না জানাইয়া গাইডারে জবাই দিয়া গঞ্জে গোসত বেচছে! গাভীন গাই। গাইডার পেডের মইধ্যে আরেকটা জান আছিল! অবলা গাইডা কোনো কথা কইতে পারে নাই। আল্লাহ! ওহ্ আল্লাহ!’</p>
+<p>বড় চাচার চোখ-মুখ শক্ত হয়ে আসে। হাতের আঙুল মুঠো পাকিয়ে যায়। পাথরের মতো শক্ত চোখেও জল ছল ছল করে, ‘আল্লাহ কেমনে সইবো! আল্লাহ তুমি মাফ করো। মাফ করো ইয়া মাবুদ।’ বাবা এখনও চুপ করে আছেন। পায়ের গোড়ালিতে ভর দিয়ে ভেজা মাটিতে বুড়ো আঙুল দিয়ে অর্ধবৃত্ত আঁকতে থাকেন। এক পা সামনে এগিয়ে বাবার একদম মুখোমুখি দাঁড়ান বড় চাচা। তারপর আবার বলেন, ‘তুই এই ঘরে থাকবি থাক। তোর বউডারে এই ক্যাদা-বিষ্টিতে মারবি মার। কিন্তু আনু এই বংশের রক্ত। অরে আমি এই ভেজা ঘরে এই বিষ্টি বাদলায় থাকতে দিমু না।’ বড় চাচাকে আমি পছন্দ করি, খুব খুব পছন্দ করি। কিন্তু বাবাকে যখন বড় চাচা বকেন তখন আমার খারাপ লাগে। বড় চাচাকে মনে হচ্ছিল একটা খারাপ মানুষ। আর বাবা কি অসহায় মুখ করে দাঁড়িয়ে ছিলেন! কিন্তু বড় চাচা যখন বললেন যে তিনি চান না আমি এই ঘরে থাকি তখন মুহূর্তেই আমার মনে হলো, জগতে বড় চাচার মতো ভালো মানুষ আর একটাও নেই। যত ইচ্ছা বকুক বাবাকে। বাবা তো আমাকে ওই ঘরে যেতে দিতেই চায় না। মা-ও না। কিন্তু আমাদের দুজনকেই অবাক করে দিয়ে বাবা আমার দিকে তাকিয়ে মিনমিনে স্বরে বললেন, ‘আনু, তোর বালিশ আর জামা-কাপুড় লইয়া ওই ঘরে যা। বাইস্যাকালের (বর্ষাকাল) কয়ডাদিন ওই ঘরেই থাক।’</p>
+<p>আমি আর বড় চাচা, দুজনই অবাক চোখে তাকিয়ে থাকি।</p>
+<p>বড় চাচা বাবাকে আর কিছু বলেন না। তিনি আমার দিকে তাকান। তারপর দরজার সামনে দড়িতে শুকাতে দেয়া আমার কোঁচকানো হাফপ্যান্ট আর শার্টখানা আমার দিকে ছুঁড়ে দিতে দিতে বলেন, ‘নে, জামা-কাপুড় লইয়া আয়। কাইল বেয়ান বেয়ান উঠতে হইবো। তোর শফিক ভাই আইবো ঢাকারতন। নাও লইয়া হেরে গঞ্জে আনতে যাওন লাগবো। তুই যাবি আমার লগে।’</p>
+<p>বড় চাচা কথাগুলো আমাকে বললেও উদ্দেশ্য ছিল মূলত বাবা। কিন্তু বাবা কোনো উত্তর দেন না। তিনি গভীর মনোযোগে বুড়ো আঙুল দিয়ে ভেজা মাটিতে অর্ধবৃত্ত আঁকতে থাকেন।</p>
+<p>আঁকতেই থাকেন।</p>
+
+<p>তিন</p>
+<p> ‘আনু, এই আনু। ওঠ ওঠ।’</p>
+<p>বড় চাচার ডাকে আমার ঘুম ভাঙে। আমি তড়িঘড়ি বিছানা ছাড়ি। বাইরে জমাট অন্ধকার। বড় চাচা তার বড় গামছাখানা দিয়ে আমার মাথা, পিঠ, বুক ঢেকে দেন। বাইরে বেরিয়েই চমকে ওঠেন তিনি। একরাতেই বন্যার পানি বেড়ে প্রায় ঘরের দাওয়ায় এসে ঠেকেছে। বড় চাচার মুখে চিন্তার ছায়া। তিনি আপনমনে বিড় বিড় করেন, আল্লাহ, পানি না জানি এইবার আর কত বাড়ে!</p>
+<p>সাবধানে নৌকার গলুইয়ে আমাকে বসিয়ে দেন বড় চাচা। চাচী এবং রুবি বু এখনো ঘুমে। বড় চাচা হাঁক দিয়ে চাচীকে ডাকেন, ‘শফিকের মা, ও শফিকের মা।’</p>
+<p>‘হ, কন।’ ভেতর থেকে ঘুমজড়ানো কণ্ঠে সাড়া দেন চাচী।</p>
+<p>‘তুমি খাওন-দাওন রেডি করো, আমি শফিকরে লইয়া আসতেছি।’ বলেই ছোট্ট লাফে নৌকায় চড়েন বড় চাচা। অন্ধকারে নৌকার গলুইয়ে বসে আমি বড় চাচার দুলতে থাকা শরীরটা দেখি।</p>
+<p>চারদিকে থই থই পানি। এবার নিশ্চয়ই বড় বন্যা হবে। বড় চাচা নৌকা ঘুড়িয়ে বাড়ির পেছন দিকে নিয়ে আসেন। পানি প্রায় ঘর ছুঁই ছুঁই। বড় চাচা বিড়বিড় করে কিছু একটা বলেন। তারপর অন্ধকারেই আমার দিকে তাকিয়ে বলেন, ‘যুইত কইরা বয় দেহি আনু। দেখি গঞ্জে যাইতে কতক্ষণ লাগে। ঢাকার লঞ্চ আহনের আগেই পৌঁছাইতে হইবো।’</p>
+<p>বড় চাচার হাতের বৈঠাখানা নড়ে ওঠে। ‘ঝুপ’ শব্দটা কানে আসে ঠিক তখুনি। কিছু একটা পানিতে পড়েছে কোথাও। কিন্তু বৈঠার শব্দে খুব একটা আলাদা করা যায় না শব্দটা।</p>
+<p>‘বড় চাচা, পানিতে কি কিছু পড়লো? শব্দ হুনছেন?’ আমি বড় চাচাকে জিজ্ঞেস করি।</p>
+<p>‘হ, হেরামই কিছু একটা হুনলাম মনে হয়।’</p>
+<p>‘কি পড়ল?’</p>
+<p>পূবাকাশ তখন খানিকটা আলোকিত হয়ে উঠেছে। কিন্তু বাড়ির পাশেই ঘন বাঁশঝাড়ে অন্ধকার হয়ে আছে জায়গাটা।</p>
+<p>‘এই আন্ধারে তো কিছু দেখা যাইবোনারে। আর তোর ভাইয়ের লঞ্চও চইলা আইবো।’</p>
+<p>‘মাছ-টাছ হইবো মনে হয়।’ বড় চাচার তাড়া দেখে আমি তাকে আশ্বস্ত করি।</p>
+<p>‘হ, তাই হইবো। পানি যেমনে বাড়তেছে, গ্রামের সকলের পুকুরই ডুইবা গেছে মনে হয়। পুকুরের মাছ এহন সব বানের পানিতে।’</p>
+<p>বড় চাচা দ্রুত বৈঠা মারেন। আমি আধো-অন্ধকারে কালো পানিতে তাকিয়ে থাকি। এলোমেলো ঢেউ। ভোরের নরম হাওয়ায় শরীর কেমন অদ্ভুত শীতলতায় আচ্ছন্ন হয়। আমি গলুই থেকে পা বাড়িয়ে আঙুলের ডগায় পানি ছুঁই।</p>
+<p>ইশ কি ঠাণ্ডা!</p>
+
+<p>চার</p>
+<p> শফিক ভাই টুপ করে নৌকায় উঠে পড়ে। তার কোলে বোধন। বড় চাচা কয়েকবার চেষ্টা করলেন নাতিকে কোলে নিতে। কিন্তু বোধন কোনোভাবেই গেল না। সম্ভবত বড় চাচার লম্বা এলোমেলো দাড়ি তার পছন্দ হয়নি। বিপত্তি বাধে ভাবীকে নিয়ে। সে শহুরে মেয়ে, কোনোমতেই নৌকায় উঠতে পারে না। শেষ পর্যন্ত বোধনকে আমার কাছে দিয়ে শফিক ভাই ভাবীকে প্রায় কোলে করে নৌকায় তোলে। নৌকার পাটাতনে পাতা পাটিতে জড়সড় হয়ে বসে ভাবী। আতংকিত চোখ জোড়া পানিতে। ঢেউ তেমন নেই বললেই চলে। কিন্তু নৌকা খানিক দুলে উঠতেই ভাবীর চোখ মুখ ভয়ে ফ্যাকাশে হয়ে ওঠে। শফিক ভাই এবং বড় চাচা, দুজনই ভাবীকে অভয় দেন। কিন্তু ভাবীর ভয় তাতে কিছু কাটে বলে মনে হয় না।</p>
+<p>ভাবী এক হাতে শক্ত করে নৌকার পাটাতন খামচে ধরে আছে, আরেক হাতে শফিক ভাইকে। আমি বোধনকে শফিক ভাইয়ের কাছে দিয়ে আবার নৌকার গলুইয়ে গিয়ে বসি।</p>
+<p>শফিক ভাই কেমন গম্ভীর হয়ে আছে। আগের সেই হাসিখুশি ভাবটা আর নেই। আমাকে দেখে কেমন নিরস গলায় বলল, ‘কিরে আনু, কিছু খাস নাকি? এমন পাটখড়ি হয়ে গেছিস কেন?’</p>
+<p>অন্যসময় হলে হয়তো শফিক ভাইয়ের এমন কথায় আমি হেসে গড়াগড়ি খেতাম। কিন্তু শফিক ভাইয়ের এবারের কথা বলার ধরনে কিছু একটা ছিল। আমি কেমন জড়সড় হয়ে গেলাম। কোনো উত্তর দিলাম না। শফিক ভাই অবশ্য উত্তর আশা করেছে বলে মনেও হলো না।</p>
+<p>সে বড় চাচার দিকে ফিরে জানতে চাইল, ‘বাবা, তোমার শরীরটা ভালো?’</p>
+<p>‘হ, ভালোই। খালি ঠাণ্ডাডা একটু ঝামেলা করে।’</p>
+<p>‘বাবা, বাড়িতে আসতে অনেক ঝামেলা। এই এত কাদা পানি ডিঙাইয়া বাড়ি আসন যায় কও?’</p>
+<p>শফিক ভাই বড় চাচার শরীর নিয়ে আর কিছু বলে না। বছর বছর বাড়ি আসা তার জন্য কত ঝামেলার তা বোঝানোর চেষ্টা করে সে।</p>
+<p>‘তার ওপর দেখছ তো বাবা, তোমাগো বউয়ের অবস্থা, নৌকায় চড়তে পারে না, পানি খাইতে পারে না। বোধনেরও এই পানি সহ্য হয় না, গোসল করতে পারে না। কি যে করব আমি!’</p>
+<p>‘কি আর করবি? বুড়া বাপ-মা যদ্দিন আছে, একটু কষ্ট তো করতেই হইবো।’ বড় চাচার গলার স্বর নরম। সেই নরম স্বরের কোথায় যেন থইথই কান্না। পাথর জমাট কষ্ট।</p>
+<p>‘শোন এইবার তোগো ভাল্লাগবো।’ বড় চাচা নিজেকে স্বাভাবিক রাখার চেষ্টা করেন। ‘কালো গাইডা দুয়েকদিনের মধ্যেই বিয়াইবো। খাটি দুধ খাইতে পারবি। টাউনে তো খাটি দুধ বলতে কিছু নাই। কি না কি খাস! তার ওপর নতুন বাছুর দেখলে আমার দাদাভাইয়েরও ভাল্লাগবো।’</p>
+<p>‘এই গরু বাছুর নিয়া তোমাগো এত আদিখ্যেতা আমার ভাল্লাগে না বাবা। পারলে তো দেখি রাইতে কোলে নিয়া ঘুমাও। আর এইগুলার মধ্যে ভুলেও বোধনরে নিবা না বাবা।’</p>
+<p>‘কেন রে শফিক, তোর মনে নাই, ছোডবেলায় তুই সাদা ধবধবা বাছুর দেখলে কি করতি?’</p>
+<p>বড় চাচার কথা শেষ হয় না। শফিক ভাই চড়া গলায় বলে ওঠে, ‘ওইসব পুরান কাসুন্দি বাদ দাও তো বাবা। ছোড বেলায়তো তোমার মতোন নৌকা বাইয়া গরুর লইগা ঘাস কাটতেও গেছি। এহন কি আর...।’ হঠাৎ থেমে যায় শফিক ভাই। কথাটা বলা ঠিক হয়নি বুঝে মাঝপথে চুপ মেরে যায়।</p>
+<p>বড় চাচা ফে ফে করে হাসেন। সেই হাসিতে বড় চাচাকে বড্ড বোকা বোকা লাগে। বড় চাচাকে ভীত, ন্যুজ এক জরাগ্রস্ত মানুষ মনে হয়। একসময় বড় চাচার হাসি থেমে যায়। শফিক ভাই, ভাবী, আমি, আমরা কেউ কোনো কথা বলি না। সবাই যেন বুঝে ফেলি এখন নৈঃশব্দ্যের সময়।</p>
+<p>অস্বস্তিকর নিরবতায় বৈঠার একটানা ছলাৎ ছলাৎ শব্দ খুব কানে বাজে।</p>
+
+<p>পাঁচ</p>
+<p> বাড়ির কাছে আসতে আসতে গনগনে সূর্য তেতে উঠে। টানা বর্ষা শেষে পরিষ্কার আকাশ। শফিক ভাই আর ভাবী নৌকা থেকে কিভাবে নামবে তাই নিয়ে ভাবছিলাম আমি। বড় চাচা দেখি পুকুরপাড়ের দিকে ঘুড়িয়ে নিয়েছে নৌকা। ওদিকটায় দুটো কাটা খেজুর গাছের অস্থায়ী ঘাট আছে। নৌকা থেকে লাফিয়ে সেই ঘাটের ওপর শুকনো জায়গায় নামা যায়। বড় চাচা খুব সাবধানে সেখানে নৌকা ভেড়ালেন। তারপর নিজে হাঁটু পানিতে নেমে নৌকাটাকে শক্ত করে জামগাছটার সাথে বাধেন।</p>
+<p>‘মা আর রুবি কই বাবা? আমি আসবো ওরা জানে না?’</p>
+<p>শফিক ভাইয়ের গলায় স্পষ্ট বিরক্তি। আমারও খানিকটা অবাক লাগে। শফিক ভাই বউ নিয়ে ঢাকা থেকে আসবে, সাথে আসবে বোধন। এতদিন ধরে চাচী আর রুবি বু’র এত আয়োজন, অথচ কই ওরা? ওদের তো পুকুরপাড় এসে দাঁড়িয়ে থাকার কথা। বড় চাচাও খানিকটা অবাক হয়েছেন। তিনি কলাগাছের ঝাড়ের ফাঁক দিয়ে বাড়ির ভেতরটা দেখার চেষ্টা করেন। কিন্তু কোথাও কেউ নেই। কেমন থমথমে চারপাশ। আমার বুকের ভেতরটা কেমন করে উঠল। বড় চাচা গলা চড়িয়ে ডাকলেন, ‘রুবিনা, ও রুবিনা। ও শফিকের মা, কই তোমরা?’</p>
+<p>কিন্তু কোথাও কোনো সাড়া নেই।</p>
+<p>বড় চাচা আবারও চেঁচালেন, ‘ও শফিকের মা, ও রুবিনা, কই তোরা? শফিক তো বউ লইয়া আইয়া পড়ছে, আমার দাদাভাইও আসছে।’</p>
+<p>কোনো সাড়া নেই কোথাও। শফিক ভাই বোধনকে কোলে নিয়ে নৌকা থেকে নেমে দাঁড়ালো। তার ফর্সা মুখ রাগে লাল হয়ে আছে। বড় চাচা কি করবেন বুঝতে পারছেন না। তার কপাল কুঁচকে আছে। তিনি হাঁটু পানি থেকে উঠলেন। পায়ের গোড়ালি পর্যন্ত কাদায় মাখামাখি। সেই কাদা মাখা পা নিয়েই তিনি বাড়ির দিকে এগুলেন, ‘রুবিনা, কই তোরা? তোর ভাই তো আইয়া পড়ছে।’</p>
+<p>আমি টুপ করে নৌকার গলুই থেকে নেমে বড় চাচার পিছু নিলাম। শফিক ভাই ঠায় দাঁড়িয়ে আছে। তার কোলে ঘুমাচ্ছে বোধন। নৌকার উপর শক্ত হয়ে বসে আছে ভাবী। তার আগুন চোখের সামনে শফিক ভাইকে কেমন দিশেহারা লাগছে।</p>
+<p>আমি দৌড়ে এসে বড় চাচার পাশে হাঁটতে থাকি। বড় চাচা ফের গলা চড়িয়ে ডাকতে যাবেন ঠিক তখনই কান্নার শব্দটা কানে আসে। বড় চাচীর গলা! চাচী চিৎকার করে কাঁদছেন। সাথে আরো কেউ। হ্যা, রুবি বু। এবার স্পষ্ট কান্নার শব্দ। রুবি বু আর বড় চাচী চিৎকার করে কাঁদছে। দৌড়ে সামনের খোলা বারান্দাটা পার হই আমি আর বড় চাচা। পেছনের বারান্দার কাছে এসে থমকে দাঁড়াই আমি। বড় চাচা দৌড়ে যান ছোট্ট জটলাটার কাছে। আমি পায়ে পায়ে আগাই।</p>
+<p>পেছনের বারান্দার মেঝেতে রুবি বু দু’পা ছড়িয়ে বসে আছে। তার কোলের ওপর সাদা ধবধবে একটা বাছুর। চোখ দুটো খোলা। নিঃসাড়। বড় চাচী বাছুরের পা দুখানা দুহাতে আগলে ধরে চিৎকার করে কাঁদছেন। পাশে আঁচলে মুখ চেপে বসে আছেন মা। বাবা দাঁড়িয়ে আছেন শূন্য চোখে। বাছুরটার পুরো শরীর জল-কাদায় মাখামাখি। মিইয়ে যাওয়া পশমী শরীর থেকে ঝরছে ফোঁটা ফোঁটা জল। ভিজে যাচ্ছে খড়, বিচালি, মাটির মেঝে। পাশেই সদ্য প্রসূতি কালু রক্তমাখা শরীরে দাঁড়িয়ে আছে। বারবার মাটিতে পা ঘষছে কালু। অস্থির হয়ে আছে পুরো শরীর। ধপ করে মাটিতে বসে পড়লেন বড় চাচা। তারপর ছোঁ মেরে রুবি বু’র কোল থেকে নিয়ে নিলেন বাছুরটা।</p>
+<p>রুবি বু চিৎকার করে বড় চাচাকে দুহাতে জড়িয়ে ধরল, ‘বাবা, তুমি যহন বাইর হইছো, তহনই কালু বিয়াইছে বাবা। কালুর বাছুরডা পানিতে পইরা গেছিল। আমরা কেউ দেহি নাই বাবা, কেউ দেহি নাই।’</p>
+<p>মৃত বাছুরটার কাদা-জলে মাখামাখি ছোট্ট শরীর তখন শক্ত হয়ে গেছে। সরু সরু চারখানা টিনটিনে পা ক্রমশই ধনুকের ছিলার মতো টানটান হয়ে আসছে। বড় চাচা পাগলের মতো জন্তর স্বরে গোঙাতে লাগলেন, ‘না, না, না, না...।’ তার শক্ত হাতগুলো ক্রমশই বাছুরটার প্রাণহীন টানটান সোজা পাগুলো ভাজ করে দিতে থাকে। কিন্তু মৃত বাছুরটার শরীর সাড়া দেয় না। বড় চাচার মুখ থেকে বের হওয়া গোঙনিও তীব্র থেকে তীব্রতর হতে থাকে, ‘না, না, না, না...।’</p>
+<p>‘বাবা! মা!’</p>
+<p>শফিক ভাইয়ের কণ্ঠে সবাই ফিরে তাকায়। বোধনকে কোলে করে পেছনের বরান্দায় এসে কখন দাঁড়িয়েছে শফিক ভাই, আমরা কেউ টেরই পাইনি। পাশে আধভেজা কাপড়ে দাঁড়িয়ে আছে ভাবী। শফিক ভাইকে দেখে যেন বাঁধ ভাঙে বড় চাচার। চিৎকার করে কেঁদে ওঠেন তিনি, ‘বাবারে, এইডা আমি কি করলাম! এইডা কি করলাম আমি! আমি নিজ হাতে বাছুরডারে খুন করলাম। নিজ হাতে।’</p>
+<p>বড় চাচী, রুবি বু, বাবা, মা, আমি, আমরা সবাই অবাক হয়ে যাই, ‘কি বলছে বড় চাচা!’</p>
+<p>বড় চাচা বাছুরটার মাথা বুকের সাথে চেপে ধরেন, তারপর চিৎকার করে কাঁদতে থাকেন, ‘আমি নিজ হাতে তোরে খুন করছি, নিজ হাতে খুন করছি।’ হঠাৎ আমার দিকে চোখ ফেরান বড় চাচা, বাছুরটার মুখের সাথে নিজের গাল চেপে ধরে কেঁদে ওঠেন, ‘আনুরে, ও আনু, বেয়ান বেলা পানিতে কিছু পড়নের যেই আওয়াজ তুই হুনছিলি তহনই ও হইছে, তহনই ও পানিতে গিয়া ঝুপ কইরা পড়ছে রে আনু। আনুরে, আমি তহন কেন গিয়া দেখলাম না, কেন দেখলাম না।’</p>
+<p>বড় চাচা দুই হাতে থপথপ বুক চাপড়াতে থাকেন। আমি শক্ত হয়ে দাড়িয়ে থাকি। মৃত বাছুরটার চোখজোড়া তখনও তাকিয়ে আছে। কাজল কালো জল ছলছলে একজোড়া চোখ।</p>
+<p>আমি সেই চোখে তাকিয়ে থাকি। আমি চোখ ফেরাতে পারি না।</p>
+<p>বড় চাচা শফিক ভাইকে জড়িয়ে ধরে চিৎকার করে কেঁদে ওঠেন। বড় চাচার হাত ছাড়িয়ে হঠাৎ কঠিন গলায় চেঁচিয়ে ওঠেন শফিক ভাই, ‘অনেক হইছে বাবা, অনেক হইছে। আমার এই বাড়িতে আসাটাই ভুল হইছে। একটা বাছুরের জন্য তোমরা জীবন দিয়া দিতেছ। আর এই যে আমি এতদিন পর বাড়িত আসছি। আমার এইটুক ছেলে আসছে, বউ আসছে,</p>
+<p>তোমাগো কাছে হের কোনো মূল্য নাই! আমাগো চেয়ে তোমাগোর কাছে একটা পশুর মূল্য এত বেশি?’</p>
+<p>সব ক’জোড়া চোখ নিমেষে শফিক ভাইয়ের দিকে ফিরে তাকায়। প্রচণ্ড রাগে শফিক ভাইয়ের কপালের শিরা ফুলে আছে। শফিক ভাই ঘুমন্ত বোধনকে ভাবীর কোলে দিয়ে বারান্দার মাঝখানে এসে দাঁড়ায়। তারপর চিৎকার করে বলতে থাকে, ‘মা, রুবি, তোমরা জানো না আজকে আমি আসতেছি? অগোরে নিয়া আসতেছি, জানো না তোমরা?’</p>
+<p>বড় চাচার কান্না পুরোপুরি থেমে গেছে। কালুর সামনে রাখা খড়ের গাদার উপর বসে পড়েছেন তিনি। শূন্য চোখে তাকিয়ে আছেন শফিক ভাইয়ের দিকে।</p>
+<p>‘একটা গরু-ছাগলের বাচ্চার জন্য তোমাগো যতটা মায়া হেইডা তো মনে হয় আমার ছেলের জন্যও তোমাগো নাই। আমার ছেলের জন্য দূরে থাক, আমার জন্যও নাই।’</p>
+<p>বড় চাচী, রুবি বু স্তব্ধ হয়ে তাকিয়ে আছে শফিক ভাইয়ের দিকে। কারো মুখে কোনো কথা নেই। শফিক ভাই রুবি বু’র হাত ধরে টেনে দাঁড় করালো, তারপর ভাবীর কোলে ঘুমন্ত বোধনকে দেখিয়ে বলল, ‘দ্যাখ, দ্যাখ, কেমন কইরা ঘুমাইতেছে।’ ভাবীকে দেখিয়ে বলল, ‘আর এই মহিলাডারে দ্যাখ, নৌকার তন নামতে গিয়া কেমনে গোসল কইরা উঠছে। আর তোরা এইখানে একটা মরা বাছুর লইয়া পূজা করতেছস! এই বাড়িতে আমি কেন আসমু? ওরা কেন আসব?’</p>
+<p>রুবি বু, বড় চাচী, বড় চাচা সবাই যেন নড়তেও ভুলে গেছে। স্থির হয়ে আছে প্রতিটি শরীর। শফিক ভাই যেন হিতাহিত জ্ঞান হারিয়ে ফেললেন, ‘কি, তোমরা কেউ নড়বা না এইখান থেইকা? পূজা করবা? পূজা? এই মরা বাছুর লইয়া পূজা করবা?’ নিচু হয়ে বাছুরটার একটা কান ধরে মৃত শরীরটা টেনে টেনে বারান্দার এক কোণায় নিয়ে গেল শফিক ভাই।</p>
+<p>কালু কি বুঝলো কে জানে। গলায় বাঁধা দড়িটা ছেড়ার আপ্রাণ চেষ্টা করতে লাগল। সামনের পা দুখানা সজোরে ঠুকতে থাকল মাটির সঙ্গে। আকাশ ফাটিয়ে চিৎকার করে উঠল, ‘হাম্বাআআআ!’ সে চিৎকারে কান্না ছিল, তীব্র কষ্ট ছিল, আর্তনাদ ছিল।</p>
+<p>আর কি কিছু ছিল?</p>
+<p>বড় চাচা পাথর হয়ে বসে আছেন। যেন কোনো মানুষ নন, একটা প্রাণহীন খড়ের গাদা। খোলা বারান্দার মাটির মেঝে ছুঁই ছুঁই বন্যার পানি। তীব্র স্রোতে আরো পানি বাড়ার আভাস। শফিক ভাই তার চকচকে চামড়ার জতো পড়া পায়ের এক ধাক্কায় বাছুরটার মৃত শরীরটা ফেলে দিল জলের স্রোতে, ‘নেও, এইবার তো হইছে। পূজা শেষ। এহন ঘরে চলো।’</p>
+<p>বাছুরটার শরীর ঝুপ করে পড়ল পানির স্রোতে, তারপর ডুবে গেল। এবং সাথে সাথেই অদ্ভুতভাবে শান্ত হয়ে গেল কালু। একদম শান্ত। বোধনকে ভাবীর কোল থেকে নিয়ে শফিক ভাই ঘরে গেলেন। মা-বাবা চুপচাপ চলে গেলেন ঘরে। খানিক বাদে রুবি বু, বড় চাচীও। আমি দাঁড়িয়ে রইলাম বারান্দার বাইরে, আমগাছটায় হেলান দিয়ে। আর বড় চাচা কালুর সামনে খড়ের গাদায় চুপচাপ বসে আছেন। তার শূন্য দৃষ্টি স্থির হয়ে আছে, বাছুরটার মৃত শরীর যেখানে ডুবেছে, ঠিক সেখানে। কালুও। কালুর বড় বড় চোখ দুটো পলকহীন তাকিয়ে আছে পানির স্রোতে। কান্না কি-না জানি না, তবে ওর চোখের কোল ভিজে আরো কালো হয়ে আছে। কালুর চোখ পৃথিবীর সুন্দরতম চোখ। ওই চোখে আমি রোজ মুগ্ধ হয়ে তাকিয়ে থাকি।</p>
+<p>কিন্তু সেই চোখে আজ চোখ পড়তেই আমি ভয়ে কেমন কুঁকড়ে গেলাম।</p>
+
+<p>ছয়</p>
+<p> ভোরের এখনো অনেক বাকি। কিন্তু আমার ঘুম ভেঙে গেছে। শেষরাতে ঠাণ্ডা পড়েছে বলেই হয়তো। একটা পাতলা কাঁথা হলে ভালো হতো। আরাম করে ঘুমানো যেত। বড় চাচা অবশ্য আরাম করেই ঘুমাচ্ছেন। দেখে ভালো লাগছে। গত দু’রাত একফোঁটা ঘুমাননি। বানের পানি বেড়েছে হু হু করে। উঠান ডুবে গেছে পুরোপুরি, বারান্দার খানিকটাও। গতকাল সন্ধ্যায় ঘরের ভেতরও পানি উঠে গেছে। শেষ পর্যন্ত মা-বাবাও এ ঘরে উঠে এসেছেন। সেদিনের পর, শফিক ভাইয়ের বাছুরের ঘটনা নিয়ে আর কোনো কথা বলেনি কেউ। কেউ না। বড় চাচাও যেন সব ভুলে গেছেন। সারাদিন কাজ, কাজ আর কাজ। উঠোনে বাঁশের উঁচু মাচা বেঁধেছেন। সেখানে তুলে দিয়েছেন হাঁস-মুরগীর খোপ। বৃষ্টি থেকে বাঁচাতে প্লাস্টিকের নীল পলিথিন দিয়ে সেই খোপ ঢেকেও দিয়েছেন। ধানের গোলা উঁচু করেছেন আরো। ঘরের চৌকিগুলোও। ছোট নৌকাখানা আলকাতরা মেখে শুকাতে দিয়েছেন। বড় বন্যার প্রস্তুতি!</p>
+<p>কালুর ঘরেও পানি ঢুকেছে গতকাল। আমাদের ছনের ঘর থেকে চৌকিখানা এনে তার ওপর কালুকে তুলে দিয়েছেন বাবা। কালুর কাছে একদিন আর যাননি বড় চাচা। আমাকে বলতেন কালুর জন্য খড়, খইল, ভূসি দিয়ে দিতে। কালুকে দেখলে আমার কেমন অদ্ভুত অনুভূতি হয়। সেটা ভয় না কষ্ট আমি জানি না। আমি কালুর কাছাকাছি যাই না। দূর থেকে কালুকে খাবার দিয়ে চলে আসি। কালু সামান্য খড় মুখে নিয়ে চোখ বন্ধ করে শুয়ে থাকে খড়ের ভেতর। ওর চোয়াল ক্রমাগত নড়ে। ক্ষণে ক্ষণে শরীরটা মৃদু কেঁপে ওঠে। চোখের নিচের অনেকটা জায়গা জুড়ে গাড় কালো ভেজা দাগ। আমি বড় চাচাকে কিছু বলি না। বড় চাচাও আমাকে না। আমরা কেউই কাউকে না।</p>
+<p>শফিক ভাই, ভাবি আজ চলে যাবেন। বড় চাচাকে ঘুম থেকে ডাকা দরকার। চাচা বলেছিলেন আলো ফোটার আগেই বের হবেন। নৌকা করে গঞ্জে দিয়ে আসতে হবে শফিক ভাইদের। আমি বড় চাচাকে ডাকি, ‘চাচা, চাচা, ওঠেন। বেয়ান হইতে চললো মনে হয়।’</p>
+<p>আমার আলতো ডাকেই বড় চাচা উঠে বসেন। তার চোখের কোথাও ঘুমের চিহ্ন নেই। বড় চাচা কি তাহলে ঘুমাননি?</p>
+<p>‘তুই ঘুমাস নাই আনু?’ বড় চাচার গলা কি শান্ত!</p>
+<p>‘ঘুম ভাইঙা গেল চাচা।’ আমিও উঠে বসি। জামাটা মাথা গলিয়ে গায়ে জড়াই।</p>
+<p>‘পানি তো আরো বাড়ছে রে আনু। বড় চাচা দড়ির উপর ঝোলানো গামছাটা কাঁধে ফেলেন। তারপর লুঙ্গিটা হাঁটুর উপর তুলে দু’ভঁজ করে কোমড়ে বাঁধেন। ‘চল, নৌকাটা বাইর করি। আজান দিলে নামাজ পইড়াই বাইর হইতে হইবো।’</p>
+<p>বড় চাচী, রুবি বুও উঠে পড়েছেন। বড় চাচা রুবি বুকে ডেকে বলেন শফিক ভাইকে তুলে দিতে। আমি বড় চাচার হাত ধরে পানিতে নামি। ঠাণ্ডা! দরজার বাইরে আবছা অন্ধকার। সেই অন্ধকারে পানি ঠেলে আগাই আমরা। পেছনের বারান্দার সাথে আম গাছে নৌকাটা বাধা। চাচা আমাকে দুহাতে উঁচু করে নৌকায় তুলে দেন। তারপর বৈঠায় ভর দিয়ে নিজেও উঠে পড়েন। ভাঁজ খুলে হাঁটুর নিচে নামিয়ে আনেন লুঙ্গি। নৌকা থেকে কিছুটা ঝুঁকে বন্যার পানিতেই অজু সারেন বড় চাচা। এখনো আজান হয়নি। খানিকটা আলোকিত পূবাকাশ। সেই আবছা আলোয় আমি পেছনের বারান্দায় তাকাই। সেখানে চৌকির উপর শুয়ে আছে কালু। মৃদু নড়ছে ওর মাথা। বড় চাচা কাঁধের গামছা বিছিয়ে বসে পড়েন আজানের অপেক্ষায়। ভোরের তাজা হাওয়ায় কেঁপে কেঁপে ওঠে বড় চাচার লম্বা দাড়ি। নৌকার খুব কাছেই টপ করে লাফিয়ে ওঠে ছোট মাছ। শান্ত পানিতে মৃদু ঢেউ ওঠে। ঢেউগুলো ছড়িয়ে পড়ে পুরো উঠোন জুড়ে। সেদিকে তাকিয়ে বড় চাচা জিজ্ঞেস করেন, ‘বেয়ান তো হইয়া আইলো, এহনো আজান হয় না কেন রে আনু?’</p>
+<p>এই সময় চিৎকারটা কানে এলো। আকাশ ফাটানো চিৎকার।</p>
+<p>‘বোধন! বোধন!!’</p>
+<p>যেন প্রবল ভয়ে আরো কেঁপে ওঠে উঠোনের ঢেউ। যেন ঝনঝন ভেঙে যায় ঘুমন্ত ভোর। শফিক ভাই, ভাবী, বড় চাচী আর রুবি বু’র চিৎকারের কণ্ঠগুলো আর আলাদা করা যায় না। আমি পাগলের মতো মাথা ঘুরিয়ে তাকাই। খোলা দরজা দিয়ে ঝড়ো হাওয়ার মতো ছুটে আসছে রুবি বু। তার বুকের সাথে শক্ত করে চেপে ধরা ভেজা চুপচুপে ছোট্ট এক শরীর। বোধন! বোধনের গা থেকে গলগল করে ঝরে পরছে পানি। কমলা রঙের উলের জামার ভেতর থেকে বোধনের ছোট্ট পেটখানা বেঢপ ফুলে আছে। রক্তহীন সাদা ফ্যাকাশে মুখ। প্রাণহীন!</p>
+<p>‘বাবা, বোধন! বোধন! বোধন নাই বাবা! বোধন রাইতে পানিতে ডুবছে বাবা!’ রুবি বু যেন উন্মাদ।</p>
+<p>পেছনে পাগলের মতো ছুটে আসছেন বড় চাচী, ভাবী, শফিক ভাই। হতবুদ্ধ বড় চাচা যেন ঘোরের মধ্যে নৌকা থেকে নামেন। ছলকে ওঠা জল ভিজিয়ে দিল পুরো শরীর। রুবি বু কাটা গাছের মতো ঝাপিয়ে পড়ল বড় চাচার বুকে। বড় চাচার শক্ত হাত দুখানা বোধনের ছোট্ট শরীর বুকে চেপে ধরে। শফিক ভাইয়ের গলায় জান্তব আর্তনাদ, ‘বোধন, ও বোধন, ও বাবা, বাবা, আমার বোধন, আমার বোধন!’ শফিক ভাই যেন পুরোপুরি উন্মাদ। বড় চাচার গায়ের ভেজা জামাটা শক্ত হাতে ধরে টানছেন আর গোঙাচ্ছেন। বড় চাচা খুব ধীরে, খুব ধীরে বা হাতে শফিক ভাইকে কাছে টানলেন।</p>
+<p>আল্লাহু আকবার... আল্লাহু আকবার...</p>
+<p>ফজরের আজান হচ্ছে। বড় চাচা কোমর পানিতে বোধনকে বুকে চেপে দাড়িয়ে আছেন। খোলা চোখ জোড়া শূন্যে। শূন্য, নির্বাক, স্থির। শফিক ভাই বোধনের গালের সাথে গাল চেপে ধরে তীব্র আর্তনাদ করে উঠল, ‘বোধন। আমার বোধন। ঠিক সেই সময় বজ্রস্বরে গলা ফাটাল কালু, হাম্বাআআ আ...! হাম্বাআআআ...!’ শফিক ভাই আর কালুর তীব্র চিৎকারে কেঁপে কেঁপে</p>
+<p>উঠল ভোরের আকাশ। ভোরের বাতাসে মিলে মিশে একাকার হয়ে গেল কালু আর শফিক ভাই। দুটো কণ্ঠ যেন আর আলাদা করা যায় না।</p>
+<p>আমগাছের ডাল থেকে ডানা ঝাপটে উড়ে গেল একজোড়া নিশাচর পাখি।</p>
+
+            </div>
+
+        </div>
+    </div>
+
+        <!-- TOC nav for mobile -->
+        <nav id="toc-nav-desktop" class="hidden"></nav>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const progressBar  = document.getElementById('read-progress-bar');
+    const progressPct  = document.getElementById('progress-pct');
+    const tocDesktop   = document.getElementById('toc-nav-desktop');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+    const progressRing = document.getElementById('progress-ring-circle');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = p.currentTheme;
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    function toBN(n) {
+        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
+    }
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        if (progressPct) progressPct.textContent = toBN(pct) + '%';
+        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
+        if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
+        if (rfPage) rfPage.textContent = toBN(pct) + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+
+    // ── Footer: chapter label + seek slider ──
+    const rfSlider  = document.getElementById('rf-slider');
+    const rfPage    = document.getElementById('rf-page');
+    const rfChapter = document.getElementById('rf-chapter');
+    let rfSliderDragging = false;
+    if (rfSlider) {
+        rfSlider.addEventListener('input', () => {
+            rfSliderDragging = true;
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
+        });
+        rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
+    }
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav, isMobile) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            if (isMobile) {
+                a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+                a.addEventListener('click', closeDrawer);
+            } else {
+                a.className = 'toc-link ' + (isH1 ? 'toc-link-h1' : 'toc-link-h2');
+            }
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocDesktop, false);
+    buildToc(tocMobile, true);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+        if (rfChapter && headings[current]) rfChapter.textContent = headings[current].textContent.trim();
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme only; drawer/settings UI stays a fixed dark sheet)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+        black: { bg: '#000',     text: '#d1d5db' },
+        sepia: { bg: '#f5efe6',  text: '#3b2f1e' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? '#c0392b' : 'transparent';
+            });
+            savePrefs();
+
+            // Ad bar theme sync
+            window._pathakAdBarTheme && window._pathakAdBarTheme(m);
+        });
+    });
+
+    // ── Ad bar theme sync function (exposed globally) ──
+    window._pathakAdBarTheme = function(m) {
+        const adBar     = document.getElementById('ad-bar');
+        const adContent = document.getElementById('ad-bar-content');
+        const adDatetime= document.getElementById('ad-bar-datetime');
+        const adNotice  = document.getElementById('ad-bar-notice');
+        if (adBar)      adBar.style.background     = m.bg;
+        if (adContent)  adContent.style.background = m.bg;
+        if (adDatetime) adDatetime.style.color      = m.text;
+        if (adNotice)   adNotice.style.color        = m.text;
+    };
+
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+        // Ad bar HTML is below — expose theme for ad bar script to pick up
+        window._pathakCurrentTheme = currentTheme;
+        window._pathakThemeMap = themeMap;
+    })();
+})();
+</script>
+
+
+</body>
+</html>

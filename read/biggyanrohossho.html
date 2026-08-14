@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/biggyanrohossho.html">
+    <title>বিজ্ঞানরহস্য - পাঠক ঘর</title>
+    <meta name="description" content="বাংলা সাহিত্যের সম্রাট বঙ্কিমচন্দ্র চট্টোপাধ্যায়কে আমরা মূলত কালজয়ী সব উপন্যাসের জনক হিসেবে চিনলেও, তাঁর বিজ্ঞানমনস্কতা ও দূরদর্শিতার এক অনন্য দলিল এই "বিজ্ঞান">
+    <meta property="og:title" content="বিজ্ঞানরহস্য - পাঠক ঘর">
+    <meta property="og:description" content="বাংলা সাহিত্যের সম্রাট বঙ্কিমচন্দ্র চট্টোপাধ্যায়কে আমরা মূলত কালজয়ী সব উপন্যাসের জনক হিসেবে চিনলেও, তাঁর বিজ্ঞানমনস্কতা ও দূরদর্শিতার এক অনন্য দলিল এই "বিজ্ঞান">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e', black:'#000' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', sepia:'#3b2f1e', dark:'#e5e7eb', black:'#d1d5db' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .dark body { background: #1a1a1b; color: #e5e7eb; }
+
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.7rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+        .dark #book-content { color: #e5e7eb; }
+    
+    /* ── Book read header hero ── */
+    .book-read-header {
+        margin-bottom: 1.5rem;
+    }
+    .book-read-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.65rem;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 1.4rem 1.25rem 1.2rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .dark .book-read-box {
+        background: #2a2a2b;
+        border-color: #3a3a3b;
+    }
+    .book-read-cover {
+        width: 100px;
+        height: 136px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        object-fit: cover;
+        background: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .book-read-cover svg { opacity: 0.35; }
+    .book-read-title-link {
+        text-decoration: none;
+        display: block;
+    }
+    .book-read-title-link:hover .book-read-title { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-title-link:active .book-read-title { opacity: 0.7; }
+    .book-read-title {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #1a1a1b;
+        line-height: 1.4;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+    .dark .book-read-title { color: #f3f4f6; }
+    .book-read-author-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+    .book-read-author-link:hover .book-read-author { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-author-link:active .book-read-author { opacity: 0.6; }
+    .book-read-author {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #c0392b;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+</style>
+</head>
+<body>
+
+<style>
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    #read-progress-bar {
+        position: fixed;
+        top: 0; left: 0;
+        height: 2px;
+        width: 0%;
+        background: #c0392b;
+        z-index: 1000;
+        transition: width 0.1s linear;
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h1 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #9ca3af;
+        text-align: center;
+        margin: 0 0 0.25rem;
+        letter-spacing: 0.04em;
+    }
+    #book-content h1::after {
+        content: '';
+        display: block;
+        width: 2.8em;
+        height: 3px;
+        background: #c0392b;
+        border-radius: 2px;
+        margin: 0.4rem auto 0;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #7a2115;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid #d9a5a0;
+        border-bottom: 1px solid #d9a5a0;
+    }
+    /* Night mode heading adjust */
+    body.theme-dark  #book-content h1,
+    body.theme-black #book-content h1 { color: #6b7280; }
+    body.theme-dark  #book-content h2,
+    body.theme-black #book-content h2 { color: #f2938a; border-color: rgba(169,50,38,0.4); }
+    body.theme-dark  #book-content h1::after { background: #a93226; }
+    body.theme-black #book-content h1::after { background: #922b21; }
+    body.theme-sepia #book-content h1 { color: #a08060; }
+    body.theme-sepia #book-content h2 { color: #7a2115; border-color: rgba(160,64,48,0.35); }
+    body.theme-sepia #book-content h1::after { background: #a04030; }
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: rgba(192,57,43,0.05);
+        border: 1px solid rgba(192,57,43,0.15);
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p,
+    body.theme-black #book-content p {
+        background: rgba(169,50,38,0.1);
+        border-color: rgba(169,50,38,0.25);
+    }
+    body.theme-sepia #book-content p {
+        background: rgba(160,64,48,0.08);
+        border-color: rgba(160,64,48,0.2);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #c0392b;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #c0392b;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(192,57,43,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    .dark #book-content blockquote {
+        background: rgba(192,57,43,0.08);
+        color: #bbb;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #c0392b;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    .dark #book-content td { border-color: #3a3a3b; }
+    .dark #book-content tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(192,57,43,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: #e57373;
+        font-weight: 600;
+        background: rgba(192,57,43,0.18);
+        border-radius: 0.375rem;
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: #fff;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transition: color 0.15s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.6);
+    }
+    #toc-nav-desktop .toc-link {
+        display: block;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.375rem;
+        color: #4b5563;
+        text-decoration: none;
+        transition: background-color 0.15s, color 0.15s;
+    }
+    .dark #toc-nav-desktop .toc-link { color: #d1d5db; }
+    #toc-nav-desktop .toc-link:hover { background: #f3f4f6; }
+    .dark #toc-nav-desktop .toc-link:hover { background: #1f2937; }
+    #toc-nav-desktop .toc-link-h1 {
+        font-weight: 600;
+        font-size: 0.8125rem;
+        color: #1f2937;
+    }
+    .dark #toc-nav-desktop .toc-link-h1 { color: #f3f4f6; }
+    #toc-nav-desktop .toc-link-h2 {
+        padding-left: 1.25rem;
+        font-size: 0.6875rem;
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.6rem 0.5rem 0.6rem 0.35rem;
+        background: #1a1a1b;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-back {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.25rem;
+        text-decoration: none;
+        transition: background 0.15s;
+    }
+    #rh-back:active { background: rgba(255,255,255,0.12); }
+    #rh-title {
+        flex: 1;
+        min-width: 0;
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: transparent;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+    #reader-header .rh-actions button:active { background: rgba(255,255,255,0.12); }
+    body.theme-dark  #reader-header,
+    body.theme-black #reader-header,
+    body.theme-sepia #reader-header { background: #141414; }
+
+    /* ── Reader footer: chapter label + page/percent + seek slider ── */
+    #reader-footer {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 55;
+        background: #1a1a1b;
+        padding: 0.5rem 1rem 0.65rem;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-footer { transform: translateY(100%); }
+    body.theme-dark  #reader-footer,
+    body.theme-black #reader-footer,
+    body.theme-sepia #reader-footer { background: #141414; }
+    #rf-labels {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.7);
+        margin-bottom: 0.35rem;
+    }
+    #rf-chapter {
+        flex: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #rf-page { flex-shrink: 0; }
+    #rf-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        background: rgba(255,255,255,0.22);
+        outline: none;
+        margin: 0;
+        cursor: pointer;
+    }
+    #rf-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        margin-top: -6px;
+    }
+    #rf-slider::-moz-range-thumb {
+        width: 15px; height: 15px;
+        border-radius: 50%;
+        background: #c0392b;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        border: none;
+    }
+    #rf-slider::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; }
+    #rf-slider::-moz-range-track { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.22); }
+
+    /* Content needs bottom clearance so the fixed footer never covers text */
+    #read-main-content { padding-bottom: 4.5rem; }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: #303134;
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.55);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: #e57373;
+        border-bottom-color: #c0392b;
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ── Breadcrumb dark mode ── */
+    .read-breadcrumb-full { margin-left: -1.25rem; margin-right: -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
+    .dark #bc-category { color: #9ca3af !important; }
+    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
+    .dark #read-breadcrumb li > span { color: #4b5563; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #e57373;
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: 34px; height: 34px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        flex-shrink: 0;
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+    }
+    .theme-circle.active { border-color: #c0392b; }
+    .theme-circle svg { display: none; }
+    .theme-circle.active svg { display: block; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: #fff; }
+    .settings-row-val { font-size: 0.74rem; color: rgba(255,255,255,0.5); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: rgba(192,57,43,0.35); border-color: #c0392b; color: #fff; }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.06);
+        color: #fff;
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid rgba(255,255,255,0.25);
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: rgba(192,57,43,0.35) !important;
+        border-color: #c0392b !important;
+        color: #fff !important;
+    }
+
+</style>
+
+<!-- Progress bar (kept for internal % calc, hidden — footer slider replaces it visually) -->
+<div id="read-progress-bar" style="display:none;"></div>
+
+<!-- ══ Reader header (Lithium-style app bar) ══ -->
+<header id="reader-header">
+    <a href="/book/biggyanrohossho.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <h1 id="rh-title">বিজ্ঞানরহস্য</h1>
+    <div class="rh-actions">
+        <button id="rh-menu-btn" aria-label="মেনু" title="মেনু"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+    </div>
+</header>
+
+<!-- ══ Reader footer (chapter + page/percent + seek slider) ══ -->
+<footer id="reader-footer">
+    <div id="rf-labels">
+        <span id="rf-chapter"></span>
+        <span id="rf-page">০%</span>
+    </div>
+    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
+</footer>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#c0392b;" title="সাদা">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                    <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
+                    <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
+                    <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn active" id="align-justify" title="জাস্টিফাই" style="background:#fde8e6;border-color:#c0392b;color:#c0392b;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <section><div>
+
+﻿
+
+
+<div><img alt="" src="images/c11_Rule_Segment___loops___283px.svg_283px_Rule_Segment___loops___283px.svg.png"/></div>
+
+<h2>আশ্চর্য্য সৌরােৎপাত।</h2>
+
+<p>১৮৭১ সালে সেপ্টেম্বর মাসে আমেরিকা-নিবাসী অদ্বিতীয় জ্যোতির্ব্বিদ্ ইয়ঙ্ সাহেব যে আশ্চর্য্য সৌরােৎপাত দৃষ্টি করিয়াছিলেন, এরূপ প্রকাণ্ড কাণ্ড মনুষ্য চক্ষে প্রায় আর কখন পড়ে নাই। তত্তুলনায় এট‍্না বা বিসিউবিয়াসের অগ্নিবিপ্লব, সমুদ্রোচ্ছ্বাসের তুলনায় দুগ্ধ-কটাহে দুগ্ধোচ্ছ্বাসের তুল্য বিবেচনা করা যাইতে পারে।
+</p><p>যাহারা আধুনিক ইউরােপীয় জ্যোতির্ব্বিদ্যার সবিশেষ অনুশীলন করেন নাই, এই ভয়ঙ্কর ব্যাপার তাঁহাদের বোধগব্য করার জন্য সূর্য্যের প্রকৃতিসম্বন্ধে দুই একটি কথা বলা আবশ্যক।
+</p><p>সূর্য্য অতি বৃহৎ তেজোময় গােলক। এই গোলক আমরা অতি ক্ষুদ্র দেখি, কিন্তু উহা বাস্তবিক কত বৃহৎ, তাহা পৃথিবীর পরিমাণ না বুঝিলে বুঝা যাইবে না। সকলে জানেন যে, পৃথিবীর ব্যাস ৭০৯১ মাইল। যদি পৃথিবীকে এক মাইল দীর্ঘ, এক মাইল প্রস্থ, এমত খণ্ডে খণ্ডে ভাগ করা যায়, তাহা হইলে, উনিশ কোটি, ছষট্টি লক্ষ, ছাব্বিশ হাজার এইরূপ বর্গ মাইল পাওয়া যায়। এক মাইল দীর্ঘে, এক মাইল প্রস্থে এবং এক মাইল উর্দ্ধে, এরূপ ২৫৯,৮০০০০০,০০০ ভাগ পাওয়া যায়। আশ্চর্য্য বিজ্ঞানবলে পৃথিবীকে ওজন করাও গিয়াছে। ওজনে পৃথিবী যত টন হইয়াছে, তাহা নিম্ন অঙ্কের দ্বারা লিখিলাম। ৬,০৬৯,০০০,০০০,০০০,০০০,০০০,০০০। এক টন সাতাশ মনের অধিক।
+</p><p>এই সকল অঙ্ক দেথিরা মন অস্থির হয়। পৃথিবী যে কত বৃহৎ পদার্থ, তাহা বুঝিয়া উঠিতে পারি না। এক্ষণে যদি বলি যে, এমত অন্য কোন গ্রহ বা নক্ষত্র আছে যে, তাহা পৃথিবী অপেক্ষা, ত্রয়োদশ লক্ষ গুণে বৃহৎ, তবে কে না বিস্মিত হইবে? কিন্তু বাস্তবিক সূর্য্য পৃথিবী হইতে ত্রয়োদশ লক্ষ গুণে বৃহৎ। ত্রয়োদশ লক্ষটি পৃথিবী একত্র করিলে সূর্যের আয়তনের সমান হয়।
+</p><p>তবে আমরা সূর্য্যকে এত ক্ষুদ্র দেখি কেন? উহার দূরতাবশতঃ। পূর্ব্বতন গণনানুসারে সূর্য্য পৃথিবী হইতে সার্দ্ধ নয় কোটি মাইল দূরে স্থিত বলিয়া জানা ছিল। আধুনিক গণনায় স্থির হইয়াছে যে, ৯১,৬৭৮০০০ মাইল অর্থাৎ এক কোটি, চতুর্দ্দশ লক্ষ, উনসপ্ততি সহ সার্দ্ধ সপ্তশত যোজন, পৃথিবী হইতে সূর্যের দুরতা।<sup><a href="#cite_note-1">[১]</a></sup> এই ভয়ঙ্কর দুরতা অনুমেয় নহে। দ্বাদশ সহস্র পৃথিবী শ্রেণীপরম্পরায় বিন্যস্ত হইলে, পৃথিবী হইতে সূর্য্য পর্যন্ত পায় না।
+</p><p>এই দূরতা অনুভব করিবার জন্য একটি উদাহরণ দিই। অম্মদাদির দেশে রেলওয়ে ট্রেণ ঘণ্টায় ২০ মাইল যায়। যদি পৃথিবী হইতে সূর্য্য পর্য্যন্ত রেইলওয়ে হইত, তবে কত কালে সূর্যালোকে যাইতে পারিতাম? উত্তর—যদি দিন রাত্রি ট্রেণ, অবিরত, ঘণ্টায় বিশ মাইল চলে, তবে ৫২০ বৎসয় ৬ মাস ১৬ দিনে সূর্যলোকে পৌছান যায়। অর্থাৎ যে ব্যক্তি ট্রেণে চড়িবে, তাহার সপ্তদশ পুরুষ ঐ ট্রেণে গত হইবে।
+</p><p>এক্ষণে পাঠক বুঝিতে পারিবেন, যে সূর্য্যমণ্ডলমধ্যে যাহা অণুবৎ ক্ষুদ্রাকৃতি দেখি তাহাও বাস্তবিক অতি বৃহৎ। যদি সূর্য্য মধ্যে আমরা একটি বালির মত বিন্দুও দেখিতে পাই, তবে তাহাও লক্ষ ক্রোশ বিস্তার হইতে পারে।
+</p><p>কিন্তু সূর্য্য এমনি প্রচণ্ড রশ্মিময় যে, তাহার গায়ে বিন্দু বিসর্গ কিছু দেখিবার সম্ভাবনা নাই। সূর্য্যের প্রতি চাহিয়া দেখিলেও অন্ধ হইতে হয়। কেবল সূর্যগ্রহণের সময়ে সূর্যতেজঃ চন্দ্রান্তরালে লুক্কায়িত হইলে, তৎপ্রতি দৃষ্টি করা যায়। তখনও সাধারণ লোকে চক্ষের উপর কালিমাখা কাঁচ না ধরিয়া, হৃততেজা সূর্য্য প্রতিও চাহিতে পারে না।
+</p><p>সেই সময়ে যদি কালিমাখা কাঁচ ত্যাগ করিয়া, উত্তম দূরবীক্ষণ যন্ত্রের দ্বারা সুর্য্য প্রতি দৃষ্টি করা যায়, তবে কতকগুলি আশ্চর্য্য ব্যাপার দেখা যায়। পূর্ণ গ্রাসের সময়ে, অর্থাৎ যখন চন্দ্রান্তরালে সূর্ষমণ্ডল লুক্কায়িত, তখন দেখা যায়, মণ্ডলের চারি পার্শ্বে, অপূর্ব্ব জ্যোতির্ম্ময় কিরীটী মণ্ডল তাহাকে ঘেরিয়া রহিয়াছে। ইউরোপীয় পণ্ডিতেরা ইহাকে “করোনা” বলেন। কিন্তু এই কিরীটী মণ্ডল ভিন্ন, আর এক অদ্ভুত বস্তু কখন কখন দেখা যায়। কিরীটী মূলে, ছায়াবৃত সূর্য্যের অঙ্গের উপরে সংলগ্ন, অথচ তাহার বাহিরে, কোন দুর্জ্ঞেয় পদার্থ উদগত দেখা যায়। ঐ সকল উদগত পদার্থ দেখিতে এত ক্ষুদ্র যে, তাহা দূরবীক্ষণ যন্ত্র ব্যতিরেকে দেখা যায় না। কিন্তু দূরবীক্ষণ যন্ত্রে দেখা যায় বলিয়াই তাহা বৃহৎ অনুমান করিতে হইতেছে। উহা কখন কখন অর্দ্ধ লক্ষ মাইল উচ্চ দেখা গিয়াছে। ছয়টি পৃথিবী উপর্যু্যপরি সাজাইলে এত উচ্চ হয় না। এই সকল উদগত পদার্থের আকার কখন পর্ব্বত শৃঙ্গবৎ, কখন অন্য প্রকার, কখন সূর্য্য হইতে বিযুক্ত দেখা গিয়াছে। তাহার বর্ণ কথন উজ্জ্বল রক্ত, কখন গোলাপী, কখন নীল কপিশ।
+</p><p>পণ্ডিতেরা বিশেষ অনুসন্ধান দ্বারা স্থির করিয়াছেন যে, এ সকল সূর্য্যের অংশ। প্রথমে কেহ কেহ বিবেচনা করিয়াছিলেন যে, এ সকল সৌর পর্ব্বত। পরে সূর্য্য হইতে তাহার বিয়োগ দেখিয়া সে মত ত্যাগ করিলেন।
+</p><p>এক্ষণে নিঃসংশয় প্রমাণ হইয়াছে যে, এই সকল বৃহৎ পদার্থ সূর্যগর্ভ হইতে উৎক্ষিপ্ত। যেরূপ পার্থিব আগ্নেয়গিরি হইতে দ্রব বা বায়বীয় পদার্থ সকল উৎপতিত হইয়া, গিরিশৃঙ্গের উপরে মেঘাকারে দৃষ্ট হইতে পারে,এই সকল সৌর মেঘও তদ্রুপ। উৎক্ষিপ্ত বস্তু যত ক্ষণ না সূর্য্যোপরি পুনঃ পতিত হয়, ততক্ষণ পর্য্যন্ত স্তুুপাকারে পৃথিবী হইতে লক্ষ্য হইতে থাকে।
+</p><p>এক্ষণে পাঠক বিবেচনা করিয়া দেখুন যে, এইরূপ একখানি সৌর মেষ বা স্তুুপ দূরবীক্ষণে দেখিলে কি বুঝিতে হয়। বুঝিতে হয় যে, এক প্রকাণ্ড প্রদেশ লইয়া এক বিষম বিপ্লব উপস্থিত হইয়াছে। সেই সকল উৎপাতকালে সূর্যগর্ভনিক্ষিপ্ত পদার্থরাশি, এতাদৃশ বহুদুরব্যাপী হয় যে, তন্মধ্যে এই পৃথিবীর ন্যায় অনেকগুলি পৃথিবী ডুবিয়া থাকিতে পারে।
+</p><p>এইরূপ সৌরোৎপাত অনেকেই প্রফেসর ইরঙের পূর্ব্বে দেখিয়াছেন; কিন্তু প্রফেসর ইয়ঙ্ যাহা দেখিয়াছেন, তাহা আবার বিশেষ বিস্ময়কর। বেলা দুই প্রহরের সময়ে তিনি সূর্যমণ্ডল দূরবীক্ষণ দ্বারা অবেক্ষণ করিতেছিলেন। তৎকালে গ্রহণাদি কিছু ছিল না। পূর্ব্বে গ্রহণের সাহায্য ব্যতীত কেহ কখন এই সকল ব্যাপার নয়নগোচর করে নাই, কিন্তু ডাক্তার হাগিন্স প্রথমে বিনা গ্রহণে এ সকল ব্যাপার দেখিবার উপায় প্রদর্শন করেন। প্রফেসর ইয়ঙ্ এরূপ বিজ্ঞানকুশলী যে, তিনি সূর্য্যের প্রচণ্ড তেজের সময়েও ঐ সকল সৌরস্ত‍ুপের অতিপচিত্র পর্য্যন্ত গ্রহণ করিতে সমর্থ হইয়াছেন।
+</p><p>কথিত সময়ে প্রফেসর ইয়ঙ্ দূরবীক্ষণে দেখিতেছিলেন যে, সূর্য্যের উপরি ভাগে এক খানি মেঘবৎ পদার্থ দেখা যাইতেছে। অন্যান্য উপায় দ্বারা সিদ্ধান্ত হইয়াছে যে, পৃথিবী যেরূপ বায়বীয় আবরণে বেষ্টিত, সূর্য্যমণ্ডলও তদ্রুপ। ঐ মেঘবৎ পদার্থ সৌর বায়ুর উপরে ভাসিতেছিল। পাঁচটি স্তম্ভের ন্যায় আধারের উপরে উহা আরূঢ় দেখা যাইতেছিল। প্রফেসর ইয়ঙ্ পূর্ব্ব দিন বেলা দুই প্রহর হইতে ঐ রূপই দেখিতেছিলেন। তদবধি তাহার পরিবর্তনের কোন লক্ষণই দেখেন নাই। স্তম্ভগুলি উজ্জ্বল, মেঘখানি বৃহৎ-তদ্ভিন্ন মেঘের নিবিড়তা বা উজ্জ্বলতা কিছুই ছিল না। সূক্ষ্ম সূক্ষ্ম সূত্রাকার কতকগুলি পদার্থের সমষ্টির ন্যায় দেখাইতেছিল। এই অপূর্ব্ব মেঘ সৌর বায়ুর উপরে পঞ্চদশ সহস্র মাইল উর্দ্ধে তাসিতেছিল। ইহা বলা বাহুল্য যে, প্রফেসর ইয়ঙ্ ইহার দৈর্ঘ্য প্রস্থও মাপিয়াছিলেন। তাহার দৈর্ঘ্য লক্ষ মাইল—প্রস্থ ৫৪০০০ মাইল। বারটি পৃথিবী সারি সারি সাজাইলে তাহার দৈর্ঘ্যের সমান হয় না—ছয়টি পৃথিবী সারি সারি সাজাইলে, তাহার প্রস্থের সমান হয় না।
+</p><p>দুই প্রহর বাজিয়া অর্দ্ধ ঘণ্টা হইলে, মেঘ এবং তন্মুলস্বরূপ স্তম্ভগুলির অবস্থাপরিবর্ত্তনের কিছু কিছু লক্ষণ দেখা যাইতে লাগিল। সেই সময়ে প্রফেসর ইয়ঙ্ সাহেবকে দূরবীক্ষণ রাখিয়া স্থানান্তরে যাইতে হইল। একটা বাজিতে পাঁচ মিনিট থাকিতে, বখন তিনি প্রত্যাবর্ত্তন করিলেন, তখন দেখিলেন, যে চমৎকার! নিম্ন হইতে উৎক্ষিপ্ত কোন ভয়ঙ্কর বলের বেগে মেঘখণ্ড ছিন্ন ভিন্ন হইয়া গিয়াছে, তৎপরিবর্ত্তে সৌর গগন ব্যাপিয়া ঘনবিকীর্ণ উজ্জ্বল সূত্রাকার পদার্থ সকল উর্দ্ধে ধাবিত হইতেছে। ঐ সূত্রাকার পদার্থ সকল অতি প্রবল বেগে উর্দ্ধে ধাবিত হইতেছিল।
+</p><p>সর্ব্বাপেক্ষা এই বেগই চমৎকার। আলোক বা বৈদ্যুতীয় শক্তি প্রভৃতি ভিন্ন, গুরুত্ববিশিষ্ট পদার্থের এরূপ বেগ শ্রুতিগোচর হয় না। ইয়ঙ্ সাহেব যখন প্রত্যাবৃত্ত হইলেন, ঐ সকল উজ্জল সূত্রাকার পদার্থ লক্ষ মাইলের উর্ধ্বে উঠে নাই। পরে দশ মিনিটের মধ্যে যাহা লক্ষ মাইলে ছিল, তাহা দুই লক্ষ মাইলে উঠিল। দশ মিনিটে লক্ষ মাইল গতি হইলে, প্রতি সেকেণ্ডে ১৬৫ মাইল গতি হয়। অতএব উৎক্ষিপ্ত পদার্থের দৃষ্ট গতি এই।
+</p><p>এই গতি কি ভয়ঙ্কর, তাহা মনেরও অচিন্ত্য। কামানের গোলা অতি বেগবান হইলেও কখন এক সেকেণ্ডে অর্দ্ধ মাইল যাইতে পারে না। সচরাচর কামানের গোলার বেগের বহু শত গুণ এই সৌর পদার্থের বেগ, এ কথা বলিলে অত্যুক্তি হইবে না।
+</p><p>দুই লক্ষ মাইল উর্দ্ধেতে এই বেগ দেখা গিয়াছিল। যে উৎক্ষিপ্ত পদার্থ দুই লক্ষ মাইল উর্দ্ধে এত বেগবান্‌ নির্গমকালে তাহার বেগ কিরূপ ছিল? সকলেই জানেন যে, যদি আমরা একটা ইষ্টক খণ্ড উর্দ্ধে নিক্ষিপ্ত করি, তাহা হইলে যে বেগে তাহা নিক্ষিপ্ত হয়, সেই বেগ শেষ পর্য্যন্ত থাকে না, ক্রমে মন্দীভূত হইয়া, পরিশেষে একবারে বিনষ্ট হইয়া যায়, ইষ্টক খণ্ডও ভূপতিত হয়। ইষ্টকবেগের হ্রাসের দুই কারণ, প্রথম পৃথিবীর মাধ্যাকর্ষণ শক্তি, দ্বিতীয় বায়ুজনিত প্রতিবন্ধকতা। এই দুই কারণই সূর্য্যলোকে বর্ত্তমান। যে বস্তু যত গুরু, তাহার মাধ্যাকর্ষণ শক্তি তত বলবতী। পৃথিবী অপেক্ষা সূর্যের মাধ্যাকর্ষণী শক্তি সূর্য্যের নাড়ীমণ্ডলে ২৮ গুণ অধিক। তদুল্লঙ্ঘন করিয়া লক্ষ ক্রোশ পর্য্যন্ত যদি কোন পদার্থ উত্থিত হয়, তবে তাহা যখন সুর্য্যকে ত্যাগ করে, তৎকালে তাহার গতি প্রতি সেকেণ্ডে অবশ্যই ১৬৬ মাইল ছিল। ইহা গণনা দ্বারা সিদ্ধ। কিন্তু যদিও এই বেগে উৎক্ষিপ্ত হইলে, ক্ষিপ্ত বস্তু লক্ষ ক্রোশ উঠিতে পারিবে, তাহা যে ঐ লক্ষ ক্রোশের শেষার্দ্ধ লঙ্ঘনকালে প্রতি সেকেণ্ডে ১৬৬ মাইল ছুটিবে, এমত নহে। শেষার্ধ বেগ গড়ে ৬৫ মাইল মাত্র হইবে। প্রাক‍্টর সাহেব গুড়‍্ওয়ার্ডসে লিখিয়াছেন যে, যদি বিবেচনা করা যায় যে, সূর্য্যলোকে বায়বীয় প্রতিবন্ধকতা নাই, তাহা হইলে এই উৎক্ষিপ্ত পদার্থ সূর্য্যমধ্য হইতে যে বেগে নির্গত হইয়াছিল, তাহা প্রতি সেকেণ্ডে ২৫৫ মাইল। কর্ণহিলের একজন লেখক বিবেচনা কয়েন যে, এই পদার্থ প্রতি সেকেণ্ডে ৫০০ মাইলের অধিক বেগে নিক্ষিপ্ত হইয়াছিল।
+</p><p>কিন্তু সূর্য্যলোকে যে বায়বীয় পদার্থ নাই, এমত কথা বিবেচনা করিতে পারা যায় না। সূর্য্য যে গাঢ় বাষ্পমণ্ডল পরিবৃত, তাহা নিশ্চিত হইয়াছে। প্রক্টর সাহেব সকল বিষয় বিবেচনা করিয়া স্থির করিয়াছেন যে, পৃথিবীতে বারবীয় প্রতিবন্ধকতার যেরূপ বল, সৌর বায়ুর প্রতিবন্ধকতায় যদি সেইরূপ বল হয়, তাহা হইলে এই পদার্থ যখন সূর্য্য হইতে নির্গত হয়, তখন তাহার বেগ প্রতি সেকেণ্ডে আনুমানিক সহস্র মাইল ছিল।
+</p><p>এই বেগ মনের অচিন্ত্য। এরূপ বেগে নিক্ষিপ্ত পদার্থ এক সেকেণ্ডে ভারতবর্ষ পার হইতে পারে—পাঁচ সেকেণ্ডে কলিকাতা হইতে বিলাত পঁহুছিতে পারে, এবং ২৪ সেকেণ্ডে অর্থাৎ অর্দ্ধ মিনিটের কমে, পৃথিবী বেষ্টন করিয়া আসিতে পারে।
+</p>
+
+<p> আর এক বিচিত্র কথা আছে। আমরা যদি কোন মৃৎপিণ্ড উর্দ্ধে নিক্ষেপ করি, তাহা আবার ফিরিয়া আসিয়া পৃথিবীতে পড়ে। তাহার কারণ এই যে, পৃথিবীর মাধ্যাকর্ষণী শক্তির বলে, এবং বায়বীয় প্রতিবন্ধকতায়, ক্ষেপণীর বেগ ক্রমে বিনষ্ট হইয়া, যখন ক্ষেপণী একবারে বেগহীন হয়, তখন মাধ্যাকর্ষণের বলে পুনর্ব্বার তাহা ভূপতিত হয়। সূর্যলোকেও অবশ্য তাহাই হওয়া সম্ভব। কিন্তু মাধ্যাকর্ষণী শক্তি বা বায়বীয় প্রতিবন্ধকতার শক্তি কখন অসীম নহে। উভয়েরই সীমা আছে। অবশ্য এমত কোন বেগবতী গতি আছে যে, তদ্বারা উভয় শক্তই পরাভূত হইতে পারে। এই সীমা কোথায়, তাহাও গণনা দ্বারা সিদ্ধ হইয়াছে। যে বস্তু নির্গম কালে প্রতি সেকেণ্ডে ৩৮০ মাইল গমন করে, তাহা মাধ্যাকর্ষণী শক্তি এবং বায়বীয় প্রতিবন্ধকতার বল অতিক্রম করিয়া যায়। অতএব উপরিবর্ণিত বেগবান্ উৎক্ষিপ্ত পদার্থ, আর সূর্যলোকে ফিরিয়া আইসে না। সুতরাং প্রফেসর ইয়ঙ্ যে সৌরোৎপাত দৃষ্টি করিয়াছিলেন, তদুৎক্ষিপ্ত পদার্থ আর সূর্যলোকে ফিরে নাই। তাহা অনন্তকাল অনন্ত আকাশে বিচরণ করিয়া ধূমকেতু বা অন্য কোন খেচর রূপে পরিগণিত হইবে কি, কি হইবে, তাহা কে বলিতে পারে।
+</p><p>প্রক্টর সাহেব সিদ্ধান্ত করেন যে, উৎক্ষিপ্ত বস্তু লক্ষ ক্রোশ পর্য্যন্ত দৃষ্টিগোচর হইয়াছিল বটে, কিন্তু অদৃশ্যভাবে যে তদধিক দূর উর্দ্ধগত হয় নাই, এমত নহে। যতক্ষণ উহা উত্তপ্ত এবং জালাবিশিষ্ট ছিল, ততক্ষণ তাহা দৃষ্টিগোচর হইয়াছিল, ক্রমে শীতল হইয়া অনুজ্জল হইলে, আর তাহা দেখা যায় নাই। তিনি স্থির করিয়াছেন যে, উহা সার্দ্ধ তিন লক্ষ মাইল উঠিয়াছিল। অতএব এই সৌরোৎপাতনিক্ষিপ্ত পদার্থ অদ্ভুত বটে—লক্ষযোজনব্যাপী, মনোগতি, এক নূতন সৃষ্টির আদি।
+</p>
+
+
+</div><ol><li><span><a href="#cite_ref-1">↑</a></span> <span>নুতন গণনায় আরো কিছু বাড়িয়াছে।</span>
+</li>
+</ol></section>
+<section><div>
+
+
+<h2>আকাশে কত তারা আছে?</h2>
+
+<p>ঐ যে নীল নৈশ নভোমণ্ডলে অসংখ্য বিন্দু জ্বলিতেছে, ও গুলি কি?
+</p><p>ও গুলি তারা। তারা কি? প্রশ্ন জিজ্ঞাসা করিলে পাঠশালার ছাত্র মাত্রেই তৎক্ষণাৎ বলিবে যে, তারা সব সূর্য। সব সূর্য্য! সূর্য্য ত দেখিতে পাই বিশ্বদাহকর, প্রচণ্ড কিরণমালার আকর; তৎপ্রতি দৃষ্টি নিক্ষেপ করিবারও মনুষ্যর শক্তি নাই; কিন্তু তারা সব ত বিন্দু মাত্র; অধিকাংশ তারাই নয়নগোচর হইয়া উঠে না। এমন বিসদৃশের মধ্যে সাদৃশ্য কোথায়? কোন্ প্রমাণের উপর নির্ভর করিয়া বলিব যে, এ গুলি সূর্য? এ কথার উত্তর পাঠশালার ছাত্রের দেয় নহে। এবং যাঁহারা আধুনিক ইউরোপীয় বিজ্ঞানশাস্ত্রের প্রতি বিশেষ মনোযোগ করেন নাই, তাঁহারা এই কথাই অকস্মাৎ জিজ্ঞাস করিবেন। তাঁহাদিগকে আমরা এক্ষণে ইহাই বলিতে পারি যে, এ কথা অলঙ্ঘ্য প্রমাণের দ্বারা নিশ্চিত হইয়াছে। সেই প্রমাণ কি, তাহা বিবৃত করা এস্থলে আমাদিগের উদ্দেশ্য নহে। যাঁহারা ইউরোপীয় জ্যোতির্ব্বিদ্যার সম্যক্ আলোচনা করিয়াছেন, তাঁহাদের পক্ষে সেই প্রমাণ এখানে বিবৃত করা নিষ্প্রয়োজন। যাঁহারা জ্যোতিষ সম্যক্ অধ্যয়ন করেন নাই, তাহাদের পক্ষে সেই প্রমাণ বোধগম্য করা অতি দুরূহ ব্যাপার। বিশেষ দুইটা কঠিন কথা তাহাদিগকে বুঝাইতে হবে প্রথমতঃ কি প্রকারে নতঃস্থ জ্যোতিষ্কের দুরতা পরিমিত হয়; দ্বিতীয় আলোক-পরীক্ষক নামক আশ্চর্য্য যন্ত্র কি প্রকার, এবং কি প্রকারে ব্যবহৃত হয়।
+</p>
+
+<p> সুতরাং সে বিষয়ে আমরা প্রবৃত্ত হইলাম না। সন্দিহান পাঠকগণের প্রতি আমাদিগের অনুরোধ এই, তাঁহারা ইউরোপীয় বিজ্ঞানের উপর বিশ্বাস করিয়া বিবেচনা করুন যে, এই আলোকবিন্দু গুলি সকলই সৌর প্রকৃত। কেবল আত্যন্তিক দূরতা বশতঃ অলোক বিন্দুবৎ দেখায়।
+</p><p>এখন কত সূর্য্য এই জগতে আছে? এই প্রশ্নের উত্তর প্রদান করাই এখানে আমাদিগের উদ্দেশ্য। আমরা পরিষ্কার চন্দ্র বিযুক্তা নিশীতে নির্ম্মল নিরম্বুদ আকাশমণ্ডল প্রতি দৃষ্টিপাত করিয়া দেখিতে পাই যে, আকাশে নক্ষত্র যেন আর ধরে না। আমরা বলি, নক্ষত্র অসংখ্য। বাস্তবিক কি নক্ষত্র অসংখ্য? বাস্তবিক শুধু চক্ষে আমরা যে নক্ষত্র দেখিতে পাই, তাহা কি গণিয়া সংখ্যা করা যায় না?
+</p><p>ইহা অতি সহজ কথা। যে কেহ অধ্যবসায়ীরূঢ় হইয়া স্থিরচিত্তে গণিতে প্রবৃত্ত হইবেন, তিনিই সফল হইবেন। বস্তুতঃ দুরবীক্ষণ ব্যতীত যে তারাগুলি দেখিতে পাওয়া যায়, তাহা অসংখ্য নহে—সংখ্যার এমন অধিকও নহে। তবে তারা সকল যে অসংখ্য বোধ হয়, তাহা উহার দৃশ্যতঃ বিশৃঙ্খলতা জন্য মাত্র। যাহা শ্রেণীবদ্ধ এবং বিন্যস্ত, তাহা অপেক্ষা যাহা শ্রেণীবদ্ধ নহে এবং অবিন্যস্ত, তাহা সংখ্যার অধিক বোধ হয়। তারা সরুল আকাশে শ্রেণীবদ্ধ এবং বিন্যস্ত নহে বলিয়াই আশু অসংখ্য বলিয়া বোধ হয়।
+</p><p>বস্তুতঃ যত তারা দূরবীক্ষণ ব্যতীত দৃষ্টিগোচর হয়, তাহা ইউরোপীয় জ্যোতির্ব্বিদগণ কর্ত্তৃক পুনঃ পুনঃ গণিত হইয়াছে। বর্লিন নগরে যত তারা ঐ রূপে দেখা যায়, অর্গেলন্দর তাহার সংখ্যা করিয়া তালিকা প্রকাশ করিয়াছেন। সেই তালিকায় ৩২৫৬টি মাত্র তারা আছে। পারিস নগর হইতে যত তারা দেখা যায়, হম্বেটের মতে তাহা ৪১৪৬টি মাত্র। গেলামির আকাশ মণ্ডল নামক গ্রন্থে চক্ষুর্দৃশ্য তারার যে তালিকা প্রদত্ত হইয়াছে, তাহা এই প্রকার;
+</p>
+<div>
+<table><tbody><tr><td><div><div><div>১ম শ্রেণী</div></div></div>
+</td>
+<td>২০
+</td></tr></tbody></table><table><tbody><tr><td><div><div><div>২য় শ্রেণী</div></div></div>
+</td>
+<td>৬৫
+</td></tr></tbody></table><table><tbody><tr><td><div><div><div>৩য় শ্রেণী</div></div></div>
+</td>
+<td>২০০
+</td></tr></tbody></table><table><tbody><tr><td><div><div><div>৫ম শ্রেণী</div></div></div>
+</td>
+<td>১১০০
+</td></tr></tbody></table><table><tbody><tr><td><div><div><div>৬ষ্ঠ শ্রেণী</div></div></div>
+</td>
+<td>৩২০০
+</td></tr></tbody></table>
+<div><div>
+<div><hr/></div>
+</div></div>
+
+<div>৪৫৮৫</div>
+</div>
+<p>এই তালিকায় চতুর্থ শ্রেণীর তারার সংখ্যা নাই। তৎসমেত আন্দাজ ৫০০০ পাঁচ হাজার তারা শুধু চক্ষে দৃষ্ট হয়।
+</p><p>কিন্তু বিষুব রেখার যত নিকটে আসা যায়, তত অধিক তারা নয়নগোচর হয়। বর্লিন ও পারিস নগর হইতে যাহা দেখিতে পাওয়া যায়, এ দেশে তাহার অধিক তারা দেখা যায়, কিন্তু এদেশেও ছয় সহস্রের অধিক দেখা যাওয়া সম্ভবপর নহে।
+</p><p>এক কালীন আকাশের অর্দ্ধাংশ ব্যতীত আমরা দেখিতে পাই না। অপরার্দ্ধ অধস্তলে থাকে। সুতরাং মনুষ্যচক্ষে এক কালীন যত তারা দেখা যায়, তাহা তিন সহস্রের অধিক নহে। 
+</p><p>এতক্ষণ আমরা কেবল শুধু চক্ষের কথা বলিতেছিলাম। যদি দূরবীক্ষণ যন্ত্রের সাহায্যে আকাশ মণ্ডল পর্য্যবেক্ষণ করা যায়, তাহা হইলে বিস্মিত হইতে হয়। তখন অবশ্য স্বীকার করিতে হয় যে, তারা অসংখ্যই বটে। শুধু চোখে যেখানে দুই একটি মাত্র তারা দেখিয়াছি, দূরবীক্ষণে সেখানে সহস্র তারা দেখা যায়।
+</p><p>গেলামী এই কথা প্রতিপন্ন করিবার জন্য মিথুন রাশির একটি ক্ষুদ্রাংশের দুইটি চিত্র দিয়াছেন। ঐ স্থান বিনা দুরবীক্ষণে যেরূপ দেখা যায়, প্রথম চিত্রে তাহাই চিত্রিত আছে। তাহাতে পাঁচটি মাত্র নক্ষত্র দেখা যায়। দ্বিতীয় চিত্রে ইহা দুরবীক্ষণে যেরূপ দেখা যায়, তাহাই অঙ্কিত হইয়াছে। তাহাতে পাঁচটি তারার স্থানে তিন সহস্র দুই শত পাঁচটি তারা দেখা যায়।
+</p><p>দূরবীক্ষণের দ্বারাই বা কত তারা মনুষ্যের দৃষ্টিগোচর হয়, তাহার সংখ্যাও তালিকা হইয়াছে। সুবিখ্যাত সর উইলিয়ম হর্শেল প্রথম এই কার্যে প্রবৃত্ত হয়েন। তিনি বহু কালাবধি প্রতিরাত্রে আপন দূরবীক্ষণ সমীপাগত তারা সকল গণনা করিয়া তাহার তালিকা করিতেন। এইরূপে ৩৪০০ বার আকাশ পর্যবেক্ষণের ফল তিনি প্রচার করেন। যতটা আকাশ চন্দ্র কর্ত্তৃক ব্যাপ্ত হয়, তদ্রুপ আট শত গাগনিক খণ্ড মাত্র তিনি এই ৩৪০০ বারে পর্যবেক্ষণ করিয়াছিলেন। তাহাতে আকাশের ২৫০ ভাগের এক ভাগের অধিক হয় না। আকাশের এই ২৫০ ভাগের এক ভাগ মাত্রে তিনি ৯০০০০ অর্থাৎ প্রায় এক লক্ষ তারা গণনা করিয়াছেন। স্ত্রুব নামা বিখ্যাত জ্যোতির্ব্বিদ্ গণনা করিয়াছেন যে, এইরূপে সমুদায় আকাশমণ্ডল পর্যবেক্ষণ করিয়া তালিকা নিবদ্ধ করিতে অশীতি বৎসর লাগে।
+</p><p>তাহার পরে সর উইলিয়মের পুত্র সর্ জন হর্শেল ঐরূপ আকাশ সন্ধানে ব্রতী হুয়েন। তিনি ২৩০০ বার আকাশ পর্যবেক্ষণ করিয়া আরও সপ্ততি সহস্র তারা সংখ্যা করিয়াছিলেন।
+</p><p>অর্গেলন্দর নবম শ্রেণী পর্যন্ত তারা স্বীয় তালিকাভুক্ত করিয়াছেন। তাহাতে সপ্তম শ্রেণীর ১৩০০০ তারা,অষ্টম শ্রেণীর ৪০০০০ তারা, এবং নবম শ্রেণীর ১৪২০০০ তারা। উচ্চতম শ্রেণীর সংখ্যা পুর্বে লিখিত হইয়াছে, কিন্তু এ সকল সংখ্যাও সামান্য। আকাশে পরিষ্কার রাত্রে এক স্থূল শ্বেত রেখা নদীর ন্যায় দেখা যায়। আমরা সচরাচর তাহাকে ছায়াপথ বলি। ঐ ছায়াপথ কেবল দৌরবীক্ষণিক নক্ষত্র সমষ্টি মাত্র। উহার অসীম দূরতাবশতঃ নক্ষত্রসকল দৃষ্টিগোচর হয় না, কিন্তু তাহার আলোকসমবায়ে ছায়াপথ শ্বেতবর্ণ দেখায়। দূরবীক্ষণে উহা ক্ষুদ্র ক্ষুদ্র তারাময় দেখায়। সর্ উইলিয়ম হর্শেল গণনা করিয়া স্থির করিয়াছেন যে, কেবল ছায়াপথমধ্যে ১৮,০০০,০০০ এক কোটি আশী লক্ষ তারা আছে।
+</p><p>স্ত্রূব গণনা করেন যে, সমগ্র আকাশমণ্ডলে দুই কোটি নক্ষত্র আছে।
+</p><p>মসূর শাকোর্ণাক্ বলেন, “সর্ উইলিয়ম হর্শেলের আকাশ সন্ধান এবং রাশিচক্রের চিত্রাদি দেখিয়া, বেসেলের কৃত কটিবন্ধ সকলের তালিকার ভূমিকাতে যেরূপ গড়পড়তা করা আছে, তৎসম্বন্ধে উইসের কৃত নিয়মাবলম্বন করিয়া আমি ইহা গণনা করিয়াছি যে, সমুদায় আকাশে সাত কোটি সত্তর লক্ষ নক্ষত্র আছে।”
+</p><p>এই সকল সংখ্যা শুনিলে হতবুদ্ধি হইতে হয়। যেখানে আকাশে তিন হাজার নক্ষত্র দেখিয়া আমার অসংখ্য নক্ষত্র বিবেচনা করি, সেখানে সাত কোটি সপ্ততি লক্ষের কথা দুরে থাকুক, দুই কোটিই কি ভয়ানক ব্যাপার।
+</p><p>কিন্তু ইহাতে আকাশের নক্ষত্রসংখ্যার শেষ হইল না। দূরবীক্ষণের সাহায্যে গগনাভ্যন্তরে কতকগুলি ক্ষুদ্র ধূম্রাকার পদার্থ দৃষ্ট হয়। উহাদিগকে নীহারিকা নাম প্রদত্ত হইয়াছে। যে সকল দূরবীক্ষণ অত্যন্ত শক্তিশালী, তাহার সাহায্যে এক্ষণে দেখা গিয়াছে যে, বহু সংখ্যক নীহারিকা কেবল নক্ষত্রপুঞ্জ। অনেক জ্যোতির্ব্বিদ্ বলেন, যে সকল নক্ষত্র আমরা শুধু চক্ষে বা দূরবীক্ষণ দ্বারা গগনে বিকীর্ণ দেখিতে পাই, তৎসমুদায় একটি মাত্র নাক্ষত্রিক জগৎ। অসংখ্য নক্ষত্রময় ছায়াপথ এই নাক্ষত্রিক বিশ্বের অন্তর্গত। এমন অন্যান্য নাক্ষত্রিক জগৎ আছে। এই সকল দুর-দৃষ্ট তারাপুঞ্জময়ী নীহারিকা স্বতন্ত্র স্বতন্ত্র নাক্ষত্রিক জগৎ। সমুদ্রতীরে যেমন বালি, বনে যেমন পাতা, একটি নীহারিকাতে নক্ষত্ররাশি তেমনি অসংখ্য এবং ঘনবিন্যস্ত। এই সকল নীহারিকান্তর্গত নক্ষত্র সংখ্যা ধরিলে সাত কোটি সত্তর লক্ষ কোথায় ভাসিয়া যায়। কোটি কোটি নক্ষত্র আকাশমণ্ডলে বিচরণ করিতেছে বলিলে অত্যুক্তি হয় না। এই আশ্চর্য্য ব্যাপার, ভাবিতে ভাবিতে মনুষ্য-বুদ্ধি চিন্তায় অশক্ত হইয়া উঠে। চিত্ত বিস্ময়বিহ্বল হইয়া যায়। সর্ব্বত্রগামিনী মনুষ্যবুদ্ধিরও গমনসীমা দেখিয়া চিত্ত নিরস্ত হয়।
+</p><p>এই কোটি কোটি নক্ষত্র সকলই সূর্য্য। আমরা যে এক সূর্য্যকে সূর্য্য বলি, সে কত বড় প্রকাণ্ড বস্তু, তাহা সৌরবিপ্লব সম্বন্ধীয় প্রস্তাবে বর্ণিত হইয়াছে। ইহা পৃথিবী অপেক্ষা এয়োদশ লক্ষ গুণ বৃহৎ। নাক্ষত্রিক জগৎমধ্যস্থ অনেকগুলি নক্ষত্র যে এ সূর্য্যাপেক্ষাও বৃহৎ তাহা এক প্রকার স্থিয় হইয়াছে। এমন কি, সিরিয়স (Sirius) নামে নক্ষত্র এই সূর্য্যের ২৬৬৮ গুণ বৃহৎ, ইহা স্থিয় হইয়াছে। কোন কোন নক্ষত্র যে এ সূর্য্যাপেক্ষা আকারে কিছু ক্ষুদ্রতয়, তাহাও গণনা দ্বারা স্থির হইয়াছে। এইরূপ ছোট বড় মহাভয়ঙ্কর আকারবিশিষ্ট, মহাভয়ঙ্কর তেজোময় কোটি কোটি সূর্য্য অনন্ত আকাশে বিচরণ করিতেছে। যেমন আমাদিগের সৌরজগতের মধ্যবর্ত্তী সূর্য্যকে ঘেরিয়া গ্রহ উপগ্রহাদি বিচরণ করিতেছে, তেমনি ঐ সকল সূর্যপাের্শ্ব গ্রহ উপগ্রহাদি ভ্রমিতেছে, সন্দেহ নাই। তবে জগতে জগতে কত কোটি কোটি সুর্য্য, কত কোটি কোটি পৃথিবী, তাহা কে ভাবিয়া উঠিতে পারে? এ আশ্চর্য্য কথা কে বুদ্ধিতে ধারণা করিতে পারে? যেমন পৃখিবীর মধ্যে এক কণা বালুকা, জগৎ মধ্যে এই সসাগরা পৃথিবী তদপেক্ষাও সামান্য, রেণুমাত্র,—বালুকার বালুকাও নহে। তদুপরি মনুষ্য কি সামান্য জীব! এ কথা ভাবিয়া কে আর আপন মনুষ্যত্ব লইয়া গর্ব করিবে?
+</p>
+
+<div><hr/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>ধূলা।</h2>
+<p>ধূলার মত সামান্য পদার্থ আর সংসারে নাই। কিন্তু আচার্য্য টিণ্ডল ধূলা সম্বন্ধে একটা দীর্ঘ প্রস্তাব লিখিয়াছেন। আচার্য্যের ঐ প্রবন্ধটি দীর্ঘ এবং দুরূহ, তাহা সংক্ষেপে এবং সহজে বুঝান অতি কঠিন কর্ম্ম। আমরা কেবল টিণ্ডাল সাহেব কৃত সিদ্ধান্তগুলিই এ প্রবন্ধে সন্নিবেশিত করিব, যিনি তাঁহার প্রমাণ জিজ্ঞাসু হইবেন, তাহাকে আচার্য্যের প্রবন্ধ পাঠ করিতে হইবে।
+</p><p>১। ধূলা, এই পৃথিবীতলে এক প্রকার সর্ব্বব্যাপী। আমরা যাহা যত পরিষ্কার করিয়া রাখি না কেন, তাহা মুহূর্ত্ত জন্য ধূলা ছাড়া নহে। যত “বাবুগিরি” করি না কেন, কিছুতেই ধূলা হইতে নিষ্কৃতি নাই। যে বায়ু অত্যন্ত পরিষ্কার বিষেচনা করি, তাহাও ধূলায় পূর্ণ। সচরাচর ছায়ামধ্যে কোন রন্ধ্র-নিপতিত রৌদ্রে দেখিতে পাই যে বায়ু পরিষ্কার দেখাইতেছিল, তাহাতেও ধূলা চিক্ চিক্ করিতেছে। সচরাচর বায়ু যে এরূপ ধূলাপূর্ণ, তাহা জানিবার জন্য আচার্য্য টিণ্ডলের উপদেশের আবশ্যকতা নাই, সকলেই তাহা জানে। কিন্তু বায়ু
+ ছাঁকা যায়। আচার্য বহুবিধ উপায়ের দ্বারা বায়ু অতি পরিপাটী করিয়া ছাঁকিয়া দেখিয়াছেন। তিনি অনেক চোঙ্গার ভিতর দ্রাবকাদি পূরিয়া তাহার ভিতর দিয়া বায়ু ছাঁকিয়া লইয়া গিয়া পরীক্ষা করিয়া দেখিয়াছেন যে, তাহাও ধূলায় পরিপূর্ণ। এইরূপ ধূলা অদৃশ্য, কেন না তাহার কণা সকল অভি ক্ষুদ্র। রৌদ্রেও উহা অদৃশ্য। অণুবীক্ষণ যন্ত্রের দ্বারাও অদৃশ্য, কিন্তু বৈদ্যুতিক প্রদীপের আলোক রৌদ্রাপেক্ষাও উজ্জ্বল। উহার আলোক ঐ ছাঁকা বায়ুর মধ্যে প্রেরণ করিয়া তিনি দেখিয়াছে, যে, তাহাতেও ধূলা চিক‍্চিক্ করিতেছে। যদি এত যন্ত্রপরিস্কৃত বায়ুতেও ধূলা, তবে সচরাচর ধনী লোকে যে ধূলা নিবারণ করিবার উপায় করেন; তাহাতে ধূলা নিবারণ হয় না, ইহা বলা বাহুল্য। ছায়ামধ্যে রৌদ্র না পড়িলে রৌদ্রে ধূলা দেখা যায় না, কিন্তু রৌদ্র মধ্যে উজ্জল বৈদ্যুতিক আলোকেয় রেখা প্রেরণ করিলে ঐ ধূলা দেখা যায়। অতএব আমরা যে বায়ু মুহূর্ত্তে মুহূর্ত্তে নিশ্বাসে গ্রহণ করিতেছি, তাহা ধূলিপূর্ণ। যাহা কিছু ভোজন করি, তাহা ধূলিপূর্ণ কেন না বায়ুস্থিত ধূলিরাশি দিবারাত্র সকল পদার্থের উপর বর্ষণ হইতেছে। আমরা যে কোন জল পরিষ্কৃত করি না কেন, উহা ধুলিপূর্ণ। কলিকাতার জল পলতার কলে পরিষ্কৃত হইতেছে বলিয়া তাহা ধূলি-শূন্য নহে। ছাঁকিলে ধুলা যায় না।
+</p><p>২। এই ধূলা বাস্তবিক সমুদয়াংশই ধূলা নহে। তাহার অনেকাংশ জৈব পদার্থ। যে সকল অদৃশ্য ধূলিকণার কথা উপরে বলা গেল, তাহার অধিক ভাগ ক্ষুদ্র ক্ষুদ্র জীব। যে ভাগ জৈব নহে, তাহা অধিকতর গুরুত্ববিশিষ্ট; এজন্য তাহা বায়ুপরি তত ভাসিয়া বেড়ায় না। অতএব আমরা প্রতি নিশ্বসে শত শত ক্ষুদ্র ক্ষুদ্র জীব দেহ মধ্যে গ্রহণ করিয়া থাকি; জলের সঙ্গে সহস্র সহস্র পান করি; রাক্ষসবৎ অনেককে আহার করি। লণ্ডনের আটটি কোম্পানির কলে ছাঁকা পানীয় জল টিণ্ডল সাহেব পরীক্ষা করিয়া দেখিয়াছেন, এতদ্ভিন্ন তিনি আরও অনেক প্রকার জল পরীক্ষা করিয়া দেখিয়াছেন। তিনি পরীক্ষা করিয়া সিদ্ধান্ত করিয়াছেন যে, জল সম্পূর্ণরূপে পরিষ্কার করা মনুষ্য-সাধ্যাতীত। যে জল স্বাটিক পাত্রে রাখিলে বৃহৎ হীরকখণ্ডের ন্যায় স্বচ্ছ বোধ হয়, তাহাও সমল, কীটাণুপূর্ণ। জৈনেরা একথা স্মরণ রাখিবেন।
+</p><p>৩। এই সর্ব্বব্যাপী ধূলিকণা সংক্রামক পীড়ার মূল। অনতিপূর্ব্বে সর্ব্বত্র এই মত প্রচলিত ছিল যে, কোন এক প্রকার পচনশীল নির্জ্জীব জৈব পদার্থ (Malaria) কর্ত্তৃক সংক্রামক পীড়ার বিস্তার হইয়া থাকে। এ মত ভারতবর্ষে অধ্যাপি প্রবল। ইউরোপে এ বিশ্বাস একপ্রকার উচ্ছিন্ন হইতেছে। আচার্য্য টিণ্ডল প্রভৃতির বিশ্বাস এই যে, সংক্রামক পীড়ার বিস্তারের কারণ সজীব পীড়াবীজ (Germ)। ঐ সকল পীড়াবীজ বায়ুতে এবং জলে ভাসিতে থাকে এবং শরীর মধ্যে প্রবিষ্ট হইয়া তথায় জীবজনক হয়। জীবের শরীর মধ্যে অসংখ্য জীবেয় আবাস। কেশে উৎকুণ, উদরে কৃমি, ক্ষতে কীট, এই কয়টী মনুষ্য-শরীরে সাধারণ উদাহরণ। পশু মাত্রেরই গাত্র মধ্যে কীট সমুহের আবাস। জীষতত্ত্ববিদেরা অবধারিত করিয়াছেন যে, ভূমে, জলে, যা বায়ুতে যত জাতীয় জীব আছে, তদপেক্ষা অধিক জাতীয় জীব অন্য জীবের শরীরবাসী। যাহাকে উপরে “পীড়াবীজ” বলা হইয়াছে, তাহাও জীবশরীরবাসী জীর বা জীবোৎপাদক বীজ। শরীর মধ্যে প্রবিষ্ট হইলে তদুৎপাদ্য জীবের জন্ম হইতে থাকে। এই সকল শোণিতনিবাসী জীবের জনকৃতা শক্তি অতি ভয়ানক। যাহার শরীরমধ্যে ঐ প্রকার পীড়াবীজ প্রবিষ্ট হয়, সে সংক্রামক পীড়াগ্রস্ত হয়। ভিন্ন ভিন্ন পীড়ার ভিন্ন ভিন্ন বীজ। সংক্রামক জ্বরের বীজে জ্বর উৎপন্ন হয়; বসন্তের বীজে বসন্ত জন্মে; ওলীউঠার বীজে ওলাউঠা; ইত্যাদি।
+</p><p>৪। পীড়াবীজে কেবল সংক্রামক রোগ উৎপন্ন হয়, এমত নহে। ক্ষতাদি যে শুকায় না, ক্রমে পচে, দুর্গন্ধ হয়, দুরারোগ্য হয়, ইহাও অনেক সময়ে এই সকল ধূলিকণারূপী পীড়াবীজেয় জন্য। ক্ষতমুখ কখনই এমত আচ্ছন্ন রাখা যাইতে পারে না যে, অদৃশ্য ধূলা তাহাতে লাগিবে না। নিতান্ত পক্ষে তাহা ডাক্তারের অস্ত্র-মুখে ক্ষতমধ্যে প্রবেশ করিবে। ডাক্তার যতই অস্ত্র পরিষ্কার রাখুন না কেন, অদৃশ্য ধূলিপুঞ্জেয় কিছুতেই নিবারণ হয় না। কিন্তু ইহার একটা সুন্দর উপায় আছে। ডাক্তারের প্রায় তাহা অবলম্বন করেন। কার্ব্বলিক আসিড নামক দ্রাবক বীজঘাতী; তাহা জল মিশাইয়া ক্ষতমুখে বর্ষণ করিতে থাকিলে প্রবিষ্ট বীজ সকল মরিয়া যায়। ক্ষতমুখে পরিষ্কত তুলা বঁধিয়া রাখিলেও অনেক উপকার হয়, কেন না তুলা বায়ু পরিষ্কৃত করিবার একটী উৎকৃষ্ট উপায়।
+</p>
+
+<div><hr/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>গগনপর্য্যটন।</h2>
+<p>পুরাণ ইতিহাসাদিতে কথিত আছে, পূর্ব্বকালে ভারতবর্ষীয় রাজগণ আকাশ-মার্গে রথ চালাইতেন। কিন্তু আমাদের পূর্বপুরুষদিগের কথা স্বতন্ত্র, তাঁহারা সচরাচর এপাড় ওপাড়ার ন্যায়, স্বর্গলোকে বেড়াইতে যাইতেন, কথায় কথায় সমুদ্রকে
+ ﻿গণ্ডুষ করিয়া ফেলিতেন; কেহ জগদীশ্বরকে অভিশপ্ত করিতেন, কেহ তাঁহাকে যুদ্ধে পরাস্ত করিতেন। প্রাচীন ভারতবর্ষীয়দিগের কথা স্বতন্ত্র; সামান্য মনুষ্যদিগের কথা বলা যাউক।
+</p><p>সামান্য মনুষ্যের চিরকাল বড় সাধ গগন পর্য্যটন করে। কথিত আছে, তারস্তম নগরবাসী আর্কাইতস নামক এক ব্যক্তি ৪০০ খ্রীষ্টাব্দে একটি কাষ্ঠের পক্ষী প্রস্তুত করিয়াছিল; তাহা কিয়ৎক্ষণ জন্য আকাশে উঠিতে পারিয়াছিল। ৬৬ খ্রীষ্টাব্দে, সাইমন নামক এক ব্যক্তি রোম নগরে প্রাসাদ হইতে প্রাসাদে উড়িয়া বেড়াইবার উদ্যোগ পাইরাছিল। এবং তৎপরে কনস্তান্তিনোপল নগরে একজন মুসলমান ঐরূপ চেষ্টা করিয়াছিল। পঞ্চদশ শতাব্দীতে দান্তে নামক একজন গণিতশাস্ত্রবিৎ পক্ষ নির্ম্মাণ করিয়া আপন অঙ্গে সমাবেশ করিয়া থ্রাসিমীন হ্রদের উপর উঠিয়া গগনমার্গে পরিভ্রমণ করিয়াছিলেন। ঐরূপ করিতে করিতে এক দিন এক উচ্চ অট্টালিকার উপর পড়িয়া তাঁহার পদ ভগ্ন হয়। মাম‍্স‍্বরিনিবাসী অলিবর নামক একজন ইংরেজেরও সেই দশা ঘটে। ১৬৩৮ শালে গোল‍্ড্ উইন নামক এক ব্যক্তি শিক্ষিত হংসদিগের সাহায্যে উড়িতে চেষ্টা করেন। ১৬৭৮ শালে বেনিয়র নামক একজন ফরাশী পক্ষ প্রস্তুত পূর্ব্বক হস্ত পদে বাঁধিয়া উড়িয়াছিল। ১৭১০ শালে লরেন্ত দে গুজমান নামক একজন ফরাসি দারুনির্ম্মিত বায়ুপূর্ণ পক্ষীর পৃষ্ঠে আরোহণ করিয়া আকাশে উঠিয়াছিল। মার্কুইল দে বাকবিল নামক একজন আপন অট্টালিকা হইতে উড়িতে চেষ্টা করিয়া নদীগর্ভে পতিত হন। বানসার্ডেরও সেই দশা ঘটিয়াছিল।
+</p><p>১৭৬৭ শালে বিখ্যাত রসায়ন বিদ্যার আচার্য ডাক্তার বাক প্রচার করেন যে, জলজন বায়ু-পরিপূর্ণ পাত্র আকাশে উঠিতে পারে। আচার্য্য কাবালো ইহা পরীক্ষার দ্বারা প্রমাণীকৃত করেন, কিন্তু তখনও ব্যোমযানের কল্পনা হয় নাই।
+</p><p>ব্যোমযানের সৃষ্টিকর্ত্তা মোনগোলফীর নামক ফরাশী। কিন্তু তিনি জলজন বায়ুর সাহায্য অবলম্বন করেন নাই। তিনি প্রথমে কাগজের বা বস্ত্রের গোলক নির্মাণ করিয়া তন্মধ্যে উত্তপ্ত বায়ু পুরিতেন। উত্তপ্ত হইলে বায়ু লঘুতর হয়, সুতরাং তৎসাহায্য গোলক সকল উর্দ্ধে উঠিত। আচার্য্য চার্লস প্রথমে জলজন বায়ুপূরিত ব্যোমযানের সৃষ্টি করেন। গ্লোব নামক ব্যোমযানে উক্ত বায়ু পূর্ণ করিয়া প্রেরণ করেন; তাহাতে সাহস করিয়া কোন মনুষ্য আরোহণ করে নাই। রাজপুরুবেরাও প্রাণিহত্যার ভয় প্রযুক্ত কাহাকেও আরোহণ করিতে দেন নাই। এই ব্যোমযান কিয়দ্দুর উঠিয়া ফাটিয়া যায়, জলজন বাহির হইয়া যাওয়ায়, ব্যোমযান তৎক্ষণাৎ ভূপতিত হয়। গোনেস নামক ক্ষুদ্র গ্রামে উহা পতিত হয়। অদৃষ্টপূর্ব্ব খেচর দেখিয়া গ্রাম্য লোকে ভীত হইয়া, মহা কোলাহল আরম্ভ করে।
+</p><p>অনেকে একত্রিত হইয়া গ্রাম্য লোকেরা দেখিতে আইল যে, কিরূপ জন্তু আকাশ হইতে নামিয়াছে। দুই জন ধর্ম্মযাজক বলিলেন, যে ইহা কোন অলৌকিক জীবের দেহাবশিষ্ট চর্ম্ম। শুনিয়া গ্রামবাসিগণ তাহাতে ঢিল মারিতে আরম্ভ করিল, এবং খোঁচা দিতে লাগিল। তন্মধ্যে ভূত আছে, বিবেচনা করিয়া, গ্রাম্য লোকেরা ভূত শান্তির জন্য দলবদ্ধ হইয়া মন্ত্র পাঠ পুর্ব্বক গ্রাম প্রদক্ষিণ করিতে লাগিল, পরিশেষে মন্ত্রবলে ভূত ছাড়িয়া পলায় কি না দেখিবার জন্য, আবার ধীরে ধীরে সেইথানে ফিরিয়া আসিল। ভুত তথাপি যায় না—বায়ুসংস্পর্শে নানাবিধ অঙ্গভঙ্গী করে। পরে একজন গ্রাম্যবীর, সাহস করিয়া তৎপ্রতি বন্দুক ছাড়িল। তাহাতে বোম্যানের আবরণ ছিদ্রবিশিষ্ট হওয়াতে, বায়ু বাহির হইয়া, রাক্ষসের শরীর আরও শীর্ণ হইল। দেখিয়া সাহস পাইয়া, আর একজন বীর গিয়া তাহাতে অস্ত্রাঘাত করিল। তখন ক্ষত মুখ দিয়া বহুল পরিমাণে জলজন নির্গত হওয়ায়, বীরগণ তাহার দুর্গন্ধে ভয় পাইয়া রণে ভঙ্গ দিয়া পলায়ন করিল। কিন্তু এজাতীয় রাক্ষসের শোণিত ঐ বায়ু। তাহা ক্ষতমুখে নির্গত হইয়া গেলে, রাক্ষস ছিন্নমুণ্ড ছাগের ন্যায় “ধড়ফড়” করিয়া মরিয়া গেল। তখন বীরগণ প্রত্যাগত হইয়া তাহাকে অশ্বপুচ্ছে বন্ধন পূর্ব্বক লইয়া গেলেন। এদেশে হইলে সঙ্গে সঙ্গে একটি রক্ষাকালী পূজা হইত, এবং ব্রাহ্মণেরা চণ্ডীপাঠ করিয়া কিছু লাভ করিতেন। তার পরে, মোনগোল‍্ফীর আবার আগ্নেয় ব্যোমযান (অর্থাৎ যাহাতে জলজন না পূরিয়া, উত্তপ্ত সামান্য বায়ু পূরিত হয়) বর্বেল হইতে প্রেরণ করিলেন। তাহাতে আধুনিক বেলুনের ন্যায় একখানি “রথ” সংযোজন করিয়া দেওয়া হইয়াছিল। কিন্তু সেবারও মনুষ্য উঠিল না। সেই রথে চড়িয়া একটি মেষ, একটি কুক্ক‌ুট, ও একটি হংস স্বর্গ পরিভ্রমণে গমন করিয়াছিল। পরে স্বচ্ছন্দে গগন বিহার করিয়া, তাহারা স্বশরীরে মর্ত্যধামে ফিরিয়া আসিয়াছিল। তাহারা পুণ্যবান্ সন্দেহ নাই।
+</p><p>এক্ষণে ব্যোমযানে মনুষ্য উঠিবার প্রস্তাব হইতে লাগিল। কিন্তু প্রাণিহত্যার আশঙ্কায় ফ্রান্সের অধিপতি, তাহাতে অসম্মতি প্রকাশ করিলেন। তাঁহার অভিপ্রায় যে, যদি ব্যোমযানে মনুষ্য উঠে, তবে যাহারা বিচারালয়ে প্রাণদণ্ডেয় অজ্ঞাধীন হইয়াছে, এমত দুই ব্যক্তি উঠুক—মরে মরিবে। শুনিয়া পিলাতর দে রোজীর নামক একজন বৈজ্ঞানিকের বড় রাগ হইল—“কি! আকাশ-মার্গে প্রথম ভ্রমণ করার যে গৌরব, তাহা দুর্ব্বৃত্ত নরাধমদিগের কপালে ঘটিবে!” একজন রাজপুর-স্ত্রীর সাহায্যে রাজার মত ফিরাইয়া তিনি মার্কুইস দার্লান্দের সমভিব্যাহারে ব্যোমযানে আরোহণ করিয়া আকাশপথে পর্যটন করেন। সে বার নির্ব্বিঘ্নে পৃথিবীতে ফিরিয়া আসিয়াছিলেন, কিন্তু তাহার দুই বৎসর পরে—আবার ব্যোমযানে আরোহণ পূর্ব্বক, সমুদ্র পার হইতে গিয়া, অধঃপতিত হইয়া প্রাণত্যাগ করেন। যাহা হউক, তিনিই মনুষ্য মধ্যে প্রথম গগন-পর্যটক। কেন না, দুষ্মন্ত, পুরুরবা, কৃষ্ণার্জ্জুন প্রভৃতিকে মনুষ্য বিবেচনা করা অতি ধৃষ্টের কাজ। আর যিনি জয় রাম বলির পঞ্চমবায়ুপথে সমুদ্র পার হইয়াছিলেন, তিনিও মনুষ্য নহেন, নচেৎ তাঁহাকে এই পদে অভিষিক্ত করার আমাদিগের আপত্তি ছিল না।
+</p><p>দে রোজীরের পরেই চার্লস্ ও রবর্ট একত্রে, রাজভবন হইতে, ছয় লক্ষ দর্শকের সমক্ষে জলজনীর ব্যোমযানে উড্ডীন হয়েন। এবং প্রায় ১৪০০ ফীট উর্দ্ধে উঠেন।
+</p><p>ইহার পরে ব্যোমযানারোহণ বড় সচরাচর ঘটিতে লাগিল। কিন্তু অধিকাংশই আমাদের জন্য। বৈজ্ঞানিকতত্ত্ব পরীক্ষার্থ যাঁহারা আকাশপথে বিচরণ করিয়াছেন, তন্মধ্যে ১৮০৪ শালে গাই লুসাকের আরোহণই বিশেষ বিখ্যাত। তিনি একাকী ২৩০০০ ফীট উর্দ্ধে উঠিয়া নানাবিধ বৈজ্ঞানিক তত্ত্বের মীমাংসা করিয়াছিলেন। ১৮৩৬ শালে গ্রীন এবং হলণ্ড লাহেব, পনের দিবসের খাদ্যাদি বেলুনে তুলিয়া লইয়া, ইংলও হইতে গগনারোহণ করেন। তাঁহারা সমুদ্র পার হইয়া, আঠার ঘণ্টার মধ্যে জর্ম্মাণীর অন্তর্গত উইলবর্গ নাম নগরের নিকট অবতরণ করেন। গ্রীন অতি প্রসিদ্ধ গগন-পর্যটক ছিলেন। তিনি প্রায় চতুর্দ্দশ শত বার গগনারোহণ করিয়াছিলেন। তিনবার, বায়ুপথে সমুদ্রপার হইয়াছিলেন—অতএব, কলিযুগেও রাময়ণের দৈববলসম্পন্ন কার্য সকল পুনঃ সম্পাদিত হইতেছে। গ্রীন, দুইবার সমুদ্র মধ্যে পতিত হয়েন—এবং কৌশলে প্রাণরক্ষা করেন। কিন্তু বোধ হয়, জেম‍্স‍্গ্লেশর অপেক্ষা কেহ অধিক উর্দ্ধে উঠিতে পারেন নাই। তিনি ১৮৬২ শালে উবর্হাম‍্টন হইতে উড্ডীন হইয়া প্রায় সাত মাইল উর্দ্ধে উঠিয়াছিলেন। তিনি বহুশতবার গগনোপরি ভ্রমণপূর্ব্বক, বহুবিধ বৈজ্ঞানিক তত্ত্বের পরীক্ষা করিয়াছিলেন। সম্প্রতি আমেরিকার গগন-পর্যটক ওয়াইজ সাহেব, ব্যোমযানে আমেরিকা হইতে আট‍্লান্টিক মহাসাগর পার হইয়া ইউরোপে আসিবার কল্পনায়, তাহার যথাযোেগ্য উদ্যোগ করিয়া যাত্রা করিয়াছিলেন। কিন্তু সমুদ্রোপরি আসিবার পূর্ব্বে বাত্যামধ্যে পতিত হইয়া অবতরণ করিতে বাধ্য হইয়াছিলেন। কিন্তু সাহস অতি ভয়ানক!
+</p><p>পাঠকদিগের অদৃষ্টে সহসা যে গগন-পর্যটন-সুখ ঘটিবে, এমত বোধ হয় না, এজন্য গগনপর্য্যটকেরা আকাশে উঠিয়া কিরূপ দেখিয়া আসিয়াছেন, তাহা তাঁহাদিগের প্রণীত পুস্তকাদি হইতে সংগ্রহ করিয়া এস্থলে সন্নিবেশ করিলে বোধ হয়, পাঠকেয়া অসন্তুষ্ট হইবেন না। সমুদ্র নামটি কেবল জল-সমুদ্রের প্রতি ব্যবহৃত হইয়া থাকে; কিন্তু যে বায়ু কর্ত্তৃক পৃথিবী পরিবেষ্টিত তাহাও সমুদ্রবিশেষ; জলসমুদ্র হইতে ইহা বৃহত্তর। আমরা এই বায়বীয় সমুদ্রের তলচর জীব। ইহাতেও মেঘের উপদ্বীপ, বায়ুর স্রোতঃ প্রভৃতি আছে। তদ্বিষয়ে কিছু আনিলে ক্ষতি নাই।
+</p>
+
+<p> ﻿ব্যোমযান অল্প উচ্চ গিয়াই মেঘ সকল বিদীর্ণ করিয়া উঠে। মেঘের আবরণে পৃথিবী দেখা যায় না, অথবা কদাচিৎ দেখা ষায়। পদতলে অছিন্ন, অনস্ত দ্বিতীয় বসুন্ধরাবৎ মেঘজাল বিস্তৃত। এই বাষ্পীয় আবরণে ভূগোলক আবৃত; যদি গ্রহাস্তরে জ্ঞানবান্ জীব থাকে, তবে তাহারা পৃথিবীর বাষ্পীয়াবরণই দেখিতে পায়; পৃথিবী তাহাদিগের প্রায় অদৃশ্য। তদ্বূপ আমরাও বৃহস্পতি প্রভৃতি গ্রহগণের রৌদ্রপ্রদীপ্ত, রৌদ্রপ্রতিঘাতী, বাষ্পীয় আবরণই দেখিতে পাই। আধুনিক জ্যোতির্ব্বিদ‍্গণেয় এইরূপ অনুমান।
+</p><p>এইরূপ, পৃথিবী হইতে সম্বন্ধরহিত হইয়া, মেঘময় জগতের উপরে স্থিত হইয়া দেখা যায় যে, সর্ব্বত্র জীবশুন্য, শব্দশূন্য, গতিশূন্য, স্থির, নীরব। মস্তকোপরে আকাশ অতি নিবিড় নীল—সে নীলিমা আশ্চর্য্য। আকাশ বস্তুতঃ চিরান্ধকার— উহার বর্ণ গভীর কৃষ্ণ। আমাবস্যার রাত্রে প্রদীপশূন্য গৃহমধ্যে সকল দ্বার ও গবাক্ষ রুদ্ধ করিয়া থাকিলে যেরূপ অন্ধকার দেখিতে পাওয়া যায়, আকাশের প্রকৃত বর্ণ তাহাই। তন্মধ্যে স্থানে স্থানে নক্ষত্র সকল প্রচণ্ড জ্বালা বিশিষ্ট। কিন্তু তদালোকে অনন্ত আকাশের অনস্তু অন্ধকার বিনষ্ট হয় না—কেন না এই সকল প্রদীপ বহুদূরস্থিত। তবে যে আমরা আকাশকে অন্ধকারময় না দেখিয় উজ্জ্বল দেখি, তাহার কারণ বায়ু। সকলেই জানেন, সূর্য্যালোক সপ্তবর্ণময়। স্ফটিকের দ্বারা বর্ণগুলি পৃথক করা যায়—সপ্ত বর্ণের সংমিশ্রণে সূর্য্যালোক। বায়ু জড় পদার্থ, কিন্তু বায়ু আলোকেয় পথ রোধ করে না। বায়ু সূর্য্যলোকের অন্যান্য বর্ণের পথ ছাড়িয়া দেয়, কিন্তু নীলবর্ণকে রুদ্ধ করে। রুদ্ধ বর্ণ, বায়ু হইতে প্রতিহত হয়। সেই সকল প্রতিহত বর্ণাত্মক আলোক-রেখা আমাদের চক্ষুতে প্রবেশ করায়, আকাশ উজ্জ্বল নীলিমাবিশিষ্ট দেখি—অন্ধকার দেখি না।<sup><a href="#cite_note-1-n44">[১]</a></sup> কিন্তু যত উর্দ্ধে উঠা যায়, বায়ুস্তর তত ক্ষীণতর হয়, গাগনিক উজ্জ্বল নীলবর্ণ ক্ষীণতর হয়; আকাশের কৃষ্ণত্ব কিছু কিছু সেই আবরণ ভেদ করিয়া দেখিতে পাওয়া যায়। এই জন্য উর্ধ্বলোকে গাঢ় নীলিমা।
+</p><p>শিরে এই গাঢ় নীলিমা—পদতলে, তুঙ্গ শৃঙ্গ বিশিষ্ট পর্ব্বতমালায় শোভিত মেঘলোক—সে পর্ব্বতমালাও বাস্পীয়—মেঘের পর্ব্বত—পর্ব্বতের উপর পর্ব্বত, তদুপরি আরও পর্ব্বত—কেহ বা কৃষ্ণমধ্য, পার্শ্বদেশ রৌদ্রের প্রভাবিশিষ্ট—কেহ বা রৌদ্রস্নাত, কেহ যেন শ্বেত প্রস্তর-নির্মিত, কেহ যেন হীরক-নির্ম্মিত। এই সকল মেঘের মধ্য দিয়া ব্যোমযান চলে। তখন, নীচে মেঘ, উপরে মেঘ, দক্ষিণে মেঘ, বামে মেঘ, সম্মুখে মেঘ, পশ্চাতে মেঘ। কোথাও বিদ্যুৎ চমকিতেছে, কোথাও ঝড় বহিতেছে, কোথাও বৃষ্টি হইতেছে, কোথাও বরফ পড়িতেছে। মসুর ফন‍্বিল একবার একটি মেঘগর্ভস্থ রন্ধ্র দিয়া ব্যোমযানে গমন করিয়াছিলেন; তাঁহার কৃত বর্ণনা পাঠ করিয়া বোধ হয়, যেমন মুঙ্গেরের পথে পর্ব্বত মধ্য দিয়া, বাস্পীয় শকট গমন করে, তাঁহার ব্যোমযান মেধ মধ্য দিয়া সেইরূপ পথে গমন করিয়াছিল।
+</p><p>এই মেঘলোকে সূর্যোদয় এবং সূর্যাস্ত অতি আশ্চর্য্য দৃশ্য—ভূলোকে তাহার সাদৃশ্য অনুমিত হয় না। ব্যোমযানে আরোহণ করিয়া অনেকে একদিনে দুইবার সূর্যাস্ত দেখিয়াছেন। এবং কেহ কেহ একদিনে দুইবার সূর্যোদয় দেখিয়াছেন। একবার সূর্য্যাস্তের পর রাত্রি সমাগম দেখিয়া আবার ততোধিক উর্দ্ধে উঠিলে দ্বিতীয়বার সূর্যাস্ত দেখা যাইবে এবং একবার সূর্যোদয় দেখিয়া আবার নিম্নে নামিলে সেই দিন দ্বিতীর বার সূর্যোদয় অবশ্য দেখা যাইবে।
+</p><p>ব্যোমযান হইতে যখন পৃথিবী দেখা যায়, তখন উহা বিস্তৃত মানচিত্রের ন্যায় দেখায়; সর্ব্বত্র সমতল—অট্টালিকা, বৃক্ষ, উচ্চভূমি এবং অল্পোন্নত মেঘও, যেন সকলই অনুচ্চ, সকলই সমতল ভূমিতে চিত্রিতবৎ দেখায়। নগর সকল যেন ক্ষুদ্র ক্ষুদ্র গঠিত প্রতিকৃতি, চলিয়া যাইতেছে বোধ হয়। বৃহৎ জনপদ উদ্যানের মত দেখায়। নদী শ্বেত সূত্র বা উরগের মত দেখায়। বৃহৎ অর্ণবযান সকল বালকের ক্রীড়ার জন্য নির্ম্মিত তরণীর মত দেখায়। যাঁহারা লণ্ডন বা পারিস্ নগরীর উপর উত্থান করিয়াছেন, তাঁহারা দৃশ্য দেখিয়া মুগ্ধ হইয়াছেন,—তাঁহারা প্রশংসা করিয়া ফুরাইতে পারেন নাই। গ্লেশর সাহেব লিথিয়াছিলেন যে, তিনি লণ্ডনের উপরে উঠিয়া এককালে ত্রিশ লক্ষ মনুষ্যের বাস-গৃহ নয়নগোচর করিয়াছিলেন। রাত্রিকালে মহানগরী সকলের রাজপথস্থ দীপমালা সকল অতি রমণীয় দেখায়।
+</p><p>যাহারা পর্ব্বতে আরোহণ করিয়াছেন, তাঁহারা জানেন যে, যত উর্দ্ধে উঠা যায়, তত তাপের অল্পতা। শিমলা দারজিলিং প্রভৃতি পার্ব্বত্য স্থানের শীতলতার কারণ এই, এবং এইজন্য হিমালয় তুষারমণ্ডিত। (আশ্চর্য্যে র বিষয় যে, যে হিমকে ভারতবর্ষীয় কবি “একোহি দোষোগুণসন্নিপাতে” বিবেচনা করিয়াছিলেন, আধুনিক রাজপুরুষেরা, তাহাকেও গুণ বিবেচনা করিয়া তথায় রাজধানী সংস্থাপন করিয়াছেন।) ব্যোমযানে আরোহণ করিয়া উর্দ্ধে উত্থান করিলেও ঐরূপ ক্রমে হিমের আতিশয্য অনুভূত হয়। তাপ, তাপমান যন্ত্রের দ্বারা মিত হইয়া থাকে। যন্ত্র ভাগে ভাগে বিভক্ত। মনুষ্যশোণিত কিছু উষ্ণ, তাহার পরিমাণ ৯৮ ভাগ। ২১২ ভাগ তাপে জল বাষ্প হয়। ৩২ ভাগ তাপে জল তুষারত্ব প্রাপ্ত হয়। (তাপে জল তুষার হয় এ কোন কথা? বাস্তবিক তাপে জল তুষার হয় না, তাপাভাবেই হয়। ৩২ ভাগ তাপ জলের স্বাভাবিক তাপের অভাববাচক।)
+</p><p>পূর্ব্বে বিজ্ঞানবিদ‍্গণের সংস্কার ছিল যে, উর্দ্ধে তিন শত ফিট প্রতি এক ভাগ তাপ কমে। অর্থাৎ তিন শত ফিট উঠিলে এক ভাগ তাপহানি হইবে—ছয়শত ফিট উঠিলে দুই তাগ তাপ কমিবে—ইত্যাদি। কিন্তু গ্লেশর সাহেব বহুবার পরীক্ষা করিয়া স্থির করিয়াছেন যে, উর্দ্ধে তাপহানি এরূপ একটি সরল নিয়মানুগামী নহে। অবস্থা বিশেষে তাপহানির লাঘব গৌরব ঘটিয়া থাকে। মেঘ থাকিলে, তাপহানি অল্প হয়—কারণ, মেঘ তাপরোধক এবং তাপগ্রাহক। আবার দিবাভাগে যেরূপ তাপহানি ঘটে, রাত্রে সেরূপ নহে। গ্লেশর সাহেবেয় পরীক্ষার ফল নিম্নলিখিত মত—
+</p><p>ভুমি হইতে হাজার ফিট পর্যন্ত মেঘাচ্ছন্নাবস্থায় তাপহানিয় পরিমাণ ৪.৫ ভাগ; মেঘ না থাকিলে ৬.২ ভাগ, দশ হাজার ফিট পর্যন্ত, মেঘাচ্ছন্নাবস্থায় ২.২ ভাগ, মেঘ না থাকিলে ২ ভাগ। বিশ হাজার ফিট উর্দ্ধে, মেঘাচ্ছন্ন ১.১ ভাগ; মেঘ শূন্যে ১.২ ভাগ। ত্রিশ হাজার ফিট উর্দ্ধে মোট ৬.২ ভাগ তাপহ্রাস পরীক্ষিত হইয়াছিল ইত্যাদি। তাপহ্রাস হেতু উর্দ্ধে স্থানে স্থানে তুষার-কণা (Snow) দৃষ্ট হয়; এবং ব্যোমযান কথন কখন তন্মধ্যে পতিত হয়। উর্দ্ধে শীতাধিক্য, অনেক সময়ে যানারোহীদিগের কষ্টকর হইয়া উঠে—এমন কি, অনেক সময়ে হাত পা অবশ হয়, এবং চেতনা অপহৃত হয়। উর্দ্ধে তাপাভাবের কারণ তপ্ত বা তাপ্য সামগ্রীর অভাব। রৌদ্র ভূমে যেমন প্রখর, উর্দ্ধে বরং ততোধিক প্রখরতর বোধ হয়। কিন্তু তাহাতে কি তপ্ত হইবে? ভূমি অতি দূরে, বায়ু অতিক্ষীণ,—অল্পপরমাণু। দশ বারটি তুলার বস্তা উপর্য্যুপরি রাথিয়া দেখিবেন—উপরিস্থ তূলার তারে, নিম্নস্থ বস্তার তুলা গাঢ়তর হইয়াছে। তেমনি নিম্নস্থ বায়ুই গাঢ়—উপরিস্থ বায়ু ক্ষীণ। পরীক্ষা দ্বারা স্থির হইয়াছে—যে এক ইঞ্চ দীর্ঘ প্রস্থে, এরূপ ভূমির উপরে যে ভার, তাহার পরিমাণ সাড়ে সাতসের। আমরা মস্তকের উপর অহরহঃ এই ভার বহন করিতেছি—তজ্জন্য কোন পীড়া বোধ করি না কেন? উত্তর, “অগাধ জল সঞ্চারী” মৎস্য উপরিস্থ বারিরাশির ভারে পীড়িত হয় না কেন? উপরিস্থ বায়ুস্তর সমূহের তারে নিম্নস্থ বায়ুস্তর সকল ঘনীভূত—যত ঊর্দ্ধে যাওয়া যায়, বায়ু ততক্ষীণ হইতে থাকে। গগনপর্য্যটকেরা ইহা পরীক্ষা করিয়া জানিয়ছেন, গুরুতা অনুসারে ৩৸০ মাইল উর্দ্ধের মধ্যেই অর্ধেক বায়ু আছে; এবং পাঁচ ছয় মাইলের মধ্যেই সমুদায় বায়ুর তিন ভাগের দুই ভাগ আছে। এইজন্য উর্দ্ধে উঠিতে গেলে, নিশ্বাস প্রশ্বাসের জন্য অত্যন্ত কষ্ট হয়। মসুর ক্লামারিয় দশসহস্র ফিট উর্দ্ধে উঠিয়া, প্রথম বারে, যেরূপ কষ্ট অনুভুত করিয়াছিলেন, তাহার বর্ণনা এইরূপ করিয়াছেন, যথা—
+</p><p>“সাতটা বাজিতে এক পোয়া থাকিতে আমার শরীর মধ্যে এক অপূর্ব্ব আভ্যন্তরিক শীতলতা অনুভূত করিতে লাগিলাম। তৎসহিত তন্দ্রা আসিল। কষ্টে নিশ্বাস ফেলিতে লাগিলাম।কর্ণমধ্যে শোঁ শোঁ শব্দ হইতে লাগিল এবং আধ মিনিট কাল, আমার হৃদ্রোগ উপস্থিত হইল। কণ্ঠ শুষ্ক হইল। আমি একপাত্র জল পান করিলাম—তাহাতে উপকার বোধ হইল। যে বোতলে জল ছিল —তাহার ছিপি খুলিবার সময়ে, যেমন শ্যাম্পেনের বোতলের ছিপি সশব্দে বেগে উঠিয়া পড়ে, জলের বোতলের ছিপি খুলিতে সেই রূপ হইল। ইহার কারণ সহজেই বুঝা যাইতে পারে। তখন আমাদিগের মস্তকের উপর বায়ু, এক ভাগ কম হইয়াছিল। যখন বোতলে ছিপি আঁটিয়া গগনে যাত্রা করিয়াছিলাম, তখনকার অপেক্ষা এখনকার বায়ুর ভার এক ভাগ কম হইয়াছিল।”
+</p><p>দুই একবার গগন-মার্গে যাতায়াত করিলে এ সকল কষ্ট সহ্য হইয়া আইসে, কিন্তু অধিক উর্দ্ধে উঠিলে সহিষ্ণু ব্যক্তিরও কষ্ট হয়। গ্লেশর সাহেব এ সকল কষ্ট বিশেষ সহিষ্ণু ছিলেন, কিন্তু ছয় মাইল উর্দ্ধে উঠিয়া তিনিও চেতনাশূণ্য ও মুমূর্ষু হইয়াছিলেন। ২৯০০০ ফিট উপরে উঠিলে পর, তাঁহার দৃষ্টি অস্পষ্ট হইয়া আইসে। কিয়ৎক্ষণ পরে তিনি আর তাপমান যন্ত্রের পারদ-স্তম্ভ অথবা ঘড়ির কাঁটা দেখিতে সক্ষম হইলেন না। টেবিলের উপর এক হাত রাখিলেন। বখন টেবিলের উপর হাত রাখিলেন, তখন হস্ত সম্পূর্ণ সবল; কিন্তু তখনই সে হাত আর উঠাইতে পারিলেন না—তাহার শক্তি অন্তর্হিতা হইয়াছিল। তখন দেখলেন দ্বিতীয় হস্তও সেই দশাপন্ন হইয়াছে, অবশ। তখন একবার গাত্রালোড়ন করিলেন; গাত্র চালনা করিতে পারিলেন, কিন্তু বোধ হইল যেন হস্ত পদাদি নাই। ক্রমে এইরূপে তাঁহার সকল অঙ্গ অবশ হইয়া পড়িল; ভগ্নগ্রীবের ন্যায় মস্তক লম্বিত হইয়া পড়িল, এবং দৃষ্টি একেবারে বিলুপ্ত হইল। এইরূপে তিনি অকস্মাৎ মৃত্যুর আশঙ্কা করিতেছিলেন, এমত সময়ে, হঠাৎ তাঁহার চৈতন্যও বিলুপ্ত হইল। পরে ব্যোমযানের “সারথি” রথ নামাইলে তিনি পুনর্ব্বার জ্ঞান প্রাপ্ত হইলেন।
+</p>
+
+<p> রথ নামাইল কি প্রকারে? ব্যোমযানের গতি দ্বিবিধ, প্রথম, উর্দ্ধ হইতে অধঃ বা অধঃ হইতে উর্দ্ধ। দ্বিতীয় দিগন্তরে; যেমন শকটাদি অভিলষিত দিকে যায় সেই রূপ। ব্যোমযান অভিলষিত দিগন্তরে চালনা করা এ পর্যন্ত মনুষ্যের সাধ্যায়ত্ত হয় নাই—চালক মনে করিলে, উত্তরে, পশ্চিমে, বামে বা দক্ষিণে, সম্মুখে বা পশ্চাতে যান চালাইতে পারেন না। বায়ুই ইহার যথার্থ সারথি, বায়ুসারথি যে দিকে লইয়া যায়, ব্যোমযান সেই দিকে চলে। কিন্তু উর্দ্ধাধঃ গতি মনুষ্যের আয়ত্ত। ব্যোমযান লঘু করিতে পারিলেই উর্দ্ধে উঠিবে এবং পার্শ্ববর্ত্তী বায়ুর অপেক্ষা গুরু করিতে পারিলেই নামিবে। ব্যোমযানের “রথে” কতকটা বালুকা বোঝাই থাকে; তাহার কিয়দংশ নিক্ষিপ্ত করিলেই পূর্ব্বাপেক্ষা লঘুতা সম্পাদিত হয়—তখন ব্যোমযান আরও উর্দ্ধে উঠে। এইরূপে ইচ্ছাক্রমে উর্দ্ধে উঠা যায়। আর যে লঘু বায়ু কর্ত্তৃক বেলুন পরিপূরিত থাকায় তাহা গগনমণ্ডলে উঠিতে সক্ষম, তাহার কিয়দংশ নির্গত করিতে পারিলেই উহা নামে। ঐ বায়ু নির্গত করিবার জন্য ব্যোমযানের শিরোভাগে একটি ছিদ্র থাকে। সেই ছিদ্র সচরাচর আবৃত থাকে, কিন্তু তাহার আবরণে একটি দড়ি বাঁধা থাকে; সেই দড়ি ধরিয়া টানিলেই লঘু বায়ু বাহির হইয়া যায়; ব্যোমযান নামিতে থাকে।
+</p><p>দিগন্তরে গতি মনুষ্যের সাধ্যায়ত্ত নহে বটে, কিন্তু মনুষ্য বায়ুর সাহায্য অবলম্বন করতে সক্ষম। আশ্চর্য্যের বিষয় এই যে, ভিন্ন ভিন্ন স্তরে ভিন্ন ভিন্ন দিগভিমুখে বায়ু বহিতে থাকে। যখন ব্যোমারোহী ভূমির উপরে দক্ষিণ বায়ু দেথিয়া, যানারোহণ করিলেন তখনই হয়ত, কিয়দ্দুর উঠিয়া দেখিলেন যে, বায়ু উত্তরে; আরও উঠিলে হয়ত দেথিবেন যে, বায়ু পুর্ব্বে কি পুনশ্চ দক্ষিণে ইত্যাদি। কোন্ স্তরে কোন্ সময়ে কোন্ দিকে বায়ু বহে, ইহা যদি মনুষ্যের জানা থাকিত, তাহা হইলে ব্যোমযান মনুষ্যের আজ্ঞাকারী হইত। যাঁহারা সুচতুর, তাঁহারা কখন কখন বায়ুর গতি অবধারিত করিয়া স্বেচ্ছাক্রমে গগন পর্য্যটন করিয়াছেন। ১৮৬৮ শালের আগষ্ট মাসে মসুর তিসান্দর কালে নগর হইতে নেপ্ত্যুননামক বেলুনে গগনারোহণ করেন। চারি হাজার ফিট্ উর্দ্ধে উঠিয়া দেখিলেন যে, তাঁহাদিগের গতি উত্তর সমুদ্রে। অপরাহ্বে এই রূপ তাঁহারা অকস্মাৎ অনিচ্ছার সহিত, অনন্ত সাগরের উপর যাত্রা করিলেন। কিন্তু তখন উপায়ান্তর ছিল না। এই সঙ্কটে তাঁহারা দেখিলেন যে, নিম্নে মেঘ সকল দক্ষিণগামী। তখন তাঁহারা নিশ্চিন্ত হইয়া সমুদ্র বিহারে চলিলেন। এই রূপে তাঁহারা ২১ মাইল পর্য্যন্ত সমুদ্রোপরে বাহির হইয়া যান। তাহার পর লঘু বায়ু নির্গত করিয়া দিয়া, নীচে নামেন। বায়ুর সেই নিম্ন স্তরে দক্ষিণ বায়ু পাইয়া তৎকর্ত্তৃক বাহিত হইয়া পুনর্ব্বার ভূমির উপরে আসেন। কিন্তু দুর্ব্বুদ্ধি বশতঃ অবতরণ করেন নাই। তার পর সন্ধ্যা হইয়া অন্ধকার হইল। বাস্পের গাঢ়তা বশতঃ নিম্নে ভূতল দেখা যাইতেছিল না। এমত অবস্থায় তাঁহার কোথায় বাইতেছিলেন, তাহা জানিতে পারেন নাই। অকস্মাৎ নিম্ন হইতে গম্ভীর সমুদ্র-কল্লোল উথিত হইল। তখন অন্ধকারে পুনর্ব্বার অনন্ত সাগরোপরে বিচরণ করিতেছেন জানিতে পারিয়া, তাঁহারা আবার নিম্নে নামিলেন। আবার দক্ষিণবায়ুর সাহয্যে ভূমি প্রাপ্ত হইলেন।
+</p><p>উত্তর সমুদ্রে বিচরণ কালে তাঁহারা কয়েকটি অদ্ভুত ছায়া দেথিয়াছিলেন। দেখিলেন যে, সমুদ্রে যে সকল বাস্পীয়াদি জাহাজ চলিতেছিল, উর্দ্ধে মেঘমধ্যে তাহার প্রতিবিম্ব। মেঘমধ্যে তেমনি সমুদ্র চিত্রিত হইয়াছে—সেই চিত্রিত সমুদ্রে তেমনি প্রকৃত জাহাজের ন্যায় ছায়ার জাহাজ চলিতেছে। সেই সকল জাহাজের তলদেশ উর্দ্ধে, মাস্তুর নিম্নে; বিপরীত ভাবে জাহাজ চলিতেছে। মেঘরাশি বৃহদ্দর্পণ স্বরূপ সমুদ্রকে প্রতিবিম্বিত করিয়াছিল।
+</p><p>মসুর ফ্লামারিয়ঁ আর একটি আশ্চর্য্য প্রতিবিম্ব দেখিয়াছিলেন। দিবাভাগে প্রায় পাঁচসহস্র ফিট উর্দ্ধে আরোহণ করিয়া দেখিলেন, তাঁহাদিগের প্রায় শত ফিট মাত্র দুরে, দ্বিতীয় একটি বেলুন চলিয়াছে। আরও দেখিলেন যে, সেই দ্বিতীয় বেলুনটির আকৃতি তাঁহাদিগের বেলুনেরই আকৃতি, যেমন তাঁহাদিগের বেলুনের নিম্নে “রথ” যুক্ত ছিল, এবং তাহাতে যাঁহারা দুই জন আরোহী বসিয়াছিলেন, দ্বিতীয় বেলুনেও সেইরূপ রখ, এবং সেইরূপ দুইজন আরোহী! আরও বিস্মিত হইয়া দেখিলেন যে, সেই দুইজন আরোহীর অবয়ব—তাঁহাদিগেরই অবয়ব! তাঁহারাই সেই দ্বিতীয় বেলুনে বসিয়া আছেন। একটি বেলুনে যেখানে যাহা ছিল—যেখানে যে দড়ি, যেখানে যে সূতা, যেখানে যে যন্ত্র, দ্বিতীয় বেলুনে ঠিক্ তাহাই আছে। ফ্লামারিয়ঁ দক্ষিণ হস্তোত্তোলন করিলেন—ভৌতিক ফ্লামারিয়ঁ বাম হস্তোত্তোলন করিল। তাঁহার সঙ্গী একটা পতাকা উড়াইলেন—ভৌতিক সঙ্গী একটা তদ্রুপ পতাকা উড়াইল।
+</p><p>আরও বিস্ময়ের বিষয় এই যে, সেই ভৌতিক ব্যোমযানের ভৌতিক রথের চতুঃপার্শ্বে অপূর্ব্ব জ্যোতির্ম্ময় মণ্ডল সকল প্রতিভাত হইতেছিল। মধ্যে হরিৎ শ্বেতাভ মণ্ডল, তন্মধ্যে রথ। তৎপার্শ্বে ক্ষীণ নীল মণ্ডল; তাহার বাহিরে হরিদ্রাবর্ণ মণ্ডল; তৎপরে কপিশ রক্তাত মণ্ডল, শেষে অতসীকুসুমবৎ বর্ণ; তাহা ক্রমে ক্ষীণতর হইয়া মেঘের সঙ্গে মিশাইয়া গিয়াছে। এই বৃত্তান্ত বুঝাইবার স্থান এই ক্ষুদ্র প্রবন্ধের মধ্যে হইতে পারে না। ইহা বলিলেই যথেষ্ট হইবে যে, ইহা জলবাস্পের উপর প্রতিসৌর বিম্ব<sup><a href="#cite_note-2">[২]</a></sup> মাত্র।
+</p><p>গগনপথে পার্থিব শব্দ সহজে গমন করে, কিন্তু সকল সময়ে নহে, এবং সকল শব্দের গতি তুলারূপ নহে। মেঘাচ্ছন্নে শব্দরোধ ঘটে। গ্নেশর সাহেব চারি মাইল উর্দ্ধ হইতে রেইলওয়ে ট্রেনের শব্দ শুনিতে পাইয়াছিলেন। এবং বিশহাজার ফিট উপরে থাকিয়া কামানের শব্দ শুনিয়াছিলেন। একটি ক্ষুদ্র কুক্কুরের রব দুই মাইল উপর হইতে শুনিতে পাইয়াছিলেন, কিন্তু চারি হাজার ফিট উপরে থাকিয়া বহুসংখ্যক মানুষ্যের কোলাহল শুনিতে পান নাই। মসূর ক্লামারিয়ঁ আকাশ হইতে ভূমণ্ডলের বাদ্য শুনিতে পাইতেন। তাঁহার বোধ হইত, যেন মেঘমধ্যে কে সঙ্গীত করিতেছে।
+</p><p>অনেকেই অবগত আছেন যে, যখন পারিশ অবরুদ্ধ হয়, তখন ব্যোমযানযোগে পারিশ হইতে গ্রাম প্রদেশে ডাক যাইত। শিক্ষিত পারাবত সকল সেই সকল ব্যোমযানে চড়িয়া যাইত; তাহাদের পুচ্ছে উত্তর বাঁধিয়া দিলে লইয়া ফিরিয়া আসিত। লঘুতার অনুরোধে সেই সকল পত্র ফটোগ্রাফের সাহায্যে অতি ক্ষুদ্রাকারে লিখিত হইত—অতি বৃহৎ পত্র এক ইঞ্চির মধ্যে সমাবিষ্ট হইত। পড়িবার সময়ে অনুবীক্ষণ ব্যবহার করিতে হইত। স্থানাভাব বশতঃ এই কৌতুকাবহ তত্ত্ব আমরা সবিস্তারে লিথিতে পারিলাম না।
+</p><p>উপসংহারকালে বক্তব্য যে, ব্যোমযান এখনও সাধারণের গমনাগমনের উপযোগী বা যথেচ্ছ বিহারের উপায় স্বরূপ হয় নাই। গ্লেশর সাহেব বলেন যে, বেলুনের দ্বারা সে উদ্দেশ্য সিদ্ধ হইবে না; যানান্তর ইহার দ্বারা সূচিত হইতে পারে; যানান্তর সূচিত না হইলে সে আশা পূর্ণ হইবে না। মনুষ্য কখন উড়িতে পারিবে কি না, মসূর ক্লামারিয়ঁ এই তত্ত্বের সবিস্তারে আলোচনা করিয়া সিদ্ধান্ত করিয়াছিলেন যে, একদিন মনুষ্যগণ অবশ্য পক্ষীদিগের ন্যায় উড়িতে পারিবে; কিন্তু আত্মবলে নহে। যখন মনুষ্য, পক্ষ বা পক্ষবৎ যন্ত্র প্রস্তুত করিয়া, বাস্পীয় বা বৈদ্যুতিক বলে তাহা সঞ্চালন করিতে পারিবে, তখন মনুষ্যের বিহঙ্গ পদ প্রাপ্তির সম্ভাবনা। দেলোম নামক একজন ফরাশী একটি মৎস্যাকার বেলুন কল্পনা করিয়াছেন, তিনি বিবেচনা করেন, তৎসাহায্যে মনুষ্য যথেচ্ছ আকাশ-পথে যাতায়াত করিতে পারিবে। কিন্তু সে যন্ত্র হইতে এপর্যন্ত কোন ফলোদয় হয় নাই বলিয়া, আমরা তাহার বর্ণনায় প্রবৃত্ত হইলাম না।
+</p>
+
+<div><hr/></div>
+
+
+</div><ol><li><span><a href="#cite_ref-1-n33">↑</a></span> <span>কেহ কেহ বলেন যে, বায়ু মধ্যস্থ জল বাষ্প হইতে প্রতিহত নীল রশ্মি রেখাই আকাশের উজ্জ্বল নীলিমার কারণ।</span>
+</li>
+<li><span><a href="#cite_ref-2">↑</a></span> <span>Ant'helia</span>
+</li>
+</ol></section>
+<section><div>
+
+<h2>চঞ্চল জগৎ।</h2>
+
+<p>সচরাচর মনুষ্যের বোধ এই যে, গতি জগতের বিকৃত অবস্থা; স্থিয়তা জগতের স্বাভাবিক অবস্থা। কিন্তু বিশেব অনুধাবন করিলে বুঝা যাইবে, যে গতিই স্বাভাবিক অবস্থা; স্থিরতা কেবল গতির রোধ মাত্র। যাহা গতিবিশিষ্ট কারণ বশতঃ তাহার গতির রোধ হইলে, তাহার অবস্থাকে আমরা স্থিরতা বা স্থিতি বলি। যে শিলা খণ্ড, বা অট্টালিকাকে অচল বিবেচনা করিতেছি, বাস্তবিক তাহার মাধ্যাকর্ষণের বলে গতিবিশিষ্ট; নিম্নস্থ ভূমি তাহার গতি রোধ করিতেছে বলিয়া, তাহাকে স্থিয় বলিতেছি। এ স্থিরতাও কাল্পনিক; পৃথিবীতলস্থ অন্যান্য বস্তুর সঙ্গে তুলনা করিয়া বলিতেছি যে, এই পর্ব্বত বা
+ এই অট্টালিকা, অচল, গতিশূন্য—বস্তুতঃ উহার কেহই অচল বা গতিশূন্য-নহে, পৃথিবীর উপরে থাকিয়া, উহা পৃথিবীর সঙ্গে আবর্ত্তন করিতেছে। সূক্ষ্ম বিবেচনা করিতে গেলে জগতে কিছুই গতিশূন্য নহে।
+</p><p>কিন্তু সে কথা ছাড়িয়া দেওয়া যাক্। যাহা পৃথিবীর গতিতে গতিবিবিশিষ্ট তাহাকে চঞ্চল বলিবার প্রয়োজন করে না। তথাপিও পৃথিবীতে এমত কোন বস্তু নাই, যে মুহূর্ত্তজন্য স্থির।
+</p><p>চারি পার্শ্বে চাহিয়া দেখ, বায়ু বহিতেছে, বৃক্ষপত্র সকল নাচিতেছে, জল চলিতেছে, জীব সকল নিজ নিজ প্রয়োজন সম্পাদনার্থ বিচরণ করিতেছে। পরন্তু ইহার মধ্যেও কোন কোন বস্তু গতিশূন্য দেখা যাইতেছে। কিন্তু মাধ্যাকর্ষণে বা অন্য প্রকারে রুদ্ধ বাহ্যিক গতি ভিন্ন, ঐ সকল বস্তুর অন্য গতি আছে। সেই সকল গতি আভ্যন্তরিক।
+</p><p>বস্তু মাত্রেরই কিয়ৎ পরিমাণে তাপ আছে। যাহাকে, শীতল বলি, তাহা বস্তুতঃ তাপশূন্য নহে। তাপের অল্পতাকেই শীতলতা বলি, তাপের অভাব কিছুতেই নাই। যে তুষারখণ্ডের স্পর্শে অঙ্গচ্ছেদের ক্লেশানুভব করিতে হয়, তাহাতেও তাপের অভাব নাই—অল্পতা মাত্র।
+</p><p>যাহাকে তাপ বলি, তাহা পরমাণুগণের আন্দোলন মাত্র। কোন বস্তুর পরমাণু সকল পরস্পরের দ্বারা আকৃষ্ট এবং সন্ত্তড়িত হইলে, তাহা তরঙ্গবৎ আন্দোলিত হইতে থাকে। সেই ক্রিয়াই তাপ। যেখানে সকল বস্তুই তাপযুক্ত, সেখানে সকল বস্তুর পরমাণুই অহরহ পরম্পর কর্ত্তৃক আকৃষ্ট, সস্তাড়িত, এবং সঞ্চালিত। অতএব পৃথিবীস্থ সকল বস্তুই আভ্যন্তরিক গতিবিশিষ্ট।
+</p>
+
+<p> আলোক সম্বন্ধেও সেই কথা। ইথর নামক বিশ্বব্যাপী আকাশীয় তরল পদার্থের পরমাণু সমষ্টির তরঙ্গবৎ আন্দোলনই আলোক। সেই গতিবিশিষ্ট পরমাণু সকলের সঙ্গে নয়নেন্দ্রিয়ের সংস্পর্শে আলোক অনুভূত হয়। সেই প্রকার তাপীয় তরঙ্গ সহিত ত্বগিন্দ্রিয়ের সংস্পর্শে তাপ অনুভূত করি। এই সকল আন্দোলন ক্রিয়া মনুষ্যের দৃষ্টির অগোচর—উহা তাপরূপে এবং আলোকরূপেই আমরা ইন্দ্রিয় কর্ত্তৃক গ্রহণ করিতে পারি—অন্য রূপে নহে। তবে এই আন্দোলন-ক্রিয়ায় অস্তিত্ব স্বীকার করিবার কারণ কি? ইউরোপীয় বিজ্ঞানবিদেরা তাহা স্বীকার করিবার বিশেষ কারণ নির্দ্দেশ করিয়াছেন, কিন্তু তাহা এস্থলে বর্ণনীয় নহে।
+</p><p>পৃথিবীতলে আলোক সর্ব্বত্র দেখিতে পাই। অতি অন্ধকার অমাবস্যার রাতে, পৃথিবীতল একেবারে আলোকশূন্য নহে। অতএব সর্ব্বত্রেই সর্ব্বদা আলোকীয় আন্দোলনের গতি বর্ত্তমান।
+</p><p>বিজ্ঞানবিদেরা প্রতিপন্ন করিয়াছেন যে, আলোক, তাপ এবং মাধ্যাকর্ষণ তিনটিই পরমাণুর গতি মাত্র। অতএব পৃথিবীর সকল বস্তুই আভ্যন্তরিক গতিবিশিষ্ট। যৌগিক আকর্ষণের বলে সেই সকল গতি সত্ত্বেও কোন বস্তুর পরমাণু সকল বিস্রস্ত বা পৃথগ‍্ভূত হয় না।
+</p><p>পৃথিবীতলে এইরূপ। তারপর, পৃথিরীর বাহিরে কি?
+</p><p>পৃথিবী স্বয়ং অত্যন্ত প্রখর বেগবিশিষ্টা এবং অনন্তকাল আকাশমার্গে ধাবমানা। অন্যান্য গ্রহ উপগ্রহ প্রভৃতি যাহা সৌর জগতের অন্তর্গত তাহাও পৃথিবীর মত অবস্থাপন্ন সন্দেহ নাই। সেই সকল গ্রহ উপগ্রহে যে সকল পার্থ আছে, তাহাও পার্থিব পদার্থের ন্যায় সর্ব্বদা বাহ্যিক এবং আভ্যন্তরিক গতিবিশিষ্ট। জ্যোতির্ব্বিদ‍্গণের দৌরবীক্ষণিক অনুসন্ধানে সে কথার অনেক প্রমান সংগৃহীত হইয়াছে।
+</p><p>সূর্য নামে যে বৃহৎ বস্তু এই সৌর জগতের কেন্দ্রীভূত তাহা যেরূপ চাঞ্চল্যপূর্ণ, তাহা মনুষ্যের অনুভব শক্তির অতীত। যে সূর্য্যমণ্ডলের তাপ, আলোক, আকর্ষণ এবং বৈদ্যুতাদিকী শক্তি পৃথিবীস্থ গতি মাত্রেরই কারণ, সেই সূর্য্যমণ্ডলোপরে বা তদভ্যন্তরে যে নানাবিধ ভয়ঙ্কর এবং অদ্ভুত গতি নিয়ত বর্ত্তিবে, তাহা বলা বাহুল্য। সেই চাঞ্চলের একটি উদাহরণ “আশ্চর্য সৌরৎপাত” নামক প্রান্তরে বর্ণিত হইয়াছিল।
+</p><p>কিন্তু সুর্য্যোপরে এবং সূর্য্যগর্ভে যে নিয়ত গতির আধিপত্য, কেবল ইহাই নহে। সূর্য্য স্বয়ং গতিবিশিষ্ট। বিজ্ঞানবিদেরা স্থির করিয়াছেন যে, সুর্য স্বয়ং এই তাবৎ সৌর জগৎ সঙ্গে লইয়া প্রতি সেকেণ্ডে ৪৸৹ মাইল অর্থাৎ ঘণ্টায় ১৭১০০ মাইল আকাশ-পথে ধাবিত হইতেছে। এই ভয়ঙ্কর বেগে এই পদার্থ রাশি কোথায় যাইতেছে? কেহ বলিতে পারে না কোথায় যাইতেছে। আকাশের একটি নাক্ষত্রিক প্রদেশকে ইউরোপীয়েরা হরক্যুলিজ বলেন। সুর্য্য তন্মধ্যস্থ লামডা নামক নক্ষত্রাতিমুখে ধাবিত হইতেছে, কেবল এই পর্যন্ত নিশ্চিত হইয়াছে।
+</p><p>কিন্তু সূর্য্য এবং সৌর জগৎ ত বিশ্বের অতি ক্ষুদ্রাংশ। অন্ধকার রাত্রে অনন্ত আকাশমণ্ডল ব্যাপিয়া যে সকল জ্যোতিষ্ক জ্বলিতে থাকে, তাহারা সকলেই এক একটি সৌর জগতের কেন্দ্রীভূত। সে সকল কি গতি শূন্য? তাহাদিগেরও প্রাত্যহিক উদয়াস্তাদি দেখিতে পাই, সেও পৃথিবীর প্রাত্যহিক আবর্তনজনিত চাক্ষুষ ভ্রান্তি মাত্র। নাক্ষত্রিক লোকেও কি জগৎ চঞ্চল?
+</p><p>জ্যোতির্ব্বিদ্যার দ্বারা যত দূর অনুসন্ধান হইয়াছে, ততদূর জানিতে পারা গিয়াছে যে, নক্ষত্রলোকেও গতি সর্বময়ী। মত অনুসন্ধান হইয়াছে, ততই বুঝা গিয়াছে যে, সূর্য্যের যে প্রকৃতি, নক্ষত্র মাত্রেরই সেই প্রকৃতি। গ্রহ ভিন্ন অন্য তারাকে নক্ষত্র বলিতেছি।
+</p><p>কতকগুলি নক্ষত্র সৌর গ্রহগণের ন্যায় বর্ত্তনশীল। যেখানে আমরা চক্ষে একটি নক্ষত্র দেখিতে পাই, দূরবীক্ষণ সাহায্যে দেখিলে তথায় কথন কথন দুইটি, তিনটি বা ততোধিক নক্ষত্র দেখা যায়। কখন কখন ঐ দুই তিনটি নক্ষত্র পরস্পরের সহিত সম্বন্ধরহিত, এবং পরস্পর হইতে দূর স্থিত, অথচ দর্শক যেথান হইতে দেখিতেছেন, সেখান হইতে দেখিতে গেলে আকাশের একদেশে স্থিত দেখায়, এবং একটি সরল রেখার মধ্যবর্ত্তী হইয়া যুগ্ম নক্ষত্রের ন্যায় দেখায়। কিন্তু কখন কখন দেখা যায় যে, যে নক্ষত্রদ্বয় দেখিতে যুগ্ম, তাহা বাস্তবিক যুগ্মই বটে,—পরস্পরের নিকটবর্ত্তী এবং পরস্পরের সহিত নৈসর্গিক সম্বন্ধ বিশিষ্ট। এই সকল যুগ্মাদি নক্ষত্র সম্বন্ধে আধুনিক জ্যোতির্ব্বিদেরা পর্যবেক্ষণা ও গণনার দ্বারা স্থিরীকৃত করিয়াছেন যে, উহারা পরস্পরকে বেড়িয়া বর্ত্তন করিতেছে। অর্থাৎ যদি ক, খ, এই দুইটি নক্ষত্রে একটি যুগ্ন নক্ষত্র হয়, তবে ক, খ, উভয়ের মাধ্যাকর্ষণিক কেন্দ্রের চতুষ্পর্শে ক, খ, উতর নক্ষত্র বর্তন করিতেছে। কথন কখন দেখা গিয়াছে যে, এইরূপ দুইটি কেন, বহু নক্ষত্রে এক একটি নাক্ষত্রিক জগৎ। তন্মধ্যস্থ বিভক্ত নক্ষত্রগুলি সকলই ঐ প্রকার আবর্ত্তনকারী। বিচিত্র এই যে, নিউটন পৃথিবীতে বসিয়া, পার্থিব পদার্থের গতি দেখিয়া, পার্থিব উপগ্রহ চন্দ্রের গতিকে উপলক্ষ করিয়া, যে সকল মাধ্যাকর্ষণিক গতির নিয়ম আবিষ্কৃত করিয়াছিলেন, দূরবর্ত্তী এবং সৌরজগতের বহিঃস্থ এই সকল নক্ষত্রের গতিও সেই সকল নিয়মাধীন।
+</p>
+
+<p> নক্ষগণের প্রকৃতি এবং সুর্যের প্রকৃতি যে এক, তদ্বিষয়ে আর সংশয় নাই। ডাক্তার হুগিন‍্স্ প্রভৃতি বৈজ্ঞানিকেরা আলোক-পরীক্ষক যন্ত্রের সাহায্যে জানিয়াছেন যে, যে সকল বস্তুতে সূর্য্য নির্ম্মিত, অন্যান্য নক্ষত্রেও সেই সকল বস্তু লক্ষিত হয়। অতএব সূর্য্যোপরি ও সূর্য্যোগর্ত্তে যে প্রকার ভয়ঙ্কর কোলাহল ও বিপ্লব নিত্য বর্ত্তমান বলিয়া বোধ হয়, তারাগণেও সেই রূপ হইতেছে, সন্দেহ নাই। যে নক্ষত্র দূরবীক্ষণ সাহায্যেও অস্পষ্ট দৃষ্ট আলোকবিন্দু বলিয়া বোধ হয়, তাহাতে ক্ষণমাত্রে যে সকল উৎপাত ঘটিতেছে, পৃথিবীতলে দশবর্ষের নৈসর্গিক ক্রিয়া একত্রিত করিলেও তাহার তুল্য হইবে না। সুর্য্যমণ্ডলে সামান্য মাত্র কোন পরিবর্ত্তনে যে বিপ্লব ও নৈসর্গিক শক্তিব্যয় সূচিত হয়, তাহাতে পলক মাত্রে এই পৃথিবী ধ্বংস প্রাপ্ত হইতে পারে। প্রচণ্ড বাত্যার কল্লোল অথবা কর্ণবিদারক অশনিসম্পাত শব্দ হইতে লক্ষ লক্ষ লক্ষগুণে ভীমতর কোলাহল অনবরত সেই সৌরমগুলে নির্ঘোষিত হইতেছে সন্দেহ নাই। আর এই যে সহস্র সহস্র, স্থির, শীতল, ক্ষুদ্র ক্ষুদ্র জ্যোতিষ্কগণ দেখিতেছি, তাহাতেও সেইরূপ হইতেছে, কেন না সকলই সূর্য্যপ্রকৃতিবিশিষ্ট, বরং আমাদিগের সুর্য্য অনেক অনেক নক্ষত্রের অপেক্ষা ক্ষুদ্র এবং হীনতেজা। সিরিয়স্ নামক অত্যুজ্জ্বল নক্ষত্র, আমাদিগের নয়ন হইতে যত দূরে আছে, আমাদিগের সুর্য্য তত ধুয়ে প্রেরিত হইলে, উহা তৃতীয় শ্রেণীয় ক্ষুদ্র নক্ষত্রেয় ন্যায় দেখাইত; আকাশের কত শত নক্ষত্র তদপক্ষা উজ্জ্বল আলায় জ্বলিত। কিন্তু যদি সূর্যকে অল‍্দেবরণ (রোহিণী?) কঙ্কর, বেটেলগুস্ প্রভৃতি নক্ষত্রের স্থানে প্রেরণ করা যায়, তবে সুর্য্যকে দেখা যাইবে কি না সন্দেহ। প্রক‍্টর সাহেব বলেন যে, আকাশে যে সকল নক্ষত্র দেখিতে পাই বোধ হয় তার মধ্যে পঞ্চাশটিও আমাদের সূর্য্যাপেক্ষা ক্ষুদ্র হইবে না। অতএব সূর্য্যমণ্ডলে যেরূপ চাঞ্চল্যের অস্তিত্ব অনুমান করা যায়, অধিকাংশ নক্ষত্রে ততোধিক চাঞ্চল্য বর্ত্তমান, সন্দেহ নাই।
+</p><p>কেবল তাহাই নহে, সূর্য্য যেমন অতি প্রচণ্ডবেগে, গ্রহগণ সহিত, আকাশ পথে ধাবমান, অন্যান্য নক্ষত্রগণও তদ্রূপ। বরং অনেক নক্ষত্রের বেগ সূর্য্যাপেক্ষা প্রচণ্ডতর। সিরিয়সের গতি প্রতি সেকেণ্ডে ২০ মাইল, ঘণ্টায় ৭২০০০ মাইল। বেগা নামক উজ্জ্বল নক্ষত্রের বেগ প্রতি সেকেণ্ডে ৫০ মাইল, ঘণ্টার ১৮০০০০ মাইল, কস্তর প্রতি সেকেণ্ডে ২৫ মাইল, ঘণ্টায় ৯০০০০ মাইল। পেলাক্সের গতি সেকেণ্ডে ৪৯ মাইল, প্রায় বেগার ন্যায়। সপ্তর্ষির মধ্যে পাঁচটির গতি সিরিয়সের ন্যায়, একটির গতি বেগার ন্যায়। এই বেগ অতি ভয়ঙ্কর, বিশেষ যখন মনে করা যায় যে, এই সকল প্রচণ্ড বেগশালী পদার্থের অকার অতি প্রকাণ্ড (সিরিয়স সূর্য্যাপেক্ষা সহ গুণ বৃহৎ) তখন বিস্মের আর সীমা থাকে না।
+</p><p>নক্ষত্র সকল অদ্ভুত গতিবিশিষ্ট হইলেও, চারি সহস্র বৎসরেও তত্তাবতের স্থানভ্রংশ মনুষ্য-চক্ষে লক্ষিত হয় নাই। ঐ সকল নক্ষত্রের অসীম দূরতাই ইহার কারণ। উৎকৃষ্ট দূরবীক্ষণ সাহায্যে, আশ্চর্য্য মান-যন্ত্র ও বিদ্যা-কৌশলের বলে আধুনিক জ্যোতির্ব্বিদেরা কিঞ্চিৎ স্থানচ্যুতি পর্য্যবেক্ষণ করিয়াছেন। তাহাতেই ঐ সকল গতি স্থিরীকৃত হইয়াছে।
+</p><p>নাক্ষত্রিক গতিতত্ত্ব অতি আশ্চর্য্য। গগনের একদেশে স্থিত নক্ষত্রও এক দিকেই ধাবমান না হইয়াও নানাদিকে ধাবমান। কখন বা একদিকেই ধাবমান। কোথায় ধাবমান? কেন ধাবমান? সে সকল তত্ত্বের আলোচনা এ স্থলে নিষ্প্রোয়োজনীয়, এবং এক প্রকার অসাধ্য।
+</p>
+
+<p> যাহা বলা গেল, তাহাতে প্রতীয়মান হইতেছে যে, গতিই জাগতিক নিয়ম—স্থিতি নিয়ম রোধের ফলমাত্র। জগৎ সর্ব্বত্র, সর্ব্বদা চঞ্চল। সেই চাঞ্চল্য বিশেষ করিয়া বুঝিতে গেলে, অতি বিস্ময়কর বোধ হয়। জীবনাধারে শোণিতাদির চাঞ্চলাই জীবন। হৃৎপিণ্ড বা শ্বাসযন্ত্রের চাঞ্চল্য রহিত হইলেই মৃত্যু উপস্থিত হয়। মৃত্যু হইলে পরেও, দৈহিক পরমাণু মধ্যে রাসায়নিক চাঞ্চল্য সঞ্চার হইয়া, দেহ ধবংস হয়। যেখানে দৃষ্টিপাত করিব, সেইখানে চাঞ্চল্য, সেই চাঞ্চল্য মঙ্গলকর। যে বুদ্ধি চঞ্চলা, সেই বুদ্ধি চিন্তাশালিনী। যে সমাজ গতি বিশিষ্ট, সেই সমাজ উন্নতিশীল। বরং সমাজের উচ্ছৃঙ্খলতা ভাল, তথাপি স্থিরতা ভাল নহে।
+</p>
+
+<div><hr/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>কত কাল মনুষ্য?</h2>
+
+<p>জলে যেরূপ বুদ্বুদ উঠিয়া তখনই বিলীন হয়, পৃথিবীতে মনুষ্য সেইরূপ জম্মিতেছে ও মরিতেছে। পুত্রের পিতা ছিল, তাহার পিতা ছিল, এইরূপ অনন্ত মনুষ্য শ্রেণী পরম্পরা সৃষ্ট এবং গত হইয়াছে, হইতেছে এবং যত দূর বুঝা যায়, ভবিষ্যতেও হইবে। ইহার আদি কোথা? জগদাদির সঙ্গে কি মনুষ্যের আদি না পৃথিবীর সৃষ্টির বহু পরে প্রথম মনুষ্যের সৃষ্টি হইয়াছে? পৃথিবীতে মনুষ্য কত কাল আছে?
+</p><p>খ্রীষ্টনদিগের প্রাচীন গ্রন্থানুসারে মনুষ্যের সৃষ্টি এবং জগতের সৃষ্টি কালি পরশ হইয়াছে। যে দিন জগদীশ্বর কুম্ভকায় রূপে কাদা ছানিয়া পৃথিবী গড়িয়া, ছয় দিনে তাহাতে মনুষ্যাদি পুত্তল সাজাইয়াছিলেন, খ্রীষ্টানেরা অনুমান করেন
+ যে, সে ছয় সহস্র বৎসর পূর্ব্বে। এ কথা খ্রীষ্টানেরাও এর বিশ্বাস করেন না। আমাদিগের ধর্ম্ম-পুস্তকের কথার প্রতি আমৱাও সেইরূপ হতশ্রদ্ধ হইয়াছি। বিজ্ঞানের প্রবাহে সর্ব্বত্রই ধর্ম্মপুস্তক সকল ভাসিয়া যাইতেছে। কিন্তু আমাদিগের ধর্ম্ম-গ্রন্থে এমত কোন কথা নাই যে, তাহাতে বুঝায় যে আজি কালি, যা ছয় শত বৎসর বা ছয় সহস্র বৎসর, বা ছয় বৎসর পূর্ব্বে এই ব্রহ্মাণ্ডের সৃজন হইয়াছে। হিন্দু শাস্ত্রানুসারে কোটি কোটি বৎসর পূর্ব্বে, অথবা অনন্ত কাল পূর্ব্বে জগতের সৃষ্টি। আধুনিক ইউরোপীয় বিজ্ঞানেরও সেই মত।
+</p><p>তবে জগতের আদি আছে কি না, কেহ কেহ এই তর্ক তুলিয়া থাকেন। সৃষ্টি অনাদি, এ জগৎ নিত্য; ও সকল কথার বুঝায় যে, সৃষ্টির আরম্ভ নাই। কিন্তু সৃষ্টি একটি ক্রিয়া—ক্রিয়া মাত্র, কোন বিশেষ সময়ে কৃত হইয়াছে; অতএব সৃষ্টি কোন কাল বিশেষে হইয়া থাকিবে। অতএব সৃষ্টি অনাদি বলিলে, অর্থ হয় না। যাঁহারা বলেন, সৃষ্টি হইতেছে, যাইতেছে, আবার হইতেছে, এইরূপ অনাদি কাল হইতে হইতেছে, তাঁহারা প্রমাণশূন্য বিষয়ে বিশ্বাস করেন। এ কথায় নৈসর্গিক প্রমাণ নাই।
+</p><p>“অসূজচ্চ, জগৎ সর্ব্বং সহ পুত্রৈঃ কৃতাত্মভিঃ” ইত্যাদি বাক্যের দ্বারা সূচিত হয় যে, জগৎ-সৃষ্টি এবং মনুষ্য বা মনুষ্যজনকদিগের সৃষ্টি এক কালেই হইয়াছিল। এরূপ বাক্য হিন্দু-গ্রন্থে অতি সচরাচর দেখা যায়। যদি এ কথা যথার্থ হয়, তাহা হইলে, যত কাল চন্দ্র সূর্য্য, তত কাল মনুষ্য। বৈজ্ঞানিকেরা এ তত্ত্বে কি প্রমাণ সংগ্রহ করিয়াছেন, তাহাই সমালোচিত করা এ প্রবন্ধের উদ্দেশ্য।
+</p><p>বিজ্ঞানের অদ্যাপি এমত শক্তি হয় নাই যে, জগৎ অনাদি কি সাদি তাহার মীমাংসা করেন। কোন কালে সে মীমাংসা হইবে কি না, তাহাও সন্দেহের স্থল। তবে এক কালে, জগতের যে এরূপ ছিল না, বিজ্ঞান ইহা বলিতে সক্ষম। ইহা বলিতে পারে যে, এই পৃথিবী এইরূপ তৃণ শস্য বৃক্ষময়ী, সাগর পর্ব্বতাদি পরিপূর্ণা, জীবসঙ্কুলা, জীববাসোপযোগিনী ছিল না; গগন এককালে এরূপ সূর্য্য চন্দ্র নক্ষত্রাদি বিশিষ্ট ছিল না। একদিন—তখন দিন হয় নাই—এককালে জল ছিল না, ভূমি ছিল না—বায়ু ছিল না। কিন্তু যাহাতে এই চন্দ্র সূর্য্য তারা হইয়াছে, যাহাতে জল বায়ু ভূমি হইয়াছে—যাহাতে নদ নদী সিন্ধু—বন বিটপী বৃক্ষ—তৃণ লতা পুষ্প—পশু পক্ষী মানব হইয়াছে; তাহা ছিল। জগতের রূপান্তর ঘটিয়াছে, ইহা বিজ্ঞান বলিতে পারে। কবে ঘটিল, কি প্রকারে ঘটিল, তাহা বিজ্ঞান বলিতে পারে না। তবে ইহাই বলিতে পারে যে, সকলই নিয়মের বলে ঘটিয়াছে—ক্ষণিক ইচ্ছাহীন নহে। যে সকল নিয়মে অদ্যাপি জড় প্রকৃতি শাসিতা হইতেছে, সেই সকল নিয়মের ফলেই এই ঘোর রূপান্তর ঘটিয়াছে। সেই সকল নিয়মে? তবে আর সেরূপ রূপান্তর দেখি না কেন? দেখিতেছি। তিল তিল করিয়া, মুহুর্ত্তে মুহূর্ত্তে জগতের রূপান্তর ঘটিতেছে। কোটি কোটি বৎসর পরে, পৃথিবী কি ঠিক এইরূপ থাকিবে? তাহা নহে।
+</p><p>কিরূপে এই ঘোর রূপান্তর ঘটিল, এ প্রশ্নের একটি উত্তর অতি বিখ্যাত। আমরা লাপ্লাসের মতের কথা বলিতেছি। লাপ্লাসের মত ক্ষুদ্র বিদ্যালয়ের ছাত্রেরাও জানেন—সংক্ষেপে বর্ণিত করিলেই হইবে। লাপ্লাস সৌরজগতের উৎপত্তি বুঝাইয়াছেন। তিনি বলেন, মনে কর, আদৌ সূর্য্য, গ্রহ, উপগ্রহদি নাই কিন্তু সৌরজগতের গ্রান্ত অতিক্রম করিয়া সর্ব্বত্র সমভাবে, সৌরজগতে পরমাণু সকল ব্যাপিয়া রহিয়াছে। জড় পরমাণু মাত্রেরই, পরস্পরাকর্ষণ, তাপক্ষয়, সঙ্কোচন প্রভৃতি যে সকল গুণ আছে, ঐ জগব্যাপী পরমাণুরও থাকিবে। তাহার ফলে ঐ পরমাণুরাশি, পরমাণুরাশির কেন্দ্রকে বেষ্টন করিয়া ঘূর্ণিত হইতে থাকিবে। এবং তাপক্ষতির ফলে ক্রমে সঙ্কুচিত হইতে থাকিবে। সঙ্কোচনকালে, পরমাণু-জগতের বহিঃপ্রদেশ সকল মধ্যভাগ হইতে বিয়ুক্ত হইতে থাকিবে। বিযুক্ত ভগ্নাংশ পূর্ব্বসঞ্চিত বেগেৱ গুণে মধ্য প্রদেশকে বেড়িয়া ঘুরিতে থাকিবে। যে সকল কারণে বৃষ্টিবিন্দু গোলত্ব প্রাপ্ত হয়, সেই সকল কারণে ঘুরিতে ঘুরিতে সেই ঘূর্ণিত বিযুক্ত ভগ্নাংশ, গোলাকার প্রাপ্ত হইবে। এইরূপে এক একটি গ্রহের উৎপত্তি। এবং তাহা হইতে উপগ্রহগণেরও ঐরূপে উৎপত্তি। অবশিষ্ট মধ্যভাগ, সঙ্কোচ প্রাপ্ত হইয়া বর্ত্তমান সুর্য্যে পরিণত হইয়াছে।
+</p><p>যদি স্বীকার করা যায়, যে আদৌ পরমাণু মাত্র আকারশূন্য হইয়া জগৎ ব্যাপিয়া ছিল—জগতে আর কিছুই ছিল না— তাহা হইলে ইহা সিদ্ধ হয় যে, প্রচলিত নৈসর্গিক নিয়মের বলে জগৎ, সূর্য্য,<sup><a href="#cite_note-1-n69">[১]</a></sup> চন্দ্র, গ্রহ, উপগ্রহ, ধুমকেতু বিশিষ্ট হইবে—ঠিক এখন যেরূপ, সেইরূপ হইবে। প্রচলিত নিয়ম ভিন্ন অন্য প্রকার ঐশিক আজ্ঞার সাপেক্ষ নহে। এই গুরুতর তত্ত্ব, এই ক্ষুদ্র প্রবন্ধে বুঝাইবার সম্ভাবনা নহে—এবং ইহা সাধারণ পাঠকের বোধগম্য হইতেও পারে না। আমাদের সে উদ্দেশ্যও নহে। যাঁহারা বিজ্ঞানালোচনায় সক্ষম তাঁহারা এই নৈহারিক উপপাদ্য সম্বন্ধে হর্বট স্পেন্সরের বিচিত্র প্রবন্ধ পাঠ করিবেন। দেখিবেন যে স্পেন্সর কেবল আকার শূন্য পরমাণু সমষ্টির অস্তিত্ব মাত্র প্রতিজ্ঞা করিয়া তাহা হইতে জাগতিক, ব্যাপারের সমুদায়ই সিদ্ধ করিয়াছেন। স্পেন্সরের সকল কথাগুলি প্রামাণিক না হইলে হইতে পারে, কিন্তু বুদ্ধির কৌশল আশ্চর্য্য।
+</p><p>এইরূপে যে, বিশ্ব সৃষ্টি হইয়াছে, এমত কোন নৈসর্গিক প্রমাণ নাই। অন্য কোন প্রকারে যে, সৃষ্টি হয় নাই, তাহায়ও কোন নৈসর্গিক প্রমাণ নাই। তবে লাপ্লাসের মতে প্রমাণবিরুদ্ধও কিছু নাই।<sup><a href="#cite_note-2-n70">[২]</a></sup> অসম্ভব কিছু নাই। এ মত সম্ভব, সঙ্গত—অতএব ইহা প্রমাণের অতীত হইলেও গ্রাহ।
+</p><p>এই মত প্রকৃত হইলে, স্বীকার করিতে হয় যে, আদৌ পৃথিবী ছিল না। সুর্য্যাঙ্গ হইতে পৃথিবী বিক্ষিপ্ত হইয়াছে। পৃথিবী যখন বিক্ষিপ্ত হয়, তখন ইহা বাষ্পরাশি মাত্র—নহিলে বিক্ষিপ্ত হইবে না। অতএব পৃথিবীর প্রথমাবস্থা, উত্তপ্ত বাস্পীয় গোলক।
+</p><p>একটি উত্তপ্ত বাস্পীয় গোলক—আকাশ পথে বহুকাল বিচরণ করিলে কি হইবে? প্রথমে তাহার তাপহানি হইবে। যেখানে তাপের আধার মাত্র নাই—সেখানে তাপ-লেশ নাই; তাহা অচিন্তনীর শৈত্য বিশিষ্ট। আকাশে তাপাধার কিছু নাই—অতএব আকাশমার্গ অচিন্তনীয় শৈত্য বিশিষ্ট। এই শৈত্য বিশিষ্ট আকাশে বিচরণ করিতে করিতে তপ্ত বাষ্পীয় গোলকের অবশ্য তাপক্ষয় হইবে। তাপক্ষয় হইলে কি হইবে?
+</p><p>জলের উত্তপ্ত বাস্প সকলেই দেখিয়াছেন। সকলেই দেখিয়াছেন যে, ঐ বাষ্প শীতল হইলে জল হয়। আরও শীতল হইলে, জল বরফ হয়। সকল পদার্থের এই নিয়ম। যাহা উত্তপ্ত অবস্থায় বাষ্পকৃত, তপক্ষয়ে তাহা গাঢ়তা এবং কঠিনত্ব প্রাপ্ত হয়। অতএব বাস্পীয় গোলকাকৃতা পৃথিবীর তাপক্ষয় হইলে, কালে তাহা এক্ষণকার গাঢ়তা এবং কঠিনাবস্থা প্রাপ্ত হইবে।
+</p><p>পৃথিবী কঠিনত্ব প্রাপ্ত হইয়াও কিছুকাল অগ্নিতপ্ত ছিল, বিবেচনা হয়। অপেক্ষাকৃত শীতলতা ঘটিলেই কঠিনতা জন্মিবে, কিন্তু কঠিনতা জন্মিলেই তাহার সঙ্গে জীবাবাসযোগ্য শীতলতা ছিল বিবেচনা করা যায় না। সেও কালে ঘটিয়াছিল। তাপক্ষতি হেতু যে শীতলতা, তাহা উপরিভাগেরই প্রথমে ঘটে, উপরিভাগ শীতল হইলেও, ভিতর তপ্ত থাকে। পৃথিবীর অভ্যন্তরে অদ্যাপি বিষম তাপ আছে। ভূতত্ববিদেরা ইহা পুনঃপুনঃ প্রমাণীকৃত করিয়াছেন।
+</p><p>সেই উত্তপ্ত আদিমাবস্থায়, পৃথিবীতলে কোন জীব বা উদ্ভিদের বাসের সম্ভাবনা ছিল না। উত্তপ্ত বাস্পীয় গোলক জীবাবাসোপযোগী শীতলতা এবং কঠিনতা প্রাপ্ত হইতে লক্ষ লক্ষ যুগ অতিবাহিত হইয়াছিল, সন্দেহ নাই—কেন না আমাদের দুধের বাটি জুড়াইতে যে কালবিলম্ব হয়, তাহাতেই আমাদের ধৈর্য্যচ্যুতি জন্মে। অতএব পৃথিবীর উৎপত্তির লক্ষ লক্ষ যুগ পরেও জীব বা উদ্ভিদের সৃষ্টি হয় নাই।
+</p><p>যাঁহারা ভূতত্বের কিছুমাত্র জানেন, তাঁহারাও অবগত আছেন যে, পৃথিবীয় উপরে নানাবিধ মৃত্তিকা এবং প্রস্তর স্তরে স্তরে সন্নিবেশিত আছে। এইরূপ স্তর সন্নিবেশ কিয়দ্দুর মাত্র পাওয়া যায়, তাহার পরে যে সকল প্রন্তর পাওয়া যায়, তাহা স্তরত্ব শূন্য।
+</p><p>নীচে স্তরত্বশূন্য প্রস্তর, তদুপরি স্তরে স্তরে নানাবিধ প্রস্তর, গৈরিক বা মৃত্তিকা। এই সকল স্তরনিবদ্ধ প্রস্তর, গৈরিক বা মৃত্তিকাভ্যন্তরে এমত অনেক প্রমাণ পাওয়া যায় যে, তাহা এক কালে সমুদ্রতলে ছিল। এমন কি, অনেকগুলি ভয় কেবল ক্ষুদ্র ক্ষুদ্র সমুদ্রচর জীবের শরীরের সমষ্টি মাত্র। চাখড়ি নামে যে গৈরিক বা প্রস্তর প্রচলিত, তাহাইউরোপ খণ্ডের অধিকাংশের এবং আসিয়ার কিয়দংশের নিয়ে স্তরনিবদ্ধ আছে। এক্ষণে বর্ত্ত মান অনেকগুলি পর্ব্বত কেবল চাখড়ি। এই চাখড়ি কেবল এক প্রকার ক্ষুদ্র ক্ষুর সমুদ্র জলচর জীবের (Globigerinae) মৃত দেহের সমষ্টি মাত্র!
+</p><p>অতএব এই সকল গৈরিকস্তর এক কালে সমুদ্রতলস্থ ছিল। ভূভাগের কোন স্থান কখন সমুদ্রতলস্থ হইতেছে; আবার কাল সহকারে সমুদ্র সে স্থান হইতে সরিয়া যাইতেছে, সমুদ্রতল শুষ্ক ভূমিখণ্ড হইতেছে। ভূগর্ভস্থ রুদ্ধবায়ু, বা অন্য কারণে কোথাও ভূমি কাল সহকারে উন্নত, কালসহকারে অবনত হইতেছে। যেখানে ভূমি উন্নত হইল, সেখান হইতে সমুদ্র সরিয়া গেল, যেখানে অবনত হইল, তাহার উপরে সাগরজলরাশি আসিয়া পড়িল। তাহার উপরে সমুদ্রবাহিত মৃত্তিকা,জীবদেহাদি পতিত হইয়া একটী নুতন স্তর সৃষ্ট হইল। মনে কর, আবার কালে সমুদ্র সরিয়া গেল—সমুদ্রের তল শুষ্ক ভূমি হইল—তাহার উপর বৃক্ষাদি জন্মিয়া—জীব সকল জন্ম গ্রহণ করিয়া বিচরণ করিল। আবার যদি কখন উহা সমুদ্রগর্ভস্থ হয়, তবে তদুপরি নূতন স্তর সংস্থাপিত হইবে, এবং তথায় যে সকল জীব বিচরণ করিত, তাহাদিগের দেহবশেষ সেই স্তরে প্রোথিত হইবে। জীবের অস্থি ধ্বংস প্রাপ্ত হয় না— কিন্তু অতি দীর্ঘকাল প্রোথিত থাকিলে একরূপ প্রস্তরত্ন প্রাপ্ত হয়। এইরূপ অস্থ্যাদিকে “ফসিল” বলা যায়। পাতুরিয়া কয়লা, ফসিল কাঠ।
+</p>
+
+<p> যে কয়টা কথা উপরে বলিলাম, তাহাতে বুঝা যাইতেছে যে—
+</p><p>১। সর্ব্বনিম্নে স্তরত্বশূন্য প্রস্তর। তদুপরি অন্যান্য গৈরিকাদি স্তরে স্তরে সন্নিবিষ্ট।
+</p><p>২। স্তর পরম্পরা সামরিক সম্বন্ধ বিশিষ্ট। যে স্তরটি নিয়ে, সেটি আগে, যেটি তাহার উপরে, সেটি তাহার পরে হইয়াছে।
+</p><p>৩। যে স্তরে যে জীবের ফসিল অস্থি পাওয়া যায়, সেই স্তর যখন শুষ্ক ভূমি বা জলতল ছিল, তখন সেই জীব বর্ত্তমান ছিল। যদি কোন স্তরে কোন জীব বিশেষের ফসিল একবারে পাওয়া না যায়, তবে সেই স্তর সৃজনকালে সেই জীব ছিল
+</p><p>৪। যদি কোন কারে ক নামক জীবের ফসিল পাওয়া যায়, খ নামক জীবের ফসিল পাওয়া যায় না; তাহার উপরিস্থ কোন স্তরে যদি ঐ খ নামক জীবের ফসিল পাওয়া যায়, তবে সিদ্ধ হইতেছে, খ নামক জন্তু ক নামক জন্তুর পরে সৃষ্ট।
+</p><p>সর্ব্বনিম্নস্থ স্তরত্বশূন্য প্রস্তরে কোন ফসিল ছিল নাই। অতএব সিদ্ধ হইতেছে যে, পৃথিবীর প্রথম ভূদিতে কোন জীব বিচরণ করে নাই। তখন পৃথিবী জীবশূন্য ছিল।
+</p><p>যখন প্রথম স্তরমধ্যে জীবদেহের ফসিল দেখা যায়, তখন মানুষের অবস্থানের কোন চিহ্ন পাওয়া যায় না। মনুষ্য দূরে থাকুক, বৃহৎ বা ক্ষুদ্র চতুষ্পদ জন্তুর ফসিল পাওয়া যায় না। মৎস বা সরীসৃপের কোন চিহ্ন পাওয়া যায় না। যে সকল ক্ষুদ্র কীটাদিবৎ জীবের দেহাবশেষ পাওয়া যায়, তন্মধ্যে শাম্বুকই সর্ব্বোৎকৃষ্ট। অতএব আদিম জীবলোকে শম্বুকেরা প্রভু ছিল।
+</p>
+
+<p> তৎপরে মৎস্য দেখা দিল। ক্রমে উপরে উঠিতে সরীসৃপ জাতীয়ের সাক্ষাৎ পাওয়া যায়। পূর্ব্বকালীয় সরীসৃপ অতি ভয়ঙ্কর, তাদৃশ বিচিত্র, বৃহৎ এবং ভয়ঙ্কর সরীসৃপ এক্ষণে পৃথিবীতে নাই। সরীসৃপের রাজ্যের পরে, স্তন্যপায়ী জীবের দেখা পাওয়া যায়। ক্রমে নানাবিধ, হস্তী, ঋক্ষ, গণ্ডার, সিংহ, হরিণ জাতীয় প্রভৃতি দেখা যায়, তথাপি মনুষ্য দেখা যায় না। মনুষ্যের চিহ্ন কেবল সর্ব্বোর্দ্ধ স্তরে, অর্থাৎ আধুনিক মৃত্তিকায়। তন্নিমস্থ অর্থাৎ দ্বিতীয় স্তরেও কদাচিৎ মনুষ্যের চিহ্ন পাওয়া যায়। অতএব মনুষ্যের সৃষ্টি সর্ব্বশেষে; মনুষ্য সর্ব্বাপেক্ষা আধুনিক জীব।<sup><a href="#cite_note-3">[৩]</a></sup></p><p>“আধুনিক” শব্দে এ স্থলে কি বুঝায়, তাহা বিবেচনা করিয়া দেখা উচিত। যে সকল স্তরের কথা বলিলাম, সে গুলির সমবায়, পৃথিবীর ত্বকের স্বরূপ। একটি স্তরের উৎপত্তি ও সমাপ্তিতে কত লক্ষ বৎসর, কত কোটি বৎসর লাগিয়াছে, তাহা কে বলিবে? তাহা গণনা করিবার উপায় নাই। তবে কেবল ইহাই বলা যাইতে পারে যে, সে কাল অপরিমিত—বুদ্ধির ধারণার অতীত। সর্ব্বোর্দ্ধ স্তরেই মনুষ্য-চিহ্ন, এই কথা বলিলে, এত বুঝায় না যে, বহু সহস্র বৎসর মনুষ্য পৃথিবীবাসী নহে। তবে পৃথিবীর বরঃক্রমের সঙ্গে তুলনা করিলে বোধ হয়, মনুষ্যের উৎপত্তি এই মুহূর্তে হইয়াছে। এই জন্য মনুষ্যকে আধুনিক জীব বলা মাইতেছে।
+</p><p>মিসরদেশের রাজাবলীর যে সকল অলিকা প্রচলিত আছে, তাহাতে যদি বিশ্বাস করা যায়, তবে মিসরদেশে দশ সহস্র বৎ সরাবধি রাজশাসন প্রচলিত আছে। হোমর, খ্রীষ্টের নয় শত বৎসর পূর্বে পৃথিবীবিদিত মহাকাব্য রচনা করেন। ইহা সর্ব্বাদিসম্মত। হোমরের গ্রন্থে মিসরের রাজধানী শতদ্বারবিশিষ্টা থিবস্ নগরীর মহিমা কীর্ত্তিত হইয়াছে। মনুষ্যজাতি সভ্যাবস্থায় একবার উন্নতির পথে পদার্পণ করিলে, উন্নতি শীঘ্র শীঘ্র লাভ করিয়া থাকে বটে, কিন্তু অসভ্যদিগের স্বতঃসম্পন্ন যে উন্নতি, তাহা অচিন্তনীয় কাল বিলম্বে ঘটিয়া থাকে। ভারতীয় বন্যজাতিগণ চারি সহস্র বৎসর সভ্যজাতির প্রতিবেশী হইয়াও বিশেষ কিছু উন্নতি লাভ করিতে পারে নাই। অতএব সহজে বুঝিতে পারা যায় যে, মিসরদেশে সভ্যতা স্বতঃ জন্মিয়া, যে কালে শতদ্বার-বিশিষ্টা নগরী সংস্থাপনে সক্ষম হইয়াছিল, তাহার পরিমাণ বহু সহস্র বৎসর। মিসরতত্ত্বজ্ঞেরা বলিয়া থাকেন যে, মেম্ফিজ প্রভৃতি নগরী থিব‍্স্ হইতে প্রাচীনা। এই সকল নগরীতে যে দেবালয়াদি অদ্যাপি বর্ত্তমান আছে, তাহাতে যুদ্ধজয়াদির উৎসবের প্রতিকৃতি আছে। সর জর্জ কর্ণওয়াল লুইস বলেন, ঐতিহাসিক সময়ে মিসর দেশীয়দিগকে কখন যুদ্ধপরায়ণ দেখা যায় না। অথচ কোন কালে তাহারা যুদ্ধপরায়ণ না থাকিলে, তন্নির্ম্মিত মন্দিয়াদিতে যুদ্ধ জয়োৎসবের প্রতিকৃতি থাকিবার সম্ভাবনা ছিল না। অতএব বিবেচনা করিতে হইবে যে, ঐতিহাসিক কালের পূর্ব্বেই মিসর দেশীয়েরা এতদূর উন্নতি লাভ করিয়াছিল যে, প্রকাণ্ড মন্দিরাদি নির্মাণ করিয়া জাতীয় কীর্ত্তি সকল তাহাতে চিত্রিত করিত। অসভ্যজাতি কেবল আপন প্রতিভাকে সহায় করিয়া যে এত দুর উন্নতি লাভ করে, ইহা অনেক সহস্র বৎসরের কাজ। তাহার পর ঐতিহাসিক কাল অনেক সহস্র বৎসর। অতএব বহু সহস্র বৎসর হইতে মিসরদেশে মনুষ্যজাতি সমাজবদ্ধ হইয়া রাস করিতেছে। যে দশ সহস্র বৎসর, কি ততোধিক, কি তাহার কিছু ন্যুন, তাহা বলা যায় না।
+</p><p>মিসরদেশ নীলনদী-নির্মিত। বৎসর বৎসর নীলনদীর জলে আনীত কর্দ্দমরাশিতে এই দেশ গঠিত হইয়াছে। থিব‍্স্ মেম্ফিজ প্রভৃতি নগরী নীলনদীর পলির উপর স্থাপিত হইয়াছিল। এই নদী-কর্দ্দম-নির্ম্মিত প্রদেশ ১৮৫১ ও ১৮৫৪ সালে রাজব্যয়ে সুযোগ্য তত্ত্বাবধায়কের তত্ত্বাবধারণায় নিখাত হইয়াছিল। নানা স্থানে খনন করা যায়। যেখানে খনন করা হইয়া গিয়াছিল, সেইখান হইতেই ভগ্ন মৃৎপাত্র, ইষ্টকাদি উঠিয়াছিল। এমন কি, ষাট ফীট নীচুে হইতে ইষ্টক উঠিয়াছিল। সকল স্থানে এইরূপ ইষ্টকাদি পাওয়া গিয়াছিল, অতএব ঐ সকল ইষ্টক পূর্ব্বতন কূপাদি নিহিত বলিয়া বিবেচনা করা যায় না। এই সকল খনন-কার্য্য হেকেকিয়ান বে নামক একজন সুশিক্ষিত আরমাণিজাতীয় কর্মচারীর তত্ত্বাবধারণীয় হইয়াছিল। লিনান্টবে নামক অপর একজন কর্ম্মচারী ৭২ ফীট নিম্নে ইষ্টক প্রাপ্ত হইয়াছিলেন।
+</p><p>মসুর গিরার্ড অনুমান করেন যে, নীলের কর্দ্দম, শত বৎসরে পাঁচ ইঞ্চি মাত্র নিক্ষিপ্ত হয়। যদি শত বৎসরে পাঁচ ইঞ্চিও ধরিয়া লওয়া যায়, তাহা হইলে হেকেকিয়ান ৬০ ফীট নীচে যে ইট পাইয়াছিলেন, তাহার বয়ঃক্রম অন্যুন দ্বাদশ সহস্র বৎসর। মসুর রজীর হিসাব করিয়া বলিয়াছেন যে, নীলের কাদা শত বৎসরে ২৷৹ ইঞ্চি মাত্র জমে। বদি এ কথা সত্য। হয়, তবে লিনান্টবের ইষ্টকের বয়স ত্রিশ হাজার বৎসর।
+</p><p>অতএব যদি কেহ বলেন যে, ত্রিশ হাজার বৎসরেরও অধিক কাল মিসরে মনুষ্যের বাস, তবে তাঁহার কথা নিতান্ত প্রমণশূন্য বলা যায় না।
+</p>
+
+<p> মিসরে যেখানে, যত দূর খনন করা গিয়াছে, সেইখানেই পৃথিবীস্থ বর্ত্তমান জন্তুর অস্থ্যাদি ভিন্ন লুপ্ত জাতির অস্থ্যাদি কোথাও পাওয়া যায় নাই। অতএয যে সকল স্তর মধ্যে লুপ্ত জাতির অস্থ্যাদি পাওয়া যায়, তদপেক্ষা এই নীল-কর্দ্দমস্তর অত্যন্ত আধুনিক। আর যদি সেই সকল লুপ্ত জন্তুর দেহাবশেষ বিশিষ্ট স্তর মধ্যে মনুষ্যের তৎসহ সমসাময়িকতার চিহ্ন পাওয়া যায়, তবে কত সহস্র বৎসর পৃথিবীতল মনুষ্যের আবাসভূমি, কে তাহার পরিমাণ করিবে?
+</p><p>এরূপ সমসাময়িকতার চিহ্ন ফ্রান্স ও বেল‍্জ্যমে পাওয়া গিয়াছে।
+</p>
+
+<div><hr/></div>
+
+
+</div><ol><li><span><a href="#cite_ref-1-n58">↑</a></span> <span>গতিশূন্য নক্ষত্র মাত্রেই সূর্য্য। জগৎ কোটি কোটি সূর্য্য।</span>
+</li>
+<li><span><a href="#cite_ref-2-n60">↑</a></span> <span>কোমৎ, মিল, স্পেন‍্সর্ প্রভৃতি এই মত অনুমোদন করেন। সর জন হর্শেল বলেন,এ মত প্রমাণবিরুদ্ধ।</span>
+</li>
+<li><span><a href="#cite_ref-3">↑</a></span> <span>এ কথায় এমত বুঝায় না যে, মনুষ্যের পর কোন জীবের উৎপত্তি হয় নাই। বোধ হয়, বিড়াল মনুষ্যের কনিষ্ঠ।</span>
+</li>
+</ol></section>
+<section><div>
+
+<h2>জৈবনিক।</h2>
+<p>ক্ষিতি, অপ্, তেজঃ, মরুৎ এবং আকাশ, বহুকাল হইতে ভারতবর্ষে ভৌতিক সিংহাসন অধিকার করিয়াছিলেন। তাঁহারাই পঞ্চ ভূত—আর কেহ ভূত নহে। এক্ষণে ইউরোপ হইতে নুতন বিজ্ঞান-শাস্ত্র আসিয়া তাঁহাদিগকে সিংহাসন-চ্যুত করিয়াছেন। ভূত বলিয়া আর কেহ তাঁহাদিগকে বড় মানে না। নূতন বিজ্ঞান-শাস্ত্র বলেন, আমি বিলাত হইতে নুতন ভূত আনিয়াছি, তোমরা আবার কে? যদি ক্ষিত্যাদি জড়সড় হইয়া বলেন যে, আমরা প্রাচীন ভূত, কণাদকপিলাদির দ্বারা ভৌতিক রাজ্যে অভিষিক্ত হইয়া প্রতি জীব-শরীরে বাস করিতেছি, বিলাতী বিজ্ঞান বলেন, তোমরা আদৌ ভূত নও। আমার “Elementary Substances” দেখ— তাহারাই ভূত; তাহার মধ্যে তোমরা কই! তুমি, আকাশ, তুমি কেহই নও—সম্বন্ধ-
+ বাচক শব্দ মাত্র। তুমি, তেজঃ, তুমি কেবল একটি ক্রিয়া,— গতি বিশেষ মাত্র। আর, ক্ষিতি, অপ্, মরুৎ তোমরা এক একজন দুই তিন বা ততোধিক ভূতে নির্ম্মিত। তোমরা আবার কিসের ভূত?
+</p><p>যদি ভারতবর্ষ এমন সহজে ভূতছাড়া হইত, তবে ক্ষতি ছিল না। কিন্তু এখনও অনেকে পঞ্চভূতের প্রতি ভক্তিবিশিষ্ট। বাস্তবিক ভূত ছাড়াইলে একটু বিপদগ্রস্ত হইতে হয়। ভূতবাদীরা বলিবেন যে, যদি ক্ষিত্যাদি দূত নহে, তবে আমাদিগের এ শরীর কোথা হইতে? কিসে নির্ম্মিত হইল? নূতন বিজ্ঞান বলেন যে, তোমাদের পুরাণ কথায় একেবারে অশ্রদ্ধা প্রকাশ করিরা এ প্রশ্নের উত্তর দিতে চাহি না। জীবশরীরের একটি প্রধান ভাগ যে জল, ইহা অবশ্য স্বীকার করিব। আর মরুতের সঙ্গে শরীরের একটি বিশেষ সম্বন্ধ আছে,—এমন কি শরীরের বায়ুকোষে বায়ু না গেলে প্রাণের ধ্বংস হয়, ইহাও স্বীকার করি। তেজঃ সম্বন্ধে ইহা স্বীকার করিতে তোমাদের বৈশেষিকেরা যে জঠরাগ্নি কল্পনা করিয়াছেন, তাহার অস্তিত্ব আমার লিবিগ অতি সুকৌশলে প্রতিপন্ন করিয়াছেন। আর যদি সন্তাপকেই তেজঃ বল, তবে মানি যে, ইহা জীবদেহে অহরহঃ বিরাজ করে, ইহার লাঘব হইলে প্রাণের ধ্বংস হয়। সোডা পোতাস প্রভৃতি পৃথিবী বটে, তাহা অত্যল্প পরিমাণে শরীর মধ্যে আছে। আর আকাশ ছাড়া কিছুই নাই, কেন না আকাশ সম্বন্ধজ্ঞাপক মাত্র। অতএব শরীরে পঞ্চভূতের অস্তিত্ব এপ্রকারে স্বীকার করিলাম। কিন্তু আমার প্রধান আপত্তি তিনটি। প্রথম, শরীরের সারাংশ এ সকলে নির্ম্মিত নহে। এ সকল ভিন্ন অন্য অনেক প্রকার উপকরণ আছে। দ্বিতীয়, ইহাদের ভুত বল কেন? তৃতীয়, ইহার সঙ্গে প্রণাণানাদি বায়ু প্রভৃতি যে কতকগুলি কথা বল, বোধ হয়, হিন্দু রাজাদিগের আমলে আবকারির আইন প্রচলিত থাকিলে, সে কথাগুলির প্রচার হইত না।”
+</p><p>“দেখ, এই তোমার সম্মুখে ইষ্টক-নির্ম্মিত মনুষ্যের বাসগৃহ। ইহা ইষ্টক-নির্ম্মিত, সুতরাং ইহাতে পৃথিবী আছে। গৃহস্থ ইহাতে পানাদির জন্য কলসী কলসী জল সংগ্রহ করিয়া রাখিয়াছে। পাকার্থ এবং আলোকের জন্য, অগ্নি জ্বালিয়াছে, সুতরাং তেজঃও বর্ত্তমান। আকাশ, গৃহমধ্যে সর্ব্বত্রই বর্ত্তমান। সর্ব্বত্র বায়ু যাতায়াত করিতেছে। সুতরাং এ গৃহও পঞ্চভূত-নির্ম্মিত? তুমি যেমন বল, মনুষ্যের এস্থানে প্রাণ বায়ু, ওস্থানে অপান বায়ু ইত্যাদি, আমিও তেমনি বলিতেছি, এই দ্বার-পথে যে বায়ু বহিতেছে, তাহা প্রাণ-বায়ু, ও বাতায়ন-পথে যাহা বহিতেছে, তাহা অপান বায়ু ইত্যাদি। তোমারও নির্দ্দেশ যেমন অমূলক ও প্রমাণশূন্য, আমার নির্দ্দেশও তেমনি প্রমাণ শূন্য। তুমি জীব-শরীর সম্বন্ধে যাহা বলিবে, আমি এই অট্টালিকা সম্বন্ধে তাহাই বলিব। তুমি যদি আমার কথা অপ্রমাণ করিতে যাও, তোমার স্বপক্ষের কথাও অপ্রমাণ হইয়া পড়িবে। তবে কি তুমি আমার এই অট্টালিকাটি জীব বলিয়া স্বীকার করিবে?”
+</p><p>প্রাচীন দর্শনশাস্ত্রে এবং আধুনিক বিজ্ঞানে এই প্রকার বিবাদ। ভারতবর্ষবাসীরা মধ্যস্থ। মধ্যস্থেরা তিন শ্রেণীভুক্ত। এক শ্রেণীর মধ্যস্থেরা বলেন যে, “প্রাচীন দর্শন, আমাদের দেশীর। যাহা আমাদের দেশীর, তাহাই ভাল, তাহাই মান্য এবং যথার্থ। আধুনিক বিজ্ঞান বিদেশী, যাহারা খ্রীষ্টান হইয়াছে, সন্ধ্যা আহ্নিক করে না, উহারাই তাহাকে মানে। আমাদের দর্শন সিদ্ধ ঋষি-প্রণীত, তাঁহাদিগের মনুষ্যাতীত জ্ঞান ছিল, দিব্য চক্ষে সকল দেখিতে পাইতেন, কেন না তাঁহারা প্রাচীন এবং এদেশীয়। আধুনিক বিজ্ঞান যাঁহাদিগের প্রণীত, তাঁহারা সামান্য মনুষ্য। সুতরাং প্রাচীন মতই মানিব।”
+</p><p>আর এক শ্রেণীর মধ্যস্থেরা আছেন, তাঁহারা বলেন, “কোন‍্টি মানিতে হইবে, তাহা জানি না। দর্শনে কি আছে, তাহা জানি না, বিজ্ঞানে কি আছে, তাহাও জানি না। কালেজে তোতা পাখীর মত কিছু বিজ্ঞান শিখিয়াছিলাম বটে, কিন্তু যদি জিজ্ঞাসা কর কেন সে সব মানি, তবে আমার কোন উত্তর নাই। যদি দুই মানিলে চলে, তবে দুই মানি। তবে, যদি নিতান্ত পীড়াপীড়ি কর, তবে বিজ্ঞানই মানি, কেন না তাহা না মানিলে, লোকে আজি কালি মুর্খ বলে। বিজ্ঞান মানিলে লোকে বলিবে এ ইংরেজি জানে, সে গৌরব ছাড়িতে পারি না। আর বিজ্ঞান মানিলে বিনা কষ্টে হিন্দুরানীর বাঁধাবাঁধি হইতে নিষ্কৃতি পাওয়া যায়। সে অল্প সুখ নহে। সুতরাং বিজ্ঞানই মানিব।”
+</p><p>তৃতীয় শ্রেণীর মধ্যস্থেরা বলেন, “প্রাচীন দর্শন শাস্ত্র দেশী বলিয়া তৎপ্রতি আমাদিগের বিশেষ প্রীতি বা অপ্রীতি নাই। আধুনিক বিজ্ঞান সাহেবি বলিয়া তাহাকে ভক্তি বা অভক্তি করি না। যেটি যথার্থ হইবে তাহাই মানিব—ইহাতে কেহ খ্রীষ্টান বা কেহ মূর্খ বলে, তাহাতে ক্ষতি বোধ করি না। কোন‍্টি যথার্থ, কোন‍্টি অযথার্থ, তাহা মীমাংসা করিবে কে? আমরা আপনার বুদ্ধিমত মীমাংসা করি;—পরের বুদ্ধিতে যাইব না। দার্শনিকেরা আমাদিগের দেশী লোক বলিয়া তাঁহাদিগকে সর্ব্বজ্ঞ মনে করিব না—ইংরেজে রাজা বলিয়া তাঁহাদিগকে অভ্রান্ত মনে করি না। “সর্ব্বজ্ঞ” বা “সিদ্ধ” মানি না; আধুনিক মনুষ্যাপেক্ষা প্রাচীন ঋষিদিগের কোন প্রকার বিশেষ জ্ঞানের উপায় ছিল, তাহা মানি না—কেন না যাহা অনৈসর্গিক তাহা মানির না। বরং ইহাই বলি যে, প্রাচীনাপেক্ষা আধুনিকদিগের অধিক জ্ঞানবত্তার সম্ভাবনা। কেন না, কোন বংশে যদি পুরুষানুক্রমে সকলেই কিছু কিছু সঞ্চয় করিয়া যায়, তবে প্রপিতামহ অপেক্ষা প্রপৌত্র ধনবান্ হইবে সন্দেহ নাই। তবে আপনায় ক্ষুদ্রবুদ্ধিতে এ সকল গুরুতর তত্ত্বের মীমাংসা করিব কি প্রকারে? প্রমাণানুসারে। যিনি প্রমাণ দেখাইবেন, তাঁহার কথায় বিশ্বাস করিব। যিনি কেবল আনুমানিক কথা বলিষেন, তাহার কোন প্রমাণ দেখাইবেন না, তিনি পিতৃপিতামহ হইলেও তাঁহার কথায় অশ্রদ্ধা করিব। দার্শনিকেরা কেবল অনুমানের উপর নির্ভর করিয়া বলেন, ক হইতে খ হইয়াছে, গর মধ্যে ঘ আছে ইত্যাদি। তাঁহারা তাহার কোন প্রমাণ নির্দ্দেশ করেন না; কোন প্রমাণের অনুসন্ধান করিয়াছেন, এমত কথা বলেন না, সন্ধান করিলেও কোন প্রমাণ পাওয়া যায় না। যদি কখন প্রমাণ নির্দ্দেশ করেন, সে প্রমাণও আনুমানিক বা কাল্পনিক, তাহার আবার প্রমাণেয় প্রয়োজন; তাহাও পাওয়া যায় না। অতএব আজন্ম মূর্খ হইয়া থাকিতে হয়, সেও ভাল, তথাপি দর্শন মানিব না। এ দিকে বিজ্ঞান আমাদিগকে বলিতেছেন, “আমি তোমাকে সহসা বিশ্বাস করিতে বলি না, যে সহসা বিশ্বাস করে, আমি তাহার প্রতি অনুগ্রহ করি না; সে যেন আমার কাছে আইসে না। আমি যাহা তোমার কাছে প্রমাণের দ্বারা প্রতিপন্ন করিব, তুমি তাহাই বিশ্বাস করিও, তাহার তিলার্দ্ধ অধিক বিশ্বাস করিলে তুমি আমার ত্যাজ্য। আমি যে প্রমাণ দিব, তাহা প্রত্যক্ষ। একজনে সকল কাণ্ড প্রত্যক্ষ করিতে পারে না, এজন্য কতকগুলি তোমাকে অন্যের প্রত্যক্ষের কথা শুনিয়া বিশ্বাস করিতে হইবে। কিন্তু যেটিতে তোমার সন্দেহ হইবে, সেইটি তুমি স্বয়ং প্রত্যক্ষ করিও। সর্ব্বদা আমার প্রতি সন্দেহ করিও। দর্শনের প্রতি সন্দেহ করিলেই, সে ভস্ম হইয়া যায়, কিন্তু সন্দেহেই আমার পুষ্টি। আমি জীবশরীর সম্বন্ধে যাহা বলিতেছি, আমার সঙ্গে শবচ্ছেদ-গৃহে ও রাসায়নিক পরীক্ষাশালায় আইস। সকলই প্রত্যক্ষ দেখাইব। এইরূপ অভিহিত হইয়া বিজ্ঞানের গৃহে গিয়া সকলই প্রমাণ সহিত দেখিয়া আসিয়াছি। সুতরাং বিজ্ঞানেই আমাদের বিশ্বাস।”
+</p><p>যাঁহারা এই সকল কথা শুনিয়া কুতুহলবিশিষ্ট, হইবেন, তাঁহারা বিজ্ঞান মাতার আহ্বানানুসারে তাঁহার শবচ্ছেদ-গৃহে এবং রাসায়নিক পরীক্ষাশালায় গিয়া দেখুন, পঞ্চ ভূতের কি দুর্দ্দশা হইয়াছে। জীব-শরীরের ভৌতিকতত্ত্ব সম্বন্ধে আমরা যদি দুই একটা কথা বলিয়া রাখি, তবে তাঁহাদিগের পথ একটু সুগম হইবে।
+</p><p>বিষয় বাহুল্য ভয়ে কেবল একটি তত্বই আমরা সংক্ষেপে বুঝাইব। আমরা অনুমান করিয়া রাখিলাম যে, পাঠক জীবের শারীরিক নির্ম্মাণ সম্বন্ধে অভিজ্ঞ। গঠনের কথা বলিব না—গঠনের সামগ্রীর কথা বলিব।
+</p><p>একবিন্দু শোণিত লইয়া অনুবীক্ষণ যন্ত্রের দ্বারা পরীক্ষা কর। তাহাতে কতকগুলি ক্ষুদ্র ক্ষুদ্র চক্রাকার বস্তু দেখিবে। অধিকাংশই বক্তবর্ণ এবং সেই চক্রাণুসমূহের বর্ণ হেতুই শোণিতের বর্ণ রক্ত, তাহাও দেখিবে। তন্মধ্যে মধ্যে মধ্যে, আর কতকগুলি দেখিবে, তা রক্তবর্ণ নহে, —বর্ণহীন, রক্তচক্রাণু হইতে কিঞ্চিৎ বড়, প্রকৃত চক্রাকার নহে— আকারের কোন নিয়ম নাই। শয়ীরাভ্যন্তরে যে তাপ, পরীক্ষামাণ রক্তবিন্দু যদি সেইরূপ তাপ সংযুক্ত রাখা যায়, তাহা হইলে দেখা যাইবে, এই বর্ণহীন চক্রাণু সকল সজীব পদার্থের ন্যায় আচরণ করিবে। আপনারা যথেচ্ছা চলিয়া বেড়াইবে, আকার পরিবর্ত্তন করিবে, কখন কোন অঙ্গ বাড়াইয়া দিবে, কখন কোন ভাগ সঙ্কীর্ণ করিয়া লইবে। এইগুলি যে পদার্থের সমষ্টি, তাহাকে ইউরোপীয় বৈজ্ঞানিকেরা প্রোটোপ্লাস্ম্ বা বিত্তপ্লাস্ম্ বলেন। আমরা ইহাকে “জৈবনিক” বলিলাম। ইহাই জীব-শরীর নির্ম্মাণের একমাত্র সামগ্রী। যাহাতে ইহা আছে, তাহাই জীব; যাহাতে ইহা নাই, তাহা জীব নহে। দেখা যাউক, এই সামগ্রীটি কি।
+</p><p>এক্ষণকার বিদ্যালয়ের ছাত্রেরা অনেকেই দেখিয়াছেন, আচার্য্যের বৈদ্যুতীয় যন্ত্র-সাহায্যে জল উড়াইয়া দেন। বাস্তবিক জল উড়িয়া যায় না; জল অন্তর্হিত হয় বটে, কিন্তু তাহার স্থানে দুইটা বায়বীয় পদার্থ পাওয়া যায়—পরীক্ষক সেই দুইটা পৃথক্ পৃথক্ পাত্রে ধরিয়া রাখেন। সেই দুইটি পুনর্ব্বার একত্রিত করিয়া আগুন দিলে আবার জল হয়। অতএব দেখা যাইতেছে যে, এই দুইটি পদার্থের রাসায়নিক সংযোগে জলের জন্ম। ইহার একটির নাম অম্লজান বায়ু; দ্বিতীয়টির নাম জলজান বায়ু।
+</p><p>যে বায়ু পৃথিবী ব্যাপিয়া রহিয়াছে, ইহাতেও অম্লজান আছে।, অম্লান ভিক্স আর একটি বায়বীয় পদার্থও তাহাতে আছে। সেটি যবক্ষারেও আছে বলিয়া তাহার নাম যবক্ষার জান হইয়াছে। অম্লজান ও যবক্ষারজান সাধারণ বায়ুতে রাসায়নিক সংযোগে যুক্ত নহে। মিশ্রিত মাত্র। যাঁহারা রসায়নবিদ্যা প্রথম শিক্ষা করিতে প্রবৃত্ত হযেন, তাঁহারা শুনিয়া চমৎকৃত হয়েন যে, হীরক ও অঙ্গার একই বস্তু। বাস্তবিক এ কথা সত্য এবং পরীক্ষাধীন। যে দ্রব্য উভয়েরই সার, তাহার নাম হইয়াছে অঙ্গারজান। কাষ্ঠ তৃণ তৈলাদি যাহা দাহ করা যায়, তাহার দাহ্য ভাগ এই অঙ্গারজান। অস্কারজানের সহিত অম্লজানের রাসায়নিক যোগ ক্রিয়াকে দাহ বলে। এই চারিটি পদার্থ সর্ব্বদা পরস্পরে রাসায়নিক যোগে সংযুক্ত হয়। যথা, অম্লজান জলজানে জল হয়। অম্লজানে যবক্ষারজানে নাইট্রীক আসিড নামক প্রসিদ্ধ ঔবধ হয়। অম্লজানে, অঙ্গারজানে আঙ্গারিক অন্ন (কার্ব্বণিক আসিড) হয়। যে বাস্পের কারণ সোডা ওয়াটায় উছলিয়া উঠে, সে এই পদার্থ। দীপশিখা হইতে এবং মনুষ্য-নিশ্বাসে ইহা বাহির হইয়া থাকে। যবক্ষায়জান এবং জলজানে আমনিয়া নামক প্রসিদ্ধ তেজস্বী ঔষধ হইয়া থাকে। অঙ্গারজান এবং জলজানে তারপিন তৈল প্রভৃতি অনেকগুলি তৈলবৎ এবং অন্যান্য সামগ্রী হয়। ইত্যাদি।
+</p><p>এই চারিটি সামগ্রী যেমন পরস্পরের সহিত রাসায়নিক যোগে যুক্ত হয়, সেইরূপ অন্যান্য সামগ্রীর সহিত যুক্ত হয়। এবং সেই সংযোগেই এই পৃথিবী নির্ম্মিত। যথা, সডিয়মের সঙ্গে ও ক্লোরাইনের সঙ্গে অম্লজানের সংযোগ বিশেষে লবণ; চুণের সঙ্গে অম্লজান ও অঙ্গারজানের সংযোগ বিশেষে মর্ম্মরাদি নানাবিধ প্রস্তর হয়; সিলিকন এবং আলুমিনার সঙ্গে অম্লজানের সংযোগে নানাবিধ মৃত্তিকা।
+</p><p>দুইটি সামগ্রীর রাসায়নিক সংযোেগে যে এক ফল হয়, এমত নহে। নানা মাত্রায় নানা দ্রব্যের সংযোগে নানা দ্রব্য হইয়া থাকে।
+</p><p>জলজান, অম্লজান, অঙ্গারজান, এবং যবক্ষারজান, এই চারিটিই একত্রে সংযুক্ত হইয়া থাকে। সেই সংযোগের ফল জৈবনিক। জৈবনিকে এই চারিটি সামগ্রীই থাকে, আর কিছুই থাকে না এমত নহে; অম্লজানাদির সঙ্গে কখন কখন গন্ধক, কখন পোতাস ইত্যাদি সামগ্রী থাকে। কিন্তু যে পদার্থে এই চারিটাই নাই, তাহা জৈবনিক নহে; যাহাতে এই চারিটাই আছে, তাহাই জৈবনিক। জীবমাত্রেই এই জৈবনিকে গঠিত; জীব ভিন্ন আর কিছুতেই জৈবনিক নাই। এই স্থলে জীব শব্দে কেবল প্রাণী বুঝাইতেছে এমত নহে। উদ্ভিদও জীব, কেননা তাহাদিগেরও জন্ম, বৃদ্ধি, পুষ্টি ও মৃত্যু আছে। অতএব উদ্ভিদের শরীরও জৈবনিকে নির্ম্মিত। কিন্তু সচেতন ও অচেতন জীবে এ বিষয়ে একটু বিশেব প্রভেদ আছে।
+</p><p>জৈবনিক জীব-শরীর মধ্যেই পাওয়া যায়, অন্যত্র পাওয়া যায় না। জীব-শরীরে কোথা হইতে জৈবনিক আইসে? জৈবনিক জীবশরীরে প্রস্তুত হইয়া থাকে। উদ্ভিদ্ জীব, ভূমি এবং বায়ু হইতে অম্লজানাদি গ্রহণ করিয়া আপন শরীয় মধ্যে তৎসমুদয়ের রাসায়নিক সংযোগ সম্পাদন করিয়া জৈবনিক প্রস্তুত করে; সেই জৈবনিকে আপন শরীর নির্ম্মাণ করে। কিন্তু নির্জ্জীব পদার্থ হইতে জৈবনিক পদার্থ প্রস্তুত করার যে শক্তি, তাহা উদ্ভিদেরই আছে। সচেতন জীবের এই শক্তি নাই; ইহারা স্বয়ং জৈবনিক প্রস্তুত করিতে পারে না; উদ্ভিদকে ভোজন করিয়া প্রস্তুত জৈবনিক সংগ্রহ পূর্ব্বক শরীর পোষণ করে। কোন সচেতন জীব মৃত্তিকা খাইয়া প্রাণ ধারণ করিতে পারে না, কিন্তু তৃণ ধান্য প্রভৃতি সেই মৃত্তিকার রস পান করিয়া জীবন ধারণ করিতেছে, কেন না উহারা তাহা হইতে জৈবনিক প্রস্তুত করে; বৃষ মৃত্তিকা খাইবে না, কিন্তু সেই তৃণ ধান্যাদি খাইয়া তাহা হইতে জৈবনিক গ্রহণ করিবে ব্যাঘ্র আবার সেই বৃষকে খাইয়া জৈবনিক সংগ্রহ করিবে। যাঁহারা এদেশের জমীদারগণের দ্বেষক, তাঁহারা বলিতে পারেন যে, উদ্ভিদ জীবেরা এ জগতে চাসা, তাহারা উৎপাদন করে; অপরেরা জমীদার, তাহারা চাসার উপার্জ্জন কাড়িয়া খায়, আপনারা কিছু করে না।
+</p><p>এখন দেখ, এক জৈবনিকে সর্ব্বজীব নির্ম্মিত। যে ধান ছড়াইয়া তুমি পাখীকে খাওয়াইতেছ, সে ধান যে সামগ্রী, পাথীও সেই সামগ্রী, তুমিও সেই সামগ্রী। যে কুসুম ঘ্রাণ মাত্র লইয়া, লোকমোহিনী সুন্দরী ফেলিয়া দিতেছেন, সুন্দরীও যাহা, কুসুমও তাই। কীটও যাহা, সম্রাট্ও তাই। যে হংসপুচ্ছলেখনীতে আমি লিখিতেছি, সেও যাহা, আমিও তাই। সকলই জৈবনিক। প্রভেদও গুরুতর। জয়পুরী শ্বেত প্রস্তরে তোমার জলপান-পাত্র বা ভোজন পাত্র নির্ম্মিত হইয়াছে; সেই প্রস্তরে তাজমহল এবং জুমা মসজিদও নির্ম্মিত হইয়াছে। উভয়ে প্রভেদ নাই কে বলিবে? গোষ্পদেও জল, সমুদ্রে জল, গোষ্পদে সমুদ্রে প্রভেদ নাই কে বলিবে?
+</p><p>কিন্তু স্থূল কথা বলিতে বাকি আছে। জৈবনিক ভিন্ন জীবন নাই, যেখানে জীবন সেইখানে জৈবনিক তাহার পূর্ব্বগামী। “অন্যথা সিদ্ধিশূন্যস্য নিয়তা পূর্ব্ববর্ত্তিতা কারণত্বং” এ কথা যদি সত্য হয়, তবে জৈবনিকই জীবনের কারণ। জৈবনিক ভিন্ন জীবন কুত্রাপি সিদ্ধ নহে, এবং জৈবনিক জীবনের নিয়ত পূর্ব্ববর্ত্তী বটে। অতএব আমাদের এই চঞ্চল, সুখদুঃখ বহুল, বহু স্নেহাস্পদ জীবন, কেবল জৈবনিকের ক্রিয়া,রাসায়নিক সংযোগসমবেত জড় পদার্থের ফল। নিউটনের বিজ্ঞান, কালিদাসের কবিতা, হম্বোল‍্ট্ বা শঙ্করাচার্য্যের পাণ্ডিত্য—সকলই জড় পদার্থের ক্রিয়া; শাক্যসিংহের ধর্ম্মজ্ঞান, আকবরের শৌর্য্য, কোমতের দর্শনবিদ্যা সকলই জড়ের গতি। তোমার বনিতার প্রেম, বালকের অমৃত ভাষা, পিতার সদুপদেশ—সকলই জড়পদার্থের আকুঞ্চন সম্প্রসারণ মাত্র—জৈবনিক ভিন্ন, ভিতরে আর ঐন্দ্রজালিক কেহ নাই। যে যশের জন্য তুমি প্রণিপাত করিতেছ, সে এই জৈবনিকের ক্রিয়া—যেমন সমুদ্রগর্জ্জন এক প্রকার জড়পদার্থকৃত কোলাহল, যশ তেমনি জড় পদার্থকৃত অন্য প্রকার কোলাহল মাত্র। এই সর্ব্বকর্ত্তা জৈবনিক অম্লজান, জলজান, অঙ্গারজান এবং যবক্ষারজানের রাসায়নিক সমষ্টি। অতএব এই চারিটি ভৌতিক পদার্থই ইচ্ছাময়ের ইচ্ছায় সর্ব্বকর্ত্তা। ইহার প্রকৃত ভূত, এবং এই ভূতের কাণ্ড সফল আশ্চর্য্য বটে। পাঠক দেখিবেন যে, আমাদিগের পূর্ব্বপরিচিত পঞ্চ ভূত হইতে এই আধুনিক ভূতগণের যে প্রভেদ, তাহা কেবল প্রমাণগত। নচেৎ উভয়েরই ফল প্রকৃতিবাদ (Materialism) সাংখ্যের প্রকৃতিবাদ হইতে আধুনিক প্রকৃতিবাদের প্রভেদ, প্রধানতঃ প্রমাণগত। তবে আধুনিক বলেন, ক্ষিত্যাদি ভূত নহে, আমাদিগের পরিচিত এই ভুতগুলিই ভূত। যেই ভূত হউক, তাহাতে আমাদের বিশেষ ক্ষতি নাই—কেন না মনুষ্যজাতি ভূত ছাড়া হইল না। নাই হউক স্মরণ রাখিলেই হইল, ভুতের উপর সর্ব্বভূতময় একজন আছেন। তাঁহা হইতে ভূতের এ খেলা।
+</p>
+
+<div><hr/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>পরিমাণ রহস্য।</h2>
+<p>আমাদিগের সকল ইন্দ্রিয়ের অপেক্ষা চক্ষুর উপর বিশ্বাস অধিক। কিছুতে যাহা বিশ্বাস না করি, চক্ষে দেখলেই তাহাতে বিশ্বাস হয়। অথচ চক্ষের ন্যায় প্রবঞ্চক কেহ নহে।
+ যে সূর্যের পরিমাণ লক্ষ লক্ষ যোজনে হয় না, তাহাকে এক খানি স্বর্ণথালির মত দেখি। প্রকাণ্ড বিশ্বকে একটি ক্ষুদ্র নক্ষত্র দেখি। যে চন্দ্রের দূরতা সূর্য্যের দূরতার চারি শত ভাগের এক ভাগও নহে, তাহা সূর্য্যের সমদূরবর্ত্তী দেখার। যে পরমাণুতে এই জগৎ নির্ম্মিত, তার একটিও দেখিতে পাই না। আনুবীক্ষণিক জীব জৈবনিকাদি কিছুই দেখিতে পাই না। এই অবিশ্বাস-যোগ্য চক্ষুকেই আমাদের বিশ্বাস।
+</p><p>দর্শনেন্দ্রিয়ের এইরূপ শক্তিহীনতায় গতিকে আমরা জগতের পরিমাণবৈচিত্র্য কিছুই বুঝিতে পারি না। জ্যোতিষ্কাদি অতি বৃহৎ পদার্থকে ক্ষুদ্র দেখি, এবং অতি ক্ষুদ্র পদার্থ সকলকে একেবারে দেখিতে পাই না। ভাগ্যক্রমে, মন বাহ্যেন্দ্রিয়াপেক্ষা দূরদর্শী; অদর্শনীয়ও বিজ্ঞান দ্বারা মিত হইয়াছে। সে পরিমাণ অতি বিস্ময়কর। দুই একটা উদাহরণ দিতেছি।
+</p><p>সকলে জানেন যে, পৃথিবীর ব্যাস ৭০৯১ মাইল। যদি পৃথিবীকে এক মাইল দীর্ঘ এক মাইল প্রস্থ, এমত খণ্ডে খণ্ডে ভাগ করা যায়, তাহা হইলে উনিশ কোটি ছয়ষটি লক্ষ, ছাব্বিশ হাজার এইরূপ বর্গ মাইল পাওয়া যায়। এক মাইল দীর্ঘে, এক মাইল প্রস্থে, এবং এক মাইল উর্দ্ধে এরূপ ২৫৯,৮০০,০০০,০০০ ঘন মাইল পাওয়া যায়। ওজনে পৃথিবী যত টন হইয়াছে, তাহা নিয়ে অঙ্কের দ্বারা লিখিলাম। ৬,০৬৯,০০০,০০০,০০০,০০০,০০০,০০০। এক টন সাতাইশ মনের অধিক।<sup><a href="#cite_note-1-n98">[১]</a></sup></p><p>এই আকার কি ভয়ানক, তাহা মনে কল্পনা করা যায় না। সমগ্র হিমালয় পর্ব্বত ইহার নিকট বালুকাকণার অপেক্ষাও ক্ষুদ্র। কিন্তু এই প্রকাণ্ড পৃথিবী সূর্য্যের আকারের সহিত তুলনায় বালুকা মাত্র। চন্দ্র একটি প্রকাণ্ড উপগ্রহ, উহা পৃথিবী হইতে ২৪০,০০০ মাইল দূরে অবস্থিত। সূর্য্য এ প্রকার প্রকাণ্ড পদার্থ যে, তাহা অন্তঃশূন্য করিয়া পৃথিবীকে চন্দ্রসমেত তাহার মধ্যস্থলে স্থাপিত করিলে, চন্দ্র এখন যেরূপ দুরে থাকিয়া পৃথিবীর পার্শ্বে বর্ত্তন করে, সূর্য্যগর্ত্তেও সেইরূপ করিতে পারে, এবং চন্দ্রের বর্ত্তনপথ ছাড়াও এক লক্ষ ষাট হাজার মাইল বেশী থাকে।
+</p><p>সুর্য্যের দূরতা কত মাইল, তাহা বালকেও জানে, কিন্তু সেই দুরতা অনুভূত করিবার জন্য, নিম্নলিখিত গণনা উদ্ধৃত করিলাম।
+</p><p>“অম্মদাদির দেশে রেইলওয়ে ট্রেণ ঘন্টার ২০ মাইল যায়। যদি পৃথিবী হইতে সূর্য্য পর্যন্ত রেইলওয়ে হইত, তবে কতকালে সূর্যলোকে যাইতে পারিতাম? উত্তয়—যদি দিন রাত্রি, ট্রেণ অবিরত ঘণ্টায় বিশ মাইল চলে, তবে ৫২০ বৎসর ৬ মাস ১৬ দিনে সুর্য্যলোকে পোঁছান যায়। অর্থাৎ যে ব্যক্তি ট্রেনে চড়িবে, তাহার সপ্তদশ পুরুষ ঐ টেণেই গত হইবে।”<sup><a href="#cite_note-2-n99">[২]</a></sup></p><p>আর বৃহস্পতি শনি প্রভৃতি গ্রহ সকলের দুরতার সহিত তুলনায় এ দূরতাও সামান্য। বুবীর গণনা করিয়া বলিয়াছেন যে, রেইল যদি বণ্টায় ৩৩ মাইল চলে, তবে সূর্য্যলোক হইতে কেহ রেইলে যাত্রা করিলে, দিন রাত্র চলিয়া বৃহস্পতি গ্রহে ১৭১২ বৎসরে, শনিগ্রহে ৩১১৩ বৎসরে, উরেনসে ৬২২৬ বৎসরে, নেপ্ত্যুনে ৯৬৮৫ বৎসরে পোঁছিবে।
+</p><p>আবার এ দুৱতা নক্ষত্র সূর্য্যগণের দুরতার তুলনায় কেশের পরিমাণ মাত্র। সকল নক্ষত্রের অপেক্ষা আলফা সেন্টরাই আমাদিগের নিকটবর্ত্তী; তাহার দূরতা ৬১ সিগনাই নামক নক্ষত্রের পাঁচ ভাগের চারি ভাগ। এই দ্বিতীয় নক্ষত্রের দুরতা ৬৩,৬৫০,০০০,০০০,০০০ মাইল। আলোকের গতি প্রতি সেকেণ্ডে ১৯২,০০০ মাইল। সেই আলোক ঐ নক্ষত্র হইতে আসিতে দশ বৎসরের অধিক কাল লাগে। বেগা নামক নক্ষত্রের দূরতা ১৩০,০০০,০০০,০০০,০০০ মাইল; আলোক সেখান হইতে ২১ বৎসরে পৃথিবীতে পৌঁছে। ২১ বৎসর পূর্ব্বে ঐ নক্ষত্রের যে অবস্থা ছিল, তাহা আমরা দেখিতেছি—উহার অদ্যকার অবস্থা আমাদিগের জানিবার সাধ্য নাই।
+</p><p>আবার নীহারিকাগণের দূরতার সঙ্গে তুলনায়, এ সকল নক্ষত্রের দূরতা সূত্র পরিমিত বোধ হয়। বীণা (Lyra) নামক নক্ষত্র সমষ্টির বিটা ও গামা নক্ষত্রের মধ্যবর্ত্তী অঙ্গুরীয়বৎ নীহারিকার দুরতা, সর উইলিয়ম হর্শেলের গণনানুসারে সিরিয়সের দুরতার ৯৫০ গুণ। ঐ বিটা নক্ষত্রের দক্ষিণ পূর্বস্থিত গোলাকৃত নীহারিকা, ঐ মহাত্মা গণনানুসারে সৌর জগৎ হইতে ১,৩০০, ০০০,০০০,০০০,০০০ মাইল। ত্রিকোণ নামক নক্ষত্রসমষ্টিস্থিত, এক নীহারিকা, সিরিয়সের দূরতার ৩৪৪ গুণ দুরে অবস্থিত; এবং সুবৈষ্কির চাল নামক নক্ষত্র সমষ্টিতে ঘোড়ার লালের আকার যে এক নীহারিকা আছে, তাহার দূরতা উক্ত ভীষণ মানদণ্ডের নর শত গুণ অর্থাৎ ৫০,০০০,০০০,০০০,০০০,০০০ মাইলের কিছু ন্যূন।
+</p><p>পাদরি ডাক্তার স্কোরেস‍্বি বলেন যে, যদি আমাদিগের সূর্য্যকে এত দুরে লইয়া যাওয়া যায় যে, তথা হইতে পঁচিশ হাজার বৎসরে উহার আলোক আমাদিগের চক্ষে আসিবে, উহা তথাপি লর্ড রসের বৃহৎ দুরবীক্ষণে দৃশ্য হইতে পারে। যদি তাহা সত্য হয় তবে, যে সকল নীহারিকা হইতে সহস্র সহস্র প্রচণ্ড সূর্য্যের রশ্মি একত্রিত হইয়া আসিলেও, নীহারিকাকে ঐ দূরবীক্ষণে ধূমরেখা মাত্রবৎ দেখা যায়, না জানি যে কত কোটি বৎসরে আলোক তথা হইতে আসিয়া আমাদিগের নয়নে লাগে। অথচ আলোক প্রতি সেকেণ্ডে ১,৯২,০০০ মাইল, অর্থাৎ পৃথিবীর পরিধির অষ্টগুণ যায়।
+</p><p>পণ্টন সাহেব জানিয়াছেন যে, রৌদ্রের আলোক, মডারেটর দীপের অপেক্ষা ৪৪৪ গুণ তীব্র। যদি কোন সামগ্রীর দুই ইঞ্চি দুরে ১৬০টা মোমবতী রাখা যায়, তবে তাহাতে যে আলো পড়ে, সে রৌদ্রের মত উজ্জ্বল হয়। গণিত হইয়াছে যে, যদি সূর্য্য রশ্মিবিশিষ্ট পদার্থ না হইত, তবে তাহাকে মোমবাতীর সাত কোটি বিশ লক্ষ স্তরে আবৃত করিলে, অর্থাৎ নয় মাইল উচ্চ করিয়া বাতীতে তাহার সর্বাঙ্গ মুড়িয়া, সকল বাতী জ্বলিয়া দিলে রৌদ্রের ন্যায় আলো পৃথিবীতে পাওয়া যাইত। কি ভয়ঙ্কর তাপাধার! সিনসিনেটর ডাক্তার ভন স্থির করিয়াছেন যে, এক ফুট দূরে ১৪,০০০ বতী রাখিলে যে তাপ পাওয়া যায়, রৌদ্রের সেই তাপ। আর সূর্য্য আমাদিগের নিকট হইতে যতদূরে আছে, ততদূরে থাকিলে ৩,৫০০,০০০,০০০,০০০,০০০,০০০,০০০, ০০০,০০০ সংখ্যক বাতী এককালীন না পোড়াইলে রৌদ্রের ন্যায় তাপ হয় না। এ কথার অর্থ এই হইতেছে যে, প্রত্যহ পৃথিবীর ন্যায় বৃহৎ দুই শত বাতীর গোলক পোড়াইলে যে তাপ সম্ভুত হয়, সূর্য্যদেব একদিনে তত তাপ খরচ করেন। তাঁহার তাপ যেরূপ খরচ হয়, সেইরূপ নিত্য নিত্য উৎপন্ন হইয়া জমা হইয়া থাকে। তাহা না হইলে এই মহাতাপক্ষয়ে সুর্য্যও অল্প কালে অবশ্য তাপশূন্য হইতেন। কথিত হইয়াছে যে, সূর্য্য দাহ্যমান পদার্থ হইলে এই তাপ ব্যয় করিতে দশ বৎসরে আপনি দগ্ধ হইয়া যাইতেন।
+</p><p>মসূর পূইলা গণনা করিয়াছেন যে, সতের মাইল উচ্চ কয়লার খনি পোড়াইলে রে তাপ জন্মে, এক বৎসরে সূর্য্য তত তাপ ব্যায় করেন। যদি সূর্য্যের তাপবাহিতা জলের ন্যায় হয়, তবে বৎসরে ২.৬ ডিগ্রী সুর্য্যের তাপ কমিবে। কুঞ্চনক্রিয়াতে তাপ সৃষ্টি হয়। সূর্যের ব্যাস তাহার দশ সহস্রাংশের একাংশ কমিলেই, দুই সহস্র বৎসরে ব্যয়িত তাপ সূর্য্য পুনঃ প্রাপ্ত হইবে।
+</p><p>সূর্য্যের তাপশালিতার যে ভয়ানক পরিমাণ লিখিত হইল, স্থির নক্ষত্র মধ্যে অনেকগুলি তদপেক্ষা তাপশালী বোধ হয়। সে সকলের তাপ পরিমিত হইবার উপায় নাই, কেন না তাহার রৌদ্র পৃথিবীতে আসে না, কিন্তু তাহার আলোক পরিমিত হইতে পারে। কোন কোন নক্ষত্রের প্রভাশালিতা পরিমিত হইয়াছে। আলফা সেন্টরাই নামক নক্ষত্রের প্রভাশালিতা সূর্যের ২.৩২ গুণ। বেগা নক্ষত্র ষোড়শ সূর্য্যের প্রতাবিশিষ্ট এবং নক্ষত্ররাজ সিরিয়স দুই শত পঞ্চবিংশতি সূর্য্যের প্রভাবিশিষ্ট। এই নক্ষত্র আমাদিগের সৌর জগতের মধ্যবর্ত্তী হইলে পৃথিব্যাদি গ্রহ সকল অল্পকাল মধ্যে বাস্প হইয়া কোথায় উড়িয়া যাইত।
+</p><p>এই সকল নক্ষত্রের সংখ্যা অতি ভয়ানক। সর উইলিয়ম হর্শেল গণনা করিয়া স্থির করিয়াছেন যে, কেবল ছায়াপথে ১৮,০০০,০০০ নক্ষত্র আছে। স্ত্রুব বলেন, আকাশে দুই কোটি নক্ষত্র আছে। মসুর শাকর্ণাক বলেন, নক্ষত্র সংখ্যা সাত কোটি সত্তর লক্ষ। এ সকল সংখ্যার মধ্যে নীহারিকাভ্যন্তরবর্ত্তী নক্ষত্র সকল গণিত হয় নাই। যেমন সমুদ্রতীরে বালুকা, নীহারিকা সেইরূপ নক্ষত্র। এখানে অঙ্ক হারি মানে।
+</p><p>যদি অতি প্রকাণ্ড জগৎ সকলের সংখ্যা এইরূপ অননুমেয়, তবে ক্ষুদ্র পদার্থের কথা কি কালিব? ইহেণবর্গ বলেন যে, এক ঘন ইঞ্চি বিলিন্ শ্লট প্রস্তরে চল্লিশহাজার Gallionella নামক অনুবীক্ষণিক শম্বুক আছে—তবে এই প্রস্তরের একটি পর্ব্বত শ্রেণীতে কত আছে, কে মনে ধারণা করিতে পারে? ডাক্তার টমাস টম‍্সন‍্ পরীক্ষা করিয়া দেখিয়াছেন যে, সীসা, এক ঘন ইঞ্চিয় ৮৮৮,৪৯২,০০০,০০০,০০০ ভাগের একভাগ পরিমিত হইয়া বিভক্ত হইতে পায়ে। উহাই সীসার পরমাণু পরিমণ। তিনিই পরীক্ষা করিয়া দেখিয়াছেন যে, গন্ধকের পরমাণু ওজনে এক গ্রেণের ২,০০০,০০০,০০০ ভাগের এক ভাগ।
+</p>
+<div>
+<p><span><b>(সমুদ্রের গভীরতার পরিমাণ।)</b></span>
+</p>
+</div>
+<p>লোকের বিশ্বাস আছে যে, সমুদ্র কত গভীর, তাহার পরিমাণ নাই। অনেকের বিশ্বাস সমুদ্র “অতল।”
+</p><p>অনেক স্থানে সমুদ্রের গভীরতা পরিমিত হইয়াছে। আলেক‍্জান্দ্রানিবাসী প্রাচীন গণিত-ব্যবসায়িগণ অনুমান করিতেন যে, নিকটস্থ পর্ব্বত সকল কত উচ্চ, সমুদ্রও তত গভীর। ভূমধ্যস্থ (Mediteranean) সমুদ্রের অনেক স্থানে ইহার পোষক প্রমাণ পাওয়া গিয়াছে। তথায় এ পর্যন্ত ১৫,০০০ ফিটের অধিক জল পরিমিত হয় নাই—আলপ্স পর্ব্বত-শ্রেণীর উচ্চতাও ঐরূপ।
+</p><p>মিশর ও সাইপ্রস দ্বীপের মধ্যে ছয় সহস্র ফিট, আলেক‍্জান্দ্রা ও য়ো‍ড‍্শের মধ্যে নয় সহস্র নয় শত, এবং মাল‍্টার পূর্ব্বে ১৫,০০০ ফিট জল পাওয়া গিয়াছে। কিন্তু তদপেক্ষা অন্যান্য সমুদ্রে অধিকতর গভীরতা পাওয়া গিয়াছে। হম্বোল‍্টের কম্মস্ গ্রন্থে লিখিত আছে যে, এক স্থানে ২৬,••• ফিট রশী নামাইয়া দিয়াও তল পাওয়া যায় নাই-ই চারি মাইলের অধিক। ডাক্তার স্কোয়েস‍্বি লিখেন যে, সাত মাইল রশী ছাড়িয়া দিয়াও তল পাওয়া যায় নাই। পৃথিবীর সর্বোচ্চতম পর্ব্বত-শৃঙ্গ পাঁচ মাইল মাত্র উচ্চ।
+</p>
+
+<p> কিন্তু গড়ে, সমুদ্র কত গভীর, তাহা না মাপিয়াও গণিত বলে জানা যাইতে পারে। জলোচ্ছ্বাসের কারণ সমুদ্রের জলের উপর সূর্য্য চন্দ্রের আকর্ষণ। অতএব জলোচ্ছ্বাসের পরিমাণের হেতু, (১) সূর্য্য চন্দ্রের গুরুত্ব, (২) তদীয় দূরতা, (৩) তদীয় সম্বর্ত্তন কাল, (৪) সমুদ্রের গভীরতা। প্রথম, দ্বিতীয়, এবং তৃতীয় তত্ত্ব আমরা জ্ঞাত আছি; চতুর্থ আমরা জানি না, কিন্তু চারিটির সমবায়ের ফল, অর্থাৎ জলোচ্ছ্বাসের পরিমাণ, আমরা জ্ঞাত আছি। অতএব অজ্ঞাত চতুর্থ সমবারী কারণ অনায়াসেই গণনা করা বাইতে পারে। আচার্য্য হটন এই প্রকারে গণনা করিয়া স্থির করিয়াছেন যে, সমুদ্র গড়ে, ৫.১২ মাইল, অর্থাৎ পাঁচ মাইলের কিছু অধিক মাত্র গভীর। লপ্লাস, ব্রেষ্ট নগরে জলোচ্ছ্বাস পর্যবেক্ষণের বলে যে “Ratio of Semidiurnal Co-efficents” স্থির করিয়াছিলেন, তাহা হইতেও এইরূপ উপলব্ধি করা যায়।
+</p>
+
+<div>
+<p><span><b>(শব্দ)</b></span>
+</p>
+</div>
+
+<p>সচরাচর শব্দ প্রতি সেকেণ্ডে ১০৩৮ ফিট গিয়া থাকে বটে, কিন্তু বের্থেম ও ব্রেগেট নামক বিজ্ঞানবিৎ পণ্ডিতেরা বৈদ্যুতিক তারে প্রতি সেকেণ্ডে, ১১,৪৫৬ সেকেণ্ড বেগে শব্দ প্রেরণ করিয়াছিলেন। অতএব তারে কেবল পত্র প্রেরণ হয় এমত নহে; বৈজ্ঞানিক শিল্প আরও কিছু উন্নতি প্রাপ্ত হইলে মনুষ্য তারে কথোপকথন করিতে পারিবে।<sup><a href="#cite_note-3-n100">[৩]</a></sup></p><p>মনুষ্যের কণ্ঠস্বর কত দূর যায়? বলা যায় না। কোন কোন যুবতীয় ব্রীড়ারুদ্ধ কণ্ঠস্বর শুনিবার সময়ে, বিরক্তি ক্রমে ইচ্ছা করে যে,নাকের চসমা খুলিয়া কানে পরি, কোন কোন প্রাচীনার চীৎকারে বোধ হয়, গ্রামান্তরে পলাইলেও নিস্কৃতি নাই। বিজ্ঞানবিদেরা এ বিষয়ে কি সিদ্ধান্ত করিয়াছেন, দেখা যাউক।
+</p><p>প্রাচীনমতে আকাশ শব্দবহ; আধুনিক মতে বায়ু শব্দবহ। বায়ুর তরঙ্গে শব্দের সৃষ্টি ও বহন হয়। অতএব যেথানে বায়ু তরল ও ক্ষীণ, সেখানে শব্দের অস্পষ্টতা সম্ভব। ব্লাঙ্ শৃঙ্গোপরি শব্দ অস্পষ্টশ্রাব্য বলিয়া শস্যোর বর্ণনা করিয়াছেন। তিনি বলেন, তথায় পিস্তল ছুড়িলে পটকার মত শব্দ হয়; এবং শ্যাম্পেন খুলিলে কাকের শব্দ প্রায় শুনিতে পাওয়া যায় না। কিন্তু মার্শাস বলেন যে, তিনি সেই শৃঙ্গোপরেই ১৩৪০ ফিট হইতে মনুষ্য-কণ্ঠ শুনিয়াছিলেন। এ বিষয় “গগনপর্যটন” প্রবন্ধে কিঞ্চিৎ লেখা হইয়াছে।
+</p><p>যদি শব্দবহ বায়ুকে চোঙ্গার ভিতর রুদ্ধ করা যায়, তবে মনুষ্য-কণ্ঠ যে অনেক দূর হইতে গুনা যাইবে, ইহা বিচিত্র নহে। কেন না শব্দ-তরঙ্গ সকল ছড়াইয়া পড়িবে না।
+</p><p>স্থির জল, চোঙ্গার কাজ করে। ক্ষুদ্র ক্ষুদ্র উচ্চতায় বায়ু প্রতিহত হইতে পায় না—এজন্য শব্দ-তরঙ্গ সকল, ভগ্ন হইয়া নানা দিক্ দিগন্তরে বিকীর্ণ হয় না। এই জন্য প্রশস্ত নদীর এপার হইতে ডাকিলে ওপারে শুনিতে পায়। বিখ্যাত হিমকেন্দ্রানুসারী পর্য্যটক পারির সমভিব্যাহারী লেপ্টেনান্ট ফষ্টর লিখেন যে, তিনি পোর্ট বৌয়েনের এপার হইতে পরপারে স্থিত মনুষ্যের সহিত কথোপকথন করিয়াছিলেন। উভয়ের মধ্যে ১৷৹ মাইল ব্যবধান। ইহা আশ্চর্য্য বটে।
+</p><p>কিন্তু সর্বাপেক্ষা বিস্ময়কর ব্যাপার ডাক্তার ইয়ং কর্ত্তৃক লিখিত হইয়াছে। তিনি বলেন যে, জিব্রল্টারে দশ মাইল হইতে মনুষ্য-কন্ঠ শুনা গিয়াছে। কথা বিশ্বাসযোগ্য কি?
+</p>
+
+
+<div>
+<p><span><b>(জ্যোতিস্তরঙ্গ)</b></span>
+</p>
+</div>
+
+<p>প্রবন্ধান্তরে কথিত হইয়াছে যে, অলোক ইথর নামপ্রাপ্ত বিশ্বব্যাপী জাগতিক তরল পদার্থের আন্দোলনের ফল মাত্র। সূর্যালোক, সপ্ত বর্ণের সমবায়; সেই সপ্ত বর্ণ ইন্দ্রধনু অথবা স্ফাটিক প্রেরিত আলোকে লক্ষিত হয়। প্রত্যেক বর্ণের তরঙ্গ সকল পৃথক্ পৃথক্; তাহাদিগের প্রাকৃতিক সমবায়ের ফলে, শ্বেত রৌদ্র। এই সকল জ্যোতিস্তরঙ্গ-বৈচিত্রই জগতের বর্ণ-বৈচিত্র্যের কারণ। কোন কোন পদার্থ, কোন কোন বর্ণের তরঙ্গ সকল রুদ্ধ করিয়া, অবশিষ্টগুলি প্রতিহত করে। আমরা সে সকল দ্রব্যকে প্রতিহত তরঙ্গের বর্ণ বিশিষ্ট দেখি।
+</p><p>তবে তরঙ্গেরই বা বর্ণ-বৈষম্য কেন? কোন তরল রক্ত, কোন তরঙ্গ পীত, কোন তরঙ্গ নীল কেন? ইহা কেবল তরঙ্গের বেগের তারতম্য। প্রতি ইঞ্চি স্থান মধ্যে একটি নির্দ্দিষ্ট সংখ্যার তরঙ্গের উৎপত্তি হইলে, তরঙ্গ রক্তবর্ণ, অন্য নির্দ্দিষ্ট সংখ্যায় তরঙ্গ পীতবর্ণ, ইত্যাদি।
+</p><p>যে জ্যোতিস্তরঙ্গ এক ইঞ্চি মধ্যে ৩৭,৬৪০ বার প্রক্ষিপ্ত হয়, এবং প্রতি সেকেণ্ডে ৪,৫৮,০০০,০০০,০০০,০০০ বার প্রক্ষিপ্ত হয়, তাহা রক্তবর্ণ। পীত তরঙ্গ, এক ইঞ্চিতে ৪৪,০০০ বার, এবং প্রতি সেকেণ্ডে ৫৩,৫০,০০,০০,০০,০০,০০০ বার প্রক্ষিপ্ত হয়। এবং নীল তরঙ্গ প্রতি ইঞ্চিতে ৫১,১১০ বার এবং প্রতি সেকেণ্ডে ৬২,২০,০০,০০,০০,০০,০০০ বার প্রক্ষিপ্ত হয়। পরিমাণের রহস্য ইহা অপেক্ষা আর কি বলিব? এমন অনেক নক্ষত্র আছে যে, তাহার আলোক পৃথিবীতে পঞ্চাশ বৎসরেও পৌছে না। সেই নক্ষত্র হইতে যে, আলোক-রেখা আমাদের নয়নে আসিয়া লাগে, তাহার তরঙ্গ সকল কতবার প্রক্ষিপ্ত হইয়াছে? এবার যখন রাত্রে আকাশ প্রতি চাহিবে, তখন এই কথাটি একবার মনে করিও।
+</p>
+
+<div>
+<p><span><b>(সমুদ্র-তরঙ্গ)</b></span>
+</p>
+</div>
+
+<p>এই অচিন্ত্য বেগবান্ সূক্ষ্ম হইতে সূক্ষ, জ্যোতিস্তরঙ্গের আলোচনার পর, পার্থিব জলের তরঙ্গমালার আলোচনা অবিধেয় নহে। জ্যোতিস্তরঙ্গের বেগের পরে, সমুদ্রের ঢেউকে অচল মনে করিলেও হয়। তথাপি সাগর-তরঙ্গের বেগ মন্দ নহে। ফিণ্ডে, সাহেব প্রমাণ করিয়াছেন যে, অতি বৃহৎ সাগরোর্ম্মি সকল ঘণ্টায় ২০ মাইল হইতে ২৭॥৹ মাইল পর্যন্ত বেগে ধাবিত হয়। স্কোরেসবি সাহেব গণনা করিয়াছেন যে, আটলান‍্টিক সাগরের তরঙ্গ ঘণ্টায় প্রায় ৩৩ মাইল চলে। এই বেগ তারতবর্ষীয় বাস্পীয় রথের বেগের অপেক্ষা ক্ষিপ্রতর।
+</p><p>যাঁহারা বাঙ্গালার নদীবর্গে নৌকারোহণ করিতে ভীত, সাগরোর্ম্মির পরিমাণ সম্বন্ধে তাঁহাদের কিরূপ অনুমান, তাহা বলিতে পারি না। উপকথায় “তালগাছ প্রমাণ ঢেউ” শুনা যায়—কিন্তু কেহ তাহা বিশ্বাস করে না। সমুদ্রে তদপেক্ষা উচ্চতর ঢেউ উঠিয়া থাকে। ফিণ্ডে সাহেব লিখেন, ১৮৪৩ অব্দে কর্ম্বালেয় নিকট ৩০০ ফিট অর্থাৎ ২০০ হাত উচ্চ ঢেউ উঠিয়াছিল। ১৮২০ সালে নরওয়ে প্রদেশের নিকট ৪০০ ফিট পরিমিত ঢেউ উঠিয়াছিল।
+</p><p>সমুদ্রের ঢেউ অনেক দূর চলে। উত্তমাশা অন্তরীপে উদ্ভূত মগ্ন তরঙ্গ তিন সহস্র মাইল দূরস্থ উপদ্বীপে প্রহৃত হইয়া থাকে। আচার্য্য যা বলেন যে, আপনি দ্বীপাবলীর অন্তর্গত সৈমোদা নাবক স্থানে একদা ভূমিকম্প হয়; তাহাতে ঐ স্থানসমীপস্থ “পোতাশ্রয়ে” এক বৃহৎ উর্ম্মি প্রবেশ করিয়া, সরিয়া আসিলে পোতাশ্রয় জলশূন্য হইয়া পড়ে। সেই ঢেউ প্রশান্ত মহাসাগরের পরপারে, সানফ্রন্সিস্কো নগরের উপকূলে প্রহত হয়। সৈমোদা হইতে ঐ নগর ৪৮০০ মাইল। তরঙ্গরাজ ১২ ঘণ্টা ১৬ মিনিটে পার হইয়াছিলেন অর্থাৎ মিনিটে ৬॥৹ মাইল চলিয়াছিলেন।
+</p>
+
+<div><hr/></div>
+
+
+</div><ol><li><span><a href="#cite_ref-1-n85">↑</a></span> <span>আশ্চর্য্য সৌরোৎপাত দেখ।</span>
+</li>
+<li><span><a href="#cite_ref-2-n87">↑</a></span> <span>আশ্চর্য্য সৌরোৎপাত দেখ।</span>
+</li>
+<li><span><a href="#cite_ref-3-n93">↑</a></span> <span>এই প্রবন্ধ লিখিত হওয়ার পরে টেলিফোনের আবিষ্কৃয়া।</span>
+</li>
+</ol></section>
+<section><div>
+
+<h2>চন্দ্রলোক।</h2>
+<p>এই বঙ্গদেশের সাহিত্যে চন্দ্রদেব অনেক কার্য্য করিয়াছেন। বর্ণনায়, উপমায়—বিচ্ছেদে, মিলনে—অলঙ্কারে, ঘোষামোদে,—তিনি উলটি পালটি খাইয়াছেন। চন্দ্রবদন, চন্দ্ররশ্মি, চন্দ্রকরলেখা শশী মসি ইত্যাদি সাধারণ ভোগ্য সামগ্রী অকাতয়ে বিতরণ করিয়াছেন; কখন স্ত্রীলোকের স্কন্ধোপরি ছড়াছড়ি, কখন তাঁহাদিগের নখরে গড়াগড়ি গিয়াছেন; সুধাকর, হিমকর করনিকর, মৃগাঙ্ক, শশাঙ্ক, কলঙ্ক প্রভৃতি অনুপ্রাসে, বাঙ্গালী বালকের মনোমুগ্ধ করিয়াছেন। কিন্তু এই উনবিংশ শতাব্দীতে এইরূপ কেবল সাহিত্য-কুঞ্জে লীলা খেলা করিয়া, কার সাধ্য নিস্তার পায়। বিজ্ঞান-দৈত্য সকল পথ ঘেরিয়া বসিয়া আছে। আজি চন্দ্রদেবকে বিজ্ঞানে ধরিয়াছে, ছাড়াছাড়ি নাই। আর সাধের সাহিত্য-বৃন্দাবনে লীলা খেলা চলে না—কুঞ্জদ্বারে, সাহেব অক্রুর রথ আনাইয়া দাঁড়াইয়া আছে। চল, চন্দ্র, বিজ্ঞান মথুরায় চল; একটা কংস বধ করিতে হইবে।
+</p><p>যখন অভিমন্যু শোকে, ভদ্রার্জ্জুন অত্যন্ত কাতর, তখন তাঁহাদিগের প্রবোধার্থ কথিত হইয়াছিল যে, অভিমন্যু চন্দ্রলোকে গমন করিয়াছেন। আমরাও যখন নীলগগন সমুদ্রে এই সুব-
+ র্ণের দ্বীপ দেখি, আমরাও মনে করি, বুঝি এই সুবর্ণময় লোকে সোনার মানুষ সোনার থালে সোনার মাছ ভাজিয়া সোনার ভাত খায়, হীরার সরবত পান করে, এবং অপূর্ব্ব পদার্থের শয্যায় শয়ন করিয়া স্বপ্নশূন্য নিদ্রায় কাল কাটায়। বিজ্ঞান বলে, তাহা নহে—এ পোড়া লোকে যেন কেহ যায় না—এ দগ্ধ মরুভূমি মাত্র। এ বিষয়ে কিঞ্চিৎ বলিব।
+</p><p>বালকের শৈশবে পড়িয়া থাকে, চন্দ্র উপগ্রহ। কিন্তু উপগ্রহ বলিলে, সৌর জগতের সঙ্গে চন্দ্রের প্রকৃত সম্বন্ধ নির্দ্দিষ্ট হইল না। পৃথিবী ও চন্দ্র যুগল গ্রহ। উভয়ে এক পথে, একত্র সূর্য্য প্রদক্ষিণ করিতেছে—উভয়েই উভয়ের মাধ্যাকর্ষণ কেন্দ্রের বশবর্ত্তী—কিন্তু পৃথিবী গুরুত্বে চন্দ্রের একাশী গুণ, এজন্য পৃথিবীর আকর্ষণী শক্তি চন্দ্রাপেক্ষা এত অধিক যে, সেই যুক্ত আকর্ষণে কেন্দ্র পৃথিবীস্থিত; এজন্য চন্দ্রকে পৃথিবীর প্রদক্ষিণকারী উপগ্রহ বোধ হয়। সাধারণ পাঠকে বুঝিবেন যে, চন্দ্র একটি ক্ষুদ্রতর পৃথিবী; ইহার ব্যাস ১০৫০ ক্রোশ; অর্থাৎ পৃথিবীর ব্যাসের চতুর্থাংশের অপেক্ষা কিছু বেশী। যে সকল কবিগণ নায়িকাদিগকে আর প্রাচীন প্রথামত চন্দ্রমুখী বলিয়া সন্তুষ্ট নহেন— নূতন উপমার অনুসন্ধান করেন—তাঁহাদিগকে আমরা পরামর্শ দিই যে, এক্ষণ অবধি নায়িকাগণকে পৃথিবীমুখী বলিতে আরম্ভ করিবেন। তাহা হইলে অলঙ্কারের কিছু গৌরব হইবে। বুঝাইবে যে, সুন্দরীর মুখমণ্ডলের ব্যাস কেবল সহ ক্রোশ নহে— কিছু কম চারি সহস্র ক্রোশ।
+</p><p>এই ক্ষুদ্র পৃথিবী আমাদিগের পৃথিবী হইতে এক লক্ষ বিংশতি সহস্র ক্রোশ মাত্র—ত্রিশ হাজার যোজন মাত্র। গাগনিক গণনায় এ দুরতা অতি সামান্য—এপাড়া ওপাড়া। ত্রিশটি পৃথিবী গায় গায় সাজাইলে চন্দ্রে গিয়া লাগে। চন্দ্র পর্য্যন্ত রেইলওয়ে যদি থাকিত, তাহা হইলে ঘণ্টায় বিশ মাইল গেলে, দিন রাত্র চলিলে, পঞ্চাশ দিনে পৌঁছান যায়।
+</p><p>সুতরাং আধুনিক জ্যোতির্ব্বিদ্গণ চন্দ্রকে অতি নিকটবর্ত্তী মনে করেন। তাঁহাদিগের কৌশলে এক্ষণে এমন দুরবীক্ষণ নির্ম্মিত হইয়াছে যে, তদ্দ্বারা চন্দ্রাদিকে ২৪০০ গুণ বৃহত্তর দেখা যায়। ইহার ফল এই দাঁড়াইয়াছে যে, চন্দ্র যদি আমাদিগের নেত্র হইতে পঞ্চাশৎ ক্রোশ মাত্র দূরবর্ত্তী হইত, তাহা হইলে আমরা চন্দ্রকে যেমন স্পষ্ট দেখিতাম, এক্ষণেও ঐ সকল দূরবীক্ষণ সাহায্যে সেইরূপ স্পষ্ট দেখিতে পারি।
+</p><p>এরূপ চাক্ষুষ প্রত্যক্ষে, চন্দ্রকে কিরূপ দেখা যায়? দেখা যায় যে, তিনি হস্তপদাদি বিশিষ্ট দেবতা নহেন, জ্যোতির্ম্ময় কোন পদার্থ নহেন, কেবল পাষাণময়, আগ্নেয়গিরি পরিপূর্ণ, জড়পিণ্ড। কোথাও অত্যুন্নত পর্বতমালা—কোথাও গভীরগহ্বররাজি। চন্দ্র যে উজ্জ্বল, তাহা সূর্য্যালোকের কারণে। আমরা পৃথিবীতেও দেখি যে, যাহা রৌদ্রপ্রদীপ্ত, তাহাই দুর হইতে উজ্জ্বল দেখায়। চন্দ্রও রৌদ্রপ্রদীপ্ত বলিয়া উজ্জ্বল। কিন্তু যে স্থানে রৌদ্র না লাগে সে স্থান উজ্জ্বলতা প্রাপ্ত হয় না। সকলেই জানে যে, চন্দ্রের কলায় কলায় হ্রাস বৃদ্ধি এই কারণেই ঘটিয়া থাকে। সে তত্ত্ব বুঝাইয়া লিখিবার প্রয়োজন নাই। কিন্তু ইহা সহজেই বুঝা যাইবে, যে স্থান উন্নত সেই স্থানে রৌদ্র লাগে—সেই স্থান আমরা উজ্জ্বল দেখি—যে স্থানে গহ‍্বর অথবা পর্ব্বতের ছায়া, সে স্থানে, রৌদ্র প্রবেশ করে না—সে স্থলগুলি আমরা কালিমপুর্ণ দেখি। সেই অনুজ্জ্বল রৌদ্রশূন্য স্থানগুলিই “কলঙ্ক”—অথবা “মৃগ”—প্রাচীনাদিগের মতে সেই গুলিই “কদম-তলায় বুড়ী চরকা কাটিতেছে।”
+</p><p>চন্দ্রের বহির্ভাগের এরূপ সূক্ষ্মানুসূক্ষ্ম অনুসন্ধান হইয়াছে যে, তাহার চন্দ্রের উৎকৃষ্ট মানচিত্র প্রস্তুত হইয়াছে; তাহার পর্ব্বতাবলী ও প্রদেশ সকল নাম প্রাপ্ত হইয়াছে—এবং তাহার পর্ব্বতমালার উচ্চতা পরিমিত হইয়াছে। বেয়র ও মাল্লার নামক সুপরিচিত জ্যোতির্ব্বিদ্দ্বয় অন্যূন ১০৯৫টি চান্দ্র পর্ব্বতের উচ্চতা পরিমিত করিয়াছেন। তন্মধ্যে মনুষ্যে যে পর্ব্বতের নাম রাখিয়াছে “নিউটন” তাহার উচ্চতা ২২,৮২৩ ফীট। এতাদৃশ উচ্চ পর্ব্বতশিখর, পৃথিবীতে আন্দিস্ ও হিমালয় শ্রেণী ভিন্ন আর কোথাও নাই। চন্দ্র পৃথিবীর পঞ্চাশৎ ভাগের এক ভাগ মাত্র এবং গুরুত্বে একাশী ভাগের এক ভাগ মাত্র; অতএব পৃথিবীর তুলনায়, চান্দ্র পর্ব্বত সকল অত্যন্ত উচ্চ। চন্দ্রের তুলনায় নিউটন যেমন উচ্চ, চিম্বারোজা নামক বৃহৎ পার্থিব শিখরের অবয়ব আর পঞ্চাশৎ গুণে বৃদ্ধি পাইলে পৃথিবীর তুলনার তত উচ্চ হইত।
+</p><p>চান্দ্র পর্ব্বত কেবল যে আশ্চর্য্য উচ্চ, এমত নহে; চন্দ্র লোকে ঘায়ে পর্ব্বতের অত্যন্ত আধিক্য। অগণিত আগ্নেন্স পর্বতশ্রেণী অগ্ন্যুদগারী বিশাল রন্ধ্র সকল প্রকাশিত করিয়া রহিয়াছে—যেন কোন তপ্ত দ্রবীভূত পদার্থ কটাহে জ্বাল প্রাপ্ত হইয়া কোন কালে টগ‍্বগ্ করিয়া ফুটিয়া উঠিয়া জমিয়া গিয়াছে। এই চন্দ্রমণ্ডল, সহস্রধা বিভিন্ন, সহস্র সহস্র বিবর বিশিষ্ট,— কেবল পাষাণ, বিদীর্ণ, ভগ্ন, ছিন্ন ভিন্ন, দগ্ধ, পাষাণময়। হায়! এমন চাঁদের সঙ্গে কে সুন্দরীদিগের মুখের তুলনা করার পদ্ধতি বাহির করিয়াছিল?
+</p><p>এই ত পোড়া চন্দ্রলোক! এক্ষণে জিজ্ঞাসা, এখানে জীবের বসতি আছে কি? আমরা যতদূর জানি, জল বায়ু ভিন্ন জীবের বসতি নাই; যেখানে জল বা বায়ু নাই, সেখানে আমাদের জ্ঞানগোচরে, জীব থাকিতে পারে না। যদি চন্দ্রলোকে জল বায়ু থাকে, তবে সেখানে জীব থাকিতে পারে; যদি জল বায়ু না থাকে, তবে জীব নাই, এক প্রকার সিদ্ধ করিতে পারি। এক্ষণে দেখা যাউক, তদ্বিষয়ে কি প্রমাণ আছে।
+</p><p>মনে কর, চন্দ্র পৃথিবীর ন্যায় বায়বীয় মণ্ডলে বেষ্টিত। মনে কর, কোন নক্ষত্র, চন্দ্রের পশ্চাদ্ভাগ দিয়া গতি করিবে। ইহাকে জ্যোতিষে সমাবরণ (Occultation) বলা যাইতে পারে। নক্ষত্র চন্দ্র কর্ত্তৃক সমাবৃত হইবার কালে প্রথমে, বায়ুস্তরের পশ্চাদ্বর্ত্তী হইবে; তৎপরে চন্দ্রশরীরের পশ্চাতে লুকাইবে। যখন বায়বীয় স্তরের পশ্চাতে নক্ষত্র যাইবে, তখন নক্ষত্র পূর্ব্বমত উজ্জ্বল বোধ হইবে না; কেন না বায়ু আলোকের কিয়ৎপরিমাণে প্রতিরোধ করিয়া থাকে। নিকটস্থ বস্তু আমরা যত স্পষ্ট দেখি, দূরস্থ বস্তু আমরা তত স্পষ্ট দেখিতে পাই না— তাহার কারণ মধ্যবর্ত্তী বায়ুস্তর। অতএব সমাবরণীয় নক্ষত্র ক্রমে হ্রস্বতেজা হইয়া পরে চন্দ্রান্তরালে অদৃশ্য হইবে। কিন্তু এরূপ ঘটিয়া থাকে না। সমাবরণীয় নক্ষত্র একবারেই নিবিয়া যায়—নিবিবার পূর্ব্বে তাহার উজ্জ্বলতার কিছু মাত্র হ্রাস হয় না। চন্দ্রে বায়ু থাকিলে কখন এরূপ হইত না।
+</p><p>চন্দ্রে যে জল নাই, তাহারও প্রমাণ আছে, কিন্তু সে প্রমাণ অতি দুরূহ—সাধারণ পাঠককে অল্পে বুঝান যাইবে না। এবং এই সকল প্রমাণ বর্ণ-রেখা পরীক্ষক (Spectroscope) যন্ত্রের বিচিত্র পরীক্ষায় দূরীকৃত হইয়াছে; চন্দ্রলোকে জলও নাই বায়ুও নাই। যদি জল বায়ু না থাকে তবে পৃথিবীবাসী জীবের ন্যায় কোন জীব তথায় নাই।
+</p><p>আর একটি কথা বলিয়াই আমরা উপসংহার করিব। চান্দ্রিক উত্তাপও এক্ষণে পরিমিত হইয়াছে। চন্দ্র এক পক্ষকালে আপন মেরুদণ্ডের উপর সম্বর্ত্তন করে, অতএব আমাদের এক পক্ষকালে এক চান্দ্রিক দিবস। এক্ষণে স্মরণ করিয়া দেখ যে, পৌষ মাস হইতে জ্যৈষ্ঠমাসে আমরা এত তপাধিক্য ভোগ করি, তাহার কারণ পৌষ মাসে দিন ছোট, জ্যৈষ্ঠ মাসের দিন তিন চার ঘণ্টা বড়। যদি দিনমান তিন চারি ঘণ্টা মাত্র বড় হইলেই, এত তাপাধিক্য হয়, তবে পাক্ষিক চান্দ্র দিবসে না জানি চন্দ্র কি ভয়ানক উত্তপ্ত হয়। তাতে আবার পৃথিবীতে জল, বায়ু, মেঘ আছে—তজ্জন্য পার্থিব সন্তাপ বিশেষ প্রকারে শমতা প্রাপ্ত হইয়া থাকে, কিন্তু জল বায়ু মেঘ ইত্যাদি চন্দ্রে কিছুই নাই। তাহার উপর আবার চন্দ্র পাষাণময়। অতি সহজে উত্তপ্ত হয়। অতএব চন্দ্র লোক অত্যন্ত তপ্ত হইবারই সম্ভাবনা। বিখ্যাত দূরীক্ষণ নির্ম্মাণকারীর পুত্র লর্ড রস চন্দ্রেয় তাপ পরিমিত করিয়াছেন। তাঁহায় অনুসন্ধানে স্থিরীকৃত হইয়াছে ধে, চন্দ্রের কোন কোন অংশ এত উষ্ণ, তত্তুলনায় যে জল অগিসংস্পর্শে ফুটিতেছে, তাহাও শীতল। সে সন্তাপে কোন পার্থিব জীব রক্ষা পাইতে পারে না—মুহূর্ত্ত জন্যও রক্ষা পাইতে পারে না। এই কি শীভরশ্মি, হিমকর, সুধাংশু? হায়! হায়! অন্ধ পুত্রকে পদ্মলোচন আর কেমন করিয়া বলিতে হয়!<sup><a href="#cite_note-1-n110">[১]</a></sup></p>
+
+<p> অতএব সুখের চন্দ্রলোক কি প্রকার, তাহা এক্ষণে আমরা একপ্রকার বুঝিতে পারিয়াছি। চন্দ্রলোক পাষাণময়,—বিদীর্ণ, ভগ্ন, ছিন্ন ভিন্ন, বন্ধুর, দগ্ধ, পাষাণময়! জলশূন্য, “সাগরশুন্য, নদীশূন্য, তড়াগশূন্য, বায়ুশূন্য, মেঘশূন্য, বৃষ্টিশূন্য—জনহীন, জীবহীন, তরুহীন, তৃণহীন, শব্দহীন,<sup><a href="#cite_note-2-n111">[২]</a></sup> উত্তপ্ত, জলন্ত, নরক-কুণ্ডতুল্য এই চন্দ্রলোক!
+</p><p>এই জন্য বিজ্ঞানকে কাব্য আঁটিয়া উঠিড়ে পারে না। কাব্য গড়ে—বিজ্ঞান ভাঙ্গে।
+</p>
+
+<div><hr/></div>
+
+<div><img alt="" src="images/c10_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c10_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c10_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c10_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c10_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c10_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c10_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c10_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c10_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c10_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c10_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c10_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/></div>
+<div><i>Printed at the Vina Press Calcutta</i></div>
+</div><ol><li><span><a href="#cite_ref-1-n107">↑</a></span> <span>যদি কেহ বলেন যে, চন্দ্র স্বয়ং উত্তপ্ত হউন, আমারা তাঁহার আলোকের শৈত্য স্পর্শের প্রত্যক্ষ দ্বারা জানিয়া থাকি। বাস্তবিক এ কথা সত্য নহে— আমি স্পর্শ দ্বারা চন্দ্রলোকের শৈত্য বা উষ্ণতা কিছুই অনুভূত করি না। অন্ধকার রাত্রের অপেক্ষা জ্যোৎস্না রাত্রি শীতল, এ কথা যদি কেহ মনে করেন, তবে সে তাঁহার মনের বিকার মাত্র। বরং চন্দ্রালোকে কিঞ্চিৎ সন্তাপ আছে সে টুকু এত অল‍্প যে, তাহা আমাদিগের স্পর্শের অনুভবনীয় নহে। কিন্তু জান্তেদেশী, মেলনি, পিয়াজি প্রতি বৈজ্ঞানিকরা পরীক্ষার দ্বারা তাহা সিদ্ধ করিয়াছেন।</span>
+</li>
+<li><span><a href="#cite_ref-2-n109">↑</a></span> <span>কেন না বায়ু নাই।</span>
+</li>
+</ol></section>
+
+            </div>
+
+        </div>
+    </div>
+
+        <!-- TOC nav for mobile -->
+        <nav id="toc-nav-desktop" class="hidden"></nav>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const progressBar  = document.getElementById('read-progress-bar');
+    const progressPct  = document.getElementById('progress-pct');
+    const tocDesktop   = document.getElementById('toc-nav-desktop');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+    const progressRing = document.getElementById('progress-ring-circle');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = p.currentTheme;
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    function toBN(n) {
+        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
+    }
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        if (progressPct) progressPct.textContent = toBN(pct) + '%';
+        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
+        if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
+        if (rfPage) rfPage.textContent = toBN(pct) + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+
+    // ── Footer: chapter label + seek slider ──
+    const rfSlider  = document.getElementById('rf-slider');
+    const rfPage    = document.getElementById('rf-page');
+    const rfChapter = document.getElementById('rf-chapter');
+    let rfSliderDragging = false;
+    if (rfSlider) {
+        rfSlider.addEventListener('input', () => {
+            rfSliderDragging = true;
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
+        });
+        rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
+    }
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav, isMobile) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            if (isMobile) {
+                a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+                a.addEventListener('click', closeDrawer);
+            } else {
+                a.className = 'toc-link ' + (isH1 ? 'toc-link-h1' : 'toc-link-h2');
+            }
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocDesktop, false);
+    buildToc(tocMobile, true);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+        if (rfChapter && headings[current]) rfChapter.textContent = headings[current].textContent.trim();
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme only; drawer/settings UI stays a fixed dark sheet)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+        black: { bg: '#000',     text: '#d1d5db' },
+        sepia: { bg: '#f5efe6',  text: '#3b2f1e' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? '#c0392b' : 'transparent';
+            });
+            savePrefs();
+
+            // Ad bar theme sync
+            window._pathakAdBarTheme && window._pathakAdBarTheme(m);
+        });
+    });
+
+    // ── Ad bar theme sync function (exposed globally) ──
+    window._pathakAdBarTheme = function(m) {
+        const adBar     = document.getElementById('ad-bar');
+        const adContent = document.getElementById('ad-bar-content');
+        const adDatetime= document.getElementById('ad-bar-datetime');
+        const adNotice  = document.getElementById('ad-bar-notice');
+        if (adBar)      adBar.style.background     = m.bg;
+        if (adContent)  adContent.style.background = m.bg;
+        if (adDatetime) adDatetime.style.color      = m.text;
+        if (adNotice)   adNotice.style.color        = m.text;
+    };
+
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+        // Ad bar HTML is below — expose theme for ad bar script to pick up
+        window._pathakCurrentTheme = currentTheme;
+        window._pathakThemeMap = themeMap;
+    })();
+})();
+</script>
+
+
+</body>
+</html>
