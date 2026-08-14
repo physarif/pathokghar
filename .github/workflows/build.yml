@@ -41,20 +41,17 @@ jobs:
         with:
           python-version: '3.11'
 
-      # ৩.৫. আগের build-এ generate করা বই (content/read/images/css) cache থেকে
-      #       ফিরিয়ে আনো, যাতে "Convert books" স্টেপ skip হলেও আগের বইগুলো
-      #       deploy-তে হারিয়ে না যায়
-      - name: Restore converted books cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            content
-            read
-            assets/images
-            assets/css
-          key: converted-books-${{ github.run_id }}
-          restore-keys: |
-            converted-books-
+      # ৩.৫. আগের build-এর পুরো output "pathokghar-assets" branch থেকে
+      #       ফিরিয়ে আনো (base হিসেবে বসাও), যাতে কোনো step skip হলেও
+      #       আগের generate করা যেকোনো ফাইল হারিয়ে না যায়
+      - name: Restore previous build output from pathokghar-assets branch
+        run: |
+          git fetch origin pathokghar-assets || echo "branch not found yet"
+          if git show-ref --verify --quiet refs/remotes/origin/pathokghar-assets; then
+            git worktree add /tmp/pathokghar-assets origin/pathokghar-assets
+            rsync -a --exclude='.git' /tmp/pathokghar-assets/ ./
+            git worktree remove /tmp/pathokghar-assets --force
+          fi
 
       # ৪. Dependencies install
       - name: Install dependencies
@@ -124,7 +121,41 @@ jobs:
           git diff --staged --quiet || git commit -m "chore: update sitemap lastmod state"
           git push || true
 
-      # ৯. Cloudflare Pages এ deploy
+      # ৯. পুরো build output (সব generated content: content, read, assets,
+      #     generated pages, sitemap ইত্যাদি — শুধু source code/config বাদে)
+      #     "pathokghar-assets" branch-এ push করে রাখো — যেকোনো ধাপ পরের
+      #     build-এ skip হলেও এখান থেকে পুরনো output restore হবে
+      - name: Save full build output to pathokghar-assets branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if git show-ref --verify --quiet refs/remotes/origin/pathokghar-assets; then
+            git worktree add /tmp/pathokghar-assets-push origin/pathokghar-assets
+          else
+            git worktree add --orphan /tmp/pathokghar-assets-push
+          fi
+
+          rsync -a --delete \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='scripts' \
+            --exclude='components' \
+            --exclude='node_modules' \
+            --exclude='package.json' \
+            --exclude='package-lock.json' \
+            --exclude='github-actions' \
+            --exclude='sitemap-lastmod.json' \
+            ./ /tmp/pathokghar-assets-push/
+
+          cd /tmp/pathokghar-assets-push
+          git add -A
+          git diff --staged --quiet || git commit -m "chore: update build output snapshot"
+          git push origin HEAD:pathokghar-assets
+          cd -
+          git worktree remove /tmp/pathokghar-assets-push --force
+
+      # ১০. Cloudflare Pages এ deploy
       - name: Deploy to Cloudflare Pages
         run: npx wrangler pages deploy . --project-name=pathokghar --commit-dirty=true
         env:
