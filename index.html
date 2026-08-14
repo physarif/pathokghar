@@ -1030,12 +1030,17 @@
   /* Pagination */
   .bc-pagination {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 0.35rem;
     padding: 0.6rem 1rem 0.2rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
+  .bc-pagination::-webkit-scrollbar { display: none; }
+  .bc-page-btn, .bc-page-nav { flex-shrink: 0; }
   .bc-page-btn {
     display: inline-flex;
     align-items: center;
