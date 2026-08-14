@@ -208,8 +208,8 @@
 
     /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
     #book-content p {
-        background: rgba(192,57,43,0.05);
-        border: 1px solid rgba(192,57,43,0.15);
+        background: #fff;
+        border: 1px solid #e5e7eb;
         border-radius: 10px;
         padding: 0.6rem 1.1rem;
         margin-bottom: 0.7rem;
@@ -341,27 +341,6 @@
         padding-left: 32px;
         font-size: 0.78rem;
         color: rgba(255,255,255,0.6);
-    }
-    #toc-nav-desktop .toc-link {
-        display: block;
-        padding: 0.375rem 0.75rem;
-        border-radius: 0.375rem;
-        color: #4b5563;
-        text-decoration: none;
-        transition: background-color 0.15s, color 0.15s;
-    }
-    .dark #toc-nav-desktop .toc-link { color: #d1d5db; }
-    #toc-nav-desktop .toc-link:hover { background: #f3f4f6; }
-    .dark #toc-nav-desktop .toc-link:hover { background: #1f2937; }
-    #toc-nav-desktop .toc-link-h1 {
-        font-weight: 600;
-        font-size: 0.8125rem;
-        color: #1f2937;
-    }
-    .dark #toc-nav-desktop .toc-link-h1 { color: #f3f4f6; }
-    #toc-nav-desktop .toc-link-h2 {
-        padding-left: 1.25rem;
-        font-size: 0.6875rem;
     }
 
     /* ══════════════════════════════
@@ -3107,9 +3086,6 @@
 
         </div>
     </div>
-
-        <!-- TOC nav for mobile -->
-        <nav id="toc-nav-desktop" class="hidden"></nav>
 </div>
 </div>
 
@@ -3119,7 +3095,6 @@
     const mobileReaderBg = document.getElementById('mobile-reader-bg');
     const progressBar  = document.getElementById('read-progress-bar');
     const progressPct  = document.getElementById('progress-pct');
-    const tocDesktop   = document.getElementById('toc-nav-desktop');
     const tocMobile    = document.getElementById('toc-nav-mobile');
     const progressRing = document.getElementById('progress-ring-circle');
 
@@ -3268,7 +3243,7 @@
 
     function closeTocDrawer() { closeDrawer(); }
 
-    function buildToc(nav, isMobile) {
+    function buildToc(nav) {
         headings.forEach((h, i) => {
             h.id = h.id || ('sec-' + i);
             const a = document.createElement('a');
@@ -3276,17 +3251,12 @@
             a.textContent = h.textContent.trim();
             a.dataset.idx = i;
             const isH1 = h.tagName === 'H1';
-            if (isMobile) {
-                a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
-                a.addEventListener('click', closeDrawer);
-            } else {
-                a.className = 'toc-link ' + (isH1 ? 'toc-link-h1' : 'toc-link-h2');
-            }
+            a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+            a.addEventListener('click', closeDrawer);
             nav.appendChild(a);
         });
     }
-    buildToc(tocDesktop, false);
-    buildToc(tocMobile, true);
+    buildToc(tocMobile);
 
     // ── TOC active ──
     const allTocLinks = document.querySelectorAll('.toc-link');
