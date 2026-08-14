@@ -125,6 +125,69 @@
     background: linear-gradient(to right, #374151 0%, #f87171 100%);
   }
 
+  /* বিভাগসমূহ — horizontal scroll, card width টেক্সট length অনুযায়ী */
+  .idx-cat-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.6rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.2rem;
+  }
+  .idx-cat-grid::-webkit-scrollbar { display: none; }
+
+  .idx-cat-card {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    padding: 0.8rem 1.1rem;
+    white-space: nowrap;
+    background: #ffffff;
+    border: 1px solid #f0f0f0;
+    border-radius: 5px;
+    transition: background 0.15s, box-shadow 0.15s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .dark .idx-cat-card { background: #23232a; border-color: #2e2e36; box-shadow: 0 1px 4px rgba(0,0,0,0.3); }
+  .idx-cat-card:hover { background: #fff5f5; box-shadow: 0 4px 12px rgba(192,57,43,0.1); }
+  .dark .idx-cat-card:hover { background: #2a1f1f; }
+  .idx-cat-card:active { background: #fde8e6; }
+  .dark .idx-cat-card:active { background: #2e1a1a; }
+
+  .idx-cat-card-name {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #1f2937;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+  .dark .idx-cat-card-name { color: #e5e7eb; }
+
+  /* বিভাগসমূহ সেকশনের নিচে ও পরের সেকশনের উপরে space কমানো */
+  .idx-cat-section { margin-bottom: 0.15rem; }
+  .idx-cat-section + .book-section { padding-top: 0.25rem; }
+
+  /* horizontal scroll এখন true screen edge পর্যন্ত যাবে (full-bleed) */
+  .idx-cat-section {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+  .idx-cat-grid {
+    padding-left: 0.5rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: 768px) {
+    .idx-cat-grid { padding-left: 0.75rem; padding-right: 1.5rem; }
+  }
+
   /* পেজ কনটেন্ট wrapper */
   .page-content {
     flex: 1 1 auto;
@@ -140,6 +203,11 @@
 {{book_card_styles}}
 
 <main class="page-content">
+
+  <!-- বিভাগসমূহ (top 9 categories, সংখ্যা ছাড়া) -->
+  <section class="book-section idx-cat-section">
+    <div class="idx-cat-grid">{{top_categories}}</div>
+  </section>
 
   <!-- সর্বশেষ বই -->
   <section class="book-section">
