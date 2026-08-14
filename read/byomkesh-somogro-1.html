@@ -65,7 +65,7 @@
         #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
         #read-column { flex: 1 1 auto; min-width: 0; }
         #read-main-content {
-            padding: 3.7rem 1.25rem 1.75rem;
+            padding: 5.9rem 1.25rem 1.75rem;
             max-width: 42rem;
         }
         #book-content { color: #1f2937; }
@@ -408,14 +408,19 @@
         top: 0; left: 0; right: 0;
         z-index: 60;
         display: flex;
-        align-items: center;
-        gap: 0.35rem;
-        padding: 0.6rem 0.5rem 0.6rem 0.35rem;
+        flex-direction: column;
+        padding: 0.6rem 0.5rem 0 0.35rem;
         background: var(--bar-bg);
         box-shadow: 0 2px 10px rgba(0,0,0,0.15);
         transition: background 0.3s, transform 0.28s ease;
     }
     body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-row1 {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding-bottom: 0.6rem;
+    }
     #rh-back {
         width: 40px;
         height: 40px;
@@ -465,26 +470,16 @@
     }
     #reader-header .rh-actions button:active { background: var(--bar-btn-active); }
 
-    /* ── Reader footer: chapter label + page/percent + seek slider ── */
-    #reader-footer {
-        position: fixed;
-        left: 0; right: 0; bottom: 0;
-        z-index: 55;
-        background: var(--bar-bg);
-        padding: 0.5rem 1rem 0.65rem;
-        box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
-        transition: background 0.3s, transform 0.28s ease;
-    }
-    body.bars-hidden #reader-footer { transform: translateY(100%); }
+    /* ── Header row 2: chapter label + page/percent ── */
     #rf-labels {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 0.5rem;
         font-family: 'Noto Serif Bengali', serif;
-        font-size: 0.78rem;
+        font-size: 0.74rem;
         color: var(--bar-text-dim);
-        margin-bottom: 0.35rem;
+        padding: 0 0.15rem 0.5rem;
         transition: color 0.3s;
     }
     #rf-chapter {
@@ -495,30 +490,33 @@
         text-overflow: ellipsis;
     }
     #rf-page { flex-shrink: 0; }
+
+    /* ── Header row 3: thin seek/progress line ── */
     #rf-slider {
         -webkit-appearance: none;
         appearance: none;
+        display: block;
         width: 100%;
         height: 3px;
-        border-radius: 2px;
+        margin: 0;
+        border-radius: 0;
         background: var(--bar-track);
         outline: none;
-        margin: 0;
         cursor: pointer;
     }
     #rf-slider::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
-        width: 15px; height: 15px;
+        width: 13px; height: 13px;
         border-radius: 50%;
         background: var(--bar-accent);
         border: 2px solid var(--bar-bg);
         box-shadow: 0 1px 4px rgba(0,0,0,0.4);
         cursor: pointer;
-        margin-top: -6px;
+        margin-top: -5px;
     }
     #rf-slider::-moz-range-thumb {
-        width: 15px; height: 15px;
+        width: 13px; height: 13px;
         border-radius: 50%;
         background: var(--bar-accent);
         border: 2px solid var(--bar-bg);
@@ -526,11 +524,10 @@
         cursor: pointer;
         border: none;
     }
-    #rf-slider::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; }
-    #rf-slider::-moz-range-track { height: 3px; border-radius: 2px; background: var(--bar-track); }
+    #rf-slider::-webkit-slider-runnable-track { height: 3px; background: var(--bar-track); }
+    #rf-slider::-moz-range-track { height: 3px; background: var(--bar-track); }
 
-    /* Content needs bottom clearance so the fixed footer never covers text */
-    #read-main-content { padding-bottom: 4.5rem; }
+    /* Content no longer needs bottom clearance — footer removed, extra top clearance handled above */
 
 
     /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
@@ -758,25 +755,23 @@
 <!-- Progress bar (kept for internal % calc, hidden — footer slider replaces it visually) -->
 <div id="read-progress-bar" style="display:none;"></div>
 
-<!-- ══ Reader header (Lithium-style app bar) ══ -->
+<!-- ══ Reader header (back + title + actions, chapter/page, seek line) ══ -->
 <header id="reader-header">
-    <a href="/book/byomkesh-somogro-1.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
-        <i class="fas fa-arrow-left"></i>
-    </a>
-    <h1 id="rh-title">ব্যোমকেশ সমগ্র – ১</h1>
-    <div class="rh-actions">
-        <button id="rh-menu-btn" aria-label="মেনু" title="মেনু"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+    <div id="rh-row1">
+        <a href="/book/byomkesh-somogro-1.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <h1 id="rh-title">ব্যোমকেশ সমগ্র – ১</h1>
+        <div class="rh-actions">
+            <button id="rh-menu-btn" aria-label="মেনু" title="মেনু"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </div>
     </div>
-</header>
-
-<!-- ══ Reader footer (chapter + page/percent + seek slider) ══ -->
-<footer id="reader-footer">
     <div id="rf-labels">
         <span id="rf-chapter"></span>
         <span id="rf-page">০%</span>
     </div>
     <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
-</footer>
+</header>
 
 
 
