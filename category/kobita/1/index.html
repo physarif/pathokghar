@@ -1027,8 +1027,6 @@
 
 </div><!-- /md:px-8 lg:px-16 -->
 
-<div class="bc-pagination"><span class="bc-page-btn active">১</span></div>
-
 <!-- components/book-card1.html — সব পেজে (index, books, author, category, search)
      ব্যবহৃত common book-card design। generate_pages.js এই ফাইলটা একবার লোড করে
      প্রতিটা টেমপ্লেটের  placeholder-এ বসিয়ে দেয়।
@@ -1154,53 +1152,92 @@
 -->
 
 
+<div id="bc-pagination"></div>
+<script>
+  (function() {
+    const current = parseInt('', 10);
+    const total = parseInt('', 10);
+    if (!current || !total || total <= 1) return;
+    const slug = '';
+    const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');
+    const el = document.getElementById('bc-pagination');
+    let html = '<div class="bc-pagination">';
+    if (current > 1) {
+      html += '<a href="/category/' + slug + '/' + (current - 1) + '/" class="bc-page-nav" aria-label="পূর্ববর্তী"><i class="fas fa-chevron-left"></i></a>';
+    } else {
+      html += '<span class="bc-page-nav disabled" aria-label="পূর্ববর্তী"><i class="fas fa-chevron-left"></i></span>';
+    }
+    for (let i = 1; i <= total; i++) {
+      if (i === current) html += '<span class="bc-page-btn active">' + toBn(i) + '</span>';
+      else html += '<a href="/category/' + slug + '/' + i + '/" class="bc-page-btn">' + toBn(i) + '</a>';
+    }
+    if (current < total) {
+      html += '<a href="/category/' + slug + '/' + (current + 1) + '/" class="bc-page-nav" aria-label="পরবর্তী"><i class="fas fa-chevron-right"></i></a>';
+    } else {
+      html += '<span class="bc-page-nav disabled" aria-label="পরবর্তী"><i class="fas fa-chevron-right"></i></span>';
+    }
+    html += '</div>';
+    el.innerHTML = html;
+  })();
+</script>
+
 <style>
 /* ── Pagination (books.html এর bc-pagination style অনুসরণ করা হচ্ছে) ── */
 .bc-pagination {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 0.35rem;
   padding: 0.6rem 1rem 0.2rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
+.bc-pagination::-webkit-scrollbar { display: none; }
+.bc-page-btn, .bc-page-nav { flex-shrink: 0; }
 .bc-page-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 2.1rem;
-  height: 2.1rem;
+  min-width: 2.4rem;
+  height: 2.4rem;
   padding: 0 0.5rem;
   border-radius: 0.3rem;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 500;
   text-decoration: none;
   color: #374151;
-  background: #f3f4f6;
-  transition: background 0.15s, color 0.15s;
+  background: #ffffff;
+  border: 1px solid #dee2e6;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
-.bc-page-btn:hover { background: #e5e7eb; color: #111827; }
-.bc-page-btn.active { background: #c0392b; color: #fff; pointer-events: none; }
+.bc-page-btn:hover { background: #f1f3f5; border-color: #ced4da; color: #111827; }
+.bc-page-btn.active { background: #e9ecef; border-color: #dee2e6; color: #212529; pointer-events: none; }
 .bc-page-nav {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  padding: 0 0.75rem;
-  height: 2.1rem;
+  justify-content: center;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  padding: 0 0.5rem;
   border-radius: 0.3rem;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 600;
   text-decoration: none;
   color: #fff;
-  background: #c0392b;
+  background: #4a85bd;
+  border: 1px solid #4a85bd;
   transition: background 0.15s;
 }
-.bc-page-nav:hover { background: #991b1b; }
-.dark .bc-page-btn { background: #1f2937; color: #d1d5db; }
+.bc-page-nav:hover { background: #3d719f; border-color: #3d719f; }
+.bc-page-nav.disabled { background: #a9c4de; border-color: #a9c4de; pointer-events: none; cursor: default; }
+.dark .bc-page-btn { background: #1f2937; border-color: #374151; color: #d1d5db; }
 .dark .bc-page-btn:hover { background: #374151; color: #f9fafb; }
-.dark .bc-page-btn.active { background: #f87171; color: #111827; }
-.dark .bc-page-nav { background: #f87171; color: #111827; }
-.dark .bc-page-nav:hover { background: #ef4444; }
+.dark .bc-page-btn.active { background: #374151; border-color: #4b5563; color: #f9fafb; }
+.dark .bc-page-nav { background: #4a85bd; border-color: #4a85bd; color: #fff; }
+.dark .bc-page-nav:hover { background: #3d719f; border-color: #3d719f; }
 
 /* Category title — index.html এর "সর্বশেষ বই" title-এর মতো accented progress-underline */
 .bc-latest-title {
