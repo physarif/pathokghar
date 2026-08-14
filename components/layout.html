@@ -133,14 +133,11 @@
         .dark .sidebar-header { border-bottom-color: #374151; background: #1f1f1f; }
         .sidebar-brand { display: flex; align-items: center; gap: 0.5rem; }
         .sidebar-brand-icon { color: #c0392b; }
-        #theme-toggle-btn {
+        #sidebar-close-btn {
             background: none; border: none; padding: 0; cursor: pointer;
             color: #6b7280; display: flex; align-items: center;
         }
-        .dark #theme-toggle-btn { color: #9ca3af; }
-        .theme-icon-light { display: none; }
-        .dark .theme-icon-dark { display: none; }
-        .dark .theme-icon-light { display: inline-block; }
+        .dark #sidebar-close-btn { color: #9ca3af; }
         /* ── Sidebar collapsible sections ── */
         .sidebar-toggle-row {
             display: flex;
@@ -490,14 +487,7 @@
         }
         .dark .hs-more { color: #f87171; border-top-color: #2f2f38; }
     </style>
-    <script>
-        // পেজ রেন্ডার হওয়ার আগেই থিম প্রয়োগ করা হয়, যাতে flash (FOUC) না হয়।
-        (function() {
-            var saved = localStorage.getItem('pg-theme');
-            var isDark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (isDark) document.documentElement.classList.add('dark');
-        })();
-    </script>
+    <!-- থিম সবসময় day/light mode — dark mode auto-detect বন্ধ করা হয়েছে -->
 </head>
 <body>
 
@@ -548,9 +538,8 @@
                 <span class="sidebar-brand-icon"><i class="fa-solid fa-swatchbook icon-lg"></i></span>
                 <span class="brand-name">পাঠক <span class="brand-name-light">ঘর</span></span>
             </div>
-            <button id="theme-toggle-btn" type="button" aria-label="থিম পরিবর্তন করুন">
-                <i class="fa-solid fa-moon icon-lg theme-icon-dark"></i>
-                <i class="fa-solid fa-sun icon-lg theme-icon-light"></i>
+            <button id="sidebar-close-btn" type="button" aria-label="মেনু বন্ধ করুন">
+                <i class="fa-solid fa-xmark icon-lg"></i>
             </button>
         </div>
 
@@ -600,18 +589,6 @@
 
     <script>
     (function() {
-        var themeBtn = document.getElementById('theme-toggle-btn');
-        if (themeBtn) {
-            themeBtn.addEventListener('click', function() {
-                var isDark = document.documentElement.classList.toggle('dark');
-                localStorage.setItem('pg-theme', isDark ? 'dark' : 'light');
-            });
-        }
-    })();
-    </script>
-
-    <script>
-    (function() {
         var menuBtn = document.getElementById('menu-btn');
         var sidebar = document.getElementById('sidebar');
         var overlay = document.getElementById('sidebar-overlay');
@@ -653,7 +630,10 @@
             hideSidebarUI();
         });
 
+        var sidebarCloseBtn = document.getElementById('sidebar-close-btn');
+
         if (menuBtn) menuBtn.addEventListener('click', openSidebar);
+        if (sidebarCloseBtn) sidebarCloseBtn.addEventListener('click', closeSidebar);
         overlay.addEventListener('click', closeSidebar);
 
         // বিভাগসমূহ accordion টগল
