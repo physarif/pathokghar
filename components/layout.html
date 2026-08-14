@@ -72,16 +72,48 @@
         }
         .header-left { display: flex; align-items: center; gap: 0.75rem; }
         .header-right { display: flex; align-items: center; gap: 1rem; }
-        #menu-btn, #sidebar-search-btn, #sidebar-search-close-btn {
+        #menu-btn, #sidebar-search-btn, #sidebar-search-close-btn, #header-search-btn, #header-search-close-btn {
             background: none; border: none; padding: 0; cursor: pointer;
             color: #6b7280;
         }
-        .dark #menu-btn, .dark #sidebar-search-btn, .dark #sidebar-search-close-btn { color: #9ca3af; }
+        .dark #menu-btn, .dark #sidebar-search-btn, .dark #sidebar-search-close-btn, .dark #header-search-btn, .dark #header-search-close-btn { color: #9ca3af; }
         .brand-link { display: flex; align-items: center; gap: 0.5rem; color: #c0392b; text-decoration: none; }
         .brand-name { font-size: 1.5rem; font-weight: 700; color: #1f2937; line-height: 1; }
         .dark .brand-name { color: #f3f4f6; }
         .brand-name-light { font-weight: 300; color: #9ca3af; }
         .dark .brand-name-light { color: #6b7280; }
+
+        /* ── Header inline search box (header-এর ভেতরে টগল হয়) ── */
+        .header-search-box {
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.25rem;
+            position: relative;
+        }
+        .header-search-input {
+            flex: 1;
+            min-width: 0;
+            background: transparent;
+            outline: none;
+            border: none;
+            color: #1f2937;
+            font-size: 1rem;
+        }
+        .dark .header-search-input { color: #f3f4f6; }
+        .header-search-input::placeholder { color: #9ca3af; }
+        .dark .header-search-input::placeholder { color: #6b7280; }
+        .header-search-suggest {
+            display: none;
+            position: absolute;
+            left: 0; right: 0; top: 100%;
+            background: rgba(255,255,255,0.95);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            max-height: 70vh;
+            overflow-y: auto;
+            z-index: 60;
+        }
+        .dark .header-search-suggest { background: rgba(35,35,42,0.95); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
 
         /* ── Sidebar header / search ── */
         .sidebar-header {
@@ -504,7 +536,17 @@
                         <i class="fa-brands fa-hashnode icon-lg"></i>
                     </a>
                 </nav>
+                <button id="header-search-btn" type="button" aria-label="খুঁজুন">
+                    <i class="fa-solid fa-magnifying-glass icon-lg"></i>
+                </button>
             </div>
+        </div>
+        <div id="header-search-box" class="hidden header-search-box">
+            <input id="header-search-input" type="text" placeholder="বই, লেখক বা বিভাগ দিয়ে খুঁজুন..." autocomplete="off" class="header-search-input">
+            <button id="header-search-close-btn" type="button" aria-label="বন্ধ করুন">
+                <i class="fa-solid fa-xmark icon-lg"></i>
+            </button>
+            <div id="header-search-suggest" class="header-search-suggest"></div>
         </div>
     </header>
     <!-- header fixed হওয়ায় নিচের কনটেন্টের জন্য একই উচ্চতার একটি spacer -->
@@ -649,46 +691,14 @@
     </script>
 
     <script>
-    // Sidebar-এর ভেতরে inline search box টগল করা + live autosuggest
+    // Inline search box টগল করা + live autosuggest — sidebar এবং header দুটোতেই ব্যবহৃত হয়
     (function() {
-        var defaultRow = document.getElementById('sidebar-header-default');
-        var searchBox = document.getElementById('sidebar-search-box');
-        var searchBtn = document.getElementById('sidebar-search-btn');
-        var closeBtn = document.getElementById('sidebar-search-close-btn');
-        var searchInput = document.getElementById('sidebar-search-input');
-        var suggestBox = document.getElementById('sidebar-search-suggest');
-
-        function openHeaderSearch() {
-            defaultRow.classList.add('hidden');
-            searchBox.classList.remove('hidden');
-            searchBox.classList.add('flex');
-            searchInput.value = '';
-            searchInput.focus();
-        }
-        function closeHeaderSearch() {
-            searchBox.classList.add('hidden');
-            searchBox.classList.remove('flex');
-            defaultRow.classList.remove('hidden');
-            hideSuggestions();
-        }
-        function submitHeaderSearch() {
-            var q = searchInput.value.trim();
-            if (q) {
-                window.location.href = '/search.html?q=' + encodeURIComponent(q);
-            }
-        }
-
-        searchBtn.addEventListener('click', openHeaderSearch);
-        closeBtn.addEventListener('click', closeHeaderSearch);
-
         // ── Autosuggest ──
         // search-index.json (lightweight, cover/title/author/category) একবার
-        // lazy-fetch হয় — প্রতিটা keystroke এ নয়, প্রথম টাইপ শুরু হলে।
+        // lazy-fetch হয় — প্রতিটা keystroke এ নয়, প্রথম টাইপ শুরু হলে। sidebar ও header
+        // একই cache শেয়ার করে, তাই দুইবার fetch হয় না।
         var indexData = null;
         var indexPromise = null;
-        var debounceTimer = null;
-        var activeIndex = -1;
-        var currentItems = [];
 
         function esc(str) {
             return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -708,95 +718,151 @@
             return indexPromise;
         }
 
-        function hideSuggestions() {
-            suggestBox.style.display = 'none';
-            suggestBox.innerHTML = '';
-            activeIndex = -1;
-            currentItems = [];
-        }
+        function initSearchBox(opts) {
+            var defaultRow = opts.defaultRow;
+            var searchBox = opts.searchBox;
+            var searchBtn = opts.searchBtn;
+            var closeBtn = opts.closeBtn;
+            var searchInput = opts.searchInput;
+            var suggestBox = opts.suggestBox;
 
-        function renderSuggestions(items, q) {
-            currentItems = items;
-            activeIndex = -1;
-            if (!items.length) { hideSuggestions(); return; }
-            var html = items.map(function(book) {
-                var meta = [book.author, book.category].filter(Boolean).join(' · ');
-                return '<a href="/book/' + book.slug + '.html" class="hs-item">'
-                    + '<img src="' + esc(book.cover) + '" alt="" class="hs-thumb" loading="lazy">'
-                    + '<div class="hs-body">'
-                    + '<div class="hs-title">' + highlight(book.title, q) + '</div>'
-                    + (meta ? '<div class="hs-meta">' + esc(meta) + '</div>' : '')
-                    + '</div></a>';
-            }).join('');
-            html += '<a href="/search.html?q=' + encodeURIComponent(q) + '" class="hs-more">"' + esc(q) + '" এর সব ফলাফল দেখুন</a>';
-            suggestBox.innerHTML = html;
-            suggestBox.style.display = 'block';
-        }
+            var debounceTimer = null;
+            var activeIndex = -1;
+            var currentItems = [];
 
-        function runSearch(q) {
-            loadIndex().then(function(data) {
-                // input ততক্ষণে বদলে যায়নি কিনা চেক — race condition এড়াতে
-                if (searchInput.value.trim().toLowerCase() !== q.toLowerCase()) return;
-                var ql = q.toLowerCase();
-                var scored = [];
-                for (var i = 0; i < data.length; i++) {
-                    var b = data[i];
-                    var title = (b.title || '').toLowerCase();
-                    var author = (b.author || '').toLowerCase();
-                    var category = (b.category || '').toLowerCase();
-                    var score = -1;
-                    if (title.indexOf(ql) === 0) score = 3;
-                    else if (title.indexOf(ql) !== -1) score = 2;
-                    else if (author.indexOf(ql) !== -1 || category.indexOf(ql) !== -1) score = 1;
-                    if (score > 0) scored.push({ book: b, score: score });
+            function openSearch() {
+                defaultRow.classList.add('hidden');
+                searchBox.classList.remove('hidden');
+                searchBox.classList.add('flex');
+                searchInput.value = '';
+                searchInput.focus();
+            }
+            function closeSearch() {
+                searchBox.classList.add('hidden');
+                searchBox.classList.remove('flex');
+                defaultRow.classList.remove('hidden');
+                hideSuggestions();
+            }
+            function submitSearch() {
+                var q = searchInput.value.trim();
+                if (q) {
+                    window.location.href = '/search.html?q=' + encodeURIComponent(q);
                 }
-                scored.sort(function(a, b) { return b.score - a.score; });
-                renderSuggestions(scored.slice(0, 6).map(function(s) { return s.book; }), q);
+            }
+
+            searchBtn.addEventListener('click', openSearch);
+            closeBtn.addEventListener('click', closeSearch);
+
+            function hideSuggestions() {
+                suggestBox.style.display = 'none';
+                suggestBox.innerHTML = '';
+                activeIndex = -1;
+                currentItems = [];
+            }
+
+            function renderSuggestions(items, q) {
+                currentItems = items;
+                activeIndex = -1;
+                if (!items.length) { hideSuggestions(); return; }
+                var html = items.map(function(book) {
+                    var meta = [book.author, book.category].filter(Boolean).join(' · ');
+                    return '<a href="/book/' + book.slug + '.html" class="hs-item">'
+                        + '<img src="' + esc(book.cover) + '" alt="" class="hs-thumb" loading="lazy">'
+                        + '<div class="hs-body">'
+                        + '<div class="hs-title">' + highlight(book.title, q) + '</div>'
+                        + (meta ? '<div class="hs-meta">' + esc(meta) + '</div>' : '')
+                        + '</div></a>';
+                }).join('');
+                html += '<a href="/search.html?q=' + encodeURIComponent(q) + '" class="hs-more">"' + esc(q) + '" এর সব ফলাফল দেখুন</a>';
+                suggestBox.innerHTML = html;
+                suggestBox.style.display = 'block';
+            }
+
+            function runSearch(q) {
+                loadIndex().then(function(data) {
+                    // input ততক্ষণে বদলে যায়নি কিনা চেক — race condition এড়াতে
+                    if (searchInput.value.trim().toLowerCase() !== q.toLowerCase()) return;
+                    var ql = q.toLowerCase();
+                    var scored = [];
+                    for (var i = 0; i < data.length; i++) {
+                        var b = data[i];
+                        var title = (b.title || '').toLowerCase();
+                        var author = (b.author || '').toLowerCase();
+                        var category = (b.category || '').toLowerCase();
+                        var score = -1;
+                        if (title.indexOf(ql) === 0) score = 3;
+                        else if (title.indexOf(ql) !== -1) score = 2;
+                        else if (author.indexOf(ql) !== -1 || category.indexOf(ql) !== -1) score = 1;
+                        if (score > 0) scored.push({ book: b, score: score });
+                    }
+                    scored.sort(function(a, b) { return b.score - a.score; });
+                    renderSuggestions(scored.slice(0, 6).map(function(s) { return s.book; }), q);
+                });
+            }
+
+            searchInput.addEventListener('input', function() {
+                var q = searchInput.value.trim();
+                clearTimeout(debounceTimer);
+                if (q.length < 2) { hideSuggestions(); return; }
+                debounceTimer = setTimeout(function() { runSearch(q); }, 150);
             });
-        }
 
-        searchInput.addEventListener('input', function() {
-            var q = searchInput.value.trim();
-            clearTimeout(debounceTimer);
-            if (q.length < 2) { hideSuggestions(); return; }
-            debounceTimer = setTimeout(function() { runSearch(q); }, 150);
-        });
-
-        searchInput.addEventListener('keydown', function(e) {
-            var visible = suggestBox.style.display === 'block';
-            if (e.key === 'ArrowDown' && visible) {
-                e.preventDefault();
-                activeIndex = Math.min(activeIndex + 1, currentItems.length - 1);
-                updateActive();
-            } else if (e.key === 'ArrowUp' && visible) {
-                e.preventDefault();
-                activeIndex = Math.max(activeIndex - 1, -1);
-                updateActive();
-            } else if (e.key === 'Enter') {
-                if (visible && activeIndex >= 0) {
+            searchInput.addEventListener('keydown', function(e) {
+                var visible = suggestBox.style.display === 'block';
+                if (e.key === 'ArrowDown' && visible) {
                     e.preventDefault();
-                    window.location.href = '/book/' + currentItems[activeIndex].slug + '.html';
-                } else {
-                    submitHeaderSearch();
+                    activeIndex = Math.min(activeIndex + 1, currentItems.length - 1);
+                    updateActive();
+                } else if (e.key === 'ArrowUp' && visible) {
+                    e.preventDefault();
+                    activeIndex = Math.max(activeIndex - 1, -1);
+                    updateActive();
+                } else if (e.key === 'Enter') {
+                    if (visible && activeIndex >= 0) {
+                        e.preventDefault();
+                        window.location.href = '/book/' + currentItems[activeIndex].slug + '.html';
+                    } else {
+                        submitSearch();
+                    }
+                } else if (e.key === 'Escape') {
+                    if (visible) hideSuggestions();
+                    else closeSearch();
                 }
-            } else if (e.key === 'Escape') {
-                if (visible) hideSuggestions();
-                else closeHeaderSearch();
-            }
-        });
-
-        function updateActive() {
-            var links = suggestBox.querySelectorAll('.hs-item');
-            links.forEach(function(el, i) {
-                el.classList.toggle('hs-active', i === activeIndex);
             });
-            if (activeIndex >= 0 && links[activeIndex]) {
-                links[activeIndex].scrollIntoView({ block: 'nearest' });
+
+            function updateActive() {
+                var links = suggestBox.querySelectorAll('.hs-item');
+                links.forEach(function(el, i) {
+                    el.classList.toggle('hs-active', i === activeIndex);
+                });
+                if (activeIndex >= 0 && links[activeIndex]) {
+                    links[activeIndex].scrollIntoView({ block: 'nearest' });
+                }
             }
+
+            document.addEventListener('click', function(e) {
+                if (!searchBox.contains(e.target)) hideSuggestions();
+            });
         }
 
-        document.addEventListener('click', function(e) {
-            if (!searchBox.contains(e.target)) hideSuggestions();
+        // Sidebar-এর ভেতরের search box
+        initSearchBox({
+            defaultRow: document.getElementById('sidebar-header-default'),
+            searchBox: document.getElementById('sidebar-search-box'),
+            searchBtn: document.getElementById('sidebar-search-btn'),
+            closeBtn: document.getElementById('sidebar-search-close-btn'),
+            searchInput: document.getElementById('sidebar-search-input'),
+            suggestBox: document.getElementById('sidebar-search-suggest')
+        });
+
+        // Header-এর ভেতরের search box
+        initSearchBox({
+            defaultRow: document.getElementById('header-default'),
+            searchBox: document.getElementById('header-search-box'),
+            searchBtn: document.getElementById('header-search-btn'),
+            closeBtn: document.getElementById('header-search-close-btn'),
+            searchInput: document.getElementById('header-search-input'),
+            suggestBox: document.getElementById('header-search-suggest')
         });
     })();
     </script>
