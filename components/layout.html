@@ -225,6 +225,12 @@
             row-gap: 0.5rem;
         }
         .footer-dot-links { display: flex; flex-wrap: wrap; align-items: center; row-gap: 0.25rem; }
+        .footer-copyright {
+            font-size: 14px;
+            color: #9ca3af;
+            white-space: nowrap;
+        }
+        .dark .footer-copyright { color: #6b7280; }
         @media (min-width: 768px) {
             .footer-links-row { flex-wrap: nowrap; }
             .footer-dot-links { flex-wrap: nowrap; }
@@ -890,27 +896,21 @@
                 <a href="/policy" class="footer-dot-link">শর্তাবলী</a>
             </div>
 
-            <!-- Visit counter -->
-            <span id="pg-visit-counter-footer" class="pg-visit-pill"><i class="fa-solid fa-arrow-trend-up"></i> <b>**</b></span>
+            <!-- Copyright -->
+            <span id="footer-copyright" class="footer-copyright">&copy; <span id="footer-copyright-year"></span> কপিরাইট</span>
 
         </div>
 
     </footer>
 
     <script>
-        // Visit counter (footer) — শুধু আজকের ভিজিট কাউন্ট দেখানো হয়
+        // Footer copyright — বছর automatic (current year, বাংলা সংখ্যায়)
         (function () {
-            const el = document.getElementById('pg-visit-counter-footer');
+            const el = document.getElementById('footer-copyright-year');
             if (!el) return;
             const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
             const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');
-            const num = el.querySelector('b');
-            fetch('/api/visits')
-                .then(r => r.json())
-                .then(data => {
-                    num.textContent = toBn(data.today);
-                })
-                .catch(() => { el.style.display = 'none'; });
+            el.textContent = toBn(new Date().getFullYear());
         })();
     </script>
 
