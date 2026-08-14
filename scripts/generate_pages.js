@@ -575,22 +575,14 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
         </div>
       </a>`).join('');
 
-      // Pagination HTML (books.html এর bc-pagination style অনুসরণ করা হচ্ছে)
-      let paginationHTML = '<div class="bc-pagination">';
-      if (page > 1) paginationHTML += `<a href="/category/${slug}/${page - 1}/" class="bc-page-nav"><i class="fas fa-chevron-left text-xs"></i> পূর্ববর্তী</a>`;
-      for (let i = 1; i <= totalPages; i++) {
-        if (i === page) paginationHTML += `<span class="bc-page-btn active">${toBanglaNum(i)}</span>`;
-        else paginationHTML += `<a href="/category/${slug}/${i}/" class="bc-page-btn">${toBanglaNum(i)}</a>`;
-      }
-      if (page < totalPages) paginationHTML += `<a href="/category/${slug}/${page + 1}/" class="bc-page-nav">পরবর্তী <i class="fas fa-chevron-right text-xs"></i></a>`;
-      paginationHTML += '</div>';
-
       const categoryContent = render(categoryTemplate, {
         category_name: data.name,
         category_book_count: data.books.length,
         category_book_count_bn: toBanglaNum(data.books.length),
         category_books_grid: booksGrid,
-        category_pagination: paginationHTML,
+        category_slug: slug,
+        current_page: page,
+        total_pages: totalPages,
       });
       const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
       const fullPage = render(layout, {
