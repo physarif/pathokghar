@@ -41,17 +41,26 @@ jobs:
         with:
           python-version: '3.11'
 
+      # ৩.৫. আগের build-এ generate করা বই (content/read/images/css) cache থেকে
+      #       ফিরিয়ে আনো, যাতে "Convert books" স্টেপ skip হলেও আগের বইগুলো
+      #       deploy-তে হারিয়ে না যায়
+      - name: Restore converted books cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            content
+            read
+            assets/images
+            assets/css
+          key: converted-books-${{ github.run_id }}
+          restore-keys: |
+            converted-books-
+
       # ৪. Dependencies install
       - name: Install dependencies
         run: |
-          npm install firebase-admin wrangler marked @firebase/app tailwindcss@^3
+          npm install firebase-admin wrangler marked @firebase/app
           pip install ebooklib beautifulsoup4 --break-system-packages
-
-      # ৪.৫. Tailwind CSS precompile — components/*.html স্ক্যান করে শুধু
-      #       ব্যবহৃত ক্লাসগুলোর static CSS বানায়, রানটাইম CDN JIT (FOUC-এর
-      #       কারণ) এর বদলে normal <link rel="stylesheet"> হিসেবে সার্ভ হবে।
-      - name: Build Tailwind CSS
-        run: npx tailwindcss -i ./assets/css/tailwind-input.css -o ./assets/css/tailwind.css --minify
 
       # ৫. কোন files বদলেছে সেটা detect করো
       - name: Detect changed files
