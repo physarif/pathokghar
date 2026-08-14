@@ -210,43 +210,38 @@
         font-family: 'Noto Serif Bengali', 'Lora', serif;
         font-size: 1.3rem;
         font-weight: 800;
-        color: #9ca3af;
+        color: var(--bar-text-dim);
         text-align: center;
         margin: 0 0 0.25rem;
         letter-spacing: 0.04em;
+        transition: color 0.3s;
     }
     #book-content h1::after {
         content: '';
         display: block;
         width: 2.8em;
         height: 3px;
-        background: #c0392b;
+        background: var(--bar-accent);
         border-radius: 2px;
         margin: 0.4rem auto 0;
+        transition: background 0.3s;
     }
     #book-content h2 {
         font-family: 'Noto Serif Bengali', 'Lora', serif;
         font-size: 1.05rem;
         font-weight: 700;
-        color: #7a2115;
+        color: var(--bar-accent);
         text-align: center;
         text-transform: uppercase;
         letter-spacing: 0.15em;
         margin: 1.75rem 0 0.75rem;
         padding: 0.5rem 0;
-        border-top: 1px solid #d9a5a0;
-        border-bottom: 1px solid #d9a5a0;
+        border-top: 1px solid var(--bar-accent-soft);
+        border-bottom: 1px solid var(--bar-accent-soft);
+        transition: color 0.3s, border-color 0.3s;
     }
-    /* Night mode heading adjust */
-    body.theme-dark  #book-content h1,
-    body.theme-black #book-content h1 { color: #6b7280; }
-    body.theme-dark  #book-content h2,
-    body.theme-black #book-content h2 { color: #f2938a; border-color: rgba(169,50,38,0.4); }
-    body.theme-dark  #book-content h1::after { background: #a93226; }
-    body.theme-black #book-content h1::after { background: #922b21; }
-    body.theme-sepia #book-content h1 { color: #a08060; }
-    body.theme-sepia #book-content h2 { color: #7a2115; border-color: rgba(160,64,48,0.35); }
-    body.theme-sepia #book-content h1::after { background: #a04030; }
+    /* h1/h2 colors now follow --bar-text-dim / --bar-accent (see :root theme variables above),
+       so they automatically match light / sepia / dark / black modes. */
 
     /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
     #book-content p {
