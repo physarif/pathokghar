@@ -891,25 +891,24 @@
             </div>
 
             <!-- Visit counter -->
-            <span id="pg-visit-counter-footer" class="pg-visit-pill"><i class="fa-solid fa-arrow-trend-up"></i> <b>**</b> <span class="pg-sep">|</span> <b>**</b></span>
+            <span id="pg-visit-counter-footer" class="pg-visit-pill"><i class="fa-solid fa-arrow-trend-up"></i> <b>**</b></span>
 
         </div>
 
     </footer>
 
     <script>
-        // Visit counter (footer) — প্রতি পেজ লোড/রিফ্রেশে count বাড়বে
+        // Visit counter (footer) — শুধু আজকের ভিজিট কাউন্ট দেখানো হয়
         (function () {
             const el = document.getElementById('pg-visit-counter-footer');
             if (!el) return;
             const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
             const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');
-            const nums = el.querySelectorAll('b');
+            const num = el.querySelector('b');
             fetch('/api/visits')
                 .then(r => r.json())
                 .then(data => {
-                    nums[0].textContent = toBn(data.today);
-                    nums[1].textContent = toBn(data.total);
+                    num.textContent = toBn(data.today);
                 })
                 .catch(() => { el.style.display = 'none'; });
         })();
