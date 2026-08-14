@@ -1,24 +1,43 @@
 <!-- components/search.html — static search page, Firebase data build-time embed, Fuse.js client-side filter -->
-<div class="max-w-5xl mx-auto py-6" style="padding-left:0.5rem;padding-right:0.5rem;">
+<style>
+  .search-page { max-width: 64rem; margin: 0 auto; padding: 1.5rem 0.5rem; }
+  .search-label-row {
+    padding: 0.45rem 1rem;
+    background: #c0392b;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  #search-title { color: #fff; font-weight: 700; letter-spacing: 0.01em; }
+  #search-count { background: rgba(255,255,255,0.18); color: #fff; font-weight: 600; font-size: 0.78rem; padding: 0.15rem 0.6rem; }
+  .search-state { display: none; text-align: center; padding: 3rem 1rem; }
+  .search-state i { font-size: 2.2rem; color: #d1d5db; margin-bottom: 0.75rem; display: block; }
+  .search-state p { color: #6b7280; font-size: 0.95rem; margin: 0; }
+  .dark .search-state p { color: #9ca3af; }
+</style>
+
+<div class="search-page">
 
   <!-- Section label -->
-  <div style="padding:0.45rem 1rem;background:#c0392b;font-size:1rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
-    <span id="search-title" style="color:#fff;font-weight:700;letter-spacing:0.01em;">অনুসন্ধান</span>
-    <span id="search-count" style="background:rgba(255,255,255,0.18);color:#fff;font-weight:600;font-size:0.78rem;padding:0.15rem 0.6rem;"></span>
+  <div class="search-label-row">
+    <span id="search-title">অনুসন্ধান</span>
+    <span id="search-count"></span>
   </div>
 
   <div id="search-results" class="bc-list"></div>
 
   <!-- Empty state -->
-  <div id="search-empty" style="display:none;text-align:center;padding:3rem 1rem;">
-    <i class="fas fa-book-open" style="font-size:2.2rem;color:#d1d5db;margin-bottom:0.75rem;display:block;"></i>
-    <p style="color:#6b7280;font-size:0.95rem;margin:0;" class="dark:text-gray-400">কোনো বই খুঁজে পাওয়া যায়নি। অন্য শব্দ দিয়ে চেষ্টা করুন।</p>
+  <div id="search-empty" class="search-state">
+    <i class="fas fa-book-open"></i>
+    <p>কোনো বই খুঁজে পাওয়া যায়নি। অন্য শব্দ দিয়ে চেষ্টা করুন।</p>
   </div>
 
   <!-- No query state -->
-  <div id="search-noquery" style="display:none;text-align:center;padding:3rem 1rem;">
-    <i class="fas fa-magnifying-glass" style="font-size:2.2rem;color:#d1d5db;margin-bottom:0.75rem;display:block;"></i>
-    <p style="color:#6b7280;font-size:0.95rem;margin:0;" class="dark:text-gray-400">উপরের বক্সে বই, লেখক বা বিভাগের নাম লিখে খুঁজুন।</p>
+  <div id="search-noquery" class="search-state">
+    <i class="fas fa-magnifying-glass"></i>
+    <p>উপরের বক্সে বই, লেখক বা বিভাগের নাম লিখে খুঁজুন।</p>
   </div>
 
 </div>

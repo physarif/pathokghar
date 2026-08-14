@@ -1,4 +1,4 @@
-<div class="pt-4 md:pt-6 md:px-8 lg:px-16">
+<div class="author-page-wrap">
 
 <!-- Structured data: Google-কে লেখক সম্পর্কে স্পষ্ট তথ্য দেয় -->
 <script type="application/ld+json">
@@ -12,7 +12,7 @@
 }
 </script>
 
-<div class="md:px-6 author-hero-wrap">
+<div class="author-hero-wrap">
     <div class="author-hero-card">
         <img src="{{author_img}}" alt="{{author_name}}" class="author-hero-avatar">
         <div class="author-hero-body">
@@ -20,7 +20,7 @@
             <hr class="author-hero-rule">
             <!-- build time-এই markdown থেকে HTML — crawler-এর জন্য প্রথম
                  লোডেই লেখক পরিচিতি পাওয়া যায়, JS-এর উপর নির্ভরতা নেই -->
-            <div class="author-desc-md text-base text-gray-500 dark:text-gray-400 leading-6 text-justify">{{author_desc_html}}</div>
+            <div class="author-desc-md">{{author_desc_html}}</div>
         </div>
     </div>
 </div>
@@ -37,6 +37,10 @@
      AUTHOR PROFILE HERO — design এখানে পরিবর্তন করো
      ═══════════════════════════════════════════════════════════ -->
 <style>
+.author-page-wrap { padding-top: 1rem; }
+@media (min-width: 768px) { .author-page-wrap { padding-top: 1.5rem; padding-left: 2rem; padding-right: 2rem; } }
+@media (min-width: 1024px) { .author-page-wrap { padding-left: 4rem; padding-right: 4rem; } }
+@media (min-width: 768px) { .author-hero-wrap { padding: 0 1.5rem; } }
 .author-hero-wrap {
     margin-bottom: 0.9rem;
 }
@@ -131,6 +135,13 @@
 {{book_card_styles}}
 
 <style>
+.author-desc-md {
+    font-size: 1rem;
+    color: #6b7280;
+    line-height: 1.5rem;
+    text-align: justify;
+}
+.dark .author-desc-md { color: #9ca3af; }
 .author-desc-md p { margin-bottom: 0.5rem; }
 .author-desc-md p:last-child { margin-bottom: 0; }
 .author-desc-md strong { font-weight: 600; color: inherit; }

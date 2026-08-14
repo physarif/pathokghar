@@ -33,7 +33,192 @@
     <link rel="stylesheet" href="/components/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        /* ── Base / reset ── */
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f3f4f6;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .dark body { background: #1a1a1b; color: #e5e7eb; }
+        a { color: inherit; }
+        ul { padding: 0; margin: 0; }
+
+        /* ── JS-controlled state utilities (নাম বদলানো যাবে না — script এই
+           ক্লাসগুলো classList দিয়ে টগল করে) ── */
+        .hidden { display: none !important; }
+        .flex { display: flex !important; }
+
+        /* সাধারণ বড় আইকন সাইজ */
+        .icon-lg { font-size: 1.5rem; }
+
+        main { flex: 1 1 auto; min-width: 0; }
+
+        /* ── Header ── */
+        #site-header {
+            border-bottom: 1px solid #e5e7eb;
+            background: #ffffff;
+        }
+        .dark #site-header { border-bottom-color: #374151; }
+        .header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1.25rem;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.75rem; }
+        .header-right { display: flex; align-items: center; gap: 1rem; }
+        #menu-btn, #sidebar-search-btn, #sidebar-search-close-btn {
+            background: none; border: none; padding: 0; cursor: pointer;
+            color: #6b7280;
+        }
+        .dark #menu-btn, .dark #sidebar-search-btn, .dark #sidebar-search-close-btn { color: #9ca3af; }
+        .brand-link { display: flex; align-items: center; gap: 0.5rem; color: #c0392b; text-decoration: none; }
+        .brand-name { font-size: 1.5rem; font-weight: 700; color: #1f2937; line-height: 1; }
+        .dark .brand-name { color: #f3f4f6; }
+        .brand-name-light { font-weight: 300; color: #9ca3af; }
+        .dark .brand-name-light { color: #6b7280; }
+
+        /* ── Sidebar header / search ── */
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            background: #ffffff;
+        }
+        .dark .sidebar-header { border-bottom-color: #374151; background: #1f1f1f; }
+        .sidebar-brand { display: flex; align-items: center; gap: 0.5rem; }
+        .sidebar-brand-icon { color: #c0392b; }
+        .sidebar-search-box {
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            background: #ffffff;
+            position: relative;
+        }
+        .dark .sidebar-search-box { border-bottom-color: #374151; background: #1f1f1f; }
+        .sidebar-search-icon { font-size: 1.25rem; color: #9ca3af; }
+        .dark .sidebar-search-icon { color: #6b7280; }
+        .sidebar-search-input {
+            flex: 1;
+            min-width: 0;
+            background: transparent;
+            outline: none;
+            border: none;
+            color: #1f2937;
+        }
+        .dark .sidebar-search-input { color: #f3f4f6; }
+        .sidebar-search-input::placeholder { color: #9ca3af; }
+        .dark .sidebar-search-input::placeholder { color: #6b7280; }
+        .sidebar-search-suggest {
+            display: none;
+            position: absolute;
+            left: 0; right: 0; top: 100%;
+            background: #fff;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            max-height: 70vh;
+            overflow-y: auto;
+            z-index: 60;
+        }
+
+        /* ── Sidebar collapsible sections ── */
+        .sidebar-toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .dark .sidebar-toggle-row { border-bottom-color: #374151; }
+        .sidebar-toggle-label { font-size: 1rem; font-weight: 700; color: #1f2937; }
+        .dark .sidebar-toggle-label { color: #f3f4f6; }
+        .sidebar-toggle-chevron { color: #6b7280; font-size: 0.875rem; }
+        .dark .sidebar-toggle-chevron { color: #9ca3af; }
+        .sidebar-collapsible-list {
+            padding: 0 0.5rem 0.25rem;
+            list-style: none;
+            margin: 0;
+            max-height: 45vh;
+            overflow-y: auto;
+        }
+        .sidebar-divider { margin: 0 1rem; border-top: 1px solid #e5e7eb; }
+        .dark .sidebar-divider { border-top-color: #374151; }
+        .sidebar-links-row { padding: 0.75rem 1rem; }
+        .sidebar-links-row a {
+            font-size: 0.875rem;
+            color: #374151;
+            text-decoration: none;
+            margin-right: 0.75rem;
+        }
+        .dark .sidebar-links-row a { color: #e5e7eb; }
+        .sidebar-links-row a:active { color: #c0392b; }
+        .sidebar-bottom-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem 1rem;
+        }
+        #sidebar-social { display: flex; align-items: center; gap: 0.75rem; }
+        .sidebar-social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            font-size: 1.25rem;
+        }
+        .sidebar-social-icon.fb { color: #1877f2; }
+        .sidebar-social-icon.tg { color: #229ed9; }
+
+        /* ── Footer ── */
+        .site-footer {
+            background: #f3f4f6;
+            border-top: 1px solid #d1d5db;
+            margin-top: 3rem;
+        }
+        .dark .site-footer { background: #1f1f1f; border-top-color: #374151; }
+        .footer-container { max-width: 48rem; margin: 0 auto; padding: 0 1.25rem; }
+        .footer-brand-row {
+            padding-top: 2rem;
+            padding-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer-brand-link { display: flex; align-items: center; text-decoration: none; }
+        .footer-tagline {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 0.125rem;
+            letter-spacing: 0.02em;
+        }
+        .dark .footer-tagline { color: #9ca3af; }
+        .footer-social-row { display: flex; align-items: center; gap: 0.5rem; }
+        .footer-divider { border-top: 1px solid #d1d5db; }
+        .dark .footer-divider { border-top-color: #374151; }
+        .footer-links-row {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            row-gap: 0.5rem;
+        }
+        .footer-dot-links { display: flex; flex-wrap: wrap; align-items: center; row-gap: 0.25rem; }
+        @media (min-width: 768px) {
+            .footer-links-row { flex-wrap: nowrap; }
+            .footer-dot-links { flex-wrap: nowrap; }
+        }
 
         /* Category links — footer style, larger */
         .category-underline-list li { display: inline-flex; align-items: center; white-space: nowrap; }
@@ -134,8 +319,10 @@
             width: 42px;
             height: 36px;
             border-right: 1px solid #e5e7eb;
+            color: #6b7280;
+            text-decoration: none;
         }
-        .dark .header-nav-btn { border-right-color: #374151; }
+        .dark .header-nav-btn { border-right-color: #374151; color: #9ca3af; }
         .header-nav-btn:last-child { border-right: none; }
         .header-nav-btn.active { color: #c0392b !important; background: #fdecea; }
         .dark .header-nav-btn.active { color: #e57373 !important; background: #3a2323; }
@@ -169,8 +356,6 @@
            (Tailwind-এর mt-auto/flex-col precompiled CSS-এ নাও থাকতে পারে) */
         #sidebar { display: flex; flex-direction: column; }
         #sidebar-bottom { margin-top: auto; }
-        #sidebar-links { display: flex; align-items: center; gap: 14px; }
-        #sidebar-social a { color: inherit; }
 
         /* বিভাগসমূহ ও লেখকগণ accordion */
         #sidebar-categories-chevron, #sidebar-authors-chevron { transition: transform 0.2s ease; }
@@ -280,29 +465,29 @@
         .dark .hs-more { color: #f87171; border-top-color: #2f2f38; }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800 dark:bg-[#1a1a1b] dark:text-gray-200 flex flex-col min-h-screen">
+<body>
 
     <!-- TOP BAR -->
-    <header id="site-header" class="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1f1f1f]">
-        <div id="header-default" class="flex items-center justify-between px-5 py-3">
-            <div class="flex items-center gap-3">
-                <button id="menu-btn" type="button" aria-label="মেনু" class="text-gray-500 dark:text-gray-400">
-                    <i class="fa-solid fa-bars text-2xl"></i>
+    <header id="site-header">
+        <div id="header-default" class="header-row">
+            <div class="header-left">
+                <button id="menu-btn" type="button" aria-label="মেনু">
+                    <i class="fa-solid fa-bars icon-lg"></i>
                 </button>
-                <a href="https://pathokghar.com" aria-label="পাঠক ঘর" class="flex items-center gap-2" style="color:#c0392b;">
-                    <span class="text-2xl font-bold text-gray-800 dark:text-gray-100" style="line-height:1;">পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span></span>
+                <a href="https://pathokghar.com" aria-label="পাঠক ঘর" class="brand-link">
+                    <span class="brand-name">পাঠক <span class="brand-name-light">ঘর</span></span>
                 </a>
             </div>
-            <div class="flex items-center gap-4">
+            <div class="header-right">
                 <nav class="header-nav-group">
-                    <a href="/" data-nav-path="/" class="header-nav-btn text-gray-500 dark:text-gray-400" aria-label="হোম">
-                        <i class="fa-solid fa-house text-2xl"></i>
+                    <a href="/" data-nav-path="/" class="header-nav-btn" aria-label="হোম">
+                        <i class="fa-solid fa-house icon-lg"></i>
                     </a>
-                    <a href="/authors/" data-nav-path="/authors/" class="header-nav-btn text-gray-500 dark:text-gray-400" aria-label="লেখক">
-                        <i class="fa-solid fa-user-graduate text-2xl"></i>
+                    <a href="/authors/" data-nav-path="/authors/" class="header-nav-btn" aria-label="লেখক">
+                        <i class="fa-solid fa-user-graduate icon-lg"></i>
                     </a>
-                    <a href="/categories/" data-nav-path="/categories/" class="header-nav-btn text-gray-500 dark:text-gray-400" aria-label="বিভাগ">
-                        <i class="fa-brands fa-hashnode text-2xl"></i>
+                    <a href="/categories/" data-nav-path="/categories/" class="header-nav-btn" aria-label="বিভাগ">
+                        <i class="fa-brands fa-hashnode icon-lg"></i>
                     </a>
                 </nav>
             </div>
@@ -314,66 +499,61 @@
     <!-- SIDEBAR -->
     <div id="sidebar-overlay"></div>
     <aside id="sidebar">
-        <div id="sidebar-header-default" class="flex items-center justify-between px-4 py-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1f1f1f]">
-            <div class="flex items-center gap-2">
-                <span style="color:#c0392b;"><i class="fa-solid fa-swatchbook text-2xl"></i></span>
-                <span class="text-2xl font-bold text-gray-800 dark:text-gray-100" style="line-height:1;">পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span></span>
+        <div id="sidebar-header-default" class="sidebar-header">
+            <div class="sidebar-brand">
+                <span class="sidebar-brand-icon"><i class="fa-solid fa-swatchbook icon-lg"></i></span>
+                <span class="brand-name">পাঠক <span class="brand-name-light">ঘর</span></span>
             </div>
-            <button id="sidebar-search-btn" type="button" aria-label="খুঁজুন" class="text-gray-500 dark:text-gray-400">
-                <i class="fa-solid fa-magnifying-glass text-2xl"></i>
+            <button id="sidebar-search-btn" type="button" aria-label="খুঁজুন">
+                <i class="fa-solid fa-magnifying-glass icon-lg"></i>
             </button>
         </div>
-        <div id="sidebar-search-box" class="hidden items-center gap-3 px-4 py-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1f1f1f]" style="position:relative;">
-            <i class="fa-solid fa-magnifying-glass text-xl text-gray-400 dark:text-gray-500"></i>
-            <input id="sidebar-search-input" type="text" placeholder="বই, লেখক বা বিভাগ দিয়ে খুঁজুন..." autocomplete="off"
-                   class="flex-1 min-w-0 bg-transparent outline-none border-none text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
-            <button id="sidebar-search-close-btn" type="button" aria-label="বন্ধ করুন" class="text-gray-500 dark:text-gray-400 shrink-0">
-                <i class="fa-solid fa-xmark text-2xl"></i>
+        <div id="sidebar-search-box" class="hidden sidebar-search-box">
+            <i class="fa-solid fa-magnifying-glass sidebar-search-icon"></i>
+            <input id="sidebar-search-input" type="text" placeholder="বই, লেখক বা বিভাগ দিয়ে খুঁজুন..." autocomplete="off" class="sidebar-search-input">
+            <button id="sidebar-search-close-btn" type="button" aria-label="বন্ধ করুন">
+                <i class="fa-solid fa-xmark icon-lg"></i>
             </button>
-            <div id="sidebar-search-suggest" style="display:none;position:absolute;left:0;right:0;top:100%;background:#fff;border-radius:0 0 10px 10px;box-shadow:0 8px 20px rgba(0,0,0,0.15);max-height:70vh;overflow-y:auto;z-index:60;"></div>
+            <div id="sidebar-search-suggest" class="sidebar-search-suggest"></div>
         </div>
 
         <!-- বিভাগসমূহ — collapsible, সব category বর্ণমালা অনুসারে -->
-        <div id="sidebar-categories-toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="sidebar-categories-list"
-             class="flex items-center justify-between px-4 py-3 cursor-pointer border-b border-gray-200 dark:border-gray-700">
-            <span class="text-base font-bold text-gray-800 dark:text-gray-100">বিভাগসমূহ</span>
-            <i id="sidebar-categories-chevron" class="fa-solid fa-chevron-down text-gray-500 dark:text-gray-400 text-sm"></i>
+        <div id="sidebar-categories-toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="sidebar-categories-list" class="sidebar-toggle-row">
+            <span class="sidebar-toggle-label">বিভাগসমূহ</span>
+            <i id="sidebar-categories-chevron" class="fa-solid fa-chevron-down sidebar-toggle-chevron"></i>
         </div>
-        <ul id="sidebar-categories-list" class="px-2 pb-1" style="display:none; list-style:none; margin:0; max-height:45vh; overflow-y:auto;">
+        <ul id="sidebar-categories-list" class="sidebar-collapsible-list" style="display:none;">
             {{hero_categories}}
         </ul>
 
         <!-- লেখকগণ — collapsible, সব লেখক বর্ণমালা অনুসারে -->
-        <div id="sidebar-authors-toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="sidebar-authors-list"
-             class="flex items-center justify-between px-4 py-3 cursor-pointer border-b border-gray-200 dark:border-gray-700">
-            <span class="text-base font-bold text-gray-800 dark:text-gray-100">লেখকগণ</span>
-            <i id="sidebar-authors-chevron" class="fa-solid fa-chevron-down text-gray-500 dark:text-gray-400 text-sm"></i>
+        <div id="sidebar-authors-toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="sidebar-authors-list" class="sidebar-toggle-row">
+            <span class="sidebar-toggle-label">লেখকগণ</span>
+            <i id="sidebar-authors-chevron" class="fa-solid fa-chevron-down sidebar-toggle-chevron"></i>
         </div>
-        <ul id="sidebar-authors-list" class="px-2 pb-1" style="display:none; list-style:none; margin:0; max-height:45vh; overflow-y:auto;">
+        <ul id="sidebar-authors-list" class="sidebar-collapsible-list" style="display:none;">
             {{sidebar_authors}}
         </ul>
 
         <!-- একেবারে নিচে বসবে -->
         <div id="sidebar-bottom">
-            <div class="mx-4 border-t border-gray-200 dark:border-gray-700"></div>
+            <div class="sidebar-divider"></div>
 
             <!-- Links (পাশাপাশি) -->
-            <div id="sidebar-links" class="px-4 py-3">
-                <a href="/about" class="text-sm text-gray-700 dark:text-gray-200 active:text-brand-500">সম্পর্কে</a>
-                <a href="/contact" class="text-sm text-gray-700 dark:text-gray-200 active:text-brand-500">যোগাযোগ</a>
-                <a href="/policy" class="text-sm text-gray-700 dark:text-gray-200 active:text-brand-500">শর্তাবলী</a>
+            <div id="sidebar-links" class="sidebar-links-row">
+                <a href="/about">সম্পর্কে</a>
+                <a href="/contact">যোগাযোগ</a>
+                <a href="/policy">শর্তাবলী</a>
             </div>
 
             <!-- Visit counter + Social icons (ডানে) -->
-            <div class="flex items-center justify-between px-4 pb-4">
+            <div class="sidebar-bottom-row">
                 <span id="pg-visit-counter" class="pg-visit-pill"><i class="fa-solid fa-arrow-trend-up"></i> <b>**</b> <span class="pg-sep">|</span> <b>**</b></span>
-                <div id="sidebar-social" class="flex items-center gap-3">
-                    <a href="https://facebook.com/pathokghar" target="_blank" rel="noopener" aria-label="Facebook"
-                       class="flex items-center justify-center" style="width:36px;height:36px;color:#1877f2;font-size:1.25rem;">
+                <div id="sidebar-social">
+                    <a href="https://facebook.com/pathokghar" target="_blank" rel="noopener" aria-label="Facebook" class="sidebar-social-icon fb">
                         <i class="fa-brands fa-facebook"></i>
                     </a>
-                    <a href="https://t.me/pathokghar" target="_blank" rel="noopener" aria-label="Telegram"
-                       class="flex items-center justify-center" style="width:36px;height:36px;color:#229ed9;font-size:1.25rem;">
+                    <a href="https://t.me/pathokghar" target="_blank" rel="noopener" aria-label="Telegram" class="sidebar-social-icon tg">
                         <i class="fa-brands fa-telegram"></i>
                     </a>
                 </div>
@@ -658,23 +838,23 @@
     </script>
 
     <!-- MAIN CONTENT -->
-    <main class="flex-1 min-w-0">
+    <main>
         {{content}}
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-gray-100 dark:bg-[#1f1f1f] border-t border-gray-300 dark:border-gray-700 mt-12">
+    <footer class="site-footer">
 
         <!-- Brand row -->
-        <div class="max-w-3xl mx-auto px-5 pt-8 pb-4 flex items-center justify-between">
+        <div class="footer-container footer-brand-row">
             <div>
-                <a href="https://pathokghar.com" class="flex items-center">
-                    <span class="text-2xl font-bold text-gray-800 dark:text-gray-100" style="line-height:1;">পাঠক <span class="font-light text-gray-400 dark:text-gray-500">ঘর</span></span>
+                <a href="https://pathokghar.com" class="footer-brand-link">
+                    <span class="brand-name">পাঠক <span class="brand-name-light">ঘর</span></span>
                 </a>
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5 tracking-wide">বাংলা বইয়ের ডিজিটাল পাঠাগার</p>
+                <p class="footer-tagline">বাংলা বইয়ের ডিজিটাল পাঠাগার</p>
             </div>
             <!-- Social icons — রেফারেন্স ডিজাইনের বক্স-স্টাইলের সাথে হুবহু -->
-            <div class="flex items-center gap-2">
+            <div class="footer-social-row">
                 <a href="https://facebook.com/pathokghar" target="_blank" rel="noopener" aria-label="Facebook" class="footer-social-icon fb">
                     <i class="fa-brands fa-facebook-f"></i>
                 </a>
@@ -685,14 +865,14 @@
         </div>
 
         <!-- Divider -->
-        <div class="max-w-3xl mx-auto px-5">
-            <div class="border-t border-gray-300 dark:border-gray-700"></div>
+        <div class="footer-container">
+            <div class="footer-divider"></div>
         </div>
 
         <!-- Dot-separated links — mobile: wrap, desktop: single row -->
-        <div class="max-w-3xl mx-auto px-5 pt-5 pb-6 flex flex-wrap md:flex-nowrap items-center justify-between gap-y-3">
+        <div class="footer-container footer-links-row">
             <!-- Links -->
-            <div class="flex flex-wrap md:flex-nowrap items-center gap-y-1">
+            <div class="footer-dot-links">
                 <a href="/about" class="footer-dot-link">সম্পর্কে</a>
                 <span class="footer-dot">·</span>
                 <a href="/contact" class="footer-dot-link">যোগাযোগ</a>
