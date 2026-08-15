@@ -61,9 +61,9 @@
         /* ── Header (Telegram X স্টাইল — steel-blue bar, brand ছাড়া, full-width icon row) ── */
         #site-header {
             border-bottom: none;
-            background: #4a7a9a;
+            background: #c0392b;
         }
-        .dark #site-header { border-bottom-color: transparent; background: #3d6580; }
+        .dark #site-header { border-bottom-color: transparent; background: #a5311f; }
         .header-row {
             display: flex;
             align-items: center;
@@ -361,11 +361,20 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 26px;
+            width: 40px;
             height: 3px;
-            border-radius: 2px 2px 0 0;
+            border-radius: 0;
             background: #ffffff;
         }
+        /* active হলে icon-এর পাশে tab-এর নাম দেখাবে (হোম ও সার্চ বাদে) */
+        .header-nav-label {
+            display: none;
+            margin-left: 0.4rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .header-nav-btn.active .header-nav-label { display: inline; }
 
 
         /* Sidebar (plain CSS — precompiled tailwind.css এ এই ক্লাসগুলো নাও থাকতে পারে) */
@@ -446,9 +455,9 @@
             transform: translateY(0);
             transition: transform 0.28s ease;
             will-change: transform;
-            background: #4a7a9a !important;
+            background: #c0392b !important;
         }
-        .dark #site-header { background: #3d6580 !important; }
+        .dark #site-header { background: #a5311f !important; }
         #site-header.header-hidden { transform: translateY(-100%); }
 
         /* Header search — Google-স্টাইল autosuggest dropdown */
@@ -521,9 +530,11 @@
                     </a>
                     <a href="/authors/" data-nav-path="/authors/" class="header-nav-btn" aria-label="লেখক">
                         <i class="fa-solid fa-user-graduate icon-lg"></i>
+                        <span class="header-nav-label">লেখক</span>
                     </a>
                     <a href="/categories/" data-nav-path="/categories/" class="header-nav-btn" aria-label="বিভাগ">
                         <i class="fa-brands fa-hashnode icon-lg"></i>
+                        <span class="header-nav-label">বিভাগ</span>
                     </a>
                     <button id="header-search-btn" type="button" class="header-nav-btn" aria-label="খুঁজুন">
                         <i class="fa-solid fa-magnifying-glass icon-lg"></i>
