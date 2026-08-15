@@ -70,10 +70,10 @@
             justify-content: space-between;
             height: 3rem;
             box-sizing: border-box;
-            padding: 0 0.25rem 0 0.5rem;
+            padding: 0 0.5rem;
         }
         .header-left { display: flex; align-items: center; gap: 0.75rem; }
-        .header-right { display: flex; align-items: stretch; gap: 0; flex: 1 1 auto; height: 100%; }
+        .header-right { display: flex; align-items: stretch; gap: 0; flex: 1 1 auto; height: 100%; margin-left: 0.5rem; }
         #menu-btn, #header-search-btn, #header-search-close-btn {
             background: none; border: none; padding: 0; cursor: pointer;
             color: #ffffff;
@@ -332,6 +332,7 @@
         .header-nav-group {
             display: flex;
             align-items: stretch;
+            justify-content: space-between;
             flex: 1 1 auto;
             height: 100%;
             border: none;
@@ -343,7 +344,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            flex: 1 1 0;
+            flex: 0 0 auto;
             width: auto;
             height: 100%;
             border-right: none;
@@ -353,11 +354,17 @@
         }
         .dark .header-nav-btn { border-right-color: transparent; color: rgba(255,255,255,0.65); }
         .header-nav-btn:last-child { border-right: none; }
+        /* text tab (হোম/লেখক/বিভাগ/ব্লগ) নিচে-ঘেঁষা, underline যাতে header-এর নিচের কিনারার
+           কাছাকাছি বসে — search/hamburger আগের মতোই vertically centered থাকবে */
+        .header-nav-group a.header-nav-btn {
+            align-items: flex-end;
+            padding-bottom: 0.3rem;
+        }
         /* সার্চ আইকন হ্যামবার্গারের মতোই নিজের সাইজ অনুসারে জায়গা নেবে, ডান কোণায় থাকবে */
         #header-search-btn.header-nav-btn {
             flex: 0 0 auto;
             width: auto;
-            padding: 0 0.5rem;
+            padding: 0;
         }
         .header-nav-btn.active { color: #ffffff !important; background: transparent; }
         .dark .header-nav-btn.active { color: #ffffff !important; background: transparent; }
@@ -369,7 +376,7 @@
             font-size: 0.95rem;
             font-weight: 600;
             white-space: nowrap;
-            padding: 0.4rem 0;
+            padding: 0.25rem 0;
             border-bottom: 3px solid transparent;
         }
         .header-nav-btn.active .header-nav-label { border-bottom-color: #ffffff; }
