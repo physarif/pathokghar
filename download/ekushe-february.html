@@ -1143,6 +1143,16 @@
     .dl-get-link-btn:hover { background: #a93226; }
     .dl-get-link-btn:active { transform: scale(0.95); }
 
+    /* একক লিংক না থাকলে EPUB/MOBI/PDF — ৩টা আলাদা ফরম্যাট বাটন */
+    .dl-format-btns { width: 100%; display: flex; flex-direction: column; gap: 0.6rem; }
+    .dl-format-btn { background: #fff; color: #c0392b; border: 1.5px solid #c0392b; }
+    .dl-format-btn:hover { background: #fde8e6; }
+    .dark .dl-format-btn { background: transparent; color: #f2938a; border-color: #a93226; }
+    .dark .dl-format-btn:hover { background: rgba(192,57,43,0.15); }
+    .dl-format-btn.dl-format-btn-primary { background: #c0392b; color: #fff; }
+    .dl-format-btn.dl-format-btn-primary:hover { background: #a93226; }
+    .dark .dl-format-btn.dl-format-btn-primary { color: #fff; }
+
     .dl-step2-inner { display: flex; flex-direction: column; gap: 1.25rem; }
     .dl-waiting-text { font-size: 0.75rem; color: #6b7280; text-align: center; margin: 0; }
     .dark .dl-waiting-text { color: #9ca3af; }
@@ -1237,9 +1247,23 @@
                     <p class="dl-step1-title">বইটি ডাউনলোড করুন</p>
                     <p class="dl-step1-sub">বিনামূল্যে — কোনো সাবস্ক্রিপশন ছাড়াই</p>
                 </div>
-                <button id="m-get-link-btn" class="dl-get-link-btn">
+                <!-- একটামাত্র ডাউনলোড লিংক (book_download_url) থাকলে দেখাবে -->
+                <button id="m-get-link-btn" class="dl-get-link-btn hidden">
                     <i class="fas fa-link"></i> ডাউনলোড লিংক পান
                 </button>
+
+                <!-- book_download_url না থাকলে EPUB/MOBI/PDF — ৩টা আলাদা ফরম্যাট বাটন দেখাবে -->
+                <div id="m-format-btns" class="dl-format-btns hidden">
+                    <button class="dl-get-link-btn dl-format-btn dl-format-btn-primary" data-format="EPUB">
+                        <i class="fas fa-book"></i> EPUB ডাউনলোড করুন
+                    </button>
+                    <button class="dl-get-link-btn dl-format-btn" data-format="MOBI">
+                        <i class="fas fa-tablet-alt"></i> MOBI ডাউনলোড করুন
+                    </button>
+                    <button class="dl-get-link-btn dl-format-btn" data-format="PDF">
+                        <i class="fas fa-file-pdf"></i> PDF ডাউনলোড করুন
+                    </button>
+                </div>
             </div>
         </div>
         <div id="m-step-2" class="hidden step-fade">
@@ -1270,7 +1294,7 @@
                 </div>
                 <!-- countdown শেষে দেখাবে -->
                 <a id="m-download-btn" href="#" class="hidden dl-download-btn step-fade">
-                    <i class="fas fa-download"></i> ডাউনলোড করুন
+                    <i class="fas fa-download"></i> <span id="m-download-btn-text">ডাউনলোড করুন</span>
                 </a>
                 <button id="m-restart-btn" class="hidden dl-restart-btn">
                     আবার চেষ্টা করুন
@@ -1292,7 +1316,18 @@
 <script>
 (function () {
     const DOWNLOAD_URL = '';
+    const BOOK_SLUG     = 'ekushe-february';
     const COUNTDOWN_SECONDS = 5;
+
+    // book_download_url না থাকলে GitHub releases থেকে ফরম্যাট অনুযায়ী লিংক তৈরি
+    const FORMAT_URLS = {
+        EPUB: `https://github.com/physarif/pathokghar-assets/releases/latest/download/$${BOOK_SLUG}.epub`,
+        MOBI: `https://github.com/physarif/pathokghar-assets/releases/latest/download/$${BOOK_SLUG}.mobi`,
+        PDF:  `https://github.com/physarif/pathokghar-assets/releases/latest/download/$${BOOK_SLUG}.pdf`,
+    };
+
+    // ক্লিক করা মুহূর্তে কোন লিংকে যেতে হবে, সেটা এখানে সেট হয়
+    let activeDownloadUrl = DOWNLOAD_URL;
 
     // Generic countdown runner
     function startCountdown(prefix) {
@@ -1333,7 +1368,7 @@
                     if (restartBtn)   restartBtn.style.display   = 'none';
                     // download btn step-fade দিয়ে আসবে
                     if (dlBtn) {
-                        dlBtn.href = DOWNLOAD_URL;
+                        dlBtn.href = activeDownloadUrl;
                         dlBtn.classList.remove('hidden');
                         dlBtn.classList.add('step-fade');
                     }
@@ -1352,10 +1387,35 @@
         });
     }
 
-    // Mobile
-    const mBtn = document.getElementById('m-get-link-btn');
-    if (mBtn) mBtn.addEventListener('click', () => { showStep('m-', 2); startCountdown('m-'); });
-    const mRestart = document.getElementById('m-restart-btn');
+    const mGetLinkBtn   = document.getElementById('m-get-link-btn');
+    const mFormatBtns   = document.getElementById('m-format-btns');
+    const mDownloadText = document.getElementById('m-download-btn-text');
+    const mRestart      = document.getElementById('m-restart-btn');
+
+    // book_download_url আছে কি না — থাকলে একক বাটন, না থাকলে ৩টা ফরম্যাট বাটন
+    if (DOWNLOAD_URL) {
+        if (mGetLinkBtn) {
+            mGetLinkBtn.classList.remove('hidden');
+            mGetLinkBtn.addEventListener('click', () => {
+                activeDownloadUrl = DOWNLOAD_URL;
+                if (mDownloadText) mDownloadText.textContent = 'ডাউনলোড করুন';
+                showStep('m-', 2);
+                startCountdown('m-');
+            });
+        }
+    } else if (mFormatBtns) {
+        mFormatBtns.classList.remove('hidden');
+        mFormatBtns.querySelectorAll('.dl-format-btn').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const format = btn.getAttribute('data-format');
+                activeDownloadUrl = FORMAT_URLS[format];
+                if (mDownloadText) mDownloadText.textContent = `$${format} ডাউনলোড করুন`;
+                showStep('m-', 2);
+                startCountdown('m-');
+            });
+        });
+    }
+
     if (mRestart) mRestart.addEventListener('click', () => showStep('m-', 1));
 
     // প্রথমবার "ডাউনলোড করুন" বাটনে ক্লিক করলে শুধু external ad লিংক নতুন ট্যাবে খুলবে।
