@@ -1033,7 +1033,14 @@
     justify-content: center;
     align-items: center;
     gap: 0.3rem;
-    padding: 0.6rem 1rem 0.2rem;
+    padding: 0.6rem 0.5rem 0.2rem;
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
+  .bc-page-numbers {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
     flex-wrap: nowrap;
     overflow: hidden;
   }
@@ -1491,12 +1498,14 @@
         } else {
           html += '<span class="bc-page-nav disabled" aria-label="পূর্ববর্তী"><i class="fas fa-chevron-left"></i></span>';
         }
+        html += '<div class="bc-page-numbers">';
         list.forEach(function(i) {
           if (i === '...') { html += '<span class="bc-page-dots">···</span>'; return; }
           const href = i === 1 ? '/' : '/books/' + i + '/';
           if (i === current) html += '<span class="bc-page-btn active">' + toBn(i) + '</span>';
           else html += '<a href="' + href + '" class="bc-page-btn">' + toBn(i) + '</a>';
         });
+        html += '</div>';
         if (current < total) {
           html += '<a href="/books/' + (current + 1) + '/" class="bc-page-nav" aria-label="পরবর্তী"><i class="fas fa-chevron-right"></i></a>';
         } else {
