@@ -249,34 +249,27 @@
       const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');
       const el = document.getElementById('bc-pagination');
 
-      function getDelta() {
+      function getFrontCount() {
         const w = window.innerWidth;
-        if (w < 360) return 0;
-        if (w < 420) return 1;
-        if (w < 640) return 2;
-        return 3;
+        if (w < 360) return 2;
+        if (w < 420) return 3;
+        return 4;
       }
 
-      function buildList(delta) {
-        const keep = [];
-        for (let i = 1; i <= total; i++) {
-          if (i === 1 || i === total || (i >= current - delta && i <= current + delta)) keep.push(i);
+      function buildList() {
+        const frontCount = Math.min(getFrontCount(), total - 1);
+        const front = [];
+        for (let i = 1; i <= frontCount; i++) front.push(i);
+        if (frontCount >= total - 1) {
+          const result = front.slice();
+          for (let i = frontCount + 1; i <= total; i++) result.push(i);
+          return result;
         }
-        const result = [];
-        let prev = 0;
-        for (const p of keep) {
-          if (prev) {
-            if (p - prev === 2) result.push(prev + 1);
-            else if (p - prev > 2) result.push('...');
-          }
-          result.push(p);
-          prev = p;
-        }
-        return result;
+        return front.concat(['...', total]);
       }
 
       function render() {
-        const list = buildList(getDelta());
+        const list = buildList();
         let html = '<div class="bc-pagination">';
         if (current > 1) {
           const prev = current === 2 ? '/' : '/books/' + (current - 1) + '/';
