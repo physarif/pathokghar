@@ -353,6 +353,11 @@
         }
         .dark .header-nav-btn { border-right-color: transparent; color: rgba(255,255,255,0.65); }
         .header-nav-btn:last-child { border-right: none; }
+        /* সার্চ আইকন বাকি ৩টা text-tab-এর সাথে সমান-ভাগে না থেকে ডান কোণায় fixed থাকবে */
+        #header-search-btn.header-nav-btn {
+            flex: 0 0 3rem;
+            width: 3rem;
+        }
         .header-nav-btn.active { color: #ffffff !important; background: transparent; }
         .dark .header-nav-btn.active { color: #ffffff !important; background: transparent; }
         .header-nav-btn.active::after {
@@ -366,15 +371,14 @@
             border-radius: 0;
             background: #ffffff;
         }
-        /* active হলে icon-এর পাশে tab-এর নাম দেখাবে (হোম ও সার্চ বাদে) */
+        /* icon সরিয়ে শুধু নাম — home/লেখক/বিভাগ text-only ট্যাব */
         .header-nav-label {
-            display: none;
-            margin-left: 0.4rem;
+            display: inline;
+            margin-left: 0;
             font-size: 0.95rem;
             font-weight: 600;
             white-space: nowrap;
         }
-        .header-nav-btn.active .header-nav-label { display: inline; }
 
 
         /* Sidebar (plain CSS — precompiled tailwind.css এ এই ক্লাসগুলো নাও থাকতে পারে) */
@@ -525,15 +529,13 @@
             </div>
             <div class="header-right">
                 <nav class="header-nav-group">
-                    <a href="/" data-nav-path="/" class="header-nav-btn" aria-label="হোম">
-                        <i class="fa-solid fa-house icon-lg"></i>
+                    <a href="/" data-nav-path="/" class="header-nav-btn" aria-label="প্রধান পাতা">
+                        <span class="header-nav-label">প্রধান পাতা</span>
                     </a>
                     <a href="/authors/" data-nav-path="/authors/" class="header-nav-btn" aria-label="লেখক">
-                        <i class="fa-solid fa-user-graduate icon-lg"></i>
                         <span class="header-nav-label">লেখক</span>
                     </a>
                     <a href="/categories/" data-nav-path="/categories/" class="header-nav-btn" aria-label="বিভাগ">
-                        <i class="fa-brands fa-hashnode icon-lg"></i>
                         <span class="header-nav-label">বিভাগ</span>
                     </a>
                     <button id="header-search-btn" type="button" class="header-nav-btn" aria-label="খুঁজুন">
