@@ -188,13 +188,12 @@
         .sidebar-social-icon.fb { color: #1877f2; }
         .sidebar-social-icon.tg { color: #229ed9; }
 
-        /* ── Footer ── */
+        /* ── Footer (night-only — #333439 surface, #121218 page bg reference, red accent) ── */
         .site-footer {
-            background: #ffffff;
-            border-top: 1px solid #d1d5db;
+            background: #333439;
+            border-top: 1px solid rgba(255,255,255,0.08);
             margin-top: 1.5rem;
         }
-        .dark .site-footer { background: #23232a; border-top-color: #374151; }
         .footer-container { max-width: 48rem; margin: 0 auto; padding: 0 1.25rem; }
         .footer-brand-row {
             padding-top: 1.25rem;
@@ -209,21 +208,21 @@
             justify-content: center;
         }
         .footer-brand-link { display: flex; align-items: center; text-decoration: none; }
+        .footer-brand-link .brand-name { color: #f3f4f6; }
+        .footer-brand-link .brand-name-light { color: #9aa0a6; }
         .footer-tagline {
             font-size: 0.75rem;
-            color: #6b7280;
+            color: #9aa0a6;
             margin-top: 0.375rem;
             letter-spacing: 0.02em;
         }
-        .dark .footer-tagline { color: #9ca3af; }
         .footer-social-row {
             display: flex;
             align-items: center;
             align-self: center;
             gap: 0.5rem;
         }
-        .footer-divider { border-top: 1px solid #d1d5db; }
-        .dark .footer-divider { border-top-color: #374151; }
+        .footer-divider { border-top: 1px solid rgba(255,255,255,0.1); }
         .footer-links-row {
             padding-top: 0.375rem;
             padding-bottom: 0.75rem;
@@ -236,10 +235,9 @@
         .footer-dot-links { display: flex; flex-wrap: wrap; align-items: center; row-gap: 0.25rem; }
         .footer-copyright {
             font-size: 14px;
-            color: #9ca3af;
+            color: #8b9099;
             white-space: nowrap;
         }
-        .dark .footer-copyright { color: #6b7280; }
         @media (min-width: 768px) {
             .footer-links-row { flex-wrap: nowrap; }
             .footer-dot-links { flex-wrap: nowrap; }
@@ -270,40 +268,35 @@
         .dark .category-underline-list a:hover,
         .dark .category-underline-list a:active { color: #f87171; text-decoration: underline; }
 
-        /* Footer dot-separated links */
+        /* Footer dot-separated links — dark footer বলে lighter red accent, ভালো contrast-এর জন্য */
         .footer-dot-link {
             font-size: 14px;
-            color: #c0392b;
+            color: #e88a80;
             text-decoration: none;
             transition: color 0.15s;
         }
-        .footer-dot-link:hover { color: #a93226; text-decoration: underline; }
+        .footer-dot-link:hover,
         .footer-dot-link:active,
-        .footer-dot-link:focus { text-decoration: underline; outline: none; }
-        .dark .footer-dot-link { color: #e57373; }
-        .dark .footer-dot-link:hover,
-        .dark .footer-dot-link:active { color: #f87171; text-decoration: underline; }
+        .footer-dot-link:focus { color: #f2a89f; text-decoration: underline; outline: none; }
         .footer-dot {
-            color: #999;
+            color: rgba(255,255,255,0.3);
             font-size: 16px;
             margin: 0 6px;
             line-height: 1;
         }
-        /* Footer social icons — সাদা বক্স + হালকা বর্ডার (arbitrary Tailwind
-           ক্লাসের বদলে plain CSS, যাতে precompiled build-এ নিশ্চিতভাবে রেন্ডার হয়) */
+        /* Footer social icons — dark surface-এর উপর subtle bordered box */
         .footer-social-icon {
             width: 48px;
             height: 48px;
             border-radius: 8px;
-            border: 2px solid #d1d5db;
-            background: #ffffff;
+            border: 2px solid rgba(255,255,255,0.12);
+            background: #3f4046;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.1rem;
             transition: border-color 0.15s;
         }
-        .dark .footer-social-icon { background: #2a2a2a; border-color: #4b5563; }
         .footer-social-icon.fb { color: #1877f2; }
         .footer-social-icon.fb:hover { border-color: #1877f2; }
         .footer-social-icon.tg { color: #229ed9; }
