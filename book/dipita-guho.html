@@ -58,28 +58,28 @@
 
         main { flex: 1 1 auto; min-width: 0; }
 
-        /* ── Header ── */
+        /* ── Header (Telegram X স্টাইল — steel-blue bar, brand ছাড়া, full-width icon row) ── */
         #site-header {
-            border-bottom: 1px solid #e5e7eb;
-            background: #ffffff;
+            border-bottom: none;
+            background: #4a7a9a;
         }
-        .dark #site-header { border-bottom-color: #374151; }
+        .dark #site-header { border-bottom-color: transparent; background: #3d6580; }
         .header-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 4rem;
+            height: 3.5rem;
             box-sizing: border-box;
-            padding: 0 1rem;
+            padding: 0 0.25rem 0 0.5rem;
         }
         .header-left { display: flex; align-items: center; gap: 0.75rem; }
-        .header-right { display: flex; align-items: center; gap: 1rem; }
+        .header-right { display: flex; align-items: stretch; gap: 0; flex: 1 1 auto; height: 100%; }
         #menu-btn, #header-search-btn, #header-search-close-btn {
             background: none; border: none; padding: 0; cursor: pointer;
-            color: #6b7280;
+            color: #ffffff;
         }
-        .dark #menu-btn, .dark #header-search-btn, .dark #header-search-close-btn { color: #9ca3af; }
-        .brand-link { display: flex; align-items: center; gap: 0.5rem; color: #c0392b; text-decoration: none; }
+        .dark #menu-btn, .dark #header-search-btn, .dark #header-search-close-btn { color: #ffffff; }
+        .brand-link { display: none; }
         .brand-name { font-size: 1.5rem; font-weight: 700; color: #1f2937; line-height: 1; }
         .dark .brand-name { color: #f3f4f6; }
         .brand-name-light { font-weight: 300; color: #9ca3af; }
@@ -89,7 +89,7 @@
         .header-search-box {
             align-items: center;
             gap: 0.75rem;
-            height: 4rem;
+            height: 3.5rem;
             box-sizing: border-box;
             padding: 0 1rem;
             position: relative;
@@ -100,12 +100,12 @@
             background: transparent;
             outline: none;
             border: none;
-            color: #1f2937;
+            color: #ffffff;
             font-size: 1rem;
         }
-        .dark .header-search-input { color: #f3f4f6; }
-        .header-search-input::placeholder { color: #9ca3af; }
-        .dark .header-search-input::placeholder { color: #6b7280; }
+        .dark .header-search-input { color: #ffffff; }
+        .header-search-input::placeholder { color: rgba(255,255,255,0.65); }
+        .dark .header-search-input::placeholder { color: rgba(255,255,255,0.65); }
         .header-search-suggest {
             display: none;
             position: absolute;
@@ -328,29 +328,44 @@
         .pg-visit-pill i { font-size: 0.7rem; color: #ff3b30; opacity: 0.85; }
         .pg-visit-pill .pg-sep { color: #ff3b30; margin: 0 0.05rem; }
 
-        /* হেডার ন্যাভ — গ্রুপড আউটলাইন বক্স (ডিজাইন ২) */
+        /* হেডার ন্যাভ — Telegram X স্টাইল: full-width, সমান-দূরত্বের icon-only ট্যাব, active-এ underline */
         .header-nav-group {
             display: flex;
-            align-items: center;
-            border: 1px solid #e5e7eb;
-            border-radius: 10px;
-            overflow: hidden;
+            align-items: stretch;
+            flex: 1 1 auto;
+            height: 100%;
+            border: none;
+            border-radius: 0;
+            overflow: visible;
         }
-        .dark .header-nav-group { border-color: #374151; }
+        .dark .header-nav-group { border-color: transparent; }
         .header-nav-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 42px;
-            height: 36px;
-            border-right: 1px solid #e5e7eb;
-            color: #6b7280;
+            flex: 1 1 0;
+            width: auto;
+            height: 100%;
+            border-right: none;
+            color: rgba(255,255,255,0.65);
             text-decoration: none;
+            position: relative;
         }
-        .dark .header-nav-btn { border-right-color: #374151; color: #9ca3af; }
+        .dark .header-nav-btn { border-right-color: transparent; color: rgba(255,255,255,0.65); }
         .header-nav-btn:last-child { border-right: none; }
-        .header-nav-btn.active { color: #c0392b !important; background: #fdecea; }
-        .dark .header-nav-btn.active { color: #e57373 !important; background: #3a2323; }
+        .header-nav-btn.active { color: #ffffff !important; background: transparent; }
+        .dark .header-nav-btn.active { color: #ffffff !important; background: transparent; }
+        .header-nav-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 26px;
+            height: 3px;
+            border-radius: 2px 2px 0 0;
+            background: #ffffff;
+        }
 
 
         /* Sidebar (plain CSS — precompiled tailwind.css এ এই ক্লাসগুলো নাও থাকতে পারে) */
@@ -431,9 +446,9 @@
             transform: translateY(0);
             transition: transform 0.28s ease;
             will-change: transform;
-            background: rgba(255,255,255,0.95) !important;
+            background: #4a7a9a !important;
         }
-        .dark #site-header { background: rgba(31,31,31,0.95) !important; }
+        .dark #site-header { background: #3d6580 !important; }
         #site-header.header-hidden { transform: translateY(-100%); }
 
         /* Header search — Google-স্টাইল autosuggest dropdown */
@@ -498,9 +513,6 @@
                 <button id="menu-btn" type="button" aria-label="মেনু">
                     <i class="fa-solid fa-bars icon-lg"></i>
                 </button>
-                <a href="https://pathokghar.com" aria-label="পাঠক ঘর" class="brand-link">
-                    <span class="brand-name">পাঠক <span class="brand-name-light">ঘর</span></span>
-                </a>
             </div>
             <div class="header-right">
                 <nav class="header-nav-group">
