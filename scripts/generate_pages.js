@@ -187,7 +187,7 @@ function buildSidebarHTML(bookList, authorsRaw, categoriesRaw) {
   const catItems = groupByBnLetter(
     catSorted,
     ({ cat }) => cat.title,
-    ({ cat }) => `<li><a href="/category/${cat.slug}/1/"><span>${cat.title}</span><span class="cat-count">${toBanglaNum(catCount[cat.slug] || 0)}</span></a></li>`
+    ({ cat }) => `<li><a href="/category/${cat.slug}/"><span>${cat.title}</span><span class="cat-count">${toBanglaNum(catCount[cat.slug] || 0)}</span></a></li>`
   );
 
   // Authors — বর্ণমালা অনুসারে (Bengali locale) সব লেখক, পাশে বইয়ের সংখ্যা
@@ -376,7 +376,7 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
     .map(([, cat]) => ({ slug: cat.slug, name: cat.title, count: catCountHome[cat.slug] || 0 }))
     .sort((a, b) => b.count - a.count)
     .slice(0, 9)
-    .map(cat => `<a href="/category/${cat.slug}/1/" class="idx-cat-card"><span class="idx-cat-card-name">${cat.name}</span></a>`)
+    .map(cat => `<a href="/category/${cat.slug}/" class="idx-cat-card"><span class="idx-cat-card-name">${cat.name}</span></a>`)
     .join('');
 
   for (let page = 1; page <= totalPages; page++) {
@@ -589,16 +589,21 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
         full_title: `${data.name} - পাঠক ঘর`,
         page_description: '',
         page_image: pageBooks[0]?.cover || DEFAULT_OG_IMAGE,
-        page_url: `${SITE_URL}/category/${slug}/${page}/`,
+        page_url: page === 1 ? `${SITE_URL}/category/${slug}/` : `${SITE_URL}/category/${slug}/${page}/`,
         content: categoryContent,
         hero_categories,
         sidebar_authors,
       });
 
-      const pageDir = `${dir}/${page}`;
-      if (!fs.existsSync(pageDir)) fs.mkdirSync(pageDir, { recursive: true });
-      fs.writeFileSync(`${pageDir}/index.html`, fullPage, 'utf8');
-      console.log(`  ✓ category/${slug}/${page}/index.html`);
+      if (page === 1) {
+        fs.writeFileSync(`${dir}/index.html`, fullPage, 'utf8');
+        console.log(`  ✓ category/${slug}/index.html`);
+      } else {
+        const pageDir = `${dir}/${page}`;
+        if (!fs.existsSync(pageDir)) fs.mkdirSync(pageDir, { recursive: true });
+        fs.writeFileSync(`${pageDir}/index.html`, fullPage, 'utf8');
+        console.log(`  ✓ category/${slug}/${page}/index.html`);
+      }
     }
   }
 }
