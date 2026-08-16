@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#121218">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFBP0HJMJV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WFBP0HJMJV');
+    </script>
+    <link rel="icon" type="image/webp" href="https://pathokghar.com/assets/photos/pathokghar-logo.webp">
+    <link rel="apple-touch-icon" href="https://pathokghar.com/assets/photos/pathokghar-logo.webp">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>মুক্তিযুদ্ধ - পাঠক ঘর</title>
+    <meta name="description" content="">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/category/muktijuddho/">
+    <meta property="og:title" content="মুক্তিযুদ্ধ - পাঠক ঘর">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783184114483_bu9frgt7x75.png">
+    <meta property="og:url" content="https://pathokghar.pages.dev/category/muktijuddho/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="পাঠক ঘর">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="মুক্তিযুদ্ধ - পাঠক ঘর">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783184114483_bu9frgt7x75.png">
+    <!-- Pure static CSS — কোনো build step লাগে না। আগে Tailwind CDN (runtime JIT,
+         FOUC), তারপর CI-তে precompile হওয়া tailwind.css ব্যবহার হতো — এখন সেটা
+         এক-বারের জন্য generate করে plain CSS হিসেবে commit করা হয়েছে। -->
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css">
+    <style>
+        /* ── Base / reset ── */
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #121218;
+            color: #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        a { color: inherit; }
+        ul { padding: 0; margin: 0; }
+
+        /* ── JS-controlled state utilities (নাম বদলানো যাবে না — script এই
+           ক্লাসগুলো classList দিয়ে টগল করে) ── */
+        .hidden { display: none !important; }
+        .flex { display: flex !important; }
+
+        /* সাধারণ বড় আইকন সাইজ */
+        .icon-lg { font-size: 1.25rem; }
+
+        main { flex: 1 1 auto; min-width: 0; }
+
+        /* ── Header (Telegram X স্টাইল — steel-blue bar, brand ছাড়া, full-width icon row) ── */
+        #site-header {
+            border-bottom: none;
+            background: #2a2b2f;
+        }
+        .header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 3rem;
+            box-sizing: border-box;
+            padding: 0 0.5rem;
+        }
+        .header-right { display: flex; align-items: stretch; gap: 0; flex: 1 1 auto; height: 100%; }
+        #header-search-btn, #header-search-close-btn {
+            background: none; border: none; padding: 0; cursor: pointer;
+            color: #ffffff;
+        }
+        .brand-link { display: none; }
+        .brand-name { font-size: 1.5rem; font-weight: 700; color: #f3f4f6; line-height: 1; }
+        .brand-name-light { font-weight: 300; color: #6b7280; }
+
+        /* ── Header inline search box (header-এর ভেতরে টগল হয়) ── */
+        .header-search-box {
+            align-items: center;
+            gap: 0.75rem;
+            height: 3rem;
+            box-sizing: border-box;
+            padding: 0 1rem;
+            position: relative;
+        }
+        .header-search-input {
+            flex: 1;
+            min-width: 0;
+            background: transparent;
+            outline: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1rem;
+        }
+        .header-search-input::placeholder { color: rgba(255,255,255,0.65); }
+        .header-search-suggest {
+            display: none;
+            position: absolute;
+            left: 0; right: 0; top: 100%;
+            background: rgba(35,35,42,0.95);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            max-height: 70vh;
+            overflow-y: auto;
+            z-index: 60;
+        }
+
+        /* ── Footer (night-only — #333439 surface, #121218 page bg reference, red accent) — মিনিমাল একলাইন ── */
+        .site-footer {
+            background: #2a2b2f;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            margin-top: 1.5rem;
+        }
+        .footer-container { max-width: 48rem; margin: 0 auto; padding: 0 1.25rem; }
+        .footer-row {
+            padding: 0.85rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .footer-brand { font-size: 0.88rem; color: #9aa0a6; }
+        .footer-brand strong { color: #e5e7eb; font-weight: 600; }
+        .footer-links { display: flex; gap: 1rem; }
+        .footer-links a { font-size: 0.78rem; color: #6b6f76; text-decoration: none; transition: color 0.15s; }
+        .footer-links a:hover, .footer-links a:active { color: #e57373; }
+
+        /* Category links — footer style, larger */
+        .category-underline-list li { display: inline-flex; align-items: center; white-space: nowrap; }
+        .category-underline-list li + li::before {
+            content: '·';
+            color: #4b5563;
+            font-size: 16px;
+            margin: 0 5px;
+            line-height: 1;
+        }
+        .category-underline-list li.line-start::before { display: none !important; }
+        .category-underline-list a {
+            font-size: 17px;
+            font-weight: 400;
+            color: #e57373;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .category-underline-list a:hover,
+        .category-underline-list a:active { color: #9ca3af; text-decoration: underline; }
+        .category-underline-list a:focus { text-decoration: underline; outline: none; }
+
+        /* Visit counter — retro LCD display */
+        .pg-visit-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #1a0e0e;
+            border-radius: 5px;
+            padding: 0.15rem 0.7rem;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
+            font-family: 'Courier New', Consolas, monospace;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            color: #ff3b30;
+            text-shadow: 0 0 8px rgba(255,59,48,0.75);
+            white-space: nowrap;
+        }
+        .pg-visit-pill i { font-size: 0.7rem; color: #ff3b30; opacity: 0.85; }
+        .pg-visit-pill .pg-sep { color: #ff3b30; margin: 0 0.05rem; }
+
+        /* হেডার ন্যাভ — Telegram X স্টাইল: full-width, সমান-দূরত্বের icon-only ট্যাব, active-এ underline */
+        .header-nav-group {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            flex: 1 1 auto;
+            height: 100%;
+            border: none;
+            border-radius: 0;
+            overflow: visible;
+        }
+        .header-nav-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+            width: auto;
+            height: 100%;
+            border-right: none;
+            color: rgba(255,255,255,0.65);
+            text-decoration: none;
+            position: relative;
+        }
+        .header-nav-btn:last-child { border-right: none; }
+        /* text tab (হোম/লেখক/বিভাগ/ব্লগ) নিচে-ঘেঁষা, underline যাতে header-এর নিচের কিনারার
+           কাছাকাছি বসে — search/hamburger আগের মতোই vertically centered থাকবে */
+        .header-nav-group a.header-nav-btn {
+            align-items: flex-end;
+            padding-bottom: 0.3rem;
+        }
+        .header-nav-group a.header-nav-btn:first-child {
+            margin-left: 1rem;
+        }
+        /* সার্চ আইকন হ্যামবার্গারের মতোই নিজের সাইজ অনুসারে জায়গা নেবে, ডান কোণায় থাকবে */
+        #header-search-btn.header-nav-btn {
+            flex: 0 0 auto;
+            width: auto;
+            padding: 0;
+        }
+        .header-nav-btn.active { color: #ffffff !important; background: transparent; }
+        /* icon সরিয়ে শুধু নাম — home/লেখক/বিভাগ text-only ট্যাব; active হলে underline text-এর
+           সমান width-এর হবে, তাই এটা fixed ::after না দিয়ে label-এর নিজের border-bottom দিয়ে করা */
+        .header-nav-label {
+            display: inline-block;
+            margin-left: 0;
+            font-size: 0.95rem;
+            font-weight: 600;
+            white-space: nowrap;
+            padding: 0.25rem 0;
+            border-bottom: 3px solid transparent;
+        }
+        .header-nav-btn.active .header-nav-label { border-bottom-color: #ffffff; }
+
+        /* Floating (sticky) header — নিচে স্ক্রল করলে hide, উপরে স্ক্রল করলে show */
+        #site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 220;
+            transform: translateY(0);
+            transition: transform 0.28s ease;
+            will-change: transform;
+            background: #2a2b2f !important;
+        }
+        #site-header.header-hidden { transform: translateY(-100%); }
+
+        /* Header search — Google-স্টাইল autosuggest dropdown */
+        .hs-item {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.6rem 1rem;
+            text-decoration: none;
+            color: inherit;
+        }
+        .hs-item:hover, .hs-item.hs-active { background: #2f2f38; }
+        .hs-thumb {
+            flex-shrink: 0;
+            width: 2.1rem;
+            height: 2.8rem;
+            border-radius: 3px;
+            object-fit: cover;
+            background: #374151;
+        }
+        .hs-body { min-width: 0; flex: 1; }
+        .hs-title {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: #f3f4f6;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .hs-title b { color: #9ca3af; font-weight: 700; }
+        .hs-meta {
+            font-size: 0.76rem;
+            color: #9ca3af;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .hs-more {
+            display: block;
+            text-align: center;
+            padding: 0.6rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #9ca3af;
+            text-decoration: none;
+            border-top: 1px solid #2f2f38;
+        }
+    </style>
+    <!-- থিম সবসময় night/dark mode — light mode বাদ দেওয়া হয়েছে -->
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <header id="site-header">
+        <div id="header-default" class="header-row">
+            <div class="header-right">
+                <nav class="header-nav-group">
+                    <a href="/" data-nav-path="/" class="header-nav-btn" aria-label="প্রধান পাতা">
+                        <span class="header-nav-label">প্রধান পাতা</span>
+                    </a>
+                    <a href="/authors/" data-nav-path="/authors/" class="header-nav-btn" aria-label="লেখক">
+                        <span class="header-nav-label">লেখক</span>
+                    </a>
+                    <a href="/categories/" data-nav-path="/categories/" class="header-nav-btn" aria-label="বিভাগ">
+                        <span class="header-nav-label">বিভাগ</span>
+                    </a>
+                    <a href="/blogs/" data-nav-path="/blogs/" class="header-nav-btn" aria-label="ব্লগ">
+                        <span class="header-nav-label">ব্লগ</span>
+                    </a>
+                    <button id="header-search-btn" type="button" class="header-nav-btn" aria-label="খুঁজুন">
+                        <i class="fa-solid fa-magnifying-glass icon-lg"></i>
+                    </button>
+                </nav>
+            </div>
+        </div>
+        <div id="header-search-box" class="hidden header-search-box">
+            <input id="header-search-input" type="text" placeholder="বই, লেখক বা বিভাগ দিয়ে খুঁজুন..." autocomplete="off" class="header-search-input">
+            <button id="header-search-close-btn" type="button" aria-label="বন্ধ করুন">
+                <i class="fa-solid fa-xmark icon-lg"></i>
+            </button>
+            <div id="header-search-suggest" class="header-search-suggest"></div>
+        </div>
+    </header>
+    <!-- header fixed হওয়ায় নিচের কনটেন্টের জন্য একই উচ্চতার একটি spacer -->
+    <div id="header-spacer"></div>
+
+    <script>
+    // Inline search box টগল করা + live autosuggest — header-এ ব্যবহৃত হয়
+    (function() {
+        // ── Autosuggest ──
+        // search-index.json (lightweight, cover/title/author/category) একবার
+        // lazy-fetch হয় — প্রতিটা keystroke এ নয়, প্রথম টাইপ শুরু হলে।
+        var indexData = null;
+        var indexPromise = null;
+
+        function esc(str) {
+            return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+        function highlight(text, q) {
+            var s = esc(text);
+            var idx = s.toLowerCase().indexOf(q.toLowerCase());
+            if (idx === -1) return s;
+            return s.slice(0, idx) + '<b>' + s.slice(idx, idx + q.length) + '</b>' + s.slice(idx + q.length);
+        }
+        function loadIndex() {
+            if (indexPromise) return indexPromise;
+            indexPromise = fetch('/search-index.json')
+                .then(function(r) { return r.ok ? r.json() : []; })
+                .then(function(data) { indexData = data; return data; })
+                .catch(function() { indexData = []; return []; });
+            return indexPromise;
+        }
+
+        function initSearchBox(opts) {
+            var defaultRow = opts.defaultRow;
+            var searchBox = opts.searchBox;
+            var searchBtn = opts.searchBtn;
+            var closeBtn = opts.closeBtn;
+            var searchInput = opts.searchInput;
+            var suggestBox = opts.suggestBox;
+
+            var debounceTimer = null;
+            var activeIndex = -1;
+            var currentItems = [];
+
+            function openSearch() {
+                defaultRow.classList.add('hidden');
+                searchBox.classList.remove('hidden');
+                searchBox.classList.add('flex');
+                searchInput.value = '';
+                searchInput.focus();
+            }
+            function closeSearch() {
+                searchBox.classList.add('hidden');
+                searchBox.classList.remove('flex');
+                defaultRow.classList.remove('hidden');
+                hideSuggestions();
+            }
+            function submitSearch() {
+                var q = searchInput.value.trim();
+                if (q) {
+                    window.location.href = '/search.html?q=' + encodeURIComponent(q);
+                }
+            }
+
+            searchBtn.addEventListener('click', openSearch);
+            closeBtn.addEventListener('click', closeSearch);
+
+            function hideSuggestions() {
+                suggestBox.style.display = 'none';
+                suggestBox.innerHTML = '';
+                activeIndex = -1;
+                currentItems = [];
+            }
+
+            function renderSuggestions(items, q) {
+                currentItems = items;
+                activeIndex = -1;
+                if (!items.length) { hideSuggestions(); return; }
+                var html = items.map(function(book) {
+                    var meta = [book.author, book.category].filter(Boolean).join(' · ');
+                    return '<a href="/book/' + book.slug + '.html" class="hs-item">'
+                        + '<img src="' + esc(book.cover) + '" alt="" class="hs-thumb" loading="lazy">'
+                        + '<div class="hs-body">'
+                        + '<div class="hs-title">' + highlight(book.title, q) + '</div>'
+                        + (meta ? '<div class="hs-meta">' + esc(meta) + '</div>' : '')
+                        + '</div></a>';
+                }).join('');
+                html += '<a href="/search.html?q=' + encodeURIComponent(q) + '" class="hs-more">"' + esc(q) + '" এর সব ফলাফল দেখুন</a>';
+                suggestBox.innerHTML = html;
+                suggestBox.style.display = 'block';
+            }
+
+            function runSearch(q) {
+                loadIndex().then(function(data) {
+                    // input ততক্ষণে বদলে যায়নি কিনা চেক — race condition এড়াতে
+                    if (searchInput.value.trim().toLowerCase() !== q.toLowerCase()) return;
+                    var ql = q.toLowerCase();
+                    var scored = [];
+                    for (var i = 0; i < data.length; i++) {
+                        var b = data[i];
+                        var title = (b.title || '').toLowerCase();
+                        var author = (b.author || '').toLowerCase();
+                        var category = (b.category || '').toLowerCase();
+                        var score = -1;
+                        if (title.indexOf(ql) === 0) score = 3;
+                        else if (title.indexOf(ql) !== -1) score = 2;
+                        else if (author.indexOf(ql) !== -1 || category.indexOf(ql) !== -1) score = 1;
+                        if (score > 0) scored.push({ book: b, score: score });
+                    }
+                    scored.sort(function(a, b) { return b.score - a.score; });
+                    renderSuggestions(scored.slice(0, 6).map(function(s) { return s.book; }), q);
+                });
+            }
+
+            searchInput.addEventListener('input', function() {
+                var q = searchInput.value.trim();
+                clearTimeout(debounceTimer);
+                if (q.length < 2) { hideSuggestions(); return; }
+                debounceTimer = setTimeout(function() { runSearch(q); }, 150);
+            });
+
+            searchInput.addEventListener('keydown', function(e) {
+                var visible = suggestBox.style.display === 'block';
+                if (e.key === 'ArrowDown' && visible) {
+                    e.preventDefault();
+                    activeIndex = Math.min(activeIndex + 1, currentItems.length - 1);
+                    updateActive();
+                } else if (e.key === 'ArrowUp' && visible) {
+                    e.preventDefault();
+                    activeIndex = Math.max(activeIndex - 1, -1);
+                    updateActive();
+                } else if (e.key === 'Enter') {
+                    if (visible && activeIndex >= 0) {
+                        e.preventDefault();
+                        window.location.href = '/book/' + currentItems[activeIndex].slug + '.html';
+                    } else {
+                        submitSearch();
+                    }
+                } else if (e.key === 'Escape') {
+                    if (visible) hideSuggestions();
+                    else closeSearch();
+                }
+            });
+
+            function updateActive() {
+                var links = suggestBox.querySelectorAll('.hs-item');
+                links.forEach(function(el, i) {
+                    el.classList.toggle('hs-active', i === activeIndex);
+                });
+                if (activeIndex >= 0 && links[activeIndex]) {
+                    links[activeIndex].scrollIntoView({ block: 'nearest' });
+                }
+            }
+
+            document.addEventListener('click', function(e) {
+                if (!searchBox.contains(e.target)) hideSuggestions();
+            });
+        }
+
+        // Header-এর ভেতরের search box
+        initSearchBox({
+            defaultRow: document.getElementById('header-default'),
+            searchBox: document.getElementById('header-search-box'),
+            searchBtn: document.getElementById('header-search-btn'),
+            closeBtn: document.getElementById('header-search-close-btn'),
+            searchInput: document.getElementById('header-search-input'),
+            suggestBox: document.getElementById('header-search-suggest')
+        });
+    })();
+    </script>
+
+    <script>
+    (function() {
+        var header = document.getElementById('site-header');
+        var spacer = document.getElementById('header-spacer');
+
+        function setSpacerHeight() {
+            spacer.style.height = header.offsetHeight + 'px';
+        }
+        setSpacerHeight();
+        window.addEventListener('resize', setSpacerHeight);
+
+        var lastScrollY = window.pageYOffset;
+        var ticking = false;
+        var threshold = 8; // ছোটখাটো scroll jitter এড়াতে
+
+        function onScroll() {
+            var currentScrollY = window.pageYOffset;
+            var diff = currentScrollY - lastScrollY;
+
+            // একদম উপরে থাকলে সবসময় header দেখাও
+            if (currentScrollY <= header.offsetHeight) {
+                header.classList.remove('header-hidden');
+            } else if (Math.abs(diff) > threshold) {
+                if (diff > 0) {
+                    // নিচের দিকে স্ক্রল — hide
+                    header.classList.add('header-hidden');
+                } else {
+                    // উপরের দিকে স্ক্রল — show
+                    header.classList.remove('header-hidden');
+                }
+                lastScrollY = currentScrollY;
+            }
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(onScroll);
+                ticking = true;
+            }
+        }, { passive: true });
+
+    })();
+    </script>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <div class="category-wrap">
+
+<div style="padding:0 0.5rem;">
+  <div class="bc-latest-title">
+    <i class="fa-solid fa-clock-rotate-left"></i> মুক্তিযুদ্ধ
+  </div>
+</div>
+
+<div style="padding:0 0.5rem 0.5rem;">
+  <div class="bc-list">
+      <a href="/book/joshna-o-jononir-golpo.html" class="bc-card">
+        <div class="bc-img-wrap">
+          <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783184114483_bu9frgt7x75.png" alt="জোছনা ও জননীর গল্প" class="bc-img" loading="lazy">
+        </div>
+        <div class="bc-body">
+          <p class="bc-headline"><span class="bc-title">জোছনা ও জননীর গল্প</span></p>
+          <p class="bc-meta">হুমায়ূন আহমেদ</p>
+          <p class="bc-desc">হুমায়ূন আহমেদের <strong>"জোছনা ও জননীর গল্প"</strong> বাংলাদেশের মহান মুক্তিযুদ্ধ নিয়ে রচিত অন্যতম শ্রেষ্ঠ এবং আবেগঘন একটি উপন্যাস। ২০০৪ সালে প্রকাশিত এই মহাকাব্যিক উপন্যাসে লেখক ১৯৭১ সালের ৯ মাসের রক্তক্ষয়ী সংগ</p>
+        </div>
+      </a></div>
+</div>
+
+</div><!-- /md:px-8 lg:px-16 -->
+
+<!-- components/book-card1.html — সব পেজে (index, books, author, category, search)
+     ব্যবহৃত common book-card design। generate_pages.js এই ফাইলটা একবার লোড করে
+     প্রতিটা টেমপ্লেটের  placeholder-এ বসিয়ে দেয়।
+     ডিজাইন পরিবর্তন করতে চাইলে শুধু এই ফাইলটা এডিট করলেই সব জায়গায় reflect হবে।
+     ডিজাইন: Editorial variant — night-mode-only পাঠক ঘর palette (#121218 page bg,
+     #333439 card surface, night-mode gray accent)। -->
+<style>
+  /* List container */
+  .bc-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 0.7rem;
+  }
+  @media (min-width: 768px) {
+    .bc-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.7rem;
+      padding: 0;
+    }
+  }
+
+  /* Book card */
+  .bc-card {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
+    text-decoration: none;
+    padding: 1rem 1.1rem;
+    transition: background 0.15s, border-color 0.15s;
+    background: #333439;
+    border-radius: 5px;
+  }
+  .bc-card:hover { background: #3d3e44; }
+
+  /* Cover — left side, fixed size 2:3 ratio */
+  .bc-img-wrap {
+    flex-shrink: 0;
+    width: 4.5rem;
+    aspect-ratio: 2/3;
+    overflow: hidden;
+    background: #374151;
+    border-radius: 6px;
+  }
+  @media (min-width: 768px) { .bc-img-wrap { width: 5.5rem; } }
+
+  .bc-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Right side text */
+  .bc-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  /* Headline: শুধু title */
+  .bc-headline {
+    font-size: 1.05rem;
+    line-height: 1.4;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .bc-title {
+    font-weight: 700;
+    color: #F1F1F1;
+  }
+  .bc-card:hover .bc-title { text-decoration: none; }
+
+  .bc-meta {
+    font-size: 0.75rem;
+    color: #D0D0D0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+    margin: 0.25rem 0 0.35rem;
+  }
+
+  /* Description */
+  .bc-desc {
+    margin-top: 0.1rem;
+    font-size: 0.88rem;
+    color: #9A9A9A;
+    line-height: 1.5;
+    text-align: justify;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
+
+<!--
+  Book card HTML template (reference — generate_pages.js এ ব্যবহার হয়):
+  <a href="/book/.html" class="bc-card">
+    <div class="bc-img-wrap">
+      <img src="" alt="" class="bc-img" loading="lazy">
+    </div>
+    <div class="bc-body">
+      <p class="bc-headline"><span class="bc-title"></span></p>
+      
+      <p class="bc-desc"></p>
+    </div>
+  </a>
+-->
+
+
+<div id="bc-pagination"></div>
+<script>
+  (function() {
+    const current = parseInt('1', 10);
+    const total = parseInt('1', 10);
+    if (!current || !total || total <= 1) return;
+    const slug = 'muktijuddho';
+    const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');
+    const el = document.getElementById('bc-pagination');
+
+    function getDelta() {
+      const w = window.innerWidth;
+      if (w < 360) return 0;
+      if (w < 420) return 1;
+      if (w < 640) return 2;
+      return 3;
+    }
+
+    function buildList(delta) {
+      const keep = [];
+      for (let i = 1; i <= total; i++) {
+        if (i === 1 || i === total || (i >= current - delta && i <= current + delta)) keep.push(i);
+      }
+      const result = [];
+      let prev = 0;
+      for (const p of keep) {
+        if (prev) {
+          if (p - prev === 2) result.push(prev + 1);
+          else if (p - prev > 2) result.push('...');
+        }
+        result.push(p);
+        prev = p;
+      }
+      return result;
+    }
+
+    function render() {
+      const list = buildList(getDelta());
+      let html = '<div class="bc-pagination">';
+      if (current > 1) {
+        html += '<a href="/category/' + slug + '/' + (current - 1) + '/" class="bc-page-nav" aria-label="পূর্ববর্তী"><i class="fas fa-chevron-left"></i></a>';
+      } else {
+        html += '<span class="bc-page-nav disabled" aria-label="পূর্ববর্তী"><i class="fas fa-chevron-left"></i></span>';
+      }
+      list.forEach(function(i) {
+        if (i === '...') { html += '<span class="bc-page-dots">···</span>'; return; }
+        if (i === current) html += '<span class="bc-page-btn active">' + toBn(i) + '</span>';
+        else html += '<a href="/category/' + slug + '/' + i + '/" class="bc-page-btn">' + toBn(i) + '</a>';
+      });
+      if (current < total) {
+        html += '<a href="/category/' + slug + '/' + (current + 1) + '/" class="bc-page-nav" aria-label="পরবর্তী"><i class="fas fa-chevron-right"></i></a>';
+      } else {
+        html += '<span class="bc-page-nav disabled" aria-label="পরবর্তী"><i class="fas fa-chevron-right"></i></span>';
+      }
+      html += '</div>';
+      el.innerHTML = html;
+    }
+
+    render();
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(render, 150);
+    });
+  })();
+</script>
+
+<style>
+/* ── Pagination (index.html/books.html এর bc-pagination style অনুসরণ করা হচ্ছে) ── */
+.bc-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.6rem 1rem 0.2rem;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+.bc-page-btn, .bc-page-nav, .bc-page-dots { flex-shrink: 0; }
+.bc-page-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  padding: 0 0.5rem;
+  border-radius: 0.3rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: #374151;
+  background: #ffffff;
+  border: 1px solid #dee2e6;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.bc-page-btn:hover { background: #f1f3f5; border-color: #ced4da; color: #111827; }
+.bc-page-btn.active { background: #45464c; border-color: #45464c; color: #45464c; pointer-events: none; }
+.bc-page-dots {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4rem;
+  height: 2.4rem;
+  color: #9ca3af;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.bc-page-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  padding: 0 0.5rem;
+  border-radius: 0.3rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  background: #45464c;
+  border: 1px solid #45464c;
+  transition: background 0.15s;
+}
+.bc-page-nav:hover { background: #55565c; border-color: #55565c; }
+.bc-page-nav.disabled { background: #6b7280; border-color: #6b7280; pointer-events: none; cursor: default; }
+.dark .bc-page-btn { background: #1f2937; border-color: #374151; color: #d1d5db; }
+.dark .bc-page-btn:hover { background: #374151; color: #f9fafb; }
+.dark .bc-page-btn.active { background: #45464c; border-color: #9ca3af; color: #9ca3af; }
+.dark .bc-page-dots { color: #6b7280; }
+.dark .bc-page-nav { background: #9ca3af; border-color: #9ca3af; color: #1f2937; }
+.dark .bc-page-nav:hover { background: #ef4444; }
+
+/* Category title — index.html এর "সর্বশেষ বই" title-এর মতো accented progress-underline */
+.bc-latest-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 1rem;
+  letter-spacing: 0.01em;
+}
+.bc-latest-title i { color: #45464c; font-size: 1rem; }
+.bc-latest-title::after {
+  content: '';
+  flex: 1;
+  height: 6px;
+  border-radius: 1px;
+  background: linear-gradient(to right, #e5e7eb 0%, #45464c 100%);
+}
+.dark .bc-latest-title { color: #f3f4f6; }
+.dark .bc-latest-title::after {
+  background: linear-gradient(to right, #374151 0%, #9ca3af 100%);
+}
+.category-wrap { padding-top: 1rem; }
+@media (min-width: 768px) { .category-wrap { padding-top: 1.5rem; padding-left: 2rem; padding-right: 2rem; } }
+@media (min-width: 1024px) { .category-wrap { padding-left: 4rem; padding-right: 4rem; } }
+</style>
+
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-container footer-row">
+            <div class="footer-links">
+                <a href="/about">সম্পর্কে</a>
+                <a href="/contact">যোগাযোগ</a>
+                <a href="/policy">শর্তাবলী</a>
+            </div>
+            <span class="footer-brand"><strong>পাঠক <span class="brand-name-light">ঘর</span></strong></span>
+        </div>
+    </footer>
+
+    <script>
+        // Footer copyright — বছর automatic (current year, বাংলা সংখ্যায়)
+        (function () {
+            const el = document.getElementById('footer-copyright-year');
+            if (!el) return;
+            const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+            const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');
+            el.textContent = toBn(new Date().getFullYear());
+        })();
+    </script>
+
+    <script>
+        (function() {
+            var path = window.location.pathname;
+            var rules = {
+                '/': /^\/$/,
+                '/authors/': /^\/authors\/?$/,
+                '/categories/': /^\/categories\/?$/,
+                '/blogs/': /^\/blogs\/?$/
+            };
+            document.querySelectorAll('.header-nav-btn').forEach(function(btn) {
+                var navPath = btn.getAttribute('data-nav-path');
+                var re = rules[navPath];
+                if (re && re.test(path)) btn.classList.add('active');
+            });
+        })();
+    </script>
+
+    <script>
+        // Visit counter — প্রতি পেজ লোড/রিফ্রেশে count বাড়বে
+        (function () {
+            const el = document.getElementById('pg-visit-counter');
+            if (!el) return;
+            const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+            const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');
+            const nums = el.querySelectorAll('b');
+            fetch('/api/visits')
+                .then(r => r.json())
+                .then(data => {
+                    nums[0].textContent = toBn(data.today);
+                    nums[1].textContent = toBn(data.total);
+                })
+                .catch(() => { el.style.display = 'none'; });
+        })();
+    </script>
+
+
+
+
+</body>
+</html>
