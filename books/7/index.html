@@ -559,7 +559,7 @@
   .bc-section-title {
     font-size: 1.15rem;
     font-weight: 700;
-    color: #1f2937;
+    color: #f3f4f6;
     display: flex;
     align-items: center;
     gap: 0.6rem;
@@ -571,11 +571,9 @@
     content: '';
     flex: 1;
     height: 2px;
-    background: #45464c;
+    background: #9ca3af;
     border-radius: 1px;
   }
-  .dark .bc-section-title { color: #f3f4f6; }
-  .dark .bc-section-title::after { background: #9ca3af; }
 
   /* "সব দেখুন" pill button */
   .bc-section-link {
@@ -590,8 +588,6 @@
     transition: background 0.15s;
   }
   .bc-section-link:hover { background: #55565c; }
-  .dark .bc-section-link { background: #45464c; }
-  .dark .bc-section-link:hover { background: #55565c; }
 
   /* Pagination */
   .bc-pagination {
@@ -622,20 +618,20 @@
     font-size: 0.95rem;
     font-weight: 500;
     text-decoration: none;
-    color: #374151;
-    background: #ffffff;
-    border: 1px solid #dee2e6;
+    color: #d1d5db;
+    background: #333439;
+    border: 1px solid #333439;
     transition: background 0.15s, color 0.15s, border-color 0.15s;
   }
-  .bc-page-btn:hover { background: #f1f3f5; border-color: #ced4da; color: #111827; }
-  .bc-page-btn.active { background: #45464c; border-color: #45464c; color: #45464c; pointer-events: none; }
+  .bc-page-btn:hover { background: #3d3e44; color: #f9fafb; }
+  .bc-page-btn.active { background: #45464c; border-color: #f9fafb; color: #f9fafb; pointer-events: none; }
   .bc-page-dots {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     min-width: 1.4rem;
     height: 2.4rem;
-    color: #9ca3af;
+    color: #6b7280;
     font-weight: 600;
     letter-spacing: 0.05em;
   }
@@ -650,20 +646,13 @@
     font-size: 0.95rem;
     font-weight: 600;
     text-decoration: none;
-    color: #fff;
+    color: #f9fafb;
     background: #45464c;
     border: 1px solid #45464c;
     transition: background 0.15s;
   }
-  .bc-page-nav:hover { background: #55565c; border-color: #55565c; }
-  .bc-page-nav.disabled { background: #6b7280; border-color: #6b7280; pointer-events: none; cursor: default; }
-  .dark .bc-page-btn { background: #1f2937; border-color: #374151; color: #d1d5db; }
-  .dark .bc-page-btn:hover { background: #374151; color: #f9fafb; }
-  .dark .bc-page-btn.active { background: #45464c; border-color: #9ca3af; color: #9ca3af; }
-  .dark .bc-page-dots { color: #6b7280; }
-  .dark .bc-page-nav { background: #9ca3af; border-color: #9ca3af; color: #1f2937; }
-  .dark .bc-page-nav:hover { background: #ef4444; }
-
+  .bc-page-nav:hover { background: #55565c; }
+  .bc-page-nav.disabled { background: #333439; border-color: #333439; color: #6b7280; pointer-events: none; cursor: default; }
 
   /* সর্বশেষ বই — title with accented progress-style underline */
   .bc-latest-title {
@@ -672,86 +661,17 @@
     gap: 0.5rem;
     font-size: 1.1rem;
     font-weight: 700;
-    color: #1f2937;
+    color: #f5f5f5;
     margin-bottom: 1rem;
     letter-spacing: 0.01em;
   }
   .bc-latest-title i { color: #45464c; font-size: 1rem; }
-  .bc-latest-title .bc-page-num { color: #45464c; }
-  .dark .bc-latest-title .bc-page-num { color: #9ca3af; }
   .bc-latest-title::after {
     content: '';
     flex: 1;
     height: 6px;
     border-radius: 1px;
-    background: linear-gradient(to right, #e5e7eb 0%, #45464c 100%);
-  }
-  .dark .bc-latest-title { color: #f3f4f6; }
-  .dark .bc-latest-title::after {
-    background: linear-gradient(to right, #374151 0%, #9ca3af 100%);
-  }
-
-  /* বিভাগসমূহ — horizontal scroll, card width টেক্সট length অনুযায়ী */
-  .idx-cat-grid {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 0.6rem;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding-bottom: 0.2rem;
-  }
-  .idx-cat-grid::-webkit-scrollbar { display: none; }
-
-  .idx-cat-card {
-    display: inline-flex;
-    flex: 0 0 auto;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    text-decoration: none;
-    padding: 0.8rem 1.1rem;
-    white-space: nowrap;
-    background: #ffffff;
-    border: 1px solid #f0f0f0;
-    border-radius: 5px;
-    transition: background 0.15s, box-shadow 0.15s;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-    -webkit-tap-highlight-color: transparent;
-  }
-  .dark .idx-cat-card { background: #23232a; border-color: #2e2e36; box-shadow: 0 1px 4px rgba(0,0,0,0.3); }
-  .idx-cat-card:hover { background: #fff5f5; box-shadow: 0 4px 12px rgba(192,57,43,0.1); }
-  .dark .idx-cat-card:hover { background: #2a1f1f; }
-  .idx-cat-card:active { background: #45464c; }
-  .dark .idx-cat-card:active { background: #2e1a1a; }
-
-  .idx-cat-card-name {
-    font-size: 0.92rem;
-    font-weight: 700;
-    color: #1f2937;
-    line-height: 1.4;
-    white-space: nowrap;
-  }
-  .dark .idx-cat-card-name { color: #e5e7eb; }
-
-  /* বিভাগসমূহ সেকশনের নিচে ও পরের সেকশনের উপরে space কমানো */
-  .idx-cat-section { margin-bottom: 0.15rem; }
-  .idx-cat-section + .book-section { padding-top: 0.25rem; }
-
-  /* horizontal scroll এখন true screen edge পর্যন্ত যাবে (full-bleed) */
-  .idx-cat-section {
-    padding-left: 0;
-    padding-right: 0;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-  }
-  .idx-cat-grid {
-    padding-left: 0.5rem;
-    padding-right: 1rem;
-  }
-  @media (min-width: 768px) {
-    .idx-cat-grid { padding-left: 0.75rem; padding-right: 1.5rem; }
+    background: linear-gradient(to right, #f5f5f5 0%, #6b7280 100%);
   }
 
   /* পেজ কনটেন্ট wrapper */
@@ -886,16 +806,8 @@
 
 <main class="page-content">
 
-  <!-- বিভাগসমূহ (top 9 categories, সংখ্যা ছাড়া) -->
-  <section class="book-section idx-cat-section">
-    <div class="idx-cat-grid"><a href="/category/uponyas/1/" class="idx-cat-card"><span class="idx-cat-card-name">উপন্যাস</span></a><a href="/category/probondho/1/" class="idx-cat-card"><span class="idx-cat-card-name">প্রবন্ধ</span></a><a href="/category/detective/1/" class="idx-cat-card"><span class="idx-cat-card-name">গোয়েন্দা</span></a><a href="/category/science-fiction/1/" class="idx-cat-card"><span class="idx-cat-card-name">সায়েন্স ফিকশন</span></a><a href="/category/kobita/1/" class="idx-cat-card"><span class="idx-cat-card-name">কবিতা</span></a><a href="/category/travel/1/" class="idx-cat-card"><span class="idx-cat-card-name">ভ্রমণ</span></a><a href="/category/sishu-kishor/1/" class="idx-cat-card"><span class="idx-cat-card-name">শিশু-কিশোর</span></a><a href="/category/productivity/1/" class="idx-cat-card"><span class="idx-cat-card-name">আত্ম-উন্নয়ন</span></a><a href="/category/translation/1/" class="idx-cat-card"><span class="idx-cat-card-name">অনুবাদ</span></a></div>
-  </section>
-
   <!-- সর্বশেষ বই -->
   <section class="book-section">
-    <div class="bc-latest-title">
-      <i class="fa-solid fa-clock-rotate-left"></i> সর্বশেষ বই<span class="bc-page-num">(৭)</span>
-    </div>
     <div class="bc-list"><a href="/book/anuron-golok.html" class="bc-card">
   <div class="bc-img-wrap">
     <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782683110549_zv0s7h38rde.png" alt="অনুরন গোলক" class="bc-img" loading="lazy">
@@ -1018,34 +930,27 @@
       const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');
       const el = document.getElementById('bc-pagination');
 
-      function getDelta() {
+      function getFrontCount() {
         const w = window.innerWidth;
-        if (w < 360) return 0;
-        if (w < 420) return 1;
-        if (w < 640) return 2;
-        return 3;
+        if (w < 360) return 2;
+        if (w < 420) return 3;
+        return 4;
       }
 
-      function buildList(delta) {
-        const keep = [];
-        for (let i = 1; i <= total; i++) {
-          if (i === 1 || i === total || (i >= current - delta && i <= current + delta)) keep.push(i);
+      function buildList() {
+        const frontCount = Math.min(getFrontCount(), total - 1);
+        const front = [];
+        for (let i = 1; i <= frontCount; i++) front.push(i);
+        if (frontCount >= total - 1) {
+          const result = front.slice();
+          for (let i = frontCount + 1; i <= total; i++) result.push(i);
+          return result;
         }
-        const result = [];
-        let prev = 0;
-        for (const p of keep) {
-          if (prev) {
-            if (p - prev === 2) result.push(prev + 1);
-            else if (p - prev > 2) result.push('...');
-          }
-          result.push(p);
-          prev = p;
-        }
-        return result;
+        return front.concat(['...', total]);
       }
 
       function render() {
-        const list = buildList(getDelta());
+        const list = buildList();
         let html = '<div class="bc-pagination">';
         if (current > 1) {
           const prev = current === 2 ? '/' : '/books/' + (current - 1) + '/';
@@ -1078,9 +983,6 @@
       });
     })();
   </script>
-
-
-
 
     </main>
 
