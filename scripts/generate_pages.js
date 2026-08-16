@@ -347,7 +347,7 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
   // created_at দিয়ে sort (নতুন আগে)
   const sorted = [...bookList].sort((a, b) => (b.created_at || 0) - (a.created_at || 0));
 
-  const BOOKS_PER_PAGE = 12;
+  const BOOKS_PER_PAGE = 24;
   const totalPages = Math.ceil(sorted.length / BOOKS_PER_PAGE);
 
   // Book card render helper
