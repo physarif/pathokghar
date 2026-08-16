@@ -72,13 +72,12 @@
             box-sizing: border-box;
             padding: 0 0.5rem;
         }
-        .header-left { display: flex; align-items: center; gap: 0.75rem; }
-        .header-right { display: flex; align-items: stretch; gap: 0; flex: 1 1 auto; height: 100%; margin-left: 0.5rem; }
-        #menu-btn, #header-search-btn, #header-search-close-btn {
+        .header-right { display: flex; align-items: stretch; gap: 0; flex: 1 1 auto; height: 100%; }
+        #header-search-btn, #header-search-close-btn {
             background: none; border: none; padding: 0; cursor: pointer;
             color: #ffffff;
         }
-        .dark #menu-btn, .dark #header-search-btn, .dark #header-search-close-btn { color: #ffffff; }
+        .dark #header-search-btn, .dark #header-search-close-btn { color: #ffffff; }
         .brand-link { display: none; }
         .brand-name { font-size: 1.5rem; font-weight: 700; color: #1f2937; line-height: 1; }
         .dark .brand-name { color: #f3f4f6; }
@@ -118,75 +117,6 @@
             z-index: 60;
         }
         .dark .header-search-suggest { background: rgba(35,35,42,0.95); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
-
-        /* ── Sidebar header / search ── */
-        .sidebar-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 4rem;
-            box-sizing: border-box;
-            padding: 0 1rem;
-            border-bottom: 1px solid #e5e7eb;
-            background: #ffffff;
-        }
-        .dark .sidebar-header { border-bottom-color: #374151; background: #1f1f1f; }
-        .sidebar-brand { display: flex; align-items: center; gap: 0.5rem; }
-        .sidebar-brand-icon { color: #c0392b; }
-        #sidebar-close-btn {
-            background: none; border: none; padding: 0; cursor: pointer;
-            color: #6b7280; display: flex; align-items: center;
-        }
-        .dark #sidebar-close-btn { color: #9ca3af; }
-        /* ── Sidebar collapsible sections ── */
-        .sidebar-toggle-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.75rem 1rem;
-            cursor: pointer;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        .dark .sidebar-toggle-row { border-bottom-color: #374151; }
-        .sidebar-toggle-label { font-size: 1rem; font-weight: 700; color: #1f2937; }
-        .dark .sidebar-toggle-label { color: #f3f4f6; }
-        .sidebar-toggle-chevron { color: #6b7280; font-size: 0.875rem; }
-        .dark .sidebar-toggle-chevron { color: #9ca3af; }
-        .sidebar-collapsible-list {
-            padding: 0 0.5rem 0.25rem;
-            list-style: none;
-            margin: 0;
-            max-height: 45vh;
-            overflow-y: auto;
-        }
-        .sidebar-divider { margin: 0 1rem; border-top: 1px solid #e5e7eb; }
-        .dark .sidebar-divider { border-top-color: #374151; }
-        .sidebar-links-row { padding: 0.75rem 1rem; }
-        .sidebar-links-row a {
-            font-size: 0.875rem;
-            color: #374151;
-            text-decoration: none;
-            margin-right: 0.75rem;
-        }
-        .dark .sidebar-links-row a { color: #e5e7eb; }
-        .sidebar-links-row a:active { color: #c0392b; }
-        .sidebar-bottom-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 1rem 1rem;
-        }
-        #sidebar-social { display: flex; align-items: center; gap: 0.75rem; }
-        .sidebar-social-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            font-size: 1.25rem;
-        }
-        .sidebar-social-icon.fb { color: #1877f2; }
-        .sidebar-social-icon.tg { color: #229ed9; }
 
         /* ── Footer (night-only — #333439 surface, #121218 page bg reference, red accent) ── */
         .site-footer {
@@ -374,75 +304,6 @@
         }
         .header-nav-btn.active .header-nav-label { border-bottom-color: #ffffff; }
 
-
-        /* Sidebar (plain CSS — precompiled tailwind.css এ এই ক্লাসগুলো নাও থাকতে পারে) */
-        #sidebar-overlay {
-            position: fixed; inset: 0;
-            background: rgba(0,0,0,0.4);
-            z-index: 240;
-            opacity: 0; visibility: hidden;
-            transition: opacity 0.25s;
-        }
-        #sidebar-overlay.open { opacity: 1; visibility: visible; }
-        #sidebar {
-            position: fixed; top: 0; left: 0;
-            height: 100%; width: 260px; max-width: 80%;
-            background: rgba(255,255,255,0.95);
-            z-index: 250;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-            box-shadow: 2px 0 12px rgba(0,0,0,0.15);
-            overflow-y: auto;
-        }
-        .dark #sidebar {
-            background: rgba(31,31,31,0.95);
-        }
-        #sidebar.open { transform: translateX(0); }
-
-        /* Sidebar layout — নিচের সেকশন একেবারে বটমে বসানোর জন্য plain CSS
-           (Tailwind-এর mt-auto/flex-col precompiled CSS-এ নাও থাকতে পারে) */
-        #sidebar { display: flex; flex-direction: column; }
-        #sidebar-bottom { margin-top: auto; }
-
-        /* বিভাগসমূহ ও লেখকগণ accordion */
-        #sidebar-categories-chevron, #sidebar-authors-chevron { transition: transform 0.2s ease; }
-        #sidebar-categories-list li a, #sidebar-authors-list li a {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.5rem;
-            padding: 0.5rem 0.75rem;
-            font-size: 0.9rem;
-            color: #4b5563;
-            text-decoration: none;
-            border-radius: 6px;
-        }
-        #sidebar-categories-list li a:hover, #sidebar-authors-list li a:hover { background: #fff5f5; color: #c0392b; }
-        .dark #sidebar-categories-list li a, .dark #sidebar-authors-list li a { color: #d1d5db; }
-        .dark #sidebar-categories-list li a:hover, .dark #sidebar-authors-list li a:hover { background: #2a1f1f; color: #e57373; }
-        /* সংখ্যা — bracket-সহ, ডান পাশে (বিভাগে বই সংখ্যা, লেখকে বই সংখ্যা) */
-        #sidebar-categories-list li a .cat-count, #sidebar-authors-list li a .cat-count {
-            font-size: 13px;
-            color: #9ca3af;
-            flex-shrink: 0;
-        }
-        #sidebar-categories-list li a .cat-count::before, #sidebar-authors-list li a .cat-count::before { content: '('; }
-        #sidebar-categories-list li a .cat-count::after, #sidebar-authors-list li a .cat-count::after { content: ')'; }
-        .dark #sidebar-categories-list li a .cat-count, .dark #sidebar-authors-list li a .cat-count { color: #6b7280; }
-        /* বর্ণমালা group header (অ, আ, ই...) — scroll করার সময় sticky থাকবে */
-        .sidebar-group-header {
-            position: sticky;
-            top: 0;
-            z-index: 1;
-            padding: 0.3rem 0.75rem 0.15rem;
-            font-size: 0.75rem;
-            font-weight: 800;
-            color: #c0392b;
-            letter-spacing: 0.02em;
-            background: rgba(255,255,255,0.95);
-        }
-        .dark .sidebar-group-header { color: #f87171; background: rgba(31,31,31,0.95); }
-
         /* Floating (sticky) header — নিচে স্ক্রল করলে hide, উপরে স্ক্রল করলে show */
         #site-header {
             position: fixed;
@@ -516,11 +377,6 @@
     <!-- TOP BAR -->
     <header id="site-header">
         <div id="header-default" class="header-row">
-            <div class="header-left">
-                <button id="menu-btn" type="button" aria-label="মেনু">
-                    <i class="fa-solid fa-bars icon-lg"></i>
-                </button>
-            </div>
             <div class="header-right">
                 <nav class="header-nav-group">
                     <a href="/" data-nav-path="/" class="header-nav-btn" aria-label="প্রধান পাতা">
@@ -552,238 +408,12 @@
     <!-- header fixed হওয়ায় নিচের কনটেন্টের জন্য একই উচ্চতার একটি spacer -->
     <div id="header-spacer"></div>
 
-    <!-- SIDEBAR -->
-    <div id="sidebar-overlay"></div>
-    <aside id="sidebar">
-        <div id="sidebar-header-default" class="sidebar-header">
-            <div class="sidebar-brand">
-                <span class="sidebar-brand-icon"><i class="fa-solid fa-swatchbook icon-lg"></i></span>
-                <span class="brand-name">পাঠক <span class="brand-name-light">ঘর</span></span>
-            </div>
-            <button id="sidebar-close-btn" type="button" aria-label="মেনু বন্ধ করুন">
-                <i class="fa-solid fa-xmark icon-lg"></i>
-            </button>
-        </div>
-
-        <!-- বিভাগসমূহ — collapsible, সব category বর্ণমালা অনুসারে -->
-        <div id="sidebar-categories-toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="sidebar-categories-list" class="sidebar-toggle-row">
-            <span class="sidebar-toggle-label">বিভাগসমূহ</span>
-            <i id="sidebar-categories-chevron" class="fa-solid fa-chevron-down sidebar-toggle-chevron"></i>
-        </div>
-        <ul id="sidebar-categories-list" class="sidebar-collapsible-list" style="display:none;">
-            <li class="sidebar-group-header">অ</li>
-                <li><a href="/category/translation/1/"><span>অনুবাদ</span><span class="cat-count">২</span></a></li>
-                <li class="sidebar-group-header">আ</li>
-                <li><a href="/category/productivity/1/"><span>আত্ম-উন্নয়ন</span><span class="cat-count">২</span></a></li>
-                <li class="sidebar-group-header">ই</li>
-                <li><a href="/category/itihas/1/"><span>ইতিহাস</span><span class="cat-count">২</span></a></li>
-                <li><a href="/category/islamic/1/"><span>ইসলামিক</span><span class="cat-count">০</span></a></li>
-                <li class="sidebar-group-header">উ</li>
-                <li><a href="/category/uponyas/1/"><span>উপন্যাস</span><span class="cat-count">৪৩</span></a></li>
-                <li class="sidebar-group-header">ক</li>
-                <li><a href="/category/kobita/1/"><span>কবিতা</span><span class="cat-count">৪</span></a></li>
-                <li><a href="/category/kishor-sahitya/1/"><span>কিশোর সাহিত্য</span><span class="cat-count">২</span></a></li>
-                <li class="sidebar-group-header">গ</li>
-                <li><a href="/category/detective/1/"><span>গোয়েন্দা</span><span class="cat-count">৭</span></a></li>
-                <li class="sidebar-group-header">চ</li>
-                <li><a href="/category/treatment/1/"><span>চিকিৎসা</span><span class="cat-count">১</span></a></li>
-                <li class="sidebar-group-header">ছ</li>
-                <li><a href="/category/chara/1/"><span>ছড়া</span><span class="cat-count">১</span></a></li>
-                <li class="sidebar-group-header">দ</li>
-                <li><a href="/category/dorshon/1/"><span>দর্শন</span><span class="cat-count">১</span></a></li>
-                <li class="sidebar-group-header">ধ</li>
-                <li><a href="/category/religious/1/"><span>ধর্মীয়</span><span class="cat-count">০</span></a></li>
-                <li class="sidebar-group-header">ন</li>
-                <li><a href="/category/non-fiction/1/"><span>নন ফিকশন</span><span class="cat-count">১</span></a></li>
-                <li class="sidebar-group-header">প</li>
-                <li><a href="/category/probondho/1/"><span>প্রবন্ধ</span><span class="cat-count">৭</span></a></li>
-                <li class="sidebar-group-header">ব</li>
-                <li><a href="/category/bigyan-o-projukti/1/"><span>বিজ্ঞান ও প্রযুক্তি</span><span class="cat-count">২</span></a></li>
-                <li class="sidebar-group-header">ভ</li>
-                <li><a href="/category/bhoot/1/"><span>ভৌতিক</span><span class="cat-count">০</span></a></li>
-                <li><a href="/category/horror/1/"><span>ভৌতিক</span><span class="cat-count">০</span></a></li>
-                <li><a href="/category/travel/1/"><span>ভ্রমণ</span><span class="cat-count">৩</span></a></li>
-                <li class="sidebar-group-header">ম</li>
-                <li><a href="/category/muktijuddho/1/"><span>মুক্তিযুদ্ধ</span><span class="cat-count">১</span></a></li>
-                <li class="sidebar-group-header">শ</li>
-                <li><a href="/category/sishu-kishor/1/"><span>শিশু-কিশোর</span><span class="cat-count">৩</span></a></li>
-                <li class="sidebar-group-header">স</li>
-                <li><a href="/category/science-fiction/1/"><span>সায়েন্স ফিকশন</span><span class="cat-count">৬</span></a></li>
-        </ul>
-
-        <!-- লেখকগণ — collapsible, সব লেখক বর্ণমালা অনুসারে -->
-        <div id="sidebar-authors-toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="sidebar-authors-list" class="sidebar-toggle-row">
-            <span class="sidebar-toggle-label">লেখকগণ</span>
-            <i id="sidebar-authors-chevron" class="fa-solid fa-chevron-down sidebar-toggle-chevron"></i>
-        </div>
-        <ul id="sidebar-authors-list" class="sidebar-collapsible-list" style="display:none;">
-            <li class="sidebar-group-header">অ</li>
-                <li><a href="/author/anirban-ghosh.html"><span>অনির্বাণ ঘোষ</span><span class="cat-count">১</span></a></li>
-                <li class="sidebar-group-header">ই</li>
-                <li><a href="/author/yuval-noah-harari.html"><span>ইউভাল নোয়াহ হারারি</span><span class="cat-count">১</span></a></li>
-                <li class="sidebar-group-header">ঈ</li>
-                <li><a href="/author/ishwar-chandra-vidyasagar.html"><span>ঈশ্বরচন্দ্র বিদ্যাসাগর</span><span class="cat-count">২</span></a></li>
-                <li class="sidebar-group-header">ক</li>
-                <li><a href="/author/cal-newport.html"><span>কাল নিউপোর্ট</span><span class="cat-count">১</span></a></li>
-                <li><a href="/author/krishan-hander.html"><span>কৃষণ চন্দর</span><span class="cat-count">১</span></a></li>
-                <li><a href="/author/kaushik-majumdar.html"><span>কৌশিক মজুমদার</span><span class="cat-count">১</span></a></li>
-                <li class="sidebar-group-header">জ</li>
-                <li><a href="/author/zahir-raihan.html"><span>জহির রায়হান</span><span class="cat-count">৮</span></a></li>
-                <li><a href="/author/jibanananda-das.html"><span>জীবনানন্দ দাশ</span><span class="cat-count">২</span></a></li>
-                <li><a href="/author/james-clear.html"><span>জেমস ক্লিয়ার</span><span class="cat-count">১</span></a></li>
-                <li class="sidebar-group-header">ড</li>
-                <li><a href="/author/dr-dawan-wahidun-nabi.html"><span>ডা. দেওয়ান ওয়াহিদুন নবি</span><span class="cat-count">১</span></a></li>
-                <li class="sidebar-group-header">ত</li>
-                <li><a href="/author/tarasankar-bandyopadhyay.html"><span>তারাশঙ্কর বন্দোপাধ্যায়</span><span class="cat-count">২</span></a></li>
-                <li class="sidebar-group-header">দ</li>
-                <li><a href="/author/debabrata-sanyal.html"><span>দেবব্রত সান্যাল</span><span class="cat-count">১</span></a></li>
-                <li class="sidebar-group-header">ন</li>
-                <li><a href="/author/nilmoni-bosak.html"><span>নীলমণি বসাক</span><span class="cat-count">১</span></a></li>
-                <li class="sidebar-group-header">প</li>
-                <li><a href="/author/peary-chand-mitra.html"><span>প্যারীচাঁদ মিত্র</span><span class="cat-count">১</span></a></li>
-                <li class="sidebar-group-header">ব</li>
-                <li><a href="/author/bankim-chandra-chatterjee.html"><span>বঙ্কিমচন্দ্র চট্টোপাধ্যায়</span><span class="cat-count">১</span></a></li>
-                <li><a href="/author/binoy-majumdar.html"><span>বিনয় মজুমদার</span><span class="cat-count">১</span></a></li>
-                <li><a href="/author/bibhutibhushan-bandyopadhyay.html"><span>বিভূতিভূষণ বন্দ্যোপাধ্যায়</span><span class="cat-count">১</span></a></li>
-                <li><a href="/author/buddhadeb-guha.html"><span>বুদ্ধদেব গুহ</span><span class="cat-count">৫</span></a></li>
-                <li class="sidebar-group-header">ভ</li>
-                <li><a href="/author/bhagat-singh.html"><span>ভগৎ সিং</span><span class="cat-count">১</span></a></li>
-                <li class="sidebar-group-header">ম</li>
-                <li><a href="/author/michio-kaku.html"><span>মিচিও কাকু</span><span class="cat-count">১</span></a></li>
-                <li><a href="/author/muhammed-zafar-iqbal.html"><span>মুহম্মদ জাফর ইকবাল</span><span class="cat-count">৬</span></a></li>
-                <li><a href="/author/mohammad-nazim-uddin.html"><span>মোহাম্মদ নাজিম উদ্দিন</span><span class="cat-count">১</span></a></li>
-                <li class="sidebar-group-header">র</li>
-                <li><a href="/author/ranjana-bandyopadhyaya.html"><span>রঞ্জন বন্দ্যোপাধ্যায়</span><span class="cat-count">১</span></a></li>
-                <li><a href="/author/rabindranath-tagore.html"><span>রবীন্দ্রনাথ ঠাকুর</span><span class="cat-count">১০</span></a></li>
-                <li><a href="/author/ramnath-biswas.html"><span>রামনাথ বিশ্বাস</span><span class="cat-count">১</span></a></li>
-                <li class="sidebar-group-header">ল</li>
-                <li><a href="/author/lucius-apuleius.html"><span>লুসিয়াস আপুলিয়াস</span><span class="cat-count">১</span></a></li>
-                <li class="sidebar-group-header">শ</li>
-                <li><a href="/author/sarat-chandra-chattopadhyay.html"><span>শরৎচন্দ্র চট্টোপাধ্যায়</span><span class="cat-count">১১</span></a></li>
-                <li><a href="/author/sharadindu-bandyopadhyay.html"><span>শরদিন্দু বন্দ্যোপাধ্যায়</span><span class="cat-count">৪</span></a></li>
-                <li><a href="/author/shibram-chakraborty.html"><span>শিবরাম চক্রবর্তী</span><span class="cat-count">১</span></a></li>
-                <li><a href="/author/sreepantha.html"><span>শ্রীপান্থ</span><span class="cat-count">১</span></a></li>
-                <li class="sidebar-group-header">স</li>
-                <li><a href="/author/sanjib-chandra-chattopadhyay.html"><span>সঞ্জীবচন্দ্র চট্টোপাধ্যায়ের</span><span class="cat-count">১</span></a></li>
-                <li><a href="/author/satyajit-ray.html"><span>সত্যজিৎ রায়</span><span class="cat-count">৪</span></a></li>
-                <li><a href="/author/sadat-hossain.html"><span>সাদাত হোসাইন</span><span class="cat-count">১</span></a></li>
-                <li><a href="/author/syed-mujtaba-ali.html"><span>সৈয়দ মুজতবা আলী</span><span class="cat-count">১</span></a></li>
-                <li class="sidebar-group-header">হ</li>
-                <li><a href="/author/hayat-mamud.html"><span>হায়াৎ মাহমুদ</span><span class="cat-count">১</span></a></li>
-                <li><a href="/author/hymayun-azad.html"><span>হুমায়ুন আজাদ</span><span class="cat-count">২</span></a></li>
-                <li><a href="/author/hymayun-ahmed.html"><span>হুমায়ূন আহমেদ</span><span class="cat-count">৭</span></a></li>
-        </ul>
-
-        <!-- একেবারে নিচে বসবে -->
-        <div id="sidebar-bottom">
-            <div class="sidebar-divider"></div>
-
-            <!-- Links (পাশাপাশি) -->
-            <div id="sidebar-links" class="sidebar-links-row">
-                <a href="/about">সম্পর্কে</a>
-                <a href="/contact">যোগাযোগ</a>
-                <a href="/policy">শর্তাবলী</a>
-            </div>
-
-            <!-- Visit counter + Social icons (ডানে) -->
-            <div class="sidebar-bottom-row">
-                <span id="pg-visit-counter" class="pg-visit-pill"><i class="fa-solid fa-arrow-trend-up"></i> <b>**</b> <span class="pg-sep">|</span> <b>**</b></span>
-                <div id="sidebar-social">
-                    <a href="https://facebook.com/pathokghar" target="_blank" rel="noopener" aria-label="Facebook" class="sidebar-social-icon fb">
-                        <i class="fa-brands fa-facebook"></i>
-                    </a>
-                    <a href="https://t.me/pathokghar" target="_blank" rel="noopener" aria-label="Telegram" class="sidebar-social-icon tg">
-                        <i class="fa-brands fa-telegram"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </aside>
-
     <script>
-    (function() {
-        var menuBtn = document.getElementById('menu-btn');
-        var sidebar = document.getElementById('sidebar');
-        var overlay = document.getElementById('sidebar-overlay');
-
-        // Sidebar UI শুধু show/hide করে, history নিয়ে কিছু করে না
-        function showSidebarUI() {
-            sidebar.classList.add('open');
-            overlay.classList.add('open');
-            document.body.classList.add('sidebar-locked');
-        }
-        function hideSidebarUI() {
-            sidebar.classList.remove('open');
-            overlay.classList.remove('open');
-            document.body.classList.remove('sidebar-locked');
-        }
-
-        // মেনু খোলার সময় history-তে #sidebar hash push করা হয়, যাতে
-        // Android back key চাপলে (browser popstate ট্রিগার করে) sidebar বন্ধ হয়ে যায়।
-        function openSidebar() {
-            var siteHeader = document.getElementById('site-header');
-            if (siteHeader) siteHeader.classList.remove('header-hidden');
-            showSidebarUI();
-            if (location.hash !== '#sidebar') {
-                history.pushState({ sidebarOpen: true }, '', '#sidebar');
-            }
-        }
-        // X বা overlay ট্যাপ করলে history.back() কল হয় (যদি #sidebar hash থাকে),
-        // যাতে পরে ব্যবহারকারীকে সাইট থেকে বেরোতে extra একটা back press না লাগে।
-        function closeSidebar() {
-            if (location.hash === '#sidebar') {
-                history.back();
-            } else {
-                hideSidebarUI();
-            }
-        }
-
-        // Back key / browser back বাটনে popstate ফায়ার হয় — তখন sidebar বন্ধ করে দাও
-        window.addEventListener('popstate', function() {
-            hideSidebarUI();
-        });
-
-        var sidebarCloseBtn = document.getElementById('sidebar-close-btn');
-
-        if (menuBtn) menuBtn.addEventListener('click', openSidebar);
-        if (sidebarCloseBtn) sidebarCloseBtn.addEventListener('click', closeSidebar);
-        overlay.addEventListener('click', closeSidebar);
-
-        // বিভাগসমূহ accordion টগল
-        var catToggle = document.getElementById('sidebar-categories-toggle');
-        var catList = document.getElementById('sidebar-categories-list');
-        var catChevron = document.getElementById('sidebar-categories-chevron');
-        if (catToggle && catList) {
-            catToggle.addEventListener('click', function() {
-                var isOpen = catList.style.display !== 'none';
-                catList.style.display = isOpen ? 'none' : 'block';
-                catToggle.setAttribute('aria-expanded', String(!isOpen));
-                if (catChevron) catChevron.style.transform = isOpen ? '' : 'rotate(180deg)';
-            });
-        }
-
-        // লেখকগণ accordion টগল
-        var authorToggle = document.getElementById('sidebar-authors-toggle');
-        var authorList = document.getElementById('sidebar-authors-list');
-        var authorChevron = document.getElementById('sidebar-authors-chevron');
-        if (authorToggle && authorList) {
-            authorToggle.addEventListener('click', function() {
-                var isOpen = authorList.style.display !== 'none';
-                authorList.style.display = isOpen ? 'none' : 'block';
-                authorToggle.setAttribute('aria-expanded', String(!isOpen));
-                if (authorChevron) authorChevron.style.transform = isOpen ? '' : 'rotate(180deg)';
-            });
-        }
-    })();
-    </script>
-
-    <script>
-    // Inline search box টগল করা + live autosuggest — sidebar এবং header দুটোতেই ব্যবহৃত হয়
+    // Inline search box টগল করা + live autosuggest — header-এ ব্যবহৃত হয়
     (function() {
         // ── Autosuggest ──
         // search-index.json (lightweight, cover/title/author/category) একবার
-        // lazy-fetch হয় — প্রতিটা keystroke এ নয়, প্রথম টাইপ শুরু হলে। sidebar ও header
-        // একই cache শেয়ার করে, তাই দুইবার fetch হয় না।
+        // lazy-fetch হয় — প্রতিটা keystroke এ নয়, প্রথম টাইপ শুরু হলে।
         var indexData = null;
         var indexPromise = null;
 
@@ -986,10 +616,6 @@
             }
         }, { passive: true });
 
-        // sidebar খোলা থাকলে header hide না করা (menu icon দরকার হতে পারে)
-        window.addEventListener('popstate', function() {
-            header.classList.remove('header-hidden');
-        });
     })();
     </script>
 
