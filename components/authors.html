@@ -36,7 +36,7 @@
   height: 2rem;
   font-size: 1.05rem;
   font-weight: 700;
-  color: #45464c;
+  color: #9ca3af;
   text-decoration: none;
   border-radius: 4px;
   transition: background 0.12s, color 0.12s;
@@ -46,8 +46,6 @@
   background: #45464c;
   color: #fff;
 }
-.dark .ag-letter-link { color: #e57373; }
-.dark .ag-letter-link:hover, .dark .ag-letter-link.active { background: #45464c; color: #fff; }
 
 .ag-groups { flex: 1; min-width: 0; padding-left: 0.5rem; }
 
@@ -62,78 +60,60 @@
 .ag-group-letter {
   font-size: 1.6rem;
   font-weight: 800;
-  color: #45464c;
+  color: #9ca3af;
   line-height: 1;
   width: 2.2rem;
   flex-shrink: 0;
 }
-.dark .ag-group-letter { color: #9ca3af; }
-.ag-group-line { flex: 1; height: 1px; background: #e5e7eb; }
-.dark .ag-group-line { background: #374151; }
+.ag-group-line { flex: 1; height: 1px; background: #374151; }
 
 .ag-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
-}
-@media (min-width: 640px) { .ag-grid { grid-template-columns: repeat(4, 1fr); } }
-
-/* Author card */
-.author-card {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Author row (minimal list) */
+.author-card {
+  display: flex;
   align-items: center;
-  text-align: center;
+  gap: 0.85rem;
   text-decoration: none;
-  padding: 1.1rem 0.75rem 1rem;
-  background: #ffffff;
-  border: 1px solid #f0f0f0;
+  padding: 0.7rem 0.9rem;
+  background: #333439;
   border-radius: 5px;
-  transition: background 0.15s, box-shadow 0.15s;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  transition: background 0.15s;
   -webkit-tap-highlight-color: transparent;
 }
-.dark .author-card { background: #23232a; border-color: #2e2e36; box-shadow: 0 1px 4px rgba(0,0,0,0.3); }
-.author-card:hover { background: #fff5f5; box-shadow: 0 4px 12px rgba(192,57,43,0.1); }
-.dark .author-card:hover { background: #2a1f1f; }
+.author-card:hover { background: #3d3e44; }
 .author-card:active { background: #45464c; }
-.dark .author-card:active { background: #2e1a1a; }
 
 .author-photo-wrap {
   position: relative;
-  width: 88px; height: 88px;
+  width: 46px; height: 46px;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid #e5e7eb;
-  background: #f3f4f6;
+  background: #45464c;
   flex-shrink: 0;
-  margin-bottom: 0.55rem;
-  transition: border-color 0.15s;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
 }
-.dark .author-photo-wrap { border-color: #374151; background: #374151; }
-.author-card:hover .author-photo-wrap { border-color: #45464c; }
-@media (min-width: 640px) { .author-photo-wrap { width: 100px; height: 100px; } }
 .author-photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; position: relative; z-index: 1; }
 .author-photo-fallback {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.6rem; font-weight: 700;
-  color: #6b7280; background: #e5e7eb; z-index: 0;
+  font-size: 1rem; font-weight: 700;
+  color: #e5e7eb; background: #45464c; z-index: 0;
 }
-.dark .author-photo-fallback { color: #9ca3af; background: #3a3a3f; }
 .author-photo-wrap img.img-error { display: none; }
 
+.author-card-body { min-width: 0; flex: 1; }
 .author-card-name {
-  font-size: 0.88rem; font-weight: 700;
-  color: #1f2937; line-height: 1.3; margin-bottom: 0.2rem;
-  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  font-size: 0.92rem; font-weight: 700;
+  color: #F1F1F1; line-height: 1.3; margin-bottom: 0.1rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.dark .author-card-name { color: #e5e7eb; }
-.author-book-count { font-size: 0.7rem; color: #9ca3af; }
-.dark .author-book-count { color: #6b7280; }
-.author-book-count strong { color: #45464c; font-weight: 600; }
-.dark .author-book-count strong { color: #e57373; }
+.author-book-count { font-size: 0.75rem; color: #9A9A9A; }
+.author-book-count strong { color: #d1d5db; font-weight: 600; }
+.author-card-chevron { color: #6b7280; font-size: 1.1rem; flex-shrink: 0; }
 </style>
 
 <script>
@@ -177,8 +157,11 @@
         : '<div class="author-photo-fallback">' + initial + '</div>';
       return '<a href="/author/' + author.slug + '.html" class="author-card">'
         + '<div class="author-photo-wrap">' + photoInner + '</div>'
-        + '<span class="author-card-name">' + author.name + '</span>'
-        + '<span class="author-book-count"><strong>' + toBn(author.count) + '</strong> টি বই</span>'
+        + '<div class="author-card-body">'
+        + '<div class="author-card-name">' + author.name + '</div>'
+        + '<div class="author-book-count"><strong>' + toBn(author.count) + '</strong> টি বই</div>'
+        + '</div>'
+        + '<span class="author-card-chevron">›</span>'
         + '</a>';
     }).join('');
 
