@@ -729,21 +729,25 @@
       return result;
     }
 
+    function pageHref(i) {
+      return i === 1 ? '/category/' + slug + '/' : '/category/' + slug + '/' + i + '/';
+    }
+
     function render() {
       const list = buildList(getDelta());
       let html = '<div class="bc-pagination">';
       if (current > 1) {
-        html += '<a href="/category/' + slug + '/' + (current - 1) + '/" class="bc-page-nav" aria-label="পূর্ববর্তী"><i class="fas fa-chevron-left"></i></a>';
+        html += '<a href="' + pageHref(current - 1) + '" class="bc-page-nav" aria-label="পূর্ববর্তী"><i class="fas fa-chevron-left"></i></a>';
       } else {
         html += '<span class="bc-page-nav disabled" aria-label="পূর্ববর্তী"><i class="fas fa-chevron-left"></i></span>';
       }
       list.forEach(function(i) {
         if (i === '...') { html += '<span class="bc-page-dots">···</span>'; return; }
         if (i === current) html += '<span class="bc-page-btn active">' + toBn(i) + '</span>';
-        else html += '<a href="/category/' + slug + '/' + i + '/" class="bc-page-btn">' + toBn(i) + '</a>';
+        else html += '<a href="' + pageHref(i) + '" class="bc-page-btn">' + toBn(i) + '</a>';
       });
       if (current < total) {
-        html += '<a href="/category/' + slug + '/' + (current + 1) + '/" class="bc-page-nav" aria-label="পরবর্তী"><i class="fas fa-chevron-right"></i></a>';
+        html += '<a href="' + pageHref(current + 1) + '" class="bc-page-nav" aria-label="পরবর্তী"><i class="fas fa-chevron-right"></i></a>';
       } else {
         html += '<span class="bc-page-nav disabled" aria-label="পরবর্তী"><i class="fas fa-chevron-right"></i></span>';
       }
