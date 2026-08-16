@@ -679,7 +679,8 @@
      ব্যবহৃত common book-card design। generate_pages.js এই ফাইলটা একবার লোড করে
      প্রতিটা টেমপ্লেটের  placeholder-এ বসিয়ে দেয়।
      ডিজাইন পরিবর্তন করতে চাইলে শুধু এই ফাইলটা এডিট করলেই সব জায়গায় reflect হবে।
-     ডিজাইন: Editorial variant — বাম পাশে রঙিন accent bar। -->
+     ডিজাইন: Editorial variant — night-mode-only পাঠক ঘর palette (#121218 page bg,
+     #1c1c22 card surface, #f87171 red accent)। -->
 <style>
   /* List container */
   .bc-list {
@@ -705,14 +706,12 @@
     align-items: flex-start;
     text-decoration: none;
     padding: 1rem 1.1rem;
-    transition: background 0.15s, box-shadow 0.15s;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    transition: background 0.15s, border-color 0.15s;
+    background: #1c1c22;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
   }
-  .dark .bc-card { background: #23232a; }
-  .bc-card:hover { background: #fef2f2; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
-  .dark .bc-card:hover { background: #2a2020; }
+  .bc-card:hover { background: #241a1a; border-color: rgba(248,113,113,0.25); }
 
   /* Cover — left side, fixed size 2:3 ratio */
   .bc-img-wrap {
@@ -720,11 +719,10 @@
     width: 4.5rem;
     aspect-ratio: 2/3;
     overflow: hidden;
-    background: #e5e7eb;
+    background: #374151;
     border-radius: 6px;
   }
   @media (min-width: 768px) { .bc-img-wrap { width: 5.5rem; } }
-  .dark .bc-img-wrap { background: #374151; }
 
   .bc-img {
     width: 100%;
@@ -754,27 +752,24 @@
   }
   .bc-title {
     font-weight: 700;
-    color: #1f1f1f;
+    color: #f5f5f5;
   }
-  .dark .bc-title { color: #f5f5f5; }
   .bc-card:hover .bc-title { text-decoration: none; }
-  .dark .bc-card:hover .bc-title { text-decoration: none; }
 
   .bc-meta {
     font-size: 0.75rem;
-    color: #c0392b;
+    color: #f87171;
     text-transform: uppercase;
     letter-spacing: 0.04em;
     font-weight: 600;
     margin: 0.25rem 0 0.35rem;
   }
-  .dark .bc-meta { color: #f87171; }
 
   /* Description */
   .bc-desc {
     margin-top: 0.1rem;
     font-size: 0.88rem;
-    color: #4b5563;
+    color: #9ca3af;
     line-height: 1.5;
     text-align: justify;
     display: -webkit-box;
@@ -782,7 +777,6 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  .dark .bc-desc { color: #9ca3af; }
 </style>
 
 <!--
