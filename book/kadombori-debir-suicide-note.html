@@ -539,124 +539,418 @@
 
     <!-- MAIN CONTENT -->
     <main>
-        <!-- components/book-card1.html — সব পেজে (index, books, author, category, search)
-     ব্যবহৃত common book-card design। generate_pages.js এই ফাইলটা একবার লোড করে
-     প্রতিটা টেমপ্লেটের  placeholder-এ বসিয়ে দেয়।
-     ডিজাইন পরিবর্তন করতে চাইলে শুধু এই ফাইলটা এডিট করলেই সব জায়গায় reflect হবে।
-     ডিজাইন: Editorial variant — night-mode-only পাঠক ঘর palette (#121218 page bg,
-     #1c1c22 card surface, #f87171 red accent)। -->
-<style>
-  /* List container */
-  .bc-list {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    gap: 0.7rem;
-  }
-  @media (min-width: 768px) {
-    .bc-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.7rem;
-      padding: 0;
-    }
-  }
+        <!-- templates/book.html — শুধু content, layout.html এ inject হবে -->
+<main class="book-page">
+    <div class="book-page-inner">
 
-  /* Book card */
-  .bc-card {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    align-items: flex-start;
-    text-decoration: none;
-    padding: 1rem 1.1rem;
-    transition: background 0.15s, border-color 0.15s;
-    background: #1c1c22;
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 8px;
-  }
-  .bc-card:hover { background: #241a1a; border-color: rgba(248,113,113,0.25); }
+        <!-- Book Hero Card: cover, title, author, category, read ও download
+             সবকিছু একত্রে একটা কার্ডে সুন্দরভাবে সাজানো। H1 সিমান্টিকভাবে
+             বইয়ের নাম-ই থাকছে (SEO-এর জন্য জরুরি — এটাই পেজের মূল বিষয়)। -->
+        <div class="book-hero-card">
+            <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782894603956_mgfp9g8h1h.webp"
+                alt="কাদম্বরীদেবীর সুইসাইড–নোট বই এর কভার - লেখক রঞ্জন বন্দ্যোপাধ্যায়"
+                fetchpriority="high"
+                width="100" height="148"
+                class="book-hero-cover">
 
-  /* Cover — left side, fixed size 2:3 ratio */
-  .bc-img-wrap {
-    flex-shrink: 0;
-    width: 4.5rem;
-    aspect-ratio: 2/3;
-    overflow: hidden;
-    background: #374151;
-    border-radius: 6px;
-  }
-  @media (min-width: 768px) { .bc-img-wrap { width: 5.5rem; } }
+            <div class="book-hero-body">
+                <a href="/category/uponyas/1/" class="book-hero-category">উপন্যাস</a>
 
-  .bc-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+                <h1 class="book-hero-title">কাদম্বরীদেবীর সুইসাইড–নোট</h1>
 
-  /* Right side text */
-  .bc-body {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
-  }
+                <a href="/author/ranjana-bandyopadhyaya.html" class="book-hero-author">রঞ্জন বন্দ্যোপাধ্যায়</a>
 
-  /* Headline: শুধু title */
-  .bc-headline {
-    font-size: 1.05rem;
-    line-height: 1.4;
-    margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .bc-title {
-    font-weight: 700;
-    color: #f5f5f5;
-  }
-  .bc-card:hover .bc-title { text-decoration: none; }
+                <hr class="book-hero-rule">
 
-  .bc-meta {
-    font-size: 0.75rem;
-    color: #f87171;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    font-weight: 600;
-    margin: 0.25rem 0 0.35rem;
-  }
+                <div class="book-hero-actions">
+                    <a href="/read/kadombori-debir-suicide-note.html"
+                        class="book-hero-link book-hero-link-solid "
+                        aria-disabled="false">
+                        পড়ুন
+                    </a>
+                    <a href="/download/kadombori-debir-suicide-note.html"
+                        class="book-hero-link book-hero-link-outline "
+                        aria-disabled="false">
+                        ডাউনলোড
+                    </a>
+                </div>
+            </div>
+        </div>
 
-  /* Description */
-  .bc-desc {
-    margin-top: 0.1rem;
-    font-size: 0.88rem;
-    color: #9ca3af;
-    line-height: 1.5;
-    text-align: justify;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-</style>
+        <!-- Description: hero কার্ড থেকে আলাদা, নিজস্ব কার্ডে নিচে -->
+        <div class="book-desc-card">
+            <h2 class="book-desc-heading">বইয়ের বিবরণ</h2>
+            <div id="book-description-mobile" class="prose-book"></div>
+        </div>
 
-<!--
-  Book card HTML template (reference — generate_pages.js এ ব্যবহার হয়):
-  <a href="/book/kadombori-debir-suicide-note.html" class="bc-card">
-    <div class="bc-img-wrap">
-      <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782894603956_mgfp9g8h1h.webp" alt="কাদম্বরীদেবীর সুইসাইড–নোট" class="bc-img" loading="lazy">
+        <!-- Structured data: Google-কে বইয়ের নাম, লেখক, কভার স্পষ্টভাবে বুঝিয়ে
+             দেয়, rich snippet পাওয়ার সম্ভাবনা বাড়ায় -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Book",
+            "name": "কাদম্বরীদেবীর সুইসাইড–নোট",
+            "author": {
+                "@type": "Person",
+                "name": "রঞ্জন বন্দ্যোপাধ্যায়"
+            },
+            "image": "https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782894603956_mgfp9g8h1h.webp",
+            "url": "https://pathokghar.pages.dev/book/kadombori-debir-suicide-note.html",
+            "genre": "উপন্যাস",
+            "description": "রবীন্দ্রনাথ ঠাকুরের জীবনের অন্যতম রহস্যময় ও ট্রাজিক অধ্যায় হলো তাঁর নতুন বৌঠান কাদম্বরী দেবীর আত্মহত্যা। ১৮৮৪ সালের ১৯ এপ্রিল মাত্র তেইশ বছর বয়সে তিনি আফিম খেয়ে আত্মঘাতী হন। এই ঐতিহাসিক ও সংবেদনশীল সত্য ঘটনাকে কেন্দ্র করেই গড়ে উঠেছে রঞ্জন বন্দ্যোপাধ্যায়ের এই মনস্তাত্ত্বিক উপন্যাস। লেখক এখানে কাদম্ব",
+            "inLanguage": "bn"
+        }
+        </script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+        <script>
+            const raw = "রবীন্দ্রনাথ ঠাকুরের জীবনের অন্যতম রহস্যময় ও ট্রাজিক অধ্যায় হলো তাঁর নতুন বৌঠান কাদম্বরী দেবীর আত্মহত্যা। ১৮৮৪ সালের ১৯ এপ্রিল মাত্র তেইশ বছর বয়সে তিনি আফিম খেয়ে আত্মঘাতী হন। এই ঐতিহাসিক ও সংবেদনশীল সত্য ঘটনাকে কেন্দ্র করেই গড়ে উঠেছে রঞ্জন বন্দ্যোপাধ্যায়ের এই মনস্তাত্ত্বিক উপন্যাস। লেখক এখানে কাদম্বরী দেবীর কাল্পনিক জবানবন্দী বা একটি সুইসাইড নোটের আদলে পুরো গল্পটি সাজিয়েছেন।\n## 🖋️ মূল ভাবনা ও মনস্তত্ত্ব\nবইটি মূলত কাদম্বরী দেবীর একাকীত্ব, মানসিক দ্বন্দ্ব এবং রবীন্দ্রনাথের সাথে তাঁর গভীর, নিবিড় ও জটিল সম্পর্কের এক চমৎকার দলিল। জোড়াসাঁকোর ঠাকুরবাড়ির বিশাল ঐশ্বর্যের মাঝেও কীভাবে একজন নারী তীব্র একাকীত্বে ভুগেছেন, তা লেখক অত্যন্ত সূক্ষ্মভাবে ফুটিয়ে তুলেছেন।\nরবীন্দ্রনাথের বিয়ের মাত্র চার মাস পর কাদম্বরী দেবীর এই চরম সিদ্ধান্ত নেওয়ার নেপথ্যে কী কী কারণ কাজ করেছিল—তাঁর মনের সেই অব্যক্ত যন্ত্রণা, অভিমান এবং রবির প্রতি তাঁর অধিকারবোধের টানাপোড়েন উপন্যাসে অত্যন্ত আবেগময় ভাষায় চিত্রিত হয়েছে। এটি কেবল একটি আত্মহত্যার নোট নয়, বরং একজন অবহেলিত ও সংবেদনশীল নারীর হৃদয়ের রক্তক্ষরণ।\n## ✨ লেখার শৈলী ও নেতিবাচক দিক\nরঞ্জন বন্দ্যোপাধ্যায়ের ভাষা অত্যন্ত সাবলীল, কাব্যিক এবং পাঠককে ধরে রাখার মতো। তবে কিছু ক্ষেত্রে ঐতিহাসিক তথ্যের চেয়ে লেখকের নিজস্ব কল্পনা ও রোমান্টিকতা বেশি প্রাধান্য পেয়েছে, যা নিয়ে বিতর্ক থাকতেই পারে।\n> **এক লাইনে রিভিউ:** ঠাকুরবাড়ির অন্দরের এক মনস্তাত্ত্বিক এবং বেদনাবিধুর ট্র্যাজেডির সার্থক রূপায়ণ এই বই, যা রবীন্দ্র-অনুরাগীদের মনের গভীরে দাগ কেটে যায়।\n>";
+
+            marked.setOptions({
+                breaks: true,
+                gfm: true,
+            });
+
+            // বইয়ের বর্ণনায় কেউ "# হেডিং" লিখলে সেটা যেন আসল <h1>/<h2> না
+            // হয় — পেজের একমাত্র H1 তো বইয়ের নাম (উপরে)। heading level ২
+            // ধাপ নামিয়ে দেওয়া হচ্ছে। renderer.heading override marked 9.x-এ
+            // সঠিকভাবে কাজ করছিল না (ভুল সাইজ/লেভেল দেখাচ্ছিল), তাই এখন
+            // walkTokens দিয়ে সরাসরি token.depth পরিবর্তন করা হচ্ছে — এটা
+            // marked-এর ভার্সন-নির্বিশেষে নির্ভরযোগ্য।
+            marked.use({
+                walkTokens(token) {
+                    if (token.type === 'heading') {
+                        token.depth = Math.min(token.depth + 2, 6);
+                    }
+                }
+            });
+
+            const parsed = marked.parse(raw);
+            const mobileEl = document.getElementById('book-description-mobile');
+            if (mobileEl) mobileEl.innerHTML = parsed;
+        </script>
+
+        <style>
+            /* ── Page layout ── */
+            .book-page {
+                flex: 1 1 auto;
+                padding: 1rem 0.75rem;
+                min-height: calc(100vh - 3.5rem);
+            }
+            @media (min-width: 768px) { .book-page { padding: 1.5rem; } }
+            .book-page-inner { max-width: 48rem; margin: 0 auto; }
+            #book-description-mobile {
+                font-size: 1rem;
+                line-height: 1.625;
+                color: #374151;
+                text-align: justify;
+            }
+            .dark #book-description-mobile { color: #d1d5db; }
+
+            /* ── Book Hero Card (Editorial Horizontal) ── */
+            .book-hero-card {
+                display: flex;
+                align-items: flex-start;
+                gap: 1.1rem;
+                text-align: left;
+                background: #fff;
+                border: 1px solid #e5e7eb;
+                border-radius: 10px;
+                padding: 1.25rem;
+                box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+                margin-bottom: 1.25rem;
+            }
+            .dark .book-hero-card {
+                background: #2a2a2b;
+                border-color: #3a3a3b;
+            }
+            .book-hero-cover {
+                width: 100px;
+                height: 148px;
+                border-radius: 4px;
+                object-fit: cover;
+                background: #e5e7eb;
+                flex-shrink: 0;
+                box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+            }
+            .book-hero-body {
+                display: flex;
+                flex-direction: column;
+                gap: 0.4rem;
+                min-width: 0;
+            }
+            .book-hero-category {
+                display: inline-block;
+                width: fit-content;
+                font-family: 'Noto Serif Bengali', serif;
+                font-size: 0.72rem;
+                font-weight: 700;
+                letter-spacing: 0.02em;
+                color: #c0392b;
+                background: #fde8e6;
+                padding: 0.28rem 0.85rem;
+                border-radius: 6px;
+                text-decoration: none;
+                transition: background 0.15s, color 0.15s;
+            }
+            .book-hero-category:hover { background: #c0392b; color: #fff; }
+            .dark .book-hero-category { background: rgba(192,57,43,0.18); color: #f2938a; }
+            .dark .book-hero-category:hover { background: #c0392b; color: #fff; }
+            .book-hero-title {
+                font-family: 'Noto Serif Bengali', serif;
+                font-size: 1.15rem;
+                font-weight: 800;
+                color: #1a1a1b;
+                line-height: 1.4;
+                margin: 0;
+            }
+            .dark .book-hero-title { color: #f3f4f6; }
+            .book-hero-author {
+                font-family: 'Noto Serif Bengali', serif;
+                font-size: 0.85rem;
+                font-weight: 600;
+                color: #6b7280;
+                text-decoration: none;
+                transition: color 0.15s;
+            }
+            .book-hero-author:hover { color: #c0392b; text-decoration: underline; text-underline-offset: 3px; }
+            .dark .book-hero-author { color: #9ca3af; }
+            .dark .book-hero-author:hover { color: #f2938a; }
+            .book-hero-rule {
+                border: none;
+                border-top: 1px dashed #f0d3d0;
+                margin: 0.25rem 0;
+            }
+            .dark .book-hero-rule { border-top-color: #4a3232; }
+            .book-hero-actions {
+                display: flex;
+                gap: 0.6rem;
+                margin-top: 0.15rem;
+            }
+            .book-hero-link {
+                display: inline-flex;
+                align-items: center;
+                font-size: 0.8rem;
+                font-weight: 700;
+                text-decoration: none;
+                padding: 0.45rem 1rem;
+                border-radius: 8px;
+                transition: background 0.15s, color 0.15s, transform 0.1s;
+            }
+            .book-hero-link:active { transform: scale(0.96); }
+            .book-hero-link-solid { background: #c0392b; color: #fff; }
+            .book-hero-link-solid:hover { background: #a93226; }
+            .dark .book-hero-link-solid { background: #c0392b; color: #fff; }
+            .dark .book-hero-link-solid:hover { background: #a93226; }
+            .book-hero-link-outline { background: #fff; color: #c0392b; border: 1.5px solid #c0392b; padding: 0.375rem 0.95rem; }
+            .book-hero-link-outline:hover { background: #fde8e6; }
+            .dark .book-hero-link-outline { background: transparent; color: #f2938a; border-color: #a93226; }
+            .dark .book-hero-link-outline:hover { background: rgba(192,57,43,0.15); }
+
+            /* ── Description Card ── */
+            .book-desc-card {
+                background: #fff;
+                border: 1px solid #e5e7eb;
+                border-radius: 10px;
+                padding: 1.1rem 1.25rem 1.3rem;
+                box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+            }
+            .dark .book-desc-card {
+                background: #2a2a2b;
+                border-color: #3a3a3b;
+            }
+            .book-desc-heading {
+                font-family: 'Noto Serif Bengali', serif;
+                font-size: 1rem;
+                font-weight: 800;
+                color: #1a1a1b;
+                margin: 0 0 0.75rem;
+                padding-bottom: 0.6rem;
+                border-bottom: 1px solid #f0f0f0;
+            }
+            .dark .book-desc-heading {
+                color: #f3f4f6;
+                border-bottom-color: #3a3a3b;
+            }
+        </style>
+
+        <style>
+            .btn-unclick {
+                pointer-events: none;
+                cursor: not-allowed;
+                color: #9ca3af !important;
+                background: repeating-linear-gradient(
+                    -45deg,
+                    #e5e7eb,
+                    #e5e7eb 6px,
+                    #f3f4f6 6px,
+                    #f3f4f6 12px
+                ) !important;
+            }
+            .dark .btn-unclick {
+                color: #6b7280 !important;
+                background: repeating-linear-gradient(
+                    -45deg,
+                    #374151,
+                    #374151 6px,
+                    #4b5563 6px,
+                    #4b5563 12px
+                ) !important;
+            }
+        </style>
+
+        <style>
+            .prose-book h1, .prose-book h2, .prose-book h3,
+            .prose-book h4, .prose-book h5, .prose-book h6 {
+                font-weight: 700;
+                line-height: 1.3;
+                margin-top: 1.25em;
+                margin-bottom: 0.4em;
+                color: #111827;
+            }
+            .dark .prose-book h1, .dark .prose-book h2, .dark .prose-book h3,
+            .dark .prose-book h4, .dark .prose-book h5, .dark .prose-book h6 {
+                color: #f3f4f6;
+            }
+            .prose-book h1 { font-size: 1.4em; }
+            .prose-book h2 { font-size: 1.2em; }
+            .prose-book h3 { font-size: 1.05em; }
+            .prose-book h4, .prose-book h5, .prose-book h6 { font-size: 0.95em; }
+
+            .prose-book p { margin-bottom: 0.75em; }
+
+            .prose-book a {
+                color: #c0392b;
+                text-decoration: underline;
+            }
+            .dark .prose-book a { color: #f87171; }
+
+            .prose-book strong { font-weight: 700; color: #111827; }
+            .dark .prose-book strong { color: #f9fafb; }
+
+            .prose-book em { font-style: italic; }
+
+            .prose-book ul, .prose-book ol {
+                padding-left: 1.5em;
+                margin-bottom: 0.75em;
+            }
+            .prose-book ul { list-style-type: disc; }
+            .prose-book ol { list-style-type: decimal; }
+            .prose-book li { margin-bottom: 0.25em; }
+
+            .prose-book blockquote {
+                border-left: 3px solid #c0392b;
+                padding: 0.4em 0.9em;
+                margin: 0.75em 0;
+                color: #6b7280;
+                font-style: italic;
+                background: #fef2f2;
+                border-radius: 0 4px 4px 0;
+            }
+            .dark .prose-book blockquote {
+                background: #3b1f1f;
+                color: #d1d5db;
+                border-left-color: #f87171;
+            }
+
+            .prose-book code {
+                background: #f3f4f6;
+                color: #c0392b;
+                padding: 0.1em 0.35em;
+                border-radius: 3px;
+                font-size: 0.88em;
+                font-family: monospace;
+            }
+            .dark .prose-book code {
+                background: #374151;
+                color: #fca5a5;
+            }
+
+            .prose-book pre {
+                background: #1f2937;
+                color: #e5e7eb;
+                padding: 1em;
+                border-radius: 6px;
+                overflow-x: auto;
+                margin-bottom: 0.75em;
+                font-size: 0.85em;
+                font-family: monospace;
+            }
+            .prose-book pre code {
+                background: none;
+                color: inherit;
+                padding: 0;
+                font-size: inherit;
+            }
+
+            .prose-book table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 0.75em;
+                font-size: 0.9em;
+            }
+            .prose-book th {
+                background: #f9fafb;
+                font-weight: 600;
+                text-align: left;
+                padding: 0.5em 0.75em;
+                border: 1px solid #e5e7eb;
+                color: #374151;
+            }
+            .dark .prose-book th {
+                background: #374151;
+                border-color: #4b5563;
+                color: #f3f4f6;
+            }
+            .prose-book td {
+                padding: 0.45em 0.75em;
+                border: 1px solid #e5e7eb;
+            }
+            .dark .prose-book td { border-color: #4b5563; }
+            .prose-book tr:nth-child(even) { background: #f9fafb; }
+            .dark .prose-book tr:nth-child(even) { background: #2d3748; }
+
+            .prose-book hr {
+                border: none;
+                border-top: 1px solid #e5e7eb;
+                margin: 1.25em 0;
+            }
+            .dark .prose-book hr { border-top-color: #4b5563; }
+
+            .prose-book img {
+                max-width: 100%;
+                border-radius: 6px;
+                margin: 0.5em 0;
+            }
+
+            .prose-book del { text-decoration: line-through; color: #9ca3af; }
+
+            .prose-book input[type="checkbox"] {
+                margin-right: 0.4em;
+                accent-color: #c0392b;
+            }
+        </style>
+
     </div>
-    <div class="bc-body">
-      <p class="bc-headline"><span class="bc-title">কাদম্বরীদেবীর সুইসাইড–নোট</span></p>
-      
-      <p class="bc-desc"></p>
-    </div>
-  </a>
--->
 
+    <script>
+    (function() {
+      // সম্প্রতি দেখা বই — হোমপেজে "সম্প্রতি দেখেছেন" স্ট্রিপে দেখানোর জন্য
+      try {
+        var entry = {
+          slug: "kadombori-debir-suicide-note",
+          title: "কাদম্বরীদেবীর সুইসাইড–নোট",
+          cover: "https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782894603956_mgfp9g8h1h.webp"
+        };
+        var recent = JSON.parse(localStorage.getItem('pg-recent-books') || '[]');
+        recent = recent.filter(function(b) { return b.slug !== entry.slug; });
+        recent.unshift(entry);
+        recent = recent.slice(0, 12);
+        localStorage.setItem('pg-recent-books', JSON.stringify(recent));
+      } catch (e) {}
+    })();
+    </script>
+</main>
     </main>
 
     <!-- FOOTER -->
