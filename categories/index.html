@@ -552,7 +552,7 @@
 <script type="application/json" id="categories-json">[{"slug":"chara","name":"ছড়া","count":1},{"slug":"productivity","name":"আত্ম-উন্নয়ন","count":2},{"slug":"muktijuddho","name":"মুক্তিযুদ্ধ","count":1},{"slug":"bhoot","name":"ভৌতিক","count":0},{"slug":"non-fiction","name":"নন ফিকশন","count":1},{"slug":"treatment","name":"চিকিৎসা","count":1},{"slug":"translation","name":"অনুবাদ","count":2},{"slug":"kishor-sahitya","name":"কিশোর সাহিত্য","count":2},{"slug":"bigyan-o-projukti","name":"বিজ্ঞান ও প্রযুক্তি","count":2},{"slug":"probondho","name":"প্রবন্ধ","count":7},{"slug":"itihas","name":"ইতিহাস","count":2},{"slug":"kobita","name":"কবিতা","count":4},{"slug":"science-fiction","name":"সায়েন্স ফিকশন","count":6},{"slug":"dorshon","name":"দর্শন","count":1},{"slug":"travel","name":"ভ্রমণ","count":3},{"slug":"detective","name":"গোয়েন্দা","count":7},{"slug":"sishu-kishor","name":"শিশু-কিশোর","count":3},{"slug":"islamic","name":"ইসলামিক","count":0},{"slug":"uponyas","name":"উপন্যাস","count":43},{"slug":"religious","name":"ধর্মীয়","count":0},{"slug":"horror","name":"ভৌতিক","count":0}]</script>
 
 <style>
-.categories-page { max-width: 64rem; margin: 0 auto; padding: 1.5rem 0; }
+.categories-page { max-width: 64rem; margin: 0 auto; padding: 1.5rem 0.75rem 1.5rem 0; }
 .cg-body {
   display: flex;
   align-items: flex-start;
@@ -576,7 +576,7 @@
   height: 2rem;
   font-size: 1.05rem;
   font-weight: 700;
-  color: #45464c;
+  color: #9ca3af;
   text-decoration: none;
   border-radius: 4px;
   transition: background 0.12s, color 0.12s;
@@ -586,75 +586,49 @@
   background: #45464c;
   color: #fff;
 }
-.dark .cg-letter-link { color: #e57373; }
-.dark .cg-letter-link:hover, .dark .cg-letter-link.active { background: #45464c; color: #fff; }
 
 .cg-groups { flex: 1; min-width: 0; padding-left: 0.5rem; }
 
 .cg-group { margin-bottom: 1.5rem; }
-.cg-group-header {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 0.6rem;
-  padding-left: 0.25rem;
-}
-.cg-group-letter {
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: #45464c;
-  line-height: 1;
-  width: 2.2rem;
-  flex-shrink: 0;
-}
-.dark .cg-group-letter { color: #9ca3af; }
-.cg-group-line { flex: 1; height: 1px; background: #e5e7eb; }
-.dark .cg-group-line { background: #374151; }
 
 .cg-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
-@media (min-width: 640px) { .cg-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (min-width: 1024px) { .cg-grid { grid-template-columns: repeat(4, 1fr); } }
 
 .cat-card {
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  justify-content: space-between;
   text-decoration: none;
-  padding: 1.3rem 0.75rem;
-  min-height: 5rem;
-  background: #ffffff;
-  border: 1px solid #f0f0f0;
+  padding: 0.85rem 1rem;
+  background: #333439;
   border-radius: 5px;
-  transition: background 0.15s, box-shadow 0.15s;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  transition: background 0.15s;
   -webkit-tap-highlight-color: transparent;
 }
-.dark .cat-card { background: #23232a; border-color: #2e2e36; box-shadow: 0 1px 4px rgba(0,0,0,0.3); }
-.cat-card:hover { background: #fff5f5; box-shadow: 0 4px 12px rgba(192,57,43,0.1); }
-.dark .cat-card:hover { background: #2a1f1f; }
+.cat-card:hover { background: #3d3e44; }
 .cat-card:active { background: #45464c; }
-.dark .cat-card:active { background: #2e1a1a; }
 
 .cat-card-name {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  color: #1f2937;
-  line-height: 1.4;
+  color: #F1F1F1;
 }
-.dark .cat-card-name { color: #e5e7eb; }
+
+.cat-card-right { display: flex; align-items: center; gap: 0.6rem; }
 
 .cat-card-count {
-  display: inline;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #45464c;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #9A9A9A;
+  background: #45464c;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
 }
-.dark .cat-card-count { color: #e57373; }
+
+.cat-card-chevron { color: #6b7280; font-size: 1.1rem; }
 </style>
 
 <script>
@@ -691,17 +665,15 @@
   groupsEl.innerHTML = letters.map(function(letter) {
     var cards = groups[letter].map(function(cat) {
       return '<a href="/category/' + cat.slug + '/" class="cat-card">'
-        + '<div>'
-        + '<span class="cat-card-name">' + cat.name + ' <span class="cat-card-count">(' + toBn(cat.count) + ')</span></span>'
-        + '</div>'
+        + '<span class="cat-card-name">' + cat.name + '</span>'
+        + '<span class="cat-card-right">'
+        + '<span class="cat-card-count">' + toBn(cat.count) + '</span>'
+        + '<span class="cat-card-chevron">›</span>'
+        + '</span>'
         + '</a>';
     }).join('');
 
     return '<div class="cg-group" id="cg-' + encodeURIComponent(letter) + '" data-letter="' + letter + '">'
-      + '<div class="cg-group-header">'
-      + '<span class="cg-group-letter">' + letter + '</span>'
-      + '<div class="cg-group-line"></div>'
-      + '</div>'
       + '<div class="cg-grid">' + cards + '</div>'
       + '</div>';
   }).join('');
