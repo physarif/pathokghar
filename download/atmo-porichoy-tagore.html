@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#121218">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFBP0HJMJV"></script>
     <script>
@@ -13,6 +14,8 @@
     </script>
     <link rel="icon" type="image/webp" href="https://pathokghar.com/assets/photos/pathokghar-logo.webp">
     <link rel="apple-touch-icon" href="https://pathokghar.com/assets/photos/pathokghar-logo.webp">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>আত্মপরিচয় - পাঠক ঘর</title>
     <meta name="description" content="">
     <meta name="robots" content="noindex, follow">
@@ -38,13 +41,12 @@
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f3f4f6;
-            color: #1f2937;
+            background: #121218;
+            color: #e5e7eb;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
-        .dark body { background: #1a1a1b; color: #e5e7eb; }
         a { color: inherit; }
         ul { padding: 0; margin: 0; }
 
@@ -61,9 +63,8 @@
         /* ── Header (Telegram X স্টাইল — steel-blue bar, brand ছাড়া, full-width icon row) ── */
         #site-header {
             border-bottom: none;
-            background: #333439;
+            background: #2a2b2f;
         }
-        .dark #site-header { border-bottom-color: transparent; background: #2a2b2f; }
         .header-row {
             display: flex;
             align-items: center;
@@ -77,12 +78,9 @@
             background: none; border: none; padding: 0; cursor: pointer;
             color: #ffffff;
         }
-        .dark #header-search-btn, .dark #header-search-close-btn { color: #ffffff; }
         .brand-link { display: none; }
-        .brand-name { font-size: 1.5rem; font-weight: 700; color: #1f2937; line-height: 1; }
-        .dark .brand-name { color: #f3f4f6; }
-        .brand-name-light { font-weight: 300; color: #9ca3af; }
-        .dark .brand-name-light { color: #6b7280; }
+        .brand-name { font-size: 1.5rem; font-weight: 700; color: #f3f4f6; line-height: 1; }
+        .brand-name-light { font-weight: 300; color: #6b7280; }
 
         /* ── Header inline search box (header-এর ভেতরে টগল হয়) ── */
         .header-search-box {
@@ -102,21 +100,18 @@
             color: #ffffff;
             font-size: 1rem;
         }
-        .dark .header-search-input { color: #ffffff; }
         .header-search-input::placeholder { color: rgba(255,255,255,0.65); }
-        .dark .header-search-input::placeholder { color: rgba(255,255,255,0.65); }
         .header-search-suggest {
             display: none;
             position: absolute;
             left: 0; right: 0; top: 100%;
-            background: rgba(255,255,255,0.95);
+            background: rgba(35,35,42,0.95);
             border-radius: 0 0 10px 10px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
             max-height: 70vh;
             overflow-y: auto;
             z-index: 60;
         }
-        .dark .header-search-suggest { background: rgba(35,35,42,0.95); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
 
         /* ── Footer (night-only — #333439 surface, #121218 page bg reference, red accent) ── */
         .site-footer {
@@ -177,26 +172,22 @@
         .category-underline-list li { display: inline-flex; align-items: center; white-space: nowrap; }
         .category-underline-list li + li::before {
             content: '·';
-            color: #9ca3af;
+            color: #4b5563;
             font-size: 16px;
             margin: 0 5px;
             line-height: 1;
         }
-        .dark .category-underline-list li + li::before { color: #4b5563; }
         .category-underline-list li.line-start::before { display: none !important; }
         .category-underline-list a {
             font-size: 17px;
             font-weight: 400;
-            color: #c0392b;
+            color: #e57373;
             text-decoration: none;
             transition: color 0.15s;
         }
-        .category-underline-list a:hover { color: #a93226; text-decoration: underline; }
-        .category-underline-list a:active,
+        .category-underline-list a:hover,
+        .category-underline-list a:active { color: #f87171; text-decoration: underline; }
         .category-underline-list a:focus { text-decoration: underline; outline: none; }
-        .dark .category-underline-list a { color: #e57373; }
-        .dark .category-underline-list a:hover,
-        .dark .category-underline-list a:active { color: #f87171; text-decoration: underline; }
 
         /* Footer dot-separated links — dark footer বলে lighter red accent, ভালো contrast-এর জন্য */
         .footer-dot-link {
@@ -262,7 +253,6 @@
             border-radius: 0;
             overflow: visible;
         }
-        .dark .header-nav-group { border-color: transparent; }
         .header-nav-btn {
             display: flex;
             align-items: center;
@@ -275,13 +265,15 @@
             text-decoration: none;
             position: relative;
         }
-        .dark .header-nav-btn { border-right-color: transparent; color: rgba(255,255,255,0.65); }
         .header-nav-btn:last-child { border-right: none; }
         /* text tab (হোম/লেখক/বিভাগ/ব্লগ) নিচে-ঘেঁষা, underline যাতে header-এর নিচের কিনারার
            কাছাকাছি বসে — search/hamburger আগের মতোই vertically centered থাকবে */
         .header-nav-group a.header-nav-btn {
             align-items: flex-end;
             padding-bottom: 0.3rem;
+        }
+        .header-nav-group a.header-nav-btn:first-child {
+            margin-left: 1rem;
         }
         /* সার্চ আইকন হ্যামবার্গারের মতোই নিজের সাইজ অনুসারে জায়গা নেবে, ডান কোণায় থাকবে */
         #header-search-btn.header-nav-btn {
@@ -290,7 +282,6 @@
             padding: 0;
         }
         .header-nav-btn.active { color: #ffffff !important; background: transparent; }
-        .dark .header-nav-btn.active { color: #ffffff !important; background: transparent; }
         /* icon সরিয়ে শুধু নাম — home/লেখক/বিভাগ text-only ট্যাব; active হলে underline text-এর
            সমান width-এর হবে, তাই এটা fixed ::after না দিয়ে label-এর নিজের border-bottom দিয়ে করা */
         .header-nav-label {
@@ -314,9 +305,8 @@
             transform: translateY(0);
             transition: transform 0.28s ease;
             will-change: transform;
-            background: #333439 !important;
+            background: #2a2b2f !important;
         }
-        .dark #site-header { background: #2a2b2f !important; }
         #site-header.header-hidden { transform: translateY(-100%); }
 
         /* Header search — Google-স্টাইল autosuggest dropdown */
@@ -328,29 +318,25 @@
             text-decoration: none;
             color: inherit;
         }
-        .hs-item:hover, .hs-item.hs-active { background: #f3f4f6; }
-        .dark .hs-item:hover, .dark .hs-item.hs-active { background: #2f2f38; }
+        .hs-item:hover, .hs-item.hs-active { background: #2f2f38; }
         .hs-thumb {
             flex-shrink: 0;
             width: 2.1rem;
             height: 2.8rem;
             border-radius: 3px;
             object-fit: cover;
-            background: #e5e7eb;
+            background: #374151;
         }
-        .dark .hs-thumb { background: #374151; }
         .hs-body { min-width: 0; flex: 1; }
         .hs-title {
             font-size: 0.92rem;
             font-weight: 600;
-            color: #1f2937;
+            color: #f3f4f6;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        .dark .hs-title { color: #f3f4f6; }
-        .hs-title b { color: #c0392b; font-weight: 700; }
-        .dark .hs-title b { color: #f87171; }
+        .hs-title b { color: #f87171; font-weight: 700; }
         .hs-meta {
             font-size: 0.76rem;
             color: #9ca3af;
@@ -364,13 +350,12 @@
             padding: 0.6rem;
             font-size: 0.85rem;
             font-weight: 600;
-            color: #c0392b;
+            color: #f87171;
             text-decoration: none;
-            border-top: 1px solid #f3f4f6;
+            border-top: 1px solid #2f2f38;
         }
-        .dark .hs-more { color: #f87171; border-top-color: #2f2f38; }
     </style>
-    <!-- থিম সবসময় day/light mode — dark mode auto-detect বন্ধ করা হয়েছে -->
+    <!-- থিম সবসময় night/dark mode — light mode বাদ দেওয়া হয়েছে -->
 </head>
 <body>
 
@@ -1118,7 +1103,7 @@
             </div>
 
             <!-- Copyright -->
-            <span id="footer-copyright" class="footer-copyright">&copy; <span id="footer-copyright-year"></span> কপিরাইট</span>
+            <span id="footer-copyright" class="footer-copyright">&copy; <span id="footer-copyright-year"></span> <strong><span style="color:#c3c7cc; font-weight:300;">পাঠক</span> ঘর</strong></span>
 
         </div>
 
