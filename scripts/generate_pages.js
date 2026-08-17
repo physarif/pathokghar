@@ -335,7 +335,7 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
     '    <img src="{{book_cover}}" alt="{{book_title}}" class="bc-img" loading="lazy">',
     '  </div>',
     '  <div class="bc-body">',
-    '    <p class="bc-headline"><span class="bc-title">{{book_title}}</span>{{book_author_html}}</p>',
+    '    <p class="bc-headline"><span class="bc-title">{{book_title}}</span></p>',
     '    <p class="bc-desc">{{book_desc}}</p>',
     '  </div>',
     '</a>',
@@ -354,7 +354,6 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
       book_slug: book.slug,
       book_cover: book.cover,
       book_title: book.title,
-      book_author_html: book.author_name ? ` <span class="bc-author">– ${book.author_name}</span>` : '',
       book_desc: desc,
     });
   }
@@ -565,7 +564,7 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
           <img src="${book.cover}" alt="${book.title}" class="bc-img" loading="lazy">
         </div>
         <div class="bc-body">
-          <p class="bc-headline"><span class="bc-title">${book.title}</span>${book.author_name ? ` <span class="bc-author">– ${book.author_name}</span>` : ''}</p>
+          <p class="bc-headline"><span class="bc-title">${book.title}</span></p>
           <p class="bc-desc">${desc(book)}</p>
         </div>
       </a>`).join('');
