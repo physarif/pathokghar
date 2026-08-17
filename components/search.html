@@ -108,12 +108,13 @@
   }
 
   resultsEl.innerHTML = matches.map(function(book) {
+    var meta = [book.author, book.category].filter(Boolean).join(' · ');
     return '<a href="/book/' + book.slug + '.html" class="bc-card">'
       + '<div class="bc-img-wrap"><img src="' + esc(book.cover) + '" alt="' + esc(book.title) + '" class="bc-img" loading="lazy"></div>'
       + '<div class="bc-body">'
-      + (book.category ? '<span class="bc-pill">' + esc(book.category) + '</span>' : '')
       + '<p class="bc-headline"><span class="bc-title">' + esc(book.title) + '</span></p>'
-      + (book.author ? '<p class="bc-author">' + esc(book.author) + '</p>' : '')
+      + (meta ? '<p class="bc-meta">' + esc(meta) + '</p>' : '')
+      + '<p class="bc-desc">' + esc(book.desc || '') + '</p>'
       + '</div>'
       + '</a>';
   }).join('');
