@@ -1,0 +1,253 @@
+/* Shared stylesheet for all three ebook formats (epub, mobi, pdf).
+   Was three files (epub.css, mobi.css, pdf.css); merged here since all
+   three build steps now link the same file.
+
+   epub and mobi are reflowable formats (readers control page size/font
+   scaling themselves), so they share one plain, unscoped set of rules
+   below under "Base typography".
+
+   pdf is a fixed page-size format (Chromium print-to-PDF via Paged.js)
+   and needs pixel-precise page-layout rules (borders, forced page
+   breaks, a running footer counter, etc.) that would look wrong if
+   applied to a reflowable epub/mobi reader. Those rules are scoped
+   under `html.pdf-page` so they only ever match the PDF-assembled HTML
+   documents (scripts/generate_ebooks.py sets that class on <html> only
+   when building pdf) -- they're inert everywhere else. */
+
+/* =====================================================================
+   Base typography -- applies to epub and mobi (and anything in pdf's
+   content that isn't overridden by the html.pdf-page rules below).
+   ===================================================================== */
+
+body {
+  font-family: "Noto Serif Bengali", "Kalpurush", serif;
+  line-height: 1.7;
+  text-align: justify;
+}
+
+h1, h2, h3 {
+  font-family: "Noto Sans Bengali", "Kalpurush", sans-serif;
+  text-align: center;
+  color: #222;
+  margin-top: 2em;
+}
+
+h1 { font-size: 1.6em; }
+h2 { font-size: 1.3em; }
+h3 { font-size: 1.1em; }
+
+p {
+  margin: 0 0 1em 0;
+  text-indent: 1.2em;
+}
+
+/* =====================================================================
+   PDF-only page layout (scoped under html.pdf-page)
+
+   Cover + donate page: A6 (print-style). Chapter content: phone-screen-
+   ratio page (100mm x 217mm), large text, simple layout.
+
+   IMPORTANT: the actual @page size rule is NOT here -- it's injected as
+   an inline <style> block per rendered HTML document, from
+   scripts/generate_ebooks.py (see build_pdf_front_html /
+   build_pdf_chapters_html). This is because Chromium's print-to-PDF only
+   ever honors ONE @page rule per PDF export -- CSS Paged Media "named
+   pages" (`@page cover-page { size: A6 }` + `page: cover-page` on an
+   element) are fully respected by Paged.js itself for on-screen layout,
+   but Chromium silently ignores the named page's size when actually
+   printing to PDF and uses the single default/unnamed @page's size for
+   the whole file instead (confirmed by testing in isolation). So
+   cover/donate and chapters are rendered as two separate documents --
+   each with its own single @page rule -- into two separate PDFs, then
+   joined with merge_pdfs(), where mixed page sizes per page are
+   completely normal (that's just how the PDF format works; it's
+   specifically Chromium's HTML->PDF export step that's limited to one
+   size per job).
+   ===================================================================== */
+
+html.pdf-page {
+  margin: 0;
+  padding: 0;
+  /* সাদার বদলে হালকা cream ব্যাকগ্রাউন্ড — চোখের আরাম বাড়ায়, প্রিন্ট/PDF-এ
+     পেজের একদম কিনারা পর্যন্ত এই রঙ যায় (html-এ সেট করা, body-তে না,
+     কারণ body @page margin-এর ভেতরে বসে, কিনারা পর্যন্ত পৌঁছায় না)। */
+  background-color: #faf5ea;
+}
+
+/* Running footer (book name / page number) — injected as a per-render
+   @page rule from scripts/generate_ebooks.py (see pdf_chapters_page_css).
+   This part only needs to live here once, globally: বাংলা সংখ্যায় পাতা নং
+   দেখানোর জন্য custom counter-style। Not scoped to html.pdf-page since
+   @counter-style is a global at-rule definition, not a selector -- it's
+   simply unused/inert unless something references counter(page, bengali),
+   which only the pdf per-render @page rule ever does. */
+@counter-style bengali {
+  system: numeric;
+  symbols: "০" "১" "২" "৩" "৪" "৫" "৬" "৭" "৮" "৯";
+}
+
+/* Paged.js's chunking engine does not reliably paginate flexbox/grid
+   containers (a documented limitation — it cannot find valid break points
+   inside flex layout), so full-page sections below use plain block layout
+   + text-align instead of display:flex, and an explicit physical unit
+   (mm) instead of a percentage, both of which were previously causing
+   pagination to stop dead after the first page. */
+
+/* Cover image gets its own full A6 page, followed by a forced page break
+   so it never merges with the donate/title page or the first chapter. */
+html.pdf-page .cover-page {
+  height: 148mm;
+  text-align: center;
+  break-after: page;
+  page-break-after: always;
+}
+
+html.pdf-page .cover-page img {
+  max-width: 100%;
+  max-height: 148mm;
+}
+
+html.pdf-page body {
+  font-family: "Noto Serif Bengali", "Kalpurush", serif;
+  /* chapter page is 100mm wide (phone ratio), not A4 — 36px was sized for
+     an A4-width page and looked huge (only a couple of words per line)
+     once the page got this much narrower. 18px fits comfortably. */
+  font-size: 18px;
+  line-height: 1.7;
+
+  /* পরিবর্তন: ওপর, নিচে, ডানে, বামে সবদিকের প্যাডিং এবং মার্জিন সম্পূর্ণ ০ */
+  margin: 0;
+  padding: 0;
+
+  max-width: 100%;
+  width: 100%;
+  word-spacing: 0.01em;
+  letter-spacing: 0em;
+
+  /* পেজের চারপাশে পাতলা বর্ডার — box-sizing: border-box দিয়ে border
+     আগের width/max-width গণনার ভেতরেই থাকবে, লেআউট শিফট হবে না।
+     সামান্য padding যোগ করা হলো যেন লেখা বর্ডারের গায়ে না লাগে। */
+  box-sizing: border-box;
+  border: 0.5px solid #d8cfb8;
+  padding: 3mm;
+}
+
+html.pdf-page h1,
+html.pdf-page h2,
+html.pdf-page h3 {
+  font-family: "Noto Sans Bengali", "Kalpurush", sans-serif;
+  color: #d32f2f;
+
+  /* শিরোনামের ওপর-নিচের মার্জিনও ০ করে দেওয়া হলো */
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center;
+
+  /* প্রতিটি heading নতুন পাতা থেকে শুরু হবে */
+  page-break-before: always;
+  break-before: page;
+}
+
+html.pdf-page h1 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+html.pdf-page h2 {
+  font-size: 19px;
+  font-weight: 600;
+}
+
+html.pdf-page h3 {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+html.pdf-page p {
+  /* প্যারাগ্রাফের ওপর-নিচের সব মার্জিন ০ করা হলো যেন লাইনের মাঝে বাড়তি ফাঁকা না থাকে */
+  margin: 0;
+  text-indent: 0;
+  text-align: justify;
+}
+
+/* খালি প্যারাগ্রাফ (scene-break/ফাঁকা লাইন হিসেবে ব্যবহৃত) এর height কমানো,
+   সাধারণ প্যারাগ্রাফের line-height অপরিবর্তিত রেখে */
+html.pdf-page p:empty {
+  line-height: 0.6;
+}
+
+/* সব <br>-এর জায়গা কমানো (আগে শুধু br+br জোড়ার দ্বিতীয়টার height কমত,
+   প্রথমটা full line-height-এ থেকে যেত — তাই gap এখনও বড় লাগছিল) */
+html.pdf-page br {
+  line-height: 0.6;
+}
+
+/* Scene-break divider — বইয়ের ভেতরে দৃশ্য/সময় পরিবর্তনের সময় ব্যবহৃত হয় */
+html.pdf-page hr {
+  border: none;
+  border-top: 1px solid #999;
+  width: 25%;
+  margin: 1.2em auto;
+}
+
+/* Title page: pandoc's own title+author markup is replaced (in
+   build_pdf_front_html) with a centered banner image and a donation
+   message pinned to the bottom of the page. Plain block layout (no
+   flex) — see the note above about Paged.js + flexbox. */
+html.pdf-page .donate-titlepage {
+  height: 148mm;
+  box-sizing: border-box;
+  padding: 4mm 0;
+  text-align: center;
+  break-after: page;
+  page-break-after: always;
+}
+
+html.pdf-page .donate-banner {
+  width: 100%;
+  text-align: center;
+  margin: 10mm 0;
+}
+
+html.pdf-page .donate-banner img {
+  max-width: 85%;
+  height: auto;
+}
+
+html.pdf-page .donate-footer {
+  width: 100%;
+  text-align: center;
+}
+
+html.pdf-page .donate-footer p {
+  margin: 0;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+html.pdf-page .donate-line2 {
+  margin-top: 4px !important;
+}
+
+html.pdf-page .donate-gray {
+  color: #888;
+}
+
+html.pdf-page .donate-red {
+  color: #d32f2f;
+}
+
+html.pdf-page .donate-number {
+  font-family: "Noto Sans Mono", monospace;
+}
+
+html.pdf-page .donate-bkash {
+  color: #e2136e;
+  font-weight: 600;
+}
+
+html.pdf-page .donate-nagad {
+  color: #f7941d;
+  font-weight: 600;
+}
