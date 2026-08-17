@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/mibar-gourob-kotha.html">
+    <title>মিবার গৌরব কথা - পাঠক ঘর</title>
+    <meta name="description" content="বইটি মিবার বা মেওয়াড়ের ইতিহাস ও বীরত্বগাথাকে কেন্দ্র করে রচিত একটি ঐতিহাসিক গ্রন্থ। ১৯১২ সালে প্রকাশিত এই বইয়ে **রাণা প্রতাপসিংহ, ধাত্রী পান্না, কর্ণবতী** প্">
+    <meta property="og:title" content="মিবার গৌরব কথা - পাঠক ঘর">
+    <meta property="og:description" content="বইটি মিবার বা মেওয়াড়ের ইতিহাস ও বীরত্বগাথাকে কেন্দ্র করে রচিত একটি ঐতিহাসিক গ্রন্থ। ১৯১২ সালে প্রকাশিত এই বইয়ে **রাণা প্রতাপসিংহ, ধাত্রী পান্না, কর্ণবতী** প্">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'dark';
+        var bg = { light:'#fff', dark:'#1c1c1e' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', dark:'#e5e7eb' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .dark body { background: #1a1a1b; color: #e5e7eb; }
+
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.6rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+        .dark #book-content { color: #e5e7eb; }
+    
+    /* ── Book read header hero ── */
+    .book-read-header {
+        margin-bottom: 1.5rem;
+    }
+    .book-read-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.65rem;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 1.4rem 1.25rem 1.2rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .dark .book-read-box {
+        background: #2a2a2b;
+        border-color: #3a3a3b;
+    }
+    .book-read-cover {
+        width: 100px;
+        height: 136px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        object-fit: cover;
+        background: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .book-read-cover svg { opacity: 0.35; }
+    .book-read-title-link {
+        text-decoration: none;
+        display: block;
+    }
+    .book-read-title-link:hover .book-read-title { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-title-link:active .book-read-title { opacity: 0.7; }
+    .book-read-title {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #1a1a1b;
+        line-height: 1.4;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+    .dark .book-read-title { color: #f3f4f6; }
+    .book-read-author-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+    .book-read-author-link:hover .book-read-author { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-author-link:active .book-read-author { opacity: 0.6; }
+    .book-read-author {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #45464c;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+</style>
+</head>
+<body>
+
+<style>
+    /* ── Bar theme variables (header / footer / drawer) — follow reading mode ── */
+    :root, body {
+        --bar-bg: #ffffff;
+        --bar-text: #1a1a1b;
+        --bar-text-dim: rgba(26,26,27,0.55);
+        --bar-border: rgba(0,0,0,0.1);
+        --bar-btn-active: rgba(0,0,0,0.06);
+        --bar-track: rgba(0,0,0,0.12);
+        --bar-accent: #45464c;
+        --bar-accent-soft: rgba(192,57,43,0.12);
+    }
+    body.theme-dark {
+        --bar-bg: #232326;
+        --bar-text: #e5e7eb;
+        --bar-text-dim: rgba(229,231,235,0.55);
+        --bar-border: rgba(255,255,255,0.1);
+        --bar-btn-active: rgba(255,255,255,0.08);
+        --bar-track: rgba(255,255,255,0.18);
+        --bar-accent: #55565c;
+        --bar-accent-soft: rgba(169,50,38,0.2);
+    }
+
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    #read-progress-bar {
+        position: fixed;
+        top: 0; left: 0;
+        height: 2px;
+        width: 0%;
+        background: #45464c;
+        z-index: 1000;
+        transition: width 0.1s linear;
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h1 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--bar-text-dim);
+        text-align: center;
+        margin: 0 0 0.25rem;
+        letter-spacing: 0.04em;
+        transition: color 0.3s;
+    }
+    #book-content h1::after {
+        content: '';
+        display: block;
+        width: 2.8em;
+        height: 3px;
+        background: var(--bar-accent);
+        border-radius: 2px;
+        margin: 0.4rem auto 0;
+        transition: background 0.3s;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--bar-accent);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid var(--bar-accent-soft);
+        border-bottom: 1px solid var(--bar-accent-soft);
+        transition: color 0.3s, border-color 0.3s;
+    }
+    /* h1/h2 colors now follow --bar-text-dim / --bar-accent (see :root theme variables above),
+       so they automatically match light / dark modes. */
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p {
+        background: #232326;
+        border-color: rgba(255,255,255,0.08);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #45464c;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #45464c;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(192,57,43,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    .dark #book-content blockquote {
+        background: rgba(192,57,43,0.08);
+        color: #bbb;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #45464c;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    .dark #book-content td { border-color: #3a3a3b; }
+    .dark #book-content tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(192,57,43,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: var(--bar-accent);
+        font-weight: 600;
+        background: var(--bar-accent-soft);
+        border-radius: 0.375rem;
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: var(--bar-text);
+        border-bottom: 1px solid var(--bar-border);
+        transition: color 0.15s, background 0.3s, border-color 0.3s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: var(--bar-text-dim);
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        flex-direction: column;
+        padding: 0.4rem 0.5rem 0 0.35rem;
+        background: var(--bar-bg);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-row1 {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding-bottom: 0.4rem;
+    }
+    #rh-back {
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--bar-text);
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: background 0.15s, color 0.3s;
+    }
+    #rh-back:active { background: var(--bar-btn-active); }
+    #rh-titles {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+    }
+    #rh-title {
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.98rem;
+        font-weight: 400;
+        color: var(--bar-text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: color 0.3s;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 34px;
+        height: 34px;
+        border: none;
+        background: transparent;
+        color: var(--bar-text);
+        border-radius: 7px;
+        font-size: 1.05rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s, color 0.3s;
+    }
+    #reader-header .rh-actions button:active { background: var(--bar-btn-active); }
+
+    /* ── Chapter + page/percent — sits directly under the title ── */
+    #rf-labels {
+        display: flex;
+        align-items: center;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.66rem;
+        color: var(--bar-text-dim);
+        transition: color 0.3s;
+    }
+    #rf-chapter {
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #rf-chapter:not(:empty)::after { content: '·'; margin: 0 0.4rem; opacity: 0.6; }
+    #rf-page { flex-shrink: 0; }
+
+    /* ── Header row 3: thin seek/progress line ── */
+    #rf-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        display: block;
+        width: 100%;
+        height: 3px;
+        margin: 0;
+        border-radius: 0;
+        background: var(--bar-track);
+        outline: none;
+        cursor: pointer;
+    }
+    #rf-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 13px; height: 13px;
+        border-radius: 50%;
+        background: var(--bar-accent);
+        border: 2px solid var(--bar-bg);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        margin-top: -5px;
+    }
+    #rf-slider::-moz-range-thumb {
+        width: 13px; height: 13px;
+        border-radius: 50%;
+        background: var(--bar-accent);
+        border: 2px solid var(--bar-bg);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        border: none;
+    }
+    #rf-slider::-webkit-slider-runnable-track { height: 3px; background: var(--bar-track); }
+    #rf-slider::-moz-range-track { height: 3px; background: var(--bar-track); }
+
+    /* Content no longer needs bottom clearance — footer removed, extra top clearance handled above */
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: var(--bar-bg);
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease, background 0.3s;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid var(--bar-border);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--bar-text-dim);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: var(--bar-accent);
+        border-bottom-color: var(--bar-accent);
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ── Breadcrumb dark mode ── */
+    .read-breadcrumb-full { margin-left: -1.25rem; margin-right: -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
+    .dark #bc-category { color: #9ca3af !important; }
+    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
+    .dark #read-breadcrumb li > span { color: #4b5563; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--bar-accent);
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--bar-text);
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: auto;
+        min-width: 64px;
+        height: 34px;
+        flex: 1 1 0;
+        padding: 0 12px;
+        border-radius: 8px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        box-shadow: 0 0 0 1px var(--bar-border);
+    }
+    .theme-circle.active { border-color: var(--bar-accent); }
+    .theme-circle svg { display: none; }
+    .theme-circle.active svg { display: block; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--bar-border);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: var(--bar-text); }
+    .settings-row-val { font-size: 0.74rem; color: var(--bar-text-dim); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid var(--bar-border);
+        background: var(--bar-btn-active);
+        color: var(--bar-text);
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: var(--bar-accent-soft); border-color: var(--bar-accent); color: var(--bar-text); }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid var(--bar-border);
+        background: var(--bar-btn-active);
+        color: var(--bar-text);
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: var(--bar-accent-soft) !important;
+        border-color: var(--bar-accent) !important;
+        color: var(--bar-text) !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid var(--bar-border);
+        background: transparent;
+        color: var(--bar-text);
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: var(--bar-accent-soft) !important;
+        border-color: var(--bar-accent) !important;
+        color: var(--bar-text) !important;
+    }
+
+</style>
+
+<!-- Progress bar (kept for internal % calc, hidden — footer slider replaces it visually) -->
+<div id="read-progress-bar" style="display:none;"></div>
+
+<!-- ══ Reader header (back + title/chapter stack + actions, seek line) ══ -->
+<header id="reader-header">
+    <div id="rh-row1">
+        <a href="/book/mibar-gourob-kotha.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div id="rh-titles">
+            <h1 id="rh-title">মিবার গৌরব কথা</h1>
+            <div id="rf-labels">
+                <span id="rf-chapter"></span>
+                <span id="rf-page">০%</span>
+            </div>
+        </div>
+        <div class="rh-actions">
+            <button id="rh-menu-btn" aria-label="সূচিপত্র ও কাস্টমাইজ" title="সূচিপত্র ও কাস্টমাইজ"><i class="fa-solid fa-list-ul"></i></button>
+        </div>
+    </div>
+    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
+</header>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle" data-theme="light" style="background:#fff;border-color:#45464c;" title="সাদা"></button>
+                    <button class="theme-circle active" data-theme="dark" style="background:#3a3a3a;border-color:#55565c;" title="ডার্ক">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e5e7eb" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn active" id="align-justify" title="জাস্টিফাই" style="background:#45464c;border-color:#6b7280;color:#f9fafb;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <section><div>
+
+
+<div><img alt="" src="images/c16_Rule_Segment___Span___50px.svg_50px_Rule_Segment___Span___50px.svg.png"/><img alt="" src="images/c17_Rule_Segment___Diamond___6px.svg_7px_Rule_Segment___Diamond___6px.svg.png"/><img alt="" src="images/c18_Rule_Segment___Span___10px.svg_10px_Rule_Segment___Span___10px.svg.png"/><img alt="" src="images/c19_Rule_Segment___Diamond___10px.svg_11px_Rule_Segment___Diamond___10px.svg.png"/><img alt="" src="images/c18_Rule_Segment___Span___10px.svg_10px_Rule_Segment___Span___10px.svg.png"/><img alt="" src="images/c17_Rule_Segment___Diamond___6px.svg_7px_Rule_Segment___Diamond___6px.svg.png"/><img alt="" src="images/c16_Rule_Segment___Span___50px.svg_50px_Rule_Segment___Span___50px.svg.png"/></div>
+<h2>পদ্মিনী।</h2>
+<p>রাজপুতনা অতি মরুময় দেশ। এই মরু প্রদেশে প্রচণ্ড বিক্রমশালী বীর রাজপুত জাতির আবাস স্থান ছিল। দিগ্বিজয়ী মুসলমানগণ ভারতবর্যে পদার্পণ করিয়া এই দুধর্ষ জাতির সহিত সংগ্রামে প্রবৃত্ত হন। বীরত্ব, তেজস্বিতা, অসীমসাহসে ইঁহারা মুসলমানবীরগণ অপেক্ষা কোন অংশেই হীন ছিলেন না। বিভিন্ন বংশীয় রাজপুত নৃপতিদিগের মধ্যে মিবারের গিহ্লোটদিগের আসন এবং সম্মান সর্ব্বোপরি। বাস্তবিক ইঁহাদিগের বীরত্বকাহিনী এবং কীর্ত্তি কলাপ অতি অপূর্ব্ব! মুসলমানদিগের সহিত প্রতিদ্বন্দীতায়ও ইঁহারা সর্ব্বাগ্রগণ্য ছিলেন। দিল্লীতে যখনই কোন প্রতাপশালী সম্রাট আসীন হইয়াছেন তখনই তাঁহার সহিত মিবারের রাণার সংঘর্ষ উপস্থিত হইয়াছে। মিবারের রাণাদিগের গর্ব্বিত মস্তক পদদলিত না করিতে পারিলে কেহই আপনার বিজয় গর্ব্বের সার্থকতা অনুভব করেন নাই। খিলিজি বংশীয় আলাউদ্দিন একজন প্রতাপশালী সমাট ছিলেন। তিনি যখন দিল্লীর সিংহাসনে আসীন তখন চিতোরের সিংহাসনে রাণা লক্ষ্মণ সিংহ প্রতিষ্ঠিত ছিলেন। অতি তরুণ বয়সে লক্ষ্মণ সিংহ চিতোরের সিংহাসনে অধিরোহণ করেন। সুতরাং তদীয় পিতৃব্য ভীমসিংহ সমুদায় রাজকার্য পরিচালন করিতেন। ভীমসিংহ সিংহলদ্বীপবাসী চৌহান বংশীয় হামিরশঙ্কের কন্যা রূপসী-শ্রেষ্ঠ পদ্মিনীকে বিবাহ করিয়াছিলেন। পদ্মিনীর অসামান্য সৌন্দর্য্য যথার্থই তাঁহার নামের সার্থকতা প্রদান করিয়াছিল। পদ্মাসনা কমলাই পদ্মিনীর উপমা স্থল। বাস্তবিক পদ্মিনীর সমতুল্য অপরূপ রূপলাবণ্যবতী রমণী পৃথিবীতে অতি অল্পই জন্ম গ্রহণ করিয়াছেন। পদ্মিনীর রূপের খ্যাতি তখন ভারতের সর্ব্বত্রই বিদিত ছিল। অধিক দিন এ খ্যাতি দিল্লীশ্বর আলাউদ্দীনের অবিদিত রহিল না। ভারতের সর্ব্বোৎকৃষ্ট রত্নরাজি দিল্লীশ্বরের চরণে উৎসগীকৃত হইত। এই রমণী রত্ন, এই লোক ললামভূতা পদ্মিনী ধরাতলে মূর্ত্তিমতী এই দেবী-মূর্ত্তি ক্ষুদ্র নর ভীমসিংহের নয়ন পুত্তলি, এই চিন্তা দিল্লীশ্বরের হৃদয়ে বিষম ঈর্ষানল প্রজলিত করিল। তিনি এই দুর্লভ রমণীরত্ন অপহরণে কৃত সংকল্প হইলেন। অচিরে মিবারের রাণার বিরুদ্ধে রণঘোষণা করিয়া চিতোর নগরী আক্রমণ করিলেন। দিল্লীশ্বর বহুদিন চিতোর নগরী অবরোধ করিয়া রহিলেন, তথাপি চিতোরের পতন হইল না। রাজপুত বীরগণ অতুল বিক্রমের সহিত নগর রক্ষা করিতে লাগিলেন। অবশেষে নিষ্ফল অবরোধে ত্যক্ত হইয়া আলাউদ্দীন ভাবিলেন অতি সহজে অভিষ্ট সিদ্ধি করিয়া লইবেন। দূতমুখে চিতোরের রাণার নিকট সংবাদ পাঠাইলেন “পদ্মিনী সুন্দরী লাভ করাই আমার উদ্দেশ্য—চিতোরবাসীর উপর আমার কোন অক্রোশই নাই। পদ্মিনী আমার হস্তে সমর্পিতা হইলেই আমি এ রাজ্য ত্যাগ করিয়া চলিয়া যাইব—আর কখন ইহার ত্রিসীমায় পদার্পণ করিব না” এই অশ্রুতপূর্ব্ব বাক্য শ্রবণে রাজপুত বীরগণ ঘৃণা ও জিঘাংসায় আত্মহারা হইলেন “কি এত বড় স্পর্দ্ধা যবন সম্রাটের! রাজপুতের গৃহক্ষ্মীলাভে তাঁহার আকাঙ্ক্ষা। রাজপুতের সম্মানই সর্ব্বস্ব। রাজপুত তুচ্ছ প্রাণের মমতা রাখে না—একথা কি আজিও যবনরাজের অবিদিত আছে?— চিতোর জনশুন্য শ্মশান হইবে, পদ্মিনী সতীর অপরূপ রূপলাবণ্য চিতানলে ভম্মীভূত হইবে তথাপি, এ পবিত্র নগরী শিশোদীয় কুলের মানসম্ভ্রম বিসর্জ্জন দিবে না—রাজ দূত। তুমি অবধ্য, নচেৎ তোমার পাপ জিহ্বা অনলে আহতি দিতাম। যাও তোমার মহিমান্বিত সম্রাটকে বল গিয়া, যতক্ষণ চিতোরে একটী মাত্র বীর জীবিত থাকিবে, ততক্ষণ চিতোরের দ্বার আবদ্ধ রহিবে।” রণাভিনয় উভয় পক্ষে ভীষণ মূর্ত্তি ধারণ করিল। দীর্থ অবরোধ সহ্য করিয়া চিতোরবাসিগণ দুঃখ দুর্দ্দশার চরমসীমায় উপনীত হইল। আলাউদ্দীনের ভ্রান্তি তখনও বিদুরিত হয় নাই; তিনি ক্রুরবুদ্ধির আশ্রয় লইলেন। বিনীতভাবে দূতমুখে নিরেদন করিলেন, “পদ্মিনীলাভের আমার কোন ইচ্ছাই নাই —কেবল মাত্র তাঁহার রূপের খ্যাতি শুনিয়া একবার মাত্র দর্শন করিতে কৌতুহল জন্মিয়াছে। মুকুরে একবার মাত্র তাঁহার প্রতিমৃত্তি দর্শন করিয়া আপুকাম হইয়া স্বরাজ্যে প্রত্যাবর্ত্তন করিব। আর চিতোরে পদার্পন করিব না।” রাজপুত বীরগণ এই অলীক বাক্যে ভ্রান্ত হইলেন। দুঃখ দুর্দ্দশারও একশেষ হইয়াছে—আর অধিকদিন এইরূপ অবস্থায় জীবনধারণ অসম্ভব। এই প্রস্তাবে দুর্দ্দশাপন্ন রাজপুত বীরগণ কিঞ্চিৎ বিচলিত হইলেন। মুকুরে প্রতিচ্ছায়া দর্শন করিলে রাজপুং কুল লক্ষ্মীর অবমাননার সম্ভাবনা নাই ইহাই সিদ্ধান্ত হইল। ভীমসিংহের বীরহৃদয় সহজে এ প্রস্তাবে সম্মত হইল না। তাঁহার সম্মান রক্ষার জন্য সহস্র সহস্র ব্যক্তি ঘোর দুঃখে পতিত হইয়াছে—তাঁহারই জন্য এত যুদ্ধ, এত বিগ্রহ, এত রক্তপাত! চিন্তাজর্জ্জরিত ও অনন্যোপায় হইয়া ভীমসিংহ এই হীন প্রস্তাবে সম্মত হইলেন। আলাউদ্দীনের ক্রর হৃদয় এ সংবাদ শ্রবণে আনন্দে আত্মহারা হইল। নির্দ্ধারিত দিবসে আলাউদ্দীন সদলে রাণার প্রাসাদে উপস্থিত হইলেন। দিল্লীর মহাপ্রতাপান্বিত সমাট আজ মিবারের রাণার গৃহে অতিথি। আতিথ্য সংকারের কোন ক্রটিই হইল না। রাজপুতের ভদ্রতা ও সৌজন্য দর্শনে আলাউদ্দীন মুগ্ধ হইলেন। এবং বীনয়নভ্রবচনে বারম্বার আপনার অপরাধ স্বীকার করিলেন। বিদায় গ্রহণের পূর্ব্বে পদ্মিনীর প্রতিচ্ছায়া একবার মাত্র দর্পনে প্রতিবিম্বিত হইল। মনে হইল যেন কোন স্বর্গীয় আলোকচ্ছটা মুকুরের মধ্য দিয়া বিদ্যুতের মত চলিয়া গেল! মুগ্নেত্র আলাউদ্দীন তুষিত নেত্রে চাহিয়া রহিলেন! চকিতে সমুদায় অদর্শন হইল! দর্শন মাত্রই আলাউদ্দীনের দুর্দ্দমনীয় আকাঙ্ষা হৃদয় মধ্যে শতধা প্রবল হইল। পদ্মিনী লাভ বিষয়ে দৃঢ় সঙ্কল্প হইলেন! ভীমসিংহকে ভদ্র ভাষায় আপ্যায়িত করিলেন। সরল হৃদয় রাজপুতবীর দুর্গের দ্বারদেশ পর্য্যন্ত অতিথির অনুগমন করিলেন। দুর্গের দ্বারদেশে পদার্পন করিবামাত্র আলাউদ্দীনের সঙ্কেতে ভীমসিংহ বন্দী হইলেন। ভীমসিংহকে বন্দী করিয়া আলাউদ্দীন সংবাদ পাঠাইলেন, “পদ্মিনীকে না পাইলে ভীমসিংহের এবং চিতোরের রক্ষা নাই।” এ বার্ত্তা শ্রবণে চিতোরপুরী ক্রন্দন করিয়া উঠিল! বীরগণ দন্তে দন্তে ঘর্ষণ করিয়া উঠিলেন। কিন্তু বৃথা অক্রোশ! ভীমসিংহ দুর্দ্দান্ত আলাউদ্দীনের হস্তে বন্দী! বীরগণ কিংকর্ত্তব্যবিমৃঢ় হইলেন! এই সময়ে পদ্মিনীর নিকট হইতে সংবাদ আসিল “আমি আমার সমুদায় সঙ্গিনী ও পরিচারিকা সমভিব্যাহারে আলাউদ্দীনের নিকট আত্মসমর্পণ করিব-এ বার্ত্তা শীঘ্র শত্রু শিবিরে প্রেরণ কর।” সহরবাসী এই অশ্রুতপূর্ব্ব বাণী শ্রবণে স্তম্ভিত বিস্মিত হইল বটে, কিন্তু অনুভব করিল নিশ্চিত ইহার অভ্যন্তরে কোন গুঢ় রহস্য লুক্কায়িত আছে।
+</p><p>পদ্মিনী সতী তাঁহার পরমাত্মীয় বীরবর গোরা এবং তদীয় ভ্রাতুষ্পুত্র বাদলের সহিত গুপ্তকক্ষে মন্ত্রণা করিয়া, সপ্তশত পট্টাবৃত শিবিকা প্রস্তুত করিতে আদেশ করি লেন। আলাউদ্দীনের নিকট সংবাদ গেল, রাজমহিষী পদ্মিনীর সঙ্গিনী ও দাসীগণ তাঁহার সহিত চিরনির্ব্বাসিতা হইতে প্রস্তুত। সাতশত শিবিকায় তাঁহারা আগমন করিবেন কেহ যেন তাঁহাদের পথে উপস্থিত না থাকে এবং পদ্মিনী দেবী অর্দ্ধঘন্টাকাল পতির সহিত আলাপ করিয়া চিরবিদায় গ্রহণ করিবেন। কিছুতে ইহার অন্যথা না হয়। আলাউদ্দীন উৎফুল্ল হৃদয়ে এই সমুদায় প্রস্তাবে স্বীকৃত হইলেন। নির্দ্দিষ্ট দিনে সপ্তশত পট্টাবৃত শিবিকার সম্মুখভাগে বিচিত্র শিবিকায় পদ্মিনী আরোহণ করিয়া আলাউদ্দীনের শিবিরাভিমুখে চলিলেন। ক্রমে ক্রমে সে সমুদায় শিবিকা শিবিরের অভ্যন্তরে প্রবেশ করিল। অর্দ্ধঘন্টাকাল অতীত হইল, আলাউদ্দীন অসহিষ্ণু হইয়া উঠিলেন—এরূপ দীর্ঘ বিদায় গ্রহণে তাঁহার ধৈর্য্যচ্যুতি হইল। তখন সদলে পত্মিনীর শিবিকার সম্মুখে উপস্থিত হইলেন! কি সর্ব্বনাশ! কোথায বা পদ্মিনী, কোথায় বা ভীমসিংহ, এ যে যমদূতাকৃতি ভীষণ রাজপুত বীরগণ নিষোষিত অসি হস্তে দণ্ডায়মান! বীরবর গোরা সকলের অগ্রভাগে। ক্ষুদ্ধ সিংহের ন্যায় আলাউদ্দীন গর্জ্জন করিয়া উঠিলেন! রাজপুত বীরগণও ঘোরনাদে সম্মুখ সমরে প্রাণ দিবার জন্য অগ্রসর হইলেন। প্রত্যেক শিবিকায় একজন করিয়া রাজপুতবীর ও বাহক ছয়জন যোদ্ধা ছিল! আজ এই সমুদায় রাজপুতবীর ভীমসিংহের উদ্ধার ও পদ্মিনীর ধর্ম্মরক্ষার জন্য জীবনাহুতি দিতে বদ্ধপরিকর! বীরবর গোরা অতুল বীরত্ব দেখাইয়া শত্রুহস্তে প্রাণ বিসর্জ্জন করিলেন। তাঁহার ভ্রাতৃষ্পুত্র দ্বাদশবর্ষীয় বালক বাদল তাঁহার বীরত্বকাহিনী বহন করিয়া চিতোরে প্রত্যাবৃত হইল। ভীমসিংহের উদ্ধার ও পদ্মিনীর সম্মান রক্ষা করিয়া বীরগণ জীবন বিসর্জ্জন করিলেন বটে, কিন্তু আলাউদ্দীন চিতোরের সর্ব্বনাশ করিলেন। চিতোর রক্ষা করা অসম্ভব জানিয়া বীরগণ সম্মুখ সমরে জীবন দিলেন। পদ্মিনীপ্রমুখ চিতোরবাসিনীগণ জহরব্রতের অনুষ্ঠান করিয়া জলন্ত চিতানলে জীবনাহতি দিলেন। আলাউদ্দীন বিজযয়স্ফীত গর্ব্বে অসি হস্তে চিতোরে প্রবেশ করিলেন। বিস্ময় বিস্কারিত নেত্রে দেখিলেন, চিতোর জনমানবহীন এক ভীষণ শ্মশান-চারি দিকে চিতাগ্নি হহ করিয়া জলিতেছে। চিতোরের নয়নানন্দ দায়িনী রমণীকুল তখন সে চিতাশয্যায় শয়ান। আলাউদ্দীন বলিয়া উঠিলেন ওনযনানন্দদায়িনী লোকললামভূতা পদ্মমুখী পদ্মিনী কই—;” আর কই? সে অতুল রূপরাশি, চিতানলে ভস্মীভৃত হইয়াছে! দিল্লীশ্বর কি মনস্তাপ, কি নিস্ফল আশা, কি ক্ষুদ্ধ চিত্তের অক্রোশ-বহন করিয়া ভগ্নহবদয়ে বিশাল বাহিনী লইয়া দিল্লীতে প্রত্যাবৃত্ত হইলেন।
+</p>
+
+
+</div></section>
+<section><div>
+
+<p>দিল্লীর সম্রাট আলাউদ্দীন দুইবার মিবারের রাজধানী চিতোর আক্রমণ করিয়াছিলেন। প্রথম বারেই তিনি চিতোর এক প্রকার শ্মশানে পরিণত করিয়া যান, তথাপি আবার দ্বিতীয়বার আক্রমণ করেন। এবারে মিবারের রাণা লক্ষ্মণ সিংহ ঘোর চিন্তায় অভিভূত হইলেন। কিন্তু রাজপুত বীয়গণ ভীত হইলেন না, অতুল সাহসের সহিত যুদ্ধের আয়োজন করিতে লাগিলেন। দেখিতে দেখিতে হিন্দু মুসলমানে ঘোরতর যুদ্ধ উপস্থিত হইল। চিতোরের বীরগণ একে একে প্রায় সকলেই রণক্ষেত্রে শয়ন করিলেন তথাপি যুদ্ধের বিরাম নাই। রাণা অপার চিন্তায় নিমগ্ন হইলেন। চিতোর যে বীরশুন্য হইল। যাঁহাদের উৎসাহবাক্যে, যাঁহাদের চক্ষের অগ্নিতে রাণার অবসন্ন প্রাণে নূতন সাহস-নূতন বল আসিত, কোথায় সে সকল চিতোরের বীরগণ। বীরের রক্তে চিতোর ভূমি ভাসিয়া গেল, তবুত শত্রু শাসিত হইল না। দিন দিনই যবন সেনা চারিদিক গ্রাস করিয়া ফেলিল। মিবারের স্বাধীনতা আর বুঝি রক্ষা হয় না। পবিত্র চিতোর ভূমি যবন হস্তে কলঙ্কিত হইবে। বীর বাপ্পা রাওয়ের বংশের প্রদীপ চির-নির্ব্বাপিত হইবে। মিবারের রাণার নাম এবার ভারত ইতিহাস হইতে মুছিয়া যাইবে।” এই সকল বিষম চিন্তায় রাণা লক্ষণ সিংহ একেবারে অবসন্ন হইয়া পড়িলেন। তিনি আহার নিদ্রা একেবারে ত্যাগ করিলেন। দিবা রাত্র উন্মাদের ন্যায় থাকিতেন, “হায় কি হইবে! চিতোরের অধিষ্ঠাত্রী দেবী না জানি কি অপরাধে আমার প্রতি বিমুখ হইলেন। চিতোরের বীরগণ অতুল বীরত্ব দেখাইয়া একে একে সকলে ধরাশায়ী হইলেন, যুদ্ধ করিতে আর কেহও রহিল না। তবুও দেবী প্রসন্ন হইলেন না। হায়। কি অপরাধ করিলাম। কোন পাপে চিতোর যবন হস্তে এত অবমাননা সহ্য করিতেছে।”
+</p><p>একদিন গভীর রাত্রে সমুদায় জগৎ যখন নিস্তব্ কোন সাড়া শব্দ নাই-কেবল অদুরে মাঝে মাঝে প্রহরীর ডাক শুনা যাইতেছে, রাণা তখন দুই হস্তে মস্তক ধরিয়া গভীর চিন্তায় নিমগ্ন। মধ্যে মধ্যে হৃদয় ভেদী দীর্ঘনিশ্বাস ফেলিয়া পাগলের ন্যায় উর্দ্ধদিকে চাহিতেছেন আবার তখনই দুইহস্তে মুখ লুকাইয়া ভাবিতেছেন। সম্মুখে সোনার প্রদীপ মিটুমিট করিয়া জলিতেছে। এমন সময় সহসা রাণা চক্ষু দুটী বিস্কারিত করিয়া কান পাতিয়া ব্যগ্রতার সহিত চাহিয়া দেখিলেন ও শুনিলেন, যেন অদূরে নিশার নিস্তব্বতা ভেদ করিয়া তারস্বরে কে বলিয়া উঠিল “ময় ভূখা হুঁ।” আবার কাণ পাতিলেন আবার সেই রব শুনিলেন। এ কে! এ কে! চিতোরের অধিষ্ঠাত্রী দেবী? দেখিতে দেখিতে দেবী তাঁহার সম্মুখে আবির্ভূতা হইলেন। রাণা গলবস্ত্র হইয়া চরণে লুটায়া পড়িলেন, “মাতঃ, কিসের ক্ষুধা তোমার! এত বীরের রক্তে তোমার ক্ষুধা গেল না? জীবন আহুতি দিতে আর কে বাকী আছে? কি অপরাধে রাজপুতের বংশ নির্ম্মূল হইবে?” দেবী ধীর গম্ভীর স্বরে বলিলেন, “চিতোরের জন্য রাজ মুকুটধারী দ্বাদশটী রাজকুমার রণক্ষেত্রে প্রাণ বিসর্জ্জন না দিলে আমি প্রসন্ন হইব না। চিতোর স্বাধীনতা হারাইবে।”— এই কথা শুনিয়াই রাণা মূর্চ্ছিত হইয়া পড়িলেন। পর দিন অমাত্যগণকে ডাকিয়া দেবীর আবির্ভাবের কথা বলিলেন। তাঁহারা বিশ্বাস করিলেন না। পরদিন আবার দেবী ঐ প্রকারে দেখা দিয়া বলিলেন, “প্রতিদিন এক একটী রাজকুমার সিংহাসনে প্রতিষ্ঠিত হইয়া, তিন দিন রাজ্য ভোগের পর, চতুর্থ দিবসে রণক্ষেত্রে প্রাণ দিবে, এইরূপে বারটী রাজ কুমার প্রাণ উৎসর্গ করিলেই চিতোরের মঙ্গল হইবে!—তবেই আমার ক্ষুধা যাইবে, নচেৎ নহে! এই বলিয়া দেবী অন্তর্ধান হইলেন। রাণা শুনিয়া উন্মাদ প্রায় হইলেন। রাণা লক্ষ্মণ সিংহের দ্বাদশটী পুত্র ছিল। ভাবিলেন, সকলেই যদি রণক্ষেত্রে প্রাণ দেয়, বাপ্পা রাওয়ের বংশে বাতী দিতে কে আর থাকিবে? কিন্তু রাজকুমারেরা দেবীর কথা শুনিয়া উৎসাহে বলিয়া উঠিলেন, “পিতঃ! শোক করিবেন না, তুচ্ছ প্রাণ দানে যদি দেশের স্বাধীনতা রক্ষা হয়, সৌভাগ্য আমাদের। দেবীর যদি ইহাই বাসনা হয়, অচিরে ইহা পূর্ণ হইবে।” জ্যেষ্ঠ পুত্র অরিসিংহের রাজ্যাভিষেক হইল। তিন দিন রাজ্যভোগের পর চতুর্থ দিবসে তিনি পিতার চরণধুলি লইয়া প্রসন্ন মনে যুদ্ধক্ষেত্রে গমন করিলেন, আর ফিরিলেন না। দ্বিতীয় পুত্র অজয় সিংহ পিতার পরম আদরের ধন। রাণা কিছুতেই তাঁহাকে প্রাণ বিসর্জ্জন দিতে দিলেন না। আর দশজন রাজকুমার রাজমুকুট ধারণ করিয়া একে একে রণক্ষেত্রে প্রাণ বিসর্জ্জন দিলেন। রাজপুত রমণীগণ জলন্ত চিতায় শয়ন করিলেন। চিতোর ধ্বংস হইল। অজয় সিংহ দীনভাবে কৈলবারায় বাস করিয়া চিতোর স্বাধীন করিতে চেষ্টা করিয়াছিলেন বটে কিন্তু সক্ষম হন নাই। অরি সিংহের জ্যেষ্ঠপুত্র মহাবীর হামির যবন হস্ত হইতে চিতোর উদ্ধার করিয়াছিলেন।
+</p>
+<div><div>
+<p>___________
+</p>
+</div></div>
+</div></section>
+<section><div>
+
+<h2>হামিরের জননী কৃষকবালা।</h2>
+<p>পাঠক পাঠিকাগণ, ইতিপূর্ব্বেই রাণা লক্ষণ সিংহ এবং তাঁহার একাদশটী পুত্র চিতোরের অধিষ্ঠাত্রী দেবীর প্রীতির জন্য কিরূপে মুসলমানদিগের সহিত যুদ্ধে প্রাণ দিয়াছিলেন তাহার বিবরণ পাঠ করিয়াছ। লক্ষ্মণ সিংহের দ্বিতীয় পুত্র অজয় সিংহ কেবল পিতার অনুরোধে যুদ্ধক্ষেত্রে প্রাণ দান করিতে পারেন নাই। অজয় সিংহ চিতোর উদ্ধার করিতে অনেক চেষ্টা করিয়াও বিফল হন। কিন্তু অবশেষে তাঁহার ভ্রাতৃ-তনয় অরিসিংহের পুত্র হামির শত্রু হস্ত হইতে চিতোর উদ্ধার করেন। হামিরের জন্মবৃত্তান্ত অতি চমৎকার। একদিন অরিসিংহ কতিপয় বন্ধুর সহিত অন্দাবারণ্যে মৃগয়া করিতে গিয়াছিলেন। শীকার করি বার সময় একটী বন্য বরাহের পশ্চাতে ছুটিতে ছুটিতে এক বিশাল জনার ক্ষেত্রের ভিতর আসিয়া পড়িলেন। সেই ক্ষেত্রের মধ্যে এক মঞ্চের উপর দাঁড়াইয়া এক কৃষকবালা পশুপক্ষিদিগকে তাড়াইয়া দিতেছিল। রাণা উর্দ্ধশ্বাসে ছুটিয়া আসিয়া কৃষকবালাকে জিজ্ঞাসা করিলেন, “কুমার, তোমার এই ক্ষেত্রের ভিতর একটি বন্য বরাহকে ছুটিয়া আসিতে দেখিয়াছ কি? সেটা কোন দিকে গিয়াছে বলিতে পার?” কৃষকবালা বলিল-“মহাশয়, আর ওদিকে যাইবেন না, বরাহ কোন দিকে গিয়াছে আমি দেখিয়াছি,— আপনারা অপেক্ষা করুন, আমি বরাহ ধরিয়া দিতেছি।” রাণা এবং তাঁহার বন্ধুগণ অবাক হইয়া কৃষকবালার মুখের দিকে চাহিয়া রহিলেন। বালিকা তৎক্ষণাৎ ক্ষেত্র হইতে একটি জনারগাছ তুলিয়া অস্ত্র দিয়া তাহার অগ্রভাগ তীক্ষ্ণ করিয়া লইল এবং মঞ্চের উপর দাঁড়াইয়া বরাহকে লক্ষ্য করিয়া সেইটি ছুঁড়িল। অমনি বরাহ বিদ্ধ হইয়া মাটীতে পড়িল। সকলে আসিয়া আশ্চর্য্য হইয়া জনার আহত মৃত বরাহকে দেখিতে লাগিল। রাণা কৃষকবালার অব্যর্থ লক্ষ্য দেখিয়া মনে মনে শত সাধুবাদ করিতে লাগিলেন। মৃগয়া শেষ করিয়া রাণা ও তাঁহার বন্ধুগণ নদীতটে বসিয়া বিশ্রাম করিতে লাগিলেন। রাণা বারম্বার কৃষকবালার কথা বলিতে লাগিলেন। এমন সময় হঠাৎ একটি মৃত্তিকা পিণ্ড আসিয়া অরিসিংহের অশ্বের পায়ে সজোরে লাগিল। অশ্বটি তৎক্ষণাৎ পড়িয়া গেল। সকলে কারণ অনুসন্ধান করিতে গিয়া দেখেন, মাচার উপর দাঁড়াইয়া কৃষকবালা পশুদিগকে প্রস্তর খণ্ড দ্বারা তাড়াইতেছে। তাঁহারই হস্ত নিক্ষিপ্ত একটি মুৎপিণ্ড আসিয়া অরিসিংহের প্রকাণ্ড অশ্বটিকেও ধরাশায়ী করিয়াছে কুমারী আপনার অপকার্য্য বুঝিতে পারিয়া, ব্যস্ত সমস্ত হইয়া মাচা হইতে নামিয়া, রাণার নিকট যােড় হস্তে বারম্বার বলিতে লাগিল, “মহাশয়, আমি না জানিয়া আপনার ঘােড়াটিকে মারিয়াছি, বােধ করি আপনার ঘােড়া আর চলিতে পারিবে না। আপনি দয়া করিয়া আমায় ক্ষমা করুন।” রাণা মিষ্টকথায় কৃষকবালাকে আশ্বস্ত করিয়া বিদায় দিলেন। কিছুক্ষণ পরে তাঁহারা গৃহে ফিরিবার উদ্যোগ করিতে লাগিলেন, এবং কিছুদূর। যাইতে না যাইতেই পথে দেখিলেন, আবার সেই কৃষক- বালা! এবার তাহার মস্তকে দুগ্ধের কলস। কুমারী দুই হস্তে দুটিী মহিষশাবক তাড়াইয়া লইয়া চলিয়াছে, রাণা ও তাঁহার বন্ধুগণ এই দৃশ্য দেখিয়া হাসিতে লাগিলেন। রাণার বন্ধুগণ পরস্পর বলাবলি করিতে লাগিলেন “ওহে, রাণা এই কৃষকবালার অব্যর্থ লক্ষ্য ও বাহুবল দেখিয়া একেবারে মােহিত হইয়াছেন। জানিনা, তাঁহার মুগ্ধ হইবার আরও কোন কারণ আছে কিনা! দেখা যাক কৃষকবালার বল কত!” এই বলিয়া একজন হঠাৎ বেগে অশ্ব লইয়া কুমারীর উপর আসিয়া পড়িল, বালিকা চক্ষের একপলকে অশ্বারােহীর দুরভিসন্ধি বুঝিতে পারিল এবং তৎক্ষণাৎ মহিষশাবকদিগের গলরঞ্জু ঘােড়ার পায়ের সহিত এমন কৌশল করিয়া জড়াইয়া দিল যে, অশ্ব ও সওয়ার একত্রে ধরাশায়ী হইল। রাণা ও তাঁহার বন্ধুগণ হাসিয়া উঠিলেন। রাণা বলিলেন, “কিহে রাজপুতবীর। একথা কতদিন মনে থাকিবে?” সেই বীরের ধূলিধসরিত মুখখানি লজ্জায় রক্তবর্ণ হইয়া উঠিল। রাণা গৃহে ফিরিলেন, কিন্তু সেই কৃষকবালাকে কিছুতেই ভুলিতে পারিলেন না। তৎপরদিন রাণা সেই কৃষকবালাকে দর্শন করিবার জন্য বনে গমন করিলেন এবং তাহার পিতার নিকট তাহাকে বিবাহ করিবার ইচ্ছা জানাইলেন। নির্ব্বোধ কৃষক কিছুতেই সম্মত হইল না। অগত্যা রাণা বিষণ্ণ মুখে গৃহে ফিরিলেন। কৃষক বাড়ীতে ফিরিয়া পত্নীকে সমুদায় কথা বলিল। সে স্বামীর নির্ব্বুদ্ধিতার কথা শুনিয়া শতবার ধিকার দিয়া বলিল, “হায়, হায়, কি করিলে। চিতোরের রাণা তোমার জামাতা হইবে, এ সৌভাগ্য সহ্য হইল না। যাও তাঁহার চরণ ধরিয়া কন্যাকে তাঁহার গৃহে দিয়া আইস।” অগত্যা কৃষক কন্যাকে লইয়া রাণার সহিত বিবাহ দিয়া আসিল। এই বীরবালাই হামিরের জননী।
+</p>
+<div><hr/></div>
+</div></section>
+<section><div>
+
+<h2>হামিরের বিবাহ</h2>
+<p>মুসলমানদিগের সহিত স্বাধীনতার যুদ্ধে হামিরের পিতা, পিতামহ, পিতৃব্যগণ সকলেই রণক্ষেত্রে প্রাণত্যাগ করেন। তখন বালক হামির মাতামহের গৃহে বাস করিতেছিলেন, এবং তখন হইতে অতি দীনভাবেই তাঁহার জীবন অতিবাহিত হইয়াছিল। কিন্তু অগ্নিকে যেমন ভস্মাচ্ছাদিত রাখা যায় না, সিংহ শাবককে যেমন দুখা হারে প্রতিপালন করা যায় না, এবং করিলেও সে যেমন আপনার প্রকৃতি বিস্বৃত হয় না; হামিরের তাহাই হইয়াছিল। রাজসম্পদ তাঁহার ভাগ্যে ঘটে নাই; পর্ব্বতে জঙ্গলে আজন্ম অতি দুঃখে দিনপাত করিয়াছিলেন, কিন্তু তিনি একদিনের জন্যও ভুলিতে পারেন নাই যে বীর বাপ্নারাওয়ের বংশে তাঁহার জন্ম হইয়াছে এবং চিতোরের রাজপদে তাঁহারই অধিকার। পিতৃপুরুষের লীলাভূমি বীরত্বের নিকেতন চিতোর, অধিকার করিবার জন্য তাঁহার প্রাণ সর্ব্বদা ব্যাকুল হইত, এবং নিয়ত তাহার সুযোগ অনুসন্ধান করিয়া বেড়াইতেন। এমন সময় হঠাৎ একদিন মালদেব দিল্লীর সম্রাটের আশ্রয়ে চিতোরের রাণা হইয়া ছিলেন ও হামিরের পরম শক্র) নিজ কন্যার সহিত হামিরের বিবাহের সম্বন্ধ করিয়া একজন দূত হামিরের নিকট প্রেরণ করিলেন। নারিকেল ফল হস্তে করিয়া দূত হামিরের নিকট আসিয়া উপস্থিত। নারিকেল ফল দেখিয়া বুঝিলেন তাঁহার বিবাহেয় সম্বন্ধ আসিয়াছে। জিজ্ঞাসা করিয়া সকল কথা শুনিলেন। হামির এবং তাঁহার বন্ধুগণ সকলেই এ ঘটনায় আশ্চর্য্যান্বিত হইলেন। মালদেব শত্রুকে কন্যাদান করিবেন, ইহার অর্থ কি? নিশ্চয় ইহার ভিতর কোন গৃঢ় অভিসন্ধি নিহিত আছে। হামিরের বন্ধুগণ হামিরকে এ বিবাহ অস্বীকার করিবার জন্য বারম্বার অনুরোধ করিতে লাগিলেন। হামির কিছুতেই শুনিলেন না। বলিলেন, “বন্ধুগণ, বিবাহ সম্বন্ধ লইয়া উপস্থিত হইলে অস্বীকার করা ক্ষত্রিয় তনয়ের অনুচিত কার্য্য, তাহা কি আপনারা জানেন না? আমি আজ কাপুরুষের মত এই চিরপ্রচলিত নিয়মের অন্যথা করি কিরূপে? মালদেব আমার বিনাশের জন্য চাতুরী করিয়াছেন! ভালই! একদিনের জন্যও যদি আমি আমার পিতৃপুরুষের লীলাভূমি পবিত্র চিতোরে পদার্পণ করিতে পারি, সার্থক জীবন আমার! আমার অদৃষ্টে যাহাই হউক, আমি এ সম্বন্ধ স্বীকার করিতে বাধ্য।” শুভদিনে শুভলগ্নে হামিরের বিবাহ স্থির হইল। হামির পাঁচশত অশ্বারোহী বরযাত্র লইয়া চিতোর যাত্রা করিলেন। কিন্তু তাঁহার মন সন্দেহ দোলায় দুলিতে লাগিল, মুখে কিছুই প্রকাশ করিলেন না। চিতোরের দ্বারে উপস্থিত হইয়া দেখেন, বিবাহ-তোরণ নাই, সন্দেহ কিঞ্চিৎ দৃঢ়ীভূত হইল। কিন্তু মালদেবের পঞ্চ পুত্র চিতোরের দ্বারে সমারোহে তাঁহাকে অভ্যর্থনা করিলেন। সহরে প্রবেশ করিলেন, কোন প্রকার আনন্দের চিহ্ন দেখিলেন না। ক্রমে প্রাসাদে প্রবেশ করিলেন, দেখিলেন গীতবাদ্য নাই, লোক সমাগম নাই, ভাবিলেন, “এ কি বিবাহ?” মালদেব এবং তাঁহার পুভ্রগণ বরকে আদর অভ্যর্থনা করিতে ত্রুটী করিলেন না। কিন্তু বিবাহ বাটীর আর কোন চিহ্নই হামির দেখিতে পাইলেন না। তাঁহার মন সন্দেহে অস্থির হইয়া উঠিল এবং আসল কার্য্যের কিরূপ ব্যবস্থা হয় দেখিবার জন্য তিনি অপেক্ষা করিতে লাগিলেন। ক্রমে বিবাহের লগ্ন উপস্থিত হইল। বিবাহ মণ্ডপে বর নীত হইল। কিন্তু বিবাহ সভা শূন্য, কেহ কোথাও নাই,— হামির তখনও নীরব। ক্রমে পুরোহিত, কন্যা, কন্যার পিতা, ভ্রাতা সকলেই উপস্থিত হইলে বিধিপূর্ব্বক বিবাহ হইল। হামির তখনও ভাবিতেছেন কাহাকে বিবাহ করিলাম, একি মালদেবের দুহিতা! একি পুরুষ না নারী। কিছুই বুঝিতে পারিতেছি না—ইহারই হস্তে কি আমার প্রাণ যাইবে? বিবাহান্তে হামির বাসর গৃহে গিয়া বসিলেন। সে স্থানও নির্জ্জন এবং নিরানন্দ। নববধু তাঁহার পার্শ্বে বসিয়া রহিয়াছেন, হামির সন্দেহের সহিত একবার বধূর দিকে, একবার গৃহের চারিদিকে চাহিয়া দেখিতেছেন, কিন্তু একেবারে নীরব। কে যেন তাঁহার জিহ্বাকে অবশ করিয়া দিয়াছে। নববধু স্বামীর মনের ভয়ানক অবস্থা বুঝিতে পারিয়া আস্তে আস্তে বলিলেন, “যেরূপ ভাবে বিবাহ হইল, তাহাতে নিশ্চয়ই আপনি মনে নানা প্রকার সন্দেহ করিয়া কষ্ট পাইতেছেন। এইরূপ বিবাহ হইবার প্রকৃত কারণ আপনাকে বলিব, আপনি কিরূপ ভাবে গ্রহণ করিবেন জানি না। মহারাজ! আমি বাল-বিধবা ছিলাম,কবে যে আমার বিবাহ হইয়াছিল আমার স্মরণ হয় না। পিতা এই কারণেই লুকাইয়া আমাকে আপনার সহিত বিবাহ দিলেন, এবং এই কারণেই বিবাহের কোন আয়োজন হয় নাই। প্রার্থনা করি আপনি আমাকে ঘৃণা পূর্ব্বক পরিত্যাগ করিবেন না।” হামির কিছুক্ষণ নীরবে থাকিয়া বলিলেন, “রাজকুমারি, তোমার অপরাধ কি? আমি বিধিপূর্ব্বক তোমার পাণিগ্রহণ করিয়াছি, তুমি আমার ধর্ম্মপত্নী, তোমাকে আমি পরিত্যাগ করিব না; কিন্তু তোমার পিতা আমার পিতার শত্রু, আমার পরম শত্রু। তিনি ছলনা পূর্ব্বক আমার অবমাননা করিয়াছেন, আমি তাহার প্রতিশোধ লইব। তোমার পিতাকে আমি কখনও ক্ষমা করিব না। তুমি ইচ্ছা কর, আমার সহিত যাইতে পার। আমি তোমাকে অকৃতজ্ঞের মত তাকে পরিত্যাগ করিতে বলিতে পারি না, কিন্তু জানিও তোমার পিতার শত্রুকে তুমি বরণ করিয়াছ। এখন বল, আমি আমার সহিত যাইতে সম্মত আছ কি না? মালদেবদুহিতা যে কেবল ইহাতে সম্মত হইলেন তাহা নহে, কিন্তু স্নামীর সহায়তার জন্য বিশেষ ভাবে প্রস্তুত হইলেনা; বলিলেন, “পিতা যখন আপনাকে যৌতুক; দিতে চাহিবেন, তখন আর কিছু না চাহিয়া পিতার প্রধান কর্ম্মচারী জালকে যৌতুক সরূপ চাহিবেন। জালের অসাধারণ শক্তি আছে, ইহার সাহায্যে আপনি সিদ্ধকাম হইবেন।” পত্নীর পরামর্শমত হামির জালকে যৌতুক স্বরূপ চাহিলেন। মালদেব সাগ্রহে জামাতার প্রার্থনা পূর্ণ করিলেন। হামির নববধু লইয়া স্বরাজ্যে প্রত্যাবর্ত্তন করিলেন।
+</p>
+<div><div>
+<p>_______
+</p>
+</div></div>
+</div></section>
+<section><div>
+
+<h2>হামিরের চিতোর উদ্ধার।</h2>
+<p> দিল্লীর সমাট আলাউদ্দীন দুইবার চিতোর আক্রমণ করিয়াছিলেন। দ্বিতীয়বার যখন আক্রমণ করেন তখন রাণা অজয়সিংহ পিতার একান্ত অনুরোধে জীবন রক্ষা করিতে বাধ্য হন। আলাউদ্দীন চিতোর জয় করিয়া চিতোরের শাসনভার মালদেবের হস্তে ন্যস্ত করেন। মালদেব দিল্লীশ্বরের আশ্রিত হইয়া পরম সুখে চিতোর রাজ্য ভোগ করিতে থাকেন। ওদিকে অজয়সিংহ নির্ব্বাসিতের ন্যায় পর্ব্বতে পর্ব্বতে জঙ্গলে জঙ্গলে লুকাইত থাকিয়া পিতৃরাজ্য উদ্ধারের চেষ্টায় নিযুক্ত রহিলেন, কিন্তু তিনি সফলকাম হইতে পারেন নাই। তাঁহার ভ্রাতুষ্পুত্র হামির তাঁহার প্রাণের এই চিরপোষিত আকাঙ্ক্ষা কার্য্যে পরিণত করেন।
+</p><p>মালদেব গোপনে এবং ছলনাপূর্ব্বক হামিরের সহিত নিজের বিধবা কন্যার বিবাহ দিয়াছিলেন বটে, কিন্তু তাহাতে হামির শত্রুর নিকট এরূপ অপমানিত হইয়া প্রতিশোধ লইতে বিস্মৃত হন নাই। মালদেব জামাতা বলিয়া যাঁহাকে সাদরে গ্রহণ করিয়াছিলেন তাঁহার হস্তেই পররাজ্য অপহরণের উপযুক্ত শান্তি পাইয়াছিলেন। বিবাহের পর মালদেব যখন হামিরকে জিজ্ঞাসা করিলেন, “তুমি আমার নিকট কিরূপ যৌতুক চাও”? তখন তিনি পত্নীকে একথা উল্লেখ করিলে মালদেব দুহিতা বলিলেন “তুমি আর কিছুই গ্রহণ করিও না, কেবল পিতার উপযুক্ত কর্ম্মচারী জালকে প্রার্থনা করিও, তাঁহার সহায়তায় তোমার অভীষ্ট সিদ্ধ হইবে।” হামির তাহাই করিলেন।
+</p><p>মালদেবদুহিতার গর্ভে হামিরের জ্যেষ্ঠ পুত্র ক্ষেত্র সিংহ জন্মগ্রহণ করিলেন। চিতোরের অধিষ্ঠাতৃ দেবতা ক্ষেত্রপালের নামানুসারে কুমারের নাম ক্ষেত্র সিংহ রাখা হইল। রাজকুমার যখন শিশু, তখন দৈবজ্ঞেরা গণনা করিয়া বলিলেন যে বালকের উপর ক্ষেত্রপালের রোষদৃষ্টি পড়িয়াছে, দেবতার কোপের শান্তি না হইলে শিশুর আর কল্যাণ নাই। এই বিষম কথা শুনিয়া পিতামাতা অপার চিন্তায় নিমগ্ন হইলেন। হামিরের পত্নী শেষে স্বীয় পিতাকে বলিয়া পাঠাইলেন, যে চিতোরে ক্ষেত্রপালের বিধি পূর্ব্বক পূজা অর্চ্চনা না করিলে পুত্রের আর মঙ্গল নাই। মালদেব এই কথা শুনিয়া কন্যা এবং দৌহিত্রকে লইয়া যাইবার জন্য একদল অশ্বারোহী সৈন্য পাঠাইলেন। হামিরের-পত্নী পুত্রকে লইয়া বিশ্বস্ত কর্ম্মচারী জালের সহিত চিতোরে যাত্রা করিলেন। যাইবার সময় হামিরকে ডাকিয়া বলিলেন “আমি জালের সহায়তায় চিতোরের প্রধান প্রধান সর্দ্দারদিগকে হস্তগত করিবার চেষ্টা করিব, তুমি সসৈন্যে চিতোর আক্রমণ করিবে, তাহা হইলে তোমার পক্ষে চিতোর জয় নিতান্ত দুঃসাধ্য হইবে না।”
+</p><p>হামির বলিলেন “সমুখ সমরে আমার হস্তে তোমার পিতার নিধন হইলে তুমি আমাকে মার্জ্জনা করিবে কি? আমার পরম শত্রু হইলেও তিনি ত তোমার পিতা।” হামির পত্নী বলিলেন “তোমার হস্তে আমার পিতার নিধন আমি ইচ্ছা করি না; তুমি আমার পিতার জীবন অব্যাহতি দিও। তবে আমি তোমাকে চিতোরের সিংহাসনে উপবিষ্ট দেখিতে চাই। তুমি চিতোরের রাণা হইবে ইহা অপেক্ষা আমার অধিক সুখের বিষয় আর কি হইতে পারে?”
+</p><p>হামিরের পত্নী চিতোরে উপস্থিত হইয়া দেখেন পিতা কোথায় সসৈন্যে যুদ্ধযাত্রা করিয়াছেন। বড়ই সুযোগ উপস্থিত; পিতার সহিত পতিকে সম্মুখ সমরে প্রবৃত্ত হইতে হইবে না। এই ভাবিয়া অচিরে স্বামীকে এই সুসংবাদ পাঠাইলেন। হামির সসৈন্যে চিতোর আক্রমণ করিলেন। একি! সহসা কোথায় রণবাদ্য বাজিয়া উঠিল? মালদেবের অনুপস্থিতি কালে কোন্ শত্রু চিতোর আক্রমণ করিল? চিতোরবাসিগণ যখন শ্রবণ করিল, আক্রমণকারী চিতোরের রাজবংশধর হামির, তখন সকল উৎকণ্ঠা,সকল ভীতি, আনন্দে পরিণত হইল। চিতোরবাসিগণ হামিরকে চিরপরিচিত আত্মীয়ের ন্যায় সাদরে গ্রহণ করিল। মালদেবের অনুগত সৈন্যগণ হামিরের গতিরোধ করিতে চেষ্টা করিল; কিন্তু হামিরের প্রচণ্ড বলের নিকট কেহই অগ্রসর হইতে পারিল না। চিতোরবাসিগণ গগন বিদারী হঙ্কারে চিতোরের উদ্ধার কর্ত্তা হামিরের জয় জয়কার ঘোষণা করিল। হামিরের চিরজীবনের সাধ পূর্ণ হইল। পিতৃপুরুষের গৌরবান্বিত সিংহাসনে উপবিষ্ট হইয়া তিনি আপনাকে ধন্য ও কৃতার্থ মনে করিলেন। মালদেব দিলীশ্বরের সহায়তা লাভ করিয়াও আর চিতোরের সিংহাসন ফিরিয়া পাইলেন না।
+</p>
+<div><hr/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>চণ্ড ও মুকুলজী।</h2>
+<p>মহাবীর হামিরের পৌত্র রাণা লক্ষসিংহ সর্ব্বতোভাবে পিতৃপুরুষের গৌরব অক্ষুন্ন রাখিয়া সুদীর্ঘকাল চিতোরে রাজত্ব করেন। মিবারের শ্রেষ্ঠতম নৃপতিগণের মধ্যে রাণা লক্ষ অন্যতম। তাঁহার বীরত্ব, প্রতাপ, কীর্ত্তিকথায় একদা মিবারভুমি প্রতিধ্বনিত হইত। নিম্নলিখিত ঘটনাসূত্রে তাঁহার জ্যেষ্ঠপুত্র চণ্ডকে বঞ্চিত করিয়া তাহার সর্ব্বকনিষ্ঠ পুত্র মুকুলজী পিতৃসিংহাসনে আরোহণ করেন।
+</p><p>একদিন রাণা লক্ষ মন্ত্রী পারিষদে পরিবৃত হইয়া রাজসভায় আসীন আছেন এমন সময় মাড়বার-রাজ রণমল্লের নিকট হইতে নারিকেল ফল লইয়া একজন দূত তথায় উপস্থিত হইল। রাণা তাহার যথাযোগ্য অভ্যর্থনা করিয়া আগমনের কারণ জিজ্ঞাসা করিয়া জানিতে পারিলেন যে, মাড়বার রাজ চণ্ডের সহিত আপনার কন্যার বিবাহের প্রস্তাব করিয়া পাঠাইয়াছেন। রাণা শুনিয়া হাসিয়া বলিলেন,—“তাই ভাল! আমি ভাবিতেছিলাম এই বৃদ্ধ বয়সে কে আবার আমার বিবাহের প্রস্তাব করিয়া পাঠাইল।” চণ্ড সে সময় রাজসভায় উপস্থিত ছিলেন না। তিনি আসিয়া পিতার পরিহাসের কথা শুনিয়া বলিলেন “পিতা যখন পরিহাস করিয়াও সে কন্যার সহিত নিজের বিবাহের কথা ভাবিয়াছেন, তখন আমি আর তাহাকে বিবাহ করিতে পারিনা।” সুতরাং তিনি কোন প্রকারেই সে কন্যাকে বিবাহ করিতে সম্মত হইলেন না। রাণা লক্ষ পুত্রকে কত বুঝাইলেন, কত তিরঙ্কার করিলেন, কত অনুরোধ করিলেন কিছুতেই তাঁহাকে সম্মত করাইতে পারিলেন না। তখন অতিশয় ক্রুদ্ধ হইয়া বলিলেন, “কি, আমি পিতা হইয়া এত অনুনয় বিনয় করিলাম, কিছুতেই তোমার গ্রাহ্য হইলনা? আমি, মাড়বার-রাজকে অপমানিত করিতে পারিনা, আমি তাঁর কন্যাকে বিবাহ করিতেছি, কিন্তু তুমি আজ আমার নিকট প্রতিজ্ঞা কর যে, চিরদিনের মত মিবার সিংহাসনের আশা পরিত্যাগ করিলে। এই বিবাহে যদি আমার পুত্র জন্মে, সেই মিবারের সিংহাসনের উত্তরাধিকারী হইবে।” চণ্ড পিতার নিকট বিধিপূর্ব্বক প্রতিজ্ঞা করিলেন। কালে নূতন মহিষীর একটি পুত্র জন্মিল। তাহার নাম মুকুলজী। মুকুলজীর বয়স যখন পাঁচ বৎসর, তখন রাণা লক্ষ মুসলমানদিগের অত্যাচার হইতে গয়াতীর্থ রক্ষা করিবার জন্য গমন করেন। যাত্রার পূর্ব্বে রাজ্যের সন্ত্রান্ত লোকদিগকে ডাকিয়া বলিলেন, “আমিত চলিলাম, আর যে ফিরিব এরূপ আশা নাই। এখন আমি কোন্ ভূসম্পতি মুকুলকে দান করিয়া যাই।” কুমার চণ্ড অমনি দৃঢ়স্বরে বলিয়া উঠিলেন, “কেন মিবারের রাজসিংহাসন।” এই বলিয়াই চণ্ড নিরস্ত হইলেন না, কিন্তু পিতার গমনের পূর্ব্বে বিশেষ উদ্যোগী হইয়া মুকুলের রাজ্যাভিষেক সম্পন্ন করিলেন; এবং স্বয়ং তাহার মন্ত্রী হইয়া রাজ্য শাসন করিবেন বলিয়া প্রতিজ্ঞা করিলেন। রাণা লক্ষ মুকুলের রাজ্যাভিষেক দর্শন করিয়া তীর্থে গমন করিলেন। কুমার চণ্ড বিশ্বম্ভ অনুগত ভৃত্যের ন্যায় ভ্রাতার রাজ্য শাসন করিতে লাগিলেন। ক্ষুদ্র বালক মুকুল সিংহাসনে উপবিষ্ট, আর চণ্ড দীনদাসের ন্যায় নিম্ন আসনে আসীন, এদৃশ্য দেখিয়া সভাস্থ সকলের মনে এক অপূর্ব্ব ভাবের উদয় হইত। সকলে চণ্ডকে দেবতার ন্যায় শ্রদ্ধা ভক্তি করিত। কিন্তু হায়! মিবার রাজ্যে কেবল একজন ছিলেন, তিনি চণ্ডের কোন কর্ম্মই প্রসন্ন চক্ষে দেখিতেন না। তাঁহার সকল কার্য্যেই একটা না একটা দুরভিসন্ধি আরোপ করিতেন। তিনি চণ্ডের বিমাতা ও মুকুলের জননী। তিনি গোপনে চণ্ডের নামে অনেক নিন্দা প্রচার করিতে লাগিলেন। চণ্ড প্রথমে বিমাতার এরূপ ব্যবহারে কিঞ্চিন্মাত্র বিচলিত হইতেন না; কিন্তু শেষে দেখিলেন তাহার সকল কার্যেই বিমাতার সন্দেহ, তখন তিনি আর সহ্য করিতে পারিলেন। মুকুলের জননী কেবলই বলিতেন, চণ্ডই প্রকৃত রাজা, আমার পুত্র কেবল সাক্ষী-গােপাল! বিমাতার কথাতে অত্যন্ত দুঃখিত হইয়া একদিন চণ্ড তাহাকে বলিলেন, “মাতঃ, আপনি নাকি বলেন যে, মুকুলকে বঞ্চিত করিয়া আমি স্বয়ং রাজা হইবার জন্য সচেষ্ট? একবার চিন্তা করিয়া দেখিবেন, আমার যদি রাজা হইবার বাসনা থাকিত তাহা হইলে আজ আর আপনাকে রাজমাতা হইতে হইত না। যাহা হউক আপনার মনে যখন এমন বিরুদ্ধ ভাব, তখন আমার এ রাজ্য ত্যাগ করাই শ্রেয়ঃ। আমি আপনার পুত্রের রাজ্য ত্যাগ করিয়া চলিলাম। আপনি পুত্রের কল্যাণ চিন্তা করুন কিন্তু সাবধান আমার পিতার রাজ্যের যেন সর্বনাশ না হয়, আর আপনার পুত্রের কোন বিপদ না হয়।” এই বলিয়া চণ্ড বিমাতার পদধূলি লইয়া ভ্রাতাকে আশীর্ব্বাদ করিয়া মিবার রাজ্য পরিত্যাগ করিয়া চিরদিনের মত চলিয়া গেলেন। বিমাতা একটি কথাও বলিলেন না। মুকুলের জননী অচিরে আপনার পিতা, ভ্রাতা ও আত্মীয়স্বজনকে চিতােরে আহ্বান করিলেন। তাঁহারা রাজকার্য্য পর্য্যবেক্ষণ করিতেন। মাড়বাররাজ প্রথমে দৌহিত্রকে ক্রোড়ে লইয়া সিংহাসনে উপবিষ্ট হইতেন, পরে একাই সিংহাসনে উপবেশন করিলেন। ক্রমে তাঁহারা পিতাপুত্রে সকলই গ্রাস করিয়া ফেলিলেন। এমন কি মুকুলকে হত্যা করিবার জন্য যড়যন্ত্রও চলিতে লাগিল। তথাপি মুকুলের জননীর চেতনা নাই। অবশেষে একদিন মুকুলের বৃদ্ধা ধাত্রী রাণীকে বিশেষ তিরস্কার করিয়া কহিল—“আপনি কি একেবারে অন্ধ হইয়াছেন? পুত্রের রাজ্য ও জীবন সকলই যায়, তথাপি কোন্ সুখে নিশ্চিন্ত হইয়া বসিয়া আছেন?” ধাত্রীর তিরস্কারে রাণীর চক্ষু ফুটিল। তাই ত কি সর্ব্বনাশ! পিতা ও ভ্রাতার হস্ত হইতে রক্ষা পাই কিরূপে?” ভাবিয়া দেখিলেন তিনি নিরুপায় ও অসহায়। তখন অন্য কোন গতি না দেখিয়া চণ্ডকে বলিয়া পাঠাইলেন, “চণ্ড তুমি ভিন্ন এ বিপদে আর রক্ষাকর্ত্তা নাই। তুমি শীঘ্র আসিয়া তােমার পিতার রাজ্য ও ভ্রাতার প্রাণ রক্ষা কর।” চণ্ড সংবাদ পাইবামাত্র উপস্থিত হইলেন। সকলে সাদরে তাঁহাকে গ্রহণ করিল। চণ্ড বিশ্বাসঘাতক মাড়বাররাজকে হত্যা করিয়া তাঁহার পুত্রকে সদলে রাজ্য হইতে দূরীকৃত করিয়া দিলেন। শত্রুকে দমন করিয়া, রাজ্যে শান্তি প্রতিষ্ঠিত করিয়া ভ্রাতার রাজ্যকে সম্পূর্ণ নিষ্কণ্টক করিয়া মহামনা চণ্ড আবার বিদায় লইলেন। এবার বিমাতা বলিলেন, “বৎস, তুমি আর দূরে যাইওনা; এইখানেই অবস্থান কর।”—চণ্ডের হৃদয় বিমাতার পুর্ব্বাচরণে এতই ব্যথিত হইয়াছিল যে, তিনি কোন ক্রমেই আর চিতােরে থাকিতে সম্মত হইলেন না। বলিলেন, “জননি! বিপদে পড়িলেই আমাকে ডাকিবেন, আমি চিরদিন আপনার পুত্রের রাজ্য রক্ষা করিবার জন্য প্রাণপাত করিব। কিন্তু আমি আর এখানে থাকিতে পারি না, কি জানি আপনার মনে আবার যদি কোন সন্দেহ উপস্থিত হয়। শত্রুর অস্ত্রাঘাত বক্ষ পাতিয়া লইতে পারি, কিন্তু আত্মীয়ের অবিশ্বাস সহ্য হয় না”—এই বলিয়া চণ্ড জন্মের মত পিতৃরাজ্য পরিত্যাগ করিয়া চলিয়া গেলেন। প্রজাগণ হায়! হায়! করিতে লাগিল।
+</p>
+<div><hr/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>রাণা সঙ্গ বা সংগ্রামসিংহ।</h2>
+<p>মিবারের রাণা মুকুলজীর পুত্র রাণা কুম্ভ মিবারের ইতিহাসে অত্যন্ত প্রসিদ্ধ। তিনি যেমন বীর, তেমনই বিবিধ রাজগুণে বিভূষিত ছিলেন। তাঁহার কীর্ত্তিকথা মিবারের ইতিহাসে চিরস্মরণীয় হইয়া আছে। রাণা কুম্ভ সম্বন্ধে একটি অতি আশ্চর্য্য গল্প আছে। তিনি একদা কোন বিশেষ যুদ্ধে জয়ী হইয়া পরদিন হইতে প্রত্যহ কোন আসনে উপবেশন করিবার পূর্ব্বে আপনার তরবারি মস্তকোপরি তিনবার প্রদক্ষিণ করিতেন। তাঁহার জ্যেষ্ঠপুত্র রায়মল্ল প্রতিদিনই পিতার এই কার্য্যটী দেখিয়া মনে মনে অতি বিস্মিত হইতেন। একদিন কৌতুহলী হইয়া পুত্র জিজ্ঞাসা করিলেন, “পিতঃ! প্রতিদিনই যে আপনি আসন পরিগ্রহ করিবার পূর্ব্বে মস্তকের চারিদিকে তিনবার তরবারি প্রদক্ষিণ করেন তাহার অর্থ কি?”
+</p><p>এই প্রশ্ন শুনিয়াই রাণা অগ্নিবর্ণ হইয়া উঠিলেন এবং পুত্রকে তৎক্ষণাৎ মিবার রাজ্য হইতে নির্ব্বাসিত করিয়া দিলেন। বীরবর রাণা কুম্ভ অন্যতম পাষণ্ড পুত্রের হস্তে জীবলীলা সম্বরণ করেন। কুম্ভের মৃত্যুর পর রায়মল্ল আসিয়া পিতৃসিংহাসন অধিকার করিলেন। রায়মল্লের অদৃষ্টে পারিবারিক সুখ বিধাতা লেখেন নাই। তাঁহার তিনটী পুত্র ছিলেন; তাঁহারা ভ্রাতৃপ্রেম বিস্মৃত হইয়া পরস্পরের সহিত বিবাদ বিসম্বাদে কালযাপন করিতেন। জ্যেষ্ঠ সঙ্গ, মধ্যম পৃথ্বীরাজ এবং কনিষ্ঠ জয়মল্ল। পিতার জীবদ্দশাতেই চিতােরের সিংহাসন কে অধিকার করিবে এই প্রশ্ন লইয়া তাঁহারা সর্ব্বদাই তর্কযুদ্ধে প্রবৃত্ত হইতেন। পুত্রত্রয়ই পৈতৃক সিংহাসন লাভের জন্য ব্যাকুল এবং পরস্পরের শত্রুতা সাধনে বদ্ধপরিকর। একদিন তাঁহারা তিনজনেই পিতৃব্য সূর্য্য মল্লের সম্মুখে এই বিষয় লইয়া ঘোর তর্কযুদ্ধে প্রবৃত্ত হইলেন। কিছুতেই এ প্রশ্নের মীমাংসা হয় না। তখন সঙ্গ বলিলেন, “নাহরা মুগরার<sup><a href="#cite_note-1">[১]</a></sup> চারণী দেবীর পরিচারিকা সন্ন্যাসিনী যাঁহাকে নির্ব্বাচিত করিবেন তিনিই মিবার রাজ্যের উত্তরাধিকারী হইবেন।” এই প্রস্তাবে সকলেই সম্মত হইয়া স্ব স্ব ভাগ্য পরীক্ষার জন্য সন্ন্যাসিনীর আশ্রমে উপস্থিত হইলেন। পৃথ্বীরাজ এবং জয়মল্ল অগ্রেই গৃহে প্রবেশ করিয়া একখানি আসনে উপবেশন করিলেন। তাঁহাদের পশ্চাতেই সঙ্গ এবং সূর্য্যমল্ল প্রবেশ করিয়া অপর একখানি ব্যাঘ্রচর্ম্মের উপর উপবেশন করিলেন। সকলেই নীরব—কাহার মুখে বাক্য নাই। কিয়ৎক্ষণ পরে পৃথ্বীরাজ তাঁহাদিগের আগমনের কারণ সন্ন্যাসিনীকে জ্ঞাপন করিলেন। সন্ন্যাসিনী কোন বাক্যই উচ্চারণ না করিয়া অঙ্গুলি সঙ্কেত দ্বারা ব্যাঘ্রচর্ম্ম দেখাইয়া দিলেন। জ্যেষ্ঠ সহােদরের সৌভাগ্যের কথা জানিয়া পৃথ্বীরাজ ক্রোধে অন্ধ হইলেন এবং তৎক্ষণাৎ তাঁহাকে হত্যা করিবার জন্য ধাবিত হইলেন। সূর্য্যমল্ল সঙ্গকে রক্ষা করিবার জন্য অগ্রসর হইলেন। দেবীমন্দিরে তুমুল যুদ্ধের অভিনয় হইল। সকলেই অত্যধিক পরিমাণে আহত হইলেন। সঙ্গের একটী চক্ষু নষ্ট হইয়া গেল। ভ্রাতৃগণের রক্তে পবিত্র মন্দির কলুষিত হইল। সন্ন্যাসিনী এই দৃশ্য দেখিয়া উৰ্দ্ধশ্বাসে পলায়ন করিলেন। পৃথ্বীরাজও গুরুতররূপে আহত হইয়াছিলেন; কিন্তু তাঁহার প্রচণ্ড ক্রোধ কিছুতেই প্রশমিত হইবার নহে। দন্তে দন্ত ঘর্ষণ করিয়া সঙ্গের সর্ব্বনাশ সাধন করিবার জন্য তিনি প্রতিজ্ঞা করিলেন। সঙ্গ দেখিলেন, পৃথ্বীরাজের সহিত পিতৃগৃহে বাস করা অসম্ভব। তিনি ছদ্মবেশে নিরুদ্দেশ হইয়া দেশে দেশে ভ্রমণ করিতে লাগিলেন। তাহাতেও পৃথ্বীরাজের জিঘাংসা প্রশমিত হইল না। তিনি ভ্রাতার নিধনের জন্য দেশে দেশে গুপ্তচর নিযুক্ত করিলেন। সঙ্গ মিবারের রাজকুমার হইয়াও এই সময় যে নিদারুণ দুঃখ সহ্য করিয়াছিলেন তাহার বর্ণনা হয় না। একদা তিনি ছাগরক্ষকের গৃহে অতিথি হইয়া কিছুদিন তথায় বাস করেন। তাহারা তাঁহাকে ছাগরক্ষণ কার্য্যে এবং অন্যান্য শ্রমসাধ্য কার্য্যে নিযুক্ত করিয়া দিনান্তে অতি অপকৃষ্ট খাদ্য আহার করিতে দিত। সঙ্গ রাজকুমার—তিনি ছাগরক্ষণ কার্য্য উত্তমরূপে করিতে পারিতেন না। তাহারা তাঁহাকে সে জন্য অনেক দুৰ্বাক্য বলিত। সঙ্গ নীরবে সকল সহ্য করিতেন। আমরা ইংলণ্ডের ইতিহাসে “এলফ্রেড দি গ্রেটের” গল্প শুনিতে পাই। রাণা সঙ্গও মিবারের “এলফ্রেড দি গ্রেট ছিলেন। নির্ব্বাসিত হইয়াও এক দিনের জন্য তিনি মিবারের সিংহাসন লাভের জন্য নিশ্চেষ্ট হন নাই। এদিকে পিতা রায়মল্ল জ্যেষ্ঠপুত্রের অদর্শনে নিতান্ত ম্রিয়মাণ হইলেন, এবং পৃথ্বীরাজই সকল অনর্থের মূল বিবেচনা করিয়া তাঁহাকেও মিবার রাজ্য হইতে নির্ব্বাসিত করিলেন; এতদিন সঙ্গের যে দশা ছিল পৃথ্বীরাজের ভাগ্যেও তাহাই হইল। কিন্তু রাজপুতের হস্তে তরবারি থাকিলে তাঁহার আর ভাবনা কি? নির্ব্বাসিত হইয়াও পৃথ্বিরাজের বীরত্বের গৌরব ম্লান হইল না। ওদিকে সঙ্গ কাশ্মীর রাজ্যে উপনীত হইয়া দস্যুপতি করিমচাঁদের আশ্রয় গ্রহণ করিলেন। করিমচাঁদ সঙ্গের বীরত্ব, সাহস, তেজস্বিতা ও উদ্যম দেখিয়া মুগ্ধ হইয়া তাঁহার হস্তে কন্যা সম্প্রদান করিলেন।
+</p><p>রায়মল্লের জীবদ্দশাতেই ভগিনীপতিপ্রদত্ত বিষ ভক্ষণে পৃথ্বীরাজের মৃত্যু হইল। বৃদ্ধ রায়মল্ল পুত্রশোকে জর্জ্জরিত হইয়া মৃত্যুমুখে পতিত হইলেন। পুত্রদিগের পরস্পরের বৈরীভাব তাঁহার জীবনকে বিষময় করিয়া তুলিয়াছিল। রায়মল্লের মৃত্যুর সময় সঙ্গ কাশ্মীরে অবস্থান করিতেছিলেন। তিনি পিতার মৃত্যুসংবাদ শ্রবণ করিয়া চিতোরে আগমনপূর্ব্বক রাজ্যভার গ্রহণ করিলেন। তাঁহার সুশাসনগুণে অতি অল্পদিনের মধ্যে প্রজাগণ তাঁহার একান্ত অনুরক্ত হইয়া পড়িল। রাণা সঙ্গ ইতিহাসে সংগ্রামসিংহ নামে পরিচিত। তাহার ন্যায় বীর এবং উপযুক্ত ব্যক্তি সে সময়ে রাজপুতানায় আর ছিল না। তাঁহার বীরত্ব, প্রতাপ ও রণকৌশল দর্শনে কেহ আর মিবারের বিরুদ্ধে অস্ত্র ধারণ করিত না। দিল্লী ও মালবের নৃপতিগণ অষ্টাদশবার সংগ্রামসিংহের সহিত সংগ্রামে পরাজিত হইয়া হতমান হইয়া ছিলেন। তখনকার দিনে সংগ্রাম সিংহের নাম শ্রবণ করিলে শক্রদিগের হৃদ্‌কম্প উপস্থিত হইত। দিল্লীর সাম্রাজ্যের তখন পতনদশা, দিল্লীর সম্রাট সংগ্রাম সিংহের নিকট হতমান হইয়া একেবারে নিষ্প্রভ হইয়া পড়িয়া ছিলেন। খোরসানের অধিপতি বীরবর বাবর সুযোগ বুঝিয়া ভারত সাম্রাজ্যে পদার্পন করিয়া পাণিপথের যুদ্ধে ইব্রাহিম লোদীকে পরাজিত করিয়া দিল্লীর সিংহাসন অধিকার করিলেন। দৃঢ় অধ্যবসায়, কঠোর সহিষ্ণুতা এবং অসাধারণ উদ্যমশীলতার অসাধ্য কি আছে? বাবর যে বিজয়ী হইলেন তাহাতে আর বিচিত্র কি?
+</p><p>বাবর দিল্লীর সিংহাসনে সুপ্রতিষ্ঠিত হইয়া প্রচণ্ড প্রতাপান্বিত সংগ্রাম সিংহের দর্প চূর্ণ করিবার জন্য চিতোরের অভিমুখে ধাবিত হইলেন। সংগ্রাম সিংহও নিশ্চিন্ত ছিলেন না। তিনিও বাবরের সম্মুখীন হইবার জন্য বিধিমতে প্রস্তুত হইলেন। বিয়ানার নিকটবর্ত্তী কনুয়ানামক স্থানে উভয়ের সৈন্যদলের সাক্ষাৎ হইল। অচিরে ঘোরতর যুদ্ধ আরম্ভ হইল। প্রথম যুদ্ধে যবন সেনা বিধ্বস্ত বিক্ষিপ্ত হইয়া ইতস্ততঃ পলায়ন করিল।— বাবর শাহ অপর এক বাহিনী লইয়া নিকটেই ছিলেন। তিনি ভগ্নদূত মুখে সমুদায় বার্ত্তা শ্রবণ করিয়া আবার সমুদায় ছত্রভঙ্গ সৈন্যদিগকে একত্রিত করিয়া যুদ্ধে ﻿আহ্বান করিলেন। যবন সৈন্যগণ সংগ্রাম সিংহের সম্মুখীন হইতে কিছুতেই প্রস্তুত হইল না। বাবরশাহ কত উৎসাহিত করিলেন, কত প্রলোভন দেখাইলেন, কত মিষ্ট বাক্য বলিলেন তাঁহার সকল চেষ্টাই ব্যর্থ হইবার উপক্রম হইল। বাবর বড় সুরাপ্রিয় ছিলেন প্রতিজ্ঞা করিলেন এ জীবনে আর সুরা স্পর্শ করিবেন না। যেখানে যত সুরাপাত্র ছিল সকলই চূর্ণ বিচুর্ণ করিলেন। অনন্যোপায় হইয়া লজ্জা ঘৃণায় ম্রিয়মান হইয়া পড়িলেন। এমন সময়, সহসা তাঁহার সৈন্যগণ উৎসাহিত হইয়া রণপ্রদানে সম্মত হইল! তখন তিনি পরমেশ্বরকে ধন্যবাদ করিয়া মহোৎসাহে পূর্ণ হইয়া কোরাণ আনিয়া প্রত্যেক সৈন্যকে তাহা স্পর্শ করাইয়া প্রতিজ্ঞা করাইলেন “হয় বিজয়ী বেশে রণক্ষেত্র হইতে আসিবে, না হয় বীরের ন্যায় তথায় নশ্বর দেহ পরিত্যাগ করিবে” সকলেই কোরাণ স্পর্শ করিয়া প্রতিজ্ঞাবদ্ধ হইল। শপথ করিয়া ঘোর নিনাদে জয়ধ্বনি করিয়া উঠিল! আবার হিন্দু মুসলমানে ভীষণ যুদ্ধ আরম্ভ হইল। বাবর আত্মরক্ষার জন্য পরিখা মধ্যে অবস্থিতি করিতে গাগিলেন। চতুর্দ্দিকে কামান শ্রেণী সজ্জিত করিয়া রজ্জু দ্বারা দৃঢ় বন্ধন করিলেন। পরিখা মধ্যে কিছুদিন অবস্থিতি ﻿করিয়া বাবরের সৈন্যগণের কষ্টের এক শেষ হইল। তিনি সংগ্রাম সিংহের সহিত সন্ধি করিবার জন্য ব্যাকুল হইলেন। কিন্তু সন্ধির প্রস্তাব উপস্থিত হইয়াও কার্য্যে পরিণত হইল না। রাজপুতসেনা বিজয়মদোন্মত্ত হইয়া যুদ্ধের জন্য অসহিষ্ণু হইয়া উঠিল। আজীবন যুদ্ধে জয় হইয়া সংগ্রামসিংহ নিতান্ত আত্মপ্রত্যয়শীল হইয়া উঠিয়া ছিলেন। রাজপুতগণ নিতান্ত অনভিজ্ঞের ন্যায় বাবরের ব্যুহ আক্রমণ করিল! যুদ্ধের মধ্যস্থলে সংগ্রামসিংহে দলস্থ একজন সর্দ্দার সসৈন্যে বাবরের সহিত যোগদান করিল। হায়। এতদিন পরে সংগ্রামসিংহের প্রতি বিজয়লক্ষ্মী বিমুখ হইলেন! দ্বিতীয় যুদ্ধে সংগ্রামসিংহ পরাস্ত হইলেন। তিনি ভগ্ন হৃদয়ে মিবারের অভিমুখে যাত্রা করিলেন বটে, কিন্তু চিতোরে আর প্রবেশ করিলেন না। পর্ব্বতে আশ্রয় গ্রহণ করিলেন। সংগ্রামসিংহ প্রতিজ্ঞা করিয়াছিলেন, হয় বিজয়ী বেশে চিতোরে প্রবেশ করিবেন নচেৎ আর পিতৃপুরুষের পবিত্র রাজধানীতে প্রবেশ করিবেন না। চিতোরবাসী সংগ্রামসিংহকে চিরদিন বিজয়ী দেখিয়া আসিয়াছে। আজ হতমান হইয়া চিতোরবাসীকে আর মুখ দেখাইলেন না। রাজপুত বীর কি কখন যুদ্ধক্ষেত্র হইতে প্রাণ লইয়া ফিরিয়া আইসে? সংগ্রামসিংহ আর চিতোরে পদার্পণ করিলেন না। কিন্তু যতদিন তিনি জীবিত ছিলেন, চিতোর উদ্ধারের আশা এবং চেষ্টা পরিত্যাগ করেন নাই। কিন্তু তাঁহার আশা ফলবতী হইবার পূর্ব্বেই মৃত্যু আসিয়া তাঁহাকে গ্রাস করিল। গুণগ্রাহী বাবর সংগ্রামসিংহের বীরত্ব দর্শনে শতমুখে তাঁহার সাধুবাদ করিয়া গিয়াছেন। বাবর এবং সংগ্রামসিংহ উভয়েই যৌবনে অশেষবিধ দুঃখ বিপদ্ সংগ্রামের ভিতর চরিত্রের বল সঞ্চয় করিয়াছিলেন। পরস্পর শত্রু হইলেও তাঁহাদের চরিত্র একই উপাদানে গঠিত হইয়াছিল। বীরত্ব, তেজস্বিতা, অসাধারণ ধৈর্য্য ও প্রগাঢ় অধ্যবসায় উভয়ের চরিত্রের প্রধান গুণ ছিল।—যেমন বাবর শাহ তেমনি সংগ্রামসিংহ—উভয় উভয়ের সমকক্ষ!
+</p>
+<div><hr/></div>
+
+
+</div><ol><li><span><a href="#cite_ref-1">↑</a></span> <span>উদয়পুরের পাঁচ ক্রোশ দূরে অবস্থিত।</span>
+</li>
+</ol></section>
+<section><div>
+
+<h2>ধাত্রী পান্না।</h2>
+<p>সংগ্রামসিংহের মৃত্যুর পর তাঁহার পুত্র রত্ন ও বিক্রমজিৎ যথাক্রমে চিতোরের সিংহাসনে আরোহণ করেন। রাণা বিক্রমজিৎ পিতার অতি অনুপযুক্ত পুত্র ছিলেন। তাঁহার বীরত্ব এবং তেজস্বিতার যে অভাব ছিল তাহা নয়। তিনি এমন উদ্ধত ও অত্যাচারী ছিলেন যে, তাঁহার শাসনাধীনে সর্দ্দারগণ ও প্রজাগণ কেহই সুখী ছিল না। আভ্যন্তরীণ অশান্তির বিষয়, জানিয়া গুর্জ্জরের মুসলমান অধিপতি বাহাদুর মিবার রাজ্য আক্রমণ করিয়াছিলেন। এই যুদ্ধে বাহাদুরের পক্ষে একজন ইউরোপীয় গোলন্দাজ ছিল। বহুদিন হইল রাজপুতগণ এমন ভীষণ যুদ্ধ করে নাই। চারিদিক্‌ হইতে দলে দলে রাজপুত বীরগণ আসিয়া এই যুদ্ধে যোগদান করিল, বিক্রমজিৎও বীরের ন্যায় মিবারের স্বাধীনতা রক্ষার জন্য প্রাণপণে যুদ্ধ করিতে লাগিলেন। কিন্তু মিবারের সর্দ্দারগণ রাণার দুর্ব্ব্যহারে অন্তরে এরূপ জর্জ্জরিত ছিলেন যে, তাহারা সমগ্র মনপ্রাণের সহিত যুদ্ধে যোগদান করেন নাই। যুদ্ধের অবসান না হইতেই—সংগ্রামের শিশুপুত্র উদয়সিংহ এবং চিতোর নগরী ﻿রক্ষা করিবার জন্য অনেকে চিতােরে প্রত্যাবর্ত্তন করিল। বিক্রমজিৎ অতুল সাহসের সহিত যুদ্ধ করিতে থাকিলেন। তাঁহার পত্নী বীর নারী জহর বাই বর্ম্মে দেহ আবৃত করিয়া সসৈন্য শক্রর সহিত সমরে অবতীর্ণ হইয়া অতুল সাহস দেখাইয়া রণভূমে প্রাণত্যাগ করিলেন— তথাপি চিতাের রক্ষা করা অসম্ভব হইল। তখন চিতােরের বীরগণ রাজ বলির উদ্যোগ করিল।— চিতােরের রাজলক্ষ্মীর সন্তোষের জন্য রাজমুকুটধারী রাণাকে যুদ্ধক্ষেত্রে প্রাণত্যাগ করিতে হইবে; নতুবা চিতােরের আর রক্ষা নাই। রাণা বিক্রমজিৎ রণভূমিতে এক্ষণে সংগ্রামসিংহের ভ্রাতা সূর্য্যমল্লের বীর পুত্র বাঘজী জীবনাহুতি দিতে সম্মত হইলেন। তাঁহার মস্তকে রাজমুকুট ও রাজছত্র শােভিত হইল। তিনি অতুল বীরত্বের সহিত যুদ্ধ করিয়া যুদ্ধক্ষেত্রেই প্রাণ বিসর্জ্জন করিলেন। তথাপি চিতাের রক্ষা অসম্ভব হইল, তখন রাজপুতবাসিনীগণ জহর ব্রতের<sup><a href="#cite_note-1-n59">[১]</a></sup> অনুষ্ঠান করিল।—ত্রয়ােদশ সহস্র রাজপুত রমণী চিতানলে দেহ ভস্মীভূত করিল। বাহাদুর চিতোর জয় করিয়া সসৈন্যে সেই পবিত্র নগরীতে প্রবেশ করিলেন। কিন্তু এক পক্ষ গত না হইতে হইতে সংবাদ আসিল হুমায়ুন গুর্জ্জর আক্রমণ করিতে যাইতেছেন। বাহাদুরের পাপের প্রায়শ্চিত্ত ত্বরায় করিতে হইল—হুমায়ুনের সহিত যুদ্ধে পরাজিত হইয়া তিনি রাজ্য হইতে তাড়িত হইলেন। কথিত আছে, মিবারের রাণী কর্ণবতী হুমায়ুনকে “রাখি ভাই” বলিয়া সম্বোধন করিয়া চিতোর উদ্ধার করিবার জন্য আহ্বান করিয়াছিলেন। হুমায়ুন চিতোর রক্ষার জন্যই আসিতেছিলেন। কিন্তু তাঁহার আগমনের পূর্ব্বেই দুরাত্মা বাহাদুর চিতোরের সর্ব্বনাশ সাধন করে। তখন হুমায়ুন বাহাদুরের রাজ্য আক্রমণ করিয়া তাহার দুষ্কৃতির উপযুক্ত শাস্তি বিধান করিলেন।
+</p><p>হুমায়ুনের সহায়তায় বিক্রমজিৎ আবার চিতোরের সিংহাসনে আরোহণ করিলেন বটে, কিন্তু অভিজ্ঞতায় তাঁহার কোন শিক্ষাই হইল না। সম্ভ্রান্ত সর্দ্দারগণ তাঁহার অত্যাচারে জর্জ্জরিত হইয়া তাঁহার পিতৃব্যপুত্র বনবীরকে চিতোরের রাজপদে অভিষিক্ত করিলেন। বিক্রমজিৎ পদচ্যুত হইয়া ভগ্নহৃদয়ে বাস করিতে লাগিলেন। সংগ্রামসিংহের শিশু পুত্র উদয়সিংহ তখন ছয় বৎসরের বালক। বালকের অপ্রাপ্ত বয়সকালে বনবীর রাজ্য-রক্ষক হইয়া রাজকার্য্য সমাধা করিবেন এইরূপ স্থিরীকৃত হইল। কিন্তু রাজশক্তির আস্বাদনে বনবীরের স্বভাব বিকৃত হইয়া উঠিল—নিষ্কণ্টকে বংশ পরম্পরায় রাজপদে প্রতিষ্ঠিত থাকিবার বাসনা তাঁহার হৃদয়ে প্রবল হইল। তখন বিক্রমজিৎ এবং বালক উদয়কে হত্যা করিবার জন্য বনবীর কৃতসংকল্প হইলেন। তাঁহার এ গুপ্ত অভিসন্ধির কথা কেহই জানিল না।
+</p><p>একদিন দিবসের কার্য্য সমাপনান্তে সকলে আপন আপন কক্ষে সমাগত হইয়াছে। রাজপ্রাসাদে দীপমালা প্রজ্বলিত হইয়াছে। ক্রীড়াশীল বালক উদয় দিবাশেষে ধাত্রী মাতার গৃহে সমাগত। ধাত্রী পান্না পরম আদরে বালককে ক্রোড়ে লইয়া যথানিয়মে পান ভোজন করাইয়া তাহাকে শয্যায় শয়ন করাইয়া পার্শ্বে বসিয়া পরিচর্য্যা করতে লাগিল। এমন সময়ে সহসা অন্তঃপুরে ঘোর কোলাহল উপস্থিত হইল। প্রাসাদের অদূরে ক্রন্দনের রোল উত্থিত হইল। পান্না চকিত বিস্মিত হইয়া দণ্ডায়মান হল। সেই মুহূর্ত্তে এক ভৃত্য দৌড়িয়া আসিয়া সংবাদ দিল যে, বনবীর বিক্রমজিৎকে হত্যা করিয়াছে। বুদ্ধিমতী পান্না নিমেষে হৃদয়ঙ্গম করিল বনবীর বিক্রমজিৎকে হত্যা করিয়াই নিবৃত্ত হইবে না, অচিরে আসিয়া শিশু উদয়কে হত্যা করিবে। চক্ষের নিমেষে পান্নার কর্ত্তব্য নির্ণয় হইয়া গেল।—সর্ব্বস্ব পণ করিয়াও সংগ্রামসিংহের বংশধরকে রক্ষা করিতেই হইবে। নিদ্রিত উদয়সিংহকে ক্রোড়ে লইয়া ত্বরায় তাহাকে এক পুষ্পকরন্তিকায় রাখিয়া তাহাপত্রপুষ্পে আচ্ছাদন করিয়া ভৃত্যকে আদেশ করিল, “ত্বরায় ইহা লইয়া দৃষ্টির বাহিরে গমন করিয়া কোন নিরাপদ স্থানে রক্ষা কর। আমি ত্বরায় যাইতেছি।” উদয়কে প্রেরণ করিয়া পান্না বিবেচনা করিল, শূন্য শয্যা দেখিলে বনবীর সকলই জানিতে পারিবে। তখন আপনার নিদ্রিত শিশুপুত্রকে আনিয়া প্রতাপের শয্যায় শয়ন করাইল। স্বচক্ষে পুত্রের নিধন দেখিতে পারিবে না মনে করিয়া পান্না ত্বরিতে গৃহত্যাগ করিবার উদ্যোগ করিতেছে। এমন সময় বনবীর দ্রুতবেগে রক্তাক্ত উন্মুক্ত অসি হস্তে লইয়া সেই গৃহে উপস্থিত হইয়াই—বিকট স্বরে জিজ্ঞাসা করিল, “ধাত্রী রাজকুমার উদয়সিং কই—” ধাত্রী নীরব, মুখে বাক্যস্ফূর্ত্তি হইল না। বনবীর গর্জ্জন করিয়া বলিয়া উঠিল, “দেখিতেছ না আমার হস্তে উন্মুক্ত অসি? শীঘ্র বল কোথায় উদয়।” ধাত্রী অঙ্গুলিসঙ্কেতে ﻿প্রতাপের শয্যা দেখাইয়া চক্ষুঃ না ফিরাইতেই পামর বনবীর শিশুর বক্ষঃস্থলে তরবারি বিদ্ধ করিয়া দিল। পান্নার প্রাণের ভীষণ অবস্থা শোকের অতীত। আজ তাহার চক্ষে অশ্রু নাই, বদনে এক ভৈরব ভাবের আবির্ভাব হইল। উন্মত্তের ন্যায় ত্বরিত-পাদবিক্ষেপে গৃহ হইতে নির্গত হইয়া উর্দ্ধশ্বাসে উদয়সিংহের পশ্চাতে ধাবমান হইল। পান্নার চক্ষে চিতোরপুরী আজ এক ভীষণ নরকের মর্ত্তি ধারণ করিয়াছে। হায় ভগবন্, এই কি শিশোদীয় কুলের পবিত্র পীট চিতোর?—পাষণ্ড বনবীর যে আজ নারকীয় দৃশ্যের অভিনয় করিতেছে? কোথায় পলায়ন করি? এই পামরের হস্ত হইতে সংগ্রামসিংহের বংশধরকে রক্ষা করি কিরূপে?—জোড়হস্তে উর্দ্ধানেত্রে পান্না ক্রমাগত বলিতেছে, “ভগবন্, রক্ষা কর! জননী হইয়া নিদ্রিত অসহায় শিশুকে বলি দেওয়া অপেক্ষা অভাগিণী পান্না আর কি করিতে পারে?— হায় আমার অভাগা শিশু, শৈশবে তুমি যে রাজকুমারের জন্য মাতৃদুগ্ধে বঞ্চিত হইয়াছিলে। আজ তাহার জন্য তোমার সুকুমার জীবন ধ্বংস হইল! ওঃ! আমি দৃশ্যই দেখিলাম! হায় আমি কি কুক্ষণেই রাজপুরীতে পদার্পণ করিয়াছিলাম! সাধ্বী মহিষি, আজ তুমি স্বর্গ হইতে দেখ অভাগিণী পান্না হৃদ্‌পিণ্ড ছেদন করিয়া তোমার নিকট শপথ পালন করিল।” নির্দ্দিষ্ট স্থানে উপনীত হইয়া পান্না দেখে শিশু উদয়সিংহ তখনও নিদ্রিত। পান্না ভাবিল বালককে বক্ষে ধরিয়া হৃদয় শীতল করিবে। কিন্তু এ জীবনে সে ভীষণ অগ্নি আর নির্ব্বাপিত হইবার নহে। পান্না শিশুকে লইয়া সমুদায় বিশ্বস্ত সর্দ্দারের আশ্রয় ভিক্ষা করিল। বনবীরের ভয়ে কেহই শিশুকে আশ্রয় দিতে সম্মত হইল না। ধাত্রী পান্না নিজ সন্তানের জীবনের বিনিময়ে যাহার জীবন রক্ষা করিল; আজ তাহার পিতার প্রসাদভোগী সর্দ্দারগণ দুর্দ্দিনে সেই শিশুকে আশ্রয় দিল না। ক্ষোভে দুঃখে ঘৃণায় পান্নার হৃদয় জ্বলিতে লাগিল! অবশেষে আশাশা নামে একজন জৈন সর্দ্দারের গৃহে উপনীত হইয়া শিশুর জন্য আশ্রয় ভিক্ষা করিল। আশাশা অপরাপর সর্দ্দারদিগের ন্যায় প্রথমে অসম্মত হইলেন বটে কিন্তু তাঁহার বৃদ্ধা জননী পুত্রকে শত ধিক্কার দিয়া বলিলেন, “বৎস একটী শিশুকে আশ্রয় দিতে তোমার এত ভয়! সংগ্রামসিংহের নিকট তুমি কি ঋণী নহ? নিশ্চয় জানিও তুমি এই শিশুকে আশ্রয় দিলে সেই পুণ্যফলে বিধাতা তোমার চিরকল্যাণ করিবেন।”
+</p>
+
+<p> জননীর অনুরােধে আশাশা উদয়সিংহকে ভাগিনেয় বলিয়া পরিচয় দিয়া গ্রহণ করিলেন। ধাত্রী পান্নার হৃদ্‌পিণ্ডচ্ছেদন বৃথা হয় নাই। উদয় সিংহ কালে চিতাের সিংহাসনে উপবেশন করিয়াছিলেন এবং বীরশ্রেষ্ঠ প্রতাপসিংহ ইহাঁরই পুত্র।
+</p><p>মিবারের ইতিহাসে পান্নার অপূর্ব্ব আত্মত্যাগ এবং অদ্ভুত কর্ত্তব্যনিষ্ঠার কথা স্বর্ণাক্ষরে মুদ্রিত আছে। রাজপুত জাতির সকল কাহিনী অত্যাশ্চর্য্য! কোথায় কে শ্রবণ করিয়াছে ধাত্রীমাতা প্রভুর সন্তানকে রক্ষা করিবার জন্য আপন সন্তানকে ঘাতেকর হস্তে সমৰ্পণ করিয়াছে? ধন্য বীরনারী পান্না! ধন্য তােমার মহীয়সী কীর্ত্তি। তুমি সমুদায় নারীকুলের নমস্যা।
+</p>
+<div><hr/></div>
+
+
+</div><ol><li><span><a href="#cite_ref-1-n52">↑</a></span> <span>জহর ব্রত রাজপুত রমণীর এক ভীষণ ব্রত। শত্রু হস্তে পতিত হবার সম্ভাবনা দেখিলে সমুদায় রাজপুত রমণী সমবেত হইয়া শিশু সন্তানদিগকে ক্রোড়ে করিয়া ভীষণ অগ্নিকুণ্ডে লম্ফ দিয়া প্রাণত্যাগ করিতেন।</span>
+</li>
+</ol></section>
+<section><div>
+
+<h2>রাণা প্রতাপসিংহ।</h2>
+<p>ধাত্রী পান্না উদয় সিংহের জীবন রক্ষার জন্য স্বীয় পুত্রের জীবনাহুতি দিয়াছিল বটে কিন্তু উদয় সিংহের চরিত্র সে আত্মোৎসর্গের সার্থকতা সম্পাদন করিতে সমর্থ হয় নাই। উদয় সিংহের ন্যায় অপদার্থ কাপুরুষ নরপতি শিশােদীয় কুলে অতি অল্পই জন্মগ্রহণ করিয়াছে। কিন্তু প্রকৃতি রাজ্যে যেমন অনেক নিয়মেরই ব্যতিক্রম দেখিতে পাওয়া যায়, তেমনি কাপুরুষ অপদার্থ উদয় সিংহের। ন্যায় পিতার গৃহে প্রতাপ সিংহের ন্যায় বীর পুত্রের জন্মগ্রহণও এক আশ্চর্যজনক ব্যাপার। ইতিহাসে উদয় সিংহ শিশােদীয় কুলের কুলাঙ্গার নামে অভিহিত হইয়াছেন এবং মিবারের ইতিহাসে প্রতাপ সিংহ বীর শ্রেষ্ঠ ও বাপ্পা বংশের উজ্জ্বল প্রদীপ বলিয়া কীর্তিত হইয়াছেন। যথার্থই প্রতাপ সিংহের ন্যায় উন্নত চরিত্র? স্বদেশানুরাগী বীর জগতের ইতিহাসে অতি দুলভ! উদয় সিংহের রাজত্বকালে দিল্লীশ্বর প্রবল প্রতাপান্বিত আকবর শাহ চিতাের আক্রমণ করিয়া তাহার ধ্বংশ সাধন। করেন। উদয় সিংহ চিতাের পরিত্যাগ করিয়া জীবন রক্ষা করিলেন, ওদিকে জয়মল্ল পুত্ত প্রভৃতি রাজপুত বীর গণ চতুর্দ্দিক হইতে অনাহুত ভাবে আসিয়া চিতোর ভূমির রক্ষার জন্য জীবনোৎসর্গ করেন। দিল্লীশ্বর আকবরের হস্তে চিতোরের পতন হইল। সেই দিন হতে চিতোরের সুখ সমৃদ্ধির অবসান হইল। চিতোরের গৌরব রবি অস্ত গেল। চিতোরের পতনের চারি বৎসর পরেই উদয় সিংহ গতাসু হইলেন। তিনি উদয়পুরে নূতন রাজধানী স্থাপন করিলেন ওদিকে চিতোর শ্মশান হইল। প্রতাপ সিংহ পিতৃসিংহাসনে আরোহণ করিলেন বটে কিন্তু সে রাজভোেগ, সে রাজত্ব তাঁহার বিড়ম্বনা স্বরূপ হইল! তখন মিবার রাজ্যের দুর্গতির অবস্থা!— আর সে চিতোর নাই—শিশোদীয় কুলের বিক্রম নাই—রাজপুতনার সমুদায় নরপতি দিল্লীশ্বরের বশ্যতা স্বীকার করিয়া তাঁহারই অনুগ্রহে সম্পদ ঐশ্বর্যের শীর্ষস্থান অধিকার করিয়াছে।
+</p><p>প্রতাপসিংহ জানিতেন যে, নিজের সহায় সম্বল কিছু নাই, স্বজাতীয়েরা সকলে আকবরের অধীন হইয়াছেন; এরূপ অবস্থায় স্বাধীনতা রক্ষা করা এক প্রকার অসম্ভব ব্যাপার। তবু তিনি ভীত হইলেন না। বীরদর্পে তাঁহার প্রাণ পূর্ণ! আকবরও তাঁহাকে জব্দ করিবার জন্য অসংখ্য সৈন্য সামন্ত নিযুক্ত করিলেন। তাহারা দলে দলে পর্ব্বতে প্রান্তরে প্রতাপের অনুসন্ধানে ফিরিল। প্রতাপ ভীলদিগের সাহায্যে মধ্যে মধ্যে সম্মুখ সমরে, তাহাদিগকে একেবারে বিপর্য্যস্ত করিয়া তুলিলেন। রাজপুত রাজগণও উচ্চ পদ ও সম্মানের লোভে প্রতাপের শত্রুতা সাধন করিতে লাগিলেন। প্রতাপ ঘৃণাপূর্ব্বক সেই সমুদায় রাজার সহিত সম্বন্ধ পরিত্যাগ করিলেন। তাঁহারা মনে মনে প্রতাপকে সম্ভ্রম ও ভক্তি না করিয়া থাকিতে পারিতেন না। ওদিকে আবার তাঁহার বীরদর্পে তাঁহাদের বড়ই মর্ম্মপীড়া উপস্থিত হইত।
+</p><p>প্রতাপ স্বাধীনতা রক্ষার জন্য যে ক্লেশ সহ্য করিয়াছেন, বোধ হয়, জগতের ইতিহাসে এরূপ দৃষ্টান্ত আর কোথাও দেখিতে পাওয়া যায় না। যিনি রাজার পুত্র, আজন্ম রাজসম্পদে লালিত পালিত, তিনি সর্বস্ব পরিত্যাগ করিয়া সন্ন্যাসীর মত পর্ব্বতে পর্ব্বতে বনে বনে ঘুরিয়া বেড়াইতেন অনাহারে, অনিদ্রায়, দুর্ভাবনায় তাঁহার শরীর একেবারে জীর্ণশীর্ণ হইল। শত্রুগণ অবিরত তাঁহাকে ধরিবার জন্য ঘুরিয়া বেড়াইতেছে, সুযোগ দেখিতেছে। তিনি যে নিশ্চিন্ত হইয়া কোথাও বিশ্রাম করিবেন, সুখে একদণ্ড নিদ্রা যাইবেন বা আহার করিবেন তাহার উপায় নাই। এক দিনেই হয়ত পাঁচবার প্রস্তুত অন্ন পরিত্যাগ করিয়া সকলে পলাইতেছেন। তাঁহার শিশু সন্তানগণ, যাহারা আজন্ম সম্পদে লালিত আজ তাহারা ব্যাধের শিশুর ন্যায় বৃক্ষ তলায় তৃণ শয্যায় শয়ন করে ও বন্য ফল মূল আহার করে। না আছে তাহাদের শয্যা, না আছে তাহাদের বস্ত্র, না পায় তাহারা উদর পৃরিয়া আহার! রাজমহিষী যাহা কিছু পান, স্বহস্তে পাক করিয়া সকলকে দেন, তাহাই তাহারা পরম আনন্দে আহার করে। একদিন সকলে গাছের তলায় আহারে বসিয়াছেন, এমন সময়ে প্রতাপের শিশু কন্যা একে বারে আকুল হইয়া কাঁদিয়া উঠিল। প্রতাপ ব্যস্ত হইয়া দেখেন বন্য বিড়াল তাহার রুটি লইয়া পলাইতেছে, বালিকা ধূলায় পড়িয়া কাঁদিতেছে। হায়রে! মিবারের রাজদুহিতা! আজ একখণ্ড রুটীর জন্য ধূলায় পড়িয়া কাঁদে! প্রতাপের বীর হৃদয় অনেক দুঃখ ক্লেশ সহ্য করিয়াছে, আজ আর পারিল না। গভীর যাতনায় বিশাল নয়নপ্রান্ত দিয়া অশ্রু গড়াইয়া পড়িল। আকুল হইয়া বলিলেন, “হা ভগবন্! আর কতদিন এরূপে স্বাধীনতা রক্ষা করিব!” এতদিনের প্রতিজ্ঞা আজ সহসা বীরহৃদয় পরিত্যাগ করিল! আকবরের নিকট সন্ধি প্রার্থনা করিয়া প্রতাপ এক পত্র লিখিলেন। কিন্তু পরে তাহা আবার ফিরাইয়া লইলেন। একদিন নয়, একমাস নয়, এক বৎসর নয়, এইরূপে পঁচিশ বৎসর প্রতাপ বনে বনে ফিরিলেন, তথাপি শত্রুর সহিত সন্ধি করিলেন না। আকবর আজীবন এত চেষ্টা করিয়াও তাঁহাকে বশীভূত করিতে সক্ষম হন নাই।
+</p><p>আকবর চিতোর নগর ধ্বংস করাতে প্রতাপসিংহের হৃদয়ে দারুণ শোক উপস্থিত হইয়াছিল। সন্তান মাতৃহীন হইলে যেরূপ শোকচিহ্ন ধারণ করে, তিনিও সেইরূপ করিতেন। জননী জন্মভূমির দুর্গতিতে তাঁহার প্রাণে এতই ক্লেশ হইল যে, তিনি সকল প্রকার সুখভোগ পরিত্যাগ করিয়াছিলেন। বৃক্ষপত্রে আহার করিতেন ও ভূমিশয্যায় শয়ন করিতেন। নিজেই যে কেবল এই সকল ক্লেশ বহন করিয়া ক্ষান্ত ছিলেন তাহা নয়। প্রতাপ আদেশ করিয়াছিলেন যে, যে যতদিন পর্য্যন্ত জন্মভূমির দুর্গতির অবসান না হয়, ততদিন তাঁহার বংশের কেহ ভোগসুখ উপভোগ করিতে পারিবে না। তাই আজিও তাঁহার বংশধরগণ বৃক্ষপত্রে আহার না করিয়া পাত্রের নীম্নে একটু পাতা রাখে; তৃণশয্যায় শয়ন করে না বটে, কিন্তু শয্যার নীচে একগাছি তৃণ রাখে। ধন্য প্রতাপের স্বদেশপ্রেম।
+</p>
+
+<p> আকবর প্রতাপের বীরত্ব ও স্বদেশপ্রেম দেখিয়া মুগ্ধ হন। তিনি শতমুখে তাঁহার সাধুবাদ করিতেন বটে, কিন্তু প্রতাপের দর্প চূর্ণ করিবার জন্য তিনি বিধিমতে চেষ্টা করিতে ত্রুটি করেন নাই। কিন্তু তাহার এত চেষ্টা সকলই ব্যর্থ হইল। পঁচিশ বৎসর ধরিয়া অবিরাম সংগ্রাম করিলেন, তথাপি প্রতাপের প্রতাপ চূর্ণ হইল না। আকবরের বিপুল সেনাদল, অগাধ ধনরাশি, তাহার উপর আবার রাজপুত রাজগণ তাঁহার সহায়! আর প্রতাপ একাকী, কতিপয় ভীল ও বিশ্বাসী অনুচরগণ তাঁহার সহায় মাত্র! আকবরের সেনাবলের তুলনায় তাঁহার সেনাত মুষ্টিমেয়। তবে কিসে প্রতাপের এত সাহস? কিসে তিনি সম্রাটের এত চেষ্টা ব্যর্থ করিলেন? কিসের বল তাহা বিধাতাই জানেন। আমরা ভাবিলে অবাক হই। প্রতাপের বিশ্বাসী অনুচরগণ তাঁহাকে প্রাণের অধিক ভালবাসিতেন ও ভক্তি করিতেন। তাঁহারা সকলেই প্রতাপের জন্য প্রাণ দিতে উৎসুক। হলদিঘাটে যে ভীষণ যুদ্ধ হয়, তাহাতে প্রতাপ ও তাঁহার অনুচরগণ অদ্ভুত সাহস ও রণনৈপুণ্য দেখাইয়াছিলেন। সাগরের মত বিশাল যবনসৈন্য, তাহার ভিতর মুষ্টিমেয় প্রতাপের অনুচরগণ কোথায় বিলুপ্ত হইল! কিন্তু প্রতাপের ভয় নাই—তিনি প্রিয় অশ্ব চৈতকে আরোহণ করিয়া অবিরাম যুদ্ধ করিতেছেন। মিবারের রাজছত্র তাঁহার মস্তকে শোভা পাইতেছে। সেই চিহ্ন লক্ষ্য করিয়া শত শত যবন তাঁহাকে সংহার করিবার জন্য ছুটিতেছে। তাঁহার অনুচরগণ তাঁহাকে ঘেরিয়া রহিয়াছে। তাঁহার মস্তকে যে অসি পড়িতেছে, তাহা গ্রহণ করিবার জন্য সকলে মস্তক পাতিয়া দিতেছে। শেষে তাঁহাকে রক্ষা করা আর যায় না দেখিয়া একজন অনুচর আপনার মস্তকে রাজছত্র ধরিল। মুসলমানগণ তাঁহাকে প্রতাপ মনে করিয়া সংহার করিল। ঘোর বিপদ্! প্রতাপ চাহিয়া দেখেন যবনসৈন্য সাগরে তিনি একা অসহায়! অবশেষে আর যুদ্ধক্ষেত্রে থাকা বিফল জানিয়া রণভূমি পরিত্যাগ করিলেন। কিন্তু তাহাতেও সে যাত্রা নিষ্কৃতি পাইলেন না। প্রতাপ যুদ্ধে ক্লান্ত, পরিশ্রান্ত, সর্ব্বাঙ্গ রক্তাক্ত। দুইজন অশ্বারোহী সৈনিক তাঁহার পশ্চাতে ছুটিল। তাঁহার অশ্বও ক্লান্ত পরিশ্রান্ত আর সে ছুটিতে পারে না। কিন্তু তবুও সে প্রভুকে রক্ষা করিবার জন্য প্রাণপণে ছুটিল। সহসা প্রতাপ বন্দুকের শব্দ শুনিলেন, চাহিয়া দেখেন একজন মাত্র সৈনিক দ্রুতবেগে তাঁহার পশ্চাতে আসিতেছে। সে ব্যক্তি তাঁহার মাতৃভাষায় তাঁহাকে ডাকিয়া থামিতে বলিল,—“হো নীল ঘোড়াকা আসোয়ার।” প্রতাপ চমকিত হইলেন। এ কে? চাহিয়া দেখেন আর কেহ নয়, তাঁহার সহোদর শক্তসিংহ। দুবৃত্ত শক্ত তাঁহার শত্রুতা সাধন করিতে শত্রুদলে মিশিয়াছিল। তাহাকে দেখিয়া তাঁহার হৃদয় রোষে, বিস্ময়ে, দুঃখে পূর্ণ হইল। তিনি অসি হস্তে ফিরিয়া দাঁড়াইলেন। “এস নরাধম, এস কুলকলঙ্ক, আজ কণ্টককে নির্ম্মূল করি,” বলিয়া সেই নির্জ্জন গিরিদেশ কম্পিত করিয়া প্রতাপ গর্জ্জন করিয়া উঠিলেন। কিন্তু এ কি! শক্তের মুখের দিকে চাহিয়া প্রতাপ অবাক্ হইলেন। তাহার মুখ স্নান, লজ্জায় শক্ত মস্তক অবনত করিয়া আছে। প্রতাপ বুঝিলেন, শক্ত আর শত্রু নয়; শক্ত তাঁহার ভাই। শক্ত আসিয়া প্রতাপের পদতলে পড়িয়া এই বলিয়া ক্ষমা ভিক্ষা করিলেন—“দাদা! এ কুলকলঙ্ককে মার্জ্জনা করুন, আপনার মত ভ্রাতার শক্রতা সাধন করিয়া যে মহাপাতক করিয়াছি, তাহার আর প্রায়শ্চিত্ত নাই। দাদা! অধমকে চরণে স্থান দিন।”
+</p><p>সেই ঘোর বিপদের দিনে প্রতাপ ভ্রাতৃপ্রেম ফিরিয়া পাইলেন। এতদিনের হারানিধি এ ঘোর দুর্দ্দিনে তাঁহার মিলিল। অভূতপূর্ব্বভাবে, কৃতজ্ঞতা ও আনন্দে তাঁহার হৃদয় উচ্ছ্বসিত হইল। তাঁহার মুখে একটিও বাক্য সরিল না। তিনি ভ্রাতাকে উঠাইয়া হৃদয়ে চাপিয়া ধরিলেন। আর অবিরল অশ্রুধারায় তাঁহার বক্ষঃস্থল ভাসিয়া যাইতে লাগিল। সেই নির্জ্জন গিরিদেশে সন্ধ্যার অন্ধকারে ভ্রাতায় ভ্রাতায় মিলন হইল। দুই বীর পরস্পরকে বাহুপাশে বাঁধিয়া কেবল কাঁদিলেন। আবার হরিষে বিষাদ! প্রতাপের প্রিয় অশ্ব চৈতক প্রভুর পদতলে পড়িয়া তাঁহার মুখের দিকে চাহিয়া প্রাণ বিসর্জ্জন করিল।<sup><a href="#cite_note-1-n71">[১]</a></sup> প্রতাপ বলিয়া উঠিলেন,—“চৈতকরে! এতদিন পরে আজ শত্রুর হস্ত হইতে আমাকে উদ্ধার করিয়া, ভ্রাতার হস্তে নিরাপদে রাখিয়া অবসর বুঝিয়া তুই বিদায় লইলি।” চৈতকের দুঃখে তাঁহার চক্ষু দিয়া আবার নীরবে অশ্রুধারা পড়িতে লাগিল।
+</p><p>শক্ত বলিলেন —“দাদা! আপনি আমার অশ্বটী গ্রহণ করুন।
+</p><p>প্রতাপ। এই রাত্রে বনের ভিতর দিয়া তুমি কিরূপে ফিরিবে?
+</p>
+
+<p> শক্ত। যে মুসলমান সৈনিক দুটী আপনার পশ্চাতে ছুটিয়াছিল, তাহাদিগকে আমি হত্যা করিয়াছি। তাহাদের একটির অশ্ব আমি লইব।
+</p><p>প্রতাপ। সেকি, তুমি তাহাদিগকে হত্যা করিয়াছ!
+</p><p>শক্ত। আপনি যুদ্ধক্ষেত্র হইতে যেরূপ বিপন্ন অবস্থায় বিদায় লইলেন, তাহা দেখিয়া আমার পাষাণ হৃদয় আর স্থির থাকিতে পারিল না। আমি আপনাকে রক্ষা করিবার জন্য তাহাদের পশ্চাতে ছুটিলাম। তাহাদিগকে হত্যা করিয়া আসিতেছি।
+</p><p>প্রতাপ নির্ব্বাক্ হইয়া কৃতজ্ঞচিত্তে শক্তের মুখের দিকে চাহিয়া রহিলেন। বলিলেন,—“আজ আমি যুদ্ধে পরাজিত, অসহায়, একাকী; আজ আমার আমার প্রিয় চৈতক বিদায় লইয়াছে; তবু আমি সুখী। ভাইরে! আজ আমি হারনিধি পাইয়াছি। তোমার কুশল হউক। ভগবান্ তোমায় রক্ষা করুন।” শক্ত প্রতাপের চরণধূলি লইয়া বিদায় গ্রহণ করিলেন।
+</p>
+
+<div><hr/></div>
+
+
+</div><ol><li><span><a href="#cite_ref-1-n69">↑</a></span> <span>যেখানে চৈতকের মৃত্যু হয় তাহার উপর প্রতাপ এক সমাধি নির্ম্মাণ করেন। আজও লোকে তাহাকে “চৈতক্‌কা চবুত্রা” বলে।</span>
+</li>
+</ol></section>
+<section><div>
+
+<h2>শক্তসিংহ।</h2>
+<p>প্রতাপসিংহের পিতা উদয়সিংহের সর্ব্বশুদ্ধ চতুর্বিশতি পুত্র ছিল, তন্মধ্যে প্রতাপ সর্ব্ব জ্যেষ্ঠ ও শক্তসিংহ দ্বিতীয়। যখন শক্ত নিতান্ত শিশু তখনই তিনি এমন সাহস ও বীরত্বের পরিচয় দিয়াছিলেন যে, কালে যে তিনি একজন মহাবীর হইবেন, তাহা সকলেই অনুমান করিয়াছিলেন। কথিত আছে, শক্তের কোষ্ঠীপত্রিকায় লিখিত ছিল যে, তিনি উত্তর কালে মিবারের কলঙ্কস্বরূপ হইবেন। এই কারণে প্রথম হইতেই উদয়সিংহ পুত্রের উপর নিতান্ত বীতরাগ ছিলেন; এবং শক্ত যত বয়ঃপ্রাপ্ত হইতে লাগিলেন ততই পিতার এই ভাব দুরীভূত না হইয়া বরং দিন দিন বৃদ্ধি পাইতে লাগিল। এমন কি শক্ত যেন তাঁহার চক্ষুশূল হইয়া উঠিল। শক্ত যখন নিতান্ত বালক তখন একদিন তিনি রাজসভায় পিতার নিকট খেলা করিতেছিলেন | সেই সময় একজন অস্ত্রকার একখানি তরবারি লইয়া রাণার নিকট উপস্থিত হইল। অস্ত্রের তীক্ষ্ণতা সম্বন্ধে নানারূপ কথা হইতেছে, এমন সময় বালক শক্ত তাড়াতাড়ি আসিয়া পিতাকে জিজ্ঞাসা করিলেন,—“পিতঃ এই অস্ত্র দিয়া অস্থি মাংস কি কাটা যাইবে?” এই বলিয়া আপনার সুকোমল বাহুতে সজোরে তরবারি দিয়া এক আঘাত করিলেন; তৎক্ষণাৎ রক্তস্রোতে রাণার আসন ও সভাস্থল ভাসিয়া গেল। রাণা বিস্ময়ে পুত্রের মুখের দিকে চাহিলেন। মুহূর্ত্তের মধ্যে তাঁহার মুখ ক্রোধে রক্তবর্ণ হইয়া উঠিল। তিনি ভাবিলেন, দৈবজ্ঞ ঠিক বলিয়াছেন, কি ভয়ানক ব্যাপার! নিশ্চয় এই সন্তান বাঁচিয়া থাকিলে মিবারের সর্ব্বনাশ করিবে; এমন পুত্রের মৃত্যুই ভাল। এইরূপ স্থির করিয়া তখনই ঘাতককে বলিলেন, “যাও, এখনই ইহাকে বধ কর, এই কালসর্প বাঁচিয়া থাকিতে আমার আর শান্তি নাই।” অমনি রাণার আদেশ পালিত হইবার উদ্যোগ হইতে লাগিল। ঘাতক শক্তকে বধ্যভূমিতে লইয়া গেল এমন সময়ে একজন সর্দ্দার রাণার নিকট করযোড়ে নিবেদন করিলেন, “মহারাজ, আপনি অনেকবার আমার প্রতি সন্তুষ্ট হইয়া বরদান করিতে চাহিয়াছিলেন, আমি এতদিন লই নাই; আজ যদি কৃপা করিয়া কর্ণপাত করেন তবে একটি প্রার্থনা করি।”
+</p><p>রাণ বলিলেন, “কি প্রার্থনা বলুন, আমি এখনই তাহা পূর্ণ করিতেছি।” সর্দ্দার কহিলেন “আমার সন্তান নাই, শক্তকে আমায় দান করুণ” রাণা প্রার্থনা পূর্ণ করিতে প্রতিশ্রুত হইলেন। কাজেই শক্ত সে যাত্রা রক্ষা পাইলেন, এবং সেইদিন হইতে সেই সর্দ্দারের পোষ্যপুত্ররূপে তাঁহার নিকট বাস করিতে লাগিলেন। শক্ত বয়ঃপ্রাপ্ত হইলে, প্রতাপ তাঁহাকে আপনার নিকট অনিয়া রাখিলেন; কিন্তু দুই বীর ভ্রাতায় শান্তি-সুখে অধিক দিন বাস করা ঘটিল না। একদিন দুই জনে মিলিয়া মৃগয়া করিতে গিয়াছেন। পথে লক্ষ্য সম্বন্ধে কথা লইয়া দুই ভ্রাতায় মহা তর্ক বিতর্ক হইল। কিছুতেই আর মীমাংসা হয় না, শক্তও নিরস্ত হইবার পাত্র নহে, অবশেষে প্রতাপ অত্যন্ত ক্রুদ্ধ হইয়া হস্তের শেল উদ্যত করিয়া এই বলিয়া হুঙ্কার করিয়া উঠিলেন, “এস, তবে দেখি কার লক্ষ্য অব্যর্থ।” অমনি শক্ত ও মহাতেজে বলিয়া উঠিলেন, “আচ্ছা, তবে আসুন দেখি।” সর্ব্বনাশ! ভ্রাতৃদ্বয় শেল হস্তে পরস্পরকে বিনাশ করিতে উদ্যত।—বীরপ্রথা অনুসারে তখনই শক্ত প্রতাপের পদধূলি লইলেন, প্রতাপও তাঁহাকে আশীর্ব্বাদ করিলেন। উপস্থিত সকলে এই ব্যাপার দেখিয়া অবাক হইয়া রহিল। সামান্য কথা লইয়া মিবারে রাজকুলের সর্ব্বনাশ!! দুই বীর বুঝি চিরদিনের মত বিদায় গ্রহণ করেন। তথাপি সকলে নির্ব্বাক, সকলে যেন বজ্রাহত। অগ্রসর হইয়া একটা কথা বলে, এমন শক্তি কাহারও নাই। কিন্তু নিমেষের মধ্যে মহাবেগে ঐ কে দুই হস্ত তুলিয়া “মহারাজ, করেন কি, করেন কি, ক্ষান্ত হউন” বলিয়া ছুটিয়া আসিলেন। সকলে বিস্ময়ে চাহিয়া দেখে, রাজপুরােহিত স্বয়ং মধ্যে পড়িয়া বিবাদভঞ্জনার্থ উভয় ভ্রাতাকে হস্তে ধরিয়া অনুনয় বিনয়, করিয়া তাঁহাদিগকে প্রকৃতিস্থ করিবার চেষ্টা করিতেছেন। কিন্তু হায়! তাঁহার এত অনুনয় বিনয় এত আয়াস সকলই বিফল হইল। কিছুতেই তাঁহাদিগকে শান্ত করিতে পারিলেন না। ব্রাহ্মণ আর কোন উপায় না দেখিয়া তীক্ষ্ণ ছুরিকা আপনার হৃদয়ে বিদ্ধ করিলেন। “সর্ব্বনাশ! সর্ব্বনাশ! ব্রহ্মহত্যা!” বলিয়া সকলে চীৎকার করিয়া উঠিল। ভ্রাতৃদ্বয়ের চরণতলে পড়িয়া পরমমিত্র কুলপুরােহিত প্রাণত্যাগ করিলেন। ভ্রাতৃদয়ের হস্তের শেল ভূমিতে পড়িয়া গেল। যুদ্ধ থামিয়া গেল। এখন কোথায় বা ক্রোধ আর কোথায় বা জিঘাংসা! দুই জনেরই জ্ঞানােদয় হইল। তাই ত, কি সর্ব্বনাশ হইল! লজ্জায় দুঃখে দুইজনে অধােবদন হইলেন। প্রতাপ যথাবিধি পুরোহিতের অন্ত্যেষ্টিক্রিয়া ও শ্রাদ্ধাদি করিলেন এবং যেখানে তিনি প্রাণত্যাগ করেন, সেখানে তাঁহার পবিত্র স্মৃতি চিরজাগ্রত রাখিবার জন্য একটি স্তম্ভ নির্ম্মাণ করাইলেন। সেই স্তম্ভটি আজও সেখানে দাঁড়াইয়া পুরোহিতের আশ্চর্য্য রাজভক্তি ও অপূর্ব্ব আত্মত্যাগের জ্বলন্ত সাক্ষ্য প্রদান করিতেছে। সেইদিনই প্রতাপ শক্তসিংহকে মিবার রাজ্য পরিত্যাগ করিয়া যাইতে আদেশ করিলেন। তেজস্বী শক্ত “যে আজ্ঞা” বলিয়া প্রতাপের চরণধূলি লইয়া, তাঁহার রাজ্য পরিত্যাগ করিয়া চলিয়া গেলেন। প্রতিহিংসা চরিতার্থ করিবার জন্য শত্রুদিগের সহিত মিলিত হইলেন। হলদিঘাটের যুদ্ধের পর ভ্রাতৃদ্বয়ের মিলন হইল। সেইদিন হইতে তাঁহাদিগের মিলন চিরদিন অক্ষুণ্ণ ছিল।
+</p>
+
+<div><hr/></div>
+</div></section>
+<section><div>
+
+<h2>অটল প্রতিজ্ঞা।</h2>
+<p>যে বংশে মহাত্মা চণ্ড জন্মগ্রহণ করিয়া মিবারের ইতিহাসে আত্মত্যাগের অপূর্ব্ব দৃষ্টান্ত দেখাইয়া গিয়াছেন; সেই বংশেই আর একজন রাজকুমার পিতার মনস্তুষ্টির জন্য স্বেচ্ছায় জন্মভূমি হইতে চিরনির্ব্বাসিত হইয়াছিলেন। তিনি মিবার-রাজ রাণা রাজসিংহের জ্যেষ্ঠ পুত্র ভীম সিংহ। রাজপুতের রসনা হইতে একবার যে বাক্য উচ্চারিত হইত প্রাণান্তেও তাহার বিন্দুমাত্র ব্যতিক্রম হইত না। রাজপুতের প্রতিজ্ঞা অটল প্রতিজ্ঞা।
+</p><p>সেকালে রাজপুত বংশে পুত্র ভূমিষ্ঠ হইলে পিতা সন্তানের হস্তে অমরধব নামে এক প্রকার তৃণের বলয় পরাইয়া দিতেন। পিতা এইরূপ বলয় পরাইয়া দিলে, পুত্রের আর কোন অমঙ্গল হইবে না এইরূপ বিশ্বাস ছিল। ভীমসিংহের পিতা রাজসিংহের অনেক রাণী ছিলেন। তাঁহাদিগের মধ্যে একজনকে রাণা রাজসিংহ অত্যন্ত ভাল বাসিতেন। ভীম যখন ভূমিষ্ঠ হয় তাহার অল্পক্ষণ পরেই রাজসিংহের সেই প্রিয়তমা রাণীরও একটি পুত্র ভূমিষ্ঠ হইল। রাণা একেবারে দুই পুত্রের জন্ম সংবাদ পাইলেন। তিনি একগাছি অমরধব লইয়া পুত্রের মুখ দেখিতে গেলেন এবং যদিও ভীম অগ্রে ভূমিষ্ঠ হইয়াছিল, তথাপি সেই প্রিয়তমা রাণীর পুত্রের হস্তে অমরধব পরাইয়া তাহার মুখে চুম্বন দিয়া তাহাকে কোলে লইলেন। সেইক্ষণ হইতে কনিষ্ঠ ভ্রাতা জয়সিংহ পিতার আদর যত্নের অধিকারী হইল। অভাগা ভীম জন্মাবধি পিতৃস্নেহে একপ্রকার বঞ্চিত ছিল। দেখিতে দেখিতে শােভায়, সৌন্দর্য্যে, বীরদর্পে ভীম পূর্ণাবয়ব হইয়া উঠিল। জয়সিংহও বীরশিশু; কিন্তু ভীম সকল বিষয়েই তাহা হইতে শ্রেষ্ঠ একথা সকলেই বুঝিত, কেবল পিতা রাজসিংহ বুঝিতেন না। যদি বা তাহাদিগের পার্থক্য বুঝিতে পারিতেন, তবে মনে মনে ভীমের সকল শ্রেষ্ঠতা জয়সিংহ কেন পাইল না বলিয়া ক্ষুব্ধ হইতেন! কিন্তু পাছে জয়সিংহের প্রতি তাঁহার এত স্নেহ দেখিয়া ভীমের হিংসা হয় এই ভয়ে সর্ব্বদা সাবধান থাকিতেন। তাঁহার মনে সর্ব্বদাই চিন্তা, সর্ব্বদাই আতঙ্ক হইত যে তাঁহার মৃত্যুর পর দুই ভ্রাতা রাজ্য লইয়া ঘোর বিবাদ করিয়া মিবার ভূমি শ্মশান করিবে। ভীমসিংহের হস্তে হয় ত জয়সিংহ প্রাণ হারাইবে! কিন্তু কি উপায় করিবেন কিছুই বুঝিতে পারিতেন না। একদিন ভাবিতে ভাবিতে তাঁহার হৃদয় এমন উত্তেজিত হইয়া উঠিল যে তিনি পুত্রদ্বয়কে তৎক্ষণাৎ নিকটে ডাকিলেন। তখন তাহারা আর বালক নয়, যৌবনের কান্তিতে দুজনেই পরম সুন্দর। বীর ভীম পিতার চরণ বন্দনা করিয়া বক্ষ স্ফীত করিয়া দাঁড়াইল।
+</p><p>পিতা দুজনের দিকে চাহিয়া বলিলেন, “ভীম তুমি একদিন মিবারের রাণা হইবে, এই আশা যদি হৃদয়ে পোষণ কর, তবে এই তরবারি দিতেছি আমার সাক্ষাতেই ভ্রাতার প্রাণবধ কর। ভবিষ্যতে যেন ইহার রক্তে এবং বীরগণের রক্তে মিবার ভূমি কলঙ্কিত না হয়।” ভীমের বড় বড় উজ্জ্বল চক্ষু দুইটী জ্বলিয়া উঠিল, তিনি পিতার দিকে চাহিলেন দেখিলেন গভীর আবেগে পিতার দেহ কাঁপিতেছে। ভ্রাতার দিকে চাহিয়া দেখিলেন, সেও পিতার মুখের দিকে অবাক হইয়া চাহিয়া আছে! ভীমের চক্ষু জলে পূর্ণ হইয়া আসিল! তিনি গদ্গদ স্বরে বলিলেন, “মহারাজ! স্থির হউন! পিতঃ আপনি ব্যথিত হইবেন না। আজ আপনার চরণ স্পর্শ করিয়া বলিতেছি, মিবার সিংহাসনের আশা আমি জন্মের মত বিসর্জ্জন দিলাম। আমি ভ্রাতার কেশ এ হস্তে স্পর্শ করিব না। জয়সিংহই রাণা হইবে। সে আপনার দেহের অধিকারী; দুর্ভাগা আমি চিরদিনই আপনার হৃদয় হইতে নির্ব্বাসিত। আজ আপনার রাজ্য এই পবিত্র মিবার ভূমিও ত্যাগ করিয়া যাইব। জন্মভূমি ত্যাগ না করিয়া আমি জলস্পর্শ করিব না। দুঃখিনী জননী রহিলেন দয়া করিয়া তাঁহাকে সান্ত্বনা দিবেন।” এই বলিয়া পিতার চরণ ধূলি মস্তকে লইয়া ভীমসিংহ আপনার অশ্বটি আনিয়া লম্ফপ্রদান পূর্ব্বক তাহাতে আরোহণ করিয়া, চিরদিনের মত মিবার রাজ্য ত্যাগ করিয়া চলিলেন। তখন দারুণ গ্রীষ্মকাল, পথে ক্লান্ত ও তৃষ্ণার্ত্ত হইয়া এক নদীতটে বসিলেন। জল পান করিবেন এমন সময় পিতার নিকট প্রতিজ্ঞার কথা স্মরণ হইল,—অমনি একলম্ফে ঘোড়ায় উঠিলেন, এবং মিবার রাজ্যের সীমা পার হইয়া তবে জল পান করিয়া প্রাণ রক্ষা করিলেন।—যতদিন জীবিত ছিলেন ভীম আর মিবার রাজ্যে পদার্পণ করেন নাই—সুদুর কাবুলে তাঁহার মৃত্যু হয়।
+</p>
+
+<div><hr/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>কৃষ্ণকুমারী।</h2>
+<p>মুসলমান বীরগণ রাজপুতানার যে বীরজাতির সহিত যুদ্ধ করিয়াছিলেন, উনবিংশ শতাব্দীর প্রারম্ভে ইংরাজগণ তাঁহাদের বংশধরদিগকে দুর্গতির চরম সীমায় উপনীত দেখেন। আটশত বৎসরের মধ্যে ভারতবর্ষের এই মহাপ্রতাপশালী বীরজাতি হীনবীর্য্য ও দুর্ব্বল হইয়া পড়ে। এই সময় মহারাষ্ট্রীয় জাতি উত্থান করিয়া রাজপুতানার দুর্দ্দশার একশেষ করিল। রাজপুত জাতির চরম দুর্গতির অবস্থায় মিবারের রাজপদে ভীমসিংহ নামে এক অপদার্থ নরপতি সমাসীন হইলেন। যে রাজপুতগণ বাবর,আকবর,আওরাংজেবের প্রতিদ্বন্দীতা করিতে ভীত কিম্বা পশ্চাৎপদ হন নাই, তাহাদিগেরই বংশধরগণ উনবিংশ শতাব্দীর প্রারম্ভে মারাঠা দস্যুদিগের উৎপাতে জীবন্মৃত হইয়া দিনপাত করিতেছিলেন। জগতে কাহারও সৌভাগ্য-রবি ভাগ্যাকাশে চির উদিত থাকে না। যাহারই বৃদ্ধি তাহারই ক্ষয়! উত্থান হইলেই পতন হয়। রাজপুত জাতির বীরত্বের গৌরবও ভারত-ইতিহাসে চিরস্থায়ী হইল না। এখন সে সকল অপূর্ব্ব কাহিনী উপন্যাসের আকার ধারণ করিয়া স্মৃতি-ভাণ্ডারে সঞ্চিত হইয়াছে। রাজপুতের বীরত্বলীলা সমাপ্ত হইয়াছে বটে; কিন্তু এই বর্ত্তমান যুগের প্রাক্‌কালেই একটী সুকুমারী সৌন্দর্য্যময়ী রাজপুতবালিকা জাতীয় মহত্ব ও আত্মত্যাগের অতুল দৃষ্টান্ত দেখাইয়া তদানীন্তন ভারতবাসী-ইংরাজদিগকেও বিস্মিত ও চমকিত করিয়া দিয়াছিল!—সে বীরবালা, উদয়পুরের রাণী ভীমসিংহের ষোড়শবর্ষীয়া কন্যা ভুবনমোহিনী কৃষ্ণকুমারী। কৃষ্ণকুমারী কুক্ষণে অতুলরূপের আধার হইয়া জন্মগ্রহণ করিয়াছিলেন। যে সৌন্দর্য্য বাল্যে জনক জননী এবং পৌরজনদিগকে মুগ্ধ করিয়া রাখিয়াছিল তাহাই যৌবনে তাহার পিতৃরাজ্যকে ভীষণ যুদ্ধক্ষেত্রে পরিণত করিয়া তুলিল। জয়পুরের রাণা জগৎ সিংহ এবং যোধপুরের অধিপতি মানসিংহ উভয়েই কৃষ্ণার পাণিগ্রহণের জন্য সর্ব্বস্ব পণ করিলেন। বিপুল বাহিনী লইয়া উভয়েই রাণার রাজ্য আক্রমণ করিলেন। ভীমসিংহ জয়পুরাধিপতি জগৎ সিংহের সহিত কৃষ্ণার বিবাহ সম্বন্ধ এক প্রকার স্থির করিয়াছিলেন কিন্তু মানসিংহ তাহাতে প্রতিবাদী হইলেন। তিনি রাণা ভীম সিংহকে বলিয়া পাঠাইলেন “কৃষ্ণকুমারী তাঁহার হস্তে সমর্পিতা না হইলে উদয়পুর রাজ্যের সর্ব্বনাশ হইবে।” এই সময়ে রাজপুতানার সমুদায় সর্দ্দারগণ একতম পক্ষ আশ্রয় করিয়া পরস্পরের সহিত ঘোর যুদ্ধে প্রবৃত্ত হইলেন। উদয়পুরের রাণা ভীম সিংহ একে হীনপ্রভ, নির্বীর্য্য এই সকল শত্রুর আক্রমণে অত্যাচারে একেবারে জর্জ্জরিত হইয়া পড়িলেন।
+</p><p>কুক্ষণে আমীর খাঁ নামে এক পাঠান দস্যু সদলে এই বিবাদমান শত্রুগণের মধ্যে উপস্থিত হইয়া ভীষণ ব্যাপার করিয়া তুলিল। সে দুরাত্মা অর্থলোভে কাহাকেও দলন কাহাকেও হনন করিয়া বিবিধ লোমহর্ষণ ব্যাপারের অনুষ্ঠান করিতে লাগিল। উদয়পুরের অপদার্থ বিপন্ন রাণা ভীম সিংহকে নানা প্রকার বিভীষিকা দেখাইয়া সন্ত্রস্ত করিয়া তুলিল। ভীম সিংহ সুন্দরী কন্যা লইয়া ঘোর বিপদে মগ্ন হইলেন। তাঁহার ক্ষুদ্র রাজ্যখানি একেবারে ছারখার হইয়া যাইবার উপক্রম হইল। দুবৃত্ত আমীর খাঁ এই সময় রাণার নিকট এক ভীষণ প্রস্তাব উত্থাপন করিলেন “কৃষ্ণকুমারীর জন্যই এত বিবাদ বিসম্বাদ এত অনিষ্টপাত হইয়াছে, কৃষ্ণা জীবিত থাকিতে ইহার নিবৃত্তি নাই। অতএব তাহাকে হত্যা করাই একমাত্র প্রশস্ত উপায়।” রাণা ভীম সিংহ এমনই বিপদে মূহ্যমান্ হইয়াছিলেন, যে বিপদুদ্ধারের ইহাই একমাত্র উপায় বলিয়া তাহার প্রতীতি হইল। রাণা স্বর্গীয় অপত্যস্নেহে জলাঞ্জলি দিয়া ভীরু কাপুরুষের ন্যায় এই লোমহর্ষণ প্রস্তাবে সম্মত হইলেন। কালের কি পরিবর্ত্তন! এই ভীমসিংহই শিশোদীয় কুলোদ্ভব প্রতাপ সিংহের বংশধর। এই বংশেরই কুলবধু পদ্মিনীর সৌন্দর্য্যে মিবার রাজ্যের কি দুর্দ্দশা হইয়াছিল তাহা কি রাণা ভীম সিংহ একেবারেই বিস্মৃত হইয়াছিলেন। পদ্মিনীকে হত্যা করিয়া কেহ বিপদ সাগর হইতে উত্তীর্ণ হইবার প্রস্তাব করে নাই। পদ্মিনীর রক্ষার জন্য রাজপুত বীরগণ সমরসাগরে ঝম্প প্রদান করিয়া প্রাণত্যাগ করিয়াছিল। সহস্র সহস্র রাজপুতরমণী চিতানলে দেহ ভস্মসাৎ করিয়াছিলেন। তথাপি পদ্মিনীবধের প্রস্তাব কাহারও হৃদয়ে প্রবেশ করে নাই; আর আজ সেই বংশোদ্ভব ভীম সিংহ নিরপরাধ কন্যাকে স্বহস্তে বলি দিয়া তুচ্ছ সিংহাসন রক্ষার জন্য ব্যাকুল হইলেন! মানবে মানবে এতই প্রভেদ। পদ্মিনীপতি ভীম সিংহে এবং কৃষ্ণকুমারীর পিতা ভীমসিংহে কি প্রভেদ! তখনও কি চিতোরের দুর্দ্দশার একশেষ হয় নাই! এক্ষণে রাণার নিকট বিপদের বিভীষিকাই প্রাণান্তকর বলিয়া বোধ হইল! বিপদ সাগরে ঝম্প প্রদান করা দূরে থাক, কন্যা হত্যা করিয়া নিশ্চিন্ত হইবার বাসনা তাঁহার হৃদয়কে অধিকার করিল! কাপুরুষ ভীম সিংহ বাপ্পা বংশোদ্ভব কুলাঙ্গার হইলেও তদীয় আত্মজা কৃষ্ণা রাজপুত কন্যার আদর্শ স্থানীয়া। পিতার হৃদয়ে রাজপুত জাতির বীর্য্যাগ্নি নির্ব্বাপিত হইলেও তাঁহার কন্যার হৃদয়ে সে অগ্নি প্রজ্জ্বলিত ছিল। যখন কৃষ্ণার হত্যাসাধন, রাণা ভীম সিংহের জীবন এবং রাজ্য রক্ষার একমাত্র উপায় বলিয়া নির্ণিত হইল, তখন এই পৈশাচিক কাণ্ডের অভিনেতা নির্ব্বাচন দুরূহ ব্যাপার হইয়া উঠিল! স্বর্ণপ্রতিমা নিরপরাধ বালিকার কোমল দেহে অস্ত্রাঘাত করিতে কেহই স্বীকৃত হইল না। রাণা দৌলত সিংহ নামে একজন বিশ্বস্ত আত্মীয়কে কৃষ্ণাকে বলি দিবার প্রস্তাব করিলেন। তিনি এই অশ্রুতপূর্ব্ব পৈশাচিক প্রস্তাবের অবতারণা শুনিয়া দুঃখ, ঘৃণা ও রোষে অধীর হইয়া চীৎকার করিয়া বলিয়া উঠিলেন “যে রসনা এই নৃশংস প্রস্তাব করিল, ধিক তাহাকে শতধিক্ মহারাজ! আমি রাজভক্ত বটে, কিন্তু এরূপ পৈশাচিক; কাণ্ডের অভিনয় করিয়া যদি রাজভক্তির পরিচয় দিতে হয়,তবে এমন রাজভক্তি অতল জলে বিসর্জ্জন করিতেছি! যে রসনা এ পাপ বাক্য উচ্চারণ করিয়াছে তাহা শতধা হউক!” একজন সামন্তের মুখে এই কঠোর বাক্য শুনিয়াও রাণার চৈতন্য হইল না! হায়! মানব চিত্ত কি অপূর্ব্ব বস্তু! অগত্যা রাণার এক বৈমাত্রেয় ভ্রাতা এই প্রস্তাব কার্য্যে পরিণত করিতে স্বীকৃত হইল! সেই পামর তীক্ষ্ণ ছুরিকা হস্তে লইয়া কৃষ্ণকুমারীকে সম্মুখে আহ্বান করিল। নিষ্কলঙ্ক পবিত্র সৌন্দর্য্যরাশি লইয়া কৃষ্ণা প্রসন্নবদনে সম্মুখে আসিয়া দণ্ডায়মান হইল। সেই অপরূপ দেবী মূর্ত্তি দেখিয়া পামরের হৃদয় কম্পিত হইল হস্ত সহসা অবশ হইয়া পড়িল। তিনি আর কৃষ্ণার মুখের দিকে চাহিতে পারিলেন না; সহসা সে গৃহ হইতে দ্রুত পদে বহির্গত হইলেন। ভীম সিংহকে গিয়া বলিলেন “না মহারাজ! এমন কোন পামর নাই যে সে দেবীমূর্ত্তিকে আঘাত করিতে পারে।” এই নন্দন পারিজাত কে দলন করিবে? কেহই এ কর্ম্মে অগ্রসর হইল না। অবশেষে কৃষ্ণার জননী অহল্যাবাইয়ের কর্ণে এই ভীষণ সংবাদ পৌঁছিল। তিনি শোকে দুঃখে রোষে ক্ষিপ্তপ্রায় হইলেন। তাঁহার হাহাকার ও ক্রন্দনে রাজবাটী নিনাদিত হইল! তিনি পতির চরণে পড়িয়া কত অনুনয় কত কাতর প্রার্থনা করিলেন, অবশেষে হস্ত দুখানি উর্দ্ধে তুলিয়া কত অভিসম্পাৎ করিলেন। ভীম সিংহের হৃদয় কি বজ্রের আকার ধারণ করিয়াছিল! কিছুতেই তাঁহার ভীষণ অভিসন্ধি শিথিল হইল না। রাজপুরীতে সর্ব্বত্রই আর্ত্তনাদ! সর্ব্বত্রই হাহাকার— পরিচারিকাগণ শোকে বিহ্বল। কে কাহাকে সান্ত্বনা করে, সকলের মুখেই এক বাণী “হা বিধাতঃ! রক্ষা কর! রক্ষা কর! আমাদের প্রাণ পুত্তলিকা কৃষ্ণাকে রক্ষা কর!” কে রক্ষা করিবে? জনক জননীই সন্তানের রক্ষক, সন্তানের চির আশ্রয়! আজ সেই জন্মদাতা চির আশ্রয় পিতাই হন্তা। অভাগিনী কৃষ্ণার আর আশ্রয় কে? সকলেই শোকার্ত্ত! সকলেই আত্মহারা! কেবল এই ষোড়শী সুকুমারী বালিকা স্থির, ধীর, শান্ত আত্মস্থ ও নির্ভীক! কৃষ্ণাই সকলকে এই দুর্দ্দিনে সান্তনা দিতেছে। বারম্বার জননীর কণ্ঠালিঙ্গন করিয়া বলিতেছে “মা তুমি বীরকন্যা, বীরনারী তুমি কেন সামান্য নারীর ন্যায় রোদন করিতেছ? রাজপুতরমণী কি কোন দিনও জীবনোৎসর্গ করিতে ভীত হইয়াছে? মাগো! যে বংশে জন্ম আমার সে বংশের নারীগণ কখনও মৃত্যুকে ভয় করে না। মা তোমারই মুখে জহর ব্রতের কথা শুনিয়াছি। কেন জননি আজ তুমি পূর্ব্বকথা বিস্মৃত হইতেছ। যুগে যুগে কত সহস্র সহস্র রাজপুতবালা জ্বলন্ত চিতায় প্রাণ বিসর্জ্জন করিয়াছে। রাজপুতবালার জীবনাহুতি কি নূতন ব্যাপার। মাগো! রাজপুতকন্যাত জীবন বিসর্জ্জন দিবার জন্যই জন্মগ্রহণ করে। তবে যে আমি এত দিন এত সুখে তোমাদের ক্রোড়ে অতিবাহিত করিয়াছি ইহাই আমার পরম সৌভাগ্য! আজ আমার জীবন সার্থক যে আমার জীবন দিয়া পিতাকে বিপদমুক্ত করিতে পারিলাম। এ সৌভাগ্য কয় জনার ভাগ্যে ঘটে। তোমার গর্ভে জন্মিগাছি বলিয়াই আজ প্রসন্নমনে মৃত্যুকে আলিঙ্গন করিতেছি। জননী আমার শেষ অনুরোধ রক্ষা কর—শোক করিও না, পিতাকে অভিসম্পাৎ করিও না। আমার পিতৃকুলের কল্যাণ হউক এই প্রার্থনা করি। বিধাতার নিয়তি পূর্ণ হইল আর শোক করিওনা জননি।” কৃষ্ণার মাতা শোকে উন্মাদিনী হইয়া অনশনে প্রাণত্যাগ করিলেন। কৃষ্ণার বিনাশের জন্য অবশেষে হলাহল প্রস্তুত হইল! এক পাপীয়সী বিষভাণ্ড লইয়া কৃষ্ণার হস্তে দিল। কৃষ্ণা অকম্পিত হস্তে হাস্যমুখে সে গরল পান করিল। কি আশ্চর্য্য, সে বিষপান করিয়াও কৃষ্ণার দেহের কোন বিকারই উপস্থিত হইল না। তৎপরে ক্রমান্বয়ে তিনবার বিষ প্রস্তুত হইল! কিছুতেই কৃষ্ণার মৃত্যু হইল না! একি! দৈব আজ কি তাহার রক্ষার জন্য সকল আয়োজন ব্যর্থ করিতে দৃঢ়প্রতিজ্ঞ? কিন্তু দুরাচার পাষাণ হৃদয় ভীম সিংহ নিরস্ত হইলেন না। অবশেষে ভীষণতম হলাহল প্রস্তুত হইল। কৃষ্ণা বুঝিলেন এবার তাঁহার রক্ষা নাই। হাসিয়া বিষভাণ্ড হস্তে লইয়া বলিলেন “এবার তোমাদের আয়াস বিফল হইবে না—দাও এই শেষ! দেবাদিদেব আমার পিতার দীর্ঘ জীবন এবং পূর্ণ সৌভাগ্য প্রদান করুন— জনক জননীর চরণে আমার অসংখ্য প্রণিপাত—জননীকে সান্তনা দিও-বিদায়।”—হায় সেদিন রাজস্থানের নির্ম্মল নলিনী অকালে শুষ্ক হইল! এই কি স্বর্গীয় সৌন্দর্য্যের পরিণাম! হেমলক বিষপান করিয়া জ্ঞানী-শ্রেষ্ঠ পরম ধার্ম্মিক সক্রেটিস মৃত্যুকে আলিঙ্গন করিয়া অমর হইয়াছেন। আজ এই সরলা বালিকা পিতৃদত্ত কালকুট পান করিয়া প্রসন্ন বদনে মৃত্যুকে আলিঙ্গন করিল। প্রবীন সক্রেটিসের জ্ঞানবল ধর্ম্মবল ছিল, এ বালিকা কোন দৈব বলে বলী হইয়া এই দুরন্ত কার্য্য প্রসন্ন বদনে সাধন করিল! এ কি বিস্ময়কর ব্যাপার! কৃষ্ণকুমারীর আত্মবলিদান উপন্যাস নহে,কবি-কল্পনা নহে,উনবিংশ শতাব্দীতে ইংরাজজাতির শ্রুতিগোচরে এই অশ্রুতপূর্ব্ব ব্যাপারের অভিনয় হইয়াছে? ধন্য কৃষ্ণকুমারী! ধন্য তোমার আত্মবলিদান! তুমি রাজপুতজাতির গৌরব কথার শেষ নিদর্শন! পুরুষকার, বীরত্বগৌরব, মহত্ব রাজপুত জাতির হৃদয়রাজ্য পরিত্যাগ করিয়া গিয়াছে—কিন্তু কৃষ্ণার প্রাণে জাতীয় মহত্বের স্ফুলিঙ্গ বিদ্যমান ছিল। দুই এক জন রাজপুতবীরের হৃদয়ে যে ছিল না তাহা নয়, শক্তাবৎ সর্দ্দার সংগ্রামসিংহ এই পৈশাচিক কাণ্ডের বিবরণ শ্রবণ করিয়া বলিয়াছিলেন—“পবিত্র শিশোদীয় কুলে আজ কে কলঙ্ক আরোপ করিল! এই কাপুরুষ কি বীর বাপ্পার বংশধর! এই প্রকারেই কি তাঁহার প্রাতঃস্মরণীয় পূর্ব্বপুরুষগণ দেশের স্বাধীনতা রক্ষা করিতেন? ধিক,শতবার ধিক, সহস্রবার ধিক—রাজপুতনাম ধরাপৃষ্ঠ হইতে লুপ্ত হউক।
+</p>
+
+<div><hr/></div>
+</div></section>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const progressBar  = document.getElementById('read-progress-bar');
+    const progressPct  = document.getElementById('progress-pct');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+    const progressRing = document.getElementById('progress-ring-circle');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'dark';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = (p.currentTheme === 'light' || p.currentTheme === 'dark') ? p.currentTheme : 'dark';
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    function toBN(n) {
+        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
+    }
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        if (progressPct) progressPct.textContent = toBN(pct) + '%';
+        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
+        if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
+        if (rfPage) rfPage.textContent = toBN(pct) + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+
+    // ── Footer: chapter label + seek slider ──
+    const rfSlider  = document.getElementById('rf-slider');
+    const rfPage    = document.getElementById('rf-page');
+    const rfChapter = document.getElementById('rf-chapter');
+    let rfSliderDragging = false;
+    if (rfSlider) {
+        rfSlider.addEventListener('input', () => {
+            rfSliderDragging = true;
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
+        });
+        rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
+    }
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+            a.addEventListener('click', closeDrawer);
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocMobile);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+        if (rfChapter && headings[current]) rfChapter.textContent = headings[current].textContent.trim();
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme; header/footer/drawer now follow the same theme via CSS vars)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+
+            const activeAccent = getComputedStyle(document.body).getPropertyValue('--bar-accent').trim();
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? activeAccent : 'transparent';
+            });
+            savePrefs();
+
+            // Ad bar theme sync
+            window._pathakAdBarTheme && window._pathakAdBarTheme(m);
+        });
+    });
+
+    // ── Ad bar theme sync function (exposed globally) ──
+    window._pathakAdBarTheme = function(m) {
+        const adBar     = document.getElementById('ad-bar');
+        const adContent = document.getElementById('ad-bar-content');
+        const adDatetime= document.getElementById('ad-bar-datetime');
+        const adNotice  = document.getElementById('ad-bar-notice');
+        if (adBar)      adBar.style.background     = m.bg;
+        if (adContent)  adContent.style.background = m.bg;
+        if (adDatetime) adDatetime.style.color      = m.text;
+        if (adNotice)   adNotice.style.color        = m.text;
+    };
+
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+        // Ad bar HTML is below — expose theme for ad bar script to pick up
+        window._pathakCurrentTheme = currentTheme;
+        window._pathakThemeMap = themeMap;
+    })();
+})();
+</script>
+
+
+</body>
+</html>
