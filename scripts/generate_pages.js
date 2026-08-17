@@ -103,29 +103,6 @@ function stripMarkdownPlain(str) {
   return out.trim();
 }
 
-// Book-card category pill রঙ — category name হ্যাশ করে ৬টা accent রঙের
-// একটা fixed palette থেকে বেছে নেওয়া হয়, যাতে একই category সবসময় একই
-// রঙ পায় (হোমপেজ, author পেজ, category পেজ, search — সব জায়গায় consistent)।
-const CATEGORY_ACCENT_PALETTE = [
-  { color: '#E8A33D', bg: 'rgba(232,163,61,0.16)' },
-  { color: '#4FA98C', bg: 'rgba(79,169,140,0.16)' },
-  { color: '#E2678B', bg: 'rgba(226,103,139,0.16)' },
-  { color: '#5B9BD9', bg: 'rgba(91,155,217,0.16)' },
-  { color: '#A78BFA', bg: 'rgba(167,139,250,0.16)' },
-  { color: '#7CB342', bg: 'rgba(124,179,66,0.16)' },
-];
-function categoryAccent(name) {
-  const str = String(name || '');
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) hash = (hash * 31 + str.charCodeAt(i)) >>> 0;
-  return CATEGORY_ACCENT_PALETTE[hash % CATEGORY_ACCENT_PALETTE.length];
-}
-function renderPill(categoryName) {
-  if (!categoryName) return '';
-  const accent = categoryAccent(categoryName);
-  return `<span class="bc-pill" style="color:${accent.color};background:${accent.bg}">${escapeHtml(categoryName)}</span>`;
-}
-
 // Author পেজের বই-কার্ড — আগে client-side JS দিয়ে বানানো হতো (JSON blob
 // থেকে), এখন build time-এ সরাসরি HTML হিসেবে বসানো হয় যাতে crawler
 // প্রথম লোডেই পুরো বইয়ের লিস্ট (এই পেজের মূল content) দেখতে পায়।
@@ -136,10 +113,9 @@ function renderAuthorBookCard(book) {
     `<div class="bc-img-wrap"><img src="${book.cover}" alt="${title} বই কভার" class="bc-img" loading="lazy"></div>` +
     `<div class="bc-body">` +
     `<p class="bc-headline"><span class="bc-title">${title}</span></p>` +
-    (book.author_name ? `<p class="bc-author">${escapeHtml(book.author_name)}</p>` : '') +
-    `</div>` +
-    renderPill(book.category_name) +
-    `</a>`
+    (book.category_name ? `<p class="bc-meta">${escapeHtml(book.category_name)}</p>` : '') +
+    (book.desc ? `<p class="bc-desc">${book.desc}</p>` : '') +
+    `</div></a>`
   );
 }
 
@@ -361,9 +337,9 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
     '  </div>',
     '  <div class="bc-body">',
     '    <p class="bc-headline"><span class="bc-title">{{book_title}}</span></p>',
-    '    {{book_author_html}}',
+    '    {{book_meta_html}}',
+    '    <p class="bc-desc">{{book_desc}}</p>',
     '  </div>',
-    '  {{book_pill_html}}',
     '</a>',
   ].join('\n');
 
@@ -375,12 +351,14 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
 
   // Book card render helper
   function bookCard(book) {
+    const desc = stripMarkdownDesc(book.description || '').slice(0, 200);
+    const meta = [book.author_name, book.category_name].filter(Boolean).join(' · ');
     return render(cardTemplate, {
       book_slug: book.slug,
       book_cover: book.cover,
       book_title: book.title,
-      book_pill_html: renderPill(book.category_name),
-      book_author_html: book.author_name ? `<p class="bc-author">${escapeHtml(book.author_name)}</p>` : '',
+      book_meta_html: meta ? `<p class="bc-meta">${meta}</p>` : '',
+      book_desc: desc,
     });
   }
 
@@ -583,6 +561,7 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
     for (let page = 1; page <= totalPages; page++) {
       const pageBooks = data.books.slice((page - 1) * BOOKS_PER_PAGE, page * BOOKS_PER_PAGE);
 
+      const desc = book => inlineMarkdownDesc((book.description || '').slice(0, 200));
       const booksGrid = pageBooks.map(book => `
       <a href="/book/${book.slug}.html" class="bc-card">
         <div class="bc-img-wrap">
@@ -590,9 +569,9 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
         </div>
         <div class="bc-body">
           <p class="bc-headline"><span class="bc-title">${book.title}</span></p>
-          ${book.author_name ? `<p class="bc-author">${escapeHtml(book.author_name)}</p>` : ''}
+          ${book.author_name ? `<p class="bc-meta">${book.author_name}</p>` : ''}
+          <p class="bc-desc">${desc(book)}</p>
         </div>
-        ${renderPill(data.name)}
       </a>`).join('');
 
       const categoryContent = render(categoryTemplate, {
