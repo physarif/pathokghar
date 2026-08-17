@@ -777,16 +777,14 @@
     const BOOK_SLUG     = 'mibar-gourob-kotha';
     const COUNTDOWN_SECONDS = 5;
 
-    // book_download_url না থাকলে GitHub releases থেকে ফরম্যাট অনুযায়ী লিংক তৈরি।
-    // ৩টা ফরম্যাট ৩টা আলাদা release/tag-এ publish হয় (epub-books, mobi-books, pdf-books) —
-    // তাই "latest" ব্যবহার করা যাবে না, প্রতিটার নিজস্ব tag লাগবে।
+    // book_download_url না থাকলে ebooks.pathokghar.com থেকে ফরম্যাট অনুযায়ী লিংক তৈরি।
     // (নোট: টেমপ্লেট লিটারেল/backtick ব্যবহার করা হচ্ছে না — render() ফাংশন
     // ডলার চিহ্ন ডাবল করে ফেলে, তাতে ইন্টারপোলেশন সিনট্যাক্স ভেঙে যায়। তাই স্ট্রিং concat।)
-    const RELEASES_BASE = 'https://github.com/physarif/pathokghar-assets/releases/download/';
+    const EBOOKS_BASE = 'https://ebooks.pathokghar.com/';
     const FORMAT_URLS = {
-        EPUB: RELEASES_BASE + 'epub-books/' + BOOK_SLUG + '.epub',
-        MOBI: RELEASES_BASE + 'mobi-books/' + BOOK_SLUG + '.mobi',
-        PDF:  RELEASES_BASE + 'pdf-books/' + BOOK_SLUG + '.pdf',
+        EPUB: EBOOKS_BASE + 'epub/' + BOOK_SLUG + '.epub',
+        MOBI: EBOOKS_BASE + 'mobi/' + BOOK_SLUG + '.mobi',
+        PDF:  EBOOKS_BASE + 'pdf/' + BOOK_SLUG + '.pdf',
     };
 
     // Generic countdown runner — শেষে book_download_url থাকলে একক ডাউনলোড বাটন,
