@@ -113,7 +113,6 @@ function renderAuthorBookCard(book) {
     `<div class="bc-img-wrap"><img src="${book.cover}" alt="${title} বই কভার" class="bc-img" loading="lazy"></div>` +
     `<div class="bc-body">` +
     `<p class="bc-headline"><span class="bc-title">${title}</span></p>` +
-    (book.category_name ? `<p class="bc-meta">${escapeHtml(book.category_name)}</p>` : '') +
     (book.desc ? `<p class="bc-desc">${book.desc}</p>` : '') +
     `</div></a>`
   );
@@ -336,8 +335,7 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
     '    <img src="{{book_cover}}" alt="{{book_title}}" class="bc-img" loading="lazy">',
     '  </div>',
     '  <div class="bc-body">',
-    '    <p class="bc-headline"><span class="bc-title">{{book_title}}</span></p>',
-    '    {{book_meta_html}}',
+    '    <p class="bc-headline"><span class="bc-title">{{book_title}}</span>{{book_author_html}}</p>',
     '    <p class="bc-desc">{{book_desc}}</p>',
     '  </div>',
     '</a>',
@@ -352,12 +350,11 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
   // Book card render helper
   function bookCard(book) {
     const desc = stripMarkdownDesc(book.description || '').slice(0, 200);
-    const meta = [book.author_name, book.category_name].filter(Boolean).join(' · ');
     return render(cardTemplate, {
       book_slug: book.slug,
       book_cover: book.cover,
       book_title: book.title,
-      book_meta_html: meta ? `<p class="bc-meta">${meta}</p>` : '',
+      book_author_html: book.author_name ? ` <span class="bc-author">– ${book.author_name}</span>` : '',
       book_desc: desc,
     });
   }
@@ -568,8 +565,7 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
           <img src="${book.cover}" alt="${book.title}" class="bc-img" loading="lazy">
         </div>
         <div class="bc-body">
-          <p class="bc-headline"><span class="bc-title">${book.title}</span></p>
-          ${book.author_name ? `<p class="bc-meta">${book.author_name}</p>` : ''}
+          <p class="bc-headline"><span class="bc-title">${book.title}</span>${book.author_name ? ` <span class="bc-author">– ${book.author_name}</span>` : ''}</p>
           <p class="bc-desc">${desc(book)}</p>
         </div>
       </a>`).join('');
