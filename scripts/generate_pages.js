@@ -112,9 +112,9 @@ function renderAuthorBookCard(book) {
     `<a href="/book/${book.slug}.html" class="bc-card">` +
     `<div class="bc-img-wrap"><img src="${book.cover}" alt="${title} বই কভার" class="bc-img" loading="lazy"></div>` +
     `<div class="bc-body">` +
+    (book.category_name ? `<span class="bc-pill">${escapeHtml(book.category_name)}</span>` : '') +
     `<p class="bc-headline"><span class="bc-title">${title}</span></p>` +
-    (book.category_name ? `<p class="bc-meta">${escapeHtml(book.category_name)}</p>` : '') +
-    (book.desc ? `<p class="bc-desc">${book.desc}</p>` : '') +
+    (book.author_name ? `<p class="bc-author">${escapeHtml(book.author_name)}</p>` : '') +
     `</div></a>`
   );
 }
@@ -336,9 +336,9 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
     '    <img src="{{book_cover}}" alt="{{book_title}}" class="bc-img" loading="lazy">',
     '  </div>',
     '  <div class="bc-body">',
+    '    {{book_pill_html}}',
     '    <p class="bc-headline"><span class="bc-title">{{book_title}}</span></p>',
-    '    {{book_meta_html}}',
-    '    <p class="bc-desc">{{book_desc}}</p>',
+    '    {{book_author_html}}',
     '  </div>',
     '</a>',
   ].join('\n');
@@ -351,14 +351,12 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
 
   // Book card render helper
   function bookCard(book) {
-    const desc = stripMarkdownDesc(book.description || '').slice(0, 200);
-    const meta = [book.author_name, book.category_name].filter(Boolean).join(' · ');
     return render(cardTemplate, {
       book_slug: book.slug,
       book_cover: book.cover,
       book_title: book.title,
-      book_meta_html: meta ? `<p class="bc-meta">${meta}</p>` : '',
-      book_desc: desc,
+      book_pill_html: book.category_name ? `<span class="bc-pill">${escapeHtml(book.category_name)}</span>` : '',
+      book_author_html: book.author_name ? `<p class="bc-author">${escapeHtml(book.author_name)}</p>` : '',
     });
   }
 
@@ -561,16 +559,15 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
     for (let page = 1; page <= totalPages; page++) {
       const pageBooks = data.books.slice((page - 1) * BOOKS_PER_PAGE, page * BOOKS_PER_PAGE);
 
-      const desc = book => inlineMarkdownDesc((book.description || '').slice(0, 200));
       const booksGrid = pageBooks.map(book => `
       <a href="/book/${book.slug}.html" class="bc-card">
         <div class="bc-img-wrap">
           <img src="${book.cover}" alt="${book.title}" class="bc-img" loading="lazy">
         </div>
         <div class="bc-body">
+          ${data.name ? `<span class="bc-pill">${escapeHtml(data.name)}</span>` : ''}
           <p class="bc-headline"><span class="bc-title">${book.title}</span></p>
-          ${book.author_name ? `<p class="bc-meta">${book.author_name}</p>` : ''}
-          <p class="bc-desc">${desc(book)}</p>
+          ${book.author_name ? `<p class="bc-author">${escapeHtml(book.author_name)}</p>` : ''}
         </div>
       </a>`).join('');
 
