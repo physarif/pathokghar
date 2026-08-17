@@ -741,13 +741,10 @@
                     <i class="fas fa-download"></i> ডাউনলোড করুন
                 </a>
 
-                <!-- countdown শেষে: book_download_url না থাকলে EPUB/MOBI/PDF — ৩টা আলাদা লিংক -->
+                <!-- countdown শেষে: book_download_url না থাকলে EPUB/PDF — ২টা আলাদা লিংক -->
                 <div id="m-format-links" class="hidden dl-format-btns step-fade">
                     <a id="m-format-link-epub" href="#" class="dl-download-btn dl-format-link" target="_blank" rel="noopener">
-                        <i class="fas fa-book"></i> EPUB ডাউনলোড
-                    </a>
-                    <a id="m-format-link-mobi" href="#" class="dl-download-btn dl-format-link" target="_blank" rel="noopener">
-                        <i class="fas fa-tablet-alt"></i> MOBI ডাউনলোড
+                        <i class="fas fa-tablet-alt"></i> EPUB ডাউনলোড
                     </a>
                     <a id="m-format-link-pdf" href="#" class="dl-download-btn dl-format-link" target="_blank" rel="noopener">
                         <i class="fas fa-file-pdf"></i> PDF ডাউনলোড
@@ -783,7 +780,6 @@
     const EBOOKS_BASE = 'https://ebooks.pathokghar.com/';
     const FORMAT_URLS = {
         EPUB: EBOOKS_BASE + 'epub/' + BOOK_SLUG + '.epub',
-        MOBI: EBOOKS_BASE + 'mobi/' + BOOK_SLUG + '.mobi',
         PDF:  EBOOKS_BASE + 'pdf/' + BOOK_SLUG + '.pdf',
     };
 
@@ -837,10 +833,8 @@
                     } else if (formatLinks) {
                         // EPUB/MOBI/PDF — ৩টা আলাদা লিংক
                         const epub = document.getElementById(prefix + 'format-link-epub');
-                        const mobi = document.getElementById(prefix + 'format-link-mobi');
                         const pdf  = document.getElementById(prefix + 'format-link-pdf');
                         if (epub) epub.href = FORMAT_URLS.EPUB;
-                        if (mobi) mobi.href = FORMAT_URLS.MOBI;
                         if (pdf)  pdf.href  = FORMAT_URLS.PDF;
                         formatLinks.classList.remove('hidden');
                         formatLinks.classList.add('step-fade');
@@ -883,7 +877,6 @@
     }
     gateWithAd(document.getElementById('m-download-btn'));
     gateWithAd(document.getElementById('m-format-link-epub'));
-    gateWithAd(document.getElementById('m-format-link-mobi'));
     gateWithAd(document.getElementById('m-format-link-pdf'));
 })();
 </script>
