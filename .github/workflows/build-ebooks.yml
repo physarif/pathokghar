@@ -1,17 +1,17 @@
 name: Build Ebooks
 
-# All three formats live in one workflow, driven by one script
-# (generate_ebooks.py --format epub|mobi|pdf). Any of the paths
-# below triggers all three build jobs; touch/edit the "github_actions"
-# file (previously actions_epub / actions_mobi / actions_pdf) to trigger
+# Both formats live in one workflow, driven by one script
+# (generate_ebooks.py --format epub|pdf). Any of the paths
+# below triggers both build jobs; touch/edit the "github_actions"
+# file (previously actions_epub / actions_pdf) to trigger
 # a manual rebuild via push.
 #
 # Output: each job writes new files straight into its own repo folder
-# (epub/, mobi/, pdf/) and commits+pushes them -- no GitHub Release
-# involved anymore. Jobs run one after another (build-epub -> build-mobi
-# -> build-pdf) instead of in parallel, purely so each job's push starts
-# from the previous job's commit -- three jobs pushing to the same branch
-# at once would race and reject each other's pushes.
+# (ebooks/epub/, ebooks/pdf/) and commits+pushes them -- no GitHub
+# Release involved anymore. Jobs run one after another (build-epub -> build-pdf)
+# instead of in parallel, purely so each job's push starts from the
+# previous job's commit -- two jobs pushing to the same branch at once
+# would race and reject each other's pushes.
 on:
   push:
     paths:
@@ -36,7 +36,7 @@ jobs:
       - name: Install system tools + Bengali fonts
         run: |
           sudo apt-get update
-          sudo apt-get install -y pandoc calibre fonts-noto-core fonts-noto-extra fonts-lohit-beng-bengali
+          sudo apt-get install -y pandoc fonts-noto-core fonts-noto-extra fonts-lohit-beng-bengali
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -52,38 +52,10 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Add new epub books"
-          file_pattern: "epub/*.epub"
-
-  build-mobi:
-    needs: build-epub
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install system tools + Bengali fonts
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y pandoc calibre fonts-noto-core fonts-noto-extra fonts-lohit-beng-bengali
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Build new mobi books
-        env:
-          FIREBASE_AUTH: ${{ secrets.FIREBASE_DB_AUTH }}
-        run: python generate_ebooks.py --format mobi --all
-
-      - name: Commit and push new mobi files
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Add new mobi books"
-          file_pattern: "mobi/*.mobi"
+          file_pattern: "ebooks/epub/*.epub"
 
   build-pdf:
-    needs: build-mobi
+    needs: build-epub
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -146,4 +118,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Add new pdf books"
-          file_pattern: "pdf/*.pdf"
+          file_pattern: "ebooks/pdf/*.pdf"
