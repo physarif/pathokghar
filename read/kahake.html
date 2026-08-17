@@ -1,0 +1,2024 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/kahake.html">
+    <title>কাহাকে - পাঠক ঘর</title>
+    <meta name="description" content="> **“কাহাকে ভালোবাসে মানুষ—যাকে কাছে পায়, নাকি যাকে মনে ধরে রাখে?”**
+
+উনিশ শতকের শেষভাগে প্রকাশিত **‘কাহাকে?’** বাংলা সাহিত্যের একটি উল্লেখযোগ্য প্রেমের উপন্যা">
+    <meta property="og:title" content="কাহাকে - পাঠক ঘর">
+    <meta property="og:description" content="> **“কাহাকে ভালোবাসে মানুষ—যাকে কাছে পায়, নাকি যাকে মনে ধরে রাখে?”**
+
+উনিশ শতকের শেষভাগে প্রকাশিত **‘কাহাকে?’** বাংলা সাহিত্যের একটি উল্লেখযোগ্য প্রেমের উপন্যা">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'dark';
+        var bg = { light:'#fff', dark:'#1c1c1e' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', dark:'#e5e7eb' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .dark body { background: #1a1a1b; color: #e5e7eb; }
+
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.6rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+        .dark #book-content { color: #e5e7eb; }
+    
+    /* ── Book read header hero ── */
+    .book-read-header {
+        margin-bottom: 1.5rem;
+    }
+    .book-read-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.65rem;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 1.4rem 1.25rem 1.2rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .dark .book-read-box {
+        background: #2a2a2b;
+        border-color: #3a3a3b;
+    }
+    .book-read-cover {
+        width: 100px;
+        height: 136px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        object-fit: cover;
+        background: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .book-read-cover svg { opacity: 0.35; }
+    .book-read-title-link {
+        text-decoration: none;
+        display: block;
+    }
+    .book-read-title-link:hover .book-read-title { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-title-link:active .book-read-title { opacity: 0.7; }
+    .book-read-title {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #1a1a1b;
+        line-height: 1.4;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+    .dark .book-read-title { color: #f3f4f6; }
+    .book-read-author-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+    .book-read-author-link:hover .book-read-author { text-decoration: underline; text-underline-offset: 3px; }
+    .book-read-author-link:active .book-read-author { opacity: 0.6; }
+    .book-read-author {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #45464c;
+        margin: 0;
+        transition: opacity 0.15s;
+    }
+</style>
+</head>
+<body>
+
+<style>
+    /* ── Bar theme variables (header / footer / drawer) — follow reading mode ── */
+    :root, body {
+        --bar-bg: #ffffff;
+        --bar-text: #1a1a1b;
+        --bar-text-dim: rgba(26,26,27,0.55);
+        --bar-border: rgba(0,0,0,0.1);
+        --bar-btn-active: rgba(0,0,0,0.06);
+        --bar-track: rgba(0,0,0,0.12);
+        --bar-accent: #45464c;
+        --bar-accent-soft: rgba(192,57,43,0.12);
+    }
+    body.theme-dark {
+        --bar-bg: #232326;
+        --bar-text: #e5e7eb;
+        --bar-text-dim: rgba(229,231,235,0.55);
+        --bar-border: rgba(255,255,255,0.1);
+        --bar-btn-active: rgba(255,255,255,0.08);
+        --bar-track: rgba(255,255,255,0.18);
+        --bar-accent: #55565c;
+        --bar-accent-soft: rgba(169,50,38,0.2);
+    }
+
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    #read-progress-bar {
+        position: fixed;
+        top: 0; left: 0;
+        height: 2px;
+        width: 0%;
+        background: #45464c;
+        z-index: 1000;
+        transition: width 0.1s linear;
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h1 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--bar-text-dim);
+        text-align: center;
+        margin: 0 0 0.25rem;
+        letter-spacing: 0.04em;
+        transition: color 0.3s;
+    }
+    #book-content h1::after {
+        content: '';
+        display: block;
+        width: 2.8em;
+        height: 3px;
+        background: var(--bar-accent);
+        border-radius: 2px;
+        margin: 0.4rem auto 0;
+        transition: background 0.3s;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--bar-accent);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid var(--bar-accent-soft);
+        border-bottom: 1px solid var(--bar-accent-soft);
+        transition: color 0.3s, border-color 0.3s;
+    }
+    /* h1/h2 colors now follow --bar-text-dim / --bar-accent (see :root theme variables above),
+       so they automatically match light / dark modes. */
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p {
+        background: #232326;
+        border-color: rgba(255,255,255,0.08);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #45464c;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #45464c;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(192,57,43,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    .dark #book-content blockquote {
+        background: rgba(192,57,43,0.08);
+        color: #bbb;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #45464c;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    .dark #book-content td { border-color: #3a3a3b; }
+    .dark #book-content tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(192,57,43,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: var(--bar-accent);
+        font-weight: 600;
+        background: var(--bar-accent-soft);
+        border-radius: 0.375rem;
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: var(--bar-text);
+        border-bottom: 1px solid var(--bar-border);
+        transition: color 0.15s, background 0.3s, border-color 0.3s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: var(--bar-text-dim);
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        flex-direction: column;
+        padding: 0.4rem 0.5rem 0 0.35rem;
+        background: var(--bar-bg);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-row1 {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding-bottom: 0.4rem;
+    }
+    #rh-back {
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--bar-text);
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: background 0.15s, color 0.3s;
+    }
+    #rh-back:active { background: var(--bar-btn-active); }
+    #rh-titles {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+    }
+    #rh-title {
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.98rem;
+        font-weight: 400;
+        color: var(--bar-text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: color 0.3s;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 34px;
+        height: 34px;
+        border: none;
+        background: transparent;
+        color: var(--bar-text);
+        border-radius: 7px;
+        font-size: 1.05rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s, color 0.3s;
+    }
+    #reader-header .rh-actions button:active { background: var(--bar-btn-active); }
+
+    /* ── Chapter + page/percent — sits directly under the title ── */
+    #rf-labels {
+        display: flex;
+        align-items: center;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.66rem;
+        color: var(--bar-text-dim);
+        transition: color 0.3s;
+    }
+    #rf-chapter {
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #rf-chapter:not(:empty)::after { content: '·'; margin: 0 0.4rem; opacity: 0.6; }
+    #rf-page { flex-shrink: 0; }
+
+    /* ── Header row 3: thin seek/progress line ── */
+    #rf-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        display: block;
+        width: 100%;
+        height: 3px;
+        margin: 0;
+        border-radius: 0;
+        background: var(--bar-track);
+        outline: none;
+        cursor: pointer;
+    }
+    #rf-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 13px; height: 13px;
+        border-radius: 50%;
+        background: var(--bar-accent);
+        border: 2px solid var(--bar-bg);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        margin-top: -5px;
+    }
+    #rf-slider::-moz-range-thumb {
+        width: 13px; height: 13px;
+        border-radius: 50%;
+        background: var(--bar-accent);
+        border: 2px solid var(--bar-bg);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        border: none;
+    }
+    #rf-slider::-webkit-slider-runnable-track { height: 3px; background: var(--bar-track); }
+    #rf-slider::-moz-range-track { height: 3px; background: var(--bar-track); }
+
+    /* Content no longer needs bottom clearance — footer removed, extra top clearance handled above */
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: var(--bar-bg);
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease, background 0.3s;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid var(--bar-border);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--bar-text-dim);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: var(--bar-accent);
+        border-bottom-color: var(--bar-accent);
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ── Breadcrumb dark mode ── */
+    .read-breadcrumb-full { margin-left: -1.25rem; margin-right: -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
+    .dark #bc-category { color: #9ca3af !important; }
+    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
+    .dark #read-breadcrumb li > span { color: #4b5563; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--bar-accent);
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--bar-text);
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: auto;
+        min-width: 64px;
+        height: 34px;
+        flex: 1 1 0;
+        padding: 0 12px;
+        border-radius: 8px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        box-shadow: 0 0 0 1px var(--bar-border);
+    }
+    .theme-circle.active { border-color: var(--bar-accent); }
+    .theme-circle svg { display: none; }
+    .theme-circle.active svg { display: block; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--bar-border);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: var(--bar-text); }
+    .settings-row-val { font-size: 0.74rem; color: var(--bar-text-dim); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid var(--bar-border);
+        background: var(--bar-btn-active);
+        color: var(--bar-text);
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: var(--bar-accent-soft); border-color: var(--bar-accent); color: var(--bar-text); }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid var(--bar-border);
+        background: var(--bar-btn-active);
+        color: var(--bar-text);
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: var(--bar-accent-soft) !important;
+        border-color: var(--bar-accent) !important;
+        color: var(--bar-text) !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid var(--bar-border);
+        background: transparent;
+        color: var(--bar-text);
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: var(--bar-accent-soft) !important;
+        border-color: var(--bar-accent) !important;
+        color: var(--bar-text) !important;
+    }
+
+</style>
+
+<!-- Progress bar (kept for internal % calc, hidden — footer slider replaces it visually) -->
+<div id="read-progress-bar" style="display:none;"></div>
+
+<!-- ══ Reader header (back + title/chapter stack + actions, seek line) ══ -->
+<header id="reader-header">
+    <div id="rh-row1">
+        <a href="/book/kahake.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div id="rh-titles">
+            <h1 id="rh-title">কাহাকে</h1>
+            <div id="rf-labels">
+                <span id="rf-chapter"></span>
+                <span id="rf-page">০%</span>
+            </div>
+        </div>
+        <div class="rh-actions">
+            <button id="rh-menu-btn" aria-label="সূচিপত্র ও কাস্টমাইজ" title="সূচিপত্র ও কাস্টমাইজ"><i class="fa-solid fa-list-ul"></i></button>
+        </div>
+    </div>
+    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
+</header>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle" data-theme="light" style="background:#fff;border-color:#45464c;" title="সাদা"></button>
+                    <button class="theme-circle active" data-theme="dark" style="background:#3a3a3a;border-color:#55565c;" title="ডার্ক">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e5e7eb" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn active" id="align-justify" title="জাস্টিফাই" style="background:#45464c;border-color:#6b7280;color:#f9fafb;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <section><div>
+
+
+
+﻿<h2>প্রথম পরিচ্ছেদ।</h2>
+<div>
+<div>
+<p><span>Man's love is of man's life a thing apart,</span><br/><span>’Tis woman's whole existence.</span>
+</p>
+</div>
+</div>
+<p>এ কথা যিনি বলিয়াছেন তিনি একজন পুরুষ। পুরুষ হইয়া রমণীর অন্তর্গত প্রকৃতি এমন হুবহু ঠিকটি কি করিয়া ধরিলেন, ভারী আশ্চর্য্য মনে হয়। আমি ত আমার জীবনের দিকে চাহিয়া অক্ষরে অক্ষরে এ কথার সত্যতা অনুভব করি। যত দূর অতীতে চলিয়া যাই, যখন হইতে জ্ঞানের বিকাশ মনে করিতে পারি তখন হইতে দেখিতে পাই—কেবল ভালবাসিয়াই আসিতেছি, ভালবাসা ও জীবন আমার পক্ষে একই কথা, সে পদার্থটাকে আমা হইতে বিচ্ছিন্ন করিলে জীবনটা একেবারে শূন্য অপদার্থ হইয়া পড়ে- আমার আমিত্বই লোপ পাইয়া যায়।
+</p><p>তখন আমার বয়স কত? সাল তারিখ ধরিয়া এখনি তাহা ঠিক করিয়া বলিতে পারিতেছি না। আমাদের দুইবোনের জন্মকোষ্ঠী বা ঠিকুজী নাই তাই ইচ্ছামাত্র সময়ে অসময়ে এ সন্দেহ ভঞ্জন করিতে পারি না। একবার একখানা গানের খাতার কোণে তারিখটা লিখিয়া রাখিয়াছিলাম কিন্তু খাতাখানা খুঁজিতে গিয়া শৈশবের বড় বড় মক্সওয়ালা ক খ লেখা 
+কাগজপত্রের কাঁড়িগুলা পর্য্যন্ত মিলিল; কেবল সেইখানাই পাওয়া গেল না। পুরুষে সম্ভবতঃ আমার সারল্যে অবিশ্বাস করিয়া ইহার মধ্য হইতে গুঢ় অভিপ্রায় টানিয়া বাহির করিবেন, কিন্তু স্ত্রীলোকে বুঝিবেন, বাস্তবিক পক্ষে সাল তারিখ মনে করিয়া রাখা আমাদের পক্ষে কিরূপ কঠিন ব্যাপার। বরঞ্চ ঘটনার ছবি হইতে তাহার আনুষঙ্গিক বার তিথি আমরা ঠিক ধরিতে পারি কিন্তু তিথি নক্ষত্র আগে মনে করিয়া যদি ঘটনা মনে করিতে হয় তাহা হইলে ঘটনাটির কালাশুদ্ধি হইবার ষোল আনাই সম্ভাবনা। যেমন দিদির বিবাহ যখনি মনে পড়ে—তখনি উৎসব-সমারোহপূর্ণ ফাল্গুন মাসের সেই বিশেষ পূর্ণিমা নিশিটিও চোখের উপর জ্বলজীবন্ত দেখিতে পাই। কিন্তু সালের মূর্ত্তি ত আর ফাল্গুনের সে বসন্তে বা পূর্ণিমার সে জ্যোৎস্নালোকে উপরঞ্জিত নহে। কাজেই ছবিগত সাদৃশ্য বা অসাদৃশ্য ধরিয়া মাস তিথির মত সাকার চিত্রে একসাল হইতে অন্য সালের তফাৎ মনে করিতে পারি না। নিরাকার নিরূপ ধ্যানের ন্যায় ধ্যান সহকারে এখনকার সাল ধরিয়া দশ বৎসর পূর্ব্বের সে সালটা গণিয়া তবে ঠিক করিয়া লইতে হয়। কিন্তু এনিয়মে অর্থাৎ স্মৃতির সাহায্যে ত আর নিজের জন্মসাল নির্ণয় করা যায় না, বিধাতা পুরুষ তাহা অসম্ভব করিয়া তুলিয়াছেন। স্মৃষ্টির এ কি এক অপূর্ব্ব রহস্য বুঝিতে পারি না-মানব জন্মগ্রহণ করে ধরাতলে, অমনি আকাশের তারা নক্ষত্ররাশি তাহার সহিত ঘনিষ্ঠ সম্পর্ক পাতাইয়া লইয়া তাহার ভাগ্য রচনা করিতে বসে, আর মানুষের সর্ব্বাপেক্ষা অন্তরঙ্গ আত্মীয় যে স্মৃতি তাহাকে সে তখন একেবারে হারাইয়া ফেলে, অন্ততঃ সে সময় স্মৃতির সহিত মানুষের কোন সম্পর্কই থাকে না। এখানে তাই কেবল নিতান্তই অঙ্কের সঙ্কেতে অর্থাৎ সালের খাতিরে সালটা মনে রাখিতে গিয়াই যত মুস্কিল বাধিয়াছে; তাহা ১২৮২ বা ৮৩ ক্রমাগতই ভুল হইয়া যায়। কিন্তু ভাবিয়া দেখিলে এ ভুলে ক্ষতি কাহার? আমারো নহে পাঠকেরো নহে। অবশ্য এ রকম একটা ভুলে জীবনে যদি সুদীর্ঘ তিনশত পঁয়ষট্টি দিন ও বারটা মাসওয়ালা একটা বৃহৎ সম্বৎসরের ব্যবধান পড়িত তাহা হইলে ক্ষুদ্রজীব একজন মনুষ্যের পক্ষে তাহাতে বিস্তর তফাৎ করিয়া তুলিত, কিন্তু সৌভাগ্যক্রমে বা দুর্ভাগ্যক্রমে আমি হাজার ভুলি না কেন, কাল আমাকে কিছুতেই ভুলিবে না, বয়স আমার সর্ব্ব অবস্থাতেই কড়ায় গণ্ডায় ঠিকটি থাকিয়া যাইবে—আর পাঠকের পক্ষে—আমি উনিশ না হইয়া যদি বিশ হই, কিম্বা বিশ না হইয়া যদি একুশই হই—সব সমানই কথা। যতদূর বুঝিতেছি তিনি কেবল বিষয়টার একটা শেষ নিষ্পত্তিতে আসিতে পারিলেই নিশ্চিন্ত হইতে পারেন, নিষ্পত্তিটা ঠিক বা বেঠিক হউক তাহাতে কি এত আসিয়া যায়? এ প্রকৃতি পুরাতত্ববিদেরই একচেটিয়া নহে। তবে ধরিয়া লওয়া যাক, আমার বয়স তখন আঠার উনিশ। আমি এখনো অবিবাহিত।—শুনিয়া কি কেহ আশ্চর্য্য হইতেছেন? কিন্তু আশ্চর্য্য হইবার ইহাতে কি আছে? আজকাল ত এমন অনেকেই ইহার চেয়েও অধিক বয়স পর্য্যন্ত অবিবাহিত থাকেন—আমিও না হয় আছি। ইহাই যদি বিস্ময়জনক হয় তবে অধিকতর বিস্ময়ের কথা পরে আসিতেছে। আমি ভালবাসি, বিবাহের পূর্ব্বেই ভালবাসি; তিনি যে স্বামী হইবেন এমনতর আশা করিয়াও ভালবাসি নাই। কেবল তাহাই নহে, এই ভালবাসাই আমার একমাত্র প্রথম এবং শেষ,ভালবাসা নহে। আমি ইহাকে যখন ভালবাসি নাই, তাহাকে ভালবাসিয়াছিলাম—আর তাহাকে যখন বাসি নাই তখনো আমার হৃদয় শূন্য ছিল না। মাকে মনে পড়ে না, শিশুকালেই আমি মাতৃহারা, কিন্তু শৈশবে বাবাকে যেমন ভালবাসিতাম কোন সন্তান মাকে যে তাহার অধিক ভালবাসিতে পারে এরূপ আমি কল্পনাও করিতে পারি না। অনেকেরই সংস্কার আছে পিতৃমাতৃপ্রেম ও দাম্পত্যপ্রেম পরস্পর নির্লিপ্ত পৃথক দুইবস্তু, একের সহিত অন্যের তুলনাই অসঙ্গত অসম্ভব। তুমি আমার সহিত মিলিবে কি না জানি না—আমার কিন্তু ধারণা ইহার সম্পূর্ণ বিপরীত, আমার অভিজ্ঞতায় শৈশবের মাতৃ গ্রেমে ও যৌবনের দাম্পত্যপ্রেমে অল্পই তফাৎ। যৌবনে প্রণয়ীরই মত, শৈশবে পিতামাতা আমাদের একমাত্র নির্ভরের সামগ্রী, পূজার সামগ্রী, ভালবাসার সামগ্রী, পিতামাত রক্ষক দেবতা প্রণয়ী, একাধারে সর্ব্বস্ব। উভয় প্রেমেই—সেই আসঙ্গলিপ্সা, সারাদিন চোখে চোখে রাখিতে সাধ, প্রাণে প্রাণে আপনার করিবার ইচ্ছা, সম্পূর্ণভাবে দখল করিয়া রাখিবার বাসনা, না পাইলে পরম অতৃপ্তি, তাহার সুখে সুখ, তাহার সুখের জন্য কষ্ট স্বীকারে, আনন্দ, এ সমস্ত একই রকম।
+</p><p>আমরা দুই বোন, কিন্তু দিদির সঙ্গে আমার তেমন ভাব হইতে পারে নাই তিনি বয়সে আমার চেয়ে ৪।৫ বৎসরের বড়, তাহা ছাড়া তিনি বেশীর ভাগ পিসিমার কাছে কলিকাতাতেই থাকিতেন। তবুও দিদিকে খুব ভাল বাসিতাম: তিনি বাড়ী আসিলে আনন্দ হইত; কিন্তু বাড়ী আসিয়া দিদি যদি বাবাকে দখল করিতেন বা তাঁহার কোন কাজ করিয়া দিতেন আমার ভাল লাগিত না। সন্ধ্যাবেলা আহারান্তে বাবা বিছানায় শুইয়া গুড়গুড়ি টানিতেন; দিদি যখন থাকিতেন তখন আমরা দুই বোনে দুই পাশে গিয়া শুইতাম, কিন্তু বাবার গলা জড়াইয়া থাকা আমারি একচেটিয়া ছিল। দুই হাতে কণ্ঠ বেষ্টন করিয়া কাণে কাণে কথা হইত-বাবা তুমি কাকে ভালবাস? মনের মধ্যে পূর্ণ বিশ্বাস আমাকেই ভালবাসেন, তিনি কিন্তু তাহা বলিতেন না, বলিতেন দুজনকেই ভালবাসি। উত্তরে সস্তুষ্ট হইতাম না, অসন্তুষ্টও হইতাম না; কেননা তিনি যাহাই বলুন, আমার মনে হইত আমাকেই ভালবাসেন। আমি কাণে কাণে বলিতাম-—“দিদি রাগ করবেন বুঝি?” বাবা হাসিতেন, আমার বিশ্বাস মনে আরো দৃঢ় হইয়া আঁটিয়া বসিত। তথন আমার বয়স কত জানি না—বোধ হয় ৫।৬ বৎসর হইবে। শীতকালে বাবার গায়ে যথেষ্ট গরম কাপড় থাকিলেও আমার গায়ের ছোট রুমাল খানি দিয়া যতক্ষণ তাঁহাকে না ঢাকিতাম, ততক্ষণ মনে হইত তাঁহার শীত ভাঙ্গিতেছে না। গরমী কালে টানাপাখা যতই হউক না কেন, মাঝে মাঝে হাতপাখা না করিলে আমার তৃপ্তি বোধ হইত না। দাসদাসীর অভাব নাই কিন্তু আমি সুবিধা পাইলেই কুটনা কুটিবার আড্ডায় গিয়া বঁটি একখানা টানিয়া আলুটা, পটলটা যাহা সম্মুখে পাইতাম তাহার উপরেই আঁচড় পাড়িবার অভিপ্রায়ে আঙ্গুলে আঁচড় পাড়িয়া বসিতাম, আর রান্নাঘরে গিয়া বামুনদিদির ভাতের কাটি কাড়িয়া লইয়া ডাল, মাছেরঝোল, অম্বল নির্ব্বিচারে সবই ঘুঁটিবার প্রয়াস পাইতাম, কখনো বা ব্রাহ্মণীকে স্তুতি মিনতিতে বশ করিতে পারিলে তাহার হাতের নুন মসলাটা নিজের হাতে করিয়া হাঁড়িতে ফেলিবার মহানন্দলাভও অদৃষ্টে ঘটিত। এই রূপে রান্নাঘরে কতদিন যে হাত পা পুড়াইয়াছি তাহার ঠিক নাই। হইলে কি হয়,—আমার বিশ্বাস ছিল অন্ন ব্যঞ্জনে আমি কাটি দিলেই বাবার পক্ষে তাহ সুখাদ্য হইবে, কেননা রান্নাটা তবেই আমার হইল। পান করিবার সময় বাবার পানে মসলা দিতে আমাকে না ডাকিলে আমি আর সেদিন রক্ষা রাখিতাম না। বাবা ত ভাত খাইয়া তাড়াতাড়ি আফিস চলিয়া যাইতেন, তাহার পর সেদিন আমাকে সাধিয়া ভাত-খাওয়ান অন্য কাহারো দুঃসাধ্য হইয়া উঠিত।—বাগানের ফুলে আর কাহারো অধিকার ছিল না—ভোর না হইতেই যত ভাল ভাল ফুল তুলিয়া অনিয়া বাবার কাছে হাজির করিতাম। জ্যেঠাইমার পূজার ফুল অল্পই অবশিষ্ট থাকিত, কোনদিন বা মোটেই থাকিত না; সে দিন তিনি বাবার কাছে নালিস করিতে আসিয়া তাঁহার ফুলগুলি সব লইয়া যাইতেন। আমার এমন রাগ ধরিত! এক বার আমার অসুখ করিয়াছিল দিদি তখন বাড়ী ছিলেন, তিনি আমার বদলে বাবাকে ফুল তুলিয়া দিতেন, অসুখের কষ্ট তেমন অনুভব করিতাম না—যেমন সেই কষ্ট! আমি দুঃষ্টামি করিলে আমাকে জব্দ করিবার জন্য তেমন কোন সহজ উপায় ছিল না; যেমন “আজ সন্ধ্যাবেলা তোকে চাবি দিয়ে রাখব বাবার কাছে শুতে দেব না” এই কথা। সহস্র দুষ্টামি এই শাসনে তখনকার মত তামার বন্ধ হইয়া যাইত। এক কথায় আমার সেই ক্ষুদ্র শৈশবজীবন কুলে কুলে তখন তাঁহাতেই পরিপূর্ণ ওতপ্রোত ছিল। তাই বলিয়াছি শৈশব ও যৌবনপ্রেমে তফাৎ অল্পই। বস্তুতঃ আমার মনে হয় কি মাতৃপ্রেম, কি ভাই বোনের ভালবাসা, কি বন্ধুত্ব, কি দাম্পত্যপ্রেম সকলরূপ গভীর ভালবাসারই মূলগত ভাব একই। একের সহিত অন্যের পার্থক্য কেবল সে ভাবের স্থায়ীত্ব ও প্রবলতার তারতম্যে। যাহাকে ভালবাসি তাহার সুখে সুখবোধ ও তাহাকে সম্পূর্ণরূপে আপনার করিবার ইচ্ছা প্রেমের এই যে নিঃস্বার্থ অথচ সর্ব্বেসর্ব্বা ভাব পিতামাতার স্নেহেই ইহার প্রথম স্ফূর্ত্তি এবং ভ্রাতাভগিনী সখাসখীর ভালবাসার মধ্য দিয়া প্রণয়ে ইহার চরম পরিণতি। আসলে প্রেম মাত্রে একই বস্তু কেবল বিকশনে ও ভিন্নধারে ভিন্নাকার।
+</p><p>আমি যেমন শিশুকালে যে আমি ছিলাম এখনও সেই আমি আছি, তথাপি দেহ জ্ঞান বুদ্ধির বিকাশে স্বতন্ত্র আকারও হইয়া পড়িয়াছি, সেইরূপ শৈশব প্রেমই যখন যৌবনে মহাকারে বর্দ্ধিত ও পরিস্ফুট হইয়া উঠিতে থাকে তখন আর পূর্ব্বের পরিমিত ক্ষুদ্র ভাব গুলিতে তাহার পরিধি পূর্ণ করিতে পারে না, যে তখনকার শিক্ষা জ্ঞান আকর্ষণ আকাঙ্ক্ষার অনুরূপ আধারে আপনাকে পরিব্যাপ্ত বিকাশিত করিতে চাহে। তখন যাহা দেখিয়াছি জানিয়াছি পাইয়াছি তাহাতেই মন তৃপ্তি মানে না— কেননা যাহা দেখি নাই, জানি নাই এমন মহাসুন্দর ভাব কল্পনায় আমাদের মনে আবিভূত হইয়াছে; সেই জন্য তখন এই উভয় ভাবের সম্মিলনে সর্ব্বসুন্দর সর্ব্বপরিতৃপ্তিকর মানসদেবের আরাধনায় সাকারে নিরাকার পূজার জন্য মনোপ্রাণ ব্যগ্র আকুল হইয়া উঠে। সে রমণীই ধন্য—যে তাহার মনোদেবতার সন্ধান পাইয়া এই পরিপূর্ণ উথলিত আবেগময় প্রাণের পূজায় জীবন সার্থক করিতে পারে; আর সেই পুরুষই ধন্য যে এই পূজারতা হৃদয়ের দেবতারূপে বরিত হইয় তাহার পূজায় জীবন উৎসর্গ করিয়া জীবনের উদ্দেশ্য সফল করিতে পারে, আর সেই প্রেমই প্রকৃত প্রেম যাহা এই উভয়ের আত্মহারা পূজায় অধিষ্ঠিত হইয়া প্রবলভাবে চিরবিরাজমান।
+</p><p>আমি পিতাকে এখনও খুব ভালবাসি—তাঁহার সুখের জন্য আমি আত্মবিসর্জ্জনেও কুষ্ঠিত নহি–কিন্তু তিনি এখন আর আমার জীবনের একমাত্র সুখ দুঃখ আশ্রয় অবলম্বন, আকাঙ্ক্ষা কামনা পূজা আবাধনা, দেবতা সর্ব্বস্ব নহেন। অধিক দিন তাঁহাতে উক্ত সর্ব্বে-সর্ব্বা প্রেমভাব স্থায়ী হয় নাই। এই খানেই প্রণয়ের সহিত ইহার মূলগত পার্থক্য। যৌবনের বহুপূর্ব্বে শৈশবেই বাবার এ ভালবাসায় ভাগীদার জুটিয়াছিল।
+</p><p>এতক্ষণ বলি নাই আমাদের বাড়ী কোথায়। কথাটা না পাড়িয়া চলিলে বলিবার ইচ্ছা ছিল না, কিন্তু এখন দেখিতেছি আবশ্যক হইয়া পড়িয়াছে। আমরা ঢাকা জেলার লোক, বাবার জমীদারী সম্পত্তিও কিছু আছে, কিন্তু প্রধান আয় চাকরীতে, তিনি একজন ডেপুটি ম্যাজিষ্ট্রেট। যতদিন বাড়ী বসিয়া কাজ পাইয়াছিলেন ততদিন সকল বিষয়ে আমাদের বেশ সুবিধা ছিল। কিন্তু আমার বয়স যখন আট নয় তখন এক সব ডিভিসনে তাঁহার বদলি হইল। পূর্ব্বেই বলিয়াছি বিদ্যাশিক্ষার জন্য দিদি পিসিমার কাছে কলিকাতায় থাকিতেন। আমি কিন্তু কখনও বাবাকে ছাড়িয়া থাকি নাই, এখনও থাকিতে পারিব না জানিয়া জ্যেঠাইমাকে ও আমাকে সঙ্গে লইয়া বাবা কর্ম্মস্থলে আসিলেন। এখানে সরকারী স্কুল বা বালিকা বিদ্যালয় ﻿কিছুই ছিলনা, জমীদার কৃষ্ণমোহন বাবুর বাড়ীর তাঁহার বাড়ীর ছোট ছেলেমেয়েদের জন্য একটা স্কুল বসিত, পাড়ার শিশুগণও অনেকেই এখানে পড়িতে আসিত, আমিও আসিতাম। কলিকাতায় এরূপ প্রথা আছে কি না জানি না; পাড়াগাঁয়ের অনেক স্থলেই এক পাঠশালায় শিশুবালকবালিকাগণ একত্রে পড়ে। সেখানে সকলেরই সঙ্গে আমার খুব ভাব হইল কিন্তু সকলের চেয়ে ছোটুর সহিত। ইহার আসল নাম কি জানি না বাড়ীর মধ্যে ছোট বলিয়াই বোধ হয় সকলে ইহাকে ছোটু ছোটু করিয়া ডাকিত। তখন ভাবিতাম ইহাই তাহার একমাত্র নাম। ছোটু কৃষ্ণমোহন বাবুর ভাগিনেয়; বাপ না থাকায় মামার বাড়ী প্রতিপালিত। ছোটুর সহিত বেশী ভাব হইবার প্রধান কারণ সে স্কুলে সর্ব্বাপেক্ষা বয়োজ্যেষ্ঠ, বোধ হয় বার তের হইবে। বাল্যকালে বরস্যবয়স্যাদিগের অপেক্ষা বয়োধিকদিগের সহিত মিশিবার কিরূপ আকর্ষণ তাহার অভিজ্ঞতা বোধ হয় অনেকেরই আছে; দ্বিতীয়তঃ ইনি পণ্ডিত মহাশয়ের প্রধান পড়ো, নিম্নক্লাশের ছাত্রছাত্রীগণের পড়া দেখিবার ভার ইহার উপর সমর্পণ করিয়া পণ্ডিত মহাশয় নিজের পরিশ্রম অনেকটা লাঘব করিতেন। স্কুল বসিত কৃষ্ণমোহন বাবুর বাহিরের একখানা আটচালাঘরে প্রাতঃকাল সাড়ে সাতটার সময়, আর ভাঙ্গিত সাড়ে ১০ টায়। কিন্তু আমরা সকলে সাড়ে ছয়টার মধ্যে স্কুলে গিয়া হাজির হইতাম আর এমন একদিনও যায় নাই যে আমরা গিয়া ছোটুকে বেঞ্চের উপর বসিয়া থাকিতে দেখি নাই। পণ্ডিত মহাশয় আসিতেন ৭॥ টায় কোনদিন বা আটটায়, ততক্ষণ ছোটু আমাদিগকে পড়া বলিয়া দিত, কপি বুকে অক্ষর লিখিয়া দিত, পকেট হইতে মুড়ি মুড়কি বিতরণ করিত, বোধ করি ইহা তাহার প্রাতরাশের অবশিষ্ট, আর বাকী সময় বই হাতে করিয়া মনে মনে নিজের পড়া মুখস্থ করিত ও মুখে গুণগুণ করিয়া গান গাহিত; এই তাহার এক বিশেষ অভ্যাস ছিল। আমরা কোন কোন সময় যদি ধরিয়া পড়িতাম, কি গাহিতেছ স্পষ্ট করিয়া গাও, ভাল করিয়া গাও, তা কখনও গাহিত না। একদিন কেবল আমরা তাহার গানের দু এক লাইন স্পষ্ট শুনিয়াছিলাম। আটচালায় প্রবেশ করিতে যাইতেছি, তাহার গুণগুণানি একটু স্পষ্টতর ভাবে কাণে গেল। প্রভা বলিল—তাহার সকলের চেয়ে দুষ্ট বুদ্ধি বেশী যোগাইত—‘ছোটু গান করছে এইখানে দাঁড়িয়ে শুনি, তাপর শিখে গিয়ে বলব কেমন শুনে নিয়েছি’। দু একদিন আগে কৃষ্ণমোহন বাবুর ছেলের পৈতে উপলক্ষে তাঁহার বাড়িতে কলিকাতার নাচ আসিয়াছিল। আমরা থিয়েটারকে নাচ বলিতাম। আমরাও দেখিতে গিয়াছিলাম, কিন্তু কি যে দেখিয়াছিলাম, কি যে অভিনয় হইয়াছিল তাহা যদিও জিজ্ঞাসা করিলে বলিতে পারিব না। আমি সমস্ত ক্ষণই প্রায় জ্যেঠাইমার কোলে মাথা দিয়া ঘুমাইয়াছিলাম, একবার কেবল একটা ভয়ঙ্কর চীৎকারে ঘুম ভাঙ্গিয়া গিয়া দেখি জরীর পোষাক পরা একজন রাজার ছেলে ভারী রাগিয়া গেছে, রাগিয়। জোরে জোরে তক্তার উপর লাথি মারিতেছে আর তরবারী উঠাইয়া চীৎকার করিতেছে। দেখিয়া ভারী ভয় হইল, তাহার পর আবার ঘুমাইয়া পড়িলাম। আর একবার জ্যেঠাইমা আমাকে জাগাইয়া দিয়াছিলেন; সেবার দেখিলাম কতকগুলি পরী শূন্যে ঝুলিতেছে। সে দৃশ্যটা বড় ভাল লাগিয়াছিল। সে﻿ই থিয়েটারেই বুঝি ছোটু গান শিখিয়া থাকিবে, সে গাহিতেছিল—
+</p>
+<div>
+<div>
+<p>হায়! মিলন হোলো,<br/>
+যখন নিভিল চাঁদ বসন্ত গেলো!<br/>
+হাতে করে মালা গাছি সারা বেলা বসে আছি<br/>
+কখন ফুটিবে ফুল, আকাশে আলো—
+</p>
+</div>
+</div>
+<p>এইটুকু শুনিয়াই আমরা হাসিয়া গৃহে প্রবেশ করিলাম। পরে এমন আপশোষ হইয়াছে কেন গানটি শেষ পর্য্যস্ত শুনি নাই। অনেক উপন্যাস প্রহসন গীতিনাট্যে গানটি খুঁজিয়াছি কিন্তু পাই নাই। আমরা ঘরে ঢুকিয়া হাসিয়া বলিলাম ‘কেমন তোমার গান শুনে ফেলেছি।’ ছোটু ভারি লজ্জিত হইল। গানটির সেই ক-লাইন একবার শুনিয়াছিলাম কিন্তু কখনো আর ভুলি নাই, আর পরের ভাল করিয়া মুখস্থ করা গানও কত ভুলিয়াছি তাহার ঠিক নাই।
+</p><p>আগেই বলিয়াছি ছোটু আমাদিগকে মুড়িমুড়কি দিত। মুড়িমুড়কি বাড়ীতে যে আমাদের কাহারো দুষ্প্রাপ্য ছিল তাহা নহে, কিন্তু হরিরলুটের বাতাসার মত তাহার হাত হইতে মুড়ি মুড়কি পাইতে আমাদের ভারী আমোদ হইত।
+</p><p>কথা ছিল, দুষ্টামি না করিলে, ভাল করিয়া পড়া বলিতে পারিলে ছোটু মুড়িমুড়কি দিবে। কিন্তু আমার অভিজ্ঞতা ভিন্ন রূপ হইয়া পড়িয়াছিল। দুষ্টামি করিলে ছোটু যদি বকিত, আমার চোখ ও অমনি জলে ভরিয়া উঠিত, হাসিখুসি খেলাধুলা সমস্তই বন্ধ হইয়া পড়িত, ছোটু তখন আদর করিয়া আমাকে ঢের বেশী করিয়া মুড়িমুড়কি দিত। এই আদরের লোভে অথবা বেশী মুড়িমুড়কির লোভে জানি না, আমার দুষ্টামিটা বড়ই বাড়িয়া উঠিয়াছিল। পড়া জানিলেও অনেক সময় ভুল উত্তর দিতাম—লেখা দেখিতে আসিলে কালীর ফোঁটা হাতে ফেলিয়া দিয়া হাসিয়া কুটি কুটি হইতাম, বোর্ডে আঁক কষিয়া শিখাইতে গেলে খড়িমাটী মুছিয়া তাহার মাথায় ঘসিয়া দিয়া দুরে পলাইতাম, ইহাতে যদি সে রাগ করিত ত কাঁদিতে বসিতাম,— আর রাগ না করিয়া সেও যদি হাসিয়া খেলায় যোগ দিত—ভুল পড়া বলিলে যদি হাসিয়া বলিত—চালাকি করা হচ্ছে,—হাতে কালী দিলে হাসি মুখে যদি কলমটা লইয়া আমাকে ফোঁট পরাইয়া দিত কিম্বা আমার কপিবুকে নাম লিখিতে বসিত, খড়িমাটি-চিত্রিত হইলে ফুল ছিঁড়িয়া যদি আমাদের মাথায় বর্ষণ করিত, তাহা হইলে আমার আনন্দ রাখিবার স্থান থাকিত না। তাহার এরূপ খেলার ভাব দেখিলে সেদিন কেবল এক আমি কেন—আমরা স্কুলের যত ছোট ছোট ছেলে মেয়েরা সকলে মিলিয়া তাহাকে বিব্রত করিয়া তুলিতাম।
+</p><p>বাবা আর একলাই বাগানের ভাল ভাল ফুল পাইতেন না, ছোটুর মুড়িমুড়কির বদলে তাহাকে আমি রোজ ফুল আনিয়া দিতাম। কাহাকে ফুল দিতে বেশী ভাল লাগিত—বাবাকে বা তাহাকে, আর কাহার সঙ্গই বা বেশী ভাল লাগিত—বাবার বা তাহার, তাহা ঠিক বুঝিয়া উঠিতে পারিতাম না। কোন একটি ভাল ফুল দেখিলে একবার মনে হইত বাবাকে দিই একবার মনে হইত তাহার জন্য লইয়া যাই; যেদিন দেখিতাম বাবা উঠিয়াছেন সেদিন ফুলটি তাঁহাকেই দিতাম, আর যেদিন দেখিতাম তিনি উঠেন নাই সেদিন ছোটুর জন্য লইয়া যাইতাম। সকালে যেমন ছোটুর কাছে যাইতে ব্যগ্র হইতাম সন্ধ্যাবেলা তেমনি আগ্রহে বাবার জন্য অপেক্ষা করিয়া থাকিতাম যাহার কাছে যখন থাকিতাম তাহাকেই তখন বেশী ভালবাসি বলিয়া মনে হইত। ছোটুর কাছ হইতে বাবার কাছে আসিয়া প্রায়ই তাঁহাকে বলিতাম—“বাবা তোমাকে খুব ভালবাসি"; বাবা যেন সন্দেহ করিয়াছেন!
+</p><p>তিনি বলিতেন “সত্যি”?
+</p><p>আমি বলিতাম—“হ্যাঁ সত্যি বলছি”।
+</p><p>বাবা হাসিয়া চুম্বন করিতেন; আমিও করিতাম—ভাবিতাম ছোটু ত আমাকে চুম্বন করে না; তবে বাবার মত আমাকে ভালবাসে না, আমি কেন তবে ভালবাসিব? কে বলে ভালবাসা ভালবাসা প্রত্যাশা করে না? ছেলেবেলাও এই ভাব! ইহাত আমাকে কেহ শিখায় নাই!
+</p><p>দুইবৎসর আমরা একত্র পড়িয়ছিলাম, তাহার পর অনেক চেষ্টা যত্ন করিয়া নিজ ঢাকাতেই বাবা বদলী হইলেন। এই সময় দিদির বিবাহ হইল। সেই দুইবৎসরের প্রতি প্রাতঃকাল কিরূপ আনন্দে কাটিয়াছিল মনে করিতে হৃদয় এখনো আনন্দপূর্ণ হইয়া উঠে। তাহার পর ৮|১০ বৎসর কাটিয়া গিয়াছে, তাহার পর আমি ভালও বাসিয়াছি—শৈশবের স্নিগ্ধ কোমল ভালবাসা নহে, যাহাকে লোকে বলে প্রেম—যৌবনের সেই জ্বলন্ত অনুরাগ—তাহারো অভিজ্ঞতা জন্মিয়াছে; জীবনে কত বড় বড় আশা ভাঙ্গিয়াছে গড়িয়াছে, কত প্রবল আনন্দ নিরানন্দ জীবনের গ্রন্থিগুলি যেন দলিয়া পিষিয়া চলিয়া গিয়াছে কিন্তু শৈশবের সেই অপরিণত ক্ষুদ্র প্রেমে কি ইহা ﻿অপেক্ষাও কম সুখ কম নিঃস্বার্থ ভাব ছিল? তখনকার সেই ছোট খাট সুখ দুঃখ আশা নিরাশার প্রতি আমার মমতা আকর্ষণ কি এখনো কিছু কম! তাহা আমি ঠিক বুঝিয়া উঠিতে পারি না। তবে কি-কে জানে কি! তোমরা শুনিলে হয়ত বুঝিতে পরিবে, কি। আমার নিজের নিকট ত নিজের জীবন প্রকাণ্ড একটা প্রহেলিকা।
+ 
+</p>
+</div></section>
+<section><div>
+
+<div><img alt="" src="images/c22_Rule_Segment___Circle___6px.svg_6px_Rule_Segment___Circle___6px.svg.png"/><img alt="" src="images/c23_Rule_Segment___Span___40px.svg_40px_Rule_Segment___Span___40px.svg.png"/><img alt="" src="images/c24_Rule_Segment___Diamond_open___7px.svg_7px_Rule_Segment___Diamond_open___7px.svg.png"/><img alt="" src="images/c25_Rule_Segment___Fancy1___40px.svg_40px_Rule_Segment___Fancy1___40px.svg.png"/><img alt="" src="images/c24_Rule_Segment___Diamond_open___7px.svg_7px_Rule_Segment___Diamond_open___7px.svg.png"/><img alt="" src="images/c23_Rule_Segment___Span___40px.svg_40px_Rule_Segment___Span___40px.svg.png"/><img alt="" src="images/c22_Rule_Segment___Circle___6px.svg_6px_Rule_Segment___Circle___6px.svg.png"/></div>
+<h2>দ্বিতীয় পরিচ্ছেদ।</h2>
+<div><img alt="" src="images/c22_Rule_Segment___Circle___6px.svg_6px_Rule_Segment___Circle___6px.svg.png"/><img alt="" src="images/c23_Rule_Segment___Span___40px.svg_40px_Rule_Segment___Span___40px.svg.png"/><img alt="" src="images/c24_Rule_Segment___Diamond_open___7px.svg_7px_Rule_Segment___Diamond_open___7px.svg.png"/><img alt="" src="images/c25_Rule_Segment___Fancy1___40px.svg_40px_Rule_Segment___Fancy1___40px.svg.png"/><img alt="" src="images/c24_Rule_Segment___Diamond_open___7px.svg_7px_Rule_Segment___Diamond_open___7px.svg.png"/><img alt="" src="images/c23_Rule_Segment___Span___40px.svg_40px_Rule_Segment___Span___40px.svg.png"/><img alt="" src="images/c22_Rule_Segment___Circle___6px.svg_6px_Rule_Segment___Circle___6px.svg.png"/></div>
+<p><span>তাহাকে </span>প্রথম দেখি দিদির বাড়ী—টেনিস পার্টিতে। ভগিনীপতি বিলাতফেরত ব্যারিষ্টার, ইংরাজিয়ান চালে চলেন; টেনিস খেলা উপলক্ষে হপ্তায় হপ্তায় তাঁহার বাড়ীতে ছোট খাট একটী স্ত্রীপুরুষ সম্মিলনী হইয়া থাকে। <span>তিনিও</span> বিলাতফেরত; ভগিনীপতির সহিত একটু কি রকম সম্পর্কও আছে, ভগিনীপতির ভগিনীপতির দূর সম্পর্কীয় ভাই কি এই রকম একটা কিছু।
+</p><p>প্রথম দর্শনেই কি আমি প্রাণ সমর্পণ করিয়াছিলাম? মোটেই নহে; আমি উপন্যাস লিখিতেছি না। বরঞ্চ বিপরীত। আলাপ হইবামাত্র একটু পরে তিনি একটু টেপা হাসি হাসিয়া দিদির দিকে চাহিয়া বলিলেন,—যদিও জনাস্তিকে—“এমন মণিকে আপনি এতদিন খনির মধ্যে লুকাইয়া রাখিয়াছিলেন?” আমার নাম মৃণালিনী আমাকে সকলে মণি বলিয়া ডাকে। কথাটা আমি শুনিতে পাইলাম এবং এই প্রশংসার মধ্য
+ হইতে কেমন একটা বেতর বেসুরো স্বর খট করিয়া কাণে বাজিল! ভগিনীপতি আবার ইহার পর ঠাটা করিয়া প্রকাশ্যেই বলিলেন—
+</p>
+<div>
+<div>
+<p>Full many a gem of purest ray serene<br/>
+The dark unfathomed caves of ocean bear,<br/>
+Full many a flower is born to blush unseen<br/>
+And waste its sweetness on the desert air.
+</p>
+</div>
+</div>
+<p>দিদির নন্দাই সংস্কৃতে এম্ এ দিয়াছেন, তিনিই বা বিদ্যা ফলাইবার এমন সুযোগ ছাড়িবেন কেন; তিনিও গোঁপে তা দিতেদিতেবলিলেন—“ন রত্ন মন্বিষ্যতে মৃগ্যহে হিতৎ—রত্ন কাহাকেও অন্বেষণ করে না—তাহাকে অন্বেষণ করিয়া লইতে হয়।
+</p><p>সকলের মুখেই বেশ একটু হাসি ফুটিল; এইরূপে হাস্যাম্পদ হইয়া ইহার কারণকে যে আমি বিশেষ প্রীতির নজরে দেখিয়াছিলাম এমনটা ঠিক বলিতে পারিড়েছি না—কিন্তু এ ঘটনা হয় টেনিস খেলার আগে,—খেলার পরে একটু অবস্থান্তর ঘটিল। উদ্যান চইতে সকলে গৃহে সম্মিলিত হইলে তিনি গান গাহিতে অনুরুদ্ধ হইয়া প্রথমে গাহিলেন ইংরাজিগান; দিদির তাহাতে মন উঠিল না, দিদি ধরিয়া পড়িলেন—“বাঙ্গালা গান গাহুন;”—অনেক আপত্তি প্রকাশ করিয়া অনেক ইতস্ততঃ করিয়া অবশেষে নাচারে পড়িয়া তিনি বাঙ্গাল গানই আরম্ভ করিলেন। কিন্তু কি আশ্চর্য্য ব্যাপার। এ যে ছেলে বেলার ছোটুর সেই গান!
+</p><p>হায়, মিলন হোলো—যখন নিভিল চাঁঁদ বসন্ত গেলো। কেবল ছোটুর অস্পষ্ট গুণগুনাণি নহে। দিদি তাঁহার গানের সঙ্গে পিয়ানো বাজাইতেছিলেন, পিয়ানোর তানে লয়ে তাঁহার পূর্ণ কণ্ঠ ধ্বনিত হইয়া গৃহে মধুবর্ষণ করিতে লাগিল; আমি ত মুগ্ধ অভিভূত হইয়া শুনিতে লাগিলাম। পিশাসিত ব্যক্তির জলপানের ন্যায় গানের প্রতি শব্দ প্রতি ছত্র সোৎসুক্যে গ্রাস করিতে করিতে রুদ্ধ নিশ্বাসে তাহার শেষ পর্য্যন্ত শুনিবার প্রতীক্ষা করিতে লাগিলাম।
+</p><p>কিন্তু আশা আকাঙ্ক্ষা যতই সামান্য হউক যদি মর্ম্মান্তিক হয় তবে বুঝি তাহা সহজে পূর্ণ হয় না,ইহাই বুঝি সংসারের অব্যর্থ নিয়ম! দুই লাইন শেষ হইতে না হইতে মিষ্টার কর সস্ত্রীক সপুত্রিক গৃহে প্রবেশ করিলেন। অভ্যর্থনা সমাদরের সাধারণ একটা হিল্লোল-প্রবাহের মধ্যে গান বাজনা থামিয়া গেল; গায়ক বাদক উভয়েই উঠিয়া দাঁড়াইয়া তাঁহাদিগকে অভিবাদন সম্ভাষণ করিলেন। স্বাগতগণ তাঁহাদের পালায় আবার সকলের সহিত যথাবিহিত ভদ্রতাঙ্গুষ্ঠান শেষ করিবার পর যদিও সেই অসমাপ্ত গীত বাদ্যের পুনরারম্ভ প্রার্থনা করিলেন; কিন্তু গায়ক আর তাঁহাতে সম্মত হইলেন না। মিশ কর একজন - গায়িকা, তিনি তাঁহাকেই গাহিতে অনুরোধ করিলেন। কেবল আমার ছাড়া গৃহ শুদ্ধ অন্য সকলেরি সেইরূপ ইচ্ছা,—অতএব কুসুম তাঁঁহার সুশোভন শীলতাপূর্ণ আপত্তি প্রকাশের সুখভোগে পর্য্যস্ত কালব্যয় করিতে অবসর না পাইয়া তখনি পিয়ানোর কাছে আসিয়া বসিতে বাধ্য হইলেন। আবার গান বাজনায় গৃহ গম গম করিষা উঠিল; কুসুমের স্বকণ্ঠ সুতানে মুগ্ধ হইয়া শ্রোতাগণ অবিরাম একটি গানের পর আর একটির ফরমাশ করিতে লাগিলেন; কিন্তু আমার কর্ণে তাহার কোনটিই প্রবেশ করে নাই আমার মাথায় সেই একই গান একই স্বরে কেবল ঘুরিতেছিল।
+</p><p>হায়! মিলন-হোলো! যখন নিভিল চাঁদ বসন্ত গেলো!
+</p><p>গান বাদ্য গল্পস্বল্পের পর নিয়মিত সময়ে নিমন্ত্রিতগণ যখন বাড়ী চলিয়া গেলেন, গৃহ নিস্তব্ধ নির্জন হইয়া পড়িল—তখনো আমার কাণে সেই গান বাজিতে লাগিল। রাতে ঘুমাইয়াও তাহা স্বপ্নে দেখিলাম। ছেলেবেলার সেই আটচালা ঘর, তাহাতে দিদির এই ড্রয়িংক্রম সমারোহ,—ছোটু গাহিতেছে— তাহার গুনগুনানি সুরে নহে-সুস্বরে সুতানে পূর্ণ কণ্ঠে গাছিতেছে—আমার দিকে প্রেমপূর্ণ দৃষ্টিতে চাহিয়া গাহিতেছে-
+</p><p>সেই মিলন হোলো—যখন নিভিল চাদ বসন্ত গেলে।
+</p><p>সেই মধুময় গীতধারায় সেই প্রেমময় দৃষ্টিপ্রবাহে আমার সর্ব্বাঙ্গ বিদ্যুৎ কম্পিত হইয়া উঠিল, আর ঘুম ভাঙ্গিয়া গেল দেখিলাম ভোর হইয়াছে।
+</p><p>বড় আশা ছিল, দ্বিতীয় হপ্তায় টেনিস পার্টির দিনে গানটি শুনিব কিন্তু তিনি আর সেদিন আসিলেন না। রাত্রিকালৈ ডিনার টেবিলে আমি বলিলাম—“মিষ্টার ঘোষ যে আজ এলেন না?”
+</p><p>“দিদি বলিলেন “হ্য আমিও ঐ ভাবছিলুম-তিনি যে আজ এলেন না?”
+</p><p>ভগিনীপতি ঠাট্টার স্বরে বলিলেন “তাইত রমানাথ কি জানে এদিকে এমন প্রলয় উপস্থিত, তাহলে অবশ্যই আসত—ত ডাকব নাকি?
+</p><p>ঠাট্টাটা আমাকে স্পর্শ করিল না, আমি সত্যই গায়কের প্রতি আকৃষ্ট হই নাই আমার অনুরাগ গানের প্রতি অতএব আমি তাঁহার ঠাট্টায় না দমিয়া বেশ সহজভাবেই বলিলাম ‘ডাক না,তিনি বেশ গাইতে পারেন—আরএকদিন শুনতে ইচ্ছা আছে।”
+</p><p>আমার মনে কোন লুকান অভিপ্রায় ছিল না—কিন্তু তাহাদের মনে ছিল। তখন যদিও তাহ বুঝি নাই পরে বুঝিয়াছি।— সুতরাং আমার কথাটা তাঁহারা লুফিয়া লইলেন। দিদি বলিলেন “রমানাথ অনেকদিন ‘কল' করেছেন কিন্তু এখনো পর্য্যন্ত তাঁকে ডিনারে বলা হোল না একদিন খেতে নিমন্ত্রণ করা যাক।” ভগিনীপতি বহিলেন “তথাস্তু। তোমার ইচ্ছাতেই আমার ইচ্ছা। যেদিন ইচ্ছা বলিয়া পাঠাও।”
+</p><p>ডিনারের দিন তাহাকে দেখিয়া প্রথমটা যেন একটু নিরাশ হইয়া পড়িলাম;—পূর্ব্বে একদিন মাত্র তাহাকে দেখিয়াছি— একদিনেই যে তাঁহার মূর্ত্তি মানসপটে অঙ্কিত হইয়া গিয়াছিল এমন নহে, বরঞ্চ ১০|১২ দিনে চেহারাটা এতদূর ভুলিয়া গিয়াছিলাম, যে তাঁহাকে মনে করিতে সেই স্বপ্নের চেহারাই মনে পড়িতেছিল—তাই চাক্ষুষ প্রভেদ প্রত্যক্ষ করিবামাত্র একটু ক্ষুণ্ণ হইলাম। আমার স্বপ্ন দৃষ্ট পুরুষ যে দেবতার ন্যায় সুপুরুষ এমন বলিতেছি না—সত্য কথা বলিতে, সে মুখও আমার তেমন সুস্পষ্ট মনে ছিল না, মনে ছিল কেবল স্বপ্নের সেই দৃষ্টি —আর এখন যাহাকে দেখিলাম তিনি কিছু মন্দ দেখিতে না, দিব্যি নাক মুখ, বেশ পরিপাটি করিয়া বড় কপালে চুল ফেরান, ঘন গোঁপের বেশ বঙ্কিম বাহার-সব শুদ্ধ বেশ ভালই দেখিতে। যদিও গোঁপের এ বাহার প্রথমে চোখে লাগে নাই—ক্রমশঃ হৃদয়ঙ্গম করিয়াছিলাম—প্রথমে বরঞ্চ একটু বেশী ঘন রলিয়াই মনে হইয়াছিল। কিন্তু আমার স্বপ্নদৃষ্টপুরুষের মত তাঁহার নয়নে সেই প্রাণস্পর্শী পরিপূর্ণ সরল—অথচ প্রেমময় দৃষ্টির অপরূপ সৌন্দর্য্য দেখিলাম না; তাহার সন্ধান করিতে গিয়াই নিরাশ হইয়া পড়িলাম। “কথাবার্ত্ততে মাঝে মাঝে কেমন একটু খটকা লাগিতে লাগিল। তাঁহার টানাবোন রসিকতা এক একবার যেন ভদ্রতার সীমানা ছাড়াইয়া উঠিতেছে, মনে হইতেছিল—অথচ স্পষ্ট করিয়া এরূপ মনে কারিতেও ভরসা হইতেছিল না। ইংলণ্ডের best manners যিনি শিখিয়া আসিয়াছেন তাঁহাতে সুরুচি বা ভদ্রতর অভাব কিরূপে সম্ভবে?—আমারি অমার্জ্জিত অশিক্ষিত রুচি বশতঃ তাহা ঠিক উপলব্ধি করিতেছি না।
+</p><p>তিনি আসিতেই দিদি তাঁহাকে জিজ্ঞাসা করিলেন— “আপনি যে বৃহস্পতিবারে এলেন না? আমরা শেষ মুহূর্ত্ত পর্য্যন্ত ভাবছিলুম আপনি আসবেন।”
+</p><p>তিনি বলিলেন মিষ্টার করের বাড়ী নিমন্ত্রণে গিয়াছিলাম। I refused them so many times before, that I had not the heart to do so again. So sorry—but did you really expect me! If I had only known it, I would have sacrificed a thousand—”
+</p><p>ভগিনীপতি বলিয়া উঠিলেন-"I say R don't be so very eloquent, it might make me jealous you know—”
+</p><p>দিদি বলিলেন “সে দিন ডিনারের পর আপনাদের কি গান হ’ল? মিশ কর কি সুন্দর গাইতে পারেন?”
+</p><p>“মিষ্টার ঘোষ একটু হাসিয়া বলিলেন হ্যাঁ এইরূপ শোনা যায় বটে-অন্তঃত তাঁদের ত এইরূপ বিশ্বাস। I What a lovely colour! It suits the complexion beautifully"
+</p>
+
+<p> আমার সাড়ির প্রতি লক্ষ্য করিয়া এ কথাটা বলা হইল। ডিলার টেবিলে অবশ্য আমি তাঁঁহআর পাশে বসিয়াছিলাম কিন্তু মনে রাখিবার মত এমন কিছু বিশেষ কথা হয় নাই। ভগিনীপতিতে তাঁহাতে বেশী সময় পলিটিক্স্ লইয়াই তর্ক বিতর্ক চলিয়াছিল, মাঝে মাঝে আমার সহিত যা কথাবার্ত্তা, অধিকাংশই তাহা প্রশ্নোত্তর। আমি গাহিতে পারি কি না, কবিতা পড়ি কি না-কাহার কবিতা আমি বেশী ভালবাসি,—কত দিন এখানে থাকিব ইত্যাদি। আমি নিজে হইতে কথা কহিবার মধ্যে তাঁহার গানের প্রশংসা করিয়াছিলাম আন্তরিক প্রশংসা, ইংরাজি কমপ্লিমেণ্ট নহে। বোধ করি তাহাতে তিনি সন্তুষ্ট হইয়া থাকিবেন, প্রশংসা শুনিয়া বলিলেন “বাঙ্গলা গান আমি বেশী জানি না, এবার দেখছি শিখতে হবে।”
+</p><p>তাঁহার সমস্ত কথার মধ্যে এই কথাটি আমার ভাল লাগিয়াছিল; মনে হইল তিনি হৃদয়ের সহিত বলিতেছেন। খাবার পর আবার তিনি সেই গানটি গাহিলেন,—
+</p>
+<div>
+<div>
+<p><span>হায়! মিলন হোলো!</span><br/>
+যখন নিভিল চাঁদ বসন্ত গেলো!<br/>
+হাতে করে মালাগাছি সারাবেলা বসে আছি<br/>
+কখন ফুটিবে ফুল, আকাশে আলো,—<br/>
+আসিবে সে বর বেশে মালা পরাইব হেসে<br/>
+বাজিবে সাহানা তানে বাঁশি রসালে —<br/>
+আসিল সাঁধের নিশা তবু পুরিল না তৃষা<br/>
+কেমন কি ঘুমে আঁখি ভরিয়ে এল—<br/><span>হায় মিলন হোলো! </span>
+</p>
+</div>
+</div> গানটি এইখানে শেষ হইল, তিনি থামিলেন, কিন্তু মনে হইল এখনো যেন অসম্পূর্ণ, অসমাপ্ত রহিয়া গেল, কি যেন আরো বলার ছিল, বলা হইল না; শুনিয়া মুগ্ধ হইলাম, অথচ পরিতৃপ্ত হইলাম না। কিন্তু গান শেষ হইলে নিকটে আসিয়া তিনি যখন বলিলেন-"I wish I was a painter to paint you like this” তখন পূর্বের মত আমার বিরক্ত বোধ হইল না— মনে হইল তিনি যেন আর আমার অপরিচিত নহেন। সে সময় স্বপ্নের মূর্ত্তিতে তাঁহার মূর্ত্তিতে মিশ্রিত হইয়া আমি সে দেখিতে ছিলাম তাঁহাকে বা কাহাকে?
+
+</div></section>
+<section><div>
+
+<div><img alt="" src="images/c22_Rule_Segment___Circle___6px.svg_6px_Rule_Segment___Circle___6px.svg.png"/><img alt="" src="images/c23_Rule_Segment___Span___40px.svg_40px_Rule_Segment___Span___40px.svg.png"/><img alt="" src="images/c24_Rule_Segment___Diamond_open___7px.svg_7px_Rule_Segment___Diamond_open___7px.svg.png"/><img alt="" src="images/c25_Rule_Segment___Fancy1___40px.svg_40px_Rule_Segment___Fancy1___40px.svg.png"/><img alt="" src="images/c24_Rule_Segment___Diamond_open___7px.svg_7px_Rule_Segment___Diamond_open___7px.svg.png"/><img alt="" src="images/c23_Rule_Segment___Span___40px.svg_40px_Rule_Segment___Span___40px.svg.png"/><img alt="" src="images/c22_Rule_Segment___Circle___6px.svg_6px_Rule_Segment___Circle___6px.svg.png"/></div>
+<h2>তৃতীয় পরিচ্ছেদ। </h2>
+<div><img alt="" src="images/c26_Rule_Segment___Span___100px.svg_100px_Rule_Segment___Span___100px.svg.png"/><img alt="" src="images/c27_Rule_Segment___Diamond___6px.svg_7px_Rule_Segment___Diamond___6px.svg.png"/><img alt="" src="images/c28_Rule_Segment___Span___10px.svg_10px_Rule_Segment___Span___10px.svg.png"/><img alt="" src="images/c29_Rule_Segment___Diamond___10px.svg_11px_Rule_Segment___Diamond___10px.svg.png"/><img alt="" src="images/c28_Rule_Segment___Span___10px.svg_10px_Rule_Segment___Span___10px.svg.png"/><img alt="" src="images/c27_Rule_Segment___Diamond___6px.svg_7px_Rule_Segment___Diamond___6px.svg.png"/><img alt="" src="images/c26_Rule_Segment___Span___100px.svg_100px_Rule_Segment___Span___100px.svg.png"/></div>
+<p>মেশ মেরাইজ করিলে কিরূপ অবস্থা হয় তাহা আমি বেশ বুঝিতে পারি। আমি যেন সেই রূপ মন্ত্রপূত হইয়া পড়িতাম। তিনি যখন আমাদের বাড়ী আদিতেন, তাঁহাকে যখন প্রথম দেখিতাম, তখন আমার বেশ সহজ অবস্থা, অন্তত একজন সাধারণ আলাপীর সহিত দেখা শুনা কথাবার্ত্তায় যতটুকু আনন্দ, তাঁহার সহিত দেখা সাক্ষাতেও তদপেক্ষা অধিক কিছুই নহে। কিন্তু গানটি গাহিলেই সমস্ত বিপর্য্যয় হইয়া পড়িত; অল্প সময়ে এমন কতবার পণ করিয়াছি—সে গান আর শোনা হইবে না, তাঁহাকে আর গাহিতে বলিব না, কিন্তু সময় কালে সে সঙ্কল্প কিছুতেই বাঁধিয়া রাখিতে পারিতাম না, শুষ্ক পত্রের মত যেন
+ আপন হইতে টুটিয়া খসিয়া পড়িত। গানটির কি যে মোহ ছিল জানি না, শুনিতে শুনিতে বাল্যের স্মৃতিধারা পূর্ণপ্রবাহে উথলিয়া কুমারী-হৃদয়ের সুপ্ত অতৃপ্ত প্রেমাকাঙখাকে স্ফীত উচ্ছসিত করিয়া তুলিত। সঙ্গীতধ্বনি সুরে তানে উঠিয়া গড়িয়া যতই মধুরতা বর্ষণ করিত—ততই সে আকাঙখা তীব্র আকুলতর হইয়া প্রবল দ্রুতোচ্ছাসে তাহার চির-পরিচিত অথচ চিরনূতন কে জানে কোন অজানা প্রেমময় সাগর-দেবতার অন্বেষণে ধাবিত হইত,—তাহাতে আত্ম-বিলীন করিতে চাহিত। এই সুমধুর সুকোমল তীব্র অতৃপ্তির আতিশধ্যে ক্রমশ: যেন আপন হারাইয়া ফেলিতাম; সেই অপরিচিত মধুর গীত-সন্তাষণে মুগ্ধ স্মৃতিদ্বার উদঘাটিত করিয়া গায়ক ক্রমে আমার মনে নয়নে পরিচিত প্রিয়জনের মূর্ত্তিতে বিভাসিত হইয়া উঠিতেন; নূতনে পুরাতনে, অতীতে বর্ত্তমানে, স্মৃতি বাসনায় তখন একাকার হইয়া পড়িত—আমি জাগিয়া যেন স্বপ্ন-রাজ্যে বিচরণ করিতাম।
+</p><p>তিনি চলিয়া যাইবার পরেও সমস্ত রাত্রি ধরিয়া কেমন মেঘাচ্ছন্ন থাকিতাম,—স্বপ্নে জাগরণে ঐ একইরূপ ভাব আমাকে অভিভূত করিয়া রাখিত; পরদিন নিদ্রা ভঙ্গের পর হইতে সে ভাব অল্পে অল্পে দূর হইয়া যাইত। তিন চারি দিন পরে, কখনও সপ্তাহ পরে আবার তিনি যখন আসিতেন, তখন আমি সম্পূর্ণ প্রকৃতিস্থ-তখন আর সে ভাবের চিহ্ণমাত্র নাই; তখন তাই তাঁহাকে দেখিলে পূর্ব্ব ভাবের স্মৃতিতে এমন লজ্জাবোধ হইত! কিন্তু আবার গান আরম্ভ করিলেই যেকে সেহ! এ কি অপরূপ রহস্য জানি না; সুর্য্যের উদয়াস্তে পৃথিবী যেমন দ্বিমূর্ত্তি ধারণ উক্ত ভাবের উদয়াস্তে আমিও সেইরূপ দুই আমি হইয়া পড়িতাম।
+</p><p>ক্রমশঃ আমার এই মন্ত্রপূত ভাব স্থায়ী অবস্থা প্রাপ্ত হইতে লাগিল; অর্থাৎ সময়ে অসময়ে সকল সময়েই আমার তাঁহাকে আত্মীয় বলিয়া মনে হইতে লাগিল। এরূপ হইবার নূতন কারণ ঘটিল এই; চারিদিক হইতেই আমি শুনিতে লাগিলাম, বুঝিতে লাগিলাম তিনি আমার স্বামী হইবেন; কোন রঙ্গবালার মনে এই বিশ্বাসের কিরূপ প্রবল প্রভাব তাহা বিশেষ করিয়া বলিবার আবশ্যক আছে কি? স্বামী যেমনই হোন, তিনি রমণীর এক মাত্র পূজ্য আরাধা দেবতা, প্রাণের প্রিয়তম, জীবনের সর্ব্বস্ব-—এই বাক্য, এই ভাব, এই সংস্কার আজন্মকাল হইতে আমাদের মনে বদ্ধমূল হইয়া বধিতেছে, সুতরাং বিশেষ কারণে স্পষ্ট বীতরাগ না থাকিলে এই বিশ্বাসই প্রেমাঙ্কুরিত করিবার যথেষ্ট কারণ।
+</p><p>কিছুদিন হইতে আমরা যেখানে যাই কেবল ঐ কথা, যিনি আসেন কেবল ঐ কথা। . বয়স্যরা ঠাট্টাচ্ছলে আমার কাছে গোপনে ঐ প্রসঙ্গ তোলেন, বয়োজেষ্ঠারা গম্ভীরভাবে দিদির কাছে আমার সাক্ষাতেই প্রকাশ্যে ঐ আলোচনা করেন, আর দিদি ভগিনীপতি ত সুবিধা পাইলে যখন তখন ঐ কথা তুলিয়া কখনো ঠাট্টা করিয়া, কথনে গম্ভীরভাবে আমার ভবিষ্যৎ, সৌভাগা-কল্পনায় আনন্দ প্রকাশ করেন। এ কল্পনা যে কখনো সত্যে পরিণত না হইয়া কল্পনাতেই অবলিত হইতে পারে, এ কথা কিন্তু কখনো তাঁহাদের মনে উদয় হয় না। কেনই বা হইবে? যাঁহাকে লইয়া এত কথা, এত আলোচনা, তিনি দিন দিন এই বিশ্বাস আমাদের মনে গভীররূপে বদ্ধমূল করিতেছেন, তাহার যাতায়াতও বাড়িতেছে, এবং কথাচ্ছলে ভাবে ভঙ্গীতে তাঁহার অনুরাগও দিন দিন স্পষ্টতর হইয়া উঠিতেছে, এখনো যে কেবল সুস্পষ্ট বাক্যে তিনি বিবাহ-প্রস্তাব করিতেছেন না, সে যেন শুধু আমাদের মনোগত প্রভিপ্রায় আরো স্পষ্টরূপে বুঝিবার অপেক্ষায়।
+</p><p>রমণী-হৃদয়ে প্রীতিতে যেমন প্রীতিরুদ্রেক করে, এমন কি অন্য কোন গুণে? যদি হৃদয় অন্যপূর্ব্ব না থাকে বা কোন কারণে কেহ নিতান্ত বিদ্বেষভাজন না হয়—তাহা হইলে সে আমাকে প্রাণপণে ভালবাসে—এইরূপ বিশ্বাসস্থলে যদি প্রকৃত প্রেমদিবারও ক্ষমতা না থাকে, অন্ততঃ গভীর করুণাও তাঁহার স্থানাভিষিক্ত হইয়া ক্রমশঃ প্রেমমূর্ত্তি ধারণ করে। আত্মদানে অন্যকে সুখী করিব-নারীপ্রকৃতির এই যে সর্ব্বগ্রাসী আকাঙখা, ইচ্ছা, প্রবণতা,—নারীপ্রেমের শিরায় মজ্জায় যে আকাঙ্ক্ষা শোণিতাকারে প্রবাহিত বর্ত্তমান; তাহার সফলতাতেই, তাহার বিশ্বাসেই রমণীহৃদয় পরিপূর্ণ, বিকশিত, জীবনজন্ম সার্থক চরিতার্থ; আবার এই বিশ্বাসেই সে ভ্রান্ত, কলঙ্কিত, মহাপাপী। প্রেমময়ী রমণী ইহার জন্য কতদূর আত্মত্যাগ না করিতেছে; আর কতদূর না করিতে পারে?
+</p><p>তাঁহার প্রীতিময় ব্যবহারে, রূপেগুণে আমার নয়নে তিনি সর্ব্বসুন্দর হইয়া উঠিলেন; আপনাকে এই সর্ব্বগুণধর সুপুরুষের সুখের কারণ ভাবিয়া আমি অতি উপাদেয় গর্ব্বময় আত্মপ্রসাদ উপভোগ করিতে লাগিলাম। বেশীদিন এরূপে দিন কাটিল না,ভাবে ভঙ্গীতেই তাঁহার অনুরাগ আবদ্ধ রহিল না, একদিন তিনি স্পষ্ট করিয়া তাঁহার মনের ভাব ব্যক্ত করিলেন। সেই প্রার্থিত প্রত্যাশিত দিন আসিল-কিন্তু?
+</p><p>বিকাল বেলা বাগানে ফুল তুলিতেছিলাম। বৃষ্টির পর চারিদিক সুন্দর সুদৃপ্ত নবীন হইয়া উঠিয়াছে, আকাশের লাল আলো তরল মেঘের উপর, গাছপাতা ফুলের কোমলতার উপর অতি মধুর উজ্জ্বলতা বিস্তার করিয়াছে। আমি একটি গোলাপ বোঁটাশুদ্ধ ছিঁড়িতে চেষ্টা করিয়াও ছিঁড়িতে পারিতেছিলাম না, সহসা হাত বোটাতেই রহিয়া গেল, কম্পাউণ্ডে গাড়ী জুড়ি প্রবেশ করিতে দেখিয়া তাহাতেই নয়ন আকৃষ্ট, আবদ্ধ হইয়া পড়িল। তিনি গাড়ী হইতে নামিয়া আমাকে বাগানে দেখিয়া নিকটে আসিলেন, গোলাপটি ছিঁড়িয়া দিয়া বলিলেন,”কাহার জন্য ফুল তুলিতেছেন!” আমিও ফুল তুলিতে তুলিতে ভাবিতেছিলাম,—তখন ছোটুকে কেমন অসঙ্কোচে ফুল দিতাম, আর ইহাকে দিতে ইচ্ছা করিলেও কেন পারি না”! তাকহার জিজ্ঞাসায় উত্তর করিলাম— “দিদির জন্য।”
+</p><p>একটি সুদীর্ঘ দীর্ঘনিশ্বাস শুনিতে পাইলাম। আর একটি সুন্দর গোলাপ ছিঁড়িয়া তিনি আমার হাতে দিতে দিতে আস্তে আস্তে আওড়াইলেন—
+</p>
+<div>
+<div>
+<p>“A lamp is lit in woman's eye<br/>
+That souls, else lost on earth, remember angels by.”
+</p>
+</div>
+</div>
+<p>তখন আমি লজ্জিতভাবে বলিলাম—“ঘরে চলুন,”। তিনি বলিলেন—“চলুন না, আপনি গেলেই যাই, মনে আছে আজ আপনি আগে যাবেন বলেছেন?”
+</p><p>আমরা উপরে উঠিলাম, তখনো ভগিনীপতি বাড়ী ফেরেন নাই, দিদিও এদিকে আসেন নাই, আমি চাকরকে বলিলাম— “দিদিকে খবর দাও”, বলিয়া তাহার সহিত ড্রয়িংরুমে বসিলাম। তিনি বলিলেন—“আপনি পিয়ানোর কাছে বসুন, “এমন দামিনী মধুর চাঁদিনী” এই গানটি গান্‌”—
+</p><p>আমি বলিলাম “সে রাত্রের গান কি বিকালে গাওয়া যায়?” তিনি বলিলেন-"তবে যা ইচ্ছা গান-sing sweet bird of beauty sing—জানেন ত কবিতাটী—
+</p>
+<div>
+<div>
+<p>To me there is but one place in the world,<br/>
+And that, where thou art; for wherever I be<br/>
+Thy love doth seek its way into my heart,<br/>
+As will a bird into her secret nest,<br/>
+Then sit and sing, sweetbirdofbeauty sing.
+</p>
+</div>
+</div>
+<p>আমি বলিলাম, “আপনি সেই গানটি গান আমার ভারী শুনতে ইচ্ছা হচ্ছে?”
+</p><p>তিনি এ কথার উত্তর না দিয়া বলিলেন—“সেলির একটি কবিতা আমার বড় সুন্দর লাগে, আপনি অবশ্য পড়েছেন?
+</p>
+<div>
+<div>
+<p>We—are we not formed as notes of music are,<br/>
+For one another though dissimilar,<br/>
+Such difference without discord as can make,<br/>
+Those sweetest sounds in which all spirits shake,<br/>
+As trembling leaves in a continuous air”
+</p>
+</div>
+</div>
+<p>আমি কোন উত্তর করিলাম না, তিনি একটু পরে আবার বলিলেন—“আগে ভাবতুম ভাল কবিতা যাকে বলা যায় more or less সে সবই ফাঁকা—মিথ্যা, তার মধ্যে সত্য কিছু নেই, কেবল বাজেকল্পনা, এখন দেখছি আমারি ভুল। আপনার কি মনে হয়?”
+</p><p>আমি বলিলাম,—“আমি অমন করে ভেবে দেখিনি—পড়ি ভাল লাগে শুধু এই জানি।”
+</p><p>তিনি বলিলেন—"কিন্তু সত্য বলে না মনে বসলে তার কি প্রকৃত রসটুকু উপভোগ করা যায়? আমি আগে নভেলে first sightএ love যেখানে পড়তুম এমন খারাপ লাগতো— কেননা তা নিতান্তই মিথ্যা, অসম্ভব বলে মনে হোত, এখন দেখচি There are more things in heaven and earth Horatio, Than are dreamt of in your philosophy.—কে জানত ঐ মিথ্যা আমার জীবনের পক্ষে একদিন পূর্ণ সত্য হয়ে দাড়াবে?”—
+</p><p>বলিয়া বিষাদপূর্ণ দৃষ্টিতে আমার দিকে চাহিয়া বলিলেন—
+</p>
+<div>
+<div>
+<p>To see her is to love her,<br/>
+And love but her for ever,<br/>
+For nature made her what she is,<br/>
+And never made another.
+</p>
+</div>
+</div>
+<p>আরো কি স্পষ্ট ক'রে বলবার আবশ্যক আছে?
+</p>
+<div>
+<div>
+<p>To see you is to love you<br/>
+And love but you for ever—”
+</p>
+</div>
+</div>
+<p>ভগিনীপতি এই সময় গৃহে আগায় তিনি হঠাৎ এইখানেই থামিয়া পড়িলেন।
+</p><p>ভগিনীপতি বলিলেন—“হালো কতক্ষণ, finishing stroke eh —Final proposal in poetry it seems, Hurrah Let me congratulate you both!
+</p>
+
+<p> তিনি যেন একটু সলজ্জভাবে গোপ ফিরাইয়া বলিলেন—“I say you are very late in returning to day. We were whiling away our time as best we could. By the bye did you win that murder-case of yours? Have you got the poor fellow off?”
+</p><p>ব্যারিষ্টারদিগের নিকট তাঁহাদের মোকদ্দমা সম্বন্ধীয় গল্পের মত প্রীতিজনক গল্প আর নাই, উপরোক্ত প্রশ্নে ভগিনীপতি পূর্ব্ববর্ত্তী কথা ভুলিয়া গেলেন। ঐ প্রসঙ্গে উভয়ের কথাবার্তা চলিতে লাগিল। আমি এতক্ষণ যেন কেমন স্তম্ভিত হইয় পড়িয়াছিলাম, —একটু প্রকৃতিস্থ হইয়া ভাবিবার অবসর পাইলাম। এইত তিনি স্পষ্ট করিয়া তাঁহার মনোভাব বাক্যে প্রকাশ করিলেন,—আমি কি নিতান্তই সুখে অভিভূত হইয়া পড়িয়াছি? মনের মধ্যে মন দিয়া অন্তর পরীক্ষা করিয়া দেখিলাম,—না তাঁহা ঠিক নহে; সর্ব্ব প্রথম তাঁহাকে দেখিয় তাহার কথা বার্তা শুনিয়া যেমন হইয়াছিল, তেমনি তাহার এই অনুরাগ-বাক্যে আজও কেমন যেন সহসা সুমধুর সঙ্গীত স্বরে একটা বিষম বেসুরো স্বর কাণে বাজিল, অমৃতভাণ্ডে একবিন্দু তীব্র বিষ ক্ষেপের ন্তায় সুখের মধ্যে প্রাণ যেন কেমন আকুল হইয়া উঠিল—আশার কোণে কোণে নৈরাশোর ঘন ছায়া জমাট বাঁধিল,—মনে হইতে লাগিল যেন যাহা চাহিয়াছিলাম এ তাহা নহে-যাহ বুঝিয়াছিলাম এ তাহা নহে!
+</p><p>আমি ভাবিতেছি—তাঁহারা দুইজনে গল্প করিতেছেন, চাকর আসিয়া খবর দিল একজন মক্কেল আসিয়াছে, আর হাতে করিয়া একখানি ‘কার্ড’পাত্র সম্মুখে ধরিল। ভগিনীপতি তিনখানি টিকিট হাতে উঠাইয়া লইয়া বলিলেন—“ডাক্তার বোস আমাদের উপর কল করতে এসেছেন দেখছি। আচ্ছা এইখানে আসতে বল।— মণি তুমি যাও—তোমার দিদিকে ডেকে আন।”
+</p><p>আমি চলিয়া গেলাম, গৃহপার হইয়াই প্রায় তখনি নুতন কণ্ঠ শুনিতে পাইলাম, কৌতুহল-বশবর্ত্তী হইয়া ভাবিলাম—লোকটার চেহারাখানা কি রকম একবার দেখিয়া যাওয়া যাক। দরজার আড়ালে নিজে অদৃশ্য থাকিয়া নবাগতকে দেখিবার প্রয়াস করিলাম। আপনাকে ভাল করিয়া ঢাকিয়া তাঁহাকে দেখিবার তেমন সুবিধা হইতেছিল না—এদিকে একবার ও দিকে একবার ফেরাফেরি করিতে করিতে তাহদের কথাবার্ত্তা কাণে যাইতে লাগিল। তখন দর্শন কৌতুহলবিরহিত হইয়া শ্রবণ-কৌতূহলে বাধা পড়িলাম। ভগিনীপতি ডাক্তারকে অভ্যর্থনা করিয়া বসাইয়াই মুহূর্ত্তের জন্য বিদায় লইয়া মক্কেলের সহিত দেখা করিতে গেলেন। দুইজনে একাকী হইবামাত্র ডাক্তার বললেন—
+</p><p>“By the way, I met Miss K, just before leaving England. She seemed very anxious to know whether you had arrived safely and why you did not send her the money you had promised for her passage out to India. You know her people will have nothing to do with her since her engagement to you, so the poor girl—”
+</p><p>আমার সর্বাঙ্গ কাপিতে লাগিল, দেয়ালে ঠেস দিয়া আমি প্রাণপণে বলসংগ্রহ করিয়া দাঁড়াইয়া বুছিলাম।
+</p><p>তিনি! Nonsense, there was never any formal engagement between us, I thought that affair was over and done with long ago. Forgoodness’ sake don't bring that up before anybody here—all my friends would think I was a villian of the deepest dye.
+</p><p>ডাক্তার। And what else do you make yourself out to be? Do you think it is very honourable conduct to forsake a helpless girl who has trusted you implicitly Before God you are man and wife"—
+</p><p>ইহার পর আর কিছুই জানি না, আমি অজ্ঞান হইয়া পড়িলাম।
+</p>
+</div></section>
+<section><div>
+
+<div><img alt="" src="images/c26_Rule_Segment___Span___100px.svg_100px_Rule_Segment___Span___100px.svg.png"/><img alt="" src="images/c27_Rule_Segment___Diamond___6px.svg_7px_Rule_Segment___Diamond___6px.svg.png"/><img alt="" src="images/c28_Rule_Segment___Span___10px.svg_10px_Rule_Segment___Span___10px.svg.png"/><img alt="" src="images/c29_Rule_Segment___Diamond___10px.svg_11px_Rule_Segment___Diamond___10px.svg.png"/><img alt="" src="images/c28_Rule_Segment___Span___10px.svg_10px_Rule_Segment___Span___10px.svg.png"/><img alt="" src="images/c27_Rule_Segment___Diamond___6px.svg_7px_Rule_Segment___Diamond___6px.svg.png"/><img alt="" src="images/c26_Rule_Segment___Span___100px.svg_100px_Rule_Segment___Span___100px.svg.png"/></div>
+<h2>চতুর্থ পরিচ্ছেদ। </h2>
+<div><img alt="" src="images/c22_Rule_Segment___Circle___6px.svg_6px_Rule_Segment___Circle___6px.svg.png"/><img alt="" src="images/c23_Rule_Segment___Span___40px.svg_40px_Rule_Segment___Span___40px.svg.png"/><img alt="" src="images/c24_Rule_Segment___Diamond_open___7px.svg_7px_Rule_Segment___Diamond_open___7px.svg.png"/><img alt="" src="images/c25_Rule_Segment___Fancy1___40px.svg_40px_Rule_Segment___Fancy1___40px.svg.png"/><img alt="" src="images/c24_Rule_Segment___Diamond_open___7px.svg_7px_Rule_Segment___Diamond_open___7px.svg.png"/><img alt="" src="images/c23_Rule_Segment___Span___40px.svg_40px_Rule_Segment___Span___40px.svg.png"/><img alt="" src="images/c22_Rule_Segment___Circle___6px.svg_6px_Rule_Segment___Circle___6px.svg.png"/></div>
+<p>যখন জ্ঞান হইল, দুইটি সোৎস্নক নয়নের সস্নেহ দৃষ্টি নয়নে স্থাপিত দেখিলাম। বুঝিলাম আমার সেই মোহের অবস্থা—যে অবস্থায় আমি আত্মহারা হইয়। অতীতে বর্ত্তমানে মিশাইয়া ফেলি, বাল্যের স্মৃতিগঠিত যৌবনস্বপ্নে একে অন্য ভ্রম করি,—এ আমার সেই স্বপ্নাবিষ্ট অবস্থা; তাই মিষ্টার ঘোষের নয়নে আমার বাল্যলখার স্নেহদৃষ্টি নিরীক্ষণ করিতেছি। কিন্তু তখনি সে ভ্রম ভাঙ্গিল; বুঝিলাম ইনি তিনি নহেন-ইনি ডাক্তার। আমাকে
+ সজ্ঞান দেখিয়া ডাক্তার বলিয়া উঠিলেন—“Thank God, the danger is past, she is all right now.”
+</p><p>দিদি আমার পাশেই বসিয়াছিলেন; তিনি এক চামচ ঔষধ আমার মুখের কাছে ধরিয়া স্নেহকণ্ঠে বলিলেন—“মণি এইটুকু থেয়ে ফেল।”
+</p><p>আমি বলিলাম “আমার হয়েছে কি-ওষুধ খাব কেন?”
+</p><p>ভগিনীপতি বলিলেন—“না কিছুই হয়নি—ওষুধ না—সরবৎ দেওয়া যাচ্ছে—খেয়ে ফেল দেখি,—I say Doctor—রমানাথ একবার এখন দেখতে আসতে চায়; আসতে পারে কি?”
+</p><p>ডাক্তার বলিলেন—“এখনো বোধ হয় কিছুক্ষণ disturb না করাই ভাল,—If she gets a little sound sleep her nervous system will recover its natural tone, এখন আমরা ও যাই—আমারো আর এখানে থাকার আবশ্যক দেখিনে। আপনার স্ত্রী উঁহাকে এখন ঘুম পাড়াবার চেষ্টা করুন। যদি বলেন, কাল আমি বরঞ্চ একবার এঁকে দেখতে আসব— আসতে পারি কি?”
+</p><p>ভগিনীপতি বলিলেন—“নিশ্চয়ই। আজ আপনি না থাকলে কি বিপদেই পড়তে হোত—I don't know how to thank—”
+</p><p>আর শুনিতে পাইলাম না, তাঁহারা চলিয়া গেলেন।—এতক্ষণ যেন কি একটা অজ্ঞাত জলস্ত লৌহভার আমার হৃদয়ে রুদ্ধ হইয়া ছিল, সহসা অশ্রুশ্রোতে গলিয়া বাহির হইয়া উঠিল, আমি দুইহাতে দিদির কটিদেশ বেষ্টন করিয়া—তাঁহার কোলে মাথ। রাখিয়া কাঁদিয়া কাঁদিয়া বলিলাম—“দিদি আমি কি পাগল হ’য়ে যাচ্ছি?” দিদি আমার মাথায় হাত বুলাইতে বুলাইতে আদর করিয়া বলিলেন—“লক্ষ্মি মণি আর কথা ক’সনে—ডাক্তার ঘুমাতে বলেছে—চুপ করে থাক—এখনি ঘুম আসবে।”
+</p><p>আমি থামিলাম, কিন্তু অশ্রধারা থামিল না; শত ধারায় উথলিয়া উঠিতে লাগিল, অথচ এ দুঃখ যে কেন—কেন যে কাঁদিতেছি তাহ কিছুই বুঝিলাম না; সুখ দুঃখ কিছুরই অনুভূতি আমার তখন ছিল না। কাঁদিতে কাঁদিতে—ছেলেমামুযের মত কাঁদিতে কাঁদিতে, দিদির স্নেহাদরের মধ্যে আমি ঘুমাইয়। পড়িলাম। সমস্ত রাত্রি ঘুমাইয়া কাটিল; অথচ সুনিদ্রা নহে; ঘুমাইয়াও মনে হইতেছিল যেন জাগিয়া আছি—অথবা জাগিয়া জাগিয়া ঘুমাইতেছি–মাথার মধ্যে কত রকম দৃশ্য কত রকম ঘটনা ছায়াবাজির মত একটির পর একটি কেমন অবিশ্রান্ত গতিতে ঘুরিয়া ফিরিয়া চলিয়া যাইতেছিল। এই যেন কে ছিল কে নাই, একজনের সহিত গল্প করিতেছিলাম—সে আর একজন হইয়া পড়িল,—কাহার বাড়ীতে যেন নিমন্ত্রণে যাইব—সাজ সজ্জা করিতেছি—কিছুতেই সজ্জা শেষ হইতেছে না;–বাড়ীর বাহির হইয়াছি, গাড়ি খুঁজিতেছি—কিছুতেই খুঁজিয়া মিলিতেছে না; অবশেষে পায়ে চলিতেছি—পথ ফুরাইতেছে না, যদি বা পথ ফুরাইল কাহার বাড়ী যাইতে কাহার বাড়ী আসিয়াছি,—এই রকম সব হিজিবিজি স্বপ্ন;–শেষ স্বপ্নটি কেবল বেশ স্পষ্ট—এত স্পষ্ট—যে তাই এখনো আমার জ্বলন্তরূপে মনে আছে। স্বপ্না দেখিলাম যেন আমার বিবাহ হইতেছে, আমি আগ্রহ দৃষ্টিতে বরের দিকে চাহিলাম; কিন্তু মনে হইল এ সে নহে; নিতান্ত ব্যথিত হৃদয়ে চক্ষু নত করিলাম—তাঁহার চরণে দৃষ্টি পড়িল-অমনি হৃদয় আনন্দে মগ্ন হইয়া উঠিল—আমি আহ্লাদের আবেগে বলিয়া উঠিলাম—“এ সেই সেই!” ঘুম ভাঙ্গিয়া দেখিলাম বেশ আলো হইয়াছে। এইরূপ স্বপ্নময় ঘুম সত্ত্বেও জাগিয়া অনেকটা সুস্থ বোধ করিলাম।
+</p><p>মনে পড়িল,—দুজনের এক একটি কথা আবার যেন নূতন করিয়া আদ্যোপান্ত শুনিতে লাগিলাম। চারিদিকের বায়ুমণ্ডলে পরিবর্ত্তন অনুভব করিলাম-আপনাকে আপনি ভিন্ন বলিয়া অনুভব করিলাম;—বুঝিলাম কাল যাহা ছিল—আজ আর তাহা নাই-কাল যে আমি ছিলাম-আজ আর সে আমি নহি! হৃদয়ে নৈরাশ্য বেদনা জাগিল; কিন্তু এ নৈরাশ্যে ঔপন্যাসিক করুণ কষ্টের দারুণতা, অসহনীয়তা উপলব্ধি করিলাম না; কিম্বা সে যেমনই হৌক তবু আমার দেবতা—তবু তাহার চরণে হৃদয় বিকাইব, মনে এমনতর ভাবেরও উদয় হইল না। পরিপূর্ণ বিশ্বাসে প্রতারিত বোধ করিয়া এ যেন প্রত্যাখ্যাত ভিক্ষুক দুর্ব্বাসা মুনির ন্যায় গর্ব্বাহত নিরাশক্ষুব্ধ হইলাম, প্রতারকের উপর ভীষণ ক্রোধের উদয় হইল। কেবল তাহার উপর নহে; নিজের উপরেও ক্রুদ্ধ হইলাম—কি করিয়া আমি এমন লোককে দেবতা মনে করিয়াছিলাম! সঙ্গে সঙ্গে বিকটতর একটা আনন্দ জন্মিল এই যে, সে ভ্রান্তি হইতে নিস্কৃতি লাভ করিয়াছি। তুলনায় ডাক্তারের প্রতি খুব শ্রদ্ধা জন্মিল—তাঁহার করুণ সহৃদয় ভাবে পুরুষোচিত মহত্ব দেখিতে লাগিলাম।
+</p><p>আমাকে সুস্থ দেখিয়া দুপুরের পর দিদি অসুখের কথা পাড়িলেন—“অনেক দিন তোর হিষ্টিরিয়া হয়নি,—ভেবেছিলুম একেবারে সেরে গেছে, আবার রাত জেগে নভেল পড়েছিলি বুঝি? তোর সঙ্গে যদি কিছুতে পারা যায়! আচ্ছা নিজের জন্য না হোক আমাদের কষ্ট মনে ক’রেও কি সাবধান হতে নেই।
+</p><p>আমি বলিলাম—“কই অসাবধান ত আমি মোটেই হই নি—”
+</p><p>দিদি। “তবে হঠাৎ অমনতর হোল কেন? কাল যে ভাবনা গেছে—তা আর বলার নয়। দরজার কাছে গিয়েই দেখি—তুই পড়ে। চেঁচিয়ে উঠতেই এঁরা ওঘর থেকে এসে পড়লেন। ভাগ্যিস ডাক্তার কাছে ছিল—তাই রক্ষে। আহা রমানাথ বেচারার যে মুখ শুকিয়ে গিয়েছিল সে আর কি বলব! তাপর তোকে ত ঘরে উঠিয়ে আনা গেল, সে একবার দেখেও যেতে পারলে না, শুনলুম নাকি ভারী বিষণ্ণ হয়ে বাড়ী গেছে।”
+</p><p>আমি বলিলাম-ক্রুদ্ধ বিদ্রুপের স্বরে বলিলাম-“বিষণ্ণ হয়ে বাড়ী যেতে পারেন কিন্তু সে আমার অসুখের জন্যে নয়-নিজে ধরা পড়েছেন—সেই জন্যে। দিদি আমরা নিতান্তই ভুল বুঝেছি, প্রতারিত হয়েছি”—
+</p><p>বলিতে বলিতে নয়ন অশ্রুতে ভাসিয়া উঠিল, অগ্নিময় ক্রোধাশ্রুতে ভাসিয়া উঠিল। দিদি উৎকণ্ঠিত স্বরে বলিলেন—
+</p><p>“তোর কথা ত কিছুই বুঝতে পারছিনে—কাল কি তোকে ঐ ভাবের কথা কিছু বলেছে নাকি? কঁদিস নে আবার অসুখ করতে পারে—স্থির হয়ে সব বল দেখি কি হয়েছে।”
+</p><p>স্থির হইয়া না পারি অস্থির ভাবেই সমস্ত খুলিয়া বলিলাম। দিদি শুনিয়া যেন হাঁফ ছাড়িয়া বলিলেন—“তবু ভাল এই ব্যাপার? আমার এমন ভয় হয়েছিল—যে না জানি কি!”
+</p><p>আমি ক্রুদ্ধস্বরে বলিলাম—“না জানি কি! একজনের সঙ্গে বিবাহে প্রতিশ্রত হয়ে অন্য জনের সঙ্গে প্রেমের ভাণ-একি সামান্য ব্যাপার হোল?”
+</p><p>দিদি। না ভান হতেই পারে না; তোকে যে সে ভালবাসে সে বিষয়ে সন্দেহ নেই। ও বিলাতের কথা ছেড়ে দে। প্রথমতঃ কথাটা কতদূর সত্যি মিথ্যে তার ঠিক নেই। তারপর ধর যদি কারো সঙ্গে তার বিয়ের কথা হয়েই থাকে, কিন্তু বিয়ে ত আর হয় নি—তা হলে আর এতই রাগের কারণ কি? সব দেশেইত এমন কত শত engagement গড়ছে আবার ভাঙ্গছে—এই সেদিন যে আমার মামাত দেওরের গায়ে হলুদ হয়েও বিয়ে ফিরলে—আর এ তো বাঙ্গালী ইংরাজের engagement, দুজনের স্বভাব, দুজনের অবস্থার পার্থক্য একবার ভেবে দেখ দেখি। কোন একটা মোহের মুহূর্ত্তে দুজনে আজন্ম একত্ব শপথ করতে পারে,—কিস্তু তার পরমুহূর্ত্ত থেকেই অনুতাপ করার কথা—বিয়ে করার যথার্থ উদ্দেশ্য যা পরস্পরের সুখ,এ বিয়েতে আমার ত মনে হয় তার সম্ভাবনা একেবারে শূন্য। এ অবস্থায় আমিত বলি, কথা রাখার চেয়ে ভাঙ্গাই ভাল। নিজের আহাম্মকীতে যেন নিজেকেই সে অসুখী করলে কিন্তু আর একজনের চিরজীবনের সুখাসুখও যখন—”
+</p><p>আমি শেষ পর্যন্ত স্থিরভাবে শুনিতে পারিলাম না, বলিয়। উঠিলাম–"কিন্তু তার সুখদুঃখ ভেবেই কি এ বিয়ে ভাঙ্গা হয়েছে? যে ভ্রান্তনারী সর্ব্বত্যাগী হয়ে এখনো পূর্ণ বিশ্বাসভরে তার পথ চেয়ে আছে, সেই বিশ্বাস ভঙ্গ করে গোপনে গোপনে যে পুরুষ আর একজনকে ভালবাসা জানায় বিবাহ-প্রস্তাব করে—সে খুব সাধু পুরুষই বটে। দিদি তুমি এমন প্রশান্তভাবে এ ঘটনা কি করে যে দেখছ আমি ত ভেবেই পাইনে।”
+</p>
+
+<p> দিদি বলিলেন “আমার ভিতরকার কথাটা কি জানিস, আমি অন্তর থেকে তাকে এতে দোষী বলে বিশ্বাস করতে পারছিনে। বিলাতের মেয়েদের কুহক ত প্রসিদ্ধ কথা,আমার মনে হচ্ছে নেহাৎ কোনরূপ একটা পাকে চক্রে পড়ে বেচারার এমনতর বিভ্রাট ঘটেছিল। তাকে জিজ্ঞাসা করলেই এর এমন একটা সদুত্তর পাওয়া যাবে যে তখন সে মেয়ের চেয়ে তার উপরেই বেশী মায়া করবে।”
+</p><p>আমি। তুমি বুঝি ভেবেছ এসব কথা আমি তার কাছে তুলতে যাব?
+</p><p>দিদি। তোর তুলতে হবে না সে নিজেই তুলবে সেজন্য ভাবনা নেই, না হয় আমরা জিজ্ঞাসা করব। কিন্তু যার সঙ্গে বিয়ে স্থির হয়ে গেছে—তার সঙ্গে বুঝি আর এ কথা তোলা যায় না?”
+</p><p>আমি। বিয়ে স্থির এখনো হয়নি, আমার মোটেই ইচ্ছা নেই।
+</p><p>দিদি বিস্ময়ে রাগে বলিলেন “তুই ক্ষেপেছিস নাকি, এই সামান্য কারণে বিয়ে বন্ধ হবে! ওকথা মনেও আনিস্‌নে, তাহলে সমাজে কি কলঙ্কের সীমা থাকবে; সে পুরুষমানুষ তার কি, তোর সঙ্গে না হলে এখনি অন্য আর একজন সেধে মেয়ে দেবে, আর তোর নামে এ থেকে এত কথা উঠবে যে পরে বিয়ে হওয়াই ভার হবে।
+</p><p>আমি। নাইবা বিয়ে হল, আমি ত সে জন্য কিছুমাত্র ব্যস্ত নই।
+</p><p>দিদি। তা ছাড়া এটাও ভেবে দেখ তুই যে এমন কোরে নিজের চিরজীবনের সর্ব্বনাশ করতে চাচ্ছিস সেকি কোন একটা ন্যায়ের অনুরোধে? তুই যে জন্য তাকে দোষী করছিস—এতে তোরও কি ঠিক সেই একই রকম অন্যায় করা হচ্ছে না? যে তোকে প্রাণপণে ভালবাসছে, মিথ্যা কারণে তাকে কি তুই চিরঅসুখী করতে যাচ্ছিস নে?
+</p><p>আমি। মিথ্যা কারণ!
+</p><p>দিদি। নিশ্চয়ই। আমি বেশ জানি তার কাছে আসল ঘটনা শুনলে বুঝতে পারবি—তার তেমন দোষ নেই। অস্তুতঃ তার এতে কি বলার আছে সেটা শোন—শুনে ভারপর যা হয় স্থির করিস। খুনী যে তারও বক্তব্য না শুনে বিচার হয় না; আর যে তোকে এত ভালবাসে তার পক্ষে তুই একটা কথা না শুনে তাকে মৃত্যুদণ্ড দিতে যাচ্ছিস? তোর দেখছি নিতান্তই কঠিন প্রাণ!
+</p><p>আমি নিরুত্তর হইয় গেলাম।—কি করিয়া আমার মনের ভাব তাঁহাকে বুঝাইব; তিনি সাংসারিক চক্ষে এ ঘটনা দেখিতেছেন, তাঁহার অভিজ্ঞ হৃদয় বলিতেছে “সংসারে এরূপ ঘটিয়াই থাকে। দোষে গুণে মানুষ অতএব মানুষ দেবতা চাহিলে তোমাকে নিরাশা সার করিতে হইবে। তুমি শুধু দেখ সে নিতান্ত ঘৃণ্য দোষ করিয়াছে কি না? যদি না করিয়া থাকে তবেই সে ক্ষমা পাইবার পাত্র।” আমার কিন্তু নিদাঘ নিশীথের স্বপ্ন ভাঙ্গিয়াছে, নয়নে আর টিটানিয়ার প্রেম দৃষ্টি নাই, যাহার বলে কুরূপ সুরূপ হইবে, পাপে তাপে দোষে মলিনতায়, কাঁদিয়া তবু তাহাকে আমারি ভাবিতে পারিব। এখন আমার নিরপেক্ষ বিচারসক্ষম নবীন হৃদয় উচ্চতর কল্পনাপূর্ণ উচ্চতর আকাঙ্ক্ষা আদর্শে মাত্র জাগ্রত। আমার মনে এখন—যে আমার ক্ষমার পাত্র সে আমার প্রণয়ী, আমার স্বামী হইবার যোগ্য নহে; আমার স্বামীতে আমি সূর্য্যের মত জ্যোতিষ্মান গৌরবমণি দেখিতে চাই। সংসার যেমনই হৌক, পৃথিবীতে সে আমাকে স্বর্গ দেখাইবে, আমি তাহাতে দেবতা পাইব। অন্যে শুনিলে ইহা বৃথা কল্পনা বলিয়া উপহাস করিবে—কিন্তু আমার অনভিজ্ঞ হৃদয়ে ইহা আকাশকুসুম নহে, প্রকৃত সত্য, কিন্তু এ সত্য আমি অন্যকে কি করিয়া বুঝাইব? কেবল তাহাই নহে, আমার স্বামীর বর্ত্তমানটুকু লইয়াই আমি সস্তুষ্ট নহি, অতীতে বর্ত্তমানে ভবিষ্যতে তাঁহার সমস্ত জীবনে আমি আপনাকে বিরাজিত দেখিতে চাই, তাঁহার জীবনের কোন ভাগ যে আমাছাড়া ছিল বা কখনো তাহার সম্ভাবনা আছে, আমার সর্ব্বগ্রাসী প্রেমাকাঙ্ক্ষী এ চিন্তা সহ্য করিতে পারে না, এ সম্বন্ধে আমার হৃদয় পুরুষের ন্যায়,—পুরুষ পত্নীতে যেরূপ অক্ষুণ্ণ অমর পবিত্রতা, অনাদি অনন্ত নিষ্ঠতা চাহেন, আমি তেমনি আমার স্বামীর সমস্ত জীবনই আমার বলিয়া অনুভব করিতে চাহি।
+</p><p>আমার এ আকাঙ্ক্ষায় সহানুভূতি কে করিবে? আমি কি করিয়া বুঝাইব যে আমি তাঁহাকে ক্ষমা করিতে পারি— বিবাহ করিতে পারি—তিনি আমার স্বামী হইতে পারেন কিন্তু আমার হৃদয়ের আদর্শ আকাঙ্ক্ষা তিনি পূর্ণ করিতে পরিবেন না। তাঁহাকে হৃদয়মন্দিরে স্থান দিতে গিয়াছিলাম সত্য কিন্তু তাহা ভ্রমক্রমে; মোহভঙ্গে পরিত্যক্ত বিসর্জ্জিত ভগ্ন অঙ্গহীন মূর্ত্তিকে হৃদয়ে স্থাপন করিলে হৃদয়ের শোভা হইবে না, জীবন পর্য্যন্ত তাহাতে বিকৃত বিরূপ হইয়া পড়িবে। রমণীতে এরূপ পৌরুষিক হৃদয়ভাবের কি সহানুভূতি আছে? তাই নিরুত্তর হইয় গেলাম।
+</p>
+<div><img alt="" src="images/c30_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c31_Rule_Segment___Flare_Centre___22px.svg_22px_Rule_Segment___Flare_Centre___22px.svg.png"/><img alt="" src="images/c32_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>পঞ্চম পরিচ্ছেদ।</h2>
+<div><img alt="" src="images/c33_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c34_Rule_Segment___Crescent_top___10px.svg_10px_Rule_Segment___Crescent_top___10px.svg.png"/><img alt="" src="images/c33_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/></div>
+<p>দিদি যাহা বলিয়ছিলেন তাহাই হইল, তিনি আমাকে দেখিতে আসিয়া নিজেই সে কথা পাড়িলেন। বলিলেন—“ডাক্তার আমাকে যা বলছিল—তুমি তা শুনেছিলে—না?” এই প্রথম আমাকে তিনি ‘তুমি’ বলিয়া সম্বোধন করিলেন; কালিকার বিবাহ প্রস্তাবের পর আর আপনি বলিয়া সম্ভাষণ বোধ করি তাঁহার সঙ্গত মনে হইল না। অথবা এইরূপ সম্বোধনে এখন অধিকার জন্মিয়াছে বিবেচনা করিলেন। আমি নীরবে ঘাড় নাড়িয়া স্বীকার করিলাম—শুনিয়াছি। তিনি তখন বলিলেন “তুমি বোধ হয় ভেবে নিয়েছ ভারী একটা মহামারী কাণ্ড করে বসেছি, I am so sorry,—কিন্তু আসলে তেমন কিছুই নয়-সামান্য flirtation মাত্র, বিলাতে ত এমন আখসারই হয়ে থাকে—”
+</p><p>আমি ক্রোধ চাপিয়া সহজ গম্ভীরভাবে বলিলাম—“কিন্তু ডাক্তারের কথায় ত উল্টোই মনে হ’ল।”
+</p><p>“Oh the meddling fellow——He is a puritanić hypocrite of the first water! অন্যের সম্বন্ধে একটা কথা পেলে হয়—তিলকে তাল করে তোলে।”
+</p><p>আমি আর ক্রোধ সম্বরণ করিতে পারিলাম না, বলিলাম একজন পরিত্যক্ত অসহায় রমণীর পক্ষ গ্রহণ করে যে সে হিপক্রিট, তবে যে বিশ্বস্তহৃদয় রমণীকে ফাঁকি দেয় তাহাকে অভিধানে কি নামে সম্বোধন করে—বোধ করি Honorable man! ﻿কথাটা বোধ করি অতিরিক্ত তীক্ষ্ণ হইয়াছিল, বলিয়াই আমি অনুতপ্ত হইলাম। তিনি কিছুক্ষণ চুপ করিয়া রহিলেন—তাহার পর বলিলেন—“আমি ফাঁকি দিই নি, যদি বিবাহ করতুম তাহলেই বরঞ্চ ফাঁকি দেওয়া হ’ত। কেননা আমি তাকে কোন জন্মেই ভালবাসতে পারতুম না।”
+</p><p>“তবে engaged হলেন কেন?”
+</p><p>“ঠিক engaged হই নি তবে তবে-একটা ভুল বোঝা হয়ে গিয়েছিল, কিন্তু সে আমার দোষ নয়। বলতে ইচ্ছা ছিল না কিন্তু তুমি যখন এতদূর শুনেছ, না বলেও উপায় নেই।”
+</p><p>বলা বাহুল্য তিনি যাহা বলিলেন তাহাতে সেই ইংরাজ ললনারই উপর বর্ত্তমান সমাজ প্রথায় দোষ অধিক পৌঁছায়। সেই তাঁহাকে প্রথমে অনুরাগ দেখাষ্টয়াছিল—তাঁহাকে তাহাদের বাড়ীতে ক্রমাগত যাইতে বলিত, না গেলে দুঃখ করিত, কোথাও যাইবার আবশ্যক হইলে তাঁহার সঙ্গ প্রার্থনা করিত ইত্যাদি ইত্যাদি। একজন পুরুষের পক্ষে এরূপ আহ্বান উপেক্ষা করা নিতান্ত অসৌজন্য কাজ, তিনি তাই এইরূপে তাহার ফাঁদে পড়িয়া গেলেন, অবশেষে যখন বুঝিলেন তাহার প্রত্যাশা বড় অধিক, সে বিবাহ আশা করে, তখন ক্রমশঃ সরিয়া পড়িলেন। তাঁহার কথার এই সারমর্ম্ম। জানিনা এই বিবরণে অন্য সকলে সেই মুগ্ধা অভিযুক্ত রমণীকে কিরূপ দৃষ্টিতে দেখিতেছেন, আমার কিন্তু এ কথায় তাহার উপর বরঞ্চ মমতা হইল এবং অভিযোগীর উপর যে বড় শ্রদ্ধা বাড়িল—তাহাও নহে।
+</p><p>আমি বলিলাম “কিন্তু আপনি তাকে ভুল বুঝতে দিলেন কেন? আপনার পক্ষে যা flirtation তার পক্ষে তা জীবন্ত অনুরাগ, আপনার খেলা তার মৃত্যু, এরূপস্থলে বিবাহই আপনার উচিত কার্য্য।”
+</p><p>“তুমি কি মনে কর—দৈবাৎ একটা অন্যায় করেছি বলেই সেই অন্যায়কে চিরস্থায়ী করা কর্ত্তব্য?—আমি যদি তাকে বিবাহ করি, কেবল আমার কষ্ট নয়—আমার ভাই, বোন, পিতামাতা, আত্মীয় স্বজনের চিরকষ্ট, দেশের সহিত অজন্ম বিচ্ছেদ; এবং এই সমস্ত দুঃখ কষ্ট বহন করব যার জন্য তারো চিরকষ্ট, কেননা তার প্রতি আমার এমন ভালবাসা নেই যাতে তাকে সুখী করতে পারি। এ অবস্থায় তুমি কি আমাকে বিবাহের পরামর্শ দিতে?”
+</p><p>কথাটা ঠিক বলিরা মনে হইল, বলিলাম—“কিন্তু তবে সে কেন এখনো বিবাহের প্রত্যাশা করে?—অন্ততঃ তাকে পরিষ্কার করে মনের ভাব জানিয়ে মুক্তি লওয়া উচিত ছিল।”
+</p><p>“আমি ত মনে করেছিলুম যথেষ্ট স্পষ্ট করে মনের ভাব জানতে দেওয়া হয়েছে, তবে এখনো যদি ভুলভ্রান্তি থাকে আমাদের বিবাহের খবর পেলেই তা ভেঙ্গে যাবে।”
+</p><p>কথাটা বড় খারাপ লাগিল, বাস্তবিক সে যদি ইঁহাকে ভালবালে—আর বিবাহের আশা করে তাহা হইলে এই খবরে তাহার কিরূপ হৃদয়দাহ হইবে। তাহার ভালবাসা আমার আগে, তাহার অধিকার আমার আগে, আমি কোন্ প্রাণে তাহার এরূপ যন্ত্রণার কারণ হইব—! আমি উত্তেজিত স্বরে বলিলাম “আপনি ন্যায় অন্যায় কি করেছেন জানি নে, তার বিচারক ভগবান আমরা নই, তবে যে রমণী আপনাকে এতদূর ভালবাসে তাহার সুখের পথে আমি কাঁটা হব না, এ নিশ্চয় জানবেন।”
+</p>
+
+<p> তিনি যেন বজ্রাহত হইয়া খানিক ক্ষণ নীরব হইয়া রহিলেন। আমার কাছ হইতে এরূপ কথা শুনিবেন—ইহা তাঁহার কল্পনার অতীত। কিছু পরে বলিলেন, “তুমি আমাকে ছলনার অভিযোগ দিচ্ছ, আমি আর যাকেই ছলনা করে থাকি— তোমাকে করি নি। কিন্তু তুমি আমাকে ছলনা করেছ, তুমি আমাকে না ভালবেসে ও ভালবাস এইরূপ বুঝতে দিয়েছ! যদি সত্য সত্য আমাকে ভালবাসতে, তা হলে কখনই এই সামান্য অপরাধে বিবাহ ভাঙ্গতে চাইতে না, আমার অবস্থা বুঝে বরঞ্চ মমতা করতে। Oh my God— have I lived to hear this!"
+</p><p>অনেকক্ষণ দুজনে চুপ করিয়া রহিলাম,—যখন দিদি আসিলেন তখন তাঁহার সহিত দু একটা কথা কহিবার পর তিনি বলিলেন “আজ রাত্রেই একটা মোকদ্দমায় মফস্বলে যেতে হচ্ছে, হয়ত হপ্তাথানেক সেখানে থাকতে হবে। আশা করি চিঠিপত্র পাব।”
+</p><p>এই বলিয়া, উঠিয়া দাঁড়াইয়া বিদায় গ্রহণ উপলক্ষে আমার হাত ধরিয়া আস্তে আস্তে আমাকে বললেন, অতি ব্যথিত করুণ কন্ঠে বলিলেন “কি আর বলব, my life and death are in your hands—এই বুঝে বিবাহ ভাঙ্গবার কথা মনে করো।”
+</p><p>ইহার পর তিনি চলিয়া গেলেন।
+</p>
+<div><img alt="" src="images/c33_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c34_Rule_Segment___Crescent_top___10px.svg_10px_Rule_Segment___Crescent_top___10px.svg.png"/><img alt="" src="images/c33_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>ষষ্ঠ পরিচ্ছেদ।</h2>
+<div><img alt="" src="images/c33_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c34_Rule_Segment___Crescent_top___10px.svg_10px_Rule_Segment___Crescent_top___10px.svg.png"/><img alt="" src="images/c33_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/></div>
+<p>দিদি বলিয়াছিলেন, তাহার সাপক্ষের বক্তব্য শুনিলে আমার আর রাগ থাকিবে না; ফলে বিপরীত ঘটিল। নিজের দোষক্ষালন অভিপ্রায়ে তিনি যাহা কিছু বলিতে লাগিলেন তাহাতেই উত্তরোত্তর ধাপে ধাপে আমার রাগটা ক্রমিকই বাড়িয়া উঠিতে লাগিল। প্রথমেই রাগ ধরিল, বিলাতের ঘটনাকে নিতান্ত তুচ্ছ তাচ্ছিল্য ভাবে সামান্য flirtation মাত্র বলিয়া উড়াইয়া দিবার চেষ্টা করায়; রাগটা আরো জ্বলিল ডাক্তারকে গালি দিতে শুনিয়া; অবশেষে ক্রোধের যেখানে যতটুকু বাকি ছিল সর্ব্বাংশে বেশ হুহু করিয়া ধরিয়া উঠিল, যখন বলিলেন তিনি আমাকে ছলনা করেন নাই, আমি তাঁহাকে ছলনা করিয়াছি, না ভাল বাসিয়া ও ভালবাসা জানাইয়াছি, নহিলে এত সামান্য কথায় তাঁহাকে এতদূর অপরাধী করিতাম না। যেন ভাল বালিলে লোকে ন্যায়ান্যায় জ্ঞান পর্য্যন্ত হারাইয়া ফেলে, অন্যায়কে দোষকে পূজা করাই যেন ভালবাসা! আমি তাঁহাকে যেরূপ ভাল লোক মনে করিয়া ভাল বাসিয়াছিলাম—তিনি যে তাহ নহেন সে যেন আমারি দোষ। তিনি যে আপনাকে আমার আদর্শরূপে প্রকাশ করিয়াছিলেন সে আমারি ছলনা বটে! কি চমৎকার যুক্তিচাতুরী! আমার এতদূর ক্রোধ হইল যে, তাহার একটা স্ফুলিঙ্গকণাও বাহিরে আসিয়া পড়িলে যেন সমস্ত বিশ্বকে ভষ্মীভূত করিয়া ফেলতে পারিত। অথচ এই প্রজ্বলন্ত মহাক্রোধও তাঁহার বিদায় কালের সেই কাতর করুণ উক্তিতে মুহূর্ত্তে অতি সহজে ভষ্মাকারে নির্ব্বাপিত নিষ্ফল হইয় পড়িল! রমণী সব পারে—যথার্থ প্রেম উপেক্ষা করিতে পারে না, বিধাতা বুঝি এই খানেই স্ত্রীপুরুষের স্বভাবগত বিশেষ পার্থক্য নির্দ্দেশ করিয়াছেন। তাঁহার ব্যথিত স্বরে, তাঁহার মর্ম্মোত্থিত বাক্যে তাঁহার গভীর প্রেম অন্তরে উপলব্ধি করিলাম, হৃদয়ের স্তরে স্তরে তাহাতে করুণ তান বিকম্পিত হইয়া উঠিল; তিনি চলিয়া গেলেন; কিন্তু তাঁহার নৈরাশ্য-ব্যথা আমি নিজের মত করিয়াই অনুভব করিতে লাগিলাম। তাঁহার যে কথায় পূর্ব্বে ক্রোধাভিভূত হইয়াছিলাম, সেই কথা মনে উদয় হইয়া নিজের প্রতি সন্দেহ আনয়ন করিল,—সত্যই কি তবে আমিই ইঁহাকে ছলনা করিয়াছি, না ভালবাসিয়াও ভালবাসা জানাইয়। ইঁহার চিরজীবনের সুখদুঃখ আপনাতে ন্যস্ত করিয়াছি?
+</p><p>প্রাণভর করুণাপূর্ণ অনুতাপ বেদন লইয়া আমি নীরবে বসিয়া, দিদি আমার দিকে সোৎসুক দৃষ্টিতে চাহিয়া কি যেন জিজ্ঞাসা করিবেন ভাবিতেছেন, এই সময় ভৃত্য আসিয়া খবর দিল “ডাক্তার আসিয়াছেন।” এই সংবাদে সহজেই ভিন্নমনা হইয়া পড়িলাম-চিন্তাবেগ শমিত হইল, ডাক্তার যখন গৃহে প্রবেশ করিলেন স্পষ্ট আনন্দ অনুভব করিলাম।
+</p><p>ডাক্তার আসিয়া প্রথমে আমাদিগকে অভিবাদন করিয়া, পরে সকালে আসিতে না পারার কারণ জানাইয়া তজ্জন্য ক্ষোভ প্রকাশ পূর্ব্বক আমার কুশল জিজ্ঞাসা করিলেন। দিদি বলিলেন “ভালই আছে, রাতে ঘুমও বেশ হয়েছে—আর বোধহয় ওষুধের আবশ্যক নেই?”
+</p><p>পশ্চিমের জানালা দিয়া আমার কৌচের উপর রৌদ্র পড়িয়াছিল; ইতিমধ্যে তিনি জানালা বন্ধ করিয়া দিয়া আমার নিকটে একখানি চৌকিতে আসিয়া বসিলেন, বসিয়া আমার হাত দেখিয়া বলিলেন “না! এখনো বেশ সবল বোধ হচ্ছে না—টনিকটা বন্ধ করবেন না।”
+</p><p>আমি বলিলাম “না অমন বিশ্রী ওষুধ আমি আর খাব না।”
+</p><p>ভগিনীপতি কোথা হইতে আসিয়া বলিলেন—“কার সঙ্গে অভিমান আবদার হচ্ছে? ডাক্তারের সঙ্গে না ওষুধের সঙ্গে।”
+</p><p>আমি লজ্জিত হইলাম, তাই ক্রুদ্ধস্বরে বলিলাম—“এ বুঝি আবদার হোল? একবার ওষুধটা খাও দেখি?”
+</p><p>ভগিনীপতি বলিলেন “তাতে যদি তোমাদের আবদার কিছু কমে তাহলে একশিশি কেন, যত শিশি বল খাচ্ছি। I say Doctor এমন পজিটিভ প্রমাণ থাকতে মেয়ে পুরুষের intellectual superiority সম্বন্ধে এখনো এত বাকবিতণ্ডা চলে কেন তাত বুঝতে পারিনে!”
+</p><p>দিদি বলিলেন—“পজিটিভ প্রমাণটা কি, আর কোন্ পক্ষে শুনি?
+</p><p>ভগিনীপতি বলিলেন—“মেয়েরা যদি আর কারো সঙ্গে অভিমান করতে না পায় তখন ভাগ্যের সঙ্গেই অভিমান করতে বসে। তাদের দৃঢ় বিশ্বাস-অটল অচল অদৃষ্টকেও তারা চখের তাপে গলিয়ে একেবারে জল করে ফেলবে।”
+</p><p>দিদি বললেন “অদৃষ্টযদি এমনই অটল অচল হয় তাহলে তার সঙ্গে যারা লড়াই করতে যায় তারাই বা কি মহাবুদ্ধিমান?
+</p><p>ডাক্তার বলিলেন—“বেশ বলেছেন, আমি সম্পূর্ণভাবে আপনার সঙ্গে একমত!”
+</p>
+
+<p> ভগিনীপতি বলিলেন—“তুমি শুদ্ধ দলে মিশলে—তবে দেখছি আর এখান পোষাল না আমার, আমি চল্লুম-নীচে মক্কেল এসে বসে আছে। যাবার সময় দেখা করে যেও হে।” ভগিনীপতি চলিয়া গেলেন, ডাক্তার বলিলেন—“আচ্ছা ও ওষুধটা যদি আপনি খেতে না পারেন একটা সুস্বাদু টনিক লিখে দিচ্ছি।”
+</p><p>এই সরল সহানুভূতি আমার বড় ভাল লাগিল, আমি আনন্দ দৃষ্টিতে তাঁহার দিকে চাহিলাম।
+</p><p>এস্থলে সম্পূর্ণ প্রাসঙ্গিক না হইলেও একটি কথা বলিতে ইচ্ছা হইতেছে। যাঁহারা স্ত্রীলোকের আবদার সহ্য করিতে না পারিয়া খড়্গহস্তে তাহার দমন করিয়া থাকেন, মুহূর্ত্তের জন্য যদি কেবল তাঁহারা দিব্যহৃদয় লাভ করিয়া অনুভব করিতে পারেন, সামান্য নির্দ্দোষ ছোটখাট অভিমানগুলির সম্মান রক্ষায় অতি সহজে তাঁহারা নিজের এবং পরের কিরূপ অপরিমিত গভীর সুখের কারণ হইতে পারিতেন, কেবল একটুখানি সহাহুভূতির অভাবে এই সুখের স্থলে কত অসুখ বৃদ্ধি করিতেছেন; কত কোমল হৃদয় নিষ্পেষিত কঠোর করিয়া তুলিতেছেন—তাহা হইলে জানিনা তাঁহাদের সুখ বাড়িত কিম্বা দুঃখ বাড়িত, তবে সংসারের রূপ এবং স্ত্রীলোকের ভাগ্য যে অনেকটা পরিবর্ত্তিত হইত তাহাতে সন্দেহ নাই।
+</p><p>গৃহের এককোণে টেবিলে লিখিবার সরঞ্জাম ছিল—ডাক্তার নূতন একটি প্রেস্‌ক্রিপসন লিখিয়া দিদির হাতে দিয়া বলিলেন, “আর বোধ হয় আমার আসার অবশ্যক নেই।”
+</p><p>দিদি বলিলেন—“এখন ত ভালই আছে আর অসুখ না করলেই বাঁচা যায়।” ডাক্তারের আসিবার কথার উত্তরে আর কোন কথাই বলিলেন না, আমার সেটা নিতান্ত অভদ্রতা বলিয়া মনে হইল; দিদির উপর মনে মনে একটু রাগ হইল, কেন তিনি কি বলিতে পারিতেন না—‘মাঝে মাঝে খোঁজখবর লইয়া যাইবেন’ অথবা ‘কখনো কোন দিন সুবিধা মত দেখা করিতে আসিলে সুখী হইব’—এমনিতর কোন একটা ভদ্রতার কথা? কিন্তু রাগটা মনেই চাপিয়া লইলাম। দিদির কথার উত্তবে ডাক্তার বলিলেন “আশাকরি এখন ভালই থাকবেন।” বলিয়া বিদায় গ্রহণ করিলেন। যাইবার সময় গৃহকোণে যে ছোট টিপাইটির উপর একটি ফুলদানিতে কতকগুলি সুগন্ধী ফুল সাজান ছিল, সেই টিপাইটি আমার কাছে আনিয়া রাখিয়া বলিলেন—“ফুলের গন্ধ Nervous system এর পক্ষে খুব উপকারী”—বলিয়া আর একবার good bye বলিয়া চলিয়া গেলেন। আমার সহসা বাল্যকালের সেই আটচালা ঘর মনে পড়িল—ছোটুকে আমি যে ফুলগুলি দিতাম সে সযত্নে একটি ভাঙ্গ গ্লাসে পড়ার টেবিলের উপর কেমন সাজাইয়া রাখিত, আমি মাঝে মাঝে তাহার উপর ঝুঁকিয়া ফুলগুলির গন্ধ লইতাম; সুঁকিয়া বলিতাম “বাঃ কেমন গন্ধ, আমি বাড়ীতে যে ফুল সাজাই তার ত কই এমন গন্ধ হয় না”; ছোটু হাসিয়া সগর্ব্বে মাথা নাড়িত। সে ঘটনার সঙ্গে আজিকার এ ঘটনার বিশেষ যে কিছু সাদৃশ্য ছিল এমন নহে; তথাপি আমার মনে হইল—এ যেন ছোটু আমাকে তাহার সেই ফুলদানী আনিয়া দিল। আমি আত্মবিস্মৃত হইয়া জিজ্ঞাসা করিতে গেলাম—“আপনি কি ছোটু?” সহসা আত্মস্থ সচেতন হইলাম; যেন নিদ্রাভঙ্গে জাগিয়া উঠিলাম, ততক্ষণ তিনি দ্বার পার হইয়া চলিয়া গিয়াছেন। আমার সহসা মনে হইল আমি কি ইহাকে ভালবাসিতেছি? মিষ্টার ঘোষের গান শুনিয়া যে মোহ জন্মিত ইঁহাকে দেখিয়াও কি সেইরূপ মোহের উদয় হইতেছে না? এ কিরূপ চাপল্য কিরূপ হীনতা! এই দুদিন আগে যাহাকে ভাল বাসিয়াছি তাঁহাকে ভুলিলাম? আমার প্রতি যাঁহার ভালবাসা অটল অচল তাঁহাকে ভুলিলাম? আর কিজন্য? কাহার জন্য? যাহাকে জীবনে পূর্ব্বে কখনো দেখি নাই, একদিনের মাত্র যাহার সহিত সাক্ষাৎ তাহার জন্য? এই জন্যই কি তাঁহাকে দোষী করিয়াছিলাম? নিজের ভালবাসা গিয়াছে বলিয়াই কি তাঁহাকে বিবাহ করিতে ইচ্ছা গিয়াছে? তাঁহার কথাই তবে সত্য? আমি তাঁহাকে ছলনা করিতেছি তিনি নহেন; নহিলে যথার্থ ভালবাসিলে এ ঘটনায় আমার দুঃখ হইত অভিমান হইত, কিন্তু এরূপ ক্রোধ হইত না; তাঁহাকে পরিত্যাগ করিবার ভাব আসিত না।
+</p><p>আমার অন্ধ নয়ন যেন খুলিয়া গেল, আমি সত্যালোক দেখিতে পাইলাম, নিজের দোষ অতি তীব্রভাবে অনুভব করিলাম; অনুতাপে হৃদয় দাহ হইতে লাগিল। দিদি ডাক্তারকে আসিতে না বলায় তখন রাগ হইয়াছিল এখন তাহাতে খুসি হইলাম; ভাবিলাম তাঁহার সহিত আর কখনো দেখা করিব না; যাঁহাকে একবার স্বামী মনে করিয়াছি—তিনিই আমার স্বামী হইবেন। তাঁহকে বিবাহ করিব-কিন্তু প্রতারণা করিব না; আমার মনের ভাব খুলিয়া বলিব, যদি ইহাতেও তিনি আমাকে বিবাহ করিতে চাহেন আমি তাঁহারি। সমস্ত শুনিয়াও অবশ্যই তিনি আমাকে বিবাহ করিবেন; তাঁহার প্রেম অটল অচল, আমি যাহাই হই তিনি দেবতা, তাঁহার প্রেমে তিনি পতিত-আমাকে উদ্ধার করিবেন।
+</p><p>দিদি যখন সহসা জিজ্ঞাসা করিলেন—“তাঁর সঙ্গে কি কথা হোল?” তখন বিবাহ করিতে আমি দৃঢ় সঙ্কল্প। আমি বলিলাম “বুঝেছি, তাঁকে বিয়ে না করে কোন দোষ করেন নি।”
+</p><p>“তোকে যে খুব ভাল বাসে তাও বুঝেছিস?”
+</p><p>“বুঝেছি।”
+</p><p>“এখন বিয়েতে আপত্তি আছে কি?”
+</p><p>বুলিলাম “না”।
+</p><p>দিদি ভারী খুশী হইয়া বলিলেন, “একহপ্তা পরে সে আসবে—না”?
+</p>
+<div><img alt="" src="images/c35_Rule_Segment___Flare_Left___40px.svg_40px_Rule_Segment___Flare_Left___40px.svg.png"/><img alt="" src="images/c24_Rule_Segment___Diamond_open___7px.svg_7px_Rule_Segment___Diamond_open___7px.svg.png"/><img alt="" src="images/c36_Rule_Segment___Flare_Right___40px.svg_40px_Rule_Segment___Flare_Right___40px.svg.png"/></div>
+
+</div></section>
+<section><div>
+
+<h2>সপ্তম পরিচ্ছেদ।</h2>
+<div><hr/></div>
+<p>ময়মনসিং হইতে একখানি পত্র পাইলাম। চিঠিখালি একান্তই প্রীতি মিনতিপূর্ণ। পড়িয়া যেমন আর্দ্র হইলাম তেমনি আত্মগ্লানি অনুভব করিতে লাগিলাম। বলা বাহুল্য এখানি ইংরাজি পত্র; ইঙ্গবঙ্গ যুবা-যাঁহার জীবনই ইংরাজি অনুকরণ, তাঁহার প্রণয় পত্র যে মাতৃভাষায় লিখিত হইবে-বোধ করি আমি খুলিয়া না বলিলেও, এমন আজগুবি ভুল কেহ করিতেন না।
+</p><p>আমি অবশ্য ইংরাজিতেই উত্তর লিখিতে বসিলাম।—ইঙ্গবঙ্গ সমাজের সুশিক্ষিতনামা কোন বঙ্গবালা হইতে যে আমার
+ ইংরাজি ব্যুৎপত্তি প্রতিপত্তি কিছু কম তাহা নহে, আমিও লোরেটা কন্‌ভেণ্টে শিক্ষা লাভ করিয়াছি, বাবাকে জ্যেঠাইমাকে ও পিসিমাকে ছাড়া আর কাহাকেও চিঠি পত্র লিখিতে হইলে ইংরাজিতেই লিখিয়া থাকি; সখীদিগের সহিত কথাবার্ত্তাও অনেক সময়ে ইংরাজিতেই চলে; আর এপর্য্যন্ত যে কত শত ইংরাজি কবিতা উপন্যাস মস্তিষ্কজাত করিয়াছি তাহার ত ঠিক ঠিকানাই নাই। সত্য কথা বলিতে কি, দেশের ভাষা হইতে এই পরদেশী ভাষাটাকে অধিকতর আয়ত্তীভূত করিয়া লইয়াছি বলিয়াই বরঞ্চ এতদিন মনে মনে একটা গর্ব্ব অনুভব করিতাম, কিন্তু এ চিঠি লিখিতে বসিয়া সে ভুল আমার ভাঙ্গিল। এ ধরণের পত্র লিখিবার প্রয়াস এই আমার প্রথম। এক একটী মনোমত শব্দের চিন্তায়, ভাব ও ভাষার সুন্দর সঙ্গতিতে এক একটী সুললিত পদবিন্যাসের প্রয়াসে উৎকণ্ঠিত গলদ্‌ঘর্ম্ম হইয়া উঠিলাম। চিঠিখানি কতবার লিখিলাম, কতবার ছিঁড়িলাম তাহার ঠিক নাই। যেখানির ভাব ঠিক হয়—তাহার ভাষা ঠিক হয় না, যাহার বা ভাষা পসন্দ হয়—তাহাতে আমার মনের ভাব সুস্পষ্ট প্রকাশ হইয়াছে বলিয়া মনে হয় না। দৈবক্রমে কোনখানিতে ভাব ও ভাষার একরূপ নির্দ্দোষ সমম্বয় হইলে ও তখন ভাবনা জন্মে, ইহা ঔপন্যাসিক রস যুক্ত সুরচনা হইয়াছে কি না? এমন কি একটা in এবং to শব্দের স্থানান্তর সংঘটন সন্দেহে বহুযত্নে বহু সময় ধরিয়া লিখিত প্রায়-সমাপ্ত পত্রখনিও মুহূর্ত্তে শতছিন্ন হইয়া পড়ে,—এ অবস্থায় কি চিঠি শেষ হয়? এই চিঠি লিখিতে বসিয়া প্রথম আমি মাতৃভাষার সহজ গৌরব উপলব্ধি করিলাম। দশ এগার বৎসর বয়স পর্যন্ত রীতিমত যা বাঙ্গ্‌লা শিখিয়াছিলাম; তাহার পর কলিকাতা আসিয়া লোরেটোতে ভর্ত্তি হওয়া অবধি এ পর্যন্ত বাঙ্গ্‌লা চর্চ্চার মধ্যে প্রধানতঃ কথা কহা, দ্বিতীয়তঃ মাঝে মাঝে ভাল উপন্যাস কবিতা পাইলে যা পড়িয়া থাকি; তাহার সংখ্যাও ত নখাগ্রে গণনা করা যায়। কিন্তু তথাপি আমি যদি এ চিঠি বাঙ্গ্‌লাতে লিখিতাম তাহা হইলে কি কর্তৃ কর্ম্ম ভাববাচোর সুপ্রয়োগ নিরূপণে, বিশেষণ প্রতিশব্দ নিচয়ের সূক্ষ্ম ভাবার্থভেদ বিচারে,—সমাপক অসমাপক ক্রিয়ার স্থিতি গতির বৈচিত্র্য নির্দ্ধারণে অথবা সামান্য একটা অব্যয় শব্দের যথা-সন্নিবেশ চিন্তায় মস্তিষ্ক এতদূর আলোড়িত বিলোড়িত করিতাম! এককথায় চিঠি লেখার উদ্দেশ্য ভুলিয়া স্বরচনার উদ্দেশ্যে এতটা বিব্রত হইয়া পড়িতাম—অথবা শব্দ, ভাষার প্রতি লক্ষ্য না করিয়া যাহা বলিবার আছে বিনাড়ম্বরে সহজভাবে সেইটুকু বলিয়া লইয়া চিঠিখনি ডাকে ফেলিয়া দিয়াই যথেষ্ট সন্তোষলাভ করিতাম? বাঙ্গালী হইয়া বাঙ্গলা ভুল করিলে তাহাতে আমাদের লজ্জা করে না!—কিন্তু ইংরাজির একটা সামান্য ভুলে আমরা লজ্জায় মরিয়া যাই। বিপদে পড়িলেই মধুসূদনকে মনে পড়ে; সেই দিন আমার জ্ঞান জন্মিল, এই ইংরাজি পত্রখানির জন্য যতটা পরিশ্রম করিলান, তাহ নিতান্তই বৃথা হইল; কিন্তু বাঙ্গলা লিখিবার জন্য এতটা পরিশ্রম করিলে আমি বঙ্গদেশের মধ্যে একজন সুলেখক হইতে পারিতাম নাকি? সেই জ্ঞানের ফল আজ পাঠককে উপহার দিতেছি, তিনি ইহার মীমাংসা করিবেন।
+</p><p>কিন্তু তাহাও বলি—নিতান্তই কি ভাষারি দোষ! মনের দোষ কি ইহাতে কিছুই ছিল না? লোকের যখন বিশেষ কোন হৃদয়ের কথা বলার না থাকে, সে তখন বেশ অসঙ্কোচে অনর্গল বলিয়া বা লিখিয়া যাইতে পারে, কিন্তু সত্য সত্যই বলিবার কথা বিশেষ কিছু থাকিলেই তাহা তখন বলা দায় হইয়া উঠে, তখনই, সে কথা কি ভাবে প্রকাশ করিব, কিরূপ আকৃতিতে তাহ সুস্পষ্ট অথচ নিখুঁত হইবে—এই চিন্তায় এই সঙ্কোচে, প্রকাশে শত সহস্র বাধা আসিয়া পড়ে। তাই একবার মনে হয়—ইংরাজিতে না লিখিয়া বাঙ্গ্‌লাতে লিখিলেই কি তাঁহার হাতে পত্রখানি পৌঁছিত? কে জানে!
+</p><p>সপ্তাহ কাটিতে চলিল, তাঁহার আসিবার সময় হইয়া আসিল; দিস্ত দিস্ত কাগজ নষ্ট করিলাম তবু আমার চিঠি শেষ হইল না। বিরক্ত হইয়া লেখা বন্ধ করিলাম—মনকে বুঝাইলাম তিনি ত শীঘ্রই আসিবেন, আর লেখার সময়ই বা কৈ, আবশ্যকই বা কি? দেখা হইলে মুখেই সব বলিব, চিঠিতে কি অত কথা বলা যায়? কেন লিখি নাই কারণ শুনিলে তিনিও ইহাতে কিছু মনে করিবেন না।
+</p><p>এক সপ্তাহ মাত্র তাঁহার মফঃস্বলে থাকিবার কথা—দশ বার’ দিন হইল তবু তিনি ফিরিলেন না। দিদি একদিন রাত্রে ডিনার পার্টি হইতে ফিরিয়া পরদিন সকালে আমার সহিত প্রথম দেখা হইবামাত্র সহসা জিজ্ঞাসা করিলেন—“তার চিঠিপত্র পেয়েছিস?”
+</p><p>কি জানি প্রসঙ্গ ক্রমে যদি দিদি জানিতে পারেন যে সে চিঠির এখনো উত্তর দেওয়া হয় নাই; তাহা হইলে, একে নিজের মনের জ্বালায় জ্বলিতেছি তাহার উপর কর্ত্তব্য ত্রুটির উপদেশে ক্ষত স্থান লবণ জর্জ্জরিত হইয়া উঠিবে, এই ভয়ে আমি কথাটা কোন রকমে এড়াইয়া অন্য কথা পাড়িবার অভিপ্রয়ে বলিলাম—“গান টান কাল কেমন হোল?”
+</p><p>দিদি বলিলেন—“গাইয়ে লোক কাল তেমন কেউ ছিল না। কুসুমরা সব এখনো ময়মনসিংয়ে-গান জমে কি করে বল? চঞ্চল একবার টিম টিম করে গাইলে, আমিও গেয়েছিলুম; কিন্তু মনটা কেমন খারাপ হয়ে গিয়েছিল—মোটেই ভাল করে গাইতে পারলুম না”—
+</p><p>“ডিনার পার্টিতে গিয়ে মন আবার খারাপ হোল কেন?”
+</p><p>“কি গুজব উঠেছে জানিস,—তোর সঙ্গে রমানাথের বিয়ে ভেঙ্গে গেছে, কুসুমের সঙ্গে তার বিয়ে। ময়মনসিংয়ে নাকি তাদের বাড়ীতেই সে ছিল।”
+</p><p>“সেই জন্যেই আর কি গুজবটা উঠেছে। লোকদের ত খেয়ে দেয়ে কাজ নাই, পরচর্চ্চার একটা সুযোগ পেলে হয়। ত্রেতা যুগে বাল্মীকি রাম না হতে রামায়ণ সৃষ্টি করেছিলেন— এ যুগে সে ক্ষমতাটুকু ত কারো নেই,—তাই অহৰ্নিশি তার চেষ্টাটাই চলেছে। একটা গুজব শুনে তুমি অত মুষড়ে গেলে কেন?”
+</p><p>“কথাটা নিতান্ত গুজব বলে মনে হচ্ছে না,—চঞ্চলের মার কাছে সব শুনলুম। তারা নাকি মেয়েকে ৫ হাজার টাকা যৌতুক দেবে।”
+</p><p>চঞ্চলের মা কুসুমের কাকিমা। যাতৃ দুইজনের মধ্যে প্রীতি সদ্ভাব কিছুমাত্র নাই,—আত্মীরতা স্থলে কলহ বিবাদ হইলে যাহা ঘটয়া থাকে, কাহারো গুণ কেহ দেখিতে পান না, তিল দোষ পাইলে তাল করিয়া তুলিয়া তাহার সমালোচনায় উভয়েই পরমানন্দ লাভ করেন। আমি বলিলাম—“তিনি যখন বলেছেন তখন ত কথাটার মধ্যে কোন সত্য না থাকারই বেশী সম্ভাবনা।”
+</p><p>“কিন্তু শুনছি রমানাথ পরশু এসেছে—কাল এখানে এলনা কেন? আগে হোলে কি তা করত?”
+</p><p>আমার মনে তখনো তাঁহার ভালবাসার প্রতি পূর্ণ বিশ্বাস, তাঁহার বিদায় কালের কাতরোক্তি তখনো মনে সুম্পষ্ট বাজিতেছে, তাহার পত্রের প্রীতিময় বাক্য তখনো হৃদয় অনুকম্পিত ব্যথিত করিতেছে, আমি কি বাহিরের সামান্য একটা গুজবে বা একদিন তাঁহার আসিতে বিলম্ব দেখিয়া সে মহা বিশ্বাস হারাই? আমি বলিলাম—“দিদি তুমি যেন কি? কাল আসতে পারেন নি আজ আসবেন এখন, তাতে আর এতই হয়েছে কি? কিছুদিন আগে তাঁর সৌজন্যে তোমার এতটা গভীর বিশ্বাস ছিল—আর সামান্য একটা গুজবে সমস্ত হারিয়ে ফেল্লে। যদি তাঁর ভালবাসা মিথ্যা না হয় তাহলে এ গুজব সত্য হতে পারে না—আর গুজবটা যদি সত্যি হয় তাহলে ত তাঁর ছলনা হতে মুক্তি পাওয়া গেল। তাতে দুঃখ করার কি আছে বল?”
+</p><p>দিদি চুপ করিয়া গেলেন। ভক্ত ঐশ্বরিক প্রেমে বিশ্বাস করিয়া যে আনন্দ লাভ করে, আমি তাঁহার প্রেমে বিশ্বাস করিয়া যেন সেইরূপ আনন্দ পূর্ণ হইলাম। যিনি ভুক্তভোগী তিনিই মাত্র জানেন—এ ভক্তি বিশ্বাস জগতে কিরূপ অমূল্যধন, এ বিশ্বাসে কি পরমানন্দ; অপ্রেম হৃদয়ে ইহাতে প্রেম ফুটায়; সপ্রেম হৃদয় ইহাতে চিরপ্রেমময় হইয়া উঠে; আর এই বিশ্বাসের অভাবে প্রজ্জ্বলন্ত প্রেমও ক্রমে নিস্তেজ নির্ব্বাপিত শীতল হইয়া পড়ে।
+</p>
+<div><img alt="" src="images/c33_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c24_Rule_Segment___Diamond_open___7px.svg_7px_Rule_Segment___Diamond_open___7px.svg.png"/><img alt="" src="images/c33_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>অষ্টম পরিচ্ছেদ।</h2>
+<div><img alt="" src="images/c33_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c37_Rule_Segment___Fancy3___40px.svg_40px_Rule_Segment___Fancy3___40px.svg.png"/><img alt="" src="images/c33_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/></div>
+<p>ডিনারে রাত জাগিয়া দিদি তাঁহার ঘরে দিবা নিদ্রায় মগ্ন ছিলেন, আমি ড্রয়িংরুমে জানালার পাশে ইজিচেয়ারে বসিয়া একখানি নভেল পড়িবার চেষ্টা করিতেছিলাম –কিন্তু কিছুতেই তাহাতে মন বসিতেছিল না। কিছুদিন পূর্ব্বে পরীক্ষার রাশি রাশি পাঠের মধ্যেও ফাঁকি দিয়া যখন নভেল শেষ করিতাম—তখন মনে হইত সারা জীবন যদি উপন্যাসের মধ্যে আপনাকে ডুবাইয়া রাখিতে পারি, তাহা হইলেই আমার জীবনের পরম ও চরম সুখ লাভ হয়—আমি আর সংসারে অন্য কিছু চাহি না। কত অল্প সময়ের মধ্যে মানুষের সুখের কল্পনা পরিবর্ত্তিত হয়, একবৎসরও তাহার পর অতীত হয় নাই!
+</p><p>চোখের উপর খোলা কেতাব, যন্ত্রের মত হরফগুলি নিঃশব্দে আওড়াইয়া যাইতেছি—অথচ খানিক পরে আত্মস্থ হইয়া দেখিতেছি এক অক্ষরও তাহার হৃদয়ঙ্গম হয় নাই—আসলে পড়িতেছি না ভাবিতেছি, কিন্তু কি ভাবিতেছি তাহারও একটা ঠিক ঠিকানা নাই, অস্পষ্ট অসংযত বিশৃঙ্খল ভাবনা,—মনের মধ্যে একটা কেমন অশান্ত বিদ্রোহী বাসনা, উপস্থিতের উপর বিতৃষ্ণা, অনুপস্থিতের জন্য আগ্রহ,–কিন্তু সে অনুপস্থিত যে কি, তাহার আকৃতি কিরূপ-স্থিতিই বা কোথায়, তাহা সে ভাবনার মধ্যে নাই। মাঝে মাঝে এক একবার পূর্ব্বাকাশে দৃষ্টি পড়িতেছিল— উদার স্তব্ধ সৌন্দর্য্যদৃশ্যের মধ্যে আমার উদাসচিত্ত স্বপ্নের মত যেন মিলাইয়া পড়িতেছিল, সহসা আবার তাহা হইতে যেন জাগিয়া উঠিয়া পুস্তকে চক্ষু ফিরাইতেছিলাম। ঠুং ঠুং করিয়া চারিটা বাজিল, আকাশে চাহিয়া দেখিলাম সুন্দর লাল মেঘের শোভা, সমুদ্র মনে পড়িল, এই প্রশান্ত সুরঞ্জিত আকাশের দিকে চাহিয়া কটকে যাইবার পথে ঝটিকা তরঙ্গিত যে ভীম সমুদ্র দেখিয়াছিলাম তাহাই মনে পড়িল, কে জানে এ দৃশ্যের সহিত তাহার কি যোগ? অমনি বহুপূর্ব্বে পঠিত একখানি উপন্যাসের কয়েকটি লাইন ও মনে পড়িয়া গেল—“In certain places and certain periods the aspect of the sea is dangerous—fatal; as at times is the glance of a woman.” যখন পড়িয়ছিলাম তুলনাটা বেশ ভাল লাগিয়াছিল তাই বোধ হয় স্মৃতির কোণে ইহা সুপ্ত ছিল—আজ সহসা জাগিয়া উঠিল। যদিও বইখানির নাম কিম্বা তখন যে ইহার কিরূপ অর্থ বুঝিয়াছিলাম তাঁহার কিছুই এখন মনে পড়িল না। ভাবিলাম, সমুদ্রের সহিত যে দৃষ্টির তুলনা হয় তাহ অবশ্য ক্রুদ্ধ দৃষ্টি হইবে, স্ত্রীলোকের সক্রোধ দৃষ্টি কি পুরুষের নিকট এতই ভয়জনক। আমি ত পুরুষ নই, সে ভাবটা ঠিক আত্মস্থ করিতে পারিলাম না, কেবল পুরুষের কাপুরুষতা ভাবিয়া মনে মনে একটু হাসির উদ্রেক হইল। কই আমি ত পুরুষের এমন ক্রুদ্ধ দৃষ্ট ক্রুদ্ধ ভাব কল্পনা করিতে পারি না যাহাতে আমাকে ভয় কম্পিত অপ্রকৃতিস্থ করিয়া তোলে। আমাকে ত লোকে এত কোমল স্বভাব বলিয়। জানে, বাস্তবিকই আমি অল্পেতেই আৰ্দ্র হই, পরদুঃখ দেখিতে পারি না, বিশেষতঃ ভালবাসা স্থলে সহজেই নিজের ﻿প্রবল ইচ্ছাও বিসর্জ্জন করিতে পারি, কিন্তু ক্রোধে কি আমাকে বশ করিতে পারে? সেদিন যদি তিনি আমার কথায় রাগ করিয়া রূঢ়বাকো আমাকে অভিশম্পাৎ দিতেন, প্রতিশোধ লইবেন বলিয়া শাসাইতেন, তাহা হইলে কি তাঁহার বেদনা আমি অনুভব করিতাম-না তাহা নিবারণের জন্যই এত ব্যাকুল হইতাম? সম্ভবতঃ তাঁহার প্রতি অশ্রদ্ধা অভক্তিরই উদ্রেক হইত। প্রেমের আশঙ্কাই প্রবল আশঙ্কা। যে ভালবাসে, যাহাকে ভালবাসি—তাহাকে ব্যথা দিতে প্রাণে যেমন বাজে এমন আর কিসে ক্রুদ্ধ দৃষ্টি নহে; প্রেমময় করুণ দৃষ্টিই প্রকৃত পক্ষে fatal—dangerous; তাঁহার বিদায় কালের সেই সকরুণ দৃষ্টি মনে জাগিল। লেখকও যে শেষ অর্থে এ তুলনা ব্যবহার করিয়াছেন তাহাতে আমার আর তখন সন্দেহ রহিল না। সময়ে সময়ে জোয়ার আসিয়া শুষ্ক তীরস্থিত বিশ্বস্ত ব্যক্তিকে যেমন সহসা ভাসাইয়া লইয়া যায়—এই সকরুণ দৃষ্টিও সেইরূপ নিঃশব্দে হৃদয় অধিকার করে—তখন লোকে বিপদ জানিয়া শুনিয়াও আর ফিরিতে পারে না, অধিকাংশ সময় ফিরিতে চাহেও না, ইচ্ছা করিয়া তাহাতে আপনাকে ভাসাইরা দেয়; সেই জন্যই ইহা অধিক ভয়জনক।
+</p><p>জুতার শব্দে চিন্তাভঙ্গ হইল, চমকিয়া ফিরিয়া চাহিলাম, দেখিলাম তিনি। তাঁহার ভাব তেমন সহাস্য নহে, গম্ভীর বিষণ্ন ভাবে গৃহে প্রবেশ করিয়া নীরবে হাত বাড়াইয়া দিলেন, নীরবে সেক্‌হ্যাণ্ড করিয়া নিকটের একখানি চৌকিতে বসিলেন। তাঁহাব ভাব দেখিয়া আমিও দমিয়া গেলাম, বুঝিলাম চিঠি না পাইয়া ক্ষুণ্ন হইয়াছেন, অথচ তাঁহাকে প্রফুল্ল দেখিলে আমি যেরূপ সহজভাবে সব খুলিয়া বলিতে পারিতাম এখন তাহা অসম্ভব হইয়া উঠিল। এরূপ অবস্থায় কি শত ইচ্ছাতেও কথা ফোটে!
+</p><p>কিছু পরে তিনি নিজেই জিজ্ঞাসা করিলেন “আমার চিঠি পেয়েছিলেন আশা করি?” সম্বোধনের পরিবর্ত্তন লক্ষ্য করিলাম, তাঁহার এই অনাত্মীয় ভাব, অনুত্তপ্ত শীতল কঠিন ভাষা, আমার হৃদয়কে কেমন তুষার জমাট করিয়া আনিতে লাগিল; আমিও অস্বাভাবিক রুদ্ধ গম্ভীর স্বরে বলিলাম—“পেয়েছি, শীঘ্র আসবেন বলে উত্তর দিই নি।”
+</p><p>“উত্তর কি এখন প্রত্যাশা করতে পারি?”
+</p><p>অবশ্যই পারেন। আমিও ত বলিবার জন্য প্রস্তুত, কিরূপে সমস্ত খুলিয়া বলিব এতদিন ধরিয়া অনবরত মনে মনে তাহার রিহার্সেল দিয়া আসিতেছি অথচ এখন বলিতে গিয়া দেখিলাম বলা কত কঠিন! কি যে বলিব—কি কথা হইতে আরম্ভ করিব, কিছুই মনে করিতে পারিলাম না, মাথার মধ্যে কথার রাশি এলোমেলো ভাবে সবেগে ঘুরপাক খাইতে লাগিল। ঘূর্ণ মস্তিষ্ক, রূদ্ধাবেগ লইয়া আমি বলিলাম—“আমি-আমি কি বলব—আপনার দোষ”
+</p><p>তিনি বলিলেন “এখনো সেইভাব—সেই উত্তর-আমারই দোষ!—”
+</p><p>আমি যদিও তাহা বলিতে যাই নাই—বলিতে গিয়াছিলাম, আপনার দোষ নেই—আমারি দোষ ইত্যাদি; কিন্তু কথাটা এইখানেই তিনি ধরিয়া লইয়া উত্তর করিলেন। উল্লিখিত কথার পর বলিলেন “দোষ অমারি তবে হ’ক, কিন্তু এ দোষ
+</p>
+
+<p> জেনেও কি আমাকে বিবাহ করতে পারবেন? আমি নিতান্তই স্বার্থপর হ’য়ে একথা বলছি মনে করবেন না। এ বিবাহ ভেঙ্গে গেলে আপনার পক্ষেও কিরূপ ক্ষতি তা বিবেচনা করবেন। আমি ভালবাসি, না বিবাহ হ’লে আমার কষ্ট হবে, এরূপ ভেবে মতামত স্থির করবেন না; নিজের মঙ্গলামঙ্গল ভেবে যা ভাল তাই স্থির করুন।”
+</p><p>কথাটা খুবই নিঃস্বার্থ ভাবের কথা; কিন্তু আমার সমস্ত প্রকৃতি ইহাতে বিদ্রোহী হইয়া উঠিল। যে কারণে আমি তাঁহার সমস্ত দোষ ভুলিয়াছিলাম—সে কারণ ইহার মধ্যে কোথা? এই আশ পাশআঁটা, বুদ্ধি বিবেচনাযুক্ত কথার মধ্যে প্রেমোচ্ছাস ব্যাকুলতা কই? তবে যে গুজব শুনা গিয়াছে তাহা কি সত্য? কয়েক হাজার সামান্য রৌপ্য মুদ্রা তাঁহার প্রেম জয় করিয়াছে? আমার নিদ্রিত গর্ব্ব জাগিয়া উঠিল; আমি অসঙ্কোচে সুস্পষ্টস্বরে বলিলাম “আমার ক্ষতির জন্যে আমি ভাবি নে—আপনারো ভাববার আবশ্যক নেই,—সুবিধার জন্য আমি বিবাহ করতে চাই নে—আপনার সুখ যখন এর উপর নির্ভর কচ্ছে না—তখন আমি অব্যাহতি প্রার্থনা করি—”
+</p><p>তিনি শুষ্ককন্ঠে বলিলেন, “তবে তাই হৌক্—”
+</p>
+<div><hr/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>নবম পরিচ্ছেদ।</h2>
+<div><img alt="" src="images/c33_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c37_Rule_Segment___Fancy3___40px.svg_40px_Rule_Segment___Fancy3___40px.svg.png"/><img alt="" src="images/c33_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/></div>
+<p>দিদি সব শুনিয়া আমার উপরই অসন্তুষ্ট হইলেন,—আমাকেই দোষ দিতে লাগিলেন। তিনি বলিলেন,—“এখন বোঝা যাচ্ছে কুসুমের সঙ্গে তার বিয়ের গুজব উঠেছে কেন, তোরই দোষে দেখছি তা ঘটেছে। আমি কি করে জানব—ভিতরে ভিতরে এত কাণ্ড হয়েছে; আমি ভাবছি-ভালয় ভালয় সব গোলযোগ মিটে গেল-বাঁচা গেল। মিটমাট যে শুধু তোর মনে মনে তাত আর বুঝিনি তখন; সে বেচারাই বা কি ক’রে তা বুঝবে বল? প্রথমে ত তাকে স্পষ্ট করে বলে দিলি বিয়ে করবিনে; তার পরে সে তার জীবন মরণ মিনতি জানালে যখন, তখনও একটি কথা কইলিনে, মফঃস্বলে গিয়েও সাধ্যসাধনা করে চিঠি লিখলে, চিঠির এক লাইন উত্তর পর্য্যন্ত দিলিনে, এতে মানুষ কি ভাবে বল দেখি? তার ত মানুষের প্রাণ-না সে পাথর? এত উপেক্ষার পর তবুও যে সে আবার এ বাড়ীতে এসে তোর সঙ্গে দেখা করে, বিয়ে সম্বন্ধে মতামত জিজ্ঞাসা করেছে,—এতে আমি ত তাকে খুবই ভাল বলি, তার ভদ্রতা সৌজন্যের পরিচয় এতে খুবই পাওয়া যাচ্ছে।”
+</p><p>আমি বলিলাম, “তা হতে পারে—কিন্তু যে রক্‌ম করে সে মত জিজ্ঞাসা করেছেন তাতে ভালবাসার পরিচয় পাওয়া যাচ্ছে কি?”
+</p>
+
+<p> “ভালবাসার অভাব আমি ত এতে কিছুই দেখছিনে। হাজার ভালবাসলেও যদি জানা যায় সে আমাকে চায় না—তাহলে যার একটু আত্মসম্মান জ্ঞান আছে—সে কি আর প্রেমের দোহাই দিয়ে কথা কইতে পারে?”
+</p><p>“কিন্তু তিনি যখন বল্লেন—এ বিয়ে না হলে আপনার কিরূপ ক্ষতি তাই বিবেচনা ক’রেই বিয়ে করা না করা স্থির করুন,—আমি ভালবাসি—বা না বিয়ে হলে আমার কষ্ট হবে—এরূপ ভাববেন না;—তখন কি আমি বলব নাকি—হ্যাঁ আপনি ভাল বাসুন বা না বাসুন তাতে কিছু আসে যায় না, আমার মঙ্গলের জন্যই আমি বিয়ে করতে প্রস্তুত। তাঁরই আত্মসম্মান জ্ঞান আছে—আর আমার কিছুমাত্র নেই!"
+</p><p>“তুইই তার প্রতি অন্যায় করেছিস, তার মনে আঘাত দিয়েছিস; সে জন্য তুই যদি নিজের ভুল, নিজের দোষ স্বীকার ক’রে তার কষ্ট দূর করতে যেতিস—তাহলে তাতে কি ক’রে যে তোর আত্মসম্মানের হানি হোত তাত আমি বুঝতে পারিনে। তবে সত্যি যদি এড়াবার অভিপ্রায়েই সে তোকে অমন ক’রে বলে থাকে, তাহলেও তাকে সে কথা স্পষ্ট করে বলবার অবসর দেওয়া উচিত ছিল। এখন দাঁড়াচ্ছে এই,—তোর ইচ্ছা নেই ব’লেই বিয়েটা ভাঙ্গতে সে বাধ্য হোল; দোযটা সমস্ত এক তরফেরই।”
+</p><p>আমার দিকটি দিদির কিছুতে চোখে পড়িল না। তিনি কেবল দেখিতে লাগিলেন,—আমিই তাঁহাকে অন্যায়রূপে উপেক্ষা করিয়া, অকারণে আমার নিজেরই সুখসৌভাগ্য বিসর্জ্জন দিতে বসিয়াছি! সুপাত্রে ন্যস্ত হওয়াই কন্যাজীবনের চরম সৌভাগ্য,—
+</p>
+
+<p> পরম সার্থকতা। গুণবান স্বামীর সোহাগে যে সোহাগিনী— তাহার নিকট অন্য আকাঙ্ক্ষনীয় প্রার্থনীয় বিষয় আর কি আছে? স্বামীর সোহাগের ঘরে শত দুঃখও দুঃখের নহে—আর ইহার অভাবে তাহার জীবন জন্ম নিতান্তই দুঃখময় নিরর্থক বলিয়া অনুভূত। দিদি তাঁহার এই স্ত্রীস্বভাবসুলভ দৃষ্টি দিয়া এখন কেবল এক পক্ষই দেখিতেছেন,—তিনি আমার কিরূপ উপযুক্ত পাত্র, তিনি আমাকে কিরূপ ভাল বাসেন, তাঁহাকে বিবাহ করিলে আমি কিরূপ রূপবান গুণবান স্বামীর প্রেমে সুখী হইতে পারিতাম আর আমার মিথ্যা ছেলেমানষি সেণ্টিমেন্টের চাপল্যে তাঁহাকে এবং তাঁহার সেই অমূল্য প্রেমকে উপেক্ষা করিয়া ভবিষ্যৎ জীবনের কিরূপ ঈর্ষণীয় অবসর হারাইতেছি! এ অবস্থায় আমার মনোভাবের গাম্ভীর্য্য কি করিয়। তাঁহার দৃষ্টিতে প্রকাশ করি,—কি করিয়া দিদিকে বোঝাই— তাঁহার ও রূপ করিয়া বলার পর আমার আর ভুলস্বীকারের পথ ছিল না, তখন দোষ স্বীকার করিলে আমার হীনতাই প্রকাশ পাইত। দিদির স্নেহ হইতেই যদিও এই কঠোরতার এই নির্ম্মমতার জন্ম,–কিন্তু আমি কি তখন সেই স্নেহ সেই মমতা উপলব্ধি করিয়াছিলাম,—না তাহা করিলেও তাহাতে আমার ব্যথা লাগিত না? দিদির এই সহানুভূতিহীন দোষারোপে আমার প্রকাশের শক্তি পর্য্যন্ত কমিয়া আসিতে লাগিল, অশ্রুজলে অবরুদ্ধ হইয়া ক্রমশঃই ভাষার শক্তি ভাষার স্বর ক্ষীণতর হইয়া পড়িতে লাগিল।
+</p><p>আমাদের দুজনের বাক্‌বিতণ্ডা শেষ না হইতে হইতে ভগিনীপতি আসিয়া বিষ্ময়ক্রুদ্ধ স্বরে বলিলেন-“কুমু! What is this?” বলিয়া একথান খোলা চিঠি দিদির কোলের উপর ফেলিয়া দিলেন। দিদি নীরবে চিঠিখানা পড়িয়া আমাকে দিলেন। অক্ষর দেখিয়াই বুঝিলাম—তাঁহার চিঠি —পড়িয়া দেখিলাম-যাহা মনে করিয়াছিলাম তাহাই; তাহাতে আমাদের বিবাহ ভঙ্গের কথা এবং আমার ইচ্ছা ক্রমেই এরূপ হইয়াছে তাঁহাকে যেন দোষী না করা হয়,—এইরূপ সৌজন্য প্রকাশ।
+</p><p>চিঠি পড়া আমার তখনো শেষ হয় নাই-ভগিনীপতি বলিয়া উঠিলেন—“Blackguard Rascal! Scoundrels! মিশ করকে বিয়ে কর্ত্তে চায়—তাই এই সব excuse! I will bring a suit against him, I will—upon my honour!”
+</p><p>দিদি বললেন—“ত পার কই, যা বলেছে তাত আর মিথ্যা বলেনি; মণির কথাতেই ত বিয়ে ভেঙ্গেছে?”
+</p><p>“মণির কথাতেই বিয়ে ভেঙ্গেছে? you mean মণির ইচ্ছাতে? বিলাতের সেই engagement ব্যাপার নিয়ে? তুমিত বলেছিলে সে সব মিটমাট হয়ে গেছে! is she mad, Or what new freak of hers is this now”
+</p><p>“আমি তাই ভেবেছিলুম—যে মিটমাট হয়ে গেছে, কিন্তু এখন দেখছি ঠিক মেটেনি”
+</p><p>“Oh Frailty, thy name is woman! কথাটা দেখছি খুবই ঠিক! সামান্য অপরাধে এত কেন? এই ত তোমাদের শিক্ষার উদারতা! স্বাধীনতার ফল! I don't know what todo! I think I shall go mad!"
+</p><p>এইরূপ তিরস্কার এইরূপ অপবাদ নীরবে আত্মসাৎ করিতে ﻿আমার নিশ্বাস রুদ্ধ হইয়া আসিতে লাগিল,—আমার দোষেই এরূপ ঘটিয়াছে সত্য, কিন্তু সমস্ত অবস্থা জানিলে ভগিনীপতিও কি এ দোষ অমার্জ্জনীয় ভাবিতেন; তাঁহার পুরুষের দৃষ্টিতেও কি ইহার মার্জ্জনীয় দিক প্রকাশিত হইত না? কিন্তু কি করিয়। তাঁহাকে সমস্ত বিবরণ খুলিয়া বলি? দিদিকে বলা আর তাঁহাকে বলা ত আর এক কথা নহে —তথাপি আমি প্রাণপণে বল সংগ্রহ করিয়া ক্ষীণস্বরে বলিলাম—“আমি কি করব! তিনি যখন বল্লেন-“বিবাহ না করলে আপনার ক্ষতি হবে কি না কেবল তাই বিবেচনা করেই স্থির করুন বিবাহ করবেন কি না——তখন আমি আর কি বলব? তিনি যদি এর চেয়ে একটুখানি কোমল ভাবে—একটু খানি হৃদয়ের সঙ্গে তাঁর ইচ্ছা আমাকে জানাতেন—তাহলে আমি কি অগ্রাহ্য করতে পারতুম?”
+</p><p>ভগিনীপতি বদ্ধভ্রূকুটি হইয়া বলিয়া উঠিলেন—“কি? আপনার ক্ষতি হবে কি না ভেবে বিবাহ স্থির করুন? Is this a proposal! I see there is a trick in it!”
+</p><p>দিদি বলিয়া উঠিলেন—“কিন্তু আসল ব্যাপার আগে শোন! মফঃস্বলে যাবার আগে সে নিতান্তই অনুনয় বিনয় করে বিয়ের প্রস্তাব করেছিল, তাতে একটা আশার কথা শোনেনি। মফঃস্বল থেকেও সাধ্যসাধনা করে চিঠি লিখেছিল; কিন্তু তারও এক লাইন উত্তর পর্য্যন্ত পায় নি। এর পরে মানুষ আবার কি ক’রে তবুও feeling দেখায় বল? তারও ত সহ্যের একটা সীমানা আছে। আমি বলি তুমি তাকে স্পষ্ট করে তার মনের ভাব জিজ্ঞাসা কর—যদি বাস্তবিক তার এড়াবার ইচ্ছা হয়—তাও বুঝবে-আর যদি উভয়তঃ ভুল বোঝার জন্য এরূপ ঘটে থাকে তাও সহজে মিটে যাবে”
+</p><p>আমি আস্তে আস্তে সজলনেত্রে দিদিকে বলিলাম—“দিদি তোমার দুটি পায়ে পড়ি তাঁর কাছে আর একথা পাড়তে বলো না; একি কেনা বেচা যে আপনার সুবিধা বুঝে ক্রমশঃ দর কমাতে হবে? যদি তিনি সত্যি ভালবাসেন-ত তিনিই আবার বলবেন। বারণ করো—তাঁকে কোন কথা বলতে।”
+</p><p>ভগিনীপতি চিন্তিতচিত্তে গৃহে পদশ্চারণ করিতেছিলেন; আমার কথায় দিদি কোন কথা কহিবার আগেই তিনি বলিয়া উঠিলেন—“Well! আমি কি করব ঠিক বুঝতে পারচিনে। I am disgusted with the whole thing I must say. দেখা যাক যে আপনা হতে আর কিছু বলে কি না, এদিকে আমিও তার সম্বন্ধে যতটা পারি সব information নেব এখন। ডাক্তারের সঙ্গে দেখা হয়েছিল—কাল টেনিসে আসতে বলেছি। বিলাতের ব্যাপারটাও তাকে জিজ্ঞাসা করা যাবে—তাহলে লোকটার ভাব অনেকটা ঠিক ধরতে পারব। কিন্তু কথা হচ্ছে আর একটা,—কাল বার লাইব্রেরিতে ঢুকব কি করে?”
+</p><p>দিদি বলিলেন—“আমি ভাবছি বাবার জন্যে। তাঁর কাণে কথাটা উঠলে তাঁর নাজানি কিরূপ কষ্ট হবে!”
+</p><p>আমিও তাহাই ভাবিতেছিলাম, এত ভাবনার মধ্যে সেই ভাবনাতেই আমাকে অধিকতর কাতর করিয়া তুলিয়াছিল।
+</p>
+<div><img alt="" src="images/c33_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c37_Rule_Segment___Fancy3___40px.svg_40px_Rule_Segment___Fancy3___40px.svg.png"/><img alt="" src="images/c33_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>দশম পরিচ্ছেদ।</h2>
+<div><img alt="" src="images/c30_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c31_Rule_Segment___Flare_Centre___22px.svg_22px_Rule_Segment___Flare_Centre___22px.svg.png"/><img alt="" src="images/c32_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/></div>
+<p>চারিদিকেই অশান্তি অসুখ, নিরানন্দ ভাব। দিদি স্তব্ধ গম্ভীর, ভগিনীপতি অকারণক্রুদ্ধ, ভৃত্যদিগের প্রতি অযথা ভর্ৎসনাপরায়ণ, দাসদাসীগণ শশব্যস্ত ত্রস্ত ভীত, এমন কি বাড়ীর গাছপালা ঘরদরজা প্রভৃতি অচেতন জড়পদার্থগুলা পর্য্যন্ত যেন তাহাদের স্বাভাবিক প্রিয়দর্শনতা শূন্য, সমস্ত বায়ুমণ্ডলে কেমন যেন একটা স্তব্ধ অস্বস্তি বিষাদ বিকম্পিত। আমিই ইহার কারণ, আমার মনে কি অন্ধকার গুরুভার। এমন দিনে আবার পিসিমা তাঁহার কন্যা প্রমোদাকে লইয়া এখানে মধ্যাহ্নভোজনে আসিলেন। মনের ভার মনে চাপিয়া আমরা যথাসাধ্য তাঁহাদের মনোরঞ্জনে তৎপর হইলাম। প্রমোদা প্রশ্নের উপর প্রশ্নে আমাকে বিব্রত করিয়া তুলিল “কি হইয়াছে? এত রোগা কেন? এমন বিমর্ষ শুকনো কেন? তিনি মফঃস্বলে গিয়াছেন বলিয়া বুঝি? শীঘ্রই আসিবেন সে জন্য এতটা কেন? বিবাহ ত হইবেই—একটু কি সবুর সয় সয়না,”-ইত্যাদি ইত্যাদি।
+</p><p>এখন আর সেকাল নাই, অন্যান্য অনেক আচার অনুষ্ঠানের ন্যায় সখীদিগের নিকট মন খুলিয়া মনের জ্বালা নিবারণ করিবার প্রথাও নিতান্ত পুরাতন হইয়া পড়িয়াছে, একালের মেয়েদের মনের দুঃখ সহজে মুখে ফুটিতে চাহে না; বিশেষতঃ এমনতর দুঃখ, ইহাত কিছুতেই প্রকাশের নহে,—আমি মনের কথা মনে রাখিয়া কাষ্ঠ হাসি এবং বাকচাতুরীতে তাহাকে ক্রমশঃ নিরুত্তর করিলাম।
+</p>
+
+<p> বেলা কাটিল, টেনিসের দল সমাগত হইলেন, বাহিরের ও বাড়ীর লোকে মিলিয়া আমরা সবশুদ্ধ দশজনে বাগানে সমবেত হইলাম। যদিও একটিমাত্র কোর্ট কিন্তু লোক অধিক না হওয়ায় তাহাতে খেলার তেমন অসুবিধা হইল না। পিশিমা খেলেন না—আমিও শারীরিক অবসন্নতার দোহাই দিয়া প্রথম হইতেই দর্শকশ্রেণীভুক্ত, অন্যেরা একদলের বিশ্রামে অপরদল খেলিতে লাগিলেন।
+</p><p>ডাক্তারও আসিয়াছিলেন, খেলার অবসরে নিকটে আসিয়া বসিলেন,–স্বাভাবিক মৃদুস্বরে বলিলেন—“আপনাকে ভারী দুর্ব্বল মনে হচ্ছে! আপনার দিদি বলছিলেন, আপনি ভারী careless, স্বাস্থোর দিকে আপনার মোটেই নজর নেই, নভেল পেলে খাওয়া দাওয়া পর্য্যন্ত ভুলে যান!”
+</p><p>আমি বলিলাম “কই। আজকাল ত পড়াশুনা একরকম ছেড়ে দিয়েছি বল্লেই হয়।”
+</p><p>প্রমোদা আমার কাছে বসিয়াছিল—সে বলিল—“পড়াশুনা ছেড়েছে কি না জানি না, তবে খাওয়া দাওয়া যে ছেড়েছে তার সাক্ষী আমি দিতে পারি। ডাক্তার মশায় ওকে একটা ওষুধ দিন না।”
+</p><p>ডাক্তার বলিলেন “gladly! আজই একটা প্রেসক্রিপসন লিখে দেব এখন, কিন্তু খাবেনত?”
+</p><p>আমি গল্প করিতেছিলাম—কিন্তু আমার দৃষ্টি ছিল টেনিস খেলার দিকে, ডাক্তারের প্রশ্নে আমি একটু হাসিয়া তাঁহার দিকে চাহিলাম,—দেখিলাম তাঁহার দৃষ্টি স্নেহপূর্ণ অতি মধুর, তাহাতে আমার মর্ম্মস্থল পর্য্যন্ত যেন ভরিয়া গেল, ব্যথিত অন্তর দেশ হইতে ধীরে ধীরে, সুখের দীর্ঘ নিঃশ্বাস উঠিল, হৃদয়ের পাষণভার দ্রব হইয়া অশ্রুতে উথলিয়া উঠিতে চাহিল, কণ্ঠাগ্রে এই কথাগুলি আসিয়া আবার মিলাইয়া পড়িল—“আপনার ওষুধে কি আমার মনের অসুখ তাড়াতে পারবেন?”
+</p><p>মনের কথা মনে, চোখের জল চোখে চাপিয়া নতমুখী হইলাম। এই সময় তাঁহার ডাক পড়িল “I say Doctor,—come on, you are wanted here to make up a new set.”
+</p><p>তিনি ইহাতে কোন উত্তর না করিয়া আমাকে বলিলেন “আরবারে আপনাকে যে টনিক দিয়েছিলুম—তাতে কি উপকার হয়েছিল? কত দিন”—
+</p><p>ভগিনীপতি আবার ডাকিলেন–“I say come on”– চঞ্চল নিকটে আসিয়া বলিল “আপনি আসবেন না? আপনার জন্যে আমরা অপেক্ষা করছি—” তিনি একটু যেন থতমত থাইয়া একটু ইতস্ততঃ করিয়া বলিলেন “Am I really making you all wait? Oh it is too bad of me—”
+</p><p>বলিতে বলিতে তিনি চলিয়া গেলেন—প্রমোদা বলিল “ডাক্তার খুব ভাল লোক-না?” আমি কোন উত্তর করিলাম না।
+</p><p>তীব্র রোগাবসানে দুর্ব্বল দেহমনে নবস্বাস্থ্যের সঞ্চারে আবার জগতের দিকে চাহিয়া, আত্মীয় স্বজনের স্নেহাদর অনুভব করিয়া যে অবসাদময় স্বপ্নময় সুখ তাহার আস্বাদ যিনি লাভ করিয়াছেন, তিনিই আমার তখনকার মনের অবস্থা অনুভব করিতে পরিবেন।
+</p>
+<div><img alt="" src="images/c33_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c34_Rule_Segment___Crescent_top___10px.svg_10px_Rule_Segment___Crescent_top___10px.svg.png"/><img alt="" src="images/c33_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>একাদশ পরিচ্ছেদ।</h2>
+<div><img alt="" src="images/c30_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c31_Rule_Segment___Flare_Centre___22px.svg_22px_Rule_Segment___Flare_Centre___22px.svg.png"/><img alt="" src="images/c32_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/></div>
+<p>অন্য সকলে চলিয়া গেলে ভগিনীপতি ডাক্তারকে ডিনারে থাকিতে বলিলেন। সন্ধ্যার পর আমরা গৃহ কর্ম্ম সারিয়া ড্রয়িংরুমে প্রবেশ করিয়া দেখিলাম, তিনি একাকী টেবিলের নিকট বসিয়া আমার সেই পরিত্যক্ত নভেলখানি লইয়া পড়িতেছেন। আমরা একেবারে নিকটে আসিতে তাঁহার যেন হুঁস হইল, বইখানি বন্ধ করিয়া উঠিয়া দাঁড়াইলেন। দিদি বলিলেন, “বসুন। এমন অজ্ঞান হয়ে কি পড়ছিলেন? মিডলমার্চ্চ? আমরা এসে ত আপনার সুখস্বপ্ন ভাঙ্গালুম না?”
+</p><p>আমরা উপবিষ্ট হইলে ডাক্তারও বসিলেন—বসিয়া ঈষৎ উৎগ্রীব হইয়া তাঁহার সুকোমল পাণ্ডুবর্ণ, বালোপম মসৃণ চিবুক ও কপোল প্রান্তন্থ, কর্ণমূল বিলুষ্ঠিত আকুঞ্চিত বিরল শ্মশ্র গুচ্ছে বামহস্তের অঙ্গুলী সঞ্চালিত করিতে করিতে, সূক্ষ্ম স্বর্ণরজ্জু গ্রথিত আইগ্লাসের মধ্য হইতে আমাদের দিকে দৃষ্টি নিবদ্ধ করিয়া বলিলেন—“মাপ করবেন, সত্যিই এ একটা আমার ভারী weakness; জর্জ এলিয়টের নভেল একখানি হাতের কাছে পেলে আর লোভ সামলাতে পারি নে। দেখুন না এই বইখানা কতবার পড়েছি—তার ঠিক নেই,—তবুও এখন মনে হচ্ছিল,— যেন নতুন বই পড়ছি, নতুন জ্ঞান নতুন আনন্দের মধ্যে ডুবে আছি। আপনি অবশ্য পড়েছেন বইখানি?”
+</p><p>দিদি। পড়েছিলুম অনেকদিন আগে; মন্দ লাগেনি। কিন্তু মাঝে মাঝে যে লম্বা লম্বা লেক্‌চার—সেইগুলোতে কেমন যেন প্রাণ হাঁফিয়ে ওঠে।
+</p><p>ডাক্তার। হ্যাঁ তাতে গল্পের interest তেমন নেই বটে কিন্তু লেখকের ideal তা থেকে বেশ স্পষ্ট মনে বসে। বলতে কি, জর্জ এলিয়টের একটি লাইন ও আমার বাদ দিতে ইচ্ছা করে না, অনাবশ্যক বা অপ্রীতিকর বলে মনে হয় না; যে পাতাই ওলটাই— যেখান থেকেই পড়ি-পড়তে পড়তে একটা জ্বলন্ত সহানুভূতির ভাবে হৃদয় যেন সতেজ হয়ে ওঠে—পৃথিবীর জীবন সমষ্টির মধ্যে নিজেকে অতি ক্ষুদ্র বলে মনে হয়—এবং সেই মহাসমষ্টিতে আপনার সুখদুঃখ বিসর্জ্জন দিয়ে সুখী হতে ইচ্ছা করে।
+</p><p>দিদি। আপনি কি বলেন! মিডলমার্চের হিরোইন ত দু দুবার বিয়ে করেছিল? আত্মত্যাগের কি চূড়ান্ত আদৰ্শই তাতে দেখালে!”
+</p><p>ডাক্তারের ওষ্ঠাধরে একটু যেন হাসির রেখা দেখা দিতে না দিতে মিলাইয়া পড়িল,—তিনি গম্ভীরভাবে বলিলেন “আপনারা হয়ত ভুলে যান নভেলিষ্ট আর নীতিশিক্ষক এক নন। তিনিও নীতিশিক্ষা দেন বটুে-কিন্তু তাঁর প্রণালী স্বতন্ত্র, তিনি চিত্রকর। বিশ্বের অভঙ্গ অব্যর্থ নিয়মের মধ্যে, সমাজের ভঙ্গ প্রবণ ক্ষণিক নিয়মের মধ্যে নিয়তিব এবং স্বভাবচক্রের গতিতে চরিত্র ভেদে অবস্থাভেদে মানুষ কিরূপ বিচিত্র মূর্ত্তিতে ফুটে ওঠে—তাই ছবির মত একে দেখানই নভেলিষ্টের কাজ। জর্জ এলিয়ট মানুষের মানুষত্ব ছুঁতে চান না,তাকে জড় বা দেবতা করতে চান না। সহানুভূতিতে, ভালবাসাতে সেই মানুষত্বের পূর্ণবিকাশ করতে চান মাত্র। ডরথিয়া ideal রাজ্যেই বাস করে, তার আশা আকাঙ্ক্ষা সমস্তই অসাধারণ; সত্য জগতের সংশ্রবে এরূপ স্বভাবের লোক কিরূপ ভুল করে লেখক তার ছবিতে তাই দেখিয়েছেন। তার জীবনের এই failure এর মধ্যে ও কি খুব একটা pathos নেই।
+</p><p>দিদি। তার উপর মমতা হয় বটে—কিন্তু ভারি রাগ ধরে— আবার শেষে ও অমন একটা অপদার্থকে ভালবাসলে?
+</p><p>আমি বলিলাম—“কেউ কেউ বলেন, ডরথিয়া, ম্যাগি, নাকি লেখিকারি চরিত্রের ছায়া?”
+</p><p>ডাক্তার বলিলেন—“এইরূপ শোনা যায় বটে। তাঁর জীবনের উচ্চতম আশা আকাঙ্ক্ষা আদর্শে তিনি যেমন বিফল—”
+</p><p>ভগিনীপতি আসিয়া পড়ায় কথাটা থামিয়া গেল। দিদি বলিলেন “এত দেরী যে!”
+</p><p>ভগিনীপতি ললিলেন—“মক্কেলটাকে আর কিছুতে তাড়াতে পারিনে। কি discussion চলছে হে—জর্জ্জ এলিয়ট? Oh! she is a great creator, we must admit that, I am sorry to say.”
+</p><p>ডাক্তার। What a reluctant admission! Does not your man's nature take delight in glorifying such genius in a woman? What a grand intellect she had—combined with the sympathetic heart and subtle instinct of a true woman! মানুষের সামান্য অসামান্য প্রত্যেক কার্য্যটি, তার অন্তর স্বভাবের কিরূপ নিগুঢ় উদেশ্য কিরূপ সূক্ষ্মতম ভাব থেকে প্রসূত তিনি যেমন তা চুল চিরে দেখিয়েছেন এমন কোন পুরুষ নভেলিষ্টে পেরেছেন কি?”
+</p>
+
+<p> ভগিনীপতি। There I quite disagree. Do you mean to say she is as great a genius as Shakespere, or even modern—
+</p><p>ভগিনীপতির কথা শেষ করিতে না দিয়াই ডাক্তার খুব সতেজে বলিলেন-"Of course, why not? Though at first I spoke of novelists only—yet if you choose to bring in Shakespear's name I have not the slightest hesitation in pronouncing her to be as great in her sphere, as Shakespeare is, in his.”
+</p><p>এমনতর আস্পদ্ধাপূর্ণ মূর্খামির কথায় ভগিনীপতিকে নিতান্তই বিচলিত করিয়া তুলিল। তিনি ক্রুদ্ধস্বরে বললেন “What a monstrous proposition —Quite blasphemous to my mind. I never heard of such a ridiculous comparison 1 She is no more a Shakespear than you are my dear fellow—however cleverly she might have written her novels.”
+</p><p>ডাক্তার হাসিয়া বলিলেন, “Of course she isn't—how could she possibly be Shakespeare Did I really say such a foolish thing? What I meant to say, and would go on repeating till the end of my life is this—that the genius shown in the works of George Elliot is in no way inferior to that of any renowned poet or novelist of England, dead or alive.”
+</p>
+
+<p> ﻿ভগিনীপতি। But it comes to the same thing. Well, prove in what way she is as great a creative genius as Shakespeare?
+</p><p>ডাক্তার বলিলেন-But the burden of proof lies on you my friend!”
+</p><p>এই সময় ডিনারের ঘণ্টা পড়িল, আমরা যেন হাঁফ ছাড়িয়া বাঁচিলাম। তাঁহাদের বাকযুদ্ধ যে কোথায় গিয়া দাঁড়ায়—এই ভাবিয়া আমরা মহাভীত হইয়া পড়িয়ছিলাম।—দিদি উঠিয়া দাঁড়াইয়া বলিলেন—“তর্কটা এখন রেখে দিলে হয় না—ডিনারের ঘণ্টা পড়েছে।”
+</p><p>তাঁহারাও উঠিয়া দাঁড়াইলেন,–কিন্তু ভূতে পাইলে সে যেমন মানুষকে ছাড়িতে চাহে না তর্কে পাইলে মানুষ তেমনি তাহাকে ছাড়িতে চাহে না। উঠিয়া দাঁড়াইয়াও ভগিনীপতি বলিলেন—“You must give me good reasons my dear fellow, or else you must admit that she was not a Shakespeare.”
+</p><p>ডাক্তার বলিলেন—All right, that I heartily admit. As she was a woman and called George Eliot she could not be a man or Shakespeare either!"
+</p><p>ভগিনীপতি হাত বাড়াইয়া দিয়া বলিলেন—“The premises being granted the conclusion must follow as the night the day, that her genius also could not be on a par with Shakespear's. Now let us shake hands in the name of Shakespeare, who was the * principal cause of this never-ending discussion which has however ended happily to the satisfaction of all parties. Vive le Shakespeare the great man!”
+</p><p>ডাক্তার ভগিনীপতির হাত সজোরে ঝাঁকাইয়া বলিলেন— “Vive la George Eliot the great woman!"
+</p><p>ভগিনীপতি। All right! I have no grudge against her you will see. Three cheers for Shakespeare— Three cheers for George Eliot!
+</p>
+
+<p>ডাক্তার। And vice versa. Three cheers for George Eliot-Three cheers for Shakespeare!”
+</p><p>দুজনে মিলিয়া ইহার পর একসঙ্গে হুরে হুরে করিয়া উঠিলেন। আমি বলিলাম
+</p><p>“আর আমাদের লেখকেরা বুঝি বাকী থাকিবেন?”
+</p><p>দিদি। তাত বটেই। বঙ্কিমচন্দ্রের জয় সর্ব্বাগ্রে।
+</p><p>ভগিনীপতি সুর করিয়া গাহিলেন—
+</p><p>জয় every lady র জয়, জয় every gentlemanএর জয়,
+</p><p>জয় জয়, জয় ভারতের জয়।”
+</p><p>কে জানিত রুদ্ররস এমন হাস্যরসে পরিণত হইবে, তাঁহাদের উক্ত গানের কোরসে আমাদের ক্ষীণ হাসির কোরস তেমন ফুটিল ন। কিন্তু আমরা হাসিতে হাসিতে ভোজন গৃহে সমাগত হইলাম।
+</p>
+<div><img alt="" src="images/c30_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c31_Rule_Segment___Flare_Centre___22px.svg_22px_Rule_Segment___Flare_Centre___22px.svg.png"/><img alt="" src="images/c32_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>দ্বাদশ পরিচ্ছেদ।</h2>
+<div><img alt="" src="images/c33_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c24_Rule_Segment___Diamond_open___7px.svg_7px_Rule_Segment___Diamond_open___7px.svg.png"/><img alt="" src="images/c33_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/></div>
+<p>সে তর্কের ঐখানেই সমাপ্তি। টেবিলে বসিয়া অন্য নানা কথা-বেশীর ভাগ বিলাতের গল্পই চলিল।—প্রথমে উঠিল ইংলণ্ডের শীতের কথা তাহা হইতে বরফে স্কেট করার বর্ণনা। শুনিয়া দিদি বলিলেন—“আমাদের নিতান্তই কৃপার পাত্র মনে করবেন না, এদেশে বসেও আমরা জমাট বরফ দেখেছি। সেই নইনিতালে—কেমন মণি?”
+</p><p>দিদি ডাক্তারের গল্পের উত্তরে একথা বলিলেন,—আমিও তাঁহার উত্তর স্বরূপ বলিলাম—“কিন্তু আপনি যে রকম বলছেন এ সে রকম অবশ্য নয়—এ শুধু বরফের একটা প্রকাও স্তূপ। দুই পাহাড়ের মাঝখানে, শীতের সময় যে বরফ পড়েছিল—তারি খানিকট মাটি চাপা পড়ে গরমি কালেও আর কি গলতে পায়নি। একটা পাশ শুধু গলে গিয়ে মস্ত একটা বাড়ীর মত দেখতে হয়েছে—সে দিকটা যেন তার খোলা দরজা। এক জায়গায় নীচের থেকে বরফ গলে সুন্দর বরফের সেতু হয়ে আছে!
+</p><p>দিদি। জায়গাটি কি নিরিবিলি। কেবল ঝরণার শব্দ ধরে ধরে আমরা সেখানে পৌঁছেছিলুম।
+</p><p>আমি। বাস্তবিক জায়গাটি বড় সুন্দর। লতাপাতা, ফুল, পাহাড়, ঝরণা, নদী, বরফ, প্রভৃতি প্রকৃতির যত কিছু সুন্দর বস্তু-সব যেন একত্র জোট বেধে লোকচক্ষু এড়াবার অভিপ্রায়ে সেই একটুখানি অপ্রশস্ত স্থানে ঘেঁসাঘেসি করে আপ নাদের সৌন্দর্য্য ছড়াচ্ছে। সেই নিভৃত সবুজ পাহাড়ের কুঞ্জে শাদা বরফের ঘরবাড়ী যখন সহসা চ’খে পড়ে—মনে হয় এ কোন পরীর রাজ্যে এসে পড়লুম!
+</p><p>দিদি। ঠিক বলেছিল! মণি কিন্তু বেশ বলে? আমি এমন বর্ণনা করে বলতে পারিনে!”
+</p><p>এই অযাচিত অকাল-প্রশংসায় লজ্জিত বিরক্ত হইয়া আমি চুপ হইয়া গেলাম,—ভগিনীপতি দিদিকে বলিলেন—“তোমার আর কি আমারি মত দশা। যা দেখেছ তা এক রকম ভুলে বসে আছ তা বর্ণনা করবে কি বল?
+</p><p>দিদি। আমার মনে ত আর দিনরাত মক্কেলের ভাবনা জাগছে না, যে অন্য সব ভুলে বসে থাকব?
+</p><p>ভগিনীপতি। আচ্ছা বল দেখি তবে বরফট কেমন দেখতে!
+</p><p>দিদি। না তাকি বলতে পারি? কিন্তু তোমাকে ত আর আমি পরীক্ষা দিতে বসিনি।
+</p><p>ভগিনীপতি। তবে আমিই পরীক্ষা দিই। কি চমৎকার সাদা ধবধবে! The sublimest, beautifulest, grandest—
+</p><p>দিদি। আর চালাকি করতে হবে না!
+</p><p>ডাক্তার বলিলেন—২৪ ঘণ্টা হাতে পেয়েও তোমার যে আশ মেটে না দেখছি হে; এই আধঘণ্টা ফাউটুকুও দখল করতে চাও। সমস্ত গল্পটা নিতান্তই যে একচেটে করে নিচ্ছ।”
+</p><p>ভগিনীপতি। I beg your pardon. I shall keep as quiet as a dummy.
+</p><p>দিদি। সেই ভাল। তুমি চুপ করে থাক আমরা গল্প করি। বরফটা জানেন, দেখতে আমাদের খাবার বরফের মত ﻿মোটেই নয়। বাইরেটা ঠিক যেন তার নুনের গুঁড় জমাট বাঁধা— আর ঘরের ভিতরের দেয়ালগুলো মোমের মত চমৎকার মোলায়েম আর একটু কাল কাল। মাটির সঙ্গে মিশেছে কি না।
+</p><p>ভগিনীপতি। গিন্নিদের আবার তখন খেয়াল হোল-বরফ খানিকটা ভেঙ্গে বাড়ী আনতে হবে!
+</p><p>দিদি। তুমি ত আর ভাঙ্গনি—তবে সে কথা আবার তোল কেন? আমরা দুবোনে ভাঙ্গতে চেষ্টা করলুম তা পারব কেন? হাতে কেবল নুনের মত গুঁড় উঠে আসতে লাগলো।
+</p><p>ডাক্তার। আমি থাকলে নিশ্চয়ই আপনাদের হুকুম তামিল করতুম—বরফ খানিকটা ভেঙ্গে সঙ্গে আনতুম।
+</p><p>দিদি। (ভগিনীপতিকে) দেখলে! এঁর কাছে শেখো মেয়েদের কেমন ক’রে প্রসন্ন করতে হয়।
+</p><p>ভগিনীপতি। Good gods! ওঁর কাছে আমি শিখতে যাব! আমি কি আর আমার সময় ওসব করিনি? বিয়ের আগে হাতে কত কাঁটা বিধিয়ে গোলাপ ফুল তুলে দিয়েছি— এরই মধ্যে সে সব ভুলে গেছ?
+</p><p>দিদি। (সলজ্জে) আচ্ছা বেশ থাম থাম। (ডাক্তারের প্রতি) তাপর আপনি গল্প করুন। বাস্তবিক নদীনালা বরফে জমাট বেঁধে মাটীর মত শক্ত হয়েছে,—তার উপর দলে দলে সব সুন্দর সুন্দরীরা পরীর মত স্কেট করছে—সে না জানি কি, চমৎকার দেখতে! আপনি বোধ হয় দেখে খুবই মুগ্ধ হয়ে গিয়েছিলেন?
+</p><p>ভগিনীপতি। কি দেখে! স্কেটিং না বরফ,—না সুন্দর সুন্দরী?
+</p>
+
+<p> দিদি। সমস্তই। কিন্তু তোমাকে ত আর জিজ্ঞাসা করছিনে।
+</p><p>ডাক্তার। হ্যাঁ মুগ্ধ হয়েছিলুম বোধ হয়,—হবারিত কথা।– তবে সেদেশের ভিতরের সৌন্দর্য্য আমাকে এতই মোহিত করে ছিল, যে বাইরের কোন দৃশ্য আর তেমন আশ্চর্য্য মনে হয়নি! সেখানে কি জ্বলন্ত জীবন্ত স্বাধীনতা, কি অদম্য উদাম উৎসাহ! আমাদের দেশের মত অলস বিশ্রাম যেন তারা জানে না। এক জনে দশজনের কাজও করে, দশজনের আমোদও করে। আমার কলেজের প্রায় প্রত্যেক ছোকরাকেই দেখতুম—যথা সময়ে লেকচার শোনে—surgical operation শেখে;—পালায় পালায় dutyতে থাকে, রাত জেগে পড়াশুনাও করে,— আবার ফুটবল, হকি, বোটরেস—সকল রকম খেলাতেই যোগ দেয়; ডিনার পার্টি, বল, থিয়েটার ঘুরতেও বাকি রাখে না। আমিত তাদের energy দেখে প্রথম প্রথম অবাক হয়ে যেতুম!
+</p><p>ভগিনীপতি। নইলে আর ইংলণ্ড ও ইণ্ডিয়ায় তফাৎ হবে কেন বল?
+</p><p>ডাক্তার। সেদেশে সব কাজেরই এমন একটা সুচারু শৃঙ্খলা যে তাতে ক’রে কাজও ঢের সহজ হয়ে আসে—আর বেশী কাজও করা যায়। জীবনগুলো সেদেশে যেন ঠিক ঘড়ির কাঁটার চালে চলে। নিমন্ত্রণ খেতেই যাও—দেখাশুনা করতেই যাও, বা কাজের জন্যই কারো কাছে যাও, সব তাতেই যেন ট্ৰেণ ধরতে যোচ্ছ—এমনিভাবে সময়ের দিকে দৃষ্টি রাখতে হয়। কোন একটা engagement থাকলে প্রথম প্রথম আমি এমন অস্থির হয়ে পড়তুম, late হবার ভয়ে হয় ত বা আধঘণ্টা আগে থাকতেই হাজির হয়ে দরজার কাছে পাচালি করে বেড়াচ্ছি।
+</p>
+
+<p> আমি। বিলাতের গল্প শুনলে আমার এমন সে দেশে যেতে ইচ্ছা করে।
+</p><p>ডাক্তার। আমার ত মনে হয় শিক্ষিত স্ত্রীপুরুষ সকলেরি একবার করে অন্ততঃ সে দেশে যাওয়া উচিত। সেখানকার সেই মুক্ত স্বাধীন বায়ু নিশ্বাসে গ্রহণ করলেও আমাদের মত নির্জীব জীব নতুন জীবন পায়, তারও যেন জীর্ণ সংস্কার হয়। যে সব Idea এ দেশে বলে কল্পনাতে পোষণ করতেও লজ্জা বোধ হয়, সে দেশে বসে সেই সবই সত্য সাধনার বিষয় বলে মনে হোত। এখন বলতেও লজ্জ করে, কিন্তু আমারই তখন মনে হোত আমি একলাই যেন এ দেশটাকে ওলট পালট করতে পারি। এদেশের বদ্ধমূল কুসংস্কারগুলাকে দুট কথার জোরে— বারুদের মত তোড়ে ওড়াতে পারি। এখন দেখছি নিজের বিশ্বাস রক্ষা করাই কত কঠিন—তা আবার দেশগুদ্ধ reform করব!
+</p><p>ভগিনীপতি। বিধাতা আমাদের মেরেছেন—তার উপায় কি? ইংলণ্ডের মত ক্লাইমেট যদি ইণ্ডিয়ার হোত তাহলে কি আর আমাদের এমন দশা হয়?
+</p><p>দিদি। না এমন কাল রূপ নিয়েই জন্মাই? শোনা যায় এক কালে নাকি আমরাও সুন্দর ছিলুম-যখন প্রথমে পঞ্চনদ পার হয়ে এদেশে বাস করতে আসি! বাস্তবিক যখন এই সামনের মাঠটায় ইংরাজের ছোট ছোট ছেলে মেয়েদের মোমের পুতুলের মত মুখগুলি দেধি—তখন আর চোখ ফেরাতে ইচ্ছা হয় না-ভগবান আমাদের জাতকে কেন অমন সুন্দর করলেন না? তারা যেখানে থাকে যেন তারা ফোটায়!
+</p>
+
+<p> ভগিনীপতি। এত দুঃখ কেন? কালোরূপে ও ত ভুবন মজেছে। তোমাদের–
+</p><p>দিদি! সুন্দর রূপে আরো মজে!
+</p><p>ভগিনীপতি। তা বলা যায় না। কি বল হে? সে সুর্য্যের দেশ থেকেও ত বিনা ফোস্কায় তাজা ফিরে এসেছ, এখন দেখ এদেশে এসে চাঁদের আলোতে স্থির থাক কি না? আমার দশা ত দেখতেই পাচ্ছ।
+</p><p>দিদি। তা নয়গো তা নয়। সূর্য্যের আলোতে ঝলসে উঠলেই লিন্‌ তখন চাঁদের আলোতে ঠাণ্ডা হতে আস। নইলে কি আর দেশকে মনে পড়ে? বাস্তবিক সেদেশে যেতে যেতেই সবাই কি ক’রে তার নিজেদেশ-আত্মীয়স্বজন সব ভুলে যায়— আমার ভারী আশ্চর্য্য মনে হয়।
+</p><p>ভগিনীপতি। আমার কি মনে হয় জান? সেদেশের এত charm সত্ত্বেও তবুও যে তারা একেবারে দেশ ভোলে না, তবুও যে বাঙ্গালি থাকে,—দেশে ফেরে,—বিয়ে না করে ফেরে, আর ফিরেই বিয়ে করে—এইটেই বেশী আশ্চর্য্য!
+</p><p>দিদি। তা যাওনা, তোমাকে ত কেউ বারণ করে নি, কেউত পা বেঁধে রাখেনি।
+</p><p>ভগিনীপতি। এই এই! জানছেন কি না তা হবার যো নেই-একেবারে শিকলি বাঁধা।
+</p><p>তাঁহাদের মানাভিমান চলিল,—আমি বলিলাম—“তাপর আপনার আর কি ভাল লাগত সেদেশে!
+</p><p>ডাক্তার। সব চেয়ে আমার কি ভাল লাগত শুনবেন? সেদেশের স্ত্রীলোকদের
+</p>
+
+<p> ভগিনীপতি। সৌন্দর্য্য! Good heavens আমি যে আর এক রকম এক রকম বোঝাচ্ছি!
+</p><p>দিদি। আপনি,ত দিব্যি! আমাদের মুখের উপর ও কথাটা বলতেও বাধলো না আপনার?
+</p><p>ডাক্তার হাসিয়া বলিলেন—“মাপ করবেন,—কিন্তু ও কথাটা আমি বলিনি,—আপনার স্বামী বলেছেন। আমি বলছিলুম আমার সব চেয়ে ভাল লাগত, সেদেশের মেয়েদের স্বাধীনতা, আত্মনির্ভর ভাব। দিন দিন সেদেশে স্ত্রীলোকের কার্য্যক্ষেত্র বাড়ছে—এমন কি পলিটিক্সে পর্য্যন্ত তারা হস্তক্ষেপ করেছে। পুরুষেরা এজন্য বিরক্তি প্রকাশ করে-ঠাট্ট তামাসা করে— অথচ আসলে এজন্য তাদের সন্মানের চক্ষেই দেখে, তাদের হাতেই কলের পুতুলের মত নাচে। দেশের উপর, প্রতিজীবনের উপর স্ত্রীলোকের কিরূপ influence এবং এই influence সমাজের পক্ষে কিরূপ আবশ্যক, কিরূপ হিতকর, এবং এর অভাবে আমরা এদেশে কিরূপ পশুজীবন বহন করি—সেদেশে না গেলে তা বোঝা যায়না।”
+</p><p>আমি। কিন্তু আমাদের দেশের লোক ত আর এদেশে স্ত্রীলোকদের সঙ্গে মেশে না। সেখানে গিয়ে সম্পূর্ণ নূতন রকম অবস্থায় পড়ে প্রথমটা তাদের কিরকম অবস্থা হয় না জানি?
+</p><p>ডাক্তার। অন্যের কিরূপ হয় জানিনে। আমার কথা আমি বলতে পারি। আমার বড় শোচনীয় অবস্থা দাঁড়িয়েছিল। যে সামান্য ভাসতে পারে—তাকে যদি সরু দড়িতে বেঁধে মাঝগঙ্গায় ছেড়ে দেওয়া হয় তাতে সে যেমন হাবু ﻿ডুবু খেতে খেতে তীরে ওঠে—এ ও আর কি অনেকটা সেই রকম ব্যাপার?
+</p><p>দিদি হাসিয়া বলিলেন—“কি রকম!”
+</p><p>ডাক্তার। না জানি তাদের চাল চলন, ধরণধারণ, আদব কায়দা, এমন কি ভাষা পর্য্যন্ত। আমরা শিখেছি বয়ের ভাষা;— ফিলজফি পড়েছি, সয়েন্স পড়েছি,হিষ্ট্রী পড়েছি, সে সম্বন্ধে কথা উঠলে বরঞ্চ একঘণ্টা বকে যেতে পারি; কিন্তু ছোট ছোট সেন্টেন্সে, প্রশ্নের উপর উত্তরে, কথার উপর কথা ঘুরিয়ে, ইনিয়ে বিনিয়ে—রসিকতা করে গল্প চালান, তাত শিখিনি। স্ত্রীলোকের সঙ্গে আলাপ করিয়ে দিলে এমন nervous এমন awkward feel করতুম! কি কথা কব ভেবেই পেতুম না। শুধু তাই নয়, এত দিন দেশে ডিক্সনারী দেখে দেখে সামান্য একটা অ্যাকসেন্টের বিশুদ্ধতা ধরে এত হেঙ্গাম করে যে ইংরাজি উচ্চারণ শিখেছি—তাতে দেখি লাভ হয়েছে এই যে, ইংরাজি মুখের ইংরাজি উচ্চারণ ভাল ক’রে সব বুঝতেই পারিনে। আর এক জ্বালা, থেকে থেকে শুনতে পাই—‘তুমি অমুককে cut করেছ—সে তোমাকে রাস্তায় nod করেছিল—তুমি টুপি ওঠাওনি।’ Good heavens! কে আমাকে কখন nod করলে! আমিত কিছুই দেখিনি। প্রতিদিন এই রকম excuse করতে করতেই প্রাণ ওষ্ঠাগত। আসল কথা একে রাস্তার কোন দিক না দেখে চলাই আমার অভ্যাস—তাপর শাদা মুখগুলো সবই এমন একসা বলে মনে হয়-যে বিশেষ আলাপ পরিচয় না থাকলে এক আধবারের দেখা সাক্ষাতে মুখ চিনে নেওয়াই শক্ত। অন্য রকম বিপদু আবার আছে। দোকানে একপেনির একটা বো কিনতে গিয়ে, ঘরে ফিরে এসে টাকা মিলিয়ে মাথায় হাত দিয়ে দেখি এক পেনির জায়গায়—অনুরোধের দায়ে ৫ পাউণ্ড খুইয়ে এসেছি। বেশ gracefully ‘না’ বলতে শেখাটা সেখানে বিশেষ আবশ্যক। নইলে আর বিপদের শেষ নেই। এই রকম প্রতিপদে কত পড়ে উঠে—তবে ষে সে দেশের মাটিতে সোজা হয়ে দাঁড়াতে শিখেছি—তা কি আর কহতব্য?
+</p><p>দিদি। শেষে আর কি, সব বিষয়েই খুব পাকা হয়ে উঠে ছিলেন?
+</p><p>ডাক্তার। তা ঠিক্ বলতে পারিনে,—আমার বাঙ্গালী বন্ধুরা শেষ পর্য্যন্ত আমাকে বলতেন-নেহাত কাঁচা।
+</p><p>ভগিনীপতি। তুমি দেখানে রমানাথকে কতদিন থেকে জানতে?
+</p><p>ডাক্তার। তিনি দেশে ফেরার অল্পদিন আগে মাত্র আমাদের একটি বন্ধুর বাড়ীতে তাঁর সঙ্গে আমার আলাপ হয়।”
+</p><p>ভগিনীপতি। সত্যি কি সে engaged হয়েছিল?
+</p><p>ডাক্তার একটু খতমত খাইরা বলিলেন—“সেই রকম শুনেছিলুম বটে—কিন্তু আমি নিশ্চয়-but I am afraid it is not a fit subject for the dinner table!”
+</p><p>ভগিনীপতি তাঁহার সঙ্কোচ দেখিয়া বলিলেন, “you are right, let us keep it for some other time. I have certain reasons of course for asking you about him.”
+</p><p>সে কথা থামিল,—আমি বাঁচিলাম।
+</p>
+
+<p> সে দিন আকাশে পূর্ণচাঁদ,—জ্যোৎস্নায় দিগদিগন্ত ভাসিয়া যাইতেছিল—আহারান্তে আমরা তাই ছাতে বসিলাম। দিদি বলিলেন—“ইংলণ্ডে ত আপনার সবই ভাল,—কিন্তু এমন চাঁদের আলো কি পেতেন?
+</p><p>ডাক্তার। সেটা rare ছিল বটে,—সেই জন্যই বোধ হয়— যখন জ্যোৎস্না ফুটত, বড় যেন বেশী সৌন্দর্য্য ছড়াত।”
+</p><p>দিদি। আপনি দেখছি—একবারে মজে গেছেন। ইংলণ্ডের সুন্দরীরাই ভাল আমরা জানতুম, আবার চাঁদের আলোও এদেশের চেয়ে বেশী সুন্দর? আপনি যে সেই চাঁদের দেশ থেকে তার অনন্ত আকর্ষণ এড়িয়ে ফিরেছেন—এ একটা পরমাশ্চর্য্য বলে মনে হচ্ছে!
+</p><p>তিনি তাঁহার কপোল প্রান্তের শ্মশ্রুগুচ্ছে অঙ্গুলি সঞ্চালিত করিয়া একটু হাসিয়া বলিলেন—“জানেন যে সংসারে আশ্চর্য্যই বেশী ঘটে! যেখানে সম্ভাবনা যত প্রবল সেখানে দেখবেন প্রায়ই নৈরাশ্য, আর যেখানে আপনি least সম্ভাবনা আছে ভাবছেন, least প্রত্যাশা করছেন—সেইখানেই দেখবেন তা ঘটছে।”
+</p><p>বলিতে বলিতে তিনি যেন চকিত নয়নে আমার দিকে চাহিলেন, জ্যোৎস্না বাহিত সেই নীরব দৃষ্টি হইতে কি এক অশ্রুতমধুর রব ধ্বনিত ছুইল, তাহার পুলক কম্পনে হৃদয়ের অন্তঃপুর স্তরে স্তরে কল্পিত আলোড়িত করিয়া সুদীর্ঘ নিশ্বাস উথলিত করিয়া তুলিল।
+</p>
+<div><hr/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>ত্রয়োদশ পরিচ্ছেদ।</h2>
+<div><hr/></div>
+<p>যেমন হইয়া থাকে, ডাক্তার চলিয়া যাইবার পর তাঁহাকে লইয়া আমাদের মধ্যে সমালোচনা চলিতে লাগিল। দিদি বলিলেন— “লোকটাকে লাগল মন না।”
+</p><p>ভগিনীপতি বলিলেন—“Yes—he's not a bad fellow— hasn't got much common sense though, too much of a woman worshipper I should say.”
+</p><p>দিদি। সেত ভালই।
+</p><p>ভগিনীপতি। মন্দ কে বলছে? Poor fellow I pity him—he's quite lost in admiration of the fair sex. Fancy an intelligent and educated man like him firmly believing in the possibility of a woman's ever coming up to Shakespeare in intellectual power!
+</p><p>দিদি। সেটা কি এমনি অসম্ভব ব্যাপার?
+</p><p>ভগিনীপতি। And what is worse still—feeling no hesitation whatever in expressing this outrageous opinion of his before others and making a fool of himself. The man has absolutely no sense of the ludicrous.
+</p><p>আমি বলিলাম—“তাঁর যে strength of conviction খুব আছে—এতে তা বেশ বোঝা যাচ্ছে।”
+</p><p>তিনি আমার দিকে চাহিয়া বলিলেন—“you are right, it shows his sincerity and to tell you the truth, I like him all the better for this outspoken foolish enthusiasm of his.”
+</p><p>দিদি। লোকটা বেশ সহৃদয়।
+</p><p>ভগিনীপতি। He has the manners of a perfect gentleman—
+</p><p>তাহার পর সহসা বলিয়া উঠিলেন—"আচ্ছা মণির সঙ্গে তার বিয়ে হলে কেমন হয়?”
+</p><p>দিদি। সেত engaged!
+</p><p>ভগিনীপতি। Good gods! কে বল্লে! আমি ত ভাবছিলুম he was rather sw-never mind what, but—কে বল্লে?
+</p><p>দিদি। চঞ্চলের মা বলছিলেন।
+</p><p>ভগিনীপতি। এরই মধ্যে পাকড়াও করলে কে? কথাটা ত গুজবও হতে পারে?—
+</p><p>দিদি। না ডাক্তারের মায়ের কাছ থেকে তিনি শুনেছেন, গুজব হবার নয়। তবে পাত্রীটি যে কে তা আর আমি জিজ্ঞাসা করিনি, অন্য কথা এসে পড়লে, আর জেনেই বা আমার লাভ কি বল?
+</p><p>ভগিনীপতি। Bad luck everywhere, eh! তবে চল এখন শুতে যাওয়া शाक, স্বপ্নে এই happy pairকে congratulate করা যাবে এখন!
+</p><p>কি ভাগ্য ইহা রাত্রি কাল; তাই আমার সহসা পরিবর্ত্তিত বিবণ মূর্ত্তি ইঁহারা দেখিতে পাইলেন না।
+</p><p>শয়নগৃহে আসিয়া জানালার ধারে কৌচে বসিলাম। বিছা নায় যাইতে ইচ্ছা হইল না। নয়নপথে মুক্তাকাশখণ্ডে শ্বেত কৃষ্ণ মেঘের উপর দিয়া স্তরে স্তরে, তরঙ্গে তরঙ্গে, তর তর বেগে পূর্ণ শশধর ভাসিয়া যাইতেছিল; তাহার দিকে চাহিয়া আমার সন্ধ্যার সেই সুখ সেই মুখ মনে জাগিতে লাগিল; আর ব্যথিত অশ্রুধারা হৃদয় ভেদ করিয়া নয়নে উথলিয়া উঠিতে লাগিল।
+</p><p>সবই কি আমার কল্পনা! ইঁহার নয়নে যে সুমধুর দৃষ্টি দেখিলাম, ইহার সাধারণ কথার মধ্যে যে অসাধারণ হৃদয় কথা পড়িলাম, তাহার মধ্যে কি সত্য কিছুই নাই? সমস্তই কি আমার মনের ছায়া—আমার মনের ভাব মাত্র? সন্দেহ নাই। আমি কে? আমি কি? নিতান্ত ক্ষুদ্র, নিতান্ত অযোগ্য, মূহূর্ত্তের জন্যই বা কিরূপে অতদুর আত্মহারা হইলাম? এ দুরাশা মনে উঠিল? তাহা কখনো নহে; কখনো হইবারো নহে,—সমস্তই আমার ভ্রম! আমার কল্পনা!
+</p><p>বাহিরে তেমনি পরিপূর্ণ জ্যোৎস্না; অন্তরে তেমনি মধুর দৃষ্টি, কেবল সন্ধ্যার সেই আনন্দের পরিবর্ত্তে সমস্তই এখন নিরানন্দ বিষাদ স্নান; হৃদয়ের নবজাগ্রত মধুর বসন্ত মুহূর্ত্তে মরুবিলীন —
+</p><p>তাঁহাকে মনে পড়িল যাঁহার ভালবাসা উপেক্ষা করিয়াছি তাঁহাকে মনে পড়িল। শুনিতে পাই সংসার কর্ম্মফলে চলিতেছে, ইহাও কি কর্ম্মফল? তাহাকে কষ্ট দিয়াছি তাই এ কষ্ট! কিন্তু আমি কি তাঁহাকে ইচ্ছা করিয়া কষ্ট দিয়াছি? অবস্থাচক্রের উপর কি আমার হাত আছে? তাঁহা হইতে আমার হৃদয় যে দূরে পড়িয়াছে সে কি আমার দোষে? সহস্র চেষ্টাতেও কি আর সে প্রেম ফিরাইতে পারি? না আমার ইচ্ছাক্রমেই এই নবপ্রেম আমার হৃদয়ে জাগ্রত হইয়াছে?
+</p>
+
+<p> সাধ্য থাকিলে এই মুহূর্ত্তে কি ইহা বিলোপ করিতাম না! যে কর্ম্মের উপর আধিপত্য নাই, তাহারো ফল আছে? সে জন্যও মানুষ দায়ী! তাহার নিমিত্ত এই ভয়ানক শাস্তি! তবে মানুষকে এত ক্ষুদ্র এত তুচ্ছ, এত দুর্ব্বল করিয়া গড়িয়াছ কেন প্রভু! দুর্ব্বল অসহায়ের প্রতি তোমার করুণ কোথায় তবে? অবশ্যই আছে! কেবল কর্ম্মফলে সংসার চলিলে এতদিন ইহা ধ্বংসপ্রাপ্ত হইত। আমিই বা আজ কোথায় থাকিতাম! যে করুণায় বল্যে কৈশোরে অসংখ্য রোগশোক দুঃখ তাপের অবসান করিয়া জীবনে সুখ শান্তি বিধান করিয়াছ, হে নাথ-করুণাময় তোমার সেই অনন্ত করুণাবারি বর্ষণে—”
+</p><p>প্রার্থনা অসম্পূর্ণ রহিয়া গেল; কি ভিক্ষা করিতে যাইতেছি! ঈশ্বরের করুণা আহ্বান করিয়া যাহাকে ভালবাসি তাহাকে পাইতে চাহি! আমার সুখের জন্য অন্যের সুখে অভিশম্পাৎ প্রার্থনা করিতেছি! প্রার্থনার সহজ উচ্ছাস সহসা স্তম্ভিত হইয়। গেল, করপুট শিথিল হইয়া পড়িল, আমি সেইখানেই শুইয়া পড়িয়া অধীর বেদনায় মনে মনে কহিলাম—“তোমার করুণা! প্রভু, তোমার করুণা! আমার মঙ্গলের জন্য যে কষ্ট যে দুঃখ বিধান করিতে চাহ আমি যেন ধীরভাবে তাহ সহ্য করিতে পারি; করুণা করিয়া এই বল দাও নাথ।” কাঁদিয়া কাঁদিয়া প্রার্থনা করিতে করিতে সেই অবস্থাতেই কখন ঘুমাষ্টয়া পড়িলাম জানিনা। যখন জাগিয়া উঠিলাম, তখন পূর্ব্ব রাত্রের সেই বেদনাময় অনুভূতি লইয়াই জাগিয়া উঠিলাম। সেই ছবি সেই দৃষ্ট মনোনেত্রে দেখিতে দেখিতেই জাগিয়া উঠিলাম।—
+</p>
+<div><hr/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>চতুর্দ্দশ পরিচ্ছেদ।</h2>
+<div><hr/></div>
+<p>একই রকমে দিন কাটিতে লাগিল। প্রতিদান পাইবার আশা নাই, ভরসা নাই, ইচ্ছাও নাই; নিরাশীর মধ্যেও তথাপি অন্তঃশীলা অংশ প্রবাহিতা, ইচ্ছার বিরুদ্ধে বাসনা বিদ্রোহী, মনের বিরুদ্ধে মন সংগ্রামরত, নিজের সহিত অনবরত যুদ্ধে হৃদয় রক্তাক্ত ক্ষত বিক্ষত। এমন অবস্থায় তোমরা কেহ কি কখনো পড়িয়াছ! জানিনা; কিন্তু মনে হয়, এ বিশাল সংসারে এ জ্বালা শুধু আমিই জানি।
+</p><p>ভাবিতে গেলে মহা বিষ্ময়ের মধ্যে মগ্ন হইয়া পড়ি!—কেবল দুই চারি দিনের দেখা, কেবল দুই চারিট কথা বার্ত্তা; তাহাতেই কিরূপে আমাকে এমনতর পাগল করিয়া তুলিল! সেই ক্ষণিক মিলনের মধ্যে জগতের যত কিছু সৌন্দর্য্য-মধুরতা আনন্দ-উচ্ছাস, যত কিছু হলাহলভরা অভাব বেদনার অভিজ্ঞানে জীবনের অভিজ্ঞতা যেন সম্পূর্ণ।
+</p>
+তাঁহাকেও ত ভাল বালিয়াছিলাম; কিন্তু এখন বুঝিতেছি, সে এ রকমের অনুভাব নহে।—সেশুধু গানের মোহ, স্মৃতির ব্যথা; এমন মর্ম্মবিজড়িত আকুল আকাঙ্খাময় আত্মদান নছে। সে শুধু বিশ্বাসের উচ্ছাস, প্রীতির অনুভবে মর্ম্মান্তিক সহানুভূতি, তাই যখন বিশ্বাস ফুরাইল, যখন মনে হইল তাঁহার ভালবাসা সত্য নহে, তখন সে ভালবাসাও ফুরাইল। কিন্তু এ সন্দেহে, এ অবিশ্বাসে সে ক্রোধ কোথা? সে বিরক্তি কোথা! সে বিস্মৃতিই বা কোথা? নৈরাশাসিঞ্চনে এ প্রেম আরো কেবল মনে দৃঢ় বদ্ধমূল হইয়া বসিতে লাগিল। 
+<p> প্রাণের মধ্যে সারাদিন কি যে আগুণ জ্বলিতেছে, কাজে কর্ম্মে গল্পে কথায় তাহার নিবৃত্তি নাই। যতই ভাবি ‘আর না আর না’ ততই ইঁহাকে ভাবি; ভুলিতে চেষ্টা করিয়া দর্শনতৃষায় আরো ব্যাকুল হইতে থাকি; বায়ুর শব্দে নিরাশ মনে বাতুল আশা জাগাইয়া তোলে—মোহভঙ্গে দগ্ধ হৃদয়ে বেদনাধ্বনি ওঠে—“একবার একবার কি আর দেখা পাইব না! আর কিছু না—যদি শুধু মাঝে মাঝে দেখা পাইতাম! হৃদয় ভাগিনী নহে—যদি সামান্য বন্ধুত্বভাগিনীও হইতে পারিতাম! তাহ হইলেই কি আমার জীবন জন্ম সার্থক হইত না? কোথায় সে গর্ব্বিত অপমান বোধ!
+</p><p>এইরূপ দাবানল হৃদয়ে বহিয়া দিন কাটে। ভবিষ্যতে কি হইবে, কে জানে, কালে ইহার শান্তি আছে কিনা জানি না, কিন্তু পুড়িতে পুড়িতে জ্বলিতে জ্বলিতে এখন মনে হয়—এমনি নিরাশাময় আশা, বেদনাময় আকুলতায় জীবন জ্বলিয়া পুড়িয়া যখন ভষ্মসাৎ হইবে তখনি মাত্র ইহার শান্তি! সুদীর্ঘ জীবনের দিকে চাহিয়া শিহরিয়া উঠি। ইহাই কি প্রেম? যে তৃষ্ণায় তৃপ্তি নাই, যে আকাঙ্খায় নিবৃত্তি নাই, যে আশায় সফলতা নাই, তাহাই কি প্রেম? কে জানে!
+</p><p>ইহার তিন চারিদিন পরে চঞ্চলের সহিত দেখা। তাহাদের রাড়ীতেই দেখা। আমাদের দুজনে খুব ভাব। বেশী না হউক অন্ততঃ পক্ষে সপ্তাহে একবার করিয়া দিনান্ত ধরিয়া আমরা দুজনে একত্র কাটাই। কোনবার বা সে আমাদের বাড়ী আসে— কোনবার বা আমি তাহাদের বাড়ী যাই। তাহার নজর এড়াইতে পারিলাম না; আমাকে দেখিবা মাত্র আমার শুষ্ক বিষণ্ন ভাব লক্ষ্য করিয়া সমবেদনার স্বরে চঞ্চল বলিয়া উঠিল—“আর তুমি কি না বল সেজন্য তোমার কিছুই আসে যায় না; একি চেহারা হয়েছে? আমার তার উপর এমন রাগ ধরছে! কি করে যে কাকারা দিদির সঙ্গে তার বিয়ে—
+</p><p>“দিলেই বা!”
+</p><p>“আচ্ছা ঠিক বলছ তুমি তাকে আর ভালবাস না! বিয়ে ভেঙ্গে গেছে বলে দুঃখিত হওনি?”
+</p><p>“তুমি কি মনে কর তোমাকে আমি অঠিক কিছু বলব! কোন কথা তোমাকে বলতে না পারি, কিন্তু যা বলব তা বেঠিক বলব না,—এ বেশ জেনো।”
+</p><p>চঞ্চল খুশী হইয়া আমার গাল টিপিয়া বলিল “সইলো আমার, তোকে কিন্তু ভাই বড় কেমন কেমন দেখাচ্ছে। তা এতটা একজনকে বিশ্বাস করেছিলি,—সে বিশ্বাসটা ভাঙ্গলে, সে জন্যও ত কষ্ট হত?”
+</p><p>“হয়েছিল অবিশ্যি, তাত জানই। কিন্তু তাই বলে যদি ভাব আমি সেই কষ্টে এখনো মারা যাচ্ছি—তা হলে—
+</p><p>“আমি হলে ত যেতুম! আমি যদি বিলাত থেকে এক হপ্তা চিঠি না পাই, এমন ভয় হয়, কি বলব।”
+</p><p>“তোর যে বিয়ে হয়ে গেছে, তোর স্বামী ভুল্লেও যে তোর ভোলার পথ বন্ধ, আর ভোলাটাই আমাদের পক্ষে যুক্তি কেননা তাতেই আমাদের মুক্তি।”
+</p><p>চঞ্চলও হাসিল, হাসিতে হাসিতে বলিল—“তা ঠিক! দিদিও (কুসুম) ত দেখছি বেশ আছে! আমি নিজের ভাব থেকেই দেখছি উণ্টে বুঝে মরি! শুনেছ অবিশ্যি দিদির বিয়েও ভেঙ্গে গেছে?”
+</p><p>“না। ভাঙ্গলো কেন?
+</p><p>“তাত জানিনে। তাঁরা ত আর আমাদের কাছে কিছু প্রকাশ করেন না। বাইরে বাইরে অমনি শুনছি যে হবে না নাকি! বোধ করি রমানাথই ভেঙ্গেছে, কেননা দিদির শুনেছি ইচ্ছা ছিল। লোকটার যাহক গুণপণা আছে—নইলে দিদি পর্য্যন্ত ভোলে?”
+</p><p>আমি একটু স্তম্ভিত হইয়া পড়িলাম,—একটা অনুতাপ গ্লানি হৃদয়ে বহিয়া গেল! এ বিবাহে তিনি অসম্মত হইলেন কেন? আমি কি তাহাতে লিপ্ত!
+</p><p>চঞ্চল বলিল—"কি ভাবছ?”
+</p><p>আমি বলিলাম—“তোমার দিদি কি সত্যি তাঁকে ভালবেসেছিলেন; আমার তাঁর জন্যে বড় মায়া করছে, সাধ্য থাকলে কোন রকমে বিয়েটা ঘটাতুম।”
+</p><p>“তোমাকে কে মায়া করে ঠিক নেই—তুমি মায়া করছ দিদিকে! আমি ত তার বড় একটা দরকার দেখছিনে। আত্মাদর দিদির যথেষ্ট আছে—নিজের মূল্য সে বেশ বোঝে, কেনই বা না বুঝবে? রূপ গুণের কিছু কসুর নেই, তার উপর টাকা। যে বিয়ে করবে, রাজকন্যা ও অর্দ্ধেক রাজত্ব এক সঙ্গে পাবে। কত লোক তার জন্য হা হুতাশ করে মরছে তার ত ঠিকই নেই। যদি দুঃখ করতে হয় তাদেরই জন্য বরঞ্চ কর। দিদির যদি সামান্য একটুকু আঁচর লেগে থাকে ত এতদিনে তার দাগ বেশ মিলিয়ে পড়েছে।”
+</p>
+
+<p> “তা কি করে জানলে? যারা সহজে ভালবাসায় পড়ে না তারা ভালবাসলে বরঞ্চ সহজে না ভোলারই কথা!”
+</p><p>“হ্যাঁ যদি তেমন ভালবেসে থাকে। কিন্তু সে রকমটা ত মনে হয় না। লোকটা একটু চটুকে রকম, কথাবার্ত্তায় খানিকটা চমক লাগাতে পারে—কিন্তু তার উপর যে কারো গভীর ভালবাসা হবে তাত আমি মনে করতে পারিনে। নিদেন আমার হলেত হোত না, আর দেখা যাচ্ছে তোমারো হয়নি। তাহলে দিদিরই কি হবে?”
+</p><p>“বস্! খুব ত লজিক দেখছি!”
+</p><p>“ইংরাজি নভেলে প্রায়ই ত দেখা যায় first love অনেক সময়েই অনভিজ্ঞ হৃদয়ের একটা শুধু উচ্ছাস, তেমন গভীর ভালবাসা নয়। দিদিরও এটা খুব সম্ভব সেই রকম একটা ফেণা উঠে জল বুদ্বুদের মত আবার মিলিয়ে পড়েছে। যথার্থ ভালবাসা হৃদয়ের একটা শিক্ষা,—সেট শুধু আবেগ নয়; তার উপযুক্ত পাত্রও চাই। হ্যা ডাক্তারকে কেউ ভালবাসছে শুনলে সেটা বোঝা যায় বটে। আজ কাল ত আমরা দিদিকে এইকথা নিয়ে ঠাট্ট করি,—তিনি কিনা তাদের ঘরাউ ডাক্তার হয়েছেন। আর মনে হয়—ডাক্তার বেশ একটু ধরা পড়েছে—”
+</p><p>আমার হৃৎপিণ্ডে শোণিত বেগে বহিল; মনে হইল মুখে চোখে তাহা উছলিয়া উঠিতেছে, বুঝিবা এখনি ধরা পড়ি। কিন্তু চঞ্চল লক্ষ্য করিল না—বলিয়া উঠিল—”এই যে দিদি! অনেক দিন বাঁচবে, নাম করতে করতে হাজির।”
+</p><p>অনেক দিন পরে কুসুমের সহিত দেখা। মনে হইল, সে যেন পরিবর্ত্তিত। তাহার নয়নে সেই বিদ্দ্যুদ্দাম প্রস্ফারণ চাপ ল্যের যেন অভাব; অধরে আত্মম্ভরীময় সদা প্রস্ফুটিত হাস্যরেখা যেন নিমীলিত। আমার মায়া করিতে লাগিল। পাছে সে ভাবে আমি তাহার প্রতি অপ্রসন্ন—আর সেরূপ মনে করি বার যথেষ্ট কারণও বর্তমান; তাই আমি সহস্য ভাবে আগেই বলিলাম; “এই যে কুসুম! অনেক দিন পরে দেখা!”
+</p><p>কুসুম একটু চাপা ভাবে উত্তর করিল—
+</p><p>“হ্যাঁ কত দিন ভেবেছি দেখা করতে যাব-কিছুতেই কেমন ঘটে ওঠেনি। তোমরাই কোন আমাদের বাড়ী আস?”
+</p><p>ইহার উত্তর যোগাইল না—বলিলাম “আমি দেশে যাচ্ছি—”
+</p><p>“দেশে! কেন?”
+</p><p>চঞ্চল বলিয়া উঠিল, “মনের দুঃখে বনবাস আর কি!”
+</p><p>আমি অপ্রতিভ হইয়া পড়িলাম; ছি কুসুম কি ভাবিবে? চঞ্চলও বলিয়া বোধ হয় বুঝিল কথাটা কুসুমের মনে লাগিতে পারে। তাড়াতাড়ি অন্য কথা পাড়িল-বলিল “তা পর দিদি ডাক্তারের খবর কি?”
+</p><p>কুসুম বলিল—“তাঁর খবর আমি কি জানি। মণি সম্ভবতঃ বলতে পারে; ওদের ওখানে না প্রায়ই যান? কেন মনের দুঃখ কিসের? মণির মত সৌভাগ্য আমাদের হ’লে আমরা ত বেঁচে যেতুম!”
+</p><p>উদ্দেশ্য অবশ্য ঠাট্ট, কিন্তু ইহার মধ্য হইতে সত্যের আভাষ প্রকাশ পাইল। বলিতে বলিতে কুমুমের চাপা দীর্ঘ নিশ্বাস পড়িল। সে নিশ্বাসে ঈষৎ যেন ঈর্ষামাখা নৈরাশ্য বেদনা ব্যক্ত হইল। বুঝিলাম কুসুম ভালবাদে, সত্যই ভালবাসে; কিন্তু কাহাকে? তাঁহাকে না ইঁহাকে? মিষ্টার ঘোষকে-না ডাক্তারকে?
+</p>
+<div><hr/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>পঞ্চদশ পরিচ্ছেদ।</h2>
+<div><hr/></div>
+<p>কাহাকে? তাহাতে কি আর সন্দেহ আছে? চঞ্চল কি জানে? তার সব অনুমান বইত নয়! মিষ্টার ঘোষ যে এমন সুবিধার বিবাহ আপন হইতে ছাড়িবেন তাহা হইতেই পারেনা; কেন ছাড়িবেন, তাহার যখন কোন কারণই নাই। কুসুমই এ বিবাহে অসম্মত হইয়াছে। যতক্ষণ চন্দ্রোদয় না হয় ততক্ষণ নক্ষত্র দীপ্তিশালী, চন্দ্র উঠিলে কি আর তারার আলো চোখে লাগে? ডাক্তারের সহিত পরিচিত হইয়াই কুসুম মন পরিবর্ত্তন করিয়াছে —কুসুমের সহিতই ডাক্তার engaged; নহিলে ইঁহার নাম শুনিবামাত্র কুসুম ওরূপ বিহ্বলতা প্রকাশ করে কেন! বেচার রমানাথ! তাহার প্রতি আন্তরিক সহানুভূতির দীর্ঘ নিশ্বাস উঠিল।
+</p><p>স্তব্ধ নিশায় শয্যাশায়ী একাকী আমি নির্ব্বাধে চিন্তামগ্ন হইয়া এইরূপ মীমাংসা করিতে করিতে আর একটি কথা সেই সঙ্গে বারম্বার এই ভাবিতেছিলাম—“কুসুম কি ভাগ্যবতী!” ইহার মধ্যে কি ঈর্ষা লুকান ছিল? নিশ্চয়ই। লোকে বলে এমন স্থানে ঈর্ষা না হইয়া যায়না-আমি কি আর সৃষ্টিছাড়া! তবে এ ঈর্ষা নিতান্তই নিরীহ ঈর্ষা, অপূর্ণ আকাঙ্খা উত্থিত নৈরাশ্য বেদনা;—আকুল দীর্ঘ নিশ্বাসে মাত্র তাহার বিকাশ ও তাহাতেই তাহার অবসান, বিকৃত বিরূপ বিদ্বেষপূর্ণ অভিশাপ ইহাতে ছিল না! থাকিবার কথাও নহে।—যেখানে অধিকারে, উপভোগে কেহ অপহারক সেখানে সেই অপহারকের প্রতি ক্রোধ বিদ্বেষ স্বাভাবিক। কিন্তু কুসুম আমার কাছে কি দোষে দোষী? আমা হইতে আমার প্রিয়তমের স্নেহও সে ছিন্ন করে নাই, আমার আত্মীয়তা অধিকারও তাহা হইতে সে হরণ করে নাই —সৌভাগ্য ক্রমে সে না হয় তাঁহার প্রণয়িনী হইয়াছে, যদি তাহা না হইত—যদি কুসুমকে তিনি না ভালবাসিতেন— তাহা হইলেই যে আমি সে ভালবাসা পাইতাম এমন আশাও আমার মনে নাই। তবে তাহার উপর ক্রোধ বিদ্বেষ জন্মিবে কেন? বরঞ্চ বিপরীত। দ্বেষের পরিবর্ত্তে এই ঈর্ষার আঘাতে আমার হৃদয়ের একটি গুপ্ত প্রতিদ্বার সহসা খুলিয়া গেল। সত্য কথা বলিতে হইলে, ইতি পূর্ব্বে আমি কুসুমের প্রতি সখ্যভাব অনুভব করি নাই। কিন্তু যখনি মনে হইল—কুসুম আমার প্রিয়তমের প্রিয়তম—তখনি আমারও সে প্রিয় হইয়া উঠিল,— তাহার যে সকল গুণ রাশি এতদিন আমার অন্ধনয়নে অপ্রকাশিত ছিল—পরম প্রীতি ভাজন বন্ধুর মত সহসা সেই সবে আমি সাতিশয় আকৃষ্ট হইয়া উঠিলাম, এবং এই নবসখ্যতা ভাবে আমাকে এতদূর অধীর এতদূর বিহ্বল করিয়া তুলিল যে তখনি তাহাকে সখিত্বের ডোরে বাঁধিয়া তাহার সৌভাগ্যে আনন্দ প্রকাশ করিয়া পত্র লিখিবার জন্য ব্যগ্র হইয়া উঠিলাম। এমন কি মনের আবেগে বিছানা হইতে উঠিয়া পড়িলাম, কিন্তু ডেক্‌সের কাছাকাছি আসিয়া সহসা মন পরিবর্ত্তিত হইল, মনে হইল, ছি কুসুম কি ভাবিবে? আর কিই বা লিখিব! আস্তে আস্তে আবার ফিরিয়া গিয়া বিছানায় ঢুকিলাম।
+</p>
+পরদিন সকালে দিদি বলিলেন “সে আসবে জানিস?” আমার হৃৎপিণ্ড বেগে উঠিতে পড়িতে লাগিল। জিজ্ঞাসা করিলাম—“কবে?” 
+<p> “কাল টেনিসে।—মুখে তুই কিছু বলিসনে, কিন্তু দিন দিন যে রকম শুকিয়ে যাচ্ছিস দেখলে চোখে জল আসে।”
+</p><p>ভারী লজ্জা হইল, ছি ছি—দিদিও ধরিয়া ফেলিয়াছেন! “হ্যাঁ শুকিয়ে যাচ্ছি! তোমার যেমন কথা!”
+</p><p>দিদি বলিলেন—“আর এতটা কষ্ট কেন—না সামান্য একটু ভুল বোঝার জন্যে!”
+</p><p>আমি সহসা আকাশ হইতে পড়িলাম—বুঝিলাম ডাক্তারের কথা বলিতেছেন না।
+</p><p>দিদি বলিলেন—“সে যে তোকে ভালবাসে তাতে আর সন্দেহ নেই। ওনার সঙ্গে দেখা হতে নিজেই সে কথা তুলে বলেছে যে তোর ব্যবহারে তার অত্যন্ত কষ্ট হয়েছে;—যদিও অন্য পার্টিরা তাকে বিয়ের জন্য বিশেষ ধরে পড়েছেন—কিন্তু এখনো সে তাদের কথা দেয়নি। এখনো যদি তোর মত হয়, ত সে সমস্ত Sacrifice করতে প্রস্তুত। কাল আসবে, দেখিস যেন আবার হেঙ্গাম বাধিয়ে বসিস নে। তুই ভাল বাসিস, সেও ভাল বাসে, মাঝে থেকে এক ফ্যাকড়া!”
+</p><p>আমার মাথা ঘুরিয়া গেল। আমি এখন নিজের হৃদয় বেশ ভাল করিয়া বুঝিয়াছি, তাঁহাকে ভালবাসা আমার পক্ষে একেবারে অসম্ভব, তবে বিবাহ করিব কি করিয়া? আমি বলিলাম “আমার জন্য তাঁকে কোন রকম sacrifice করতে হবে না। দিদি, আবার কেন এ হেঙ্গাম বাধান? আমি দেখা করতে পারব না!”
+</p>
+দিদি বলিলেন “তুই এমন কথা ধরতে পারিস? sacrifice বলেছে, অমনি অভিমান!” 
+<p> “অভিমান আবার কোথায় পেলে। ভালবাসাস্থলেই মানাভিমান! ভালবাসাতেই আত্মবিসর্জ্জন ক’রে ও আত্মবিসর্জ্জন নিয়ে সুখ। তেমন ভালবাসা থাকলে তিনিও এটা sacrifice ভাবে দেখতেন না, আর আমারো তা গ্রহণ করতে কুষ্ঠা হোত না।—যাকে ভালবাসিনে তার উপর মানভিমানই বা কি-আর তার sacrificeই বা নিতে যাব কেন?”
+</p><p>দিদি তবুও মনে করিলেন—ইহা আমার অভিমানের কথা। হাসিয়া বলিলেন,—
+</p><p>“তোর সঙ্গে বাবু আমি তর্কে পারব না-সেত কাল আলছেই, এসে তর্কভঞ্জন মানভঞ্জন সবই করবে এখন।”
+</p><p>আমি দৃঢ়স্বরে বলিলাম “দিদি তুমি খুবই ভুল বুঝছ। অভিমান করে আমি এরূপ বলছিনে। তাঁর এ কথায় আমার বরঞ্চ আহ্লাদই হয়েছে-মন থেকে একটা দারুণ ভার নেমে গেছে। আমি যাকে ভালবাসতে পারছিনে—তিনি আমাকে ভালবাসছেন—আমি তাঁর কষ্টের কারণ—এটা মনে করতে কি খুব সুখ নাকি?”
+</p><p>দিদি রাগিয়া বলিলেন “তোর মত আত্মম্ভরী লোক যদি আর দুটি আছে? সেই যে ধরে বসেছিস সে ভাল বাসেনা—এ আর কিছুতে ছাড়বিনে। যা হক কাল ত সে আসছে, দেখা ত হোক, তারপর যা হয় হবে”—
+</p><p>আমি কাতর হইয়া বলিলাম—“আমি দেখা করতে পারব না দিদি,—ব’লো আমার অসুখ করেছে।”
+</p><p>“অসুখ করেছে! উনি এদিকে তাকে আসতে বলে এসেছেন,—ভাবে গতিতে প্রকাশ করেছেন যে তোর আর এ বিয়েতে কোন আপত্তি হবেনা; আর তুই এখন বলছিস দেখা করবিনে!”
+</p><p>“আমি কি করব? দেখা হলেই যে আমাকে আবার সেই কথাই বলতে হবে। আমি যে কিছুতেই এ বিয়েতে রাজি হতে পরিচিনে দিদি”
+</p><p>“আমাদের অপমান, তোর নিজের অপমান, লোক হাসাহাসি এসবই ভাল, তবু এ বিয়েতে রাজি হতে পারবিনে? অথচ তার দোষ কিছুই নেই! এর কোন মানে আছে?”
+</p><p>“আমি তাঁকে ভালবাসতে পারবনা”
+</p><p>“এই দুদিন আগে এত ভালবাসা, আর ভালবাসতে পারবিনে! সে কি কখনও হয়! এখন ও রকম মনে হচ্চে, বিয়ে হলেই ঠিক ভালবাসা হবে।”
+</p><p>আমি নিতান্ত মরিয়া হইয়া বলিলাম “দিদি তোমার দুটি পায়ে পড়ি আমি দেখা করতে পারবনা, আমি তখন বুঝিনি, এখন বুঝছি তাঁর সঙ্গে বিয়ে হলে আমিও সুখী হবনা তিনিও না।”
+</p><p>“তবে তোর যা ইচ্ছা করিস যা ইচ্ছা বলিস! এমন এক গুঁয়ে মেয়েও ত আমি কখনো দেখিনি!” বলিয়া দিদি অত্যন্ত ক্রুদ্ধ ভাবে চলিয়া গেলেন।
+</p>
+<div><hr/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>ষোড়শ পরিচ্ছেদ।</h2>
+<p><br/>জীবনে কত মহাবিপদে পড়িয়াছি কিন্তু কখনও আমাকে এই সামান্য বিপদের মত এত কাতর এত অভিভূত করে নাই। যেন ভীষণ অন্ধকারে একাকী দাঁড়াইয়া, দেহে তীক্ষ শাণিতাস্ত্র বর্ষণ চলিতেছে, আত্মরক্ষার কিছুমাত্র উপায় নাই, হস্ত উঠাইতে মস্তক তুলিতে শতধার কৃপাণ তাহার তীক্ষতা আরো ভীষণরূপে অনুভব করাইয়া দিতেছে। আমি যন্ত্রণাজর্জ্জর কাতরপ্রাণে সর্ব্বাস্তঃকরণে কেবল ডাকিতেছি, মাত: পৃথিবী বিদীর্ণ হও আমি তোমার মধ্যে প্রবেশ করি। সে কাতর প্রার্থন ব্যর্থ হইল না, জগৎমাতার সিংহাসন বিকম্পিত করিয়া তাহ করুণা অনয়ন করিল। তখনো আমি সেই চৌকিতে সেইরূপ মুহ্যমান ভাবে বসিয়া আছি, চাকর আসিয়া খবর দিল বাবা আসিয়াছেন। বাবার আসিবার কথা ছিল বটে, তিনি লিখিয়াছিলেন আমাকে আসিয়া লইয়া যাইবেন, তবে এত শীঘ্র আসিবেন তাহা আমরা মনে করি নাই।
+</p><p>দিদির ঘরে প্রবেশ করিয়া স্তব্ধ হইয়া দাঁড়াইলাম, অগ্রসর হইয়া প্রণাম করিতেও সাহস হইল না, দেখিলাম বাবা অগ্নি মূর্ত্তি হইয়া ক্রোধবিকম্পিত উগ্রস্বরে দিদির সহিত কথা কহিতেছেন, বুঝিলাম অবশ্য আমাকে লইয়াই তাঁহাদের বাকবিতন্ডা, কম্পিত কলেবরে সেখানে দাঁড়াইয়া রহিলাম, তাঁহারা আমার আগমন লক্ষ্য না করিয়াই পুর্ব্বের ভাবে কথা কহিতে লাগিলেন। বাবা বলিলেন “সে শোনবার মত কথা কি যে বলব? আমি যে গুনে পাগল হয়ে যাইনি তা আমার আশ্চর্য্য মনে হচ্চে। তুমি বলছ মণির ইচ্ছা ছিলনা তাই বিবাহ ভাঙ্গতে হয়েছে। বাজার রাষ্ট্র সে নাকি বলেছে কন্যার শোভন শীলতা, নম্রতার অভাব দেখেই তাকে সরে পড়তে হয়েছে। বেশী আর কি বলব।”
+</p><p>দিদি। মিথ্যা কথা!
+</p><p>বাবা। মিথ্যা কথা তা কি আমাকে বলতে হবে? মণির মত স্বাভাবিক বিনয়, নম্রতা, লজ্জা কটা মেয়ের আছে?
+</p><p>দিদি। না তা বলছিনে। পাত্র কখনই এরূপ বলেনি, মিথ্যা গুজব; এখনো সে বিয়ে করতে রাজি, যদি ওরূপ তার মনের ভাব হবে তাহলে কি—
+</p><p>বাবা। বিয়ে করতে রাজি! আমন পাত্রে আমি মেয়ে দেব!
+</p><p>দিদি। কিন্তু আপনি স্থির হয়ে একটু ভেবে দেখুন তাতেই লোকলজ্জা কলঙ্ক সমস্ত দূর হবে।
+</p><p>বাবা। লজ্জা কলঙ্ক যা হবার হয়েছে, তার চেয়ে বেশী আর কি হবে? হলেও সবই সহ্য করব তবু অমন চণ্ডালের হাতে মেয়ে সমর্পণ করব না।
+</p><p>দিদি। কিন্তু আপনি পরের কথা শুনে অন্যায় করছেন। সে কখনই অমন দুর্জ্জন নয়, অমন করে সে বলেনি।
+</p><p>বাবার রাগ তাঁহাতে উপশমিত হইল না। তিনি তেমনি ক্রুদ্ধ ভারে বলিলেন—“Scoundrel! নিশ্চয়ই বলেছে! মণি যে তাকে বিবাহ করতে নারাজ সেটা বলতে যে তার নিজের মান হানি হয়! কিছুতেই আমি তাকে কন্যাদান করব না। মণিকে আজই রাত্রে সঙ্গে নিয়ে যাব। নিজে দেখে শুনে যে পাত্র পছন্দ করব তাকেই মেয়ে দেব। তোমাদের মত ইংরাজী কোর্টসিপ আর না।”
+</p><p>দিদি অনেক করিয়া তাহাকে দু এক দিন থাকিতে অযুরোধ করিলেন, বাবা কিছুতেই রাজি হইলেন না, সেই রাত্রেই আমরা ঢাকা যাত্রা করিলাম। গাড়ীতে উঠিয়া আমি যেন দীর্ঘনিশ্বাস ফেলিয়া বাঁচিলাম, পিতার স্নেহের মধ্যে আপনাকে পুর্ণভাবে ছাড়িয়া দিয়া অনেক দিনের পর অতি অপূর্ব্ব শান্তি অনুভব করিতে লাগিলাম। কিন্তু অধিকক্ষণ সে সুখভোগ অদৃষ্টি ঘটিল না। কে জানে সংসারের একি দানব নিয়ম! কাহারও অতিমুখ তাহাকে এ পর্য্যন্ত সহ্য করিতে দেখিলাম না! ষ্টিমারে বাবা বলিলেন “ছোটুকে তোমার মনে পড়ে কি?”
+</p><p>“পড়ে বই কি!”
+</p><p>“তাঁর মায়ের ভারী ইচ্ছা তোমাকে পুত্রবধূ করেন। আমারে অত্যন্ত ইচ্ছা ইহাকে জামাতা করি; এমন স্বপাত্র সচরাচর পাওয়া যায় না; ভগবান যদি বিমুখ না হন, তোমার যদি ভাগ্যবল পুণ্যবল থাকে তাহ’লে ঢাকায় গিয়ে যত শীঘ্র হয় এই শুভ বিবাহ সম্পন্ন করার ইচ্ছা আছে।”
+</p><p>যে আশা যে কল্পনা অনেক দিন ধরিয়া হৃদয়ে নিরবচ্ছিন্ন সুখকর স্বপ্ন রাজ্য নির্ম্মাণ করিত আজ তাহাই সত্যে পরিণত হইবার সম্ভাবনায় সহসা বজ্রাঘাতে যেন স্তম্ভিত হইয়া পড়িলাম।
+</p>
+
+</div></section>
+<section><div>
+
+<h2>সপ্তদশ পরিচ্ছেদ।</h2>
+<div><hr/></div>
+<p>বাড়ী পা দিব্যমাত্র জ্যেঠাইমার আমার প্রতি স্বাগত সন্তাষণ—“ওমা কি হবে গো। মেয়ে যে পেল্লায় বড় হয়ে উঠেছে! আর এখনো আয়বড়! লোকে দেখলে বলবে কি! ছিছি ঠাকুর পো তোমার মুখে অন্নজল রোচে কি করে গা!”
+</p><p>বাবা ব্যস্তসমস্ত পলায়নপর হইয়। বলিলেন—“শীগগিরই হবে—শীগগিরই হবে; সবই এক রকম ঠিক—সেজন্য তোমার কোন ভাবনা নেই।”—
+</p><p>সব ভাল করিয়া শোনা গেল কি না গেল, তিনি কোন রকমে কথা গুলো মুখের বাহির করিয়া চলিয়া গেলেন।—
+</p><p>জ্যেঠাইমা ইহাতে আরো অসন্তুষ্ট হইয়া আপন মনে গণগণ করিতে লাগিলেন—“না আমার কোন ভাবনা নেই—তোমারি যত ভাবনা? এই যে পাঁচজন মেয়ে ছেলে এখনি এখানে আসবে, মণিকে দেখে নানা কথা বলবে তুমিত আর শুনতে আসবে না; আমারি লজ্জায় বাকরোধ হবে।”
+</p><p>জ্যেঠাইমার ভয় দেখিলাম নিতান্ত অকারণ নহে। সত্য সত্যই আমি আসিয়াছি শুনিয়া আমাদের যত কেহ আত্মীয় স্বজন, পাড়া প্রতিবাসী মহিলাগণ পালায় পালায় প্রতিদিন দল বাঁধিয়া আমাকে দেখিতে আসেন; আসিয়া,আশ্চর্য! প্রতি জনে ঠিক একই রকম ভাষায়, পাখীর শেখা বুলির মত আমার অকাল কৌমার্য্যে বিস্ময় ও দুঃখ প্রকাশ করিয়া অবশেষে বাবার মুঢ়তার নিন্দাবাদে প্রচুর পরিতৃপ্তি সঙ্গে লইয়া গৃহে ফেরেন। এমন কি এইরূপ সমবেত জল্পনায় জ্যেঠাইমার যথার্থ দুঃখের তীব্রতা ও ক্রমশঃ হ্রাস হইতে লাগিল; সারগ্রাহিণী সুন্দরীবর্গের শিক্ষাগুণে, মরালের অনুকরণে তিনিও এই অনিবার্য্য দুঃখকর ঘটনার মধ্য হইতে নিন্দাবাদের মুখ টুকু ছাঁকিয়া উপভোগ করিতে লাগিলেন। আমারি জীবন কেবল ইহাতে অসহ্য হইয়া উঠিতে লাগিল। তথাপি ভাবিয়া দেখিলাম বিবাহের অপেক্ষ,—যাহাকে ভালবাসিনা তাহার পত্নী হওয়া অপেক্ষ, এই অশাস্তি অসুখও চির সহনীয় চির বরণীয়। বিবাহের কথা মনে করিতেই সমস্ত স্বায়ুপ্রণালী এমনি বিপর্য্যস্ত হইয়া উঠে।
+</p><p>দিন যায়। বাহিরের লোকের তীব্র সমালোচনা, জ্যেঠাইমার বাবাকে ভর্ৎসনা, বাবার তাঁহাকে প্রশান্ত আশ্বাস প্রদান, এই রকমে প্রতিদিন একই ভাবে কাটে। বিবাহের নূতন কোন কথা বা ছোটুর কোন উল্লেখ আর শুনিতে পাই না। সেইজন্য এই অশান্তি অসুখ সত্ত্বেও দিনে দিনে আমি আশ্বস্ত হইতে লাগিলাম, আমার মন হইতে অল্পে অল্পে আশঙ্কার ভাব তিরোহিত হইতে লাগিল; ক্রমশঃ এতদূর স্বচ্ছন্দভাব অনুভব করিতে লাগিলাম যে আমার মনের নিভৃত চিন্তাগুলি মনোমধ্যে আবার বেশ জমাইয়া গুছাইয়া লইয়া তাহার উপভোগে রত হইলাম। লোকে নিজের দুঃখ ভুলিতে পারিলে পরের দুঃখে সহানুভূতি করিতে অবসর পায়। আমি আত্মস্থ হইয়া জোঠাইমার ও পাড়াপ্রতিবাসীর কঠোর মন্তব্য গুলিকে ও অন্য ভাবে দেখিতে শিখিতেছি; তাঁহাদের তীব্রোক্তিতে তাঁহাদের আজন্ম কালের মতবিশ্বাসজাত আকুলতা বুঝিয়া ক্রোধ ও বিরক্তির পরিবর্তে শ্রদ্ধা ও সহানুভূতির ভাবে তাহ সহিয়া লইয়া একটা প্রশান্ত নিরাশার ক্রোড়ে যখন আপনার আশ্রয় প্রস্তুত করিয়া লইয়াছি তখন বাবা একদিন আহারকালে বলিলেন—“ছোটু দু একদিনের মধ্যেই এখানে আসছেন। তিনি এলেই বিবাহের দিন স্থির হবে।”
+</p><p>জ্যেঠাইমা আহিলাদে বলিয়া উঠিলেন “বর নিজেই আগে আসছে? তুমি যে বলেছিলে বরের মা আসবে? তা বুঝি এলনা! আজি কাল এই রকমই হয়েছে, ছেলে নিজে না মেয়ে দেখলে হয় না! তা দেখুক কিন্তু আর দেরী না—এই মাসের মধ্যেই বিয়ে দেওয়া চাই।”
+</p><p>বাবা বলিলেন “আমারো তাই ইচ্ছা।”
+ 
+</p>
+</div></section>
+<section><div>
+
+<h2>অষ্টাদশ পরিচ্ছেদ।</h2>
+<div><hr/></div>
+<p>আমাতে আর আমি নাই। মনের মধ্যে প্রলয় ঝটিকা প্রবাহিত। বাবা আহারান্তে বাহিরে গেলেন। আমার আজন্ম-শিক্ষিত ভয় লজ্জা সঙ্কোচ এই বিপ্লব-আবেগে তুণের মত যেন উড়িয়া গেল, আমি উত্তেজিত আলোড়িত মস্তকে গৃহে আসিয়া বাবাকে পত্র লিখিলাম—
+</p><p>“শ্রীচরণেষু—
+</p><p>বাবা, আমার বিবাহ করিতে ইচ্ছা নাই; ইছা বালিকার খেয়াল মনে করিবেন না। আমি খুবই ভাল করিয়া হৃদয় পরীক্ষা করিয়া দেখিয়া বলিতেছি বিবাহে আমার সুখ নাই। ইংলণ্ডে ত এমন অনেকেই অবিবাহিত থাকেন। থাকিয়া দেশের জন্য কাজ করেন, আমিও দেশের কার্য্যে জীবন উৎসর্গ করিতে
+ চাই। আমি বেশ জানি তাহাতেই আমার একমাত্র সুখ। বিবাহ দিয়া আমাকে অসুখী করিবেন না।”
+</p>
+<div><div>
+<p>আপনার স্নেহের
+</p>
+</div></div>
+<div><div>
+<p>মৃণালিনী।
+</p>
+</div></div>
+<p>বাবা অফিসে যাইবার পুর্ব্বেই চাকরের হাতে চিঠিখনি তাঁহাকে পাঠাইয়া উৎকণ্ঠিত কম্পিত চিতে ইহার ফল প্রতীক্ষা করিতে লাগিলায়। কিছু পরে পদশব্দ হইল, বুঝিলাম বাবা নিজেই আসিতেছেন—লুপ্ত লজ্জা সহসা ফিরিয়া আসিল; মনে হইল কি করিয়া তাঁঁহাকে মুখ দেখাইব! তিনি ঘরের মধ্যে আসিয়া দাঁড়াইলেন, আমি নত মুখে মাটির দিকে চাহিয়া রহিলাম। কিছুক্ষণ বাবা নীরবে থাকিয়া বলিলেন, “তোমার দেখছি ভারি একটা ভূল সংস্কার জন্মেছে; বিবাহ করলে কি দেশের কাজ করা যায় না! আমাদের দেশের যে রকম অবস্থা অবিবাহিত স্ত্রীলোকের পক্ষেই বরঞ্চ এসব কাজে বাধা বিঘ্ন অধিক। বিবাহে যে তুমি সুখী হবে, তোমার জীবনের সমস্ত কর্ত্তব্য সমস্ত উদ্দ্যেশ্য সাধিত হবে তাতে আমার সন্দেহ মাত্র নেই। স্ত্রীলোকের ঐহিক পরিমার্থিক, সকল প্রকার মঙ্গলের জন্যই বিবাহ শ্রেষ্ঠ, প্রশস্ত পথ। তুমি অনভিজ্ঞ অজ্ঞান বালিকা, তোমার কথায় কাজ ক’রে আমি তোমার অমঙ্গলের কারণ হতে পারিনে। এতদিন যোগ্য পাত্রের অভাবে ইচ্ছা সত্ত্বেও তোমার বিবাহ দিতে পারিনি; এখন ঈশ্বরেচ্ছায় সুপাত্র মিলেছে তোমারও সৌভাগ্য আমারো সৌভাগা। এই সৌভাগ্যে আপনাকে ধন্য মনে করে ঈশ্বরকে ধন্যবাদ প্রদান করে আনন্দ হৃদয়ে তোমার পতিদেবতাকে বরণ করে নিতে প্রস্তুত হও।”
+</p>
+
+<p> বাবা এইরূপ বলিয়া উত্তরের অপেক্ষ না করিয়াই চলিয়া গেলেন। আমি বুঝিলাম তাঁহার সঙ্কল্প অটল—আরো বুঝিলাম, তাঁহার আজ্ঞা লঙ্ঘন করিতে আমার ক্ষমতা নাই। আমি মর্ম্মে মর্ম্মে দুর্ব্বল বঙ্গনারী, আজ্ঞাবর্ত্তী দুহিতা। জীবন বিসর্জ্জন দিতে পারি-কিন্তু ইহার পরে বিবাহ সম্বন্ধে দ্বিরুক্তি করা আমার পক্ষে অসম্ভব। আত্মজলাঞ্জলি ভিন্ন আমার উপায়াস্তুর নাই।
+</p>
+<div><img alt="" src="images/c22_Rule_Segment___Circle___6px.svg_6px_Rule_Segment___Circle___6px.svg.png"/><img alt="" src="images/c23_Rule_Segment___Span___40px.svg_40px_Rule_Segment___Span___40px.svg.png"/><img alt="" src="images/c24_Rule_Segment___Diamond_open___7px.svg_7px_Rule_Segment___Diamond_open___7px.svg.png"/><img alt="" src="images/c25_Rule_Segment___Fancy1___40px.svg_40px_Rule_Segment___Fancy1___40px.svg.png"/><img alt="" src="images/c24_Rule_Segment___Diamond_open___7px.svg_7px_Rule_Segment___Diamond_open___7px.svg.png"/><img alt="" src="images/c23_Rule_Segment___Span___40px.svg_40px_Rule_Segment___Span___40px.svg.png"/><img alt="" src="images/c22_Rule_Segment___Circle___6px.svg_6px_Rule_Segment___Circle___6px.svg.png"/></div>
+
+</div></section>
+<section><div>
+
+<h2>উনবিংশ পরিচ্ছেদ।</h2>
+ <div><img alt="" src="images/c26_Rule_Segment___Span___100px.svg_100px_Rule_Segment___Span___100px.svg.png"/><img alt="" src="images/c27_Rule_Segment___Diamond___6px.svg_7px_Rule_Segment___Diamond___6px.svg.png"/><img alt="" src="images/c28_Rule_Segment___Span___10px.svg_10px_Rule_Segment___Span___10px.svg.png"/><img alt="" src="images/c29_Rule_Segment___Diamond___10px.svg_11px_Rule_Segment___Diamond___10px.svg.png"/><img alt="" src="images/c28_Rule_Segment___Span___10px.svg_10px_Rule_Segment___Span___10px.svg.png"/><img alt="" src="images/c27_Rule_Segment___Diamond___6px.svg_7px_Rule_Segment___Diamond___6px.svg.png"/><img alt="" src="images/c26_Rule_Segment___Span___100px.svg_100px_Rule_Segment___Span___100px.svg.png"/></div>
+<p>দৃষ্টির সম্মুখে বিশ্ব ব্রহ্মাণ্ড পরিব্যাপ্ত অথচ কিছুই চোখে পড়িতেছে না; মস্তিষ্ক চিন্তাতরঙ্গে আলোড়িত, অথচ কি ভাবিতেছি কিছুই জানি না। মন স্থানহিসাবেও অতিদূরে, সময় হিসাবেও অতিদূরে, নিজের অস্তিত্ব পর্যন্ত অনুভব করিতেছি কি না করিতেছি! মাঝে মাঝে কেবল সচেতন বেদনার অনুভূতি, দেহবন্ধন হইতে পলায়নের জন্য একটা নিষ্ফল ব্যাকুলতা, অন্ধকারের মধ্যে আলোক দেখিবার জন্য নিদারুণ প্রয়াস, দুর্বল এক হস্তে দৃঢ় লৌহ শৃঙ্খল ভাঙ্গিবার জন্য বৃথা চেষ্টায় প্রাণান্ত পরিশ্রান্তি, অক্ষম কষ্ট ও অসহায় ক্রোধ! আর ছোটু যাহাকে এত ভালবাসিয়াছি এত বন্ধু মনে করিয়াছি—সেই আমার এই কষ্টের কারণ! সহসা ভাবিতে ভাবিতে প্রাণের মধ্যে দৈববাণী শুনিলাম,—“তাহা হইতেই পারেন, চিরদিন সে তোমার বন্ধু ছিল—চিরদিন বন্ধু থাকিবে, এ বিপদে সেই তোমাকে উদ্ধার করিবে।”-অন্ধকার সমুদ্রে মুহূর্ত্তে যেন দিশা উন্মুক্ত হইয়া গেল; তাছাকে সমস্ত খুলিয়া বলিতে সংকল্প করিলাম। বুঝিলাম তাহা-
+ তেই আমার একমাত্র আশাভরসা। পুরাকালের স্বর্ণপ্রস্তুত উপায়চিন্তানিমগ্ন রসায়ণবিদের মত এই আবিষ্কারের আনন্দ আমার ক্ষুদ্র হৃদয়ের পক্ষে অপরিমিত বলিয়া বোধ হইতে লাগিল,—কিন্তু কাহাকে ইহার ভাগ দিব? এখানে আমার সখী কে!
+</p><p>একটু পরে একজন চাকর আসিয়া আমার হাতে একখানি কার্ড আনিয়া দিল। কি আশ্চর্য্য! ডাক্তার ঘে! আনন্দে নহে বিস্ময়ে আমার হৃদকম্পন স্তম্ভিত হইয় পড়িল। আমি কলের পুতুলের মত চাকরকে বলিলাম—“আসিতে বল।”
+</p><p>সে চলিয়া গেলে তখন মনে হইল, আমার কি এখন তাহার সহিত দেখা করা উচিত! কিন্তু উচিত অনুচিত ভাবিয়া আদেশ পরিবর্ত্তনেত তখন আর অবসর ছিল না। প্রায় তখনি ডাক্তার আসিয়া পড়িলেন। এইখানে বলা আবশ্যক, আমি এতক্ষণ ড্রয়িংরুমেই ছিলাম। অন্তঃপুরের গোলমাল ছাড়াইয়া দুপর বেল প্রায়ই আমি এই বিজন গৃহে আশ্রয় গ্রহণ করি —বাবা না থাকিলে এখানে বাহিরের লোক কেহই প্রায় আসেন না, কদাচ কেহ আসিলেও আমি আগে খবর পাই।
+</p><p>ডাক্তার জাসিয়া প্রথম অভিবাদনের পর বলিলেন—“আপনাকে ভারী রোগ দেখাচ্ছে—আপনার কি এখনো অসুখ যাচ্ছে?”
+</p><p>অসাধারণ সহানুভূতির কথা নহে, যে কোন আলাপী আমাকে এখন দেখিতেন—সম্ভবতঃ ইহাই বলিতেন; তবে এ কথায় আমি এতদূর বিচলিত হইলাম কেন? বহুকষ্টে অশ্রু সংযত করিয়া তাড়াতাড়ি বলিলাম “আপনি এখানে য়ে? কোথা থেকে আসছেন?” তিনি বিস্মিত ভাবে বলিলেন—“আমি এখানে আসব তা আপনি জানতেন না? মিষ্টার মজুমদারকে ত (আমার বাবা) আগেই লিখেছি!"
+</p><p>হাসি পাইল, বাবা যেন সব কথা আমাকে বলিতে যাইবেন! বুলিলাম “কই না, আমি তা শুনিনি। কোনও কেসে এসেছেন বুঝি?”
+</p><p>তিনি একটু ইতস্ততঃ করিয়া বলিলেন—“না আপনাদের সঙ্গে দেখা করা ছাড়া আসার অন্য কোন উদ্দেশ্য নেই।”
+</p><p>আশ্চর্য্য হইলাম। আমাদের সহিত দেখা করিতে এতদূর আসিয়াছেন। বিস্ময়ের আবেগে সহসা বলিয়া ফেলিলাম,— “আশ্চর্য্য বই কি? কলকাতা থাকতে কবার দেখা করতে এসেছেন—তা এতদূরে—”
+</p><p>তিনি একটু হাসিলেন; হাসিয়া চশমার মধ্য হইতে আমার দিকে পূর্ণদৃষ্টি করিয়া বলিলেন—“আমার বিশ্বাস ছিল—অনেক কথা খুলে না বলাতেই আরো সুস্পষ্ট হয়ে ওঠে। কিন্তু জীবনের অনেক ভুলের মত দেখছি এঃ আমার আর একটা ভুল! আমি যে কেন আসতুম না তাকি বোঝেননি আপনি?”
+</p><p>“কি করে বুঝব?”
+</p><p>তিনি আইপ্লাসটা একবার খুলিয়া আবার ভাল করিয়া চোখে আঁটিয়া উন্নত মধুর দৃষ্টিতে আমার দিকে চাহিয়া বলিলেন—"বেশী আসতে ইচ্ছা করত বলেই আসিনি।”
+</p><p>“তাহলে কি মনে করব এখন ইচ্ছা নেই বলেই”—
+</p><p>“তাহলে আর একটা ভুল করবেন” তাহার পর একটু খামিয় আবার বলিলেন “একটু যে অবস্থান্তর ঘটেছে তা অস্বীকার করতে পারিনে। তখন শুনেছিলুম আপনি engaged; এখন সে সঙ্কোচ ঘুচেছে-তাই তাই —”
+</p><p>ঘর্ম্মাক্ত হইয়া উঠিলাম! একটা বৈদ্যুতিক তরঙ্গ সমস্ত দেহে পরিব্যাপ্ত হইল। তাই—তাই-কি? তিনি একটু থামিয়া আবার বলিলেন—“তাই আমার জীবন প্রাণ সর্ব্বস্ব আপনাকে সমর্পণ করতে এসেছি—এখন আপনি যা করেন।”
+</p><p>বিশ্ব ব্রহ্মাও আমার চারিদিকে ঘুরিয়া উঠিল; একটা মধুরতার আবর্ত্তে আমি আবর্তিত হইতে লাগিলাম।—কি করিয়া বলিব তাহা কি মধুর! পুরুষের নিকট হইতে—যে পুরুষকে ভালবাসি তাহার নিকট হইতে প্রথম শোনা সে আমারি! “পৃথিবীতে যদি স্বর্গ থাকে তবে ইহাই তাই ইহাই তাই!” কিন্তু পৃথিবী সত্যই স্বর্গ নহে সেইজন্য এত অমিশ্র অসীম সুখ জীবনে কাহারে অধিকক্ষণ থাকেন। মুহূর্ত্ত না যাইতে মুখের অসীমতা দুঃখ আসিয়া সীমাবদ্ধ করে। কিছু পরেই প্রকৃতিস্থ হইলাম, স্বপ্ন ভাঙ্গিল; অনতিক্রমণীয় বাধা বিঘ্ন আবার চক্ষের উপর স্তূপাকৃতি দেখিলাম —বুঝিলাম এত মধুর আলোক শুধু অন্ধকারের পূর্ব্বসূচনা, তাহার এই আত্মসমর্পণ শুধু চির বিদায় গ্রহণ করিতে; এমিলন শুধু চিরবিচ্ছেদ, চিরব্যবধানের জন্য —
+</p><p>আমাকে নিরুত্তর দেখিয় তিনি বলিলেন—“তুমি-তুমি,— আমার কেমন সমস্ত ভূল হয়ে যাচ্ছে মাপ করবেন,—বিলাত থেকে এসে যেদিন আপনাকে দেখেছি সে দিন থেকে বুঝেছি আপনি ছাড়া আমার জীবন নিষ্ফল; সেই থেকে বহুদিনের”—
+</p><p>হঠাৎ বলিলাম-"কিন্তু আপনি না engaged!"
+</p><p>“আমি engaged! এ খবর কোথায় পেলেন?” “আপনার মা নাকি বলেছিলেন।”
+</p><p>তিনি হাসিয়া উঠিয়া বলিলেন “মায়ের কথা!—মে মেয়েটিকে তাঁর পছন্দ হয়—অবশ্য সেজন্য মূর্ত্তিমতী লক্ষ্মী সরস্বতীর যে আবশ্যক তা বলতে পারছিনে—তাকেই তিনি বৌ করবার জন্য ব্যস্ত হয়ে পড়েন। এখন বহু বিবাহ প্রচলিত না থাকায় তাঁর বোধ হয় বিশেষ কষ্টের কারণ হয়ে দাড়িয়েছে। সে যাক, আমার কথার কি কোন উত্তর নেই?”
+</p><p>কি উত্তর দিব? আমি কি সমস্ত প্রাণে তাঁহারি নহি; তবে কোন প্রাণে বলিব আমি অন্যের হইতে চলিয়াছি। তবুও বলিলাম, কি করিয়া বলিলাম ঠিক জানিনা,—
+</p><p>“আমি engaged; বাবা অন্যের সঙ্গে আমার বিয়ে স্থির করেছেন।”
+</p><p>একটা শোক নিস্তব্ধতায় আনন্দোচ্ছাস নিমেষে ডুবিয়া গেল। কিছু পরে তিনি বলিলেন,—যেন আপনার বিক্ষিপ্ত চিন্তারাশি সংহত একত্রীভূত করিতে করিতে আপন মনেই বলিলেন—“কিন্তু মিষ্টার মজুমদার এরূপ ব্যবহার করবেন? আমাকে,—থাক সে কথা তাঁর সঙ্গে —আপনাকে একটি কথা জিজ্ঞাসা করি, আপনারো কি তাই ইচ্ছা?”
+</p><p>তখন আমার লজ্জা সঙ্কোচ জ্ঞান ছিল না, আমি পুরুষের মত সুস্পষ্ট ভাবে বলিলাম—“না অন্য কাউকে ভাল বাসতে আমার শক্তি নেই।”
+</p><p>একটা বৈদ্যুতিক স্ফুরণ তাঁঁহাতে প্রত্যক্ষ করিলাম, ইহা কি আনন্দের? কিছু পরে তিনি বলিলেন “সে কথা কি আপনার বাবাকে বলেছিলেন?” আমি বিস্ময়ে বলিলাম “সে কথা বাবাকে কি করে বলব? এইটুকু বলেছিলুম আমার বিবাহে ইচ্ছা নেই—তাতে আমি সুখী হব না।”
+</p><p>“তিনি কি বল্লেন?”
+</p><p>“বল্লেন আমাকে বিবাহ করতেই হবে —বুঝলুম তাঁর আজ্ঞা লঙ্ঘন করতে আমি অক্ষম। তাকে সুখী করাই আমার সর্ব্বপ্রধান কর্তব্য।”
+</p><p>“কিন্তু ভালবাসার কি একটু সামান্য কর্তব্যও নেই! তুমি-আপনি যাকে ভাল বাসেন, যে আপনাকে ভাল বাসে, আপনা ব্যতীত যার জীবন মরণ সমানই-তার প্রতি—কেবল তাঁর প্রতি না—নিজের প্রতিও এতে যে গুরুতর অন্যায় করা হচ্ছে তার প্রতিকারের চেষ্টাও কি কন্যাধর্ম্মের বিরোধী? আমার বিশ্বাস মজুমদার মহাশয় সমস্ত জানলে কখনই আপনাকে অন্তের সহিত বিবাহে বাধ্য করবেন না।”
+</p><p>চুপ করিয়া রহিলাম। যাহা বলিতেছেন সবইত ঠিক। নীরব দেখিয়া তিনি অধীর ভাবে বলিলেন—“আপনার সঙ্কোচ হয় আচ্ছ। আমি বলব, আমাকে অনুমতি দিন।”
+</p><p>আমি বলিলাম—“না না আপনার বলতে হবেনা; আমিই বলব। কিন্তু বাবাকে না, তাকে বলে কোন ফল নেই, তিনি আমার ভাব বুঝবেন না, নিশ্চয়ই sentimental দুর্ব্বলতা বলে মনে করবেন। আমি তাকে বলব; যার সঙ্গে বিয়ে হবার কথা, তাকে— ছোটুকেই বলব —তার উদারতার প্রতি আমার খুব বিশ্বাস আছে। আমি বেশ জানি তার থেকেই আমি মুক্তি পাব। যদিও আমি তাকে কখনও হৃদয় দিতে পারব না; কিন্তু আমি ছেলে বেলা থেকে তাকে ভালবাসি, বন্ধু মনে করি, তার স্মৃতি চিরদিন আমার মনে সুখ জাগায়। সে যে আমার কষ্ট্রের কারণ হবে আমি কিছুতেই মনে করতে পারিনে।”
+</p><p>“ছোটু! ছোটুর সঙ্গে বিবাহের কথা? নিশ্চয়ই—তার যদি একটুও মনুষ্যত্ব থাকে অবশ্যই সে সহায় হবে।”
+</p><p>অতিরিক্ত আশানন্দে তিনি নিতান্ত যেন অপ্রকৃতিস্থ হইয়া এইরূপ বলিলেন। আমি বলিলাম—“তাকে চেনেন কি?”
+</p><p>তিনি সে কথার উত্তর করিলেন না; বোধ হইল যেন তাহা শুনিতে পাইলেন না। নিজের ভাবে ভোর হইয়াই বলিলেন— “কেমন যেন সমস্ত মায়ার খেলা মনে হচ্ছে! আপনি তাহলে তাকে বলবেন। আমি এখন যাই, তার সঙ্গে কথা কয়ে কি ফল হয় যেন শুনতে পাই। হয়ত নিজেই আসব; যদি আবার কালই আসি কিছু মনে করবেন না; আপনার বাবার সঙ্গে এখনো দেখা হয়নি।”
+</p><p>বলিয়া কেমন যেন অতি সহসা তিনি চলিয়া গেলেন, আমাকে একটি কথা কহিবার পর্য্যস্ত আর সময় দিলেন না।
+</p>
+<div><img alt="" src="images/c22_Rule_Segment___Circle___6px.svg_6px_Rule_Segment___Circle___6px.svg.png"/><img alt="" src="images/c23_Rule_Segment___Span___40px.svg_40px_Rule_Segment___Span___40px.svg.png"/><img alt="" src="images/c24_Rule_Segment___Diamond_open___7px.svg_7px_Rule_Segment___Diamond_open___7px.svg.png"/><img alt="" src="images/c25_Rule_Segment___Fancy1___40px.svg_40px_Rule_Segment___Fancy1___40px.svg.png"/><img alt="" src="images/c24_Rule_Segment___Diamond_open___7px.svg_7px_Rule_Segment___Diamond_open___7px.svg.png"/><img alt="" src="images/c23_Rule_Segment___Span___40px.svg_40px_Rule_Segment___Span___40px.svg.png"/><img alt="" src="images/c22_Rule_Segment___Circle___6px.svg_6px_Rule_Segment___Circle___6px.svg.png"/></div>
+
+</div></section>
+<section><div>
+
+<h2>বিংশ পরিচ্ছেদ।</h2>
+<div><img alt="" src="images/c22_Rule_Segment___Circle___6px.svg_6px_Rule_Segment___Circle___6px.svg.png"/><img alt="" src="images/c23_Rule_Segment___Span___40px.svg_40px_Rule_Segment___Span___40px.svg.png"/><img alt="" src="images/c24_Rule_Segment___Diamond_open___7px.svg_7px_Rule_Segment___Diamond_open___7px.svg.png"/><img alt="" src="images/c25_Rule_Segment___Fancy1___40px.svg_40px_Rule_Segment___Fancy1___40px.svg.png"/><img alt="" src="images/c24_Rule_Segment___Diamond_open___7px.svg_7px_Rule_Segment___Diamond_open___7px.svg.png"/><img alt="" src="images/c23_Rule_Segment___Span___40px.svg_40px_Rule_Segment___Span___40px.svg.png"/><img alt="" src="images/c22_Rule_Segment___Circle___6px.svg_6px_Rule_Segment___Circle___6px.svg.png"/></div>
+<p>মহা আনন্দ। বাবা সম্মত। কিন্তু ডাক্তার ত আর সে পর্য্যন্ত আসেন নাই তাঁহাকে এ সুখবরটা কিরূপে জানাই? চন্দ্রময়ী নিশা! আমি উদ্যানে বসিয়া উদ্বিগ্নচিত্তে রাস্তার দিকে চাহিয়া আছি—মনে হইল যেন তিনি যাইতেছেন। উঠিয়া দ্রুতগতিতে
+ ﻿রাস্তায় আসিয়া পড়িলাম। কিন্তু তিনি তখন এতটা দূরে চলিয়া গিয়াছেন যে আমাকে দেখিতে পাইলেন না; আমি আবার অনুসরণ করিলাম। কিন্তু বৃথা, সেই সুদীর্ঘ রাস্তায় মোড়ে তিনি অদৃশ্য হইয়া পড়িলেন। কাতর চিত্তে পথিপার্থের একটি সুপ্রশস্ত ভূমিতে উঠিলাম—সেখান হইতে দেখিব তিনি কোথায় গেলেন; কিন্তু তখনি একজন বালিকা সাজিহাতে আমার কাছে আসিয়া দাঁড়াইল। “একি প্রভা যে”! আমরা ছেলেবেল কৃষ্ণমোহন বাবুর পাঠশালায় একত্র পড়িয়াছি। সে বলিল “তুমি কোথা থেকে? আমি আজ সবে এখানে এসেছি, ফুল তুলে তোমাকে দিতে যাচ্ছিলুম।”
+</p><p>আমি বলিলাম—“এইরূপ ভাই বিপদ,—তাঁকে খবর দিতে যাব তা পারছিনে”।
+</p><p>সে বলিল—“এস আমাদের বাড়ী”। এমন সময় তাহার কনিষ্ঠ ভ্রাতা ঘোড়ায় চড়িয়া আসিয়া হাজির। প্রভা তাহাকে জিজ্ঞাসা করিল “জানিস ডাক্তার কোথায়?”
+</p><p>সে বলিল—“জানি বইকি! মণি তুমি আমার এই ঘোড়ায় চড়; আমি পথ দেখিয়ে নিয়ে যাই”।
+</p><p>ঘোড়ায় চড়িলাম—ঘোড়াটা উর্দ্ধশ্বাসে দৌড়িয়া একটা পাহাড়ে উচ্চভূমিতে উঠিল; প্রভা ও তাহার ভাই কোথায় পড়িয়া রহিল তাহার ঠিক নাই। টুট, গেলাপ, ক্যানটার, তাহার পর চারিপায়ে উল্লম্ফন করিয়া পক্ষীরাজের মত উড়িয়া চলিতে লাগিল। আমি প্রাণপণে রাশ ধরিয়া রহিলাম। প্রতিমুহূর্তে মনে হইতে লাগিল বুঝি পড়ি পড়ি। রাস্তা দিয়া একটা উট চলিয়া যাইতেছিল,—বিপদ দেখিয়া উষ্ট্রবাহক তাহার পিঠ হইতে লাফাইয়া পড়িল—ঘোড়াটাও হঠাৎ থামিল-আমি সেই অবকাশে নামিয়া পড়িলাম। কিন্তু এখানেই বিপদের শেষ নহে। রাত্রিকাল, অপরিচিত বিজন ভূমি, এখানে আমি নিতান্ত একাকী, এখন কি করিয়া গৃহে ফিরি? হাঁটিয়া রাস্তায় উঠিলাম,—রাস্তাটা ক্রমশ সঙ্কীর্ণ হইয়া আসিতে লাগিল—অবশেষে একটি চোরাগলির মধ্যে আসিয়া পড়িলাম। চারিদিকে উচ্চভূমি; মধ্যে একটি মাত্র ছোট্টগলি, গলির মোড়ে একখানি ক্ষুদ্র কুটির। কুটিরে ঢুকিলাম,—কোমল মুখশ্রী এক বৃদ্ধা আমাকে দেখিয়া বলিলেন—“এস মা এস; যাবে কোথায়? বস।”
+</p><p>আমি বলিলাম—“আমি পথহারা"!
+</p><p>বৃদ্ধা বলিলেন—“বস মা একটু কফি খাও। সামনে বাগান দেখছ, আমি নিজে হাতে কফিগাছ পুঁতেছি”
+</p><p>ঘরে একটি প্রদীপ জ্বলিতেছিল দীপের কাছে মাটীর উপর নানারকম দ্রব্য সামগ্রী ফেলাছড়া। আমি বলিলাম, “এখানে এসব জিনিষ পত্র পড়ে কেন?”
+</p><p>বৃদ্ধা বলিলেন—"সে আসবে বলে চলে গেছে এখনো আসেনি; এখনি আসবে।”
+</p><p>আমি বলিলাম “কে গো?”
+</p><p>বুড়ি বলিলেন—“আমার সোনার চাঁদ বৌগো।”
+</p><p>বুঝিলাম—তিনি পাগল। তাঁহার বৌ মরিয়াছে; বধূর অলঙ্কার তৈজসাদি লইয়া তাহার প্রত্যাগমন অপেক্ষায় তিনি বসিয়া আছেন। আমার চোখ দিয়া জল পড়িল। বুড়ি বলিলেন—"মা তুমি কে গো? আমার বৌ কি ঘরে ফিরে এলে? ও ছোটু আয়রে! আহা সেই যে বাছা আমার, মনের দুঃখে বিবাগী হয়ে গেছে—এখনো ঘরে ফেরেনি”। আমার বুক ফাটিয়া কান্না আসিল,—অশ্রুজলে আমি জাগিয়া উঠিলাম —
+</p><p>উঠিয়া ঘড়ি দেখিলাম,—ডাক্তার যাইবার পর আধ ঘণ্টাও অতিবাহিত হয় নাই।—আর আমি পাঁচমিনিটও ঘুমিয়াছি কিনা সন্দেহ —মনের মধ্যে কেমনতর একটা নিরাশার গুরু ভার লইয়া জানালায় আসিয়া দাঁড়াইলাম। ছোটুকে ত সব বলিব ভাবিতেছি—বলিলে পরিত্রাণ পাইব এমনে মনে করিতেছি, কিন্তু যদি আমার ভুল হয়? আমি তাহাকে যেমন ভাল লোক মনে করিতেছি সে তেমন নাও হইতে পারে! বাস্তবিক আমি তাহীকে কি চিনি!—আর যদি এমনতরই হয় ছোটু আমাকে এখনো ভালবাসে? সেই জন্যই আমাকে বিবাহ করিতে চাহিতেছে? তাহা হইলে আবার একজনের কিরূপ কষ্টের কারণ হইব! অতিশয় ব্যাকুল অশান্ত হৃদয়ে আকাশের দিকে চাহিলাম,—ঈশ্বরের অনুগ্রহলোলুপ হইয়া কাতরচিত্তে অনন্ত নিরীক্ষণ করিলাম।—আকাশে সান্ধ্য মেঘে নানাবর্ণের তরঙ্গবিন্যাস। শ্বেত কৃষ্ণ নীল লাল পীত হরিৎ নানা আভায় একত্রে স্তরে স্তরে পুঞ্জীকৃত। শাদায় কালোর ছায়া, লালে নীলের বেষ্টন; ধূসরে গোলাপির সংমিশ্রণ। দেখিয়া মনে হইল; এইত সংসারের নিয়ম! দুঃখ ছাড়া কোথায় সুখ; অশ্রুহীন হাসি কোথায়? আমার প্রাণান্ত আকাঙ্ক্ষাতে, সাধনাতেই কি তবে ইহার অন্যথা হইবে? আমি কে? সৃষ্টির একটি অনুকণা; বিধাতা আমার জন্য কি তাঁহার নিয়ম পরিবর্ত্তন করিবেন?
+</p>
+ভাবিতে ভাবিতে কখন যে পিয়ানোর কাছে আসিয়া বসিলাম জানিতেও পারিলাম না। আনমনে বাজাইতে লাগিলাম<div>
+<div>
+<p>হায় মিলুন হোলো!<br/>
+যখন নিভিল চাদ বসন্ত গেলো!<br/>
+হাতে করে মালাগাছি সারা বেল বসে আছি<br/>
+কখন ফুটীবে স্কুল আকাশে আলো!<br/>
+আসিবে সে বরবেশে, মালা পরাইব হেসে<br/>
+বাজিবে সাহানা তানে বাঁশি রসালে!<br/>
+সেই মিলন হোলে!<br/>
+আসিল সাধের নিশা তরু পুরিলনা তৃষা—<br/>
+কেমন কি ঘুমে আঁখি ভরিয়ে এল!
+</p>
+</div>
+</div>
+<p>আর জানিতাম না; এই কটি লাইনই বারবার বাজাইতেছি সহসা পশ্চাৎ হইতে ইহার অসম্পূর্ণতা পূর্ণ করিয়া কে গাহিল
+</p>
+<div>
+<div>
+<p>শুভক্ষণে ফুলহার পরান হোলনা আর<br/>
+হাতের সুগন্ধী মালা হাতে শুখাল;<br/>
+নিশিশেষে আঁখি মেলে বাসি মাল দিনু গলে<br/>
+মরমে বেদনা নিয়ে নয়নে জল'।<br/>
+হায় মিলন হোলো!
+</p>
+</div>
+</div>
+<p>গীত বাদোর সুর কম্পনের সঙ্গে সঙ্গে আমার হৃদয়ে কি এক অপূর্ব্ব কম্পন উঠিল। কে গাজিতেছেন তাঁহার প্রতি একবার দৃষ্টিপাত না করিয়াই আমি মুগ্ধ আবেশ বিভোর হইয়া গানের সঙ্গে শেষ পর্য্যস্ত বাজাইয়া চলিলাম। তিনি যখন থামিলেন, যথন ফিরিয়া তাঁহাকে দেখিলাম তখন বর্ত্তমান অতীতে, যৌবন বাল্যে বিলুপ্ত। আমি বিস্ময়ে বিভ্রমে বলিতে যাইতেছি,—তুমি ছোটু-তুমি ছোটু? কিন্তু বলা হইল না, প্রাণের কথা ওষ্ঠধরে আসিয়া মিলাইয়া গেল। তখনি বাহিরে পদ শব্দ শুনিলাম, আত্মস্থ হইয়া বুঝিলাম বাবা আসিতেছেন; সভয়ে সঙ্কোচে স্তব্ধ হইয়া দাঁড়াইয়া রহিলাম। বাবা আসিয়া বলিলেন—"এই যে বিনয় কুমার। মণি তুমি এঁকে চিনেছ কি? ইনিই ছোটু!”
+</p><p>এখনো কি স্বপ্ন দেখিতেছি? নিশ্চয়ই!!!
+</p>
+<div><img alt="" src="images/c22_Rule_Segment___Circle___6px.svg_6px_Rule_Segment___Circle___6px.svg.png"/><img alt="" src="images/c23_Rule_Segment___Span___40px.svg_40px_Rule_Segment___Span___40px.svg.png"/><img alt="" src="images/c24_Rule_Segment___Diamond_open___7px.svg_7px_Rule_Segment___Diamond_open___7px.svg.png"/><img alt="" src="images/c25_Rule_Segment___Fancy1___40px.svg_40px_Rule_Segment___Fancy1___40px.svg.png"/><img alt="" src="images/c24_Rule_Segment___Diamond_open___7px.svg_7px_Rule_Segment___Diamond_open___7px.svg.png"/><img alt="" src="images/c23_Rule_Segment___Span___40px.svg_40px_Rule_Segment___Span___40px.svg.png"/><img alt="" src="images/c22_Rule_Segment___Circle___6px.svg_6px_Rule_Segment___Circle___6px.svg.png"/></div>
+
+</div></section>
+<section><div>
+
+<h2>উপসংহার। </h2>
+<p>তেমনি উজ্জল মধুর সন্ধ্যায় তেমনি মেঘের স্তর, তেমনি বর্ণ বিন্যাস, ছায়া আলোর তেমনি লীলাখেলা; কেবল মনের ভাব আজি অন্য রকম।
+</p><p>আজ আমি দিশহারা একাকী নৈরাশাপূর্ণ বাথিতচিত্তে অকুল আকাশ সমুদ্রের দিকে চাহিয়া ভাসিতেছি না-—‘সুখ কোথায়—সুখ কোথায়? সুখ কেবল দুঃখের অন্ধকারে, হাসি কেবল অশ্রুর তাপে, ফুটিতে না ফুটিতে টুটিয়া ঝরিয়া যায়।’ আজ কানন তলে দুজনের প্রেমে মগ্ন দুজনে; আকাশের বর্ণমিলন সৌন্দর্যে হৃদয়ে অন্য ভাবের সুর বিকম্পিত। আজ মেঘে মেঘে লাল কালের মিলন দেখিয়া আমি ভাবিতেছি “অশ্রু আছে বলিয়া হাসির এত মাহাত্মা, দুঃখ আছে বলিয়াই সুখ এত মধুর। তিনিও কি ঠিক এইরূপই ভাবিতেছিলেন। আমার নীরব চিন্তা ভঙ্গ করিয়া তিনি বলিয়া উঠিলেন—” Happiness is not happy enough but must be drugged by the relish of pain and fear.”
+</p><p>অতি সুখে দীর্ঘ নিশ্বাস উঠিল, সঙ্গে সঙ্গে একটি অনুতাপ
+ ব্যথা জাগিয়া উঠিল, আমি এত সুখী, আর মিষ্টার ঘোষ? যদি সত্যই তিনি আমাকে ভাল বাসিয়া থাকেন—তাঁহার প্রতি কত দূর অন্যায় করিয়াছি? আমার ভাবনা কি ইহারে মস্তিষ্ক স্পর্শ করিল! হঠাৎ বলিয়া উঠিলেন—“ও: একটা মস্ত খবর আছে!-কুসুমের সাতগে রামনাথের বিবাহ? What a humbug—beg your pardon, I mean what an examplary lover —
+</p><p>আর বেশী কিছু না বলিতে দিয়াই আমি বলিলাম—‘সত্যি নাকি? কবে?”
+</p><p>“আমাদের বিবাহের এক সপ্তাহ আগে।” গাছের আড়াল হইতে নবেদিত চন্দ্রের জ্যোতি ইহার মুখে প্রস্ফুরিত হইয়া উঠিল। আমি মুগ্ধ নেত্রে সেই রূপের জ্যোতি পান করিতে লাগিলাম।
+</p><p>দুই কলায় মাত্র অসম্পূর্ণ ত্রয়োদশীর নির্ম্মল চন্দ্র নীলাম্বর তলে ভাসিয়া উঠিয়াছে, শেফালিকা রাশি আমাদের সর্ব্বাঙ্গ স্পর্শ করিয়া সুগন্ধে জ্যোস্নালোক বিকম্পিত করিতে করিতে কাননতলে তারার মত ঝরিয়া পড়িতেছে। শরতের জ্যোৎস্না ঈষৎ স্নানাভ, তাহার ছায়া ছায়া আলোক আমাদের অতি সুখে ম্রিয়মান হৃদয়ের মত বিষাদ স্নিগ্ধ অতি কোমল মধুর।
+</p><p>থাকিয়া থাকিয়া আমি বলিলাম—“আচ্ছ আপনি-কি ক’রে——”
+</p><p>“আবার আপনি? তবে আমি শুনবনা।”
+</p><p>“আচ্ছা আচ্ছা তুমি,—কি করে তুমি আমাকে এতটা দুঃখ দিলে? যখনি আমার কথা থেকে বুঝলে তোমার সঙ্গেই বাবা সম্বন্ধ করেছেন—তখন সেটা— “বুঝলুম বটে কিন্তু কি করে জানব যা বুঝছি তাই ঠিক, ভুলও ত হতে পারে?
+</p><p>“তাই আমাকে অমন কষ্টের মধ্যে ফেলে রেখে গেলে— বেশ যাহক!
+</p><p>“বুঝছ ন-আমি ভাবলুম কেবল তোমার বাবার সঙ্গে একটিবার কথা কয়ে তখনি আসব, তাপর বিনয় কুমার তোমার ছোটু হয়ে দাড়াবে—”
+</p><p>“ভারী একটা কৌতুক নাটক অভিনয় হবে। সে লোভটা কি আর সামলান যায়! তা আমার কেন ইতি মধ্যে যতই কষ্ট হ’ক ন! এমনি তোমার ভালবাসা!
+</p><p>“তা বই কি! আর তোমার এমনি ভালবাসা, আমাকে দেখে চিনতেই পারনি। আমি তোমাকে প্রথম দিন দেখেই চিনেছিলুম!”
+</p><p>“সেটা কিনা খুবই আশ্চর্য্যের কথা! যখনি বাড়ী এসেছ তখনি ত পরিচয় জেনেছ। জেনে গুনে আর চিনতে পারবে না! বরঞ্চ এ অবস্থাতে তুমি যে বরাবর আপনাকে ঢেকে রেখেছিলে—একবার পুরাণ গল্প করতে ইচ্ছাও হয়নি—এইটেই পরমাশ্চর্য্য! তোমার ভালবাসা এখানেই বোঝা যাচ্ছে।”
+</p><p>“ঠাকরুণ যে engaged ছিলেন সেটা ভোলেন কেন? তাপর যখন দেখলুম মহাশয় বাল্য বন্ধুকে চিনতেই পারলেন না তখন ভাবলুম মানে মানে চুপ করে যাওয়াই ভাল; কি জানি যদি পুরাণ পরিচয়ে বন্ধুত্বের দাবীটাই অসহ্য হ’য়ে ওঠে! তুমি ত আর পুরাণ আমাকে ভালবাসনি, তুমি ভালবেসেছ একজন নুতন লোককে!” “তুমিও ত আর আমাকে ভালবাসনি। তোমার প্রেম পুরাতনের উপর; তুমি ভালবেসেছ তোমার বাল্যসখীকে।”
+</p><p>আগে মনে করিতাম প্রেমে বুঝি মতামত, স্বতন্ত্র ভাল একাকার হইয়া যায়। এখন দেখিতেছি ছায়ালোকের মত, আকর্ষণ বিকর্ষণের মত প্রেমে দ্বন্দ্ব কলহ মানাভিমান অবিচ্ছেদ্য। তাহাতেই ইহা চিরনবীন চিরজীবন্ত।
+</p><p>অন্ততঃ আমাদের জীবনে, প্রেমালাপ অনবরত এইরূপ দ্বন্দ্বময়। আমি বলি 'তুমি আমাকে ভালবাস নাই, ভালবাসিয়াছ তোমার বাল্যসখীকে।’
+</p><p>তিনি বলেন ‘তুমি আমাকে ভালবাস নাই ভালবাসিয়াছ নূতন লোক ডাক্তারকে।'
+</p><p>এখন পাঠক মীমাংসা করুন—ঠিক কি? পুরাতনের ছায়া দেখিয়াই হৃদয় নূতনে আকৃষ্ট হইয়াছে, অথবা নূতনে মুগ্ধ হইয়। সহসা পুরাতন লাভ করিয়াছি? কাহাকে ভালবাসিতে এ কাহাকে ভালবাসিয়াছি?
+</p>
+<div>
+<p>সমাপ্ত। 
+</p>
+</div>
+</div></section>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const progressBar  = document.getElementById('read-progress-bar');
+    const progressPct  = document.getElementById('progress-pct');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+    const progressRing = document.getElementById('progress-ring-circle');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'dark';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = (p.currentTheme === 'light' || p.currentTheme === 'dark') ? p.currentTheme : 'dark';
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    function toBN(n) {
+        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
+    }
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        if (progressPct) progressPct.textContent = toBN(pct) + '%';
+        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
+        if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
+        if (rfPage) rfPage.textContent = toBN(pct) + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+
+    // ── Footer: chapter label + seek slider ──
+    const rfSlider  = document.getElementById('rf-slider');
+    const rfPage    = document.getElementById('rf-page');
+    const rfChapter = document.getElementById('rf-chapter');
+    let rfSliderDragging = false;
+    if (rfSlider) {
+        rfSlider.addEventListener('input', () => {
+            rfSliderDragging = true;
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
+        });
+        rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
+    }
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+            a.addEventListener('click', closeDrawer);
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocMobile);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+        if (rfChapter && headings[current]) rfChapter.textContent = headings[current].textContent.trim();
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme; header/footer/drawer now follow the same theme via CSS vars)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+
+            const activeAccent = getComputedStyle(document.body).getPropertyValue('--bar-accent').trim();
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? activeAccent : 'transparent';
+            });
+            savePrefs();
+
+            // Ad bar theme sync
+            window._pathakAdBarTheme && window._pathakAdBarTheme(m);
+        });
+    });
+
+    // ── Ad bar theme sync function (exposed globally) ──
+    window._pathakAdBarTheme = function(m) {
+        const adBar     = document.getElementById('ad-bar');
+        const adContent = document.getElementById('ad-bar-content');
+        const adDatetime= document.getElementById('ad-bar-datetime');
+        const adNotice  = document.getElementById('ad-bar-notice');
+        if (adBar)      adBar.style.background     = m.bg;
+        if (adContent)  adContent.style.background = m.bg;
+        if (adDatetime) adDatetime.style.color      = m.text;
+        if (adNotice)   adNotice.style.color        = m.text;
+    };
+
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+        // Ad bar HTML is below — expose theme for ad bar script to pick up
+        window._pathakCurrentTheme = currentTheme;
+        window._pathakThemeMap = themeMap;
+    })();
+})();
+</script>
+
+
+</body>
+</html>
