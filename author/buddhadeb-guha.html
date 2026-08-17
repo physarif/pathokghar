@@ -623,75 +623,75 @@
      ব্যবহৃত common book-card design। generate_pages.js এই ফাইলটা একবার লোড করে
      প্রতিটা টেমপ্লেটের  placeholder-এ বসিয়ে দেয়।
      ডিজাইন পরিবর্তন করতে চাইলে শুধু এই ফাইলটা এডিট করলেই সব জায়গায় reflect হবে।
-     ডিজাইন: Compact single-line variant — night-mode-only পাঠক ঘর palette
-     (#121218 page bg, #26262c card surface)। Category pill-এর রঙ
-     generate_pages.js এর categoryAccent()/search.html এর সমতুল্য JS দিয়ে
-     category name হ্যাশ করে বসানো হয় (inline style="color:...;background:...")। -->
+     ডিজাইন: Editorial variant — night-mode-only পাঠক ঘর palette (#121218 page bg,
+     #333439 card surface, night-mode gray accent)। -->
 <style>
   /* List container */
   .bc-list {
     display: flex;
     flex-direction: column;
     padding: 0;
-    gap: 0.6rem;
+    gap: 0.7rem;
   }
   @media (min-width: 768px) {
     .bc-list {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.6rem;
+      gap: 0.7rem;
       padding: 0;
     }
   }
 
-  /* Book card — compact single-line row */
+  /* Book card */
   .bc-card {
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
     text-decoration: none;
-    background: #26262c;
-    border-radius: 8px;
-    padding: 0.6rem 0.8rem;
-    transition: background 0.15s;
+    padding: 1rem 1.1rem;
+    transition: background 0.15s, border-color 0.15s;
+    background: #333439;
+    border-radius: 5px;
   }
-  .bc-card:hover { background: #302f36; }
+  .bc-card:hover { background: #3d3e44; }
 
-  /* Cover — small square thumbnail, full cover always visible (contain,
-     never cropped) */
+  /* Cover — left side, fixed size 2:3 ratio */
   .bc-img-wrap {
-    position: relative;
     flex-shrink: 0;
-    width: 2.7rem;
-    height: 2.7rem;
-    border-radius: 6px;
+    width: 4.5rem;
+    aspect-ratio: 2/3;
     overflow: hidden;
     background: #374151;
+    border-radius: 6px;
   }
-  @media (min-width: 768px) { .bc-img-wrap { width: 3rem; height: 3rem; } }
+  @media (min-width: 768px) { .bc-img-wrap { width: 5.5rem; } }
 
   .bc-img {
-    position: absolute;
-    inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     display: block;
   }
 
-  /* Middle — title + author, one line each */
+  /* Right side text */
   .bc-body {
     flex: 1;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
   }
 
+  /* Headline: শুধু title */
   .bc-headline {
+    font-size: 1.05rem;
+    line-height: 1.4;
     margin: 0;
-    font-size: 0.92rem;
-    line-height: 1.3;
-    white-space: nowrap;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
   }
   .bc-title {
     font-weight: 700;
@@ -699,28 +699,26 @@
   }
   .bc-card:hover .bc-title { text-decoration: none; }
 
-  .bc-author {
-    margin: 0.1rem 0 0;
-    font-size: 0.76rem;
-    color: #9A9A9A;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .bc-meta {
+    font-size: 0.75rem;
+    color: #D0D0D0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+    margin: 0.25rem 0 0.35rem;
   }
 
-  /* Category — trailing chip, right side. Colored via inline style
-     (color/background) computed per-category by the render helper. */
-  .bc-pill {
-    flex-shrink: 0;
-    display: inline-block;
-    font-size: 0.66rem;
-    font-weight: 700;
-    padding: 0.25rem 0.55rem;
-    border-radius: 999px;
-    max-width: 6rem;
+  /* Description */
+  .bc-desc {
+    margin-top: 0.1rem;
+    font-size: 0.88rem;
+    color: #9A9A9A;
+    line-height: 1.5;
+    text-align: justify;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 </style>
 
@@ -733,8 +731,8 @@
     <div class="bc-body">
       <p class="bc-headline"><span class="bc-title"></span></p>
       
+      <p class="bc-desc"></p>
     </div>
-    
   </a>
 -->
 
