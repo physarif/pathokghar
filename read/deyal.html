@@ -21,9 +21,9 @@
 (function(){
     try {
         var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
-        var theme = p.currentTheme || 'light';
-        var bg = { light:'#fff', sepia:'#f5efe6', dark:'#1c1c1e', black:'#000' }[theme] || '#fff';
-        var color = { light:'#1a1a1b', sepia:'#3b2f1e', dark:'#e5e7eb', black:'#d1d5db' }[theme] || '#1a1a1b';
+        var theme = p.currentTheme || 'dark';
+        var bg = { light:'#fff', dark:'#1c1c1e' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', dark:'#e5e7eb' }[theme] || '#1a1a1b';
         var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
         var ls = p.lineSpacing || 1.5;
         var mg = p.marginScale !== undefined ? p.marginScale : 5;
@@ -151,16 +151,6 @@
         --bar-accent: #45464c;
         --bar-accent-soft: rgba(192,57,43,0.12);
     }
-    body.theme-sepia {
-        --bar-bg: #ece0cd;
-        --bar-text: #3b2f1e;
-        --bar-text-dim: rgba(59,47,30,0.55);
-        --bar-border: rgba(59,47,30,0.15);
-        --bar-btn-active: rgba(59,47,30,0.08);
-        --bar-track: rgba(59,47,30,0.18);
-        --bar-accent: #a04030;
-        --bar-accent-soft: rgba(160,64,48,0.15);
-    }
     body.theme-dark {
         --bar-bg: #232326;
         --bar-text: #e5e7eb;
@@ -170,16 +160,6 @@
         --bar-track: rgba(255,255,255,0.18);
         --bar-accent: #55565c;
         --bar-accent-soft: rgba(169,50,38,0.2);
-    }
-    body.theme-black {
-        --bar-bg: #0d0d0d;
-        --bar-text: #d1d5db;
-        --bar-text-dim: rgba(209,213,219,0.55);
-        --bar-border: rgba(255,255,255,0.1);
-        --bar-btn-active: rgba(255,255,255,0.08);
-        --bar-track: rgba(255,255,255,0.18);
-        --bar-accent: #922b21;
-        --bar-accent-soft: rgba(146,43,33,0.2);
     }
 
     @keyframes marquee-scroll {
@@ -237,7 +217,7 @@
         transition: color 0.3s, border-color 0.3s;
     }
     /* h1/h2 colors now follow --bar-text-dim / --bar-accent (see :root theme variables above),
-       so they automatically match light / sepia / dark / black modes. */
+       so they automatically match light / dark modes. */
 
     /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
     #book-content p {
@@ -253,14 +233,6 @@
     body.theme-dark  #book-content p {
         background: #232326;
         border-color: rgba(255,255,255,0.08);
-    }
-    body.theme-black #book-content p {
-        background: #0d0d0d;
-        border-color: rgba(255,255,255,0.08);
-    }
-    body.theme-sepia #book-content p {
-        background: #faf5ec;
-        border-color: rgba(59,47,30,0.15);
     }
     #book-content p:empty { display: none; }
     #book-content p:blank { display: none; }
@@ -386,7 +358,6 @@
 
         /* Reading background themes */
         body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
-        body.theme-sepia #mobile-reader-bg { background: #f5efe6; }
         body.theme-light #mobile-reader-bg { background: #ffffff; }
 
         #mobile-reader-bg {
@@ -654,13 +625,16 @@
         flex-shrink: 0;
     }
     .theme-circle {
-        width: 34px; height: 34px;
-        border-radius: 50%;
+        width: auto;
+        min-width: 64px;
+        height: 34px;
+        flex: 1 1 0;
+        padding: 0 12px;
+        border-radius: 8px;
         border: 2px solid transparent;
         cursor: pointer;
         display: flex; align-items: center; justify-content: center;
         transition: border-color 0.15s;
-        flex-shrink: 0;
         box-shadow: 0 0 0 1px var(--bar-border);
     }
     .theme-circle.active { border-color: var(--bar-accent); }
@@ -792,12 +766,10 @@
             <div id="settings-drawer-inner">
                 <div class="settings-section-label">থিম</div>
                 <div class="theme-circles">
-                    <button class="theme-circle active" data-theme="light" style="background:#fff;border-color:#45464c;" title="সাদা">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#45464c" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    <button class="theme-circle" data-theme="light" style="background:#fff;border-color:#45464c;" title="সাদা"></button>
+                    <button class="theme-circle active" data-theme="dark" style="background:#3a3a3a;border-color:#55565c;" title="ডার্ক">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e5e7eb" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
                     </button>
-                    <button class="theme-circle" data-theme="sepia" style="background:#f5efe6;" title="সেপিয়া"></button>
-                    <button class="theme-circle" data-theme="dark" style="background:#3a3a3a;" title="ডার্ক"></button>
-                    <button class="theme-circle" data-theme="black" style="background:#000;" title="ব্ল্যাক"></button>
                 </div>
                 <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
                 <div class="font-pills" id="font-pills">
@@ -5750,7 +5722,7 @@
     let marginScale = 5;
     let lineSpacing = 1.5;
     let currentAlign= 'left';
-    let currentTheme= 'light';
+    let currentTheme= 'dark';
     let currentFont = 'noto_serif';
 
     const fontFamilyMap = {
@@ -5776,7 +5748,7 @@
             if (p.marginScale !== undefined) marginScale = p.marginScale;
             if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
             if (p.currentAlign) currentAlign = p.currentAlign;
-            if (p.currentTheme) currentTheme = p.currentTheme;
+            if (p.currentTheme) currentTheme = (p.currentTheme === 'light' || p.currentTheme === 'dark') ? p.currentTheme : 'dark';
             if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
         } catch(e) {}
     }
@@ -6040,8 +6012,6 @@
     const themeMap = {
         light: { bg: '#fff',     text: '#1a1a1b' },
         dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
-        black: { bg: '#000',     text: '#d1d5db' },
-        sepia: { bg: '#f5efe6',  text: '#3b2f1e' },
     };
     document.querySelectorAll('.theme-circle').forEach(btn => {
         btn.addEventListener('click', () => {
