@@ -620,52 +620,52 @@
      ব্যবহৃত common book-card design। generate_pages.js এই ফাইলটা একবার লোড করে
      প্রতিটা টেমপ্লেটের  placeholder-এ বসিয়ে দেয়।
      ডিজাইন পরিবর্তন করতে চাইলে শুধু এই ফাইলটা এডিট করলেই সব জায়গায় reflect হবে।
-     ডিজাইন: Editorial variant — night-mode-only পাঠক ঘর palette (#121218 page bg,
-     #333439 card surface, night-mode gray accent)। -->
+     ডিজাইন: Compact single-line variant — night-mode-only পাঠক ঘর palette
+     (#121218 page bg, #26262c card surface)। Category pill-এর রঙ
+     generate_pages.js এর categoryAccent()/search.html এর সমতুল্য JS দিয়ে
+     category name হ্যাশ করে বসানো হয় (inline style="color:...;background:...")। -->
 <style>
   /* List container */
   .bc-list {
     display: flex;
     flex-direction: column;
     padding: 0;
-    gap: 0.7rem;
+    gap: 0.6rem;
   }
   @media (min-width: 768px) {
     .bc-list {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.7rem;
+      gap: 0.6rem;
       padding: 0;
     }
   }
 
-  /* Book card — cover flush against card edge (no gap), only text side padded */
+  /* Book card — compact single-line row */
   .bc-card {
     display: flex;
-    flex-direction: row;
-    align-items: stretch;
+    align-items: center;
+    gap: 0.75rem;
     text-decoration: none;
-    padding: 0;
-    overflow: hidden;
-    min-height: 8.5rem;
-    transition: background 0.15s, border-color 0.15s;
-    background: #333439;
-    border-radius: 10px;
+    background: #26262c;
+    border-radius: 8px;
+    padding: 0.6rem 0.8rem;
+    transition: background 0.15s;
   }
-  .bc-card:hover { background: #3d3e44; }
+  .bc-card:hover { background: #302f36; }
 
-  /* Cover — left side, flush top/left/bottom. position:relative so the img
-     (absolutely positioned) can't push its own natural aspect ratio onto
-     this box — height comes only from the row (stretched to match .bc-body). */
+  /* Cover — small square thumbnail, full cover always visible (contain,
+     never cropped) */
   .bc-img-wrap {
     position: relative;
     flex-shrink: 0;
-    width: 38%;
-    max-width: 9rem;
+    width: 2.7rem;
+    height: 2.7rem;
+    border-radius: 6px;
     overflow: hidden;
     background: #374151;
   }
-  @media (min-width: 768px) { .bc-img-wrap { width: 40%; max-width: 10rem; } }
+  @media (min-width: 768px) { .bc-img-wrap { width: 3rem; height: 3rem; } }
 
   .bc-img {
     position: absolute;
@@ -676,45 +676,19 @@
     display: block;
   }
 
-  /* Right side text — padding lives here only */
+  /* Middle — title + author, one line each */
   .bc-body {
     flex: 1;
     min-width: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 1rem 1.1rem;
   }
 
-  /* Category pill — top */
-  .bc-pill {
-    display: inline-block;
-    font-size: 0.68rem;
-    font-weight: 600;
-    color: #D0D0D0;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    padding: 0.18rem 0.6rem;
-    border-radius: 999px;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    margin-bottom: 0.5rem;
-    max-width: 100%;
+  .bc-headline {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.3;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  /* Headline: title */
-  .bc-headline {
-    font-size: 1.05rem;
-    line-height: 1.4;
-    margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
   .bc-title {
     font-weight: 700;
@@ -722,15 +696,28 @@
   }
   .bc-card:hover .bc-title { text-decoration: none; }
 
-  /* Author — below title */
   .bc-author {
-    font-size: 0.82rem;
+    margin: 0.1rem 0 0;
+    font-size: 0.76rem;
     color: #9A9A9A;
-    margin: 0.3rem 0 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+    white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Category — trailing chip, right side. Colored via inline style
+     (color/background) computed per-category by the render helper. */
+  .bc-pill {
+    flex-shrink: 0;
+    display: inline-block;
+    font-size: 0.66rem;
+    font-weight: 700;
+    padding: 0.25rem 0.55rem;
+    border-radius: 999px;
+    max-width: 6rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 </style>
 
@@ -741,10 +728,10 @@
       <img src="" alt="" class="bc-img" loading="lazy">
     </div>
     <div class="bc-body">
-      
       <p class="bc-headline"><span class="bc-title"></span></p>
       
     </div>
+    
   </a>
 -->
 
