@@ -11,7 +11,7 @@ on:
       - 'github-actions'
   workflow_dispatch:
 
-# GITHUB_TOKEN-কে repo-তে push করার permission দেয়া (pathokghar-assets branch
+# GITHUB_TOKEN-কে repo-তে push করার permission দেয়া (assets branch
 # এবং sitemap-lastmod.json commit করার জন্য দরকার)
 permissions:
   contents: write
@@ -45,16 +45,16 @@ jobs:
         with:
           python-version: '3.11'
 
-      # ৩.৫. আগের build-এর পুরো output "pathokghar-assets" branch থেকে
+      # ৩.৫. আগের build-এর পুরো output "assets" branch থেকে
       #       ফিরিয়ে আনো (base হিসেবে বসাও), যাতে কোনো step skip হলেও
       #       আগের generate করা যেকোনো ফাইল হারিয়ে না যায়
-      - name: Restore previous build output from pathokghar-assets branch
+      - name: Restore previous build output from assets branch
         run: |
-          git fetch origin pathokghar-assets || echo "branch not found yet"
-          if git show-ref --verify --quiet refs/remotes/origin/pathokghar-assets; then
-            git worktree add /tmp/pathokghar-assets origin/pathokghar-assets
-            rsync -a --exclude='.git' /tmp/pathokghar-assets/ ./
-            git worktree remove /tmp/pathokghar-assets --force
+          git fetch origin assets || echo "branch not found yet"
+          if git show-ref --verify --quiet refs/remotes/origin/assets; then
+            git worktree add /tmp/assets origin/assets
+            rsync -a --exclude='.git' /tmp/assets/ ./
+            git worktree remove /tmp/assets --force
           fi
 
       # ৪. Dependencies install
@@ -127,17 +127,17 @@ jobs:
 
       # ৯. পুরো build output (সব generated content: content, read, assets,
       #     generated pages, sitemap ইত্যাদি — শুধু source code/config বাদে)
-      #     "pathokghar-assets" branch-এ push করে রাখো — যেকোনো ধাপ পরের
+      #     "assets" branch-এ push করে রাখো — যেকোনো ধাপ পরের
       #     build-এ skip হলেও এখান থেকে পুরনো output restore হবে
-      - name: Save full build output to pathokghar-assets branch
+      - name: Save full build output to assets branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          if git show-ref --verify --quiet refs/remotes/origin/pathokghar-assets; then
-            git worktree add /tmp/pathokghar-assets-push origin/pathokghar-assets
+          if git show-ref --verify --quiet refs/remotes/origin/assets; then
+            git worktree add /tmp/assets-push origin/assets
           else
-            git worktree add --orphan /tmp/pathokghar-assets-push
+            git worktree add --orphan /tmp/assets-push
           fi
 
           rsync -a --delete \
@@ -150,14 +150,14 @@ jobs:
             --exclude='package-lock.json' \
             --exclude='github-actions' \
             --exclude='sitemap-lastmod.json' \
-            ./ /tmp/pathokghar-assets-push/
+            ./ /tmp/assets-push/
 
-          cd /tmp/pathokghar-assets-push
+          cd /tmp/assets-push
           git add -A
           git diff --staged --quiet || git commit -m "chore: update build output snapshot"
-          git push origin HEAD:pathokghar-assets
+          git push origin HEAD:assets
           cd -
-          git worktree remove /tmp/pathokghar-assets-push --force
+          git worktree remove /tmp/assets-push --force
 
       # ১০. Cloudflare Pages এ deploy
       - name: Deploy to Cloudflare Pages
