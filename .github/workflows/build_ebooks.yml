@@ -1,1 +1,151 @@
-.
+name: Build Ebooks
+
+# All three formats live in one workflow, driven by one script
+# (scripts/generate_ebooks.py --format epub|mobi|pdf). Any of the paths
+# below triggers all three build jobs; touch/edit the "github_actions"
+# file (previously actions_epub / actions_mobi / actions_pdf) to trigger
+# a manual rebuild via push.
+#
+# Output: each job writes new files straight into its own repo folder
+# (epub/, mobi/, pdf/) and commits+pushes them -- no GitHub Release
+# involved anymore. Jobs run one after another (build-epub -> build-mobi
+# -> build-pdf) instead of in parallel, purely so each job's push starts
+# from the previous job's commit -- three jobs pushing to the same branch
+# at once would race and reject each other's pushes.
+on:
+  push:
+    paths:
+      - .github/workflows/build-ebooks.yml
+      - scripts/generate_ebooks.py
+      - scripts/render_pdf.js
+      - package.json
+      - github_actions
+      - styles/epub.css
+      - styles/mobi.css
+      - styles/pdf.css
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build-epub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install system tools + Bengali fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc calibre fonts-noto-core fonts-noto-extra fonts-lohit-beng-bengali
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Build new epub books
+        env:
+          FIREBASE_AUTH: ${{ secrets.FIREBASE_DB_AUTH }}
+        run: python scripts/generate_ebooks.py --format epub --all
+
+      - name: Commit and push new epub files
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Add new epub books"
+          file_pattern: "epub/*.epub"
+
+  build-mobi:
+    needs: build-epub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install system tools + Bengali fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc calibre fonts-noto-core fonts-noto-extra fonts-lohit-beng-bengali
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Build new mobi books
+        env:
+          FIREBASE_AUTH: ${{ secrets.FIREBASE_DB_AUTH }}
+        run: python scripts/generate_ebooks.py --format mobi --all
+
+      - name: Commit and push new mobi files
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Add new mobi books"
+          file_pattern: "mobi/*.mobi"
+
+  build-pdf:
+    needs: build-mobi
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Bengali fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-core fonts-noto-extra fonts-lohit-beng-bengali
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python deps
+        run: pip install pypdf
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # ubuntu-latest runners already ship with Google Chrome pre-installed,
+      # so we skip pagedjs-cli's own puppeteer downloading a *second* copy
+      # of Chromium (a large download that was making this step slow/flaky
+      # in earlier runs) and just point it at the one that's already there.
+      - name: Install Node deps (Paged.js via pagedjs-cli)
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: "true"
+        run: npm install
+
+      - name: Locate pre-installed Chrome
+        id: chrome
+        run: |
+          CHROME_PATH="$(command -v google-chrome-stable || command -v google-chrome || command -v chromium-browser || command -v chromium)"
+          if [ -z "$CHROME_PATH" ]; then
+            echo "No pre-installed Chrome/Chromium found on this runner!" >&2
+            exit 1
+          fi
+          echo "Found Chrome at: $CHROME_PATH"
+          echo "path=$CHROME_PATH" >> "$GITHUB_OUTPUT"
+
+      - name: Build new pdf books
+        env:
+          FIREBASE_AUTH: ${{ secrets.FIREBASE_DB_AUTH }}
+          PUPPETEER_EXECUTABLE_PATH: ${{ steps.chrome.outputs.path }}
+        run: python scripts/generate_ebooks.py --format pdf --all
+
+      - name: Upload assembled PDF-HTML (debug)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdf-debug-html
+          path: work/**/*.pdf.html
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Commit and push new pdf files
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Add new pdf books"
+          file_pattern: "pdf/*.pdf"
