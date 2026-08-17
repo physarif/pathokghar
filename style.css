@@ -1,21 +1,21 @@
-/* Shared stylesheet for all three ebook formats (epub, mobi, pdf).
-   Was three files (epub.css, mobi.css, pdf.css); merged here since all
-   three build steps now link the same file.
+/* Shared stylesheet for both ebook formats (epub, pdf).
+   Was two files (epub.css, pdf.css); merged here since both build
+   steps now link the same file.
 
-   epub and mobi are reflowable formats (readers control page size/font
-   scaling themselves), so they share one plain, unscoped set of rules
-   below under "Base typography".
+   epub is a reflowable format (readers control page size/font scaling
+   themselves), so it uses one plain, unscoped set of rules below under
+   "Base typography".
 
    pdf is a fixed page-size format (Chromium print-to-PDF via Paged.js)
    and needs pixel-precise page-layout rules (borders, forced page
    breaks, a running footer counter, etc.) that would look wrong if
-   applied to a reflowable epub/mobi reader. Those rules are scoped
+   applied to a reflowable epub reader. Those rules are scoped
    under `html.pdf-page` so they only ever match the PDF-assembled HTML
    documents (scripts/generate_ebooks.py sets that class on <html> only
    when building pdf) -- they're inert everywhere else. */
 
 /* =====================================================================
-   Base typography -- applies to epub and mobi (and anything in pdf's
+   Base typography -- applies to epub (and anything in pdf's
    content that isn't overridden by the html.pdf-page rules below).
    ===================================================================== */
 

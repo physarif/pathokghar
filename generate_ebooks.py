@@ -1,24 +1,19 @@
 """
-Builds epub, mobi, and pdf books from the Pathokghar Firebase database.
+Builds epub and pdf books from the Pathokghar Firebase database.
 Fetches all books and builds whichever ones aren't already sitting in the
-output folder for the requested format (epub/, mobi/, or pdf/ at the repo
-root) -- these folders are committed straight into the repo (see
+output folder for the requested format (ebooks/epub/ or ebooks/pdf/ at
+the repo root) -- these folders are committed straight into the repo (see
 .github/workflows/build-ebooks.yml), so "already there" is just "already
 built by a previous run", no separate published-files list needed.
 
 Usage:
     python generate_ebooks.py --format epub [--all] [--limit N]
-    python generate_ebooks.py --format mobi --all
     python generate_ebooks.py --format pdf --all
 
 Formats:
     epub  Built directly with pandoc.
-    mobi  Goes through an intermediate epub build (kept in work/, not
-          committed) since mobi readers reflow text and don't need the
-          page-size/CSS Paged Media handling PDF does -- calibre's
-          ebook-convert handles epub->mobi well on its own.
-    pdf   Built directly from the extracted chapter HTML (no pandoc/epub/
-          calibre step): style.css controls layout, and
+    pdf   Built directly from the extracted chapter HTML (no pandoc/epub
+          step): style.css controls layout, and
           render_pdf.js (Paged.js via pagedjs-cli) does the actual
           page layout + PDF export. Two page sizes are used -- cover+donate
           at A6, chapters at a phone-screen ratio -- and since Chromium's
@@ -28,11 +23,11 @@ Formats:
           the file level with merge_pdfs, where mixed page sizes are
           completely normal.
 
-This single file used to be four: common.py (shared utilities) plus
-generate_epub.py / generate_mobi.py / generate_pdf.py (one per format).
-They're merged here to keep the build pipeline in one place; the sections
-below are kept in the same order/shape as the originals so it's easy to
-tell what came from where.
+This single file used to be three: common.py (shared utilities) plus
+generate_epub.py / generate_pdf.py (one per format). They're merged here
+to keep the build pipeline in one place; the sections below are kept in
+the same order/shape as the originals so it's easy to tell what came from
+where.
 """
 import argparse
 import json
@@ -45,9 +40,8 @@ import zipfile
 
 # =====================================================================
 # Shared utilities (formerly common.py): Firebase fetching, file
-# downloads, HTML cleanup shared by all three formats, epub building
-# (used directly by the epub format and as an intermediate step by
-# mobi), and the common per-book driver loop (run()).
+# downloads, HTML cleanup shared by both formats, epub building, and
+# the common per-book driver loop (run()).
 # =====================================================================
 
 DB_URL = "https://pathokghar-default-rtdb.asia-southeast1.firebasedatabase.app"
@@ -243,7 +237,7 @@ def ensure_toc_title(html_path, fallback_title):
 
 
 def list_pending_books(ext, existing_names=None):
-    """ext: the output file extension for this format ("epub"/"pdf"/"mobi"),
+    """ext: the output file extension for this format ("epub"/"pdf"),
     used only to build each candidate filename for the already-published
     check."""
     print("Fetching all books...")
@@ -393,9 +387,9 @@ def remove_cover_page_from_reading_order(epub_path):
 
 
 def run(fmt, ext, build_one, setup=None, test_limit=5, args=None):
-    """The per-book driver shared by all three formats.
+    """The per-book driver shared by both formats.
 
-    fmt: format name used for the output folder ("epub"/"pdf"/"mobi")
+    fmt: format name used for the output folder ("epub"/"pdf")
     ext: output file extension (usually same as fmt)
     build_one(book, html_files, cover_path, work_dir, extract_dir, out_dir,
               css_path, ctx) -> out_path: the one format-specific step for
@@ -421,11 +415,11 @@ def run(fmt, ext, build_one, setup=None, test_limit=5, args=None):
         test_limit = args.limit
 
     os.makedirs(WORK, exist_ok=True)
-    out_dir = fmt  # e.g. "epub" -> repo-root epub/ folder, committed by CI
+    out_dir = os.path.join("ebooks", fmt)  # e.g. "epub" -> repo-root ebooks/epub/ folder, committed by CI
     os.makedirs(out_dir, exist_ok=True)
-    # One shared stylesheet for all three formats -- see style.css
+    # One shared stylesheet for both formats -- see style.css
     # for how pdf-only page-layout rules are scoped so they don't affect
-    # epub/mobi.
+    # epub.
     css_path = "style.css"
 
     # Books already sitting in out_dir (committed by an earlier run) are
@@ -528,34 +522,6 @@ def build_one_epub(book, html_files, cover_path, work_dir, extract_dir, out_dir,
 
 
 # =====================================================================
-# MOBI format (formerly generate_mobi.py)
-# =====================================================================
-
-def _run_ebook_convert(src_epub, dst_path, extra_args):
-    cmd = ["ebook-convert", src_epub, dst_path, *extra_args]
-    result = subprocess.run(cmd, capture_output=True, text=True)
-    if result.returncode != 0:
-        raise subprocess.CalledProcessError(
-            result.returncode, cmd,
-            output=result.stdout, stderr=result.stderr,
-        )
-
-
-def build_mobi(epub_path, out_path):
-    _run_ebook_convert(epub_path, out_path, [])
-
-
-def build_one_mobi(book, html_files, cover_path, work_dir, extract_dir, out_dir, css_path, ctx):
-    slug = book["slug"]
-    tmp_epub = os.path.join(work_dir, f"{slug}.epub")
-    build_epub(book, html_files, cover_path, css_path, tmp_epub, extract_dir=extract_dir)
-
-    out_path = os.path.join(out_dir, f"{slug}.mobi")
-    build_mobi(tmp_epub, out_path)
-    return out_path
-
-
-# =====================================================================
 # PDF format (formerly generate_pdf.py)
 # =====================================================================
 
@@ -625,7 +591,7 @@ def _pdf_html_head(title, css_path, page_css):
         "<!DOCTYPE html>\n"
         # class="pdf-page" is what scopes the pdf-only page-layout rules
         # in style.css (html.pdf-page {...}) to just these
-        # assembled PDF documents -- epub/mobi content never has this
+        # assembled PDF documents -- epub content never has this
         # class, so those rules never match there.
         '<html lang="bn" class="pdf-page">\n'
         "<head>\n"
@@ -822,7 +788,6 @@ def build_one_pdf(book, html_files, cover_path, work_dir, extract_dir, out_dir, 
 
 FORMATS = {
     "epub": {"build_one": build_one_epub, "setup": None},
-    "mobi": {"build_one": build_one_mobi, "setup": None},
     "pdf": {"build_one": build_one_pdf, "setup": setup_pdf},
 }
 
