@@ -103,6 +103,29 @@ function stripMarkdownPlain(str) {
   return out.trim();
 }
 
+// Book-card category pill রঙ — category name হ্যাশ করে ৬টা accent রঙের
+// একটা fixed palette থেকে বেছে নেওয়া হয়, যাতে একই category সবসময় একই
+// রঙ পায় (হোমপেজ, author পেজ, category পেজ, search — সব জায়গায় consistent)।
+const CATEGORY_ACCENT_PALETTE = [
+  { color: '#E8A33D', bg: 'rgba(232,163,61,0.16)' },
+  { color: '#4FA98C', bg: 'rgba(79,169,140,0.16)' },
+  { color: '#E2678B', bg: 'rgba(226,103,139,0.16)' },
+  { color: '#5B9BD9', bg: 'rgba(91,155,217,0.16)' },
+  { color: '#A78BFA', bg: 'rgba(167,139,250,0.16)' },
+  { color: '#7CB342', bg: 'rgba(124,179,66,0.16)' },
+];
+function categoryAccent(name) {
+  const str = String(name || '');
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) hash = (hash * 31 + str.charCodeAt(i)) >>> 0;
+  return CATEGORY_ACCENT_PALETTE[hash % CATEGORY_ACCENT_PALETTE.length];
+}
+function renderPill(categoryName) {
+  if (!categoryName) return '';
+  const accent = categoryAccent(categoryName);
+  return `<span class="bc-pill" style="color:${accent.color};background:${accent.bg}">${escapeHtml(categoryName)}</span>`;
+}
+
 // Author পেজের বই-কার্ড — আগে client-side JS দিয়ে বানানো হতো (JSON blob
 // থেকে), এখন build time-এ সরাসরি HTML হিসেবে বসানো হয় যাতে crawler
 // প্রথম লোডেই পুরো বইয়ের লিস্ট (এই পেজের মূল content) দেখতে পায়।
@@ -112,10 +135,11 @@ function renderAuthorBookCard(book) {
     `<a href="/book/${book.slug}.html" class="bc-card">` +
     `<div class="bc-img-wrap"><img src="${book.cover}" alt="${title} বই কভার" class="bc-img" loading="lazy"></div>` +
     `<div class="bc-body">` +
-    (book.category_name ? `<span class="bc-pill">${escapeHtml(book.category_name)}</span>` : '') +
     `<p class="bc-headline"><span class="bc-title">${title}</span></p>` +
     (book.author_name ? `<p class="bc-author">${escapeHtml(book.author_name)}</p>` : '') +
-    `</div></a>`
+    `</div>` +
+    renderPill(book.category_name) +
+    `</a>`
   );
 }
 
@@ -336,10 +360,10 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
     '    <img src="{{book_cover}}" alt="{{book_title}}" class="bc-img" loading="lazy">',
     '  </div>',
     '  <div class="bc-body">',
-    '    {{book_pill_html}}',
     '    <p class="bc-headline"><span class="bc-title">{{book_title}}</span></p>',
     '    {{book_author_html}}',
     '  </div>',
+    '  {{book_pill_html}}',
     '</a>',
   ].join('\n');
 
@@ -355,7 +379,7 @@ async function generateHomepage(bookList, authorsRaw, categoriesRaw) {
       book_slug: book.slug,
       book_cover: book.cover,
       book_title: book.title,
-      book_pill_html: book.category_name ? `<span class="bc-pill">${escapeHtml(book.category_name)}</span>` : '',
+      book_pill_html: renderPill(book.category_name),
       book_author_html: book.author_name ? `<p class="bc-author">${escapeHtml(book.author_name)}</p>` : '',
     });
   }
@@ -565,10 +589,10 @@ async function generateCategoryPages(bookList, authorsRaw, categoriesRaw) {
           <img src="${book.cover}" alt="${book.title}" class="bc-img" loading="lazy">
         </div>
         <div class="bc-body">
-          ${data.name ? `<span class="bc-pill">${escapeHtml(data.name)}</span>` : ''}
           <p class="bc-headline"><span class="bc-title">${book.title}</span></p>
           ${book.author_name ? `<p class="bc-author">${escapeHtml(book.author_name)}</p>` : ''}
         </div>
+        ${renderPill(data.name)}
       </a>`).join('');
 
       const categoryContent = render(categoryTemplate, {
