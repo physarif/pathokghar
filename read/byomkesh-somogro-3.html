@@ -60,8 +60,6 @@
             flex-direction: column;
             min-height: 100vh;
         }
-        .dark body { background: #1a1a1b; color: #e5e7eb; }
-
         #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
         #read-column { flex: 1 1 auto; min-width: 0; }
         #read-main-content {
@@ -69,72 +67,6 @@
             max-width: 42rem;
         }
         #book-content { color: #1f2937; }
-        .dark #book-content { color: #e5e7eb; }
-    
-    /* ── Book read header hero ── */
-    .book-read-header {
-        margin-bottom: 1.5rem;
-    }
-    .book-read-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 0.65rem;
-        background: #fff;
-        border: 1px solid #e5e7eb;
-        border-radius: 14px;
-        padding: 1.4rem 1.25rem 1.2rem;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    }
-    .dark .book-read-box {
-        background: #2a2a2b;
-        border-color: #3a3a3b;
-    }
-    .book-read-cover {
-        width: 100px;
-        height: 136px;
-        border-radius: 8px;
-        flex-shrink: 0;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.18);
-        object-fit: cover;
-        background: #e5e7eb;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-    }
-    .book-read-cover svg { opacity: 0.35; }
-    .book-read-title-link {
-        text-decoration: none;
-        display: block;
-    }
-    .book-read-title-link:hover .book-read-title { text-decoration: underline; text-underline-offset: 3px; }
-    .book-read-title-link:active .book-read-title { opacity: 0.7; }
-    .book-read-title {
-        font-family: 'Noto Serif Bengali', serif;
-        font-size: 1.15rem;
-        font-weight: 700;
-        color: #1a1a1b;
-        line-height: 1.4;
-        margin: 0;
-        transition: opacity 0.15s;
-    }
-    .dark .book-read-title { color: #f3f4f6; }
-    .book-read-author-link {
-        text-decoration: none;
-        display: inline-block;
-    }
-    .book-read-author-link:hover .book-read-author { text-decoration: underline; text-underline-offset: 3px; }
-    .book-read-author-link:active .book-read-author { opacity: 0.6; }
-    .book-read-author {
-        font-family: 'Noto Serif Bengali', serif;
-        font-size: 0.82rem;
-        font-weight: 600;
-        color: #0B57CF;
-        margin: 0;
-        transition: opacity 0.15s;
-    }
 </style>
 </head>
 <body>
@@ -165,16 +97,6 @@
     @keyframes marquee-scroll {
         0%   { transform: translateX(100vw); }
         100% { transform: translateX(-100%); }
-    }
-
-    #read-progress-bar {
-        position: fixed;
-        top: 0; left: 0;
-        height: 2px;
-        width: 0%;
-        background: var(--bar-accent);
-        z-index: 1000;
-        transition: width 0.1s linear;
     }
 
     /* ── Book content typography ── */
@@ -261,10 +183,6 @@
         font-style: italic;
         color: #555;
     }
-    .dark #book-content blockquote {
-        background: rgba(11,87,207,0.08);
-        color: #bbb;
-    }
     /* ── HR stylish divider ── */
     #book-content hr {
         border: none;
@@ -300,8 +218,6 @@
     }
     #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
     #book-content tr:last-child td { border-bottom: none; }
-    .dark #book-content td { border-color: #3a3a3b; }
-    .dark #book-content tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
     /* ── Figcaption ── */
     #book-content figcaption {
         text-align: center;
@@ -372,7 +288,6 @@
         padding: 0 0.5rem 0 0.35rem;
         background: #C2D7FC;
         box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-        border-radius: 0 0 8px 8px;
         transition: background 0.3s, transform 0.28s ease;
     }
     body.bars-hidden #reader-header { transform: translateY(-100%); }
@@ -438,24 +353,6 @@
     }
     #reader-header .rh-actions button:active { background: var(--bar-btn-active); }
 
-    /* ── Chapter + page/percent — sits directly under the title ── */
-    #rf-labels {
-        display: flex;
-        align-items: center;
-        font-family: 'Noto Serif Bengali', serif;
-        font-size: 0.66rem;
-        color: var(--bar-text-dim);
-        transition: color 0.3s;
-    }
-    #rf-chapter {
-        min-width: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    #rf-chapter:not(:empty)::after { content: '·'; margin: 0 0.4rem; opacity: 0.6; }
-    #rf-page { flex-shrink: 0; }
-
     /* ── Header row 3: thin seek/progress line ── */
     #rf-slider {
         -webkit-appearance: none;
@@ -491,8 +388,6 @@
     }
     #rf-slider::-webkit-slider-runnable-track { height: 3px; background: transparent; }
     #rf-slider::-moz-range-track { height: 3px; background: transparent; }
-
-    /* Content no longer needs bottom clearance — footer removed, extra top clearance handled above */
 
 
     /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
@@ -573,13 +468,6 @@
         transition: opacity 0.3s ease;
     }
     #unified-overlay.open { opacity: 1; pointer-events: auto; }
-
-    /* ── Breadcrumb dark mode ── */
-    .read-breadcrumb-full { margin-left: -1.25rem; margin-right: -1.25rem; padding-left: 1.25rem; padding-right: 1.25rem; }
-    .dark #read-breadcrumb a[href="/"] { color: #9ca3af; }
-    .dark #bc-category { color: #9ca3af !important; }
-    .dark #read-breadcrumb a[href*="/books/"] { color: #e5e7eb; }
-    .dark #read-breadcrumb li > span { color: #4b5563; }
 
     html { scroll-behavior: smooth; }
     html { scrollbar-width: none; -ms-overflow-style: none; }
@@ -719,12 +607,8 @@
 
 </style>
 
-<!-- Progress bar (kept for internal % calc, hidden — footer slider replaces it visually) -->
-<div id="read-progress-bar" style="display:none;"></div>
-
 <!-- ══ Reader header (back + title/chapter stack + actions, seek line) ══ -->
 <header id="reader-header">
-    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
     <div id="rh-row1">
         <a href="/book/byomkesh-somogro-3.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
             <i class="fas fa-arrow-left"></i>
@@ -736,6 +620,7 @@
             <button id="rh-menu-btn" aria-label="সূচিপত্র ও কাস্টমাইজ" title="সূচিপত্র ও কাস্টমাইজ"><i class="fa-solid fa-list-ul"></i></button>
         </div>
     </div>
+    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
 </header>
 
 
@@ -5601,10 +5486,7 @@
 (function () {
     const bookContent  = document.getElementById('book-content');
     const mobileReaderBg = document.getElementById('mobile-reader-bg');
-    const progressBar  = document.getElementById('read-progress-bar');
-    const progressPct  = document.getElementById('progress-pct');
     const tocMobile    = document.getElementById('toc-nav-mobile');
-    const progressRing = document.getElementById('progress-ring-circle');
 
     let fontScale   = 100;
     let marginScale = 5;
@@ -5646,11 +5528,6 @@
     const unifiedToggle = document.getElementById('unified-toggle-btn');
     const unifiedOverlay= document.getElementById('unified-overlay');
     const unifiedDrawer = document.getElementById('unified-drawer');
-
-    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
-    function toBN(n) {
-        return Math.round(n).toString().split('').map(c => bn[c] || c).join('');
-    }
 
     // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
     (function () {
@@ -5723,18 +5600,12 @@
         }
         const docH = scrollHeight - clientHeight;
         const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
-        progressBar.style.width = pct + '%';
-        if (progressPct) progressPct.textContent = toBN(pct) + '%';
-        if (progressRing) progressRing.style.strokeDashoffset = 87.96 * (1 - pct / 100);
         if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
-        if (rfPage) rfPage.textContent = toBN(pct) + '%';
     }
     window.addEventListener('scroll', () => updateProgress(window), { passive: true });
 
-    // ── Footer: chapter label + seek slider ──
+    // ── Footer: seek slider ──
     const rfSlider  = document.getElementById('rf-slider');
-    const rfPage    = document.getElementById('rf-page');
-    const rfChapter = document.getElementById('rf-chapter');
     let rfSliderDragging = false;
     if (rfSlider) {
         rfSlider.addEventListener('input', () => {
@@ -5776,7 +5647,6 @@
         allTocLinks.forEach(a => {
             a.classList.toggle('active', parseInt(a.dataset.idx) === current);
         });
-        if (rfChapter && headings[current]) rfChapter.textContent = headings[current].textContent.trim();
     }
     window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
     updateTocActive(window.scrollY);
