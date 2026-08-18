@@ -1937,24 +1937,8 @@
                 b.style.borderColor = b.dataset.theme === t ? activeAccent : 'transparent';
             });
             savePrefs();
-
-            // Ad bar theme sync
-            window._pathakAdBarTheme && window._pathakAdBarTheme(m);
         });
     });
-
-    // ── Ad bar theme sync function (exposed globally) ──
-    window._pathakAdBarTheme = function(m) {
-        const adBar     = document.getElementById('ad-bar');
-        const adContent = document.getElementById('ad-bar-content');
-        const adDatetime= document.getElementById('ad-bar-datetime');
-        const adNotice  = document.getElementById('ad-bar-notice');
-        if (adBar)      adBar.style.background     = m.bg;
-        if (adContent)  adContent.style.background = m.bg;
-        if (adDatetime) adDatetime.style.color      = m.text;
-        if (adNotice)   adNotice.style.color        = m.text;
-    };
-
 
     // ── Restore saved prefs on load ──
     (function restoreAll() {
@@ -1965,9 +1949,6 @@
         setAlign(currentAlign);
         const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
         if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
-        // Ad bar HTML is below — expose theme for ad bar script to pick up
-        window._pathakCurrentTheme = currentTheme;
-        window._pathakThemeMap = themeMap;
     })();
 })();
 </script>
