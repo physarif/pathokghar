@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#121218">
+    <meta name="theme-color" content="#F0F3F8">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFBP0HJMJV"></script>
     <script>
@@ -41,8 +41,8 @@
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #121218;
-            color: #e5e7eb;
+            background: #F0F3F8;
+            color: #1f2937;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -60,10 +60,10 @@
 
         main { flex: 1 1 auto; min-width: 0; }
 
-        /* ── Header (Telegram X স্টাইল — steel-blue bar, brand ছাড়া, full-width icon row) ── */
+        /* ── Header (Telegram X স্টাইল — full-width icon row, day/light surface) ── */
         #site-header {
-            border-bottom: none;
-            background: #2a2b2f;
+            border-bottom: 1px solid rgba(17,24,39,0.08);
+            background: #ffffff;
         }
         .header-row {
             display: flex;
@@ -76,7 +76,7 @@
         .header-right { display: flex; align-items: stretch; gap: 0; flex: 1 1 auto; height: 100%; }
         #header-search-btn, #header-search-close-btn {
             background: none; border: none; padding: 0; cursor: pointer;
-            color: #ffffff;
+            color: #1f2937;
         }
         .brand-name-light { font-weight: 300; color: #6b7280; }
 
@@ -95,25 +95,28 @@
             background: transparent;
             outline: none;
             border: none;
-            color: #ffffff;
+            color: #1f2937;
             font-size: 1rem;
         }
-        .header-search-input::placeholder { color: rgba(255,255,255,0.65); }
+        .header-search-input::placeholder { color: rgba(17,24,39,0.45); }
         .header-search-suggest {
             display: none;
             position: absolute;
             left: 0; right: 0; top: 100%;
-            background: #2a2b2f;
+            background: #ffffff;
+            border: 1px solid rgba(17,24,39,0.08);
+            border-top: none;
+            box-shadow: 0 8px 20px rgba(17,24,39,0.08);
             border-radius: 0 0 5px 5px;
             max-height: 70vh;
             overflow-y: auto;
             z-index: 60;
         }
 
-        /* ── Footer (night-only — #333439 surface, #121218 page bg reference) — মিনিমাল একলাইন ── */
+        /* ── Footer (day/light surface — #ffffff surface, #F0F3F8 page bg reference) — মিনিমাল একলাইন ── */
         .site-footer {
-            background: #2a2b2f;
-            border-top: 1px solid rgba(255,255,255,0.06);
+            background: #ffffff;
+            border-top: 1px solid rgba(17,24,39,0.08);
             margin-top: 1.5rem;
         }
         .footer-container { max-width: 48rem; margin: 0 auto; padding: 0 1.25rem; }
@@ -125,11 +128,11 @@
             flex-wrap: wrap;
             gap: 1rem;
         }
-        .footer-brand { font-size: 0.88rem; color: #9aa0a6; }
-        .footer-brand strong { color: #e5e7eb; font-weight: 600; }
+        .footer-brand { font-size: 0.88rem; color: #6b7280; }
+        .footer-brand strong { color: #1f2937; font-weight: 600; }
         .footer-links { display: flex; gap: 1rem; }
-        .footer-links a { font-size: 0.78rem; color: #6b6f76; text-decoration: none; transition: color 0.15s; }
-        .footer-links a:hover, .footer-links a:active { color: #ffffff; }
+        .footer-links a { font-size: 0.78rem; color: #6b7280; text-decoration: none; transition: color 0.15s; }
+        .footer-links a:hover, .footer-links a:active { color: #C82A24; }
 
         /* হেডার ন্যাভ — Telegram X স্টাইল: full-width, সমান-দূরত্বের icon-only ট্যাব, active-এ underline */
         .header-nav-group {
@@ -150,7 +153,7 @@
             width: auto;
             height: 100%;
             border-right: none;
-            color: rgba(255,255,255,0.65);
+            color: rgba(17,24,39,0.6);
             text-decoration: none;
             position: relative;
         }
@@ -170,7 +173,7 @@
             width: auto;
             padding: 0;
         }
-        .header-nav-btn.active { color: #ffffff !important; background: transparent; }
+        .header-nav-btn.active { color: #C82A24 !important; background: transparent; }
         /* icon সরিয়ে শুধু নাম — home/লেখক/বিভাগ text-only ট্যাব; active হলে underline text-এর
            সমান width-এর হবে, তাই এটা fixed ::after না দিয়ে label-এর নিজের border-bottom দিয়ে করা */
         .header-nav-label {
@@ -182,7 +185,7 @@
             padding: 0.25rem 0;
             border-bottom: 3px solid transparent;
         }
-        .header-nav-btn.active .header-nav-label { border-bottom-color: #ffffff; }
+        .header-nav-btn.active .header-nav-label { border-bottom-color: #C82A24; }
 
         /* Floating (sticky) header — নিচে স্ক্রল করলে hide, উপরে স্ক্রল করলে show */
         #site-header {
@@ -194,7 +197,7 @@
             transform: translateY(0);
             transition: transform 0.28s ease;
             will-change: transform;
-            background: #2a2b2f !important;
+            background: #ffffff !important;
         }
         #site-header.header-hidden { transform: translateY(-100%); }
 
@@ -207,28 +210,28 @@
             text-decoration: none;
             color: inherit;
         }
-        .hs-item:hover, .hs-item.hs-active { background: #2f2f38; }
+        .hs-item:hover, .hs-item.hs-active { background: #f3f4f6; }
         .hs-thumb {
             flex-shrink: 0;
             width: 2.1rem;
             height: 2.8rem;
             border-radius: 3px;
             object-fit: cover;
-            background: #374151;
+            background: #e5e7eb;
         }
         .hs-body { min-width: 0; flex: 1; }
         .hs-title {
             font-size: 0.92rem;
             font-weight: 600;
-            color: #f3f4f6;
+            color: #1f2937;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        .hs-title b { color: #9ca3af; font-weight: 700; }
+        .hs-title b { color: #C82A24; font-weight: 700; }
         .hs-meta {
             font-size: 0.76rem;
-            color: #9ca3af;
+            color: #6b7280;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -239,12 +242,12 @@
             padding: 0.6rem;
             font-size: 0.85rem;
             font-weight: 600;
-            color: #9ca3af;
+            color: #C82A24;
             text-decoration: none;
-            border-top: 1px solid #2f2f38;
+            border-top: 1px solid rgba(17,24,39,0.08);
         }
     </style>
-    <!-- থিম সবসময় night/dark mode — light mode বাদ দেওয়া হয়েছে -->
+    <!-- থিম সবসময় day/light mode — dark mode বাদ দেওয়া হয়েছে, accent: #C82A24 -->
 </head>
 <body>
 
