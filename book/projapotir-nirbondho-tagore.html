@@ -545,8 +545,114 @@
         <!-- সম্পর্কিত বই: একই লেখক ও ক্যাটাগরির বই — build time-এই HTML
              হিসেবে বসানো হয় (author-page-এর মতো), crawler প্রথম লোডেই এই
              ইন্টারনাল লিংকগুলো পায়। কোনো related বই না থাকলে placeholder
-             খালি স্ট্রিং হয়ে যায়, তাই সেক্ষেত্রে কার্ডটাই দেখা যায় না। -->
-        
+             খালি স্ট্রিং হয়ে যায়, তাই সেক্ষেত্রে সেকশনটাই দেখা যায় না। -->
+        <style>
+/* components/book-card-list.css — সব পেজে (index, books, author, category, search)
+   ব্যবহৃত common book-card LIST design। generate_pages.js এই ফাইলটা একবার লোড করে
+   <style> ট্যাগে মুড়ে প্রতিটা টেমপ্লেটের  placeholder-এ বসিয়ে দেয়।
+   ডিজাইন পরিবর্তন করতে চাইলে শুধু এই ফাইলটা এডিট করলেই সব জায়গায় reflect হবে।
+   ডিজাইন: Editorial variant — layout.html-এর সাথে মিল রেখে day/light পাঠক ঘর
+   palette (#F0F3F8 page bg, #ffffff card surface, #1f2937 টেক্সট, #0B57CF accent)। */
+
+/* List container */
+.bc-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  gap: 0.7rem;
+}
+@media (min-width: 768px) {
+  .bc-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+    padding: 0;
+  }
+}
+
+/* Book card */
+.bc-card {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: flex-start;
+  text-decoration: none;
+  padding: 1rem 1.1rem;
+  transition: background 0.15s, border-color 0.15s;
+  background: #ffffff;
+  border-radius: 5px;
+}
+.bc-card:hover { background: #C2D7FC; }
+
+/* Cover — left side, fixed size 2:3 ratio */
+.bc-img-wrap {
+  flex-shrink: 0;
+  width: 4.5rem;
+  aspect-ratio: 2/3;
+  overflow: hidden;
+  background: #e5e7eb;
+  border-radius: 5px;
+}
+@media (min-width: 768px) { .bc-img-wrap { width: 5.5rem; } }
+
+.bc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Right side text */
+.bc-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+/* Headline: title – author একসাথে */
+.bc-headline {
+  font-size: 1.05rem;
+  line-height: 1.4;
+  margin: 0 0 0.35rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.bc-title {
+  font-weight: 600;
+  color: #1f2937;
+}
+.bc-card:hover .bc-title { text-decoration: none; }
+
+/* Description */
+.bc-desc {
+  margin-top: 0.1rem;
+  font-size: 0.88rem;
+  color: #6b7280;
+  line-height: 1.5;
+  text-align: justify;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/*
+  Book card HTML template (reference — generate_pages.js এ ব্যবহার হয়):
+  <a href="/book/projapotir-nirbondho-tagore.html" class="bc-card">
+    <div class="bc-img-wrap">
+      <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783268629178_oegxp3y6t1.png" alt="প্রজাপতির নির্ব্বন্ধ" class="bc-img" loading="lazy">
+    </div>
+    <div class="bc-body">
+      <p class="bc-headline"><span class="bc-title">প্রজাপতির নির্ব্বন্ধ</span></p>
+      <p class="bc-desc"></p>
+    </div>
+  </a>
+*/
+</style>
         <div class="book-related-section"><div class="related-label"><span class="related-label-text">সম্পর্কিত বই</span><span class="related-label-line"></span></div><div class="bc-list"><a href="/book/char-odhay.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783232187458_yb1t30983ch.png" alt="চার অধ্যায় বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">চার অধ্যায়</span></p><p class="bc-desc">রবীন্দ্রনাথ ঠাকুরের শেষ উপন্যাস 'চার অধ্যায়' (১৯৩৪) বাংলা সাহিত্যের এক অনন্য সংযোজন। এটি কেবল একটি প্রেমের গল্প নয়, বরং বিপ্লবী আন্দোলনের প্রেক্ষাপটে ব্যক্তিগত আবেগ ও আদর্শের সংঘাতের এক নিবিড় দলিল।
 
 উ</p></div></a><a href="/book/shikkha-tagore.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783321465041_5sztjoo3sfu.webp" alt="শিক্ষা বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">শিক্ষা</span></p><p class="bc-desc">বিশ্বকবি রবীন্দ্রনাথ ঠাকুরের 'শিক্ষা' (১৯০৮) কোনো প্রচলিত শিক্ষা তত্ত্বের নীরস দলিল নয়, বরং এটি মানুষের আত্মিক ও বৌদ্ধিক বিকাশের এক গভীর জীবনদর্শন। তৎকালীন ব্রিটিশ ঔপনিবেশিক কেরানি তৈরির মুখস্থনির্ভর </p></div></a><a href="/book/bibidh-prosongo-tagore.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783279041214_kwwcpgzrt2.png" alt="বিবিধ প্রসঙ্গ বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">বিবিধ প্রসঙ্গ</span></p><p class="bc-desc">'বিবিধ প্রসঙ্গ' বিশ্বকবি রবীন্দ্রনাথ ঠাকুরের তরুণ বয়সে লেখা একটি উল্লেখযোগ্য গদ্যগ্রন্থ বা প্রবন্ধ সংকলন। এটি মূলত তাঁর উনিশ-বিশ বছর বয়সের চিন্তাভাবনা, অনুভূতি ও জীবনদর্শনের এক চমৎকার রূপায়ণ। বিভিন্ন </p></div></a><a href="/book/palatoka-tagore.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783265987130_jyxhzhmvmw.webp" alt="পলাতকা বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">পলাতকা</span></p><p class="bc-desc">রবীন্দ্রনাথ ঠাকুরের কাব্যগ্রন্থ 'পলাতকা' (প্রকাশকাল ১৯১৮) বাংলা সাহিত্যের এক অসাধারণ সৃষ্টি। এই কাব্যগ্রন্থের কবিতাগুলো প্রথাগত কাব্যরীতি থেকে কিছুটা ভিন্ন এবং কিছুটা গদ্যের কাছাকাছি, যা সেসময় নতুন ধা</p></div></a><a href="/book/atmo-porichoy-tagore.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783232872683_3omoztwdf94.png" alt="আত্মপরিচয় বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">আত্মপরিচয়</span></p><p class="bc-desc">রবীন্দ্রনাথ ঠাকুরের আত্মজীবনীমূলক গ্রন্থ 'আত্মপরিচয়' কেবল কোনো সাধারণ স্মৃতিকথা নয়, এটি কবির আত্মবিকাশ ও দর্শন উপলব্ধির একটি দলিল। ১৯৪৩ সালে প্রথম প্রকাশিত এই সংকলনটিতে কবি তাঁর জীবনের বিভিন্ন সময়ের</p></div></a><a href="/book/charar-chabi-tagore.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783322197360_4cwb3cpxg3l.png" alt="ছড়ার ছবি বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">ছড়ার ছবি</span></p><p class="bc-desc">'ছড়ার ছবি' বিশ্বকবি রবীন্দ্রনাথ ঠাকুরের একটি অনন্য এবং ক্লাসিক ছড়ার সংকলন, যা মূলত শিশু-কিশোরদের উদ্দেশ্যে রচিত হলেও সব বয়সী পাঠকের মন জয় করতে সক্ষম। এই বইটির মূল বৈশিষ্ট্য হলো এর প্রতিটি ছড়া যেন এক </p></div></a><a href="/book/adhunik-sahityo-tagore.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783494925043_e2jh30twm1p.png" alt="আধুনিক সাহিত্য বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">আধুনিক সাহিত্য</span></p><p class="bc-desc">রবীন্দ্রনাথ ঠাকুরের প্রবন্ধ সাহিত্যের এক অনন্য এবং কালজয়ী নিদর্শন হলো 'আধুনিক সাহিত্য' (১৯০৭)। এটি মূলত একটি সমালোচনা-প্রবন্ধ সংকলন, যেখানে রবীন্দ্রনাথ তাঁর সমকালীন এবং পূর্বসূরি বেশ কয়েকজন বিশিষ্ট সা</p></div></a><a href="/book/jogajog.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780243146714_coszcjbobmg.webp" alt="যোগাযোগ বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">যোগাযোগ</span></p><p class="bc-desc">রবীন্দ্রনাথ ঠাকুরের অন্যতম মনস্তাত্ত্বিক উপন্যাস 'যোগাযোগ' (১৯২৯)। পারিবারিক ঐতিহ্য, অহংবোধ এবং দম্পতির মধ্যকার জটিল সম্পর্কের টানাপোড়েন এই উপন্যাসের মূল উপজীব্য। গল্পটি আবর্তিত হয়েছে প্রধান চরিত্র ক</p></div></a><a href="/book/sesher-kobita.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1780242158760_3rivje7ps4o.webp" alt="শেষের কবিতা বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">শেষের কবিতা</span></p><p class="bc-desc">শেষের কবিতা রবীন্দ্রনাথ ঠাকুর রচিত একটি উপন্যাস। রবীন্দ্রনাথের চিত্রসৃষ্টি পর্যায়ের দ্বিতীয় উপন্যাস (প্রথমটি যোগাযোগ) এটা। ১৯২৭ সালের (১৩৩৪ বঙ্গাব্দের ভাদ্র) থেকে ১৯২৮ সাল (১৩৩৪ বঙ্গাব্দের চৈত্র) পর</p></div></a><a href="/book/orokkhoniya.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783084335950_ku1k3y7c3uk.png" alt="অরক্ষণীয়া বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">অরক্ষণীয়া</span></p><p class="bc-desc">শরৎচন্দ্র চট্টোপাধ্যায়ের 'অরক্ষণীয়া' (১৯১৬) তৎকালীন বাঙালি হিন্দু সমাজের কুসংস্কার এবং একবিংশ শতাব্দীর পাঠকের কাছেও প্রাসঙ্গিক এক নির্মম বাস্তবতার দলিল। উপন্যাসের মূল চরিত্র জ্ঞানদা—যার বিয়ের বয়স </p></div></a><a href="/book/kahake.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1786931196244_dpquki838qn.png" alt="কাহাকে বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">কাহাকে</span></p><p class="bc-desc">উনিশ শতকের শেষভাগে প্রকাশিত ‘কাহাকে?’ বাংলা সাহিত্যের একটি উল্লেখযোগ্য প্রেমের উপন্যাস। মৃণালিনীর আত্মকথনের ভেতর দিয়ে গল্পটি এগিয়ে যায়; তার জীবনে প্রেমের বিভিন্ন অনুভূতি, পুরোনো স্মৃতি এবং সম্পর্কে</p></div></a><a href="/book/hajar-bosor-dhore.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783053326379_lnhgchbx0q.png" alt="হাজার বছর ধরে বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">হাজার বছর ধরে</span></p><p class="bc-desc">'হাজার বছর ধরে' কেবল একটি উপন্যাস নয়, এটি আবহমান বাংলার গ্রামীণ সমাজের এক জীবন্ত দলিল। জহির রায়হান অত্যন্ত নিপুণভাবে এই উপন্যাসে একটি প্রত্যন্ত অঞ্চলের মানুষের সুখ-দুঃখ, কুসংস্কার, প্রেম ও অন্ধবিশ্বাস</p></div></a></div></div>
@@ -713,12 +819,35 @@
                 border-bottom: 1px solid #e5e7eb;
             }
 
-            /* ── Related Books Card ── */
-            .book-related-card {
-                background: #ffffff;
-                border-radius: 5px;
-                padding: 1.1rem 1.25rem 1.3rem;
-                margin-top: 0.65rem;
+            /* ── Related Books: white card নয়, শুধু লেবেল + লাইন দিয়ে
+                 আলাদা করা — page background-এর সাথে মিশে থাকে ── */
+            .book-related-section {
+                margin-top: 0.9rem;
+                padding: 0 0.15rem;
+            }
+            .related-label {
+                display: flex;
+                align-items: center;
+                gap: 0.7rem;
+                margin-bottom: 0.7rem;
+            }
+            .related-label-text {
+                font-family: 'Noto Serif Bengali', serif;
+                font-size: 0.92rem;
+                font-weight: 800;
+                color: #1f2937;
+                white-space: nowrap;
+            }
+            .related-label-line {
+                flex: 1 1 auto;
+                height: 1px;
+                background: repeating-linear-gradient(
+                    to right,
+                    #c7cdd6 0,
+                    #c7cdd6 5px,
+                    transparent 5px,
+                    transparent 9px
+                );
             }
         </style>
 
