@@ -2514,7 +2514,7 @@
             const statusText = item.status === 'pending' ? MD_fmtSize(item.file.size)
               : item.status === 'uploading' ? 'Uploading ' + item.progress + '%…'
               : item.status === 'done' ? 'Done'
-              : 'Failed';
+              : (item.errorMsg || 'Failed');
             const copyShow = item.status === 'done' ? 'show' : '';
             const url = item.url || '';
             const nameDisplay = item.status === 'pending'
@@ -2632,13 +2632,16 @@
                   } catch(e) { console.error(e); }
                 } else {
                   item.status = 'error';
-                  item.errorMsg = 'Upload failed (' + xhr.status + ')';
+                  let detail = '';
+                  try { detail = JSON.parse(xhr.responseText).error || xhr.responseText; } catch(_) { detail = xhr.responseText; }
+                  item.errorMsg = `Upload failed (${xhr.status}): ${detail || 'no response body'}`;
+                  MD_showError(item.errorMsg);
                 }
                 MD_renderQueue();
                 resolve();
               };
 
-              xhr.onerror = () => { item.status = 'error'; item.errorMsg = 'Network error'; MD_renderQueue(); resolve(); };
+              xhr.onerror = () => { item.status = 'error'; item.errorMsg = 'Network error'; MD_showError('Network error — request reached the browser but failed (check internet/CORS).'); MD_renderQueue(); resolve(); };
               xhr.send(file);
 
             } catch(err) {
