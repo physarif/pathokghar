@@ -872,8 +872,7 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getDatabase, ref, set, get, remove, child, update } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
-  import { getFirestore, collection, addDoc, getDocs, orderBy, query, deleteDoc, doc, updateDoc, limit, startAfter, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  import { getDatabase, ref, set, get, remove, child, update, push } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
   import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
   const firebaseConfig = {
@@ -889,7 +888,6 @@
 
   const _app = initializeApp(firebaseConfig);
   const _rtdb = getDatabase(_app);
-  const _firestore = getFirestore(_app);
   const _auth = getAuth(_app);
 
   const _db_channels = _rtdb;
@@ -898,7 +896,7 @@
   const _db_stations = _rtdb;
   const _db_episodes = _rtdb;
   const _db_podcast_category = _rtdb;
-  const _db_media = _firestore;
+  const _db_media = _rtdb;
 
   window.showToast = function(msg, type) {
     type = type || "";
@@ -2456,8 +2454,8 @@
         let MD_isUploading = false;
         let currentFilter = 'all';
         let MD_allFiles = [];
+        let MD_fullList = [];
         const PAGE_SIZE = 10;
-        let lastDoc = null;
         let hasMore = false;
         let isLoadingMore = false;
 
@@ -2621,7 +2619,7 @@
                   item.url = publicUrl;
                   item.status = 'done';
                   try {
-                    await addDoc(collection(db, 'media'), {
+                    await set(push(ref(db, 'media')), {
                       name: (item.customName && item.customName.trim()) ? item.customName.trim() : file.name.replace(/\.[^/.]+$/, ''),
                       url: publicUrl,
                       type: MD_getType(file.type, file.name),
@@ -2692,18 +2690,19 @@
         async function MD_loadLibrary() {
           refreshBtn.classList.add('loading');
           MD_showSkeletons(); libCount.textContent = '—'; libStorage.textContent = '—';
-          MD_allFiles = []; lastDoc = null; hasMore = false;
+          MD_allFiles = []; MD_fullList = []; hasMore = false;
           try {
-            // fetch first page + all docs for total count & storage in parallel
-            const [snap, allSnap] = await Promise.all([
-              getDocs(query(collection(db, 'media'), orderBy('createdAt', 'desc'), limit(PAGE_SIZE))),
-              getDocs(query(collection(db, 'media'), orderBy('createdAt', 'desc')))
-            ]);
-            MD_allFiles = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-            lastDoc = snap.docs[snap.docs.length - 1] || null;
-            hasMore = snap.docs.length === PAGE_SIZE;
-            totalFileCount = allSnap.docs.length;
-            totalStorageBytes = allSnap.docs.reduce((sum, d) => sum + (d.data().size || 0), 0);
+            const snap = await get(ref(db, 'media'));
+            const all = snap.exists()
+              ? Object.entries(snap.val())
+                  .map(([id, v]) => ({ id, ...v }))
+                  .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0))
+              : [];
+            MD_fullList = all;
+            totalFileCount = all.length;
+            totalStorageBytes = all.reduce((sum, f) => sum + (f.size || 0), 0);
+            MD_allFiles = all.slice(0, PAGE_SIZE);
+            hasMore = all.length > PAGE_SIZE;
             MD_renderList();
           } catch(e) {
             fileList.innerHTML = `<div class="lib-empty"><span>⚠️</span>Could not load files.</div>`;
@@ -2729,17 +2728,15 @@
         }
 
         async function MD_loadMore() {
-          if (!hasMore || isLoadingMore || !lastDoc) return;
+          if (!hasMore || isLoadingMore) return;
           isLoadingMore = true;
           try {
-            const snap = await getDocs(query(collection(db, 'media'), orderBy('createdAt', 'desc'), startAfter(lastDoc), limit(PAGE_SIZE)));
-            const newFiles = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-            MD_allFiles = [...MD_allFiles, ...newFiles];
-            lastDoc = snap.docs[snap.docs.length - 1] || lastDoc;
-            hasMore = snap.docs.length === PAGE_SIZE;
+            const nextSlice = MD_fullList.slice(MD_allFiles.length, MD_allFiles.length + PAGE_SIZE);
+            MD_allFiles = [...MD_allFiles, ...nextSlice];
+            hasMore = MD_allFiles.length < MD_fullList.length;
             // append only new items — do not replace entire list
             const frag = document.createDocumentFragment();
-            newFiles.forEach(f => {
+            nextSlice.forEach(f => {
               const tmp = document.createElement('div');
               tmp.innerHTML = MD_renderItem(f);
               frag.appendChild(tmp.firstElementChild);
@@ -2809,13 +2806,14 @@
                 }).catch(e => console.warn('R2 delete error:', e));
               } catch(e) { console.warn('R2 delete error:', e); }
             }
-            deleteDoc(doc(db, 'media', id)).then(() => {
+            remove(ref(db, 'media/' + id)).then(() => {
               const deleted = MD_allFiles.find(f => f.id === id);
               if (deleted) {
                 totalStorageBytes = Math.max(0, totalStorageBytes - (deleted.size || 0));
                 totalFileCount = Math.max(0, totalFileCount - 1);
               }
               MD_allFiles = MD_allFiles.filter(f => f.id !== id);
+              MD_fullList = MD_fullList.filter(f => f.id !== id);
               showToast('🗑 File deleted');
               MD_renderList();
             }).catch(e => console.error(e));
@@ -2832,9 +2830,11 @@
           const save = async () => {
             const newName = input.value.trim() || currentName;
             try {
-              await updateDoc(doc(db, 'media', id), { name: newName });
+              await update(ref(db, 'media/' + id), { name: newName });
               const f = MD_allFiles.find(f => f.id === id);
               if (f) f.name = newName;
+              const f2 = MD_fullList.find(f => f.id === id);
+              if (f2) f2.name = newName;
             } catch(e) { console.error(e); }
             MD_renderList();
           };
@@ -2865,18 +2865,14 @@
             MD_loadLibrary();
             return;
           }
-          // query exists — debounce and fetch all files
-          _mdSearchTimer = setTimeout(async () => {
+          // query exists — debounce and switch to full unpaginated list
+          _mdSearchTimer = setTimeout(() => {
             fileList.innerHTML = '';
-            MD_showSkeletons();
-            try {
-              const allSnap = await getDocs(query(collection(db, 'media'), orderBy('createdAt', 'desc')));
-              MD_allFiles = allSnap.docs.map(d => ({ id: d.id, ...d.data() }));
-              hasMore = false; // disable infinite scroll in search mode
-              const loader = document.getElementById('md-scrollLoader');
-              if (loader) loader.style.display = 'none';
-              MD_renderList();
-            } catch(e) { console.error(e); }
+            MD_allFiles = MD_fullList;
+            hasMore = false; // disable infinite scroll in search mode
+            const loader = document.getElementById('md-scrollLoader');
+            if (loader) loader.style.display = 'none';
+            MD_renderList();
           }, 350);
         });
         searchClear.addEventListener('click', () => {
