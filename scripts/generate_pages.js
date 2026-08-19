@@ -120,7 +120,6 @@ function renderAuthorBookCard(book) {
 
 // Template load
 const layout = fs.readFileSync('components/layout.html', 'utf8');
-const bookTemplate = fs.readFileSync('components/book.html', 'utf8');
 
 // Common book-card design — index/books/author/category/search সবগুলো পেজেই
 // একই কার্ড ডিজাইন ব্যবহার হয়, তাই CSS একবারই এখানে লোড হয় এবং প্রতিটা
@@ -129,6 +128,36 @@ const bookTemplate = fs.readFileSync('components/book.html', 'utf8');
 const bookCardStyles = fs.readFileSync('components/book-card1.html', 'utf8');
 function injectBookCardStyles(html) {
   return html.split('{{book_card_styles}}').join(bookCardStyles);
+}
+
+const bookTemplate = injectBookCardStyles(fs.readFileSync('components/book.html', 'utf8'));
+
+// সম্পর্কিত বই: একই লেখকের বই আগে, তারপর একই ক্যাটাগরির বই দিয়ে ফাঁকা স্লট
+// পূরণ করে মোট সর্বোচ্চ ১২টা বই দেখানো হয় (বর্তমান বইটা বাদে, ডুপ্লিকেট বাদে)।
+function getRelatedBooks(book, bookList) {
+  const sameAuthor = book.author_slug
+    ? bookList.filter((b) => b.slug !== book.slug && b.author_slug === book.author_slug)
+    : [];
+  const usedSlugs = new Set(sameAuthor.map((b) => b.slug));
+  const sameCategory = book.category_slug
+    ? bookList.filter((b) => b.slug !== book.slug && b.category_slug === book.category_slug && !usedSlugs.has(b.slug))
+    : [];
+  return sameAuthor.concat(sameCategory).slice(0, 12);
+}
+
+// উপরের getRelatedBooks() দিয়ে পাওয়া বইগুলো থেকে পুরো "সম্পর্কিত বই" কার্ড
+// (heading + bc-list grid) build time-এই HTML হিসেবে বানানো হয়। কোনো
+// related বই না পেলে খালি স্ট্রিং রিটার্ন করে — তখন কার্ডটাই পেজে দেখা যায় না।
+function renderRelatedBooksSection(book, bookList) {
+  const related = getRelatedBooks(book, bookList);
+  if (related.length === 0) return '';
+  const cardsHtml = related.map(renderAuthorBookCard).join('');
+  return (
+    `<div class="book-related-card">` +
+    `<h2 class="book-desc-heading">সম্পর্কিত বই</h2>` +
+    `<div class="bc-list">${cardsHtml}</div>` +
+    `</div>`
+  );
 }
 
 // Placeholder replace helper
@@ -285,6 +314,7 @@ async function generateBookPages() {
       book_download_href: `/download/${book.slug}.html`,
       book_download_disabled: '',
       book_download_aria_disabled: 'false',
+      related_books_section: renderRelatedBooksSection(book, bookList),
     });
 
     const { hero_categories, sidebar_authors } = buildSidebarHTML(bookList, authorsRaw, categoriesRaw);
