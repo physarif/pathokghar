@@ -542,6 +542,119 @@
             <div id="book-description-mobile" class="prose-book"></div>
         </div>
 
+        <!-- সম্পর্কিত বই: একই লেখক ও ক্যাটাগরির বই — build time-এই HTML
+             হিসেবে বসানো হয় (author-page-এর মতো), crawler প্রথম লোডেই এই
+             ইন্টারনাল লিংকগুলো পায়। কোনো related বই না থাকলে placeholder
+             খালি স্ট্রিং হয়ে যায়, তাই সেক্ষেত্রে কার্ডটাই দেখা যায় না। -->
+        <!-- components/book-card1.html — সব পেজে (index, books, author, category, search)
+     ব্যবহৃত common book-card design। generate_pages.js এই ফাইলটা একবার লোড করে
+     প্রতিটা টেমপ্লেটের  placeholder-এ বসিয়ে দেয়।
+     ডিজাইন পরিবর্তন করতে চাইলে শুধু এই ফাইলটা এডিট করলেই সব জায়গায় reflect হবে।
+     ডিজাইন: Editorial variant — layout.html-এর সাথে মিল রেখে day/light পাঠক ঘর
+     palette (#F0F3F8 page bg, #ffffff card surface, #1f2937 টেক্সট, #0B57CF accent)। -->
+<style>
+  /* List container */
+  .bc-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 0.7rem;
+  }
+  @media (min-width: 768px) {
+    .bc-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.7rem;
+      padding: 0;
+    }
+  }
+
+  /* Book card */
+  .bc-card {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
+    text-decoration: none;
+    padding: 1rem 1.1rem;
+    transition: background 0.15s, border-color 0.15s;
+    background: #ffffff;
+    border-radius: 5px;
+  }
+  .bc-card:hover { background: #C2D7FC; }
+
+  /* Cover — left side, fixed size 2:3 ratio */
+  .bc-img-wrap {
+    flex-shrink: 0;
+    width: 4.5rem;
+    aspect-ratio: 2/3;
+    overflow: hidden;
+    background: #e5e7eb;
+    border-radius: 5px;
+  }
+  @media (min-width: 768px) { .bc-img-wrap { width: 5.5rem; } }
+
+  .bc-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Right side text */
+  .bc-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  /* Headline: title – author একসাথে */
+  .bc-headline {
+    font-size: 1.05rem;
+    line-height: 1.4;
+    margin: 0 0 0.35rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .bc-title {
+    font-weight: 600;
+    color: #1f2937;
+  }
+  .bc-card:hover .bc-title { text-decoration: none; }
+
+  /* Description */
+  .bc-desc {
+    margin-top: 0.1rem;
+    font-size: 0.88rem;
+    color: #6b7280;
+    line-height: 1.5;
+    text-align: justify;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
+
+<!--
+  Book card HTML template (reference — generate_pages.js এ ব্যবহার হয়):
+  <a href="/book/kobi.html" class="bc-card">
+    <div class="bc-img-wrap">
+      <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783081600897_bq24wwr9x.png" alt="কবি" class="bc-img" loading="lazy">
+    </div>
+    <div class="bc-body">
+      <p class="bc-headline"><span class="bc-title">কবি</span></p>
+      <p class="bc-desc"></p>
+    </div>
+  </a>
+-->
+
+        <div class="book-related-card"><h2 class="book-desc-heading">সম্পর্কিত বই</h2><div class="bc-list"><a href="/book/gonodebota-tara.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783168187181_s8e55ae0cwo.jpg" alt="গণদেবতা বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">গণদেবতা</span></p></div></a><a href="/book/char-odhay.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783232187458_yb1t30983ch.png" alt="চার অধ্যায় বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">চার অধ্যায়</span></p></div></a><a href="/book/orokkhoniya.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783084335950_ku1k3y7c3uk.png" alt="অরক্ষণীয়া বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">অরক্ষণীয়া</span></p></div></a><a href="/book/kahake.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1786931196244_dpquki838qn.png" alt="কাহাকে বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">কাহাকে</span></p></div></a><a href="/book/hajar-bosor-dhore.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783053326379_lnhgchbx0q.png" alt="হাজার বছর ধরে বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">হাজার বছর ধরে</span></p></div></a><a href="/book/alaler-ghorer-dulal-peary-chanf.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1785270085282_1w9boclc6oy.png" alt="আলালের ঘরের দুলাল বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">আলালের ঘরের দুলাল</span></p></div></a><a href="/book/jaoa-asa-guho.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783176220498_63040ektkn4.png" alt="যাওয়া–আসা বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">যাওয়া–আসা</span></p></div></a><a href="/book/choritrohin.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783107243492_9gsvempsqki.webp" alt="চরিত্রহীন বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">চরিত্রহীন</span></p></div></a><a href="/book/robindronath-ekhane-kokhono-khete-ashen-ni.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782977041430_l1pre033xs.png" alt="রবীন্দ্রনাথ এখানে কখনো খেতে আসেন নি বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">রবীন্দ্রনাথ এখানে কখনো খেতে আসেন নি</span></p></div></a><a href="/book/chobutora-guha.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783173886296_qe2mhzef1v.png" alt="চবুতরা বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">চবুতরা</span></p></div></a><a href="/book/pother-dabi-sorot.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783153655758_3s7bhn10u2d.png" alt="পথের দাবী বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">পথের দাবী</span></p></div></a><a href="/book/chondronath.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783108446507_wxb7ueyqio.webp" alt="চন্দ্রনাথ বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">চন্দ্রনাথ</span></p></div></a></div></div>
+
         <!-- Structured data: Google-কে বইয়ের নাম, লেখক, কভার স্পষ্টভাবে বুঝিয়ে
              দেয়, rich snippet পাওয়ার সম্ভাবনা বাড়ায় -->
         <script type="application/ld+json">
@@ -702,6 +815,14 @@
                 margin: 0 0 0.75rem;
                 padding-bottom: 0.6rem;
                 border-bottom: 1px solid #e5e7eb;
+            }
+
+            /* ── Related Books Card ── */
+            .book-related-card {
+                background: #ffffff;
+                border-radius: 5px;
+                padding: 1.1rem 1.25rem 1.3rem;
+                margin-top: 0.65rem;
             }
         </style>
 
