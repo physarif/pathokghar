@@ -536,10 +536,14 @@
             </div>
         </div>
 
-        <!-- Description: hero কার্ড থেকে আলাদা, নিজস্ব কার্ডে নিচে -->
+        <!-- Description: hero কার্ড থেকে আলাদা, নিজস্ব কার্ডে নিচে। মার্কডাউন
+             build time-এই HTML-এ parse হয়ে বসে (author.html-এর bio-র মতোই) —
+             ক্লায়েন্ট-সাইড marked.js/innerHTML লাগে না, তাই প্রথম লোডেই টেক্সট
+             দেখা যায় (আগে খালি div ছিল, JS চলার পর ভরত — layout shift হতো)। -->
         <div class="book-desc-card">
             <h2 class="book-desc-heading">বইয়ের বিবরণ</h2>
-            <div id="book-description-mobile" class="prose-book"></div>
+            <div id="book-description-mobile" class="prose-book"><p>রূপসী বাংলা বাংলা ভাষার অন্যতম প্রধান কবি জীবনানন্দ দাশের সর্বাধিক জনপ্রিয় কাব্যগ্রন্থ। এটি তাঁর সপ্তম কাব্যগ্রন্থ। কবি জীবদ্দশায় এ গ্রন্থটি বা এর অন্তর্ভুক্ত কোন কবিতা প্রকাশ করেন নি। ১৯৫৪ খ্রিষ্টাব্দে দুঘর্টনায় অকালমৃত্যুর পর এর পাণ্ডুলিপির খাতাটি আবিষ্কৃত হয়। কবি এ গ্রন্থটির প্রচ্ছদনাম নির্বাচন করেছিলেন বাংলার ত্রস্ত নীলিমা। জীবনানন্দ কেন স্বীয় জীবদ্দশায় এ কাব্যগন্থটি প্রকাশ করেননি তা অদ্যাবধি এক পরম বিস্ময় হয়ে আছে। বাংলাদেশের মুক্তিযুদ্ধে এ কাব্যের কবিতাগুলি বাঙালিদের বিশেষভাবে অনুপ্রেরণা যুগিয়েছিল।</p>
+</div>
         </div>
 
         <!-- সম্পর্কিত বই: একই লেখক ও ক্যাটাগরির বই — build time-এই HTML
@@ -672,34 +676,6 @@
             "description": "রূপসী বাংলা বাংলা ভাষার অন্যতম প্রধান কবি জীবনানন্দ দাশের সর্বাধিক জনপ্রিয় কাব্যগ্রন্থ। এটি তাঁর সপ্তম কাব্যগ্রন্থ। কবি জীবদ্দশায় এ গ্রন্থটি বা এর অন্তর্ভুক্ত কোন কবিতা প্রকাশ করেন নি। ১৯৫৪ খ্রিষ্টাব্দে দুঘর্টনায় অকালমৃত্যুর পর এর পাণ্ডুলিপির খাতাটি আবিষ্কৃত হয়। কবি এ গ্রন্থটির প্রচ্ছদনাম নির্বা",
             "inLanguage": "bn"
         }
-        </script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
-        <script>
-            const raw = ;
-
-            marked.setOptions({
-                breaks: true,
-                gfm: true,
-            });
-
-            // বইয়ের বর্ণনায় কেউ "# হেডিং" লিখলে সেটা যেন আসল <h1>/<h2> না
-            // হয় — পেজের একমাত্র H1 তো বইয়ের নাম (উপরে)। heading level ২
-            // ধাপ নামিয়ে দেওয়া হচ্ছে। renderer.heading override marked 9.x-এ
-            // সঠিকভাবে কাজ করছিল না (ভুল সাইজ/লেভেল দেখাচ্ছিল), তাই এখন
-            // walkTokens দিয়ে সরাসরি token.depth পরিবর্তন করা হচ্ছে — এটা
-            // marked-এর ভার্সন-নির্বিশেষে নির্ভরযোগ্য।
-            marked.use({
-                walkTokens(token) {
-                    if (token.type === 'heading') {
-                        token.depth = Math.min(token.depth + 2, 6);
-                    }
-                }
-            });
-
-            const parsed = marked.parse(raw);
-            const mobileEl = document.getElementById('book-description-mobile');
-            if (mobileEl) mobileEl.innerHTML = parsed;
         </script>
 
         <style>

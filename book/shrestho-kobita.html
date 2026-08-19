@@ -536,10 +536,14 @@
             </div>
         </div>
 
-        <!-- Description: hero কার্ড থেকে আলাদা, নিজস্ব কার্ডে নিচে -->
+        <!-- Description: hero কার্ড থেকে আলাদা, নিজস্ব কার্ডে নিচে। মার্কডাউন
+             build time-এই HTML-এ parse হয়ে বসে (author.html-এর bio-র মতোই) —
+             ক্লায়েন্ট-সাইড marked.js/innerHTML লাগে না, তাই প্রথম লোডেই টেক্সট
+             দেখা যায় (আগে খালি div ছিল, JS চলার পর ভরত — layout shift হতো)। -->
         <div class="book-desc-card">
             <h2 class="book-desc-heading">বইয়ের বিবরণ</h2>
-            <div id="book-description-mobile" class="prose-book"></div>
+            <div id="book-description-mobile" class="prose-book"><p>ভালো কবিতা যাচাই করবার বিশেষ শক্তি সংকলকের থাকলেও আদি নির্বাচন অনেক সময়ই কবির মৃত্যুর পরে খাঁটি সংকলনে গিয়া দাঁড়াবার সুযোগ পায়। কিন্তু কোনো-কোনো সংকলনে প্রথম থেকেই যথেষ্ট নির্ভুল চেতনার প্রয়োগ দেখা যায়। পাঠকের সঙ্গে বিশেষভাবে যোগ-স্থাপনের দিক দিয়ে এ-ধরনের প্রাথমিক সংকলনের মূল্য আমাদের দেশেও লেখক পাঠক ও প্রকাশকদের কাছে ক্রমেই বেশি স্বীকৃত হচ্ছে হয়তো। যিনি কবিতা লেখা ছেড়ে দেননি তাঁর কবিতার এ-রকম সংগ্রহ থেকে পাঠক ও সমালোচক এ-কাব্যের যথেষ্ট সংগত পরিচয় পেতে পারেন ; যদিও শেষ পরিচয়লাভ সমসাময়িকদের পক্ষে নানা কারণেই দুঃসাধ্য।</p>
+</div>
         </div>
 
         <!-- সম্পর্কিত বই: একই লেখক ও ক্যাটাগরির বই — build time-এই HTML
@@ -672,34 +676,6 @@
             "description": "ভালো কবিতা যাচাই করবার বিশেষ শক্তি সংকলকের থাকলেও আদি নির্বাচন অনেক সময়ই কবির মৃত্যুর পরে খাঁটি সংকলনে গিয়া দাঁড়াবার সুযোগ পায়। কিন্তু কোনো-কোনো সংকলনে প্রথম থেকেই যথেষ্ট নির্ভুল চেতনার প্রয়োগ দেখা যায়। পাঠকের সঙ্গে বিশেষভাবে যোগ-স্থাপনের দিক দিয়ে এ-ধরনের প্রাথমিক সংকলনের মূল্য আমাদের দেশেও ল",
             "inLanguage": "bn"
         }
-        </script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
-        <script>
-            const raw = ;
-
-            marked.setOptions({
-                breaks: true,
-                gfm: true,
-            });
-
-            // বইয়ের বর্ণনায় কেউ "# হেডিং" লিখলে সেটা যেন আসল <h1>/<h2> না
-            // হয় — পেজের একমাত্র H1 তো বইয়ের নাম (উপরে)। heading level ২
-            // ধাপ নামিয়ে দেওয়া হচ্ছে। renderer.heading override marked 9.x-এ
-            // সঠিকভাবে কাজ করছিল না (ভুল সাইজ/লেভেল দেখাচ্ছিল), তাই এখন
-            // walkTokens দিয়ে সরাসরি token.depth পরিবর্তন করা হচ্ছে — এটা
-            // marked-এর ভার্সন-নির্বিশেষে নির্ভরযোগ্য।
-            marked.use({
-                walkTokens(token) {
-                    if (token.type === 'heading') {
-                        token.depth = Math.min(token.depth + 2, 6);
-                    }
-                }
-            });
-
-            const parsed = marked.parse(raw);
-            const mobileEl = document.getElementById('book-description-mobile');
-            if (mobileEl) mobileEl.innerHTML = parsed;
         </script>
 
         <style>

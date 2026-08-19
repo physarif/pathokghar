@@ -536,10 +536,14 @@
             </div>
         </div>
 
-        <!-- Description: hero কার্ড থেকে আলাদা, নিজস্ব কার্ডে নিচে -->
+        <!-- Description: hero কার্ড থেকে আলাদা, নিজস্ব কার্ডে নিচে। মার্কডাউন
+             build time-এই HTML-এ parse হয়ে বসে (author.html-এর bio-র মতোই) —
+             ক্লায়েন্ট-সাইড marked.js/innerHTML লাগে না, তাই প্রথম লোডেই টেক্সট
+             দেখা যায় (আগে খালি div ছিল, JS চলার পর ভরত — layout shift হতো)। -->
         <div class="book-desc-card">
             <h2 class="book-desc-heading">বইয়ের বিবরণ</h2>
-            <div id="book-description-mobile" class="prose-book"></div>
+            <div id="book-description-mobile" class="prose-book"><p>হিমু সিরিজের সবচেয়ে জনপ্রিয় ও আবেগঘন উপন্যাসগুলোর একটি ‘হিমুর হাতে কয়েকটি নীলপদ্ম’। এই বইটিতে হিমুর চিরচেনা রহস্যময় ও খামখেয়ালি রূপের পাশাপাশি তার ভেতরের এক অদ্ভুত মানবিক ও সংবেদনশীল দিক উন্মোচিত হয়েছে। কাহিনীর পরতে পরতে ছড়িয়ে থাকা তীব্র কৌতূহল, চমৎকার হিউমার এবং নিখুঁত সংলাপ পাঠককে শুরু থেকে শেষ পর্যন্ত মলাটবন্দী করে রাখে। হলুদ পাঞ্জাবি পরা এই ছন্নছাড়া যুবকের যুক্তিহীন দর্শনের আড়ালে যে গভীর জীবনবোধ লুকিয়ে থাকে, তা এই উপন্যাসে খুব সূক্ষ্মভাবে ফুটিয়ে তুলেছেন হুমায়ূন আহমেদ। বইটির শেষদিকের কিছু দৃশ্য এবং নীলপদ্মের প্রতীকী আবেদন পাঠকের মনে এক অদ্ভুত মুগ্ধতা আর একাকীত্বের হাহাকার সৃষ্টি করে, যা বই শেষ করার পরও দীর্ঘক্ষণ তাড়া করে বেড়ায়।</p>
+</div>
         </div>
 
         <!-- সম্পর্কিত বই: একই লেখক ও ক্যাটাগরির বই — build time-এই HTML
@@ -674,34 +678,6 @@
             "description": "হিমু সিরিজের সবচেয়ে জনপ্রিয় ও আবেগঘন উপন্যাসগুলোর একটি ‘হিমুর হাতে কয়েকটি নীলপদ্ম’। এই বইটিতে হিমুর চিরচেনা রহস্যময় ও খামখেয়ালি রূপের পাশাপাশি তার ভেতরের এক অদ্ভুত মানবিক ও সংবেদনশীল দিক উন্মোচিত হয়েছে। কাহিনীর পরতে পরতে ছড়িয়ে থাকা তীব্র কৌতূহল, চমৎকার হিউমার এবং নিখুঁত সংলাপ পাঠককে শুরু থেকে শেষ প",
             "inLanguage": "bn"
         }
-        </script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
-        <script>
-            const raw = ;
-
-            marked.setOptions({
-                breaks: true,
-                gfm: true,
-            });
-
-            // বইয়ের বর্ণনায় কেউ "# হেডিং" লিখলে সেটা যেন আসল <h1>/<h2> না
-            // হয় — পেজের একমাত্র H1 তো বইয়ের নাম (উপরে)। heading level ২
-            // ধাপ নামিয়ে দেওয়া হচ্ছে। renderer.heading override marked 9.x-এ
-            // সঠিকভাবে কাজ করছিল না (ভুল সাইজ/লেভেল দেখাচ্ছিল), তাই এখন
-            // walkTokens দিয়ে সরাসরি token.depth পরিবর্তন করা হচ্ছে — এটা
-            // marked-এর ভার্সন-নির্বিশেষে নির্ভরযোগ্য।
-            marked.use({
-                walkTokens(token) {
-                    if (token.type === 'heading') {
-                        token.depth = Math.min(token.depth + 2, 6);
-                    }
-                }
-            });
-
-            const parsed = marked.parse(raw);
-            const mobileEl = document.getElementById('book-description-mobile');
-            if (mobileEl) mobileEl.innerHTML = parsed;
         </script>
 
         <style>
