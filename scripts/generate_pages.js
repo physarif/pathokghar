@@ -122,15 +122,23 @@ function renderAuthorBookCard(book) {
 const layout = fs.readFileSync('components/layout.html', 'utf8');
 
 // Common book-card design — index/books/author/category/search সবগুলো পেজেই
-// একই কার্ড ডিজাইন ব্যবহার হয়, তাই CSS একবারই এখানে লোড হয় এবং প্রতিটা
-// টেমপ্লেটে {{book_card_styles}} placeholder এর জায়গায় বসে। ডিজাইন পরিবর্তন
-// করতে চাইলে শুধু components/book-card1.html এডিট করলেই সব জায়গায় reflect হবে।
-const bookCardStyles = fs.readFileSync('components/book-card1.html', 'utf8');
+// একই কার্ড ডিজাইন ব্যবহার হয়, তাই CSS একবারই এখানে লোড হয় (raw .css ফাইল, তাই
+// <style> ট্যাগে মুড়ে) এবং প্রতিটা টেমপ্লেটে {{book_card_styles}} placeholder এর
+// জায়গায় বসে। ডিজাইন পরিবর্তন করতে চাইলে শুধু components/book-card-list.css
+// এডিট করলেই সব জায়গায় reflect হবে।
+const bookCardStyles = `<style>\n${fs.readFileSync('components/book-card-list.css', 'utf8')}</style>`;
 function injectBookCardStyles(html) {
   return html.split('{{book_card_styles}}').join(bookCardStyles);
 }
 
-const bookTemplate = injectBookCardStyles(fs.readFileSync('components/book.html', 'utf8'));
+// book.html-এর "সম্পর্কিত বই" সেকশনের জন্য আলাদা compact GRID কার্ড ডিজাইন —
+// একসাথে ১২টা বই দেখাতে হয় বলে list-এর বদলে grid বেশি উপযোগী।
+const bookCardGridStyles = `<style>\n${fs.readFileSync('components/book-card-grid.css', 'utf8')}</style>`;
+function injectBookCardGridStyles(html) {
+  return html.split('{{book_card_grid_styles}}').join(bookCardGridStyles);
+}
+
+const bookTemplate = injectBookCardGridStyles(fs.readFileSync('components/book.html', 'utf8'));
 
 // সম্পর্কিত বই: একই লেখকের বই আগে, তারপর একই ক্যাটাগরির বই দিয়ে ফাঁকা স্লট
 // পূরণ করে মোট সর্বোচ্চ ১২টা বই দেখানো হয় (বর্তমান বইটা বাদে, ডুপ্লিকেট বাদে)।
@@ -145,17 +153,28 @@ function getRelatedBooks(book, bookList) {
   return sameAuthor.concat(sameCategory).slice(0, 12);
 }
 
+// সম্পর্কিত বইয়ের একটা কার্ড — compact grid ডিজাইন (কভার + শিরোনাম, বিবরণ ছাড়া)
+function renderRelatedBookCard(book) {
+  const title = escapeHtml(book.title || '');
+  return (
+    `<a href="/book/${book.slug}.html" class="bcg-card">` +
+    `<div class="bcg-img-wrap"><img src="${book.cover}" alt="${title} বই কভার" class="bcg-img" loading="lazy"></div>` +
+    `<p class="bcg-title">${title}</p>` +
+    `</a>`
+  );
+}
+
 // উপরের getRelatedBooks() দিয়ে পাওয়া বইগুলো থেকে পুরো "সম্পর্কিত বই" কার্ড
-// (heading + bc-list grid) build time-এই HTML হিসেবে বানানো হয়। কোনো
+// (heading + bcg-list grid) build time-এই HTML হিসেবে বানানো হয়। কোনো
 // related বই না পেলে খালি স্ট্রিং রিটার্ন করে — তখন কার্ডটাই পেজে দেখা যায় না।
 function renderRelatedBooksSection(book, bookList) {
   const related = getRelatedBooks(book, bookList);
   if (related.length === 0) return '';
-  const cardsHtml = related.map(renderAuthorBookCard).join('');
+  const cardsHtml = related.map(renderRelatedBookCard).join('');
   return (
     `<div class="book-related-card">` +
     `<h2 class="book-desc-heading">সম্পর্কিত বই</h2>` +
-    `<div class="bc-list">${cardsHtml}</div>` +
+    `<div class="bcg-list">${cardsHtml}</div>` +
     `</div>`
   );
 }
