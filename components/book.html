@@ -45,8 +45,8 @@
         <!-- সম্পর্কিত বই: একই লেখক ও ক্যাটাগরির বই — build time-এই HTML
              হিসেবে বসানো হয় (author-page-এর মতো), crawler প্রথম লোডেই এই
              ইন্টারনাল লিংকগুলো পায়। কোনো related বই না থাকলে placeholder
-             খালি স্ট্রিং হয়ে যায়, তাই সেক্ষেত্রে কার্ডটাই দেখা যায় না। -->
-        {{book_card_grid_styles}}
+             খালি স্ট্রিং হয়ে যায়, তাই সেক্ষেত্রে সেকশনটাই দেখা যায় না। -->
+        {{book_card_styles}}
         {{related_books_section}}
 
         <!-- Structured data: Google-কে বইয়ের নাম, লেখক, কভার স্পষ্টভাবে বুঝিয়ে
@@ -211,12 +211,35 @@
                 border-bottom: 1px solid #e5e7eb;
             }
 
-            /* ── Related Books Card ── */
-            .book-related-card {
-                background: #ffffff;
-                border-radius: 5px;
-                padding: 1.1rem 1.25rem 1.3rem;
-                margin-top: 0.65rem;
+            /* ── Related Books: white card নয়, শুধু লেবেল + লাইন দিয়ে
+                 আলাদা করা — page background-এর সাথে মিশে থাকে ── */
+            .book-related-section {
+                margin-top: 0.9rem;
+                padding: 0 0.15rem;
+            }
+            .related-label {
+                display: flex;
+                align-items: center;
+                gap: 0.7rem;
+                margin-bottom: 0.7rem;
+            }
+            .related-label-text {
+                font-family: 'Noto Serif Bengali', serif;
+                font-size: 0.92rem;
+                font-weight: 800;
+                color: #1f2937;
+                white-space: nowrap;
+            }
+            .related-label-line {
+                flex: 1 1 auto;
+                height: 1px;
+                background: repeating-linear-gradient(
+                    to right,
+                    #c7cdd6 0,
+                    #c7cdd6 5px,
+                    transparent 5px,
+                    transparent 9px
+                );
             }
         </style>
 
