@@ -546,114 +546,81 @@
              হিসেবে বসানো হয় (author-page-এর মতো), crawler প্রথম লোডেই এই
              ইন্টারনাল লিংকগুলো পায়। কোনো related বই না থাকলে placeholder
              খালি স্ট্রিং হয়ে যায়, তাই সেক্ষেত্রে কার্ডটাই দেখা যায় না। -->
-        <!-- components/book-card1.html — সব পেজে (index, books, author, category, search)
-     ব্যবহৃত common book-card design। generate_pages.js এই ফাইলটা একবার লোড করে
-     প্রতিটা টেমপ্লেটের  placeholder-এ বসিয়ে দেয়।
-     ডিজাইন পরিবর্তন করতে চাইলে শুধু এই ফাইলটা এডিট করলেই সব জায়গায় reflect হবে।
-     ডিজাইন: Editorial variant — layout.html-এর সাথে মিল রেখে day/light পাঠক ঘর
-     palette (#F0F3F8 page bg, #ffffff card surface, #1f2937 টেক্সট, #0B57CF accent)। -->
-<style>
-  /* List container */
-  .bc-list {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    gap: 0.7rem;
-  }
-  @media (min-width: 768px) {
-    .bc-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.7rem;
-      padding: 0;
-    }
-  }
+        <style>
+/* components/book-card-grid.css — book.html-এর "সম্পর্কিত বই" সেকশনে ব্যবহৃত
+   compact GRID book-card design। book-card-list.css-এর মতোই generate_pages.js
+   একবার লোড করে <style> ট্যাগে মুড়ে  placeholder-এ
+   বসিয়ে দেয়। একসাথে ১২টা বই দেখাতে হয় বলে list-এর বদলে cover-প্রধান grid —
+   কভার বড়, শিরোনাম ২ লাইনে, বিবরণ ছাড়া। একই palette (#ffffff card surface,
+   #1f2937 টেক্সট, #C2D7FC hover) — book-card-list.css-এর সাথে ভিজ্যুয়ালি মিল রেখে। */
 
-  /* Book card */
-  .bc-card {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    align-items: flex-start;
-    text-decoration: none;
-    padding: 1rem 1.1rem;
-    transition: background 0.15s, border-color 0.15s;
-    background: #ffffff;
-    border-radius: 5px;
-  }
-  .bc-card:hover { background: #C2D7FC; }
+/* Grid container */
+.bcg-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.9rem 0.7rem;
+}
+@media (min-width: 640px) {
+  .bcg-list { grid-template-columns: repeat(4, 1fr); }
+}
+@media (min-width: 1024px) {
+  .bcg-list { grid-template-columns: repeat(6, 1fr); gap: 1rem 0.85rem; }
+}
 
-  /* Cover — left side, fixed size 2:3 ratio */
-  .bc-img-wrap {
-    flex-shrink: 0;
-    width: 4.5rem;
-    aspect-ratio: 2/3;
-    overflow: hidden;
-    background: #e5e7eb;
-    border-radius: 5px;
-  }
-  @media (min-width: 768px) { .bc-img-wrap { width: 5.5rem; } }
+/* Book card */
+.bcg-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.bcg-card:hover { background: #C2D7FC; }
 
-  .bc-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+/* Cover — top, fixed 2:3 ratio, card-এর মূল ভিজ্যুয়াল অ্যাংকর */
+.bcg-img-wrap {
+  aspect-ratio: 2/3;
+  overflow: hidden;
+  background: #e5e7eb;
+  border-radius: 5px;
+  box-shadow: 0 6px 14px rgba(17,24,39,0.12);
+  margin-bottom: 0.5rem;
+}
 
-  /* Right side text */
-  .bc-body {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
-  }
+.bcg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.2s ease;
+}
+.bcg-card:hover .bcg-img { transform: scale(1.03); }
 
-  /* Headline: title – author একসাথে */
-  .bc-headline {
-    font-size: 1.05rem;
-    line-height: 1.4;
-    margin: 0 0 0.35rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .bc-title {
-    font-weight: 600;
-    color: #1f2937;
-  }
-  .bc-card:hover .bc-title { text-decoration: none; }
+/* Title — কভারের নিচে, ২ লাইন পর্যন্ত */
+.bcg-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #1f2937;
+  padding: 0 0.15rem;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
-  /* Description */
-  .bc-desc {
-    margin-top: 0.1rem;
-    font-size: 0.88rem;
-    color: #6b7280;
-    line-height: 1.5;
-    text-align: justify;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-</style>
-
-<!--
+/*
   Book card HTML template (reference — generate_pages.js এ ব্যবহার হয়):
-  <a href="/book/mibar-gourob-kotha.html" class="bc-card">
-    <div class="bc-img-wrap">
-      <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1786929028664_wyrgy1qh1ef.png" alt="মিবার গৌরব কথা" class="bc-img" loading="lazy">
+  <a href="/book/mibar-gourob-kotha.html" class="bcg-card">
+    <div class="bcg-img-wrap">
+      <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1786929028664_wyrgy1qh1ef.png" alt="মিবার গৌরব কথা" class="bcg-img" loading="lazy">
     </div>
-    <div class="bc-body">
-      <p class="bc-headline"><span class="bc-title">মিবার গৌরব কথা</span></p>
-      <p class="bc-desc"></p>
-    </div>
+    <p class="bcg-title">মিবার গৌরব কথা</p>
   </a>
--->
-
-        <div class="book-related-card"><h2 class="book-desc-heading">সম্পর্কিত বই</h2><div class="bc-list"><a href="/book/sapiens.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782801234594_gk2g1puuc3f.jpg" alt="সেপিয়ান্স: মানুষের ইতিহাস বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">সেপিয়ান্স: মানুষের ইতিহাস</span></p></div></a><a href="/book/hyaro-glifer-deshe.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782121390866_v3a354vbap.webp" alt="হায়ারোগ্লিফের দেশে বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">হায়ারোগ্লিফের দেশে</span></p></div></a></div></div>
+*/
+</style>
+        <div class="book-related-card"><h2 class="book-desc-heading">সম্পর্কিত বই</h2><div class="bcg-list"><a href="/book/sapiens.html" class="bcg-card"><div class="bcg-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782801234594_gk2g1puuc3f.jpg" alt="সেপিয়ান্স: মানুষের ইতিহাস বই কভার" class="bcg-img" loading="lazy"></div><p class="bcg-title">সেপিয়ান্স: মানুষের ইতিহাস</p></a><a href="/book/hyaro-glifer-deshe.html" class="bcg-card"><div class="bcg-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782121390866_v3a354vbap.webp" alt="হায়ারোগ্লিফের দেশে বই কভার" class="bcg-img" loading="lazy"></div><p class="bcg-title">হায়ারোগ্লিফের দেশে</p></a></div></div>
 
         <!-- Structured data: Google-কে বইয়ের নাম, লেখক, কভার স্পষ্টভাবে বুঝিয়ে
              দেয়, rich snippet পাওয়ার সম্ভাবনা বাড়ায় -->

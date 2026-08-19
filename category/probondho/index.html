@@ -575,101 +575,101 @@
 
 </div><!-- /md:px-8 lg:px-16 -->
 
-<!-- components/book-card1.html — সব পেজে (index, books, author, category, search)
-     ব্যবহৃত common book-card design। generate_pages.js এই ফাইলটা একবার লোড করে
-     প্রতিটা টেমপ্লেটের  placeholder-এ বসিয়ে দেয়।
-     ডিজাইন পরিবর্তন করতে চাইলে শুধু এই ফাইলটা এডিট করলেই সব জায়গায় reflect হবে।
-     ডিজাইন: Editorial variant — layout.html-এর সাথে মিল রেখে day/light পাঠক ঘর
-     palette (#F0F3F8 page bg, #ffffff card surface, #1f2937 টেক্সট, #0B57CF accent)। -->
 <style>
-  /* List container */
+/* components/book-card-list.css — সব পেজে (index, books, author, category, search)
+   ব্যবহৃত common book-card LIST design। generate_pages.js এই ফাইলটা একবার লোড করে
+   <style> ট্যাগে মুড়ে প্রতিটা টেমপ্লেটের  placeholder-এ বসিয়ে দেয়।
+   ডিজাইন পরিবর্তন করতে চাইলে শুধু এই ফাইলটা এডিট করলেই সব জায়গায় reflect হবে।
+   ডিজাইন: Editorial variant — layout.html-এর সাথে মিল রেখে day/light পাঠক ঘর
+   palette (#F0F3F8 page bg, #ffffff card surface, #1f2937 টেক্সট, #0B57CF accent)। */
+
+/* List container */
+.bc-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  gap: 0.7rem;
+}
+@media (min-width: 768px) {
   .bc-list {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 0.7rem;
+    padding: 0;
   }
-  @media (min-width: 768px) {
-    .bc-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.7rem;
-      padding: 0;
-    }
-  }
+}
 
-  /* Book card */
-  .bc-card {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    align-items: flex-start;
-    text-decoration: none;
-    padding: 1rem 1.1rem;
-    transition: background 0.15s, border-color 0.15s;
-    background: #ffffff;
-    border-radius: 5px;
-  }
-  .bc-card:hover { background: #C2D7FC; }
+/* Book card */
+.bc-card {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: flex-start;
+  text-decoration: none;
+  padding: 1rem 1.1rem;
+  transition: background 0.15s, border-color 0.15s;
+  background: #ffffff;
+  border-radius: 5px;
+}
+.bc-card:hover { background: #C2D7FC; }
 
-  /* Cover — left side, fixed size 2:3 ratio */
-  .bc-img-wrap {
-    flex-shrink: 0;
-    width: 4.5rem;
-    aspect-ratio: 2/3;
-    overflow: hidden;
-    background: #e5e7eb;
-    border-radius: 5px;
-  }
-  @media (min-width: 768px) { .bc-img-wrap { width: 5.5rem; } }
+/* Cover — left side, fixed size 2:3 ratio */
+.bc-img-wrap {
+  flex-shrink: 0;
+  width: 4.5rem;
+  aspect-ratio: 2/3;
+  overflow: hidden;
+  background: #e5e7eb;
+  border-radius: 5px;
+}
+@media (min-width: 768px) { .bc-img-wrap { width: 5.5rem; } }
 
-  .bc-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+.bc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-  /* Right side text */
-  .bc-body {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
-  }
+/* Right side text */
+.bc-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
 
-  /* Headline: title – author একসাথে */
-  .bc-headline {
-    font-size: 1.05rem;
-    line-height: 1.4;
-    margin: 0 0 0.35rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .bc-title {
-    font-weight: 600;
-    color: #1f2937;
-  }
-  .bc-card:hover .bc-title { text-decoration: none; }
+/* Headline: title – author একসাথে */
+.bc-headline {
+  font-size: 1.05rem;
+  line-height: 1.4;
+  margin: 0 0 0.35rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.bc-title {
+  font-weight: 600;
+  color: #1f2937;
+}
+.bc-card:hover .bc-title { text-decoration: none; }
 
-  /* Description */
-  .bc-desc {
-    margin-top: 0.1rem;
-    font-size: 0.88rem;
-    color: #6b7280;
-    line-height: 1.5;
-    text-align: justify;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-</style>
+/* Description */
+.bc-desc {
+  margin-top: 0.1rem;
+  font-size: 0.88rem;
+  color: #6b7280;
+  line-height: 1.5;
+  text-align: justify;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
-<!--
+/*
   Book card HTML template (reference — generate_pages.js এ ব্যবহার হয়):
   <a href="/book/.html" class="bc-card">
     <div class="bc-img-wrap">
@@ -680,8 +680,8 @@
       <p class="bc-desc"></p>
     </div>
   </a>
--->
-
+*/
+</style>
 
 <div id="bc-pagination"></div>
 <script>
