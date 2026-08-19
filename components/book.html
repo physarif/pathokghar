@@ -42,6 +42,13 @@
             <div id="book-description-mobile" class="prose-book"></div>
         </div>
 
+        <!-- সম্পর্কিত বই: একই লেখক ও ক্যাটাগরির বই — build time-এই HTML
+             হিসেবে বসানো হয় (author-page-এর মতো), crawler প্রথম লোডেই এই
+             ইন্টারনাল লিংকগুলো পায়। কোনো related বই না থাকলে placeholder
+             খালি স্ট্রিং হয়ে যায়, তাই সেক্ষেত্রে কার্ডটাই দেখা যায় না। -->
+        {{book_card_styles}}
+        {{related_books_section}}
+
         <!-- Structured data: Google-কে বইয়ের নাম, লেখক, কভার স্পষ্টভাবে বুঝিয়ে
              দেয়, rich snippet পাওয়ার সম্ভাবনা বাড়ায় -->
         <script type="application/ld+json">
@@ -202,6 +209,14 @@
                 margin: 0 0 0.75rem;
                 padding-bottom: 0.6rem;
                 border-bottom: 1px solid #e5e7eb;
+            }
+
+            /* ── Related Books Card ── */
+            .book-related-card {
+                background: #ffffff;
+                border-radius: 5px;
+                padding: 1.1rem 1.25rem 1.3rem;
+                margin-top: 0.65rem;
             }
         </style>
 
