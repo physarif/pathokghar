@@ -160,7 +160,7 @@ function renderRelatedBooksSection(book, bookList) {
   const cardsHtml = related.map(renderAuthorBookCard).join('');
   return (
     `<div class="book-related-section">` +
-    `<div class="related-label"><span class="related-label-text">সম্পর্কিত বই</span><span class="related-label-line"></span></div>` +
+    `<div class="bc-latest-title">সম্পর্কিত বই</div>` +
     `<div class="bc-list">${cardsHtml}</div>` +
     `</div>`
   );
