@@ -1,0 +1,4085 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/chitto-mukur.html">
+    <title>চিত্ত-মুকুর - পাঠক ঘর</title>
+    <meta name="description" content="**চিত্ত-মুকুর** উনিশ শতকের বাংলা কাব্যধারার একটি উল্লেখযোগ্য পদ্যগ্রন্থ, যার রচয়িতা কালীপ্রসন্ন ঘোষ। ১৮৭৮ সালে প্রকাশিত এই গ্রন্থটি কেবল একটি কবিতার সংকলন নয়;">
+    <meta property="og:title" content="চিত্ত-মুকুর - পাঠক ঘর">
+    <meta property="og:description" content="**চিত্ত-মুকুর** উনিশ শতকের বাংলা কাব্যধারার একটি উল্লেখযোগ্য পদ্যগ্রন্থ, যার রচয়িতা কালীপ্রসন্ন ঘোষ। ১৮৭৮ সালে প্রকাশিত এই গ্রন্থটি কেবল একটি কবিতার সংকলন নয়;">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', dark:'#1c1c1e' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', dark:'#e5e7eb' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.6rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+</style>
+</head>
+<body>
+
+<style>
+    /* ── Bar theme variables (header / footer / drawer) — follow reading mode ── */
+    :root, body {
+        --bar-bg: #ffffff;
+        --bar-text: #1a1a1b;
+        --bar-text-dim: rgba(26,26,27,0.55);
+        --bar-border: rgba(0,0,0,0.1);
+        --bar-btn-active: rgba(0,0,0,0.06);
+        --bar-track: rgba(0,0,0,0.12);
+        --bar-accent: #0B57CF;
+        --bar-accent-soft: rgba(11,87,207,0.12);
+    }
+    body.theme-dark {
+        --bar-bg: #232326;
+        --bar-text: #e5e7eb;
+        --bar-text-dim: rgba(229,231,235,0.55);
+        --bar-border: rgba(255,255,255,0.1);
+        --bar-btn-active: rgba(255,255,255,0.08);
+        --bar-track: rgba(255,255,255,0.18);
+        --bar-accent: #3b82f6;
+        --bar-accent-soft: rgba(59,130,246,0.2);
+    }
+
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--bar-accent);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid var(--bar-accent-soft);
+        border-bottom: 1px solid var(--bar-accent-soft);
+        transition: color 0.3s, border-color 0.3s;
+    }
+    #book-content h1,
+    #book-content h3 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--bar-accent);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid var(--bar-accent-soft);
+        border-bottom: 1px solid var(--bar-accent-soft);
+        transition: color 0.3s, border-color 0.3s;
+    }
+    /* h1/h2 colors now follow --bar-text-dim / --bar-accent (see :root theme variables above),
+       so they automatically match light / dark modes. */
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p {
+        background: #232326;
+        border-color: rgba(255,255,255,0.08);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #0B57CF;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #0B57CF;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(11,87,207,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #0B57CF;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(11,87,207,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2, #book-content h3 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: var(--bar-accent);
+        font-weight: 600;
+        background: var(--bar-accent-soft);
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: var(--bar-text);
+        border-bottom: 1px solid var(--bar-border);
+        transition: color 0.15s, background 0.3s, border-color 0.3s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: var(--bar-text-dim);
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        flex-direction: column;
+        padding: 0 0.5rem 0 0.35rem;
+        background: #C2D7FC;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    body.theme-dark #reader-header { background: #1c2b4a; }
+    #rh-row1 {
+        padding-top: 0.4rem;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding-bottom: 0.4rem;
+    }
+    #rh-back {
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0B57CF;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: background 0.15s, color 0.3s;
+    }
+    #rh-back:active { background: var(--bar-btn-active); }
+    #rh-titles {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+    }
+    #rh-title {
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.98rem;
+        font-weight: 600;
+        color: var(--bar-text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: color 0.3s;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 34px;
+        height: 34px;
+        border: none;
+        background: transparent;
+        color: #0B57CF;
+        border-radius: 7px;
+        font-size: 1.05rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s, color 0.3s;
+    }
+    #reader-header .rh-actions button:active { background: var(--bar-btn-active); }
+
+    /* ── Header row 3: thin seek/progress line ── */
+    #rf-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        display: block;
+        width: calc(100% + 0.35rem);
+        margin: 0 -0.25rem 0 -0.1rem;
+        height: 3px;
+        border-radius: 0;
+        background: transparent;
+        outline: none;
+        cursor: pointer;
+    }
+    #rf-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 13px; height: 13px;
+        border-radius: 50%;
+        background: var(--bar-accent);
+        border: 2px solid var(--bar-bg);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        margin-top: -5px;
+    }
+    #rf-slider::-moz-range-thumb {
+        width: 13px; height: 13px;
+        border-radius: 50%;
+        background: var(--bar-accent);
+        border: 2px solid var(--bar-bg);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        cursor: pointer;
+        border: none;
+    }
+    #rf-slider::-webkit-slider-runnable-track { height: 3px; background: transparent; }
+    #rf-slider::-moz-range-track { height: 3px; background: transparent; }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: var(--bar-bg);
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease, background 0.3s;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid var(--bar-border);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--bar-text-dim);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: var(--bar-accent);
+        border-bottom-color: var(--bar-accent);
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--bar-accent);
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--bar-text);
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: auto;
+        min-width: 64px;
+        height: 34px;
+        flex: 1 1 0;
+        padding: 0 12px;
+        border-radius: 8px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        box-shadow: 0 0 0 1px var(--bar-border);
+    }
+    .theme-circle.active { border-color: var(--bar-accent); }
+    .theme-circle svg { display: none; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--bar-border);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: var(--bar-text); }
+    .settings-row-val { font-size: 0.74rem; color: var(--bar-text-dim); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid var(--bar-border);
+        background: var(--bar-btn-active);
+        color: var(--bar-text);
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: var(--bar-accent-soft); border-color: var(--bar-accent); color: var(--bar-text); }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid var(--bar-border);
+        background: var(--bar-btn-active);
+        color: var(--bar-text);
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: var(--bar-accent-soft) !important;
+        border-color: var(--bar-accent) !important;
+        color: var(--bar-text) !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid var(--bar-border);
+        background: transparent;
+        color: var(--bar-text);
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: var(--bar-accent-soft) !important;
+        border-color: var(--bar-accent) !important;
+        color: var(--bar-text) !important;
+    }
+
+</style>
+
+<!-- ══ Reader header (back + title/chapter stack + actions, seek line) ══ -->
+<header id="reader-header">
+    <div id="rh-row1">
+        <a href="/book/chitto-mukur.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div id="rh-titles">
+            <h1 id="rh-title">চিত্ত-মুকুর</h1>
+        </div>
+        <div class="rh-actions">
+            <button id="rh-menu-btn" aria-label="সূচিপত্র ও কাস্টমাইজ" title="সূচিপত্র ও কাস্টমাইজ"><i class="fa-solid fa-list-ul"></i></button>
+        </div>
+    </div>
+    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
+</header>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle" data-theme="light" style="background:#fff;border-color:#0B57CF;" title="সাদা"></button>
+                    <button class="theme-circle active" data-theme="dark" style="background:#3a3a3a;border-color:#3b82f6;" title="ডার্ক">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e5e7eb" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-justify" title="জাস্টিফাই">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <section><div>
+
+
+<h2>কলঙ্কী জয়চন্দ্র</h2>
+<div>
+<div>১</div>
+<div>
+<p>কলঙ্কী নরের মন নরক সমান,<br/>
+কি দরিদ্র কিবা রাজা দুই সমতুল;<br/>
+সাক্ষাতে উভয় চিত্তে আনন্দের ভাণ,<br/>
+বিরলে জ্বলন্ত চিতা যন্ত্রণার মূল।<br/>
+দিনেকের তরে কিম্বা ক্ষণেকের তরে,<br/>
+কণামাত্র পাপ যদি পরশে কাহায়,<br/>
+ভীষণ ভুজঙ্গ দন্তে যে বিষ উগরে,<br/>
+সেই বিষ বহে সদা শিরায় শিরায়;<br/>
+বিস্মৃতি-সাগরে চিত্ত করিলে মগন,<br/>
+নাহি পরিত্রাণ তবু দহিবে জীবন।
+</p>
+</div>
+<div>২</div>
+<div>
+<p>আনন্দপ্রবাহে যদি ভাষাও হৃদয়,<br/>
+সদা কলকণ্ঠ যদি পরশে শ্রবণ,<br/>
+সদা অপ্সরার রূপ নয়নে উদয়,<br/>
+অজস্র পীযূষ যদি কর আস্বাদন,
+</p>
+</div> <div>
+<p>তবু থামিবে না বিষ অন্তরে অন্তরে,<br/>
+প্রত্যেক শিরায় উহা বিদ্যুতের প্রায়,<br/>
+ছুটিবে উন্মত্ত-স্রোতে আজীবন তরে,<br/>
+ঔষধ নাহিক বিশ্বে নিবাতে উহায়;<br/>
+চিকিৎস্য করালদন্ত সর্পের দংশন,<br/>
+অচিকিৎস্য হতভাগ্য পাপীর বেদন।<br/></p>
+<div>৩</div><br/><p>ওই বসি বরাঙ্গনা সুরম্য ভবনে<br/>
+ঢালিয়া নিবিড় কায় পালঙ্ক উপরে,<br/>
+দুই খানি কাম-ধনু যুগল নয়নে,<br/>
+চিরপূর্ণ তূণ বাঁধা বক্ষের উপরে;<br/>
+কেমন হাসিয়া তার নায়কের সনে<br/>
+করিতেছে প্রেমালাপ—উহার অন্তরে<br/>
+কি জ্বলন্ত শিখা আছে দেখিও গোপনে,<br/>
+স্মরিয়া আপন পপি আপনি শিহরে;<br/>
+সাগরের জলে যদি ডুবায় হৃদয়,<br/>
+তথাপি উহার পাপ ধুইবার নয়।<br/></p>
+<div>8</div><br/><p>ওই পুনঃ বসি পাপী প্রেয়সির সনে<br/>
+নিরখিছে নিষ্কলঙ্ক বদন তাহার,
+</p>
+</div> <div>
+<p>নিরখিছে প্রেমপূর্ণ যুগল নয়নে,<br/>
+শুনিতেছে প্রেমালাপ সুধার আধার;<br/>
+তথাপি দহিছে পাপ অভাগার মনে,<br/>
+তবু নিরানন্দ চিত্ত হায়রে উহার,<br/>
+বিগত পাপের স্রোত উথলি স্মরণে,<br/>
+অনুতাপ বিন্ধে হৃদে শলা শত বার;<br/>
+নির্ম্মল সাধুর সুখ মুহূর্ত্তের তরে,<br/>
+উদিবে না আজীবনে পাপীর অন্তরে।<br/></p>
+<div>৫</div><br/><p>ওই নিরখিছ যারে স্বর্ণসিংহাসনে<br/>
+শতরত্নে বিমণ্ডিত, ফুটিছে অধরে<br/>
+কেমন মধুর হাসি-দেখিও নির্জ্জনে<br/>
+কি জ্বলন্ত ব্যথা আছে উহার অন্তরে;<br/>
+কবে হরিয়াছে কার সতীত্ব রতন,<br/>
+বধিয়াছে কিম্বা কবে জীবন কাহার,<br/>
+সেই পাপময়ী চিন্তা করিয়া স্মরণ,<br/>
+অনুতাপে সদা চিও দহিবে উহার;<br/>
+জাগ্রতে স্মৃতির শিখা নিদ্রায় স্বপন<br/>
+চন্দ্র সূর্য্য মত নিত্য দিবে দরশন।
+</p>
+</div> <div>৬</div>
+<div>
+<p>রাজা, রাজ্য-দুই শব্দ শুনিতে মধুর;<br/>
+কিন্তু কি যন্ত্রণা আছে এ চারি অক্ষরে<br/>
+রাজা বিনা এ সংসারে বুঝে কয় জনে?<br/>
+উচ্চ শব্দে মুগ্ধ হয় যত মূঢ় নরে,<br/>
+উন্নত প্রাসাদে বসি স্বর্ণসিংহাসনে<br/>
+হতভাগ্য নরপতি যে সুখ না পায়,<br/>
+পর্ণের কুটিরে কিম্বা তৃণের শয়নে<br/>
+সামান্য ভিক্ষুক সদা ভুঞ্জিতেছে তায়;<br/>
+দেখিতে শুনিতে ভাল কেবল রাজন<br/>
+সতত চিন্তায় তার আকুল জীবন।<br/></p>
+<div>৭</div><br/><p>যেই রাজদণ্ড রহে নৃপতির করে,<br/>
+সামান্য সুবর্ণপাতে হয়েছে গঠিত;<br/>
+অচেতন ধাতুমাত্র—উহার ভিতরে<br/>
+ধর্ম্মের পবিত্র আত্মা রয়েছে স্থাপিত।<br/>
+রাজামাত্রে রাজ দণ্ড করেছে ধারণ,<br/>
+কিন্তু কজনের করে হয়েছে শোভিত;<br/>
+অধর্ম্মে করেছে যেই রাজ্যের শাসন,<br/>
+রাজদণ্ড সদা তার হয়েছে কম্পিত।
+</p>
+</div> <div>
+<p>ধার্ম্মিকের করে উহা ধর্ম্মেতে উজ্জ্বল,<br/>
+অধার্ম্মিক করে শুধু সুবর্ণ কেবল।<br/></p>
+<div>৮</div><br/><p>গভীর নিশিতে একা নির্জ্জন উদ্যানে,<br/>
+দুরাচার জয়চন্দ্র করিছে ভ্রমণ;<br/>
+কি চিন্তা বিরাজে আজ অভাগার মনে,<br/>
+চল লো কল্পনে! মোরা করি দরশন।<br/>
+নির্জ্জন প্রকোষ্ঠে বসি খুলিতে হৃদয়,<br/>
+শঙ্কিত ভাবিয়া ভিত্তি করিবে শ্রবণ;<br/>
+পালঙ্কে চাপিয়া বক্ষ ভাবিতেও ভয়,<br/>
+পালঙ্ক বুঝিবে চিন্তা করিয়া স্মরণ<br/>
+শিহরিছে স্থির তরু করি দরশন,<br/>
+ভাবিছে উহার(ও) বুঝি আছয়ে শ্রবণ।<br/></p>
+<div>৯</div><br/><p>“এই-ত চক্রান্ত শেষ কিন্তু পরিণাম,<br/>
+ভাবিতে এখন কেন শরীর শিহরে;<br/>
+যে কৌশল সৃজিয়াছি নিজ মনস্কাম<br/>
+নিশ্চয় সফল হবে, গর্ব্বিত পৃথুরে<br/>
+রাখিব শৃঙ্খলে বাঁধি সিংহাসনতলে,<br/>
+সৃজিব পাদুকা তার সুবর্ণ মুকুটে,
+</p>
+</div> <div>
+<p>রাজ্ঞী তার রবে পরিচারিকা-মণ্ডলে,<br/>
+প্রেয়সীর কাছে সদা রবে করপুটে;<br/>
+এই বার চূর্ণ হবে গর্ব্ব পাপাত্মার,<br/>
+কিন্তু কেন কাঁপিতেছে হৃদয় আমার?”<br/></p>
+<div>১০</div><br/><p>“হৃদয়ের মর্ম্মস্থলে কঠোর বচনে,<br/>
+উচ্চৈঃস্বরে যেন আত্মা করে তিরস্কার;<br/>
+ফিরাইতে চাই মন—তীব্র আকর্ষণে,<br/>
+যেন মন-সূত্র ধরি টানে পুনর্ব্বার।<br/>
+‘অধর্ম্ম-অধর্ম্ম’ শুধু পশিছে শ্রবণে<br/>
+কি অধর্ম্ম করিয়াছি না পারি বুঝিতে;<br/>
+আঁধারে ভীষণ চিত্ত নিরখি নয়নে,<br/>
+সতত যন্ত্রণা যেন উথলিছে চিতে,<br/>
+অচেতন শীলা কিংবা তরু গুল্মচয়,<br/>
+নিরখিলে বোধ হয় যেন মূর্ত্তিময়।”<br/></p>
+<div>১১</div><br/><p>“ভ্রাতৃদ্রোহী?—এই যদি অধরম হয়,<br/>
+পাপাত্মার শান্তি তবে কোথায় সংসারে?<br/>
+গর্ব্বিতের দর্প তবে কিসে হবে ক্ষয়,<br/>
+কে ঘুচাবে জগতের হেন অত্যাচারে?
+</p>
+</div> <div>
+<p>প্রজার পাপের শাস্তি প্রদানে রাজায়,<br/>
+রাজার পাপের শাস্তি দিবে কোন্ জন?<br/>
+রাজার উপরে রাজা দণ্ডিতে তাহায়,<br/>
+আছে যদি তবে ইহা পাপ কি কারণ?<br/>
+অধার্ম্মিক হয় যদি গুরু আপনার,<br/>
+নিশ্চয় দণ্ডিতে পাপ উচিত তাহার।”<br/></p>
+<div>১২</div><br/><p>“বিনয়ে চাহিনু যবে স্বত্ব আপনার,<br/>
+যে উত্তর করেছিল দুরাত্মা তখন;<br/>
+ধিক্‌ মোরে। এখনো সে অধরে তাহার,<br/>
+সেই জিহ্বা রহিয়াছে সর্পের মতন।<br/>
+উচিত তখনি শাস্তি প্রদানিতে তার,<br/>
+বুঝি না কেন যে হস্ত উঠেনি তখন;<br/>
+গরলের মত সেই বচন তাহার,<br/>
+ভাসিতেছে চিত্তে মোর সদা সর্ব্বক্ষণ।<br/>
+যত দিন অসম্পূর্ণ প্রতিজ্ঞা আমার,<br/>
+দহিবে হৃদয় সদা গরলে তাহার।”<br/></p>
+<div>১৩</div><br/><p>“পাষাণের বক্ষ আর ক্ষত্রিয় হৃদয়,<br/>
+এক উপাদানে দুই হয়েছে গঠিত।
+</p>
+</div> <div>
+<p>পাষাণে অস্ত্রের লেখা অনন্ত অক্ষয়,<br/>
+অপমান ক্ষাত্র বক্ষে আজন্ম অঙ্কিত।<br/>
+সমগ্র ভারত যদি হয় একত্তর,<br/>
+তথাপি প্রতিজ্ঞা মম করিব সাধন।<br/>
+শুকাবে সাগর কিংবা লুটাবে ভূধর,<br/>
+প্রতিজ্ঞা নিষ্ফল মম হবে না কখন।<br/>
+ক্ষত্রিয়ের পণ আর লিপি বিধাতার,<br/>
+ভবিতব্য দুই-দুই সম-দুর্নিবার।”<br/></p>
+<div>১৪</div><br/><p>“রাজ-নীতি একমাত্র সহায় আমার,<br/>
+শত্রুর নিধন অস্ত্র ইহায় গ্রথিত।<br/>
+সূত্রে সূত্রে মিলাইয়া যদি একবার,<br/>
+পারি নিক্ষেপিতে লক্ষ্য করি নিরূপিত;<br/>
+সমগ্র ভারত কিংবা সমগ্র ভূতল,<br/>
+রোধে যদি তবু উহা অব্যর্থ সন্ধান,<br/>
+আলোড়ি গগণ বক্ষঃ, সাগরের জল,<br/>
+শক্তিশেল সম উহা বিন্ধিবে পরাণ।<br/>
+সম্ভব নিষ্ফল হবে সহস্রের বল,<br/>
+ব্যর্থ নাহি হবে কভু নীতির কৌশল।”
+</p>
+</div> <div>
+<div>১৫</div><br/><p>“নির্ব্বোধ যবন অন্ধ রতনের লোভে<br/>
+ভাবিয়াছে দিব রত্ন খুলিয়া ভাণ্ডার,<br/>
+দহিবে অন্তর তার পরিণামে ক্ষোভে<br/>
+রিক্ত হস্তে একে একে হবে সিন্ধুপার।<br/>
+মূর্খ নহে জয়চন্দ্র, তস্করের আশা<br/>
+পূরাইরে শূন্য করি গৃহ আপনার;<br/>
+সিন্ধু লুটি বাড়িয়াছে বিষম পিপাসা<br/>
+এই বার প্রতিফল পাইবে তাহার<br/>
+তাড়িত মার্জ্জার মত বসিয়া আফ্‌গানে,<br/>
+হেরিবে সতৃষ্ণ নেত্রে ভারতের পানে।”<br/></p>
+<div>১৬</div><br/><p>সহসা মর্ম্মর শব্দ পশিল শ্রবণে,<br/>
+অমনি বিদ্যুৎ-বেগে ফিরায়ে নয়ন<br/>
+নিরখিল চারিদিক্‌‌ শশঙ্কিত মনে,<br/>
+ভাবিল যবন বুঝি করিছে শ্রবণ।<br/>
+ত্যজি দীর্ঘশ্বাস শেষে কহিল গম্ভীরে,<br/>
+“কেন এত ভয় আজ হৃদয়ে আমার?<br/>
+জগৎ নিমগ্ন যেন সন্দেহের নীরে<br/>
+প্রত্যেক ঝলকে ভীতি হয়েছে সঞ্চার।
+</p>
+</div> <div>
+<p>কেমনে আমার সেই নির্ভয় হৃদয়,<br/>
+হইল শিশুর মত সতত সভয়?”<br/></p>
+<div>১৭</div><br/><p>“মৃত্যু-দুর্নিবার তাহা, অদ্য কিংবা অন্যদিন<br/>
+অবশ্য ঘটিবে, নাহি ভাবি তার তরে,<br/>
+তবে কোন ত্রাসে চিত্ত আনন্দবিহীন,<br/>
+কে সুহৃদ্‌ আছে হেন জিজ্ঞাসিব কারে?<br/>
+ইচ্ছা করে চিন্তা হতে যাই পালাইয়া<br/>
+অথবা তুলিয়া ফেলি স্মৃতির দর্পণ,<br/>
+কিংবা জন স্রোতে আত্ম-বিস্মৃতি লভিয়া,<br/>
+বারেক শীতল করি অন্তর-বেদন।<br/>
+নিবে যাও শশধর তারকানিকর,<br/>
+সহিতে পারে না আলো আমার অন্তর।”<br/></p>
+<div>১৮</div><br/><p>“সংসার! কি ক্ষুদ্র তুমি নয়নে আমার,<br/>
+জগৎ! কি মরুময় আমার নয়নে!<br/>
+প্রকৃতি কি বিষমাখা আকৃতি তোমার!<br/>
+সম্পদ কি তুচ্ছতম আজ মম মনে!<br/>
+স্নেহ মায়া প্রেম তোর এত কি দুর্ব্বল<br/>
+নাহি পার ফিরাইতে অভাগার মন?
+</p>
+</div> <div>
+<p>ক্ষত্রিয়ের প্রতিহিংসা এত কি প্রবল!<br/>
+মুহূর্ত্তের তরে শান্ত নাহি হয় মন!<br/>
+না হয় পৃথুরে ক্ষমি রব মিত্র ভাবে,<br/>
+কিন্তু অন্তরের জ্বালা তা’হলে কি যাবে?<br/></p>
+<div>১৯</div><br/><p>ভবিষ্যৎ তোর গর্ভে অভাগীর তরে,<br/>
+কি আছে সঞ্চিত খুলি বারেক দেখাও;<br/>
+অনিশ্চিততার তীব্র যন্ত্রণা অন্তরে,<br/>
+পারি না সহিতে—কিম্বা দেখাইয়া দাও<br/>
+নিরাপদ স্থান হেন নাহিক যেখানে—<br/>
+চিন্তা ক্ষোভ আশা তৃষ্ণা, ত্যজিয়া সংসার<br/>
+ত্যজি আত্ম পরিজন রত্ন-সিংহাসনে,<br/>
+করিব নির্ম্মল মনে আত্মার সংস্কার।<br/>
+সাগরের জলে রাজ্য হউক মগন,<br/>
+থাকিব অনন্যচিত্তে মুদিয়া নযন।”<br/></p>
+<div>২৫</div><br/><p>“যদি সন্ধি ভঙ্গ করে সাহাব্‌ উদ্দীন,<br/>
+আক্রমে কনোজ যদি করি প্রতারণা;<br/>
+শঠতায় যবনেরা সতত প্রবীণ,<br/>
+তবেই ত সিদ্ধ হবে সকল কামনা।
+</p>
+</div> <div>
+<div>
+<p>হত-বল সৈন্য দল দিল্লীর সমরে<br/>
+নারিবে রোধিতে উগ্র যবনের বল;<br/>
+পাবক স্ফুলিঙ্গ মত পশিয়া নগরে,<br/>
+ধন প্রাণ ক্ষত্রিয়ের হরিবে সকল।<br/>
+বারেক যবন সেনা প্রেবেশে যে স্থান,<br/>
+দগ্ধ করি গৃহ দ্বার করয়ে শ্মশান।”<br/></p>
+<div>২১</div><br/><p>“এই শিরঃ যাহে আজ শোভিছে রতন,<br/>
+যবন দাসত্বভারে হবে অবনত;<br/>
+এই হস্ত রাজ-দণ্ড করিয়া ধারণ,<br/>
+পূজিতে যবন পদ হবে নিয়োজিত;<br/>
+বলয়ের পরিবর্ত্তে শোভিবে শৃঙ্খলে,<br/>
+উদ্যানের পরিবর্ত্তে রুদ্ধ কারাগার;<br/>
+কিম্বা দিবে তুলি পদ এই বক্ষঃস্থলে,<br/>
+উঃ! এ চিন্তা হৃদে সহেনা-ক আর।<br/>
+ভবিষ্যৎ রুদ্ধ কর কবাট তোমার!<br/>
+এ নরকচিত্র নেত্রে সহেনা-ক আর!”<br/></p>
+<div>২২</div><br/><p>ত্যজিল সুদীর্ঘ শ্বাস চাহি শূন্য পানে,<br/>
+নিবাবার তরে যেন গগনের আলো;
+</p>
+</div>
+</div> <div>
+<div>
+<p>ভাবিল অলোক রাশি পশিয়া পরাণে,<br/>
+অদৃশ্য ভাবনাগুলি করিছে উজ্জ্বল।<br/>
+মুদিল নয়ন পুনঃ আবরিয়া কর,<br/>
+কিন্তু হৃদয়েতে যাহা হয়েছে অঙ্কিত<br/>
+মুদিলে নয়ন কেন হইবে অন্তর!<br/>
+বরং উজ্জ্বলতর হবে অনুভূত।<br/>
+স্মৃতি-চিহ্ন হবে লোপ মুদিলে নয়ন,<br/>
+কিন্তু অপনীত কেন হইবে বেদন।<br/></p>
+<div>২৩</div><br/><p>জয়চন্দ্র! ভবিষ্যৎ দেখিলে এখন,<br/>
+আর কেন, পাপ চিন্তা কর পরিহার!<br/>
+অবিশ্বাসী মিথ্যাবাদী সতত যবন,<br/>
+অলীক আশ্বাসে মুগ্ধ হইও না তার।<br/>
+এখনি ছুটিয়া যাও পৃথুর সদনে,<br/>
+বীর তিনি ক্ষমিবেন অবশ্য তোমায়;<br/>
+যে বিপদ সৃজিয়াছ ভেবে দেখ মনে<br/>
+এই প্রায়শ্চিত্ত ভিন্ন নাহিক উপায়,<br/>
+লজ্জা হয়, হৃৎপিণ্ড কর উৎপাটন,<br/>
+করো-না ক্ষত্রিয়-নামে কলঙ্ক অর্পণ।
+</p>
+</div>
+</div> <div>
+<div>
+<div>২৪</div><br/><p>কালের বিশালবক্ষে জ্বলন্ত অক্ষরে,<br/>
+থাকিবে অঙ্কিত এই কলঙ্ক তোমার।<br/>
+ঘৃণিত হইয়া রবে চিরদিন তরে,<br/>
+হিন্দুমাত্র প্রাতঃসন্ধ্যা দিবে তিরস্কার।<br/>
+ছি ছি হেন নীচ বৃত্তি হৃদয়ে তোমার?<br/>
+কেন নিমন্ত্রিলে হয় দুরাত্মা যবনে?<br/>
+অপহৃত রাজ্য তব করিবে উদ্ধার—<br/>
+কিন্তু পরিণাম তার ভেবে দেখ মনে,<br/>
+অপহৃত রাজ্য তব আছিল স্বদেশে,<br/>
+যবন-সাহায্যে তাহা পশিবে পারস্যে।<br/></p>
+<div>২৫</div><br/><p>আর ভারতের এই সৌভাগ্য তপন<br/>
+তোমার অদৃষ্টসনে হবে অস্তমিত;<br/>
+হিন্দু-রাজ্য ভন্ন উপকূলের মতন<br/>
+দিনে দিনে কাল-গর্ভে হইবে নিহিত,<br/>
+ফলিবে ইহায় যেই ফল বিষময়,<br/>
+কেবল নহে তব দুঃখের কারণ;<br/>
+কত শত বর্ষ ইহা হিন্দুর হৃদয়—<br/>
+দহিবে, হায়রে তাহা জানে কোন জন?
+</p>
+</div>
+</div> <div>
+<p>সাধিতে কলুষ-ব্রত ওরে দুরাচার!<br/>
+ভারত-অদৃষ্ট কেন করিছ আঁধার<br/></p>
+<div>
+<p>২৬
+</p>
+</div><br/><p>অদূরে তরুর পার্শ্বে দাঁড়া’য়ে গোপনে<br/>
+স্থির সৌদামিনীরূপা একটি রমণী,<br/>
+বদন গম্ভীর, দৃষ্টি প্রখর নয়নে,<br/>
+নীরবে শুনিতেছিল রাজার কাহিনী<br/>
+যন্ত্রণায় জয়চন্দ্র মুদিলে নয়ন<br/>
+অগ্রসরি দাঁড়াইল সম্মুখে তাহার;<br/>
+স্থির দৃষ্টে নিরখিয়া ডাকিল তখন।<br/>
+প্রাণেশ্বর!—<br/>
+শিহরিয়া জয়চন্দ্র খুলিল নয়ন<br/>
+হেরিল সম্মুখে তার রমণী-রতন।<br/></p>
+<div>
+<p>২৭
+</p>
+</div><br/><p>“শৈল! তুমি কেন এই অনাবৃত স্থানে?<br/>
+গভীর নিশায়—এই নিশীথ শিশির।<br/>
+জান না কি অপকারী, দেখ দেহ পানে<br/>
+এখন(ও) আরোগ্য নহে তোমার শরীর,<br/>
+চল গৃহে, বলি হস্ত করিল ধারণ;<br/>
+বিস্ফারি নয়ন, শৈল কহিল গম্ভীরে,
+</p>
+</div> <div>
+<p>আমা হ’তে মূল্যবান্ তোমার জীবন,<br/>
+তোমার উচিত নহে ভ্রমিতে শিশিরে;<br/>
+আমার—হায়রে যার সমুদ্রে শিবির<br/>
+কি করিবে নাথ তার নিশির শিশির”।<br/></p>
+<div>
+<p>২৮
+</p>
+</div><br/><p>“যে অনল বক্ষঃস্থলে—থাক্‌ সে সকল,<br/>
+বল প্রাণেশ্বর তব কি ভাবনা মনে?<br/>
+গত দিনকত ধরি নিরখি কেবল।<br/>
+নিমগ্ন সতত তুমি গভীর চিন্তনে।<br/>
+কারণ জিজ্ঞাসি যদি বিস্ফারি নয়ন।<br/>
+আমার বদনে চাহ, পুনঃ জিজ্ঞাসিতে<br/>
+ফিরায়ে নয়ন ভূমে প্রহরি চরণ<br/>
+‘কিছু না’ বলিয়া উঠি দাঁড়াও ত্বরিতে;<br/>
+তথাপি জিজ্ঞাসি যদি, সঞ্চালিয়া কর<br/>
+বিরক্তে ইঙ্গিত কর হইতে অন্তর”।<br/></p>
+<div>
+<p>২৯
+</p>
+</div><br/><p>“ভাবিতাম পূর্ব্বে ইহা চিত্তের বিকার,<br/>
+দিন দুই পরে চিত্ত হইবে সুস্থির;<br/>
+দিনে দিনে বৃদ্ধি এবে হইছে ইহার,<br/>
+বল নাথ কেন এত হইলে অধীর?”
+</p>
+</div> <div>
+<p>“বলিয়াছি একবার বলি আরবার<br/>
+শরীর অসুস্থ মম বড়ই এখন<br/>
+এই প্রশ্ন শৈল মোরে করিও না আর<br/>
+যাও তুমি নিজ গৃহে করগে শয়ন।”<br/>
+বেষ্টিয়া হৃদয়ে বাহু—কুঞ্চিত নয়নে<br/>
+ভ্রমিতে লাগিল জয় সুমন্দ চলনে।<br/></p>
+<div>
+<p>৩০
+</p>
+</div><br/><p>“অসুস্থ!—ইহা কি তবে ব্যবস্থা তাহার।<br/>
+অনাবৃত স্থানে এই নিশীথ-ভ্রমণ?<br/>
+প্রগল্‌ভতা প্রাণেশ্বর ক্ষম অবলার<br/>
+অবশ্য ইহার আছে অপর কারণ।<br/>
+অন্তরের পীড়া ইহা মর্ম্মের যাতনা”—<br/>
+জানু পাতি পতিপদ করিয়া বেষ্টন,<br/>
+“সত্য করি বল নাথ ত্যজি প্রতারণা<br/>
+কোন পাপ-ভাবনায় মগ্ন তব মন?<br/>
+পত্নী যদি না বুঝিল পতির বেদন<br/>
+স‍ুধু কি তাহার কার্য্য শোভিতে শয়ন”?<br/></p>
+<div>
+<p>৩১
+</p>
+</div><br/><p>“উঠ শৈল, কেন পড় চরণে আমার<br/>
+জিজ্ঞাসিছ কিন্তু কিবা বলিব তোমায়,
+</p>
+</div> <div>
+<p>রাজ-কার্য্যে চিত্ত মগ্ন সতত রাজার<br/>
+কেনা জানে—কেন পুনঃ জিজ্ঞাস আমায়?<br/>
+প্রজার অদৃষ্টক্ষেত্র ন্যস্ত যার করে<br/>
+সে যদি আমোদে মগ্ন রহে সর্ব্বক্ষণ,<br/>
+ভেবে দেখ ফল যাহা ফলিবে সত্বরে,<br/>
+রাজ চিত্ত নহে শৈল! আমোদ-কারণ;<br/>
+একটি ভাবনা সুধু তোমার কেবল<br/>
+শত ভাবনায় মম হৃদয় চঞ্চল।<br/></p>
+<div>
+<p>৩২
+</p>
+</div><br/><p>“একটি ভাবনা!” বলি উঠিয়া সত্বর<br/>
+দাঁড়াইল শৈল গ্রীবা করিয়া উন্নত,<br/>
+দেহ অস্ত্র দেখাইব চিরিয়া অন্তর<br/>
+চিন্তার জ্বলন্ত বহ্নি বিরাজিছে কত।<br/>
+হ’তেম যদ্যপি আমি কৃষক-রমণী<br/>
+তখন হইত চিত্ত ভাবনা-বিহীন,<br/>
+সে সৌভাগ্যবতী নহে রাজার রমণী<br/>
+সতত চিন্তায় তার হৃদয় মলিন;<br/>
+বুঝিত পুরুষ যদি রমণীর মন<br/>
+দেখিত তাহার চিত্তে কতই বেদন।’
+</p>
+</div> <div>
+<div>
+<p>৩৩
+</p>
+</div><br/><p>“নাহি প্রয়োজন নাথ, সে সবে এখন<br/>
+বল কোন্ রাজকার্য্য করিতে উদ্ধার<br/>
+নিভৃত উদ্যানে একা করিছ ভ্রমণ<br/>
+মাখিয়া শরীরে এই নিশার নিহার;<br/>
+শুনিয়াছি সব নাথ হইয়া গোপন,<br/>
+এ পাপ মন্ত্রণা হায় কে দিল তোমারে?<br/>
+অসার প্রতিজ্ঞা তব করিতে সাধন,<br/>
+নিমন্ত্রিছ নিজ গৃহে ঘৃণিত তস্করে!<br/>
+প্রতিহিংসা যদি তব এতই প্রবল<br/>
+ক্ষত্রিয় শরীরে তব ছিল না কি বল?”<br/></p>
+<div>
+<p>৩৪
+</p>
+</div><br/><p>“বীর-প্রসবিনী এই ভারত ভিতরে।<br/>
+ছিল না কি বীর তব হইতে সহায়?<br/>
+ভুলিয়া গৌরব নিজ সাধিলে তস্করে!<br/>
+স্মরিলে আমি যে নাথ মরি হে লজ্জায়!<br/>
+কায কি সহায় তব, এস মোর সনে।<br/>
+অপমান প্রতিশোধ প্রদানি তোমার,<br/>
+এস নাথ আমি অগ্রে প্রবেশিয়া রণে<br/>
+অপহৃত রাজ্য তব করিব উদ্ধার।
+</p>
+</div> <div>
+<p>“দেহ দুই করে দুই উলঙ্গ কৃপাণ<br/>
+দেখিবে যুঝিব একা বিদ্যুৎ সমান।”<br/></p>
+<div>
+<p>৩৫
+</p>
+</div><br/><p>“কিশোর সন্তান তব হইবে সহায়<br/>
+বৈশ্বানর তেজে সেও যুঝিবেক রণে<br/>
+ভয়ে ভীত যদি তুমি, চাহি না তোমায়<br/>
+পশিতে সমরে, মোরা জননী-সন্তানে<br/>
+অপহৃত রাজ্য তব করিব উদ্ধার।<br/>
+সেও যদি ভীত হয়, সুতীক্ষ্ণ কৃপাণে<br/>
+ছেদন করিব স্তন-যুগল আমার—<br/>
+পালিয়াছি এত দিন যার দুগ্ধ দানে।<br/>
+অপুত্র বরং ভাল তথাপি কখন<br/>
+হে বিধাতঃ! ভীরু পুত্র নাহি হয় যেন।<br/></p>
+<div>
+<p>৩৬
+</p>
+</div><br/><p>“ভাগ্য-দোষে বীরপত্নী নহে অভাগিনী<br/>
+কিন্তু ক্ষত্রিয়ের কুলে জনম আমার,<br/>
+বীর-কন্যা আমি নাথ, বীর-প্রসবিনী<br/>
+রবি যেমনে পারি গর্ব্ব আপনার।<br/>
+হ’তে যদি বীর তুমি দেখিতে এখনি<br/>
+পারি কিনা কাযে যাহা কহিনু কথায়,
+</p>
+</div> <div>
+<p>এই বক্ষে চুর্ণ হ’ত কতই অশনি<br/>
+দলিতাম পদে শত্রু মাতঙ্গিনী প্রায়;<br/>
+যুঝিব দেহেতে রবে যতক্ষণ বল<br/>
+জয় পরাজয় সুধু অদৃষ্টের ফল।<br/></p>
+<div>
+<p>৩৭
+</p>
+</div><br/><p>“যবন-আশ্রয় যদি প্রতিজ্ঞা তোমার<br/>
+তস্করের, পামরের, নীচের আশ্রয়—<br/>
+কেশাগ্র দেখিতে মোর পাইবে না আর<br/>
+জনমের মত নাথ হইনু বিদায়।<br/>
+বিধবা হয়েছি যবে করিব শ্রবণ,<br/>
+সেই দিন পুনর্ব্বার জনমের তরে,<br/>
+একত্রে চিতার বক্ষে করিব শয়ন<br/>
+বক্ষে করি দেহ তব ডাকিব ঈশ্বরে—<br/>
+এজনমে এই শেষ যেন জন্মান্তরে<br/>
+বীরপতি করি তোমা সমৰ্পেণ মোরে।”<br/></p>
+<div>
+<p>৩৮
+</p>
+</div><br/><p>মুছিয়া নয়ন জল ত্বরিত চরণে<br/>
+প্রেবেশিল শৈলবালা মন্দিরে আপন,<br/>
+অনিমেষ নেত্রে জয় খাকি কতক্ষণে<br/>
+বিষাদে নিশ্বাস ত্যজি কহিল তখন;
+</p>
+</div> <div>
+<p>করিব না যবনের সহায় গ্রহণ<br/>
+পশিব একাকী আমি দুর্ব্বার সমরে,<br/>
+হয় সমরক্ষেত্রে হইব নিধন<br/>
+বীর বলি খ্যাতি তবু করিবে ত নরে।<br/>
+যা কহিল শৈলবালা সঠীক সকল<br/>
+জয় পরাজয় শুধু অদৃষ্টের ফল।<br/></p>
+<div>
+<p>৩৯
+</p>
+</div><br/><p>কিন্তু কাল প্রাতে যবে সাহাব উদ্দীন<br/>
+ডাকিবে পশিতে রণে তাহার সহিত,<br/>
+কি উত্তর দিব—সে ত নহে বুদ্ধিহীন,<br/>
+অভিপ্রায় বুঝিবে সে আমার নিশ্চিত।<br/>
+এক শত্রু স্মরি যার এত ভয় হয়<br/>
+দুই শত্রু তার পক্ষে কত ভয়ঙ্কর।<br/>
+একত্রে উভয় রণ নিশ্চয় দুর্জ্জয়,<br/>
+তাহে কুম্ভকর্ণ সম যুঝিবে সমর<br/>
+মহম্মদে নাহি ডরি না ডরি পৃথুরে,<br/>
+উরি শুধু একা সেই সমরসায়ীরে।<br/></p>
+<div>
+<p>৪০
+</p>
+</div><br/><p>কি করিব কোথা যাব, কে আছে আমার<br/>
+কে দিবে বলিয়া মোরে নিগূঢ় উপায়;
+</p>
+</div> <div>
+<p>রমণীর বীর্য্যহীন হৃদয় যাহার<br/>
+হা বিধাত! প্রতিহিংসা কেন এত তায়!<br/>
+কেন জ্বালিনু এই সমর অনল!<br/>
+কেন নিমন্ত্রিনু এই দুর্জ্জয় যবনে!<br/>
+অন্তরে বাহিরে বহ্নি হইল প্রবল<br/>
+একা আমি হেন বহ্নি নিবাব কেমনে?<br/>
+যা থাকে কপালে লব যবন-আশ্রয়।<br/>
+দেখিব কৌশল সিদ্ধ হয় কি না হয়।
+</p>
+</div>
+<div><hr/></div>
+</div>
+
+</div></section>
+<section><div>
+
+<h2>চিতা-শয্যা</h2>
+<div>
+<div>
+<p>১
+</p>
+</div>
+<dl><dd>গাঢ় অমাবস্যা-নিশি ঘোর অন্ধকার,</dd>
+<dd>আছন্ন কালিমা মেঘে শূন্য চারিধার,</dd></dl><p>বদন বিস্তার ক’রে,গ্রাসিবারে বসুধারে,
+</p>
+<dl><dd>মন্দ পদক্ষেপে যেন আসে দণ্ডধর।</dd>
+<dd>এসে যেন সঙ্কুচিত বিশ্বচরাচর।</dd></dl><div>
+<p>২
+</p>
+</div>
+<dl><dd>এহেন নিশীথে বসি প্রকোষ্ঠে আপন,</dd>
+<dd>সর্ব্ব-সংহারিনী মূর্ত্তি করি দরশন,&lt;/poem&gt;</dd></dl><div>
+<p>চপলা বিকট হাসে,ভুবন চমকে ত্রাসে,<br/><span>গম্ভীরে জলদ করে ভীম গরজন।</span><br/><span>স্তব্ধ বিশ্ব সেই রবে স্তম্ভিত পবন।</span><br/></p>
+<div>
+<p>৩
+</p>
+</div><br/><p><span>হেরি দুনয়নে সুধু অনন্ত আঁধার,</span><br/><span>গাঢ়তর কালিমায় ঢাকা চারিধার,</span><br/>
+সহসা জলদ রাশি,ভেদিয়া সম্মুখে আসি,<br/><span>দাঁড়াইল নারী এক অপূর্ব্ব রূপসী।</span><br/><span>ফুলের কবরী শিরে, দেহে ফুলরাশি।</span><br/></p>
+<div>
+<p>৪
+</p>
+</div><br/><p><span>প্রফুল্ল কমল দুটি মৃণাল সহিত,</span><br/><span>চারু করলে তার হয়েছে শোভিত,</span><br/>
+গলে পুষ্প কমাল,বক্ষঃস্থলে পুষ্প-ঢালা,<br/><span>জীবন্ত যৌবন যেন কুসুমের বেশে।</span><br/><span>দাঁড়াইল কাছে মোর, মুখে মৃদু হেসে।</span><br/></p>
+<div>
+<p>৫
+</p>
+</div><br/><p><span>গরমে শিহরি শেষে চিনিনু তাহায়,</span><br/><span>বিজন-সঙ্গিনী মম প্রিয় কল্পনায়,</span><br/>
+বদন গম্ভীর করে,কহিল বিষাদ-স্বরে,<br/><span>আইনু দেখিয়া এক দৃশ্য ভয়ঙ্কর,</span><br/><span>দেখিতে বাসনা যদি হও অগ্রসর।</span>
+</p>
+</div> <div>
+<div>
+<p>৬
+</p>
+</div><br/><p><span>চলিনু কল্পনা-সাথে ঘোর ত্রিযামায়,</span><br/><span>দেখিতে ভীষণ দৃশ্য, বিরাজে কোথায়,</span><br/>
+নদনদী গিরিবন, করি কত উল্লঙ্ঘন,<br/><span>উপনীত দুইজনে বিস্তীর্ণ শ্মশানে—</span><br/><span>তরু-শূন্য—প্রাণি-শূন্য—গৃহশূন্য স্থানে।</span><br/></p>
+<div>
+<p>৭
+</p>
+</div><br/><p><span>শ্মশানের বক্ষঃস্থলে নেত্রপাত করি</span><br/><span>নিরখি ভীষণ দৃশ্য উঠিনু শিহরি,</span><br/>
+উন্মাদিনী চিতাহাসে, দাঁড়ায়ে তাহার পাশে,<br/><span>সুন্দর আয়ত-তনু যুবা এক জন,</span><br/><span>রূক্ষ-কেশ—রক্ত-নেত্র—ভীম-দরশন।</span><br/></p>
+<div>
+<p>৮
+</p>
+</div><br/><p><span>একপদ পুরোভাগে, অপর পশ্চাতে,</span><br/><span>অনতিবৃহৎ এক দণ্ডধরি হাতে,</span><br/>
+জ্বলন্ত চিতার ক্রোড়ে,প্রবীণা রমণী পোড়ে,<br/><span>নিবিড় চিকুর-জাল, বিস্তীর্ণ শিয়রে,</span><br/><span>দুইখানি ক্ষীণ বাহু পড়ি দুই ধারে।</span><br/></p>
+<div>
+<p>৯
+</p>
+</div><br/><p><span>বদন অঙ্গারে টাকা চেনা নাহি খায়,</span><br/><span>ক্ষীণ অঙ্গে অগ্নি-শিখা খেলিয়া বেড়ায়,</span>
+</p>
+</div> <div>
+<p>দেহ ভস্ম নাহি হয়,পরিধানও দগ্ধ নয়,<br/><span>সহসা দেখিলে হেন জ্ঞান হয় মনে,—</span><br/><span>জীবিতা প্রাচীনা সুপ্ত অনল-বিতানে।</span><br/></p>
+<div>
+<p>১০
+</p>
+</div><br/><p><span>সভয়ে যুবার পার্শ্বে করিয়া গমন,</span><br/><span>জিজ্ঞাসিনু কার চিতা,—সে বা কোন জন;</span><br/>
+তুলিয়া জ্বলন্ত আঁখি, আমার বদনে রাখি,<br/><span>তীব্র ভাবে কতক্ষণ চাহিয়া রহিল,</span><br/><span>ভয়ঙ্কর দৃষ্টির—হৃদয় কাঁপিল।</span><br/></p>
+<div>
+<p>১১
+</p>
+</div><br/><p><span>রাখি ভূমে কাষ্ঠদণ্ড জলদ গম্ভীরে,</span><br/><span>কহিল ভীষণস্বরে মোর পানে ফিরে,</span><br/>
+“বুঝি বঙ্গবাসী হবে,নহিলে কেনবা কবে,<br/><span>কারচিত, দেখ নর জননী তোমার;”</span><br/><span>হস্তে সরাইয়া দিল জ্বলন্ত অঙ্গার।</span><br/></p>
+<div>
+<p>১২
+</p>
+</div><br/><p><span>“সাতশত বর্ষ আজ দিবারাত্র ধ’রে</span><br/><span>এই শ্মশানের বক্ষে এই চিতা পোড়ে,</span><br/>
+শব দগ্ধ নাহি হয়,দেহও এমতি রয়,<br/><span>ঢালিয়াছি কুম্ভপূরে সিন্ধুসম জল,</span><br/><span>নিবে না এ চিতানল জ্বলিছে কেবল।”</span>
+</p>
+</div> <div>
+<div>
+<p>১৩
+</p>
+</div><br/><p><span>শিহরিনু নিরখিয়া রমণীর মুখ</span><br/><span>যাতনায় ক্লিষ্ট যেন মূর্ত্তিমতী দুখ</span><br/>
+নয়নের ঊর্ধ্বকোলে,নেত্র-তারা রহে ঢলে<br/><span>জীবন চন্দ্রমা মরি নিষ্প্রভ নয়নে,</span><br/><span>অস্ত যায় আঁধরিয়া রমণী বদনে।</span><br/></p>
+<div>
+<p>১৪
+</p>
+</div><br/><p><span>লহরে লহরে শিখা শবের উপরে</span><br/><span>বিকট ভৈরব রঙ্গে হেসে নৃত্য করে,</span><br/>
+কভু শিরে কভু পায়,বহ্ণি -শিখা ছুটে ধায়,<br/><span>আবার দাঁড়ায়ে বক্ষে ভীমরঙ্গে হাসে,</span><br/><span>নিরখি সে চিনল কাঁপিলাম ত্রাসে।</span><br/></p>
+<div>
+<p>১৫
+</p>
+</div><br/><p><span>তুষার-তর্জ্জনী মম বক্ষের উপরে</span><br/><span>রাখিয়া কহিল যুবা সুগম্ভীর স্বরে,</span><br/>
+“চিনিলে কি চিতা কার,—চিতা ভারত মাতার<br/><span>এইধর জননীর রাজ নিদর্শন,”</span><br/><span>মুকুট রতনদণ্ড করিল অর্পণ।</span><br/></p>
+<div>
+<p>১৬
+</p>
+</div><br/><p><span>সভয়ে মুকুট দণ্ড করিনু ধারণ,</span><br/><span>নিরখিতে হায় মোর কাঁদিল নয়ন;</span>
+</p>
+</div> <div>
+<p>ছিন্ন মুকুটের গায়,ভগ্ন-হীরা সমুদায়,<br/><span>মনি-চ্যুত রাজ দণ্ড তাও অর্দ্ধখান,</span><br/><span>কেকরিল এ দুর্দ্দশা কার হেন প্রাণ।</span><br/></p>
+<div>
+<p>১৭
+</p>
+</div><br/><p><span>চাহিনু চিতার পানে হাসিছে অনল,</span><br/><span>অচেতন তনু তায় পড়ি অচঞ্চল,</span><br/>
+সাধ হৈল একবারপ্রাণশূন্য প্রাচীনার<br/><span>করে দণ্ড শিরে করি মুকুট স্থাপন,</span><br/><span>জননীর রাজবেশ করি দরশন।</span><br/></p>
+<div>
+<p>১৮
+</p>
+</div><br/><p><span>“যাও চলি” পুন যুবা কহিল গম্ভীরে</span><br/><span>“ভারতের প্রতি ঘরে এই চিহ্ণ ধরে,</span><br/>
+বালবৃদ্ধ কি তরুণে,দেখাইও প্রতি জনে,”<br/><span>তর্জ্জনী হেলায়ে পথ করি প্রদর্শন</span><br/><span>রাখিল বদনে মম আরক্ত নয়ন।</span><br/></p>
+<div>
+<p>১৯
+</p>
+</div><br/><p><span>সভয়ে ফিরায়ে আঁখি উপদিষ্ট পথে</span><br/><span>চলিনু বিহ্বল-চিত্তে কল্পনার সাথে,</span><br/>
+গাঢ়তর অন্ধকার,লক্ষ্যশূন্য চারিধার,<br/><span>গগনে জীমূত বৃন্দ গর্জ্জিছে গম্ভীরে,</span><br/><span>ধাঁধিয়া নয়ন, দৃষ্টি রোধিছে চিকুরে।</span>
+</p>
+</div> <div>
+<div>
+<p>২০
+</p>
+</div><br/><p><span>পশ্চাতে ফিরিয়া দেখি জ্বলে চিতানল</span><br/><span>পার্শ্বে ভীম-কায় মূর্ত্তি দাঁড়ায়ে অচল</span><br/>
+স্থির-চিত্তে কতক্ষণ,করি চিত। দরশন<br/><span>পশিল শ্রবণ-মুলে অস্ফুট বচন౼</span><br/><span>“দেখ ফিরে পার্শ্বে তব পুন কোন জন।”</span><br/></p>
+<div>
+<p>২১
+</p>
+</div><br/><p><span>চকিতে চাহিয়া দেখি অতি ভয়ঙ্কর।</span><br/><span>সম্মুখে শবের ছায়া-কাঁপিল অন্তর;</span><br/>
+ক্ষীণ হস্ত প্রসারিয়া,౼শবনেত্রে নিরখিয়া,<br/><span>কহিল, “মুকুটদণ্ড কর প্রত্যর্পণ,</span><br/><span>ভীরু তুমি, পথে দৈত্য করিবে হরণ।”</span><br/></p>
+<div>
+<p>২২
+</p>
+</div><br/><p><span>ছায়ার দক্ষিণ হস্ত মুকুট ধরিল,</span><br/><span>বাম হস্ত রাজ দণ্ডে আসি পরশিল,</span><br/>
+সভয়ে চীৎকার করে,পড়িনু শ্মশানোপরে,<br/><span>কতক্ষণ ছিনু তথা নাহিক স্মরণ,</span><br/><span>নেত্র খুলি দেখি কক্ষে করিয়া শয়ন।</span><br/></p>
+<div>
+<p>২৩
+</p>
+</div><br/><p><span>কল্পনা নাহিক পার্শ্বে প্রকোষ্ঠ নির্জ্জন</span><br/><span>গগনে অজস্র ধারা হইছে পতন,</span>
+</p>
+</div> <div>
+<p>প্রাচীরে আলোক হাসে, মসী, পত্র পড়ি পাশে<br/><span>শূন্যমনে কতক্ষণ বসিয়া রহিনু,</span><br/><span>কতবার স্মরি চিতা শিহরি উঠিনু।</span><br/></p>
+<div>
+<p>২৪
+</p>
+</div><br/><p><span>তদবধি কত রাত্রি গগনের গায়,</span><br/><span>দেখিয়াছি সেই শব সর্জীব ছায়ায়,</span><br/>
+ক্ষীণ হস্ত প্রসারিয়া, শবনেত্রে নিরখিয়া,<br/><span>পরশিতে হস্ত মম শূন্যে নামি আসে,</span><br/><span>অমনি নয়নদ্বয় মুদিয়াছি ত্রাসে।</span>
+</p>
+</div>
+<div><hr/></div>
+</div>
+
+</div></section>
+<section><div>
+
+<div>
+<h2>অভাগিনী</h2>
+<div>
+<p>১
+</p>
+</div>
+<dl><dd>আহা কি করুণ ছবি রমণি তোমার!</dd>
+<dd>হায় কি কঠিন প্রাণ পোড়া বিধাতার!</dd></dl><p>নীলোজ্জ্বল এ নয়নে,ঝরে অশ্রু প্রতিক্ষণে,
+</p>
+<dl><dd>সুধামাখা এ বদনে, রেখা যন্ত্রণার!</dd></dl><p>হেমোজ্জ্বল এ বরণে,ম্লানবেশ অযতনে,
+</p>
+<dl><dd>ভস্ম আচ্ছাদিত মরি প্রতিমা সোণার!</dd>
+<dd>নিরখি এ বেশ প্রাণ নাহি কাঁদে কার!</dd></dl><p>&lt;/poem&gt;
+</p>
+<div>
+<p>এখনো বালিকাবেশ,অনতি-কৌমার শেষ,<br/><span>মৃণাল লাবণ্য দ্যুতি ঢল ঢল করে;</span><br/>
+না জানি কেমন করে, বিধাতারে এ অন্তরে,<br/><span>করিলে এ বজ্রপাত নিদয় অন্তরে,</span><br/><span>স্থাপিলে রাহুর গ্রাসে পূর্ণ শশধরে!</span><br/>
+ইচ্ছাকরে বরাঙ্গনে,তুলে লই সযতনে,<br/><span>মলিন এ দেহখানি পরম আদরে,</span><br/><span>মুছাইয়া দিই অশ্রু পবিত্র অন্তরে।</span><br/></p>
+<div>
+<p>২
+</p>
+</div><br/><p><span>নিদারুণ শাস্ত্রকার কোথা এ সময়,</span><br/><span>দেখ না বারেক আসি রমণী-হৃদয়,</span><br/>
+বসি যবে নিরজনে,ঝরে অশ্রু দুনয়নে,<br/><span>দেখ্‌রে সমাজ তার করুণ বদন,</span><br/>
+কোমল অন্তর তার,কত পোড়ে অনিবার,<br/><span>নিদারুণ পিতা মাতা কর দরশন,</span><br/><span>হায়রে দুখির দুঃখ বুঝে কোন জন্!</span><br/>
+এস তুমি অনাথিনী,আমি তব দুঃখ জানি,<br/><span>কহনা দুখের কথা আমার সদনে,</span><br/><span>এস সখি তুমি আমি কাঁদি দুই জনে;</span><br/>
+গগন বিদীর্ণ করে,এস কাঁদি তার স্বরে,
+</p>
+</div> <div>
+<p><span>দেখ যদি পশে উহা বিধির শ্রবণ,</span><br/>
+অথবা অন্তর খুলে,দগ্ধ প্রাণ করে তুলে,<br/><span>দেখাও যন্ত্রণা তব-সমাজ তখন,</span><br/><span>বুঝিবে অবলা সহে যতেক বেদন।</span><br/></p>
+<div>
+<p>৩
+</p>
+</div><br/><p><span>চির অনাথিনী করি রমণী তোমারে,</span><br/><span>সৃজিয়াছে বিধি সুধু কাঁদিবার তরে,</span><br/>
+সোণার বরণে তাই,ঢালিয়া দিয়াছে ছাই,<br/><span>আঁধারিয়া যৌবনের নন্দনকানন,</span><br/>
+সুধুই নয়নজল,বরষিতে অবিরল,<br/><span>এ কুরঙ্গ আঁখি তব হয়েছে সৃজন,</span><br/><span>নির্ম্মল শশাঙ্কে হায় কলঙ্ক লেপন!</span><br/>
+যৌবন উজ্জ্বল করে,পূর্ণবিম্ব এ অধরে,<br/><span>সৃজিয়াছে সুধু হায় বিষাদের তরে,</span><br/>
+রমণীরে ও অধরে,বিষাদের চিহ্ণ ধরে,<br/><span>এসোনা এলোনা আর আমার সদনে,</span><br/><span>এ করুণ ছবি তব সহে না পরাণে;</span><br/>
+সখি মোর মাথা খাও,বিষাদে বিদায় দাও,<br/><span>ফেটে যায় বুক মরি হেরি ও বয়ানে!</span><br/><span>কুসুমে অশনিপাত বড় বাজে প্রাণে!</span>
+</p>
+</div> <div>
+<div>
+<p>8
+</p>
+</div><br/><p><span>কি সান্ত্বনা দিব আর রমণি তোমায়,</span><br/><span>এ অনল শিখা তব নিবিবার নয়,</span><br/>
+কাঁদ অয়ি বিষাদিনি,কাঁদ অয়ি অনাথিনি,<br/><span>হেরিয়া বিদীর্ণ হোক হৃদয় আমার,</span><br/>
+এমন নিষ্ঠুর দেশে,এরূপ মধুর বেশে,<br/><span>কেন জন্মেছিলে তুমি সুধা-নিস্যন্দিনি!</span><br/><span>মরুভূমে বাঁচে কভু মৃণাল-নন্দিনী।</span><br/>
+এই যদি ছিল মনে,পোড়া বিধি কি কারণে,<br/><span>এত রূপ দিল ঢালি তোমার বদনে,</span><br/>
+অতি কুরূপিনী করে, কেন রাখিল না তোরে,<br/><span>বিষাদের চিহ্ন তায় মিশায়ে থাকিত,</span><br/><span>আঁধারে তিমির আভা লুকায়ে রহিত;</span><br/>
+দেখি সে মলিন মুখ,হইত না এত দুখ,<br/><span>সেনয়নে অশ্রু হেরি কাঁদিত না মন,</span><br/><span>কেন তুমি রূপবতী হইলে এখন!</span><br/></p>
+<div>
+<p>৫
+</p>
+</div><br/><p><span>চির অভাগিনী যদি কেন তবে আর,</span><br/><span>অকারণ হেন বেশ রমণি তোমার,</span><br/>
+খুলে ফেল এ বসন,খুলে ফেল এ ভূষণ,<br/></p>
+</div> <div>
+<p><span>লুকায়ে রূপের ছটা সাজ বিষাদিনী,</span><br/>
+গেরুয়া বসন দিয়ে, চারু তনু আবরিয়ে,<br/><span>খুলিয়ে চিকুর দাম সাজ সন্ন্যাসিনী,</span><br/><span>এ ঘন লাবণ্যে দাও ভস্মের লেপনী;</span><br/>
+ত্রিশূল ধরিয়া করে, লেখ তায় স্পষ্টাক্ষরে<br/><span>“পতিসুখ কাঙ্গালিনী বঙ্গের দুঃখিনী।”</span><br/>
+নয়নে ঝরুক জল, শুকাক বদনতল,<br/><span>গভীর ঝঙ্কারে গাও “আমি অনাথিনী”</span><br/><span>রাজরাণী হয়ে মরি সাজ ভিখারিণী।</span><br/>
+কমণ্ডলু ধরি করে, বঙ্গবাসী দ্বারে দ্বারে,<br/><span>কাঁদিয়ে শুনাও তব দুঃখের কাহিনী,</span><br/><span>দেখ যদি জাগে তাহে নিদ্রিত অবনী।</span>
+</p>
+</div>
+<div><hr/></div>
+</div>
+
+</div></section>
+<section><div>
+
+<h2>উদাসীন</h2>
+<div><hr/></div>
+<div>
+<div>
+<p>পাষাণে বাঁধিনু প্রাণ তবু কেন মন<br/>
+নিরন্তর অনিবার হয় উচাটন?<br/>
+বিসর্জ্জিনু স্মৃতিচিহ্ন বিস্মৃতির জলে<br/>
+তথাপি অন্তর কেন পুড়িছে অনলে?
+</p>
+</div>
+<div>
+<p>আইনু সন্ন্যাসী হ’য়ে দূর দেশান্তরে,<br/>
+হায় রে সে সব পুন কেন মনে পড়ে!<br/>
+সেই ত উদাস মন সেই সে যাতনা,<br/>
+সেই সে নীরস আঁখি অতৃপ্ত বাসনা।<br/>
+কোথায় সে সুখ এবে যাহার আশায়,<br/>
+ছিঁড়িলাম জীবনের সন্তোষ-লতায়।<br/>
+মায়া মোহ স্নেহ প্রেম করিরা বর্জ্জন,<br/>
+এই কি হইল শেষ অশ্রু বিসর্জ্জন।<br/>
+কেন আঁখি ফেল বারি কেন কাঁদ মন?<br/>
+বারেক ভুলিতে দাও এ ঘোর বেদন।<br/>
+ওই দেখ শ্বেত আভা গগনের গায়,<br/>
+নীরবে গোধূলি সনে কেমন মিশায়।<br/>
+শান্তি নিকেতন ওই প্রাচীন বিটপী,<br/>
+কত সুগম্ভীর ভাবে শোভিছে অটবী।<br/>
+এই শুন ঝিঁ ঝিঁ ডাকে জগত ঘুমায়,<br/>
+নীরব উদ্যান কত সুগম্ভীর তায়!<br/>
+কেমন গোধূলি ছায়া চারি দিকে ভাসে,<br/>
+এ শোভা হেরিয়া তবু নেত্রে অশ্রু আসে!<br/>
+আবার ঝরিল অশ্রু—কোথা ভগবান,<br/>
+নিবাও এ স্মৃতি-শিখা করুণা নিধান।
+</p>
+</div> <div>
+<p>অন্তরে শ্মশান লয়ে কত কাল হায়,<br/>
+ভ্রমিব উদাস হয়ে জীবের ধরায়।<br/>
+প্রতিশ্বাসে অগ্নি শিখা হয় উদ্গীরণ।<br/>
+প্রত্যেক পলকে পোড়ে যুগল নয়ন।<br/>
+একি লীলা পিতা তব, সহে না বেদনা<br/>
+রাখ তব দেব-খেলা,—নিবাও যাতনা।<br/>
+এখনি নিতে পারি মনের অনল,<br/>
+পরকাল ভাবি নাথ ডরাই কেবল।<br/>
+এস পিতা, লহ হরি বারেক চেতন,<br/>
+ভুলি এ ভবের কথা জুড়াই জীবন।<br/>
+ভুলি জন্মভূমি—হায় জাগিল আবার,<br/>
+সংসারের চিত্রপট হৃদয়-মাঝার।<br/>
+নমি মাতঃ! পদযুগে, জীবিত এখন,<br/>
+পামর মানবকুলে তব কুসন্তান।<br/>
+আসিয়াছি দেশান্তরে তবু কাণে শুনি,<br/>
+সেই স্নেহ স্রোতস্বিনী সুমধুর ধ্বনি।<br/>
+নীরব নিশীথে কভু গভীর স্বপনে,<br/>
+ভাসে তব প্রতিমূর্ত্তি মুদিত নয়নে।<br/>
+সুখের শৈশব হায়, এখনো স্মরণ,<br/>
+সেই ক্রোড় সে আদর স্নেহের চুম্বন!
+</p>
+</div> <div>
+<p>গভীর ত্রিযামা নিশি নীরব ভুবন,<br/>
+শয্যার কোমল ক্রোড়ে করিয়া শয়ন<br/>
+থাকিতাম। তুমি মাত! শুভ্র বাতি করে,<br/>
+দেখিতে আমায় ধীরে প্রবেশিতে ঘরে।<br/>
+ভাবিয়ে সুসুপ্ত হায় কতই যতনে,<br/>
+আদরে প্রগাঢ় স্নেহে চুম্বিতে বদনে।<br/>
+ফুরাল সে দিন, পুন উদিল যৌবন,<br/>
+বাড়িল সে সঙ্গে তব আশা আকিঞ্চন।<br/>
+কেন মা জননী হয় কেন এ সন্তানে,<br/>
+তুষিলে পাযূষ দানে তেমন যতনে।<br/>
+নিষ্ঠুর মানব আমি পামর সন্তান,<br/>
+ভাল প্রতিশোধ তার করিলাম দান।<br/>
+এখনো কি ঝরে মত! নয়নে তোমার,<br/>
+অন্তর বিদীর্ণ হয়ে শোকের আসার!<br/>
+এখনো কি পূজ নিত্য ইষ্ট দেবতায়,<br/>
+সন্তানের সনাতন মঙ্গল আশায়?<br/>
+জানি আমি চিরদিন ঝরিবে নয়ন,<br/>
+চিরদিন ইষ্ট দেব করিবে অর্চ্চন।<br/>
+দিবা সন্ধ্যা দীর্ঘ শ্বাসে বাড়িবে হুতাশ,<br/>
+তবু ত্যজিবে না মাত! আমার প্রয়াস।
+</p>
+</div> <div>
+<p>কিন্তু হায় এ পামর নির্ম্মম হৃদয়,<br/>
+করুণা পরশে আর দ্রবিবার নয়।<br/>
+পাষাণে বেঁধেছি প্রাণ পাষাণ রহিব,<br/>
+এই তরুতলে বসি একাকী কাঁদিব।<br/>
+হইবে গভীর নিশি দূরে ঝিঁঝিঁরব,<br/>
+আঁধারে ডুবিবে বিশ্ব জগত নীরব।<br/>
+এই শুষ্ক তৃণদলে করিয়ে শয়ন।<br/>
+খুলিয়ে প্রাণের দ্বার করিব রোদন।<br/>
+কত যে গভীর সুখ এ হেন রোদনে,<br/>
+কেঁদেছে যে এক বার সেই জন জানে।<br/>
+আবার উদিলে শশী উঠিয়া বসিব,<br/>
+হেরি সুললিত শোভা আপনি হাসিব।<br/>
+শাখায় ফুটিবে ফুল লতায় কমল,<br/>
+নাচিবে মলয়ে ধীরে নব পত্র দল।<br/>
+গাহিবে কোকিল দূরে ছুটিবে সুস্বর,<br/>
+মধুর সঙ্গীত-স্রোতে প্লাবিবে অন্তর।<br/>
+কিন্তু নিরন্তর মাত! অন্তর তোমার,<br/>
+বিষম বিষাদ তাপে হইবে অঙ্গার।<br/>
+অসহ্য এ চিন্তা, বিভু হউন সহায়,<br/>
+ভুলি জননীর দুখ ভুলিব তাঁহায়।
+</p>
+</div> <div>
+<p>পুনঃ তুমি! এস প্রিয়ে বহু দিন পরে,<br/>
+সম্বোধি বারেক আজ প্রণয়ের ভরে।<br/>
+ললিত লবঙ্গ-লতা কোমল গঠন,<br/>
+সলাজ প্রণয়-পূর্ণ যুগল নয়ন।<br/>
+হাস্য-বিকসিত মুখ প্রভাত-নলিনী,<br/>
+ভালবাসা-স্রোতস্বিনী প্রণয়ের খনি।<br/>
+বসন্ত-কুসুম এই নবীন যৌবন,<br/>
+লজ্জা-প্রেম-বিগলিত অপূর্ব্ব গঠন।<br/>
+কোন্ শিব পূজি প্রিয়ে পেয়েছিলে বর,<br/>
+তাই সে লভিলে পতি নিষ্ঠুর পামর?<br/>
+হেরিতে আমার পানে সজল নয়নে,<br/>
+অন্তরের দুখ যেন তুলিয়া বদনে।<br/>
+চাহিলে তোমার পানে লজ্জায় বদন,<br/>
+নত করি লুকাইতে মনের বেদন।<br/>
+কাঁদিয়াছি কত দিন হইয়া নির্জন,<br/>
+তাহাও গোপনে থাকি করেছি শ্রবণ।<br/>
+তবু মুহূর্ত্তের তরে করিয়ে যতন,<br/>
+করি নাই প্রেম-ভরে হৃদয়ে স্থাপন।<br/>
+দেখিতাম শুনিতাম প্রেয়সি সকল,<br/>
+ভাবিতাম কাঁদিতাম অন্তরে কেবল।
+</p>
+</div> <div>
+<p>ভাবিতে পাগল পতি প্রাণের সরলা,<br/>
+বুঝিতে নারিতে প্রিয়ে অন্তরের জ্বালা।<br/>
+ভালবাসি না হায় ছিল যদি মনে,<br/>
+কেন বান্ধিলাম তোরে উদ্বাহ বন্ধনে।<br/>
+আঘ্রাণ করিতে যদি নাহি ছিল মন,<br/>
+কেন তুলিলাম হেন কানন-প্রসূন?<br/>
+পরিব না গলে যদি হেন রত্ন-হার,<br/>
+কেন গাঁথিলাম মাল্যে এ প্রেম-ভাণ্ডার।<br/>
+তুষিব না যত্নে যদি আছিল অন্তরে,<br/>
+স্বাধীন বিহঙ্গ কেন বাঁধিনু পিঞ্জরে?<br/>
+ছিল শোভি বনরাজি ফুল্ল সরোজিনী,<br/>
+সৌরভে পূরিয়া বন বিশ্ব-বিনোদিনী।<br/>
+হেরি কোন ভাগ্যবান উন্মত্ত নয়নে,<br/>
+লইত হৃদয়ে তুলি পরম যতনে।<br/>
+রাজার উদ্যান কিম্বা ধনীর আগারে,<br/>
+ফুটিয়া থাকিত সদা আনন্দের ভরে।<br/>
+অনন্ত দুখিনী কেন করিলাম হায়,<br/>
+নব অঙ্কুরিত চারু প্রেম-লতিকায়।<br/>
+ভুলেছি অনেক, ক্রমে ভুলিব সকল,<br/>
+ভুলিতে নারিব কিন্তু তোমায় কেবল।
+</p>
+</div>
+</div>
+</div></section>
+<section><div>
+
+<div><h2>সলিল-প্রতিমা</h2>
+<div>
+<p>১
+</p>
+</div><div>
+<p><span>সুন্দর নিদাঘ-সন্ধ্যা শান্ত নভস্তল,</span><br/><span>শ্যামাঙ্গিনী যমুনার হৃদয় নির্ম্মল,</span><br/>
+বহে মৃদু সমীরণ, নদী-বক্ষ নিরজন,<br/><span>একা ভাসি তরি’পরে তরঙ্গিণী-জলে,</span><br/><span>শূন্যময় দুই তীর সুধু তরি চলে,</span><br/>
+শূণ্য দৃষ্টি শূন্য মন, তবু করি দরশন,<br/><span>নয়ন নদীর জলে অন্তর কোথায়!</span><br/><span>ক্ষেপণির মৃদু রব শ্রবণে মিশায়।</span><br/>
+সলিল-আবর্ত্ত হৈরি, যায় ছুটি ঘূরি ফিরি,<br/><span>আবার অনতিদূরে সলিলে মিশায়</span><br/><span>অস্তমান ভানু-ছবি নাচিয়া বেড়ায়।</span><br/></p>
+<div>
+<p>২
+</p>
+</div><br/><p><span>সহসা একটি ছবি সলিল-হৃদয়ে</span><br/><span>দেখিনু মানস-নেত্রে রয়েছে মিশায়ে;</span><br/>
+মলিন বিজলি-মত, ভস্ম মাখা মরকত,<br/><span>ছিন্ন লতা কিম্বা যথা তপন কিরণে</span><br/><span>হতাশ আয়েষা কিম্বা বঙ্কিম-কল্পনে।</span>
+</p>
+</div> <div>
+<p>সুদীর্ঘ নিশ্বাস ছোটে, নয়নে তরঙ্গ ওঠে,<br/><span>বিষাদের জ্যোতি ফোটে নীরব বদনে,</span><br/><span>একখানি ফটোগ্রাফ হেরিছে সঘনে।</span><br/>
+কখন চুম্বন করে, কভু রাখে বক্ষোপরে,<br/><span>সতৃষ্ণ নয়নে পুনঃ করে দরশন।</span><br/><span>নিরখি অন্তর হ’ল বিষাদে মগন।</span><br/></p>
+<div>
+<p>৩
+</p>
+</div><br/><p><span>অচেতন কাণে পুনঃ করিনু শ্রবণ</span><br/><span>সলিল-প্রতিমা মুখে করুণ বচন౼</span><br/>
+“কত সাধ কত আশা, কত প্রেম ভালবাসা,<br/><span>প্রাণেশ্বর নিরন্তর রেখেছি অন্তরে,</span><br/><span>বারেক তোমায় যত্নে দেখাবার তরে;</span><br/>
+সুচিকন পুষ্পহার, গাঁথিয়াছি কতবার,<br/><span>দোলাইতে তব গলে—কতই যতনে</span><br/><span>কবিতা লিখেছি কত মনের বেদনে।</span><br/>
+অশ্রুমুখে বিধাতায়, ডাকি সদা কত হায়,<br/><span>বধির বিধাতা নাথ আমার কপালে”</span><br/><span>পূরিল যুগল আঁখি পুনঃ অশ্রুজলে।</span><br/></p>
+<div>
+<p>8
+</p>
+</div><br/><p><span>“কেন উদাসীন নাথ কি দুঃখ অন্তরে</span><br/><span>বারেক হৃদয় খুলে কই না আমারে</span>
+</p>
+</div> <div>
+<p>নবীন বয়সে হেন, উদাসীন বেশে কেন,<br/><span>ত্যজি গৃহ পরিজন, ভ্রম দেশান্তরে?</span><br/><span>একবার বল নাথ দুখিনী কান্তারে।</span><br/>
+এতই বেদনা যদি, কেন দূরে নিরবধি,<br/><span>এস কাছে প্রাণেশ্বর কাঁদি দুই জনে।</span><br/><span>মুছাইব অশ্রুজল অঞ্চল বসনে</span><br/>
+ধন নাই— দুখ তাই, ধনে প্রয়োজন নাই।<br/><span>উভয়ে পরম সুখে রব তরুতলে”</span><br/><span>পূরিল খুগল আঁখি পুন অশ্রুজলে।</span><br/></p>
+<div>
+<p>৫
+</p>
+</div><br/><p><span>“এস নাথ বড় সাধ কাঁদিব দুজনে</span><br/><span>হেরিব সে স্লান মুখ সজল নয়নে,</span><br/>
+বদনে বদন রাখি, তব অশ্রুজল মাখি,<br/><span>ঘুমাব হৃদয়ে পড়ি ক্ষুধা তৃষ্ণা ভুলি,</span><br/><span>কোথা রবে দুখ—নাথ সব যাবে ভুলি।</span><br/>
+ভিখারিণী-বেশ ধরে প্রমিব হে দ্বারে দ্বারে,<br/><span>আপনি খাওয়াব হাতে, সেবিব যতনে;</span><br/><span>ভুলাইব নাথ তব মনের বেদনে।</span><br/>
+অন্য দুখ থাকে মনে, তাও নাথ প্রাণপণে,
+</p>
+</div> <div>
+<p><span>ঘুচাতে সেবিব পদ দিবাদণ্ড পল</span><br/><span>এস নাথ একবার নিকটে কেবল।”</span><br/></p>
+<div>
+<p>৬
+</p>
+</div><br/><p><span>কাঁদিল পরাণ শুনি রমনী-রোদন</span><br/><span>কাঁদিল নয়ন হেরি রমনী-রতন!</span><br/>
+যতনে আদর করে, জিজ্ঞাসিনু স্নেহভরে,<br/><span>“কে তুমি দুখিনী ভাস সলিল-শয়নে,</span><br/><span>তুলিয়া শোকের সিন্ধু পঙ্কজ-বদনে?</span><br/>
+অস্ফুট মুকুল হায়, এ গভীর প্রেম তায়,<br/><span>কে তুমি সরলে, বল কোন ভাগ্যবান</span><br/><span>এ অমৃত স্রোতে সদা যুড়ায় পরাণ?”</span><br/>
+মুছিয়া নয়নজল, ফুলায়ে বদন তল,<br/><span>কহিল কাঁপায়ে দুটি চারু ওষ্ঠাধর</span><br/><span>“আমি অভাগিনী নাথ তুমি প্রাণেশ্বর”</span>
+</p>
+</div>
+</div>
+<div><hr/></div>
+
+</div></section>
+<section><div>
+
+<h2>কে গাহিল</h2><div>
+<div>
+<p>১
+</p>
+</div>
+<div>
+<p>কে গাহিল—কি মধুর-ওই যে আবার౼<br/><span>ছুটিল সঙ্গীত-স্রোত ভাসায়ে গগণ!</span>
+</p>
+</div>
+<div>
+<p>একি?—এ যে ভেসে যায় হৃদয় আমার<br/><span>নিশীথে কে করে হেন সুধা বরিষণ!</span><br/><span>আবার—আবার—গায়,</span><br/><span>পুন চিত্ত ভেসে যায়,</span><br/><span>নারী-কণ্ঠ!——বটে তাই,</span><br/><span>ছুটিয়া গবাক্ষে যাই</span><br/>
+দেখিলাম-কি দেখিনু—কি বলিব হায়!<br/>
+স্থির সৌদামিনী-লতা পড়িয়া ধরায়।<br/></p>
+<div>
+<p>২
+</p>
+</div><br/><p>জ্যোৎস্না-প্লাবিত দূর সরসীর তটে,<br/><span>কৌমুদি কিরণে স্নাত পাষাণ সোপানে,</span><br/>
+পড়িয়া প্রতিমা খানি যেন চিত্রপটে,<br/>
+বিস্তৃত নয়ন দুটি গগনের পানে<br/><span>বাম গণ্ড বাম করে,</span><br/><span>বাতাশে কুন্তল নড়ে,</span><br/><span>নিশিগন্ধা বসন্তের,</span><br/><span>কিম্বা শশী শরদের,</span><br/>
+ললিত সপ্তমে গায় সঙ্গীত লহরি<br/>
+পীযূস প্রবাহে মত্তা নীরব সর্ব্বরা।
+</p>
+</div> <div>
+<div>
+<p>৩
+</p>
+</div><br/><p>আবার সঙ্গীত-স্রোত উঠিল উথলি,<br/>
+আবার প্রকৃতি-চিত্ত উঠিল আকূলি,<br/>
+নাচিল সরসি জল নাচিল পবন,<br/>
+নাচিল শাখায় পাতা লতায় প্রসূন,<br/><span>হরষিত নীলাম্বরে,</span><br/><span>হাসিয়া কিরণ ঝরে,</span><br/><span>মরি কি গভীর তান,</span><br/><span>আকূল করিল প্রাণ,</span><br/>
+অবসে মৃদুল খাদে গড়ায়ে পড়িল,<br/>
+হৃদয়ের স্রোত মম সঙ্গীতে মিশিল।<br/></p>
+<div>
+<p>8
+</p>
+</div><br/><p>শুনিয়াছি বসন্তের কোকিল-কূজন,<br/>
+শুনিয়াছি বাঁশরীর মধুর নিক্কণ,<br/><span>হাসি-পূর্ণ বিম্বাধরে,</span><br/><span>নর্ত্তকী মধুর স্বরে,</span><br/><span>গাহিয়াছে মুলতান,</span><br/><span>শুনিয়াছি সেই গান,</span><br/>
+কিন্তু হেন উম্মাদিনী জীবন্ত রাগিনী<br/>
+শুনি নাই-হেন গীত চিত্ত বিপ্লাবনী।
+</p>
+</div> <div>
+<div>
+<p>৫
+</p>
+</div><br/><p>শুনিলাম—কিন্তু কভু শুনি বনা আর<br/><span>সুধুই হারানু চিত্ত সঙ্গীত শ্রবণে,</span><br/>
+সুখের পিপাসা চিত্তে কেন দুর্নিবার<br/><span>সাধের সামগ্রী কেন দুর্লভ জীবনে?</span><br/><span>ইচ্ছা করে দিবানিশি,</span><br/><span>এই গবাক্ষেতে বসি,</span><br/><span>ওই সুমধুর গান,</span><br/><span>শুনিয়া যুড়ই প্রাণ,</span><br/>
+বুঝেনা স্বাধীন পাখী পথিকের মন<br/>
+ঢালিয়া সঙ্গীত-স্রোত করে পলায়ন।<br/></p>
+<div>
+<p>৬
+</p>
+</div><br/><p>শুনিব না আর, যদি গাই একবার<br/><span>হৃদয়-কবাট আমি করি উদ্‌ঘাটন,</span><br/>
+গাহ তুমি বরষিয়া সুধা পিরবার,<br/><span>রেখে দিই চিত্তে আমি করিয়া বন্ধন।</span><br/><span>কি শয়নে কি স্বপনে,</span><br/><span>উথলি উঠিবে প্রাণে,</span><br/><span>বাজিবে তরঙ্গ বুকে,</span><br/><span>উঠিবে উথলি সুখে,</span>
+</p>
+</div> <div>
+<p>তুলিয়া সপ্তমে তুমি গাহ বিহঙ্গিনী<br/>
+বেঁধে রাখি বক্ষঃস্থলে তব প্রতিধ্বনি।
+</p>
+</div>
+<div><hr/></div>
+</div>
+
+</div></section>
+<section><div>
+
+<h2>দুঃখিনী রমণী</h2>
+<div>
+<div>
+<p>১
+</p>
+</div>
+<div>
+<p>সজীব সৌন্দর্য্যপূর্ণ রমণী-বদন<br/><span>অতল সুধার উৎস নয়ন যুগল</span><br/>
+বিষাদে মলিন দেখি আছে কোন জন—<br/><span>রহে স্থির? কার নেত্রে নাহি ঝরে জল?</span><br/>
+দেখিয়াছি কত শত যন্ত্রণা নয়নে,<br/><span>অন্ধ খঞ্জ দেখিয়াছি করিতে রোদন,</span><br/>
+কিন্তু হায় অশ্রুমুখী রমণী-বদনে<br/><span>নিরখিয়া কেন আজ কাঁদে মম মন?</span><br/></p>
+<div>
+<p>২
+</p>
+</div><br/><p>পূর্ণিমা-যামিনী, ভাসে শশাঙ্ক গগনে,<br/><span>বিতরি ধরণি-অঙ্গে কৌমুদি বিমল,</span><br/>
+আন্দোলিছে ধীরে ধীরে নৈশ সমীরণে<br/><span>নীরবে তরুর পত্র সরসীর জল,</span>
+</p>
+</div>
+<div>
+<p>শ্বেত সোপনের অঙ্কে প্রসারি চরণ,<br/><span>হেলাইয়া চারু তনু সোপান-প্রাচীরে,</span><br/>
+বসিয়া রমণী ওই,—চুম্বিয়া চরণ<br/><span>আনন্দে সরসী-জল নাচিতেছে ধীরে।</span><br/></p>
+<div>
+<p>৩
+</p>
+</div><br/><p>গভীর নিশিতে একা নির্জন উদ্যানে<br/><span>বসি উদাসিনী বালা সরসীর তীরে,</span><br/>
+বিস্তৃত নয়নদুটি চাহি ঊর্দ্ধ পানে,<br/><span>অপাঙ্গে সলিল ধারা ঝরিতেছে ধীরে;</span><br/>
+সে মলিন মুখে পুনঃ জীবন-সঙ্গীত-<br/><span>তীব্র যন্ত্রণার স্রোত বহিতেছে ধীরে;</span><br/>
+পরশি সে উষ্ণ বায়ু সঘনে কম্পিত-<br/><span>হইতেছে বিম্বাধর তিতি অশ্রুনীরে।</span><br/></p>
+<div>
+<p>8
+</p>
+</div><br/><p>“কেন তবে জগদীশ সৃজিলে আমারে!<br/><span>সৃজিলে যদ্যপি কেন করিলে দুখিনী!</span><br/>
+দুখিনী করিলে যদি কেন না অচিরে<br/><span>জীবনের শেষ অঙ্ক মুছিলে তখনি!</span><br/>
+অনন্ত মরুর বক্ষে উষ্ণ বালুকায়<br/><span>চাপি বক্ষ কত কাল রহিব বাঁচিয়া!</span>
+</p>
+</div> <div>
+<p>অস্থির পরাণ নাথ দারুণ তৃযায়,<br/><span>কে রাখিবে প্রাণ মম বারি-বিন্দু দিয়া।</span><br/></p>
+<div>
+<p>৫
+</p>
+</div><br/><p>শৈশবে জীবন যদি হ’ত অবসান,<br/><span>দহিতে হ’ত না আজ এ চির অনলে।</span><br/>
+নবীন যৌবনে বক্ষে চাপিয়া পাষাণ,<br/><span>ভাসিতে হ’ত না এই নিরাশার জলে।</span><br/>
+রাজার নন্দিনী আমি আজন্ম সুখিনী,<br/><span>বালিকা যখন,—ছিল কত সাধ মনে;</span><br/>
+সে সাধ পূরিল ভাল, চির অভাগিনী,<br/><span>আমরণ অশ্রুজল ঝরিবে নয়নে।</span><br/></p>
+<div>
+<p>৬
+</p>
+</div><br/><p>ইচ্ছা করে ছুটে যাই কানন-মাঝারে,<br/><span>পড়িয়া তরুর তলে কাঁদি একাকিনী।</span><br/>
+এ দুখ কহিব কারে নির্ম্মম সংসারে,<br/><span>কে বুঝিবে౼কে শুনিবে౼আমারকাহিনী।</span><br/>
+কভু ইচ্ছা করে ছুরী বিন্ধিয়া হৃদয়ে,<br/><span>জীবনের দুখ-লীলা করি অবসান।</span><br/>
+সিহরি আতঙ্কে পুনঃ পরকাল-ভয়ে,<br/><span>দুখের সাগরে উঠে বিষম তুফান।</span>
+</p>
+</div> <div>
+<div>
+<p>৭
+</p>
+</div><br/><p>হায় পিতঃ কেন আর চির-অভাগিরে,<br/><span>স্নেহ মমতায় সদা করিছ পালন।</span><br/>
+ভাসাইয়া দেহ মেরে জাহ্ণবীর নীরে,<br/><span>এ মুখ দেখিয়া কেন পাইবে বেদন।</span><br/>
+শুষ্ক পল্লবের মত যাইব ভাসিয়া,<br/><span>প্রবল তরঙ্গ-স্রোতে সাগরের জলে।</span><br/>
+এ ভঙ্গ জীবন-তরি যাইবে ডুবিয়া,<br/><span>দহিতে হবে না আর নিরাশা-অনলে।</span><br/></p>
+<div>
+<p>৮
+</p>
+</div><br/><p>মূর্ত্তিমতী দয়া তুমি জননী আমার,<br/><span>কত যত্নে কত স্নেহে পালিছ আমারে,</span><br/>
+কিন্তু মাগো ভাঙ্গিয়াছে কপাল যাহার,<br/><span>স্নেহ-বিড়ম্বনা কেন অকারণ তারে?</span><br/>
+কেন নীলাম্বরী আর কেন অলঙ্কার?<br/><span>কেন লৌহ হাতে কেন সিন্দূর কপালে?</span><br/>
+কেন যত্নে বেঁধে দাও কবরী আমার?<br/><span>দুখিনীর নাহি সাধ আর এ সকলে!</span><br/></p>
+<div>
+<p>৯
+</p>
+</div><br/><p>ফুরায়েছে সব সাধ নবীন যৌবনে,<br/><span>আশা-সুখ দুখিনীর নাহি কিছু আর;</span>
+</p>
+</div> <div>
+<p>ফুরাইবে এ যন্ত্রণা আর কত দিনে<br/><span>সুধু এই এক চিন্তা অন্তরে আমার।</span><br/>
+না হ’ত বিবাহ যদি আছিল সে ভাল,<br/><span>নাহি জানিতাম স্বামী কেমন রতন।</span><br/>
+আজন্ম কুমারী হয়ে সুখে চিরকাল,<br/><span>রহিতাম, দহিত না নিরাশায় মন।</span><br/></p>
+<div>
+<p>১০
+</p>
+</div><br/><p>শর-বিদ্ধ বিহঙ্গিনী মর্ম্ম-বেদনায়,<br/><span>অস্থির যখন পড়ি লতার বিতানে।</span><br/>
+কে বুঝে কে দেখে তার তীব্র যন্ত্রণায়,<br/><span>লুটায় সাপটি পক্ষ একাকী কাননে।</span><br/>
+বিলাপে কানন-মাঝে যবে কুরঙ্গিনী,<br/><span>নিরখিয়া চতুর্দ্দিকে মত্ত দাবানল</span><br/>
+কে বুঝে তখন তার কি করে পরাণি,<br/><span>কে মুছায় দুখিনীর নয়নের জল।</span><br/></p>
+<div>
+<p>১১
+</p>
+</div><br/><p>“বারি, বারি” শব্দে করি কাতরে চীৎকার,<br/><span>নিদাঘ-চাতক যবে হতাশ অন্তরে</span><br/>
+পড়ে ভূমে চাপি বক্ষ, অন্তর কাহার<br/><span>কাঁদে অভাগিনী সেই চাতকের তরে?</span>
+</p>
+</div> <div>
+<p>অনন্ত সংসারে আমি সামান্যা রমণী,<br/><span>কোন্ দুঃখে কাঁদি সদা কে সন্ধান করে?</span><br/>
+সংসারে নারীর দুখ বুঝে কোন প্রাণী<br/><span>মৃগতৃষ্ণিকায় কবে সলিল সঞ্চারে?</span><br/></p>
+<div>
+<p>১২
+</p>
+</div><br/><p>ঘুচাতে বেদনা যদি দুখিনী কন্যার<br/><span>থাকে ইচ্ছা, এই ভিক্ষা জননী, অচিরে</span><br/>
+জনমের মত আশা বিসর্জ্জিয়া তার,<br/><span>সাজাইয়া দেহ চিতা জাহ্নবীর তীরে।</span><br/>
+সজল নয়নে চাহি সংসারের পানে,<br/><span>পশিব পরম সুখে জ্বলন্ত চিতায়।</span><br/>
+নিবিবে যখন বহ্নি গিয়া সেই খানে।<br/><span>দেখিও বারেক তব দুখিনী কন্যায়।</span><br/></p>
+<div>
+<p>১৩
+</p>
+</div><br/><p>চিতার অনল সহ প্রাণের অনল,<br/><span>দেখিবে নিষেছে সেই তরঙ্গিনী-তীরে।</span><br/>
+দুখিনীর এই মাত্র উপায় কেবল,<br/><span>মুছাইতে অবিশ্রান্ত নয়নের নীরে।</span><br/>
+যত দিন বেঁচে রব এ পোড়া সংসারে,<br/><span>সমভাবে এ যাতনা দহিবে অন্তরে।</span>
+</p>
+</div> <div>
+<p>চাপাইয়া দেহ যদি বস্ত্র অলঙ্কারে,<br/>
+তবু নিবিবে না বহ্নি ক্ষণেকের তরে।<br/></p>
+<div>
+<p>১৪
+</p>
+</div><br/><p>প্রাণের দোসর তুমি ভগিনী আমার,<br/><span>কেন কাঁদি প্রতিক্ষণ জিজ্ঞাস আমারে,</span><br/>
+কেন যে পরাণ কাঁদে উত্তর তাহার<br/><span>কি দিব কথায় আজ সরলে তোমারে</span><br/>
+সুখ দুঃখ কোন্ সূত্রে নারীর জীবনে-<br/><span>হয় অভিনিত, যদি বুঝিতে পারিতে,</span><br/>
+বুঝিতে কি দুঃখ যদি হতাশের মনে,<br/><span>কেন দুখী প্রতিক্ষণ নাহি জিজ্ঞাসিতে।</span><br/></p>
+<div>
+<p>১৫
+</p>
+</div><br/><p>পেয়েছ গুণের পতি মনের মতন,<br/><span>নারীর অমুল্য নিধি পেয়েছ প্রণয়;</span><br/>
+তুমি কি বুঝিবে দিদী দুঃখিনীর মন?<br/><span>তুমি কি বুঝিবে তার কি করে হৃদয়?</span><br/>
+নির্বাক যাতনা মম ভগিনী তোমারে,<br/><span>কেমনে বুঝাব বল,—চিরিয়া হৃদয়</span><br/>
+দেখাইতে পারি যদি প্রাণের ভিতরে,<br/><span>বুঝিবে তখন সদা কি যন্ত্রণা হয়।</span>
+</p>
+</div> <div>
+<div>
+<p>১৬
+</p>
+</div><br/><p>রুদ্ধ বিহঙ্গিনী-মত সংসার পিঞ্জরে,<br/><span>বসন ভূষণে মোরে তুষিছ সদত;</span><br/>
+হায় রে মানস মম ভুলাবার তরে;<br/><span>কিন্তু কেহ নাহি ভাব এ যন্ত্রণা কত।</span><br/>
+অস্থি মাংস লোহ দেহে নাহি মম আর,<br/><span>চর্ম্মাবৃত তুষানল গঠিত আকারে</span><br/>
+দহিয়া দহিয়া বহ্নি জীবন আমার,<br/><span>পরিণত হবে শীঘ্র নির্জীব অঙ্গারে।</span><br/></p>
+<div>
+<p>১৭
+</p>
+</div><br/><p>কত অভাগিনী আমি সুখের সংসারে,<br/><span>কি বলিব ভগ্নী, এই পূর্ণ সপ্তদশ,</span><br/>
+নবীন বসন্ত মম হৃদয়-মাঝারে,<br/><span>কিন্তু হায় নিরাশায় সকলি নীরস।</span><br/>
+যুবতী নারীর মন বুঝিবে আপনি,<br/><span>কত সাধ কত প্রেম নিয়ত উথলে;</span><br/>
+কিন্তু মরুভূমে কবে ছছাটে তরঙ্গিনী!<br/><span>শুকাইয়া যায় স্রোত উত্তপ্ত ভূতলে।</span><br/></p>
+<div>
+<p>১৮
+</p>
+</div><br/><p>নয়ন শ্রবণ মন তোমার মতন,<br/><span>সকলি আমার, কিন্তু প্রভেদ বিস্তর।</span>
+</p>
+</div> <div>
+<p>সুখের শৈশব আর দুঃখের যৌবন౼<br/><span>যেমন আমার; সুধু নেত্র-শোভাকর,</span><br/>
+দেখি বটে সংসারের শোভা মনোহর।<br/><span>শুনি বটে মানবের সঙ্গীত মধুর,</span><br/>
+হাসি বটে নিরখিয়া দৃশ্য হাস্যকর,<br/><span>আশাও অন্তরে হায় করেছি প্রচুর।</span><br/></p>
+<div>
+<p>১৯
+</p>
+</div><br/><p>সকলি নীরস তাহে সে কুহক নাই,<br/><span>তোমার অন্তরে যাহে আনন্দ উথলে,</span><br/>
+আশায় নয়নে কর্ণে যাতনা যুড়াই<br/><span>বিরলে আবার প্রাণ সেই রূপ জ্বলে,</span><br/>
+মুছি নয়নের জল অন্তুরে আপনি<br/><span>নির্জন প্রাসাদে কিম্বা গবাক্ষ-সদনে,</span><br/>
+উপাধানে চাপি বক্ষ দিবস রজনী<br/><span>যাপি যন্ত্রণায় আর হতাশ রোদনে!</span><br/></p>
+<div>
+<p>২০
+</p>
+</div><br/><p>হেন চিত্রকর যদি থাকিত ভুবনে<br/><span>হৃদয়ের প্রতিমূর্ত্তি চিত্রিতে পারিত,</span><br/>
+আশা তৃষ্ণা সুখ দুঃখ মনের বেদনে,<br/><span>তুলিকায় চিত্রপটে হইত অঙ্কিত!</span>
+</p>
+</div> <div>
+<p>দগ্ধ হৃদয়ের ছবি তুলিয়া তোমারে<br/><span>দেখাতেম সহোদরে যাতনা আমার,</span><br/>
+দেখিতে জ্বলিছে চিতা হৃদয়-মাঝারে,<br/><span>আশা সুখ পরিবর্ত্তে দেখিতে অঙ্গার।</span><br/></p>
+<div>
+<p>২১
+</p>
+</div><br/><p>আর তুমি চিরারাধ্য প্রাণেশ আমার!<br/><span>আসিও না কাছে মোর প্রেম সম্ভাষণে,</span><br/>
+হৃদয়ে লুকাও নাথ প্রণয় তোমার,<br/><span>কাজ নাই প্রকাশিয়া মধুর বচনে।</span><br/>
+পত্নী আমি—দাসী আমি আজন্ম তোমার,<br/><span>অন্তরে পূজিব তব চরণ-যুগল,</span><br/>
+কিন্তু পুনঃ পরস্পরে মিলিব না আর,<br/><span>প্রজ্জ্বলিত হবে নাথ নির্ব্বাণ অনল।</span><br/></p>
+<div>
+<p>২২
+</p>
+</div><br/><p>তুমি নহ অপরাধী, আমি অভাগিনী,<br/><span>হেরিলে তোমায় নাথ কাঁদে মম মন,</span><br/>
+নিরখি আপন চিত মুমুর্ষু, যেমনি<br/><span>বিষাদে হতাশে হায় মুদি দুনয়ন।</span><br/>
+ক্ষম প্রাণেশ্বর! এই নিষ্ঠুর বচন,<br/><span>ক্ষম দুখিনীর এই নয়নের জল,</span>
+</p>
+</div> <div>
+<p>পারি না লুকাতে আর মনের বেদন,<br/><span>পারি না নিতে নাথ প্রাণের অনল।</span><br/></p>
+<div>
+<p>২৩
+</p>
+</div><br/><p>পঞ্চম বৎসর অজি বিষম যতনে,<br/><span>লুকায়ে রেখেছি ব্যথা অন্তর-অন্তরে,</span><br/>
+কেবল ঝরিত কভু নিশ্বাসে রোদনে,<br/><span>ফুটি নাই দুঃখ মম একটি অক্ষরে।</span><br/>
+পারি না রাখিতে আর যাতনা অন্তরে,<br/><span>পারি না বহিতে আর হতাশ জীবন,</span><br/>
+ছেড়ে দাও যাই চলি কানন-ভিতরে,<br/><span>চির-সন্ন্যাসিনী হয়ে করিগে রোদন।”</span><br/></p>
+<div>
+<p>২৪
+</p>
+</div><br/><p>সুদীর্ঘ নিশ্বাস ত্যজি সোপান-উপরে<br/><span>লুটায়ে পড়িল ধীরে নীরবে রমণী,</span><br/>
+জ্বলিয়া উঠিল বুঝি যন্ত্রণা অন্তরে,<br/><span>স্মরি জীবনের ঘোর দুখের কাহিনী।</span><br/>
+সেই চন্দ্রালোকে—সেই সরসীর তীরে—<br/><span>বিষাদ-লুণ্ঠিতা সেই কামিনীর পাণে</span><br/>
+দেখিলাম কতবার মুছি অশ্রুনীরে,<br/><span>কতবার ক্লেশ তার ভাবিলাম মনে।</span>
+</p>
+</div> <div>
+<div>
+<p>২৫
+</p>
+</div><br/><p>জীবন আলেখ্য তার নয়ন দর্পণে<br/><span>হ’ল বিভাসিত মম, রেখায় রেখায়</span><br/>
+দেখিনু জ্বলন্ত শিখা ধায় মর্ম্ম-পানে,<br/><span>দগ্ধ-আশা হত-সুখ পড়ি শুষ্ক-প্রায়।</span><br/>
+তখন সহস্র চিন্তা জাগিল অন্তরে,<br/><span>দেশাচার, শাস্ত্র, ধর্ম্ম করিনু স্মরণ,</span><br/>
+কত তর্ক, ভাবিলাম দুখিনীর তরে,<br/><span>স্মরিয়া সমাজ পুনঃ ঝরিল নয়ন।</span><br/></p>
+<div>
+<p>২৬
+</p>
+</div><br/><p>স্বার্থ অন্বেষণে রত সবাই সংসারে,<br/><span>পর-দুখে কেবা করে অশ্রু বরিষণ!</span><br/>
+ধর্ম্মাধর্ম্ম, শাস্ত্রশস্ত্র, কেবল আচারে,<br/><span>অন্তরে ধার্ম্মিক শাস্ত্রী নহে কোন জন।</span><br/>
+দয়ার সাগর তুমি অনাথ সহায়,<br/><span>অটল বাসনা তব দেশের মঙ্গলে,</span><br/>
+সমাজে বক্তৃতা কর দেবতার প্রায়,<br/><span>সদাহিত শিক্ষা দাও বান্ধব-মগুলে।</span><br/></p>
+<div>
+<p>২৭
+</p>
+</div><br/><p>তবে কেন আজ তব বধির প্রবণ?<br/><span>কেন নেত্রে নাহি আজ বিন্দু মাত্র জল?</span>
+</p>
+</div> <div>
+<p>দুখিনীর হাহা রবে ফাটিছে গগণ<br/><span>কাঁদিতেছে তরুলতা সরসীর জল;</span><br/>
+তুমি কেন শুষ্ক নেত্রে বসিয়া নীরবে?<br/><span>নাহি চাও তার পানে নির্মুমের প্রায়?</span><br/>
+কাঁদে না কি মন তব দুখিনীর রবে?<br/><span>অথবা কারুণ্য-লেশ নাহিক তাহায়?</span><br/></p>
+<div>
+<p>২৮
+</p>
+</div><br/><p>তাই যদি, হায় তব কি পাষাণ মন!<br/><span>মূঢ় তারা, কহে যারা হিতৈষী তোমারে,</span><br/>
+যশের কিঙ্কর তুমি, দয়া প্রদর্শন<br/><span>কর সুধু খ্যাতি-লোভে রাজদরবারে।</span><br/>
+জানি আমি সমাজের কঠিন বন্ধন,<br/><span>জানি আমি প্রাচীনের নির্ম্মম আচার,</span><br/>
+কিন্তু নিরখিলে এই রমণী-রতন<br/><span>ইচ্ছা করে বিসর্জ্জিত পাপ দেশাচার।</span><br/></p>
+<div>
+<p>২৯
+</p>
+</div><br/><p>নিষ্ঠুর সংসার-স্থানে কি যাচিব আর,<br/><span>এই যাচি নরকূলে কে আছে এমন—</span><br/>
+কে আছ নারীর দুখে অন্তর যাহার<br/><span>ক্ষণেকের তরে হয় বিষাদে মগন।</span>
+</p>
+</div> <div>
+<p>সুদূর কানন মাঝে নিরজন স্থানে<br/><span>শান্ত নির্ঝরিণী-তীরে ভূধরের মূলে,</span><br/>
+বেষ্টিয়া বিটপীরাজি লতার বিতানে<br/><span>নির্ম্মাইয়া দেহ কুঞ্জ ঘন তরুদলে।</span><br/></p>
+<div>
+<p>৩০
+</p>
+</div><br/><p>দুখিনীরে ছেড়ে দাও কুঞ্জের ভিতরে,<br/><span>কাঁদুক মনের সাধে দিবস-রজনী,</span><br/>
+বাঁধিয়া চরণ আর রেখোনা উহারে<br/><span>সুখের সংসারে করি চির অভাগিনী।</span><br/>
+ছেড়ে দাও এই দণ্ডে, ক্ষণেকের তরে,<br/><span>রেখোনা উহারে আর করিয়া বন্ধন,</span><br/>
+সহে কি এ ব্যথা তার কোমল অন্তরে<br/><span>দুখিনী রমণী বড় যতনের ধন।</span>
+</p>
+</div>
+<div><hr/></div>
+</div>
+
+</div></section>
+<section><div>
+
+<h2>পুন্দরের দৌত্য</h2><sup><a href="#cite_note-cm76-1">[১]</a></sup><div>
+<div>
+<p>১
+</p>
+</div>
+<div>
+<p>বিষয় সমররাজ চিত্রের সভায়<br/><span>নীরব সচিব-বৃন্দ পারিষদ গণ,</span>
+</p>
+</div>
+<div>
+<p>বজ্রনাদ অন্তে যথা সমুদ্র-হৃদয়,<br/><span>পুন্দর-বচনে স্তব্ধ সদসিভবন।</span><br/>
+কহিল পুন্দর তেজে তুলিয়া উচ্ছ্বাস<br/><span>“যে জল রেখা, দেব, পশ্চিম গগনে</span><br/>
+উঠিছে ঈষৎ ভাবে, অনন্ত আকাশ<br/><span>আচ্ছন্ন হইবে তায় সহায় পবনে।”</span><br/></p>
+<div>
+<p>২
+</p>
+</div><br/><p>“যেই ক্ষীণ অগ্নিশিখা ভারত-ভবনে<br/><span>জ্বালিয়াছে জয়চন্দ্র, পরিণামে হায়—</span><br/>
+ভীষণ অনল হয়ে ছুটিবে সঘনে,<br/><span>হিমাদ্রিকুমারী ব্যাপি ভস্ম হবে তায়।</span><br/>
+যদি কাল সর্পশির প্রবেশে বিবরে<br/><span>কার সাধ্য নিবারিতে সে ভুজঙ্গগতি?</span><br/>
+পশে যদি ম্লেচ্ছ আজ ভারত ভিতরে<br/><span>কাল ভারতের ভাগ্যে অশেষ দুর্গতি।”</span>
+</p>
+</div>
+<div>
+<div>
+<p>৩
+</p>
+</div><br/><p>“বারেক খুলিয়া দেব স্মৃতির দুয়ার<br/><span>ভারতের পূর্ব্ব ছবি কর দরশন,</span><br/>
+সৌভাগ্যের পূর্ণ জ্যোতি অঙ্গে চারিধার<br/><span>কেমন অপূর্ব্ব বেশ করেছে ধারণ।</span><br/>
+বীর্য্য, ধর্ম্ম, শাস্ত্র আদি নক্ষত্র মণ্ডলে<br/><span>কেমন শোভিছে, যেন শারদি-নিশায়</span><br/>
+নিশানাথ বিরাজিছে তারকার দলে<br/><span>উজলি ভারত-বক্ষ অতুল আভায়।”</span><br/></p>
+<div>
+<p>8
+</p>
+</div><br/><p>“যশের পতাকা ওই উন্নত গগনে<br/><span>কেমন উড়িছে দেখ শোভা বিকাশিয়া,</span><br/>
+সূর্য্য তেজোময় সব আর্য্যসুতগণে<br/><span>চলেছে কেমন ভাবে গরবে মাতিয়া।</span><br/>
+ভীষ্ম, কর্ণ, দ্রোণ, পার্থ, আচার্য্য-তনয়<br/><span>এখনো নিরখি যেন সাজি রণ বেশে,</span><br/>
+রণরঙ্গে মত্ত ভীম ভেদিয়া হৃদয়<br/><span>দুঃশাসন-রক্ত পান করিতেছে রোষে।”</span><br/></p>
+<div>
+<p>৫
+</p>
+</div><br/><p>“হায় আর্য্যসুতগণ! এত যে আয়াসে<br/><span>তুলিলে যশের কেতু, বুঝি এতদিনে</span>
+</p>
+</div> <div>
+<p>খসিল ভূমিতে তাহা ম্লেচ্ছের পরশে।<br/><span>অস্ত যায় সুখ সূর্য্য পশ্চিম গগনে।</span><br/>
+একবার এস সবে কুরু-রণস্থলে,<br/><span>উত্তপ্ত মেদিনী তার কাতর তৃষ্ণায়,</span><br/>
+ম্লেচ্ছ-রক্ত তরঙ্গিণী আনি কুতূহলে<br/><span>শীতল করহ তার উগ্র পিপাসায়।”</span><br/></p>
+<div>
+<p>৬
+</p>
+</div><br/><p>নীরব হইল দূত, স্তব্ধ সভাতল,<br/><span>চতুর্দ্দিকে একবার করিল ঈক্ষণ;</span><br/>
+বদনে উৎসাহ-আভা নিরখি সবার<br/><span>কহিল আবার রোষে করিয়া গর্জ্জন</span><br/>
+“জীবিত কি আর্য্যসুত ভারত ভবনে<br/><span>উত্তপ্ত শোণিত কারো বহে কি শিরায়౼</span><br/>
+ক্ষুবধ নহ কি ম্লেচ্ছ পদ-প্রহরণে,<br/><span>ভারত-কলঙ্কে কারো কাঁপে কি হৃদয়?</span><br/></p>
+<div>
+<p>৭
+</p>
+</div><br/><p>“কাঁপে যদি—ওই দেখ পশ্চিম গগনে<br/><span>ভারতের সুখ সূর্য্য রাহুর গরাসে।</span><br/>
+আর্য্যকুল-মান যদি থাকে কার মনে<br/><span>কর যত্ন যাহে রাহু সূর্য্য না পরশে,</span>
+</p>
+</div> <div>
+<p>কাঁপে যদি౼চল সবে সিন্ধুনদ-কূলে<br/><span>ম্লেচ্ছের সমাধিক্ষেত্র করিবে খনন।</span><br/>
+পরাঙ্মুখ হও যদি, তরঙ্গিণী-জলে<br/><span>পশিয়া কলঙ্ক রাশি করে। প্রক্ষালন।”</span><br/></p>
+<div>
+<p>৮
+</p>
+</div><br/><p>“পৃথু নহে ভীত একা যুঝিতে সমরে,<br/><span>কোন্ ক্ষত্র ভীত কবে সমর সজ্জায়?</span><br/>
+একক শতক পৃথু ভাবে না অন্তরে,<br/><span>তবে কিনা জয়চন্দ্র সাহার সহায়।</span><br/>
+ক্ষত্রিয়-কলঙ্ক জয় আর্য্য-কুলাঙ্গার<br/><span>যেই ইষ্টসিদ্ধি-আশে ম্লেচ্ছের সহায়,</span><br/>
+ভাসিবে উজান স্রোতে সেই ইষ্ট তার<br/><span>বুঝে না সর্পের গতি মুঢ় দুরাশয়।”</span><br/></p>
+<div>
+<p>৯
+</p>
+</div><br/><p>“সুপবিত্র আর্য্য-ধাম জগত-পূজিত<br/><span>অশুচি ম্লেচ্ছের পদ পরশিবে তায়</span><br/>
+স্মরিলে বিদীর্ণ নহে কোন ক্ষত্র-চিত?<br/><span>এ সম্বাদে অসি কভু পিধানে কি রয়?</span><br/>
+গর্ব্বের তিলক মুছি ললাট হইতে<br/><span>দাসত্ব কলঙ্ক তায় দিবে মাখাইয়া,</span>
+</p>
+</div> <div>
+<p>ছিঁড়িয়া সুখের পদ্ম হৃদয় হইতে,<br/><span>বিষাদ কণ্টক দামে সাজাইবে হিয়া!”</span><br/></p>
+<div>
+<p>১০
+</p>
+</div><br/><p>“কি আর বলিব দেব, এই নিবেদন<br/><span>পাঠাইলা পৃথু রাজ তব সন্নিধানে—</span><br/>
+রক্ষিত আর্য্যের মান আর্য্যসুতগণ<br/><span>মিলি রণক্ষেত্রে যেন যুঝে প্রাণপণে!</span><br/>
+নীরব হইল দূত—গভীর বচন<br/><span>হইল নীরব, কিন্তু প্রতিধ্বনি তার</span><br/>
+ছুটিতে লাগিল করি জলদ নিস্বন<br/><span>সবার হৃদয়ময় বেগে অনিবার।</span><br/></p>
+<div>
+<p>১১
+</p>
+</div><br/><p>আঘাতি অনল ছটা কন্দরে কন্দরে<br/><span>ভ্রমে যথা ক্ষণপ্রভা পর্ব্বত প্রদেশে,</span><br/>
+তেমতি চিন্তার শিখা ক্ষত্রিয় অন্তরে<br/><span>ভ্রমিতে লাগিল হেসে ভয়ঙ্কর বেশে,</span><br/>
+কল্পনা অমনি আনি ভবিষ্যত ছবি<br/><span>ধরিল মানস-পটে সম্মুখে সবার,</span><br/>
+(অস্তমিত ভারতের সৌভাগ্যের রবি<br/>
+নিবিড় গভীর মেঘে ভারত আঁধার)।
+</p>
+</div> <div>
+<div>
+<p>১২
+</p>
+</div><br/><p>কহিল সমররাজ গম্ভীরে তখন౼<br/><span>“বুঝিনু এখন কেন স্বপ্নে অনিবার</span><br/>
+হেরিতেছি কয়দিন সমর-প্রাঙ্গণ,<br/><span>কেন থেকে থেকে কোষে কাঁপে তরবার।</span><br/>
+ভ্রমি গৃহমাঝে যবে অনুভব হয়<br/><span>শরাসন দেখি মোরে উঠিল নাচিয়া,</span><br/>
+যেন পদমূলে শব স্তুপাকারে রয়<br/><span>ভীষণ রক্তের স্রোত ছুটিছে বাহিয়া।”</span><br/></p>
+<div>
+<p>১৩
+</p>
+</div><br/><p>“অহো কি সম্বাদ আজ করিনু শ্রবণ”<br/><span>নিরবিল ক্ষণে বীর ফেলি দীর্ঘশ্বাস।</span><br/>
+ক্ষণেকে চমকি পুন কহিল বচন<br/><span>প্রাবৃটে গগনে যথা জলদ নিশ্বাস।</span><br/>
+“লাহোর-রাজন! আজ করিলাম পণ<br/><span>রক্ষিতে আর্য্যের মান যদি আর্য-সুত</span><br/>
+নাহি বাঞ্ছে, একা আমি ভুতল গগন<br/><span>ডুবাব সাগর-জলে ম্লেচ্ছের সহিত।”</span><br/></p>
+<div>
+<p>১৪
+</p>
+</div><br/><p>“এই দেখ”౼বলি অসি করি নিষ্কাশন<br/><span>ঝলসিল সভাল উদ্রিক্ত কিরণে।</span>
+</p>
+</div> <div>
+<p>“এই দেখ এই অসি উলঙ্গ এমন,<br/><span>এমনি উলঙ্গ ভাবে রবে, যত দিনে,౼</span><br/>
+পাপ ম্লেচ্ছ-লোহ-নীরে নাহি করে স্নান।<br/><span>সাধিতে এ আশা যদি বাদী বিশ্বজন౼</span><br/>
+অথবা অমর-বৃন্দ,౼নাহি পরিত্রাণ<br/><span>দ্বিধা হবে একঘাতে বিশ ত্রিভুবন।”</span><br/></p>
+<div>
+<p>১৫
+</p>
+</div><br/><p>“নক্ষত্রে নক্ষত্র ধরি করিব প্রহার,<br/><span>চূর্ণ হবে সৌরদল পুড়িয়া অনলে,</span><br/>
+বাঁধিয়া ভারতে গলে সাগর মাঝার<br/><span>লুকাইব বারিধির সুগভীর তলে।</span><br/>
+কলঙ্ক না স্পর্শে যাহে আর্য্যের ভবনে,<br/><span>অথবা নির্ম্লেচ্ছ পৃথ্বী করিব এবার</span><br/>
+স্তুপাকারে রবে পড়ি সমর-প্রাঙ্গণে<br/><span>রাবণের চিতা সম ম্লেচ্ছ-ভস্মসার।”</span><br/></p>
+<div>
+<p>১৬
+</p>
+</div><br/><p>“যাও চলি—দিল্লীধামে কহ এ বারতা,<br/><span>মসৃণ করহ সবে ভল্ল খরশান,</span><br/>
+ভুলে যাও একবারে প্রাণের মমতা<br/><span>যত দিন এ অনল না হয় নির্ব্বাণ।</span>
+</p>
+</div> <div>
+<p>যতদিন ম্লেচ্ছ রক্তে—স্বল্পদিন আর-<br/><span>সিঞ্চিত না হয় বর্ত্ম, মুহূর্ত্তের তরে</span><br/>
+অলসে পলক যেন নাহি পড়ে কার,<br/><span>বাড়াও ক্রোধের ক্ষুধা আহারে বিহারে।”</span><br/></p>
+<div>
+<p>১৭
+</p>
+</div><br/><p>“অভিবাদন আমার দিও দিল্লীশ্বরে<br/><span>বোলো তাঁরে এ তরঙ্গ যদি সে তরঙ্গে-</span><br/>
+মিশে একবার,—ছার ম্লেচ্ছ কলেবরে—<br/><span>ভাসাইর ভূমণ্ডল সমরের রঙ্গে।”</span><br/>
+নীরব হইল রাজা স্তব্ধ সভাতল<br/><span>পড়ে না একটি শ্বাস নড়ে না পলক</span><br/>
+চামরী ব্যজন ভুলি দাঁড়ায়ে অচল<br/><span>নীরবে কৃপাণ স্কন্ধে স্তম্ভিত রক্ষক।</span>
+</p>
+</div>
+</div>
+<div><hr/></div>
+
+</div><ol><li><span><a href="#cite_ref-cm76_1-0">↑</a></span> <span>পৃথ্বিরাজের সহিত সাহাব উদ্দীনের যুদ্ধ হইবার পূর্ব্বে পৃথ্বিরাজ লাহোরাধিপতি পুন্দরকে দূত পদে বরণ করিয়া চিতো- রের অধীশ্বর সমরসাহীর নিকট প্রেরণ করেন। পুন্দর সমরসাহীর নিকট যাহা বলিয়াছিলেন এ কবিতাটিতে তাহাই লিখিত হইল। চাঁদ কবির গ্রন্থে এ কথা সবিস্তার লিখিত আছে।</span>
+</li>
+</ol></section>
+<section><div>
+
+<h2>অকস্মাৎ সে তারাটি ডুবিল কোথায়</h2>
+<div>
+<div>
+<p>১
+</p>
+</div>
+<div>
+<p>জীবন সিন্ধুর তীরে বসি নিরন্তর<br/><span>হেরিতাম যে তারাটি অনন্য-মানসে,</span><br/>
+অকস্মাৎ কোথা গেল আঁধারি অম্বর।<br/><span>কাঁদিয়া উঠিছে প্রাণ চাহিয়া আকাশে।</span>
+</p>
+</div>
+<div>
+<p>নহে কি সে নভঃ ইহা—সে মিশি কি নয়?<br/><span>কিম্বা ইহা নহে সেই জীবনের তীর?</span><br/>
+সে আকাশে সে তারাটি সদত উদয়,<br/><span>সে তীরে কিরণময় সঙ্গত যে নীর!</span><br/>
+এ যে শূন্য নভস্তল, যামিনী আঁধার!<br/>
+এ তীরে যে সিন্ধু-নীর ভীষণ আকরি!<br/></p>
+<div>
+<p>২
+</p>
+</div><br/><p>না না—সেই নভঃ ইহা, ওই চিহ্ন তার౼<br/><span>বজ্র ভাঙ্গা ঝুলিতেছে নীরদের গায়,</span><br/>
+সেই নিশি বটে ইহা౼তেমতি আঁধার,<br/><span>তীরো সেই,—ভগ্ন কূল এই যে হেথায়।</span><br/>
+এই যে সে ছিন্ন লতা জীর্ণ তরু-মূলে<br/><span>শুষ্ক পল্লবের রাশি এই যে এখানে,</span><br/>
+ভগ্ন তরীখানি সেই ওই মগ্ন কূলে,<br/><span>সে ভাঙ্গা পিঞ্জর খানি পড়ি এই খানে,</span><br/>
+সেই নভঃ সেই নিশি, সিন্ধু তীরে সেই।<br/><span>কেন রে সে জ্যোতির্ম্ময় তারকাটি নেই।</span><br/></p>
+<div>
+<p>৩
+</p>
+</div><br/><p>নির্ম্মম সংসারে এক নিভৃত প্রান্তরে<br/><span>জীবন সিন্ধুর তীরে ছিলাম বসিয়া,</span>
+</p>
+</div> <div>
+<p>মগ্ন ছিল চতুর্দ্দিক নিবিড় আঁধারে,<br/><span>ছিল সেই এক তারা নিশি উজলিয়া,</span><br/>
+তখন জীবন নীর ছিলনা অধীর,<br/><span>শান্ত সাগরের মত আছিল নিথর,</span><br/>
+আজি অকস্মাৎ কেন এ বাত্যা গভীর<br/><span>কাঁদিয়া উঠিছে কেন প্রাণের ভিতর?</span><br/>
+ওকি চিত্র? সর্ব্বনাশ—একি ভয়ঙ্কর।<br/>
+সে সুখ-তারাটি এই গ্রাসিল পামর!<br/></p>
+<div>
+<p>৪
+</p>
+</div><br/><p>চাহিনা দেখিতে আর লুকাও ত্বরায়<br/><span>হা বিধাতঃ! কি দেখালে নিবিড় আঁধারে!</span><br/>
+প্রকৃত এ চিত্র যদি, কেন অভাগায়—<br/><span>দেখাইলে, ছিল ভাল নিহিত অম্বরে।</span><br/>
+ছিল ভাল সে নিবিড় আঁধার অম্বর<br/><span>ক্ষীণালোকে থাকিতাম পড়ি তরুতলে</span><br/>
+জড়াইয়া ছিন্ন লতা বক্ষের উপর;<br/><span>হেরিতম আজীবন আকাশের তলে।</span><br/>
+কি দেখিনু—কি হইল প্রাণের ভিতর,<br/>
+ফাটে না অথচ যেন ফাটিছে অন্তর!
+</p>
+</div> <div>
+<div>
+<p>৫
+</p>
+</div><br/><p>জীবন আত্মার স্বপ্ন, প্রপঞ্চ বিধির<br/><span>অনিত্য, অসার সুধু ভ্রান্ত লীলাময়,</span><br/>
+মুহূর্ত্তে মুহূর্ত্তে গতি যাহার অস্থির<br/><span>আবর্ত্তে আবর্ত্তে যার বিষম প্রলয়;</span><br/>
+কেমনে বলিব তাহা সুখের জীবন,<br/><span>কেমনে বলিব নহে ভ্রান্তমতি নর!</span><br/>
+কোন তর্কে বুঝাইব হৃদয় আপন,<br/><span>কি যুক্তিতে এ বিশ্বাস করিব অন্তর?</span><br/>
+নিত্য, সার, সত্য, যার মুহূর্ত্তও নয়<br/>
+সে জীবনে নর-ভাগ্যে কি বা ফলোদয়?<br/></p>
+<div>
+<p>৬
+</p>
+</div><br/><p>“বৃথা জন্ম এ সংসারে” বলে না যে জন,<br/><span>বিপুল প্রয়াস তাঁর বাসনা গভীর,</span><br/>
+কীর্ত্তি যশ লালসায় আকুলিত মন,<br/><span>চঞ্চল জগতে তাঁর আত্মাও অধীর।</span><br/>
+সুখী সেই—কিন্তু যার আঁধার জীবন,<br/><span>কিরণের রেখা মাত্র নাহি যে জীবনে,</span><br/>
+প্রতিপদে নিরাশায় দগ্ধ যার মন<br/><span>“মানব জনম সার” সে বলে কেমনে!</span>
+</p>
+</div> <div>
+<p><span>“উদ্দেশ্য সাধন কর” সুখীর বচন,</span><br/>
+দুখীর আজন্ম সুধু করিতে রোদন।<br/></p>
+<div>
+<p>৭
+</p>
+</div><br/><p>উদ্দেশ্য—তাও কি এত সুখদ জীবনে?<br/><span>কি উদ্দেশ্য? নরচিত্তে কি সাধ গভীর।</span><br/>
+কীর্ত্তি?—গৌরব নিজ,—সে কীর্ত্তি ঘোষণে<br/><span>কেন ক্ষুদ্রমতি নর সদত অধীর?</span><br/>
+ধর্ম্ম মোক্ষ কল্পনার সমষ্টি কেবল।<br/><span>কিবা ধর্ম্ম কোথা স্বর্গ কিবা দেহান্তর,</span><br/>
+অনিশ্চিতে কিসে এত বিশ্বাস প্রবল!<br/><span>অসম্ভব সত্যে কিসে এতই নির্ভর।</span><br/>
+কি বিচিত্র মানবের কুহক আশার!<br/>
+ধন্য মানবের মোহ—ধন্য ভ্রান্তি তার।<br/></p>
+<div>
+<p>৮
+</p>
+</div><br/><p>ভ্রান্তি!—এ ভ্রান্তিতে জীব আচ্ছন্ন কেবল।<br/><span>কেন এ ভ্রান্তিতে চিত্ত হইল মগন?</span><br/>
+বিষাদের চিত্র কেন এত সমুজ্জ্বল,<br/><span>যন্ত্রণার রেখা কেন গভীর এমন।</span><br/>
+ডুবিল—ডুবুক তারা, কেন কাঁদে মন?<br/><span>শোক-দুখ-ক্ষীণ-বৃত্তি কেন এ হৃদয়ে?</span>
+</p>
+</div> <div>
+<p>পুত্তলিকা রঙ্গভূমে জনম যখন<br/><span>নিয়তির অত্যাচার লঙ্ঘনীয় নহে,</span><br/>
+আত্মায় শরীরে যদি ক্ষণিক মিলন<br/>
+পার্থিব বিষাদে আত্মা কেন উচাটন!<br/></p>
+<div>
+<p>৯
+</p>
+</div><br/><p>এইত যন্ত্রণা—চিত্ত সহজে দুর্ব্বল।<br/><span>মানস বুঝিলে তবু বুঝে না হৃদয়,</span><br/>
+শোকপ্রবণতা চিত্তে কেমনি প্রবল<br/><span>বিষাদে প্রবৃত্তি গুলি সব(ই) চিত্তময়।</span><br/>
+যে দিকে ফিরাও মন চিত্ত সেই খানে।<br/><span>শিক্ষার কঠিন জ্ঞান সেখানে নিস্ফল,</span><br/>
+জাগ্রতে স্বপনে সেই ব্যথা বাজে প্রাণে।<br/><span>প্রকাশিত পরিবর্ত্তে হয় না শীতল।</span><br/>
+কালের মন্থর গতি করি নিরীক্ষণ<br/>
+দগ্ধচিত্তে বহ্নিশিখা করহ গোপন।<br/></p>
+<div>
+<p>১০
+</p>
+</div><br/><p>অনিত্য জীবনে কেন গভীর প্রণয়?<br/><span>কেন এত স্নেহ মায়া নশ্বর জীবনে?</span><br/>
+যুহূর্ত্তে মুহূর্ত্তে যদি এতই প্রলয়<br/><span>প্রণয়ের স্মৃতি কেন গভীর স্মরণে?</span>
+</p>
+</div> <div>
+<p>স্মৃতি—কেন রহে চিত্তে এত দীর্ঘকাল?<br/><span>ঘটনার সঙ্গে ধ্বংশ কেন নাহি হয়।</span><br/>
+সুখের ভাবনা হৃদে জাগে ক্ষণকাল,<br/><span>দুখের ভাবনা বিন্তু ভুলিবার নয়,</span><br/>
+যে অনলে দগ্ধ হয় পাষাণ হৃদয়<br/>
+সে অনলে স্মৃতি কেন ভস্ম নাহি হয়!
+</p>
+</div>
+</div>
+<div><hr/></div>
+
+</div></section>
+<section><div>
+
+<h2>সুন্দর হইয়ে কেন হইল চপল</h2>
+<div>
+<p>১
+</p>
+</div><div>
+<div>
+<p><span>সুন্দর হইয়ে কেন হইল চপল।</span><br/>
+বিদ্যুত মেঘের কোলে, আভাময়ী তনু ঢেলে,<br/><span>রহিতে পারিত যদি হয়ে অচঞ্চল;</span><br/>
+সলিলের ধারা সনে ঝরিয়া পড়িত আলো<br/><span>কি সুন্দর বেশে তায় সাজিত ভূতলে!</span><br/></p>
+<div>
+<p>২
+</p>
+</div><br/><p><span>সুন্দর হইয়ে কেন হইল চপল,</span><br/>
+ভূতল বিজুলি মম, ঐ সৌদামিনী সম,<br/><span>কভু ধীরে, কভু ছোটে, সদত চপল;</span>
+</p>
+</div>
+<div>
+<p>ভাবিয়াছি কত দিন দেখিব নয়ন ভরি<br/><span>চাহিলে অমনি মরি সরমে চপল।</span><br/></p>
+<div>
+<p>৩
+</p>
+</div><br/><p><span>কে দিল সরম ঢালি তাহার বদনে!</span><br/>
+নয়নের দ্যুতি মম, কে শিখলি লুকাইতে।<br/><span>এ কুটিল ভাব হায় শিখিল কেমনে!</span><br/>
+নবনীত করখানি যখনি ধরিতে যাই<br/><span>অমনি ছুটিয়া ধায় আয়ত নয়নে।</span><br/></p>
+<div>
+<p>8
+</p>
+</div><br/><p><span>সুন্দর হইয়ে কেন হইল চপল!</span><br/>
+দুইখানি কর ধরি, সবলে চাপিয়া বুকে<br/><span>যখনি আদরে তার চুম্বেছি বদন,</span><br/>
+ছিন্ন করি আলিঙ্গন, বসনে বদন মুছি<br/><span>বিদ্যুতের মত ছুটে করে পলায়ন।</span><br/></p>
+<div>
+<p>৫
+</p>
+</div><br/><p><span>সুন্দর হইয়ে কেন হইল চপল।</span><br/>
+যখনি আদর ভারে ডাকি প্রাণেশ্বরি বলি<br/><span>বদনে বসনচাপি হাসে খল খল</span><br/>
+সে ভাব নিরখি যদি বদন গম্ভীর করি<br/><span>অমনি নয়ন প্রান্তে ঝরে অশ্রু জল।</span>
+</p>
+</div> <div>
+<div>
+<p>৬
+</p>
+</div><br/><p><span>সুন্দর হইয়ে কেন হইল চপল,</span><br/>
+নিথর যৌবনাবেশে অঙ্গে অঙ্গে কত রূপ<br/><span>উথলি উটিছে,౼౼যেন নির্ঝরের জল!</span><br/>
+সে চারু বদনখানি, সে দুটি বৃহৎ আঁখি<br/><span>সে দুই বঙ্কিম ভুরু౼౼কুঞ্চিত কুন্তল।</span><br/></p>
+<div>
+<p>৭
+</p>
+</div><br/><p><span>ভেবেছিনু উন্মাদিনী౼౼তাহাও ত নয়।</span><br/>
+বিষন্ন বদনে যদি, হেরি কোন দিন তারে<br/><span>কাষ্ঠ পুত্তলির মত দাঁড়াইয়া রয়;</span><br/>
+আবার হাসিয়া যদি ধরিতে প্রসারি বহু<br/><span>বিদ্যুতের মত পুন ছুটিয়া পলায়।</span><br/></p>
+<div>
+<p>৮
+</p>
+</div><br/><p><span>এও কি প্রণয়! তবে হৃদয় আমার!</span><br/>
+কি শিখিলে এত দিন ছাই ভষ্ম গ্রন্থ পড়ি?<br/><span>অগ্নি কুণ্ডে ফেলে দাও লজিক তোমার।</span><br/>
+বালিকার এই প্রেম বুঝিতে নারিলে হায়!<br/><span>কথায় কথায় কর সত্য আবিষ্কার।</span>
+</p>
+</div> <div>
+<div>
+<p>৯
+</p>
+</div><br/><p><span>কিন্তু অচঞ্চল হয়ে চাহি মোর পানে</span><br/>
+প্রভাত-নলিনী মত বিকাশি কোমল তনু<br/><span>মাজিয়া তরল হাসি ইন্দু-নিভাননে</span><br/>
+দাঁড়াতে পারি যদি, হইত কতই সুখ!<br/><span>সৃষ্টি ছাড়া প্রেম তার বুঝব কেমনে!</span><br/></p>
+<div>
+<p>১০
+</p>
+</div><br/><p><span>সে রূপ౼౼এরূপ, রস ভাবি একবার</span><br/>
+হাসি মাখা সে বদন, লাজ পূর্ণ এ আনন,<br/><span>বিস্ফারিত সে নয়ন౼౼এ আনত আঁখি;</span><br/>
+নিথর সরসী তাহা, তীব্র নির্ঝরিনী ইহা,<br/><span>বন বিহঙ্গিনী ইহা, তাহা পোষ পাখি!</span><br/></p>
+<div>
+<p>১১
+</p>
+</div><br/><p><span>সে সরসী-কুলে বসি দেখিতে দেখিতে</span><br/>
+নয়নের তৃষ্ণা মম শুখাইয়া যায় যদি,<br/><span>অথবা সরসী যদি নিদাঘে শুকায়,</span><br/>
+সে পাখি পিঞ্জরে বসি গাহিবে একটি গীত।<br/><span>নিতি নিতি নব গীত পাইবে কোথায়।</span>
+</p>
+</div> <div>
+<div>
+<p>১২
+</p>
+</div><br/><p><span>পূর্ণিমার চাঁদ তাহা,–এ চল দামিনী</span><br/>
+সেরূপ কৌমুদি মত চলিবে শীতল জ্যোতি,<br/><span>জড় চিত্তে বিমোহিয়া আঁধারে কেবল</span><br/>
+জ্বলিয়া নিবিয়া কিন্তু এরূপ ছুটিবে প্রাণে,<br/><span>কি আঁধারে কি আলোকে সদত উজ্জ্বল।</span><br/></p>
+<div>
+<p>১৩
+</p>
+</div><br/><p><span>সেরূপ—এরূপ—এ প্রভেদ বিস্তর।</span><br/>
+পরিবর্ত্ত নাহি চাই, থাক তুমি এই বেশে।<br/><span>বুঝেছি বুঝেছি আমি প্রণয় তোমার।</span><br/>
+কিন্তু পূর্ণ শশী মত, উদিবে নয়নে যবে<br/><span>তুলিয়া নয়ন মেরে দেখো একবার।</span><br/></p>
+<div>
+<p>১৪
+</p>
+</div><br/><p><span>শিখিব বাসিতে ভাল সুন্দরে চপল,</span><br/>
+শিখিব এবার হতে যুড়াতে আশায় মন,<br/><span>শিখিব মিটাতে সাধ নয়নে কেবল,</span><br/>
+চঞ্চল দামিনী লতা, শিখিব বাঁধিতে বুকে।<br/><span>থেকো তুমি চিরকাল এমনি চপল।</span><br/></p>
+<div><hr/></div>
+</div>
+</div>
+</div></section>
+<section><div>
+
+
+<h2>আশা তৃষ্ণা প্রাণেশ্বরি কর বিসর্জ্জন</h2><sup><a href="#cite_note-1">[১]</a></sup>
+<div><div>
+<div>
+<p>১
+</p>
+</div><br/><p><span>মুছিয়া নয়ন জল গবাক্ষ খুলিয়া</span><br/><span>দেখিনু নবীন ভানু হাসিছে গগনে,</span><br/>
+নিশার শিশিরে স্নাত, পাদপ লতিকা যত,<br/><span>দুলিছে সুমন্দ ভাবে, প্রভাতি পবনে,</span><br/><span>সুশীতল ধরাতল ঊষার মিলনে।</span><br/></p>
+<div>
+<p>২
+</p>
+</div><br/><p><span>নিবিড় তরুর তলে শ্যাম দূর্ব্বাদলে</span><br/><span>পড়িয়া শীতল ছায়া শান্তি-স্বরূপিনী,</span><br/>
+বৃন্তে বৃন্তে ফুল গুলি, আনন্দে পড়েছে ঢলি,<br/><span>অদূরে উঠিছে ধীরে মানবের ধ্বনি,</span><br/><span>বোধ হইল যেন আজ নবীন ধরণী।</span><br/></p>
+<div>
+<p>৩
+</p>
+</div><br/><p><span>দেখিনু শিশির বিন্দু গোলাপের দলে</span><br/><span>কিরণে উজ্জ্বল হয়ে ঢল ঢল করে,</span><br/>
+গোলাপ পড়িল হেলে, শিশির পড়িল ঝুলে,
+</p>
+</div> <div>
+<p><span>দেখিতে দেখিতে বিন্দু খসিয়া পড়িল,</span><br/><span>সূক্ষ্ম বৃন্তে চারু পুষ্প নাচিয়া উঠিল।</span><br/></p>
+<div>
+<p>8
+</p>
+</div><br/><p><span>সুন্দর রজনীগন্ধা ফুটিয়া শাখায়,</span><br/><span>ভ্রমর নিস্পন্দ-কায় বসিয়া তাহায়,</span><br/>
+বাতাসে নড়িল শাখা, ভ্রমর খুলিয়া পাখা,<br/><span>উড়ে বসে, ব’সে উড়ে, পুন উড়ে যায়,</span><br/><span>স্থির হৈল শাখা অলি বসিল তাহায়।</span><br/></p>
+<div>
+<p>৫
+</p>
+</div><br/><p><span>উদ্যানের প্রান্ত ভাগে দেখিনু প্রাসাদ</span><br/><span>নিদ্রিত যেন বা, সব রুদ্ধ বাতায়ন,</span><br/>
+সৌধ-শিরে স্বর্ণপ্রভা, পড়েছে তারুণ আভা,<br/><span>ক্ষুব্ধ চিত্তে স্থির দৃষ্টি হইল নয়ন,</span><br/><span>ইষ্টকে ইষ্টকে যেন আকর্ষিল মন।</span><br/></p>
+<div>
+<p>৬
+</p>
+</div><br/><p><span>ছিল আশা এক দিন উহার ভিতরে</span><br/><span>ওই কক্ষে ওই রুদ্ধ গবাক্ষ সদনে,</span><br/>
+বক্ষে করে বাসন্তীরে, মুখচন্দ্র করে ধরে,<br/><span>বলিব মনের সুখে চুম্বিয়া বদনে,</span><br/><span>কত আশা তার তরে জড়ায়েছি প্রাণে।</span>
+</p>
+</div> <div>
+<div>
+<p>৭
+</p>
+</div><br/><p><span>ছিল আশা একদিন পূর্ণিমা নিশিতে</span><br/><span>প্রিয়ার কোমল কর চাপি করতলে,</span><br/>
+ওই চারু পুষ্পেদ্যানে, বেড়াইব দুই জনে,<br/><span>তুলিয়া কুসুম রাশি প্রিয়ার অঞ্চলে,</span><br/><span>দুজনে গাঁথিব মালা বসি তরু তলে।</span><br/></p>
+<div>
+<p>৮
+</p>
+</div><br/><p><span>ছিল আশা——ওই ছাদে নীরব নিশিতে</span><br/><span>যামিনী নিস্তব্ধ হলে বসিব দুজনে,</span><br/>
+প্রেয়সী গাহিবে গান, শুনিয়া যুড়াব প্রাণ,<br/><span>কভু বা মিশায়ে গলা গাব দুই জনে,</span><br/><span>দুর্লভ সে সুখ হয় বাঙ্গালি-জীবনে?</span><br/></p>
+<div>
+<p>৯
+</p>
+</div><br/><p><span>ছিল আশা—বাতায়ন হইল মোচন,</span><br/><span>পল্যঙ্কে রমণী-মূর্ত্তি!——চিনিনু কাহার,</span><br/>
+দ্রুত তড়িদ্দাম মত, শিরায় শোণিত স্রোত<br/><span>বহিল ছুটিল বেগে নয়ন আসার,</span><br/><span>অশ্রু-নেত্রে দেখিলাম বাসন্তী আমার।</span><br/></p>
+<div>
+<p>১০
+</p>
+</div><br/><p><span>বিষাদিনী বেশ——চূর্ণ আবদ্ধ কুন্তল,</span><br/><span>নয়ন সজল মুখ বিষাদ গম্ভীর,</span>
+</p>
+</div> <div>
+<p>চাপি বক্ষ উপাধানে, পূর্ণ দৃষ্টি শূন্যপানে,<br/><span>দুই বিন্দু অশ্রু দুই নেত্র কোলে স্থির</span><br/><span>পদ্ম দলে যেন দুই বিলম্ব শিশির।</span><br/></p>
+<div>
+<p>১১
+</p>
+</div><br/><p><span>অকস্মাৎ বাহ্য জ্ঞান হৈল অন্তর্ধান,</span><br/><span>অকস্মাৎ মুক্ত হৈল হৃদয়ের দ্বার,</span><br/>
+অবস ইন্দ্রিয় চয়, হইল বাসন্তী-ময়,<br/><span>হইল সহসা মোহ জীবনে সঞ্চার,</span><br/><span>বাসন্তি! বাসন্তি! বলি করিনু চীৎকার।</span><br/></p>
+<div>
+<p>১২
+</p>
+</div><br/><p><span>ভাসি প্রাতঃ সমীরণে বাসন্তী শ্রবণে</span><br/><span>প্রবেশিল সেই শব্দ—উঠিয়া ত্বরিত,</span><br/>
+দাঁড়ায়ে গবাক্ষ ধারে, নিরখিল অভাগারে,<br/><span>নেত্রে নেত্রে পরস্পরে হইনু বিম্বিত,</span><br/><span>ক্ষিপ্ত হৃদয়ের স্রোত হইল স্তম্ভিত!</span><br/></p>
+<div>
+<p>১৩
+</p>
+</div><br/><p><span>সপ্তম বৎসর আজ দেশ দেশান্তরে</span><br/><span>হেরিয়াছি যেই মূর্ত্তি প্রত্যেক স্মরণে,</span><br/>
+যমুনা যাহ্নবী জলে, শকটে বা বাষ্পকলে,<br/><span>স্মরিয়া যাহায় অশ্রু ঝরেছে নয়নে,</span><br/><span>সেই মূর্ত্তি এক দৃষ্টে চাহি মোর পানে।</span>
+</p>
+</div> <div>
+<div>
+<p>১৪
+</p>
+</div><br/><p><span>সপ্তম বৎসর আজ যাহার কারণে</span><br/><span>ত্যজি গৃহ পরিজন ভ্রমি দেশান্তরে,</span><br/>
+জীব ধর্ম্ম উদ্‌যাপন, করি আশা বিসর্জ্জন,<br/><span>চিরদুখী উদাসীন আজ যার তরে,</span><br/><span>সেই মূর্ত্তি দাঁড়াইয়া সম্মুখে অদূরে।</span><br/></p>
+<div>
+<p>১৫
+</p>
+</div><br/><p><span>তেমতি সরল দৃষ্টি শৈশবের মত</span><br/><span>কেবল যৌবনস্পর্শে অধিক উজ্জ্বল,</span><br/>
+অর্থশূন্য দরশন, লজ্জাশূন্য চন্দ্রানন,<br/><span>দেখিতে দেখিতে নেত্রে উথলিল জল,</span><br/><span>অবরুদ্ধ দুখে প্রাণ হইল চঞ্চল।</span><br/></p>
+<div>
+<p>১৬
+</p>
+</div><br/><p><span>বুঝে নাই প্রেম মম এখনো সরলে,</span><br/><span>বুঝিবে না এ জনমে নাহি প্রকাশিলে,</span><br/>
+হায়রে রমণী-মন, এত অন্ধ কি কারণ!<br/><span>বুঝে না প্রণয় কেন নাহি বুঝাইলে,</span><br/><span>ভাবে না ভাবনা নাহি প্রকাশ করিলে!</span><br/></p>
+<div>
+<p>১৭
+</p>
+</div><br/><p><span>স্বল্প দিন হৈল গত দুইটি বৎসর,</span><br/><span>ভাবী দম্পতীর মত ছিলাম দুজনে</span>
+</p>
+</div> <div>
+<p>সেই দীর্ঘ দ্বিবৎসরে, কভু কি মুহূর্ত্ত তরে,<br/><span>উঠে নাই প্রেম চিন্তা বাসন্তীর মনে,</span><br/><span>পতিভাবে ভাবে নাই কভু কি নির্জনে!</span><br/></p>
+<div>
+<p>১৮
+</p>
+</div><br/><p><span>আশার একটি বর্ণ বলিনি তখন,</span><br/><span>এই পরিণাম হবে কেই বা জানিত,</span><br/>
+প্রেমপূর্ণ দুনয়নে, দেখিতাম চন্দ্রাননে,<br/><span>জীবনের সুখ স্বপ্ন-কিন্তু কে ভাবিত</span><br/><span>দশম বর্ষীয়া বলা অবোধ যে এত!</span><br/></p>
+<div>
+<p>১৯
+</p>
+</div><br/><p><span>অথবা বিস্মৃতি, যদি তাহাই নিশ্চয়,</span><br/><span>খুলিব না সরলার স্মৃতির দুয়ার,</span><br/>
+আপনি কাঁদিব দুখে, বাসন্তী ত রবে সুখে,<br/><span>সেই চিন্তা সুখময়ী হইবে অপার,</span><br/><span>সরল অন্তরে ব্যথা দিব না তার।</span><br/></p>
+<div>
+<p>২০
+</p>
+</div><br/><p><span>কিন্তু কেন অশ্রুমুখী? কি দুখ অন্তরে,</span><br/><span>প্রেম যদি নয় তবে অশ্রু কেন ঝরে?</span><br/>
+বাজার নন্দিনী মত, ভুঞ্জে সুখ অবিরত<br/><span>এত সুখে সুখী যেই, তাহার অন্তরে,</span><br/><span>প্রেম-চিন্তা বিনা কোন দুখে অশ্রু ঝরে?</span>
+</p>
+</div> <div>
+<div>
+<p>২১
+</p>
+</div><br/><p><span>জিজ্ঞাসিব ভাবি পুন দেখিনু চাহিয়া,</span><br/><span>উথলিয়া পড়ে অশ্রু উজ্জ্বল নয়নে,</span><br/>
+অঞ্চলে মুছি নয়ন, রুদ্ধ কৈল বাতায়ন,<br/><span>মূর্খ আমি—প্রেম ইহা অন্তরে গোপনে</span><br/><span>গলিয়া গলিয়া আজ ঝরিল নয়নে।</span><br/></p>
+<div>
+<p>২২
+</p>
+</div><br/><p><span>রুদ্ধ গবাক্ষর পানে রহিনু চাহিয়া,</span><br/><span>ভাবিনু আবার মুক্ত হবে বাতায়ন,</span><br/>
+ছুটিল উন্মত্ত মন, করিবারে উদ্‌ঘাটন,<br/><span>নির্দ্দয় কঠিন কাষ্ঠ একটু মোচন,</span><br/><span>হইল না দেখাইতে বাসন্তী-বদন।</span><br/></p>
+<div>
+<p>২৩
+</p>
+</div><br/><p><span>আবার সন্ন্যাসী হ’ব বাসন্তীর তরে,</span><br/><span>এ জীবনে এ সংসারে ফিরিব না আর,</span><br/>
+বাসন্তীর মূর্ত্তি গড়ে, নিরজনে বক্ষে করে,<br/><span>গোপনে কাঁদিব সুখে চুম্বি অনিবার,</span><br/><span>এ জীবনে বাসন্তী ত হবে না আমার!</span><br/></p>
+<div>
+<p>২৪
+</p>
+</div><br/><p><span>ভাল বেসে থাক যদি দুখিনী সরলে,</span><br/><span>জনমের মত তবে হও বিস্মরণ,</span>
+</p>
+</div> <div>
+<p>বুঝেছি এ জন্মে আর, হইব না কেহ কার,<br/><span>আশা মাত্র—চিন্তা মাত্র—অনন্ত জীবন,</span><br/><span>আশা চিন্তা প্রাণেশ্বরি কর বিসর্জ্জন।</span>
+</p>
+</div>
+</div>
+<div><hr/></div>
+
+</div><ol><li><span><a href="#cite_ref-1">↑</a></span> <span>এরূপ কবিতা যে দুই একটি গ্রন্থ মধ্যে আছে গ্রন্থ- কারের নিজের সহিত ইহাদের কোন সম্পর্ক নাই।</span>
+</li>
+</ol></section>
+<section><div>
+
+<h2>অকাল কোকিল</h2>
+<div>
+<div>
+<p>১
+</p>
+</div>
+<div>
+<p>কে বলে নাহিক আর বঙ্গের ভবনে<br/><span>মধুর নিনাদী পিক, নীরব সে ধ্বনি</span><br/>
+কাঁদাইয়া গৌড় জনে শ্রীমধু সূদনে<br/><span>হরিল ভুবন-ত্রাস শমন যখনি।</span><br/>
+নগরের প্রান্তভাগে উন্নত বদনে<br/><span>অই যে উল্লাসে পিক মধুর ঝঙ্কারে,</span><br/>
+“ভারত সঙ্গীত”রাগ সুগম্ভীর তানে<br/><span>“আর ঘুমাওনা” বুলি জাগায় সবারে।</span><br/></p>
+<div>
+<p>২
+</p>
+</div><br/><p>কাব্য বিটপীর শাখে বসিয়া বিরলে<br/><span>মরি কি মধুর সুরে সুললিত গায়!</span><br/>
+কখন আনন্দ ভূরে, কভু অশ্রুজলে<br/><span>ঢালিয়া সঙ্গীত-স্রোত জগত ভাসায়,</span>
+</p>
+</div>
+<div>
+<p>অকাল কোকিল আহা অযত্ন লালিত,<br/><span>সুবর্ণ পিঞ্জরে বদ্ধ ব্রিটিশ-প্রাঙ্গণে,</span><br/>
+সভয়ে মনের ত্রাস না হয় স্ফুরিত<br/><span>না পারে ভ্রমিতে সুখে সাহিত্য-কাননে।</span><br/></p>
+<div>
+<p>৩
+</p>
+</div><br/><p>আজ যদি সেই দিন হ’ত সে কানন<br/><span>বেদব্যাস কালিদাস বাল্মিকী যেখানে</span><br/>
+অবাধে গাহিল গান পূরিয়া গগন,<br/><span>হিমাদ্রি কুমারী যুড়ি পূরিল নিক্কণে।</span><br/>
+কিম্বা সেক্ষপীর যথা বিমোহন স্বরে<br/><span>ছুটাইল সঙ্গীতের তরঙ্গ প্রবল,</span><br/>
+বাইরণ্‌ মিলটন্ যথা স্বাধীন অন্তরে<br/><span>গাহিল ললিত স্বরে সঙ্গীত অমল,</span><br/></p>
+<div>
+<p>8
+</p>
+</div><br/><p>সে বসন্ত হ’ত যদি, হত সে কানন,<br/><span>সে সুখ তটিনী যদি রহিত হেথায়,</span><br/>
+চরণ শৃঙ্খল যদি হইত মোচন<br/><span>বুঝিতাম অই পাখি কি মধুর গায়।</span><br/>
+অন্তরে মরম দুখ পরাণে যাতনা<br/><span>পরের প্রসাদ ভোজী অনার্য্য ভবনে,</span>
+</p>
+</div> <div>
+<p>ফুটালে ফুটেনা ত্রাসে মনের বাসনা<br/><span>তুষিবে সবার মন সঙ্গীতে কেমনে!</span><br/></p>
+<div>
+<p>৫
+</p>
+</div><br/><p>একবার খুলে দাও চরণ শৃঙ্খল<br/><span>সাজাও তেমতি করে বঙ্গের ভবন,</span><br/>
+ফুটাও তেমতি করে জাহ্নবীর জল<br/><span>সেই রবি শশী শূন্যে করুক প্রমণ।</span><br/>
+শান্তির নিকুঞ্জ করি সন্তোষ লতায়<br/><span>সরস বসন্তে ডাক করিয়া যতন,</span><br/>
+তুলিয়া প্রমোদ কলি গাঁথিয়া মালায়<br/><span>উল্লাস চন্দন তায় করিয়া লেপন—</span><br/></p>
+<div>
+<p>৬
+</p>
+</div><br/><p>নিকুঞ্জের চারি ধারে দোলাও যতনে,<br/><span>শুনিবে তখন পাখি কি মধুর স্বরে</span><br/>
+গাহি সুললিত গান হতাশ, শ্রবণে<br/><span>বর্ষিয়া পীযুষাসার তুষিবে অন্তরে।</span><br/>
+হায় রে সে সাধ পূর্ণ হবে কি কখন!<br/><span>সরস বসন্তে কভু এ বঙ্গ ভিতরে</span><br/>
+মাতায়ে আমার মন—মাতায়ে ভুবন<br/><span>গাহিবে কি পিক আর বিমোহন স্বরে!</span>
+</p>
+</div> <div>
+<div>
+<p>৭
+</p>
+</div><br/><p>হবে না সে সাধ পূর্ণ, শুনিব না আর<br/><span>পরাণ মাতান গীত কোকিলের স্বরে,</span><br/>
+গাও তুমি পিকবর তোমারি ঝঙ্কার<br/><span>শুনিব আনন্দ ভরে উল্লাস অন্তরে,</span><br/>
+নিরব এ বঙ্গে আজ তব কুহুম্বরে<br/><span>হাসিব কাঁদিব কিম্বা মাতিব হরষে,</span><br/>
+জাগে যদি আর্য্যাবর্ত্ত౼তোমারি ঝঙ্কারে<br/><span>সিন্ধু হতে ব্রহ্ম খত্র জাগিবে উল্লাসে।</span><br/></p>
+<div>
+<p>৮
+</p>
+</div><br/><p>হৃদয়ের তুষানল নয়নের জলে<br/><span>নিবায়ে আনন্দ মনে গাহ একবার,</span><br/>
+দুখী বঙ্গবাসী প্রাণে গীত রস ঢেলে<br/><span>শুষ্ক হৃদয়েতে কর সুধার সঞ্চার।</span><br/>
+বন্দী যথা রুদ্ধ বাসে নিবান্ধব পুরে<br/><span>সুদূর কোকিল কণ্ঠে জুড়ায় যাতনা,</span><br/>
+তেমতি এ বঙ্গবাসী তব সুধাস্বরে<br/><span>ভুলিবে ঈষৎ ভাবে দাসত্ব যাতনা।</span><br/></p>
+<div><hr/></div>
+</div>
+</div>
+</div></section>
+<section><div>
+
+<h2>হৃদয়ে হৃদয়ে যদি সম্ভবে উত্তর</h2><sup><a href="#cite_note-1-n124">[১]</a></sup>
+<div><div>
+<div>
+<p>১
+</p>
+</div><br/><p><span>হৃদয়ে হৃদয়ে যদি সম্ভবে উত্তর</span><br/><span>তবে কেন নাহি বুঝে সে আমার মন।</span><br/>
+হৃদয়ের তারে তার  বাজিছে সঙ্গীত যার<br/><span>সে কেন বুঝে না তার একটি বচন!</span><br/>
+নীরবে চীৎকার করে, ডেকেছি অন্তর ভরে<br/><span>তথাপি তুলিয়া আঁখি দেখেনি কখন</span><br/><span>নীরব উত্তর হায়—প্রেমের স্বপন!</span><br/></p>
+<div>
+<p>২
+</p>
+</div><br/><p><span>হৃদয়ে হৃদয়ে আর, নয়নে নয়নে।</span><br/><span>হায়রে সম্ভব যদি হইত উত্তর</span><br/>
+সে অতুল রূপ রাশি, সে অমিয়মাখা হাসি<br/><span>হেরিলে ছুটিত আশা প্রাণের ভিতর।</span><br/>
+উজ্জ্বল নয়নে তার, সুনীল তারার পানে<br/><span>দেখিলে বিদ্যুৎ বেগে নাচিত অন্তর</span><br/><span>অমনি আদর করে, সঁপিয়াছি প্রাণ মন</span><br/><span>তবুত বুঝেনি তার একটি বচন</span>
+</p>
+</div> <div>
+<div>
+<p>৩
+</p>
+</div><br/><p><span>সে যদি বুঝেন তবে কেন আশা তার?</span><br/><span>“কেন আশা তার”—হায় হায়রে নিষ্ঠুর!</span><br/><span>ভাসায়ে দিয়েছি মন যে প্রেমের স্রোতে</span><br/><span>যেই প্রেমে আজ মম জীবন মরণ!</span><br/>
+তেয়াগি সংসার সুখ, অন্তরে উদাসী হয়ে<br/><span>লুকায়ে অন্তরে যারে করি দরশন</span><br/><span>কোন্ প্রাণে আশা তার দিব বিসর্জ্জন?</span><br/></p>
+<div>
+<p>8
+</p>
+</div><br/><p><span>দিব বিসর্জ্জন—কিন্তু কিছু দিন পরে</span><br/><span>নহে কিন্তু মধু মাখা প্রণয় তাহার</span><br/>
+অন্তরে অন্তরে যাহা, জীবনের স্রোতসহ<br/><span>বহিয়া বহিয়া আজি হইল অপার</span><br/><span>এ জীবনে সেই প্রেম শুকাবে না আর।</span><br/>
+বারেক গোপনে তারে, বলিব প্রাণের দুঃখ<br/><span>তথাপি সে যদি নাহি হয় রে আমার,</span><br/><span>প্রাণ সহ বিসর্জ্জিব দুরাশা তাহার।</span><br/></p>
+<div>
+<p>৫
+</p>
+</div><br/><p><span>নিষ্ঠুর ভাবনা কিন্তু;౼ জাগ্রতে স্বপনে</span><br/><span>যেই শশী-মুখ খানি বাসিয়াছি ভাল</span>
+</p>
+</div> <div>
+<p><span>তৃষিত চাতক মত, যার প্রেম আস্বাদনে</span><br/><span>যন্ত্রণায় দগ্ধ হয়ে ভ্রমিনু সংসারে,</span><br/>
+যে নিবিড় তনুখানি, নিরখি শিহরি প্রাণ<br/><span>ছুটিত উন্মত্ত হয়ে হৃদয়ে রাখিতে</span><br/>
+হেন মধুমাখা আশা হেন জীবনের সুখ<br/><span>জনমের তরে কিরে হবে বিসর্জ্জিত!</span><br/></p>
+<div>
+<p>৬
+</p>
+</div><br/><p>বিসর্জ্জিতে হবে যদি দেখিলাম কেন?<br/><span>দেখিলাম যদি—কেন বাসিলাম ভাল!</span><br/>
+বুঝে হৃদয় তার, কেন প্রাণ আপানার<br/><span>দিলাম ভাসায়ে তার রূপের প্রবাহে,</span><br/><span>এতই তরঙ্গ যদি বিরাজিছে তাহে?</span><br/>
+বসন্ত মারুত মত, ছড়ায়ে যৌবন রাশি<br/><span>প্রণয়ের দেবীরূপে সম্মুখে যখন</span><br/><span>দাঁড়াইল, কেন নাহি মুদিনু নয়ন!</span><br/></p>
+<div>
+<p>৭
+</p>
+</div><br/><p><span>নিষ্ঠুর বিধাতা! কেন খণ্ডিলে লিখন,</span><br/><span>সুখের সম্বন্ধ সেই প্রেমের অঙ্কুর?</span><br/>
+কেন ভাঙ্গি সে রতনে, সমর্পিলে অন্য জনে?<br/><span>হায় রে সে যদি আজ হইত আমার!</span>
+</p>
+</div> <div>
+<p>বক্ষঃস্থলে রাখি তারে, দিবানিশি দুনয়নে<br/><span>হেরিতাম শুধু তার রূপের ভাণ্ডার,</span><br/>
+ক্ষুধা তৃষ্ণা নিদ্রা ভুলি; শুধুই অলকা গুলি<br/><span>সরায়ে বদন খানি চুম্বিতাম তার!</span><br/></p>
+<div>
+<p>৮
+</p>
+</div><br/><p><span>বলরে সমাজ তুমি উন্মাদ আমারে—</span><br/><span>পাপ দেশাচার তুমি কর তিরস্কার—</span><br/>
+বলিব চীৎকার করে, শুনুক জগত আজ<br/><span>পাপের সম্পর্ক নাই এ প্রেমে আমার।</span><br/>
+পবিত্র অন্তরে তারে, কেন না বাসিব ভাল<br/><span>পাপ-শূন্য প্রেম হয় নাহি কি ভুবনে?</span><br/>
+এ স্বর্গীয় প্রেম মম, বুঝিবে না এ সংসারে<br/><span>নিষ্ঠুর নরক সম সমাজ যেখানে।</span><br/></p>
+<div>
+<p>৯
+</p>
+</div><br/><p><span>কেন না বাসিব ভাল—কেন দেখিব না</span><br/><span>অতুল যে রূপখানি নিখিল ভুবনে?</span><br/>
+সুন্দর গোলাপ মত, শুধু যদি দেখি তারে,<br/><span>নিষ্ঠুর সমাজ! বল কি দোষ তাহায়?</span><br/>
+সুন্দর রতন ভাবি, চুম্বিলে অধর তার<br/><span>বিকচ নলিনী ভাবি, রাখিলে হৃদয়ে</span>
+</p>
+</div> <div>
+<p><span>জুড়ায় হৃদয় যদি, কি ক্ষতি সমাজ তোর,</span><br/><span>কি দোষ তাহাতে হায় বল না আমায়?</span><br/></p>
+<div>
+<p>১০
+</p>
+</div><br/><p><span>দেখিব—বাসিব ভাল জীবনে সতত</span><br/><span>বিসর্জ্জিব প্রাণ যদি হয় প্রয়োজন;</span><br/>
+কিন্তু দিনেকের তরে, হবে নাকি সে আমার<br/><span>লভিব না কিরে তার একটি চুম্বন!</span><br/>
+হৃদয় বিদীর্ণ হও, তাই যদি থাকে ভালে,<br/><span>কেন মৃগতৃষ্ণিকার কর অন্বেষণ!</span><br/><span>দেখ রে জগত আজ, হৃদয় বিদীর্ণ করি</span><br/><span>সহিয়াছি কত ব্যাথা তাহার কারণ;</span><br/></p>
+<div>
+<p>১১
+</p>
+</div><br/><p><span>সেও যদি বাসেল-হায় রে দুরাশা!</span><br/><span>সেও বাসিয়াছে ভাল-হায় রে স্বপন!</span><br/>
+কেমনে বুঝিলে তুমি, সেও বাসিয়াছে ভাল?<br/><span>সেই দৃষ্টি? সেই লজ্জা? সেই সে বচন?</span><br/>
+সকলি সরল সে যে, কোথায় প্রণয় তার?<br/><span>তুমি ভাল বাস বলে, মধুর তেমন।</span><br/>
+বিশাল জগতে আজ কে আছে সুহৃদ্‌ হেন<br/><span>কে দিবে বলিয়া তার হৃদয় কেমন!</span>
+</p>
+</div> <div>
+<p><br/></p>
+<div>
+<p>১২
+</p>
+</div><br/><p><span>এক দিন সঙ্গোপনে ডাকিয়া তাহায়</span><br/>
+আছাড়ি চরণে পড়ি, বলিব মনের দুঃখ।<br/><span>কিন্তু সেই ভাষা হায় পাইব কোথায়?</span><br/>
+কত দিন, কত বার বলিব বলিব ভাবি,<br/><span>হৃদয়ের কথাগুলি তুলেছি বদনে</span><br/>
+নিষ্ঠুর শরম হায়! চাপিয়া ধরিত মুখ,<br/><span>মথিত হইত প্রাণ অন্তর বেদনে,</span><br/><span>তথাপি সে কথা হয় ফুটেনি বচনে।</span><br/></p>
+<div>
+<p>১৩
+</p>
+</div><br/><p><span>এস তবে শশধর নামিয়া ভূতলে,</span><br/><span>লিখেদিই তব অঙ্গে দুইটি চরণ,</span><br/>
+হেরিলে তোমার পানে, পড়িবে নয়নে তার<br/><span>প্রাণের লুকান কথা, বুঝিবে বেদন।</span><br/>
+এস চিত্রপট, লিখি, তোমার চরণ তলে,<br/><span>এত অন্ধ কেন, হায় রমণীর মন।</span><br/>
+হেরিবে যখন তোরে হয়ত বুঝিবে হায়<br/><span>কে লিখিল—কে কাঁদিল—তাহার কারণ।</span><br/></p>
+<div>
+<p>১৪
+</p>
+</div><br/><p><span>আবার আবার মন কেন সে দুরাশা</span><br/><span>নহে তাহা ভাল বাসা—নহে তাহা প্রেম।</span>
+</p>
+</div> <div>
+<p>কেন দুঃখী জিজ্ঞাসিত হৃদয় কোমল বলে।<br/><span>হৃদয় কোমল বলে করিত যতন।</span><br/><span>কিন্তু সেই দীর্ঘ শ্বাস?—স্থির হও মন।</span><br/><span>তবে কি সে বাসে ভাল আমার মতন?</span><br/>
+সেই দীর্ঘ শ্বাসে কিন্তু হৃদয়ের সিন্ধু মম<br/><span>করিয়াছে আকুলিত জন্মের মতন।</span><br/></p>
+<div>
+<p>১৫
+</p>
+</div><br/><p><span>“কেন দুঃখী?”—হা হৃদয়! পাষাণ পরাণ</span><br/><span>কেন না বিদীর্ণ হলি সম্মুখে তাহার,</span><br/>
+কেন দুঃখী সুবদনে? বস তবে এই খানে,<br/><span>কি দুঃখ আমার মনে বলিব এবার,</span><br/>
+কোথা হতে এ অনল, বলিব কে দিল জ্বালি,<br/><span>বারেক তাপিত বক্ষেঃ এস এক বার,</span><br/>
+বারেক হৃদয়ে ধরি, বারেক চুম্বন করি,<br/><span>দেখাব চিরিয়া প্রাণ কি দুঃখ আমার।</span><br/></p>
+<div>
+<p>১৬
+</p>
+</div><br/><p><span>কি দুঃখ আমার মনে বলিব তোমায়-</span><br/>
+প্রকৃতি গম্ভীর হও, পবন নীরবে বও,<br/><span>যামিনী আঁধার হও, ডোব শশধর,</span><br/>
+নীরবে হৃদয়’পরে, চাপিয়া শ্রবণ তার
+</p>
+</div> <div>
+<p><span>বারেক শয়ন কত মুহূর্ত্তের তরে,</span><br/>
+হৃদয়ের তারে তারে বাজিছে দুঃখের গীত,<br/><span>শুনিবে এখনি, মৃদু প্রতিধ্বনি তার,</span><br/><span>বুঝিবে জীবনে মোর সঙ্গীত কাহার</span>
+</p>
+</div>
+</div>
+<div><hr/></div>
+
+</div><ol><li><span><a href="#cite_ref-1-n116">↑</a></span> <span>গ্রন্থ মধ্যে এরূপ যে দুই একটি কবিতা আছে, গ্রন্থকারের সহিত তাহাদের কোন সম্পর্ক নাই। অনাদীয় জীবনের ঘটনার সহিত সম্পর্ক থাকিতে পারে।</span>
+</li>
+</ol></section>
+<section><div>
+
+<h2>সমরসাহী-বিদায়</h2>
+<div>
+<div>
+<p>১
+</p>
+</div>
+<div>
+<p><span>মধুর সায়হ্নে, প্রমোদ উদ্যানে,</span><br/><span>সরসী-সলিলে, সঙ্গিনীর সনে,</span><br/><span>সুবর্ণ তরীতে, হরষিত চিতে,</span><br/><span>চিতোরের রাণী পৃথা বিহরে।</span><br/></p>
+<div>
+<p>২
+</p>
+</div><br/><p><span>হৃদয়ের হর্ষ বিকাশে নয়নে,</span><br/><span>চারু মৃদু হাসি ফুটিছে বদনে,</span><br/><span>কুঞ্চিত কপোলে, যৌবন উথলে,</span><br/><span>রজতের দাঁড়, শোভিছে করে।</span>
+</p>
+</div>
+<div>
+<div>
+<p>৩
+</p>
+</div><br/><p>মত্ত হংসরাজ, গ্রীবা উচ্চ করি,<br/>
+আসিছে সাঁতারি, পরশিতে তরী,<br/>
+তরী বহি যায়, ধরিতে না পায়,<br/>
+উঠে হাস্যধ্বনি, রমণী-মন্ডলে।<br/></p>
+<div>
+<p>8
+</p>
+</div><br/><p>হেন কালে আসি এক সহচরী,<br/>
+কহিলেক উচ্চে আন কূলে তরী,<br/>
+চিতোর-রাজন, রাজ্ঞী দরশন,<br/>
+আশয়ে দাঁড়ায়ে, তরুর তলে।<br/></p>
+<div>
+<p>৫
+</p>
+</div><br/><p>চিতোর-রাজন!—বলি মৃদু স্বরে,<br/>
+ত্যজি দাঁড় পৃথা, দাঁড়াইল ধীরে,<br/>
+সোপান তরীতে, নাহি পরশিতে,<br/>
+ত্বরিত চরণে উঠিল তীরে।<br/></p>
+<div>
+<p>৬
+</p>
+</div><br/><p>দূরে তরু-তলে, চাহি সরঃ পানে,<br/>
+ভ্রমিছে সমর সুমন্দ চরণে,<br/>
+বিষন্ন বদন, নিষ্প্রভ নয়ন,<br/>
+ম্লান ভানু যেন অস্তের শিরে।
+</p>
+</div> <div>
+<div>
+<p>৭
+</p>
+</div><br/><p>নিরখি সে বেশ হইয়া উতলা,<br/>
+প্রাণেশের পাশে ছুটিলেক বালা,<br/>
+কুণ্ডল সঘনে, দুলিল পবনে,<br/>
+হেরিল সে বেশ রাজন ফিরে।<br/></p>
+<div>
+<p>৮
+</p>
+</div><br/><p>“নাথ” বলি বক্ষে জড়ায়ে অমনি,<br/>
+তরুর শাখায় যেমতি ফণিনী,<br/>
+চাহি মুখ পানে, কাতর বচনে,<br/>
+জিজ্ঞাসিল কেন মলিন বেশ।<br/></p>
+<div>
+<p>৯
+</p>
+</div><br/><p>চুম্বিয়া ললাটে, চুম্বিয়া নয়ন,<br/>
+বিষাদ, গম্ভীরে কহিল রাজন,<br/>
+“বুঝিবে কি পৃথে, কি ভাবনা চিতে,<br/>
+রমণী কি বুঝে বীরের ক্লেশ?”<br/></p>
+<div>
+<p>১০
+</p>
+</div><br/><p>“নারীর হৃদয়, সুধুই কোমল,<br/>
+প্রেম অভিমান অভিনয়-স্থল,<br/>
+সমর ভাবনা, প্রেয়সি জান না<br/>
+বুঝিবে না তুমি চিন্তা আমার।”
+</p>
+</div> <div>
+<div>
+<p>১১
+</p>
+</div><br/><p><br/>
+“সঙ্গিনীর সনে, সরসী-সলিলে<br/>
+ভাসি তরি’পরে বড় সুখে ছিলে,<br/>
+কায নাই শুনে, কি ভাবনা মনে,<br/>
+চাহি না হরিতে সুখ তোমার।”<br/></p>
+<div>
+<p>১২
+</p>
+</div><br/><p>“চাই না হরিতে সুখ আমার!<br/>
+তবে কি হে নাথ, তবে কি আবার,<br/>
+যাইবে যুঝিতে, যবনের সাথে,<br/>
+তাই চিন্তাকুল সমর স্মরিছ!”<br/></p>
+<div>
+<p>১৩
+</p>
+</div><br/><p>“কিন্তু নাথ আমি তোমার রমণী,<br/>
+দিল্লী-অধিপতি, পৃথুর ভগিনী,<br/>
+ছার ম্লেচ্ছুরণে, রব তব সনে,<br/>
+কি চিন্তা?౼আমি কি সমরে ডরি!”<br/></p>
+<div>
+<p>১৪
+</p>
+</div><br/><p>“নিত্য তুমি যাও করিবারে রণ<br/>
+নিরখিয়া আমি করিয়া যতন<br/>
+শিখেছি সমর, দেখ প্রাণেশ্বর!<br/>
+মম রঙ্গভূমি, কুঞ্জ ভিতরে।”
+</p>
+</div> <div>
+<div>
+<p>১৫
+</p>
+</div><br/><p>“অসি যুদ্ধ করি প্রমীলার সনে,<br/>
+শৈলবালা সাথে যুঝি ধনুর্ব্বাণে,<br/>
+সুকোমল-কায়, ভেবোনা পৃথায়,<br/>
+পৃথা আর নাহি ডরে সমরে।”<br/></p>
+<div>
+<p>১৬
+</p>
+</div><br/><p>“হাসিয়া রাজন প্রমোদের ছলে,<br/>
+অঙ্গুলি প্রহারি সুগোল কপোলে,<br/>
+চারু কর ধরে, কহিল গম্ভীরে,<br/>
+যাব দিল্লীধামে এই নিশাতে।”<br/></p>
+<div>
+<p>১৭
+</p>
+</div><br/><p>“শিখেথাক রণ, হইয়াছে ভাল,<br/>
+শিখ ভালকরে আর কিছু কাল,<br/>
+যদি রণে পড়ি, তুমি অসি ধরি,<br/>
+রক্ষিও চিতোর সঙ্গিনীসাথে।”<br/></p>
+<div>
+<p>১৮
+</p>
+</div><br/><p>“বিদায় প্রেয়সি! দেহ আলিঙ্গন,<br/>
+বাঁচি যদি রণে পাবে দরশন”<br/>
+চুম্বিল কপোল, চুম্বিল কুণ্ডল,<br/>
+চুম্বি ওষ্ঠ পুনঃ বলি “বিদায়।”
+</p>
+</div> <div>
+<div>
+<p>১৯
+</p>
+</div><br/><p>ফিরায়ে নয়ন যেই অগ্রসর<br/>
+অমনি ত্বরিতে ধরে পৃথা কর,<br/>
+সজল নয়নে, চাহি ক্ষিতি পানে,<br/>
+রহিল বিষাদে বিহ্বল প্রায়।<br/></p>
+<div>
+<p>২০
+</p>
+</div><br/><p>ক্ষণেকের পরে মুছি নে নীরে,<br/>
+ত্যজি দীর্ঘ শ্বাস বলে ধীরে ধীরে,<br/>
+“কেন আজ হেন, কেঁদে ওঠে মন,<br/>
+অশুভ ভাবনা কেন বা হয়!”<br/></p>
+<div>
+<p>২১
+</p>
+</div><br/><p>“নহে নাথ আজ প্রথম বিদায়,<br/>
+কত শত বার পাষাণীর প্রায়,<br/>
+এই কর ধরে এই নে নীরে,<br/>
+দিয়াছি বিদায় ত্যজিয়া ভয়।”<br/></p>
+<div>
+<p>২২
+</p>
+</div><br/><p>“স্বহস্তে পরায়ে দিয়েছি বর্ম্মণ,<br/>
+বাঁধিয়া দিয়েছি নিজে সারসন,<br/>
+শিরে শিরস্ত্রাণ পৃষ্ঠে ধনুর্ব্বাণ,<br/>
+তখন ত এত কাঁদেনি মন।”
+</p>
+</div> <div>
+<div>
+<p>২৩
+</p>
+</div><br/><p>“আজ কেন নাথ হেন অলক্ষণ!<br/>
+পাষাণীর কেন ঝরিল নয়ন!<br/>
+কে যেন অন্তরে, বলিতেছে ধীরে,<br/>
+‘ভাঙ্গিল রমণী কপাল তোর।’<br/></p>
+<div>
+<p>২৪
+</p>
+</div><br/><p>“না না নাথ আজ একাকী-তোমারে,<br/>
+দিব না যাইতে দুর্ব্বার সমরে,”<br/>
+বলিয়া ত্বরিতে কটিদেশ হ’তে<br/>
+খুলিয়া লইল প্রখর অসি।<br/></p>
+<div>
+<p>২৫
+</p>
+</div><br/><p>বাম করে অসি করিয়া গ্রহণ<br/>
+কহিল গম্ভীরে সমররাজন,<br/>
+“এ কি ভাব পৃথে, এত ভয় চিতে,<br/>
+এত ভীরু আজ কেন প্রেয়সি?”<br/></p>
+<div>
+<p>২৬
+</p>
+</div><br/><p>“কোথা আজ তব সমরের আশা?<br/>
+কোথা তব সেই তেজস্বিনী ভাষা?<br/>
+ভুলিলে সকল? ছি ছি নেত্রে জল!”<br/>
+মুছাইল নেত্র যতন করি।
+</p>
+</div> <div>
+<div>
+<p>২৭
+</p>
+</div><br/><p>“নহে নাথ ইহা অমূল লক্ষণ”<br/>
+বলি পৃথা ধীরে তুলিল নয়ন,<br/>
+সরায়ে কুন্তল, মুছি নেত্র-জল,<br/>
+গ্রীবা উচ্চ করি দাঁড়াল সরি।<br/></p>
+<div>
+<p>২৮
+</p>
+</div><br/><p>“অমূল এ ভয় নহে কদাচন,<br/>
+অকারণে বক্ষ কাঁপেনি কখন<br/>
+প্রাণেশের কর রাখি বক্ষেপির<br/>
+“দেখ নাথ হৃদি সঘনে কাঁপে।”<br/></p>
+<div>
+<p>২৯
+</p>
+</div><br/><p>“নারী আমি কিন্তু হৃদয় আমার<br/>
+নহে প্রাণেশ্বর! শিশু বালিকার,<br/>
+শত শত বার, কঠিন প্রহার,<br/>
+সহেছি কখন তবু না তাপে।”<br/></p>
+<div>
+<p>৩০
+</p>
+</div><br/><p>“দেখেছি দাঁড়ায়ে প্রাসাদ শিখরে<br/>
+রণ-বেশে তোমা অশ্বের উপরে,<br/>
+পার্শ্বে শক্র দল, করে কোলাহল,<br/>
+তবু তিল মাত্র কাঁদেনি মন।”
+</p>
+</div> <div>
+<div>
+<p>৩১
+</p>
+</div><br/><p>“কোথা দিল্লী কোখা চিতোর নগর!<br/>
+কোথায় যবন কবে বা সমর!<br/>
+আজ অকস্মাৎ, কেন প্রাণনাথ?<br/>
+বালিকার মত ঝরে নয়ন?”<br/></p>
+<div>
+<p>৩২
+</p>
+</div><br/><p>“নিষেধ করি না করিতে গমন,<br/>
+যাও প্রাণেশ্বর কর জয় রণ।<br/>
+কিন্তু যে বিষাদে, আজ প্রাণ কাঁদে,<br/>
+দুখিনীর ভালে যদি তা ফলে”-<br/></p>
+<div>
+<p>৩৩
+</p>
+</div><br/><p>“জনমের মত হ’ল উদ্‌যাপন<br/>
+জীবনের ব্রত, শেষ দরশন,<br/>
+কিন্তু ভেবে মনে, রণে প্রতিক্ষণে,<br/>
+দুখিনীরে এই নয়ন-জলে।”<br/></p>
+<div>
+<p>৩৪
+</p>
+</div><br/><p>“কি বলিব আর ক্ষত্রিয়-রমণী<br/>
+কি বলিবে নাথ সহজে পাষাণী;<br/>
+অন্তর পুড়িবে নয়ন ঝরিবে,<br/>
+নাহি নিষেধিবে পতিরে রণে।”
+</p>
+</div> <div>
+<div>
+<p>৩৫
+</p>
+</div><br/><p>মস্তকের কেশ করিয়া ছেদন,<br/>
+কৃপাণের গলে করিয়া বন্ধন;<br/>
+“এই চিহ্ন নাথ লহ তব শাথ,<br/>
+আর যত চিহ্ন রহিল মনে!”<br/></p>
+<div>
+<p>৩৬
+</p>
+</div><br/><p>“নারীধন্য তুমি” বলিয়া রাজন,<br/>
+বাম করে অসি করিয়া গ্রহণ<br/>
+ত্বরিত চরণে, চলিল তোরণে,<br/>
+পৃথার অমনি ঝরিল আঁখি।<br/></p>
+<div>
+<p>৩৭
+</p>
+</div><br/><p>দৃষ্টির অতীত হইলে রাজন,<br/>
+ত্যজি শ্বাস পৃথা তুলিল নয়ন,<br/>
+বসি জানু’পর, যুড়ি দুই কর,<br/>
+চাহি ঊৰ্দ্ধ পানে কহিল ডাকি౼<br/></p>
+<div>
+<p>৩৮
+</p>
+</div><br/><p>“হে অনাথনাথ! কেন কাঁদে মন?<br/>
+দুখিনীর ভাগ্যে কি আছে লিখন!<br/>
+কেন অমঙ্গল, ভাবনা কেবল?<br/>
+উথলিছে আজ হৃদয়ে মম!”
+</p>
+</div> <div>
+<div>
+<p>৩৯
+</p>
+</div><br/><p>“দুর্ব্বল করিয়া গঠিলে রমণী,<br/>
+পুনঃ দুঃখ দিতে বীরের পতিনী,<br/>
+ঢালিয়া প্রণয়, গঠিলে হৃদয়,<br/>
+পাষাণের বক্ষে কমল সম।”<br/></p>
+<div>
+<p>৪০
+</p>
+</div><br/><p>“শিখাইলে নাথ সুধু ভাল বাসা<br/>
+পতির সোহাগ সুধু এক আশা,<br/>
+মিলনে হাসিতে, বিরহে কাঁদিতে,<br/>
+কন্দুক-বিলাসী শিশুর মত।”<br/></p>
+<div>
+<p>৪১
+</p>
+</div><br/><p>“শিখায়েছ যাহা শিখেছি যতনে,<br/>
+টেলেছি হৃদয় পতির চরণে,<br/>
+জীবন সম্বল, পতিই কেবল,<br/>
+তবে কোন্ দোষে যাতনা এত?”<br/></p>
+<div>
+<p>৪২
+</p>
+</div><br/><p>“রমণী-হৃদয় সৃজিত তোমার,<br/>
+কিন্তু নাথ তুমি যাতনা তাহার,<br/>
+পার না বুঝিতে, পাও না দেখিতে,<br/>
+নারীর যাতনা বিষম কত।”
+</p>
+</div> <div>
+<div>
+<p>৪৩
+</p>
+</div><br/><p>“সাগরের বক্ষ গিরির গহ্বর,<br/>
+নহে নাথ এত নিভৃত প্রান্তর-<br/>
+ভীষণ শ্মশান, আরণ্য বিতান,<br/>
+নহে এত শূন্য—এ প্রাণ যত।”<br/></p>
+<div>
+<p>88
+</p>
+</div><br/><p>“এত ক্ষুদ্র কিন্তু বিশাল এমন,<br/>
+কোমল অথচ ইহার মতন<br/>
+দারুণ কঠিন, দারুণ প্রবীণ,<br/>
+সৃজিয়াছ কিবা জগতে আর।”<br/></p>
+<div>
+<p>৪৫
+</p>
+</div><br/><p>“বল জগদীশ জীব-লীলা-স্থলে,<br/>
+কাঁদিতে কি সুধু রমণী সৃজিলে?<br/>
+আশা-পূর্ণ মন, করিয়া সৃজন,<br/>
+সহিষ্ণুতা শিক্ষা সুধুই তার!”<br/></p>
+<div>
+<p>৪৬
+</p>
+</div><br/><p>সহসা ত্বরিতে মুছিয়া নয়ন<br/>
+দাঁড়াইল পৃথা বিস্ফারি লোচন,<br/>
+আবদ্ধ কুন্তল, আরক্ত কপোল,<br/>
+উন্নত উরসে স্খলিত বাস।
+</p>
+</div> <div>
+<div>
+<p>৪৭
+</p>
+</div><br/><p>স্থল-কমলিনী উন্নত শাখায়,<br/>
+প্রভায় ভানুর কাঞ্চন আভায়,<br/>
+শোভিয়া যেমন, নিরখে গগণ,<br/>
+উছলিয়া দলে ভানুর আস।<br/></p>
+<div>
+<p>৪৮
+</p>
+</div><br/><p>নিরখি তোরণ কহিল গম্ভীরে<br/>
+“ধীরের প্রতিজ্ঞা কখন কি ছিঁড়ে?<br/>
+রে অশান্ত মন, ভ্রান্ত কি কারণ,<br/>
+কবে দেখিয়াছ ফিরিতে তাঁয়!”<br/></p>
+<div>
+<p>৪৯
+</p>
+</div><br/><p>“কে বলে দুশ্ছেদ্য নারীর প্রণয়,<br/>
+নাহি বাঁধে যদি ধীরের হৃদয়,<br/>
+(পুরুষ ত সেই, রণ-প্রিয় যেই,<br/>
+বীর বনা প্রেম শোভয়ে কায়?)”<br/></p>
+<div>
+<p>৫০
+</p>
+</div><br/><p>“অথবা প্রণয় দুর্ব্বল আমার,<br/>
+নাহি শক্তি হৃদি বাঁধিতে তাঁহার,<br/>
+কিবা সে প্রণয়, বীর বদ্ধ যায়,<br/>
+কি সুখী সে নারী জানে যে তাহা।”
+</p>
+</div> <div>
+<p><span>“ফিরিলে এ বার প্রাণেশ আমার</span><br/><span>শিখিব বাঁধিতে হৃদয় তাঁহার।</span><br/><span>হাব ভাব হাসি সঙ্গীত বা বাঁশী</span><br/><span>শিখিব তাহার বাসনা যাহা।”</span>
+</p>
+</div>
+</div>
+<div><hr/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>প্রেম-প্রপাত</h2>
+<div>
+<div>
+<div>
+<p>১
+</p>
+</div><br/><p><span>কৈ প্রিয়ে নিবিল না মনের বেদনা!</span><br/>
+ভেবেছিনু অদর্শনে,ভুলিব সে আলিঙ্গনে,<br/><span>ভুলিব সে বিদায়ের প্রগাঢ় চুম্বন,</span><br/><span>নিবিবে এ বিরহের প্রচণ্ড দহন।</span><br/></p>
+<div>
+<p>২
+</p>
+</div><br/><p><span>নিবিল না প্রিয়তমে দারুণ যাতনা,</span><br/>
+যতক্ষণ রহে জ্ঞান,নাহি হয় অবসান,<br/><span>পাষাণ—তাই ত হৃদে দ্বিগুণ বেদনা;</span><br/><span>পাষাণে যাতনা কত সরলা বুঝে না।</span>
+</p>
+</div>
+<div>
+<p><span>৩</span><br/><span>পাষাণ না হ’ত যদি পুরুষের মন</span><br/>
+য অনল পক্ষে জ্বলেভস্ম হ’ত কোন কালে,<br/><span>পাষাণে অনল দিলে উত্তাপে কেবল</span><br/><span>দ্রোবে না পোড়ে না শুধু উত্তাপে প্রবল।</span><br/><span>৪</span><br/><span>পাষাণ হইত যদি তোমার ও মন।</span><br/>
+বুঝিতে যন্ত্রণা কত,দগ্ধ হয়ে অবিরত,<br/><span>দুই বিন্দু অশ্রু ঝরে মনের দেবনা?</span><br/><span>পাষাণ অন্তরে প্রিয়ে কখন নিবে না।</span><br/><span>৫</span><br/><span>যে অনল জ্বেলে গেছ প্রেয়সি অন্তরে,</span><br/>
+দিবা নাই, রাত্রি নাই,দণ্ড নাই পল নাই,<br/><span>জ্বলিতেছে অবিরল সুধু ধূধূ করে,</span><br/><span>নিবে না প্রাণের জ্বালা মুহুর্ত্তের তরে।</span><br/><span>৬</span><br/><span>আমারি নয়নে কিম্বা প্রকৃতির গায়,</span><br/>
+রূপের চরম নিয়ে,প্রেমের পীযুষ দিয়ে,<br/><span>অঙ্কিত করেছে কেহ আলেখ্য তোমার,</span><br/><span>নিরখি প্রেয়সি তোরে তাই অনিবার;</span>
+</p>
+</div> ﻿<div>
+<div>
+<p>৭
+</p>
+</div><br/><p><span>ফুলে ফলে শূন্যে জলে দেখি যেই খানে,</span><br/>
+জড়ায়ে আমার বক্ষে, ছল ছল দুই চক্ষে,<br/><span>চেয়ে ছিলে মোর পানে বিদায়ের দিনে,</span><br/><span>জীবন্ত সে মূর্ত্তি আমি নিরখি নয়নে।</span><br/></p>
+<div>
+<p>৮
+</p>
+</div><br/><p><span>সেই মূর্ত্তি—সেই সুখ—স্বর্গ ধরাতলে।</span><br/>
+যে আছ সন্ন্যাসী কুলে, বারেক নৈরাশ্য ভুলে,<br/><span>একবার দৃষ্টি তুলে কর দরশন,</span><br/><span>সংসারে নন্দনবন প্রিয়ার বদন!</span><br/></p>
+<div>
+<p>৯
+</p>
+</div><br/><p><span>আর তুমি হে উদাসি! মুছি অশ্রু জল,</span><br/>
+মনের মালিন্য ভুলে, দেখ দেখি নেত্র তুলে<br/><span>বারেক প্রণয় ভরে প্রিয়ার বদন,</span><br/><span>কাল রূপে তোষে কত তোমার ও মন।</span><br/></p>
+<div>
+<p>১০
+</p>
+</div><br/><p><span>সংসারে নন্দনবন প্রিয়ার বদন,</span><br/>
+কোথায় নন্দন আজ—কোথায় অমর রাজ!<br/><span>কোথা তুমি কোথা আমি, প্রেয়সি আমার!</span><br/><span>চারি দিক শুন্যময় মরু পারাবার।</span><br/>
+﻿
+</p>
+</div> ﻿<div>
+<p><span>১১</span><br/><span>কি বুঝিবে কত ব্যথা আমার অন্তরে,</span><br/>
+সেই আমি, সেই স্থান,সেই আঁখি সেই প্রাণ,<br/><span>সেই নিশি সেই শশী এ শয়নো</span><br/><span>সেই সকলি তেমতি কিন্তু সে আনন্দ নেই!</span><br/><span>১২</span><br/><span>এই স্থানে—হেরি যেন প্রত্যক্ষ নয়নে,</span><br/>
+কত দিন প্রেম ভরে,চুম্বিয়াছি বিম্বাধরে;<br/>
+হাসিয়ে অঞ্জলি চাপি ঢাকিতে বদন,<br/><span>মুগ্ধ নেত্রে হেরিতাম পূর্ণ চন্দ্রানন।</span><br/><span>১৩</span><br/><span>বলে ছিলে এক দিন আছে কি স্মরণ?</span><br/>
+“হ’তেম বিহঙ্গ যদি,দুই জনে নিরবধি,<br/><span>উড়িয়ে মেঘের কোলে সুখে ভ্রমিতাম,</span><br/><span>নদ নদী বন গিরি কত দেখিতাম।”</span><br/><span>১৪</span><br/><span>চাহি না বিহঙ্গ হ’য়ে উড়িতে গগণে,</span><br/>
+পতঙ্গ হতেম যদি,লঙ্ঘিয়া এ ক্ষুদ্র নদী,<br/><span>বারেক প্রেয়সি তোরে বুকে করিতাম,</span><br/><span>এ ঘোর যাতনা ভুলি সুখে রহিতাম।﻿</span>
+</p>
+</div> <div>
+<div>
+<p>১৫
+</p>
+</div><br/><p><span>বুঝিলে কি প্রিয়তমে মনের বেদনা?</span><br/>
+শুষ্ক হেরি এ নয়ন,ভেবেছ পাষাণ মন,<br/><span>তরল হইত যদি বেদনা আমার,</span><br/><span>হইত নয়ন জলে কত পারাবার।</span><br/></p>
+<div>
+<p>১৬
+</p>
+</div><br/><p><span>বালিকা এ প্রেম তুমি বুঝিতে নারিবে,</span><br/>
+সিন্ধুর পরিধি আছে,গগণেরও অন্ত আছে,<br/><span>কালের অনন্ত সীমা হয় নিরুপন;</span><br/><span>অনন্ত এ প্রেম মম বিশ্বে অতুলন।</span>
+</p>
+</div>
+</div>
+<div><hr/></div>
+
+</div></section>
+<section><div>
+
+<h2>সায়হ্ন-চিন্তা</h2>
+<div>
+<p>১
+</p>
+</div>
+<div><div>
+<p>নিদাঘ সায়হ্ন দূর নয়ন সীমায়<br/><span>স্পর্শিয়াছে যেই খানে আকাশ ভূতল,</span><br/>
+অস্তমিত ভানু আভা মিশাইয়া যায়<br/><span>বিকাশিছে গোধূলির ছায়া সুশীতল।</span><br/>
+সেবিতে ছিলাম বায়ু প্রাসাদ শিখরে<br/><span>গালিচায় বিস্তারিয়া ক্লান্ত কলেবর,</span><br/>
+﻿
+</p>
+</div>
+<div>
+<p>ভার্জিলের গ্রন্থখানি বক্ষের উপরে,<br/><span>ভাবিতে ছিলাম ভীম ট্রোজন সমর।</span><br/></p>
+<div>
+<p>২
+</p>
+</div><br/><p>মানব চিত্তের গতি বিচিত্র কেমন!<br/><span>দেখিতে দেখিতে শূন্য সুনীল অম্বরে</span><br/>
+লঙ্ঘিয়া জলধি সীমা অনন্ত যোজন,<br/><span>প্রবেশিল ট্রয়-রাজ্যে মুহূর্ত্ত ভিতরে।</span><br/>
+আবার মুহূর্ত্ত নাহি হইতে অতীত,<br/><span>ফিরিল ভারতবর্ষে বিদ্যুত গমনে।</span><br/>
+চক্ষের পলক নাহি হইতে পতিত<br/><span>অবনীর দুই প্রান্ত হেরিল নয়নে।</span><br/></p>
+<div>
+<p>৩
+</p>
+</div><br/><p>ভারতের চিত্রপট সম্মুখে এখন—<br/><span>স্থির চিত্তে দেখিলাম কতক্ষণ ধরে,</span><br/>
+যে ট্রয় দেখিয়া এত বিস্ময়ে মগন।<br/><span>সেই ট্রয় দেখিলাম নগরে নগরে।</span><br/>
+যে বীরত্বে হেক্টর আছিল দুর্জ্জয়,<br/><span>সে বীরত্ব কুরুক্ষেত্রে রাশিকৃত পড়ে,</span><br/>
+যে রূপের তরে ভস্ম হয়েছিল ট্রয়<br/><span>সে সৌন্দর্য্য ভারতের কুটিরে কুটিরে।</span>
+</p>
+</div> ﻿<div>
+<div>
+<p>৪
+</p>
+</div><br/><p>কুরুক্ষেত্র—ভারতের বীরের শ্মশান!<br/><span>বিঘত প্রমান ভূমি করহ খনন</span><br/>
+কত ভগ্নধনু কত রক্তাক্ত কৃপাণ—<br/><span>দেখিবে কতই ভগ্ন বিচিত্র কেতন।</span><br/>
+আর কি দেখিবে?—হায় বিদরে হৃদয়!<br/><span>হয় ত দেখিবে চুর্ণ অস্থি কয় খান,</span><br/>
+যে বিরত্ব ভূমণ্ডলে আছিল দুর্জ্জয়,<br/><span>চুর্ণ অস্থি মাত্র তার দেখিবে প্রমাণ।</span><br/></p>
+<div>
+<p>৫
+</p>
+</div><br/><p>তথাপি বিলাত শ্রেষ্ঠ—বঙ্গের সন্তান।<br/><span>কে দিল এ মোহমন্ত্র তোমার শ্রবণে?</span><br/>
+মন-চক্ষে দেখ দেখি চিত্র দুইখান<br/><span>কোন চিত্র রম্যতর উদিবে নয়নে।</span><br/>
+বীরত্ব, সৌন্দর্য্য, কিম্বা সাহিত্য, প্রণয়,<br/>
+পরস্পরে মিলাইয়া দেখ একবার,<br/>
+ভারতের কোন বস্তু হীনপ্রভ হয়,<br/><span>ভারতবর্ষেতে নাই কোন‍্টি ইহার?</span>
+</p>
+</div> <div>
+<div>
+<p>৬
+</p>
+</div><br/><p>নাহি সে পিণাকধারী কর্ণ ধনঞ্জয়,<br/><span>নাহি ভীম অভিমন্যু, নাহি গুরু দ্রোণ,</span><br/>
+অপভ্রংশ আর্য্যবংশ তবু লুপ্ত নয়—<br/><span>ভারতে ক্ষত্রিয় জাতি জীবিত এখন(ও)।</span><br/>
+পরিচয় দিতে লিপি সরমে সিহঁরে<br/><span>আর্য্যবংশ অবতংস যে ক্ষত্রিয়গণ,</span><br/></p>
+<div>
+<p>৭
+</p>
+</div><br/><p>তথাপি সে আর্য্যজাতি—গর্ব্ব আপনার—<br/><span>ভুলে নাই, ক্ষীণগতি ধমনী ভিতরে।</span><br/>
+আর্য্যের শোণিত স্রোত ছুটিছে তাহার—<br/><span>সত্য ধর্ম্ম দৃঢ়ব্রত এখনো অন্তরে।</span><br/>
+একটি য়ুনানী বীর ক্ষত্র এক জন<br/>
+দেখ দেখি কিছুক্ষণ নিবিষ্ট অন্তরে,<br/>
+কাহায় বিরাজে উচ্চ বীরত্ব লক্ষণ<br/><span>তেজ, বীর্য; ধর্ম্ম-চিহ্ন আছে কোন নরে</span>
+</p>
+</div> ﻿<div>
+<div>
+<p>৮
+</p>
+</div><br/><p>পুরুষ অন্তরে থাক্‌, যেখানে রমণী<br/><span>কৌতুক ভাবিয়া হাসি পশিত সমরে,</span><br/>
+কোমল হৃদয়ে ভগ্ন হইত অশনি<br/><span>তথাপি করিত রণ স্বদেশের তরে।</span><br/>
+যদি নিজ পতি কভু ভঙ্গ দিত রণে,<br/><span>কাপুরুষ ভাবি তায় হেরিত না মুখ।</span><br/>
+রণে ভীত পুত্র যদি ফিরিত ভবনে,<br/><span>কাটিত নিস্তেজ ভাবি স্বীয় স্তনযুগ।</span><br/></p>
+<div>
+<p>৯
+</p>
+</div><br/><p>সৌন্দর্য—তাই বা কোথা ভারতে যেমন,—<br/><span>এমন নিবিড় তনু কোথা ভূমণ্ডলে?</span><br/>
+এমন বঙ্কিম ভুরু—বিস্ত‌ৃত নয়ন,<br/><span>এমন বলিব কিবা আছে কি ভূতলে?</span><br/>
+এমন অনন্ত বাহী প্রেম-প্রবাহিনী!<br/><span>নিস্বার্থ অনন্ত হেন চিত্ত বিনিময়!</span><br/>
+প্রণয়ে রমনী—স্নেহে স্বরূপা জননী,<br/><span>সুধু ইউরোপে কেন—নাহিক ধরায়।</span><br/></p>
+<div>
+<p>১০
+</p>
+</div><br/><p>শ্বেতাঙ্গী মহিলা মত চঞ্চলা সাদিনী<br/><span>অসার আমোদ-মত্তা পাবে না এখানে,</span>
+</p>
+</div> ﻿<div>
+<p>প্রেম, রূপ শোভে যাহে ভারত-রমণী,<br/><span>পবিত্র প্রকৃত তাহা সুগভীর প্রাণে।</span><br/>
+প্রেমে আলিঙ্গন দিবে, সমরে সাদিনী,<br/><span>সঙ্গিতে ঢালিবে সুধা, আমোদে রঙ্গিনী,</span><br/>
+সাহিত্যে হইবে সখী, সংসারে গৃহিণী,<br/><span>বিপদে হইবে দাসী মরণে সঙ্গিনী।</span><br/></p>
+<div>
+<p>১১
+</p>
+</div><br/><p>সাহিত্য বিলুপ্তপ্রায় তথাপি এখানে<br/><span>ছিন্ন বস্ত্র বিমণ্ডিত তালের পাতায়,</span><br/>
+যে কবিত্ব যে পাণ্ডিত্য পড়ে অযতনে,<br/><span>(ই)উরোপে নাহিক তাহা রয়েল ফর্ম্মায়।</span><br/><span>তাপস বাল্মিকী বসি পর্ণের কুটিরে,</span><br/>
+যে কবিত্ব স্রোত হায় করেছে সৃজন,<br/>
+আভনের<sup><a href="#cite_note-1-n152">[১]</a></sup> উচ্চতর প্রাসাদ শিখরে<br/><span>হয় নাই—হইবে না কভু সে কুজন।</span><br/></p>
+<div>
+<p>১২
+</p>
+</div><br/><p>তবু কি বিলাত শ্রেষ্ঠ?—বঙ্গের নন্দন<br/><span>এখনো যদ্যপি তব ভ্রম নহে দূর—</span>
+</p>
+</div> <div>
+<p>নহ দোষী তুমি, তব কলঙ্কী নয়ন,<br/><span>সাধ্য-হীন নিরখিতে দৃশ্য সুমধুর।</span><br/>
+বিলাতী শিক্ষায় কিম্বা হৃদয় তোমার,<br/><span>বিকৃত বিলাতী ছাঁচে হয়েছে গঠিত,</span><br/>
+অসনে বসনে ওই লক্ষণ তাহার,<br/><span>উচ্চ বংশোদ্ভব, কিন্তু শিক্ষায় ঘৃণিত।</span>
+</p>
+</div>
+</div>
+<div><hr/></div>
+
+</div><ol><li><span><a href="#cite_ref-1-n150">↑</a></span> <span>Stratford-on-Aron, birth-place of Shakspere.</span>
+</li>
+</ol></section>
+<section><div>
+
+<h2>এক খানি চিত্র-পট দর্শনে</h2>
+<div>
+<p>১
+</p>
+</div>
+<div><div>
+<p>অবিকল মূর্ত্তিখানি! সুন্দর অঙ্কিত!<br/>
+সৌন্দর্য্য সকলি তার হয়েছে চিত্রিত।<br/>
+এমনি সুন্দর বটে তাহার বদন!<br/>
+এমনি বিস্ত‌ৃত বটে তাহার নয়ন!<br/>
+এমনি গম্ভীর বটে প্রকৃতি তাহার!<br/>
+তাহার ঈষৎ হাঁসি এমনি সুধার!<br/>
+গ্রন্থ হাতে রূপ তার এমনি সুন্দর!<br/>
+ঠিক যেন সেই এই, ধন্য চিত্রকর!<br/>
+টানা নয়ন দুটি অর্দ্ধ নিমিলিত,<br/>
+বঙ্কিম নিবিড় কেশে ভ্র‌ূযুগ শোভিত।
+</p>
+</div>
+<div>
+<p><span>অনতি-প্রশস্ত ভাল, চম্পক উজ্জ্বল,</span><br/><span>কালিম তরঙ্গে তায় শোভিছে কুন্তল।</span><br/><span>সূক্ষশ্বেত রেখা সিঁথি, অতি সাবধানে</span><br/><span>বিভাগি সুমঞ্জ‌ু, কেশ অঙ্কিত যতনে।</span><br/><span>সুবর্ণ মাকড়ি কর্ণে হীরক উজ্জ্বল,</span><br/><span>পড়িয়ে নিটোল গণ্ডে চমকে চঞ্চল।</span><br/><span>সুন্দর নাসিকারন্ধ্রে নোলক অচল,</span><br/><span>ওষ্ঠাধর সূক্ষ্ম রেখা প্রেভেদে কেবল।</span><br/>
+সেই অঙ্গ সে বরণ,সেই ভাব সে গঠন,<br/><span>সজীব প্রতিমা যেন সম্মুখে আমার।</span><br/>
+চিত্রপটে সব রয়কেবল চেতন নয়<br/><span>চিত্রণের এ অভাব বড় অত্যাচার!</span><br/></p>
+<div>
+<p>২
+</p>
+</div><br/><p><span>দেখিব না—দেখি যদি সুধুই দেখিব;</span><br/><span>এবার মানস মম টলিতে না দিব।</span><br/><span>দগ্ধ করি চিত্রপট জ্বলন্ত অনলে,</span><br/><span>বিসর্জ্জিব স্মৃতিচিহ্ন বিস্মৃতির জলে।</span><br/><span>ভাবিব না!—চিত্ত বড় অবস এখন,</span><br/><span>ভাবিলে তাহায় সুধু হইবে স্মরণ।</span><br/><span>দিবারাত্রি অন্য মনে রব জাগরণে,</span><br/><span>নিদ্রায় তাহারে পাছে নিরখি স্বপনে।</span>
+</p>
+</div> <div>
+<p><span>কাব্য উপাখ্যান পুন পড়িব না আর;</span><br/><span>পাতায় পাতায় প্রেম জাগিবে তাহার।</span><br/><span>সকলি হইল—কিন্তু প্রাণের ভিতরে—</span><br/><span>আশার সমুদ্র বল নিবারি কি করে!</span><br/><span>নবীন বয়সে হয় তাপস কজন!</span><br/><span>আপনার বশ বল কজনার মন!</span><br/><span>যেখানে আঁখির তৃপ্তি, বাসনা সেথায়,</span><br/><span>যেখানে বাসনা, আঁখি অতৃপ্ত সেথায়।</span><br/><span>দুই যন্ত্রণার—তবু প্রত্যেক অন্তরে</span><br/><span>স্বভাবের হেন ভাব কিহেতু বিহরে?</span><br/>
+যেখানে গভীর ব্যথা,কেন চিত্ত ধায় সেথা,<br/><span>দুর্লভ রতনে কেন এত প্রলোভন।</span><br/>
+যেখানে নৈরাশ্য যত,সেখানে বাসনা তত,<br/><span>মানবের হেন মোহ কিসের কারণ?</span><br/></p>
+<div>
+<p>৩
+</p>
+</div><br/><p><span>সংসারের পরিবর্ত্ত দেখি সর্ব্ব ঠাঁই,</span><br/><span>হতাশ হৃদয়ে কেন পরিবর্ত্ত নাই!</span><br/><span>শুষ্ক তরু-মূলে কর সলিল সিঞ্চন,</span><br/><span>শাখায় শাখায় তার ধরিবে প্রসূন।</span><br/><span>অতি জীর্ণ অট্টালিকা করহ সংস্কার,</span><br/><span>তাহাও মোহিনী মূর্ত্তি ধরিবে আবার।</span>
+</p>
+</div> <div>
+<p><span>শুষ্ক সরসীর পঙ্ক করহ উদ্ধার,</span><br/><span>কুমুদ কমল তায় ফুটিবে আবার।</span><br/><span>মুমূর্ষে করাও যদি ঔষধ সেবন,</span><br/><span>কালেতে সবল-দেহ হইবে সে পুন।</span><br/><span>সংসারে যা কিছু ভাঙ্গা জোড়া যদি দাও,</span><br/><span>আবার পূর্ব্বের মত দেখিবারে পাও।</span><br/><span>ভগ্ন হৃদয়ের কেন পরিবর্ত্ত নাই,</span><br/><span>যা গিয়াছে তাহা কেন ফিরিয়া না পাই।</span><br/><span>চাহি না পার্থিব সুখ—চাহি না প্রণয়,</span><br/><span>চাহি শুধু আমার সে প্রশান্ত হৃদয়।</span><br/><span>হারায়েছি যেই মন, নাহি চাহি আর,</span><br/><span>ফিরে যদি পাই সেই সন্তোষ আমার।</span><br/>
+এ যে চিত্ত মরুময়,নিশ্বাস ঝটিকা বয়,<br/><span>পলকে পলকে হয় বিষাদে চঞ্চল।</span><br/>
+মুদিয়াছি দু নয়ন,তবু হয় উদ্দীপন,<br/><span>স্মৃতির শলাকা পর্শে প্রাণের অনল।</span><br/></p>
+<div>
+<p>৪
+</p>
+</div><br/><p><br/><span>আর একবার চিত্র করি দশন—</span><br/><span>বড়ই দুর্ব্বল কিন্তু হতাশের মন।</span>
+</p>
+</div> <div>
+<p><span>বিষম সংযমে চিত্ত করিনু অটল,</span><br/><span>নিরখিলে যদি হয় আবার চঞ্চল!</span><br/><span>হৃদয়—এ বাসনা কর বিসর্জ্জন,</span><br/><span>কাষ নাই তুষানল করি উদ্দীপন।</span><br/><span>পারি না যে—একবার—সুধু একবার!</span><br/><span>এই বার দেখি চিত্র দেখিব না আর।</span><br/><span>নয়ন জন্মের মত কর দরশন,</span><br/><span>হৃদয় জম্মের মত কর আকিঞ্চন।</span><br/><span>দুর্লভ রতন বলি ভাবিতে যাহারে,</span><br/><span>নিভৃতে আলেখ্য তার ধর বক্ষে করে।</span><br/><span>মিটাও মনের সাধ করিয়া চুম্বন,</span><br/><span>কাঁপ কেন?—ভয় নাই, চিত্র অচেতন।</span><br/><span>সিহরিল চিত্র!—না না আমারি হৃদয়,</span><br/><span>কাঁপিল আমারি ওষ্ঠ আলেখ্যের নয়।</span><br/><span>আর না মিটিল সাধ, জন্মের মতন,</span><br/><span>চিত্রের সহিত আশা দিনু বিসর্জ্জন।</span><br/>
+চিত্র পট দগ্ধ হ’ল,কিন্তু কই স্মৃতি গেল,<br/><span>প্রাণের ভিতরে দেখি সেই মূর্ত্তি তার!</span><br/>
+এস কাল! মুছে ফেল,কেন মিছে এ জঞ্জাল,<br/><span>এ ব্যাধির চিকিৎসক তুমিই আমার।</span>
+</p>
+</div>
+</div>
+</div></section>
+<section><div>
+
+<h2>নিশীথ বিলাপ</h2>
+
+<div><div>
+<div>
+<p>১
+</p>
+</div><br/><p><span>অস্ত যাও নিশানাথ সুদূর অম্বরে</span><br/><span>অস্ত যাও তারাবৃন্দ —হাঁসিও না আর,</span><br/><span>ডেকোনা কোকিল আর সুললিত স্বরে,</span><br/><span>খুলে ফেল চারু বেশ প্রকৃতি তোমার,</span><br/>
+আজ ভারতের ঘরে,সে আনন্দ নাহি নরে<br/><span>মরম বেদনা বুকে, মুখে হাহাকার।</span><br/><span>অস্ত যাও জ্যোতিঃপুঞ্জ হ'ক অন্ধকার।</span><br/></p>
+<div>
+<p>২
+</p>
+</div><br/><p><span>লুকাও সরসীকুল কুমুদ কমলে</span><br/><span>সারস মরাল দল লুকাও সত্ত্বর,</span><br/><span>করোনা বিকাশ আর নব নব দলে,</span><br/><span>লুকাও মুকুলে পুনঃ প্রসূননিকর।</span><br/>
+সোহাগে ভাসায়ে কায়সুরভি মলয় বায়<br/><span>এসো না ভারতে আর প্রণয়ের তরে,</span><br/><span>প্রেমের অন্ত্ব্যেষ্টি আজ ভারত ভিতরে।</span>
+</p>
+</div> <div>
+<div>
+<p>৩
+</p>
+</div><br/><p><span>উঠ উঠ হিমাচল ঘুমাও না আর,</span><br/><span>বারেক বদন তুলি কর নিরীক্ষণ,</span><br/><span>অনাথা ভারতমাতা চরণে তোমার,</span><br/><span>ভাসিছে শোকের নীরে যুগল নয়ন।</span><br/>
+নাহি সে সুচারু বেশ, বিষাদে বিমুক্ত কেশ,<br/><span>মরম-বেদনে তাঁর কাতর জীবন,</span><br/><span>উঠ হিমাচল তাঁয় কর সম্ভাষণ।</span><br/></p>
+<div>
+<p>৫
+</p>
+</div><br/><p><span>সৈকত-শয়ন ত্যজি সলিল ঈশ্বরি,</span><br/><span>বারেক নেহার দীনা ভারত-জননী,</span><br/><span>সকরুণ আর্ত্তনাদে শূন্য ভেদ করি</span><br/><span>বিলাপেন রাজমাতা এবে অনাথিনী।</span><br/>
+তোমার অতল কোলে,দুখিনীরে লহ তুলে,<br/><span>রাখ এ মিনতি মম রত্ন প্রসবিনি,</span><br/><span>ঘোষিবে এ কীর্ত্তি তব পূরিয়া মেদিনী।</span><br/></p>
+<div>
+<p>৬
+</p>
+</div><br/><p><span>অয়ি শূন্যময়ী নীল অনন্ত-রূপিনি,</span><br/><span>অনাথা দুখিনী-দুখ দেখিছ কেমনে!</span>
+</p>
+</div> <div>
+<p><span>করিয়ে অনল বৃষ্টি বজ্র প্রসবিনি,</span><br/><span>নিবাও অভাগি-দুখ কৃপা বিতরণে;</span><br/>
+অথবা নিকটে আসি,লুকাও এ দুখরাশি।<br/><span>তোমার সুনীল ওই ঘন আবরণে,</span><br/><span>জননীর হেন বেশ অসহ্য নয়নে।</span>
+</p>
+</div>
+</div>
+
+<div><hr/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>স্বপ্ন প্রতিমা</h2><sup><a href="#cite_note-1-n168">[১]</a></sup>
+
+<div>
+<p>১
+</p>
+</div>
+<div><div>
+<p><span>ভাঙ্গিল নিদ্রার ঘোর খুলি নয়ন</span><br/>
+এ ত সেই কক্ষ, কিন্তু কোথা সে স্বপন।<br/><span>মুদিনু নয়ন পুন,</span><br/><span>যদি পাই দরশন,</span><br/><span>হা! পোড়া কপাল নিদ্রা আসিল না আর।</span><br/><span>কোথা স্বপ্ন কোথা আমি সে প্রতিমা কার।</span>
+</p>
+</div>
+<div>
+<div>
+<p>২
+</p>
+</div><br/><p>বিষাদে নিশ্বাস ত্যজি গবাক্ষ-সদনে<br/>
+বসিনু কাতর মনে চাহিয়া গগনে।<br/><span>সুদূর গগন-কোলে।</span><br/><span>শশাঙ্ক পড়েছে ঢলে,</span><br/>
+বিদায়ের ম্লান হাঁসি নিশির অধরে,<br/>
+নিষ্প্রভ তারকা গুলি ডুবিছে অম্বরে।<br/></p>
+<div>
+<p>৩
+</p>
+</div><br/><p>সহসা স্মৃতির দ্বার হইল মোচন,<br/>
+আবার ভাসিল মনে সে সুখ স্বপন।<br/><span>চুর্ণ শশীৱাশি করে</span><br/><span>রমণীর মূর্ত্তি গড়ে</span><br/>
+দেখাইয়া ছিল স্বপ্ন যেই প্রতিমায়,<br/>
+দেখিনু মানস-নেত্রে গগনের গায়।<br/></p>
+<div>
+<p>৪
+</p>
+</div><br/><p>সুধামাখা সেই হাসি ফুটন্ত অধরে,<br/>
+সুটানা নয়নে মরি সেই দৃষ্টি ঝরে,<br/><span>সেই নাশা সেই ভুরু</span><br/><span>সে উরস সেই ঊরু।</span><br/>
+অবিকল সেই মূর্ত্তি স্বপনে যাহারে<br/>
+দেখিয়াছি মুগ্ধ নেত্রে, উন্মত্ত অন্তরে।
+</p>
+</div> ﻿<div>
+<div>
+<p>৫
+</p>
+</div><br/><p>বিস্মিত নয়নে তারে হেরি বার বার<br/>
+চিনিতে নারিনু তবু সে প্রতিমা কার<br/><span>হাসিয়া অঙ্গুলি তুলি</span><br/><span>ঈষৎ উত্তরে হেলি</span><br/>
+প্রতিমা দেখায়ে দিল বিচিত্র কানন।<br/>
+পশিল শ্রবণ-মূলে “আছে কি স্মরণ।”<br/></p>
+<div>
+<p>৬
+</p>
+</div><br/><p>“আছে কি স্মরণ?”—একি! অধিক বিস্ময়ে<br/>
+আদিষ্ট উদ্যান পানে দেখিলাম চেয়ে।<br/><span>সকলি স্বপনময়</span><br/><span>প্রকৃতি ঘুমায়ে রয়,</span><br/>
+তরুরাজি-কোলে এক চারু সরোবর,<br/>
+সলিল হিল্লোল গুলি করে থর থর।<br/></p>
+<div>
+<p>৭
+</p>
+</div><br/><p>সেই সরসীর ক্ষিপ্ত হিল্লোলের গায়,<br/>
+বালক বালিকা দুটি ধীরে ভেসে যায়,<br/><span>এক বৃন্তে বাঁধা যেন,</span><br/><span>দুইটি কমল হেন,</span><br/>
+পরস্পরে ধরি কর সন্তরণ করে,<br/>
+“চেন কি এ দুই মুর্ত্তি?” শুনিনু অচিরে।
+</p>
+</div> ﻿<div>
+<div>
+<p>৮
+</p>
+</div><br/><p>চিনিব না কেন—হায়! কিন্তু কেন আর<br/>
+শৈশবের সেই চিত্র নয়নে আমার!<br/><span>ওযে সেই সরোবর</span><br/><span>সেই তরু মনোহর,</span><br/>
+সেই তীর—সে সোপান, বাল্য-ক্রীড়া স্থল,<br/>
+চির পরিচিত মম ওই সে হিল্লোল।<br/></p>
+<div>
+<p>৯
+</p>
+</div><br/><p>ওই মোরা দুই জনে, হায় রে সে দিন!<br/>
+এখনো তেমতি নব—হয়নি প্রবীন,<br/><span>বাল্য আনন্দেতে হেঁসে,</span><br/><span>হিল্লোলে চলেছি ভেসে,</span><br/>
+ওই সেই শিশু আমি, শিশু-বিনোদিনী,<br/>
+শৈশব-হৃদয়ে মম প্রফুল্ল নলিনী।<br/></p>
+<div>
+<p>১০
+</p>
+</div><br/><p>কোথায় সে দিন আজ! কোথায় দুজন<br/>
+কোথা শৈশবের সেই প্রিয় আকিঞ্চন।<br/><span>কালের ভীষণ স্রোতে</span><br/><span>দুই জনে দুই পথে</span><br/>
+বৃন্ত-চ্যুত এখনো সে ক্ষত বক্ষঃস্থল।<br/>
+ডুবিয়া বিস্মৃতি-জলে হয়নি শীতল।
+</p>
+</div> <div>
+<div>
+<p>১১
+</p>
+</div><br/><p>নয়ন পালটি দেখি সে উদ্যান নাই।<br/>
+সে সরসী সেই ছবি আর কিছু নাই।<br/><span>চূর্ণ তুলারাশি প্রায়</span><br/><span>শুভ্র জলদের গায়</span><br/>
+কুমার কুমারী দুই করে কর ধরে,<br/>
+দাঁড়ায়ে নিরবে—নেত্রে অশ্রুজল ঝরে।<br/></p>
+<div>
+<p>১২
+</p>
+</div><br/><p>কুমারীর বধূ বেশ সজ্জিত ভূষণে,<br/>
+কিশোর লাবণ্য ঢাকা কৌশিক বসনে,<br/><span>দুই জনে পরস্পরে,</span><br/><span>কাতর বদনে হেরে।</span><br/>
+অকস্মাৎ চারুচিত্র মিশিল গগনে।<br/>
+“চেনকি এ দুই জনে?” শুনিনু শ্রবণে।<br/></p>
+<div>
+<p>১৩
+</p>
+</div><br/><p>চিনিব না! হায় মোর মর্ম্মের ভিতরে<br/>
+আঁকা আছে ওই চিত্র চিরদিন তরে।<br/><span>এই যে হতাশ মনে</span><br/><span>দাঁড়াইয়া দুইজনে।</span><br/>
+দুজনার দুই প্রাণ ভাঙ্গিতে উদ্যত।<br/>
+কেন কর নেত্রে আর এ চিত্র স্থাপিত।
+</p>
+</div> <div>
+<div>
+<p>১৪
+</p>
+</div><br/><p>অকুল নৈরাশ্য-স্রোতে হতাশ অন্তরে,<br/>
+ভাসায়ে দিয়েছি প্রাণ ওই করে ধরে,<br/><span>হৃদয়ের গ্রন্থিচয়</span><br/><span>একে একে সমুদয়—</span><br/>
+ছিঁড়িয়াছি ওই দিন—হৃদয় আদিত্য<br/>
+অস্ত গেছে ওই চিত্রে জনমের মত!<br/></p>
+<div>
+<p>১৫
+</p>
+</div><br/><p>“এই বার দেখ চেয়ে” হৈল দৈববাণী,<br/>
+অমনি ভাসিল নেত্রে সেই ছবিখানি।<br/><span>“শৈশবের প্রাণেশ্বর,</span><br/><span>দুখিনী বিনোদে ধর”</span><br/>
+শূন্য হ’তে পদ-প্রান্তে পড়িল রমণী,<br/>
+সহসা সুখের স্বপ্ন ভাঙ্গিল অমনি।
+</p>
+</div>
+</div>
+<div><hr/></div>
+
+</div><ol><li><span><a href="#cite_ref-1-n162">↑</a></span> <span>কোন সুহৃদের অনুরোধে এই কবিতাটি লিখিত হয়।</span>
+</li>
+</ol></section>
+<section><div>
+
+<h2>হিতকরী সভার সাম্বাৎসরিক</h2>
+<h2>সম্মিলন উপলক্ষে</h2>
+<div><div>
+<p>মিলিত বঙ্গের সুত দেশ-হিত সাধনে,<br/>
+উজলিল সভাতল মরি বঙ্গ-রতনে!
+</p>
+</div>
+<div>
+<p>সারঙ্গ গম্ভীরে বাজ,বাজ জোড়ে পাখয়াজ,<br/>
+উচ্চ তারে তানপুরাগহরে আমার সনে।<br/><span>তুষিব পীযুষ ঢালি বঙ্গের সুধীর গণে</span><br/><span>ভাগ্যবতী তুমি উত্তর নগরি,</span><br/><span>তাই এ রতনে দীপ্ত তব পুরী।</span><br/><span>জাহ্নবী গরভে ঢাকা ছিলে বনে,</span><br/><span>এ সৌভাগ্য তব কে ভাবিত মনে।</span><br/>
+এ চারি সন্তান তবলভিলে কি শুভক্ষণে!<br/>
+ভাতৃদ্বয় জয় বিজয়প্যারী বামাচরণে।<br/><span>পুত্ররাজকৃষ্ণ দয়ার জলধি,</span><br/><span>বদান্য তাহার নাহিক অবধি।</span><br/><span>সুধু তাই কেন প্রত্যেক সন্তানে</span><br/><span>দেশ-হিতে রত অবিচল মনে,</span><br/>
+হেন পুত্রগণ যার,ভাগ্যবতী সে নগরী,<br/>
+ভূতলে অতুল ধাম,জগতে সে স্বর্গপুরী।<br/><span>ভাতৃশ্রেষ্ঠ প্যারি কোথাহে এখন,</span><br/><span>ফাটে বক্ষ তোরে করিয়ে স্মরণ!</span><br/><span>বৎসরান্তে এই শুভ সম্মিলন,</span><br/><span>ইথেও তোমার হবে না মিলন!</span>
+</p>
+</div> <div>
+<p>যেই হিতকরী-সভা সংস্থাপিলে যতনে,<br/>
+মিলিতে নারিলে ভাই তারি শুভ মিলনে।<br/>
+সৃজিলে যে কীর্তিস্তম্ভ দেখিলে না নয়নে,<br/>
+সুধু ক্লেশ সুধু শ্রম সহিলে হে জীবনে।<br/><span>কাঁদরে মৃদঙ্গ সকরুণ স্বরে,</span><br/><span>কাঁদ পাখোয়াজ সে প্যারীর তরে,</span><br/><span>কাঁদ তানপূরা কাঁদরে হারমিন্,</span><br/><span>কাঁদ শিশু যুবা কাঁদরে প্রবীণ।</span><br/>
+তরুলতা পশুপক্ষীকাঁদমিলি সর্ব্বজনে,<br/>
+কাঁদলো জাহ্নবি আজিউথলি আমার সনে।<br/>
+মুছি নেত্র-জল পুনদেখরে নয়ন তুলি,<br/>
+ওইযে সোদরগণরয়েছে সভা উজলি।<br/><span>বাজরে বাদিত্র আনন্দেতে পুন,</span><br/><span>ডাক জগদীশে ডাক ঘন ঘন।</span><br/><span>ছিল ক্ষুদ্র পল্লী হয়েছে নগরী,</span><br/><span>কিছু দিন পরে হবে স্বর্গপুরী।</span><br/>
+হারমিন পাখোয়াজ,বাজ মিলি উচ্চতানে,<br/>
+দীর্ঘজীবী করি বিধিরাখুন এ ভাতৃগণে।
+</p>
+</div>
+</div>
+<div><hr/></div>
+</div></section>
+<section><div>
+
+<h2>পুষ্পমালা উপহার পাইয়া</h2>
+<div>
+<p>১
+</p>
+</div>
+<div><div>
+<p>বড় ভাগ্যবান্ অজি করিলে আমারে।<br/><span>এ কুসুম দাম মম পারিজাত হার,</span><br/>
+রত্নের অধিক যত্নে রাখিব ইহরে,<br/><span>আশার অধিক সখি তব উপহার।</span><br/></p>
+<div>
+<p>২
+</p>
+</div><br/><p>আপনি কুসুম রাশি করিয়া চয়ন,<br/><span>গেঁতেছ এ পুস্পহার শোভিতে যাহায়,</span><br/>
+কত ভাগ্যবান হায় আজ সেই জন,<br/><span>কি বলিব সে কথা যে বলিবার নয়।</span><br/></p>
+<div>
+<p>৩
+</p>
+</div><br/><p>নশ্বর এ পুষ্পহার শুকাবে দুদিনে,<br/><span>হৃদয় করিয়া শূন্য ভূতলে খসিবে,</span><br/>
+এ সুখের স্মৃতি কিন্তু জাগ্রতে স্বপনে,<br/><span>চির দিন নিরন্তর হৃদয়ে জাগিবে।</span><br/></p>
+<div>
+<p>৪
+</p>
+</div><br/><p>প্রীতি উপহার কিন্তু কি দিব তোমায়,<br/><span>কি দিয়া হইবে তৃপ্তি আছে কিবা ধন,</span>
+</p>
+</div> ﻿<div>
+<p>ঢালিয়া দিলাম সখি সমস্ত হৃদয়,<br/><span>সঁপিনু তোমায় মম স্বাধীন জীবন।</span><br/></p>
+<div>
+<p>৫
+</p>
+</div><br/><p>তবু কি হইল—না না তবু তৃপ্ত নয়,<br/><span>দাতার(ই) হয় জয় গ্রাহকের লাঞ্ছনা।</span><br/>
+উপহার তুচ্ছ—কিন্তু সেই যে হৃদয়,<br/><span>সে বড় অমূল্য ধন কি তার তুলনা।</span><br/></p>
+<div>
+<p>৬
+</p>
+</div><br/><p>এ কুসুমদাম এত হ'ত কি সুন্দর,<br/><span>যদি না হইত ইহা তব উপহার?</span><br/>
+গন্ধে আমোদিত এত হ'ত কি অন্তর,<br/><span>যদি না থাকিত ইথে সৌরভ তোমার?</span><br/></p>
+<div>
+<p>৭
+</p>
+</div><br/><p>আশার জলধি ইহা স্মৃতির দর্পণ,<br/><span>যত দেখি চিত্ত তত হয় আমোদিত।</span><br/>
+নিভৃত চিন্তার ভাষা মনের নয়ন,<br/><span>এ কুসুমদামে যেন সকলি নিহিত।</span><br/></p>
+<div>
+<p>৮
+</p>
+</div><br/><p>যা পেয়েছি পুষ্পহারে অমুল্য সে ধন,<br/><span>অমূল্য সে দৃষ্টিসুধা, অমুল্য সে হাঁসি,</span>
+</p>
+</div> <div>
+<p><span>ততোধিক মূল্যবান সে অমুল্য মন,</span><br/><span>ততোধিক সুধাপূর্ণ সে বচনরাশি।</span>
+</p>
+</div>
+</div>
+
+<div><hr/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>আমিত উন্মাদ নই, উন্মাদ জগৎ</h2>
+<div>
+<p>১
+</p>
+</div>
+<div><div>
+<p><span>দেখ না ভুলিয়া আঁখি জগতের পানে,</span><br/><span>কোথা মাদকতা নাই, কে নহে পাগল।</span><br/>
+গগণে ভূতলে জলেলতায় পাতায় ফলে,<br/><span>তোমার মতন কার হৃদয় অচল?</span><br/>
+হৃদয় বিহীন হেন,জীব জন্তু আছে কোন?<br/><span>পাষাণ হৃদয় শৈল তাহাও বিহ্বল,</span><br/><span>উচ্চ শিরে চুম্বিতেছে নীল নভস্তল।</span><br/></p>
+<div>
+<p>২
+</p>
+</div><br/><p><span>কে নহে উম্মাদ দেখ সম্মুখে তোমার?</span><br/><span>চঞ্চল হৃদয়া ওই ভীম পারাবার,</span><br/>
+তরঙ্গে তরঙ্গে, কত,আলিঙ্গন অবিরত,<br/><span>কত প্রেম কত সুখ তরঙ্গে উহার।</span>
+</p>
+</div>
+﻿<div>
+<p>কি সুখে উন্মাদ সিন্ধুতুমি বুঝিবেনা কিন্তু,<br/><span>তরঙ্গে তরঙ্গে ওই চিত্ত বিনিময়,</span><br/><span>বুঝিবে না ওই প্রেম কত সুধাময়।</span><br/></p>
+<div>
+<p>৩
+</p>
+</div><br/><p><span>বুঝিবে না তুমি কেন বিকচ কমল,</span><br/><span>সরসী হৃদয়ে ভাসি করে টল মল।</span><br/>
+পরশি লিল্লোল কেন,উল্লাশে লুটায় হেন,<br/><span>বুঝিবে না কেন এত হইয়া চঞ্চল,</span><br/><span>উলটি পালটি চুম্বে সরসীর জল।</span><br/>
+নিরব সরসী জলনিরব জড় কমল,<br/><span>পরশনে তবু মত্ত হৃদয় যুগল!</span><br/></p>
+<div>
+<p>৪
+</p>
+</div><br/><p><span>কেন গগনের বক্ষে ওই সৌদামিনী,</span><br/><span>নাচে ঘন ঘটা করি যেন উন্মাদিনী।</span><br/>
+নিলীম মেঘের গায়,কি সুখে মিশায়ে রয়,<br/><span>বিকাশে মধুর হাঁসি বিশ্ব-বিমোহিনী।</span><br/>
+দামিনী চাপিয়া বুকেমেঘ মন্ত্রে কত সুখে,<br/><span>বুঝিবে না এক অঙ্গে হলে পরিণত,</span><br/><span>প্রেমিকের দুই চিত্তে উঠে সুখ কত।</span>
+</p>
+</div> <div>
+<div>
+<p>৫
+</p>
+</div><br/><p><span>সেও প্রেম এত প্রেম গভীর উভয়,</span><br/><span>মাদকতা-শূন্য প্রেম গভীর কোথায়?</span><br/>
+অন্তরে যে স্রোত বহে, ঢাকিলে কি চাপা রহে,<br/><span>যে খানে আনল দেখ পবন সেথায়,</span><br/><span>যে খানে প্রণয় সেথা পাগল হৃদয়।</span><br/>
+দুএক নরের চিত্ত,জড় পাদপের মত,<br/><span>কেবল প্রেমের স্রোত করিতেছে পান,</span><br/><span>তথাপি নাহিক হৃদে একটি তুফান।</span><br/><span>উহাও ত প্রেম—সত্য উহাও প্রণয়,</span><br/><span>প্রেবেশিয়া দেখ কিন্তু উহার হৃদয়।</span><br/>
+অতলস্পর্শীয় প্রায়,প্রকাণ্ড শূন্যতা তায়,<br/><span>আবর্ত্তে আবর্ত্তে প্রেম পশিছে অন্তরে,</span><br/><span>কচিৎ কখন মৃদু হিল্লোল উপরে।</span><br/>
+ডাকিয়া গোপনে তারে,বল সত্য কহিবারে<br/><span>প্রাণের ভিতর তার বুঝিবে কি করে?</span><br/></p>
+<div>
+<p>৭
+</p>
+</div><br/><p><span>নহে সে সংসারে সুখী—জীবন তাহার</span><br/><span>জ্ঞানের কণ্টকাকীর্ণ—সুধু যন্ত্রণার।</span><br/>
+জীবনের মোহ জলে,পরিক্লান্ত দেহ ঢেলে—<br/><span>যুড়াতে হৃদয় শিক্ষা হয় নাই তার,</span>
+</p>
+</div> <div>
+<p>সুধু উদ্দেশ্য সাধনে,জীবন কণ্টক-বনে,<br/><span>শুষ্ক চিত্তে শূন্য বক্ষে করিছে ভ্রমণ,</span><br/><span>উদ্বেলতা চিত্তে তার নাহিক কখন।</span><br/></p>
+<div>
+<p>৮
+</p>
+</div><br/><p><span>সে সুখী কি আমি সুখী ভাব একবার।</span><br/><span>পাগল আমার কিম্বা হৃদয় তাহার।</span><br/>
+অনুভূতি প্রাণহীন,হাঁসি কান্না দুই ক্ষীণ,<br/><span>প্রবৃত্তি প্রবীণ-হেন হৃদয় যাহার,</span><br/><span>কি সুখ সংসারে আছে বুঝি না তাহার।</span><br/>
+শুষ্ক কণ্ঠে আজীবনমরুক্ষেত্রে পর্য্যটন,<br/><span>অতৃপ্ত জীবনে শেষে বিয়োগ আত্মার।</span>
+</p>
+</div>
+</div>
+<div><hr/></div>
+
+
+</div></section>
+<section><div>
+
+<h2>কুলীন কামিনী</h2>
+<div>
+<p><small>(স্থান-নদীতীর; সময়-সন্ধ্যা।</small>)
+</p>
+</div>
+<div>
+<p>১
+</p>
+</div>
+<div><div>
+<p><span>কি দুখে তটিনি। তুমি হেন শুষ্ক বেশে</span><br/><span>করুণ সঙ্গীত তুলি, শৈলময় দেশে?</span><br/><span>ললিত লহরী হায়,</span><br/><span>বিষাদে মিশায়ে যায়,</span>
+</p>
+</div>
+<div>
+<p>সরস যৌবন মরি বিশুষ্ক এমন<br/>
+কোন্ দুখে বল নদি এতেক বেদন!<br/></p>
+<div>
+<p>২
+</p>
+</div><br/><p>হায় জানিতাম আমি অনন্ত সংসারে<br/>
+এক অভাগিনী সুধু পাষাণে বিহরে,<br/><span>শুষ্ক শুধু এই প্রাণ,</span><br/><span>গায় বিষাদের গাণ,</span><br/>
+লুকায়ে মরম জ্বালা কাঁদি নিরজনে।<br/>
+একা অনাথিনী আমি অখিল ভুবনে!<br/></p>
+<div>
+<p>৩
+</p>
+</div><br/><p>তুমিও যে তটিনী রে আমারই মতন,<br/>
+পাষাণে চাপিয়া বক্ষ কর সন্তরণ,<br/><span>নির্দ্দয়ের পদতলে,</span><br/><span>লুটাই নয়ন জলে,</span><br/>
+নিষ্ঠর গিরির পদে তুমি অভাগিণী।<br/>
+লুটাইছ তরঙ্গিনি দিবস যামিনী।<br/></p>
+<div>
+<p>৪
+</p>
+</div><br/><p>এস সখি তুমি মম দুখের সঙ্গিনী,<br/>
+এক দুখে দুই জনে সম অভাগিনী,
+</p>
+</div> ﻿<div>
+<p><span>বসিয়া তোমার কূলে,</span><br/><span>প্রাণের কবাট খুলে,</span><br/>
+কাঁদিব তোমার সঙ্গে ভরিয়ে অন্তর,<br/>
+যতক্ষণ থাকি এই অবনী-উপর।<br/><span>৫</span><br/>
+সখিরে বরষা এলে কিছুদিন তরে,<br/>
+আদরে তুলিয়া তোরে গিরি বক্ষে ধরে,<br/><span>কিন্তু সখি অনাথারে,</span><br/><span>মুহূর্ত্তেক স্নেহ করে,</span><br/>
+নাহি হেন প্রাণী এক এ জগতীতলে,<br/>
+কে মুছাবে বল এই নয়নের জলে!<br/><span>৬</span><br/>
+সামান্যা রমণী আমি অনন্ত সংসারে,<br/>
+কোন্ দুখে কাঁদি সদা কে সন্ধান করে,<br/><span>মাংসভেদী তীব্র দুখে,</span><br/><span>কি বেদনা বাজে বুকে,</span><br/>
+কে বুঝিবে বল নদি আছে কোন জন,<br/>
+বলিলে বুঝিতে পারে পরের বেদন।<br/><span>৭</span><br/>
+সমাজের মুখে ছাই শ্রবণ-বিহীন,<br/>
+বিধির নয়ন নাই—হৃদয় কঠিন।<br/>
+﻿
+</p>
+</div> ﻿<div>
+<p><span>বল তবে কার পাশে</span><br/><span>যাইব স্নেহের আশে,</span><br/>
+হৃদয়-বিহীন নরে নাহিক বিশ্বাস,<br/>
+মৃগতৃষ্ণিকায় কার সলিল প্রয়াস?<br/><span>৮</span><br/>
+প্রান্তরে প্রান্তরে কিম্বা শশ্মানে শশ্মানে,<br/>
+শুদ্ধ নদী তটে শুষ্ক লতার বিতানে,<br/><span>ফেলি নয়নের জল,</span><br/><span>হই কিছু সুশীতল,</span><br/>
+নির্দ্দয় মানব জাতী বুঝে কি কখন,<br/>
+কি সুধার নির্ঝরিণি রমণীর মন?<br/><span>৯</span><br/>
+আবদ্ধ প্রেমের সিন্ধু হৃদয় ভিতরে,<br/>
+উথলে নিরাশাকাশে মেঘখণ্ড হেরে,<br/><span>মুছিয়া নয়ন জল</span><br/><span>করি তায় সুশীতল,</span><br/>
+বিষাদে তোমারি মত মিশায় লহরী,<br/>
+ভেসে যায় মেঘ থাকি দৃষ্টিরোধ করি।<br/><span>১০</span><br/>
+কত দিন কত বার হৃদয়ের তার<br/>
+সহসা বাজিয়া উঠে, কিন্তু স্পর্শ কার<br/>
+﻿
+</p>
+</div> ﻿<div>
+<p><span>জানি না, নিবারি তারে</span><br/><span>ভাসে বক্ষ নেত্রাসারে,</span><br/>
+জ্বলে উঠে হৃদয়ের নির্ব্বাণ অনল,<br/>
+ক্ষত মনে ক্ষত প্রাণে পুড়ি অবিরল।<br/><span>১১</span><br/>
+এই পরিণাম হায়—সেই চির আশা!<br/>
+অন্তরেই শুকাইল—সেই ভালবাসা!<br/><span>কেন তবে জন্মিলাম</span><br/><span>নাহি যদি লভিলাম</span><br/>
+সুধাময় প্রণয়ের বিন্দু আস্বাদন!<br/>
+উদ্বাহ বন্ধনে বাঁধি কেন বিড়ম্বন!<br/><span>১২</span><br/>
+নির্দ্দয় প্রাণেশ কোথা এস এক বার,<br/>
+দেখে যাও প্রণয়ের অন্ত্যেষ্ঠি আমার,<br/><span>বালে—পরিণয়-কালে</span><br/><span>যে সিন্দূর দিলে ভালে,</span><br/>
+আজি নদী-জলে সেই সিন্দূর ভাসিল,<br/>
+(গণ্ডুষে তুলিয়া জলে কপাল ধুইল)।<br/><span>১৩</span><br/>
+খুলি লৌহ “কড়’’ খুলি বাহুর ভূষণ,<br/>
+সধবার যত চিহ্ন করি উন্মোচন,<br/><span>ড</span><br/>
+﻿
+</p>
+</div> ﻿<div>
+<p><span>নিক্ষেপিয়া নদী-জলে,</span><br/><span>কহিলেক অশ্রু-জলে,</span><br/>
+“কোথা আছ প্রাণেশ্বর দেখ একবার,<br/>
+সধবার বৈধব্য হইল আবিষ্কার।”<br/><span>১৪</span><br/>
+ডুবিল নদীর জলে সুবর্ণ ভূষণ,<br/>
+সিন্দুরের আভা ক্রমে হৈল অদর্শন,<br/><span>তটিনী তরঙ্গ তুলে,</span><br/><span>আঘাতি উভয় কূলে,</span><br/>
+চলিল গাহিয়া উচ্চে “দেখ একবার<br/>
+সধবার বৈধব্য হইল আবিষ্কার।”<br/><span>১৫</span><br/>
+তরুদলে পত্র কোলে নিথর পবন,<br/>
+হেরিল নদীর বক্ষে ডুবিল ভূষণ,<br/><span>কুসুম সৌরভ ভুলি,</span><br/><span>গভীর সঙ্গীত তুলি,</span><br/>
+ছুটিল নদীর সঙ্গে গাহি অনিবার,<br/>
+‘‘সধবার বৈধব্য হইল আবিষ্কার।”<br/><span>১৬</span><br/>
+নির্ম্মল গগনে মেঘ সহসা ছাইল,<br/>
+তটিনী ভূধর তরু আঁধারে ঢাকিল,<br/>
+﻿
+</p>
+</div> ﻿<div>
+<p><span>অনলের মত ফুটে,</span><br/><span>বিদ্যুত চলিল ছুটে,</span><br/>
+গম্ভীরে গম্ভীরে করি ভীষণ ঝঙ্কার,<br/>
+“সধবার বৈধব্য হইল আবিষ্কার।”<br/><span>১৭</span><br/>
+ঢাকি মেঘ গরজন রমনী কহিল,<br/>
+“জনমের মত দাসী বিদায় হইল,<br/><span>কে আছ রমণী-কুলে</span><br/><span>বাঁধা কৌলিন্য শৃঙ্খলে,</span><br/>
+এস এক সঙ্গে করি শৈকতে শয়ন,”<br/>
+রমণী নদীর বক্ষে হইল পতন।<br/>
+﻿
+</p>
+</div>
+</div>
+</div></section>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = (p.currentTheme === 'light' || p.currentTheme === 'dark') ? p.currentTheme : 'dark';
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+
+    // ── Footer: seek slider ──
+    const rfSlider  = document.getElementById('rf-slider');
+    let rfSliderDragging = false;
+    if (rfSlider) {
+        rfSlider.addEventListener('input', () => {
+            rfSliderDragging = true;
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
+        });
+        rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
+    }
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+            a.addEventListener('click', closeDrawer);
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocMobile);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme; header/footer/drawer now follow the same theme via CSS vars)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+
+            const activeAccent = getComputedStyle(document.body).getPropertyValue('--bar-accent').trim();
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? activeAccent : 'transparent';
+            });
+            savePrefs();
+        });
+    });
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+    })();
+})();
+</script>
+
+
+</body>
+</html>
