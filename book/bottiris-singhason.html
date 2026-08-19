@@ -546,81 +546,10 @@
              হিসেবে বসানো হয় (author-page-এর মতো), crawler প্রথম লোডেই এই
              ইন্টারনাল লিংকগুলো পায়। কোনো related বই না থাকলে placeholder
              খালি স্ট্রিং হয়ে যায়, তাই সেক্ষেত্রে কার্ডটাই দেখা যায় না। -->
-        <style>
-/* components/book-card-grid.css — book.html-এর "সম্পর্কিত বই" সেকশনে ব্যবহৃত
-   compact GRID book-card design। book-card-list.css-এর মতোই generate_pages.js
-   একবার লোড করে <style> ট্যাগে মুড়ে  placeholder-এ
-   বসিয়ে দেয়। একসাথে ১২টা বই দেখাতে হয় বলে list-এর বদলে cover-প্রধান grid —
-   কভার বড়, শিরোনাম ২ লাইনে, বিবরণ ছাড়া। একই palette (#ffffff card surface,
-   #1f2937 টেক্সট, #C2D7FC hover) — book-card-list.css-এর সাথে ভিজ্যুয়ালি মিল রেখে। */
+        
+        <div class="book-related-section"><div class="related-label"><span class="related-label-text">সম্পর্কিত বই</span><span class="related-label-line"></span></div><div class="bc-list"><a href="/book/char-odhay.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783232187458_yb1t30983ch.png" alt="চার অধ্যায় বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">চার অধ্যায়</span></p><p class="bc-desc">রবীন্দ্রনাথ ঠাকুরের শেষ উপন্যাস 'চার অধ্যায়' (১৯৩৪) বাংলা সাহিত্যের এক অনন্য সংযোজন। এটি কেবল একটি প্রেমের গল্প নয়, বরং বিপ্লবী আন্দোলনের প্রেক্ষাপটে ব্যক্তিগত আবেগ ও আদর্শের সংঘাতের এক নিবিড় দলিল।
 
-/* Grid container */
-.bcg-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.9rem 0.7rem;
-}
-@media (min-width: 640px) {
-  .bcg-list { grid-template-columns: repeat(4, 1fr); }
-}
-@media (min-width: 1024px) {
-  .bcg-list { grid-template-columns: repeat(6, 1fr); gap: 1rem 0.85rem; }
-}
-
-/* Book card */
-.bcg-card {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  border-radius: 6px;
-  transition: background 0.15s;
-}
-.bcg-card:hover { background: #C2D7FC; }
-
-/* Cover — top, fixed 2:3 ratio, card-এর মূল ভিজ্যুয়াল অ্যাংকর */
-.bcg-img-wrap {
-  aspect-ratio: 2/3;
-  overflow: hidden;
-  background: #e5e7eb;
-  border-radius: 5px;
-  box-shadow: 0 6px 14px rgba(17,24,39,0.12);
-  margin-bottom: 0.5rem;
-}
-
-.bcg-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.2s ease;
-}
-.bcg-card:hover .bcg-img { transform: scale(1.03); }
-
-/* Title — কভারের নিচে, ২ লাইন পর্যন্ত */
-.bcg-title {
-  font-size: 0.82rem;
-  font-weight: 600;
-  line-height: 1.35;
-  color: #1f2937;
-  padding: 0 0.15rem;
-  margin: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/*
-  Book card HTML template (reference — generate_pages.js এ ব্যবহার হয়):
-  <a href="/book/bottiris-singhason.html" class="bcg-card">
-    <div class="bcg-img-wrap">
-      <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783323823676_txgsbw6tc8.png" alt="বত্রিশ সিংহাসন" class="bcg-img" loading="lazy">
-    </div>
-    <p class="bcg-title">বত্রিশ সিংহাসন</p>
-  </a>
-*/
-</style>
-        <div class="book-related-card"><h2 class="book-desc-heading">সম্পর্কিত বই</h2><div class="bcg-list"><a href="/book/char-odhay.html" class="bcg-card"><div class="bcg-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783232187458_yb1t30983ch.png" alt="চার অধ্যায় বই কভার" class="bcg-img" loading="lazy"></div><p class="bcg-title">চার অধ্যায়</p></a><a href="/book/orokkhoniya.html" class="bcg-card"><div class="bcg-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783084335950_ku1k3y7c3uk.png" alt="অরক্ষণীয়া বই কভার" class="bcg-img" loading="lazy"></div><p class="bcg-title">অরক্ষণীয়া</p></a><a href="/book/kahake.html" class="bcg-card"><div class="bcg-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1786931196244_dpquki838qn.png" alt="কাহাকে বই কভার" class="bcg-img" loading="lazy"></div><p class="bcg-title">কাহাকে</p></a><a href="/book/hajar-bosor-dhore.html" class="bcg-card"><div class="bcg-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783053326379_lnhgchbx0q.png" alt="হাজার বছর ধরে বই কভার" class="bcg-img" loading="lazy"></div><p class="bcg-title">হাজার বছর ধরে</p></a><a href="/book/alaler-ghorer-dulal-peary-chanf.html" class="bcg-card"><div class="bcg-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1785270085282_1w9boclc6oy.png" alt="আলালের ঘরের দুলাল বই কভার" class="bcg-img" loading="lazy"></div><p class="bcg-title">আলালের ঘরের দুলাল</p></a><a href="/book/jaoa-asa-guho.html" class="bcg-card"><div class="bcg-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783176220498_63040ektkn4.png" alt="যাওয়া–আসা বই কভার" class="bcg-img" loading="lazy"></div><p class="bcg-title">যাওয়া–আসা</p></a><a href="/book/choritrohin.html" class="bcg-card"><div class="bcg-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783107243492_9gsvempsqki.webp" alt="চরিত্রহীন বই কভার" class="bcg-img" loading="lazy"></div><p class="bcg-title">চরিত্রহীন</p></a><a href="/book/robindronath-ekhane-kokhono-khete-ashen-ni.html" class="bcg-card"><div class="bcg-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782977041430_l1pre033xs.png" alt="রবীন্দ্রনাথ এখানে কখনো খেতে আসেন নি বই কভার" class="bcg-img" loading="lazy"></div><p class="bcg-title">রবীন্দ্রনাথ এখানে কখনো খেতে আসেন নি</p></a><a href="/book/chobutora-guha.html" class="bcg-card"><div class="bcg-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783173886296_qe2mhzef1v.png" alt="চবুতরা বই কভার" class="bcg-img" loading="lazy"></div><p class="bcg-title">চবুতরা</p></a><a href="/book/pother-dabi-sorot.html" class="bcg-card"><div class="bcg-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783153655758_3s7bhn10u2d.png" alt="পথের দাবী বই কভার" class="bcg-img" loading="lazy"></div><p class="bcg-title">পথের দাবী</p></a><a href="/book/chondronath.html" class="bcg-card"><div class="bcg-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783108446507_wxb7ueyqio.webp" alt="চন্দ্রনাথ বই কভার" class="bcg-img" loading="lazy"></div><p class="bcg-title">চন্দ্রনাথ</p></a><a href="/book/nishkriti-sorot.html" class="bcg-card"><div class="bcg-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783153233887_waq1b1addyd.png" alt="নিষ্কৃতি বই কভার" class="bcg-img" loading="lazy"></div><p class="bcg-title">নিষ্কৃতি</p></a></div></div>
+উ</p></div></a><a href="/book/orokkhoniya.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783084335950_ku1k3y7c3uk.png" alt="অরক্ষণীয়া বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">অরক্ষণীয়া</span></p><p class="bc-desc">শরৎচন্দ্র চট্টোপাধ্যায়ের 'অরক্ষণীয়া' (১৯১৬) তৎকালীন বাঙালি হিন্দু সমাজের কুসংস্কার এবং একবিংশ শতাব্দীর পাঠকের কাছেও প্রাসঙ্গিক এক নির্মম বাস্তবতার দলিল। উপন্যাসের মূল চরিত্র জ্ঞানদা—যার বিয়ের বয়স </p></div></a><a href="/book/kahake.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1786931196244_dpquki838qn.png" alt="কাহাকে বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">কাহাকে</span></p><p class="bc-desc">উনিশ শতকের শেষভাগে প্রকাশিত ‘কাহাকে?’ বাংলা সাহিত্যের একটি উল্লেখযোগ্য প্রেমের উপন্যাস। মৃণালিনীর আত্মকথনের ভেতর দিয়ে গল্পটি এগিয়ে যায়; তার জীবনে প্রেমের বিভিন্ন অনুভূতি, পুরোনো স্মৃতি এবং সম্পর্কে</p></div></a><a href="/book/hajar-bosor-dhore.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783053326379_lnhgchbx0q.png" alt="হাজার বছর ধরে বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">হাজার বছর ধরে</span></p><p class="bc-desc">'হাজার বছর ধরে' কেবল একটি উপন্যাস নয়, এটি আবহমান বাংলার গ্রামীণ সমাজের এক জীবন্ত দলিল। জহির রায়হান অত্যন্ত নিপুণভাবে এই উপন্যাসে একটি প্রত্যন্ত অঞ্চলের মানুষের সুখ-দুঃখ, কুসংস্কার, প্রেম ও অন্ধবিশ্বাস</p></div></a><a href="/book/alaler-ghorer-dulal-peary-chanf.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1785270085282_1w9boclc6oy.png" alt="আলালের ঘরের দুলাল বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">আলালের ঘরের দুলাল</span></p><p class="bc-desc">‘আলালের ঘরে দুলাল’ বাংলা সাহিত্যের প্রথম পূর্ণাঙ্গ ও সার্থক উপন্যাস হিসেবে স্বীকৃত। ১৯ শতকের মাঝামাঝি সময়ে কলকাতা শহরের সমকালীন সমাজচিত্র, নব্য ধনী আভিজাত্যের অন্ধ অহংকার এবং পারিবারিক নীতিশিক্ষার অভা</p></div></a><a href="/book/jaoa-asa-guho.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783176220498_63040ektkn4.png" alt="যাওয়া–আসা বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">যাওয়া–আসা</span></p><p class="bc-desc">উপন্যাসের মূল চরিত্র 'সবুজ'-কে কেন্দ্র করে গল্পটি আবর্তিত হয়েছে। সবুজ একজন সাধারণ চাকরিজীবী, যার জীবন ও চারপাশের পরিবেশ খুবই চেনা ছকে বাঁধা। সংসারের শান্তি বজায় রাখতে কিংবা নিজের ভালো থাকার তাগিদে সে </p></div></a><a href="/book/choritrohin.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783107243492_9gsvempsqki.webp" alt="চরিত্রহীন বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">চরিত্রহীন</span></p><p class="bc-desc">শরৎচন্দ্র চট্টোপাধ্যায়ের 'চরিত্রহীন' (১৯১৭) বাংলা সাহিত্যের এক যুগান্তকারী এবং একসময় তুমুল বিতর্কিত উপন্যাস। তৎকালীন রক্ষণশীল সমাজের ভণ্ডামি এবং তথাকথিত "চরিত্র" বা নৈতিকতার মুখোশ খুলে দেওয়ার কারণে এ</p></div></a><a href="/book/robindronath-ekhane-kokhono-khete-ashen-ni.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782977041430_l1pre033xs.png" alt="রবীন্দ্রনাথ এখানে কখনো খেতে আসেন নি বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">রবীন্দ্রনাথ এখানে কখনো খেতে আসেন নি</span></p><p class="bc-desc">গল্পের প্রেক্ষাপট ঢাকার অদূরের এক শান্ত মফস্বল শহর ‘সুন্দরপুর’। এই শহরের প্রধান আকর্ষণ একটি রেস্তোরাঁ, যার অদ্ভুত নাম—"রবীন্দ্রনাথ এখানে কখনো খেতে আসেন নি"। রেস্তোরাঁটির মালিক রহস্যময়ী রূপসী মুশকান জু</p></div></a><a href="/book/chobutora-guha.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783173886296_qe2mhzef1v.png" alt="চবুতরা বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">চবুতরা</span></p><p class="bc-desc">'চবুতরা' বুদ্ধদেব গুহের এক অনন্য ও মননশীল সৃষ্টি। লেখকের চিরচেনা অরণ্যপ্রীতি এবং প্রকৃতির পটভূমিতে মানুষের মনস্তাত্ত্বিক টানাপোড়েনের যে চিত্র তিনি বরাবর এঁকে এসেছেন, এই উপন্যাসেও তার একটি সুন্দর বহিঃপ</p></div></a><a href="/book/pother-dabi-sorot.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783153655758_3s7bhn10u2d.png" alt="পথের দাবী বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">পথের দাবী</span></p><p class="bc-desc">‘পথের দাবী’ শরৎচন্দ্র চট্টোপাধ্যায়ের একটি কালজয়ী এবং রাজনৈতিকভাবে অত্যন্ত প্রভাবশালী উপন্যাস। ব্রিটিশ বিরোধী আন্দোলনের পটভূমিতে রচিত এই বইটি তৎকালীন মুক্তিকামী মানুষের মনে তীব্র দেশপ্রেমের আগুন জ্বাল</p></div></a><a href="/book/chondronath.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783108446507_wxb7ueyqio.webp" alt="চন্দ্রনাথ বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">চন্দ্রনাথ</span></p><p class="bc-desc">'চন্দ্রনাথ' শরৎচন্দ্র চট্টোপাধ্যায়ের একটি মনস্তাত্ত্বিক এবং আবেগঘন উপন্যাস। গল্পটি মূলত আবর্তিত হয়েছে আভিজাত্যের অহংকার, সামাজিক কুসংস্কার এবং ভালোবাসার টানাপোড়েনকে কেন্দ্র করে। উপন্যাসের মূল চরিত্র </p></div></a><a href="/book/nishkriti-sorot.html" class="bc-card"><div class="bc-img-wrap"><img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1783153233887_waq1b1addyd.png" alt="নিষ্কৃতি বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">নিষ্কৃতি</span></p><p class="bc-desc">শরৎচন্দ্র চট্টোপাধ্যায়ের 'নিষ্কৃতি' (১৯১৭) বাংলা সাহিত্যের একটি কালজয়ী সামাজিক উপন্যাস। তৎকালীন বাঙালি যৌথ পরিবারের জটিল মনস্তত্ত্ব, পারস্পরিক কলহ, স্বার্থপরতা এবং দিনশেষে রক্তের সম্পর্কের টান ও ক্ষম</p></div></a></div></div>
 
         <!-- Structured data: Google-কে বইয়ের নাম, লেখক, কভার স্পষ্টভাবে বুঝিয়ে
              দেয়, rich snippet পাওয়ার সম্ভাবনা বাড়ায় -->
