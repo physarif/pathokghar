@@ -36,10 +36,13 @@
             </div>
         </div>
 
-        <!-- Description: hero কার্ড থেকে আলাদা, নিজস্ব কার্ডে নিচে -->
+        <!-- Description: hero কার্ড থেকে আলাদা, নিজস্ব কার্ডে নিচে। মার্কডাউন
+             build time-এই HTML-এ parse হয়ে বসে (author.html-এর bio-র মতোই) —
+             ক্লায়েন্ট-সাইড marked.js/innerHTML লাগে না, তাই প্রথম লোডেই টেক্সট
+             দেখা যায় (আগে খালি div ছিল, JS চলার পর ভরত — layout shift হতো)। -->
         <div class="book-desc-card">
             <h2 class="book-desc-heading">বইয়ের বিবরণ</h2>
-            <div id="book-description-mobile" class="prose-book"></div>
+            <div id="book-description-mobile" class="prose-book">{{book_description_html}}</div>
         </div>
 
         <!-- সম্পর্কিত বই: একই লেখক ও ক্যাটাগরির বই — build time-এই HTML
@@ -66,34 +69,6 @@
             "description": {{book_schema_description_json}},
             "inLanguage": "bn"
         }
-        </script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
-        <script>
-            const raw = {{book_description_json}};
-
-            marked.setOptions({
-                breaks: true,
-                gfm: true,
-            });
-
-            // বইয়ের বর্ণনায় কেউ "# হেডিং" লিখলে সেটা যেন আসল <h1>/<h2> না
-            // হয় — পেজের একমাত্র H1 তো বইয়ের নাম (উপরে)। heading level ২
-            // ধাপ নামিয়ে দেওয়া হচ্ছে। renderer.heading override marked 9.x-এ
-            // সঠিকভাবে কাজ করছিল না (ভুল সাইজ/লেভেল দেখাচ্ছিল), তাই এখন
-            // walkTokens দিয়ে সরাসরি token.depth পরিবর্তন করা হচ্ছে — এটা
-            // marked-এর ভার্সন-নির্বিশেষে নির্ভরযোগ্য।
-            marked.use({
-                walkTokens(token) {
-                    if (token.type === 'heading') {
-                        token.depth = Math.min(token.depth + 2, 6);
-                    }
-                }
-            });
-
-            const parsed = marked.parse(raw);
-            const mobileEl = document.getElementById('book-description-mobile');
-            if (mobileEl) mobileEl.innerHTML = parsed;
         </script>
 
         <style>
