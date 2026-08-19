@@ -306,8 +306,11 @@ async function generateBookPages() {
       book_category_json: JSON.stringify(book.category_name || ''),
       book_category_slug: book.category_slug,
       book_language: book.language,
-      book_description: book.description,
-      book_description_json: JSON.stringify(book.description || ""),
+      // book-desc-card এ সরাসরি বসে — author bio (author_desc_html) এর মতোই
+      // build time-এ marked.parse() দিয়ে বানানো, ক্লায়েন্ট-সাইড JS/cdnjs
+      // marked.js আর লাগে না (render-blocking request কমল, CLS-ও কমল কারণ
+      // খালি div থেকে JS দিয়ে ভরার বদলে HTML-ই সরাসরি পূর্ণ অবস্থায় আসে)।
+      book_description_html: book.description ? marked.parse(book.description) : '',
       // JSON-LD structured data-এর জন্য markdown-strip করা প্লেইন টেক্সট
       book_schema_description_json: JSON.stringify(stripMarkdownPlain(book.description || '').slice(0, 300)),
       book_url: `${SITE_URL}/book/${book.slug}.html`,
