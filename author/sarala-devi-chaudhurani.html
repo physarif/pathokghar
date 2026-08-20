@@ -165,19 +165,18 @@
             padding: 0;
         }
         .header-nav-btn.active { color: #0B57CF !important; }
-        /* icon সরিয়ে শুধু নাম — home/লেখক/বিভাগ text-only ট্যাব; প্রতিটি লিংকের নিচে সবসময়
-           একটা লাইন থাকবে (হালকা ধূসর), active হলে শুধু সেই লাইন আর text-এর রং নীল হবে */
+        /* icon সরিয়ে শুধু নাম — home/লেখক/বিভাগ text-only ট্যাব; active হলে নিচে লাইন দেখাবে */
         .header-nav-label {
             display: inline-block;
             margin-left: 0;
             font-size: 0.95rem;
             font-weight: 600;
+            line-height: 1;
             white-space: nowrap;
             padding: 0.35rem 0.9rem;
-            border-radius: 5px;
-            background: #F0F3F8;
-            border-bottom: 3px solid #0B57CF;
+            border-bottom: 3px solid transparent;
         }
+        .header-nav-btn.active .header-nav-label { border-bottom-color: #0B57CF; }
 
         /* Floating (sticky) header — নিচে স্ক্রল করলে hide, উপরে স্ক্রল করলে show */
         #site-header {
@@ -189,7 +188,7 @@
             transform: translateY(0);
             transition: transform 0.28s ease;
             will-change: transform;
-            background: #C2D7FC !important;
+            background: #ffffff !important;
         }
         #site-header.header-hidden { transform: translateY(-100%); }
 
