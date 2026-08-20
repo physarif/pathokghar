@@ -60,10 +60,13 @@
 
         main { flex: 1 1 auto; min-width: 0; }
 
-        /* ── Header (Telegram X স্টাইল — full-width icon row, day/light surface) ── */
+        /* ── Header (Telegram X স্টাইল — icon row, day/light surface) ── */
         #site-header {
-            border-bottom: 1px solid rgba(17,24,39,0.08);
+            border: 1px solid rgba(17,24,39,0.08);
+            border-radius: 16px;
             background: #ffffff;
+            box-shadow: 0 2px 12px rgba(17,24,39,0.06);
+            overflow: hidden;
         }
         .header-row {
             display: flex;
@@ -190,16 +193,16 @@
         /* Floating (sticky) header — নিচে স্ক্রল করলে hide, উপরে স্ক্রল করলে show */
         #site-header {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0.6rem;
+            left: 0.6rem;
+            right: 0.6rem;
             z-index: 220;
             transform: translateY(0);
             transition: transform 0.28s ease;
             will-change: transform;
             background: #ffffff !important;
         }
-        #site-header.header-hidden { transform: translateY(-100%); }
+        #site-header.header-hidden { transform: translateY(-130%); }
 
         /* Header search — Google-স্টাইল autosuggest dropdown */
         .hs-item {
@@ -457,7 +460,9 @@
         var spacer = document.getElementById('header-spacer');
 
         function setSpacerHeight() {
-            spacer.style.height = header.offsetHeight + 'px';
+            // fixed header এখন top: 0.6rem গ্যাপ নিয়ে ভাসছে, তাই শুধু height না,
+            // header-এর bottom edge পর্যন্ত পুরো দূরত্ব spacer-এ রাখতে হবে
+            spacer.style.height = header.getBoundingClientRect().bottom + 'px';
         }
         setSpacerHeight();
         window.addEventListener('resize', setSpacerHeight);
