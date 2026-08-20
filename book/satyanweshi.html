@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F0F3F8">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFBP0HJMJV"></script>
     <script>
@@ -60,6 +61,10 @@
         main { flex: 1 1 auto; min-width: 0; }
 
         /* ── Header (Telegram X স্টাইল — full-width icon row, day/light surface) ── */
+        #site-header {
+            border-bottom: 1px solid rgba(17,24,39,0.08);
+            background: #ffffff;
+        }
         .header-row {
             display: flex;
             align-items: center;
@@ -81,7 +86,7 @@
             gap: 0.75rem;
             height: 3rem;
             box-sizing: border-box;
-            padding: 0 0.5rem;
+            padding: 0 1rem;
             position: relative;
         }
         .header-search-input {
@@ -111,6 +116,7 @@
         /* ── Footer (day/light surface — #ffffff surface, #F0F3F8 page bg reference) — মিনিমাল একলাইন ── */
         .site-footer {
             background: #ffffff;
+            border-top: 1px solid rgba(17,24,39,0.08);
             margin-top: 1.5rem;
         }
         .footer-container { max-width: 48rem; margin: 0 auto; padding: 0 1.25rem; }
@@ -151,13 +157,15 @@
             text-decoration: none;
             position: relative;
         }
-        /* text tab (হোম/লেখক/বিভাগ/ব্লগ) vertically centered — search/hamburger এর সাথে align */
+        .header-nav-btn:last-child { border-right: none; }
+        /* text tab (হোম/লেখক/বিভাগ/ব্লগ) নিচে-ঘেঁষা, underline যাতে header-এর নিচের কিনারার
+           কাছাকাছি বসে — search/hamburger আগের মতোই vertically centered থাকবে */
         .header-nav-group a.header-nav-btn {
-            align-items: center;
-            padding: 0 0.5rem;
+            align-items: flex-end;
+            padding-bottom: 0.3rem;
         }
         .header-nav-group a.header-nav-btn:first-child {
-            margin-left: 0.5rem;
+            margin-left: 1rem;
         }
         /* সার্চ আইকন হ্যামবার্গারের মতোই নিজের সাইজ অনুসারে জায়গা নেবে, ডান কোণায় থাকবে */
         #header-search-btn.header-nav-btn {
@@ -165,17 +173,16 @@
             width: auto;
             padding: 0;
         }
-        .header-nav-btn.active { color: #0B57CF !important; }
-        /* icon সরিয়ে শুধু নাম — home/লেখক/বিভাগ text-only ট্যাব; active হলে নিচে লাইন দেখাবে —
-           label-এ কোনো padding নেই যাতে underline টেক্সটের সমান width-এর হয় */
+        .header-nav-btn.active { color: #0B57CF !important; background: transparent; }
+        /* icon সরিয়ে শুধু নাম — home/লেখক/বিভাগ text-only ট্যাব; active হলে underline text-এর
+           সমান width-এর হবে, তাই এটা fixed ::after না দিয়ে label-এর নিজের border-bottom দিয়ে করা */
         .header-nav-label {
             display: inline-block;
             margin-left: 0;
             font-size: 0.95rem;
             font-weight: 600;
-            line-height: 1;
             white-space: nowrap;
-            padding-bottom: 0.35rem;
+            padding: 0.25rem 0;
             border-bottom: 3px solid transparent;
         }
         .header-nav-btn.active .header-nav-label { border-bottom-color: #0B57CF; }
