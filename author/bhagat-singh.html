@@ -65,8 +65,8 @@
         #site-header {
             border-bottom: 1px solid rgba(17,24,39,0.08);
             background: rgba(255,255,255,0.98);
-            border-bottom-left-radius: 12px;
-            border-bottom-right-radius: 12px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
         }
         .header-row {
             display: flex;
@@ -120,8 +120,8 @@
             background: #ffffff;
             border-top: 1px solid rgba(17,24,39,0.08);
             margin-top: 1.5rem;
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
         }
         .footer-container { max-width: 48rem; margin: 0 auto; padding: 0 1.25rem; }
         .footer-row {
@@ -147,14 +147,18 @@
             height: 100%;
             border: none;
             border-radius: 0;
-            overflow: visible;
+            overflow: hidden;
             position: relative;
         }
         /* pill ট্যাবগুলোর scrollable wrapper — জায়গা না হলে horizontal scroll হবে,
            এবং search আইকনের নিচ দিয়ে (পেছনে) ঢুকে যাবে */
         .header-nav-links {
             position: absolute;
-            inset: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: calc(100% + 1.25rem);
+            box-sizing: border-box;
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -165,6 +169,10 @@
             scrollbar-width: none;
             white-space: nowrap;
             padding-right: 3rem;
+            padding-bottom: 1.25rem;
+        }
+        .header-nav-links a.header-nav-btn:first-child {
+            margin-left: 1rem;
         }
         .header-nav-links::-webkit-scrollbar { display: none; }
         .header-nav-btn {
@@ -179,14 +187,11 @@
             text-decoration: none;
             position: relative;
         }
-        .header-nav-btn:last-child { border-right: none; }
+
         /* text tab (হোম/লেখক/বিভাগ/ব্লগ) — pill background, vertically centered */
         .header-nav-links a.header-nav-btn {
             align-items: center;
             flex: 0 0 auto;
-        }
-        .header-nav-links a.header-nav-btn:first-child {
-            margin-left: 1rem;
         }
 /* সার্চ আইকন সবসময় ডান কোণায় ফিক্সড থাকবে, pill scroll করলে এর নিচ দিয়ে ঢুকে যাবে */
         #header-search-btn.header-nav-btn {
@@ -222,6 +227,16 @@
         .header-nav-btn:active .header-nav-label {
             background: #0B57CF;
             color: #ffffff;
+        }
+        .header-nav-icon-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.4rem 0;
+            font-size: 1.5rem;
+        }
+        .header-bookmark-btn .header-nav-label {
+            background: transparent !important;
         }
 
 
@@ -295,6 +310,9 @@
             <div class="header-right">
                 <nav class="header-nav-group">
                     <div class="header-nav-links">
+                        <a href="/bookmarks/" data-nav-path="/bookmarks/" class="header-nav-btn header-bookmark-btn" aria-label="বুকমার্ক">
+                            <span class="header-nav-label header-nav-icon-label"><i class="fa-solid fa-bookmark"></i></span>
+                        </a>
                         <a href="/" data-nav-path="/" class="header-nav-btn" aria-label="প্রধান পাতা">
                             <span class="header-nav-label">প্রধান পাতা</span>
                         </a>
