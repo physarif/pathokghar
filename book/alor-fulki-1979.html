@@ -16,19 +16,19 @@
     <link rel="apple-touch-icon" href="https://pathokghar.com/assets/photos/pathokghar-logo.webp">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>শিক্ষামূলক গ্রন্থ - পাঠক ঘর</title>
-    <meta name="description" content="">
+    <title>আলোর ফুলকি – অবনীন্দ্রনাথ ঠাকুর</title>
+    <meta name="description" content="‘আলোর ফুলকি’ অবনীন্দ্রনাথ ঠাকুরের এমন একটি কল্পনাময় রচনা, যেখানে প্রকৃতি, প্রাণী, সংগীত, আলো এবং মানুষের অনুভূতি এক আশ্চর্য রূপকথার জগতে এসে মিলিত হয়েছে। বইটি">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://pathokghar.pages.dev/category/educational/">
-    <meta property="og:title" content="শিক্ষামূলক গ্রন্থ - পাঠক ঘর">
-    <meta property="og:description" content="">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/alor-fulki-1979.html">
+    <meta property="og:title" content="আলোর ফুলকি – অবনীন্দ্রনাথ ঠাকুর">
+    <meta property="og:description" content="‘আলোর ফুলকি’ অবনীন্দ্রনাথ ঠাকুরের এমন একটি কল্পনাময় রচনা, যেখানে প্রকৃতি, প্রাণী, সংগীত, আলো এবং মানুষের অনুভূতি এক আশ্চর্য রূপকথার জগতে এসে মিলিত হয়েছে। বইটি">
     <meta property="og:image" content="https://cdn.pathokghar.com/1787584065921_kktqu931cdq.png">
-    <meta property="og:url" content="https://pathokghar.pages.dev/category/educational/">
-    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pathokghar.pages.dev/book/alor-fulki-1979.html">
+    <meta property="og:type" content="book">
     <meta property="og:site_name" content="পাঠক ঘর">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="শিক্ষামূলক গ্রন্থ - পাঠক ঘর">
-    <meta name="twitter:description" content="">
+    <meta name="twitter:title" content="আলোর ফুলকি – অবনীন্দ্রনাথ ঠাকুর">
+    <meta name="twitter:description" content="‘আলোর ফুলকি’ অবনীন্দ্রনাথ ঠাকুরের এমন একটি কল্পনাময় রচনা, যেখানে প্রকৃতি, প্রাণী, সংগীত, আলো এবং মানুষের অনুভূতি এক আশ্চর্য রূপকথার জগতে এসে মিলিত হয়েছে। বইটি">
     <meta name="twitter:image" content="https://cdn.pathokghar.com/1787584065921_kktqu931cdq.png">
     <!-- Pure static CSS — কোনো build step লাগে না। আগে Tailwind CDN (runtime JIT,
          FOUC), তারপর CI-তে precompile হওয়া tailwind.css ব্যবহার হতো — এখন সেটা
@@ -556,39 +556,71 @@
 
     <!-- MAIN CONTENT -->
     <main>
-        <div class="category-wrap">
+        <!-- templates/book.html — শুধু content, layout.html এ inject হবে -->
+<main class="book-page">
+    <div class="book-page-inner">
 
-<div style="padding:0 0.5rem;">
-  <div class="bc-latest-title">
-    শিক্ষামূলক গ্রন্থ
-  </div>
+        <!-- Book Hero Card: cover, title, author, category, read ও download
+             সবকিছু একত্রে একটা কার্ডে সুন্দরভাবে সাজানো। H1 সিমান্টিকভাবে
+             বইয়ের নাম-ই থাকছে (SEO-এর জন্য জরুরি — এটাই পেজের মূল বিষয়)। -->
+        <div class="book-hero-card">
+            <img src="https://cdn.pathokghar.com/1787584065921_kktqu931cdq.png"
+                alt="আলোর ফুলকি বই এর কভার - লেখক অবনীন্দ্রনাথ ঠাকুর"
+                fetchpriority="high"
+                width="100" height="148"
+                class="book-hero-cover">
+
+            <div class="book-hero-body">
+                <a href="/category/educational/" class="book-hero-category">শিক্ষামূলক গ্রন্থ</a>
+
+                <h1 class="book-hero-title">আলোর ফুলকি</h1>
+
+                <a href="/author/abanindranath-tagore.html" class="book-hero-author">অবনীন্দ্রনাথ ঠাকুর</a>
+
+                <hr class="book-hero-rule">
+
+                <div class="book-hero-actions">
+                    <a href="/read/alor-fulki-1979.html"
+                        class="book-hero-link book-hero-link-solid "
+                        aria-disabled="false">
+                        পড়ুন
+                    </a>
+                    <a href="/download/alor-fulki-1979.html"
+                        class="book-hero-link book-hero-link-outline "
+                        aria-disabled="false">
+                        ডাউনলোড
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Description: hero কার্ড থেকে আলাদা, নিজস্ব কার্ডে নিচে। মার্কডাউন
+             build time-এই HTML-এ parse হয়ে বসে (author.html-এর bio-র মতোই) —
+             ক্লায়েন্ট-সাইড marked.js/innerHTML লাগে না, তাই প্রথম লোডেই টেক্সট
+             দেখা যায় (আগে খালি div ছিল, JS চলার পর ভরত — layout shift হতো)। -->
+        <div class="book-desc-card">
+            <h2 class="book-desc-heading">বইয়ের বিবরণ</h2>
+            <div id="book-description-mobile" class="prose-book"><p><strong>‘আলোর ফুলকি’</strong> অবনীন্দ্রনাথ ঠাকুরের এমন একটি কল্পনাময় রচনা, যেখানে প্রকৃতি, প্রাণী, সংগীত, আলো এবং মানুষের অনুভূতি এক আশ্চর্য রূপকথার জগতে এসে মিলিত হয়েছে। বইটির কেন্দ্রে রয়েছে কুঁকড়ো নামের এক মোরগ—যার ডাক যেন শুধু ভোরের সংবাদ নয়, বরং চারপাশের অন্ধকারের মধ্যে আলো ও আনন্দের আহ্বান। তার সঙ্গে জড়িয়ে পড়ে সোনালিয়া, পায়রা, মুরগি, পেঁচা, ব্যাঙ, কুকুরসহ নানা প্রাণী এবং পাহাড়, বন, মাঠ ও গ্রামীণ জীবনের বিচিত্র উপাদান।</p>
+<h4>🌿 গল্পের জগৎ</h4>
+<p>‘আলোর ফুলকি’র সবচেয়ে আকর্ষণীয় দিক হলো এর পরিবেশ নির্মাণ। বনভূমি, পাহাড়ের ঢাল, পুরোনো বাড়ি, নদী, গাছপালা, পাখির ডাক, বসন্তের আলো-ছায়া—সবকিছু এখানে কেবল গল্পের পটভূমি নয়; বরং যেন গল্পেরই সক্রিয় চরিত্র। অবনীন্দ্রনাথের বর্ণনায় প্রকৃতি স্থির কোনো দৃশ্য হয়ে থাকে না। কখনো তা শব্দ করে, কখনো আলো ছড়ায়, কখনো প্রাণীদের সঙ্গে মিশে যায়, আবার কখনো স্বপ্নের মতো আবহ তৈরি করে।</p>
+<p>এই কারণেই তাঁর লেখাকে অনেক সময় <strong>‘শব্দ দিয়ে ছবি আঁকা’</strong> বলে মনে হয়। তিনি নিজে যেমন একজন অসাধারণ চিত্রশিল্পী ছিলেন, তাঁর গদ্যেও সেই চিত্রশিল্পীর চোখ স্পষ্টভাবে দেখা যায়। একটি সাধারণ পাখির ডাক কিংবা বনের একটি দৃশ্য তাঁর লেখায় কল্পনার রঙে সম্পূর্ণ নতুন অর্থ পায়।</p>
+<h4>✨ ‘আলোর ফুলকি’র অর্থ</h4>
+<p>শিরোনামের মধ্যেই বইটির একটি গুরুত্বপূর্ণ প্রতীক লুকিয়ে আছে—<strong>আলো</strong>। কুঁকড়োর গান ও উপস্থিতির মাধ্যমে আলো যেন আনন্দ, প্রাণশক্তি, সৌন্দর্য ও আশার প্রতীক হয়ে ওঠে। অন্ধকারের বিপরীতে এই আলো কেবল সূর্যের আলো নয়; এটি জীবনের প্রতি আকর্ষণ এবং সৌন্দর্যকে অনুভব করার ক্ষমতারও প্রতীক।</p>
+<p>গল্পের প্রাণীগুলো মানুষের মতো কথা বলে, অনুভব করে, আনন্দ পায়, ভয় পায়, রাগ করে এবং সম্পর্ক তৈরি করে। ফলে শিশুর কাছে গল্পটি হয়ে ওঠে রোমাঞ্চকর ও আনন্দদায়ক; আবার প্রাপ্তবয়স্ক পাঠকের কাছে এর মধ্যে প্রকৃতি, জীবন ও মানবস্বভাবের সূক্ষ্ম রূপকও ধরা পড়তে পারে।</p>
+<h4>🎨 ভাষা ও শিল্পরীতি</h4>
+<p>বইটির অন্যতম প্রধান আকর্ষণ এর ভাষা। অবনীন্দ্রনাথ খুব জটিল শব্দ বা ভারী দার্শনিক বক্তব্যের ওপর নির্ভর করেননি। বরং সহজ, ছন্দময় ও দৃশ্যনির্ভর বাক্যের মাধ্যমে তিনি একটি জীবন্ত জগত তৈরি করেছেন। পাখির ডাক, প্রাণীদের আচরণ, বনের আলো-ছায়া এবং ঋতুর পরিবর্তন—সবকিছু তাঁর গদ্যে যেন চোখের সামনে দৃশ্যমান হয়ে ওঠে।</p>
+<p>তবে ‘আলোর ফুলকি’কে শুধু শিশুদের বই হিসেবে দেখলে এর সাহিত্যিক সৌন্দর্যের একটি বড় অংশ বাদ পড়ে যায়। বইটি শিশুতোষ কল্পকাহিনির আনন্দের পাশাপাশি একজন শিল্পীর প্রকৃতিদর্শন ও কল্পনাশক্তিরও প্রকাশ। বিদেশি কাহিনির ভাব থেকে সূত্র নেওয়া হলেও অবনীন্দ্রনাথ সেটিকে বাংলা পরিবেশ, প্রাণীজগৎ ও নিজস্ব কাব্যিক কল্পনার সঙ্গে এমনভাবে মিলিয়েছেন যে রচনাটি স্বতন্ত্র বাঙালি আবহ লাভ করেছে।</p>
+<h4>⭐ মূল্যায়ন</h4>
+<p>‘আলোর ফুলকি’ অবনীন্দ্রনাথ ঠাকুরের সবচেয়ে আলোচিত রচনাগুলোর একটি না হলেও বাংলা শিশুসাহিত্য ও কল্পকাহিনির ধারায় এটি বিশেষভাবে উল্লেখযোগ্য। এর শক্তি বড় কোনো জটিল কাহিনির মধ্যে নয়; বরং <strong>সাধারণ প্রাণী, প্রকৃতি ও দৈনন্দিন দৃশ্যকে অসাধারণ কল্পনার জগতে রূপান্তর করার ক্ষমতার মধ্যে।</strong></p>
+<p>সব মিলিয়ে, <strong>‘আলোর ফুলকি’ এমন একটি বই, যা পড়লে মনে হয় কোনো গল্প পড়ছি না—বরং একজন চিত্রশিল্পী তাঁর তুলির বদলে শব্দ ব্যবহার করে একটি জীবন্ত ছবি এঁকে চলেছেন।</strong> শিশুদের জন্য এটি আনন্দময় কল্পকাহিনি, আর বড়দের জন্য বাংলা গদ্যের সৌন্দর্য, প্রকৃতিপ্রেম ও অবনীন্দ্রনাথের অনন্য শিল্পীসত্তা আবিষ্কারের একটি চমৎকার সুযোগ।</p>
 </div>
+        </div>
 
-<div style="padding:0 0.5rem 0.5rem;">
-  <div class="bc-list">
-      <a href="/book/alor-fulki-1979.html" class="bc-card">
-        <div class="bc-img-wrap">
-          <img src="https://cdn.pathokghar.com/1787584065921_kktqu931cdq.png" alt="আলোর ফুলকি" class="bc-img" loading="lazy">
-        </div>
-        <div class="bc-body">
-          <p class="bc-headline"><span class="bc-title">আলোর ফুলকি</span></p>
-          <p class="bc-desc"><strong>‘আলোর ফুলকি’</strong> অবনীন্দ্রনাথ ঠাকুরের এমন একটি কল্পনাময় রচনা, যেখানে প্রকৃতি, প্রাণী, সংগীত, আলো এবং মানুষের অনুভূতি এক আশ্চর্য রূপকথার জগতে এসে মিলিত হয়েছে। বইটির কেন্দ্রে রয়েছে কুঁকড়ো নামের এক ম</p>
-        </div>
-      </a>
-      <a href="/book/bodhoday-1852.html" class="bc-card">
-        <div class="bc-img-wrap">
-          <img src="https://cdn.pathokghar.com/1787581642100_6wa1t2n5dzh.png" alt="বোধোদয় (১৮৫২)" class="bc-img" loading="lazy">
-        </div>
-        <div class="bc-body">
-          <p class="bc-headline"><span class="bc-title">বোধোদয় (১৮৫২)</span></p>
-          <p class="bc-desc">ঈশ্বরচন্দ্র বিদ্যাসাগরের <strong>‘বোধোদয়’</strong> বাংলা ভাষায় আধুনিক জ্ঞানভিত্তিক শিক্ষাগ্রন্থ রচনার ইতিহাসে একটি অত্যন্ত গুরুত্বপূর্ণ বই। ১৮৫২ সালে প্রকাশিত এই গ্রন্থের মূল উদ্দেশ্য ছিল কেবল গল্প বা বিনোদনের ম</p>
-        </div>
-      </a></div>
-</div>
-
-</div><!-- /md:px-8 lg:px-16 -->
-
-<style>
+        <!-- সম্পর্কিত বই: একই লেখক ও ক্যাটাগরির বই — build time-এই HTML
+             হিসেবে বসানো হয় (author-page-এর মতো), crawler প্রথম লোডেই এই
+             ইন্টারনাল লিংকগুলো পায়। কোনো related বই না থাকলে placeholder
+             খালি স্ট্রিং হয়ে যায়, তাই সেক্ষেত্রে সেকশনটাই দেখা যায় না। -->
+        <style>
 /* components/book-card-list.css — সব পেজে (index, books, author, category, search)
    ব্যবহৃত common book-card LIST design। generate_pages.js এই ফাইলটা একবার লোড করে
    <style> ট্যাগে মুড়ে প্রতিটা টেমপ্লেটের  placeholder-এ বসিয়ে দেয়।
@@ -684,176 +716,324 @@
 
 /*
   Book card HTML template (reference — generate_pages.js এ ব্যবহার হয়):
-  <a href="/book/.html" class="bc-card">
+  <a href="/book/alor-fulki-1979.html" class="bc-card">
     <div class="bc-img-wrap">
-      <img src="" alt="" class="bc-img" loading="lazy">
+      <img src="https://cdn.pathokghar.com/1787584065921_kktqu931cdq.png" alt="আলোর ফুলকি" class="bc-img" loading="lazy">
     </div>
     <div class="bc-body">
-      <p class="bc-headline"><span class="bc-title"></span></p>
+      <p class="bc-headline"><span class="bc-title">আলোর ফুলকি</span></p>
       <p class="bc-desc"></p>
     </div>
   </a>
 */
 </style>
+        <div class="book-related-section"><div class="bc-latest-title">সম্পর্কিত বই</div><div class="bc-list"><a href="/book/bodhoday-1852.html" class="bc-card"><div class="bc-img-wrap"><img src="https://cdn.pathokghar.com/1787581642100_6wa1t2n5dzh.png" alt="বোধোদয় (১৮৫২) বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">বোধোদয় (১৮৫২)</span></p><p class="bc-desc">ঈশ্বরচন্দ্র বিদ্যাসাগরের ‘বোধোদয়’ বাংলা ভাষায় আধুনিক জ্ঞানভিত্তিক শিক্ষাগ্রন্থ রচনার ইতিহাসে একটি অত্যন্ত গুরুত্বপূর্ণ বই। ১৮৫২ সালে প্রকাশিত এই গ্রন্থের মূল উদ্দেশ্য ছিল কেবল গল্প বা বিনোদনের মাধ্য</p></div></a></div></div>
 
-<div id="bc-pagination"></div>
-<script>
-  (function() {
-    const current = parseInt('1', 10);
-    const total = parseInt('1', 10);
-    if (!current || !total || total <= 1) return;
-    const slug = 'educational';
-    const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
-    const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');
-    const el = document.getElementById('bc-pagination');
+        <!-- Structured data: Google-কে বইয়ের নাম, লেখক, কভার স্পষ্টভাবে বুঝিয়ে
+             দেয়, rich snippet পাওয়ার সম্ভাবনা বাড়ায় -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Book",
+            "name": "আলোর ফুলকি",
+            "author": {
+                "@type": "Person",
+                "name": "অবনীন্দ্রনাথ ঠাকুর"
+            },
+            "image": "https://cdn.pathokghar.com/1787584065921_kktqu931cdq.png",
+            "url": "https://pathokghar.pages.dev/book/alor-fulki-1979.html",
+            "genre": "শিক্ষামূলক গ্রন্থ",
+            "description": "‘আলোর ফুলকি’ অবনীন্দ্রনাথ ঠাকুরের এমন একটি কল্পনাময় রচনা, যেখানে প্রকৃতি, প্রাণী, সংগীত, আলো এবং মানুষের অনুভূতি এক আশ্চর্য রূপকথার জগতে এসে মিলিত হয়েছে। বইটির কেন্দ্রে রয়েছে কুঁকড়ো নামের এক মোরগ—যার ডাক যেন শুধু ভোরের সংবাদ নয়, বরং চারপাশের অন্ধকারের মধ্যে আলো ও আনন্দের আহ্বান। তার সঙ্গে জড়িয",
+            "inLanguage": "bn"
+        }
+        </script>
 
-    function getFrontCount() {
-      const w = window.innerWidth;
-      if (w < 360) return 2;
-      if (w < 420) return 3;
-      return 4;
-    }
+        <style>
+            /* ── Page layout ── */
+            .book-page {
+                flex: 1 1 auto;
+                padding: 1rem 0.75rem;
+                min-height: calc(100vh - 3.5rem);
+            }
+            @media (min-width: 768px) { .book-page { padding: 1.5rem; } }
+            .book-page-inner { max-width: 48rem; margin: 0 auto; }
+            #book-description-mobile {
+                font-size: 1rem;
+                line-height: 1.625;
+                color: #6b7280;
+                text-align: justify;
+            }
 
-    function buildList() {
-      const frontCount = Math.min(getFrontCount(), total - 1);
-      const front = [];
-      for (let i = 1; i <= frontCount; i++) front.push(i);
-      if (frontCount >= total - 1) {
-        const result = front.slice();
-        for (let i = frontCount + 1; i <= total; i++) result.push(i);
-        return result;
-      }
-      return front.concat(['...', total]);
-    }
+            /* ── Book Hero Card (Editorial Horizontal) ── */
+            .book-hero-card {
+                display: flex;
+                align-items: flex-start;
+                gap: 1.1rem;
+                text-align: left;
+                background: #ffffff;
+                border-radius: 5px;
+                padding: 1.25rem;
+                margin-bottom: 0.65rem;
+            }
+            .book-hero-cover {
+                width: 100px;
+                height: 148px;
+                border-radius: 4px;
+                object-fit: cover;
+                background: #e5e7eb;
+                flex-shrink: 0;
+                box-shadow: 0 10px 22px rgba(17,24,39,0.12);
+            }
+            .book-hero-body {
+                display: flex;
+                flex-direction: column;
+                gap: 0.4rem;
+                min-width: 0;
+            }
+            .book-hero-category {
+                display: inline-block;
+                width: fit-content;
+                font-family: 'Noto Serif Bengali', serif;
+                font-size: 0.72rem;
+                font-weight: 700;
+                letter-spacing: 0.02em;
+                background: #F0F3F8;
+                color: #0B57CF;
+                padding: 0.28rem 0.85rem;
+                border-radius: 4px;
+                text-decoration: none;
+                transition: background 0.15s, color 0.15s;
+            }
+            .book-hero-category:hover { background: #C2D7FC; color: #0B57CF; }
+            .book-hero-title {
+                font-family: 'Noto Serif Bengali', serif;
+                font-size: 1.15rem;
+                font-weight: 600;
+                color: #1f2937;
+                line-height: 1.4;
+                margin: 0;
+            }
+            .book-hero-author {
+                font-family: 'Noto Serif Bengali', serif;
+                font-size: 0.85rem;
+                font-weight: 600;
+                color: #6b7280;
+                text-decoration: none;
+                transition: color 0.15s;
+            }
+            .book-hero-author:hover { color: #0B57CF; text-decoration: underline; text-underline-offset: 3px; }
+            .book-hero-rule {
+                border: none;
+                border-top: 1px dashed #e5e7eb;
+                margin: 0.25rem 0;
+            }
+            .book-hero-actions {
+                display: flex;
+                gap: 0.6rem;
+                margin-top: 0.15rem;
+            }
+            .book-hero-link {
+                display: inline-flex;
+                align-items: center;
+                font-size: 0.8rem;
+                font-weight: 700;
+                text-decoration: none;
+                padding: 0.45rem 1rem;
+                border-radius: 5px;
+                transition: background 0.15s, color 0.15s;
+            }
+            .book-hero-link-solid { background: #0B57CF; color: #fff; }
+            .book-hero-link-solid:hover { background: #094aad; }
+            .book-hero-link-outline { background: transparent; color: #1f2937; border: 1.5px solid #e5e7eb; padding: 0.375rem 0.95rem; }
+            .book-hero-link-outline:hover { background: #F0F3F8; }
 
-    function pageHref(i) {
-      return i === 1 ? '/category/' + slug + '/' : '/category/' + slug + '/' + i + '/';
-    }
+            /* ── Description Card ── */
+            .book-desc-card {
+                background: #ffffff;
+                border-radius: 5px;
+                padding: 1.1rem 1.25rem 1.3rem;
+            }
+            .book-desc-heading {
+                font-family: 'Noto Serif Bengali', serif;
+                font-size: 1rem;
+                font-weight: 800;
+                color: #1f2937;
+                margin: 0 0 0.75rem;
+                padding-bottom: 0.6rem;
+                border-bottom: 1px solid #e5e7eb;
+            }
 
-    function render() {
-      const list = buildList();
-      let html = '<div class="bc-pagination">';
-      if (current > 1) {
-        html += '<a href="' + pageHref(current - 1) + '" class="bc-page-nav" aria-label="পূর্ববর্তী"><i class="fas fa-chevron-left"></i></a>';
-      } else {
-        html += '<span class="bc-page-nav disabled" aria-label="পূর্ববর্তী"><i class="fas fa-chevron-left"></i></span>';
-      }
-      html += '<div class="bc-page-numbers">';
-      list.forEach(function(i) {
-        if (i === '...') { html += '<span class="bc-page-dots">···</span>'; return; }
-        if (i === current) html += '<span class="bc-page-btn active">' + toBn(i) + '</span>';
-        else html += '<a href="' + pageHref(i) + '" class="bc-page-btn">' + toBn(i) + '</a>';
-      });
-      html += '</div>';
-      if (current < total) {
-        html += '<a href="' + pageHref(current + 1) + '" class="bc-page-nav" aria-label="পরবর্তী"><i class="fas fa-chevron-right"></i></a>';
-      } else {
-        html += '<span class="bc-page-nav disabled" aria-label="পরবর্তী"><i class="fas fa-chevron-right"></i></span>';
-      }
-      html += '</div>';
-      el.innerHTML = html;
-    }
+            /* ── Related Books: white card নয়, শুধু লেবেল + লাইন দিয়ে
+                 আলাদা করা — page background-এর সাথে মিশে থাকে। লেবেলটা
+                 category.html-এর "bc-latest-title" ডিজাইনের সাথে হুবহু মিলিয়ে
+                 (accented gradient underline) — সাইটজুড়ে একই ভিজ্যুয়াল ভাষা। ── */
+            .book-related-section {
+                margin-top: 1rem;
+                padding: 0 0.15rem;
+            }
+            .book-related-section .bc-latest-title {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 1rem;
+                font-weight: 600;
+                color: #1f2937;
+                margin-bottom: 1rem;
+                letter-spacing: 0.01em;
+            }
+            .book-related-section .bc-latest-title::after {
+                content: '';
+                flex: 1;
+                height: 3px;
+                border-radius: 1px;
+                background: linear-gradient(to right, #e5e7eb 0%, #0B57CF 100%);
+            }
+        </style>
 
-    render();
-    let resizeTimer;
-    window.addEventListener('resize', function() {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(render, 150);
-    });
-  })();
-</script>
+        <style>
+            .btn-unclick {
+                pointer-events: none;
+                cursor: not-allowed;
+                color: #9ca3af !important;
+                background: repeating-linear-gradient(
+                    -45deg,
+                    #e5e7eb,
+                    #e5e7eb 6px,
+                    #d1d5db 6px,
+                    #d1d5db 12px
+                ) !important;
+            }
+        </style>
 
-<style>
-/* ── Pagination (index.html/books.html এর bc-pagination style অনুসরণ করা হচ্ছে) ── */
-.bc-pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.6rem 0.5rem 0.2rem;
-  flex-wrap: nowrap;
-  overflow: hidden;
-}
-.bc-page-numbers {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  flex-wrap: nowrap;
-  overflow: hidden;
-}
-.bc-page-btn, .bc-page-nav, .bc-page-dots { flex-shrink: 0; }
-.bc-page-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 2.4rem;
-  height: 2.4rem;
-  padding: 0 0.5rem;
-  border-radius: 0.3rem;
-  font-size: 0.95rem;
-  font-weight: 500;
-  text-decoration: none;
-  color: #6b7280;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
-}
-.bc-page-btn:hover { background: #C2D7FC; color: #1f2937; }
-.bc-page-btn.active { background: #0B57CF; border-color: #0B57CF; color: #fff; pointer-events: none; }
-.bc-page-dots {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.4rem;
-  height: 2.4rem;
-  color: #6b7280;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-}
-.bc-page-nav {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 2.4rem;
-  height: 2.4rem;
-  padding: 0 0.5rem;
-  border-radius: 0.3rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-  color: #fff;
-  background: #0B57CF;
-  border: 1px solid #0B57CF;
-  transition: background 0.15s;
-}
-.bc-page-nav:hover { background: #094aad; }
-.bc-page-nav.disabled { background: #e5e7eb; border-color: #e5e7eb; color: #6b7280; pointer-events: none; cursor: default; }
+        <style>
+            .prose-book h1, .prose-book h2, .prose-book h3,
+            .prose-book h4, .prose-book h5, .prose-book h6 {
+                font-weight: 700;
+                line-height: 1.3;
+                margin-top: 1.25em;
+                margin-bottom: 0.4em;
+                color: #1f2937;
+            }
+            .prose-book h1 { font-size: 1.4em; }
+            .prose-book h2 { font-size: 1.2em; }
+            .prose-book h3 { font-size: 1.05em; }
+            .prose-book h4, .prose-book h5, .prose-book h6 { font-size: 0.95em; }
 
-/* Category title — index.html এর "সর্বশেষ বই" title-এর মতো accented progress-underline */
-.bc-latest-title {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #1f2937;
-  margin-bottom: 1rem;
-  letter-spacing: 0.01em;
-}
-.bc-latest-title i { color: #0B57CF; font-size: 1rem; }
-.bc-latest-title::after {
-  content: '';
-  flex: 1;
-  height: 3px;
-  border-radius: 1px;
-  background: linear-gradient(to right, #e5e7eb 0%, #0B57CF 100%);
-}
-.category-wrap { padding-top: 1rem; }
-@media (min-width: 768px) { .category-wrap { padding-top: 1.5rem; padding-left: 2rem; padding-right: 2rem; } }
-@media (min-width: 1024px) { .category-wrap { padding-left: 4rem; padding-right: 4rem; } }
-</style>
+            .prose-book p { margin-bottom: 0.75em; }
 
+            .prose-book a {
+                color: #0B57CF;
+                text-decoration: underline;
+            }
 
+            .prose-book strong { font-weight: 500; color: #1f2937; }
+
+            .prose-book em { font-style: italic; }
+
+            .prose-book ul, .prose-book ol {
+                padding-left: 1.5em;
+                margin-bottom: 0.75em;
+            }
+            .prose-book ul { list-style-type: disc; }
+            .prose-book ol { list-style-type: decimal; }
+            .prose-book li { margin-bottom: 0.25em; }
+
+            .prose-book blockquote {
+                border-left: 3px solid #6b7280;
+                padding: 0.4em 0.9em;
+                margin: 0.75em 0;
+                color: #4b5563;
+                font-style: italic;
+                background: #F0F3F8;
+                border-radius: 0 4px 4px 0;
+            }
+
+            .prose-book code {
+                background: #e5e7eb;
+                color: #1f2937;
+                padding: 0.1em 0.35em;
+                border-radius: 3px;
+                font-size: 0.88em;
+                font-family: monospace;
+            }
+
+            .prose-book pre {
+                background: #F0F3F8;
+                color: #1f2937;
+                padding: 1em;
+                border-radius: 6px;
+                overflow-x: auto;
+                margin-bottom: 0.75em;
+                font-size: 0.85em;
+                font-family: monospace;
+            }
+            .prose-book pre code {
+                background: none;
+                color: inherit;
+                padding: 0;
+                font-size: inherit;
+            }
+
+            .prose-book table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 0.75em;
+                font-size: 0.9em;
+            }
+            .prose-book th {
+                background: #e5e7eb;
+                font-weight: 600;
+                text-align: left;
+                padding: 0.5em 0.75em;
+                border: 1px solid #e5e7eb;
+                color: #1f2937;
+            }
+            .prose-book td {
+                padding: 0.45em 0.75em;
+                border: 1px solid #e5e7eb;
+            }
+            .prose-book tr:nth-child(even) { background: #F0F3F8; }
+
+            .prose-book hr {
+                border: none;
+                border-top: 1px solid #e5e7eb;
+                margin: 1.25em 0;
+            }
+
+            .prose-book img {
+                max-width: 100%;
+                border-radius: 6px;
+                margin: 0.5em 0;
+            }
+
+            .prose-book del { text-decoration: line-through; color: #9ca3af; }
+
+            .prose-book input[type="checkbox"] {
+                margin-right: 0.4em;
+                accent-color: #0B57CF;
+            }
+        </style>
+
+    </div>
+
+    <script>
+    (function() {
+      // সম্প্রতি দেখা বই — হোমপেজে "সম্প্রতি দেখেছেন" স্ট্রিপে দেখানোর জন্য
+      try {
+        var entry = {
+          slug: "alor-fulki-1979",
+          title: "আলোর ফুলকি",
+          cover: "https://cdn.pathokghar.com/1787584065921_kktqu931cdq.png"
+        };
+        var recent = JSON.parse(localStorage.getItem('pg-recent-books') || '[]');
+        recent = recent.filter(function(b) { return b.slug !== entry.slug; });
+        recent.unshift(entry);
+        recent = recent.slice(0, 12);
+        localStorage.setItem('pg-recent-books', JSON.stringify(recent));
+      } catch (e) {}
+    })();
+    </script>
+</main>
     </main>
 
     <!-- FOOTER -->
