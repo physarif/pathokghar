@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#121218">
+    <meta name="theme-color" content="#F0F3F8">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFBP0HJMJV"></script>
     <script>
@@ -41,12 +41,13 @@
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #121218;
-            color: #e5e7eb;
+            background: #F0F3F8;
+            color: #1f2937;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
+        * { -webkit-tap-highlight-color: transparent; }
         a { color: inherit; }
         ul { padding: 0; margin: 0; }
 
@@ -60,33 +61,33 @@
 
         main { flex: 1 1 auto; min-width: 0; }
 
-        /* ── Header (Telegram X স্টাইল — steel-blue bar, brand ছাড়া, full-width icon row) ── */
+        /* ── Header (Telegram X স্টাইল — full-width icon row, day/light surface) ── */
         #site-header {
-            border-bottom: none;
-            background: #2a2b2f;
+            border-bottom: 1px solid rgba(17,24,39,0.08);
+            background: rgba(255,255,255,0.98);
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
         }
         .header-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 3rem;
+            height: 3.5rem;
             box-sizing: border-box;
-            padding: 0 0.5rem;
+            padding: 0 0.5rem 0 0;
         }
         .header-right { display: flex; align-items: stretch; gap: 0; flex: 1 1 auto; height: 100%; }
         #header-search-btn, #header-search-close-btn {
             background: none; border: none; padding: 0; cursor: pointer;
-            color: #ffffff;
+            color: #1f2937;
         }
-        .brand-link { display: none; }
-        .brand-name { font-size: 1.5rem; font-weight: 700; color: #f3f4f6; line-height: 1; }
         .brand-name-light { font-weight: 300; color: #6b7280; }
 
         /* ── Header inline search box (header-এর ভেতরে টগল হয়) ── */
         .header-search-box {
             align-items: center;
             gap: 0.75rem;
-            height: 3rem;
+            height: 3.5rem;
             box-sizing: border-box;
             padding: 0 1rem;
             position: relative;
@@ -97,95 +98,83 @@
             background: transparent;
             outline: none;
             border: none;
-            color: #ffffff;
+            color: #1f2937;
             font-size: 1rem;
         }
-        .header-search-input::placeholder { color: rgba(255,255,255,0.65); }
+        .header-search-input::placeholder { color: rgba(17,24,39,0.45); }
         .header-search-suggest {
             display: none;
             position: absolute;
-            left: 0; right: 0; top: 100%;
-            background: rgba(35,35,42,0.95);
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            left: 0; right: 0; top: calc(100% + 0.5rem);
+            background: #ffffff;
+            border: 1px solid rgba(17,24,39,0.08);
+            box-shadow: 0 8px 20px rgba(17,24,39,0.08);
+            border-radius: 8px;
             max-height: 70vh;
             overflow-y: auto;
             z-index: 60;
         }
 
-        /* ── Footer (night-only — #333439 surface, #121218 page bg reference, red accent) — মিনিমাল একলাইন ── */
+        /* ── Footer (day/light surface — #ffffff surface, #F0F3F8 page bg reference) — মিনিমাল একলাইন ── */
         .site-footer {
-            background: #2a2b2f;
-            border-top: 1px solid rgba(255,255,255,0.06);
+            background: #ffffff;
+            border-top: 1px solid rgba(17,24,39,0.08);
             margin-top: 1.5rem;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
         }
         .footer-container { max-width: 48rem; margin: 0 auto; padding: 0 1.25rem; }
         .footer-row {
-            padding: 0.85rem 1.25rem;
+            padding: 1rem 1.25rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 1rem;
         }
-        .footer-brand { font-size: 0.88rem; color: #9aa0a6; }
-        .footer-brand strong { color: #e5e7eb; font-weight: 600; }
+        .footer-brand { font-size: 0.88rem; color: #6b7280; }
+        .footer-brand strong { color: #1f2937; font-weight: 600; }
         .footer-links { display: flex; gap: 1rem; }
-        .footer-links a { font-size: 0.78rem; color: #6b6f76; text-decoration: none; transition: color 0.15s; }
-        .footer-links a:hover, .footer-links a:active { color: #e57373; }
-
-        /* Category links — footer style, larger */
-        .category-underline-list li { display: inline-flex; align-items: center; white-space: nowrap; }
-        .category-underline-list li + li::before {
-            content: '·';
-            color: #4b5563;
-            font-size: 16px;
-            margin: 0 5px;
-            line-height: 1;
-        }
-        .category-underline-list li.line-start::before { display: none !important; }
-        .category-underline-list a {
-            font-size: 17px;
-            font-weight: 400;
-            color: #e57373;
-            text-decoration: none;
-            transition: color 0.15s;
-        }
-        .category-underline-list a:hover,
-        .category-underline-list a:active { color: #9ca3af; text-decoration: underline; }
-        .category-underline-list a:focus { text-decoration: underline; outline: none; }
-
-        /* Visit counter — retro LCD display */
-        .pg-visit-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: #1a0e0e;
-            border-radius: 5px;
-            padding: 0.15rem 0.7rem;
-            box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
-            font-family: 'Courier New', Consolas, monospace;
-            font-weight: 700;
-            font-size: 0.85rem;
-            letter-spacing: 0.08em;
-            color: #ff3b30;
-            text-shadow: 0 0 8px rgba(255,59,48,0.75);
-            white-space: nowrap;
-        }
-        .pg-visit-pill i { font-size: 0.7rem; color: #ff3b30; opacity: 0.85; }
-        .pg-visit-pill .pg-sep { color: #ff3b30; margin: 0 0.05rem; }
+        .footer-links a { font-size: 0.78rem; color: #6b7280; text-decoration: none; transition: color 0.15s; }
+        .footer-links a:hover, .footer-links a:active { color: #0B57CF; }
 
         /* হেডার ন্যাভ — Telegram X স্টাইল: full-width, সমান-দূরত্বের icon-only ট্যাব, active-এ underline */
         .header-nav-group {
             display: flex;
             align-items: stretch;
-            justify-content: space-between;
+            justify-content: flex-start;
             flex: 1 1 auto;
             height: 100%;
             border: none;
             border-radius: 0;
-            overflow: visible;
+            overflow: hidden;
+            position: relative;
         }
+        /* pill ট্যাবগুলোর scrollable wrapper — জায়গা না হলে horizontal scroll হবে,
+           এবং search আইকনের নিচ দিয়ে (পেছনে) ঢুকে যাবে */
+        .header-nav-links {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: calc(100% + 1.25rem);
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-x;
+            scrollbar-width: none;
+            white-space: nowrap;
+            padding-right: 3rem;
+            padding-bottom: 1.25rem;
+        }
+        .header-nav-links a.header-nav-btn:first-child {
+            margin-left: 1rem;
+        }
+        .header-nav-links::-webkit-scrollbar { display: none; }
         .header-nav-btn {
             display: flex;
             align-items: center;
@@ -194,39 +183,62 @@
             width: auto;
             height: 100%;
             border-right: none;
-            color: rgba(255,255,255,0.65);
+            color: rgba(17,24,39,0.6);
             text-decoration: none;
             position: relative;
         }
-        .header-nav-btn:last-child { border-right: none; }
-        /* text tab (হোম/লেখক/বিভাগ/ব্লগ) নিচে-ঘেঁষা, underline যাতে header-এর নিচের কিনারার
-           কাছাকাছি বসে — search/hamburger আগের মতোই vertically centered থাকবে */
-        .header-nav-group a.header-nav-btn {
-            align-items: flex-end;
-            padding-bottom: 0.3rem;
+
+        /* text tab (হোম/লেখক/বিভাগ/ব্লগ) — pill background, vertically centered */
+        .header-nav-links a.header-nav-btn {
+            align-items: center;
+            flex: 0 0 auto;
         }
-        .header-nav-group a.header-nav-btn:first-child {
-            margin-left: 1rem;
-        }
-        /* সার্চ আইকন হ্যামবার্গারের মতোই নিজের সাইজ অনুসারে জায়গা নেবে, ডান কোণায় থাকবে */
+/* সার্চ আইকন সবসময় ডান কোণায় ফিক্সড থাকবে, pill scroll করলে এর নিচ দিয়ে ঢুকে যাবে */
         #header-search-btn.header-nav-btn {
+            position: absolute;
+            right: 0;
+            top: 0;
             flex: 0 0 auto;
             width: auto;
-            padding: 0;
+            height: 100%;
+            padding: 0 0.5rem 0 1rem;
+            z-index: 2;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0, rgba(255,255,255,0.98) 40%, rgba(255,255,255,0.98) 100%);
         }
-        .header-nav-btn.active { color: #ffffff !important; background: transparent; }
-        /* icon সরিয়ে শুধু নাম — home/লেখক/বিভাগ text-only ট্যাব; active হলে underline text-এর
-           সমান width-এর হবে, তাই এটা fixed ::after না দিয়ে label-এর নিজের border-bottom দিয়ে করা */
+        .header-nav-btn.active { background: transparent; }
+        /* icon সরিয়ে শুধু নাম — home/লেখক/বিভাগ text-only ট্যাব, pill background সহ */
         .header-nav-label {
             display: inline-block;
             margin-left: 0;
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 600;
             white-space: nowrap;
-            padding: 0.25rem 0;
-            border-bottom: 3px solid transparent;
+            padding: 0.4rem 0.8rem;
+            line-height: 1;
+            border-radius: 6px;
+            background: #C2D7FC;
+            color: #0B57CF;
+            transition: background 0.15s, color 0.15s;
         }
-        .header-nav-btn.active .header-nav-label { border-bottom-color: #ffffff; }
+        .header-nav-btn.active .header-nav-label {
+            background: #0B57CF;
+            color: #ffffff;
+        }
+        .header-nav-btn:active .header-nav-label {
+            background: #0B57CF;
+            color: #ffffff;
+        }
+        .header-nav-icon-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.4rem 0;
+            font-size: 1.5rem;
+        }
+        .header-bookmark-btn .header-nav-label {
+            background: transparent !important;
+        }
+
 
         /* Floating (sticky) header — নিচে স্ক্রল করলে hide, উপরে স্ক্রল করলে show */
         #site-header {
@@ -238,7 +250,7 @@
             transform: translateY(0);
             transition: transform 0.28s ease;
             will-change: transform;
-            background: #2a2b2f !important;
+            background: rgba(255,255,255,0.98) !important;
         }
         #site-header.header-hidden { transform: translateY(-100%); }
 
@@ -251,28 +263,28 @@
             text-decoration: none;
             color: inherit;
         }
-        .hs-item:hover, .hs-item.hs-active { background: #2f2f38; }
+        .hs-item:hover, .hs-item.hs-active { background: #C2D7FC; }
         .hs-thumb {
             flex-shrink: 0;
             width: 2.1rem;
             height: 2.8rem;
             border-radius: 3px;
             object-fit: cover;
-            background: #374151;
+            background: #e5e7eb;
         }
         .hs-body { min-width: 0; flex: 1; }
         .hs-title {
             font-size: 0.92rem;
             font-weight: 600;
-            color: #f3f4f6;
+            color: #1f2937;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        .hs-title b { color: #9ca3af; font-weight: 700; }
+        .hs-title b { color: #0B57CF; font-weight: 700; }
         .hs-meta {
             font-size: 0.76rem;
-            color: #9ca3af;
+            color: #6b7280;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -283,12 +295,12 @@
             padding: 0.6rem;
             font-size: 0.85rem;
             font-weight: 600;
-            color: #9ca3af;
+            color: #0B57CF;
             text-decoration: none;
-            border-top: 1px solid #2f2f38;
+            border-top: 1px solid rgba(17,24,39,0.08);
         }
     </style>
-    <!-- থিম সবসময় night/dark mode — light mode বাদ দেওয়া হয়েছে -->
+    <!-- থিম সবসময় day/light mode — dark mode বাদ দেওয়া হয়েছে, accent: #0B57CF -->
 </head>
 <body>
 
@@ -297,18 +309,23 @@
         <div id="header-default" class="header-row">
             <div class="header-right">
                 <nav class="header-nav-group">
-                    <a href="/" data-nav-path="/" class="header-nav-btn" aria-label="প্রধান পাতা">
-                        <span class="header-nav-label">প্রধান পাতা</span>
-                    </a>
-                    <a href="/authors/" data-nav-path="/authors/" class="header-nav-btn" aria-label="লেখক">
-                        <span class="header-nav-label">লেখক</span>
-                    </a>
-                    <a href="/categories/" data-nav-path="/categories/" class="header-nav-btn" aria-label="বিভাগ">
-                        <span class="header-nav-label">বিভাগ</span>
-                    </a>
-                    <a href="/blogs/" data-nav-path="/blogs/" class="header-nav-btn" aria-label="ব্লগ">
-                        <span class="header-nav-label">ব্লগ</span>
-                    </a>
+                    <div class="header-nav-links">
+                        <a href="/bookmarks/" data-nav-path="/bookmarks/" class="header-nav-btn header-bookmark-btn" aria-label="বুকমার্ক">
+                            <span class="header-nav-label header-nav-icon-label"><i class="fa-solid fa-bookmark"></i></span>
+                        </a>
+                        <a href="/" data-nav-path="/" class="header-nav-btn" aria-label="প্রধান পাতা">
+                            <span class="header-nav-label">প্রধান পাতা</span>
+                        </a>
+                        <a href="/authors/" data-nav-path="/authors/" class="header-nav-btn" aria-label="লেখক">
+                            <span class="header-nav-label">লেখক</span>
+                        </a>
+                        <a href="/categories/" data-nav-path="/categories/" class="header-nav-btn" aria-label="বিভাগ">
+                            <span class="header-nav-label">বিভাগ</span>
+                        </a>
+                        <a href="/blogs/" data-nav-path="/blogs/" class="header-nav-btn" aria-label="ব্লগ">
+                            <span class="header-nav-label">ব্লগ</span>
+                        </a>
+                    </div>
                     <button id="header-search-btn" type="button" class="header-nav-btn" aria-label="খুঁজুন">
                         <i class="fa-solid fa-magnifying-glass icon-lg"></i>
                     </button>
@@ -539,7 +556,7 @@
 
     <!-- MAIN CONTENT -->
     <main>
-        <!-- components/books.html — pagination page (/books/{page}/) content + সব styling এখানে -->
+        <!-- components/index.html — homepage content + সব styling এখানে -->
 <style>
   /* Section */
   .book-section { padding: 0.75rem 0.5rem; margin-bottom: 0.5rem; }
@@ -559,7 +576,7 @@
   .bc-section-title {
     font-size: 1.15rem;
     font-weight: 700;
-    color: #f3f4f6;
+    color: #1f2937;
     display: flex;
     align-items: center;
     gap: 0.6rem;
@@ -571,7 +588,7 @@
     content: '';
     flex: 1;
     height: 2px;
-    background: #9ca3af;
+    background: #e5e7eb;
     border-radius: 1px;
   }
 
@@ -580,14 +597,14 @@
     font-size: 0.72rem;
     font-weight: 600;
     color: #fff;
-    background: #45464c;
+    background: #0B57CF;
     text-decoration: none;
     padding: 0.3rem 0.75rem;
     border-radius: 0.25rem;
     white-space: nowrap;
     transition: background 0.15s;
   }
-  .bc-section-link:hover { background: #55565c; }
+  .bc-section-link:hover { background: #094aad; }
 
   /* Pagination */
   .bc-pagination {
@@ -618,13 +635,13 @@
     font-size: 0.95rem;
     font-weight: 500;
     text-decoration: none;
-    color: #d1d5db;
-    background: #333439;
-    border: 1px solid #333439;
+    color: #6b7280;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
     transition: background 0.15s, color 0.15s, border-color 0.15s;
   }
-  .bc-page-btn:hover { background: #3d3e44; color: #f9fafb; }
-  .bc-page-btn.active { background: #45464c; border-color: #f9fafb; color: #f9fafb; pointer-events: none; }
+  .bc-page-btn:hover { background: #C2D7FC; color: #1f2937; }
+  .bc-page-btn.active { background: #0B57CF; border-color: #0B57CF; color: #fff; pointer-events: none; }
   .bc-page-dots {
     display: inline-flex;
     align-items: center;
@@ -646,13 +663,13 @@
     font-size: 0.95rem;
     font-weight: 600;
     text-decoration: none;
-    color: #f9fafb;
-    background: #45464c;
-    border: 1px solid #45464c;
+    color: #fff;
+    background: #0B57CF;
+    border: 1px solid #0B57CF;
     transition: background 0.15s;
   }
-  .bc-page-nav:hover { background: #55565c; }
-  .bc-page-nav.disabled { background: #333439; border-color: #333439; color: #6b7280; pointer-events: none; cursor: default; }
+  .bc-page-nav:hover { background: #094aad; }
+  .bc-page-nav.disabled { background: #e5e7eb; border-color: #e5e7eb; color: #6b7280; pointer-events: none; cursor: default; }
 
   /* সর্বশেষ বই — title with accented progress-style underline */
   .bc-latest-title {
@@ -661,17 +678,17 @@
     gap: 0.5rem;
     font-size: 1.1rem;
     font-weight: 700;
-    color: #f5f5f5;
+    color: #1f2937;
     margin-bottom: 1rem;
     letter-spacing: 0.01em;
   }
-  .bc-latest-title i { color: #45464c; font-size: 1rem; }
+  .bc-latest-title i { color: #0B57CF; font-size: 1rem; }
   .bc-latest-title::after {
     content: '';
     flex: 1;
     height: 6px;
     border-radius: 1px;
-    background: linear-gradient(to right, #f5f5f5 0%, #6b7280 100%);
+    background: linear-gradient(to right, #e5e7eb 0%, #0B57CF 100%);
   }
 
   /* পেজ কনটেন্ট wrapper */
@@ -686,110 +703,101 @@
   @media (min-width: 1024px) { .page-content { padding-left: 4rem; padding-right: 4rem; } }
 </style>
 
-<!-- components/book-card1.html — সব পেজে (index, books, author, category, search)
-     ব্যবহৃত common book-card design। generate_pages.js এই ফাইলটা একবার লোড করে
-     প্রতিটা টেমপ্লেটের  placeholder-এ বসিয়ে দেয়।
-     ডিজাইন পরিবর্তন করতে চাইলে শুধু এই ফাইলটা এডিট করলেই সব জায়গায় reflect হবে।
-     ডিজাইন: Editorial variant — night-mode-only পাঠক ঘর palette (#121218 page bg,
-     #333439 card surface, night-mode gray accent)। -->
 <style>
-  /* List container */
+/* components/book-card-list.css — সব পেজে (index, books, author, category, search)
+   ব্যবহৃত common book-card LIST design। generate_pages.js এই ফাইলটা একবার লোড করে
+   <style> ট্যাগে মুড়ে প্রতিটা টেমপ্লেটের  placeholder-এ বসিয়ে দেয়।
+   ডিজাইন পরিবর্তন করতে চাইলে শুধু এই ফাইলটা এডিট করলেই সব জায়গায় reflect হবে।
+   ডিজাইন: Editorial variant — layout.html-এর সাথে মিল রেখে day/light পাঠক ঘর
+   palette (#F0F3F8 page bg, #ffffff card surface, #1f2937 টেক্সট, #0B57CF accent)। */
+
+/* List container */
+.bc-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  gap: 0.7rem;
+}
+@media (min-width: 768px) {
   .bc-list {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 0.7rem;
+    padding: 0;
   }
-  @media (min-width: 768px) {
-    .bc-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.7rem;
-      padding: 0;
-    }
-  }
+}
 
-  /* Book card */
-  .bc-card {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    align-items: flex-start;
-    text-decoration: none;
-    padding: 1rem 1.1rem;
-    transition: background 0.15s, border-color 0.15s;
-    background: #333439;
-    border-radius: 5px;
-  }
-  .bc-card:hover { background: #3d3e44; }
+/* Book card */
+.bc-card {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: flex-start;
+  text-decoration: none;
+  padding: 1rem 1.1rem;
+  transition: background 0.15s, border-color 0.15s;
+  background: #ffffff;
+  border-radius: 5px;
+}
+.bc-card:hover { background: #C2D7FC; }
 
-  /* Cover — left side, fixed size 2:3 ratio */
-  .bc-img-wrap {
-    flex-shrink: 0;
-    width: 4.5rem;
-    aspect-ratio: 2/3;
-    overflow: hidden;
-    background: #374151;
-    border-radius: 6px;
-  }
-  @media (min-width: 768px) { .bc-img-wrap { width: 5.5rem; } }
+/* Cover — left side, fixed size 2:3 ratio */
+.bc-img-wrap {
+  flex-shrink: 0;
+  width: 4.5rem;
+  aspect-ratio: 2/3;
+  overflow: hidden;
+  background: #e5e7eb;
+  border-radius: 5px;
+}
+@media (min-width: 768px) { .bc-img-wrap { width: 5.5rem; } }
 
-  .bc-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+.bc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-  /* Right side text */
-  .bc-body {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
-  }
+/* Right side text */
+.bc-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
 
-  /* Headline: শুধু title */
-  .bc-headline {
-    font-size: 1.05rem;
-    line-height: 1.4;
-    margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .bc-title {
-    font-weight: 700;
-    color: #F1F1F1;
-  }
-  .bc-card:hover .bc-title { text-decoration: none; }
+/* Headline: title – author একসাথে */
+.bc-headline {
+  font-size: 1.05rem;
+  line-height: 1.4;
+  margin: 0 0 0.35rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.bc-title {
+  font-weight: 600;
+  color: #1f2937;
+}
+.bc-card:hover .bc-title { text-decoration: none; }
 
-  .bc-meta {
-    font-size: 0.75rem;
-    color: #D0D0D0;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    font-weight: 600;
-    margin: 0.25rem 0 0.35rem;
-  }
+/* Description */
+.bc-desc {
+  margin-top: 0.1rem;
+  font-size: 0.88rem;
+  color: #6b7280;
+  line-height: 1.5;
+  text-align: justify;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
-  /* Description */
-  .bc-desc {
-    margin-top: 0.1rem;
-    font-size: 0.88rem;
-    color: #9A9A9A;
-    line-height: 1.5;
-    text-align: justify;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-</style>
-
-<!--
+/*
   Book card HTML template (reference — generate_pages.js এ ব্যবহার হয়):
   <a href="/book/.html" class="bc-card">
     <div class="bc-img-wrap">
@@ -797,126 +805,23 @@
     </div>
     <div class="bc-body">
       <p class="bc-headline"><span class="bc-title"></span></p>
-      
       <p class="bc-desc"></p>
     </div>
   </a>
--->
-
+*/
+</style>
 
 <main class="page-content">
 
   <!-- সর্বশেষ বই -->
   <section class="book-section">
-    <div class="bc-list"><a href="/book/janalar-opashe.html" class="bc-card">
+    <div class="bc-list"><a href="/book/shrestho-kobita.html" class="bc-card">
   <div class="bc-img-wrap">
-    <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782978234144_uc5ocytagc.png" alt="জানালার ওপাশে" class="bc-img" loading="lazy">
+    <img src="https://cdn.pathokghar.com/1780239348488_r7qnw9el19q.webp" alt="শ্রেষ্ঠ কবিতা" class="bc-img" loading="lazy">
   </div>
   <div class="bc-body">
-    <p class="bc-headline"><span class="bc-title">জানালার ওপাশে</span></p>
-    <p class="bc-meta">সাদাত হোসাইন · উপন্যাস</p>
-    <p class="bc-desc">গল্পের কেন্দ্রে রয়েছে মানুষের একাকীত্ব, সম্পর্কের জটিলতা এবং অব্যক্ত কিছু অনুভূতি। আমাদের চেনা চেনা জীবনের আড়ালে যে অচেনা গল্পগুলো লুকিয়ে থাকে, লেখক অত্যন্ত নিখুঁতভাবে তা ফুটিয়ে তুলেছেন। জানালার ওপাশ </p>
-  </div>
-</a><a href="/book/palamou.html" class="bc-card">
-  <div class="bc-img-wrap">
-    <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782970144822_9hfbdvchihg.png" alt="পালামৌ" class="bc-img" loading="lazy">
-  </div>
-  <div class="bc-body">
-    <p class="bc-headline"><span class="bc-title">পালামৌ</span></p>
-    <p class="bc-meta">সঞ্জীবচন্দ্র চট্টোপাধ্যায়ের · ভ্রমণ</p>
-    <p class="bc-desc">সঞ্জীবচন্দ্র চট্টোপাধ্যায়ের 'পালামৌ' বাংলা সাহিত্যের একটি ক্লাসিক ও অন্যতম শ্রেষ্ঠ ভ্রমণকাহিনি। উনিশ শতকের দ্বিতীয়ার্ধে রাঁচির প্রত্যন্ত পাহাড়ি অঞ্চল 'পালামৌ'-তে লেখকের পেশাগত কারণে কাটানো দিনগুলোর চ</p>
-  </div>
-</a><a href="/book/gilgamesh.html" class="bc-card">
-  <div class="bc-img-wrap">
-    <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782964339612_dlhoisrsbuu.webp" alt="গিলগামেশ" class="bc-img" loading="lazy">
-  </div>
-  <div class="bc-body">
-    <p class="bc-headline"><span class="bc-title">গিলগামেশ</span></p>
-    <p class="bc-meta">হায়াৎ মাহমুদ · শিশু-কিশোর</p>
-    <p class="bc-desc">'গিলগামেশ' বইটি মূলত পৃথিবীর ইতিহাসের প্রাচীনতম মহাকাব্য 'এপিক অব গিলগামেশ' (The Epic of Gilgamesh)-এর একটি চমৎকার বাংলা রূপান্তর। মেসোপটেমীয় সভ্যতার এই অমূল্য সাহিত্যকীর্তিকে তিনি বাঙালি পাঠকদের জন্</p>
-  </div>
-</a><a href="/book/byomkesh-somogro-3.html" class="bc-card">
-  <div class="bc-img-wrap">
-    <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782932212464_q9brqxrbubj.jpeg" alt="ব্যোমকেশ সমগ্র – ৩" class="bc-img" loading="lazy">
-  </div>
-  <div class="bc-body">
-    <p class="bc-headline"><span class="bc-title">ব্যোমকেশ সমগ্র – ৩</span></p>
-    <p class="bc-meta">শরদিন্দু বন্দ্যোপাধ্যায় · গোয়েন্দা</p>
-    <p class="bc-desc">বাংলা গোয়েন্দা সাহিত্যের ইতিহাসে ব্যোমকেশ বক্সী একটি মাইলফলক। শরদিন্দু বন্দ্যোপাধ্যায় তাঁর এই চরিত্রটিকে প্রথাগত 'গোয়েন্দা' না বলে 'সত্যান্বেষী' বা সত্যের সন্ধানকারী হিসেবে পরিচয় করিয়েছেন। 'ব্যোমকেশ</p>
-  </div>
-</a><a href="/book/byomkesh-somogro-2.html" class="bc-card">
-  <div class="bc-img-wrap">
-    <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782932212464_q9brqxrbubj.jpeg" alt="ব্যোমকেশ সমগ্র – ২" class="bc-img" loading="lazy">
-  </div>
-  <div class="bc-body">
-    <p class="bc-headline"><span class="bc-title">ব্যোমকেশ সমগ্র – ২</span></p>
-    <p class="bc-meta">শরদিন্দু বন্দ্যোপাধ্যায় · গোয়েন্দা</p>
-    <p class="bc-desc">বাংলা গোয়েন্দা সাহিত্যের ইতিহাসে ব্যোমকেশ বক্সী একটি মাইলফলক। শরদিন্দু বন্দ্যোপাধ্যায় তাঁর এই চরিত্রটিকে প্রথাগত 'গোয়েন্দা' না বলে 'সত্যান্বেষী' বা সত্যের সন্ধানকারী হিসেবে পরিচয় করিয়েছেন। 'ব্যোমকেশ</p>
-  </div>
-</a><a href="/book/feluda-hottapuri.html" class="bc-card">
-  <div class="bc-img-wrap">
-    <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782911253652_dhzhi10kkka.webp" alt="হত্যাপুরী" class="bc-img" loading="lazy">
-  </div>
-  <div class="bc-body">
-    <p class="bc-headline"><span class="bc-title">হত্যাপুরী</span></p>
-    <p class="bc-meta">সত্যজিৎ রায় · গোয়েন্দা</p>
-    <p class="bc-desc">'হত্যাপুরী' উপন্যাসটির মূল পটভূমি ওড়িশার সমুদ্র উপকূলবর্তী শহর পুরী। ফেলুদা (প্রদোষচন্দ্র মিত্র), তোপসে (তপেশরঞ্জন মিত্র) এবং জটায়ু (লালমোহন গাঙ্গুলী) সেখানে মূলত ছুটি কাটাতে গিয়েছিলেন। কিন্তু ফেলুদা </p>
-  </div>
-</a><a href="/book/sheyal-debota-rohosso.html" class="bc-card">
-  <div class="bc-img-wrap">
-    <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782912093854_19njw8nhh8m.webp" alt="শেয়াল-দেবতা রহস্য" class="bc-img" loading="lazy">
-  </div>
-  <div class="bc-body">
-    <p class="bc-headline"><span class="bc-title">শেয়াল-দেবতা রহস্য</span></p>
-    <p class="bc-meta">সত্যজিৎ রায় · গোয়েন্দা</p>
-    <p class="bc-desc">গল্পের মূল রহস্য আবর্তিত হয়েছে প্রাচীন মিশরীয় দেবতা 'আনুবিস'-এর (যার মুখাবয়ব শেয়ালের মতো) একটি অত্যন্ত মূল্যবান ও ঐতিহাসিক মূর্তি হারিয়ে যাওয়াকে কেন্দ্র করে। কলকাতার এক ধনী ব্যবসায়ী এবং প্রাচীন জিনিসপ</p>
-  </div>
-</a><a href="/book/feluda-koilashe-kelengkari.html" class="bc-card">
-  <div class="bc-img-wrap">
-    <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782913172806_9enksoexxva.webp" alt="কৈলাসে কেলেঙ্কারি" class="bc-img" loading="lazy">
-  </div>
-  <div class="bc-body">
-    <p class="bc-headline"><span class="bc-title">কৈলাসে কেলেঙ্কারি</span></p>
-    <p class="bc-meta">সত্যজিৎ রায় · গোয়েন্দা</p>
-    <p class="bc-desc">সত্যজিৎ রায়ের জনপ্রিয় গোয়েন্দা চরিত্র ফেলুদার অন্যতম সেরা এবং রোমাঞ্চকর একটি কাহিনী হলো 'কৈলাসে কেলেঙ্কারি'। গল্পটি মূলত প্রাচীন ভারতীয় ভাস্কর্য ও শিল্পকীর্তি চোরাচালানকে কেন্দ্র করে আবর্তিত হয়েছ</p>
-  </div>
-</a><a href="/book/satyanweshi.html" class="bc-card">
-  <div class="bc-img-wrap">
-    <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782961980215_yw3gm6chivh.webp" alt="সত্যান্বেষী" class="bc-img" loading="lazy">
-  </div>
-  <div class="bc-body">
-    <p class="bc-headline"><span class="bc-title">সত্যান্বেষী</span></p>
-    <p class="bc-meta">শরদিন্দু বন্দ্যোপাধ্যায় · গোয়েন্দা</p>
-    <p class="bc-desc">‘সত্যান্বেষী’ গল্পটির মাধ্যমেই বাঙালি পাঠক প্রথম পরিচিত হয় ব্যোমকেশ বক্সী এবং তার পরম বন্ধু ও লেখক অজিত বন্দ্যোপাধ্যায়ের সাথে। শরদিন্দু বন্দ্যোপাধ্যায় তাঁর এই মূল চরিত্রটিকে প্রথাগত ‘ডিটেকটিভ’ না বলে </p>
-  </div>
-</a><a href="/book/byomkesh-somogro-1.html" class="bc-card">
-  <div class="bc-img-wrap">
-    <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782932212464_q9brqxrbubj.jpeg" alt="ব্যোমকেশ সমগ্র – ১" class="bc-img" loading="lazy">
-  </div>
-  <div class="bc-body">
-    <p class="bc-headline"><span class="bc-title">ব্যোমকেশ সমগ্র – ১</span></p>
-    <p class="bc-meta">শরদিন্দু বন্দ্যোপাধ্যায় · গোয়েন্দা</p>
-    <p class="bc-desc">বাংলা গোয়েন্দা সাহিত্যের ইতিহাসে ব্যোমকেশ বক্সী একটি মাইলফলক। শরদিন্দু বন্দ্যোপাধ্যায় তাঁর এই চরিত্রটিকে প্রথাগত 'গোয়েন্দা' না বলে 'সত্যান্বেষী' বা সত্যের সন্ধানকারী হিসেবে পরিচয় করিয়েছেন। 'ব্যোমকেশ</p>
-  </div>
-</a><a href="/book/kadombori-debir-suicide-note.html" class="bc-card">
-  <div class="bc-img-wrap">
-    <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782894603956_mgfp9g8h1h.webp" alt="কাদম্বরীদেবীর সুইসাইড–নোট" class="bc-img" loading="lazy">
-  </div>
-  <div class="bc-body">
-    <p class="bc-headline"><span class="bc-title">কাদম্বরীদেবীর সুইসাইড–নোট</span></p>
-    <p class="bc-meta">রঞ্জন বন্দ্যোপাধ্যায় · উপন্যাস</p>
-    <p class="bc-desc">রবীন্দ্রনাথ ঠাকুরের জীবনের অন্যতম রহস্যময় ও ট্রাজিক অধ্যায় হলো তাঁর নতুন বৌঠান কাদম্বরী দেবীর আত্মহত্যা। ১৮৮৪ সালের ১৯ এপ্রিল মাত্র তেইশ বছর বয়সে তিনি আফিম খেয়ে আত্মঘাতী হন। এই ঐতিহাসিক ও সংবেদনশীল সত</p>
-  </div>
-</a><a href="/book/ami-gadha-bolsi.html" class="bc-card">
-  <div class="bc-img-wrap">
-    <img src="https://pub-acb9a5572a494ce7bc8eda8d8999f562.r2.dev/1782715730105_5135l9517j.webp" alt="আমি গাধা বলছি" class="bc-img" loading="lazy">
-  </div>
-  <div class="bc-body">
-    <p class="bc-headline"><span class="bc-title">আমি গাধা বলছি</span></p>
-    <p class="bc-meta">কৃষণ চন্দর · অনুবাদ</p>
-    <p class="bc-desc">কৃষণ চন্দরের বিখ্যাত ব্যঙ্গাত্মক (satirical) উপন্যাস 'আমি গাধা বলছি' (এক গাধে কি সর্গজশত) উপমহাদেশের রাজনৈতিক ও সামাজিক ব্যবস্থার ওপর এক তীব্র চাবুক।
-বইটির একটি সংক্ষিপ্ত রিভিউ নিচে দেওয়া হলো:
-### ## </p>
+    <p class="bc-headline"><span class="bc-title">শ্রেষ্ঠ কবিতা</span></p>
+    <p class="bc-desc">ভালো কবিতা যাচাই করবার বিশেষ শক্তি সংকলকের থাকলেও আদি নির্বাচন অনেক সময়ই কবির মৃত্যুর পরে খাঁটি সংকলনে গিয়া দাঁড়াবার সুযোগ পায়। কিন্তু কোনো-কোনো সংকলনে প্রথম থেকেই যথেষ্ট নির্ভুল চেতনার প্রয়োগ দে</p>
   </div>
 </a></div>
   </section>
@@ -925,7 +830,7 @@
   <script>
     (function() {
       const current = parseInt('5', 10);
-      const total = parseInt('8', 10);
+      const total = parseInt('5', 10);
       if (!current || !total || total <= 1) return;
       const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
       const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');

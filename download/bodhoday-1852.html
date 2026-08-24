@@ -16,20 +16,20 @@
     <link rel="apple-touch-icon" href="https://pathokghar.com/assets/photos/pathokghar-logo.webp">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>ঈশ্বরচন্দ্র বিদ্যাসাগর</title>
-    <meta name="description" content="লেখক ঈশ্বরচন্দ্র বিদ্যাসাগর-এর 3টি বই পড়ুন ও ডাউনলোড করুন পাঠক ঘরে।">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://pathokghar.pages.dev/author/ishwar-chandra-vidyasagar.html">
-    <meta property="og:title" content="ঈশ্বরচন্দ্র বিদ্যাসাগর">
-    <meta property="og:description" content="লেখক ঈশ্বরচন্দ্র বিদ্যাসাগর-এর 3টি বই পড়ুন ও ডাউনলোড করুন পাঠক ঘরে।">
-    <meta property="og:image" content="https://cdn.pathokghar.com/1783324155683_7fw7lob4l6.jpg">
-    <meta property="og:url" content="https://pathokghar.pages.dev/author/ishwar-chandra-vidyasagar.html">
-    <meta property="og:type" content="profile">
+    <title>বোধোদয় - পাঠক ঘর</title>
+    <meta name="description" content="">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/bodhoday-1852.html">
+    <meta property="og:title" content="বোধোদয় - পাঠক ঘর">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="https://cdn.pathokghar.com/1787581642100_6wa1t2n5dzh.png">
+    <meta property="og:url" content="https://pathokghar.pages.dev/book/bodhoday-1852.html">
+    <meta property="og:type" content="website">
     <meta property="og:site_name" content="পাঠক ঘর">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ঈশ্বরচন্দ্র বিদ্যাসাগর">
-    <meta name="twitter:description" content="লেখক ঈশ্বরচন্দ্র বিদ্যাসাগর-এর 3টি বই পড়ুন ও ডাউনলোড করুন পাঠক ঘরে।">
-    <meta name="twitter:image" content="https://cdn.pathokghar.com/1783324155683_7fw7lob4l6.jpg">
+    <meta name="twitter:title" content="বোধোদয় - পাঠক ঘর">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://cdn.pathokghar.com/1787581642100_6wa1t2n5dzh.png">
     <!-- Pure static CSS — কোনো build step লাগে না। আগে Tailwind CDN (runtime JIT,
          FOUC), তারপর CI-তে precompile হওয়া tailwind.css ব্যবহার হতো — এখন সেটা
          এক-বারের জন্য generate করে plain CSS হিসেবে commit করা হয়েছে। -->
@@ -556,262 +556,391 @@
 
     <!-- MAIN CONTENT -->
     <main>
-        <div class="author-page-wrap">
+        <!-- components/download.html — layout.html এর  এ inject হবে -->
 
-<!-- Structured data: Google-কে লেখক সম্পর্কে স্পষ্ট তথ্য দেয় -->
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "ঈশ্বরচন্দ্র বিদ্যাসাগর",
-    "image": "https://cdn.pathokghar.com/1783324155683_7fw7lob4l6.jpg",
-    "description": "",
-    "url": "https://pathokghar.pages.dev/author/ishwar-chandra-vidyasagar.html"
-}
-</script>
+<style>
+    .progress-bar-fill {
+        height: 100%;
+        border-radius: 9999px;
+        background: linear-gradient(90deg, #0B57CF, #3b82f6);
+        transition: width 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 100%;
+    }
 
-<div class="author-hero-wrap">
-    <div class="author-hero-card">
-        <img src="https://cdn.pathokghar.com/1783324155683_7fw7lob4l6.jpg" alt="ঈশ্বরচন্দ্র বিদ্যাসাগর" class="author-hero-avatar">
-        <div class="author-hero-body">
-            <h1 class="author-hero-name">ঈশ্বরচন্দ্র বিদ্যাসাগর</h1>
-            <hr class="author-hero-rule">
-            <!-- build time-এই markdown থেকে HTML — crawler-এর জন্য প্রথম
-                 লোডেই লেখক পরিচিতি পাওয়া যায়, JS-এর উপর নির্ভরতা নেই -->
-            <div class="author-desc-md"></div>
+    .step-fade {
+        animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(6px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .pulse-ring {
+        animation: pulse-ring 1.5s ease infinite;
+    }
+    @keyframes pulse-ring {
+        0%   { box-shadow: 0 0 0 0 rgba(11,87,207,0.35); }
+        70%  { box-shadow: 0 0 0 12px rgba(11,87,207,0); }
+        100% { box-shadow: 0 0 0 0 rgba(11,87,207,0); }
+    }
+
+    /* ── Book Info Card (book.html hero card থেকে) ── */
+    .dl-hero-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.1rem;
+        text-align: left;
+        background: #ffffff;
+        border-radius: 5px;
+        padding: 1.25rem;
+        box-shadow: 0 2px 14px rgba(17,24,39,0.06);
+        margin-bottom: 1rem;
+    }
+    .dl-hero-cover {
+        width: 100px;
+        height: 148px;
+        border-radius: 4px;
+        object-fit: cover;
+        background: #e5e7eb;
+        flex-shrink: 0;
+        box-shadow: 0 10px 22px rgba(17,24,39,0.12);
+    }
+    .dl-hero-body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        min-width: 0;
+    }
+    .dl-hero-category {
+        display: inline-block;
+        width: fit-content;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: #0B57CF;
+        background: #F0F3F8;
+        padding: 0.28rem 0.85rem;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: background 0.15s, color 0.15s;
+    }
+    .dl-hero-category:hover { background: #C2D7FC; color: #0B57CF; }
+    .dl-hero-title {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #1f2937;
+        line-height: 1.4;
+        margin: 0;
+    }
+    .dl-hero-author {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #6b7280;
+        text-decoration: none;
+        transition: color 0.15s;
+    }
+    .dl-hero-author:hover { color: #0B57CF; text-decoration: underline; text-underline-offset: 3px; }
+    .dl-hero-rule {
+        border: none;
+        border-top: 1px dashed #e5e7eb;
+        margin: 0.25rem 0;
+    }
+    .dl-hero-actions {
+        display: flex;
+        gap: 0.6rem;
+        margin-top: 0.15rem;
+    }
+    .dl-hero-link {
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-decoration: none;
+        padding: 0.45rem 1rem;
+        border-radius: 8px;
+        transition: background 0.15s, color 0.15s, transform 0.1s;
+    }
+    .dl-hero-link:active { transform: scale(0.96); }
+    .dl-hero-link-solid { background: #0B57CF; color: #fff; }
+    .dl-hero-link-solid:hover { background: #094aad; }
+    .dl-hero-link-outline { background: transparent; color: #1f2937; border: 1.5px solid #e5e7eb; padding: 0.375rem 0.95rem; }
+    .dl-hero-link-outline:hover { background: #F0F3F8; }
+
+    /* ── Download page layout / step cards ── */
+    .dl-page { max-width: 32rem; margin: 0 auto; padding: 1rem 0.75rem; }
+    @media (min-width: 768px) { .dl-page { padding: 1.5rem; } }
+    .dl-card {
+        background: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 1px 2px rgba(17,24,39,0.05);
+        padding: 1.5rem;
+    }
+    .dl-step1-inner { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+    .dl-icon-circle {
+        width: 3.5rem; height: 3.5rem;
+        border-radius: 50%;
+        background: #F0F3F8;
+        display: flex; align-items: center; justify-content: center;
+        color: #0B57CF;
+        font-size: 1.25rem;
+    }
+    .dl-step1-text { text-align: center; }
+    .dl-step1-title { font-size: 0.875rem; font-weight: 600; color: #1f2937; margin: 0 0 0.125rem; }
+    .dl-step1-sub { font-size: 0.75rem; color: #6b7280; margin: 0; }
+    .dl-get-link-btn {
+        width: 100%;
+        background: #0B57CF;
+        color: #fff;
+        font-weight: 600;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        box-shadow: 0 1px 2px rgba(17,24,39,0.05);
+        transition: background 0.15s, transform 0.1s;
+        cursor: pointer;
+    }
+    .dl-get-link-btn:hover { background: #094aad; }
+    .dl-get-link-btn:active { transform: scale(0.95); }
+
+    /* একক লিংক না থাকলে countdown শেষে EPUB/MOBI/PDF — ৩টা আলাদা ডাউনলোড লিংক */
+    .dl-format-btns { width: 100%; display: flex; flex-direction: column; gap: 0.6rem; }
+    .dl-format-link { }
+
+    .dl-step2-inner { display: flex; flex-direction: column; gap: 1.25rem; }
+    .dl-waiting-text { font-size: 0.75rem; color: #6b7280; text-align: center; margin: 0; }
+
+    .dl-progress-wrap { display: flex; flex-direction: column; gap: 0.5rem; }
+    .dl-progress-row { display: flex; align-items: center; justify-content: space-between; font-size: 0.75rem; color: #6b7280; }
+    .dl-progress-track { width: 100%; height: 0.5rem; background: #e5e7eb; border-radius: 9999px; overflow: hidden; }
+
+    .dl-download-btn {
+        width: 100%;
+        background: #22c55e;
+        color: #fff;
+        font-weight: 600;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        text-decoration: none;
+        display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        box-shadow: 0 1px 2px rgba(17,24,39,0.05);
+        transition: background 0.15s, transform 0.1s;
+    }
+    .dl-download-btn:hover { background: #16a34a; }
+    .dl-download-btn:active { transform: scale(0.95); }
+    .dl-restart-btn {
+        background: none; border: none; cursor: pointer;
+        font-size: 0.75rem; color: #6b7280;
+        text-decoration: underline; text-underline-offset: 2px;
+        transition: color 0.15s;
+    }
+    .dl-restart-btn:hover { color: #0B57CF; }
+
+    .dl-info-strip { margin-top: 1rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.75rem; color: #4b5563; }
+    .dl-info-item { display: flex; align-items: center; gap: 0.375rem; }
+    .dl-info-item i { font-size: 0.625rem; }
+</style>
+
+<!-- ─── Download page (single layout) ─── -->
+<div class="dl-page">
+
+    <!-- Book Info Card: breadcrumb-এর বদলে book.html-এর মতো hero card,
+         এখানে "পড়ুন" ও "বিবরণ" — দুটোই বই পেজে নিয়ে যায় -->
+    <div class="dl-hero-card">
+        <img src="https://cdn.pathokghar.com/1787581642100_6wa1t2n5dzh.png" alt="বোধোদয় বই এর কভার" width="100" height="148" class="dl-hero-cover">
+        <div class="dl-hero-body">
+            <span class="dl-hero-category">শিক্ষামূলক গ্রন্থ</span>
+            <p class="dl-hero-title">বোধোদয়</p>
+            <span class="dl-hero-author">ঈশ্বরচন্দ্র বিদ্যাসাগর</span>
+            <hr class="dl-hero-rule">
+            <div class="dl-hero-actions">
+                <a href="/read/bodhoday-1852.html" class="dl-hero-link dl-hero-link-solid">পড়ুন</a>
+                <a href="/book/bodhoday-1852.html" class="dl-hero-link dl-hero-link-outline">বিবরণ</a>
+            </div>
         </div>
     </div>
+
+    <!-- Download action card -->
+    <div class="dl-card">
+        <div id="m-step-1" class="step-fade">
+            <div class="dl-step1-inner">
+                <div class="dl-icon-circle pulse-ring">
+                    <i class="fas fa-download"></i>
+                </div>
+                <div class="dl-step1-text">
+                    <p class="dl-step1-title">বইটি ডাউনলোড করুন</p>
+                    <p class="dl-step1-sub">বিনামূল্যে — কোনো সাবস্ক্রিপশন ছাড়াই</p>
+                </div>
+                <!-- "ডাউনলোড লিংক পান" — ক্লিক করার পরই countdown শেষে
+                     আসল ডাউনলোড লিংক(গুলো) দেখা যাবে -->
+                <button id="m-get-link-btn" class="dl-get-link-btn">
+                    ডাউনলোড লিংক পান
+                </button>
+            </div>
+        </div>
+        <div id="m-step-2" class="hidden step-fade">
+            <div class="dl-step2-inner">
+                <p id="m-waiting-text" class="dl-waiting-text">কয়েক সেকেন্ড অপেক্ষা করুন...</p>
+                <!-- Progress bar -->
+                <div id="m-progress-wrap" class="dl-progress-wrap">
+                    <div class="dl-progress-row">
+                        <span id="m-progress-label">লিংক তৈরি হচ্ছে...</span>
+                        <span id="m-countdown-wrap" class="progress-seconds"><span id="m-countdown-text">5</span>s</span>
+                    </div>
+                    <div class="dl-progress-track">
+                        <div id="m-progress-fill" class="progress-bar-fill"></div>
+                    </div>
+                </div>
+
+                <!-- countdown শেষে: book_download_url থাকলে একক ডাউনলোড বাটন -->
+                <a id="m-download-btn" href="#" class="hidden dl-download-btn step-fade">
+                    <i class="fas fa-download"></i> ডাউনলোড করুন
+                </a>
+
+                <!-- countdown শেষে: book_download_url না থাকলে EPUB/PDF — ২টা আলাদা লিংক -->
+                <div id="m-format-links" class="hidden dl-format-btns step-fade">
+                    <a id="m-format-link-epub" href="#" class="dl-download-btn dl-format-link" target="_blank" rel="noopener">
+                        <i class="fas fa-tablet-alt"></i> EPUB ডাউনলোড
+                    </a>
+                    <a id="m-format-link-pdf" href="#" class="dl-download-btn dl-format-link" target="_blank" rel="noopener">
+                        <i class="fas fa-file-pdf"></i> PDF ডাউনলোড
+                    </a>
+                </div>
+
+                <button id="m-restart-btn" class="hidden dl-restart-btn">
+                    আবার চেষ্টা করুন
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info strip -->
+    <div class="dl-info-strip">
+        <span class="dl-info-item"><i class="fas fa-shield-alt"></i> নিরাপদ</span>
+        <span class="dl-info-item"><i class="fas fa-bolt"></i> দ্রুত</span>
+        <span class="dl-info-item"><i class="fas fa-ban"></i> অবাধ</span>
+    </div>
 </div>
 
-<div style="padding:0 0.5rem 0.5rem;">
-  <!-- বইয়ের লিস্ট build time-এই HTML হিসেবে বসানো — এই পেজের মূল/keyword-rich
-       content, তাই client-side JS-এর বদলে সরাসরি markup-এ থাকা জরুরি -->
-  <div id="author-books-grid" class="bc-list"><a href="/book/akhanmonjgori.html" class="bc-card"><div class="bc-img-wrap"><img src="https://cdn.pathokghar.com/1783357131558_qulhgcgt2bd.png" alt="আখ্যানমঞ্জরী বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">আখ্যানমঞ্জরী</span></p><p class="bc-desc">ঈশ্বরচন্দ্র বিদ্যাসাগরের ‘আখ্যানমঞ্জরী’ বাংলা সাহিত্যের একটি অনন্য ও ঐতিহাসিক সংকলন গ্রন্থ। মূলত কিশোর ও তরুণ পাঠকদের নীতিশিক্ষা ও চারিত্রিক উন্নতির উদ্দেশ্যে তিনি এই বইটি রচনা করেন। বিশ্বের বিভিন্ন দ</p></div></a>
-<a href="/book/kothamala-63.html" class="bc-card"><div class="bc-img-wrap"><img src="https://cdn.pathokghar.com/1783324618136_avrpot4f46.png" alt="কথামালা বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">কথামালা</span></p><p class="bc-desc">ঈশ্বরচন্দ্র বিদ্যাসাগর রচিত 'কথামালা' বাংলা শিশুসাহিত্যের ইতিহাসে একটি মাইলফলক গ্রন্থ। ১৮৫৬ সালে প্রকাশিত এই বইটি মূলত বিখ্যাত গ্রিক গল্পকার ঈশপের কাহিনিগুলোর (Aesop's Fables) একটি চমৎকার ভাবানুবাদ। ত</p></div></a>
-<a href="/book/bodhoday-1852.html" class="bc-card"><div class="bc-img-wrap"><img src="https://cdn.pathokghar.com/1787581642100_6wa1t2n5dzh.png" alt="বোধোদয় বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">বোধোদয়</span></p><p class="bc-desc">ঈশ্বরচন্দ্র বিদ্যাসাগরের ‘বোধোদয়’ বাংলা ভাষায় আধুনিক জ্ঞানভিত্তিক শিক্ষাগ্রন্থ রচনার ইতিহাসে একটি অত্যন্ত গুরুত্বপূর্ণ বই। ১৮৫২ সালে প্রকাশিত এই গ্রন্থের মূল উদ্দেশ্য ছিল কেবল গল্প বা বিনোদনের মাধ্য</p></div></a></div>
-</div>
 
-</div><!-- /md:px-8 lg:px-16 -->
 
-<!-- ═══════════════════════════════════════════════════════════
-     AUTHOR PROFILE HERO — design এখানে পরিবর্তন করো
-     ═══════════════════════════════════════════════════════════ -->
-<style>
-.author-page-wrap { padding-top: 1rem; }
-@media (min-width: 768px) { .author-page-wrap { padding-top: 1.5rem; padding-left: 2rem; padding-right: 2rem; } }
-@media (min-width: 1024px) { .author-page-wrap { padding-left: 4rem; padding-right: 4rem; } }
-@media (min-width: 768px) { .author-hero-wrap { padding: 0 1.5rem; } }
-.author-hero-wrap {
-    margin-bottom: 0.9rem;
-}
-.author-hero-card {
-    display: block;
-    background: #ffffff;
-    border-radius: 5px;
-    padding: 1.25rem;
-    box-shadow: 0 2px 14px rgba(17,24,39,0.06);
-    margin: 0 0.5rem;
-}
-.author-hero-card::after {
-    content: "";
-    display: block;
-    clear: both;
-}
-@media (min-width: 768px) {
-    .author-hero-card { margin: 0; }
-}
-.author-hero-avatar {
-    float: left;
-    width: 84px;
-    height: 84px;
-    margin-right: 1.1rem;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #e5e7eb;
-    box-shadow: 0 6px 16px rgba(17,24,39,0.12);
-}
-@media (min-width: 768px) {
-    .author-hero-avatar { width: 104px; height: 104px; }
-}
-.author-hero-body {
-    min-width: 0;
-}
-.author-hero-name {
-    font-family: 'Noto Serif Bengali', serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #1f2937;
-    line-height: 1.4;
-    margin: 0;
-}
-@media (min-width: 768px) {
-    .author-hero-name { font-size: 1.4rem; }
-}
-.author-hero-rule {
-    border: none;
-    border-top: 1px dashed #e5e7eb;
-    margin: 0.5rem 0;
-}
-</style>
+<script>
+(function () {
+    const DOWNLOAD_URL = '';
+    const BOOK_SLUG     = 'bodhoday-1852';
+    const COUNTDOWN_SECONDS = 5;
 
-<!-- ═══════════════════════════════════════════════════════════
-     AUTHOR BOOK CARD — design এখানে পরিবর্তন করো
-     ═══════════════════════════════════════════════════════════ -->
-<style>
-/* Breadcrumb tap underline */
-.bc-link {
-    position: relative;
-    text-decoration: none;
-}
-.bc-link::after {
-    content: '';
-    position: absolute;
-    left: 0; right: 0; bottom: -2px;
-    height: 2px;
-    background: #0B57CF;
-    border-radius: 1px;
-    transform: scaleX(0);
-    transition: transform 0.15s ease;
-}
-.bc-link:active::after {
-    transform: scaleX(1);
-}
-</style>
+    // book_download_url না থাকলে ebooks.pathokghar.com থেকে ফরম্যাট অনুযায়ী লিংক তৈরি।
+    // (নোট: টেমপ্লেট লিটারেল/backtick ব্যবহার করা হচ্ছে না — render() ফাংশন
+    // ডলার চিহ্ন ডাবল করে ফেলে, তাতে ইন্টারপোলেশন সিনট্যাক্স ভেঙে যায়। তাই স্ট্রিং concat।)
+    const EBOOKS_BASE = 'https://dl.pathokghar.com/ebooks/';
+    const FORMAT_URLS = {
+        EPUB: EBOOKS_BASE + 'epub/' + BOOK_SLUG + '.epub',
+        PDF:  EBOOKS_BASE + 'pdf/' + BOOK_SLUG + '.pdf',
+    };
 
-<style>
-/* components/book-card-list.css — সব পেজে (index, books, author, category, search)
-   ব্যবহৃত common book-card LIST design। generate_pages.js এই ফাইলটা একবার লোড করে
-   <style> ট্যাগে মুড়ে প্রতিটা টেমপ্লেটের  placeholder-এ বসিয়ে দেয়।
-   ডিজাইন পরিবর্তন করতে চাইলে শুধু এই ফাইলটা এডিট করলেই সব জায়গায় reflect হবে।
-   ডিজাইন: Editorial variant — layout.html-এর সাথে মিল রেখে day/light পাঠক ঘর
-   palette (#F0F3F8 page bg, #ffffff card surface, #1f2937 টেক্সট, #0B57CF accent)। */
+    // Generic countdown runner — শেষে book_download_url থাকলে একক ডাউনলোড বাটন,
+    // না থাকলে EPUB/MOBI/PDF — ৩টা লিংক দেখাবে
+    function startCountdown(prefix) {
+        const fill    = document.getElementById(prefix + 'progress-fill');
+        const text    = document.getElementById(prefix + 'countdown-text');
+        let remaining = COUNTDOWN_SECONDS;
 
-/* List container */
-.bc-list {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  gap: 0.7rem;
-}
-@media (min-width: 768px) {
-  .bc-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.7rem;
-    padding: 0;
-  }
-}
+        // Start full, shrink to 0
+        fill.style.width = '100%';
 
-/* Book card */
-.bc-card {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  align-items: flex-start;
-  text-decoration: none;
-  padding: 1rem 1.1rem;
-  transition: background 0.15s, border-color 0.15s;
-  background: #ffffff;
-  border-radius: 5px;
-}
-.bc-card:hover { background: #C2D7FC; }
+        // First tick after 1 frame so transition plays
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                fill.style.width = ((remaining - 1) / COUNTDOWN_SECONDS * 100) + '%';
+            });
+        });
 
-/* Cover — left side, fixed size 2:3 ratio */
-.bc-img-wrap {
-  flex-shrink: 0;
-  width: 4.5rem;
-  aspect-ratio: 2/3;
-  overflow: hidden;
-  background: #e5e7eb;
-  border-radius: 5px;
-}
-@media (min-width: 768px) { .bc-img-wrap { width: 5.5rem; } }
+        const interval = setInterval(() => {
+            remaining--;
+            text.textContent = remaining;
+            fill.style.width = (remaining / COUNTDOWN_SECONDS * 100) + '%';
 
-.bc-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
+            if (remaining <= 0) {
+                clearInterval(interval);
+                // progress wrap + waiting text fade out, তারপর ডাউনলোড লিংক(গুলো) দেখাও
+                const progressWrap  = document.getElementById(prefix + 'progress-wrap');
+                const waitingText   = document.getElementById(prefix + 'waiting-text');
+                const dlBtn         = document.getElementById(prefix + 'download-btn');
+                const formatLinks   = document.getElementById(prefix + 'format-links');
+                const restartBtn    = document.getElementById(prefix + 'restart-btn');
 
-/* Right side text */
-.bc-body {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-}
+                // fade out
+                if (progressWrap) { progressWrap.style.transition = 'opacity 0.3s'; progressWrap.style.opacity = '0'; }
+                if (waitingText)  { waitingText.style.transition  = 'opacity 0.3s'; waitingText.style.opacity  = '0'; }
 
-/* Headline: title – author একসাথে */
-.bc-headline {
-  font-size: 1.05rem;
-  line-height: 1.4;
-  margin: 0 0 0.35rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.bc-title {
-  font-weight: 600;
-  color: #1f2937;
-}
-.bc-card:hover .bc-title { text-decoration: none; }
+                setTimeout(() => {
+                    if (progressWrap) progressWrap.style.display = 'none';
+                    if (waitingText)  waitingText.style.display  = 'none';
+                    if (restartBtn)   restartBtn.style.display   = 'none';
 
-/* Description */
-.bc-desc {
-  margin-top: 0.1rem;
-  font-size: 0.88rem;
-  color: #6b7280;
-  line-height: 1.5;
-  text-align: justify;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
+                    if (DOWNLOAD_URL) {
+                        // একটামাত্র ডাউনলোড লিংক
+                        if (dlBtn) {
+                            dlBtn.href = DOWNLOAD_URL;
+                            dlBtn.classList.remove('hidden');
+                            dlBtn.classList.add('step-fade');
+                        }
+                    } else if (formatLinks) {
+                        // EPUB/MOBI/PDF — ৩টা আলাদা লিংক
+                        const epub = document.getElementById(prefix + 'format-link-epub');
+                        const pdf  = document.getElementById(prefix + 'format-link-pdf');
+                        if (epub) epub.href = FORMAT_URLS.EPUB;
+                        if (pdf)  pdf.href  = FORMAT_URLS.PDF;
+                        formatLinks.classList.remove('hidden');
+                        formatLinks.classList.add('step-fade');
+                    }
+                }, 300);
+            }
+        }, 1000);
+    }
 
-/*
-  Book card HTML template (reference — generate_pages.js এ ব্যবহার হয়):
-  <a href="/book/.html" class="bc-card">
-    <div class="bc-img-wrap">
-      <img src="" alt="" class="bc-img" loading="lazy">
-    </div>
-    <div class="bc-body">
-      <p class="bc-headline"><span class="bc-title"></span></p>
-      <p class="bc-desc"></p>
-    </div>
-  </a>
-*/
-</style>
+    function showStep(prefix, n) {
+        // FIX: step-3 নেই, শুধু 1 ও 2 toggle করা হচ্ছে
+        [1, 2].forEach(i => {
+            const el = document.getElementById(prefix + 'step-' + i);
+            if (!el) return;
+            if (i === n) { el.classList.remove('hidden'); el.classList.add('step-fade'); }
+            else el.classList.add('hidden');
+        });
+    }
 
-<style>
-.author-desc-md {
-    font-size: 1rem;
-    color: #6b7280;
-    line-height: 1.5rem;
-    text-align: justify;
-}
-.author-desc-md p { margin-bottom: 0.5rem; }
-.author-desc-md p:last-child { margin-bottom: 0; }
-.author-desc-md strong { font-weight: 600; color: inherit; }
-.author-desc-md em { font-style: italic; }
-.author-desc-md a { color: #0B57CF; text-decoration: underline; }
-.author-desc-md a:hover { color: #094aad; }
-.author-desc-md ul { list-style: disc; padding-left: 1.25rem; margin-bottom: 0.5rem; }
-.author-desc-md ol { list-style: decimal; padding-left: 1.25rem; margin-bottom: 0.5rem; }
-.author-desc-md li { margin-bottom: 0.2rem; }
-.author-desc-md h1,.author-desc-md h2,.author-desc-md h3 { font-weight: 700; margin-bottom: 0.4rem; color: inherit; }
-.author-desc-md h1 { font-size: 1.1rem; }
-.author-desc-md h2 { font-size: 1rem; }
-.author-desc-md h3 { font-size: 0.95rem; }
-.author-desc-md blockquote { border-left: 3px solid #6b7280; padding-left: 0.75rem; color: #4b5563; margin: 0.5rem 0; font-style: italic; }
-.author-desc-md code { background: #e5e7eb; color: #1f2937; border-radius: 3px; padding: 0.1rem 0.3rem; font-size: 0.85rem; font-family: monospace; }
-.author-desc-md pre { background: #F0F3F8; color: #1f2937; border-radius: 6px; padding: 0.75rem; overflow-x: auto; margin: 0.5rem 0; }
-.author-desc-md pre code { background: none; padding: 0; }
-.author-desc-md hr { border: none; border-top: 1px solid #e5e7eb; margin: 0.75rem 0; }
-</style>
+    // "ডাউনলোড লিংক পান" ক্লিক করার পরই countdown শুরু হয়ে শেষে আসল লিংক(গুলো) দেখা যায়
+    const mGetLinkBtn = document.getElementById('m-get-link-btn');
+    if (mGetLinkBtn) mGetLinkBtn.addEventListener('click', () => { showStep('m-', 2); startCountdown('m-'); });
+
+    const mRestart = document.getElementById('m-restart-btn');
+    if (mRestart) mRestart.addEventListener('click', () => showStep('m-', 1));
+
+    // প্রথমবার কোনো ডাউনলোড লিংকে ক্লিক করলে শুধু external ad লিংক নতুন ট্যাবে খুলবে।
+    // ads থেকে ফিরে আবার ক্লিক করলে আসল ডাউনলোড শুরু হবে।
+    const AD_URL = 'https://www.effectivecpmnetwork.com/xy4y06gcc0?key=0a786fa6fae9cb37d984706635ad88c3';
+    let adOpened = false;
+    function gateWithAd(el) {
+        if (!el) return;
+        el.addEventListener('click', (e) => {
+            if (!adOpened) {
+                e.preventDefault();
+                adOpened = true;
+                window.open(AD_URL, '_blank');
+            }
+        });
+    }
+    gateWithAd(document.getElementById('m-download-btn'));
+    gateWithAd(document.getElementById('m-format-link-epub'));
+    gateWithAd(document.getElementById('m-format-link-pdf'));
+})();
+</script>
 
     </main>
 
