@@ -8,16 +8,28 @@ const { marked } = require('marked');
 // options — output identical থাকার জন্য
 marked.setOptions({ breaks: true, gfm: true });
 
-// Author bio/description-এর ভেতরে কেউ যদি "# হেডিং" টাইপ markdown লেখে,
-// সেটা যেন আসল <h1>/<h2> ট্যাগ তৈরি না করে (পেজে ইতিমধ্যে একটা H1 আছে —
-// লেখকের নাম)। heading level ২ ধাপ নামিয়ে দেওয়া হচ্ছে যাতে সেগুলো h3+ হয়।
+// Author bio/book description-এর ভেতরে কেউ যদি "# হেডিং" (আসল H1) টাইপ
+// markdown লেখে, সেটা যেন পেজের বিদ্যমান H1-এর (বইয়ের নাম / লেখকের নাম)
+// সাথে duplicate না হয় — শুধু তখনই পুরো heading সেট ১ ধাপ নামানো হয়
+// (h1→h2, h2→h3...)। কিন্তু description-এ H1 না থেকে H2/H3 দিয়ে শুরু হলে
+// অপরিবর্তিত থাকে (h2→h2, h3→h3...) — কারণ পেজে একাধিক H2 থাকা সিমান্টিকভাবে
+// সম্পূর্ণ বৈধ, শুধু duplicate H1 এড়ানোই আসল উদ্দেশ্য। shift ভ্যারিয়েবলটা
+// প্রতিটা description parse করার ঠিক আগে computeHeadingShift() দিয়ে সেট
+// করা হয় (নিচে দ্র:), renderer সেই সময়কার মান পড়ে (synchronous, তাই safe)।
+let headingShift = 0;
 const headingSafeRenderer = new marked.Renderer();
 headingSafeRenderer.heading = function ({ tokens, depth }) {
-  const newDepth = Math.min(depth + 2, 6);
+  const newDepth = Math.min(depth + headingShift, 6);
   const text = this.parser.parseInline(tokens);
   return `<h${newDepth}>${text}</h${newDepth}>\n`;
 };
 marked.use({ renderer: headingSafeRenderer });
+
+// description-এ আসল H1 ("# ", "##" নয়) আছে কিনা যাচাই করে shift ঠিক করে
+function computeHeadingShift(markdown) {
+  if (!markdown) return 0;
+  return /^#(?!#)\s/m.test(markdown) ? 1 : 0;
+}
 
 // Firebase env var validation
 const REQUIRED_ENV = ['FIREBASE_PROJECT_ID', 'FIREBASE_CLIENT_EMAIL', 'FIREBASE_PRIVATE_KEY', 'FIREBASE_DATABASE_URL'];
@@ -295,6 +307,7 @@ async function generateBookPages() {
   console.log(`✅ ${bookList.length}টা বই পাওয়া গেছে।`);
 
   for (const book of bookList) {
+    headingShift = computeHeadingShift(book.description);
     const bookContent = render(bookTemplate, {
       book_title: book.title,
       book_title_json: JSON.stringify(book.title || ''),
@@ -494,6 +507,7 @@ async function generateAuthorPages(bookList, authorsRaw, categoriesRaw) {
 
     // author bio markdown build time-এই HTML-এ convert — client-side
     // marked.parse() এর উপর নির্ভরতা বাদ
+    headingShift = computeHeadingShift(data.desc);
     const authorDescHtml = data.desc ? marked.parse(data.desc) : '';
 
     // meta description: bio থাকলে সেটার plain-text সামারি, না থাকলে
