@@ -77,9 +77,10 @@
             padding: 0 0.5rem 0 0;
         }
         .header-right { display: flex; align-items: stretch; gap: 0; flex: 1 1 auto; height: 100%; }
-        #header-search-btn, #header-search-close-btn {
+        #header-search-btn, #header-search-close-btn, #header-bookmark-btn {
             background: none; border: none; padding: 0; cursor: pointer;
             color: #1f2937;
+            font: inherit;
         }
         .brand-name-light { font-weight: 300; color: #6b7280; }
 
@@ -299,6 +300,117 @@
             text-decoration: none;
             border-top: 1px solid rgba(17,24,39,0.08);
         }
+
+        /* ── বুকমার্ক sidebar — header-এর bookmark icon-এ tap করলে ডান দিক থেকে স্লাইড করে আসে ── */
+        #bookmark-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(17,24,39,0.45);
+            z-index: 300;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0s linear 0.25s;
+        }
+        #bookmark-backdrop.open {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.25s ease;
+        }
+        #bookmark-sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            height: 100dvh;
+            width: 85vw;
+            max-width: 22rem;
+            background: #ffffff;
+            z-index: 301;
+            box-shadow: -8px 0 24px rgba(17,24,39,0.18);
+            transform: translateX(100%);
+            transition: transform 0.28s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        #bookmark-sidebar.open { transform: translateX(0); }
+        .bm-sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 3.5rem;
+            flex: 0 0 auto;
+            padding: 0 0.5rem 0 1.1rem;
+            border-bottom: 1px solid rgba(17,24,39,0.08);
+        }
+        .bm-sidebar-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        #bookmark-close-btn {
+            background: none; border: none; padding: 0.6rem; cursor: pointer;
+            color: #1f2937;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .bm-sidebar-body {
+            flex: 1 1 auto;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .bm-list { list-style: none; }
+        .bm-item {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 0.7rem 1.1rem;
+            text-decoration: none;
+            color: inherit;
+            border-bottom: 1px solid rgba(17,24,39,0.06);
+        }
+        .bm-item:active { background: #F0F3F8; }
+        .bm-thumb {
+            flex-shrink: 0;
+            width: 2.6rem;
+            height: 3.5rem;
+            border-radius: 4px;
+            object-fit: cover;
+            background: #e5e7eb;
+        }
+        .bm-body { min-width: 0; flex: 1; }
+        .bm-title {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: #1f2937;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .bm-remove-btn {
+            flex-shrink: 0;
+            background: none; border: none; cursor: pointer;
+            color: rgba(17,24,39,0.35);
+            padding: 0.5rem;
+        }
+        .bm-empty {
+            padding: 3rem 1.5rem;
+            text-align: center;
+            color: #6b7280;
+        }
+        .bm-empty i {
+            font-size: 2.2rem;
+            color: rgba(17,24,39,0.15);
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+        .bm-empty p { margin: 0; font-size: 0.9rem; }
+        .bm-empty a {
+            display: inline-block;
+            margin-top: 0.9rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #0B57CF;
+            text-decoration: none;
+        }
     </style>
     <!-- থিম সবসময় day/light mode — dark mode বাদ দেওয়া হয়েছে, accent: #0B57CF -->
 </head>
@@ -310,9 +422,9 @@
             <div class="header-right">
                 <nav class="header-nav-group">
                     <div class="header-nav-links">
-                        <a href="/bookmarks/" data-nav-path="/bookmarks/" class="header-nav-btn header-bookmark-btn" aria-label="বুকমার্ক">
+                        <button id="header-bookmark-btn" type="button" class="header-nav-btn header-bookmark-btn" aria-label="বুকমার্ক" aria-haspopup="true" aria-expanded="false" aria-controls="bookmark-sidebar">
                             <span class="header-nav-label header-nav-icon-label"><i class="fa-solid fa-bookmark"></i></span>
-                        </a>
+                        </button>
                         <a href="/" data-nav-path="/" class="header-nav-btn" aria-label="প্রধান পাতা">
                             <span class="header-nav-label">প্রধান পাতা</span>
                         </a>
@@ -342,6 +454,25 @@
     </header>
     <!-- header fixed হওয়ায় নিচের কনটেন্টের জন্য একই উচ্চতার একটি spacer -->
     <div id="header-spacer"></div>
+
+    <!-- বুকমার্ক sidebar — header-এর bookmark icon থেকে টগল হয় -->
+    <div id="bookmark-backdrop"></div>
+    <aside id="bookmark-sidebar" aria-label="বুকমার্ক" aria-hidden="true">
+        <div class="bm-sidebar-header">
+            <span class="bm-sidebar-title">বুকমার্ক</span>
+            <button id="bookmark-close-btn" type="button" aria-label="বন্ধ করুন">
+                <i class="fa-solid fa-xmark icon-lg"></i>
+            </button>
+        </div>
+        <div class="bm-sidebar-body">
+            <ul id="bookmark-list" class="bm-list"></ul>
+            <div id="bookmark-empty" class="bm-empty hidden">
+                <i class="fa-regular fa-bookmark"></i>
+                <p>এখনো কোনো বই বুকমার্ক করেননি</p>
+                <a href="/">বই খুঁজে দেখুন</a>
+            </div>
+        </div>
+    </aside>
 
     <script>
     // Inline search box টগল করা + live autosuggest — header-এ ব্যবহৃত হয়
@@ -1074,6 +1205,106 @@
                 var re = rules[navPath];
                 if (re && re.test(path)) btn.classList.add('active');
             });
+        })();
+    </script>
+
+    <script>
+        // বুকমার্ক sidebar — bookmark icon-এ tap করলে খুলবে/বন্ধ হবে
+        (function () {
+            var STORAGE_KEY = 'pg-bookmarks';
+            var openBtn = document.getElementById('header-bookmark-btn');
+            var closeBtn = document.getElementById('bookmark-close-btn');
+            var backdrop = document.getElementById('bookmark-backdrop');
+            var sidebar = document.getElementById('bookmark-sidebar');
+            var listEl = document.getElementById('bookmark-list');
+            var emptyEl = document.getElementById('bookmark-empty');
+            if (!openBtn || !sidebar) return;
+
+            function getBookmarks() {
+                try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+                catch (e) { return []; }
+            }
+
+            function saveBookmarks(list) {
+                try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); } catch (e) {}
+            }
+
+            function esc(s) {
+                return String(s || '').replace(/[&<>"']/g, function (c) {
+                    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+                });
+            }
+
+            function render() {
+                var books = getBookmarks();
+                if (!books.length) {
+                    listEl.innerHTML = '';
+                    emptyEl.classList.remove('hidden');
+                    return;
+                }
+                emptyEl.classList.add('hidden');
+                listEl.innerHTML = books.map(function (b) {
+                    return '<li>'
+                        + '<a href="/book/' + esc(b.slug) + '.html" class="bm-item">'
+                        + '<img class="bm-thumb" src="' + esc(b.cover || '') + '" alt="" loading="lazy">'
+                        + '<span class="bm-body"><span class="bm-title">' + esc(b.title) + '</span></span>'
+                        + '<button type="button" class="bm-remove-btn" data-remove-slug="' + esc(b.slug) + '" aria-label="বুকমার্ক থেকে সরান"><i class="fa-solid fa-xmark"></i></button>'
+                        + '</a>'
+                        + '</li>';
+                }).join('');
+            }
+
+            function openSidebar() {
+                render();
+                backdrop.classList.add('open');
+                sidebar.classList.add('open');
+                openBtn.setAttribute('aria-expanded', 'true');
+                sidebar.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeSidebar() {
+                backdrop.classList.remove('open');
+                sidebar.classList.remove('open');
+                openBtn.setAttribute('aria-expanded', 'false');
+                sidebar.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            openBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                openSidebar();
+            });
+            closeBtn.addEventListener('click', closeSidebar);
+            backdrop.addEventListener('click', closeSidebar);
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && sidebar.classList.contains('open')) closeSidebar();
+            });
+
+            // ভবিষ্যতে বই-পেজ থেকে বুকমার্ক যোগ/বাতিল করতে ব্যবহারযোগ্য
+            listEl.addEventListener('click', function (e) {
+                var btn = e.target.closest('[data-remove-slug]');
+                if (!btn) return;
+                e.preventDefault();
+                e.stopPropagation();
+                var slug = btn.getAttribute('data-remove-slug');
+                var updated = getBookmarks().filter(function (b) { return b.slug !== slug; });
+                saveBookmarks(updated);
+                render();
+            });
+
+            window.pgBookmarks = {
+                getAll: getBookmarks,
+                has: function (slug) { return getBookmarks().some(function (b) { return b.slug === slug; }); },
+                add: function (book) {
+                    var list = getBookmarks().filter(function (b) { return b.slug !== book.slug; });
+                    list.unshift(book);
+                    saveBookmarks(list);
+                },
+                remove: function (slug) {
+                    saveBookmarks(getBookmarks().filter(function (b) { return b.slug !== slug; }));
+                }
+            };
         })();
     </script>
 
