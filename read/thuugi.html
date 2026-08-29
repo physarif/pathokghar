@@ -56,13 +56,17 @@
 </script>
     <style>
         body {
+            margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #f9fafb;
             color: #1f2937;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            transition: background 0.3s;
         }
+        body.theme-light { background: #ffffff; }
+        body.theme-dark { background: #1c1c1e; }
         #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
         #read-column { flex: 1 1 auto; min-width: 0; }
         #read-main-content {
@@ -281,6 +285,22 @@
 
     #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
 
+    /* ── Reading progress line — header-এর বাইরে, স্বাধীন fixed element,
+       তাই body.bars-hidden দিয়ে header হাইড হলেও এটা visible থাকবে ── */
+    #reading-progress-bar {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        background: var(--bar-btn-active);
+        z-index: 70;
+        pointer-events: none;
+    }
+    #reading-progress-fill {
+        height: 100%;
+        width: 0%;
+        background: var(--bar-accent);
+    }
+
     /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
     #reader-header {
         position: fixed;
@@ -354,42 +374,6 @@
         transition: background 0.15s, color 0.3s;
     }
     #reader-header .rh-actions button:active { background: var(--bar-btn-active); }
-
-    /* ── Header row 3: thin seek/progress line ── */
-    #rf-slider {
-        -webkit-appearance: none;
-        appearance: none;
-        display: block;
-        width: calc(100% + 0.35rem);
-        margin: 0 -0.25rem 0 -0.1rem;
-        height: 3px;
-        border-radius: 0;
-        background: transparent;
-        outline: none;
-        cursor: pointer;
-    }
-    #rf-slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 13px; height: 13px;
-        border-radius: 50%;
-        background: var(--bar-accent);
-        border: 2px solid var(--bar-bg);
-        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
-        cursor: pointer;
-        margin-top: -5px;
-    }
-    #rf-slider::-moz-range-thumb {
-        width: 13px; height: 13px;
-        border-radius: 50%;
-        background: var(--bar-accent);
-        border: 2px solid var(--bar-bg);
-        box-shadow: 0 1px 4px rgba(0,0,0,0.4);
-        cursor: pointer;
-        border: none;
-    }
-    #rf-slider::-webkit-slider-runnable-track { height: 3px; background: transparent; }
-    #rf-slider::-moz-range-track { height: 3px; background: transparent; }
 
 
     /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
@@ -609,11 +593,14 @@
 
 </style>
 
-<!-- ══ Reader header (back + title/chapter stack + actions, seek line) ══ -->
+<!-- ══ Reading progress line — header হাইড হলেও visible থাকে ══ -->
+<div id="reading-progress-bar"><div id="reading-progress-fill"></div></div>
+
+<!-- ══ Reader header (back + title/chapter stack + actions) ══ -->
 <header id="reader-header">
     <div id="rh-row1">
         <a href="/book/thuugi.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
-            <i class="fas fa-arrow-left"></i>
+            <i class="fa-solid fa-angle-left"></i>
         </a>
         <div id="rh-titles">
             <h1 id="rh-title">ঠগী</h1>
@@ -622,7 +609,6 @@
             <button id="rh-menu-btn" aria-label="সূচিপত্র ও কাস্টমাইজ" title="সূচিপত্র ও কাস্টমাইজ"><i class="fa-solid fa-list-ul"></i></button>
         </div>
     </div>
-    <input type="range" id="rf-slider" min="0" max="1000" value="0" aria-label="পড়ার অগ্রগতি">
 </header>
 
 
@@ -838,6 +824,7 @@
     window.addEventListener('scroll', onScrollFade, { passive: true });
 
     // ── Progress bar on scroll ──
+    const progressFill = document.getElementById('reading-progress-fill');
     function updateProgress(el) {
         let scrollTop, scrollHeight, clientHeight;
         if (el === window) {
@@ -851,21 +838,10 @@
         }
         const docH = scrollHeight - clientHeight;
         const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
-        if (rfSlider && !rfSliderDragging) rfSlider.value = Math.round(pct * 10);
+        if (progressFill) progressFill.style.width = pct + '%';
     }
     window.addEventListener('scroll', () => updateProgress(window), { passive: true });
-
-    // ── Footer: seek slider ──
-    const rfSlider  = document.getElementById('rf-slider');
-    let rfSliderDragging = false;
-    if (rfSlider) {
-        rfSlider.addEventListener('input', () => {
-            rfSliderDragging = true;
-            const docH = document.documentElement.scrollHeight - window.innerHeight;
-            window.scrollTo({ top: (rfSlider.value / 1000) * docH, behavior: 'auto' });
-        });
-        rfSlider.addEventListener('change', () => { rfSliderDragging = false; });
-    }
+    updateProgress(window);
 
     // ── Build TOC ──
     const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
