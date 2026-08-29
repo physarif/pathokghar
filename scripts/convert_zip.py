@@ -269,6 +269,26 @@ def download_file(url, dest):
             f.write(response.read())
 
 
+# ─── change-detection state ────────────────────────────────────────────────────
+# আগে শুধু content/{slug}.html ফাইলটা আছে কিনা দেখেই "already converted" ধরে
+# নেওয়া হতো — তাই Firebase-এ কারো zip URL বদলে (নতুন ভার্সন আপলোড করে) দিলেও
+# পুরনো content/read ফাইলই থেকে যেত। এখন প্রতিটা slug-এর zip URL একটা state
+# file-এ (convert-state.json) সেভ থাকে; Firebase-এর URL-এর সাথে না মিললে
+# তবেই re-download + re-convert হবে। এই ফাইলটা build.yml-এর rsync exclude
+# লিস্টে নেই বলে "assets" ব্রাঞ্চে সেভ থাকে ও পরের build-এ restore হয়।
+STATE_FILE = 'convert-state.json'
+if os.path.exists(STATE_FILE):
+    with open(STATE_FILE, 'r', encoding='utf-8') as f:
+        convert_state = json.load(f)
+else:
+    convert_state = {}
+
+
+def save_state():
+    with open(STATE_FILE, 'w', encoding='utf-8') as f:
+        json.dump(convert_state, f, ensure_ascii=False, indent=2)
+
+
 # ─── main ──────────────────────────────────────────────────────────────────────
 with open('components/read.html', 'r', encoding='utf-8') as f:
     read_template = f.read()
@@ -309,11 +329,15 @@ for uid, book in books.items():
     css_file = os.path.join('assets', 'css', f'{slug}.css')
     css_link_tag = f'<link rel="stylesheet" href="/assets/css/{slug}.css">' if os.path.exists(css_file) else ''
 
-    if os.path.exists(content_path):
-        print(f'  ⏭ {slug} — already converted, skip')
+    # zip URL অপরিবর্তিত এবং content আগে থেকেই তৈরি থাকলেই কেবল skip —
+    # নাহলে (নতুন বই বা Firebase-এ zip URL বদলেছে) re-download + re-convert
+    url_unchanged = convert_state.get(slug) == file_url
+    if os.path.exists(content_path) and url_unchanged:
+        print(f'  ⏭ {slug} — zip অপরিবর্তিত, skip')
     else:
         local_file = f'/tmp/{slug}.zip'
-        print(f'  📥 {slug} download করছি...')
+        reason = 'নতুন zip URL পাওয়া গেছে' if os.path.exists(content_path) else 'নতুন বই'
+        print(f'  📥 {slug} ({reason}) download করছি...')
         try:
             download_file(file_url, local_file)
 
@@ -324,6 +348,9 @@ for uid, book in books.items():
                 f.write(html_content)
             print(f'  ✓ content/{slug}.html')
             os.remove(local_file)
+
+            convert_state[slug] = file_url
+            save_state()
 
         except Exception as e:
             print(f'  ❌ {slug} error: {e}')
