@@ -9,9 +9,10 @@
     <meta name="robots" content="noindex, follow">
     <link rel="canonical" href="https://pathokghar.pages.dev/book/amar-obishas.html">
     <title>আমার অবিশ্বাস - পাঠক ঘর</title>
-    <meta name="description" content="প্রয়াত কথাসাহিত্যিক ও চিন্তাবিদ হুমায়ুন আজাদের বহুল আলোচিত এবং বিতর্কিত একটি মননশীল প্রবন্ধগ্রন্থ ‘আমার অবিশ্বাস’। এটি মূলত প্রথা, অন্ধবিশ্বাস, ধর্ম, এবং গোঁড">
+    <meta name="description" content="**_আমার অবিশ্বাস_** হুমায়ুন আজাদের একটি সাহসী **দার্শনিক ও প্রবন্ধধর্মী গ্রন্থ**, যেখানে তিনি বিশ্বাসের প্রচলিত ধারণাকে প্রশ্ন করেছেন যুক্তি, বিজ্ঞান ও মুক্তচি">
     <meta property="og:title" content="আমার অবিশ্বাস - পাঠক ঘর">
-    <meta property="og:description" content="প্রয়াত কথাসাহিত্যিক ও চিন্তাবিদ হুমায়ুন আজাদের বহুল আলোচিত এবং বিতর্কিত একটি মননশীল প্রবন্ধগ্রন্থ ‘আমার অবিশ্বাস’। এটি মূলত প্রথা, অন্ধবিশ্বাস, ধর্ম, এবং গোঁড">
+    <meta property="og:description" content="**_আমার অবিশ্বাস_** হুমায়ুন আজাদের একটি সাহসী **দার্শনিক ও প্রবন্ধধর্মী গ্রন্থ**, যেখানে তিনি বিশ্বাসের প্রচলিত ধারণাকে প্রশ্ন করেছেন যুক্তি, বিজ্ঞান ও মুক্তচি">
+    <meta name="theme-color" id="theme-color-meta" content="#ffffff">
     <link rel="stylesheet" href="/components/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,6 +44,8 @@
             '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
             '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
         document.head.appendChild(style);
+        var meta = document.getElementById('theme-color-meta');
+        if (meta) meta.setAttribute('content', bg);
         // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
         document.addEventListener('DOMContentLoaded', function() {
             var el = document.getElementById('fouc-shield');
@@ -286,12 +289,11 @@
         display: flex;
         flex-direction: column;
         padding: 0 0.5rem 0 0.35rem;
-        background: #C2D7FC;
+        background: var(--bar-bg);
         box-shadow: 0 2px 10px rgba(0,0,0,0.15);
         transition: background 0.3s, transform 0.28s ease;
     }
     body.bars-hidden #reader-header { transform: translateY(-100%); }
-    body.theme-dark #reader-header { background: #1c2b4a; }
     #rh-row1 {
         padding-top: 0.4rem;
         display: flex;
@@ -1680,6 +1682,8 @@ Philosophy will clip an Angel’s Wings.</p>
             document.body.classList.add('theme-' + t);
             mobileReaderBg.style.background = m.bg;
             bookContent.style.color = m.text;
+            const themeColorMeta = document.getElementById('theme-color-meta');
+            if (themeColorMeta) themeColorMeta.setAttribute('content', m.bg);
 
             const activeAccent = getComputedStyle(document.body).getPropertyValue('--bar-accent').trim();
             document.querySelectorAll('.theme-circle').forEach(b => {

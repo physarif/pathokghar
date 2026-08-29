@@ -12,6 +12,7 @@
     <meta name="description" content="শরৎচন্দ্র চট্টোপাধ্যায়ের **'নিষ্কৃতি'** (১৯১৭) বাংলা সাহিত্যের একটি কালজয়ী সামাজিক উপন্যাস। তৎকালীন বাঙালি যৌথ পরিবারের জটিল মনস্তত্ত্ব, পারস্পরিক কলহ, স্বার্থ">
     <meta property="og:title" content="নিষ্কৃতি - পাঠক ঘর">
     <meta property="og:description" content="শরৎচন্দ্র চট্টোপাধ্যায়ের **'নিষ্কৃতি'** (১৯১৭) বাংলা সাহিত্যের একটি কালজয়ী সামাজিক উপন্যাস। তৎকালীন বাঙালি যৌথ পরিবারের জটিল মনস্তত্ত্ব, পারস্পরিক কলহ, স্বার্থ">
+    <meta name="theme-color" id="theme-color-meta" content="#ffffff">
     <link rel="stylesheet" href="/components/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,6 +44,8 @@
             '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
             '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
         document.head.appendChild(style);
+        var meta = document.getElementById('theme-color-meta');
+        if (meta) meta.setAttribute('content', bg);
         // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
         document.addEventListener('DOMContentLoaded', function() {
             var el = document.getElementById('fouc-shield');
@@ -286,12 +289,11 @@
         display: flex;
         flex-direction: column;
         padding: 0 0.5rem 0 0.35rem;
-        background: #C2D7FC;
+        background: var(--bar-bg);
         box-shadow: 0 2px 10px rgba(0,0,0,0.15);
         transition: background 0.3s, transform 0.28s ease;
     }
     body.bars-hidden #reader-header { transform: translateY(-100%); }
-    body.theme-dark #reader-header { background: #1c2b4a; }
     #rh-row1 {
         padding-top: 0.4rem;
         display: flex;
@@ -1478,6 +1480,8 @@
             document.body.classList.add('theme-' + t);
             mobileReaderBg.style.background = m.bg;
             bookContent.style.color = m.text;
+            const themeColorMeta = document.getElementById('theme-color-meta');
+            if (themeColorMeta) themeColorMeta.setAttribute('content', m.bg);
 
             const activeAccent = getComputedStyle(document.body).getPropertyValue('--bar-accent').trim();
             document.querySelectorAll('.theme-circle').forEach(b => {
