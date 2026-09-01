@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="bn"> 
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/banglar-begum-1912.html">
+    <title>বাংলার বেগম - পাঠক ঘর</title>
+    <meta name="description" content="বাংলার নবাবি আমলের ইতিহাসকে শুধু নবাবদের দৃষ্টিকোণ থেকে নয়, অন্দরমহলের প্রভাবশালী নারীদের জীবন ও ভূমিকার মধ্য দিয়েও দেখার এক গুরুত্বপূর্ণ প্রচেষ্টা **‘বাঙ্গ্‌">
+    <meta property="og:title" content="বাংলার বেগম - পাঠক ঘর">
+    <meta property="og:description" content="বাংলার নবাবি আমলের ইতিহাসকে শুধু নবাবদের দৃষ্টিকোণ থেকে নয়, অন্দরমহলের প্রভাবশালী নারীদের জীবন ও ভূমিকার মধ্য দিয়েও দেখার এক গুরুত্বপূর্ণ প্রচেষ্টা **‘বাঙ্গ্‌">
+    <meta name="theme-color" id="theme-color-meta" content="#ffffff">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', dark:'#1c1c1e' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', dark:'#e5e7eb' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        var meta = document.getElementById('theme-color-meta');
+        if (meta) meta.setAttribute('content', bg);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+        body.theme-light { background: #ffffff; }
+        body.theme-dark { background: #1c1c1e; }
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.6rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+</style>
+</head>
+<body>
+
+<style>
+    /* ── Bar theme variables (header / footer / drawer) — follow reading mode ── */
+    :root, body {
+        --bar-bg: #ffffff;
+        --bar-text: #1a1a1b;
+        --bar-text-dim: rgba(26,26,27,0.55);
+        --bar-border: rgba(0,0,0,0.1);
+        --bar-btn-active: rgba(0,0,0,0.06);
+        --bar-track: rgba(0,0,0,0.12);
+        --bar-accent: #0B57CF;
+        --bar-accent-soft: rgba(11,87,207,0.12);
+    }
+    body.theme-dark {
+        --bar-bg: #232326;
+        --bar-text: #e5e7eb;
+        --bar-text-dim: rgba(229,231,235,0.55);
+        --bar-border: rgba(255,255,255,0.1);
+        --bar-btn-active: rgba(255,255,255,0.08);
+        --bar-track: rgba(255,255,255,0.18);
+        --bar-accent: #3b82f6;
+        --bar-accent-soft: rgba(59,130,246,0.2);
+    }
+
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--bar-accent);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid var(--bar-accent-soft);
+        border-bottom: 1px solid var(--bar-accent-soft);
+        transition: color 0.3s, border-color 0.3s;
+    }
+    #book-content h1,
+    #book-content h3 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--bar-accent);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid var(--bar-accent-soft);
+        border-bottom: 1px solid var(--bar-accent-soft);
+        transition: color 0.3s, border-color 0.3s;
+    }
+    /* h1/h2 colors now follow --bar-text-dim / --bar-accent (see :root theme variables above),
+       so they automatically match light / dark modes. */
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p {
+        background: #232326;
+        border-color: rgba(255,255,255,0.08);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #0B57CF;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #0B57CF;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(11,87,207,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #0B57CF;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(11,87,207,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2, #book-content h3 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: var(--bar-accent);
+        font-weight: 600;
+        background: var(--bar-accent-soft);
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: var(--bar-text);
+        border-bottom: 1px solid var(--bar-border);
+        transition: color 0.15s, background 0.3s, border-color 0.3s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: var(--bar-text-dim);
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reading progress line — header-এর বাইরে, স্বাধীন fixed element,
+       তাই body.bars-hidden দিয়ে header হাইড হলেও এটা visible থাকবে ── */
+    #reading-progress-bar {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        background: var(--bar-btn-active);
+        z-index: 70;
+        pointer-events: none;
+    }
+    #reading-progress-fill {
+        height: 100%;
+        width: 0%;
+        background: var(--bar-accent);
+    }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        flex-direction: column;
+        padding: 0 0.5rem 0 0.35rem;
+        background: var(--bar-bg);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-row1 {
+        padding-top: 0.4rem;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding-bottom: 0.4rem;
+    }
+    #rh-back {
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0B57CF;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: background 0.15s, color 0.3s;
+    }
+    #rh-back:active { background: var(--bar-btn-active); }
+    #rh-titles {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+    }
+    #rh-title {
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.98rem;
+        font-weight: 600;
+        color: var(--bar-text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: color 0.3s;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 34px;
+        height: 34px;
+        border: none;
+        background: transparent;
+        color: #0B57CF;
+        border-radius: 7px;
+        font-size: 1.05rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s, color 0.3s;
+    }
+    #reader-header .rh-actions button:active { background: var(--bar-btn-active); }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: var(--bar-bg);
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease, background 0.3s;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid var(--bar-border);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--bar-text-dim);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: var(--bar-accent);
+        border-bottom-color: var(--bar-accent);
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--bar-accent);
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--bar-text);
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: auto;
+        min-width: 64px;
+        height: 34px;
+        flex: 1 1 0;
+        padding: 0 12px;
+        border-radius: 8px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        box-shadow: 0 0 0 1px var(--bar-border);
+    }
+    .theme-circle.active { border-color: var(--bar-accent); }
+    .theme-circle svg { display: none; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--bar-border);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: var(--bar-text); }
+    .settings-row-val { font-size: 0.74rem; color: var(--bar-text-dim); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid var(--bar-border);
+        background: var(--bar-btn-active);
+        color: var(--bar-text);
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: var(--bar-accent-soft); border-color: var(--bar-accent); color: var(--bar-text); }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid var(--bar-border);
+        background: var(--bar-btn-active);
+        color: var(--bar-text);
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: var(--bar-accent-soft) !important;
+        border-color: var(--bar-accent) !important;
+        color: var(--bar-text) !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid var(--bar-border);
+        background: transparent;
+        color: var(--bar-text);
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: var(--bar-accent-soft) !important;
+        border-color: var(--bar-accent) !important;
+        color: var(--bar-text) !important;
+    }
+
+</style>
+
+<!-- ══ Reading progress line — header হাইড হলেও visible থাকে ══ -->
+<div id="reading-progress-bar"><div id="reading-progress-fill"></div></div>
+
+<!-- ══ Reader header (back + title/chapter stack + actions) ══ -->
+<header id="reader-header">
+    <div id="rh-row1">
+        <a href="/book/banglar-begum-1912.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+            <i class="fa-solid fa-angle-left"></i>
+        </a>
+        <div id="rh-titles">
+            <h1 id="rh-title">বাংলার বেগম</h1>
+        </div>
+        <div class="rh-actions">
+            <button id="rh-menu-btn" aria-label="সূচিপত্র ও কাস্টমাইজ" title="সূচিপত্র ও কাস্টমাইজ"><i class="fa-solid fa-list-ul"></i></button>
+        </div>
+    </div>
+</header>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle" data-theme="light" style="background:#fff;border-color:#0B57CF;" title="সাদা"></button>
+                    <button class="theme-circle active" data-theme="dark" style="background:#3a3a3a;border-color:#3b82f6;" title="ডার্ক">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e5e7eb" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-justify" title="জাস্টিফাই">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <section><div>
+
+
+<h2>লুৎফুন্নিসা</h2>
+<p>বাঙ্গালার হতভাগ্য শেষ স্বাধীন নবাব সিরাজুদ্দৌলার জীবনের কাহিনী ইতিহাস-পাঠকের নিকট অপরিজ্ঞাত নহে; কিন্তু তাঁহার প্রধানা বেগম লুৎফুন্নিসার নামমাত্র অনেকের নিকট পরিচিত থাকিলেও, তাঁহার জীবনের ঘটনাবলী সম্বন্ধে অল্পই জানিতে পারা যায়।
+</p><p>লুৎফুন্নিসা কোন সম্ভ্রান্ত বংশে জন্মগ্রহণ করেন নাই। তিনি অতি অল্প বয়সেই ক্রীতদাসীরূপে<sup><a href="#cite_note-1">[১]</a></sup> নবাব আলিবর্দ্দীর বেগমমহলে প্রবিষ্ট হ’ন। নবাবের প্রিয় দৌহিত্র সিরাজ অতি অল্প কালের মধ্যেই তাঁহার অনুপম রূপ-লাবণ্য ও নব-যৌবনের সৌন্দর্য্যরাশি দেখিয়া বিমোহিত হইয়াছিলেন। পতঙ্গের অনল-প্রীতির ন্যায় সিরাজেরও রূপোন্মাদ ঘটিয়াছিল। সিরাজ তাঁহাকে কামনার বস্তু মনে করিয়া উপভোগের জন্য লালায়িত হইয়াছিলেন। লুৎফুন্নিসা কিন্তু বাঙ্গালার ভাবী নবাবকে বহুবার প্রত্যাখ্যান করিয়াছিলেন এবং বিবাহ ব্যতীত কিছুতেই তাঁহার অঙ্কশায়িনী হইতে স্বীকৃত হ’ন নাই। বিবাহের পথে প্রধান কণ্টক আভিজাত্য জানিয়াও ক্রীতদাসী কিছুতেই ভাবী নবাবের লালসার সামগ্রী হইতে চাহিলেন না। কালক্রমে প্রথম প্রেমের উন্মত্ততা কিছু হ্রাস হইলে—রূপজ-মােহের ঘোর কিছু কাটিয়া আসিলে, তিনি তাঁহার গুণের পক্ষপাতী হইলেন। রূপ-লালসার স্থান প্রেম অধিকার করিল। গুণমুগ্ধ সিরাজ ক্রীতদাসীকে আত্মসমর্পণ করিয়া ফেলিলেন—তাঁহাকে প্রণয়িণীরূপে গ্রহণ করিতে স্বীকৃত হইলেন; কিন্তু এই প্রস্তাব মাতামহীর নিকট কি প্রকারে উথাপন করিবেন, ইহা ভাবিয়াই উভয়ে অস্থির হইলেন। শেষে বুদ্ধিমতী লুৎফুন্নিসার পরামর্শে মাতামহীর নিকট সিরাজ সকল কথাই জ্ঞাপন করিলেন। মাতামহীও স্নেহের সিরাজের ভাবান্তর কিছুদিন হইতে লক্ষ্য করিতেছিলেন। তিনি সিরাজকে এই বিবাহ হইতে নিবৃত্ত করিবার জন্য নানা উপদেশ দিলেন— কত সুন্দরী কন্যার প্রলােভন দেখাইলেন—বাঙ্গালার ভাবী নবাবের পক্ষে ক্রীতদাসী- বিবাহ যুক্তিসঙ্গত নয়, ইহাও বুঝাইলেন; কিন্তু সিরাজের মনে সেগুলির একটী রেখাও মুদ্রিত হইল না। সিরাজ মাতামহীর নিকট প্রতিজ্ঞা করিলেন—বাঙ্গালার মসনদ চাই না—চাই না তােমার রাজৈশ্বর্য্য—চাই শুধু লুৎফুন্নিসা। যদি লুৎফুন্নিসাকে না পাই, তবে ফকিরী গ্রহণ করিয়া নির্জ্জন বনে বাস করিব। মাতামহী সিরাজ-চরিত্র বুঝিতেন, তিনি নবার আলিবর্দ্দীর নিকট সকল কথা খুলিয়া বলিলেন। আলিবর্দ্দী এই সংবাদ শুনিয়া প্রথমে অত্যন্ত ক্রুদ্ধ হইয়াছিলেন, কিন্তু বেগম সাহেবার অনুরােধে শেষে তাঁহাকে সম্মত হইতে হইয়াছিল—প্রণয়িণীর চক্ষের জল অটলপ্রতিজ্ঞ বৃদ্ধ নবাবকেও দ্রবীভূত করিয়াছিল।
+</p><p>লুৎফুন্নিসা সিরাজের পরিণীতা পত্নী কি না, এ সম্বন্ধে ঐতিহাসিকগণের মধ্যে অনেক বাদানুবাদ দেখিতে পাওয়া যায়। প্রথমতঃ, আমরা দেখিতে পাই, হাজি অহম্মদের দৌহিত্রী—আতা উল্লা খাঁর কন্যার সহিত সিরাজের বিবাহ ধার্য্য হয়; কিন্তু হঠাৎ ঐ কন্যাটীর মৃত্যু হওয়ায়, ইরাজ খাঁর কন্যার সহিত সিরাজ পরিণয়-সূত্রে আবদ্ধ হ’ন এবং এই ইরাজ খাঁর কন্যাই সিরাজের প্রথম বিবাহিতা পত্নী;<sup><a href="#cite_note-2">[২]</a></sup> কিন্তু সমসাময়িক ইতিহাস বা নিজাম রেকর্ডে কোথাও তাঁহার এই পত্নীর সবিশেষ উল্লেখ নাই। ঐতিহাসিকেরা এক বাক্যে লুৎফুন্নিসাকেই সিরাজ-বনিতা বলিয়া নির্দ্দেশ করিয়াছেন। বাস্তবিকই লুৎফুন্নিসা সিরাজের সুখ-দুঃখের সহচরী ছিলেন এবং চিরদিন ছায়ার ন্যায় তাঁহার অনুবর্ত্তিনী হইয়াছিলেন। লুৎফুন্নিসার পাটনা-গমন হইতে আমরা এ বিষয়ের সুস্পষ্ট প্রমাণ পাইয়া থাকি।
+</p><p>সিরাজের পিতা জৈনুদ্দীন আহম্মদ আফগানগণ কর্ত্তৃক নিহত হইলে, নবাব আলিবর্দ্দী সিরাজকে বেহারের শাসনকর্ত্তা এবং রাজা জানকীরামকে তাঁহার সহকারীরূপে বেহারে পাঠান। নবাব সিরাজকে অত্যন্ত স্নেহ করিতেন এবং এক মুহূর্ত্ত তাঁহাকে নয়নের অন্তরালে রাখিতে পারিতেন না। তিনি জানকীরামকে পাটনার শাসনকার্য্যের সমস্ত ভার দিয়া সিরাজকে পুনরানয়ন করিয়া নিজের নিকটে রাখেন। এই সময় মেহেদীনেসার (মুতাক্ষরীণ-প্রণেতা গােলাম হােসেনের মাতুল) ও কয়েকজন চাটুকার সিরাজকে বুঝাইয়া দিল যে, যদিও নবাব আলিবর্দ্দী তাঁহার পৈতৃক সিংহাসন বেহার প্রদেশ তাঁহাকে অর্পণ করিয়াছেন; কিন্তু কার্য্যতঃ এক্ষণে জানকীরামই শাসনকর্ত্তা। সিরাজ এই কুপরামর্শ অনুসারে জানকীরামের নিকট হইতে পৈতৃক সিংহাসন উদ্ধার করিয়া স্বাধীনভাবে রাজকার্য্য পরিচালনা করিতে মনস্থ করিলেন। তিনি লুৎফুন্নিসা ও অনুচরবর্গের সহিত রাত্রিযোগে পাটনা যাত্রা করিলেন। নানা বিপদ ঘটিবার সম্ভাবনা দেখিয়া সিরাজ প্রথমে লুৎফুন্নিসাকে সঙ্গে লইতে অনিচ্ছা প্রকাশ করেন, কিন্তু পতিগতপ্রাণা সতী পতিকে ছাড়িয়া থাকিতে অস্বীকার করায়, সিরাজ তাঁহাকে সঙ্গে লইতে বাধ্য হইয়াছিলেন।
+</p><p>সিরাজ পাটনায় উপস্থিত হইয়া জানকীরামকে দুর্গ প্রত্যর্পণ করিতে আদেশ পাঠাইলেন (১১৬৩ হিঃ রজব জুলাই ১৭৫০)। জানকীরাম বিষম সমস্যায় পড়িয়া নবাব আলিবর্দ্দীর আদেশ না পাওয়া পর্য্যন্ত দুর্গদ্বার রুদ্ধ করিয়া রাখিলেন; সিরাজও বাধ্য হইয়া দুর্গ আক্রমণ করিলেন; কিন্তু ভাগ্যলক্ষ্মী তাঁহার প্রতি বিরূপ হইলেন। জানকীরামের সাহসী শিক্ষিত সৈনিকগণের নিকট সিরাজের সৈনিকগণ স্রোতের মুখে তৃণের ন্যায় ভাসিয়া গেল—সিরাজের পরাজয় হইল। ভীত সিরাজ লুৎফুন্নিসাকে লইয়া দুর্গের বাহিরে একটী কুটীরে সামান্য পরিচ্ছদে দীনদরিদ্রবেশে আশ্রয় গ্রহণ করিলেন। রাজা জানকীরাম সকলই জানিতে পারিলেন। সিরাজকে আবদ্ধ রাখা তাঁহার অভিপ্রেত নহে, বরং যাহাতে বাঙ্গালা বেহার উড়িষ্যার ভাবী নবাব অক্ষতশরীরে স্বচ্ছন্দে থাকিতে পারেন, তাহার বন্দোবস্ত করিয়া দিয়াছিলেন। কুটীর হইতে তাঁহাকে সসম্মানে আনয়ন করিয়া, তিনি দুর্গের বহির্ভাগে নবাবের থাকিবার উপযুক্ত স্থানে রক্ষা করিয়া, আলিবর্দ্দীর আগমন প্রতীক্ষা করিতে লাগিলেন। সিরাজ সেখানে একরূপ নজরবন্দী হইয়া রহিলেন। নবাব পাটনায় আসিয়া সিরাজের হঠকারিতার জন্য তাঁহাকে কিছুমাত্র তিরস্কার না করিয়া, বরং স্নেহার্দ্র হৃদয়ে আলিঙ্গন ও মুখচুম্বন করিলেন। অনুতপ্ত সিরাজ ক্ষমা ভিক্ষা করিবার বহুপূর্ব্বেই বৃদ্ধ নবাব তাঁহাকে ক্ষমা করিয়াছিলেন।
+</p><p>আমরা এখানে লুৎফুন্নিসার দয়ার একটা দৃষ্টান্ত উদ্ধার করিয়া দিতেছি। ১৭৫৬ খৃষ্টাব্দে কলিকাতা জয়ের সময় কাশিমবাজারের ইংরাজকুঠীর অধ্যক্ষ ওয়াট্স সাহেব, পত্নী পুত্র কন্যাগণ সহ কাশিমবাজারে বন্দী হ’ন। তাঁহারা প্রধানতঃ সিরাজমাতা আমিনা বেগমের অনুকম্পায় জীবনলাভ করিয়াছিলেন। তিনি গোপনে ওয়াট্‌স সাহেবের পত্নী ও পুত্রকন্যাগণকে আপনার মহলের মধ্যে ৩৭ দিবস সযত্নে রাখিয়াছিলেন। পরে লুৎফুন্নিসার সহিত পরামর্শ করিয়া তাঁহাদিগকে জলপথে চন্দননগরে ফরাসী গভর্ণারের নিকট পাঠাইয়া দিয়াছিলেন। এ বিষয় নবাব ঘুণাক্ষরে জানিতে পারিলে যে উভয়ের বিষম অনর্থ ঘটিত, তাহা কাহাকেও আর বলিয়া দিতে হইবে না। রমণী ও বালক-বালিকার দুঃখে তাঁহারা যে শুধু কাতর হইয়াছিলেন, তাহা নহে। একদিন লুৎফুন্নিসা নবাবের নিকট ওয়াট্‌স সাহেবের মুক্তি ভিক্ষা চাহিলেন। নবাবকে বলিলেন—“কুঠিয়াল সাহেব ত আপনার প্রজা—আপনার সন্তান। সন্তানকে কেন ব্যথা দিতেছেন? বাঙ্গালা মুলুকের মালিকের পক্ষে সামান্য একজন ইংরাজ প্রজাকে বন্দী রাখা কখনও উচিত নয়।” তিনি নবাবের পদতলে কৃপাভিক্ষা করিলেন। নবাব লুৎফুন্নিসার পরদুঃখকাতরতায় আশ্চর্য্যান্বিত হইয়া বুঝাইলেন, ওয়াট্‌স্‌কে বন্দী করিয়া রাখিলেই কলিকাতায় ইংরাজ-বণিকেরা সংযত হইয়া চলিতে শিখিবে। লুৎফুন্নিসার অশ্রুবর্ষণ ও কাতর অনুরোধে নবাবের সংকল্প ভাসিয়া গেল; অবশেষে তিনি ওয়াট্‌স্‌কে মুক্তি দিতে বাধ্য হইয়াছিলেন।<sup><a href="#cite_note-3">[৩]</a></sup></p><p>পলাশীর যুদ্ধাবসানে ইংরাজের বিজয়-দুন্দুভি যখন বাজিতেছিল—যখন বন উপবন কম্পিত করিয়া কামান সকল ইংরাজের জয় ঘোষণা করিতেছিল—ভাগীরথী যখন মুষ্টিমেয় ইংরাজ-সেনার অদম্য সাহস ও ক্লাইভের বুদ্ধিকৌশল দেখিয়া স্তম্ভিত হইয়া তরতরবেগে ছুটিতেছিল, তখন হতভাগ্য বাঙ্গালার নবাব সিরাজ, মির্জ্জাফরের বিশ্বাসঘাতকতায় মর্ম্মাহত হইয়া ভাবিতেছিলেন—“করি কি?” মুষ্টিমেয় সামান্য অনুচর লইয়া তিনি কি করিতে পারেন? অদৃষ্টের তীব্র উপহাসেব্যথিত সিরাজ চতুর্দ্দিক অন্ধকার দেখিলেন। অদ্য প্রাতে যিনি বাঙ্গালা বিহার উড়িষ্যার দণ্ডমুণ্ডের কর্ত্তা, সায়ংসন্ধ্যায় তিনিই পথের ভিখারী। কল্য যে ইংরাজ-বণিক তাঁহারই অনুগ্রহলাভের জন্য লালায়িত ছিল, অদ্য তাহারা সর্ব্বেসর্ব্বা—মির্জ্জাফর তাহাদের হস্তের ক্রীড়নক। চিন্তা আর তাঁহার ভাল লাগিল না। উপায়ান্তর না দেখিয়া তিনি পলায়ন করিতে কৃতসংকল্প হইলেন। এই সংকল্প শুনিয়া তাঁহার সুখের সময়ের প্রায় সকল আনুচর একে একে তাঁহাকে পরিত্যাগ করিল। কাল বিলম্ব না করিয়া সিরাজ তাঁহার শ্বশুর ইরাজ খাঁর নিকট আপন মন্তব্য প্রকাশ করিলেন, কিন্তু কিছুতেই তিনি তাঁহার সহিত যাইতে সম্মত হইলেন না। ধনরত্ন আত্মসাৎ করিয়া ইরাজ খাঁ গোপনে পলায়ন করিলেন। আশা-ভরসাহীন— সিরাজ একাকী পলায়নের উদ্যোগ করিতেছেন, এমন সময়ে লুৎফুন্নিসা আসিয়া তাঁহার চরণোপান্তে বসিয়া কাঁদিতে লাগিলেন। স্বামীর সুখে যিনি আত্মহারা হইয়াছিলেন, সেই লুৎফুন্নিসা স্বামীর বিপদে স্বামীর সহিত পলায়ন করিতে দৃঢ়-সংকল্প হইলেন। সিরাজ কিছুতেই তাঁহাকে বুঝাইতে পারিলেন না যে, এ পলায়ন সাময়িক—এ পলায়নের উদ্দেশ্য বল-সংগ্রহ— আত্মরক্ষা ও মোগল-গৌরবের পুনঃ প্রতিষ্ঠা। লুৎফুন্নিসার হৃদয় তাহা বুঝিল না—তিনি স্বামীর অনুগামিনী হইলেন। তিনি বুঝিয়াছিলেন, পতিই নারীর দেবতা—পতি যখন যে অবস্থায় থাকেন, পত্নীর তখন সেই অবস্থায় থাকাই শ্রেয়ঃ ও বাঞ্ছনীয়।
+</p><p>এ হেন নারীরত্নকে কোন কোন ঐতিহাসিক “রক্ষিতা” বলিয়া অভিহিত করিয়াছেন। লুৎফুন্নিসা একাধারে সচিব, সখী, প্রিয়তমা জীবনসঙ্গিনী— হিন্দু-মুসলমানের আদর্শ-পত্নী। তাঁহাকে “রক্ষিতা” নামে অভিহিত হইতে দেখিলে বাস্তবিকই মর্ম্মাহত হইতে হয়। নিজাম রেকর্ড অন্বেষণ করিয়া বিফল মনোরথ হইয়া, ঐতিহাসিকগণ তাঁহার ‘পত্নীত্বে’ সন্দিহান হন; মুতাক্ষরীণকারও তাঁহাকে ‘ক্রীতদাসী’ বলিয়া অভিহিত করিয়া অনেকটা গোল বাধাইয়াছেন, কারণ তাঁহাদের বিশ্বাস, হিন্দুদিগের ন্যায় মুসলমান অভিজাতদিগের সহিত নীচ ক্রীতদাসীর বিবাহ অসম্ভব। কথাটা কতকটা সত্য হইলেও এ ক্ষেত্রে তাহা ঘটিয়াছিল।
+</p><p>রাত্রি তিনটার সময় সিরাজ দীনবেশে লুৎফুন্নিসা ও তাঁহার চারি বৎসরের কন্যা, কয়েকজনমাত্র বিশ্বস্ত অনুচর ও ধনরত্নাদি সহ সামান্য গো-যানে আরোহণ করিয়া ভগবানগোলার দিকে অগ্রসর হইতে লাগিলেন। রাত্রি প্রভাত হইল; ক্রমে সূর্য্যকিরণ প্রখর হইতে প্রখরতর হইতেছিল। কোমলাঙ্গী অসূর্য্যম্পশ্যা লুৎফুন্নিসা নিজের কষ্টকে তুচ্ছ করিয়া, অসাধারণ ধৈর্য্যের সহিত ক্রমাগত রুমাল ব্যজন করিয়া স্বামীর ক্লান্তি, অপনোদন করিতে লাগিলেন। সিরাজ স্থলপথে ভগবানগোলায় পৌঁছিলেন। তথা হইতে নৌকাযোগে পদ্মার উত্তাল তরঙ্গরাশি উত্তীর্ণ হইয়া মহানন্দা নদী-পথে উজান বাহিয়া, উত্তরাভিমুখে যাইতে লাগিলেন। ক্রমে যখন তিনি মহানন্দা অতিক্রম করিয়া কালিন্দীর জল প্রবাহ উত্তীর্ণ হইতেছিলেন এবং তাঁহার নৌকা যখন রাজমহলের অপর পারে প্রায় ৪ ক্রোশ দূরে বড়াল নামক পল্লীতে উপস্থিত হইল, তখন সহসা তাঁহার নৌকার গতিরােধ হইল। নাজেরপুরের মােহানা অতিক্রম করিতে পারিলেই বড় গঙ্গায় প্রবেশ করিতে পারা যাইত, কিন্তু জলাভাবে নাজের পুরের মােহানা বন্ধ।
+</p><p>“মুতাক্ষরীণ-লেখক সিরাজের পলায়ন-প্রণালীর দোষ প্রদর্শন করিবার জন্য লিখিয়া গিয়াছেন যে,—“স্থলপথে পলায়ন করিলেই ভাল হইত, অর্থলােভেই হউক, আর স্নেহ বশতই হউক, অনেকে তাঁহার অনুগমন করিতে পারিত; এবং বহুজনবেষ্টিত সিরাজুদ্দৌলাকে কেহ সহজে কারারুদ্ধ করিতে পারিত না। কিন্তু সিরাজ কি উদ্দেশ্যে একাকী নৌকারোহণে পলায়ন করিতেছিলেন, তাহার রহস্য নির্ণয় করিলে মুতাক্ষরীণের সমালোচনায় আস্থা স্থাপন করিতে পারা যায় না। কেবল প্রাণ রক্ষার জন্য পলায়ন করা আবশ্যক হইলে, ভগবানগােলা হইতে পদ্মাস্রোতে পূর্ব্বাভিমুথে তরণী ভাসাইয়া দিলেই অনায়াসে দূরাঞ্চলে উপনীত হইতে পারা যাইত। সিরাজুদ্দৌলা যে আত্মপ্রাণ তুচ্ছ করিয়া কেবল মােগল-গৌরব রক্ষা করিবার জন্যই জনশূন্য রাজধানী হইতে পলায়ন করিতেছিলেন, তাঁহার পলায়ন-প্রণালীই তাহার উৎকৃষ্ট প্রমাণ।<sup><a href="#cite_note-4">[৪]</a></sup> কোনরূপে পশ্চিমাঞ্চলে পলায়ন করিয়া মসিয় ল সাহেবের সেনাসহায়ে পাটনা পর্য্যন্ত গমন করা ও তথায় রামনারায়ণের সেনাবল লইয়া সিংহাসন রক্ষার আয়ােজন করাই সিরাজুদ্দৌলার উদ্দেশ্য ছিল। বিহার প্রদেশের শাসনকর্ত্তা রাজা রামনারায়ণ যেরূপ সাহসী সুচতুর, সেইরূপ অকৃত্রিম প্রভুভক্ত; সুতরাং কোনরূপে তাঁহার সহিত মিলিত হওয়াই সিরাজুদ্দৌলার লক্ষ্য হইয়া উঠিল। সরলপথে রাজমহল গমন করিবার চেষ্টা করিলে, মীরজাফরের অনুচরবর্গ সহজে তাঁহাকে কারারুদ্ধ করিবার অবসর পাইবে, এই আশঙ্কায় তিনি মহানন্দার ভিতর দিয়া গুপ্তপথে দীনদরিদ্রেব ন্যায় পাটনার দিকে অগ্রসর হইতেছিলেন।”<sup><a href="#cite_note-5">[৫]</a></sup></p><p>এই দৈব-দুর্ঘটনাই সিরাজের কাল হইল। এইরূপে তিন দিন তিন রাত্রি অনাহারে কাটাইয়া নবাব ক্ষুৎপিপাসাতুর হইয়া যৎকিঞ্চিৎ খাদ্য সংগ্রহের জন্য দান শাহ্ নামে এক ফকিরের কুটীরে উপস্থিত হন। পূর্ব্বে সিরাজ এই দান শাহর উপর অনেক অত্যাচার করিয়াছিলেন।<sup><a href="#cite_note-p9_-6">[৬]</a></sup>এক্ষণে সে প্রতিহিংসা চরিতার্থ করিবার জন্য আহার্য্য-প্রস্তুতের ভাণ করিয়া, গােপনে মীরজাফরের জামাতা মীরকাসিম ও তদীয় সহােদর রাজমহলের ফৌজদার<sup><a href="#cite_note-7">[৭]</a></sup> মীরদাউদকে সংবাদ দেন।
+</p><p>মীরকাশিম সিরাজকে সপরিবারে বন্দী করিয়া পরে মুর্শিদাবাদে প্রেরণ করেন। লুৎফুন্নিসা বেগম মীর কাশিমের হস্তগত হইলেন। মীরকাশিম ভয় প্রদর্শন করিয়া তাঁহার বহুমূল্য অলঙ্কার ও যাবতীয় ধনরত্নাদি কাড়িয়া লইলেন। মীরকাশিমের এই লুণ্ঠনকলঙ্ক তাঁহার জীবনকে চিরকলঙ্কিত করিয়া রাখিবে। ভাগ্যদোষে তিনি তাঁহার করতলগত হইয়াছিলেন, কিন্তু বেগম সাহেবার মর্য্যাদা তাঁহার ন্যায় ন্যায়নিষ্ঠ লােকের অক্ষুন্ন রাখা উচিত ছিল। ইহার পর তাঁহাকে ঢাকায় নির্ব্বাসিতা করা হয়।
+</p><p>মুর্শিদাবাদে উপস্থিত হইবার পর সিরাজের পরিণাম যাহা ঘটিয়াছিল, তাহা সকলেই অবগত আছেন। তিনি মীরণের আদেশানুসারে মহম্মদীবেগ কর্ত্তৃক নিহত হইয়া খোসবাগে চিরদিনের জন্য সমাহিত হন।
+</p><p>সিরাজের মৃত্যুর পর লুৎফুন্নিসার ন্যায়<sup><a href="#cite_note-8">[৮]</a></sup> আলিবর্দ্দী-বেগম,
+</p>
+<div>
+<div><p><a href="https://bn.wikisource.org/wiki/%E0%A6%9A%E0%A6%BF%E0%A6%A4%E0%A7%8D%E0%A6%B0:%E0%A6%B2%E0%A7%81%E0%A7%8E%E0%A6%AB%E0%A7%81%E0%A6%A8%E0%A7%8D%E0%A6%A8%E0%A6%BF%E0%A6%B8%E0%A6%BE_%E0%A6%AC%E0%A7%87%E0%A6%97%E0%A6%AE.jpg" rel="noopener noreferrer" target="_blank"><img alt="লুৎফুন্নিসা বেগম.jpg" src="images/c13_________________.jpg"/></a></p><p><span>লুৎফুন্নিসা বেগম।</span></p>
+</div>
+</div>
+
+<div>
+<div><p><a href="https://bn.wikisource.org/wiki/%E0%A6%9A%E0%A6%BF%E0%A6%A4%E0%A7%8D%E0%A6%B0:%E0%A6%B6%E0%A7%8B%E0%A6%95%E0%A6%AE%E0%A7%8C%E0%A6%A8_%E0%A6%96%E0%A7%8B%E0%A6%B8%E0%A6%AC%E0%A6%BE%E0%A6%97.jpg" rel="noopener noreferrer" target="_blank"><img alt="শোকমৌন খোসবাগ.jpg" src="images/c14______________.jpg"/></a></p><p><span>শোকমৌন খোসবাগ।</span></p>
+</div>
+</div> তাঁহার দুই কন্যা ঘসিটী ও আমিনার সহিত ঢাকায় নির্ব্বাসিতা হন। পরে মীরণের আদেশক্রমে ঘসিটী<sup><a href="#cite_note-9">[৯]</a></sup> ও আমিনাকে জলমগ্ন করিয়া বিনষ্ট করা হয়।
+<p>লুৎফুন্নিসা কিছুকাল পরে ইংরাজদের যত্নচেষ্টায় ঢাকা হইতে মুর্শিদাবাদে আনীত হইয়া খােসবাগে আলিবর্দ্দী ও স্বামীর সমাধির তত্ত্বাবধানে নিযুক্ত হ’ন। তাঁহার ভরণপােষণের জন্য ১০০০৲ টাকা মাসহারা বন্দোবস্ত হইল<sup><a href="#cite_note-10">[১০]</a></sup> এবং ইহা ব্যতীত আলিবর্দ্দী, সিরাজ প্রভৃতির সমাধিস্থল খােসবাগের তত্ত্বাবধানের ভার তাঁহার হস্তে ন্যস্ত থাকায়, তিনি তাহার জন্য আরও ৩০৫৲ টাকা অধিক পাইতেন।<sup><a href="#cite_note-11">[১১]</a></sup> এই অর্থের তিনি অসদ্ব্যবহার করেন নাই। আপনার গ্রাসাচ্ছাদনের জন্য যৎসামান্য রাখিয়া, দীনদরিদ্রের দুঃখমােচনে ব্যয় করিতেন।
+</p><p>মন্থরগতি কলনাদিনী ভাগীরথীর পশ্চিমতীরবর্ত্তী কুসুমিত-তরুলতাসমাকীর্ণ-ছায়াস্নিগ্ধ-শােকমৌন-খােসবাগে স্বামীর সমাধিবক্ষে লুণ্ঠিত হইয়া তিনি অশ্রুবিসর্জ্জন করিতেন। প্রতিদিবস প্রভাতে স্বহস্তে পতির সমাধিভবন সদ্য-প্রস্ফুটিত কুসুমদামে সুসজ্জিত এবং প্রতি সন্ধ্যায় সুরভিত দীপমালায় উজ্জ্বলীকৃত করিতেন—ইহা:ই তাঁহার নিত্যকার্য্য ছিল।
+</p><p>লুৎফুন্নিসা সিরাজের মৃত্যুর পর কতদিন পর্য্যন্ত জীবিত ছিলেন, তাহার সঠিক বৃত্তান্ত আমরা অবগত নহি। Forster সাহেব বলেন যে, ১৭৮১ খৃষ্টাব্দে তিনি লুৎফুন্নিসাকে খোসবাগে সিরাজের সমাধির উপর পড়িয়া থাকিতে দেখিয়াছিলেন।<sup><a href="#cite_note-12">[১২]</a></sup> যদি তাঁহার উক্তি সত্য হয়, তাহা হইলে সিরাজের মৃত্যুর ২৪ বৎসর পরেও লুৎফুন্নিসা জীবিত ছিলেন।
+</p><p>দ্বিতীয়তঃ, মুতাক্ষরীণ-অনুবাদক মুস্তাফা লিখিয়াছেন যে, ১৭৮৯ খৃঃ অব্দে তিনি লুৎফুন্নিসাকে মুর্শিদাবাদে অবস্থিতি করিতে দেখিয়াছিলেন।<sup><a href="#cite_note-13">[১৩]</a></sup> তাহা হইলে সিরাজের মৃত্যুর ৩২ বৎসর পরেও লুৎফুন্নিসা জীবিত ছিলেন।
+</p>
+তৃতীয়তঃ, বেভারিজ সাহেব বলেন যে, তিনি নিজামৎ রেকর্ডে ওমদাৎ <div>
+<div><p><a href="https://bn.wikisource.org/wiki/%E0%A6%9A%E0%A6%BF%E0%A6%A4%E0%A7%8D%E0%A6%B0:%E0%A6%B2%E0%A7%81%E0%A7%8E%E0%A6%AB%E0%A7%81%E0%A6%A8%E0%A7%8D%E0%A6%A8%E0%A6%BF%E0%A6%B8%E0%A6%BE%E0%A6%B0_%E0%A6%95%E0%A6%AC%E0%A6%B0.jpg" rel="noopener noreferrer" target="_blank"><img alt="লুৎফুন্নিসার কবর.jpg" src="images/c15_________________.jpg"/></a></p><p><span>লুৎফুন্নিসার কবর।</span></p>
+</div>
+</div> উন্নিসা নামে সিরাজের এক পত্নীর উল্লেখ দেখিয়াছেন এবং তাঁহার মতে ওমদাৎই লুৎফুন্নিসা।<sup><a href="#cite_note-14">[১৪]</a></sup> এই ওমদাৎ-উন্নিসা ১৭৯১ খৃঃ অব্দে আগষ্ট মাসে গবর্ণমেন্টের নিকট মাসহারা বৃদ্ধির জন্য প্রার্থনা করেন। বেভারিজের এই উক্তি হইতে দেখা যাইতেছে যে, সিরাজের মৃত্যুর ৩৭ বৎসর পরেও লুৎফুন্নিসা জীবিত ছিলেন।
+<p>শুনা যায়, স্বামীর সমাধি পূজা করিতে করিতে তাঁহার মৃত্যু হয়। মৃত্যুর পর তিনিও খােসবাগে স্বামীর দক্ষিণভাগে, তাঁহারই পদতলে চিরনিদ্রিতা হন।
+</p><p>যাও সাধ্বী, স্বামীর সকাশে যাও—যাও সতী তােমার পতি-ধ্যান শেষ হইয়াছে—জগতে তুমি দেখাইয়াছ, সহস্র দোষে দোষী হইলেও পতি দেবতা। যদিও তুমি অধিক দিন স্বামীর নশ্বর দেহের সেবা করিতে পাও নাই, তবুও তুমি অবিগলিত নেত্রে বহুদিন স্বামীর কবরপার্শ্বে বসিয়া উন্মাদিনীর ন্যায় কখন ব্যজন করিয়াছ—কখনও পুষ্পমাল্য সাজাইয়াছ— কখনও প্রেমভরে কবরের উপর চুম্বন করিয়া প্রেমাস্পদকে চুম্বন করিতেছ ভাবিয়া, অশান্ত হৃদয়কে শান্ত করিয়াছ। জগতে তুমি দেখাইয়াছ, জীবনে মরণে পতির সহিত পত্নীর অচ্ছেদ্য সম্বন্ধ—সর্ব্বসংহারক ‘কাল’ তাহা ছেদন করিতে পারে না—আইনকানুন তাহা ছেদ করিতে পারে না। চুক্তি করিয়া দেহের সম্বন্ধ স্থাপিত হইতে পারে—আত্মার সম্বন্ধ স্থাপিত হইতে পারে না।
+</p>
+
+<p> ভারত-রমণীর পদতলে বসিয়া এখনও পাশ্চাত্য জগৎ বহুকাল ধরিয়া ‘নারীত্ব’ ও ‘পতীত্ব’ শিক্ষা করুক।
+</p><p>অতীতের সাক্ষীস্বরূপ সেই সুরম্য খোসবাগ অদ্যাপি বিদ্যমান থাকিয়া, জগতে লুৎফুন্নিসার এই অপূর্ব্ব পতিভক্তির কথা ঘোষণা করিতেছে।
+</p>
+<div><img alt="" src="images/c9_Rule_Segment___Tear_Left___20px.svg_20px_Rule_Segment___Tear_Left___20px.svg.png"/><img alt="" src="images/c10_Rule_Segment___Circle___6px.svg_6px_Rule_Segment___Circle___6px.svg.png"/><img alt="" src="images/c11_Rule_Segment___Circle_open___10px.svg_10px_Rule_Segment___Circle_open___10px.svg.png"/><img alt="" src="images/c10_Rule_Segment___Circle___6px.svg_6px_Rule_Segment___Circle___6px.svg.png"/><img alt="" src="images/c12_Rule_Segment___Tear_Right___20px.svg_20px_Rule_Segment___Tear_Right___20px.svg.png"/></div>
+
+
+</div><ol><li><span><a href="#cite_ref-1">↑</a></span> <span>মূল মুতাক্ষরীণে (১৮২ পৃঃ) লুৎফুন্নিসাকে সিরাজের “জারিয়া” বলিয়া অভিহিত করা হইয়াছে। “জারিয়া” শব্দের অর্থ—ক্রীতদাসী; কিন্তু নিতান্ত হীনভাবের দাসী নহে।</span>
+</li>
+<li><span><a href="#cite_ref-2">↑</a></span> <span>“সিরাজের কয় পত্নী ছিলেন, তাহা স্থির করা যায় না। কেবল তিনজনেরই উল্লেখ দেখিতে পাওয়া যায়। (১) তাঁহার, বিবাহিতা পত্নী (ইরাজ খাঁর কন্যা), (২) লুৎফুন্নিসা, (৩) ফৈজী (মােহনলালের ভগিনী)”—মুর্শিদাবাদ কাহিনী, পৃঃ ১৯২। <br/>See also Calcutta Review, 1892—“Old places in Murshidabad”-H Beveridge— P. 340-341. <br/>বেভারিজ সাহেবের মতে লুৎফুন্নিসাই মােহনলালের ভগিনী। তিনি লিখিয়াছেন:— “He was accompanied in his flight by this favourite concubine Lutf-unnissa. I am informed that this lady was originally a Hindu _____ other than the ______”</span>
+</li>
+<li><span><a href="#cite_ref-3">↑</a></span> <span>“Parochial Annals of Bengal”—H. B. Hyde. P. 158.</span>
+</li>
+<li><span><a href="#cite_ref-4">↑</a></span> <span>“It was his intention to escape to M. Law, and with him to Patna, the Governor of which province was a faithful servant of his family.” Orme-ii-179.</span>
+</li>
+<li><span><a href="#cite_ref-5">↑</a></span> <span>“সিরাজুদ্দৌলা”—শ্রীঅক্ষয়কুমার মৈত্রেয়। পৃঃ ৩৭৫-৭৬।</span>
+</li>
+<li><span><a href="#cite_ref-p9__6-0">↑</a></span> <span>হণ্টার সাহেব তাঁহার Statistical Account of Bengal (Vol. VII, 84) নামক পুস্তকে লিখিয়াছেন যে,—“দান শাহ্ সিরাজকে ধরাইয়া দিয়া মীরজাফরের নিকট হইতে বহুমূল্য জায়গীর লাভ করিয়া স্বদেশে “সুভামার” খাতিলাভ করিয়াছিলেন; তাঁহার বংশধরগণ অদ্যাপি সেই জায়গীর উপভােগ করিতেছেন।” কিন্তু মালদহের ভূতপূর্ব্ব কালেক্টর শ্রীযুক্ত উমেশচন্দ্র বটব্যাল মহাশয়, মালদহ কালেক্টরীর সেরেস্তা সবিশেষ তদন্ত করিয়াও এইরূপ কোন জায়গীরের সন্ধান পান নাই। অধিকন্তু শ্রীযুক্ত অক্ষয়কুমার মৈত্রেয় মহাশয়, দান শাহ্ র সমাধি-মন্দিরের ফলকলিপির সাহায্যে এবং তাঁহার বংশধরদিগের নিকট প্রমাণাদি সংগ্রহ করিয়া প্রকাশ করিয়াছেন যে, দান শাহ্ এই সময়ে আদৌ জীবিত ছিলেন না।<br/>রিয়াজ-উস-সলাতিন (৩৬০ পৃঃ) নামক গ্রন্থে দান শাহর সিরাজ কর্ত্তৃক লাঞ্ছিত হইবার কথা লিপিবদ্ধ আছে। তারিখ-ই-মনসুরী লেখক কাহারও নামােল্লেখ করেন নাই। তিনি কেবলমাত্র লিখিয়াছেন যে, সিরাজ একজন দরবেশের দাড়ি গোঁপ মুড়াইয়া দিয়া অপমান করিয়াছিলেন, সেই ব্যক্তিই তাঁহাকে ধরাইয়া দেয়। ইংরাজ ঐতিহাসিকগণ দান শাহ্ র সিরাজ কর্ত্তৃক নাসাকর্ণ ছেদনের কথা লিখিয়াছেন,—Iveys’ ‘Voyage’-P. 154; Orme's ‘Indostan’—P. 183.</span>
+</li>
+<li><span><a href="#cite_ref-7">↑</a></span> <span>ষ্টুয়ার্ট সাহেব (পৃঃ ৫৩১) মীরকাশিমকে রাজমহলের ফৌজদার বলিয়া উল্লেখ করিয়াছেন; কিন্তু মুতাক্ষরীণ ও ব্রূমের মতে মীরদাউদই রাজমহলের ফৌজদার।</span>
+</li>
+<li><span><a href="#cite_ref-8">↑</a></span> <span>মজঃফরনামা (১০৬ পৃঃ) নামক গ্রন্থে লিখিত আছে যে, সিরাজের মৃত্যুর পর যখন তাঁহার বেগমগণের নিকট স্ব স্ব পাত্র নির্ব্বাচন করিয়া লইবার প্রস্তাব উত্থিত হইয়াছিল, সেই সময়ে লুৎফুন্নিসাকেও অন্যের নিকট আশ্রয় লইতে বলায়, তিনি সগর্ব্বে উত্তর দিয়াছিলেন—“হস্তিপৃষ্ঠে আরোহণে অভ্যস্ত লোকে কোথায় গর্দ্দভ-বাহন বাঞ্ছা করে?”—অষ্টাদশ শতাব্দীর ইতিহাস (নবাবী আমল) ২য় সংস্করণ— পৃঃ ৩৪৬।</span>
+</li>
+<li><span><a href="#cite_ref-9">↑</a></span> <span>Holwell's ‘India Tracts’ (P. 41-42) Vansittart's. ‘Narratives (Vol. I-P. 52) নামক পুস্তকদ্বয়ে লিখিত আছে, লুৎফুন্নিসা, তাঁহার কন্যা ও এক্রামুদ্দৌলার পুত্র মুরাদুদ্দৌলাকেও নিহত করা হয়। লং সাহেবের Selection (P. 223) নামক পুস্তকেও ইহা লিখিত আছে, তবে তিনি লুৎফুন্নিসার স্থলে suffen Nissa Begam এর উল্লেখ করিয়াছেন।</span>
+</li>
+<li><span><a href="#cite_ref-10">↑</a></span> <span>গ্যাষ্ট্রেল সাহেব লিখিয়াছেন যে, লুৎফুন্নিসা বেগম ভরণপােষণের জন্য মাসিক ১০০০৲ টাকা বৃত্তি পাইতেন; কিন্তু শ্রদ্ধাস্পদ শ্রীযুক্ত নিখিলনাথ রায় মহাশয় এ কথার পােষকতা করেন না। তিনি লুৎফুন্নিসা বেগম সাহেবার কন্যা উম্মত জহুরা বংশীয়দিগের নিকট রক্ষিত কাগজপত্র হইতে জানিতে পারিয়াছেন যে, তাঁহার মাসিক বৃত্তি ১০০৲ টাকা মাত্র ছিল।</span>
+</li>
+<li><span><a href="#cite_ref-11">↑</a></span> <span>Capt. J. E. Gastrell's “Statistical Account of Murshidabad”.</span>
+</li>
+<li><span><a href="#cite_ref-12">↑</a></span> <span>Forster-"Journey from Bengal to England—1781.” Vol. I. P. 12 and Hunter's “Statistical Account of Murshidabad”-P. 73. <br/>হিল সাহেবও (Hill) সত্য সত্যই লিখিয়াছেন:—<br/>"Hated and despised by his subjects and foreigners alike, he left one faithful mourner in his life, Lutf-unnissa, who for many years employed mullahs to say prayers at his tomb which she used frequently to visit.” (Indian Records Series: Bengal—Vol. I. P. ccviii)</span>
+</li>
+<li><span><a href="#cite_ref-13">↑</a></span> <span>“This lady is now (1789) living at Murshidabad * * * She must not be confounded with Faizy or Faizen, another favourite of Serajudowlah.”—Mutaqherin—Vol. I. P. 614.</span>
+</li>
+<li><span><a href="#cite_ref-14">↑</a></span> <span>“It would be interesting to know whether this lady was the same as Umdatunnissa Begum, who is described in the Nizamut as the widow of Siraj. If so, she did not die till 5 Rabi-us-Sani 1208, i. e. 10th November, 1794.” Calcutta Review—1892—P.204</span>
+</li>
+</ol></section>
+<section><div>
+
+<h2>আমিনা বেগম</h2> <div>
+<p><span>আমিনা</span>
+</p>
+</div>
+<p>সিরাজ-জননী আমিনার চরিত্র তাঁহার সহােদরা ঘসিটীর চরিত্রের ন্যায় ঘটনা-সমাবেশে সমুজ্জ্বল না হইলেও কমনীয় সদ্‌গুণাবলীতে সমুদ্ভাসিত। বাঙ্গালার নবাব আলিবর্দ্দি খাঁর কন্যাত্রয়ের মধ্যে ঘসিটী ও আমিনা বেগম রাজনৈতিক আলােচনায় যােগদান করিতেন; বৃদ্ধ আলিবর্দ্দীও অনেক সময়ে তাঁহাদিগের অভিমত লইয়া রাজকার্য্য পরিচালনা করিতেন। সিরাজচরিত্র বুঝিতে হইলে প্রথমে আমিনা-চরিত্র বিশ্লেষণ করা আবশ্যক। জননীর নিকট হইতে সন্তান চরিত্র গঠন করিয়া থাকে। জননীর প্রত্যেক কার্য্য দেখিবার সুবিধা সন্তান যতদূর পাইয়া থাকে, অপরের পক্ষে ততদূর সম্ভবপর নয়। পিতামাতার দোষ-গুণ সন্তানে প্রায়ই বর্ত্তিয়া থাকে। বংশাপরম্পরায় দোষগুণাবলীও উত্তরাধিকারসূত্রে সন্তান অর্জ্জন করিয়া থাকে। পারিপার্শ্বিক অবস্থার মধ্যে থাকিয়া সন্তান শিক্ষাগুণে চরিত্র গঠনের সম্যক্ সহায়তা লাভ করিতে পারে। তাই আমরা হতভাগ্য বাঙ্গালার, নবাব সিরাজের জননী-চরিত্র বিশ্লেষণ করিতে প্রয়াসী হইয়াছি।
+</p><p>বাঙ্গালার নবাব আলিবর্দ্দী খাঁর জ্যেষ্ঠ ভ্রাতা হাজি অহম্মদের তিন পুত্র নওয়াজিস্, সৈয়দ অহম্মদ ও জৈনুদ্দীন অহম্মদের সহিত যথাক্রমে আলিবর্দ্দীর তিন কন্যা<sup><a href="#cite_note-1-n84">[১]</a></sup> ঘসিটী বা মেহেরুন্নিসা, ময়মানা<sup><a href="#cite_note-2-n85">[২]</a></sup> ও আমিনা বেগমের বিবাহ হয়।<sup><a href="#cite_note-3-n86">[৩]</a></sup> নবাব নওয়াজিসকে ঢাকার, সৈয়দ অহম্মদকে প্রথমে উড়িষ্যার, পরে হুগলীর, অবশেষে পূর্ণিয়ার এবং জৈনুদ্দীনকে পাটনা বা আজিমাবাদের শাসনভার প্রদান করিয়াছিলেন। নওয়াজিসের কোন সন্তানাদি ছিল না, সৈয়দ অহম্মদের এক পুত্র—সওকজঙ্গ এবং জৈনুদ্দীনের তিন পুত্র সিরাজুদ্দৌলা (মিরজা মহম্মদ), ফজ্‌ল্‌ কুলি খাঁ (ইক্রামুদ্দৌলা) ও মিরজা-মেহ্‌দি।
+</p><p>আলিবর্দ্দী খাঁ আজিমাবাদের শাসনকার্য্যে নিযুক্ত হইবার অব্যবহিত পূর্ব্বে তাঁহার কনিষ্ঠা কন্যা আমিনার একটী পুত্র সন্তান ভূমিষ্ঠ হয়। এই পুত্রের জন্মের অল্পদিনের মধ্যেই আলিবর্দ্দীর ভাগ্য সুপ্রসন্ন হয় বলিয়া, তিনি দৌহিত্রকে দত্তক পুত্র রূপে গ্রহণ করেন এবং আপনার নামানুসারে তাহাকে ‘মিরজা মহম্মদ’ এই নামে অভিহিত করেন। এই মিরজা মহম্মদই ইতিহাস-বিখ্যাত সিরাজুদ্দৌলা।
+</p><p>১৭৫৫ খৃঃ অব্দে ডিসেম্বর মাসে নওয়াজিস মহম্মদের মৃত্যু হয়। মৃত্যুর পর তাঁহার বিপুল সম্পত্তির কোন উত্তরাধিকারী না থাকায় সমস্ত সম্পত্তি তাঁহার স্ত্রী ঘসিটী বেগম ও দেওয়ান রাজবল্লভের করতলগত হয়। আলিবর্দ্দী খাঁ মৃত্যুকালে (১৭৫২ খৃঃ) অন্য দৌহিত্রের উত্তরাধিকারিত্বের দাবী উপেক্ষা করিয়া, সিরাজকে প্রকাশ্যভাবে তাঁহার উত্তরাধিকারী বলিয়া নির্দ্দেশ করিয়া যান। আলিবর্দ্দীর মৃত্যুর পরে সিরাজ রাজবল্লভকে ধরিয়া আনিয়া তাহার নিকট হইতে তাহার প্রভুর সমস্ত ধন-সম্পত্তি কোথায় আছে, তাহার একটা সন্তোষজনক হিসাব চাহেন; কিন্তু নওয়াজিসের নিতান্ত বিশ্বস্ত ভৃত্য রাজবল্লভ সিরাজের নিকট ধন-রত্নের কথা সযত্নে গােপন রাখেন। তাঁহার ভয়, ইহা প্রকাশ করিলে পাছে তাঁহার প্রভুর পরিবারবর্গের কোন অনিষ্ট হয়। রাজবল্লভের এই আচরণে সিরাজ ক্রুদ্ধ হইয়া তাঁহাকে নজরবন্দী করিয়া রাখেন; পরে বেগম আমিনার কথায় মুক্তি দান করেন।
+</p><p>পরদুঃখকাতরা, দয়া ও মমতার নির্ঝরিণী আমিনা, পুত্র সিরাজুদ্দৌলাকে সতত দয়া-ধর্ম্ম আচরণ করিতে উপদেশ দিতেন। আমিনার কার্য্যাবলীতে নিষ্ঠুরতার লেশমাত্র ছিল না। পরের দুঃখে তাঁহার হৃদয় গলিয়া যাইত। তাই অবরুদ্ধ বেগম-জনসন্ (Mrs. William Watts) আমিনার অনুগ্রহে অন্তঃপুর হইতে রক্ষা পাইয়াছিলেন। অবরোধাবস্থানে জনসনের কষ্ট দেখিয়া তিনি এতদূর ব্যথিত হইয়াছিলেন যে, ক্ষণকালের জন্য তিনি আপনার স্বার্থ পর্য্যন্ত ভুলিয়া গিয়াছিলেন। তাঁহার কষ্ট করুণহৃদয়া আমিনার পক্ষে অসহ্য হওয়ায়, তিনি পুত্রের ভবিষ্যতের দিকে একবারও চাহিয়া দেখেন নাই। বেগম-জনসন্‌কে অবরুদ্ধ করিয়া রাখিতে পারিলে, ইংরাজ যে সহজেই তাঁহাদের সহিত সন্ধির প্রস্তাব করিতে বাধ্য হইবে, তাহা জানিয়াও বেগমের দুঃখে ব্যথিত-হৃদয়া আমিনা, গোপনে তাঁহাকে মুক্তি দান করিয়াছিলেন।
+</p><p>আমরা আমিনার পরদুঃখকাতরতার আরও একটী দৃষ্টান্তের উল্লেখ করিতেছি।
+</p><p>যে সময় বৃটিশ-বন্দীরা নবাব সিরাজুদ্দৌলার দ্বারা প্রপীড়িত হইতেছিল, সেই সময় নবাবের মাতামহী ও আমিনা বেগম, বীদিগের যুক্তির জন্য সিরাজকে অনেক করিয়া বুঝাইতে চেষ্টা করিয়াছিলেন যে, দণ্ড যেরূপ রাজধর্ম্ম, আর্ত্তের প্রতি ক্ষমাও সেইরূপ রাজার অবশ্যকর্ত্তব্য। কিংকর্ত্তব্যবিমূঢ় সিরাজ এই অমৃতময় উপদেশ কার্য্যে পরিণত করিবেন কি না ভাবিতেছিলেন; কেন না তাঁহার বন্ধুদিগের মধ্যে অনেকেই তাঁহাকে বলিতেছিলেন—“হলওয়েলের ন্যায় সাহসী পুরুষকে কখন মুক্তিদান করা উচিত নয়, বরং তাহাকে কলিকাতায় আলিনগরের শাসনকর্ত্তা মাণিকচাঁদের নিকট পাঠান হউক। তথায় মাণিকচাঁদ যেরূপ করিয়া হউক, উহার নিকট হইতে গুপ্তধনের সন্ধান বাহির করিয়া লইতে পারিবে। আর একান্ত যদি তাহা বাহির করিয়া লইতে না পারে, তবে মাণিকচাঁদ নিশ্চয়ই তাহার নিকট হইতে খেসারৎ আদায় করিয়া লইতে পারিবে।” আমিনা পুত্রকে কর্ত্তব্যনিষ্ঠ হইতে বারংবার কাতরকণ্ঠে উপরোধ করিতে লাগিলেন— রাজার কর্ত্তব্য কি তাহা নানাপ্রকারে বুঝাইতে লাগিলেন। বলিলেন— “প্রজার ধন ও মান রক্ষা রাজার একান্ত কর্ত্তব্য। হলওয়েল তাহার আশ্রিত প্রজা, তাহার ধনে সিরাজের কিছুমাত্র অধিকার নাই।” সিরাজের হৃদয়ে মাতার উপদেশ অঙ্কিত হইয়া গেল—বুঝিলেন জননীর বাক্য শিরোধার্য্য। তিনি তখনই বন্ধুদিগকে বলিলেন—“তোমরা যাহা বলিতেছ, তাহা সত্য; কিন্তু বেচারা যাহা গোপন করিয়াছে, তাহা গোপনেই থাকুক। তাহার দুর্দশার একশেষ হইয়াছে—এখন তাহার মুক্তি পাওয়া আবশ্যক।”<sup><a href="#cite_note-4-n87">[৪]</a></sup></p><p>উন্মার্গগামী পুত্রকে সৎপথে ফিরাইবার জন্য—তাহার সুপ্ত জ্ঞান উদ্বুদ্ধ করিবার জন্য, আমিনা সিরাজকে বহু উপদেশ দিয়াছিলেন, কিন্তু ঊষর ক্ষেত্রে বীজ বপনের ন্যায় তাহা সুফল প্রসব করে নাই।
+</p>
+
+<p> সিরাজ যখন ইংরাজদিগের সহিত যুদ্ধের আয়োজন করিতেছিলেন, সেই সময় আমিনা তাঁহাকে ঐ যুদ্ধ হইতে নিবৃত্ত করিবার জন্য বিশেষ উপদেশ দিয়াছিলেন। তিনি বলিয়াছিলেন—“তুমি নবাব, তোমার মর্য্যাদা কত, তাহা কি তুমি জান? তুমি এত বড় হইয়া কি না সামান্য বণিক্‌দিগের সহিত যুদ্ধে প্রবৃত্ত হইতেছ? এ তোমার রাজসম্মানের পক্ষে, তোমার নিজের পক্ষে, বড়ই নিন্দার বিষয়—পদ-মর্য্যাদা রক্ষা করিতে হইলে, তাহাদিগের সহিত যুদ্ধ করা কখনও উচিত নয়;” কিন্তু সিরাজ তখন যশোলাভের জন্য লালায়িত—ইংরাজদিগকে দমন করিয়া আপনার প্রতিপত্তি অক্ষুন্ন রাখিবার জন্য ব্যাকুল, সুতরাং তাঁহার কর্ণে মাতার উপদেশ-বাক্য প্রবেশ করিল না। নির্ব্বোধের মত জননীর বাক্য অবহেলা করিয়া যুদ্ধের আয়োজন করিতে লাগিলেন।<sup><a href="#cite_note-5-n88">[৫]</a></sup> এই যুদ্ধের ফল ইতিহাস পাঠকের অবিদিত নহে।
+</p><p>আমিনার হৃদয় দয়ার প্রস্রবণ। নিয়তই সেই হৃদয় বিগলিত করিয়া করুণারস ক্ষরিত হইত। তাঁহার দয়াশীলতার দু’একটী দৃষ্টান্ত উদ্ধৃত করিয়া, তাঁহার হৃদয় কি উপাদানে গঠিত ছিল, তাহার আভাষ দিতে পূর্ব্বেই চেষ্টা করিয়াছি; কিন্তু নানাবিধ সদ্‌গুণে ভূষিতা হইলেও, আমিনার চরিত্র একেবারে নিষ্কলঙ্ক ছিল, এ কথা বলা যায় না।
+</p><p>সিরাজের জ্যেষ্ঠতাত নওয়াজিস মহম্মদ ঢাকার শাসনকর্ত্তার পদ লাভ করিয়াছিলেন। তিনি বরাবরই তাঁহার প্রিয়পাত্র হোসেনকুলি খাঁকে বিশ্বাস করিতেন ও আন্তরিক ভাল বাসিতেন। কালক্রমে হোসেন কুলি খাঁ নওয়াজিসের গৃহে সর্ব্বময় কর্ত্তা হইয়া, আলিবর্দ্দী খাঁর জ্যেষ্ঠ কন্যা নওয়াজিস-পত্নী ঘসিটী বেগমের প্রণয়পাত্র হইয়া, প্রভুর ভালবাসার অপূর্ব্ব প্রতিশোধ দিয়াছিলেন! অল্পদিন পরে সিরাজমাতা আমিনা বেগমের সহিতও তাঁহার অবৈধ প্রণয়-কথা প্রকাশ হইয়া পড়ে। ঐতিহাসিকেরা একবাক্যে স্পষ্টভাবেই তাঁহার চরিত্রে কলঙ্কারোপ করিয়াছেন। আর ঐশ্বর্য্যের মধ্যে লালিত পালিত হইয়া—ভোগবিলাসের কোমল অঙ্কে শয়ন করিয়া, উদ্দাম বাসনা-স্রোতের অনুকূলে চলিলে সংযম শিক্ষার অবসর থাকে কি? বৃদ্ধা মহিষী এ সকল দেখিয়াও দেখিতেন না। পরে সিরাজ হোসেন কুলিকে হত্যা করাইয়া দুরপনেয় কলঙ্ক-কালিমা মোচন করিবার চেষ্টা করিয়াছিলেন।
+</p><p>মুতাক্ষরীণকার গোলাম হোসেন, আলিবর্দ্দী খাঁর কন্যাদ্বয় ও সিরাজ-চরিত্র সম্বন্ধে লিখিয়াছেন যে, নবাবের শ্রীবৃদ্ধিকালে তাঁহার পরিবারবর্গ যেরূপ লাম্পট্য, কদাচার প্রভৃতির বশীভূত হইয়াছিলেন, তৎসমুদয় ভদ্র ভাষায় প্রকাশ করা মার্জ্জিতরুচির পরিচায়ক নহে। তাঁহাদের এই সমস্ত দুষ্কৃতিভার তাঁহার অকলঙ্ককুলে কালিমা ঢালিয়া দিয়াছে। তাঁহার কন্যারা ও প্রিয়তম সিরাজ যেরূপ ঘৃণার্হ কদাচার করিতেন, তাহা সকলের পক্ষেই সমান অযশঙ্কর।
+</p><p>পূর্ব্বে উক্ত হইয়াছে আমিনা সিরাজকে ইংরাজদিগের সহিত যুদ্ধে প্রবৃত্ত হইতে নিষেধ করিয়াছিলেন; কিন্তু ইহা যে কেবল সিরাজের ভবিষ্যৎ মঙ্গলের জন্য, তাহা বোধ হয় না—ইহার মূলেও একটু স্বার্থ নিহিত ছিল বলিয়াই আমাদের বিশ্বাস। বেগমদিগের ইংরাজের প্রতি সহানুভূতি দেখাইবার একটা বিশেষ কারণও ছিল। তাঁহারা ব্যবসা-বাণিজ্য দ্বারা অর্থোপার্জ্জন করিতেন। বাণিজ্যের পথ উন্মুক্ত রাখিতে হইলে, ইংরাজ-বণিক্‌দিগের সহিত সদ্ভাব রক্ষা একান্ত প্রয়োজন; কারণ ইংরাজদিগের মত অধিক মূল্য দিয়া দ্রব্যাদি ক্রয় করিবার সামর্থ্য তখনকার দিনে আর কাহারও ছিল না। নবাব-পুত্রীরা যে ব্যবসা-বাণিজ্য করিতেন, তাহা প্রতিপাদন করিবার জন্য নিম্নলিখিত ঘটনাটীর উল্লেখ করিলে যথেষ্ট হইবে।
+</p><p>উমিচাঁদ নবাবের অতিশয় প্রিয়পাত্র ছিলেন। এক সময়ে তাঁহার কিছু আফিম ও সোরা আমিনা বেগমের আফিমের সহিত তাঁহার নৌকায় আসিতেছিল। নৌকাখানি সে সময় জলাঙ্গী নামক স্থানে অবস্থিতি করিতেছিল এবং ঐ সমস্ত দ্রব্যের বরাবর হুগলী পৌঁছিবার কথা ছিল। ধূর্ত্ত উমিচাঁদ নিজের দ্রব্যাদি বিলম্বে পৌঁছিলে তাহা আর বিক্রীত হইবে না ভাবিয়া, আমিনা বেগমের নৌকা হইতে জিনিসগুলি লইয়া, নিজের নৌকা করিয়া সত্বর চালান দিবার জন্য নবাবের অনুমতি প্রার্থনা করেন। নবাবও উমিচাঁদকে এই অনুমতি দিয়াছিলেন।
+</p><p>আমিনা বেগম এই সমস্ত বৃত্তান্ত অবগত হইয়া উমিচাঁদের এইরূপ আচরণে অত্যন্ত ক্রুদ্ধ হন। বাস্তবিক ক্রুদ্ধ হইবারই কথা, কারণ উমিচাঁদের দ্রব্যাদি অগ্রে বিক্রীত হইয়া গেলে, তাঁহার জিনিষগুলির বিক্রয়ের আর কোন আশা থাকিবে না—অপর পক্ষে সোরাগুলি কোন কারণে ভিজিয়া গেলেও সমূহ ক্ষতি হইবে। বেগম এই বিষয়টীতে প্রকারান্তরে তাঁহার পিতার দৃষ্টি আকর্ষণ করান, কিন্তু তাহাতে কোন ফলোদয় হয় নাই।<sup><a href="#cite_note-6">[৬]</a></sup></p><p>১৭৪৫ খৃঃ অব্দে মহা সমারোহে সিরাজের পরিণয়োৎসব সম্পাদিত হয়। বৃদ্ধ নবাব প্রিয়তম দৌহিত্রের বিবাহ স্মরণীয় করিবার জন্য কোন উৎসব-অনুষ্ঠানেরই ত্রুটি করেন নাই। বহুদিন পরে সিরাজের পিতা জৈনুদ্দীন মুর্শিদাবাদে পদার্পণ করেন।
+</p><p>মহারাষ্ট্রীয়েরা এই সময় উপর্য্যুপরি বঙ্গভূমি আক্রমণ করিয়া বাঙ্গালার নবাবকে ব্যতিব্যস্ত করিয়া তুলিয়াছিল। ভাস্কর পণ্ডিতের নৃশংস হত্যা তাহাদিগের ক্রোধানলে ইন্ধন সংযোেগ করাইয়া দিল। এই হত্যার প্রতিশােধ গ্রহণার্থ রঘুজী ভোঁসলে বিপুল বাহিনী লইয়া বাঙ্গালা আক্রমণ করেন।
+</p><p>রঘুজীর সহিত যুদ্ধ-বিগ্রহকালে নবাব আলিবর্দ্দী, সমসের, সর্দ্দার খাঁ প্রভৃতি আফগান সেনাপতিদিগকে মহারাষ্ট্রীয়দিগের সহিত যড়যন্ত্রে লিপ্ত থাকিতে দেখিয়া, তাহাদিগকে কর্ম্মচ্যুত করেন। আফগান সামন্তবর্গ মুস্তাফার পরাজয়ের পর হইতেই এক প্রকার বিদ্রোহিভাব ধারণ করিয়াছিল, তাহার উপর আবার এইরূপ অপমানিত হইয়া প্রতিশােধ গ্রহণের সুযােগ অনুসন্ধান করিতে লাগিল।
+</p><p>“যাদৃশী ভাবনা যস্য সিদ্ধির্ভবতি তাদৃশী”—ভাবনার অনুকূল সিদ্ধিলাভ হইয়া থাকে। পরবর্ত্তী ঘটনাবলী হইতে পাঠকগণ দেখিবেন, আফগানদিগের সিদ্ধিলাভ কি প্রকারে হইয়াছিল।
+</p><p>সিরাজের বিবাহােৎসবে মুর্শিদাবাদে অবস্থানকালে, নওয়াজিস ও সৈয়দের ধন-রত্নের প্রতি জৈনুদ্দীনের লােলুপ-দৃষ্টি পড়ে। তিনি পাটনায় প্রত্যাগত হইয়া ভ্রাতৃদ্বয়কে অপর্য্যাপ্ত ধনশালী দেখিয়া, পাছে তাহারা নবাবের মৃত্যুর পরে অর্থবলে সৈন্য সংগ্রহ করিয়া, সিংহাসন অধিকার করিয়া বসে, এই আশঙ্কায় এক নূতন উপায় উদ্ভাবন করিলেন। সমসের খাঁ, সর্দ্দার খাঁ প্রভৃতি সদলে পদচ্যুত হইবার পরে দ্বারভাঙ্গায় অবস্থিতি করিতেছিলেন। জৈনুদ্দীন ইঁহাদিগের সাহায্যে বলবৃদ্ধি ও ভবিষ্যতে রাজ্যলাভের সুবিধা হইবার সম্ভাবনা দেখিয়া, নবাবের নিকট আবেদন করেন যে, সমসের, সর্দ্দার প্রভৃতি যেরূপ দুর্দ্দান্ত, তাহাতে তাহাদিগকে রাজ্য হইতে বহিস্কৃত করিয়া দেওয়া সহজসাধ্য নহে। নবাব আদেশ দিলে তিন সহস্র সৈন্যসহ তাহাদিগকে বেহারের সৈন্যদলে অন্তর্নিবিষ্ট করা যায়। কিন্তু আজিমাবাদের রাজকোষ হইতে এত অতিরিক্ত লােকের ব্যয়ভার বহন করা সুকঠিন; অতএব বাঙ্গালা হইতে এই টাকার সাহায্য করা হউক। নবাব প্রথমতঃ এই প্রস্তাবে বিস্ময়াপন্ন হইয়া উঠেন, পরে অনেক বিবেচনার পর পাছে জৈনুদ্দীন দুঃখিত হ’ন এবং দেশের বর্ত্তমান অবস্থায় পুনরায় যদি কোনরূপ বিদ্রোহের সূচনা হয়, এই ভয়ে তাঁহার প্রস্তাব অনুমােদন করেন। জৈনুদ্দীন আফগান সামন্তদিগের নিকট এই প্রস্তাব উত্থাপিত করিয়া পাঠাইলে, তাহারা সানন্দে তাহাতে স্বীকৃত হইল। এইরূপে উভয় পক্ষের কথাবার্ত্তা স্থিরীকৃত হইলে, আফগানগণ গঙ্গার পরপারে পাটনার সম্মুখে আসিয়া জানাইলেন যে, তাঁহারা আবদুল করীম প্রভৃতির আকস্মিক হত্যার কথা স্মরণ করিয়া নবাব দরবারে আসিতে ভীত হইয়াছেন। জৈনুদ্দীন এই সংবাদ পাইবামাত্র পাত্র-মিত্রসহ আফগানদিগের বিশ্বস্ততা প্রতিপাদন ও তাহাদিগকে আপ্যায়িত করিবার মানসে তাহাদিগের নিকট উপস্থিত হইলেন। পরে আফগানগণের সহিত সমস্ত কথা স্থির হইয়া গেলে, নির্দ্ধারিত দিবসে আফগানেরা পাটনায় আসিয়া পৌছিলেন। দরবারের পূর্ব্বদিবসে সমসের ও সর্দ্দার খাঁ পাটনার প্রাসাদে উপস্থিত হইয়া জৈনুদ্দীনের সহিত সাক্ষাৎ করিয়া গেলেন। পরদিন দরবার। জৈনুদ্দীন দরবারগৃহে উপবিষ্ট হইয়া আফগানদিগের প্রতীক্ষা করিতে লাগিলেন। এই সময়ে জৈনুদ্দীন তাহাদিগের প্রতি অনুগ্রহ প্রদর্শনের জন্য যেমন স্বহস্তে তাম্বুল বিতরণ করিতে যাইবেন, এমন সময়ে একজন আফগান তাঁহাকে ছুরিকাঘাত করিল। জৈনুদ্দীন তৎক্ষণাৎ অসি-গ্রহণের চেষ্টা করিলেন, কিন্তু উহা নিষ্কাশিত করিবার পূর্ব্বেই তাঁহার মস্তক স্কন্ধচ্যুত হইয়া পড়িল। দরবার-গৃহ ও প্রাসাদের চতুর্দ্দিক এক্ষণে আফগানদল-বেষ্টিত; পাটনার নবাব-সৈন্য তাহাদিগকে বাধা দিতে পারিল না। সকলে আপন আপন প্রাণ রক্ষার্থ পলায়ন করিতে বাধ্য হইল। মুতাক্ষরীণকার গােলাম হােসেনের ভ্রাতা সৈয়দ আলি অন্তঃপুর মধ্যে পলায়ন করেন। এই সময়ে জৈনুদ্দীনের পত্নী আমিনা বেগম অন্তঃপুরের দ্বার রুদ্ধ করিবার অনুমতি প্রদান করায়, তাঁহার আদেশে তৎক্ষণাৎ দ্বার রুদ্ধ হইল। আমিনা সৈয়দ আলিকে নিজের উপায় দেখিতে বলিলেন। বিদ্রোহিগণ ধনরত্ন কোথায় লুক্কায়িত আছে জানিতে না পারিয়া, কোষাধ্যক্ষ হাজি অহম্মদকে নিষ্ঠুররূপে পীড়ন করিয়া হত্যা করে।<sup><a href="#cite_note-7-n90">[৭]</a></sup> পাটনার নবাবী-সম্পত্তি বিদ্রোহীদিগের হস্তগত হইল। আমিনা ও অন্যান্য বেগমকে বলপূর্ব্বক উন্মুক্ত গো-যানে আরােহণ করাইয়া সমসের খাঁর শিবিরে প্রেরণ করা হইল। পাটনায় হুলস্থূল পড়িয়া গেল।
+</p><p>এই বিপদের সংবাদে আলিবর্দ্দী বিহ্বল ও কাতর হইয়া পড়িলেন। নবাবের চিরসহচর ভাগ্যলক্ষ্মী এবারও তাঁহার প্রতি বিমুখ হ’ন নাই— তিনি আফগান সর্দ্দারদিগকে সমরক্ষেত্রে নিপাতিত করিয়া, আমিনা বেগম প্রভৃতির উদ্ধার সাধন করেন।
+</p><p>পলাশীর যুদ্ধে সিরাজের পরিণাম কি হইয়াছিল, তাহা সকলেই অবগত আছেন—সে সকল কথার পুনরুল্লেখ এখানে নিষ্প্রয়ােজন।
+</p><p>মীরণের উপদেশানুসারে নির্ম্মম নিষ্ঠুর মহম্মদীবেগ সিরাজকে কারাগারে হত্যা করে। ইংরাজেরা প্রথমে শুনিয়াছিলেন যে, সিরাজের মুর্শিদাবাদ আগমনে সৈন্যগণের মধ্যে বিদ্রোহ উপস্থিত হইবার উপক্রম হওয়ায়, মীরণ তাঁহাকে হত্যা করেন। পরে তাঁহারা সিরাজের এইরূপ নিষ্ঠুর হত্যাব্যাপারের সমস্ত গূঢ় রহস্য জানিতে পারিয়াছিলেন।<sup><a href="#cite_note-8-n91">[৮]</a></sup> উল্লাসে-অধীর মীরণের আজ্ঞায় যখন সিরাজের খণ্ড-বিখণ্ডিত দেহ হস্তিপৃষ্ঠে করিয়া মুর্শিদাবাদের পথে পথে প্রদর্শিত হইতেছিল, তখন সিরাজের শত দোষ ভুলিয়া, লাঞ্ছিত অবিমৃষ্যকারী সিরাজের জন্য ব্যথিত হইয়া অশ্রু ফেলে নাই কে? আলিবর্দ্দীর প্রিয় দৌহিত্র—বাঙ্গালার শেষ হতভাগ্য নবাবের শােচনীয় পরিণাম অবলােকন করিয়া, ধন-জনযৌবন-গর্ব্বে-গর্ব্বিত সিরাজের দোষের তুলনায়, শাস্তির নিষ্ঠুরতা ও কঠোরতা দর্শনে স্তম্ভিত ও বিস্মিত হয় নাই কে?
+</p><p>এইরূপ করিয়াও মীরণের আশা পূর্ণ হইল না। সিরাজ-জননীকে হতভাগ্যের অরুন্তুদ পরিণাম দেখাইবার জন্য যখন সিরাজদেহবাহি-হস্তী আমিনা বেগমের দ্বারদেশে উপনীত হইল, সেই সময় যে হৃদয়বিদারক দৃশ্য সংঘটিত হইয়াছিল, তাহা লেখনীতে ব্যক্ত করা যায় না। পুরমহিলারা অন্তঃপুর মধ্যে আবদ্ধ থাকায়, সিরাজ-জননী এই বিপ্লবের কিছুই অবগত ছিলেন না, কিন্তু এক্ষণে লােকমুখে সমস্ত ঘটনা জানিতে পারিয়া, দ্রুতপদে রাজপথে আসিয়া উপস্থিত হইলেন। পরে হস্তিপৃষ্ঠ হইতে মৃতদেহ নামাইয়া, বার বার মুখ চুম্বনপূর্ব্বক নিজবক্ষে করাঘাত করিতে লাগিলেন। যে সম্ভ্রান্ত কুল-মহিলা—দোর্দ্দণ্ডপ্রতাপ সিরাজজননীর চরণ কখন রাজবর্ত্ম স্পর্শ করিতে পারে নাই, সেই সিরাজ-জননী আমিনা আজ উন্মাদিনীর ন্যায় হস্তীর পশ্চাতে পশ্চাতে ছুটিতে লাগিলেন। কি হৃদয়-বিদারক দৃশ্য! পরে জনৈক সম্ভ্রান্ত মুসলমান নিজ প্রাসাদের উপর হইতে এই শােচনীয় দৃশ্য দেখিয়া, লােক পাঠাইয়া বলপূর্ব্বক আমিনাকে বাটীতে আনয়ন করাইলেন।
+</p><p>মীরজাফর, আমিনা ও ঘসিটী বেগমকে বন্দী করিয়া মুর্শিদাবাদ হইতে জাহাঙ্গীর নগর (ঢাকায়) প্রেরণ করেন। বন্দিনী অবস্থায় তাঁহাদিগকে অশেষ যন্ত্রণা ভােগ করিতে হইয়াছিল। অসচ্চরিত্র নীচমনা মীরণ, আমিনা ও ঘসিটী বেগমদ্বয়ের উপর সন্দেহ উপস্থিত হওয়ায় এবং তাহারা জীবিত থাকিলে ভবিষ্যতে তাহার বিপদ হইবার সম্ভাবনা মনে করিয়া, জাহাঙ্গীর নগরের শাসনকর্ত্তা জেসারৎ খাঁকে তাঁহাদের বিনাশের জন্য বারংবার লিখিয়া পাঠান, কিন্তু সদাশয় জেসারৎ খাঁ এই নৃশংস ব্যাপারে অসম্মতি জ্ঞাপন করিলে, মীরণ তাঁহার একজন বন্ধুর উপর এই অমানুষিক কার্য্য সমাধা করিবার ভার অর্পণ করেন এবং তাহাকে বলিয়া দিলেন যে, মুর্শিদাবাদে লইয়া যাইবার ছলে তাহাদিগকে একখানা নৌকায় চড়াইয়া কোন নির্জ্জন স্থানে নৌকাখানি ডুবাইয়া দিবে। যখন তাঁহারা সেই নির্জ্জন স্থানে আসিয়া পৌঁছিলেন, তখন তাঁহাদিগের আসন্ন পরিণামের কথা জানান হইল এবং তাঁহাদিগকে হস্তমুখাদি ধৌত করিয়া পবিত্র হইয়া বস্ত্রাদি পরিধান করিতে আদেশ করা হইল। ঘসিটী এই নিদারুণ বাণী শুনিয়া অশ্রু সংবরণ করিতে পারিলেন না; কিন্তু আমিনা তাঁহার দিকে ফিরিয়া তাঁহাকে শান্ত করিতে চেষ্টা করিলেন। পরে উভয়ে বস্ত্রাদি পরিধান পূর্ব্বক, করবলার মৃত্তিকা কপােলদেশে লেপন করিয়া, নিজেদের পাপের জন্য ভগবানের নিকট ক্ষমা প্রার্থনা করিলেন। অতঃপর মীরণ-প্রেরিত দূতকে তাহার প্রভুর কথামত কার্য্য করিতে বলিলেন। তাহাকে সে কার্য্য করিতে ইতস্ততঃ করিতে দেখিয়া, আমিনা গম্ভীরস্বরে বলিতে লাগিলেন—“হে সর্ব্বশক্তিমান্ ঈশ্বর! আমরা উভয়েই পাপী ও দোষী, কিন্তু আমরা মীরণের নিকট কোন অপরাধেই অপরাধী নহি; বরং আমরা তাহার মঙ্গলের নিমিত্ত সতত প্রয়াস পাইয়াছি, কিন্তু তাহার নিকট হইতে এই নিষ্ঠুর দণ্ডাজ্ঞা ব্যতীত আর কিছুই পাইলাম না। সেই জন্য, আমরা আশা করি, আমাদের মৃত্যুর প্রতিশোধ গ্রহণার্থ পাপিষ্ঠের পাপ-মস্তক চূর্ণ করিবার জন্য আপনার বজ্র প্রেরণ করিবেন।”<sup><a href="#cite_note-9-n92">[৯]</a></sup></p><p>ইহার পর দুই ভগিনী রেকাত নমাজ পাঠ করিয়া, কুক্ষিতলে কোরাণ সরিফ ধারণ পূর্ব্বক নদীবক্ষে ঝম্প প্রদান করিয়া সর্ব্ব যন্ত্রণা হইতে বিমুক্ত হইলেন।<sup><a href="#cite_note-10-n93">[১০]</a></sup> প্রবাদ আছে, সেই রাত্রিতেই না কি বজ্রাঘাতে মীরণ মৃত্যুমুখে পতিত হইয়াছিল।
+</p><p>আমিনা জীবন-মরণের সন্ধিস্থলে আসিয়া, ভগবানের উদ্দেশে যে সকল কথা বলিয়াছেন, তাহা হইতে স্পষ্ট বুঝা যায়, অনুতাপানলে তখন তাঁহার হৃদয় পবিত্র হইয়াছে—স্বর্ণের যেটুকু মলিনত্ব, যেটুকু মলামাটি ছিল, তাহা দূর হইয়াছে—পাপের কালিমা ঘুচিয়া গিয়াছে—ঈশ্বরের উপর নির্ভরতা আসিয়াছে—জীবনের প্রতি মায়া নাই, মমতা নাই—ঘসিটির মত নারীজনোচিত দুর্ব্বলতার তিনি বশবর্ত্তিনী হ’ন নাই—তাঁহার নয়ন বহিয়া অশ্রুও প্রবাহিত হয় নাই। শোভন আল্লার ন্যায়-বিচারে যাহার সম্পূর্ণ বিশ্বাস, তাহার আবার মরণ ভয়? মরণ ত সুখের—মরণই অক্ষয় অনন্ত অমৃতের সন্ধান করিয়া দেয়—মরণই শাশ্বত সুখের পন্থা দেখাইয়া দেয়—ভক্তিমতী অনুতাপানলে শুদ্ধান্তঃকরণা আমিনা সেই আনন্দ পাইবার জন্য লালায়িত—তাই আজ তাঁহার নিকট মরণ কত সুখের—সেই সুখ-আশায় আজ তাঁহার হৃদয় আনন্দোৎফুল্ল। পাপীর মরণের বড় ভয়—মরণের পর সে কোন্ অজ্ঞাতদেশে কোন্ বিরাট্ মহিমময় পুরুষের সম্মুখে দণ্ডায়মান হইয়া, আপনার দুষ্কৃত কার্যের ফলভােগ করিবে ভাবিয়া অস্থির হয়—আমিনার সে ভয় আজ নাই, তাই বলিতেছিলাম আমিনার মুখে মরণ ভীতির চিহ্ণ নাই—বাক্যে বা কার্য্যেও তাহাই প্রকাশ পাইতেছে—তাহার হৃদয়ােত্থিত প্রার্থনায় তাহাই সূচিত হইতেছে। তাই মীরণ-প্রেরিত দূত কি করিয়া অসহায়া দুর্ব্বলা বেগমদিগকে নিমজ্জিত করিবে ভাবিয়াই স্থির করিতে পারিতেছে না—তখন তাহার নিকট প্রাণ ভিক্ষা চাহিলে—অর্থের প্রলােভন দেখাইলে—সে যে মিথ্যা কথা বলিতে পারিত না, তাহা বোধ হয় না; কিন্তু বেগমেরা তাহা করেন নাই—আমিনার মহত্ত্বও এইখানে— আর তাই ভক্তের ভগবান্ নিরপরাধ রমণীদের শান্তির জন্য তাহাদের প্রদত্ত অভিসম্পাত দ্বারা মীরণের মৃত্যু সংঘটিত করিয়াছিলেন।
+</p>
+<div><img alt="" src="images/c16_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c17_Rule_Segment___Crescent_top___10px.svg_10px_Rule_Segment___Crescent_top___10px.svg.png"/><img alt="" src="images/c16_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/></div>
+
+
+</div><ol><li><span><a href="#cite_ref-1-n61">↑</a></span> <span>অর্ম্মে (Indostan-ii-34) আলিবর্দ্দীর কেবল এক কন্যার উল্লেখ করিয়াছেন, কিন্তু মুতাক্ষরীণকার (i-304) ও মিল সাহেব (Mill's History of British India iii.—161) তাঁহার তিন কন্যার কথা লিখিয়াছেন।</span>
+</li>
+<li><span><a href="#cite_ref-2-n62">↑</a></span> <span>Bibliotheque Nationale এর ২১০ সংখ্যক পুঁথিতে ও হস্তলিখিত পারস্য ইতিহাস “তারিখ-ই-বঙ্গালা”য় ময়মনা নামের উল্লেখ আছে। ময়মনা নামটী প্রায় ইতিহাসে দেখিতে পাওয়া যায় না।</span>
+</li>
+<li><span><a href="#cite_ref-3-n64">↑</a></span> <span>Braidley Birt তাঁহার “Romance of an Eastern Capital” পুস্তকের ২১৪ পৃষ্ঠায় ভ্রমক্রমে সৈয়দ অহম্মদকে আমিনার স্বামী বলিয়া উল্লেখ করিয়াছেন।</span>
+</li>
+<li><span><a href="#cite_ref-4-n67">↑</a></span> <span>“It may be. If he has anything left, let him keep it. His sufferings have been great. He shall have his liberty”—A letter from J. Z. Holwell Esq. to W. Davis Esq. from on board the ‘Syren’ sloop, 28th February 1757. S. C. Hill—Indian Records Series: Bengal.</span>
+</li>
+<li><span><a href="#cite_ref-5-n69">↑</a></span> <span>Translation of a letter from M. Le Conte to M. Courtin at Dacca, dated Chundernagore, 19th June, 1756” - Indian Records Series: Bengal.-1—20.</span>
+</li>
+<li><span><a href="#cite_ref-6">↑</a></span> <span>“Letter from Dr. Forth to Mr. Drake at Fulta dated Chinsurah 16th December, 1756”-Indian Records Series: Bengal—ii-63-64,</span>
+</li>
+<li><span><a href="#cite_ref-7-n76">↑</a></span> <span>অর্ম্মে (ii—41) লিখিয়াছেন—জৈনুদ্দীনের স্ত্রী আমিনা বেগম, স্বীয় শ্বশুরের দুর্গতি দেখিতে না পারিয়া, বিষ-প্রদানে তাঁহার যন্ত্রণা মােচন করেন।</span>
+</li>
+<li><span><a href="#cite_ref-8-n78">↑</a></span> <span>Scrafton's “Reflections”-P. 94.</span>
+</li>
+<li><span><a href="#cite_ref-9-n81">↑</a></span> <span>Eliott-viii-429.</span>
+</li>
+<li><span><a href="#cite_ref-10-n82">↑</a></span> <span>রিয়াজ-উস-সলাতিন—শ্রীরামপ্রাণ গুপ্ত। পৃঃ ৩৬৪। <br/>হলওয়েল কিন্তু এই মত পোষণ করেন না। তাঁহার মতে—“মির্জ্জাফর ১৭৬০ খৃষ্টাব্দের জুন মাসে ঘসিটি ও আমিনা বেগম প্রভৃতি সম্রান্ত মহিলাবর্গকে ঢাকার রাজ-কারাগারে হত্যা করাইয়াছিলেন।” (Long's Selections from the Records of the Govt. of India vol. I) কিন্তু তিনি এই মত সমর্থনার্থ কোন প্রমাণাদির উল্লেখ করেন নাই।</span>
+</li>
+</ol></section>
+<section><div>
+
+<h2>আলিবর্দ্দী-বেগম</h2>
+<p>নবাব আলিবর্দ্দী খাঁর রাজত্বের বহু ঐতিহাসিক ঘটনা তাঁহার বেগমের সহিত ঘনিষ্টভাবে বিজড়িত। বেগম সাহেবা ছায়ার ন্যায় তাঁহার স্বামীর অনুবর্ত্তিনী ছিলেন, নিম্নলিখিত ঘটনা দুইটী হইতে তাহা জানিতে পারা যায়।
+</p><p>মীরহবিবের নিকট রত্নপ্রসূ বঙ্গভূমির বিপুল ঐশ্বর্য্যের কথা শ্রবণ করিয়া, রঘুজী ভোঁসলে ভাস্কর পণ্ডিতকে বঙ্গদেশে প্রেরণ করেন। এই মহারাষ্ট্র-অভিযানের কথা নবাব আলিবর্দ্দীর কর্ণগােচর হইলে, তিনি বর্দ্ধমানের নিকটে তাহাদের সম্মুখীন হ’ন। এই সময় তাঁহার বেগমও তাঁহার সহিত যুদ্ধক্ষেত্রে উপস্থিত ছিলেন। মহারাষ্ট্রীয় গণ লুণ্ঠনে ও নানারূপ নির্য্যাতনে লােকদিগকে বিপর্য্যস্ত করিয়া তুলিয়াছিল এবং এই কার্য্যে তাহারা এতদূর অগ্রসর হইয়াছিল যে, ‘লণ্ডা’ নামক যে হস্তীর উপর নবাব-বেগম আরূঢ়া ছিলেন, সেই হস্তী সমেত তাঁহাকে বন্দিনী করিয়া নিজেদের শিবিরে লইয়া যায়। নবাবের জনৈক সেনানী ওমার খাঁর জ্যেষ্ঠ পুত্র মুসাহেব খাঁ, এই অবমাননায় মর্ম্মাহত হইয়া, বীরবিক্রমে আত্মজীবন-বিনিময়ে বহু কষ্টে বেগমের উদ্ধার সাধন করিয়া, তাঁহার মান মর্য্যাদা রক্ষা করেন!<sup><a href="#cite_note-1-n106">[১]</a></sup></p><p>বালেশ্বরের যুদ্ধক্ষেত্রেও আলিবর্দ্দী খাঁর পার্শ্বে আমরা বেগম সাহেবাকে দেখিতে পাই। রণকোলাহলের মধ্যে, অগণিত দ্বিষতের প্রাণহীন দেহ দেখিয়া, যে কোমলহৃদয়া নারী আপনাকে প্রকৃতিস্থ রাখিতে পারেন— শত্রুশিবিরে বন্দিনী হইয়াও যিনি আপনার শৌর্য্য ও আত্মগরিমার পরিচয় দিতে পারেন, তিনি যে নারীকুলের শিরোমণি, তাহা সকলকেই অকুষ্ঠিত চিত্তে স্বীকার করিতে হইবে। তাঁহার সম্বন্ধে হলওয়েল সাহেবের ধারণা অতি উচ্চ ছিল। তিনি লিখিয়াছেন—“জ্ঞানগরিমা, মহানুভবতা, কারুণ্য ও অপরাপর কমনীয় সদ্‌গুণাবলী-ভূষিতা বেগম সাহেবার চরিত্র তাঁহার পদমর্য্যাদানুরূপই ছিল এবং এ সকল সদ্‌গুণ যে তাঁহাকে চিরকাল নারী কুলোত্তমা করিয়া রাখিবে, তাহাতে অনুমাত্র সন্দেহ নাই।”<sup><a href="#cite_note-2-n107">[২]</a></sup> তিনি উৎসবে আনন্দময়ী—সোহাগে প্রেমবিহ্বল লাজময়ী—রোগে শুশ্রূষা পরায়ণা সহচরী—বিপদে পরামর্শদাত্রী। কি রাজনৈতিক উন্নতিবিধানে— কি সামাজিক মঙ্গলকল্পে এবং প্রজাদিগের হিতার্থে পরদুঃখকাতরা বেগম সাহেবা স্বামীকে সৎপরামর্শ দিয়া ঐ সকল শুভকর্ম্মে উদ্বুদ্ধ করিতেন, আর যখনই নবাব সাহেব কোন শুভকর্ম্মানুষ্ঠানের পূর্ব্বে তাঁহার পরামর্শ লইতেন, তখনই তিনি সুপরামর্শ দানে তাঁহাকে কর্ম্মে উৎসাহিত করিতেন।
+</p><p>ভাস্কর পণ্ডিতের মৃত্যুর পর রঘুজী যখন বিপুল বাহিনী লইয়া বাঙ্গালা আক্রমণ করেন, সেই সময়ে সমসের, সর্দ্দার প্রভৃতি আফগান সেনাপতি গণ মহারাষ্ট্রীয়দিগের সহিত যড়যন্ত্রে লিপ্ত হ’ন। নবাব আলিবর্দ্দী এই সংবাদ শ্রবণে অতিশয় বিচলিত হইয়া পড়েন। তিনি কিংকর্ত্তব্যবিমূঢ় হইয়া বেগম সাহেবার নিকট পরামর্শ গ্রহণের জন্য উপস্থিত হইলে, তিনি সমস্ত বৃত্তান্ত শ্রবণান্তে সন্ধির প্রস্তাব করিয়া মজঃফর আলি ও ফকীর আলি নামক দুইজন দূতকে রঘুজীর নিকট প্রেরণ করিলেন।<sup><a href="#cite_note-3-n108">[৩]</a></sup>এদিকে রঘুজীও নানারূপে বিপর্য্যস্ত হইয়া সন্ধিস্থাপনের ইচ্ছা করিতে ছিলেন; কিন্তু গৃহশত্রু মীরহবিব তাঁহাকে বুঝাইলেন—“আর কিছুদিন যুদ্ধ চালাইলে আলিবর্দ্দীকে বাধ্য হইয়া সন্ধি সংস্থাপিত করিতে হইবে, কারণ তাঁহার রাজকোষ এখন প্রায় শূন্য; সৈনিকেরা রীতিমত বেতন না পাইয়া ক্ষুণ্ণ; অসন্তুষ্ট আফগান সামন্তগণের মধ্যে শীঘ্রই বিদ্রোহানল প্রধূমিত হইয়া উঠিবে—আমির ওমরাহগণ তাঁহার ব্যবহারে প্রীত নহে, এরূপস্থলে আপনি কেন সন্ধিসূত্রে আবদ্ধ হইবেন?” মীরহবিবের পরামর্শমতে রঘুজী নবাব-বেগমের প্রস্তাব অগ্রাহ্য করিলেন। রঘুজী তাঁহার প্রস্তাব অমান্য করিল দেখিয়া, বেগম সাহেবা সৈন্যগণকে মহারাষ্ট্রীয়-শিবির আক্রমণ করিতে আদেশ দিলেন।
+</p><p>এই সময়ে আফগানসামন্তবর্গ নবাবকে বড়ই বিপন্ন করিয়া তুলিল। মুস্তাফার পরাজয়ের পর হইতেই তাহারা এক প্রকার বিদ্রোহী হইয়া উঠিয়াছিল, এক্ষণে মহারাষ্ট্রীয়দিগের সহিত ষড়যন্ত্রে লিপ্ত থাকার অপরাধে পদচ্যুত, অপমানিত ও লাঞ্ছিত হইয়া, প্রতিশোধ গ্রহণের সুযোগ অন্বেষণ করিতে লাগিল এবং তাহারা কৌশলে নবাবের জামাতা জৈনুদ্দীনকে হত্যা করিয়া তৎপত্নী আমিনা বেগমকে আবদ্ধ করিয়া রাখিল।
+</p><p>এই অপ্রত্যাশিত বিপদে আলিবর্দ্দী অধীর হইয়া পড়িলেন; কিন্তু ধীর প্রকৃতি বেগম সাহেবা আমিনার উদ্ধারের জন্য ও উদ্ধতপ্রকৃতি আফগানদিগকে সমুচিত শিক্ষা দিবার জন্য, অগৌণে সৈন্য-সামন্ত লইয়া নবাবকে যুদ্ধক্ষেত্রে পাঠাইয়া দিলেন। এ যুদ্ধের পরিণাম—আমিনার উদ্ধার ও আফগানসামন্তবর্গের বশ্যতা-স্বীকার।
+</p><p>এদিকে আবার যখন সুচরিত্রা বেগম সাহেবা হোসেন কুলির সহিত ঘসিটী ও আমিনা বেগমের অবৈধ প্রণয় দেখিয়া মর্ম্মাহত হইলেন—যখন কন্যাদিগকে বুঝাইয়াও পাপমার্গ হইতে সুপথে আনয়ন করিতে পারিলেন —রূপােন্মত্ত হােসেন কুলিকেও প্রণয়াস্পদের নিকট হইতে দূরে রাখিতে অকৃতকার্য্য হইলেন, তখন মাতৃস্নেহের বশবর্ত্তিনী হইয়া কন্যাদিগের দোষ না দেখিয়া হােসেন কুলিকেই তাহাদের সর্ব্বনাশের মূল ভাবিয়া, তাহার হত্যার জন্য সিরাজকে উত্তেজিত করিতে লাগিলেন। সিরাজও তাঁহার আদেশে হােসেন কুলিকে হত্যা করাইলেন।
+</p><p>ইহার কিছুদিন পরে নওয়াজিস মহম্মদের মৃত্যু হয়। তাঁহার মৃত্যুর অব্যবহিত পরে ঘসিটী বেগমের অর্থের প্রতি সিরাজের লােলুপ দৃষ্টি পড়িয়াছিল; কিন্তু ঘসিটীও এই কথা জানিতে পারিয়া, পূর্ব্ব হইতে ধনরত্নাদি লইয়া মতিঝিলে আশ্রয় গ্রহণ করিয়াছিলেন। আলিবর্দ্দীর জীবদ্দশায় সিরাজ ঘসিটীর বিপক্ষতাচরণ করিতে পারেন নাই। ১৭৫৬ খৃঃ অব্দে আলিবর্দ্দীর মৃত্যুতে রাজলক্ষ্মী যখন সিরাজের অঙ্কশায়িনী হইলেন, তখন পিতৃব্যধন-লুণ্ঠন-প্রয়াসী সিরাজ মতিঝিল অবরােধ করিলেন। বিপদ গুরুতর দেখিয়া আলিবর্দ্দী-বেগম স্বয়ং এই বিপদ ভঞ্জনার্থ অবরুদ্ধ দুর্গপ্রাসাদে প্রবেশ করিলেন এবং স্থির করিয়া দিলেন, ঘসিটীর পােষ্যপুত্র বাঙ্গালার মসনদে বসিতে পারিবে না বা ঘসিটী আপনার পােষ্যপুত্রের জন্য যুদ্ধাদি করিতে পারিবে না। সিরাজকে বাঙ্গালার নবাব বলিয়া সে স্বীকার করিবে, আর সিরাজও ঘসিটীর স্বামীত্যক্ত-সম্পত্তিতে হস্তক্ষেপ করিতে পারিবে না। কিন্তু যে দিন বিবাদ মিটিল, সিরাজ তাহার পরদিবসেই মতিঝিলের যাবদীয় সম্পত্তি বাজেয়াপ্ত করিলেন। এই সমস্ত কারণে ঘসিটী সিরাজের আশ্রয় লইলেন। ইহারই ফলে সিরাজের ইংরাজদিগের সহিত ঘােরতর বিবাদের সূত্রপাত হইল ও তিনি কলিকাতা আক্রমণ করিলেন। হলওয়েলকে ধৃত করিয়া মুর্শিদাবাদে আনা হইল; কিন্তু অল্পদিন পরেই তিনি মুক্তিলাভ করিয়াছিলেন। সিরাজ যে এত শীঘ্র হলওয়েলকে অব্যাহতি দিয়াছিলেন, তাহার একটা বিশেষ কারণও আছে। আলিবর্দ্দী বেগম ও আমিনা বেগম, হলওয়েলের দুঃখে ব্যথিত হইয়া তাঁহার মুক্তির জন্য সিরাজকে বারবার কাতর কণ্ঠে উপরোধ করেন।<sup><a href="#cite_note-4-n109">[৪]</a></sup> স্নেহময়ী মাতামহী ও জননীর কাতর প্রার্থনায় সিরাজ তাঁহাকে স্বাধীনতা দান করিয়াছিলেন।
+</p><p>যে সময়ে হলওয়েল মুর্শিদাবাদে বন্দীভাবে অবস্থান করিতেছিলেন, সেই সময়ে একদিন তিনি আলিবর্দ্দী-বেগমের প্রধান পরিচারিকা ও জনৈক সেকের কথোপকথন হইতে জানিতে পারিয়াছিলেন যে, পূর্ব্বরাত্রে ভোজের সময় আলিবর্দ্দী-বেগম সিরাজকে তাঁহার মুক্তির জন্য অনুরোধ করেন।<sup><a href="#cite_note-5-n110">[৫]</a></sup> তাহার পর তিনি অবগত হ’ন যে, তাঁহাকে কলিকাতায় নির্ব্বাসিত হইতে হইবে; কিন্তু সিরাজের সহিত পরদিন সাক্ষাৎ হইলে, তিনি তাঁহাকে মুক্তিদান করেন। নবাব-বেগম যে হলওয়েলের মুক্তির জন্য সিরাজকে বিশেষভাবে অনুরোধ করিয়াছিলেন, তজ্জন্য় হলওয়েল সাহেব তাঁহার পুস্তকে তাঁহার প্রতি কৃতজ্ঞতা প্রকাশ ও ধন্যবাদ করিতে কুণ্ঠিত হন নাই।<sup><a href="#cite_note-6-n111">[৬]</a></sup></p><p>পলাশীর যুদ্ধাবসানে সিরাজের হত্যাকাণ্ড সাধিত হইবার পর, মীরজাফরের পুত্র মীরণ আলিবর্দ্দী-বেগম, তাঁহার দুই কন্যা ঘসিটী ও আমিনা, সিরাজ-পত্নী লুৎফুন্নিসা ও তাঁহার শিশুকন্যাকে বন্দী করিয়া জাহাঙ্গীর নগরে প্রেরণ করেন এবং তাঁহাদিগকে গােপনে হত্যা করিবার জন্য তথাকার শাসনকর্ত্তা জেসারৎ খাঁর উপর পরওয়ানা পাঠান; কিন্তু সদাশয় শাসনকর্ত্তা এ কার্য্যে অসম্মতি জ্ঞাপন করিলে, মীরণ তাঁহার একজন বন্ধুর প্রতি এই কার্য্যের ভার অর্পণ করেন। ঘসিটীর ও আমিনার শোচনীয় পরিণাম—তাহাদের সলিল-সমাধি ও নির্ম্মম মৃত্যু-যন্ত্রণা আমাদিগের সহানুভূতির উদ্রেক করে। অত্যাচারের কঠিন হস্ত হইতে আলিবর্দ্দী-বেগম ও লুৎফুন্নিসা কি প্রকারে অব্যাহতি লাভ করিয়াছিলেন ও কেমন করিয়া বেগম-সাহেবা মুর্শিদাবাদে ফিরিয়া আসিয়াছিলেন, ইতিহাস তাহার কোন সন্ধানই বলিয়া দিতে পারে না।
+</p><p>ভাগ্যলক্ষ্মীর বিপর্যয়ে, বাঙ্গালার নবাব-বেগমের শােচনীয় পরিণাম দেখিয়া, আলিবর্দ্দীর পদতলে-সমাহিতা বেগম-সাহেবার কবরের উপর দুই বিন্দু অশ্রু না ফেলিয়া থাকিতে পারা যায় না।
+</p>
+<div><img alt="" src="images/c19_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c20_Rule_Segment___Flare_Centre___22px.svg_22px_Rule_Segment___Flare_Centre___22px.svg.png"/><img alt="" src="images/c21_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/></div>
+
+
+</div><ol><li><span><a href="#cite_ref-1-n95">↑</a></span> <span>“The Mahrattas continued their depredations, so much so that they laid their hands on the very elephant on which the Begum was riding, and were leading it away to their camp, when Musaheb Khan, eldest son of Omer Khan rescued the Begum and the elephant.” alsn's Murshidabad —P. 146.</span>
+</li>
+<li><span><a href="#cite_ref-2-n97">↑</a></span> <span>Holwell's “Interesting Historical Events.” Pt. I—Chap. P. 170-71.</span>
+</li>
+<li><span><a href="#cite_ref-3-n98">↑</a></span> <span>Mutaqherin—i—522.</span>
+</li>
+<li><span><a href="#cite_ref-4-n102">↑</a></span> <span>বেগমগণের ইংরাজদের প্রতি সহানুভূতি দেখাইবার একটা বিশেষ কারণও ছিল। হিল সাহেব তাহার পুস্তকের একস্থলে লিখিয়াছেন:—“The interest of these ladies in the English Merchants may have been partly due to the fact that they also were accustomed to speculate in commerce.” Indian Records Series: Bengal—i—xcii.</span>
+</li>
+<li><span><a href="#cite_ref-5-n103">↑</a></span> <span>A letter from J. Z. Holwell, Esq. to William Davis Esq. from on board the ‘Syren’ sloop, 28th February 1757. Ibíd-iii-151.</span>
+</li>
+<li><span><a href="#cite_ref-6-n104">↑</a></span> <span>‘India Tracts’—Edited by Lal Gopal Goswami Pt. IV—35.</span>
+</li>
+</ol></section>
+<section><div>
+
+<h2>মণিবেগম</h2>
+<p>মীরজাফরের অন্যতমা সহধর্ম্মিণী মণিবেগমের জীবন-বৃত্তান্ত সম্বন্ধে এ পর্য্যন্ত বড় একটা আলোচনা হয় নাই। কেহ বা বেগম-সাহেবার নামমাত্র করিয়াছেন; কেহ বা ক্কচিৎ তাঁহার জীবনের কোন ঘটনা-বিশেষের অবতারণা করিয়াছেন মাত্র। তাঁহার জীবনের ধারাবাহিক ঘটনাবলীর একত্র সমাবেশ সম্ভবপর না হইলেও, ইতস্ততঃ বিক্ষিপ্ত ঘটনাবলী হইতে যে চিত্রের আভাষ পাওয়া যায়, তাহাই অঙ্কিত করিবার চেষ্টা পাইলাম।
+</p><p>মণিবেগম কোন সম্ভ্রান্ত বংশে জন্মগ্রহণ করেন নাই। তিনি ও বব্বু বেগম উভয়েই প্রথমে নর্ত্তকী ছিলেন। নৃত্যকলাই বব্বু বেগমের বংশের উপজীবিকা ছিল। বব্বু বেগমের মাতার নাম ‘বিশু’। সম্মন আলি খাঁ নামক জনৈক মুসলমানের ঔরসে বব্বুর জন্ম। শিকান্দ্রার নিকটবর্ত্তী বলকুণ্ডা গ্রামে একজন দরিদ্র বিধবা বাস করিতেন। দারিদ্র্যের কঠোর পীড়নে তিনি নিজ কন্যার ভরণপোষণের ব্যয়ভার বহনে অসমর্থ হইয়া, তাহাকে বিশুর হস্তে অর্পণ করেন। বালিকা সাজহানাবাদে (দিল্লীতে) পাঁচ বৎসর কাল অবস্থিতি করিয়া, তথায় বিশুর অনুগ্রহে নৃত্যকৌশল শিক্ষা করে। বিশুর কন্যা বব্বু ও নর্ত্তন-বিদ্যায় পারদর্শিতা লাভ করিয়াছিল। এই সময়ে নবাব সাহামৎ জং (নওয়াজিস মহম্মদ) সিরাজুদ্দৌলা ও তদীয় ভ্রাতা ইক্রামুদ্দৌলার মহা সমারোহে বিবাহোপলক্ষে নৃত্যগীতাদির নিমিত্ত সাজহানাবাদ হইতে ১০০০০৲ টাকা দিয়া বিশুবেগ ও তাহার নর্ত্তকী-সম্প্রদায়কে মুর্শিদাবাদে আনয়ন করেন। এই নর্তকীগণের মধ্যে প্রাগুক্ত বালিকা মণিও ছিল। উৎসবান্তে নবাবের অনুরোধে দলস্থ লোকদিগকে তথায় কিছুদিন অবস্থিতি করিতে হয়। তৎপরে নবাব তাহাদিগকে বিদায় দিলে,তাহারা কিছুদিনের জন্য ঐ নগরেই বাস করিতে থাকে। গুণমুগ্ধ মীরজাফর মণির নৃত্যগীতের এতই পক্ষপাতী হইয়াছিলেন যে, প্রত্যহই তিনি তাহার গৃহে একবার করিয়া যাইতেন। ক্রমাগত যাতায়াতে তিনি তাহার প্রতি এতদূর আকৃষ্ট হইয়া পড়িলেন যে, মাসিক ৫০০৲ টাকা বেতনে আরও কিছুদিন তাহাকে তথায় থাকিবার জন্য অনুরোধ করিলেন। মণিও স্বীকৃত হইল। মণির কিন্তু আর নৃত্যগীত ভাল লাগিল না—হৃদ্বিনোদন-বিদ্যাকুশলা মণি দেখিল, নবাবের মনোহরণ করিতে গিয়া সে নবাবকে ভালবাসিয়া ফেলিয়াছে। নবাবের অঙ্কশায়িনী হইবার দুরাশা হৃদয়ে সে কিছুতেই পোষণ করিতে না পারিলেও, আল্লার নিকট প্রার্থনা করিল, দিনান্তে এক বারমাত্র মীরজাফরের দর্শন যেন তাহার ভাগ্যে ঘটিয়া উঠে—ঘটিলও তাহাই। কিছুদিন পরে মীরজাফর মণিকে ভার্য্যারূপে গ্রহণ করিলেন। এই ঘটনার কিছুদিন পরে বব্বুবেগমের সহিতও তাঁহার পরিণয়-ক্রিয়া সম্পাদিত হয়।<sup><a href="#cite_note-1-n136">[১]</a></sup> এই সময় হইতেই মণিবিবি ‘মণিবেগম’ নামে খ্যাত হ’ন ও তাঁহাকে বাল্যের সঙ্গিনীদিগের সহিত সম্বন্ধ একেবারে বিচ্ছিন্ন করিতে হয়। স্বাধীনতাপ্রিয় যূথভ্রষ্ট বন্য করিণীকেও প্রেমের মোহন ফাঁসে আবদ্ধ হইতে হয়, কলাবিদ্যানিপুণা নর্ত্তকী মণিকে পর্দ্ধানশীনা হইয়া নবাবের অন্তঃপুরে বাস করিতে হইয়াছিল। মণিবেগমের গর্ভে নিজামুদ্দৌলা ও সৈয়ফুদ্দৌলা এবং বব্বু বেগমের গর্ভে মোবারকউদ্দৌলার জন্ম হয়। উত্তরকালে বুদ্ধিমত্তা ও আন্তরিক প্রণয়ের জন্য মণিবেগমই মীরজাফরের প্রধান বেগম হইয়াছিলেন। ইনিই মীরজাফরের নিকট সর্ব্বাপেক্ষা আদরের পাত্রী হইয়া উঠিয়াছিলেন। সিরাজের হিরাঝিলের প্রাসাদ হইতে মীরজাফর যে সমস্ত রত্নরাজি গোপনে আত্মসাৎ করিয়াছিলেন, পরে মণিবেগমই তৎসমুদয়ের অধিকারিণী হ’ন।
+</p><p>নবাব মীরজাফর বৃদ্ধবয়সে শাসনকার্য্য পরিচালনে অসমর্থ হওয়ায় মীরকাশিমকে ডেপুটী নাজিমরূপে নিযুক্ত করেন। তিনি মুর্শিদাবাদে নামে-নবাব হইয়া থাকিতে অনিচ্ছুক ছিলেন। এই কারণে তিনি শাসনভার পরিত্যাগ করায়, অনতিবিলম্বে কাউন্সিল কর্ত্তৃক পদচ্যুত হইলেন। ১৭৬০ খৃষ্টাব্দের মার্চ্চ মাসে মীরকাশিম নবাব-নাজিম হইলেন। জাফর ও তাঁহার পত্নী মণিবেগম অনুচরবর্গসহ অর্থাদি লইয়া কলিকাতায় আগমন করিলেন। কলিকাতায় পৌঁছিয়া তিনি ময়দাপটীতে জমী ক্রয় করিয় তথায় গৃহ নির্মাণপূর্ব্বক মণিবেগমের সহিত কিছুদিন অবস্থান করিয়াছিলেন।<sup><a href="#cite_note-2-n137">[২]</a></sup></p><p>১৭৬৫ খৃঃ অব্দে মীরজাফরের মৃত্যু হইলে, নূতন নবাব নিয়োগের জন্য মুর্শিদাবাদের রাজকোষ কোম্পানীর কর্ম্মচারিবৃন্দের সম্মুখে উন্মুক্ত করিয়া দেওয়া হয়। মীরজাফরের পুত্রগণের মধ্যে যাহারা জীবিত ছিলেন, তন্মধ্যে নিজামুদ্দৌলাই জ্যেষ্ঠ; বৃদ্ধ নবাব অন্তিম কালে তাঁহাকেই মসনদে বসাইবার ইচ্ছা প্রকাশ করিয়া যান। তাঁহার জীবদ্দশাতেই তদীয় জ্যেষ্ঠপুত্র মীরণের মৃত্যু হইয়াছিল। কলিকাতা কাউন্সিলের সভ্যগণ মীরণের শিশুপুত্রের আবেদন অগ্রাহ্য করিয়া, নিজামুদ্দৌলাকেই মসনদে বসান। দেশীয় প্রধান প্রধান ব্যক্তিরা কেহই মীরণের শিশুপুত্রের অনুকূলে ছিলেন না, কারণ তাহার নিকট হইতে অর্থ প্রাপ্তির কোনই সম্ভাবনা ছিল না, অধিকন্তু মুসলমান ব্যবহার-শাস্ত্রানুসারে পিতৃব্য জীবিত থাকিলে, পৌত্রেরা পিতামহের বিষয়ের উত্তরাধিকারী হইতে পারে না, এই সমস্ত কারণে পঞ্চদশবর্ষবয়স্ক নিজামুদ্দৌলাই<sup><a href="#cite_note-3-n138">[৩]</a></sup> মসনদ প্রাপ্ত হ’ন।
+</p><p>নিজামতি প্রাপ্ত হইয়া নিজামুদ্দৌলা ও তাঁহার মাতা মণিবেগম উভয়েই নন্দকুমারকে দেওয়ান নিযুক্ত করিবার জন্য বিশেষ ইচ্ছা প্রকাশ করেন, কিন্তু কলিকাতা কাউন্সিলের সভ্যেরা তাঁহার প্রতি তাদৃশ প্রসন্ন না থাকায়, তাঁহার মনস্কামনা সিদ্ধ হয় নাই। প্রচুর অর্থব্যয়ে অবশেষে রেজা খাঁই নায়েব-সুবাদার নিয়োজিত হন।<sup><a href="#cite_note-4-n139">[৪]</a></sup> ১৭৬৬ সালের এপ্রিল মাসে ক্লাইভ নিজামুদ্দৌলার সহিত মতিঝিলে কোম্পানীর প্রথম ‘পুণ্যাহ’ করেন। এই ঘটনার এক মাস পরেই তিনি বিষমজ্বরে প্রাণত্যাগ করেন।
+</p><p>মীরজাফর ক্লাইভকে প্রকাশ্যভাবে যে ৫ লক্ষ টাকার দানপত্র লিখিয়া দিয়া গিয়াছিলেন, তাঁহার মৃত্যুর পর সেই টাকা লইয়া যাইবার নিমিত্ত মণিবেগম ক্লাইভকে তাঁহার সহিত সাক্ষাৎ করিতে অনুরোধ করিয়া একখানি পত্র লেখেন; কিন্তু এই সময়ে নানা কার্য্যে ব্যস্ত থাকায়, বেগম সাহেবার নিকট হইতে ঐ টাকা বুঝিয়া লইতে ক্লাইভের কিছু বিলম্ব ঘটিয়াছিল। জাফরের ও নিজের স্মৃতি রক্ষার্থ ক্লাইভ এই টাকায় বিলাতে পিতৃমাতৃহীন বালকদিগের ও সৈনিকগণের বিধবা রমণীদের জন্য একটা দাতব্যভাণ্ডার প্রতিষ্ঠিত করিয়াছিলেন।
+</p>
+
+<p> নিজামুদ্দৌলার মৃত্যুর পর তদীয় ষোড়শবর্ষীয় সহোদর সৈয়ফুদ্দৌলা ১৭৬৬ খৃঃ অব্দের ২২শে মে তারিখে বাঙ্গালার মসনদে অধিরূঢ় হন। তাঁহার সময়ে মাতা মণিগেমের হস্তে সমস্ত কর্ত্তৃত্বের ভার অর্পিত হয়। সৈয়ফুদ্দৌলা নাবালক বলিয়া মণিবেগম অভিভাবক-স্বরূপে রাজকার্য্য নির্ব্বাহ করিতেন। ১৭৭০ খৃষ্টাব্দের প্রারম্ভে মন্বন্তরের বর্ষে বসন্তরোগে সৈয়ফুদ্দৌলার মৃত্যু হয়।
+</p><p>সৈয়ফুদ্দৌলার মৃত্যুর পর মীরজাফরের অন্যতমা ভার্য্যা বব্বু বেগমের দ্বাদশবর্ষীয় পুত্র মোবারক-উদ্দৌলা নবাব হন। পূর্ব্বের ন্যায় মহম্মদ রেজা খাঁই নায়েব রহিলেন। ১৭৭২ খৃঃ অব্দের প্রারম্ভে ওয়ারেন হেষ্টিংশ বাঙ্গালার গভর্ণর হইয়া আসিলেন। ইতিমধ্যে বাঙ্গালা হইতে আশানুরূপ অর্থাগম হওয়ায়, নব ব্যবস্থার আয়োজন হইতে লাগিল। ইংরাজের ক্ষতিপূরণ, মনরোর প্রাপ্য ও সেনাদলের প্রতিশ্রুত টাকা প্রভৃতি নাবালক নবাবের নিকট হইতে কি ভাবে আদায় করিতে পারা যায়, তাহার পরামর্শ চলিতে লাগিল।<sup><a href="#cite_note-5-n140">[৫]</a></sup> রাজকোষ হইতে অর্থাগমের সুবিধা হইতেছে না দেখিয়া নবাবের কর্ম্মচারীদিগের কার্য্যকলাপ পরিদর্শনের জন্য একটী গুপ্ত কমিটীর সৃষ্টি হইল। নন্দ কুমারের প্ররোচনায় ও সাক্ষ্যে, কমিটী নায়েব রেজা খাঁকে সকল অনর্থের মূল সাব্যস্ত করিলেও, তাঁহার নিকট হইতে সন্তোষজনক হিসাব নিকাশ লইবার জন্য পূর্ব্বাহ্ণে তাহাকে গোপনে কারাবদ্ধ করিয়া রাখিতে রেসিডেন্ট মিড্‌ল্‌টন্ সাহেবকে পত্র লিখিলেন। ইহার কিছুদিন পরে রেসিডেন্ট রেজা খাঁকে বন্দী করিয়া কলিকাতায় আনয়ন করেন। মণিবেগম রেজা খাঁর ঈদৃশ অবমাননায় অত্যন্ত ব্যথিত হইয়াছিলেন। তিনি ইচ্ছা করিলে এ সময় যদিও অত্যাচারী রেজা খাঁর অনিষ্ট করিতে পারিতেন, কিন্তু তথাপি তিনি তাহা করেন নাই। তিনি রেজা খাঁর মুক্তির জন্য প্রাণপণ চেষ্টা করিয়াছিলেন। মণিবেগমের কৌশলে কলিকাতার কাউন্সিল নন্দকুমারের দ্বাবিংশতি বর্ষবয়স্ক পুত্র গুরুদাসকে ‘রাজা গৌরপৎ’ উপাধি ভূষিত করিয়া, দেওয়ান ও হিসাবরক্ষকের পদে এবং বিমাতা মণিবেগমকে নবাবের অভিভাবকরূপে রাজকার্য্য পরিদর্শন করিতে নিযুক্ত করিলেন। এইরূপে বুদ্ধিমতী মণিবেগম ক্ষমতাশালী মহারাজ নন্দকুমারকে বশীভূত করিয়া স্বপক্ষ সমর্থন করিবার সুযোগ পাইলেন।
+</p><p>মোবারকের মাতা বুব্বু বেগমের পরিবর্ত্তে বিমাতা মণিবেগম কেন যে অভিভাবিকা নিযুক্ত হইয়াছিলেন, তাহার কোন সন্তোষজনক কারণ আমরা জ্ঞাত নহি; তবে এইমাত্র জানিতে পারা যায় যে, বব্বু বেগম স্বীয় পুত্রের অভিভাবিকা নিযুক্ত হইবার জন্য প্রার্থনা করিয়াছিলেন, কিন্তু গভর্ণর হেষ্টিংশ তাঁহার আবেদন অগ্রাহ করিয়া, মণিবেগমকে ঐ পদের উপযুক্ত স্থির করেন।
+</p><p>কার্য্যের সুবিধার জন্য মণিবেগম রাজা গুরুদাসের অধীনে ইৎবর আলি খাঁ নামক একজন খোজাকে নিযুক্ত করেন। প্রকৃত প্রস্তাবে ইৎবর আলিই নায়েবপদে প্রতিষ্ঠিত হইলেন। তিনি অতিশয় নির্ব্বোধ ও নীচমনা ছিলেন। পদগর্ব্বে-গর্ব্বিত ইৎবর সন্ত্রান্ত লোক দিগকে নির্যাতিত করিয়া রাজ্যে অশান্তি আনয়ন করিয়াছিলেন। মণিবেগম এই নির্ব্বোধ, শাসনকার্য্যে-অনভিজ্ঞ খোজার প্রতি কৃপাপরবশ হওয়ায়, অনেকেরই বিরাগভাজন হইয়াছিলেন এবং ইহারই কুপরামর্শে তিনি মোবারকের অভিভাবিকা হইতে সমর্থ হইয়াছিলেন।
+</p>
+
+<p> গভর্ণর হেষ্টিংশ মোবারকের ২৪ লক্ষ টাকা বৃত্তির পরিবর্ত্তে ১৬ লক্ষ টাকা ধার্য্য করিয়াছিলেন এবং বয়ঃপ্রাপ্ত না হওয়া পর্য্যন্ত ঐ টাকার ব্যয়ভার মণিবেগমের হস্তে দিয়াছিলেন। মণিবেগম ঐ টাকা নিম্নলিখিত বাবদে ব্যয় করিতেন।
+</p><p>(১) নবাবের বিলাসিতা, সাংসারিক খরচ ও সামরিক ব্যয় নির্ব্বাহার্থ।
+</p><p>(২) মীরজাফরের আত্মীয়স্বজন ও তাঁহার ‘রক্ষিতা’ স্ত্রীলোকদিগের বৃত্তি।
+</p><p>(৩) আলিবর্দ্দীর বংশধরগণের বৃত্তি।
+</p><p>(৪) পূর্ব্ববর্ত্তী নবাব-নাজিমগণের অনুগ্রহভাজন কয়েকজন উপযুক্ত লোকের বৃত্তি।
+</p><p>ইহার পর নন্দকুমারের পরিণাম যাহা ঘটিয়াছিল, তাহা ইতিহাস পাঠকের অবিদিত নাই। জাল অপরাধে তাঁহার ফাঁসি হয়। প্রায় ২ বৎসর কাল বিচারের পর রেজা খাঁ নিষ্কৃতি পাইলেন। তিনি তাঁহার পূর্ব্ব প্রতিষ্ঠা লাভ করিলে, মণিবেগমকে বার্ষিক ১ লক্ষ টাকা বৃত্তি দিয়া পদচ্যুত করা হয়। সঙ্গে সঙ্গে গুরুদাসও অপসৃত হইলেন। ১৭৯৩<sup><a href="#cite_note-6-n141">[৬]</a></sup> খৃঃ অব্দে মোবারকের মৃত্যু হয়।
+</p><p>মণিবেগমের কার্য্যকালের হিসাব নিকাশের সময় তহবিলে অনেক টাকা কম পড়ায়, তিনি বলেন যে, গভর্ণর জেনারেল হেষ্টিংশ ও তাঁহার কর্ম্মচারীদিগের প্রীত্যর্থে ঐ টাকা ব্যয়িত হইয়াছে। নবাব বাবর জং তাঁহার প্রমাণে সন্তুষ্ট হইয়াই হউক, অথবা অপ্রতিহত-শক্তিসম্পন্ন মণিবেগমকে বশে রাখিবার জন্যই হউক, এ সম্বন্ধে কোনরূপ উচ্চবাচ্য করেন নাই।
+</p><p>মােবারকের মৃত্যুর পর তাঁহার জ্যেষ্ঠপুত্র বাবর আলি খাঁ বাহাদুর ১৭৯৩ খৃঃ অব্দের ২৪শে সেপ্টেম্বর তারিখে গভর্ণর জেনারেলের সম্মতিক্রমে নিজামতি প্রাপ্ত হন। তিনি ১৮১০ খৃঃ অব্দের ২৮ শে এপ্রেল তারিখে মৃত্যুমুখে পতিত হ’ন।
+</p><p>বাবর জঙ্গির মৃত্যুর পর কাহাকে মসনদে বসান হইবে, এই বিষয় লইয়া অনেক বাদানুবাদ উত্থাপিত হইয়াছিল। মণিবেগম, রাজসভাষদবর্গ ও কয়েকজন সন্ত্রান্ত লােক মােবারকের দ্বিতীয় পুত্র কাশিম খাঁকে মসনদে বসাইবার জন্য মত দিলেন; কিন্তু রেসিডেন্ট সাহেব এই প্রস্তাবে সম্মত হইলেন না। তিনি বলিলেন, বাবরজঙ্গের পুত্রকে মসনদে না বসাইয়া, তাঁহার খুল্লতাতকে নিজামতি দিলে, ন্যায়ের মর্য্যাদা অক্ষুণ্ণ থাকিবে না। তিনি আরও বলিলেন, মহম্মদীয় ব্যবহার-শাস্ত্রানুসারে পিতার সমস্ত সম্পত্তি পুত্রেরই প্রাপ্য। ন্যায় ও আইনের অবমাননা করিতে আমি অসমর্থ। দৃঢ় প্রতিজ্ঞ রেসিডেন্ট সাহেবের যুক্তির সারবত্ত্বা দেখিয়া, অগত্যা মণিবেগম তাঁহার প্রস্তাবে সম্মত হইলেন।
+</p><p>১৮১০ খৃঃ অব্দের ৫ই জুন আলিজা মসনদে আরূঢ় হইলেন। এইরূপে ১১ বৎসর ছয় মাস কাল রাজ্য চালাইবার পর ১৮২১ খৃঃ অব্দের ৬ই আগষ্ট রবিবার ৩টার সময় তাঁহার মৃত্যু হয়।
+</p><p>ইষ্ট ইণ্ডিয়া কোম্পানী মণিবেগমকে অতিশয় সম্মানের চক্ষে দেখিতেন। ১৮১৩ খৃঃ অব্দে মণিবেগমের মৃত্যু হইলে,<sup><a href="#cite_note-p42-7">[৭]</a></sup> তাহার সম্মানার্থ তাঁহার বয়ঃসংখ্যা অনুসারে তোপধ্বনি করিবার আদেশ দিয়াছিলেন। জাফরগঞ্জ সমাধিভবনে নবাব-নাজিমদিগের সমাধির উত্তরে একটী প্রাচীরবেষ্টিত স্থানে মণিবেগম সমাহিত হ’ন।
+</p><p>মণিবেগমের মৃত্যুর পর তাঁহার সম্পত্তি লইয়া অনেক গোলযোগ উপস্থিত হইয়াছিল। আমরা কয়েকখানি পত্রে ইহার সুস্পষ্ট প্রমাণ পাইয়াছি। বাহুল্যভয়ে এস্থলে আর সেগুলি উদ্ধৃত হইল না।
+</p><p>মণিবেগমের মৃত্যুর পর তাঁহার অন্তঃপুর হইতে প্রাপ্ত ধনরাজী হইতে ১৬০৫৩৲ টাকা কর্ত্তন করিয়া অবশিষ্ট ১৪৮৫৪৫৪৸৹ টাকা তাঁহার নিজস্ব বলিয়া স্থিরীকৃত হয়। এই টাকা হইতে ৫০,০০০৲ টাকা মূল্যের বন্ধকী বহুমূল্য প্রস্তররাজির উদ্ধারকল্পে ও অন্যান্য বাবদে টাকা বাদ দিয়া ৫৮২৭৬০৸৴৫ টাকা নবাব বাহাদুরকে প্রদান করা হয়। অধিকন্তু মণিমুক্তা, স্বর্ণ-রৌপ্যের বাসন প্রভৃতি ও অন্যান্য সম্পত্তিও নবাবকে দেওয়া হইয়াছিল—ইহার মূল্যও প্রায় ৮৫০০০০৲ টাকা। এইরূপে মণিবেগমের মৃত্যুর পর, নবাব বাহাদুর জমি-জমা ও প্রাসাদ সংলগ্ন চক-বাজার
+</p><p> (যাহার বার্ষিক আয় ১২,০০০৲ টাকা) ব্যতীত অন্যূন ৫ লক্ষ টাকা পাইয়াছিলেন।<sup><a href="#cite_note-8-n143">[৮]</a></sup></p><p>বুদ্ধিমতী মণিবেগম কোপনস্বভাবা ছিলেন; কিন্তু তৎকালে পরদুঃখকাতরা রাণী ভবানী ব্যতীত তাঁহার ন্যায় দানশীলা রমণী কেহ ছিলেন না বলিলে অত্যুক্তি হয় না। এই দানশীলতার জন্য সকলে তাঁহাকে “মাদর-ই-কোম্পানী” অর্থাৎ ‘কোম্পানীর মাতা' নামে অভিহিত করিত। স্নেহময়ী জননীর আখ্যায় আখ্যাত হওয়া যে কম সৌভাগ্যের কথা নয়, এ কথা বলাই বাহুল্য। আমরা এখানে মণিবেগমের দানশীলতার একটী নিদর্শনের উল্লেখ করিলাম।
+</p><p>এক সময়ে তাঁহার একজন সামান্য দাসী কিছু টাকার অভাববশতঃ স্বীয় কন্যার বিবাহ দিতে পারিতেছিল না। এই কথা কোনরূপে মণি বেগমের কর্ণে প্রবেশ করে। তিনি ইহা শুনিবামাত্র ঐ দাসীকে ৭০।৮০টী মোহর ও অন্যান্য আবশ্যক দ্রব্যাদি পাঠাইয়া দিয়াছিলেন। এই ঘটনাটী মুতাক্ষরীণে<sup><a href="#cite_note-9-n144">[৯]</a></sup> বিশেষরূপে বর্ণিত আছে। মুতাক্ষরীণ-অনুবাদক গোলাম হোসেন এই সময়ে মুর্শিদাবাদে ছিলেন। তাঁহার সমক্ষেই এই ঘটনা ঘটিয়াছিল।
+</p><p>নবাব-নাজিমদিগের প্রধানা মহিষীকে ‘গর্দ্দিনাসীন’ বেগম বলে। গর্দ্দিনাসীন বেগমেরা বাৎসরিক লক্ষ টাকা বৃত্তি পাইতেন। মণিবেগম এই বৃত্তির সমস্ত টাকা দানাদি পুণ্যকার্য্যে ব্যয় করিতেন।
+</p>
+
+<p> এক সময়ে প্রাতঃস্মরণীয় রাণী ভবানী মণিবেগমকে একখানি পালকী, ৩০ জন বাহক এবং তাহাদের ভরণপোষণের জন্য চাক্‌রাণ জমি উপঢৌকন দিয়াছিলেন। এই জমি অদ্যাপি নিজামতভুক্ত আছে।<sup><a href="#cite_note-10-n145">[১০]</a></sup></p><p>মণিবেগম মাসিক ১২০০০৲ টাকা<sup><a href="#cite_note-11-n146">[১১]</a></sup> ও বব্বুবেগম ৮০০০৲ টাকা বৃত্তি পাইতেন। মুর্শিদাবাদ সহরে যে চক মসজিদ অদ্যাপি বিদ্যমান আছে, তাহা মণিবেগমেরই কীর্ত্তি। তিনি ১৭৬৭ খৃঃ অব্দে উহার প্রতিষ্ঠা করিয়াছিলেন।
+</p><p>অধ্যাপক শ্রীযুক্ত অমূল্যচরণ ঘোষ বিদ্যাভূষণ মহাশয় তাঁহার পুস্তকাগার হইতে কিছুদিন পূর্ব্বে আমায় একখানি মূল পারস্য গ্রন্থ দিয়াছিলেন। তাহাতে একজন সম্ভ্রান্ত ইংরাজ মণিবেগমের লিখিত একখানি পত্রের উত্তরে যাহা লিখিয়াছেন, তাহার বঙ্গানুবাদ আমরা নিম্নে প্রদান করিলাম। ইহা হইতে ইংরাজদের প্রতি তাঁহার যে একটা সহানুভূতি ছিল এবং তাঁহাদের সহিত আত্মীয়তা করিতে যে তিনি পরাঙ্মুখ ছিলেন না, তাহা বেশ বুঝিতে পারা যায়। পত্রখানি ১৩ই জানুয়ারী ১৮০০ খৃঃ অব্দে লিখিত।
+</p><p>“আপনার বিনীত ভৃত্যের অসুস্থতার বিষয় অবগত হইয়া, আপনি যে সহানুভূতি প্রকাশ করিয়াছেন ও পুনরায় আরোগ্য-সংবাদ পাইয়া আমার প্রিয় বন্ধু নসীর মহম্মদ খাঁর মারফৎ আনন্দ প্রকাশ করিয়া যে অনুগ্রহ-লিপি পাঠাইয়াছেন, তাহা পাঠে যে কি পর্য্যন্ত আহ্লাদিত হইলাম, তাহা বর্ণনা করিয়া শেষ করা যায় না। আপনি আমার ও আমার পরিবারবর্গের কুশলবার্ত্তা জানিতে চাহিয়া মহানুভবতারই পরিচয় দিয়াছেন; তাহার জন্য আমি আপনার নিকট চিরকালের জন্য কৃতজ্ঞ রহিলাম। ভগবানের নিকট প্রার্থনা, এই উদারমতি ও পরম হিতৈষিণী রমণীকে দীর্ঘজীবন দান করুন। শীতের প্রকোপবশতঃ আপনার বিনীত ভৃত্য কয়েক দিন যাবৎ অসুস্থ ছিল, কিন্তু এক্ষণে ভগবানের কৃপায় ও আপনার শুভ ইচ্ছায় সম্পূর্ণরূপে রোগমুক্ত হইয়াছে। আমার সনির্ব্বন্ধ অনুরোধ, আপনি কৃপা করিয়া আপনার শারিরীক সর্ব্বাঙ্গীন কুশলদানে বাধিত করিবেন। অধিক আর কি নিবেদন করিব। ইতি—”
+</p><p>সামান্য বংশে জন্মগ্রহণ করিয়া, স্বীয় স্বাধীন সুতীক্ষ্ণ বুদ্ধিবলে কেমন করিয়া একজন অবলা রমণী আপনার চতুঃপার্শ্বে প্রভুত্ব-বিস্তার করিতে পারে, মীরজাফর-বণিতা মণিবেগম তাহার প্রকৃষ্ট ও জ্বলন্ত দৃষ্টান্ত। মণিবেগম প্রভুত্ব ও বিপুল ধনসম্পত্তির অধিকারিণী হইয়া, দানাদি পুণ্যকার্য্যে মুক্তহস্তে অর্থ ব্যয় করিয়া, আত্মীয়-স্বজন এবং অধীন কর্ম্মচারী ও ভৃত্য দিগের সুখ-স্বাচ্ছন্দ্যের দিকে সতত দৃষ্টি রাখিয়া, বাঙ্গালায় অক্ষয় কীর্ত্তি রাখিয়া গিয়াছেন। তৎকালে নবাবের উচ্চপদস্থ কর্ম্মচারিগণ গোপনে কলিকাতা কাউন্সিলের সদস্য ও অন্যান্য সম্রান্ত ইংরাজদিগের সহিত পরামর্শ করিয়া, আপন আপন ক্ষমতা ও প্রাধান্য বৃদ্ধি করিবার জন্য সতর্ক যত্নপর ছিলেন; বুদ্ধিমতী মণিবেগম তাঁহার নিয়োজিত গুপ্তচরের সাহায্যে ও অধিকাংশস্থলে তাঁহার ইংরাজবন্ধুগণের নিকট হইতে পূর্ব্বাহ্নেই সে সমাচার অবগত হইয়া, উদ্ধত প্রকৃতি কর্ম্মচারিগণকে সদয় ব্যবহার তাহাদের অভিষ্ট পথে অগ্রসর হইতে দিতেন না। তাঁহার মধুর প্রকৃতি গুণে সেই সকল কর্ম্মচারীই তাঁহার প্রধান সহায় হইয়া উঠিতেন।
+</p>
+<div><img alt="" src="images/c16_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c22_Rule_Segment___Diamond___10px.svg_11px_Rule_Segment___Diamond___10px.svg.png"/><img alt="" src="images/c16_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/></div>
+
+<div>
+<div><p><a href="https://bn.wikisource.org/wiki/%E0%A6%9A%E0%A6%BF%E0%A6%A4%E0%A7%8D%E0%A6%B0:%E0%A6%9A%E0%A6%95_%E0%A6%AE%E0%A6%B8%E0%A6%9C%E0%A6%BF%E0%A6%A6.jpg" rel="noopener noreferrer" target="_blank"><img alt="চক মসজিদ.jpg" src="images/c23_________.jpg"/></a></p><p><span>চক মসজিদ।</span></p>
+</div>
+</div>
+<div>
+<div><p><a href="https://bn.wikisource.org/wiki/%E0%A6%9A%E0%A6%BF%E0%A6%A4%E0%A7%8D%E0%A6%B0:%E0%A6%AE%E0%A6%A3%E0%A6%BF%E0%A6%AC%E0%A7%87%E0%A6%97%E0%A6%AE%E0%A7%87%E0%A6%B0_%E0%A6%B8%E0%A6%AE%E0%A6%BE%E0%A6%A7%E0%A6%BF.jpg" rel="noopener noreferrer" target="_blank"><img alt="মণিবেগমের সমাধি.jpg" src="images/c24________________.jpg"/></a></p><p><span>মণিবেগমের সমাধি।</span></p>
+</div>
+</div>
+</div><ol><li><span><a href="#cite_ref-1-n114">↑</a></span> <span>Burke's Speech at the Impeachment of Warren Hastings (Bangabasi Edition)-i-366-67.</span>
+</li>
+<li><span><a href="#cite_ref-2-n116">↑</a></span> <span>Walsh's “Murshidabad"-P. 152.</span>
+</li>
+<li><span><a href="#cite_ref-3-n118">↑</a></span> <span>নিজামুদ্দৌলা যখন মাতৃগর্ভে ছিলেন, সেই সময়ে তাঁহার মাতা মণিবেগমের ‘ফুলুরী’ খাইবার স্পৃহা বলবতী হয়। সময়ে সময়ে তাহার দোহদ-ক্রীয়া প্রচুর ফুলুরী সহযোগে সম্পন্ন হইত। তজ্জন্য নিজামুদ্দৌলা ভূমিষ্ঠ হইলে তাঁহার জননী তাঁহাকে ‘মীর ফুলুরী’ বলিয়া ডাকিতেন। Translator's Note. Mutaqherin-iii-2.</span>
+</li>
+<li><span><a href="#cite_ref-4-n119">↑</a></span> <span>Letter to the Court from Calcutta Council. September 1765—Long's Selections.</span>
+</li>
+<li><span><a href="#cite_ref-5-n121">↑</a></span> <span>Courts General Letter 15th April, 1771 and Consultations thereupon. Nizamat Records, Paper Book No. 3.</span>
+</li>
+<li><span><a href="#cite_ref-6-n124">↑</a></span> <span>‘মুর্শিদাবাদ কাহিনী’র ২৫৭ পৃষ্ঠায় শ্রীযুক্ত নিখিলনাথ রায়, বি-এল মহাশয় ১৭৯৬খৃঃ অব্দে মোবারকের মৃত্যু হইয়াছিল বলিয়া উল্লেখ করিয়াছেন; কিন্তু ওয়ালশ, সাহেব বলেন যে, ১৭৯৩ খৃ: অব্দের ৬ই সেপ্টেম্বর তারিখে মোরকের মৃত্যু হয়।</span>
+</li>
+<li><span><a href="#cite_ref-p42_7-0">↑</a></span> <span>শ্রদ্ধাস্পদ শ্রীযুক্ত নিখিলনাথ রায়, বি-এল মহাশয় তাঁহার মুর্শিদাবাদ কাহিনীর ২৬২ পৃষ্ঠায় লিখিয়াছেন, ১৮০২ খৃঃ অব্দে মণিবেগমের মৃত্যু হইয়াছিল; কিন্তু ওয়াল্‌শ সাহেবের ‘Murshidabad’ পুস্তকের ১৮৯ পৃষ্ঠায় উল্লিখিত আছে, মণিবেগম আলিজার নিজামতি প্রাপ্তির সময় (১৮১০ খঃ অব্দ জুন মাস) তাঁহাকে মসনদে বসান হইবে কি না, এই বিষয় লইয়া অনেক বাদানুবাদ উত্থাপিত করিয়াছিলেন। তাহা হইলে দেখা যাইতেছে যে, ১৮১০ খঃ অব্দেও তিনি জীবিত ছিলেন। আবার আমরা Musnad of Murshidabad (পৃঃ ১৩৩) পুস্তক পঠে অবগত হই, ১৮১২ খৃঃ অব্দের এপ্রিল মাসে তিনি মৃত্যুমুখে পতিত হন, কিন্তু পুনরায় এই পুস্তকেরই পরিশিষ্টে (পৃঃ ৩২০) উক্ত হইয়াছে যে, ১৮১৩ খৃঃ অব্দের ১০ই জানুয়ারী তারিখে বেগম সাহেবার মৃত্যু হয়। সম্ভবতঃ মুদ্রাকর প্রমাদবশতঃ নিখিলবাবুর পুস্তকে ১৮১৩ স্থলে ১৮০২ লিখিত হইয়াছে।</span>
+</li>
+<li><span><a href="#cite_ref-8-n129">↑</a></span> <span>ঐতিহাসিক নিখিলবাবু তাঁহার ‘মুর্শিদাবাদ কাহিনীর’ ২৬৩ পৃষ্ঠায় লিখিয়াছেন— “মণিবেগমের বৃত্তি হইতে অনেক টাকা সঞ্চিত হইয়াছিল। গবর্মেন্ট তাহা নবাব নাজিমকে প্রদান করেন নাই।”</span>
+</li>
+<li><span><a href="#cite_ref-9-n130">↑</a></span> <span>Mutaqherin-iii-147.</span>
+</li>
+<li><span><a href="#cite_ref-10-n132">↑</a></span> <span>“Musnad of Murshidabad.” P.-132</span>
+</li>
+<li><span><a href="#cite_ref-11-n133">↑</a></span> <span>রেসিডেন্ট স্যামুয়েল মিড্‌ল্‌টনের ১৭৭২ খৃঃ অব্দের ১৮ই নবেম্বরের লিখিত নবাবী বৃত্তিবিভাগের হিসাবে লেখা আছে যে, মণিবেগম মাসিক ৮৩৩৩—৫—৩, বার্ষিক ১ লক্ষ টাকা পাইতেন। (Nizamat Records, Book No. 3)</span>
+</li>
+</ol></section>
+<section><div>
+
+<h2>ঘোসেটি বেগম</h2>
+</div>
+<div>
+<div>
+<p><span>ঘসিটী</span>
+</p>
+</div>
+<p>সৌন্দর্য্যের ললামভূতা, কারুণ্যের প্রতিমূর্ত্তি, অলােকসামান্যা ইতিহাস-বিশ্রুতা ঘসিটী বেগম,<sup><a href="#cite_note-1-n163">[১]</a></sup> বাঙ্গালার নবাব আলিবর্দ্দী খাঁর জ্যেষ্ঠা কন্যা। ইঁহার সহিত সিরাজের শোণিত-সম্বন্ধ চতুর্ব্বিধ। তিনি সিরাজের মাতৃস্বসা, পিতৃস্বসা, পিতৃব্যপত্নী এবং মাতুলানী। মুসলমান-সমাজের অনুমােদিত বিবাহ প্রথা অনুসারে যে কোনও ব্যক্তি এইরূপ সম্বন্ধে আবদ্ধ হইতে পারে। সিরাজের সহিত ঘসিটী বেগমের এইরূপ ঘনিষ্ট সম্বন্ধ ছিল বলিয়া কিংবা তাঁহার সহিত সিরাজের বিষয়ি-জনােচিত বিবাদ-বিসংবাদ ঘটিত বলিয়াই যে তাঁহার নাম ইতিহাসের পত্রে স্থান পাইয়াছে, তাহা নহে; ভারতে ইংরাজ সাম্রাজ্য প্রতিষ্ঠাকল্পে তাঁহার রাজনৈতিক কার্য্যকলাপই তাঁহাকে চিরস্মরণীয় করিয়া রাখিয়াছে।
+</p><p>আলিবর্দ্দী খাঁর জ্যেষ্ঠ ভ্রাতা হাজি অহম্মদের প্রথম পুত্র নওয়াজিস মহম্মদের সহিত ঘসিটী বেগম পরিণীতা হ’ন। প্রথম জীবনে নওয়াজিস কিছু দুর্দ্দান্ত ও উচ্ছৃঙ্খল ছিলেন বলিয়াই যে তিনি জনসাধারণের অপ্রিয় ছিলেন, এমন নহে। তাঁহার দানশীলতা ও পরদুঃখকাতরতার জন্য। প্রজাবর্গ তাঁহাকে আন্তরিক ভক্তি করিত। অপরিমেয় ধনরত্নের অধিকারী অপুত্রক নওয়াজিস সিংহাসনের প্রত্যাশা করিতেন না। সিরাজের মধ্যম ভ্রাতা ফজলকুলি খাঁকে তিনি পোষ্যপুত্ররূপে গ্রহণ করিয়াছিলেন। এই ফজল্‌কুলিই তাঁহার জীবনের একমাত্র অবলম্বন ছিল।
+</p><p>সিরাজের পিতা জৈনুদ্দীন ১৭৪৭ খৃঃ অব্দে আফগানগণ কর্ত্তৃক নিহত হন। এই সময়ে আলিবর্দ্দীর জ্যেষ্ঠভ্রাতা হাজি অহম্মদেরও মৃত্যু হয়। ১৭৫২ খৃষ্টাব্দে আলিবর্দ্দী খাঁ, অন্য দুই ভ্রাতুষ্পত্রের দাবী উপেক্ষা করিয়া, দৌহিত্র সিরাজকেই রাজসিংহাসনের উত্তরাধিকারী বলিয়া সর্ব্বসমক্ষে ঘোষণা করেন। ইহার পর হইতেই নওয়াজিসের মন্ত্রী হোসেনকুলি খাঁ সিরাজের প্রতিকূলতাচরণ করিতে আরম্ভ করিলেন। এই সময়ে ফজল্ কুলি খাঁর অকালমৃত্যুতে নওয়াজিস জীবন্মৃতবৎ অবসন্ন হইয়া পড়িলেন। রাজনৈতিক ব্যাপারে তাঁহার যোগদান করিবার অভিলাষ সে সময় আদৌ ছিল বলিয়া বোধ হয় না। ১৭৫৫ খৃঃ অব্দে তিনি মৃত্যুমুখে পতিত হ’ন।<sup><a href="#cite_note-2-n164">[২]</a></sup></p><p>বহুল সদ্‌গুণে ভূষিত হইলেও, ঘসিটী-চরিত্রে দুর্ব্বলতা ছিল। স্ফুটনোন্মুখ কুসুমে কীটের ন্যায়, যৌবনোদ্গমে তাঁহার ও হৃদয়-কোরকে কীট প্রবেশ করিয়াছিল। বাল্যকালাবধি সংযম-শিক্ষার অভাবে ও পারিপার্শ্বিক অবস্থায় পড়িয়া, মদালসা ঘসিটী হোসেনকুলিকে আত্মবিক্রয় করিয়াছিল। পত্নীর কলঙ্কের কথা জানিতে পারিয়া, নওয়াজিস মৃত্যুর অব্যবহিত পূর্ব্বেই হোসেনকুলি খাঁকে ধরাধাম হইতে অপারিত করিবার জন্য লোক নিযুক্ত করিয়াছিলেন।
+</p><p>ঘসিটীর কলঙ্ক-কাহিনী সিরাজকে মর্ম্মাহত করিয়া তুলিয়াছিল। এই দুরপনেয় কলঙ্ক-কালিমা বিদূরিত করিবার জন্য, তিনি হোসেন কুলিকে হত্যা করাইলেন—সঙ্গে সঙ্গে তাঁহার ভ্রাতা হসনুদ্দীনও নিহত হইলেন। উপর্য্যুপরি এই সমস্ত হত্যাব্যাপারে অতিমাত্র শঙ্কিত হইয়া, সিরাজের পিতৃব্য সৈয়দ অহম্মদ পূর্ণিয়ায় পলায়ন করেন; কিন্তু পলায়ন করিয়া কে কবে নিয়তির হস্ত হইতে অব্যাহতি পাইয়াছে? পূর্ণিয়াতে পৌছিবার অত্যল্পকাল পরেই তাঁহার মৃত্যু হয়।<sup><a href="#cite_note-3-n165">[৩]</a></sup> ইতিপূর্ব্বে নওয়াজিসেরও মৃত্যু হইয়াছিল। সুতরাং বংশের মধ্যে সিরাজকে বাধা দিবার দুইজন মাত্র প্রতিদ্বন্দ্বী জীবিত রহিলেন। প্রথম— ঘসিটী বেগম। স্বামী ও প্রেমাস্পদ হোসেনকুলির মৃত্যুতে কক্ষচ্যুত গ্রহের ন্যায় তিনি ঘুরিতে লাগিলেন, অবশেষে ফজল্‌কুলি খাঁর শিশুপুত্র মুরাদদ্দৌলাকে পালিতপুত্ররূপে গ্রহণ করিয়া, হৃদয়ের সমস্ত ভালবাসা তাহারই উপর কেন্দ্রীভূত করিলেন ও তাহাকে তাঁহার স্বামীত্যক্ত বিপুল ধনরাশির উত্তরাধিকারী বলিয়া প্রচার করেন। মুরাদকে বাঙ্গালার মসনদে বসাইবার নিমিত্ত প্রাণপণে চেষ্টা করিতে লাগিলেন। দ্বিতীয়— সৈয়দ অহম্মদের পুত্র পূর্ণিয়ার শাসনকর্ত্তা সওকৎজঙ্গ। আলিবর্দদী খাঁ এই দুইজনকে স্ববশে আনিবার জন্য, তাঁহার বক্সী মীরজাফর আলি খাঁ ও দেওয়ান রায় দুর্ল্লভকে হস্তগত করিয়াছিলেন। রায়দুর্ল্লভকে তিনি উপঢৌকন দ্বারা এবং মীরজাফরকে কোরাণ সরিফ স্পর্শ করাইয়া শপথপূর্ব্বক সিরাজের পক্ষাবলম্বন করাইয়াছিলেন। ঘসিটির সহিত সিরাজের যাহাতে কোন সংঘর্ষ না ঘটে, তজ্জন্য আলিবর্দ্দী খাঁ বিশেষরূপ চেষ্টা করিয়াছিলেন। এই সময় ৮২ বৎসর বয়ঃক্রমকালে উদরীরােগে নবাবের মৃত্যু হয়।
+</p><p>নবাবের মৃত্যুর অনতিকাল পূর্ব্ব হইতেই বাঙ্গালার শাসনভার সিরাজের হস্তে ন্যস্ত হইয়াছিল। নওয়াজিস মহম্মদের সহিত বহুদিবসের মনােমালিন্য ও শত্রুতার প্রতিশোধ গ্রহণার্থ, সিরাজ তাঁহার বিধবাপল্লী ঘসিটি বেগমের সহিত বিবাদ বাধাইবার সূত্র অনুসন্ধান করিতেছিলেন। তাঁহার যাবতীয় ধন সম্পত্তি বাজেয়াপ্ত করাই সিরাজের প্রধান উদ্দেশ্য ছিল। ছিদ্রান্বেষীর ছিদ্রের অভাবও হইল না। তিনি শীঘ্রই জানিতে পারিলেন যে, মীরনাজির গালি নামক একজন রাজকর্ম্মচারী বেগম সাহেবার বিশেষ শুভাকাঙ্ক্ষী ও প্রিয়পাত্র। তিনি মনে মনে স্থির করিলেন, এই নাজির আলিকে উপলক্ষ করিয়াই ঘসিটির সহিত বিবাদ ঘটাইতে হইবে। এক্ষণে এই নাজির আলির বিরুদ্ধে কোন গুরুতর অভিযােগ আনয়ন পূর্ব্বক তাহার শাস্তির নিমিত্ত বেগম-সাহেবার নিকট অনুরােধ করিয়া পাঠাইতে পারিলে হয় ত তিনি কৃতকার্য্য হইতে পারেন। এই নাজির আলির পক্ষে অশুভকর কোন প্রস্তাব উত্থাপিত করিলে, ঘসিটি কিছুতেই তাহাতে সম্মত হইবেন না, তখন সেই সূত্রে তিনি তাঁহার মনােগত বৈরিতা প্রকাশ্যভাবে চরিতার্থ করিবার সুযােগ ও অবসর পাইবেন। এইরূপ চিন্তা করিয়া তিনি ঘসিটি বেগমকে রলিয়া পাঠাইলেন যে, মীরনাজির আলি গােপনে তাঁহার বিলাসকক্ষে যাতায়াত করিয়া থাকে, এরূপ জনরব নগরময় রাষ্ট্র হইয়া পড়িয়াছে। ইহা অমূলক হইলেও বেগম-সাহেবার চরিত্র-মর্য্যাদায় হানিকর ও রাজবংশের পক্ষে ঘােরতর কলঙ্কের কথা; সুতরাং অবিলম্বে ঐ পাপিষ্ঠের ছিন্ন-মুণ্ড আমার নিকট প্রেরণ করিয়া এই জনরবের মূলােচ্ছেদ করা বিধেয়। বলা বাহুল্য ঘসিটি এ প্রস্তাবে কর্ণপাত করিলেন না। এখন হইতে সিরাজ ও ঘসিটি উভয়ের মধ্যে বিবাদনল প্রজ্জ্বলিত হইয়া উঠিল। বৃদ্ধ নবাব আলিবর্দ্দী তখন জীবিত; তিনি এই বহ্নিশিখা নির্ব্বাপিত করিতে প্রাণপণে চেষ্টা করিয়াছিলেন; কিন্তু কৃতকার্য্য হইতে পারেন নাই।
+</p><p>এই ঘটনার পর হইতেই ঘসিটি বেগমের ধারণা হইল যে, পিতার মৃত্যুর পর সিরাজ মসনদে উপবিষ্ট হইয়া নিশ্চয়ই তাহার উপর অত্যাচার করিবে ও সমস্ত ধনসম্পত্তি বলপূর্ব্বক আত্মসাৎ করিবে। এই আশঙ্কাবশতঃ ঘসিটি বেগম রাজা রাজবল্লভ, মীর নাজির আলি ও কতিপয় বিশ্বস্ত অনুচর সমভিব্যাহারে মুর্শিদাবাদের সন্নিকটে মতিঝিল প্রাসাদে আশ্রয় গ্রহণ করিলেন। পূর্ব্বেই বলা হইয়াছে যে, ফজল্‌কুলি খাঁর শিশুপুত্র মুরাদুদ্দৌলাকে সিংহাসনে বসাইবার জন্য ঘসিটি বিশেষ চেষ্টা করেন। এই কারণেই হউক, অথবা স্বীয় সম্পত্তি সংরক্ষণের নিমিত্তই হউক, তিনি আট দশ হাজার সৈন্যও সংগ্রহ করিয়াছিলেন। এই সমস্ত উদ্যোগ-আয়ােজন বিষয়ে তাঁহার পরলােকগত স্বামীর বিশ্বস্ত দেওয়ান, ঢাকার রাজা রাজবল্লভ তাঁহার প্রধান সহায় ছিলেন।
+</p><p>নওয়াজিসের মৃত্যুর পর, সিরাজ রাজা রাজবল্পতকে বন্দী করিয়া, তাঁহার প্রভুর ধনসম্পত্তি কোথায় লুক্কায়িত আছে, তাহার সন্ধান লইবার চেষ্টা করেন; কিন্তু রাজবল্লভ অবিচলিত ভাবে সমস্ত নির্য্যাতন সহ্য করিয়াও প্রভু-পত্নীর পক্ষে অনিষ্টকর একটী কথাও প্রকাশ করেন নাই। এইরূপে কিছুদিন নজরবন্দী থাকিবার পর, ঘসিটি তাঁহার পিতামাতাকে উপরোধ করিয়া, রাজবল্লভকে মুক্ত করিয়া দেন; কিন্তু রাজবল্লভের মনে সিরাজভীতি জাগিয়া রহিল। সিরাজ নবাব হইলে তাঁহাকে কখনও মার্জ্জনা করিবেন না, এই আশঙ্কায় রাজবল্লভ ঘসিটি বেগমের সহিত সম্মিলিত হইয়া, সিরাজের উচ্ছেদ সাধনের উদ্যোগ করিতে লাগিলেন।
+</p><p>নবাবের মৃত্যু আসন্ন ও তাঁহার নিজের পরিবারবর্গ ও বিষয়সম্পত্তি সংরক্ষণ সহজ নহে বুঝিতে পারিয়া, রাজবল্লভ সর্ব্ব প্রথমেই তৎসমুদয় কোন নিরাপদ স্থানে রাখিতে যত্নবান হইলেন। তদনুসারে তিনি ইংরাজদিগের কাশিমবাজারস্থ প্রধান কর্ম্মচারী ওয়াট্‌স্ সাহেবকে এই মর্ম্মে একখানি পত্র লিখিলেন যে, তাঁর পরিবারবর্গ ঢাকা হইতে জগন্নাথদেব দর্শন-মানসে পুরী যাইতেছেন, পথিমধ্যে কলিকাতায় কিছুদিন অপেক্ষা করিবেন। অতএব যখন তাঁহারা কলিকাতায় উপস্থিত হইবেন, তখন তাঁহাদের উপযুক্তরূপ অভ্যর্থনা বা সমাদরের যেন বিন্দুমাত্র ত্রুটি না ঘটে।
+</p><p>রাজা রাজবল্লভের বাসস্থান ঢাকা নগরীতে। সেখানে তিনি একজন গণ্যমান্য প্রতিপত্তিশালী লোক ছিলেন। ব্যবসায় সুত্রে ঢাকার সহিত ইংরাজদের সংস্রব ছিল। রাজবল্লভের তুষ্টিসাধন করিতে পারিলে, তাঁহাদের ব্যবসার বিশেষ সুবিধা হইতে পারে। অধিকন্তু সিরাজ তাঁহাদের শত্রু, সেই সিরাজ যাহাতে মসনদ না পান, সে জন্য ঘসিটি বেগম চেষ্টা করিতেছেন, সেই চেষ্টা ফলবতী হইবার ও কতকটা সম্ভাবনা এবং রাজবল্লভ ঐ সিটিরই দেওয়ান। সতরাং ইংরাজগণ অবিলম্বে রাজবল্লভের প্রস্তাবে সম্মত হইলেন এবং তাঁহার পরিবারবর্গ কলিকাতায় পৌঁছিলে সমাদরে তাঁহাদিগকে আশ্রয় দিয়া রক্ষা করিতে লাগিলেন।
+</p><p>সিরাজের অন্যতম প্রতিদ্বন্দ্বী সওকৎজঙ্গ, বহুদিন হইতে বাঙ্গালার মসনদ প্রাপ্তির আশা হৃদয়ে পােষণ করিতেছিলেন। যে দিন আলিবর্দ্দী খাঁ সিরাজকে আপন উত্তরাধিকারী বলিয়া নির্দ্দেশ করেন, সেই দিন হইতেই ইঁহার অন্তঃকরণ ঈর্ষাবিষে জর্জ্জরিত হইতেছিল। স্বার্থের হিসাবে ইনিও ঘসিটি বেগমের প্রতিদ্বন্দ্বী, কিন্তু উভয়েরই অভীষ্টলাভের পথে সিরাজ একমাত্র অন্তরায়। সেইজন্য সমান-বিপদগ্রস্ত বলিয়াই সিরাজের বিরুদ্ধে মিলিত হন। বৃদ্ধ নবাবের মৃত্যুর পর মুহূর্ত্তেই সিরাজ বাঙ্গালার নবাব হইলেন বলিয়া রাজ্যমধ্যে ঘােষণা দেওয়া হইল এবং পরদিনই তিনি মতিঝিল আক্রমণ করিয়া এরূপ কৌশলে অবরােধ করিলেন যে, বাহির হইতে প্রাসাদ-মধ্যে প্রবেশের আর কোনরূপ সম্ভাবনামাত্র রহিল না। প্রাসাদের বেষ্টন-পরিখার উপর যে ঘাসের আস্তরণ বিস্তৃত ছিল, তাহাতে অগ্নিসংযােগ পূর্ব্বক চতুর্দ্দিকে গােলন্দাজ সৈন্য সংস্থাপিত করিলেন। পূর্ণিয়ার নবাবের নিকট হইতে যে সৈন্যসাহায্য অসিবার কথা ছিল, তাহাও এ সময়ে আসিয়া পৌঁছাইতে না পারায়, ঘসিটি কিংকর্ত্তব্যবিমূঢ় হইয়া পড়িলেন এবং এই আকস্মিক দুর্গ অবরােধ সংবাদ তিনি সওকৎজঙ্গকে দিবার অবকাশ পাইলেন না।
+</p><p>এই কারণে দুর্গস্থিত সৈন্যগণ এক প্রকায় হতাশ হইয়া পড়িল এবং তৃতীয় দিবসের রাত্রিযোগে সকলেই দুর্গ পরিত্যাগ করিয়া পলায়ন করিল। এই অবস্থায় আলিবর্দ্দী-বেগম তাঁহার কন্যাকে সিরাজের শরণাপন্ন হইতে সম্মত করাইবার জন্য সেই দুর্গপ্রাসাদে প্রবেশ করিলেন এৱং সিরাজের হস্তে তাঁহার ধনসম্পত্তিও অক্ষুন্ন থাকিবে ইত্যাদি অশ্বাসবাক্যে তাঁহাকে নিশ্চিন্ত করিতে লাগিলেন। ঘসিটি বেগম বলিলেন যে, যদি তাঁহার বিশ্বস্ত কর্ম্মচারী নাজির আলিকে অক্ষত দেহে নিরাপদে বাঙ্গালা পরিত্যাগ করিয়া যাইতে দেওয়া হয়, তাহা হইলে তিনি সমস্ত প্রস্তাবেই সম্মত হইয়া আত্মসমর্পণ করিবার জন্য প্রস্তুত। নবার তাহাতেই সস্মত হইলেন এবং তাঁহাকে রক্ষি-সমভিব্যাহারে রাজ্যের সীমান্ত প্রদেশে পৌঁছাইয়া দিতে আদেশ করিলেন। নাজির আলি আত্মপ্রাণ রক্ষার্থ সমস্ত মায়া কাটাইয়া বাঙ্গালা পরিত্যাগ করিয়া গেলেন। জনশ্রুতি যে, তিনি মােগলরাজধানী দিল্লীতে গিয়া লােকজন সংগ্রহ করিয়াছিলেন।
+</p><p>সিরাজ ও ঘসিটি বেগমের মধ্যে যে মনােমালিন্য ঘটিয়াছিল, মীরনাজির আলি খাঁর বাঙ্গালাত্যাগের সঙ্গে সঙ্গে তাহা বিদূরিত হইল। বেগমপক্ষীয় সেনাপতিগণ নবাবের বশ্যতা স্বীকার করিয়া ক্ষমা প্রার্থনা করিলেন। পর দিবস নবাব ঐ দুর্গ-প্রাসাদ দখল করিয়া, বেগমকে তাঁহার নিজের অন্তঃপুরে পাঠাইয়া দিলেন এবং মতিঝিলে বেগমের যে অপর্যাপ্ত অর্থরাশি ছিল, তৎসমুদয় সংগ্রহ পূর্ব্বক রাজকোষভুক্ত করিলেন। শুনা যায়, ঐ অর্থের পরিমাণ প্রায় ত্রিশ কোটী রৌপ্যমুদ্রা।
+</p><p>মীরনাজির আলির বাঙ্গালা পরিত্যাগের সঙ্গে সঙ্গেই শান্তি সংস্থাপিত হইল বটে, কিন্তু এই নিস্তব্ধতা একটা আসন্ন ঝটিকার ভীষণ সূচনামাত্র। সিরাজ ঘসিটির ধনসম্পত্তি বাজেয়াপ্ত করিলে বেগম-সাহেবা ইংরাজের শরণাগত হইলেন। ইংরাজেরা বহু পূর্ব্ব হইতেই সিরাজের প্রতি বিরূপ ছিলেন এবং প্রতিকূলতাচরণের সুযােগ অন্বেষণ করিতেছিলেন। তাঁহারা সানন্দে এ সুযােগের সদ্ব্যবহার করিতে মনস্থ করিলেন ও বেগমকে কলিকাতায় আশ্রয় দিয়া, তাঁহার ধনরত্নাদি রক্ষণাবেক্ষণ করিতে লাগিলেন। রাজবল্লভকে হস্তগত করিবার জন্য তাঁহাকেও আশ্রয় দিলেন এবং শুনিতে পাওয়া যায় যে, পূর্ণিয়ার নবাবের সঙ্গেও না কি তাঁহাদের একটা বন্দোবস্ত হইয়াছিল। পক্ষান্তরে ইংরাজগণ আলিবর্দ্দীর রাজত্বকালে অনেক গর্হিত কার্য্য করিয়া, সিরাজের বিরাগভাজন হইয়াছিলেন। তাঁহারা বুঝিতে পারিয়াছিলেন যে, সিরাজ নবাব হইলে তাঁহাদিগকে বিশেষ অসুবিধা ভােগ করিতে হইবে। এই জন্য ইংরাজেরা তাঁহার বিরুদ্ধে ষড়যন্ত্র করিতে লাগিলেন। এই ষড়যন্ত্রের কথা সিরাজের কর্ণগােচর হইয়াছিল বলিয়াই ইংরাজের বিরুদ্ধে তাঁহার সৈন্য়চালনা, কলিকাতা- আক্রমণ, কলিকাতার দুর্গে সিরাজ-হস্তে ইংরাজগণের নির্যাতন ভােগ, ইত্যাদি কাণ্ড সংঘটিত হয়।
+</p><p>সিরাজ নবাব হইয়াই পাটনার রাজা রামনারায়ণের সহিত কর্ম্মনাশা নদী সম্বন্ধে আবশ্যক কথাবার্ত্তাদি কহিবার জন্য সহরের তিন মাইল দূরে শিবির সন্নিবেশ করিলেন এবং তাঁহার সহিত মিলিত হইবার জন্য যাত্রার আয়ােজন করিতে লাগিলেন। এমন সময় তিনি শুনিলেন যে, পাঠানেরা তাঁহার অধিকারে লুটপাট আরম্ভ করিয়াছে, সুতরাং তাঁহার আর পাটনা যাওয়া হইল না—তিনি সেই সমস্ত সৈন্য লইয়াই পাঠানগণের বিরুদ্ধে যুদ্ধাভিযান করিলেন। সেই সময় তিনি শুনিলেন, ইংরাজেরা ঘসিটি বেগমকে আশ্রয় দিয়া, নবাবের কোপ হইতে আত্মরক্ষার নিমিত্ত কলিকাতার চতুর্দ্দিকে পরিখা খনন করিতেছেন। এই সংবাদ শ্রবণে অতিমাত্র ক্রুদ্ধ হইয়া, সিরাজ ইংরাজগণকে বলিয়া পাঠাইলেন যে, যদি তাঁহারা পরিখা-খননকার্য্য স্থগিত না রাখেন, তাহা হইলে তিনি স্বয়ং কলিকাতায় উপস্থিত হইয়া তাঁহাদিগকে তাঁহার আদেশ পালনে বাধ্য করাইবেন।
+</p>
+
+<p> এই ঘটনার কিছুদিন পূর্ব্বে সিরাজ সওকৎজঙ্গকে তাঁহার অধীনতা স্বীকার করিবার জন্য পূর্ণিয়ায় এক শিরােপা প্রেরণ করেন। সওকৎজঙ্গ সে শিরােপা ফেরৎ দিয়া বলিয়া পাঠান যে, আলিবর্দ্দী খাঁ মৃত্যুকালে বলিয়া গিয়াছেন, পূর্ণিয়া স্বাধীন রাজ্য; উহা সিরাজের অধীন নহে। ইহাতে সিরাজ সাতিশয় ক্রুদ্ধ হইয়াছিলেন; তৎপরে তিনি যখন শুনিলেন যে, সওকৎজঙ্গ ঘসিটি বেগমকে পনের হাজার সৈন্য সাহায্য করিতে প্রতিশ্রুত হইয়াছিলেন এবং তাঁহার উচ্ছেদ সাধনার্থ ইংরাজের সহিত ষড়যন্ত্র করিতেছেন, তখন তাঁহার ক্রোধের পরিসীমা রহিল না। তিনি সওকৎজঙ্গের বিরুদ্ধে যুদ্ধযাত্রা করিলেন; কিন্তু রাজমহলের পার্ব্বত্যপ্রদেশে পৌঁছিবার পর তাঁহার সেনাপতিগণ আর অগ্রসর হইল না। সকলেই সমস্বরে বলিল, সম্মুখে বর্ষাকাল—শীঘ্রই পথঘাট দুর্গম হইয়া উঠিবে, তখন প্রত্যাবর্ত্তন করা অতীব দুরূহ হইয়া পড়িবে। অগত্যা সিরাজ কৌশলক্রমে সওকৎজঙ্গকে নিকটে আনাইয়া হত্যা করিবার অভিপ্রায়ে তাঁহাকে বলিয়া পাঠাইলেন—“তুমি আমার নিকটে আসিয়া আমার প্রভুত্ব স্বীকার কর।” সওকৎ সিরাজের দুরভিসন্ধি বুঝিতে পারিয়া প্রত্যুত্তরে জানাইলেন—“আমি তােমার প্রভুত্ব স্বীকার করিলাম, কিন্তু বর্ষাকাল উপস্থিত হওয়াতে তােমার সহিত সাক্ষাৎ করিতে পারিলাম না।”
+</p><p>রাজমহলে অবস্থান কালে সিরাজ শুনিলেন যে, ইংরাজেরা তাঁহাকে হত্যা করিয়া অপর কোন ব্যক্তিকে সিংহাসন দিবার চেষ্টা করিতেছেন এবং ঘসিটি ও সওকৎজঙ্গ সেই ষড়যন্ত্রে লিপ্ত আছেন। কেহ কেহ বলেন যে, সিরাজ দূতমুখে ইহা জানিতে পারিয়াছিলেন। আবার অনেকে বলিয়া থাকেন যে, বেলি নামক কাশিমবাজারস্থ একজন ইংরাজ কর্ম্মচারী এই সংবাদ প্রচার করেন। এই দুইটির মধ্যে কোন্‌টী সত্য, তাহার বিচার নিষ্প্রয়ােজন। তবে একথা নিঃসন্দেহ যে, ইংরাজের মাথার উপর দিয়া যে ঝটিকা প্রবাহিত হইয়াছিল, রাজমহলেই তাহায় মেঘ দেখা দিয়াছিল।
+</p><p>ইহার পর ইংরাজের সহিত সিরাজের যে সকল যুদ্ধ হয়, মুর্শিদাবাদে যে যুগান্তরকারী নাটকের অভিনয় হয়, কলিকাতার দুর্গে ইংরাজেরা সিরাজের হস্তে যে সকল নিগ্রহ ভােগ করেন, তৎসমুদয়ের সহিত প্রত্যক্ষ্যভাবে ঘসিটি বেগমের কোন সম্বন্ধ নাই; কিন্তু পরােক্ষভাবে ঐগুলির সহিত বেগমের সম্বন্ধ আছে; কাজেই এস্থলে সে সকল ঘটনার কিছু কিছু উল্লেখ করা নিতান্ত অপ্রাসঙ্গিক হইবে না।
+</p><p>ঘসিটি বেগমের পরলােকগত স্বামীর দেওয়ান রাজল্লভের পুত্র কৃষ্ণদাসকে আশ্রয় দেওয়াই ইংরাজের সহিত সিরাজের সঙ্ঘর্ষের প্রধান কারণ বলিয়া অনেকে নির্দ্দেশ করেন; ইহা যে নিতান্ত অমূলক তাহা নহে; কারণ এই ঘটনার পরে ভারতীয় ইংরাজ কর্ম্মচারীদিগের সহিত বিলাতের ইষ্ট ইণ্ডিয়া কোম্পানীর বাের্ড অব ডাইরেক্টারদিগের যে সকল পত্র-ব্যবহার হইয়াছিল, ঐ সকল পত্রের উত্তর- প্রত্যুত্তরে ইংরাজের মুখেই তাহা ব্যক্ত হইয়াছে।
+</p><p>আমিনা-চরিত্র বিবৃতি কালে ঘসিটির শোচনীয় পরিণামের কথা আমরা উল্লেখ করিয়াছি, এক্ষণে হলওয়েল সাহেব ১৭৬০ খৃঃ অব্দে কলিকাতা হইতে মুরাদাবাদে ওয়ারেণ হেষ্টিংশ সাহেবকে ঘসিটির পরিণামের যে অমানুষিক চিত্র অঙ্কিত করিয়া পত্র বিখিয়াছিলেন, নিম্নে আমরা তাহার মর্ম্মানুবাদ করিয়া দিলাম।
+</p><p>পলাশীর যুদ্ধের পর ঘসিটি ও আমিনা বন্দিনী হইয়া ঢাকায় প্রেরিত হন। মীরজাফর আলিবর্দ্দীর বংশের উচ্ছেদসাধনার্থ ঢাকার শাসনকর্ত্তা জেসারৎ খাঁকে তাঁহাদিগের বিনাশের জন্য লিখিয়া পাঠাইলেন। এই পত্র পাইয়া জেসারৎ খআঁ কিংকর্ত্তব্যবিমূঢ় হইয়া পড়িলেন। যাঁহাদের অন্নে লালিত-পালিত হইয়াছেন—যাঁহাদের কৃপায় উন্নতির চরমসীমায় উপনীত হইয়াছেন, তাঁহাদিগকে হত্যা করিতে হইবে—সেই দয়াল আলিবর্দ্দীর পরিবারবর্গের আবাল্য ঋণের প্রতিশােধ এইরূপে লইতে হইবে, ভাবিয়া শিহরিয়া উঠিলেন। স্থির করিলেন, নৃশংস মীরজাফরের অন্ন গ্রহণ না করিয়া, প্যাগম্বরের নাম লইয়া ফকিরী গ্রহণ করিব, তাহাও স্বীকার, কিন্তু অন্নদাতা, জীবনদাতা, মানসন্ত্রম-প্রতিষ্ঠাতা আলিবর্দ্দীর কন্যাগণের প্রাণনাশ করিতে পারিব না। তাই মীরজাফরের পত্রের উত্তরে তিনি আপনার অসম্মতি জানাইলেন। তখন অনন্যোপায় হইয়া মীরজাফর একজন বিশ্বস্ত জমাদারকে সহরের দুই মাইল দূরে মধ্যরাত্রে কোন নির্জ্জন স্থানে নদীবক্ষে বেগমদিগকে নিমজ্জিত করিতে আদেশ করিলেন এবং তিনি জেসারৎ খাঁকে তাহার হস্তে বেগমদিগকে সমর্পণ করিবার জন্য এক পরােয়ানা পাঠাইলেন। জমাদার কর্ত্তৃক বেগমেরা নির্দিষ্ট স্থানে নীত হইলে, উভয়ের পদদ্বয়ে গুরুভার বাঁধিয়া দিয়া জলে নিমজ্জিত করা হইল। উপায়ান্তর না দেখিয়া বেগমেরা যখন প্রাণরক্ষার্থ নৌকার পার্শ্ব ধরিয়া কোনক্রমে আত্মরক্ষার চেষ্টা করিতে লাগিলেন, তখন নির্ম্মম জমাদার তাঁহাদের মস্তকের উপর লগুড়াঘাত করিতে লাগিল; কিন্তু শােণিতাপ্লুতা হইয়াও যখন তাঁহারা শেষ অবলম্বন কাষ্ঠখণ্ডের আশা ত্যাগ করিলেন না, তখন তাঁহাদের হাত কাটিয়া দিয়া তাঁহাদিগকে ডুবাইয়া দেওয়া হইল।
+</p>
+<div><img alt="" src="images/c25_Rule_Segment___Curl_Left___10px.svg_10px_Rule_Segment___Curl_Left___10px.svg.png"/><img alt="" src="images/c26_Rule_Segment___Flare_Centre___140px.svg_140px_Rule_Segment___Flare_Centre___140px.svg.png"/><img alt="" src="images/c27_Rule_Segment___Curl_Right___10px.svg_10px_Rule_Segment___Curl_Right___10px.svg.png"/></div>
+
+
+</div><ol><li><span><a href="#cite_ref-1-n149">↑</a></span> <span>ইঁহার প্রকৃত নাম ‘মেহেরুন্নিসা’। সয়ের মুতাক্ষরীণের ২য় খণ্ড (১০৯ পৃঃ) এই নামটীর উল্লেখ আছে। ইঁহার আরও কয়টী নাম আছে। ইনি সাধারণে ‘ঘসিটি (পারস্য ‘গহ্‌স্‌সিটী’) বেগম’, ‘ঘসিটী বিবি’, ও ‘ছোটী বেগম’ নামে পরিচিত। মতিঝিলে বাস করিতেন বলিয়া লোকে ইঁহাকে ‘মতিঝিলের বেগম’ও বলিত। ফরাসী ও ইংরাজদিগের বিবরণাদিতে ‘ঘসিটা’ ও ‘ঘসেটা’ নাম দেখিতে পাওয়া যায়। পর্ত্তগীজ ওলন্দাজদিগের বিবরণদিতে ইঁহার নাম আদৌ উল্লিখিত হয় নাই; ইহাদের গ্রন্থে ইনি ‘নওয়াজিব বা নওয়ারিষ (?) বিধবা’ বলিয়া প্রথিতা।</span>
+</li>
+<li><span><a href="#cite_ref-2-n151">↑</a></span> <span>মুতাক্ষরীণমতে (২য় খণ্ড, ১২৭ পৃষ্ঠা) নওয়াজিসের ১৭৫৫ খৃষ্টাব্দের ১৭ই ডিসেম্বর মৃত্যু হয়। ফরাসীদিগের মতে তাঁহাকে বিষাক্ত দ্রব্য খাওয়াইয়া মারিয়া ফেলা হয়। “Nawajis Muhammed Khan * * * had died eight months before from taking a little soup which Aliverdi Khan gave him to ensure kingdom to this prince.” Translation of a letter to M. Demontorcin dated 1st August—Chandernagore, 1756. হিল সাহেব কর্ত্তৃক Nationale Bibliothequeএর পুঁথির অনুবাদ। (Indian Records Series Bengal-i-174-75.)</span>
+</li>
+<li><span><a href="#cite_ref-3-n153">↑</a></span> <span>মুতাক্ষরীণমতে (Cambray's Edition—iii—150) ১৭৫৬ খৃষ্টাব্দের ২৬ জানুয়ারী ইঁহার মৃত্যু হইয়াছিল।</span>
+</li>
+</ol>
+
+<div>
+<div>
+<p><span><b>পরিশিষ্ট</b></span>
+</p>
+</div>
+<p>An address to the Proprietors of East India stock; setting forth the unavoidable necessity and real motives for the Revolution in Bengal, in 1760.<sup><a href="#cite_note-4-n171">[১]</a></sup> By John Zephaniah Holwell, Esq.
+</p>
+<div>
+<p>(Pages 45-47)
+</p>
+</div>
+<div><img alt="" src="images/c28_Rule_Segment___Span___50px.svg_50px_Rule_Segment___Span___50px.svg.png"/><img alt="" src="images/c10_Rule_Segment___Circle___6px.svg_6px_Rule_Segment___Circle___6px.svg.png"/><img alt="" src="images/c29_Rule_Segment___Lozenge___20px.svg_20px_Rule_Segment___Lozenge___20px.svg.png"/><img alt="" src="images/c10_Rule_Segment___Circle___6px.svg_6px_Rule_Segment___Circle___6px.svg.png"/><img alt="" src="images/c28_Rule_Segment___Span___50px.svg_50px_Rule_Segment___Span___50px.svg.png"/></div>
+<p>To Mr. Warren Hastings
+</p>
+<div>Calcutta, June 13, 1760.</div>
+<p>Sir,
+</p><p>By express yesterday from Dacca we have advice, that the Suba has taken off Allyverdee and Shaw Amet Khan's Begums.—He sent a Jemmaut-daar and 100 horse, with orders to Jesseraut Khan to carry this bloody scheme into execution, with separate orders to the Jemmaut-daar, in case Jesseraut Khan refused obedience: he refused acting any part in the tragedy, and left it to the other; who carried them out by night about two miles above the city in a boat, tied weights to their legs, and threw them over-board; they struggled for some time, and held by the gunwall of the boat, but by strokes on their heads with Latties, and cutting off their hands, they sunk.— These are the acts of the Tyger we are supporting and fighting for.
+</p>
+<div>
+<div>
+<p>I am,<br/><span>Your obedient humble servant, </span><br/><span>J. Z. H.</span>
+</p>
+</div>
+</div> oTthe Hon. John Zeph. Holwell,
+<div>
+<p>Esquire,
+</p>
+</div>
+<div>Maraud-Baag, June 21, 1760.</div>
+<p>Sir,
+</p><p>The relation transmitted to me in your letter of the 13th, of the murder of the two Begums, filled me with horror and astonishment; but how were those sensations increased, when upon enquiry I was told, that not only the two wretched sufferers above-mentioned, but the whole family, to the number of nine persons, had undergone the same fate. I will not mention their names, till I have undoubted proofs of the truth of my intelligence, which I with (tho' I cannot expect it) I may find not so bad at last as it has been represented to me.—How this circumstance escaped my knowledge, I know not. It was not indeed an event to be learned from enquiry, and possibly the infamy of the fact might have made my friends, who were in the secret, neglect to speak to me upon a subject which, from our particular connections with the Nabob, and his intire dependence on our power, could not but reflect dishonour upon the English name. I have hitherto been generally an advocate for the Nabob whose extortions and oppressions I imputed to the necessity of the times, and want of economy in his revenues;—but, if this charge against him be true, no argument can excuse or palliate so atrocious and complicated a villany, nor (forgive me, Sir, if I add) our supporting such a tyrant.
+</p>
+<div>
+<div>
+<p>I have the honor to be, <br/><span>Sir,</span><br/><span>Your most obedient, </span><br/><span>most faithful servant, </span><br/><span>Warren Hastings.</span>
+</p>
+</div>
+</div>
+<div><hr/></div> The advices sent from Dacca touching these murders, wore despatched immediately after the first rumour of the deed; and from thence, as usual, imperfect: subsequent advices brought tho true state of that execution, as follows:
+<p>Gosseta Begum, widow of Shaw Amet Jung;
+</p><p>Emna Begum, mother to the Nabob Surajud Dowla, and widow to Geynde Amet Khan;
+</p><p>Morad Dowla, the son of Parsha Kooly Khan, adopted by the Shaw Amet Jung;
+</p><p>Lutfen Nessa Begam, widow Surajud Dowla;
+</p><p>Her infant daughters by Nabob Surajud Dowla.
+</p><p>These unhappy sufferers perished all in one night at Dacca, in the manner before recited, with about twenty of their women, of inferior note.—It was said Alleverdy Khan's Begum by some means escaped this massacre of her whole family.
+</p><p>A conceived though groundless jealousy of Morad Dowla's making his escape from his confinement in Dacca, was the cause of this infernal carnage. *****
+</p>
+<div><hr/></div>
+<p>পূর্ণিয়ার নবাবের সহিত আমিনা বেগমের ষড়যন্ত্র সম্বন্ধে হলওয়েল সাহেব তাহার Revolutions in Bengal পুস্তকের ১২৩ পৃষ্ঠায় এইরূপ লিখিয়াছেন:—
+</p><p>“Shee was a figure, and so farre I knowe made an intrigue soe speak withe the Nabob of Poornyeah. It was thro her skeel that the Poornyeah Nabob made over the Royalle Estate to Survas diallah." 
+</p>
+</div><ol><li><span><a href="#cite_ref-4-n168">↑</a></span> <span>London; Printed for T. Becket and P. A. de Hondt, in the strand. MDCCLXIV.
+
+মাননীয় শ্রীযুক্ত নীলাম্বর পাল মহাশয় তাহার পুস্তকাগার হইতে আমাকে এই দুষ্প্রাপ্য প্রন্থখানি পড়িতে দিয়াছিলেন; তজ্জন্য তাহার নিকট কৃতজ্ঞ রহিলাম।</span>
+</li>
+</ol></section>
+<section><div>
+
+<h2>জিন্নতুন্নিসা</h2>
+<p>জিন্নতুন্নিসা, নবাব মুর্শিদকুলীর একমাত্র কন্যা। যৎকালে মুর্শিদকুলি খাঁ হায়দারাবাদের দেওয়ানী পদে নিযুক্ত হ’ন, সেই সময়ে তাঁহার কন্যা জিন্নতুন্নিসার<sup><a href="#cite_note-1-n181">[১]</a></sup> সহিত দাক্ষিণাত্যবাসী সুজাখাঁর পরিণয়-ক্রিয়া সম্পাদিত হয়। সুজা খোরাসানাধিবাসী তুর্কজাতীয় ‘আফসার’ বংশ সম্ভূত। তিনি জিন্নতুন্নিসাকে বিবাহ করিয়া নবাব মুর্শিদকুলির পরিবার মধ্যেই বাস করিতে থাকেন। কিছুদিন পরে শ্বশুরের যত্ন ও চেষ্টায় সুজা খাঁ উড়িষ্যার সুবাদার পদে অধিষ্ঠিত হ’ন; কিন্তু অত্যল্পকাল পরে তাঁহার সহিত মুর্শিদকুলির শাসন সম্বন্ধে মতদ্বৈধ হওয়ায়, উভয়ের মধ্যে মনোমালিন্য উপস্থিত হয়। তখন সুজা শ্বশুরের নিকট হইতে চলিয়া গেলেন এবং স্বয়ং শাসন কার্য্য পরিদর্শন করিতে লাগিলেন।
+</p><p>নানা সদ্ গুণভূষিত সুজা একজন ন্যায়পরায়ণ শাসনকর্ত্তা ছিলেন। কেহ কখনও তাঁহাকে ক্রোধের বশীভূত হইতে দেখে নাই, কিন্তু দুঃখের বিষয় বিলাসিতা ও চরিত্রহীনতা তাঁহার যশঃসূর্যকে স্নান করিয়া দিয়াছিল।
+</p><p>স্বামীকে সৎপথে আনিবার জন্য পতিব্রতা জিন্নতুন্নিসা প্রাণপণে চেষ্টা করিতে লাগিলেন—যখন বুঝাইয়াও তাঁহাকে পাপপথ হইতে ফিরাইতে পারিলেন না—বিবাদ-বিসম্বাদ যখন অহরহঃ গৃহের শান্তি ভাঙ্গিতে লাগিল, তখন মনোদুঃখে বেগম-সাহেবা স্বীয় পুত্র সরফরাজকে সঙ্গে লইয়া পিত্রালয়েই জীবনের অবশিষ্ট দিন গুলি শান্তিতে যাপন করিতে মনস্থ করিলেন।
+</p><p>সুজার উড়িষ্যায় অবস্থানকালে মীরজামহম্মদ নামক এক ব্যক্তি তাঁহার নিকট উপস্থিত হ’ন। মীরজা সুজার কোন আত্মীয়াকে বিবাহ করিয়াছিলেন। এই বিবাহে দুইটী পুত্রের জন্ম হয়। জ্যেষ্ঠ হাজি অহম্মদ ও কনিষ্ঠ আলিবর্দ্দী। মীরজা মহম্মদ দারিদ্র্যের নিষ্পেষণে দিল্লী হইতে পত্নীকে লইয়া সুজার নিকট ভাগ্যপরীক্ষার্থ উপস্থিত হ’ন। সুজাও বিশ্বাসী মহম্মদকে আপনার অধীনে সরকারী কার্য্যে নিযুক্ত করেন। ইহার পর ঘটনাচক্রচালিত হইয়া, আলিবর্দ্দী খাঁও উড়িষ্যার নবাব-দরবারে উপস্থিত হইলেন। তিনি অল্পদিনের মধ্যেই সাহস ও বুদ্ধিবলে সুজার একান্ত প্রিয়পাত্র হইয়া উঠিলেন। দিন দিন আলিবর্দ্দীর উত্তরোত্তর উন্নতি হইতে লাগিল। অবশেষে তিনি তাঁহার ভ্রাতা হাজি অহম্মদকে সাজহানাবাদ হইতে সপরিবারে উড়িষ্যায় লইয়া আসিলেন। উভয় ভ্রাতাই যুদ্ধবিগ্রহাদি কার্য্যে ও রাজ্য শাসনকার্য্যে বিচক্ষণ ছিলেন। ইহাদের বুদ্ধিকৌশলে রাজ্যমধ্যে সুজার শাসনশক্তি সুদৃঢ় হইয়াছিল। আলিবর্দী খাঁ স্বীয় প্রতিভাবলে, সুজার অধীনে সর্বোচ্চ রাজপদ লাভ করিলেন।
+</p><p>মুর্শিদকুলি নিজের মৃত্যু নিকট দেখিয়া ও জামাতা সুজার প্রতি পূর্ব্ব হইতে বিরূপ থাকায়, স্বীয় দৌহিত্র সরফরাজকে বাঙ্গালার নিজামতি প্রদানের জন্য অভিলাষ প্রকাশ করেন। এই কথা সুজার কর্ণগোচর হইবামাত্র, তিনি আলিবর্দ্দী ও হাজি অহম্মদের সহিত পরামর্শ করিয়া, বাঙ্গালা ও উড়িষ্যার নিজামতি প্রাপ্তির জন্য দিল্লীর বাদসাহের নিকট নানাবিধ উপঢৌকন পাঠান।
+</p>
+
+<p> ইহার অত্যল্পকাল পরেই মহাপ্রতাপশালী নবাব মুর্শিদকুলির নথর দেহ শীতল সমাধিতলে বিশ্রামলাভ করিল। তাঁহার মৃত্যুর কয়েক দিবস পূর্ব্বেই সুজা আলিবর্দ্দীকে সঙ্গে লইয়া মুর্শিদাবাদ যাত্রা করিয়াছিলেন; পথিমধ্যেই তিনি দিল্লী হইতে পরওয়ানা প্রাপ্ত হইলেন ও শ্বশুরের মৃত্যু সংবাদ শুনিলেন। উপযুক্ত অবসর বুঝিয়া, তিনি সসৈন্যে মুর্শিদাবাদের পথে অগ্রসর হইতে লাগিলেন। রাজধানীতে উপস্থিত হইবামাত্রই ভাগ্যলক্ষ্মী তাঁহার উপর প্রসন্না হইয়া, তাঁহার মস্তকে মণিময় মুকুট পরাইয়া দিলেন—সুজা খাঁ বাঙ্গালার নবাব হইলেন।
+</p><p>জিন্নতুন্নিসা তখন সরফরাজের সহিত মুর্শিদাবাদ হইতে ২ মাইল দুরে অবস্থান করিতেছিলেন। সরফরাজ তখনই পিতৃসকাশে আগমন করিয়া তাঁহার চরণ বন্দনা করিলেন, তাঁহার মসনদ অধিকারে কোনরূপ বিষণ্ণচিত্ত না হইয়া, বরং প্রচুর আনন্দ প্রকাশ করিলেন। পিতাপুত্রে এই ভাবেই মিলন হইল। সুজাও পত্নীর নিকট গতজীবনের জন্য অনুশোচনা করিয়া দণ্ডায়মান হইলে, ধর্ম্মপরায়ণা পত্নী পতিদেবতার সকল দোষ ভুলিয়া গিয়া চরণতলে লুণ্ঠিত হইয়া পড়িলেন। এইরূপে পিতৃবিয়োগ-বিধুরা সন্তপ্ত জিন্নতুন্নিসা প্রেমাস্পদের সহিত মধুর মিলনে মিলিত হইয়া, পিতৃশোক কিয়ৎ পরিমাণে উপশম করিয়াছিলেন।
+</p><p>এই সময়ে আজিমাবাদ পাটনা বাঙ্গালার শাসনকর্ত্তার অধীনে আসিল ও তাহার শাসনভার সুজার হস্তে পড়িল। সুজা খাঁ তাহার দুই পুত্র সরফরাজ ও তকী খাঁর<sup><a href="#cite_note-2-n182">[২]</a></sup> মধ্যে কাহাকে প্রতিনিধি নিযুক্ত করিবেন, তাহা স্থির করিয়া উঠিতে পারিলেন না। জিন্নতুন্নিসা স্বীয় পুত্র সরফরাজকে পাটনায় পাঠাইতে সম্মত হইলেন না; অধিকন্তু স্বপত্নীপুত্র মহম্মদ তকীকেও অসূয়াপরশ হইয়া প্রতিনিধি নিযুক্ত করিতে বাধা দিলেন। সুজা খাঁ পত্নীর অমতে কিছুই করিতে পারিলেন না। অবশেষে তিনি আলিবর্দ্দীকেই প্রতিনিধিরূপে পাটনায় পাঠাইতে মনস্থ করিলেন। জিন্নতুন্নিসা এই প্রস্তাবের সম্যক্ অনুমোদন করিলেন। তিনি আলিবর্দ্দীকে স্বীয় কক্ষদ্বারে ডাকাইয়া আনিয়া, নিজে বহুমূল্য পরিচ্ছদ প্রদান করিলেন ও নিজেই যেন তাঁহাকে বেহারের শাসনকর্ত্তা নিযুক্ত করিলেন, আভাষে এইরূপ মনোভাব প্রকাশ করিলেন।<sup><a href="#cite_note-3-n183">[৩]</a></sup></p><p>নাদির শাহ যখন দিল্লীর দ্বারে উপস্থিত, সেই সময়ে বাঙ্গালার লোকপ্রিয় প্রজাহিতৈষী সুজা খাঁ পরলোক গমন করিয়া,রোশনীবাগে চিরদিনের জন্য সমাহিত হইলেন। তাঁহার মৃত্যুর পর পুত্র সরফরাজ মসনদে অধিরূঢ় হইলেন। আলিবর্দ্দী ও তাঁহার আত্মীয়-স্বজনের শ্রীবৃদ্ধিতে সরফরাজের দরবারে তাঁহাদের কতকগুলি শত্রুর সৃষ্টি হইয়াছিল। তাহারা প্রতিনিয়ত সরফরাজকে মীরজামহম্মদ, আলিবর্দ্দী ও হাজি অহম্মদের বিরুদ্ধে নানা কথা বলিতে লাগিল। ইহার ফলে হাজি অহম্মদকে প্রধান দেওয়ান বা রাজমন্ত্রীর পদ হইতে বিচ্যুত করা হইল ও তাঁহার জামাতা আতাউল্লা খাঁর হস্ত হইতে রাজমহলের ফৌজদারী গ্রহণ করিয়া তাঁহাকে পদচ্যুত করিবার মন্ত্রণা চলিতে লাগিল। এই সমস্ত কারণে হাজি অহম্মদ উৎপীড়িত, অপমানিত ও লাঞ্ছিত হইয়া, প্রতিকার বিধানের জন্য স্বীয় ভ্রাতা আলিবর্দ্দীকে পাটনায় পত্র লিখিলেন।
+</p><p>এই সংবাদ শ্রবণে ও সরফরাজের নানারূপ অত্যাচারের প্রতিকার মানসে আলিবর্দ্দী সসৈন্যে পাটনা হইতে মুর্শিদাবাদ যাত্রা করিলেন ও গিরিয়ার ভীষণ যুদ্ধে সরফরাজকে পরাস্ত করিলেন। এই যুদ্ধে সরফমাজের মৃত্যু হয়। যুদ্ধের দুই দিবস পরে আলিবর্দ্দী বিশেষ সমারোহে নগরে প্রবেশ করিলেন। প্রাসাদে প্রবেশ করিয়া, মসনদে বসিবার পূর্ব্বে তিনি জিন্নতুন্নিসার কক্ষদ্বারে উপস্থিত হইলেন ও সসম্রমে মস্তক অবনত করিয়া বেগম-সাহেবার নিকট ক্ষমা ভিক্ষা চাহিলেন। পরে ধীরস্বরে বলিলেন—“অদৃষ্টে যাহা ছিল, তাহা হইয়াছে এবং এই হতভাগ্য গোলামের অকৃতজ্ঞতা ইতিহাসের পৃষ্ঠায় জাজ্বল্যমান থাকিবে; কিন্তু আমি শপথ করিয়া বলিতেছি যে, যতদিন জীবিত থাকিব, ততদিন আপনার প্রতি সম্মান প্রদর্শন করিতে ত্রুটি করিব না। আশা করি, এই হতভাগ্য, বিনীত ও সন্তপ্ত গোলামের অপরাধ সময়ে আপনার স্মৃতি হইতে মুছিয়া যাইবে।”
+</p><p>পুত্রশোকাতুরা জিন্নতুন্নিসা আপনার শোচনীয় অবস্থার বিষয় চিন্তা করিয়া ও মুর্শিদাবাদের চতুর্দ্দিকে আলিবর্দ্দীর সৈন্য-সমাবেশ দেখিয়ে বন্দিনী হইবার ভয়ে নিরুত্তর রহিলেন।
+</p><p>ইহার পর কতদিন তিনি যে কি ভাবে জীবন যাপন করিয়াছিলেন, তাহা জানিতে পারা যায় না। তবে আজিমনগরে, প্রাসাদ হইতে অর্দ্ধ মাইল উত্তরে বেগম-সাহেবা যে মস্‌জিদ নির্ম্মাণ করাইয়াছিলেন; তাহার ভগ্নাবশেষ অদ্যাপি বিদ্যমান রহিয়াছে এবং ইহার অনতিদূরে তিনি সমাহিত আছেন।
+</p>
+<div><img alt="" src="images/c16_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/><img alt="" src="images/c17_Rule_Segment___Crescent_top___10px.svg_10px_Rule_Segment___Crescent_top___10px.svg.png"/><img alt="" src="images/c16_Rule_Segment___Wave___40px.svg_40px_Rule_Segment___Wave___40px.svg.png"/></div>
+
+
+</div><ol><li><span><a href="#cite_ref-1-n173">↑</a></span> <span>ইঁহার অপর নাম আজামুন্নিসা বা আজামতুন্নিসা।</span>
+</li>
+<li><span><a href="#cite_ref-2-n176">↑</a></span> <span>হলওয়েল সাহেব বলেন, মহম্মদ তকী, জিন্নতুন্নিসার গর্ভজাত।</span>
+</li>
+<li><span><a href="#cite_ref-3-n178">↑</a></span> <span>She appointed him to the government of Behar, as from herself, এই স্থলের পাদটীকায় মুতাক্ষরীণকার লিখিয়াছেন:—<br/>“Jinet-en-nissa seems to have insisted on her husband recognising her as the heiress to the government, and considered him rather as the viceroy-consort than viceroy in his own right.” <a href="https://en.wikisource.org/wiki/Page:Siyar-ul-Mutakherin.djvu/401" rel="noopener noreferrer" target="_blank">Siyar-ul-Mutakherin. Translated by John Briggs, I-315.</a></span>
+</li>
+</ol></section>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = (p.currentTheme === 'light' || p.currentTheme === 'dark') ? p.currentTheme : 'dark';
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    const progressFill = document.getElementById('reading-progress-fill');
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        if (progressFill) progressFill.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+    updateProgress(window);
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+            a.addEventListener('click', closeDrawer);
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocMobile);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme; header/footer/drawer now follow the same theme via CSS vars)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+            const themeColorMeta = document.getElementById('theme-color-meta');
+            if (themeColorMeta) themeColorMeta.setAttribute('content', m.bg);
+
+            const activeAccent = getComputedStyle(document.body).getPropertyValue('--bar-accent').trim();
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? activeAccent : 'transparent';
+            });
+            savePrefs();
+        });
+    });
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+    })();
+})();
+</script>
+
+
+</body>
+</html>
