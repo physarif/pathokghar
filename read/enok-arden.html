@@ -1,0 +1,2461 @@
+<!DOCTYPE html>
+<html lang="bn"> 
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/enok-arden.html">
+    <title>এনক আর্ডেন - পাঠক ঘর</title>
+    <meta name="description" content="**“এনক আর্ডেন”** আলফ্রেড টেনিসনের বিখ্যাত ইংরেজি বর্ণনামূলক কাব্য *Enoch Arden*-এর একটি প্রাচীন বাংলা পদ্যানুবাদ। দুর্গাদাস লাহিড়ী কাব্যটির মূল আবেগ, নাটকীয়তা ">
+    <meta property="og:title" content="এনক আর্ডেন - পাঠক ঘর">
+    <meta property="og:description" content="**“এনক আর্ডেন”** আলফ্রেড টেনিসনের বিখ্যাত ইংরেজি বর্ণনামূলক কাব্য *Enoch Arden*-এর একটি প্রাচীন বাংলা পদ্যানুবাদ। দুর্গাদাস লাহিড়ী কাব্যটির মূল আবেগ, নাটকীয়তা ">
+    <meta name="theme-color" id="theme-color-meta" content="#ffffff">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', dark:'#1c1c1e' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', dark:'#e5e7eb' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        var meta = document.getElementById('theme-color-meta');
+        if (meta) meta.setAttribute('content', bg);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+        body.theme-light { background: #ffffff; }
+        body.theme-dark { background: #1c1c1e; }
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.6rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+</style>
+</head>
+<body>
+
+<style>
+    /* ── Bar theme variables (header / footer / drawer) — follow reading mode ── */
+    :root, body {
+        --bar-bg: #ffffff;
+        --bar-text: #1a1a1b;
+        --bar-text-dim: rgba(26,26,27,0.55);
+        --bar-border: rgba(0,0,0,0.1);
+        --bar-btn-active: rgba(0,0,0,0.06);
+        --bar-track: rgba(0,0,0,0.12);
+        --bar-accent: #0B57CF;
+        --bar-accent-soft: rgba(11,87,207,0.12);
+    }
+    body.theme-dark {
+        --bar-bg: #232326;
+        --bar-text: #e5e7eb;
+        --bar-text-dim: rgba(229,231,235,0.55);
+        --bar-border: rgba(255,255,255,0.1);
+        --bar-btn-active: rgba(255,255,255,0.08);
+        --bar-track: rgba(255,255,255,0.18);
+        --bar-accent: #3b82f6;
+        --bar-accent-soft: rgba(59,130,246,0.2);
+    }
+
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--bar-accent);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid var(--bar-accent-soft);
+        border-bottom: 1px solid var(--bar-accent-soft);
+        transition: color 0.3s, border-color 0.3s;
+    }
+    #book-content h1,
+    #book-content h3 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--bar-accent);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid var(--bar-accent-soft);
+        border-bottom: 1px solid var(--bar-accent-soft);
+        transition: color 0.3s, border-color 0.3s;
+    }
+    /* h1/h2 colors now follow --bar-text-dim / --bar-accent (see :root theme variables above),
+       so they automatically match light / dark modes. */
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p {
+        background: #232326;
+        border-color: rgba(255,255,255,0.08);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #0B57CF;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #0B57CF;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(11,87,207,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #0B57CF;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(11,87,207,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2, #book-content h3 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: var(--bar-accent);
+        font-weight: 600;
+        background: var(--bar-accent-soft);
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: var(--bar-text);
+        border-bottom: 1px solid var(--bar-border);
+        transition: color 0.15s, background 0.3s, border-color 0.3s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: var(--bar-text-dim);
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reading progress line — header-এর বাইরে, স্বাধীন fixed element,
+       তাই body.bars-hidden দিয়ে header হাইড হলেও এটা visible থাকবে ── */
+    #reading-progress-bar {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        background: var(--bar-btn-active);
+        z-index: 70;
+        pointer-events: none;
+    }
+    #reading-progress-fill {
+        height: 100%;
+        width: 0%;
+        background: var(--bar-accent);
+    }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        flex-direction: column;
+        padding: 0 0.5rem 0 0.35rem;
+        background: var(--bar-bg);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-row1 {
+        padding-top: 0.4rem;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding-bottom: 0.4rem;
+    }
+    #rh-back {
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0B57CF;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: background 0.15s, color 0.3s;
+    }
+    #rh-back:active { background: var(--bar-btn-active); }
+    #rh-titles {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+    }
+    #rh-title {
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.98rem;
+        font-weight: 600;
+        color: var(--bar-text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: color 0.3s;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 34px;
+        height: 34px;
+        border: none;
+        background: transparent;
+        color: #0B57CF;
+        border-radius: 7px;
+        font-size: 1.05rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s, color 0.3s;
+    }
+    #reader-header .rh-actions button:active { background: var(--bar-btn-active); }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: var(--bar-bg);
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease, background 0.3s;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid var(--bar-border);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--bar-text-dim);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: var(--bar-accent);
+        border-bottom-color: var(--bar-accent);
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--bar-accent);
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--bar-text);
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: auto;
+        min-width: 64px;
+        height: 34px;
+        flex: 1 1 0;
+        padding: 0 12px;
+        border-radius: 8px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        box-shadow: 0 0 0 1px var(--bar-border);
+    }
+    .theme-circle.active { border-color: var(--bar-accent); }
+    .theme-circle svg { display: none; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--bar-border);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: var(--bar-text); }
+    .settings-row-val { font-size: 0.74rem; color: var(--bar-text-dim); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid var(--bar-border);
+        background: var(--bar-btn-active);
+        color: var(--bar-text);
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: var(--bar-accent-soft); border-color: var(--bar-accent); color: var(--bar-text); }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid var(--bar-border);
+        background: var(--bar-btn-active);
+        color: var(--bar-text);
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: var(--bar-accent-soft) !important;
+        border-color: var(--bar-accent) !important;
+        color: var(--bar-text) !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid var(--bar-border);
+        background: transparent;
+        color: var(--bar-text);
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: var(--bar-accent-soft) !important;
+        border-color: var(--bar-accent) !important;
+        color: var(--bar-text) !important;
+    }
+
+</style>
+
+<!-- ══ Reading progress line — header হাইড হলেও visible থাকে ══ -->
+<div id="reading-progress-bar"><div id="reading-progress-fill"></div></div>
+
+<!-- ══ Reader header (back + title/chapter stack + actions) ══ -->
+<header id="reader-header">
+    <div id="rh-row1">
+        <a href="/book/enok-arden.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+            <i class="fa-solid fa-angle-left"></i>
+        </a>
+        <div id="rh-titles">
+            <h1 id="rh-title">এনক আর্ডেন</h1>
+        </div>
+        <div class="rh-actions">
+            <button id="rh-menu-btn" aria-label="সূচিপত্র ও কাস্টমাইজ" title="সূচিপত্র ও কাস্টমাইজ"><i class="fa-solid fa-list-ul"></i></button>
+        </div>
+    </div>
+</header>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle" data-theme="light" style="background:#fff;border-color:#0B57CF;" title="সাদা"></button>
+                    <button class="theme-circle active" data-theme="dark" style="background:#3a3a3a;border-color:#3b82f6;" title="ডার্ক">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e5e7eb" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-justify" title="জাস্টিফাই">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                
+<section><div>
+
+
+<div><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c4_Rule_Segment___Circle___10px.svg_10px_Rule_Segment___Circle___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/></div>
+
+<div>
+<div>
+<p><span>স্তরে স্তরে শৈলমালা—দূর-প্রসারিত;</span><br/>
+বিদার সঞ্চার তায় গহ্বর সঞ্জাত।<br/>
+ক্ষীণ তনু ঢালিয়াছে ক্ষুদ্র শৈবলিনী<br/>
+সাগর-সঙ্গম-সাধে; বিক্ষুব্ধ গহ্বর,<br/>
+পীতবর্ণ-বালুপূর্ণ ফেণপুঞ্জময়।<br/>
+পার্শ্বে পোতাধিষ্ঠ-স্থান<sup><a href="#cite_note-1">[১]</a></sup> —সঙ্কীর্ণ প্রাচীন।<br/>
+দূরে তবকিত রক্তিম বরণ ছাদ<br/>
+গ্রাম্য কুটীরের।<sup><a href="#cite_note-2">[২]</a></sup>তদূর্দ্ধ বিরাজে গির্জ্জা—<br/>
+জরাজীর্ণ ভগ্ন।গিরি’পরে বায়ুভরে।<br/>
+সঞ্চালিত উচ্চচুড় ময়দার কল;<br/>
+উর্দ্ধগতি দীর্ঘপথ তাহার উদ্দেশে।<br/><span>পশ্চাতে গগনস্পর্শীবালুর পাহাড়,</span><br/>
+তৃণাচ্ছন্ন ধূসরিত; বক্ষে স্মৃতিস্তম্ভ<br/>
+সমাধির—পুরাকীর্ত্তি ‘ডেনিশ’ জাতির;<br/>
+শোভমান তাহে আর, স্থালীর মতন,
+</p>
+</div> <div>
+<p>নিম্নভূমি মনোহর—হরিৎ শ্যামল<br/>
+‘হেজেল’<sup><a href="#cite_note-3">[৩]</a></sup>পাদপে পূর্ণ,—ফল-লোতে যথা<br/>
+শরৎ ঋতুতে আসে ফললোভী জন।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>শত বরষের কথা।এই বেলাভূমে,</span><br/>
+খেলিত শৈশব-খেলা শিশু তিন জন;—<br/>
+তিন সংসারের তারা তিনটী আনন্দ।<br/>
+‘এনি-লি’ কুমারী বালা, কমল কলিকা,<br/>
+বন্দরে রূপের সেরা; বালক ‘ফিলপি’—<br/>
+একমাত্র পুত্র সেই কলের কর্ত্তার।<br/>
+‘এনক্ আর্ডেন্’ নাম, অনাথ বালক,<br/>
+অসভ্য নাবিকপুত্র; পিতৃহীন এবে,<br/>
+পোতমগ্নে বরষার বিষম ঝঞ্চায়।<br/><span>বেলাভূমে পরিত্যক্ত নানা দ্রব্যজাত;—</span><br/>
+কঠিন রজ্জুর স্তুপ কুণ্ডলী আকার;<br/>
+মৎস্য ধরিবার জাল, কষায় বরণ।<br/>
+নীলাম্বুর নীলজলে;—নোঙ্গর পড়িয়া।<br/>
+ইতস্ততঃ, ফলক কলঙ্কপূর্ণ তার;<br/>
+নৌকাগুলি বিপর্যস্ত—আছে অধোমুখে।
+</p>
+</div> <div>
+<p><span>এই তীরে, পরিত্যক্ত এই সব মাঝে,</span><br/>
+তিন জনে ধূলাখেলা খেলিত তাহারা।<br/>
+গড়িত খেলার ঘর সিক্ত বালুকায়;<br/>
+ভগ্নপ্রাণে নির্নিমেষে দেখিত চাহিয়া—<br/>
+সাগর-তরঙ্গ তারে কেমনে ভাসায়।<br/>
+শ্বেত উর্ম্মিমালা যত আসিত নিকটে,<br/>
+উপরে উঠিত তারা—পলাইত দুরে।<br/>
+ক্ষুদ্র পদচিহ্ন নিত্য পড়িত তাদের,<br/>
+বিধৌত হইত নিত্য তরঙ্গ-বিক্ষেপে।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>পর্ব্বতের সানুদেশে ক্ষুদ্র গিরিগুহা;</span><br/>
+শিশুরা খেলিত তাহে কুটীর রচিয়া।<br/>
+এক দিন সাজিত ‘এনক’ গৃহস্বামী,<br/>
+অতিথি ‘ফিলিপ’; পরিবর্ত্ত পর দিন;<br/>
+‘এনি’ কিন্তু কর্ত্রীরূপে নিত্য বিরাজিত।<br/>
+কখনো এমন হ’তো,—‘এনক্’ একাই,<br/>
+কর্ত্তা হ’য়ে কাটাইত সপ্তাহ সময়;<br/>
+কহিত—“আমার গৃহ, গৃহিণী আমার।”<br/>
+‘আমারও!’—কহিত ফিলিপ ভগ্নস্বরে,—<br/>
+‘হইবে আমারে পুনঃ পালার সময়।’
+</p>
+</div> <div>
+<p>দ্বন্দ্ব তাহে যদ্যপি বাধিত দুই জনে;<br/>
+কর্তৃত্ত্ব করিত লাভ ‘এনক্’ বলিষ্ঠ।<br/>
+‘ফিলিপের’ দুই গণ্ডে জলধারা বহি,<br/>
+নীল চক্ষু ভাসাইত ক্ষুব্ধ রোষাবেগে;<br/>
+কাঁদিয়া কহিত আর,—“ঘৃণা করি তোরে,<br/>
+ঘৃণিত ‘এনক্’ তুই।” বিবাদ দেখিয়া,<br/>
+বালিকা কাঁদিত অনুরাগে; কহিত সে,—<br/>
+“মিনতি আমার এই, করো না বিবাদ<br/>
+আমার কারণ দোঁহে; আমি উভয়েরি;<br/>
+বালিকা বধূটী হ’য়ে রব চিরদিন।”<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>কুসুম-প্রতিম উষা কিশোর-কালের</span><br/>
+ক্রমে অপগত; এবে নবীন অরুণ<br/>
+কনক-কিরণ ঢালে প্রাণে উভয়ের;<br/>
+দোঁহার হৃদয় ভাসে কিশোরীর প্রেমে।<br/>
+ভালবাসা জানায় ‘এনক্’ স্পষ্টভাবে;<br/>
+‘ফিলিপ’ নীরবে ভালবাসে; অনুরাগ<br/>
+দেখার ফিলিপে বালা; অন্তরে ‘এনকে’<br/>
+ভালবাসে,—আপনার মনের অজ্ঞাতে;<br/>
+জিজ্ঞাসিলে কেহ তাহা অস্বীকার করে।
+</p>
+</div> <div>
+<p>‘এনকের’ মনে এবে সুদৃঢ় সঙ্কল্প,—<br/>
+আয়াসে অশেষ অর্থ করিবে সঞ্চয়,<br/>
+কিনিবে তাহাতে নৌকা নিজস্ব করিয়া,<br/>
+রচিবে এনির তরে একটা কুটীর।<br/><span>সফল সাধনা; সুপ্রসন্না ভাগ্যদেবী;</span><br/>
+শুভ দিন এনকের আসিল এমন,—<br/>
+তরঙ্গ-তাড়িত তীরে বহু দূর মাঝে,<br/>
+তার সম ভাগ্যবান না রহিল কেহ,<br/>
+মৎস্যজীবী না জন্মিল সাহসী তেমন,<br/>
+বিপদে সতর্ক কেহ তাহার মতন।<br/><span>বর্ষাবধি কর্ম্ম করি সদাগরী পোতে,</span><br/>
+হইল সুদক্ষ দৃঢ় নাবিকের কাজে;<br/>
+উদ্ধারিল তিন বার তিনটী জীবন,<br/>
+ভীষণ ভাটার স্রোতে সমুদ্রের মাঝে।<br/>
+সকলের প্রীতিপাত্র হইল এনক।<br/><span>একবিংশ বসন্তের নবীন বিকাশ।</span><br/>
+এনক-জীবনে। সে এখন কিনিয়াছে<br/>
+নিজের তরণী এক; এনির কারণ।<br/>
+রচেছে কুটীর রম্য, কুলায়-সদৃশ।<br/>
+পরিচ্ছন্ন মনোহর; সঙ্কীর্ণ যে পথ
+</p>
+</div> <div>
+<p>উঠিয়াছে কলঘর পাশে,—সে কুটীর<br/>
+এনকের, শোভমান্ তারি মধ্যপথে।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>সোনার শরতে এক অপরাহ্ণ-কালে,</span><br/>
+আনন্দ-উৎসবে মাতি যুবকের দল,<br/>
+কাঁধে লয়ে ছোট-বড় ‘ব্যাগ’, থলি, ঝুড়ি,<br/>
+পাড়িতে ‘হেজেল’-ফল গিয়াছিল বনে।<br/>
+অসুস্থ জনক, তার পরিচর্যা-হেতু,<br/>
+এক ঘণ্টা বিলম্ব হইল ফিলিপের।<br/><span>পল্লবাগ্রভাগ যথা হইয়া আনত</span><br/>
+পক্ষপুট বিস্তারিয়া গহ্বরের প্রতি,—<br/>
+পাহাড়ের সেইখানে উঠিলে ফিলিপ,<br/>
+দেথিল যুগল মূর্ত্তি—এনি ও এনক,<br/>
+বসিয়া রয়েছে দোঁহে হাতে হাত রাখি।<br/>
+ফিলিপের ধূসর বৃহৎ চক্ষুর্দ্বয়,<br/>
+ঋতু-নিপীড়িত রুক্ষ্ম লাঞ্ছিত বদন,<br/>
+আরক্তিম হইল যুগপৎ; বিচ্ছুরিল<br/>
+প্রেমের পবিত্র জ্যোতি সে মুখমণ্ডলে,—<br/>
+বেদী মাঝে পূত শান্ত দীপ্ত শিখা সম।<br/><span>‘এনি আর নহে তার’ দেখিল ফিলিপ—</span>
+</p>
+</div> <div>
+<p>নয়নে বদনে লেখা স্পষ্ট দোঁহাকার।<br/>
+দুই জনে মুখোমুখী মিশামিশি যবে,<br/>
+স্বরভঙ্গ ফিলিপের; যাইল সে দূরে।<br/>
+সবিষাদে ব্যথিত অন্তরে অবশেষ,<br/>
+বনের গহ্বর-প্রান্তে লুকাইল মুখ।<br/><span>সকলে প্রমত্ত যবে আনন্দ-কল্লোলে;</span><br/>
+প্রগাঢ় আঁধার-ভরা ফিলিপের হৃদি<br/>
+না দেখিল কেহ আর। উঠিল ফিলিপ,<br/>
+চলিল একাকী পুনঃ—অন্তরের এক<br/>
+অতৃপ্ত পিয়াসা চির হৃদয়ে বহিয়া।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>পরিণয়ে এনক এনির সম্মিলন।</span><br/>
+আনন্দের ঘটাধ্বনি বাজিল গির্জ্জায়;<br/>
+আনন্দের বর্ষরাজি হাসিল হরষে।<br/>
+সাতটি সুখের বর্ষ,—সৌভাগ্যের আর<br/>
+স্বাস্থ্যের আধার সাত সুখের বৎসর,—<br/>
+পবিত্র দাম্পত্য প্রেমে যশস্কর শ্রমে<br/>
+হইল অতীত, সন্তান-সন্ততি সহ।<br/>
+প্রথমে তনয় এক; প্রথম শিশুর<br/>
+সেই প্রথম ক্রন্দন—জাগাইয়া দিল
+</p>
+</div> <div>
+<p>মনে সঞ্চয়ের এক পিয়াসা দারুণ;—<br/>
+ভালরূপে সন্তানের শিক্ষাদান তরে,<br/>
+পিতামাতা দোঁহাকার মিটাইয়া সাধ।<br/><span>দুই বর্ষ পরে পুনঃ জন্মিল কুমার;</span><br/>
+আশামূলে অঙ্কুরিত নবীন মুকুল।<br/>
+তরঙ্গ-বিক্ষুব্ধ ঘোর সাগরের ক্রোড়ে,<br/>
+কিম্বা কোন গ্রামান্তরে যাইলে এনক;<br/>
+নিরালা কুটীরে শিশু কুসুম-পুতুলি—<br/>
+জননীর সুখশান্তি সান্ত্বনা-সম্বল।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>কর্ম্মঘোরে গৃহছাড়া সতত এনক।</span><br/>
+এনকের শ্বেত-অশ্ব-চালিত শকট,<br/>
+লবণাম্বু-গন্ধময় পেটিকার মৎস্য,<br/>
+শীতবাত্যানিপীড়িত রুক্ষ্ম রক্ত-মুখ,<br/>
+কেবল বিপণী-মাঝে নহে প্রকটিত;—<br/>
+বালুর-পাহাড়-প্রান্তে পত্রাবৃত পথে,<br/>
+ধনীর প্রস্তরময় দৃপ্ত সিংহদ্বারে,<br/>
+কর্ত্তিত-ময়ুরাকার-ঝাউ-শোভমান—<br/>
+নিভৃত সে উদ্যান-ভবন মাঝে আর,
+</p>
+</div> <div>
+<p>শুক্রবাসরীয় খাদ্য<sup><a href="#cite_note-4">[৪]</a></sup> মৎস্য যোগাইতে,<br/>
+গতিবিধি নিয়মিত ছিল এনকের।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>এক অঙ্ক পরিবর্ত্ত।মানব-জীবন,</span><br/>
+নিয়তির চক্রে সদা পরিবর্ত্তশীল।<br/>
+সেই ক্ষুদ্র বন্দরের উত্তরের দিকে,<br/>
+পাঁচ ক্রোশ ব্যবধানে, হয়েছিল এক<br/>
+বৃহত্তর পোতাশ্রয়; ছিল গতিবিধি<br/>
+এনকের স্থলপথে কভু জলপথে।<br/>
+দৈবের ঘটনা এক,—উঠিতে মাস্তুলে<br/>
+স্খলিল চরণ, পড়িল এনক নীচে;<br/>
+ভাঙ্গিল পঞ্জর; ধরিয়া উঠাতে হ’ল।<br/>
+সেই স্থানে রোগের শুশ্রুষা যে সময়,<br/>
+প্রসবিল পত্নী তার তৃতীয় কুমার—<br/>
+রুগ্ন নব শিশু এক। করিল গ্রহণ,<br/>
+এনকের ব্যবসায় অন্য ব্যবসায়ী;<br/>
+অন্নগ্রাসে হন্তারক হইল বিষম।
+</p>
+</div> <div>
+<p><span>ঈশ্বর বিশ্বাসী দৃঢ়, গম্ভীর এনক,</span><br/>
+অকর্ম্মণ্য শয্যাশায়ী হইয়া এখন,<br/>
+সংশয়ে হতাশে ঘোর প্রমাদ গণিল;<br/>
+নিশি-শেষে নিদ্রাঘোরে দেখিল স্বপন<br/>
+মর্মন্তুদ,—শিশুরা তাহার দারিদ্র্যের<br/>
+দারুণ যন্ত্রণা ভুঞ্জে, অন্ন-কষ্ট পায়;—<br/>
+আর তার—আদরের আদরিণী এনি,<br/>
+ভিখারিণী পথে পথে। কাতরে ডাকিল—<br/>
+“জগদীশ! রক্ষা কর বিপদে তাদের।<br/>
+ঘটে যাহা ঘটুক আমার ভাগ্য’পরে।”<br/>
+ঈশ্বরে জানায় যবে প্রার্থনা এরূপ,<br/>
+আসি উপস্থিত তথা পোতাধ্যক্ষ এক—<br/>
+যাঁহার অধীনে কর্ম্ম করিলা এনক।<br/>
+জানিতেন এনকের গুণ সবিশেষ;<br/>
+দৈব দুর্ঘটনা তার শুনি সেই হেতু,<br/>
+আসিলেন পাশে তার; কহিলেন ধীরে,—<br/>
+“চীনদেশে যাইবে জাহাজ আমাদের,<br/>
+আছে প্রয়োজন তার কর্মচারী এক<br/>
+দ্রব্য-জাত-রক্ষা-হেতু; যাবে কি এনক?<br/>
+ছাড়িবে জাহাজ এই বন্দর হইতে।
+</p>
+</div> <div>
+<p>যদিও বিলম্ব আছে সপ্তাহ কয়েক,<br/>
+সে কাজে নিযুক্ত তুমি হবে কি এনক?”<br/>
+সম্মতি-জ্ঞাপনে নাহি হইল বিলম্ব;<br/>
+আনন্দ ধরে না প্রাণে—ভগবান যেন<br/>
+শুনিয়া প্রার্থনা তার দিলেন উত্তর।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>দুর্দ্দৈবের ছায়া যেন নহে গাঢ়তর।</span><br/>
+খণ্ডমেঘে আবরিলে সূর্যরশ্মি-পথ,<br/>
+দূর বারিধির বক্ষে সঞ্চরে যেমতি<br/>
+আলোকের ক্ষুদ্র দ্বীপ—অল্পক্ষণস্থায়ী;<br/>
+ভবিষ্য আঁধারে দেখে এনক তেমতি।<br/>
+তথাপি ভাবিল মনে—‘যাইলে বিদেশে,<br/>
+কি হবে পত্নীর দশা, পুত্রদের আর।’<br/>
+অনেক চিন্তার পর করিল সুস্থির,—<br/>
+বেচিবে আপন পোত,—আহা! ভালবাসে<br/>
+কত যারে; সমুদ্রের ঘোরাবর্ত্ত মাঝে<br/>
+কাটিয়াছে কত কাল। যার ক্রোড়াশ্রয়ে!<br/>
+অশ্বারোহী আপন ঘোটকে জানে যথা,<br/>
+সে জানে তেমন যারে! বেচিবে তথাপি!<br/>
+পাইবে বেচিয়া যাহা, কিনি পণ্যদ্রব্য,
+</p>
+</div> <div>
+<p>দোকান সাজায়ে দিবে এনির কারণ।<br/>
+সেইমত দ্রব্যজাত থাকিবে দোকানে<br/>
+চাহে যাহা বন্দরের যাত্রীরা নিয়ত।<br/>
+বড় আশা—বিদেশে যাইলে কিছুদিন<br/>
+বজায় রাখিবে এনি গৃহস্থালী তার।<br/><span>এনক ভাবিল মনে-সে কি পারিবে না</span><br/>
+বিদেশে যাইতে কভু বাণিজ্য কারণ?<br/>
+পারিবে না যাইতে কি একাধিক বার<br/>
+দূর সমুদ্রের পথে প্রয়োজন হ’লে?<br/>
+অবশ্য পারিবে!—দুই বার তিন বার—<br/>
+যত বার আবশ্যক হয়! প্রত্যাবৃত্ত<br/>
+হবে গৃহে ধনবান হয়ে অবশেষে;<br/>
+বৃহৎ পোতের এক হবে অধীশ্বর,<br/>
+পাবে লাভ পূর্ণরূপে, স্বচ্ছন্দ জীবনে;<br/>
+ভালরূপে বিদ্যাশিক্ষা দিবে শিশুগণে,<br/>
+কাটিবে শান্তির দিন স্বগণের মাঝে।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>অন্তরে সঙ্কল্প হেন করিয়া এনক,</span><br/>
+গৃহ অভিমুখে ধীরে হ’ল অগ্রসর।<br/>
+সম্মুখেই ভেটিল এনির পাংশু মুখ;
+</p>
+</div> <div>
+<p>ক্রোড়ে লয়ে সদ্যোজাত রুগ্ন শিশুটিরে,<br/>
+কতই যতনে এনি পরিচর্য্যা করে।<br/>
+এনকে দেখিয়া এনি আনন্দের স্বরে,<br/>
+তনয়ের ক্ষীণতনু সযতনে ধরি,<br/>
+আগুবাড়ি এনকের দেয় ক্রোড়ে তুলে।<br/>
+ক্রোড়ে লয়ে হাত দিয়া দেখে প্রতি অঙ্গ,<br/>
+আহা!—শিশু কত শীর্ণ! অনুমান করে<br/>
+লঘুতার; দেখে আর বিমর্ষ বদন<br/>
+শিশুটির—পিতৃসম। না হ’ল সাহস—<br/>
+আপন প্রস্তাব-কথা কহিতে সেদিন;<br/>
+ভাঙ্গিল মনের ভাব পরদিন প্রাতে।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>এনকের স্বর্ণাঙ্গুরী পরিয়া আঙ্গুলে,</span><br/>
+এই সে প্রথম দিন—বিবাহের পর—<br/>
+জানায় আপত্তি এনি পতির ইচ্ছায়।<br/>
+তীব্র প্রতিবাদ নহে কোন্দলের রোলে,<br/>
+বিনয়ে মিনতি ক’রে ছল ছল আঁখি।<br/>
+বিষাদ চুম্বনে কত দিন রাত্রি কাটে;<br/>
+না টুটে সংশয় তাহে—আতঙ্ক প্রবল!<br/>
+মিনতি করিয়া এনি প্রার্থনা জানায়,—
+</p>
+</div> <div>
+<p>“যদি ভালবাস নাথ! এই অভাগীরে,<br/>
+যদি ভালবাস তুমি প্রিয় শিশুগণে,<br/>
+যেওনা বিদেশে।” এনক ভাবিল মনে,—<br/>
+‘নাহি ভাবি বিন্দুমাত্র আপন ভাবনা;<br/>
+না চাহি নিজের সুখ; উদ্দেশ্য কেবল<br/>
+পত্নী আর পুত্রদের দারিদ্র-মোচন।’<br/>
+সে হেতু সে না মানিল কোন অনুরোধ।<br/>
+ব্যথা দিয়ে এনির কোমল প্রাণে এবে।<br/>
+অটুট সঙ্কল্প ধায় উদ্দেশ্য-সাধনে।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>বিক্রীত হইল পোত; যে ছিল তাহার</span><br/>
+সমুদ্রের সহযাত্রী—বন্ধু পুরাতন।<br/>
+হইল সঞ্চিত তাহে এনির কারণ<br/>
+দোকানের আসবাব, পণ্যদ্রব্য আর।<br/><span>পথ পার্শ্বে ক্ষুদ্র ঘর ছিল বসিবার;</span><br/>
+হইল সজ্জিত তাহা কাঠের তবকে;<br/>
+ভাণ্ডারের স্থান হৈল কোণে এক দিকে।<br/>
+হাতুড়ি, কুড়ালি আর করাতে, বেধকে,<br/>
+বাজিল ঝঞ্জনা; সে ঝঞ্চনা শেলসম
+</p>
+</div> <div>
+<p>পশিল এনির কাণে; মনে হ’ল তার<br/>
+ফাঁসিকাষ্ঠ হ’তেছে প্রস্তুত তার তরে।<br/><span>শেষ দিন!—যে দিন যাইবে গৃহ ছাড়ি,</span><br/>
+সে দিনও খাটিয়া থাটিয়া সারা বেলা,<br/>
+নাড়িল গৃহের যত সামগ্রী এনক।<br/>
+ক্ষুদ্র গৃহে অল্প স্থান, সাজাইলা তাহে<br/>
+দ্রব্যজাত সুকৌশলে কিবা পরিপাটী!<br/>
+যেন দেবী প্রকৃতি আপনি মুর্ত্তিমতী<br/>
+বীজাঙ্কুরে সঞ্চারিলা ফুল-ফল-তরু।<br/><span>সাঙ্গ করি শেষ কাজ আয়াসে এনক</span><br/>
+(এনির সুখের তরে দৃঢ়ব্রত সদা)<br/>
+শান্তি হেতু উঠিল উপরে শয্যাগৃহে,<br/>
+ঘুমাইলা গাঢ় নিদ্রা প্রভাত অবধি।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>বিদায়ের প্রাতঃকাল! এনকের চোখে</span><br/>
+প্রতিভাত আনন্দের উৎসাহের ছবি।<br/>
+অমঙ্গল জাগে যত এনির অন্তরে,<br/>
+হাসিয়া উড়ায়ে দিল তুচ্ছ জ্ঞান করি।<br/>
+তথাপি সে ঈশ্বর-বিশ্বাসী দৃঢ় যেই;<br/>
+সাধিলা প্রক্রিয়া গূঢ়;—আত্মার মিলন
+</p>
+</div> <div>
+<p>যাহে পবিত্র আত্মায়; করিলা প্রার্থনা<br/>
+নত জানু; মাঙ্গিল মঙ্গল স্ত্রী-পুত্রের;<br/>
+ভাবিল বিন্দুমাত্র আপনার তরে।<br/>
+সম্ভাষিয়া কহিল এনিকে অবশেষ,—<br/>
+“শুভযাত্রা এই! ঈশ্বরের করুণায়,<br/>
+শুভদিন অনিশ্চয় আসিবে ত্বরায়।<br/>
+রেখ’ প্রিয়ে, পরিপাটী গৃহস্থালী মোর;<br/>
+ফিরিয়া আসিব শীঘ্র; এত শীঘ্র—তাহা<br/>
+অনুভবে নারিবে জানিতে কদাচন।”<br/><span>দোলাইয়া ধীরে ধীরে শিশুর দোলন,</span><br/>
+কহিল এনক পুনঃ—“বাছাটা আমার,<br/>
+একে অতি ক্ষুদ্র, তায় শীর্ণ ক্ষীণ দেহ;<br/>
+ভালবাসি সে হেতু অধিক আরো আমি।<br/>
+করিবেন শিশুর মঙ্গল জগদীশ।<br/>
+আসিব ফিরিয়া যবে বিদেশ হইতে,<br/>
+কতই আনন্দ হবে বাছার আমার।<br/>
+বসিবে আমার ক্রোড়ে আসি, শুনাইব<br/>
+বিদেশের কাহিনী কতই। এস এনি,<br/>
+বিদায়ের পূর্ব্বে কেন বিমর্ষ সদাই?”<br/><span>বাক্যের শহর ছোটে আশা-আশ্বাসের,</span>
+</p>
+</div> <div>
+<p>এনির হৃদয়ে হয় আশার সঞ্চার।<br/>
+কিন্তু যবে চিন্তার বিষয় গাঢ়তর,<br/>
+ব্যক্ত হয় নাবিকের কর্কশ ভাষায়,<br/>
+ঈশ্বর বিশ্বাসে আর অদৃষ্ট-নির্ভরে।<br/>
+দেয়উপদেশ পুনঃ; এনি অন্যমনা!—<br/>
+পশিয়া না পশে কথা কাণে; যেন কোন<br/>
+গ্রাম্যবালা নির্ঝরে আনিতে গিয়া বারি,<br/>
+কলসী রাখিয়া তলে, চিন্তায় মগন<br/>
+প্রেমিকের; শুনিয়া না শুনে কিছু কাণে;<br/>
+দেখিয়া না দেখে বারি উছলিয়া পড়ে।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>এনি কহে অবশেষ,—“তুমি জ্ঞানবান</span><br/>
+হে এনক! তবু জাগে মনে দৃঢ় মম,<br/>
+আর না দেখিতে কভু পাইব তোমায়।”<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>কহিল এনক,—“দেখিব তোমায় আমি।</span><br/>
+যাব’ আমি যে জাহাজে, যাবে এই পথে;<br/>
+(যাত্রার তারিখ এবে কহিলা এনক)<br/>
+দেখিও আমায় তুমি দুরবীণ দিয়া;<br/>
+হাসিয়া উড়ায়ে দেও বিপদ আশঙ্কা।”
+</p>
+</div> <div>
+<p><span>সমাগত হৈল ক্রমে বিদায়ের দিন।</span><br/>
+এনিরে এনক পুনঃ কহে,—“প্রাণপ্রিয়ে!<br/>
+হও প্রফুল্ল হৃদয়; রহ শান্তি-সুখে;<br/>
+শিগুগণে করহ পালন সযতনে;<br/>
+যাইব নিশ্চয় আমি!—রেখ গৃহস্থালী<br/>
+বজায় আমার—না ফিরিব যত দিন।<br/>
+না ক’রো আশঙ্কা কিছু আমার কারণ;<br/>
+কিম্বা থাকে যদি শঙ্কার কারণ কিছু,<br/>
+সে উদ্বেগ ক’রো সমর্পণ ভগবানে—<br/>
+অকুল পাথারে যিনি নিত্য কর্ণধার।<br/>
+নহেন বিরাজমান কোন্ দেশে তিনি?<br/>
+এ দেশ ছাড়ি বা যদি, তাঁরে ছাড়া কই?<br/>
+অর্ণব তাঁহার, তিনি অর্ণবের রূপ,<br/>
+সৃষ্টিকর্ত্তা অর্ণবের তিনিই আবার।”<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>উঠিল এনক; এনি দুঃখভারানত;</span><br/>
+উঠাইলা তাহে দৃঢ় বাহু-আলিঙ্গনে;<br/>
+করিলা চুম্বন শিশুদের; চমকিত<br/>
+হৈল তারা, না বুঝিল ঘটনা বিশেষ।<br/>
+তৃতীয় শিশুটি, রুগ্ন যেটি, সারারাতি
+</p>
+</div> <div>
+<p>কাঁদিয়া জাগিয়া, জ্বর-ভোগে মগ্ন এবে<br/>
+ঘুমঘোরে; চাহে জাগাইতে তারে এনি।<br/>
+নিবারি এনক কহে,—‘দেও ঘুমাইতে।<br/>
+কাজ নাই জাগাইয়া। না থাকিবে কভু<br/>
+শিশুর স্মরণে এ সকল কথা কিছু।”<br/>
+এত বলি চুমিল শিশুর শয্যা স্নেহে।<br/><span>অঘন কুঞ্চিত কেশ শিশুর মস্তকে,</span><br/>
+কাটিল তখন এনি গুটিকত তার;<br/>
+সমর্পিল স্মৃতিচিহ্ন এনকের করে।<br/>
+রাখিল এক তাহা কতই যতনে<br/>
+জীবনের সারা ভবিষ্যৎ। অবশেষে<br/>
+তাড়াতাড়ি লইল গাঁটরি আপনার,<br/>
+মাঙ্গিল বিদায় শেষ হস্ত-সঞ্চালনে,<br/>
+চলিল গন্তব্য পথে দূর বিদেশের।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p>সেই দিন!—বলেছিল ছাড়িবে জাহাজ<br/>
+যেই দিন! চাহিয়া আনিল এনি এক<br/>
+দূরবীণ; ব্যর্থ চেষ্টা তথাপি তাহার।<br/>
+না পারিল সম্ভবতঃ মিলাইতে কাচ—<br/>
+দৃষ্টি উপযোগী করি; অথবা কম্পিত
+</p>
+</div> <div>
+<p>হস্ত তার, ছল ছল দু’নয়ন ঘোর,<br/>
+সে হেতু সে না পাইল দেখিতে এনকে।<br/>
+দাঁড়ায়ে দোদুল্য ‘ডেকে’—জাহাজ উপরে,<br/>
+দেখা’ল বিদায় চিহ্ন এনক যখন;<br/>
+সে শুভ মুহূর্ত্ত এনি না দেখিল আর,<br/>
+চলিল জাহাজ দুর সমুদ্রের মাঝে।<br/><span>দেখা গেল যতক্ষণ জাহাজের পাল,</span><br/>
+চাহিয়া দেখিল এনি; ক্রমে যবে সব<br/>
+হইল অদৃশ্য, যেন ডুবিল সাগরে,<br/>
+কাঁদিতে কাঁদিতে এনি প্রত্যাবৃত্ত হ’ল।<br/>
+বিলাপিলা বহু, মৃতের উদ্দেশে যথা<br/>
+শোকতপ্ত আত্মজন; ভগ্নপ্রাণ পুনঃ<br/>
+নিয়োজিলা সাধিতে স্বামীর অভিপ্রায়।<br/><span>কিছুই উন্নতি কিন্তু নাহি ব্যবসায়ে;</span><br/>
+না জানে দোকানদারী বিকিকিনি ভাল;<br/>
+মিথ্যা কথা না পারে কহিতে কদাচন;<br/>
+জানে ছলনা, কিসে লাভ হয় বড়;<br/>
+অতি দর চেয়ে পরে কম দর নিতে—<br/>
+জানে কখনো বালা; আদেশ-পালন<br/>
+শুধু তার—‘কি বলিবে এনক’ এহেতু।
+</p>
+</div> <div>
+<p>না জানে ব্যবসা কিছু! তাই কত বার,<br/>
+দারুণ সঙ্কটে প’ড়ে অভাবের দিনে,<br/>
+বেচিল কতই দ্রব্য কত কম দরে—<br/>
+ যে দরে কিনিয়াছিল তারো কত কমে!<br/>
+সেই হেতু হইল দোকান দেউলিয়া,<br/>
+দহিল হৃদয় দুঃখে দেখি পরিণাম।<br/><span>একে একে আশামূল হইল উচ্ছেদ।</span><br/>
+না আসিল এনকের কোনই সংবাদ।<br/>
+অতি কষ্টে দিনান্তে আহার-মুষ্টি যোটে;<br/>
+জীবন নীরবে সহে মরম বেদন।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>রুগ্ন জন্মাবধি সেই তৃতীয় শিশুটি;</span><br/>
+ক্রমে পীড়াবৃদ্ধি তার; যদিও জননী।<br/>
+রাখে সন্তর্পণে, মাতৃস্নেহে যথাশক্তি।<br/>
+তথাপি হইতে পারে—ছাড়িয়া শিশুরে<br/>
+কার্য্যের আহ্বানে সদা ব্যস্ততার হেতু,<br/>
+অথবা অভাব ছিল—যথা প্রয়োজন,<br/>
+পরিচ্ছদ আর খাদ্য-সামগ্রীর; কিংবা<br/>
+পারিত না যোগাইতে যথাযোগ্য ব্যয়<br/>
+শ্রেষ্ঠ চিকিৎসকে; অথবা যেহেতু হোক,
+</p>
+</div> <div>
+<p>দারুণ যাতনা ভুঞ্জি, জীর্ণ দেহ হ’য়ে,<br/>
+এক দিন, জননীর চোখে ধূলি দিয়ে,<br/>
+পলাইল সরল নিস্পাপ আত্মা তার;<br/>
+পলায় পিঞ্জর ত্যজি বিহঙ্গ যেমতি।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>আসিল রাখিয়া যবে কবরের মাঝে</span><br/>
+শিশুটিরে আপনার; সেই সে সপ্তাহে,<br/>
+প্রীতিভরা সরল অন্তর ফিলিপের,<br/>
+এনির শান্তির তরে কামনা যাহার,<br/>
+আত্মগ্লানি পূর্ণ হ’ল;—ছিল উদাসীন<br/>
+(এনকের গৃহত্যাগ—কত দিন হ’ল<br/>
+লয় নাই কোন তত্ত্ব তার পর আর!)<br/>
+এতক যেহেতু তার প্রতি; মনে মনে<br/>
+কহিল সে,—“এখনো দেখিতে পারি তারে,<br/>
+হইলে হইতে পারে কিছু সুখী তাহে।”<br/><span>চলিল ফিলিপ।ছিল যে দোকান-ঘর</span><br/>
+বাটীর সম্মুখ-দিকে, নিরালা এখন,<br/>
+অতিক্রম করি তাহা, দাঁড়াল ফিলিপ<br/>
+থষকিয়া অন্দরের দ্বারে ক্ষণকাল।<br/>
+দ্বারদেশে করিল আঘাত তিন বার;
+</p>
+</div> <div>
+<p>না খুলিল কেহ; প্রবেশিল আপনিই।<br/>
+কবরে রাখিয়া আসি প্রাণের পুতলি,<br/>
+সদ্যঃ শোকাচ্ছন্ন এনি, বসে ছিল একা,<br/>
+আনমনা, অপরের প্রতি লক্ষ্যহীন;<br/>
+প্রাচীরের দিকে সুধু ফিরাইয়া মুখ,<br/>
+আকুল নয়ন ঝরে। ফিলিপ তখন,<br/>
+দাঁড়াইয়া পার্শ্বদেশে, কহে ভগ্নস্বরে,—<br/>
+“এনি, আসিয়াছি আমি, অনুগ্রহ চাই।”<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>উত্তরিলা শোকতপ্ত প্রবল আবেগ,—</span><br/>
+“অনুগ্রহ! অনাথিনী দুঃখিনীর কাছে!”<br/>
+কহিল বসিবার তরে একবার।<br/>
+দিশাহারা ফিলিপের সঙ্কুচিত মুখ;<br/>
+লজ্জা আর স্নেহে হৃদে বাধিল সংগ্রাম;<br/>
+নিকটে বসিয়া পুনঃ কহিল ফিলিপ,—<br/>
+“জানাতে যে কথা আজি আসিয়াছি আমি,<br/>
+এনক—তোমার স্বামী, তাঁর অভিপ্রেত।<br/>
+কহিয়াছি কতবার—করেছ পছন্দ<br/>
+শ্রেষ্ঠ জনে তুমি, আমা দোঁহাকার মাঝে<br/>
+প্রতিজ্ঞায় দৃঢ় যেই; জাগিত জীবনে
+</p>
+</div> <div>
+<p>যে বাসনা, নিয়োজিয়া শক্তি আপনার,<br/>
+সমর্পিয়া মনঃপ্রাণ, করিত পূরণ;<br/>
+না মানিত বাধা-বিঘ্ন কার্য্য-সম্পাদনে।<br/>
+যাইল কি হেতু সেই কষ্টকর পথে<br/>
+বিদেশের, একাকিনী রাখিয়া তোমায়?<br/>
+আত্মতৃপ্তি তরে সে নাহি ভ্রমিতে গেল।<br/>
+পৃথিবীর নানা স্থান! উদ্দেশ্য তাহার—<br/>
+অর্থ উপার্জ্জন,—বিদ্যাশিক্ষা শিশুদিগে।<br/>
+দিতে ভালমতে,—যে শিক্ষা নাহিক তার,<br/>
+নিজের তোমার; আকাঙ্ক্ষা তাহার এই।<br/>
+সে যদি ফিরিয়া আসে গৃহে পুনরায়,<br/>
+দেথে যদি বিফলে কাটিয়া যায়—<br/>
+মহামূল্য প্রভাত-জীবন শিশুদের;<br/>
+কত না হইবে ক্ষুন্ন! রহিবে সে ক্ষোভ<br/>
+মরণের পরে মনে,—যদি উচ্ছৃঙ্খল<br/>
+হয় শিশুগণ প্রান্তর মাঝারে যথা<br/>
+অশ্ব অশিক্ষিত।এনি, শুন মোর বাণী,<br/>
+বাল্যাবধি পরিচয় তোমায় আমায়,<br/>
+পর নহি কদাচ আমরা।সে কারণ,<br/>
+মিনতি আমার এই—ভালবাস যদি
+</p>
+</div> <div>
+<p>এনকেরে, ভালবাস যদি শিশুদিগে,<br/>
+না করিও প্রত্যাখ্যান আমার প্রস্তাবে।<br/>
+ভাল, সেই ইচ্ছা যদি, এনক আসিয়া।<br/>
+শোধিবে আমার ঋণ; আমি ধনবান,<br/>
+অবস্থা আমার ভাল। দেহ অনুমতি,<br/>
+বালক-বালিকা-গণে দেই বিদ্যালয়ে।<br/>
+চাই এই অনুগ্রহ—এসেছি এ হেতু।”<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>প্রাচীরের অন্য দিকে ফিরাইয়া মুখ,</span><br/>
+উত্তরিলা এনি,—“না পারি চাহিতে আর।<br/>
+তোমার মুখের পানে,—এত জ্ঞানহারা,<br/>
+এত অবসন্ন প্রাণ।এসেছ যখন,<br/>
+তখনি আমার দ্রবিল হৃদয় দুঃখে;<br/>
+এখন আবার দ্রবিল করুণার প্রস্রবণে<br/>
+ডুবাইলে দুখিনীরে।কে যেন আমার<br/>
+কাণে কাণে কহে,—‘এনক বাঁচিয়া আছে।’<br/>
+করিবে সে পরিশোধ তোমার এ ঋণ;<br/>
+অর্থ-ঋণ হ’বে পরিশোধ, না হইবে<br/>
+তব করুণার!” জিজ্ঞাসে ফিলিপ পুনঃ,—<br/>
+“তবে কি বাসনা মোর করিবে পূরণ?”
+</p>
+</div> <div>
+<p>এনি ফিরাইল মুখ, দাঁড়াইল উঠি;<br/>
+প্লবমান্ দু’নয়ন ঘোর, ন্যস্ত হ'ল<br/>
+ফিলিপের প্রতি; স্থিরদৃষ্টে ক্ষণকাল<br/>
+দেখিয়া লইল সেই করুণ বদন;<br/>
+মঙ্গল প্রার্থনা তার করি অবশেষে,<br/>
+আবেগে ধরিল হস্ত; দেখাল উচ্ছ্বাস<br/>
+কৃতজ্ঞের; সঙ্গে সঙ্গে যাইল বাহিরে<br/>
+কুটীরের, ক্ষুদ্র বাগানের সীমানায়।<br/>
+ফিলিপ ফিরিল গৃহে উল্লাস-উৎফুল্ল।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>দিল বিদ্যালয়ে বালক-বালিকাদ্বয়ে,</span><br/>
+দিল পুস্তক কিনিয়া প্রয়োজন-মত;<br/>
+কর্ত্তব্য যেরূপ আপন তনয় প্রতি,<br/>
+করিল পালন দোঁহে ফিলিপ তেমতি,<br/>
+যোল আনা শিশুদের হইল আপন।<br/>
+অপরন্তু, এনির সুনাম-রক্ষা-হেতু,<br/>
+নিষ্কর্ম্ম লোকের মিথ্যা রটনার ভয়ে,<br/>
+অন্তরের প্রিয় আশা রাখিত অন্তরে,<br/>
+ক্কচিৎ করিত তার দ্বারে পদার্পণ।<br/>
+তবে পাঠাইত ভেট শিশুদের সনে
+</p>
+</div> <div>
+<p>নব নব; কত ফলমূল বাগানের,<br/>
+অসময়ে প্রস্ফুট গোলাপ প্রাচীরের,<br/>
+অথবা শশক ধরি উপত্যকা হ’তে;<br/>
+আরো পাঠাইত কত, যখন তখন,<br/>
+(কত সূক্ষ্ম জন্মিয়াছে সেই অছিলায়,<br/>
+দান মনে করি পাছে ক্ষুব্ধ হয় বালা),—<br/>
+কলের ময়দা আপনার,—যে কলের<br/>
+শিশধ্বনি নিয়ত ধ্বনিত সে প্রদেশে।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>না পারে ফিলিপ কিন্তু করিতে নির্ণয়</span><br/>
+গভীরতা এনির অন্তরে; প্রীতিভরা।<br/>
+রমণী-হৃদয়, অসীম সে কৃতজ্ঞতা,<br/>
+কদাচ খুঁজিয়া পায় অস্ফুটন্ত ভাষা<br/>
+ধন্যবাদ প্রকাশিতে, আসিলে ফিলিপ।<br/>
+শিশুদের সর্ব্বময় পরন্তু ফিলিপ।<br/>
+দূর পথ প্রান্ত হতে দৌড়ে আসে তারা,<br/>
+হৃদয়ের সম্ভাষণে সম্ভাষিতে তারে।<br/>
+তাঁহার বাড়ীর যেন প্রভুই তাহারা;<br/>
+তাঁহার সে কলঘর—যেন তাহাদের;<br/>
+সামান্য কষ্টের কিম্বা হর্ষের কথায়,
+</p>
+</div> ﻿<div>
+<p>পরিপূর্ণ করে ফিলিপের স্থির কর্ণ।<br/>
+কাঁধে চড়ে, খেলা করে তাঁহাকে লইয়া;<br/>
+‘ফাদার ফিলিপ’ বলি করে সম্বোধন।<br/>
+ফিলিপের প্রতি যবে দৃঢ় ভালবাসা,<br/>
+ধীরে ধীরে ভুলিল এনকে শিশুগণ।<br/>
+এনকের স্মৃতি এবে তাহাদের মনে,<br/>
+স্বপ্নদৃষ্ট অনিশ্চিত ছায়ামূর্ত্তি সম;<br/>
+ঘোর উষাকালে যথা বিটপী মাঝারে,<br/>
+অস্ফুট চঞ্চল মুর্ত্তি, আপনি সঞ্চরি,<br/>
+আপনি উবিয়া যায়—কে জানে কোথায়!<br/>
+দেখিতে দেখিতে আজি দশ বর্ষ কাল,<br/>
+গৃহস্থালী জন্মভূমি ত্যজেছে এনক,<br/>
+তার পর নাহি আর কোনই সংবাদ।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>এক দিন অপরাহ্নে হেন সংঘটন,</span><br/>
+যাইবে অনেকে বনে ‘হেজেল’ পাড়িতে;<br/>
+এনির শিশুরা সাথে যাবে অভিলাষী;<br/>
+এনিও যাইবে সঙ্গে করেছে মনন।<br/>
+যাইবারে অনুরোধ করিল শিশুরা<br/>
+প্রিয় ‘ফাদার ফিলিপে’ (ডাকিত তাহারা
+</p>
+</div> <div>
+<p>এই নামে); ভেটিলা ফিলিপে কলঘরে,<br/>
+কুসুম-পরাগ-মাঝে সদাশ্রমরত<br/>
+মধুমক্ষিকার প্রায়, শ্বেতবর্ণ-দেহ—<br/>
+গোধূম-চূর্ণক-সমাচ্ছন্ন; নিবেদিলা,—<br/>
+“চলহ মোদের সাথে হে পিতঃ ফিলিপ।”<br/>
+অস্বীকার যেই, ধরিলা বসন টানি;<br/>
+হাসিলা ফিলিপ, জ্ঞাপিলা সম্মতি পুনঃ<br/>
+তাদের ইচ্ছায়; এনিও যে সঙ্গে ছিল—<br/>
+নহে কি সে হেতু! চলিল সকলে তারা।<br/>
+উঠিতে সে ক্লান্তিকর বালুর পাহাড়ে,<br/>
+পল্লবাপ্রভাগ যথা আছিলা আনত<br/>
+পক্ষপুট বিস্তারিয়া গহ্বরের প্রতি;<br/>
+ অর্ধপথে—সেই স্থানে—অবসন্ন এনি;<br/>
+একটা নিশ্বাস ত্যাগ করিল তখন;<br/>
+“একটু বিশ্রাম করি”— কহিল অস্ফুট।<br/>
+বসিল বিশ্রাম হেতু সে সাথে ফিলিপ,<br/>
+হরষিত মন। ছুটিল শিশুর দল<br/>
+আনন্দ-কল্লোলে; ত্যজিল তাদের সঙ্গ;<br/>
+ডুব দিল হেজেলের শ্বেত পত্র মাঝে<br/>
+অসংবদ্ধ; উতরিল গহ্বর ভিতরে;
+</p>
+</div> <div>
+<p>বিস্তারিল, বেঁকাইল, ফেলিল ভাঙ্গিয়া<br/>
+সহজ-ভঙ্গুর সেই অবিনম্র শাখা;<br/>
+ছিঁড়িতে লাগিল পিঙ্গল ফলের গুচ্ছ;<br/>
+আরম্ভিল পরস্পর কোলাহল ঘোর,<br/>
+অরণ্যের চারিভিতে, এদিকে সেদিকে।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>এনি যে নিকটে ছিল—ভুলিল ফিলিপ</span><br/>
+রহিয়া তাহার পাশে; জাগিল স্মরণে<br/>
+বিষাদের দিন ঘোর-মর্ম্মাহত যবে<br/>
+নিদারুণ—বৃক্ষ-আড়ে লুকাইলা মুখ।<br/>
+কহিল সে অবশেষ তুলিয়া মস্তক,<br/>
+“শুন এনি, শিশুদের আনন্দ-কল্লোল।<br/>
+গহ্বরের নীচে বনমাঝে; হয়েছ কি<br/>
+ক্লান্ত তুমি বড়?” না দিল উত্তর এনি।<br/>
+জিজ্ঞাসিল পুনঃ,—“হয়েছ কি ক্লান্ত বড়?”<br/>
+হস্তে আবরিল এনি আপন বদন।<br/>
+ক্রোধের সঞ্চার তাহে ফিলিপের মনে।<br/><span>“ডুবেছে জাহাজ” কহে,—“ডুবেছে জাহাজ”</span><br/>
+কেন বৃথা আশা তার? কেন বধ কর<br/>
+আপনারে অকারণ? কেন কর আর
+</p>
+</div> <div>
+<p>পূর্ণরূপে পিতৃমাতৃহীন শিশুগণে?”<br/>
+উত্তরিল এনি,—“না ভাবি কখনো হেন;<br/>
+না জানি কারণ, কেন শিশুদের স্বরে<br/>
+জাগাইয়া দেয় মনে আমি অনাথিনী!<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>কিছু সন্নিকট আসি কহিল ফিলিপ,—</span><br/>
+‘শুন এনি, মনের কামনা মম এক<br/>
+এতকাল আসিয়াছি করিয়া পোষণ;<br/>
+জানি না প্রথমে কবে জেগেছে সে মনে।<br/>
+জানি শুধু একদিন পাইবে প্রকাশ।<br/>
+দীর্ঘ দশ বর্ষ কাল নিরুদ্দেশ যেই,<br/>
+আছে কি বাঁচিয়া আজি? অসম্ভব এনি!<br/>
+আশার অতীত কথা! ব্যক্ত করি তাই,<br/>
+মনোভাব মম।বড় ব্যথা বাজে প্রাণে,<br/>
+দরিদ্র অভাবগ্রস্ত যেহেতু তোমরা।<br/>
+না পারি করিতে উপকার, মিটাইয়া<br/>
+সাধ আপনার—যে তক না হও তুমি—”<br/>
+(কহিতে সঙ্কোচ আসে ফিলিপের মুখে)<br/>
+“বলুক চঞ্চল লোকে রমণীর মন;<br/>
+জান তুমি, অনুমানি, আমার হৃদয়;
+</p>
+</div> <div>
+<p>মনে এই আশা—পত্নী তুমি হও মম।<br/>
+দেখাইব আমি পিতার মতন স্নেহ<br/>
+তোমার সন্তানগণে; অনুমানি হেন<br/>
+পিতৃসম ভালবাসে তারাও আমায়।<br/>
+আমিও নিশ্চয় জানি—ভালবাসি আমি<br/>
+আপন তনয় সম।বিশ্বাস আমার,<br/>
+এখনো যদ্যপি কর বিবাহ আমায়,<br/>
+এত অনিশ্চিত বিমর্ষ বর্ষের পর,<br/>
+আবার হইতে পারি সুখী দুই জনে,—<br/>
+ঈশ্বরের করুণায় যদি এ ঘটন।<br/>
+বিচার করিয়া দেখ; আমি ধনবান,<br/>
+না আছে আত্মীয় কেহ, চিন্তার সামগ্রী,<br/>
+ভারাক্রান্ত নহি কিছু; ভাবনার শুধু<br/>
+তনয় তনয়া তব, আর তুমি মম।<br/>
+পরিচয় বাল্যাবধি তোমায় আমায়,<br/>
+কত ভালবাসি আমি—কি জানিবে তুমি?”<br/><span>উত্তরিলা এনি; কহিলা মরমস্পর্শী;—</span><br/>
+“করিয়াছ পদার্পণ আমাদের গৃহে<br/>
+ঈশ্বরের দূত সম পবিত্র অন্তরে।<br/>
+মঙ্গল বিধান তব করুন ঈশ্বর;
+</p>
+</div> <div>
+<p>পুরস্কার লভ তুমি জগদীশ পাশে<br/>
+সুখকর দ্রব্য কিছু আমার অধিক।<br/>
+ভালবাসা দুই বার না—জানি কেমন!<br/>
+দিতে পারি কখনো কি সেই ভালবাসা,<br/>
+এনকে দিয়েছি যাহা; অসম্ভব কথা!<br/>
+একি জিজ্ঞাসিছ তুমি!” কহিল ফিলিপ,—<br/>
+“পরিতৃপ্ত হব আমি পাইলে কিঞ্চিৎ<br/>
+অল্প ভালবাসা এনকের তুলনায়।”<br/><span>কতই সন্ত্রস্ত এনি উচ্চকণ্ঠে কহে,—</span><br/>
+“হে প্রিয় ফিলিপ! করহ অপেক্ষা অল্প;<br/>
+আসে যদি এনক আমার! নাই আশা<br/>
+আসিবার তার! তবু করহ অপেক্ষা<br/>
+বর্ষ এক! এক বর্ষ—বেশী দিন নয়;<br/>
+এক বর্ষে হইব অভিজ্ঞ সুনিশ্চয়;<br/>
+করহ অপেক্ষা কিছু।” কহিল ফিলিপ<br/>
+ভগ্নস্বরে,—“কাটায়েছি সারাটি জীবন<br/>
+এই অপেক্ষায় এনি! করিতে পারিব<br/>
+আরো অপেক্ষা কিঞ্চিৎ।” কান্দিয়া কহিলা<br/>
+বালা,—“না-না, বাধ্য আমি তোমার নিকটে!<br/>
+পাইবে প্রতিজ্ঞা মম, দেখি বরষেক।
+</p>
+</div> <div>
+<p>নারিবে কি তুমি করিতে পালন<br/>
+এক বর্ষ আমার মতন?” উত্তরিলা<br/>
+ফিলিপ আবার,—“অবশ্য পালিব বর্ষ।”<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>ক্ষণকাল নীরব দুই’জনে মৌনপ্রায়।</span><br/>
+সঞ্চালিত ফিলিপের কটাক্ষ সহসা।<br/>
+পশ্চিম গগন প্রতি; দেখিল ফিলিপ<br/>
+‘ডেনিস্’ কবর চূড়া অতিক্রম করি,<br/>
+অস্তাচলে তপনের ক্ষীণ রশ্মি-রাজি।<br/>
+হইল আশঙ্কা মনে, পাছে রাত্রি হয়,<br/>
+হিম লাগে এনির শরীরে; দাঁড়াইল,<br/>
+ফুকারিয়া ডাকিল ফিলিপ উভরায়।<br/>
+বনের ভিতর দিয়া পশিল সে স্বর<br/>
+গহরের নীচে।উঠিল শিশুরা তথা<br/>
+ফল-ভারবাহী।চলিল নামিয়া সবে<br/>
+বন্দরের দিকে অতঃপর।থমকিল<br/>
+এনির দুয়ারে গিয়া সহসা ফিলিপ;<br/>
+হাতে হাত দিয়া তার কহিল মৃদুল,—<br/>
+“কহেছি যে সব কথা আজিকার দিনে,<br/>
+অন্যায় হয়েছে বড়; যেহেতু তখন
+</p>
+</div> <div>
+<p>ছিলে তুমি আত্মহারা, আকুল চিন্তায়।<br/>
+বাধ্য প্রতিজ্ঞায় আছি আমি চিরদিন;<br/>
+স্বেচ্ছাধীন তুমি এবে।” উত্তরিল এনি,<br/>
+বাষ্পরুদ্ধ কণ্ঠ,—“আমিও প্রতিজ্ঞাবদ্ধ।”<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>বৎসর বহিয়া গেল নিমেষের প্রায়।</span><br/>
+গৃহকার্য্যে ব্যস্ত যবে এনি আপনার,<br/>
+শেষ প্রতিজ্ঞার কথা না ভাবিতে পুনঃ,<br/>
+ভালবাসে কি না আর না জানিতে মনে,<br/>
+শরতের পর চকিল শরৎ নব।<br/>
+স্মরণ করিয়া দিতে প্রতিজ্ঞার কথা,<br/>
+দাঁড়াল ফিলিপ আসি সম্মুখে এনির।<br/>
+জিজ্ঞাসিল এনি—“হইল কি বর্ষ গত?”<br/>
+ফিলিপ উত্তর দিল,—“সন্দেহ যদ্যপি,<br/>
+পেকেছে ‘হেজেল’ পুনঃ দেখিবে আইস!”<br/>
+এনি কিন্তু চাহে কিছু অবসর আর;<br/>
+পরিবর্ত্ত হেন—কত আছে ভাবিবার!<br/>
+আরো এক মাস—মাসেক সময় চায়।<br/>
+আছে বদ্ধ প্রতিজ্ঞায়, মনে আছে তার;<br/>
+তবু এক মাস!—আর বেশী দিন নয়।
+</p>
+</div> <div>
+<p>অতৃপ্ত পিয়াসা-ভরা ফিলিপের চক্ষু,<br/>
+উন্মত্ত মদ্যপ সম কম্পমান্ হস্ত,<br/>
+আবেগ-উচ্ছ্বাস-পূর্ণ বিকশিত স্বর;<br/>
+কহিল সে,—“যথা ইচ্ছা লইও সময়;<br/>
+লইও সময় এনি, যত ইচ্ছা হয়!”<br/><span>করুণায় অশ্রুপূর্ণ এনির নয়ন;</span><br/>
+তথাপি সে রাখিল অপেক্ষা বহুতর;<br/>
+অবিশ্বাস্য নানা ছলনায় সততার।<br/>
+করিল পরীক্ষা, দেখিল ধৈর্য্যের সীমা।<br/>
+আরো অর্দ্ধ বর্ষ তাহে কাটিল ঝটিতি।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>জল্পনা নিস্ফলা যায়— সেহেতু বিরক্ত</span><br/>
+বন্দরের অলস নিষ্কর্ম্ম লোক যারা;<br/>
+হেন উত্তেজিত তারা,—করিয়াছে দোঁহে<br/>
+ঘোর অত্যাচার যেন তাহাদের প্রতি।<br/>
+করিল কেহ বা মনে,—খেলিছে ফিলিপ<br/>
+ছলনা এনির সাথে। ভাবিল কেহ বা,—<br/>
+এনি বাড়াইছে দর। গণিল অপরে<br/>
+হাসির সামগ্রী-মাঝে এনি ও ফিলিপে,<br/>
+সে হেতু মতির স্থির না দেখে তাদের।
+</p>
+</div> <div>
+<p>একজন, হৃদে যার সর্পডিম্ব গাঁথা,<br/>
+ইঙ্গিতে কুভাব ঘষে ঈষৎ হাসিয়া।<br/><span>বিবাহ-সম্বন্ধে মৌন এনির কুমার,</span><br/>
+নীরব সম্মতি যেন প্রকটিত মুখে।<br/>
+উত্তেজিত করে সদা তনয়া তাহার,<br/>
+তাদের সে প্রিয় জনে বিবাহের তরে,<br/>
+ঘুচাইতে সংসারের দারিদ্র্য ভীষণ।<br/>
+গোলাপ-সন্নিভ মুখ ছিল ফিলিপের,<br/>
+শুক পাংশুবর্ণ এবে চিন্তা-জর্জ্জরিত!<br/>
+সবাকার এই ভাব করি নিরীক্ষণ,<br/>
+এনির অন্তর দহে আত্মগ্লানি ঘোর।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>অবশেষে এক রাত্রি ঘটিল এমন,</span><br/>
+না আসিল নিদ্রা মাত্র এনির নয়নে;<br/>
+একান্তে প্রার্থনা এনি মাঙ্গিল তখন,<br/>
+‘এনক জীবিত কিনা’—চিহ্ন যেন দেখে।<br/><span>সূচীভেদ্য অন্ধকার; ঘেরিয়া এনির</span><br/>
+চারিধার রহে অন্ধ প্রাচীর নিশার;<br/>
+উদ্বেগে অন্তরে ত্রাস বিষম অসহ;<br/>
+শয্যা ত্যজি উঠে এনি, জ্বালিল আলোক;
+</p>
+</div> <div>
+<p>দুঃসাহসে পরশিল ‘পবিত্র পুস্তক’;<br/>
+সহসা খুলিল পত্র দেখিবারে চিহ্ন;<br/>
+সহসা অঙ্গুলি দিল মূল বাক্যে এক;<br/>
+পড়িল আপনি ভাষা—“তালতরুতলে।”<br/>
+তার পক্ষে কোন কথা যদিও তা নয়;<br/>
+যদিও কোনই অর্থ নাহিক তাহার;<br/>
+পুস্তক করিয়া বন্ধ, ঘুমাইল এনি।<br/><span>দেখিল স্বপন—যেন এক তাহার,</span><br/>
+উচ্চ গিরি’পরে এক তাল তরুতলে,;—<br/>
+মস্তক উপরে তার অরুণ কিরণ।<br/>
+“গিয়াছে এনক স্বর্গে!”—ভাবে মনে এনি,<br/>
+“সে এখন কত সুখী!গাহিছে স্বরগে<br/>
+ঈশ্বরের গুণ-গাথা।উজলে অদূরে।<br/>
+জ্ঞান-সূর্য্য; আর সেই তাল-তরুতলে<br/>
+সমবেত সুধী জন, গাহিছে স্বরগে<br/>
+ঈশ্বরের গুণগাথা।নিদ্রাভঙ্গে এনি<br/>
+হইল সুস্থির মন; আনাইল ডাকি।<br/>
+ফিলিপে প্রভাতে; কহিল আবেগ-ভরে,—<br/>
+“না হবে বিবাহ কেন—না দেখি কারণ।”<br/>
+ফিলিপ উত্তর দিল;—“ঈশ্বর-কৃপায়,
+</p>
+</div> <div>
+<p>মঙ্গল কারণ দোঁহাকার, ইচ্ছা যদি<br/>
+বিবাহ করিতে মোরে, হউক ত্বরায়।”<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>হইল বিবাহ; আনন্দের ঘণ্টাধ্বনি</span><br/>
+দিল জানাইয়া।হইল মিলন শুভ;<br/>
+আনন্দের ঘণ্টাধ্বনি বাজিল গির্জায়।<br/>
+এনির অন্তরে কিন্তু না ফুটিল কভু<br/>
+সে আনন্দ-ধ্বনি; সে যেন সদাই দেখে,—<br/>
+পথ-পাশে পদক্ষেপ কার!—না জানে সে<br/>
+কোথা হ’তে আসে! কে যেন কাণের কাছে<br/>
+কথা কয় ফুসফুস;—কি কথা কিছুই<br/>
+নাহি বোঝে।বাড়ীতে থাকিতে একাকিনী<br/>
+নাহি আর চায় মন; না পায় সাহস<br/>
+বাহিরে যাইতে একা।কি ব্যাধি বিষম!—<br/>
+প্রবেশিতে গৃহে, অর্গলে রাখয়ে কর,<br/>
+শঙ্কিত চকিত সদা।ভাবিত ফিলিপ<br/>
+কারণ তাহার অন্য; সঞ্চরে যেহেতু<br/>
+সংশয়-আশঙ্কা ঘোর অনেকের প্রাণে,<br/>
+গর্ভের সংক্রম-কালে।পরন্তু যখন<br/>
+জনমিল এক সন্তান এনির; তার,
+</p>
+</div> <div>
+<p>নবীন কুমার সনে নবীন জীবন;<br/>
+জননীর নব স্নেহে পূর্ণ হ’ল হৃদি;<br/>
+হইল ফিলিপ এবে সর্ব্বময় তার;<br/>
+উন্মুলিত হৈল সেই মনের বিকার।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>কি হইল এনকের? কোথা সে এখন?</span><br/>
+“উত্তম সৌভাগ্য” নামে সে অর্ণব-তরী,<br/>
+মঙ্গল্যে করিল যাত্রা যবে; প্রতিহত<br/>
+প্রথমেই প্রতীচ্যের বিঘের বাত্যায়,<br/>
+পর্ব্বত-প্রমাণ ভীষণ তরঙ্গ-ভঙ্গে<br/>
+বিস্কে উপসাগরের; হইল কিঞ্চিৎ<br/>
+ব্যাহত কম্পিত পোত; এড়াইল তবু<br/>
+বিশৃঙ্খলা বহু ক্লেশে; উত্তরিল পরে<br/>
+দক্ষিণ অয়ন পারে, চির-গ্রীষ্মময়; -<br/>
+উত্তমাশা-অন্তরীপ পাশে অতঃপর,<br/>
+উৎক্ষিপ্ত প্রকম্প পোত আবর্ত্তে পুনশ্চ।<br/>
+পরিবর্ত্ত পুনঃপুনঃ শুভাশুভ বায়ু!<br/>
+গ্রীষ্মমণ্ডলের সীমা করি অতিক্রম,<br/>
+সুবাতাস—স্বরগের মৃদুল নিশ্বাস—<br/>
+কয় দিন ক্রমাগত লভিল তরণী!
+</p>
+</div> <div>
+<p>স্বর্ণপ্রসূ দ্বীপপুঞ্জ ভারত-সাগরে,<br/>
+মধ্যপথ বাহি তার উপনীত তরী,<br/>
+প্রাচ্যরাজ্যে সুপ্রাচীন চীনের বন্দরে।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>করিল এনক তথা বাণিজ্য আপন,</span><br/>
+কিনিল সে শিশুদের তরে রঙ্গদার<br/>
+বিকট পুতুল— ‘ড্রাগুণ’ তাহারে কয়—<br/>
+আধ-সর্প আধ-অশ্বাকৃতি; সে সময়<br/>
+বড়ই চলন সেদেশে বাজারে তার।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>নহে যেন গৃহ-যাত্রা শুভদ কিঞ্চিৎ।</span><br/>
+বাস্তব প্রথমে হেন হইল প্রতীত,—<br/>
+সাগরের বৃত্ত-সীমা-মাঝে, দিন দিন,<br/>
+অলস মন্থর গতি পোত; পুরোভাগে<br/>
+প্রতিকৃতি—পূর্ণদেহ উন্নত মস্তক—<br/>
+স্থির-দৃষ্টে বিস্মিত লোচনে যেন দেখে’—<br/>
+শ্বেতপক্ষ সম উর্ম্মি গলুই-সম্মুখে।<br/>
+নির্ব্বাত প্রকৃতি পুনঃ; পরিবর্ত্তশীল<br/>
+বায়ুগতি পুনঃ; পরে বিপরীত বায়ু<br/>
+বহিল বহুত দিন; বিষম ঝটিকা
+</p>
+</div> <div>
+<p>অবশেষ, বিতাড়িত করিল তরণী<br/>
+চন্দ্র তারাহীন ঘোর আন্ধারের পথে।<br/>
+“পাহাড়ে লাগিবে ধাক্কা”—না সরিতে বাক্,<br/>
+পাহাড়ে আছাড়ি বেগে তরী চুরমার।<br/>
+পোত-ধ্বংসে ধ্বংস হৈল যতেক জীবন;<br/>
+বাঁচিল এনক শুধু, আর দুই জন।<br/>
+মাস্তুলের ভগ্নকাষ্ঠ রশারশি ধরি,<br/>
+ভাসিল সমুদ্রে তারা শেষ অর্দ্ধ রাতি;<br/>
+ভাসিতে ভাসিতে শেষে পরদিন প্রাতে,<br/>
+উপনীত হৈল এক অতি-ক্ষুদ্র দ্বীপে;<br/>
+ফুলফুল-সমন্বিত উর্ব্বর সে দ্বীপ,<br/>
+নিভৃত-সমুদ্র-মাঝে জনমাত্র হীন।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>না ছিল অভাব তথা কোন খাদ্য দ্রব্য—</span><br/>
+জীবন-ধারণ-যোগ্য; ছিল পক্ক ফল,<br/>
+সুদৃঢ় বাদাম, কত পুষ্টিকর মূল।<br/>
+দয়ামায়াহীন হ’লে, না ছিল অভাব<br/>
+খাদ্য-মাংস; নিঃশঙ্ক নিরীহ জীব কত,<br/>
+অসহায়ে বিচরে পালিত প্রাণী-প্রায়।<br/>
+সেই দ্বীপে ছিল এক পর্ব্বত গহ্বর,
+</p>
+</div> <div>
+<p>সাগরের দিকে যেন এক দৃষ্টে চেয়ে।<br/>
+তাহে রচিল কুটীর তারা; তালপত্রে<br/>
+ছাইল কুটীর-চাল; আধ কুঁড়ে ঘর,<br/>
+আধ বন্য গিরিগুহা, প্রকৃতি-রচিত।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>এইরূপে নিবসয়ে তিনটী পরাণী,</span><br/>
+প্রকৃতি ভাণ্ডার পূর্ণ স্বর্গীয় উদ্যানে<br/>
+অনন্ত গ্রীষ্মের মাঝে, নিরানন্দ মনে।<br/><span>সবাকার ছোট যেটি, বালক বয়স,</span><br/>
+রাত্রির দুর্দ্দৈব ঘোরে ভগ্নধ্বংস পোতে,<br/>
+আহত—শয্যায় শায়ী পাঁচটি বৎসর,<br/>
+জীবন-মরণ-সন্ধিস্থলে। সেই হেতু<br/>
+নিয়ত তাহার পাশে কাটাইল তারা।<br/>
+অবশেষে ইহলোক ত্যজিল সে যবে;<br/>
+দেখিতে পাইল তারা কাষ্ঠগুঁড়ি এক।<br/>
+এনকের সহচর, সাবধান-হীন,<br/>
+মার্কিণের আদিম অসভ্য জাতি মত,<br/>
+অগ্নি-যোগে কাঠে বেধ করিবারে গিয়া,<br/>
+পড়িল—মরিল নিজে সর্দ্দি-গর্ম্মি হয়ে।<br/>
+রহিল তখন শুধু এক একাই।
+</p>
+</div> <div>
+<p>এই দুই মৃত্যু হেতু মনে হৈল তার,—<br/>
+ঈশ্বর বলেন যেন—“অপেক্ষা করহ।”<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>আপাদ-মস্তক গিরি রাজে বনরাজি;</span><br/>
+হরিৎ প্রান্তর; আঁকাবাঁকা বনপথ,<br/>
+চলিয়াছে স্বরগের অভিমুখে যেন।<br/>
+দাঁড়াইয়া ক্ষীণদীর্ঘ নারিকেল-তরু,<br/>
+আনত মুকুট শোভে শিরে; ঝকমকে<br/>
+পক্ষী-পতঙ্গের কান্তি; নবীন বল্লরী,<br/>
+জড়াইয়া তরুর বিশাল দেহ কিবা,<br/>
+বিকাশিছে বিচিত্র কুসুম-কান্তি নব,<br/>
+বিস্তারিয়া বেলাভূমি; গ্রীষ্মমণ্ডলের<br/>
+চাকচিক্য বিভব গৌরব যত কিছু,<br/>
+নিরখে এনক সব; না দেখে কেবল—<br/>
+দেখিবারে সাধ যাহা—স্নেহভরা মুখ<br/>
+মানুষের; না শুনে সে স্নেহ-মাখা স্বর।<br/>
+শ্রবণে সদাই ভাসে,—কর্কশ কাকলী<br/>
+উড্ডীন সমুদ্র-পক্ষী দলবদ্ধ যবে;<br/>
+যোজন-বিস্তৃত ঘোর তরঙ্গ আবর্ত্তে<br/>
+বজ্রনাদ পর্ব্বতের গায়; আন্দোলিত
+</p>
+</div> <div>
+<p>মৃদু স্বর বিশাল বৃক্ষের—সমুকুল<br/>
+সশাখ গগনস্পর্শী যেই; কিম্বা সেই<br/>
+কলকল ধ্বনি—পর্ব্বত-বাহিনী যবে<br/>
+সাগরে ঝাঁপিয়া পড়ে।কখনো এনক<br/>
+ভ্রমমাণ তটভূমে; কভু সারাদিন<br/>
+বসিয়া সমুদ্র-মুখী গুহার মাঝারে;<br/>
+পোতমগ্নে এক দৃষ্টে চেয়ে দেখে একা<br/>
+যদি দেখা যায় কোন জাহাজের পাল।<br/><span>আসে দিন, চলে যায়; না যাইল দেখা।</span><br/>
+চিহ্ন মাত্র কোন’ জাহাজের; নিত্য শুধু<br/>
+বিচ্ছিন্ন রক্তিম বিভা অরুণ কিরণে,<br/>
+খেলে তরু—মাঝে—প্রপাতে, তমালে, তালে।<br/>
+উজ্জ্বলতা পূর্ব্বশার জলরাশি-মাঝে;<br/>
+উজ্জ্বলতা মস্তক উপরে সেই দ্বীপে;<br/>
+উজ্জ্বলতা প্রতীচ্যের সলিল-সমীপে;<br/>
+উজলে স্বরগে আর বৃত্তাকারে তারা;<br/>
+ঘন ঘন জলধির গভীর গর্জ্জন;<br/>
+সূর্য্যোদয়ে ভাসে পুনঃ রক্তিম কিরণ;<br/>
+না দেখে তথাপি চিহ্ন কোন’ জাহাজের।
+</p>
+</div>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div> <div>
+<p><span>সদা অন্যমনা—কি দেখে কি ভাবে যেন।</span><br/>
+সংজ্ঞাহীন—দেহে বসে সুবর্ণ গোধিকা!<br/>
+কল্পনা-কুহকে ভাসে কল্পনার ছবি,—<br/>
+সে যেন তাদের পাশে, তারা আশে-পাশে;<br/>
+সেই স্থান, সেই সব, সেই সে আপন,<br/>
+বিষুব-উত্তর সেই দ্বীপ আপনার;<br/>
+সেই শিশুগণ; সেই অফুটন্ত স্বর;<br/>
+সেই এনি; সেই ক্ষুদ্র কুটার তাহার;<br/>
+সেই কল-ঘর; পর্ব্বত উপরে পথ;<br/>
+কর্ত্তিত-ময়ূরাকার সেই ঝাউ-গাছ;<br/>
+পত্রাবৃত গলি-পথ সেই, নিভৃত সে<br/>
+উদ্যান-বাটীকা; আপন ঘোটক সেই;<br/>
+সেই তার বিক্রীত তরণী; সেই শীত<br/>
+নিদারুণ, পৌষ-প্রাতে; নীহার-আচ্ছন্ন<br/>
+সেই বালুর পাহাড় ঘোর; যেন সেই<br/>
+মৃদু বৃষ্টি; সেই ঘ্রাণ—পতিত পত্রের;<br/>
+ধীর গরজন সেই সীসক-বরণ<br/>
+জলধির চিন্তা মাঝে হেন, বাজে কাণে—<br/>
+মৃদুল সে ধ্বনি—দূরে কত দূরে, তবু।<br/><span>শুনিল সে যেন— গির্জ্জার চূড়ায় সেই</span>
+</p>
+</div> <div>
+<p>আনন্দের ঘণ্টাধ্বনি বাজিছে আবার—<br/>
+না জানে কেন বা? সহসা কাঁপিল দেহ,<br/>
+উঠিল শিহরি; সংজ্ঞালাতে দেখে পুনঃ,—<br/>
+ঘৃণিত সুন্দর দ্বীপ—সেখানেই সে যে।<br/>
+নিরাশ্রয় হৃদি, কথা কয় তাঁর সনে—<br/>
+যিনি সত্য সর্ব্বময়; না থাকিলে তিনি,<br/>
+ঘটিত নিশ্চয় মৃত্যু নির্জ্জনতা-হেতু।<br/>
+কথা কয় যাহারা তাঁহারে ডাকি, তিনি<br/>
+না রাখেন তাহাদের কাহাকেও একা।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>মস্তকে অকাল-পঙ্ক কেশ এনকের;</span><br/>
+তদুপরি আসে যায় গ্রীষ্ম বর্ষা ঋতু,<br/>
+বর্য পরে বর্ষ কত; তবু জাগে আশা,—<br/>
+দেখিতে আপনা জনে; মরে না কামনা—<br/>
+যাইবারে পুরাতন পূত প্রিয় দেশে।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>অবসান সহসা সে নির্জ্জন-বাসের।</span><br/>
+অপর জাহাজ এক (পানীয় খুঁজিছে)<br/>
+বিচালিত ‘উত্তম সৌভাগ্য’ পোত-প্রায়;<br/>
+হ’য়ে পথভ্রষ্ট, বিপরীত বাত্যাঘোরে,
+</p>
+</div> <div>
+<p>উপনীত এই দ্বীপে—অজানা প্রদেশে।<br/>
+কুজ্ঝটিকা-সমাচ্ছন্ন দ্বীপের মাঝারে,<br/>
+এক দিন উষাকালে কুয়াসার ফাকে,<br/>
+পাইল দেখিতে সেই পোতের ‘মালিম’<br/>
+ধীরে ধীরে জলধারা বহে পাহাড়ের।<br/>
+মাঝি মাল্লা হইল প্রেরিত সেই হেতু;<br/>
+ঘূরিল তাহারা তথা নদীর সন্ধানে<br/>
+কিম্বা কোন ঝরণার; চীৎকারে তাদের<br/>
+পূরিল সে তটদেশ; নামিল তখন,<br/>
+ধীরে ধীরে আপনার গিরিগুহা হ’তে,<br/>
+দীর্ঘ-কেশ দীর্ঘ-শ্মশ্রু সে নিভৃত-বাসী।<br/>
+তাম্রবর্ণ; নরের আকৃতি নহে যেন;<br/>
+বেশভূষা অলৌকিক; বাতুল-সমান,<br/>
+বিড়বিড় অফুটন্ত ভাষ; অব্যক্ত সে<br/>
+উগ্রভাব; প্রকাশিল অঙ্গভঙ্গি হেন—<br/>
+না বুঝে না জানে তারা; দেখাইয়া পথ,<br/>
+চলিল তথাপি সাথে—যথা বহমান্<br/>
+তটিনীর মিষ্ট জল; মিশিল কতই<br/>
+মাঝিদের সনে, শুনিল তাদের বাক্,<br/>
+হইল স্খলিত তার জিহ্বার বন্ধন;
+</p>
+</div> <div>
+<p>বুঝাইল তাহাদিগে অবস্থা আপন।<br/>
+জলপূর্ণ হৈল যেই পিপা-সমুদয়,<br/>
+লইল এনকে তারা জাহাজ উপর।<br/><span>কহিল এনক যবে আপন কাহিনী,</span><br/>
+প্রথমে সবার মনে জাগে অবিশ্বাস।<br/>
+ক্রমে ক্রমে হৈল কিন্তু আশ্চর্য সবাই;<br/>
+হৃদয় দ্রবিল তার—যে শুনিল কথা;<br/>
+দিল বস্ত্র পরিধেয়; হইল সম্মত—<br/>
+না লইবে ভাড়া তার, পৌঁছে দিবে দেশে।<br/>
+এনক খাটিল নিত্য মাঝিদের সাথে,<br/>
+নির্জ্জনতা-স্মৃতি তার উন্মলন-তরে।<br/><span>নাহি ছিল সে জাহাজে স্বদেশের কেহ,</span><br/>
+জিজ্ঞাসিলে না মিলিত কোনই উত্তর—<br/>
+যে কথা জানিতে মন নিয়ত ব্যাকুল।<br/>
+সমুদ্রের উপযোগী নহে সে তরণী;<br/>
+মন্থর গমন তার, বিলম্ব বহুল।<br/>
+অলস বায়ুর গতি না ফিরিতে দেশে,<br/>
+মনোগতি এনকের যাইত সে দেশে।<br/>
+না পৌঁছিতে মেঘাচ্ছন্ন সে আকাশ-তলে,<br/>
+যেন এক প্রেমিকের প্রেমভরা প্রাণে,
+</p>
+</div> <div>
+<p>লইত নিশ্বাস সেই দূর ইংলণ্ডের<br/>
+নীহার-নিষিক্ত মাঠে প্রভাত-বায়ুর;—<br/>
+যেই বায়ু বহমান্ পাংশু-বর্ণ সেই<br/>
+পর্ব্বত-প্রাচীরে। একদিন প্রাতঃকালে,<br/>
+পরস্পর জাহাজের কর্ম্মচারিগণ,<br/>
+সংগ্রহ করিল চাঁদা—অনুগ্রহ-দান;<br/>
+নিঃসহায় এনকেরে দিল করুণায়।<br/>
+তীরে তরী থামাইল পরে; নামাইল<br/>
+এনকেরে যথাস্থানে— সেই পোতাশ্রয়ে;<br/>
+যেখান হইতে যাত্রা করেছিল আগে।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>না কহিল কোন’ কথা কাহাকে এনক;</span><br/>
+চলিল আপন মনে—গৃহ-অভিমুখে।<br/>
+কিন্তু কোথা গৃহ?—আছে কি সে গৃহে তার?<br/>
+ছিল উজ্জ্বল সে অপরাহ্, দীপ্তিমান্।<br/>
+কিন্তু শৈত্যময়; ক্রমে ভাসমান তাহে<br/>
+সাগর-কুয়াসা পর্ব্বত-বিদার-পথে;<br/>
+ঘেরিল সে দুইটি বন্দর কুয়াসায়,<br/>
+ধূসর আচ্ছন্ন হৈল ধরণীর গায়।<br/>
+রুদ্ধ এবে দুর-দৃষ্টি সম্মুখের পথে;
+</p>
+</div> <div>
+<p>ক্ষীণ-দৃষ্টি বদ্ধ শুধু—সঙ্কীর্ণ সীমায়<br/>
+আশেপাশে, শুষ্ক-প্রায় বনভূমি আর,<br/>
+কৃষিক্ষেত্র কিম্বা কোন’ গোচারণ-মাঠ।<br/>
+ডাকিছে ‘রবিণ’-পক্ষী নগ্ন তরু-শাখে<br/>
+অসন্তুষ্ট কর্কশ চীৎকার; ঝরিতেছে<br/>
+শুষ্ক পত্র—যেন গুরুভার আপনার—<br/>
+বিগলৎ কুজ্ঝটিকা-মাঝে।অন্ধকার<br/>
+গাঢ়তর—নীহার-পতন যত ঘন।<br/>
+চমকিল চোখের উপর অবশেষ<br/>
+কুয়াসা-লাঞ্ছিত এক দূরের আলোক।<br/>
+আসিল অভীষ্ট-স্থানে এবার এনক।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>চুপি চুপি চলে পথ, চোরের মতন;</span><br/>
+হৃদে প্রতিভাত প্রতিচ্ছবি বিপদের;<br/>
+নেত্রে ভাসে কঠিন প্রস্তর; সেই গৃহ—<br/>
+এনি ছিল যেথা—ভালবাসিত তাহাকে।<br/>
+ছিল শিশুরা তাহার—সাত বর্ষ পূর্ব্বে—<br/>
+গত জীবনের দুর সুখময় দিনে;<br/>
+না দেখিল সেই স্থানে আলোক কিছুই,
+</p>
+</div> <div>
+<p>না শুনিল কোনরূপ নর-কণ্ঠস্বর।<br/>
+(দেখা গেল শুধু, কুয়াসার ক্ষীণাললাকে,<br/>
+আছে এক বিজ্ঞাপন—বাড়ী-বিক্রয়ের।)<br/><span>নামিল নদীর তীরে লুকাইয়া মুখ;</span><br/>
+ভাবিল বিষন্ন মনে,—“মরিয়াছে তারা,<br/>
+কিম্বা মরিয়াছে তারা আমার সম্পর্কে।”<br/><span>নিয়ে নদীর কিনার—অবতর-স্থান,</span><br/>
+সেই দিকে চলে পুনঃ; করে অন্বেষণ<br/>
+পান্থশালা—পুরাতন পূর্ব্ব-পরিচিত;<br/>
+দারুময় পুরোভাগ আছিল তাহার;<br/>
+প্রাচীনকালের চিহ্ন—ক্রুশের আকার।<br/>
+তখনি ছিল সে বাড়ী—জীর্ণ পুরাতন;<br/>
+কীটদষ্ট, অবলম্ব’পরে অবস্থিত।<br/>
+অনুমানে মনে—নিশ্চয় হয়েছে তার,<br/>
+লয় এত দিন। কিন্তু গিয়াছে সে চ’লে<br/>
+পান্থশালা ছিল যার; বিধবা তাহার,<br/>
+‘মিরিয়াম লেন’, রাখিয়াছে টায় টায়,<br/>
+নিত্য-হ্রস্বমান্ আয়ে; আগে ছিল উহা<br/>
+আডড়ঘর যাত্রীদের, কোলাহল ময়;<br/>
+এবে কোলাহল কম, বিশ্রামের স্থান
+</p>
+</div> <div>
+<p>প্রবাসী পথিক তরে। সেখানে এনক,<br/>
+চুপি চুপি লভিল বিশ্রাম কত দিন।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>ছিল সরল প্রকৃতি ‘মিরিয়াম লেন’,</span><br/>
+গল্পপ্রিয় বড়; না দিত থাকিতে একা,<br/>
+এনকে সে; নির্জ্জনতা ভাঙ্গিত তাহার,<br/>
+কহিত কতই কথা; কহিত সে কভু<br/>
+‘বন্দরের পুরাণ’ কাহিনী; কহিত সে<br/>
+এনকের গল্প-সমুদায়,— চিনিয়া।<br/>
+সম্মুখে এনক ব’সে;—এত তাম্রবর্ণ,<br/>
+এত নত-দেহ এত ভগ্ন-শরীর সে।<br/>
+শিশুটির মৃত্যু; এনির দারিদ্র্য-বৃদ্ধি;<br/>
+যেই মতে করিল ফিলিপ, শিশুদের<br/>
+শিক্ষা আর পালনের ব্যবস্থা-বিধান;<br/>
+ফিলিপের কামনা এনির পাণিগ্রহে;<br/>
+ধীরে ধীরে সম্মতি এনির; পরিণয়<br/>
+দোঁহাকার; এনি-গর্ভে পুত্র ফিলিপের;<br/>
+একে একে কহিল সে সকল কাহিনী।<br/>
+অবিকারে শুনিল এনক সবিস্তার;<br/>
+বদনমণ্ডলে তার না হ’ল বিকাশ—
+</p>
+</div> <div>
+<p>কোনরূপ উত্তেজনা কিম্বা শোকাভাস।<br/>
+দেখিলে তখন কেহ, করিত বিশ্বাস<br/>
+শ্রোতার অপেক্ষা যেন বক্তা বিচলিত।<br/>
+গল্প শেষ করিল রমণী এই বলি,—<br/>
+“মরিল জাহাজ ডুবি অভাগা এনক।”<br/>
+নাড়িয়া ব্যথিত ভাবে ধূসর মস্তক,<br/>
+কহিল এনক তাহে অফুটন্ত স্বর,—<br/>
+“মরিল জাহাজ ডুবি!” বহিল নিশ্বাসে<br/>
+নিভূত-হৃদয়-মাঝে—“মরিল” সে ধ্বনি।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>দেখিতে কামনা তবু এনির বদন;</span><br/>
+“দেখি যদি তার সেই প্রীতি-ভরা মুখ,<br/>
+জানি যদি সে আমার সুখে আছে ভাল,<br/>
+কত সুখী হয় প্রাণ!”আকুল চিন্তায়<br/>
+ব্যথিত বিব্রত হৃদি; বিচলিত দেহ<br/>
+পাহাড়ের প্রতি, পৌষ-অপরাহ্নে এক,—<br/>
+গাঢ়তর যবে প্রদোষ-আঁধার-মেঘে।<br/>
+বসিল নিভৃতে তথা, স্থির নিম্ন-দৃষ্টি;<br/>
+সহস্র চিন্তার স্মৃতি ঘেরিল অন্তর<br/>
+অব্যক্ত বিষাদ-ক্ষুন্ন।চকিল সহসা
+</p>
+</div> <div>
+<p>চোখের উপর এক দীপ্তিময় স্থান,<br/>
+সুখের আলোক-ভরা; দূর উদ্ভাসিয়া<br/>
+ভাসে সে আলোকরশ্মি, গৃহপ্রান্ত হ’তে<br/>
+ফিলিপের; প্রলুব্ধ এনক তাহে হয়;—<br/>
+অর্ণবে আলোক-গৃহে প্রলুব্ধ যেমতি<br/>
+প্রবাসী বিহঙ্গ, মত্ততায় আত্মক্ষেপে<br/>
+করে অবসান স্বীয় শ্রান্ত জীবনের।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>লোকালয়-প্রান্তে ছিল ফিলিপের বাড়ী,</span><br/>
+সম্মুখীন পথ প্রতি।পশ্চাতে তাহার<br/>
+সুরম্য উদ্যান, ক্ষুদ্র চতুষ্কোণ,<br/>
+প্রাচীরবেষ্টিত; ছোট এক ‘গেট’ তার<br/>
+প্রান্তরের দিকে।ছিল এক ঝাউ গাছ,<br/>
+চিরশোভাময় সুপ্রাচীন।উদ্যানের<br/>
+চারিপাশ ঘেরিয়া কঙ্করময় পথ;<br/>
+আর এক ছিল পথ মাঝখান দিয়া।<br/>
+না যাইল মধ্যপথে; উঠিল এনক,<br/>
+প্রাচীর উপর দিয়া চোরের মতন;<br/>
+দাঁড়াইল নিভৃতে সে ঝাউগাছ-পাশে;<br/>
+দেখিল বৃক্ষের আড়ে মর্ম্মভেদী দৃশ্য,—
+</p>
+</div> <div>
+<p>না দেখা যা ছিল ভাল; অথবা সে হৃদে—<br/>
+ভাল মন্দ কিবা আর—সে যাতনা-মাঝে!<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>উজলিছে উজল সে ‘টেবিল’ উপর</span><br/>
+পিয়ালা, রেকাব, চামচ—রূপার সব।<br/>
+উজলিছে অগ্নিকুণ্ডে সুখদ অনল;<br/>
+তাহার দক্ষিণ পাশে বসিয়া ফিলিপ,—<br/>
+অবজ্ঞিত পূর্ব্বের প্রণয়াকাঙ্ক্ষী যেই,—<br/>
+আপন শিশুটি ক্রোড়ে হরিষে মগন;<br/>
+দৃঢ়-কায় সুন্দর গোলাপ-কান্তি এবে!<br/>
+হেলাইয়া দেহ দ্বিতীয় পিতার দিকে,—<br/>
+যেন নবীন এনি-লি দীর্ঘতরা,—শোভে<br/>
+সুন্দরী বালিকা, কৃশাঙ্গী বিপুল-কেশা;<br/>
+উত্তোলিত হস্তে তার দোদুল্য অঙ্গুরী<br/>
+রেশমী ফিতায় বাঁধা,—তাহে প্রলোভন<br/>
+শিশুটির; শিশু, বাড়া’য়ে কমল-কর,<br/>
+ধরিবার চেষ্টা করে,—না পারে ধরিতে;<br/>
+রঙ্গ দেখে হাসয়ে সকলে।অন্য দিকে,<br/>
+অগ্নিকুণ্ড-বামপার্শ্বে শিশুর জননী,<br/>
+কটাক্ষে চাহিছে সদা তনয়ের প্রতি;
+</p>
+</div> <div>
+<p>ক্ষণে ক্ষণে ফিরাইয়া মুখ, কহিতেছে<br/>
+কত কথা জ্যেষ্ঠপুত্র সনে।জ্যেষ্ঠপুত্র,<br/>
+এবে দীর্ঘ কৃঢ় দেহ, মাতৃ-পাশ্বে বসি’।<br/>
+কহিছে যে কথা এনি, হইতেছে তাহে<br/>
+আনন্দ সঞ্চার; তাই হাসিছে নন্দন।<br/><span>মৃত ব্যক্তি বাঁচিয়া আসিয়া যেন পুনঃ,</span><br/>
+দেখিছে আপন পত্নী—পত্নী আর নয়;<br/>
+তার শিশু—সে নহে নিজের পুত্র আর—<br/>
+আপন জনক-ক্রোড়ে আছে বিদ্যমান।<br/>
+সব সুখ, সব শান্তি, সকল আনন্দ,<br/>
+বয়স্থ সুন্দর স্বীয় পুত্র কন্যা আদি,—<br/>
+সকলি অন্যের এবে; সে অন্য এখন<br/>
+করিছে রাজত্ব তার স্থানে; সে এখন<br/>
+স্বত্ববান সব স্বত্বে,—পায় ভালবাসা।<br/>
+তনয় তনয়াদের।পূর্ব্বে এ সকল<br/>
+ক’য়েছিল সবিস্তার মিরিয়াম্ লেন;<br/>
+তথাপি পার্থক্য—শ্রবণে দর্শনে কত!<br/>
+অবসাদে ঘূরিল মস্তক এনকের;<br/>
+কাঁপিল চরণ; সামাল হইল কষ্টে,<br/>
+বৃক্ষ-শাখা ধরি। আশঙ্কা বড়ই মনে,—
+</p>
+</div> <div>
+<p>পাছে কণ্ঠস্বর চীৎকারে প্রকাশ পায়,<br/>
+পাছে ভেঙ্গে যায় সুখ-স্বপ্ন সংসারের!—<br/>
+ভাঙ্গে শেষের সে দিনে—ডঙ্কাধ্বনি যথা<br/>
+আহ্বানি মানবগণে বিচারের তরে।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>ফিরিল এনক পুনঃ, তস্করের প্রায়,</span><br/>
+ধীর পদক্ষেপ, পাছে কোন’ শব্দ হয়,<br/>
+কঙ্করে চরণ লাগি; পাছে মুর্চ্ছা যায়,<br/>
+উছট লাগিয়া পড়ে; পাছে দেখে কেহ;<br/>
+মনে হৈল তার সকল প্রাচীর যেন;<br/>
+দেখিল সে হাত দিয়া অন্ধের মতন;<br/>
+হামাগুড়ি আসিল সে ‘গেটের’ নিকট,<br/>
+খুলিল কবাট; সাবধানে হৈল পার;<br/>
+করিল দরজা বন্ধ —ধীরে অতি ধীরে,<br/>
+রোগীর গৃহের দ্বার বন্ধ হৈল যেন;<br/>
+উতরিল অবশেষে প্রান্তর-মাঝারে।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>না পারিল নতজানু ডাকিতে ঈশ্বরে—</span><br/>
+হাঁটু দু’টি এত ক্ষীণ! সামলিয়া গেল<br/>
+পড়িতে পড়িতে যেন! অঙ্গুলি-হেলনে
+</p>
+</div> <div>
+<p>ভর দিল সিক্ত মৃত্তিকায় সন্তর্পণে<br/>
+অতঃপর করিল প্রার্থনা ঈশ্বরের।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>‘অসহ জীবন ভার! কেন বা আনিল,</span><br/>
+সে নির্জ্জন দ্বীপ হ’তে তাহারা আমায়?<br/>
+জগদীশ! ত্রাণকর্ত্তা! করুণা-নিদান!<br/>
+করুণায় রেখেছিলে সে নির্জ্জন দ্বীপে;<br/>
+করুণায় রাখ পিতং!—আর অল্প কাল<br/>
+এ নিভৃত ভাবে!সেই শক্তি দেহ প্রভু!—<br/>
+না বলি তাহারে কিছু না জানাই যেন!’<br/>
+কর সহায়তা—নাহি ভাঙ্গি শান্তি তার।<br/>
+নাহি যেন দেখি আর পুত্রকন্যাগণে,<br/>
+না কহি এ কথা; তারা না জানে আমায়!<br/>
+সঙ্কল্প—অজ্ঞাতবাস! না করিব কভু<br/>
+আপনা-প্রকাশ! নাহি মোর অধিকার—<br/>
+সন্তান-চুম্বনে আর।তনয়া আমার—<br/>
+যে এবে সুন্দরী তার মাতার মতন—<br/>
+সে নহে আমার আর! আমার কুমার—<br/>
+সে এখন পর—সে আর আমার নয়!”
+</p>
+</div>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div> <div>
+<p><span>মনে মনে এই কথা এই চিন্তা যবে,</span><br/>
+ক্ষীণ দেহ ক্ষীণতর হইল অধিক;<br/>
+মুর্চ্ছায় পড়িল ভূমে, হৈল সংজ্ঞাহীন।<br/><span>কতক্ষণ পরে ভাঙ্গিল মোহের ঘোর;</span><br/>
+উঠিল আপনি; চলিল আপন-পথে;<br/>
+পশ্চাতে রাখিল পুনঃ নির্জ্জন আলয়<br/>
+আপনার; ধীরে নামিল নীচের দিকে,<br/>
+অল্প-পরিসর সেই দীর্ঘ পথ বাহি;<br/>
+আক্লান্ত মস্তিষ্কে তার হইল ধ্বনিত<br/>
+পুনঃপুনঃ, সঙ্গীতের ধ্রবক যেমতি,<br/>
+‘না বলি তাহারে কিছু না জানাই যেন।’<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>নহে সে অসুখী তত! দৃঢ় প্রতিজ্ঞায়,</span><br/>
+সঞ্চারিল বল হৃদে; অটল বিশ্বাস<br/>
+ভগবানে, আর তার ফোটে যে প্রার্থনা<br/>
+হৃদয়ের অনন্ত নির্ঝরে, দূর করে।<br/>
+পৃথিবীর কটু তীব্র;—উঠে প্রস্রবণ<br/>
+লবণাম্বু-মাঝে যথা সুস্বাদু জলের;<br/>
+জীবন-প্রবাহ বহে হতাশ-সাগরে।<br/><span>জিজ্ঞাসিছে মিরিয়ামে একদা এনক,—</span>
+</p>
+</div> <div>
+<p>“সেই কলের কর্ত্তার পত্নী,— গল্প যার<br/>
+করেছিলে তুমি,—সে কি নাহি পায় ভয়—<br/>
+প্রথম স্বামীটি তার বেঁচে আছে ভেবে!”<br/>
+মিরিয়াম কহে,—“হঁ- হাঁ, বড় ভয় পায়,<br/>
+সে কথা ভাবিয়া মনে। যদি দেখে থাক—<br/>
+মরেছে এনক, যদি পার বলিবারে—<br/>
+সে কথা এনিরে, সুখী হয় সে এখন।”<br/><span>মনে মনে কহিল এনক,—“জানিবে সে,</span><br/>
+ঈশ্বর যে দিন লইবেন অভাগায়!<br/>
+অপেক্ষায় আছি শুধু তাঁর আহ্বানের।”<br/><span>ভিক্ষাবৃত্তি বড় ঘৃণ্য ছিল এনকের;</span><br/>
+আরম্ভিল পরিশ্রম জীবিকার তরে।<br/>
+সকল কাজেই দক্ষ ছিল তার হস্ত;<br/>
+কখন সে করিত প্রস্তুত পিপা আদি;<br/>
+কখন বা ছুতারের কাজ; কখন বা<br/>
+বুনানিত মাঝিদের মাছধরা জাল;<br/>
+উঠাইত নামাইত জাহাজের মাল,—<br/>
+সে কালে বাণিজ্য-দ্রব্য যদিচ অল্পই।<br/>
+করিত আপনা তরে অল্প উপার্জ্জন;<br/>
+নিজ ভিন্ন অন্য কেহ না ছিল যেহেতু।
+</p>
+</div> <div>
+<p>নৈরাশ্য-চালিত কর্ম্ম, প্রাণ শক্তি-হীন,<br/>
+দুঃসহ জীবন-ভার তাহে দিন দিন<br/><span>বর্ষচক্র ঘূরিল আপন গতি পুনঃ;</span><br/>
+দেখিল সে এনকের প্রত্যাগতি-দিন।<br/>
+দেহে অবসাদ দৃঢ়; মৃদু মৃদু জ্বর;<br/>
+শক্তি—ক্ষীণ ক্ষীণতর; কর্ম্মে অপারক;<br/>
+আবদ্ধ—বাড়ীতে রহে, ক্রমে কেদারায়,<br/>
+অবশেষে শয্যার উপর। এ দৌর্ব্বল্য<br/>
+সহিল এনক; না হইল নিরানন্দ।<br/><span>মগ্নপ্রায় ভগ্নপোত, অকূল সমুদ্রে,</span><br/>
+উড্ডয়ন ঝঞ্চাবাতে, মেঘান্ত-রেখায়,<br/>
+দেখে যদি আশাবাহী তরী অগ্রসর<br/>
+বিপন্ন হতাশ প্রাণ উদ্ধারের হেতু;—<br/>
+যত না আনন্দ তাহে হয়;—এনকের<br/>
+এ আনন্দ আরো কত বেশী! সে দেখিছে,—<br/>
+মরণের উষা আসিছে তাহার দিকে,<br/>
+অবসান হইবে সকল যন্ত্রণার।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>চমকে সুখদ আশা ভাবী উষালোকে।</span><br/>
+ভাবে মনে মনে,—“আমার মরণ পরে,
+</p>
+</div> <div>
+<p>বুঝিবে সে শেষ ভালবাসা তার প্রতি।”<br/>
+কহিল ফুকারি ডাকি মিরিয়াম্ লেনে,—<br/>
+“হে রমণী! আছে মোর গুপ্ত কথা এক;<br/>
+কহিবার আগে চাহি শপথ তোমার।<br/>
+ধর্ম্মগ্রন্থ স্পর্শ করি করহ শপথ,<br/>
+নাহি প্রকাশিবে মরণের পূর্ব্বে মম।”<br/>
+“মরণ!—”<br/>
+উচ্চৈঃস্বরে উত্তরিলা সুমনা রমণী,—<br/>
+“একি কথা কহ তুমি? কহি সুনিশ্চয়,<br/>
+চিকিৎসায় রোগমুক্ত করিব তোমায়।”<br/><span>কহিল এনক দৃঢ়তায়,—“আছে কথা।</span><br/>
+স্পর্শ কর ধর্ম্মগ্রন্থ, করহ শপথ।”<br/>
+শপথিল মিরিয়াম্ পুস্তক-পরশে,<br/>
+অর্দ্ধ-ত্রস্তভাবে।বিঘূর্ণিত এনকের<br/>
+ধূসর নয়ন পুনঃ মিরিয়াম্ প্রতি,—<br/>
+“জানিতে কি কভু তুমি এনক আর্ডেনে<br/>
+এই নগরের? জান কি তাহারে তুমি?”<br/>
+কহিল রমণী,—“জানিতাম বহু পূর্ব্বে!<br/>
+হাঁ—হাঁ, মনে হয়, দেখেছি নামিতে এই পথে!<br/>
+ছিল তার উন্নত মস্তক; গ্রাহ্য নাহি
+</p>
+</div> <div>
+<p>করিত কাহাকে।” এনক উত্তর দিল,<br/>
+অতি ধীর ক্ষুব্ধ স্বর,—“মস্তক এখন<br/>
+অবনত; সকলে অগ্রাহ্য করে তারে।<br/>
+আমি মনে করি —বাঁচিব না আমি আর<br/>
+তিন দিন কাল! আমিই এনক সেই।”<br/><span>উঠিল রমণী-কণ্ঠে বিস্ময়-চীৎকার,</span><br/>
+অর্দ্ধ-অবিশ্বাস অর্দ্ধ-বিকৃতির স্বর;—<br/>
+“তুমি কি আর্ডেন? তুমি! না—না! সে যে ছিল।<br/>
+তোমার অপেক্ষা বড় আরো এক ফুট্!”<br/><span>এনক কহিল পুনঃ,—“আমায় ঈশ্বর,</span><br/>
+দিয়াছেন নোয়াইয়া; যা-ছিলাম আমি,—<br/>
+ভাঙ্গিয়া দিয়াছে দেহ দুঃখ-নির্জ্জনতা।<br/>
+জানিও তথাপি স্থির—আমি হই সেই;<br/>
+যে আমার ছিল পত্নী, নাম পরিবর্ত্ত<br/>
+দুই দুই বার তার, করেছে বিবাহ<br/>
+তাহারে ফিলিপ। বস নারী, শুন আরো।”<br/><span>পরে কহিল সে,—সমুদ্র-যাত্রার কথা,</span><br/>
+পোত-ভঙ্গ, আর তার নিভৃত-নিবাস,<br/>
+দেশে প্রত্যাগতি, কটাক্ষে এনিরে দেখা,<br/>
+প্রতিজ্ঞা আপন, কেমনে পালিল তাহা।
+</p>
+</div> <div>
+<p><span>সে কাহিনী শুনিল রমণী যেই; স্বতঃ</span><br/>
+প্রবাহিল জলধারা নয়নে তাহার;<br/>
+নিদারুণ উত্তেজনা ভরিল অন্তর;<br/>
+মনে হৈল—তখনি ঘোষণা করে গিয়া<br/>
+ক্ষুদ্র বন্দরের ঘরে ঘরে পরিচয়<br/>
+এনকের, আর তার কাহিনী দুঃখের!<br/>
+কিন্তু সঙ্কোচিলা প্রতিজ্ঞায় বদ্ধ হেতু;<br/>
+কহিল কেবল,—“দেখিতে কি সাধ হয়,<br/>
+চির-বিদায়ের আগে তনয়-তনয়া?<br/>
+বল তো আনিয়া দেই তাদিগে এনক।”<br/>
+উঠিল। রমণী ব্যগ্রভাবে সেই হেতু।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>এনক নির্ব্বাক্ ক্ষণ; পরে উত্তরিলা,—</span><br/>
+“হে রমণী! দেখাওনা প্রলোভন আর,<br/>
+জীবনের শেষ পরীক্ষায়; পালিয়াছি,<br/>
+পালিব প্রতিজ্ঞা মম, আমরণ পণ।<br/>
+বস’ পুনরায়; বিচার করিয়া দেখ;<br/>
+শুন মন দিয়া কথা মোর,—যতক্ষণ<br/>
+শক্তি আছে কহিবার; লহ এই তার,—
+</p>
+</div> <div>
+<p>দেখা হ’লে তার সনে বলিও তাহাকে,<br/>
+মরিয়াছি—ভাল-বাসিতে-বাসিতে তারে,<br/>
+মরিয়াছি—আশীর্ব্বাদ করিতে করিতে,<br/>
+মরিয়াছি—মঙ্গল যাচিয়া তার তরে;<br/>
+পড়িয়াছে ব্যবধান দু’জনের মাঝে,<br/>
+ভালবাসি তবু তারে পূর্ব্বের মতন,<br/>
+প্রাণের সঙ্গিনী ছিল সে যবে আমার।<br/>
+আর কহিও কন্যারে মোর,—দেখিয়াছি<br/>
+সেই দিন যেন তার মাতার মতন,—<br/>
+তাহার মঙ্গল তরে করেছি প্রার্থনা,<br/>
+করেছি আশীষ তারে শেষ শ্বাস যবে।<br/>
+বল’ পুত্রকে আমার—মরিয়াছি আমি<br/>
+কল্যাণ-কামনা করি তার। বল আর<br/>
+ফিলিপেরে, শুভাকাঙ্ক্ষা করিয়াছি তার;<br/>
+ভাল ভিন্ন মন্দ কিছু করে নাই সে তো!<br/>
+মরণের পর মোর, তনয়-তনয়া,—<br/>
+না জানে যাহারা আমি জীবিত কি মৃত,—<br/>
+দেখিতে বাসনা যদি করে মৃতদেহ,<br/>
+দিও দেখিবারে;—আমি পিতা তাহাদের!<br/>
+কিন্তু সে যেন না আসে! মরণের মুখ,
+</p>
+</div> <div>
+<p>ভবিষ্য-জীবনে বিঁধিবে পরাণে তার।<br/>
+আছে অবশিষ্ট আর এক,— সে আমার<br/>
+রক্তবিন্দু জীবনের; ভবিষ্য-জগতে<br/>
+এইবার লভিব তাহার আলিঙ্গন;<br/>
+এই দেখ চুল তার, কেটেছিল এনি,<br/>
+দিয়েছিল মোরে; এত বর্ষ কাল,<br/>
+বহিয়া এসেছি আমি; মনে ছিল সাধ,<br/>
+কবরে বহিব উহা স্মৃতিচিহ্ন সম;<br/>
+না দেখি সে প্রয়োজন আর; পরলোকে<br/>
+দেখিব শিশুকে, স্বর্গসুখে সুখী, এবে।<br/>
+করহ গ্রহণ উহা; মরণের পর,<br/>
+যতনে এনিরে দিও; পাবে সে সান্ত্বনা;<br/>
+আরো দেখিবে প্রমাণ—সেই আমি তার!”<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>থামিল সে। উত্তরিলা মিরিয়াম্ লেন,</span><br/>
+জানাইয়া সকল সম্মতি বহু ভাষে।<br/>
+না বুঝি গুরুত্ব তাহে, আবার এনক<br/>
+চাহিল তাহার প্রতি ঘূর্ণিত নয়নে;<br/>
+জানাইল পুনরায় আপন বাসনা,<br/>
+করাইল পুনরায় প্রতিজ্ঞা তাহাকে।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div>
+</div> <div>
+<p><span>তার পর তৃতীয়া যামিনী! এনকের—</span><br/>
+তন্দ্রা-ঘোর, গতি-হীন, পাংশুল বদন।<br/>
+সদাই সতর্ক মিরিয়াম; নিদ্রা যায়<br/>
+কচিৎ যদ্যপি।ফুকারিল বংশীধ্বনি<br/>
+উচ্চ রবে, ডাকিয়া সমুদ্র-যাত্রীদের,<br/>
+বন্দরের প্রতি গৃহ করিয়া ধ্বনিত।<br/>
+বিকারে—জাগিল, উঠিয়া বসিল, বাহু<br/>
+প্রসারিল, উচ্চৈঃস্বরে চীৎকারি কহিল,—<br/>
+“ওই পোত! ওই পোত! ওই আসিয়াছে।<br/>
+রক্ষা পাইলাম আমি।” ঢলিয়া পড়িল<br/>
+মস্তক তাহার। আর না সরিল বাক্।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>এইরূপে অবসান এনক জীবন</span><br/>
+সঙ্কল্প-সাধনে যার প্রতিজ্ঞা অটুট।<br/></p>
+<div><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c1_Rule_Segment___Tear_Left___40px.svg_40px_Rule_Segment___Tear_Left___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/><img alt="" src="images/c3_Rule_Segment___Tear_Right___40px.svg_40px_Rule_Segment___Tear_Right___40px.svg.png"/><img alt="" src="images/c5_Rule_Segment___Star___10px.svg_10px_Rule_Segment___Star___10px.svg.png"/></div><br/><p><span>তাহারা আসিয়া যবে করিল সমাধি,</span><br/>
+করিল এতই ব্যয় অন্ত্যেষ্টিক্রিয়ায়—<br/>
+তত ব্যয় সে বন্দর দেখেছে ক্কচিৎ।
+</p>
+</div>
+</div>
+<div><img alt="" src="images/c6_Rule_Segment___Fancy2___100px.svg_100px_Rule_Segment___Fancy2___100px.svg.png"/></div>
+<div>
+<p>সম্পূর্ণ।
+</p>
+</div>
+
+
+</div><ol><li><span><a href="#cite_ref-1">↑</a></span> <span>পোতাধিষ্ট স্থান অর্থাৎ ‘জেটি’।</span>
+</li>
+<li><span><a href="#cite_ref-2">↑</a></span> <span>টালির চালযুক্ত কুটীর (tiled huts); সুতরাং রক্তিম বরণ।</span>
+</li>
+<li><span><a href="#cite_ref-3">↑</a></span> <span>হেজেল—বাদাম বৃক্ষের ন্যায় এক প্রকার বৃক্ষ।</span>
+</li>
+<li><span><a href="#cite_ref-4">↑</a></span> <span>শুক্রবার— যীশুখৃষ্টের ক্রুশে বিদ্ধ হওয়ার দিন। ‘রোমান ক্যাথলিক’ ও ‘ইংলিস হাই চার্চ্চ’ খৃষ্ট সম্প্রদায় ঐ দিন মাংস ভক্ষণ করেন না। মাংসের পরিবর্ত্তে তাঁহারা মৎস্য ভোজন করেন।</span>
+</li>
+</ol>
+<div>
+
+<div>
+<p>প্রকাশক
+</p>
+</div>
+<div>
+<p><span>ধীরেন্দ্রনাথ লাহিড়ী।</span>
+</p>
+</div>
+<div>
+<p>“পৃথিবীর ইতিহাস” কার্যালয়।
+</p>
+</div>
+<div>
+<p><span>হাওড়া।</span>
+</p>
+</div>
+
+</div>
+
+</section>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = (p.currentTheme === 'light' || p.currentTheme === 'dark') ? p.currentTheme : 'dark';
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    const progressFill = document.getElementById('reading-progress-fill');
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        if (progressFill) progressFill.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+    updateProgress(window);
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+            a.addEventListener('click', closeDrawer);
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocMobile);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme; header/footer/drawer now follow the same theme via CSS vars)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+            const themeColorMeta = document.getElementById('theme-color-meta');
+            if (themeColorMeta) themeColorMeta.setAttribute('content', m.bg);
+
+            const activeAccent = getComputedStyle(document.body).getPropertyValue('--bar-accent').trim();
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? activeAccent : 'transparent';
+            });
+            savePrefs();
+        });
+    });
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+    })();
+})();
+</script>
+
+
+</body>
+</html>
