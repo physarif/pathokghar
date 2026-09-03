@@ -16,20 +16,20 @@
     <link rel="apple-touch-icon" href="https://pathokghar.com/assets/photos/pathokghar-logo.webp">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>শিবাজী (১৯২৯) – যদুনাথ সরকার</title>
-    <meta name="description" content="একজন মানুষ কীভাবে একটি জাতির রাজনৈতিক আত্মপরিচয় ও রাষ্ট্রগঠনের ইতিহাসে কেন্দ্রীয় চরিত্র হয়ে উঠতে পারেন—‘শিবাজী’ মূলত সেই ইতিহাসের অনুসন্ধান।যদুনাথ সরকারের শি">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://pathokghar.pages.dev/book/shivaji-1929.html">
-    <meta property="og:title" content="শিবাজী (১৯২৯) – যদুনাথ সরকার">
-    <meta property="og:description" content="একজন মানুষ কীভাবে একটি জাতির রাজনৈতিক আত্মপরিচয় ও রাষ্ট্রগঠনের ইতিহাসে কেন্দ্রীয় চরিত্র হয়ে উঠতে পারেন—‘শিবাজী’ মূলত সেই ইতিহাসের অনুসন্ধান।যদুনাথ সরকারের শি">
-    <meta property="og:image" content="https://cdn.pathokghar.com/1787214624557_rbaakpajxnc.webp">
-    <meta property="og:url" content="https://pathokghar.pages.dev/book/shivaji-1929.html">
-    <meta property="og:type" content="book">
+    <title>এপিকটেটসের উপদেশ - পাঠক ঘর</title>
+    <meta name="description" content="">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/epictetus-er-upodes.html">
+    <meta property="og:title" content="এপিকটেটসের উপদেশ - পাঠক ঘর">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="https://cdn.pathokghar.com/1788478637202_eksbmprnlkc.webp">
+    <meta property="og:url" content="https://pathokghar.pages.dev/book/epictetus-er-upodes.html">
+    <meta property="og:type" content="website">
     <meta property="og:site_name" content="পাঠক ঘর">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="শিবাজী (১৯২৯) – যদুনাথ সরকার">
-    <meta name="twitter:description" content="একজন মানুষ কীভাবে একটি জাতির রাজনৈতিক আত্মপরিচয় ও রাষ্ট্রগঠনের ইতিহাসে কেন্দ্রীয় চরিত্র হয়ে উঠতে পারেন—‘শিবাজী’ মূলত সেই ইতিহাসের অনুসন্ধান।যদুনাথ সরকারের শি">
-    <meta name="twitter:image" content="https://cdn.pathokghar.com/1787214624557_rbaakpajxnc.webp">
+    <meta name="twitter:title" content="এপিকটেটসের উপদেশ - পাঠক ঘর">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://cdn.pathokghar.com/1788478637202_eksbmprnlkc.webp">
     <!-- Pure static CSS — কোনো build step লাগে না। আগে Tailwind CDN (runtime JIT,
          FOUC), তারপর CI-তে precompile হওয়া tailwind.css ব্যবহার হতো — এখন সেটা
          এক-বারের জন্য generate করে plain CSS হিসেবে commit করা হয়েছে। -->
@@ -692,491 +692,392 @@
 
     <!-- MAIN CONTENT -->
     <main>
-        <!-- templates/book.html — শুধু content, layout.html এ inject হবে -->
-<main class="book-page">
-    <div class="book-page-inner">
+        <!-- components/download.html — layout.html এর  এ inject হবে -->
 
-        <!-- Book Hero Card: cover, title, author, category, read ও download
-             সবকিছু একত্রে একটা কার্ডে সুন্দরভাবে সাজানো। H1 সিমান্টিকভাবে
-             বইয়ের নাম-ই থাকছে (SEO-এর জন্য জরুরি — এটাই পেজের মূল বিষয়)। -->
-        <div class="book-hero-card">
-            <img src="https://cdn.pathokghar.com/1787214624557_rbaakpajxnc.webp"
-                alt="শিবাজী (১৯২৯) বই এর কভার - লেখক যদুনাথ সরকার"
-                fetchpriority="high"
-                width="100" height="148"
-                class="book-hero-cover">
+<style>
+    .progress-bar-fill {
+        height: 100%;
+        border-radius: 9999px;
+        background: linear-gradient(90deg, #0B57CF, #3b82f6);
+        transition: width 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 100%;
+    }
 
-            <div class="book-hero-body">
-                <a href="/category/dorshon/" class="book-hero-category">দর্শন</a>
+    .step-fade {
+        animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(6px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
 
-                <h1 class="book-hero-title">শিবাজী (১৯২৯)</h1>
+    .pulse-ring {
+        animation: pulse-ring 1.5s ease infinite;
+    }
+    @keyframes pulse-ring {
+        0%   { box-shadow: 0 0 0 0 rgba(11,87,207,0.35); }
+        70%  { box-shadow: 0 0 0 12px rgba(11,87,207,0); }
+        100% { box-shadow: 0 0 0 0 rgba(11,87,207,0); }
+    }
 
-                <a href="/author/jadunath-sarkar.html" class="book-hero-author">যদুনাথ সরকার</a>
+    /* ── Book Info Card (book.html hero card থেকে) ── */
+    .dl-hero-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.1rem;
+        text-align: left;
+        background: #ffffff;
+        border-radius: 5px;
+        padding: 1.25rem;
+        box-shadow: 0 2px 14px rgba(17,24,39,0.06);
+        margin-bottom: 1rem;
+    }
+    .dl-hero-cover {
+        width: 100px;
+        height: 148px;
+        border-radius: 4px;
+        object-fit: cover;
+        background: #e5e7eb;
+        flex-shrink: 0;
+        box-shadow: 0 10px 22px rgba(17,24,39,0.12);
+    }
+    .dl-hero-body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        min-width: 0;
+    }
+    .dl-hero-category {
+        display: inline-block;
+        width: fit-content;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: #0B57CF;
+        background: #F0F3F8;
+        padding: 0.28rem 0.85rem;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: background 0.15s, color 0.15s;
+    }
+    .dl-hero-category:hover { background: #C2D7FC; color: #0B57CF; }
+    .dl-hero-title {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #1f2937;
+        line-height: 1.4;
+        margin: 0;
+    }
+    .dl-hero-author {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #6b7280;
+        text-decoration: none;
+        transition: color 0.15s;
+    }
+    .dl-hero-author:hover { color: #0B57CF; text-decoration: underline; text-underline-offset: 3px; }
+    .dl-hero-rule {
+        border: none;
+        border-top: 1px dashed #e5e7eb;
+        margin: 0.25rem 0;
+    }
+    .dl-hero-actions {
+        display: flex;
+        gap: 0.6rem;
+        margin-top: 0.15rem;
+    }
+    .dl-hero-link {
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-decoration: none;
+        padding: 0.45rem 1rem;
+        border-radius: 8px;
+        transition: background 0.15s, color 0.15s, transform 0.1s;
+    }
+    .dl-hero-link:active { transform: scale(0.96); }
+    .dl-hero-link-solid { background: #0B57CF; color: #fff; }
+    .dl-hero-link-solid:hover { background: #094aad; }
+    .dl-hero-link-outline { background: transparent; color: #1f2937; border: 1.5px solid #e5e7eb; padding: 0.375rem 0.95rem; }
+    .dl-hero-link-outline:hover { background: #F0F3F8; }
 
-                <hr class="book-hero-rule">
+    /* ── Download page layout / step cards ── */
+    .dl-page { max-width: 32rem; margin: 0 auto; padding: 1rem 0.75rem; }
+    @media (min-width: 768px) { .dl-page { padding: 1.5rem; } }
+    .dl-card {
+        background: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 1px 2px rgba(17,24,39,0.05);
+        padding: 1.5rem;
+    }
+    .dl-step1-inner { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+    .dl-icon-circle {
+        width: 3.5rem; height: 3.5rem;
+        border-radius: 50%;
+        background: #F0F3F8;
+        display: flex; align-items: center; justify-content: center;
+        color: #0B57CF;
+        font-size: 1.25rem;
+    }
+    .dl-step1-text { text-align: center; }
+    .dl-step1-title { font-size: 0.875rem; font-weight: 600; color: #1f2937; margin: 0 0 0.125rem; }
+    .dl-step1-sub { font-size: 0.75rem; color: #6b7280; margin: 0; }
+    .dl-get-link-btn {
+        width: 100%;
+        background: #0B57CF;
+        color: #fff;
+        font-weight: 600;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        box-shadow: 0 1px 2px rgba(17,24,39,0.05);
+        transition: background 0.15s, transform 0.1s;
+        cursor: pointer;
+    }
+    .dl-get-link-btn:hover { background: #094aad; }
+    .dl-get-link-btn:active { transform: scale(0.95); }
 
-                <div class="book-hero-actions">
-                    <a href="/read/shivaji-1929.html"
-                        class="book-hero-link book-hero-link-solid "
-                        aria-disabled="false">
-                        পড়ুন
-                    </a>
-                    <a href="/download/shivaji-1929.html"
-                        class="book-hero-link book-hero-link-outline "
-                        aria-disabled="false">
-                        ডাউনলোড
-                    </a>
-                </div>
+    /* একক লিংক না থাকলে countdown শেষে EPUB/MOBI/PDF — ৩টা আলাদা ডাউনলোড লিংক */
+    .dl-format-btns { width: 100%; display: flex; flex-direction: column; gap: 0.6rem; }
+    .dl-format-link { }
+
+    .dl-step2-inner { display: flex; flex-direction: column; gap: 1.25rem; }
+    .dl-waiting-text { font-size: 0.75rem; color: #6b7280; text-align: center; margin: 0; }
+
+    .dl-progress-wrap { display: flex; flex-direction: column; gap: 0.5rem; }
+    .dl-progress-row { display: flex; align-items: center; justify-content: space-between; font-size: 0.75rem; color: #6b7280; }
+    .dl-progress-track { width: 100%; height: 0.5rem; background: #e5e7eb; border-radius: 9999px; overflow: hidden; }
+
+    .dl-download-btn {
+        width: 100%;
+        background: #22c55e;
+        color: #fff;
+        font-weight: 600;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        text-decoration: none;
+        display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        box-shadow: 0 1px 2px rgba(17,24,39,0.05);
+        transition: background 0.15s, transform 0.1s;
+    }
+    .dl-download-btn:hover { background: #16a34a; }
+    .dl-download-btn:active { transform: scale(0.95); }
+    .dl-restart-btn {
+        background: none; border: none; cursor: pointer;
+        font-size: 0.75rem; color: #6b7280;
+        text-decoration: underline; text-underline-offset: 2px;
+        transition: color 0.15s;
+    }
+    .dl-restart-btn:hover { color: #0B57CF; }
+
+    .dl-info-strip { margin-top: 1rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.75rem; color: #4b5563; }
+    .dl-info-item { display: flex; align-items: center; gap: 0.375rem; }
+    .dl-info-item i { font-size: 0.625rem; }
+</style>
+
+<!-- ─── Download page (single layout) ─── -->
+<div class="dl-page">
+
+    <!-- Book Info Card: breadcrumb-এর বদলে book.html-এর মতো hero card,
+         এখানে "পড়ুন" ও "বিবরণ" — দুটোই বই পেজে নিয়ে যায় -->
+    <div class="dl-hero-card">
+        <img src="https://cdn.pathokghar.com/1788478637202_eksbmprnlkc.webp" alt="এপিকটেটসের উপদেশ বই এর কভার" width="100" height="148" class="dl-hero-cover">
+        <div class="dl-hero-body">
+            <span class="dl-hero-category">দর্শন</span>
+            <p class="dl-hero-title">এপিকটেটসের উপদেশ</p>
+            <span class="dl-hero-author">জ্যোতিরিন্দ্রনাথ ঠাকুর</span>
+            <hr class="dl-hero-rule">
+            <div class="dl-hero-actions">
+                <a href="/read/epictetus-er-upodes.html" class="dl-hero-link dl-hero-link-solid">পড়ুন</a>
+                <a href="/book/epictetus-er-upodes.html" class="dl-hero-link dl-hero-link-outline">বিবরণ</a>
             </div>
         </div>
+    </div>
 
-        <!-- Description: hero কার্ড থেকে আলাদা, নিজস্ব কার্ডে নিচে। মার্কডাউন
-             build time-এই HTML-এ parse হয়ে বসে (author.html-এর bio-র মতোই) —
-             ক্লায়েন্ট-সাইড marked.js/innerHTML লাগে না, তাই প্রথম লোডেই টেক্সট
-             দেখা যায় (আগে খালি div ছিল, JS চলার পর ভরত — layout shift হতো)। -->
-        <div class="book-desc-card">
-            <h2 class="book-desc-heading">বইয়ের বিবরণ</h2>
-            <div id="book-description-mobile" class="prose-book"><p>একজন মানুষ কীভাবে একটি জাতির রাজনৈতিক আত্মপরিচয় ও রাষ্ট্রগঠনের ইতিহাসে কেন্দ্রীয় চরিত্র হয়ে উঠতে পারেন—‘শিবাজী’ মূলত সেই ইতিহাসের অনুসন্ধান।<strong>যদুনাথ সরকারের <em>শিবাজী</em></strong> ভারতীয় ইতিহাসচর্চার একটি উল্লেখযোগ্য গ্রন্থ। ১৯২৯ সালের বাংলা সংস্করণটি মূলত মারাঠা নেতা <strong>ছত্রপতি শিবাজী</strong>-র জীবন, সংগ্রাম, রাজনৈতিক প্রজ্ঞা, সামরিক কৌশল এবং মারাঠা শক্তির উত্থানকে কেন্দ্র করে রচিত। তবে বইটিকে কেবল একজন বীর শাসকের জীবনী হিসেবে পড়লে এর প্রকৃত গুরুত্ব কিছুটা আড়ালে থেকে যায়। এর ভেতরে রয়েছে সপ্তদশ শতকের দাক্ষিণাত্যের জটিল রাজনৈতিক পরিস্থিতি, মোগল সাম্রাজ্যের বিস্তার, বিজাপুর ও অন্যান্য শক্তির সঙ্গে সংঘাত এবং সেই পরিস্থিতির মধ্য থেকে শিবাজীর নেতৃত্বে একটি নতুন রাজনৈতিক শক্তির উত্থানের ইতিহাস।</p>
-<h2>⚔️ শিবাজীর উত্থানের ইতিহাস</h2>
-<p>বইটির অন্যতম আকর্ষণ হলো—শিবাজীকে হঠাৎ আবির্ভূত কোনো কিংবদন্তির নায়ক হিসেবে উপস্থাপন না করে তাঁর উত্থানের পেছনের <strong>ভূগোল, সমাজ, রাজনীতি ও ক্ষমতার ভারসাম্য</strong> বোঝানোর চেষ্টা করা হয়েছে। পাহাড়ি দুর্গ, দাক্ষিণাত্যের ভূপ্রকৃতি, স্থানীয় শক্তিগুলোর পারস্পরিক দ্বন্দ্ব এবং মোগল সাম্রাজ্যের চাপ—সবকিছুর মধ্যেই শিবাজীর রাজনৈতিক বিকাশকে দেখা যায়।</p>
-<p>শিবাজীর সামরিক সাফল্যের পাশাপাশি তাঁর <strong>দূরদর্শিতা ও কৌশলগত চিন্তাভাবনা</strong> বইটির গুরুত্বপূর্ণ বিষয়। তিনি কখন সরাসরি যুদ্ধ করবেন, কখন কূটনীতির আশ্রয় নেবেন, কখন প্রতিপক্ষের দুর্বলতাকে কাজে লাগাবেন—এসব বিষয় তাঁর নেতৃত্বের বাস্তববাদী দিকটি প্রকাশ করে।</p>
-<h2>👑 শুধু যুদ্ধ নয়, রাষ্ট্রগঠনের গল্প</h2>
-<p>এই বইয়ের একটি বড় শক্তি হলো, শিবাজীর জীবনকে শুধু যুদ্ধ ও বিজয়ের ধারাবাহিকতা হিসেবে দেখানো হয়নি। তাঁর <strong>প্রশাসনিক ব্যবস্থা, রাষ্ট্রনীতি, প্রতিষ্ঠান নির্মাণ এবং মারাঠা শক্তিকে সংগঠিত করার প্রচেষ্টা</strong> আলোচনার গুরুত্বপূর্ণ অংশ।</p>
-<p>অর্থাৎ শিবাজীর কৃতিত্ব শুধু দুর্গ দখল বা যুদ্ধজয়ের মধ্যে সীমাবদ্ধ ছিল না। একটি রাজনৈতিক শক্তিকে সংগঠিত করে তাকে কার্যকর রাষ্ট্রব্যবস্থায় রূপ দেওয়ার প্রচেষ্টাই তাঁর ঐতিহাসিক গুরুত্বকে আরও বড় করে তোলে। এই দৃষ্টিকোণ থেকে বইটি একজন সেনানায়কের জীবনী থেকে অনেক বেশি—এটি <strong>রাষ্ট্রগঠনের ইতিহাস</strong>।</p>
-<h2>🧠 যদুনাথ সরকারের ইতিহাসচর্চার বৈশিষ্ট্য</h2>
-<p>যদুনাথ সরকার ছিলেন গবেষণানির্ভর ইতিহাসচর্চার জন্য পরিচিত। তাঁর লেখায় ঘটনাকে শুধু রোমাঞ্চকর করে তোলার পরিবর্তে বিভিন্ন ঐতিহাসিক সূত্র ও দলিলের ভিত্তিতে বিশ্লেষণ করার প্রবণতা দেখা যায়। <em>Shivaji and His Times</em> সম্পর্কিত প্রকাশকের বিবরণেও তাঁর বিস্তৃত গবেষণা, মোগলদের সঙ্গে শিবাজীর সম্পর্ক এবং ইংরেজ ও পর্তুগিজ শক্তির সঙ্গে তাঁর যোগাযোগের ওপর গুরুত্ব দেওয়া হয়েছে। </p>
-<p>এই কারণেই বইটি পড়ার সময় পাঠক একদিকে শিবাজীর অসাধারণ নেতৃত্বের পরিচয় পান, অন্যদিকে সপ্তদশ শতকের ভারতীয় রাজনীতির একটি বৃহত্তর চিত্রও দেখতে পান। ইতিহাসের ছাত্রদের জন্য এই বৈশিষ্ট্য বিশেষভাবে মূল্যবান।</p>
-<h2>🔍 বইটির সবচেয়ে আকর্ষণীয় দিক</h2>
-<p>আমার কাছে বইটির সবচেয়ে গুরুত্বপূর্ণ দিক হলো <strong>শিবাজীর ব্যক্তিত্ব ও তাঁর সময়—এই দুইটিকে আলাদা না করে একসঙ্গে দেখা</strong>। কোনো ঐতিহাসিক ব্যক্তিকে বুঝতে হলে তাঁর সময়ের রাজনৈতিক ও সামাজিক বাস্তবতাকে বোঝা জরুরি। যদুনাথ সরকার সেই কাজটিই করার চেষ্টা করেছেন।</p>
-<p>শিবাজীর সাহস, নেতৃত্ব, কূটনৈতিক দক্ষতা ও সামরিক পরিকল্পনা যেমন আলোচনায় এসেছে, তেমনি তাঁর সীমাবদ্ধতা ও ঐতিহাসিক অবস্থানকেও বিচার করার সুযোগ তৈরি হয়েছে। ফলে বইটি নিছক প্রশংসামূলক জীবনী হয়ে ওঠেনি; বরং ইতিহাসের দৃষ্টিতে একজন গুরুত্বপূর্ণ শাসককে বোঝার একটি প্রচেষ্টা হিসেবে মূল্য পেয়েছে।</p>
-<h2>📚 কারা বইটি পড়বেন?</h2>
-<p>যারা <strong>ভারতের মধ্যযুগীয় ইতিহাস, মারাঠা ইতিহাস, মোগল সাম্রাজ্য, সামরিক ইতিহাস কিংবা রাজনৈতিক ইতিহাস</strong> নিয়ে আগ্রহী, তাঁদের জন্য বইটি অত্যন্ত আকর্ষণীয়। বিশেষ করে ইতিহাসের ছাত্রদের কাছে এটি শুধু তথ্যের উৎস নয়, বরং কীভাবে একজন ঐতিহাসিক একটি যুগ ও ব্যক্তিত্বকে বিশ্লেষণ করেন—তারও একটি উদাহরণ।</p>
-<p>তবে আধুনিক পাঠকের কাছে বইটির ভাষা ও ইতিহাসচর্চার ধরন কিছুটা পুরোনো মনে হতে পারে। বর্তমান ইতিহাসচর্চার আলোকে কিছু বক্তব্যকে সমালোচনামূলক দৃষ্টিতে পড়া দরকার। তাই বইটিকে একমাত্রিক “চূড়ান্ত সত্য” হিসেবে না দেখে <strong>একজন বিশিষ্ট ঐতিহাসিকের গবেষণাভিত্তিক ব্যাখ্যা</strong> হিসেবে পড়াই বেশি ফলপ্রসূ।</p>
-<h2>⭐ শেষ কথা</h2>
-<p><strong><em>শিবাজী</em> শুধু শিবাজীর জীবনী নয়; এটি একটি যুগের রাজনৈতিক অস্থিরতা, একটি নতুন শক্তির উত্থান এবং রাষ্ট্রগঠনের এক গুরুত্বপূর্ণ অধ্যায়ের ইতিহাস।</strong> যদুনাথ সরকার শিবাজীকে কিংবদন্তির আবরণে আটকে না রেখে তাঁর রাজনৈতিক ও ঐতিহাসিক ভূমিকা বিশ্লেষণ করার চেষ্টা করেছেন। ফলে বইটি পড়লে শুধু শিবাজী সম্পর্কে জানা যায় না, সপ্তদশ শতকের ভারতীয় উপমহাদেশের ক্ষমতার রাজনীতি সম্পর্কেও একটি বিস্তৃত ধারণা তৈরি হয়।</p>
-<p>প্রায় এক শতাব্দী আগে প্রকাশিত হলেও বইটির মূল প্রশ্নগুলো আজও আকর্ষণীয়—<strong>একজন নেতা কীভাবে প্রতিকূল পরিস্থিতিতে নিজের রাজনৈতিক শক্তি তৈরি করেন? সামরিক সাফল্য কীভাবে রাষ্ট্রগঠনের সঙ্গে যুক্ত হয়? এবং ইতিহাসে একজন ব্যক্তির ভূমিকা কতটা তাঁর নিজের, আর কতটা তাঁর সময়ের রাজনৈতিক বাস্তবতার ফল?</strong></p>
-<p>এই প্রশ্নগুলোর উত্তর খুঁজতে চাইলে <strong>যদুনাথ সরকারের <em>শিবাজী</em></strong> নিঃসন্দেহে পাঠযোগ্য একটি ঐতিহাসিক গ্রন্থ।</p>
-</div>
+    <!-- Download action card -->
+    <div class="dl-card">
+        <div id="m-step-1" class="step-fade">
+            <div class="dl-step1-inner">
+                <div class="dl-icon-circle pulse-ring">
+                    <i class="fas fa-download"></i>
+                </div>
+                <div class="dl-step1-text">
+                    <p class="dl-step1-title">বইটি ডাউনলোড করুন</p>
+                    <p class="dl-step1-sub">বিনামূল্যে — কোনো সাবস্ক্রিপশন ছাড়াই</p>
+                </div>
+                <!-- "ডাউনলোড লিংক পান" — ক্লিক করার পরই countdown শেষে
+                     আসল ডাউনলোড লিংক(গুলো) দেখা যাবে -->
+                <button id="m-get-link-btn" class="dl-get-link-btn">
+                    ডাউনলোড লিংক পান
+                </button>
+            </div>
         </div>
+        <div id="m-step-2" class="hidden step-fade">
+            <div class="dl-step2-inner">
+                <p id="m-waiting-text" class="dl-waiting-text">কয়েক সেকেন্ড অপেক্ষা করুন...</p>
+                <!-- Progress bar -->
+                <div id="m-progress-wrap" class="dl-progress-wrap">
+                    <div class="dl-progress-row">
+                        <span id="m-progress-label">লিংক তৈরি হচ্ছে...</span>
+                        <span id="m-countdown-wrap" class="progress-seconds"><span id="m-countdown-text">5</span>s</span>
+                    </div>
+                    <div class="dl-progress-track">
+                        <div id="m-progress-fill" class="progress-bar-fill"></div>
+                    </div>
+                </div>
 
-        <!-- সম্পর্কিত বই: একই লেখক ও ক্যাটাগরির বই — build time-এই HTML
-             হিসেবে বসানো হয় (author-page-এর মতো), crawler প্রথম লোডেই এই
-             ইন্টারনাল লিংকগুলো পায়। কোনো related বই না থাকলে placeholder
-             খালি স্ট্রিং হয়ে যায়, তাই সেক্ষেত্রে সেকশনটাই দেখা যায় না। -->
-        <style>
-/* components/book-card-list.css — সব পেজে (index, books, author, category, search)
-   ব্যবহৃত common book-card LIST design। generate_pages.js এই ফাইলটা একবার লোড করে
-   <style> ট্যাগে মুড়ে প্রতিটা টেমপ্লেটের  placeholder-এ বসিয়ে দেয়।
-   ডিজাইন পরিবর্তন করতে চাইলে শুধু এই ফাইলটা এডিট করলেই সব জায়গায় reflect হবে।
-   ডিজাইন: Editorial variant — layout.html-এর সাথে মিল রেখে day/light পাঠক ঘর
-   palette (#F0F3F8 page bg, #ffffff card surface, #1f2937 টেক্সট, #0B57CF accent)। */
+                <!-- countdown শেষে: book_download_url থাকলে একক ডাউনলোড বাটন -->
+                <a id="m-download-btn" href="#" class="hidden dl-download-btn step-fade">
+                    <i class="fas fa-download"></i> ডাউনলোড করুন
+                </a>
 
-/* List container */
-.bc-list {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  gap: 0.7rem;
-}
-@media (min-width: 768px) {
-  .bc-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.7rem;
-    padding: 0;
-  }
-}
+                <!-- countdown শেষে: book_download_url না থাকলে EPUB/PDF — ২টা আলাদা লিংক -->
+                <div id="m-format-links" class="hidden dl-format-btns step-fade">
+                    <a id="m-format-link-epub" href="#" class="dl-download-btn dl-format-link" target="_blank" rel="noopener">
+                        <i class="fas fa-tablet-alt"></i> EPUB ডাউনলোড
+                    </a>
+                    <a id="m-format-link-pdf" href="#" class="dl-download-btn dl-format-link" target="_blank" rel="noopener">
+                        <i class="fas fa-file-pdf"></i> PDF ডাউনলোড
+                    </a>
+                </div>
 
-/* Book card */
-.bc-card {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  align-items: flex-start;
-  text-decoration: none;
-  padding: 1rem 1.1rem;
-  transition: background 0.15s, border-color 0.15s;
-  background: #ffffff;
-  border-radius: 5px;
-}
-.bc-card:hover { background: #C2D7FC; }
-
-/* Cover — left side, fixed size 2:3 ratio */
-.bc-img-wrap {
-  flex-shrink: 0;
-  width: 4.5rem;
-  aspect-ratio: 2/3;
-  overflow: hidden;
-  background: #e5e7eb;
-  border-radius: 5px;
-}
-@media (min-width: 768px) { .bc-img-wrap { width: 5.5rem; } }
-
-.bc-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Right side text */
-.bc-body {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-}
-
-/* Headline: title – author একসাথে */
-.bc-headline {
-  font-size: 1.05rem;
-  line-height: 1.4;
-  margin: 0 0 0.35rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.bc-title {
-  font-weight: 600;
-  color: #1f2937;
-}
-.bc-card:hover .bc-title { text-decoration: none; }
-
-/* Description */
-.bc-desc {
-  margin-top: 0.1rem;
-  font-size: 0.88rem;
-  color: #6b7280;
-  line-height: 1.5;
-  text-align: justify;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/*
-  Book card HTML template (reference — generate_pages.js এ ব্যবহার হয়):
-  <a href="/book/shivaji-1929.html" class="bc-card">
-    <div class="bc-img-wrap">
-      <img src="https://cdn.pathokghar.com/1787214624557_rbaakpajxnc.webp" alt="শিবাজী (১৯২৯)" class="bc-img" loading="lazy">
-    </div>
-    <div class="bc-body">
-      <p class="bc-headline"><span class="bc-title">শিবাজী (১৯২৯)</span></p>
-      <p class="bc-desc"></p>
-    </div>
-  </a>
-*/
-</style>
-        <div class="book-related-section"><div class="bc-latest-title">সম্পর্কিত বই</div><div class="bc-list"><a href="/book/keno-ami-nastik.html" class="bc-card"><div class="bc-img-wrap"><img src="https://cdn.pathokghar.com/1782832475875_iezm46j9288.jpg" alt="কেন আমি নাস্তিক বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">কেন আমি নাস্তিক</span></p><p class="bc-desc">১৯৩০ সালে লাহোর সেন্ট্রাল জেলে ফাঁসির অপেক্ষায় থাকা অবস্থায় ভগৎ সিং এই কালজয়ী প্রবন্ধটি রচনা করেন। তাঁর ওপর অভিযোগ ছিল তিনি অহংকারবশত ঈশ্বরকে অস্বীকার করছেন। এই লেখার মাধ্যমে তিনি অত্যন্ত যৌক্তিকভাবে </p></div></a><a href="/book/epictetus-er-upodes.html" class="bc-card"><div class="bc-img-wrap"><img src="https://cdn.pathokghar.com/1788478637202_eksbmprnlkc.webp" alt="এপিকটেটসের উপদেশ বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">এপিকটেটসের উপদেশ</span></p><p class="bc-desc">‘এপিক্‌টেটসের উপদেশ’ প্রাচীন স্টোইক দর্শনের এক গুরুত্বপূর্ণ জীবনদর্শনকে বাংলা ভাষায় পাঠকের কাছে তুলে ধরেছে। জ্যোতিরিন্দ্রনাথ ঠাকুর ১৯০৭ সালে এপিক্‌টেটসের দর্শন ও শিক্ষার সারাংশ বাংলায় সংকলন ও অনুবাদ ক</p></div></a></div></div>
-
-        <!-- Structured data: Google-কে বইয়ের নাম, লেখক, কভার স্পষ্টভাবে বুঝিয়ে
-             দেয়, rich snippet পাওয়ার সম্ভাবনা বাড়ায় -->
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Book",
-            "name": "শিবাজী (১৯২৯)",
-            "author": {
-                "@type": "Person",
-                "name": "যদুনাথ সরকার"
-            },
-            "image": "https://cdn.pathokghar.com/1787214624557_rbaakpajxnc.webp",
-            "url": "https://pathokghar.pages.dev/book/shivaji-1929.html",
-            "genre": "দর্শন",
-            "description": "একজন মানুষ কীভাবে একটি জাতির রাজনৈতিক আত্মপরিচয় ও রাষ্ট্রগঠনের ইতিহাসে কেন্দ্রীয় চরিত্র হয়ে উঠতে পারেন—‘শিবাজী’ মূলত সেই ইতিহাসের অনুসন্ধান।যদুনাথ সরকারের শিবাজী ভারতীয় ইতিহাসচর্চার একটি উল্লেখযোগ্য গ্রন্থ। ১৯২৯ সালের বাংলা সংস্করণটি মূলত মারাঠা নেতা ছত্রপতি শিবাজী-র জীবন, সংগ্রাম, রাজনৈতিক প্রজ",
-            "inLanguage": "bn"
-        }
-        </script>
-
-        <style>
-            /* ── Page layout ── */
-            .book-page {
-                flex: 1 1 auto;
-                padding: 1rem 0.75rem;
-                min-height: calc(100vh - 3.5rem);
-            }
-            @media (min-width: 768px) { .book-page { padding: 1.5rem; } }
-            .book-page-inner { max-width: 48rem; margin: 0 auto; }
-            #book-description-mobile {
-                font-size: 1rem;
-                line-height: 1.625;
-                color: #6b7280;
-                text-align: justify;
-            }
-
-            /* ── Book Hero Card (Editorial Horizontal) ── */
-            .book-hero-card {
-                display: flex;
-                align-items: flex-start;
-                gap: 1.1rem;
-                text-align: left;
-                background: #ffffff;
-                border-radius: 5px;
-                padding: 1.25rem;
-                margin-bottom: 0.65rem;
-            }
-            .book-hero-cover {
-                width: 100px;
-                height: 148px;
-                border-radius: 4px;
-                object-fit: cover;
-                background: #e5e7eb;
-                flex-shrink: 0;
-                box-shadow: 0 10px 22px rgba(17,24,39,0.12);
-            }
-            .book-hero-body {
-                display: flex;
-                flex-direction: column;
-                gap: 0.4rem;
-                min-width: 0;
-            }
-            .book-hero-category {
-                display: inline-block;
-                width: fit-content;
-                font-family: 'Noto Serif Bengali', serif;
-                font-size: 0.72rem;
-                font-weight: 700;
-                letter-spacing: 0.02em;
-                background: #F0F3F8;
-                color: #0B57CF;
-                padding: 0.28rem 0.85rem;
-                border-radius: 4px;
-                text-decoration: none;
-                transition: background 0.15s, color 0.15s;
-            }
-            .book-hero-category:hover { background: #C2D7FC; color: #0B57CF; }
-            .book-hero-title {
-                font-family: 'Noto Serif Bengali', serif;
-                font-size: 1.15rem;
-                font-weight: 600;
-                color: #1f2937;
-                line-height: 1.4;
-                margin: 0;
-            }
-            .book-hero-author {
-                font-family: 'Noto Serif Bengali', serif;
-                font-size: 0.85rem;
-                font-weight: 600;
-                color: #6b7280;
-                text-decoration: none;
-                transition: color 0.15s;
-            }
-            .book-hero-author:hover { color: #0B57CF; text-decoration: underline; text-underline-offset: 3px; }
-            .book-hero-rule {
-                border: none;
-                border-top: 1px dashed #e5e7eb;
-                margin: 0.25rem 0;
-            }
-            .book-hero-actions {
-                display: flex;
-                gap: 0.6rem;
-                margin-top: 0.15rem;
-            }
-            .book-hero-link {
-                display: inline-flex;
-                align-items: center;
-                font-size: 0.8rem;
-                font-weight: 700;
-                text-decoration: none;
-                padding: 0.45rem 1rem;
-                border-radius: 5px;
-                transition: background 0.15s, color 0.15s;
-            }
-            .book-hero-link-solid { background: #0B57CF; color: #fff; }
-            .book-hero-link-solid:hover { background: #094aad; }
-            .book-hero-link-outline { background: transparent; color: #1f2937; border: 1.5px solid #e5e7eb; padding: 0.375rem 0.95rem; }
-            .book-hero-link-outline:hover { background: #F0F3F8; }
-
-            /* ── Description Card ── */
-            .book-desc-card {
-                background: #ffffff;
-                border-radius: 5px;
-                padding: 1.1rem 1.25rem 1.3rem;
-            }
-            .book-desc-heading {
-                font-family: 'Noto Serif Bengali', serif;
-                font-size: 1rem;
-                font-weight: 800;
-                color: #1f2937;
-                margin: 0 0 0.75rem;
-                padding-bottom: 0.6rem;
-                border-bottom: 1px solid #e5e7eb;
-            }
-
-            /* ── Related Books: white card নয়, শুধু লেবেল + লাইন দিয়ে
-                 আলাদা করা — page background-এর সাথে মিশে থাকে। লেবেলটা
-                 category.html-এর "bc-latest-title" ডিজাইনের সাথে হুবহু মিলিয়ে
-                 (accented gradient underline) — সাইটজুড়ে একই ভিজ্যুয়াল ভাষা। ── */
-            .book-related-section {
-                margin-top: 1rem;
-                padding: 0 0.15rem;
-            }
-            .book-related-section .bc-latest-title {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                font-size: 1rem;
-                font-weight: 600;
-                color: #1f2937;
-                margin-bottom: 1rem;
-                letter-spacing: 0.01em;
-            }
-            .book-related-section .bc-latest-title::after {
-                content: '';
-                flex: 1;
-                height: 3px;
-                border-radius: 1px;
-                background: linear-gradient(to right, #e5e7eb 0%, #0B57CF 100%);
-            }
-        </style>
-
-        <style>
-            .btn-unclick {
-                pointer-events: none;
-                cursor: not-allowed;
-                color: #9ca3af !important;
-                background: repeating-linear-gradient(
-                    -45deg,
-                    #e5e7eb,
-                    #e5e7eb 6px,
-                    #d1d5db 6px,
-                    #d1d5db 12px
-                ) !important;
-            }
-        </style>
-
-        <style>
-            .prose-book h1, .prose-book h2, .prose-book h3,
-            .prose-book h4, .prose-book h5, .prose-book h6 {
-                font-weight: 700;
-                line-height: 1.3;
-                margin-top: 1.25em;
-                margin-bottom: 0.4em;
-                color: #1f2937;
-            }
-            .prose-book h1 { font-size: 1.4em; }
-            .prose-book h2 { font-size: 1.2em; }
-            .prose-book h3 { font-size: 1.05em; }
-            .prose-book h4, .prose-book h5, .prose-book h6 { font-size: 0.95em; }
-
-            .prose-book p { margin-bottom: 0.75em; }
-
-            .prose-book a {
-                color: #0B57CF;
-                text-decoration: underline;
-            }
-
-            .prose-book strong { font-weight: 500; color: #1f2937; }
-
-            .prose-book em { font-style: italic; }
-
-            .prose-book ul, .prose-book ol {
-                padding-left: 1.5em;
-                margin-bottom: 0.75em;
-            }
-            .prose-book ul { list-style-type: disc; }
-            .prose-book ol { list-style-type: decimal; }
-            .prose-book li { margin-bottom: 0.25em; }
-
-            .prose-book blockquote {
-                border-left: 3px solid #6b7280;
-                padding: 0.4em 0.9em;
-                margin: 0.75em 0;
-                color: #4b5563;
-                font-style: italic;
-                background: #F0F3F8;
-                border-radius: 0 4px 4px 0;
-            }
-
-            .prose-book code {
-                background: #e5e7eb;
-                color: #1f2937;
-                padding: 0.1em 0.35em;
-                border-radius: 3px;
-                font-size: 0.88em;
-                font-family: monospace;
-            }
-
-            .prose-book pre {
-                background: #F0F3F8;
-                color: #1f2937;
-                padding: 1em;
-                border-radius: 6px;
-                overflow-x: auto;
-                margin-bottom: 0.75em;
-                font-size: 0.85em;
-                font-family: monospace;
-            }
-            .prose-book pre code {
-                background: none;
-                color: inherit;
-                padding: 0;
-                font-size: inherit;
-            }
-
-            .prose-book table {
-                width: 100%;
-                border-collapse: collapse;
-                margin-bottom: 0.75em;
-                font-size: 0.9em;
-            }
-            .prose-book th {
-                background: #e5e7eb;
-                font-weight: 600;
-                text-align: left;
-                padding: 0.5em 0.75em;
-                border: 1px solid #e5e7eb;
-                color: #1f2937;
-            }
-            .prose-book td {
-                padding: 0.45em 0.75em;
-                border: 1px solid #e5e7eb;
-            }
-            .prose-book tr:nth-child(even) { background: #F0F3F8; }
-
-            .prose-book hr {
-                border: none;
-                border-top: 1px solid #e5e7eb;
-                margin: 1.25em 0;
-            }
-
-            .prose-book img {
-                max-width: 100%;
-                border-radius: 6px;
-                margin: 0.5em 0;
-            }
-
-            .prose-book del { text-decoration: line-through; color: #9ca3af; }
-
-            .prose-book input[type="checkbox"] {
-                margin-right: 0.4em;
-                accent-color: #0B57CF;
-            }
-        </style>
-
+                <button id="m-restart-btn" class="hidden dl-restart-btn">
+                    আবার চেষ্টা করুন
+                </button>
+            </div>
+        </div>
     </div>
 
-    <script>
-    (function() {
-      // সম্প্রতি দেখা বই — হোমপেজে "সম্প্রতি দেখেছেন" স্ট্রিপে দেখানোর জন্য
-      try {
-        var entry = {
-          slug: "shivaji-1929",
-          title: "শিবাজী (১৯২৯)",
-          cover: "https://cdn.pathokghar.com/1787214624557_rbaakpajxnc.webp"
-        };
-        var recent = JSON.parse(localStorage.getItem('pg-recent-books') || '[]');
-        recent = recent.filter(function(b) { return b.slug !== entry.slug; });
-        recent.unshift(entry);
-        recent = recent.slice(0, 12);
-        localStorage.setItem('pg-recent-books', JSON.stringify(recent));
-      } catch (e) {}
-    })();
-    </script>
-</main>
+    <!-- Info strip -->
+    <div class="dl-info-strip">
+        <span class="dl-info-item"><i class="fas fa-shield-alt"></i> নিরাপদ</span>
+        <span class="dl-info-item"><i class="fas fa-bolt"></i> দ্রুত</span>
+        <span class="dl-info-item"><i class="fas fa-ban"></i> অবাধ</span>
+    </div>
+</div>
+
+
+
+<script>
+(function () {
+    const DOWNLOAD_URL = '';
+    const BOOK_SLUG     = 'epictetus-er-upodes';
+    const COUNTDOWN_SECONDS = 5;
+
+    // book_download_url না থাকলে ebooks.pathokghar.com থেকে ফরম্যাট অনুযায়ী লিংক তৈরি।
+    // (নোট: টেমপ্লেট লিটারেল/backtick ব্যবহার করা হচ্ছে না — render() ফাংশন
+    // ডলার চিহ্ন ডাবল করে ফেলে, তাতে ইন্টারপোলেশন সিনট্যাক্স ভেঙে যায়। তাই স্ট্রিং concat।)
+    const EBOOKS_BASE = 'https://dl.pathokghar.com/ebooks/';
+    const FORMAT_URLS = {
+        EPUB: EBOOKS_BASE + 'epub/' + BOOK_SLUG + '.epub',
+        PDF:  EBOOKS_BASE + 'pdf/' + BOOK_SLUG + '.pdf',
+    };
+
+    // Generic countdown runner — শেষে book_download_url থাকলে একক ডাউনলোড বাটন,
+    // না থাকলে EPUB/MOBI/PDF — ৩টা লিংক দেখাবে
+    function startCountdown(prefix) {
+        const fill    = document.getElementById(prefix + 'progress-fill');
+        const text    = document.getElementById(prefix + 'countdown-text');
+        let remaining = COUNTDOWN_SECONDS;
+
+        // Start full, shrink to 0
+        fill.style.width = '100%';
+
+        // First tick after 1 frame so transition plays
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                fill.style.width = ((remaining - 1) / COUNTDOWN_SECONDS * 100) + '%';
+            });
+        });
+
+        const interval = setInterval(() => {
+            remaining--;
+            text.textContent = remaining;
+            fill.style.width = (remaining / COUNTDOWN_SECONDS * 100) + '%';
+
+            if (remaining <= 0) {
+                clearInterval(interval);
+                // progress wrap + waiting text fade out, তারপর ডাউনলোড লিংক(গুলো) দেখাও
+                const progressWrap  = document.getElementById(prefix + 'progress-wrap');
+                const waitingText   = document.getElementById(prefix + 'waiting-text');
+                const dlBtn         = document.getElementById(prefix + 'download-btn');
+                const formatLinks   = document.getElementById(prefix + 'format-links');
+                const restartBtn    = document.getElementById(prefix + 'restart-btn');
+
+                // fade out
+                if (progressWrap) { progressWrap.style.transition = 'opacity 0.3s'; progressWrap.style.opacity = '0'; }
+                if (waitingText)  { waitingText.style.transition  = 'opacity 0.3s'; waitingText.style.opacity  = '0'; }
+
+                setTimeout(() => {
+                    if (progressWrap) progressWrap.style.display = 'none';
+                    if (waitingText)  waitingText.style.display  = 'none';
+                    if (restartBtn)   restartBtn.style.display   = 'none';
+
+                    if (DOWNLOAD_URL) {
+                        // একটামাত্র ডাউনলোড লিংক
+                        if (dlBtn) {
+                            dlBtn.href = DOWNLOAD_URL;
+                            dlBtn.classList.remove('hidden');
+                            dlBtn.classList.add('step-fade');
+                        }
+                    } else if (formatLinks) {
+                        // EPUB/MOBI/PDF — ৩টা আলাদা লিংক
+                        const epub = document.getElementById(prefix + 'format-link-epub');
+                        const pdf  = document.getElementById(prefix + 'format-link-pdf');
+                        if (epub) epub.href = FORMAT_URLS.EPUB;
+                        if (pdf)  pdf.href  = FORMAT_URLS.PDF;
+                        formatLinks.classList.remove('hidden');
+                        formatLinks.classList.add('step-fade');
+                    }
+                }, 300);
+            }
+        }, 1000);
+    }
+
+    function showStep(prefix, n) {
+        // FIX: step-3 নেই, শুধু 1 ও 2 toggle করা হচ্ছে
+        [1, 2].forEach(i => {
+            const el = document.getElementById(prefix + 'step-' + i);
+            if (!el) return;
+            if (i === n) { el.classList.remove('hidden'); el.classList.add('step-fade'); }
+            else el.classList.add('hidden');
+        });
+    }
+
+    // "ডাউনলোড লিংক পান" ক্লিক করার পরই countdown শুরু হয়ে শেষে আসল লিংক(গুলো) দেখা যায়
+    const mGetLinkBtn = document.getElementById('m-get-link-btn');
+    if (mGetLinkBtn) mGetLinkBtn.addEventListener('click', () => { showStep('m-', 2); startCountdown('m-'); });
+
+    const mRestart = document.getElementById('m-restart-btn');
+    if (mRestart) mRestart.addEventListener('click', () => showStep('m-', 1));
+
+    // প্রথমবার কোনো ডাউনলোড লিংকে ক্লিক করলে শুধু external ad লিংক নতুন ট্যাবে খুলবে।
+    // ads থেকে ফিরে আবার ক্লিক করলে আসল ডাউনলোড শুরু হবে।
+    const AD_URL = 'https://www.effectivecpmnetwork.com/xy4y06gcc0?key=0a786fa6fae9cb37d984706635ad88c3';
+    let adOpened = false;
+    function gateWithAd(el) {
+        if (!el) return;
+        el.addEventListener('click', (e) => {
+            if (!adOpened) {
+                e.preventDefault();
+                adOpened = true;
+                window.open(AD_URL, '_blank');
+            }
+        });
+    }
+    gateWithAd(document.getElementById('m-download-btn'));
+    gateWithAd(document.getElementById('m-format-link-epub'));
+    gateWithAd(document.getElementById('m-format-link-pdf'));
+})();
+</script>
+
     </main>
 
     <!-- FOOTER -->
