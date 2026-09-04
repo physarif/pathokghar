@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="bn"> 
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/moharaj-krishnochondro-royossho-choritron.html">
+    <title>মহারাজ কৃষ্ণচন্দ্র রায়স্য চরিত্রং - পাঠক ঘর</title>
+    <meta name="description" content="">
+    <meta property="og:title" content="মহারাজ কৃষ্ণচন্দ্র রায়স্য চরিত্রং - পাঠক ঘর">
+    <meta property="og:description" content="">
+    <meta name="theme-color" id="theme-color-meta" content="#ffffff">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', dark:'#1c1c1e' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', dark:'#e5e7eb' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        var meta = document.getElementById('theme-color-meta');
+        if (meta) meta.setAttribute('content', bg);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+        body.theme-light { background: #ffffff; }
+        body.theme-dark { background: #1c1c1e; }
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.6rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+</style>
+</head>
+<body>
+
+<style>
+    /* ── Bar theme variables (header / footer / drawer) — follow reading mode ── */
+    :root, body {
+        --bar-bg: #ffffff;
+        --bar-text: #1a1a1b;
+        --bar-text-dim: rgba(26,26,27,0.55);
+        --bar-border: rgba(0,0,0,0.1);
+        --bar-btn-active: rgba(0,0,0,0.06);
+        --bar-track: rgba(0,0,0,0.12);
+        --bar-accent: #0B57CF;
+        --bar-accent-soft: rgba(11,87,207,0.12);
+    }
+    body.theme-dark {
+        --bar-bg: #232326;
+        --bar-text: #e5e7eb;
+        --bar-text-dim: rgba(229,231,235,0.55);
+        --bar-border: rgba(255,255,255,0.1);
+        --bar-btn-active: rgba(255,255,255,0.08);
+        --bar-track: rgba(255,255,255,0.18);
+        --bar-accent: #3b82f6;
+        --bar-accent-soft: rgba(59,130,246,0.2);
+    }
+
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--bar-accent);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid var(--bar-accent-soft);
+        border-bottom: 1px solid var(--bar-accent-soft);
+        transition: color 0.3s, border-color 0.3s;
+    }
+    #book-content h1,
+    #book-content h3 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--bar-accent);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid var(--bar-accent-soft);
+        border-bottom: 1px solid var(--bar-accent-soft);
+        transition: color 0.3s, border-color 0.3s;
+    }
+    /* h1/h2 colors now follow --bar-text-dim / --bar-accent (see :root theme variables above),
+       so they automatically match light / dark modes. */
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p {
+        background: #232326;
+        border-color: rgba(255,255,255,0.08);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #0B57CF;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #0B57CF;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(11,87,207,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #0B57CF;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(11,87,207,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2, #book-content h3 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: var(--bar-accent);
+        font-weight: 600;
+        background: var(--bar-accent-soft);
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: var(--bar-text);
+        border-bottom: 1px solid var(--bar-border);
+        transition: color 0.15s, background 0.3s, border-color 0.3s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: var(--bar-text-dim);
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reading progress line — header-এর বাইরে, স্বাধীন fixed element,
+       তাই body.bars-hidden দিয়ে header হাইড হলেও এটা visible থাকবে ── */
+    #reading-progress-bar {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        background: var(--bar-btn-active);
+        z-index: 70;
+        pointer-events: none;
+    }
+    #reading-progress-fill {
+        height: 100%;
+        width: 0%;
+        background: var(--bar-accent);
+    }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        flex-direction: column;
+        padding: 0 0.5rem 0 0.35rem;
+        background: var(--bar-bg);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-row1 {
+        padding-top: 0.4rem;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding-bottom: 0.4rem;
+    }
+    #rh-back {
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0B57CF;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: background 0.15s, color 0.3s;
+    }
+    #rh-back:active { background: var(--bar-btn-active); }
+    #rh-titles {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+    }
+    #rh-title {
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.98rem;
+        font-weight: 600;
+        color: var(--bar-text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: color 0.3s;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 34px;
+        height: 34px;
+        border: none;
+        background: transparent;
+        color: #0B57CF;
+        border-radius: 7px;
+        font-size: 1.05rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s, color 0.3s;
+    }
+    #reader-header .rh-actions button:active { background: var(--bar-btn-active); }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: var(--bar-bg);
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease, background 0.3s;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid var(--bar-border);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--bar-text-dim);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: var(--bar-accent);
+        border-bottom-color: var(--bar-accent);
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--bar-accent);
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--bar-text);
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: auto;
+        min-width: 64px;
+        height: 34px;
+        flex: 1 1 0;
+        padding: 0 12px;
+        border-radius: 8px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        box-shadow: 0 0 0 1px var(--bar-border);
+    }
+    .theme-circle.active { border-color: var(--bar-accent); }
+    .theme-circle svg { display: none; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--bar-border);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: var(--bar-text); }
+    .settings-row-val { font-size: 0.74rem; color: var(--bar-text-dim); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid var(--bar-border);
+        background: var(--bar-btn-active);
+        color: var(--bar-text);
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: var(--bar-accent-soft); border-color: var(--bar-accent); color: var(--bar-text); }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid var(--bar-border);
+        background: var(--bar-btn-active);
+        color: var(--bar-text);
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: var(--bar-accent-soft) !important;
+        border-color: var(--bar-accent) !important;
+        color: var(--bar-text) !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid var(--bar-border);
+        background: transparent;
+        color: var(--bar-text);
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: var(--bar-accent-soft) !important;
+        border-color: var(--bar-accent) !important;
+        color: var(--bar-text) !important;
+    }
+
+</style>
+
+<!-- ══ Reading progress line — header হাইড হলেও visible থাকে ══ -->
+<div id="reading-progress-bar"><div id="reading-progress-fill"></div></div>
+
+<!-- ══ Reader header (back + title/chapter stack + actions) ══ -->
+<header id="reader-header">
+    <div id="rh-row1">
+        <a href="/book/moharaj-krishnochondro-royossho-choritron.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+            <i class="fa-solid fa-angle-left"></i>
+        </a>
+        <div id="rh-titles">
+            <h1 id="rh-title">মহারাজ কৃষ্ণচন্দ্র রায়স্য চরিত্রং</h1>
+        </div>
+        <div class="rh-actions">
+            <button id="rh-menu-btn" aria-label="সূচিপত্র ও কাস্টমাইজ" title="সূচিপত্র ও কাস্টমাইজ"><i class="fa-solid fa-list-ul"></i></button>
+        </div>
+    </div>
+</header>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle" data-theme="light" style="background:#fff;border-color:#0B57CF;" title="সাদা"></button>
+                    <button class="theme-circle active" data-theme="dark" style="background:#3a3a3a;border-color:#3b82f6;" title="ডার্ক">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e5e7eb" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-justify" title="জাস্টিফাই">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <section><div>
+
+<h2>মহা রাজ কৃষ্ণচন্দ্র রায়স্য চরিত্রং
+</h2>
+</div>
+
+<p>বঙ্গভূমিতে হাবিলি পরগণায় কাঁকদি গ্রামে কাশীনাথ রায় মহাশয়ের বসতি ছিল পরগণাও তাহার জমিদারি কিছু কাল পরে রাজ করের কারণ ঢাকার শুভার সহিত বিবাদ উপস্থিত হইল সেই বিবাদে পরাভব হইয়া বনিতাকে সঙ্গে করিয়া দেশ ত্যাগ করিলেন বহু কাল ভ্রমণ করিতে ২ বাগুয়ান পরগণায় বিশ্বনাথ সমাদ্বারের বাটীতে উপস্থিত হইলেন। সমাদ্বার যথেষ্ট সমাদর করিয়া নিজালয়েতে অপূর্ব্ব স্থান নিরূপণ করিয়া দিয়া রায়কে এবং রায়ের গৃহিণীকে যত্নপূর্ব্বক পালন করিতে লাগিলেন কিঞ্চিৎ কালান্তরে রায়ের বনিতা গর্ব্ভিণী হইয়া রায়কে কহিলেন হে নাথ বুঝি আমার গর্ব্ভ হইল ইহা শুনিয়া রায় অত্যন্ত কাতর হইয়া কহিলেন রাজ্যচ্যুত হইয়া পরের বাটীতে থাকিয়া রাণী কি প্রকারে প্রসব হইয়া। এবং অনেক ২ বিলাপ করিলেন। অনেক বিবেচনানন্তর প্রভাতে সমাদ্বারকে সকল বৃত্তান্ত জ্ঞাত করিয়া কহিলেন হে তাত আমরা তোমার সন্তান সন্ততি আপনি ইহাই বিবেচনা করিয়া যে উচিত হয় তাহাই করিবেন সমাদ্বার অনেক ২ আশ্বাস করিয়া কন্যা ভাবে রাণীকে পালন করিতে লাগিলেন রায় দেখেন সমাদ্বার আত্ম কন্যার ন্যায় রাণীকে পালন করিতে প্রবর্ত্ত তখন চিন্তা করিতেছেন রাজ্য গেল পরের বাটীতে কত কাল বাস এ রূপে করিব ইহাই অন্তঃকরণে উপস্থিত হইয়া অত্যন্ত কাতর হইয়া বিবেচনা করিয়া দেখেন ইহার উপায় হস্তিনাপুরে না গেলে আমার উপায়ান্তর হইবেক না ইহাই ধার্য্য করিয়া সমাদ্বারকে না কহিয়া এবং আত্ম বনিতাকে না বালিয়া হস্তিনাপুরে প্রস্থান করিলেন॥
+</p><p>সমাদ্বার রায়কে না দিখিয়া অত্যন্ত উদ্বিগ্ন এবং রায়ের গৃহিণী রায়ের অন্বেষণ না পায়া বিপদ সাগরে মগ্না ক্ষিদ্যমানা রোদন পরা শোকাকুলা। সমাদ্বার অতিশয় কাতরা দেখিয়া রাণীকে কহিতেছেন তুমি আমার কন্যা যদ্যপি রায় এ রূপ করিলেন আমি তোমাকে প্রতিপালন করিব তুমি কদাচ চিন্তা করিবা না। তখন রাণী সমাদ্বারের কথা শ্রবণ করিয়া স্থিরা হইয়া কহিলেন পিতা তোমা ব্যতিরেকে আমার আর অন্য জন নাই। সমাদ্বার কহিলেন কন্যা কদাচ ভাবনা করিবা না। তখন বনিতা স্থিরা হইলেন সমাদ্বার সর্ব্বদা রাণীকে অধিক স্নেহেতে পালন করেন। সময় ক্রমে রায়ের বনিতা প্রসব হইলেন অপূর্ব্ব বালক দর্শণ করিয়া পরম হৃষ্টা হইয়া কহিলেন পিতাকে ডাক সমাদ্বার উপস্থিত হইলেই কহিলেন পিতা দৌহিত্র দর্শণ কর। সমাদ্বার দর্শণ করিয়া দেখেন লক্ষণাক্রান্ত দৌহিত্র ভাবে সমাদ্বার পালন করিতে লাগিলেন। সময়ক্রমে অন্নপ্রাশন দিয়া নাম রাখিলেন শ্রীরাম। সকল লোক জানিলেক সমাদ্বারের পরিবার এই হেতু নাম হইল রাম সমাদ্বার॥
+</p><p>এই রূপে কতক কাল যায় রায় হস্তিনাপুর গমন করিলেন কিন্তু পুনরায় আগমন হইল না। সমাদ্বার বিবেচনা করিলেন বালকের যজ্ঞোপবীতের সময় উপস্থিত হইল অতএব প্রধান ২ পণ্ডিতের স্থানে জিজ্ঞাসা করি তাহারা যে মত কহেন সেই মত কার্য্য করিব। এই সকল বিবেচনা করিতে ২ রায়ের দ্বাদশ বৎসর গত হইল। পরে পণ্ডিতের ব্যবস্থা মতে রায়ের শ্রাদ্ধ করাইয়া শ্রী রামের যজ্ঞোপবীত দিয়া বিবাহ দিলেন॥
+</p><p>কিছু কালান্তরে শ্রী রাম সমাদ্বারের জায়া গর্ব্ভিণী হইলেন। সময় ক্রমে রাম সমাদ্বারের বনিতা প্রসব হইলেন অপূর্ব্ব বালক সর্ব্ব লক্ষণাক্রান্ত অতিশয় রূপবান চন্দ্রের ন্যায়। রাম সমাদ্বার পুত্রকে দেখিয়া বিবেচনা করিতেছেন বুঝি এই পুত্র হইতে আমাদিগের কুল উজ্জ্বল হইবেক আনন্দার্ণবে মগ্ন হইলেন। পুত্র দিনে ২ চন্দ্র কলার ন্যায় প্রকাশ পাইতেছেন অন্নপ্রাশনাদি দিয়া নাম রাখিলেন ভবানন্দ॥
+</p><p>ক্রমে ২ রাম সমাদ্বারের তিন পুত্র হইল জ্যেষ্ঠ ভবানন্দ মধ্যম হরিবল্লভ কনিষ্ঠ সবুদ্ধি। ভবানন্দ মধ্যাহ্ন সূর্য্যের ন্যায় অতিশয় তেজস্পুঞ্জ। কিঞ্চিৎ কাল গৌণে ভবানন্দ বিদ্যা অভ্যাস করিতে প্রবর্ত্ত শ্রুতিধর যাহা শুনেন তৎক্ষণেতে তাহাই অভ্যাস হই প্রত্ম শাস্ত্র পাঠ পশ্চাৎ বাঙ্গালা লিখন পঠন এবং পারসি ও আরবি ইত্যাদিতে বিসারদ হইলেন। অস্ত্র বিদ্যাতে অতি বড় ক্ষমতাপন্ন হয়ারোহণে নল রাজার ন্যায় সর্ব্ব বিদ্যায় বৃহস্পতি তুল্য রাম সমাদ্বার দেখিলেন পুত্র সর্ব্ব বিদ্যায় অতিশয় গুণবান হইল মনে বিবেচনা করিতেছেন এখন পুত্র রাজধানিতে গমন করে তবে উত্তম হয় কিন্তু পুত্রের বিবাহ অতি ত্বরায় দিতে হইয়াছে ইহাই স্থির করিয়া ভবানন্দের বিবাহ দিলেন। ক্রমে ২ তিন পুত্রের বিবাহ হইল॥
+</p><p>ভবানন্দ অন্তঃকরণে নানা প্রকার বিবেচনা করিলেন আমার বাটীতে থাকা পরামর্শ নহে আমি রাজধানিতে গমন করিব। ইহাই স্থির করিয়া পিতাকে কহিলেন পিতা আমি বাটীতে থাকিব না রাজধানিতে গমন করিব। রাম সমাদ্বার কহিলেন উপযুক্ত পরামর্শ করিয়াছ ভাল দিবস স্থির করিয়া যাত্রা কর। পিতার অনুমতি পাইয়া ভবানন্দ কিঞ্চিৎ অর্থ লইয়া দিব্য যানে রাজধানিতে গমন করিলেন। তখন রাজধানি ঢাকায়। ভবানন্দ ঢাকায় উপস্থিত হইয়া উত্তম এক স্থানে রহিলেন এবং সর্ব্বত্রে গমনাগমন করিতে প্রবর্ত্ত বঙ্গাধিকারির নিকটে যাতায়াত করিতে ২ বঙ্গাধিকারির নিকটে প্রতিপন্ন হইলেন। বঙ্গাধিকারী মহাশয় দেখেন ভবানন্দ অতি বড় গুণবান। অত্যন্ত তুষ্ট হইয়া আত্ম্য কার্য্যের মধ্যে প্রধান কার্য্যে ভবানন্দকে নিযুক্ত করিলেন খ্যাতি রাখিলেন রায় মজুমদার। সেই অবধি খ্যাতি হইল ভবানন্দ রায় মজুমদার॥
+</p><p>রায় মজুমদারের উন্নতি যথেষ্ট হইল। কিছু কালান্তরে যশহর নগরে প্রতাপাদিত্য নামে রাজা অতিশয় প্রতাপান্বিত হইয়া রাজকর নিবারণ করলেন। এই সকল বৃত্তান্ত প্রতাপাদিত্য চরিত্রে বিস্তার আছে॥
+</p><p>রাজা প্রতাপাদিত্যকে ধরিতে ঢাকার বাদসা রাজা মানসিংহকে আজ্ঞা করিলেন তুমি যাইয়া রাজা প্রতাপাদিত্যকে ধরিয়া আন তাহাতে রাজা মানসিংহ যে আজ্ঞা বলিয়া স্বীকার করিলেন পশ্চাত্ রাজা মানসিংহ অন্তঃকরণে বিবেচনা করিলেন রাজা প্রতাপাদিত্য বড় দুর্বৃত্ত আমাকে আনিতে সুবা আজ্ঞা করিলেন কিন্তু সেই দেশীয় এক জন উপযুক্ত মনুষ্য পাইলে ভাল হয় ইহার পূর্ব্ব ভবানন্দ রায় মজুমদার রাজা মানসিংহের নিকট যাতায়াত করিতেছেন তাহাতেই রাজা মানসিংহ ভবানন্দ রায় মজুমদারকে জ্ঞাত ছিলেন স্মরণ হইল যে ভবানন্দ রায় মজুমদার সর্ব্ব শাস্ত্রে পণ্ডিত এবং গৌড় নিবাসী অতএব বঙ্গাধিকারীকে কহিয়া রায় মজুমদারকে লইব ইহাই স্থির করিয়া বঙ্গাধিকারীকে রাজা কহিলেন তোমার চাকর ভবানন্দ রায় মজুমদারকে আমাকে দেহ আমি সঙ্গে লইয়া যাইব। বঙ্গাধিকারী কহিলেন যে আজ্ঞা কিন্তু বঙ্গাধিকারির যথেষ্ট ক্ষেদ হইল যে এমন চাকর আর কখন পাইব না কি করেন রায় মজুমদারকে আহ্বান করিয়া কহিলেন তোমাকে রাজা মানসিংহের সঙ্গে যাইতে হইল। রায় মজুমদার নিবেদন করিলেন কোন দেশে যাইতে হইবেক তাহাতে বঙ্গাধিকারী কহিলেন গৌড়ে যশহর নগরে রাজা প্রতাপাদিত্য রাজকর বারণ করিয়াছে তাহাকে ধরিতে রাজা মানসিংহ যাইতেছেন তুমিও তাহার সহিত গমন কর যে আজ্ঞা বলিয়া রায় মজুমদার স্বীকার করিলেন। পরে রাজা মানসিংহ ভবানন্দ রায় মজুমদার ও নব লক্ষ সৈন্য সঙ্গে করিয়া প্রতাপাদিত্য নিধন করিতে গৌড়ে প্রস্থান করিয়া দুই মাসে বালুচর গ্রামে উপনিত হইলেন। রায় মজুমদারকে কহিলেন রায় মজুমদার এ স্থানের কি নাম তাহাতে রায় মজুমদার নিবেদন করিলেন মহারাজ এ স্থানের নাম বালুচর গঙ্গার তীরেতে গ্রাম পত্তন হইয়াছে। রাজা মানসিংহ কহিলেন অপূর্ব্ব স্থান এই স্থানে রাজধানি হইলে উত্তম হয়। এই কথোপকথনের পর আজ্ঞা করিলেন আমি কিঞ্চিৎ কাল এখানি বিশ্রাম করিব। রায় মজুমদার সকল মনুষ্যকে কহিলেন তোমরা এই স্থানে বিশ্রাম করহ। কতক কালান্তরে রাজা মানসিংহ রায় মজুমদারকে আজ্ঞা করিলেন সকল সৈন্যকে সংবাদ করহ কল্য এ স্থান হইতে প্রস্থান করিব। আজ্ঞানুসারে যাবদীয় সৈনকে ভেরীর নাদে জানাইলেন যে কল্য এ স্থানহইতে প্রস্থান করিব। পর দিবস সৈন্যের সহিত রাজা মানসিংহ গমন করিলেন॥
+</p><p>এক দিবসের পর বর্দ্ধমানে উপস্থিত হইয়া রাজা মানসিংহ রায় মজুমদারকে জিজ্ঞাসা করিলেন এ কোন স্থান রায় মজুমদার নিবেদন করিলেন মহারাজ এ স্থানের নাম বর্দ্ধমান এ স্থানের অধিপতি রাজা বীরসিংহ ছিলেন এক্ষণে তাহার পুত্র রাজা ধীরসিংহ রাজত্ব করিতেছেন। রাজা ধীরসিংহ শ্রবণ করিলেন যে রাজা মানসিংহ রাজা প্রতাপাদিত্যকে নিপাত করিতে নব লক্ষ দলে আসিয়াছেন। রাজা ধীরসিংহ নিজ পরিবারের উপর আজ্ঞা করিলেন তোমরা সকলে সসজ্য হও আমি রাজা মানসিংহের সহিত সাক্ষাৎ করিতে যাইব এবং নানা প্রকার সামগ্রী ভেট দিতে হইবেক তাহার আয়োজন করহ রাজা ধীরসিংহ নিজ ভৃত্যেরদিগের প্রতি আজ্ঞা করণে নানাবিধ সামগ্রীর আয়োজন হইয়া প্রস্তুত হইল। পরে রাজা ধীরসিংহ দিব্য যানে আরোহণ করিয়া ভেটের দ্রব্য সকল সঙ্গে করিয়া রাজা মানসিংহের নিকট সাক্ষাৎ করিতে গমন করিলেন। অগ্রে একজন প্রধান চাকর রায় মজুমদারের নিকট যাইয়া নিবেদন করিলেক যে বর্দ্ধমানের রাজা ধীরসিংহ মানসিংহের সহিত সাক্ষাৎ করিতে আসিতেছেন মহারাজার নিকটে আপনি যাইয়া নিবেদন করুণ। পরে রায় মজুমদার রাজা মানসিংহকে নিবেদন করিলেন মহারাজ বর্দ্ধমানের রাজা ধীরসিংহ সাক্ষাৎ করিতে আসিতেছেন। রাজা মানসিংহ কহিলেন আসিতে কহ। পরে রাজা ধীরসিংহ নানা দ্রব্য ভেট দিয়া প্রণাম করিয়া দাঁড়াইলেন ভেটের দ্রব্য দধি দুগ্ধ ক্ষীর আম্র কাঁঠাল নারিকেল গুবাক শ্রীফল আতা ও আর ২ নানা জাতীয় ফল এবং অপূর্ব্ব ২ বস্ত্র পট্ট বস্ত্র ও উত্তম সূতার বস্ত্র ও বনাত মখমল এবং চুনি চন্দ্রকান্ত মণি সূর্য্যকান্ত মণি নীলকান্ত মণি অয়স্কান্ত মণি এবং সহস্র ২ সুবর্ণ দিলেন। ভেটের দ্রব্য দর্শন করিয়া আর রাজার শিষ্টতা দেখিয়া রাজা মানসিংহ অত্যন্ত তুষ্ট হইয়া রাজা ধীরসিংহকে বসিতে আজ্ঞা করিলেন। রাজা ধীরসিংহ নানা প্রকার শিষ্টাচার করিয়া কহিলেন মহারাজ আমার নগরের ভাগ্যক্রমে এবং আমার অদিষ্ট প্রসন্ন প্রযুক্ত মহারাজার আগমন হইয়াছে। রাজা মানসিংহ অত্যন্ত তুষ্ট হইয়া রাজা ধীরসিংহকে হস্তি ঘোটক এবং দ্রব্য রাজ বস্ত্র মুক্তার মালা নানাবিধ আভরণ প্রসাদ করিলেন আর কহিলেন আমি তোমার নগর ভ্রমণ করিয়া দেখিব। রাজা ধীরসিংহ নিবেদন করিলেন যে আজ্ঞা। এই সকল কথার পর ধীরসিংহ প্রণাম করিয়া বিদায় হইলেন। পর দিবস রাজা মানসিংহ রাজা ধীরসিংহের নগর ভ্রমণ করিতে গমন করিলেন। ভবানন্দ রায় মজুমদারকে সঙ্গে করিয়া রাজা মানসিংহ নগর ভ্রমণ করিতে ২ দেখেন এক সুড়ঙ্গ রায় মজুমদারকে জিজ্ঞাসা করিলেন কিসের সুড়ঙ্গ। তাহাতে রায় মজুমদার নিবেদন করিলেন রাজা বীরসিংহের এক কন্যা বিদ্যা নামে ছিল সে কন্যা সর্ব্বশাস্ত্রে পণ্ডিতা ইহাতেই কন্যা প্রতিজ্ঞা করিলেক যে আমাকে শাস্ত্রের বিচারে পরাভব করিবেক তাহাকে আমি বর মাল্য দিব এই সংবাদ দেশ দেশান্তর প্রচার হওনে অনেক ২ রাজপুত্র আসিলেন সকলকে পরাভব করিলেক। পরে দক্ষিণ দেশে কাঞ্চিপুরের গুণ সিন্ধু মহারাজার তনয় সুন্দর না যে অতিশয় রূপবান এবং সর্ব্ব শাস্ত্রে মহা মহোপাধ্যায় এই সকল সংবাদ পাইয়া পিতা মাতাকে না কহিয়া বর্দ্ধমানে হিরা নামে এক মালিনীর বাটীতে বাসা করিয়া রহিলেন সেই সুন্দর সুড়ঙ্গ কাটিয়া বিদ্যার নিকট যাইয়া শাস্ত্র বিচারে জয়ী হইয়া বিদ্যাকে গন্ধর্ব্ব বিবাহ করিলেন। ইহার বিস্তার চোর পঞ্চাশতে আছে। রাজা মানসিংহ আজ্ঞা করিলেন সে গ্রন্থ আনিয়া আমাকে শুনাও। রায় মজুমদার চোর পঞ্চাশত শ্লোক আনাইয়া যাবদীয় বৃত্তান্ত শ্রবণ করাইলেন॥
+</p><p>পশ্চাৎ রাজা মানসিংহ বর্দ্ধমানহইতে গমন করিয়া বিবেচনা করিলেন যে ভবানন্দ রায় মজুমদারের বাটী দেখিয়া যাইব। রাই মজুমদারকে কহিলেন আমি তোমার বাটী হইয়া যাইব। রায় মজুমদার যে আজ্ঞা বলিয়া পরম হৃষ্ট হইলেন। রাজা মানসিংহ বাগুয়ান পরগণায় উপস্থিত হইয়া ভবানন্দ রায়ের বাটীতে উপনিত হইলেন। রায় মজুমদার নানা জাতীয় ভেটের সামগ্রী রাজার গোচরে আনিলেন। রায় মজুমদারের আহ্লাদ এবং সমগ্রীর আয়োজন দেখিয়া রাজা মানসিংহ অত্যন্ত তুষ্ট হইলেন। ইতিমধ্যে ঝড় বৃষ্টি অতিশয় উপস্থিত রাজা মানসিংহের সঙ্গে নব লক্ষ সৈন্য খাদ্য সামগ্রীর কারণ মহাব্যস্ত রায় মজুমদার যাবদীয় সৈন্যের আহার পরগণা হইতে এবং নিজালয় হইতে দিলেন। এই প্রকার সপ্তাহ হস্তি ঘোটক পদাতিক প্রভৃতি সকলেই কোন ব্যামোহ পাইলেক না। ইহাতে রাজা মানসিংহ ভবানন্দ রায়কে অতিশয় সন্তুষ্ট হইয়া রায় মজুমদারকে কহিলেন যদি ঈশ্বর আমাকে জয়ী করিয়া আনেন তবে তোমার উপকারের প্রত্যুপকার করিব। পশ্চাৎ যশহরে গমন করিয়া রাজা প্রতাপাদিত্যকে শাসিত করিয়া কিছুকাল গৌণে ঢাকায় প্রস্থান করিলেন॥
+</p><p>ভবানন্দ রায় মজুমদার রাজা মানসিংহের সহিত ঢাকায় গমন করিলেন। এক দিবস রাজা মানসিহ রায় মজুমদারকে কহিলেন তুমি আমার সাহায্য অনেক ২ করিয়াছ অতএব তোমার কোন বাসনা থাকে আমাকে কহ আমি তাহা পূর্ণ করিব। ইহা শুনিয়া রায় মজুমদার নিবেদন করিলেন যদি আমার প্রতি অনুগ্রহ করেন তবে বাগুয়ান পরগণা আমার জমিদারি আজ্ঞা হয়। রাজা মানসিংহ স্বীকার করিয়া কহিলেন ঢাকায় উপস্থিত হইয়া অগ্রে তোমার বাসনা পূর্ণ করিব। ভবানন্দ রায় মজুমদারের অন্তঃকরণে যথেষ্ট আহ্লাদ হইয়া বিবেচনা করিতেছেন বুঝি কুললক্ষ্মীর হৃপা হয়॥
+</p><p>রাজা মানসিংহ জয়ী হইয়া। আসিতেছেন এই সংবাদ বাদসা পাইয়া অত্যন্ত তুষ্ট হইয়া রাজা মানসিংহকে রাজপ্রসাদ দিবেন তাহার আয়োজন করিতে আজ্ঞা করিলেন প্রধান মন্ত্রীরা সামগ্রী সমাধান করিতে প্রবর্ত্ত হইলেন॥
+</p><p>ভবানন্দ রায় মজুমদারের বাটীতে আশ্চর্য্য এক প্রকরণ হইল তাহার বৃত্তান্ত এই বড়গাছি নামে এক গ্রাম তাহাতে হরি হোড়ের বসতি। হরি হোড় অতি বড় ধনবান এবং পূণ্যশীল অত্যন্ত ধার্ম্মিক লক্ষ্মী সর্ব্বদা স্থিরা হইয়া হরি হোড়ের নিবাসে বসতি করেন। বহুকাল এইরূপে গত হইল হরি হোড়ের পরিবার অতি বিস্তর সর্ব্বদা বিবাদ করিতে প্রবর্ত্ত বাটীর মধ্যে হাটের কোলাহলের ন্যায় লক্ষ্মী বিবেচনা করিলেন এই বাটীতে আর তিষ্ঠান গেল না অতএব আমার পরম ভক্ত ভবানন্দ মজুমদার তার বাটীতে গমন করি ইহাই স্থির করিয়া হরি হোড়ের বাটী হইতে ভবানন্দ মজুমদারের বাটীতে চলিলেন। পথের মধ্যে স্মরণ হইল নদীর নিকট ঈশ্বরী পাটনী আছে সে আমার অনেক তপস্যা করিয়াছে তাহাকে সাক্ষাৎ দিয়া বর প্রদান করিয়া পশ্চাৎ মজুমদারের বাটীতে যাইব। এই চিন্তা করিয়া পরম সুন্দরী এক কন্যা হইলেন কুক্ষি দেশে একটি ঝাঁপী লইয়া নদীর নিকটে যাইয়া কহিলেন ঈশ্বরী পাটনী আমাকে পার করিয়া দেহ। ঈশ্বরী পাটনী কহিলেক মা তুমি কে অগ্রে আমাকে কহ পশ্চাৎ পার করিব ইহা শুনিয়া হাস্য করিয়া কহিলেন ঈশ্বরী আমি ভবানন্দ মজুমদারের কন্যা শ্বশুরালয়ে গিয়াছিলাম সেখানে বিবাদের জ্বালাতে তিষ্টিতে পারিলাম না এখন পিত্রালয়ে যাইতেছি। ইহা শুনিয়া ঈশ্বরী পাটনী কহিলেক মা তুমি মজুমদার মহাশয়ের কন্যা নহ তাহার কন্যা হইলে এই বেশে একাকিনী কেন যাইবা কিন্তু আমার অন্তঃকরণে উদয় হইতেছে তুমি লক্ষ্মী মজুমদারকে হৃতার্থ করিতে গমন করিয়াছ আমি অতি দুঃখিনী আমাকে আত্ম পরিচয় দিউন। তাহাতে লক্ষ্মী হাস্য করিলেন ঈশ্বরী পাটনী পরম আহ্লাদে নৌকা শীঘ্র আনিয় কহিলেক মা নৌকায় বৈশ। লক্ষ্মী নৌকায় বসিয়া দুই খানি পদ জলে রাখিলেন। ঈশ্বরী পাটনী কহিলেক মা গো জলে নানা হিংস্রক জন্তু আছে কি জানি পাছি পদে দংশন করে পা দুই খানি তলিয়া বৈশ। তাহাতে লক্ষ্মী কহিলেন পদ কোথায় রাখিব? ঈশ্বরী পাটনী কহিলেক পা দুই খানি জল সেচনির উপরে রাখ। বিশ্ব মাতা ইহা শুনিয়া জল সেচনিতে পদ রাখিলেন জল সেচনিতে পদ স্পর্শ হইতেই সেচনি স্বর্ণ হইল। ঈশ্বরী পাটনী দেখে সেচনি সোনা হইল তখন অন্তঃকরণে বিবেচনা করিলেক ইতি সামান্যানন জগৎ জননী, ছল করিয়া আমার নিকট আসিয়াছেন ঈশ্বরী পাটনী লক্ষ্মীর পদ নত হইয়া প্রণাম করিয়া বহুবিধ স্তব করিলেক তখন লক্ষ্মী হাস্য করিয়া কহিলেন ঈশ্বরী পাটনী তুমি আমার অনেক তপস্যা করিয়াছ আমি বড় বাধ্য আছি বর যাচ্‌ঞা কর। ঈশ্বরী পাটনী কহিলেক মা গো তোমার হৃপায় আমার সকল পূর্ণ হইল যদি বর দিবেন তবে এই বর দেওন যে আমার সন্তান যাবৎ থাকিবেক কেহ দুঃখ না পায় এবং দুগ্ধ ভাত খাউক। তথাস্তু বালিয়া লক্ষ্মী অন্তর্দ্ধান হইলেন॥
+</p><p>পশ্চাৎ ঈশ্বরী পাটনী আনন্দ সাগরে মগ্না হইয়া ভবানন্দ মজুমদারের বাটীতে যাইয়া মজুমদারের গৃহিণীকে সমস্ত বৃত্তান্ত জ্ঞাত করিলেক। মজুমদারের বনিতা আনন্দার্ণবে মগ্না হইয়া ঈশ্বরী পাটনীকে দিব্য বস্ত্র আস্তরণে সন্তুষ্ট করিয়া পশ্চাৎ পুর বাসিনীরা সকলে আসিয়া জয় ২ ধ্বনি করতে প্রবর্ত্ত আহ্লাদের সীমা নাই। রজনী যোগে ভবানন্দ মজুমদারের স্ত্রী স্বপ্নে দেখেন অপূর্ব্বা এক কন্যা কহিতেছেন আমি তোমার বাটীতে আসিয়াছি এবং আমার একটি ঝাঁপী তোমার ঘরে রাখিয়াছি তুমি সর্ব্বদা আমার পূজা করিবা এবং ঝাঁপীটি খুলিবা না। রায় মজুমদারের স্ত্রী প্রাতে গাত্রোত্থান করিয়া দেখেন ঘরের মধ্য স্থলে ঝাঁপী স্নান করিয়া ঝাঁপী মস্তকে লইয়া অপূর্ব্ব এক স্থানে রাখিয়া নানাবিধ আয়োজন করিয়া লক্ষ্মীর পূজা করিলেন। অদ্যাপি সেই ঝাঁপী আছে॥
+</p><p>ভবানন্দরায় মজুমদার রাজা মানসিংহের সহিত ঢাকায় উপস্থিত হইলেন। পরে এক দিবস রাজা মানসিংহের সাহিত জহানগীরসা বাদসাহেৱ নিকট গমন করিলেন। বাদসাহের নিকট সংবাদ বিস্তারিত রাজা মানসিংহ নিবেদন করিলেন গমন এবং আগমন পর্য্যন্ত কিন্তু ভবানন্দ মজুমদারের বিস্তর ২ প্রশংসা বাদশাহের নিকট করণে বাদসা আজ্ঞা করিলেন তাহাকে আমার নিকটে আন। রাজা মানসিংহ অত্যন্ত হৃষ্ট হইয়া আহ্বান করিলেন। রায় মজুমদার বিস্তর ২ নমস্কার করিয়া করপুটে সম্মুখে দাঁড়াইলেন। বাদসা ভবানন্দ মজুমদারকে দেখিয়া তুষ্ট হইয়া কহিলেন উপযুক্ত মনুষ্য বটে পশ্চাৎ মানসিংহকে নানা প্রকার রাজপ্রসাদ সামগ্রী দিয়া আজ্ঞা করিলেন তোমার কোনবাসনা থাকে আমাকে কহ আমি তাহা পূর্ণ করিব। তখন রাজা মানসিহ নিবেদন করিলেন রাজা প্রতাপাদিতকে শাসিত করণের মূল ভবানন্দ মজুমদার যদি অজ্ঞা হয় তবে মজুমদারকে রাজপ্রসাদ কিছু দিউন। বাদসা হাস্য করিয়া কহিলেন উহার নিবেদন কি তখন রাজা মানসিহ করপুটে কহিলেন বাঙ্গলার মধ্যে বাগুয়ান নামে এক পরগণা আছে সেই পরগণা ইহার জমিদারি হউক। বাদসা হাস করিয়া কহিলেন জমিদারির লিপি করিয়া দেহ। আজ্ঞা পাইয়া রাজা মানাসিংহ বাগুয়ান পরগণার জমিদারির লিপি বাদসাহের স্বাক্ষর করিয়া মজুমদারকে দিয়া সংভ্রান্ত করিলেন। রায় মজুমদার জমিদারির লিপি লইয়া বাদসাহের নিকট হইতে বিদায় হইয়া রাজা মানসিংহের বাটীতে গেলেন। রাজা মানসিংহ কিঞ্চিত্ গৌণে রাজ দরবারহই তে বিদায় হইয়া বাটীতে আসিলেন দেখেন ভবানন্দ মজুমদার বসিয়া রহিয়াছেন জিজ্ঞাসা করিলেন তুমি কি কার্যে এখন এখানে আসিয়াছে। তাহাতে মজুমদার কহিলেন মহারাজ আমার মনোবাঞ্ছা পূর্ণ করিলেন কিছুকালের জলে বিদায় করুণ। ইহাতেই রাজা মানাসিংহ কহিলেন মজুমদার নিজ বাটীতে যাইবা। মজুমদার নিবেদন করিলেন যেমন আজ্ঞা হয়। রাজা মানসিংহ বহুবিধ রাজপ্রসাদ দিয়া যথেষ্ট তুষ্ট করিয়া মজুমদারকে বাটীতে বিদায় করিলেন।
+</p>
+
+<p> ভবানন্দ মজুমদার রাজ্য প্রান্ত হইয়া মনের আনন্দে শুভা লগ্নে তরণি যোগে বাটী প্রস্থান করিলেন॥
+</p><p>ভবানন্দ মজুমদার বাটীর নিকট আসিয়া নিজালয়ে দূত প্রেরণ করিয়া সংবাদ দিয়া পশ্চাৎ আপনি উপস্থিত হইলেন। যাবদীয় লোক শ্রবণ করিলেন যে রায় মজুমদার বাগুয়ান পরগণা জমিদারি করিয়া আসিয়াছেন ইহাতে যাবদীয় মনুষ্য হর্ষ হইয়া ভেটের সামগ্রী লইয়া সাক্ষাৎ করিতে গমন করিলেক সকলের মহা আনন্দ হইল। রায় মজুমদার যে যেমন মনুষ্য তাহাকে তেমনি সমাদর করিয়া শিষ্টাচার করিলেন এবং প্রজারদিগকে যথেষ্ট আশ্বাস করিয়া সকল মনুষ্যকে জমিদারির পত্র দেখাইলেন পশ্চাৎ আত্ম গৃহে গমন করিয়া পুর মধ্যে উত্তম স্থানে কিঞ্চিৎকাল বসিয়া অন্তঃপুরে গমন করিয়া মধুর বাক্যে নিজ পরিবারের তোষ জন্মাইয়া দিব্য আসনে বসিলেন। রায় মজুমদারের পত্নী লক্ষ্মীর আগমনের যাবদীয় বৃত্তান্ত নিবেদন করিলেন। সকল সমাচার জ্ঞাত হইয়া রায় মজুমদার বিবেচনা করিলেন লক্ষ্মীর কৃপায় আমার সকল সম্পত্তি মহানন্দে গাত্রোত্থান করিয়া জাঁপী দর্শন করিয়া প্রণামানন্তর বহু বিধ স্তব করিলেন এবং সহস্র মুদ্রা ব্যায় করিয়া জ্ঞাতি কুতুম্ব নিমন্ত্রণ করিয়া লক্ষ্মীর পূজা করিলেন এবং রাজকীয় ব্যাপার করিতে প্রবর্ত্ত সকল প্রজা মনের হর্ষে রাজ কর যোগাইতে লাগিল। কিছু কালানন্তরে ভবানন্দ রায় মজুমদারের তিন পুত্র হইল জ্যেষ্ঠের নাম রাখিলেন গোপাল মধ্যমের নাম গোবিন্দ কণিষ্ঠের নাম শ্রীকৃষ্ণ। ইহারদিগের মধ্যে গোপাল রায় সর্ব্ব শাস্ত্রে উত্তম পণ্ডিত। কতক কালানন্তরে রায় মজুমদার তিন পুত্রের বিবাহ দিলেন। কালক্রমে গোপাল রায়ের পুত্র হইল নাম রাখিলেন রাঘব রায়। ভবানন্দ রায় পৌত্র দর্শন করিয়া বিবেচনা করিলেন এ পৌত্র অতি প্রধান মনুষ্য হইবেক সর্ব্ব লক্ষণে লক্ষণাক্রান্ত। পৌত্রোৎসবে মহতী ঘটা করিয়া পশ্চাৎ ভ্রাতা সুবুদ্ধি রায় ও হরিভল্লব রায়কে কিঞ্চিৎ জমিদারি করিয়া দিয়া সংসার হইতে বিরত হইলেন। পরে গোপাল রায় সর্ব্বাধ্যক্ষ হইয়া কাল জাপন করেন। কিছু কাল পরে গোপাল রায় ভ্রাতা গোবিন্দ রায় ও ভ্রাতা শ্রীকৃষ্ণ রায়কে কিঞ্চিৎ জমিদারি দিয়া ঈশ্বর ভজন কারণ বিষয় ত্যাগী হইলেন। পরে রাঘব রায় সর্ব্ব শাস্ত্রে গুণবান অতি বড় দাতা সর্ব্বদা যাবদীয় প্রজার প্রতিপালনে মতিমান সর্ব্ব লক্ষণাক্রান্ত, দান ধ্যান যোগ সদালাপ বিশিষ্ট লোকের সমাদর রাজ্য সূদ্ধ সকল লোকের নিকট মহৎ সুখ্যাত্যাপন্ন জমিদারির বাহুল্য হইতে লাগিল। মনে ২ বিচার করিয়া স্থির করিলেন আমি রাজধানিতে গমন করিব। শুভ দিন স্থির করিয়া রাজধানিতে গমন করিলেন। সম্রাটের রাজার সাহিত সাক্ষাৎ করিয়া আত্মমানের গৌরব যথেষ্ট জন্মাইলেন। সম্রাটের রাজা রাঘব রায়ের সহিত আলাপ করিয়া দেখিলেন এ বড় মনুষ্য ইহাকে রাজা করি। পরে অনেক ভূমির কর্ত্তা করিয়া রাজপ্রসাদ দিয়া উপাধি রাখিলেন রাঘব রায় মহারাজ সেই অবধি খ্যাতি হইল মহারাজ। পরে মহারাজ আত্ম রাজধানিতে আগমন করিয়া রাজত্বের বাহুল্য করিয়া কাল জাপন করেন। সময় ক্রমে এক পুত্র হইল যাহার নাম রাখিলেন রুদ্র রায়। পশ্চাৎ কিঞ্চিৎ কালানন্তরে রুদ্র রায়কে রাজ্য দিয়া ঈশ্বরে মনোর্পণ করিলেন।
+</p><p>রুদ্র রায় মহারাজ রাজ্যাভিষিক্ত হইয়া মহানন্দে কাল জাপন করেন। এক দিবস পাত্র মিত্র সকলকে আজ্ঞা করিলেন যে তোমরা সকলে মাটীয়ারি পরগণায় যাইয়া অপূর্ব্বা এক পুরী প্রস্তুতা করহ আমি সেই স্থানে বাস করিব। সকলেই কহিলেন উপযুক্ত স্থান তটে। এই পরামর্শ স্থির করিয়া প্রধান ২ চাকর অগ্রে গমন করিয়া বাটী নির্ম্মাণ করিলেন। পরে রুদ্র রায় মহারাজ সপরিবারে মাটীয়ারির বাটী যাইয়া বসতি করিলেন। আদ্যাপি এ সকল স্থান বর্ত্তমান আছে। পরে সময় ক্রমে রুদ্র রায় মহারাজার তিন পুত্র হইল জ্যেষ্ঠের নাম রামচন্দ্র মাধ্যম রামকৃষ্ণ কনিষ্ঠ রামজীবন। রামচন্দ্র মহারাজ অতি বড় বলবান রাজ্যাভিষিক্ত হইয়া বলক্রমে অনেক ক্ষুদ্র জমিদারের ভূমি লইয়া আপন রাজ্য অধিক করিলেন। রামচন্দ্র মহারাজ অবর্ত্তমানে রামকৃষ্ণ রাজা হইলেন। এই কালীন ঢাকায় সুবা হইলেন মুরসদালি খান ইতি ঢাকা পরিত্যাগ করিয়া আত্ম নামে এক অপূর্ব্ব নগর বসাইয়া নাম রাখিলেন মুরসদাবাদ এই নগরে রাজধানি করিলেন। রামকৃষ্ণ মহা রাজ পরম ধার্ম্মিক এবং সুবার নিকট যথেষ্ট মর্য্যাদান্বিত যে রাজকর পূর্ব্বে নিয়মিত চিল তাহা অপেক্ষা কিছু অল্প করিয়া যথেষ্ট সৈন্য রাহিয়া রাজ্যের বাহুল্য কারিলেন। রাম কৃষ্ণ মহারাজ বাইশ লক্ষের জমিদারি করিয়া পরম সুখে কাল জাপন করেন। তাহার অবর্ত্তমানে রামজীবন রায় রাজা হইলেন॥
+</p><p>রাম জীবন রায় মহা রাজ রাজ্য প্রাপ্ত হইয়া রাজা রাম হৃষ্ট কৃষ্ণনগর নামে যে এক নগর করিয়াছিলেন। সেই স্থানে রাজধানি করিলেন। রাম জীবন রায় মহারাজ অতেন্ত প্রতাপান্বিত রাজ্য অতিশয় শাসিত করিয়া এই রূপে কালক্ষেপণ করেন। সময় ক্রমে মহা রাজার দুই পুত্র হইল। জ্যেষ্ট রঘু রাম কণিষ্ট রাম গোপাল। কিছু কালানন্তরে রঘু রাম রায় রাজা হইলেন। রঘু রাম রায় মহারাজ অতি বড় দাতা পুণ্যবান পরম সুথে কাল জাপন করেন। রাজা রাণীর অধিক বয়ঃক্রম হইল পূত্র না হওয়াতে সর্ব্বদা ক্ষেদিত থাকেন। এক দিবস ঈশ্বরের আরাধনা ব্যাতিরেকে উত্তম রত্ন লাভ হয় না। অতএব আমরা দুই জনে কঠোর তপস্যা করি তবে ঈশ্বর অবশ্য পুত্র দিবেন। রাজা রাণী ইহাই স্থির করিয়া আরাধনার নিয়ম করিলেন। অতি প্রাতে গাত্রোতথান করিয়া স্নানান্তর ঈশ্বরের মহতী পূজা করিয়া সূর্য্যদৃষ্টি করিয়া রাজা রাণী প্রত্যহ ঈশ্বরের তপস্যা করেন। এই রূপে এক বতসৱ গত হইল রাজা রাণীর তপস্যাতে সকল লোকের চমতৃকার বোধ হইয়া বিস্তর ২ প্রশংসা করিলেক। আরাধনার নিয়ম এক বৎসর তা হা পূর্ণ হইলে মহতী ঘটা করিয়া যজ্ঞ করিলেন। কিঞ্চিৎ কাল পরে এক দিবস রাত্রে রাজা রঘু রাম রাণীর সহিত অন্তঃপুরে শয়ন করিয়াছেন রজনী শেষে রাণী অপূর্ব্ব স্বপ্ন দেখিয়া চৈতন্য হইয়া রাজাকে গাত্রোত্থান করাইলেন রাজার চৈতন্য হইলে পরে নিবেদন করিলেন হে মহারাজ আমি এক আশ্চর্য্য স্বপ্ন দেখিলাম। রাজা কহিলেন কি স্বপ্ন দেখিয়াছ? রাণী কহিলেন আমি নিদ্রায় ছিলাম এক জন অপূর্ব্ব পুরুষ আসিয়া আমাকে কহিলেন আমি তোমার পুত্র হইব আমা হইতে তোমরা অনেক সুখী হইবা এবং যাবদীয় লোক তোমাকে সুবর্ণ গর্ব্ভা কহিবেক যে হেতু আমাকে প্রসব হইবা আমি কহিলাম আপনিকে তাহাতে কহিলেন তোমরা যাহার আরাধনা করিয়াছিলা আমি তাহার অনুগৃহিত তোমার পুত্র হইতে আমাকে আজ্ঞা হইয়াছে ইহা বলিয়া অতিক্ষুদ্র মূর্ত্তি ধারণ করিয়া আমার মুখ মধ্যে প্রবেশ করিলেন। রাজা রঘু রাম রায় স্বপ্নের বৃত্তান্ত শ্রবণ করিয়া মহা আনন্দার্ণবে মগ্ন হইয়া রাণীকে কহিলেন তোমার অপূর্ব্ব বালক হইবেক অদ্য তোমার গর্ব্ভাধান হইল এই কথা অন্যকে কহিবা না। কিঞ্চিৎ কাল পরে রাণীর গর্ব্ভ প্রচার হওনে পাত্র মিত্র আত্মীয় বর্গের সমূহ আনন্দ হইল দিনে ২ নানা প্রকার উৎসাহ হইতেছে। সময় ক্রমে রাণীর প্রসব বেদনা উপস্থিত হইল এই সম্বাদ রাজা শুনিয়া জোতিষ শাস্ত্রে মহামহোপা ধ্যায় এমত পণ্ডিতগণকে লইয়া রাজা অন্তঃপুরের নিকটে বসিলেন যাবদীয় প্রধান২ ভৃত্যেরা সদা সাবধানে আছে যখন যাহাকে যে আজ্ঞা হবেক তৎক্ষণেতে সে কার্য্য করিবেক ইতি মধ্যে শুভক্ষণে শুভ লগ্নে অপূর্ব্ব এক পুত্র হইল। পুত্রের রূপে পুরী চন্দ্রের ন্যায় আলো করিল। রাজপুরে জয়২ ধ্বনি হইবা মাত্র অট্টালিকার উপরে বাদ্যোদ্যম শঙ্খ ঘণ্টা ঘড়ি তূরী ভেরী ঝাঁঝরী রামসিঙ্গা ঢক্কা ঢোল দামামা এবং বীণা মৃদঙ্গ কাংস্য করতাল রামবেণী প্রভৃতি নানা যন্ত্রের বাদ্যে কোলাহল শব্দ নগরস্থ রমণীরা রাজপুরে আসিয়া হুলু২ ধ্বনি করিতে প্রবর্ত্ত হইল। রাজা পরমাহ্লাদে শত২ সুবর্ণ এক২ ব্রাহ্মণকে এবং উদাসীনকে ও অন্ধ আতুরে এবং খঞ্জকে প্রদান করিতে লাগিলেন। যাবদীয় নগরস্থ লোকেরদিগের সন্তোষের সীমা নাই। কিঞ্চিৎ কাল পরে পাত্রের প্রতি রাজা আজ্ঞা করিলেন যাবদীয় নগরের লোকের বাটীতে মৎস্য ও দধি এবং সন্দেশ ভারে২ প্রদান কর। পাত্র রাজাজ্ঞানুসারে সকলের বাটীতে প্রদান করিয়া পশ্চাৎ রাজার নিকট গমন করিয়া নিবেদন করিলেন মহারাজ অন্তঃপুরে যাইয়া পুত্র দর্শন করুন এবং ভৃত্যবর্গেরদিগেরও বাসনা রাজপুত্র দেখে। রাজা হাস্য করিয়া কহিলেন কর্ত্তব্য বটে রাজা অগ্রে পুর মধ্যে গমন করিয়া পুত্র দর্শন করিলেন পশ্চাৎ দাসীরদিগের প্রতি আজ্ঞা করিলেল পাত্র প্রভৃতি যাবদীয় ভৃত্যেরা রাজপুত্র দর্শন করিতে আসিতেছে সকলকে দেখাও। দাসীরা রাজপুত্রকে ক্রোড়ে করিয়া যাবদীয় প্রধান২ ভৃত্যেরদিগকে দেখাইল পরে সকলেই অন্তঃপুরহইতে আগমন করিয়া রাজ সভাতে বসিলেল সমস্ত ব্রাহ্মণেরা বেদধ্বনি করিতে লাগিলেন পরে জ্যোতিষি ভট্টাচার্য্যেরা নানা শাস্ত্র বিচার করিয়া দেখিলেন অপূর্ব্ব বালক হইয়াছে। রাজার নিকটে নিবেদন করিলেন মহারাজ এই যে রাজপুত্র হইয়াছেন ইহার দীর্ঘ পরমায়ু হইবেক সর্ব্ব শাস্ত্রে মহামহোপাধ্যায় এবং বুদ্ধিতে বৃহস্পতির ন্যায় এবং ধর্ম্মাত্মা হইবেন সকল লোক ইহার অতিশয় যশ ঘুষিবেক মহা রাজচক্রবর্ত্তী হইয়া বহু কাল রাজ্য করিবেন মহারাজ ইহার গুণে কুল উজ্জ্বল হইবেক। রাজা জ্যোতিষি ভট্টাচার্য্যেরদিগের বাক্য শ্রবণ করিয়া অত্যন্ত হর্ষ যুক্ত হইলেন। কিছু কালানন্তরে নর্তকীরা আসিয়া রজনীতে রাজার সম্মুখে নৃত্য করিতে প্রবর্ত্ত হইল। দিবা রাত্রি সর্ব্বদাই নগরস্থ লোকেরদিগের আনন্দের সীমা নাই। এই রূপে কাল ক্ষেপণ করেন রাজপুত্র দিনে২ চন্দ্রের ন্যায় বৃদ্ধি পাইতেছেন নাম রাখিলেন কৃষ্ণচন্দ্র কালক্রমে বিদ্যা অভাস করিতে প্রবর্ত্ত হইলেন শ্রুতিধর যখন যাহা শুনেন তৎক্ষণাৎ অভ্যাস হয় সকল শাস্ত্রেই পাণ্ডিত হইলেন। পরে বাঙ্গালা ও ফারসি শাস্ত্রেও পণ্ডিত হইয়া অস্ত্রবিদাতে প্রবর্ত্ত হইয়া অল্প‌ দিনেই শাস্ত্র শিক্ষা করিয়া রাজকীয় ব্যাপার শিক্ষা করিতে লাগিলেন রাজারদিগের যেমন নীতিবর্ত্ম আছে তাহা শিক্ষা করিলেন অল্প কালের মধ্যে সকল বিষয়ের পারগ হইলেন। রাজা রঘু রাম রায় দেখিলেন পুত্র সর্ব্বগুণালঙ্কৃত হইলেন অতএব পুত্রের বিবাহ দিয়া রাজা করিয়া আমি ঈশ্বর স্থানে যাইয়া নিজকর্ম্মের সাধন করি ইহাই মনোমধ্যে স্থির করিয়া সকল সভাসদ জনেরদিগকে আজ্ঞা করিলেন তোমরা সকলে বিবেচনা করিয়া উত্তম বংশে পরম সুন্দরী কন্যা স্থির করহ আমি রাজপুত্রের বিবাহ ত্বরায় দিব। সকলেই যে আজ্ঞা বালিয়া স্বীকার করিল পরে অনেকে কন্যার অন্বেষণ করিতে লাগিল শত২ স্থানে মনুষ্য প্রেরিত হইল পরে সকলের বিবেচনায় উত্তম বংশে পরম সুন্দরী কন্যার সহিত সম্বন্ধ নির্ণয় হইয়া বিবাহের উদ্যোগ করিতে লাগিলেন রাঢ় গৌড় বঙ্গ নিবাসী যাবদীয় রাজগণ এবং পণ্ডিতগণ ও প্রধান২ মানুষ নিমন্ত্রণ করিলেন বিবাহের দিবস ফাগুন মাসে স্থির হইল যাবদীয় মনুষ্যের কারণ নানা স্থানে ভাণ্ডার হইল প্রতি ভাণ্ডারে চর্ব্ব চোষ্য লেহ্য পেয় চারি প্রকার সামগ্রী পরিপূর্ণ এবং যে যেমন মানুষ তাহারি মত থাকনের স্থান নির্ম্মাণ হইল রাজধানিতে যাবৎ দেশীয় লোক আগমন করিতে লাগিল রাজা আত্মজনেরদিগের প্রতি আজ্ঞা কারিয়া দিলেন তোমরা সর্ব্বদা তত্ব করিবা বিস্তর লোকের আগমন হইতেছে যেন কেহ অভুক্ত থাকে না যে যত লয় তাহাই দিবা। রাজাজ্ঞানুসারে স্ব স্ব কার্য্যে সর্ব্বদা সাবধানে আছে। পরে রাজাগণের আগমন শ্রবণ করিয়া রাজা আপনি প্রত্যেক রাজার নিকটস্থ হইয়া সমাদর পূর্ব্বক উত্তম আলয়ে থাকনের স্থান নিরূপিত করিয়া দিলেন এবং উপযুক্ত মনুষ্য রাজগণের নিকটে নিয়োজিত করিলেন যে যেমন রাজা সেই রূপ সমাদর করেন এবং সামিগ্রীর আয়োজন করিয়া প্রেরিত করিলেন পরে রাজা রঘু রাম নগর ভ্রমণ করিয়া মনুষ্য দেখিলেন দেখেন অতিবিস্তর লোক আসিয়াছে এত লোকের খাদ্য সামিগ্রী কি প্রকারে ভৃত্যেরা দিতে পারিবেক অতএব নগরস্থ যাবদীয় খাদ্য সামিগ্রীর দোকান আছে ইহাই আমি ক্রয় করিয়া সকলকে অনুমতি করি যত লয় তাহা দেয় ইহা মনে স্থির করিয়া পাত্রকে আহ্বান করিয়া কহিলেন যে রূপ মনুষ্য আসিয়াছে ইহাতে কেহ খাদ্য সামিগ্রী প্রদান করিয়া যশ লইতে পারিবে না কিন্তু যদি কেহ উপবাসী থাকে তবে বড় অখ্যাতি অতএব নগরে যত আহারের দ্রব্যের মহাজন লোক আছে তাহারদিগকে কহ যে যত চাহে তাহাকে তত দেয় এবং যে আপনি লয় তাহাকে বারণ না করে লোক সকল আপন২ স্বেচ্ছার মত দ্রব্য লউক পরে মহাজনেরদিগের লিপিমত টাকা দিয়া যাইবেক আর ভাণ্ডারের নিয়োজিত লোককে কহ যে যত চাহে তাহার দশ গুণ করিয়া সামিগ্রী দেয় এবং তুমি সর্ব্বত্রে ভ্রমণ করিবা যেন কেহ দুঃখ না পায়। পাত্র যে আজ্ঞা বলিয়া স্বীকার করিলেন। অসংখ্য মনুষ্যের আগমন হইয়াছে কোলাহলে নগরের লোক বাধির হইল নগরের শোভার সীমা নাই সহস্র২ পতাকা রক্ত পীত শুভ্র নীল ইতাদি উড্ডীয়মানা নানা জাতীয় বাদ্যোদ্যম রাজপুরে মহামহোৎসব অন্য রাজগণ দর্শন করিয়া ধন্য ২ করিতেছেন। আর অনেক পণ্ডিতলোক আগমন করিয়া নিজ ২ স্থানে কাল ক্ষেপণ করিতেছেন। রাজপুরে প্রত্যহ অপূর্ব্ব সভা হয় যাবদীয় রাজগণ এবং পণ্ডিতগণ এবং প্রধান মনুষ্য সকলেই রাজসভায় গমন করিয়া স্ব স্ব স্থানে বৈশেন নর্ত্তক নর্ত্তকী শত ২ অসিয়া গীত বাদ্য শ্রবণ করায়। এই রূপ প্রত্যহ লগ্নক্রমে রাজপুত্রের বিবাহ মহতী ঘটা পূর্ব্বক হইল। পরে মহারাজ রঘুরাম রায় অনাহূত যে সকল লোক আসিয়াছিল তাহারদিগকে মনোন্বিত ধন দিয়া বিদায় করিলেন সকলে সুখ্যাতি করিয়া আপন ২ দেশে গমন করিল। পরে রাজগণেরদিগকে উপযুক্ত মর্য্যাদা করিয়া বিদায় করিলেন। পণ্ডিতেরদিগকে এবং প্রধান ২ মনুষ্যেরদিগকে যে যেমন পাত্র বিবেচনা পূর্ব্বক মর্য্যাদা করিয়া বিদায় করিলেন। সকলেই সুখ্যাতি করিলেক যশে দিগ্মণ্ডল পরিপূর্ণ হইল। এই প্রকার মহতী ঘটা করিয়া রাজা রঘুরাম কৃষ্ণচন্দ্র রায়ের বিবাহ দিলেন। রাজা রাণী পুত্র এবং পুত্রবধূ প্রাপ্ত হইয়া আহ্লাদে কাল জাপন করিতে লাগিলেন এই রূপে কিঞ্চিৎ কাল যায় পরে মহারাজ রঘুরাম রায় কৃষ্ণচন্দ্র রায়কে রাজ্যে নিযুক্ত করিয়া আপনি ঈশ্বর ভজনে প্রবর্ত্ত হইলেন॥
+</p><p>পরে কৃষ্ণচন্দ্র রায় রাজা হইয়া ধর্ম্মশাস্ত্রমত প্রজা পালন করিতে আরম্ভ করিলেন রাজ্যের লোকেরদিগের কোন ব্যামোহ নাই ভৃত্যবর্গেরা নিজ ২ কার্য্যে প্রাধান্য করিয়া কাল ক্ষেপণ করে মহারাজ কৃষ্ণচন্দ্র রায়ের সুখ্যাতির সীমা নাই। তখন রাজধানি মুরসিদাবাদে নবাব সাহেবের নিকট মহারাজার অত্যন্ত সংভ্রম সর্ব্ব প্রকারে মহারাজ চক্রবর্ত্তির ন্যায় ব্যবহার॥
+</p><p>এক দিবস মহারাজ পাত্রকে জিজ্ঞাসা করিলেন যে পূর্ব্বে এ বংশে যে সকল রাজগণ হইয়াছিলেন তাহারা কেহ যজ্ঞ করিয়াছিলেন। তাহাতে পাত্র নিবেদন করিল মহারাজ আমরা পুরুষানুক্রমে এ রাজের পাত্র কিন্তু যে সকল মহারাজারা গিয়াছেন আর ২ প্রকার সুখ্যাতি করিয়াছেন কিন্তু যজ্ঞ কেহ করেন নাই। মহারাজ এই বাক্য শ্রবণ করিয়া পাত্রকে কহিলেন আমি অতি বৃহদ যজ্ঞ করিব তুমি আয়োজন কর। পাত্র নিবেদন করিলেন মহারাজ প্রধান ২ পণ্ডিতেরদিগকে আহ্বান করিয়া কি যজ্ঞ করিবেন তাহা স্থির করুন পশ্চাৎ যেমন ২ আজ্ঞা করিবেন তাহাই করিব। পাত্রের বাক্যে রাজা সর্ব্বত্রে লিপি প্রেরিত করিলেন। বট্টাচার্য্যেরদিগের আসিতে রাজপুত্র প্রধান ২ পণ্ডিতেরা প্রাপ্ত হইয়া মহা হর্ষে রাজধানি কৃষ্ণনগরে আগমন করিলেন॥
+</p><p>পরে রাজা শ্রবণ করিলেন যে প্রধান ২ পাণ্ডিতেরা আমার আজ্ঞানুসারে আগমন করিয়াছেন। পাত্রের প্রতি রাজা আজ্ঞা করিলেন অনেক ২ পাণ্ডিতের আগমন হইয়াছে অতএব তাহারদিগকে উত্তম স্থানে বাসা দেহ এবং উত্তম খাদ্য সামিগ্রীও দেহ যেন কোন মতে ব্যামোহ না পান। পাত্র রাজাজ্ঞামতে যাবদীয় পণ্ডিতেরদিগকে উত্তম স্থান দিয়া খাদ্য সামিগ্রী যথেষ্ট রূপ দিলেন। পর দিবস রাজা সভা করিয়া পণ্ডিতেরদিগকে আহ্বান করিলেন। পণ্ডিতেরা রাজার বিদ্যমানে আসিয়া মহারাজকে আশীর্ব্বাদ করিয়া রাজসভাতে বসিয়া নানা শাস্ত্রের বিচার করিতে প্রবর্ত্ত হইলেন। বিচারানন্তরে পণ্ডিতেরা মহারাজ কৃষ্ণচন্দ্র রায়কে নিবেদন করিলেন আমারদিগের প্রতি রাজলিপি কি কারণ গিয়াছিল তাহাতে রাজা আজ্ঞা করিলেন আমি মনোমধ্যে বাসনা করিয়াছি যজ্ঞ করিব অতএব আপনারা বিচার করিয়া আজ্ঞা করুণ কি যজ্ঞ করিব আর কিরূপ করিলে সর্ব্বত্র সুখ্যাতি হইবেক। এই বাক্য ধীরবর্গেরা শ্রবণ করিয়া মহারাজকে নিবেদন করিলেন এ অপূর্ব্ব পরামর্শ করিয়াছেন অদ্য আমরা বাসায় প্রস্থান করি কল্য আসিয়া নিবেদন করিব॥
+</p><p>পর দিবস পাণ্ডিতেরা আগমন করিয়া রাজাকে আশীর্ব্বাদ করিয়া রাজসভায় সকলে বসিলেন। পরে রাজা পাণ্ডিতেরদিগের প্রতি নিরীক্ষণ করিয়া কহিলেন আপনারা কি স্থির করিয়াছেন। পণ্ডিতেরা কহিলেন মহারাজ অগ্নিহোত্রী বাজপেয়ী যজ্ঞ করুণ। রাজা উত্তর করিলেন দুই যজ্ঞ এককালীন করিব কি পৃথক ২ করিব ইহা বিবেচনা করিয়া আপনারা আমাকে আজ্ঞা করুণ এবং কত তঙ্কা হইলে যজ্ঞ সাঙ্গ হইবেক তাহাও আজ্ঞা করুণ পাণ্ডিতেরা কহিলেন মহারাজ রাজ যজ্ঞ ইহার বিবেচনা মহারাজ করিবেন যজ্ঞের যে ২ সামিগ্রীর আ বশ্যক তাহার যায় করিয়া দিই। রাজা কহিলেন ভাল তাহাই দিউন। পরে পণ্ডিতেরা রাজ সভাহইতে গাত্রোত্থান করিয়া পাত্রের নিকট যাইয়া যজ্ঞের সামিগ্রীর যায় করিয়া দিলেন এবং কহিলেন যে দ্রব্য যজ্ঞেতে লাগিবেক তাহাই আমরা লিখিয়া দিলাম পরে পাত্র সামুদায়িক বরার্দ্ধ করিয়া দেখিলেন বিংশতি লক্ষ তঙ্কা হইলে যজ্ঞ সাঙ্গ হইবেক। মহারাজার নিকটে পাত্র গমন করিয়া সমস্ত নিবেদন করিলেন। রাজা হাস্য করিয়া কহিলেন আয়োজন করহ পরে পাত্র যজ্ঞের দ্রব্য সকল আয়োজন করিতে প্রবর্ত্ত হইলেন॥
+</p><p>পরে মহারাজ কৃষ্ণচন্দ্র রায় অঙ্গ বঙ্গ কলিঙ্গ রাঢ় গৌড় কাশী দ্রাবিড় উৎকল কাশ্মীর প্রভৃতি দেশস্থ যাবদীয় পণ্ডিতেরদিগের প্রতি নিমন্ত্রনের লিপি পাঠাইলেন। যজ্ঞের কাল উপিস্থত হইলেই সকল দেশীয় ধীরবর্গেরা আসিলেন। রাজা অতিশয় ঘটা পূর্ব্বক যজ্ঞ সম্পূর্ণ করিলেন এবং সকল লোককে যথেষ্ট ধন দিয়া পরিতোষ জন্মাইলেন। রাজার সুখ্যাতির সীমা নাই যাবদীয় পাণ্ডিতেরা রাজার নাম রাখিলেন অগ্নিহোত্রী রাজপেয়ী শ্রীমন্মহারাজ রাজেন্দ্র কৃষ্ণচন্দ্র রায় এই নাম মহারাজ প্রাপ্ত হইয়া আনন্দার্ণবে মগ্ন হইলেন। পশ্চাৎ যাবদ্দেশীয় পণ্ডিতেরদিগকে বহুবিধ ধন দিয়া বিদায় করিয়া মনের হর্ষে রাজ্য করেন। রাজ্য শাসিত হইলে সর্ব্বত্র সুখ্যাতি পাইলেন। প্রজা সকলের যথেষ্ট আহ্লাদ কোন রূপে ব্যামোহ নাই। এইরূপে কাল ক্ষেপণ করেন॥
+</p><p>এক দিবস অন্তঃকরণে হইল শিকারে যাইব পরে ভৃত্য বর্গেরদিগকে আজ্ঞা করিলেন আমি মৃগয়া করিতে যাইব তোমরা সকলে সসজ্য হও আজ্ঞা প্রমাণে সকলে প্রস্তুত হইল। রাজা অশ্বারোহণে গমন করিয়া নিবিড় বনে মৃগয়া করেন। ইতিমধ্যে এক স্থানে উপনীত হইয়া দেখেন অতিরম্য স্থান চারি দিগে নদী মধ্যে এক ক্ষুদ্র দ্বীপ এবং স্থানে ২ অনেক পশু পক্ষী আছে নানা প্রকার শব্দ হইতেছে। রাজা স্থান নিরীক্ষণ করিলেন এ অপূর্ব্ব স্থান আমি এইখানে কিছু দিন বিশ্রাম করিব। রাজাজ্ঞাক্রমে ভৃত্যবর্গেরা রাজার থাকিরার উপযুক্ত স্থান করিয়া দিয়া পশ্চাৎ আপনারদিগের স্থান করিয়া সকলেই সেই স্থানে বাস করেন। পরে রাজা আজ্ঞা করিলেন আমি এই স্থানে পুরী নির্ম্মাণ করিব পাত্রকে শীঘ্র আনয়ন কর। রাজাজ্ঞানুসারে দূত গিয়া পাত্রকে আনিল পাত্রকে দেখিয়া মহারাজ কৃষ্ণচন্দ্র রায় কহিলেন তুমি এই স্থানে অপূর্ব্বা এক পুরী প্রস্তুতা কর যেন কোন রূপে কেহ নিন্দা না করে। পাত্র নিবেদন করিলেন মহারাজ আপনি রাজধানিতে গমন করুণ আমি পুরী নির্ম্মাণ করাই পশ্চাৎ প্রস্তুতা হইলেই মহারাজ আসিয়া দেখিবেন। পাত্রের বাক্যে রাজা রাজধানিতে আগমন করিলেন পাত্র সেই স্থানে থাকিয়া পুরী নির্ম্মাণ করিতে প্রবর্ত্ত হইলেন। চারি দিগে যে নদী আছে সেই গড় হইল। দক্ষিণ দিগের নদী বন্ধন করিয়া প্রধান পথ করিলেন এবং সৈন্যের থাকনের স্থান করিলেন বড় ২ কামান দুই পার্শ্বে রাখিলেন হঠাৎ পুরমধ্যে শত্রু প্রবেশ করিতে না পারে তৎ পরে অপূর্ব্ব অট্টালিকা ও পরে বাদ্যোদ্যম তার পরে অতি উচ্চ অট্টালিকা তাতে ঘড়ি তদূর্দ্ধে ঘণ্টা তার পর চারি দরজা মধ্যে সদাগরেরদিগের থাকনের স্থান এবং হাট নানা জাতীয় দ্রব্যের ক্রয় বিক্রয় হইবেক তন্মধ্যে বিস্তারিত পথ কিঞ্চিৎ দূরে গিয়া এক অট্টালিকা তাতে নানা জাতীয় যন্ত্র লইয়া যন্ত্রীরা বাদ্যোদ্যম করিবেক পরে রাজবাটী প্রথম এক চতুঃসীমা দক্ষিণ দ্বারী এক অট্টালিকা তাহাতে রাজকীয় ব্যাপার হইবেক। তিন পার্শ্বে অট্টালিকা তাতে ভৃত্যেরা থাকিবে। পরে এক চতুঃসীমা তাতে ঈশ্বরের আলয় অপূর্ব্ব রম্য স্থান সহস্র ২ লোকে দর্শন করিতে পারে। পরে একখান পুরী তাতে মহারাজার বিরাজ করণের স্থান। চারি দিগে অট্টালিকা পরে অন্তঃপুর অতি বৃহৎ বাটী নানা স্থানে নানা প্রকার অট্টালিকা। অন্তঃপুরের কিঞ্চিৎ দূরে এক পুষ্পোদ্যান চতুর্দ্দিগে প্রাচীর মহারাণীপ্রভৃতি পুষ্পোদ্যানে গমন করিতে পারেন পুষ্পোদ্যানে নানা জাতীয় পুষ্প তন্মধ্য স্থানে এক অট্টালিকা তাহাতে বসিয়া রাণী নৃত্যকীরদিগের নৃত্য দর্শন করেন এবং গীত বাদ্য শ্রবণ করেন। পশ্চিম দিগের যে পথ সেই পথ দিয়া কিঞ্চিৎ গমন করিলে এক ধর্ম্মশালা সে স্থানে অন্ধ অতুর পঙ্গু এবং উদাসীন যে কেহ উপনীত হইবেক যার যে স্বেচ্ছা আহারের দ্রব্য পাইবেক ভাণ্ডার পরিপূর্ণ করিয়া দ্রব্য রাখিলেন॥
+</p><p>পূর্ব্ব দিগে এক অপূর্ব্ব পুষ্পোদ্যান তার মধ্য স্তানে অট্টালিকা এবং নানা জাতীয় বৃক্ষ ও পুষ্প এই পুষ্পোদ্যানের পর যাবদীয় মহারাজার জ্ঞাতি এবং কুটুম্বেরদিগের পৃথক ২ অট্টালিকাময়ী বাটী প্রত্যেক বাটীতে দেবালয় এইরূপ অনেক প্রকার বাহুল্য করিয়া বাটী প্রস্তুত করিলেন। পরে পাত্র বাটী নির্ম্মাণ করাইয়া মহারাজাকে সংবাদ দিলেন যে বাটী প্রস্তুত হইয়াছে। মহারাজ সপরিবারে নূতন বাটীতে আগমন করিয়া সকল পূরী দেখিয়া অত্যন্ত তুষ্ট হইয়া পাত্রকে রাজপ্রসাদ দিয়া জিজ্ঞাসা করিলেন অধ্যাপকেরদিগের স্থান করিয়াছ। পাত্র নিবেদন করিলেন মহারাজার যে পুষ্পের বাগান হইয়াছে তাহারি নিকট স্থান আছে আজ্ঞা করিলে সেই স্থানে প্রস্তুত করি। রাজা কহিলেন অতি শীঘ্র প্রস্তুত করহ। রাজাজ্ঞানুসারে পৃথক ২ পাঠশালা প্রস্তুত করাইলেন সেই সকল পাঠশালায় প্রধান ২ পাণ্ডিতেরা বসতি কারিয়া অধ্যাপনা করাইতে লাগিলেন এব নানা দেশীয় গুণবান লোক আসিয়া গুণ শিক্ষা করান এবং করে। রাজা শুভ ক্ষণে পুরমধ্যে প্রবেশ করিলেন আহ্লাদের সীমা নাই। পুরীর নাম শিবনিবাস নদীর নাম কঙ্কনা রাখিলেন। পুরবাসী যাবদীয় মানুষ্যেরা মহাসুখে সর্ব্বদা হাস্য পরিহাস্যেতে কালক্ষেপণ এবং ধর্ম্মানুষ্ঠান ঈশ্বরের আরাধনা করেন। এই রূপে মহারাজ বসতি করিতে প্রবর্ত্ত হইলেন। মধ্যে ২ রাজা মুরসদাবাদে গমন করিয়া নবাব সাহেবের সহিত সাক্ষাৎ করিয়া যথেষ্ট শিষ্টাচার করেন এবং নানা জাতীয় ভেটের দ্রব্য নবাবকে দেন। তখন নবাব আলাবৃদ্ধি খান অতিবড় ধর্ম্মাত্মা সকলের প্রতি দয়ালু পুণ্যশীল সকল রাজারা রাজকর নবাবকে দিয়া সুখেতে কাল ক্ষেপণ করিতেছেন। রাজ্যোৎপাত কাহারু নাই যে যেমন মনুষ্য তাহাকে সেই রূপ নবাবের হৃপা কিন্তু নবাব সাহেবের পুত্র নাই এক কন্যা কন্যার প্রতি নবাব সাহেবের অতিশয় স্নেহ। কিছু কালানন্তরে নবাব সাহেবের এক দৌহিত্র হইল নাম রাখিলেন স্রাজেরদৌলা নবাব সাহেবের বাসনা দৌহিত্র সর্ব্বদাই নিকটে থাকে এই রূপে কিছু কাল যায় স্রাজেরদৌলা অতিবড় দূর্ব্বৃত্ত হইলেন যাহা মনে আইসে তাহাই করেন কেহ বারণ করিতে পারে না। নবাব সাহেবের পাত্র মহারাজ মহেন্দ্র এবং আর ২ প্রধান ২ চাকর অনেক আছে সকলেই এক হইয়া নবাব সাহেবকে নিবেদন করিলেন স্রাজেরদৌলার অতিশয় দৌরাত্ম্য করিতেছেন ইহার আপনি উপায়ান্তর করুন তার পর নবাব সাহেব স্রাজেরদৌলাকে ডাকাইয়া কহিলেন তুমি যাবদীয় লোকের উপর দৌরাত্ম্য করহ এ অতিমন্দ কর্ম্ম সাবধান কদাচ মন্দ ক্রিয়া করিও ন। এই রূপ শাসিত করণে স্রাজেরদৌলা প্রধান পাত্রগণের দিগকে আহ্বান করিয়া দমন করিলেক আমি যে কার্য্য ররি তাহা যদি নবাব সাহেবের কর্ণ গোচর হয় তবে তোমারদিগের যথেষ্ট দণ্ড করিব এবং একথা নবাব সা হেবের নিকট তোমরা কহিয়াছ যদি আমার নবাবি হয় তবে ইহার প্রতিফল সুন্দরমতে দিব যত প্রধান ২ ভৃত্যেরা মহাসঙ্কান্বিত হইয়া নীরব হইলেন। তার পর স্রাজেরদৌলা নানা প্রকারে দৌরাত্ম্য করিতে আরম্ভ করিলেক নদী দিয়া নৌকা যায় সে নৌকা ডুবায় মনুষ্য সকল ডুবে মরে ইহাই দেখে এবং যাহার আলয়েতে শুনে পরম সুন্দরী কন্যা আছে বল ক্রমে সে কন্যা হরণ করে ও গর্ভিণী স্ত্রী আনিয়া উদর চিরিয়া দেখে কোনখানে সন্তান থাকে এই রূপ অতিশয় দৌরাত্ম্য আরম্ভ করিল। সকল লোক বিবেচনা করিতে প্রবর্ত্ত হইল পরস্পর বিবেচনা করিলেন এ দেশে আর থাকা পরামর্শ নহ নগরস্থ লোক সকল মুরসদাবাদ ত্যাগ করিয়া পলায়নপর হইল হাহাকার শব্দ উঠিল সকল লোকেই ঈশ্বরের স্থানে আরাধনা করিতে প্রবর্ত্ত হইল যেন এ দেশে জবন অধিকারী না থাকে। কিছু দিন যায় নবাব আলাবৃদ্ধির লোকান্তর হইলে স্রাজেরদৌলা নবাব হইলেন। যাবদীয় প্রধান ২ ভৃত্যবর্গেরা ভেট দিয়া করপুটে নিবেদন করিলেন আপনি এখন এ দেশের কর্ত্তা হইলেন যাহাতে রাজ্যের লোক সুখী হয় তাহা করিবেন ঈশ্বর আপনাকে সর্ব্ব শ্রেষ্ঠ করিলেন এ দেশের লোককে সুখে রাখিলে বহু কাল রাজ্য করিতে পারিবেন। এই প্রকার পাত্র মিত্রলোকে সর্ব্বদা বুঝান কিন্তু তিনি দুষ্ট প্রহৃতি ত্যাগ ও উত্তম বাক্য শ্রবণ করেন না সকল লোক এবং প্রধান ২ চাকরেরা বিবেচনা করিলেন স্রাজে রদৌলা নবাব থাকিলে কাহারো কল্যাণ নাই অতএব কি হইবে কোথা যাব ইহা ভাবিয়া স্থির করিতে পারেন না পরে যাবৎ দেশীয় রাজা ঐক্য হইয়া নবাবের প্রধান পাত্র মহারাজ মহেন্দ্রকে নিবেদন করিতে প্রবর্ত্ত হইলেন। রাজা সকলের নাম বর্দ্ধমানের রাজা ও নবদ্বীপের রাজা দিনাজপুরের রাজা বিষ্ণুপুরের রাজা মেদিনীপুরের রাজা বীরভূমের রাজা ইত্যাদি করিয়া সকল রাজগণ প্রধান পাত্রের নিকট যাত্রা করিয়া স্রাজেরদৌলার দৌরাত্ম্য নিবেদন করিলেন। মহারাজ মহেন্দ্র সকলকে আশ্বাস দিয়া স্ব স্ব রাজ্যে প্রোরিত করিলেন॥
+</p><p>পরে যাবদীয় মন্ত্রীরা নবাব স্রাজেরদৌলায় নীতি শিক্ষা করান যত উত্তম কথা কহেন স্রাজেরদৌলা ততোধিক মন্দ করে। পরে মহারাজ মহেন্দ্র এবং রাজা রাম নারায়ণ রাজা রাজবল্লত রাজা কৃষ্ণদাস ও মীর জাফরালি খান এই সকল লোক ঐক্য হইয়া এক দিবস জগৎসেট মহাশয়ের বাটীতে গমন করিয়া জগৎসেটের সহিত বিরলে বসিয়া পরামর্শ করিতে লাগিলেন। মহারাজ মহেন্দ্র অগ্রে কহিলেন আমি যাহা কহি তাহা তোমরা শ্রবণ করহ আমরা এ দেশে অনেক কালাবধি আছি এবং নবাব সাহেবেরদিগের আজ্ঞানুবর্তী হইয়া প্রাধান্য রূপে পুরুষানুক্রমে কাল ক্ষেপণ করিতেছি এখন যিনি নবাব হইলেন ইহার নিকট মানের লঘুতা দিন ২ হইতে লাগিল আর সকল লোকের উপর অতিশয় দৌরাত্ম্য কত রূপে নিষেধ করিলাম এবং বুঝাইলাম তাহা কদাচ শুনে না আর দৌরাত্ম্য করে অতএব ইহার উপায় কি সকলে বিবেচনা করহ। রাজা রামনারায়ণ কহিলেন ইহার উপায় হস্তিনাপুরে জনেক গমন করিয়া এ নবাবকে তগির করিয়া অন্য এক নবাব না আনিলে এ রাজ্যের কল্যাণ নাই। রাজা রাজবল্লভ কহিলেন এ পরামর্শ কিছু নয় হস্তিনাপুরের বাসনা জবন তিনি আর এক জন নবাব দিবেন সেও জবন অতএব জবন অধিকারী থাকিলে হিন্দুর হিন্দুত্ব থাকিবেক না। এই রূপ কথোপকথন স্থির কিছুই হয় না শেষে এই পরামর্শ হইল যাহাতে জবন দূর হয় তাহার চেষ্টা করহ ইহাতে জগৎসেট কহিলেন এক কার্য্য করহ নবদ্বীপের রাজা কৃষ্ণচন্দ্র রায় অতি বড় বুদ্ধিমান তাহাকে আনিতে দূত পাঠাও তিনি আইলেই যে পরামর্শ হয় তাহাই করিব। সকলে সত্য কহিয়া দূত প্রেরণ করিয়া নিজ স্থানে প্রস্থান করিলেন॥
+</p><p>মহারাজ কৃষ্ণচন্দ্র রায় শিবনিবাসের বাটীতে মহাহর্ষে বিশ্রাম করিতেছেন সর্ব্বদা আনন্দিত পরবাসীরা সর্ব্বক্ষণ উত্তম কর্ম্মে নিযুক্ত নানা দেশীয় গুণবান ব্যক্তি আসিয়া রাজসভায় বাসিয়া গুণের পরীক্ষা দিতেছেন পণ্ডিতেরা ছাত্র সমভিব্যাহৃত রাজার নিকটস্থ হইয়া শাস্ত্রের বিচার করিতেছেন। এই প্রকার প্রত্যহ হইতেছে দ্বিতীয় রাজা বিক্রমাদিতের ন্যায় সভা সকলেই মহারাজকে প্রশংসা করে দিন ২ রাজ্যের বাহুল্য এবং প্রজার বাহুল্য হইতেছে। রাজার পাঁচ পুত্র কোন অংশে ত্রুটি নাই। যাবদীয় লোক সুখে কাল ক্ষেপণ করিতেছে কিন্তু নবাব স্রাজেরদৌলা অত্যন্ত দূর্বৃত্ত হইয়াছে। মহারাজ চিন্তান্বিত আছেন দেশাধিকারী দুরন্ত কখন কি করে মধ্যে ২ পাণ্ডিতেরদিগের প্রতি আজ্ঞা করেন দেখ দেশাধিকারী অতি দূর্বৃত্ত তোমরা সকলে ঈশ্বরের নিকট আরাধনা কর যেন দুষ্ট আধিকারী এ দেশে না থাকে কিন্তু অতি গোপনে আরাধনা করিবা কদাচ প্রচার না হয়। এই রূপ নিজ রাজ্যে বাস করিতেছেন ইতিমধ্যে মুরসদাবাদ হইতে পত্র লইয়া দূত রাজপুরে উপস্থিত হইল। দ্বারী কহিলেক তুমি কে কোথা হইতে আসিলা। দূত আত্ম পরিচয় দিয়া কহিল তুমি মহারাজাকে সম্বাদ দেহ পরে যেমন আজ্ঞা করিবেন সেই মত কার্য্য করিও। দূতের বাক্যক্রমে দ্বারী মহারাজতক নিবেদন করিল মহারাজ মুরসদাবাদ হইতে পত্র লয়া এক দূত আসিয়াছে। রাজা দ্বারির বাক শ্রবণ করিয়া আজ্ঞা করিলেন দূতকে তোমার নিকট রাখ পত্র আনহ। দ্বারী অতি শীঘ্র গমন করিয়া দূতকে আত্ম স্থানে বসাইয়া পত্র আনিয়া মহারাজকে দিলেক। রাজা সভা ত্যাগ করিয়া গোপনে বসিয়া পত্র পাঠ করিয়া যাবদীয় সম্বাদ জ্ঞাত হইলেন বিস্তারিত সমাচার জ্ঞাত হইয়া হর্ষ বিষাদ দুই হইল হর্ষ হইল যাবদীয় পাত্র মিত্র ও প্রধান ২ মন্ত্রীরা একত্র হইয়াছেন অতএব বুঝি অধিকারের ভাল হইবেক বিষাদ হইল নবাব অতি দুরন্ত যদি এ সকল কথা প্রকাশ হয় তবে জাতি প্রাণ যাইবেক। এই রূপে মনোমধ্যে বিবেচনা করিতে লাগিলেন প্রচার কিছু করিলেন না কোন ভৃত্যকে আজ্ঞা করিয়া দিলেন যে দূত আসিয়াছে তাহাকে হাজার টাকা দেহ আর খাদ্য দ্রব্য যথেষ্ট করিয়া দেহ॥
+</p><p>পরে রজনীতে আত্মীয় বর্গের সহিত বসিয়া পাত্রকে আহ্বান করিয়া অতি নির্জ্জন স্থানে বসিয়া সকলকে পত্র জ্ঞাত করাইয়া কহিলেন তোমরা বিবেচনা করহ ইহার কি কর্ত্তব্য। নবাবের প্রধান পাত্র লিখিয়াছেন শীঘ্র মুরসদাবাদে যাইতে এবং নবাবের দৌরাত্ম্য ক্রমে সকল প্রধান ২ মন্ত্রীরা ঐক্য হইয়া আমাকে আজ্ঞা লিপি লিখিয়াছেন আমি সে স্থানে যাইলে যে হয় বিবেচনা করিবেন অতএব মহতী বিপৎ উপস্থিত ইহার যে সৎ পরামর্শ তাহা তোমরা কহ। সকলেই নিঃশব্দ কাহারো মুখে বাক্য নাই ক্ষণেক পরে পাত্র নিবেদন করিল মহারাজ দেশাধিকারির বিষয় অতি সাবধান পূর্ব্বক বিবেচনা করিতে হইবেক। রাজা কহিলেন কি বিবেচনা করা যায়। পাত্র নিবেদন করিল অগ্রে মহারাজ গমন না করিয়া আমি অগ্রে গমন করি সেখানকার সমস্ত প্রকরণ জ্ঞাত হইয়া ভৃত্য যেমন নিবেদন লিখিবে সেই রূপ কার্য্য করিবেন হটাৎ মহারাজার যাওয়া পরামর্শ হয় না। এই কথা পাত্র কহিলে পর আর ২ মন্ত্রীরা কহিল মহারাজ এই কর্ত্তব্য। এই পরামর্শ স্থির করিয়া কিঞ্চিৎ কালের পর পাত্রকে প্রেরিত করিলেন। তখন মহারাজ কৃষ্ণচন্দ্র রায়ের পাত্র কালীপ্রসাদ সিংহ॥
+</p>
+
+<p> কালীপ্রসাদ সিংহ মুরসদাবাদে উপস্থিত হইয়া আত্মরাজার এক বাটী ছিল সেই স্থানে থাকিয়া মহারাজ মহেন্দ্রের সহিত সাক্ষাৎ করিয়া নিবেদন করিলেন আমারদিগের মহারাজাকে নিকট আসিতে আজ্ঞা পত্র গিয়াছিল পত্র পাইয়া মহারাজ অত্যন্ত হৃষ্ট হইয়া আগমনের দিন স্থির করিয়াছিলেন ইতিমধ্যে শারীরিক পীড়া হইয়া অত্যন্ত ক্লিষ্ট হইলেন এ নিমিত্ত আমাকে নিকটে পাঠাইয়াছেন এবং ভেটের কিঞ্চিৎ দ্রব্যও পাঠাইয়াছেন দৃষ্টি করিতে আজ্ঞা হউক। মহারাজ মহেন্দ্র হাস্য করিয়া কহিলেন তুমি অদ্য রজনীতে আসিবে বিশেষ কার্য্য আছে। কালীপ্রসাদ সিংহ নমস্কার করিয়া বিদায় হইয়া স্বস্থানে গেলেন। পরে রজনী যোগে মহারাজার বাটীতে আসিয়া মহারাজ মহেন্দ্রকে সম্বাদ দেয়াইলেন মহারাজ মহেন্দ্র শ্রবণ করিলেন কালীপ্রসাদ সিংহ আসিয়াছেন আর ২ যত মনুষ্য নিকটে ছিল তাহারদিগকে কহিলেন অদ্য তোমরা স্বস্থানে প্রস্থান কর আমার কিঞ্চিৎ বিশেষ কর্ম্ম আছে আর ২ যত লোক সভায় ছিল সকলে বিদায় হইয়া গেল পরে কালীপ্রসাদ সিংহকে আনিতে অনুমতি দিলেন। কালীপ্রসাদ সিংহ আসিয়া নমস্কার করিয়া নিকটে বসিয়া নিবেদন করিলেন কি জন্যে আমার মহারাজাকে আসিতে আজ্ঞা পত্র গিয়াছিল। তাহাতে মহারাজ মহেন্দ্র কহিলেন আমারদিগের দেশাধিকারির প্রকরণ সমস্তই শুনিতেছ এ নবাব থাকিলে কাহারু জাতি প্রাণ থাকিবেক না অতএব তোমার রাজা অতি বিজ্ঞ এবং নানা শাস্ত্রে পণ্ডিত ও অতি বড় বুদ্ধিমান অতএব তাহার সহিত পরামর্শ করিয়া ইহার উপায়ান্তর চেষ্টা পাওয়া যায়। এই বাক্য শ্রবণ করিয়া কর যোড়ে কালীপ্রসাদ সিংহ নিবেদন করিলেন মহারাজ যে ২ আজ্ঞা করিলেন সকলি প্রমাণ কিন্তু রাজ্যকর্ত্তা অতি দুর্বৃত্ত সাবধানে এ সকল পরামর্শ করিবেন আমার মহারাজাও সর্ব্বদা এই চিন্তাতেই চিন্তিত আছেন অতএব নিবেদন করি যদি মহারাজারদিগের সকলের ঐক্যবাক্য হইয়াছে তবে অবশ্য ইহার উপায় হবেক কিন্তু জবন দমন না করিয়া যদি এরূপ দৌরাত্ম্য সহ্য করেন তবে কারু জাতি প্রাণ থাকিবে না এবং জবন অধিকারী না হইয়া অন্য কোন দেশীয় মনুষ্য দেশাধিকারী হন তাহা হইলে সকল মঙ্গল হবেক। মহারাজ মহেন্দ্র উত্তর করিলেন এই রূপ আমারদিগের বাসনা এই নিমিত্তে তোমার রাজাকে আসিতে লিখিয়াছিলাম তিনি শারীরিক পীড়িত হইয়াছেন অতএব তুমি শীঘ্র বিদায় হও যাহাতে রাজা কৃষ্ণচন্দ্র রায় শীঘ্র এখানে আসিতে পারেন তাহা করিবা আর এ স্থানে গৌণ করিও না। কালীপ্রসাদ সিংহ নিবেদন করিলেন এ স্থানে আসিয়া নবাব সাহেবের সহিত যদি সাক্ষাৎ না করিয়া যাই আর যদি দুষ্ট লোকে নবাব গোচরে সমাচার কহে তবে নবাবের উষ্মা হইবেক আর নবাবের আজ্ঞা ব্যতিরেক এ সহরে আমার মহারাজ আসিতে পারেন না অতএব নিবেদন করি আমাকে নবাব সাহেবের সহিত সাক্ষাৎ করান আমি নবাবের গোচরে নিবেদন করিব আমার মহারাজার একবার শ্রীযুতের সহিত সাক্ষাৎ করিতে নিতান্ত বসনা এবং আর২ যে বিশেষ নিবেদন আছে তাহা সাক্ষাতে নিবেদন করেন এই রূপ কহিয়া নবাব সাহেবের মত করিয়া শেষে মহারাজ এখানে আইলে ভাল হয় মহাশয় কর্ত্তা ইহাতে যেমত আজ্ঞা করেন তাহাই করি। মহা রাজ মহেন্দ্র শুনিয়া কহিলেন উত্তম কহিয়াছ কল্য তোমাকে নবাব সাহেবের গোচরে লইয়া যাইব তুমি অতি প্রাতে প্রস্তুত হইয়া আমার নিকট আসিবা। কালীপ্রসাদ সিংহ নমস্কার করিয়া বাসায় বিদায় হইলেন।
+</p><p>পরে কালীপ্রসাদ সিংহ ভেটের নানা জাতীয় আয়োজন করিলেন প্রাতে ভেটের সামিগ্রী লইয়া মহা রাজার বাটীতে উপস্থিত হইলেন। মহা রাজ মহেন্দ্রের চতুর্দোল প্রস্তুত হইল কিঞ্চিৎ পরে মহা রাজ মহেন্দ্র এবং কালীপ্রসাদ সিংহ নবাব সাহেবের দ্বারে উপস্থিত হইয়া অগ্রে মহারাজা মহেন্দ্র নবাবের গোচরে গেলেন যেমন নিয়ম আছে সেইমত নমস্কার করিয়া নবাব সাহেবের সভাতে ক্ষণেক বসিলেন পরে নবাব সাহেবকে নিবেদন করিলেন নবদ্বীপের রাজা আত্ম পাত্রকে প্রেরিত করিয়াছে এবং কিঞ্চিৎ ভেটের দ্রব্য পাঠাইয়াছে আজ্ঞা হইলেই নিকটে আইসে। নবাব সাহেব ক্ষণেক থাকিয়া কহিলেন আসিতে বল। এক জন ভৃত্য গিয়া কালীপ্রসাদ সিংহকে নবাব সাহেবের গোচরে আনিল। কালীপ্রসাদ সিংহ সহস্র ২ নমস্কার করিয়া ভেট দিয়া নিবেদন করিলেন অনেক দিবস আমার রাজা সাহেবকে দর্শন করেন নাই এবং আত্ম নিবেদন আছে তাহাও গোচর করেন নাই যদি অনুগ্রহ করিয়া আজ্ঞা করেন তবে দর্শন করিয়া যে আত্ম নিবেদন তাহা করেন। নবাব এ সকল বাক্য শ্রবণ না করিয়া মহারাজার প্রতি দৃষ্টি করিলেন। তখন মহারাজ মহেন্দ্র করপুটে নিবেদন করিলেন যদি রাজা কৃষ্ণচন্দ্র রায় আসিবার কারণ নিবেদন করিয়া পাঠাইয়াছে ইহাতে আসিতে আজ্ঞা হইলে ভাল হয়। তখন নবাব সাহেব আজ্ঞা করিলেন ভাল রাজা কৃষ্ণচন্দ্র রায় আমার নিকট আসিতে আজ্ঞাপত্র দেহ। এই বাক্যের পর কালীপ্রসাদ সিংহ অনেক ২ নমস্কার করিয়া নবাব সাহেবের নিকট হইতে যেখানে মহারাজা রাজকর্ম্ম করেন সেই স্থানে আসিয়া বসিলেন। কিঞ্চিৎ পরে মহারাজ মহেন্দ্র উপস্থিত হইয়া নবাবের অনুমতি লিপি দিয়া কালীপ্রসাদ সিংহকে বিদায় করিলেন॥
+</p><p>পরে কালীপ্রসাদ সিংহ শিবনিবাসে আসিয়া রাজা কৃষ্ণচন্দ্র রায় মহাশয়ের সহিত সাক্ষাৎ করিলেন। রাজা বিরলে গিয়া পাত্রকে আহ্বান করিয়া কহিলেন মুরসদাবাদের যাবদীয় সংবাদ বিস্তার করিয়া কহ। কালীপ্রসাদ সিংহ বিস্তারিত করিয়া সমস্ত নিবেদন করিল। তিনি সমস্ত সমাচার জ্ঞাত হইয়া আত্ম পাত্রকে অত্যন্ত তুষ্ট হইয়া রাজপ্রসাদ দিয়া যথেষ্ট সম্মান করিয়া আজ্ঞা করিলেন ভাল দিবস স্থির করহ রাজধানিতে যাইব। কিঞ্চিৎ গৌণে শুভক্ষণে মহারাজ কৃষ্ণচন্দ্র রায় উত্তম ২ মন্ত্রী লইয়া মুরসদাবাদে উপস্থিত হইলেন। কিঞ্চিৎ পরে নবাবের যাবদীয় প্রধান ২ পাত্র মিত্রগণের সাহিত সাক্ষাৎ করিতে গমন করিলেন। সকলের সহিত সাক্ষাৎ হইলেই নবাবের দ্বারে উপনীত হইয়া সম্বাদ দিলেন। নবাব সাহেব শুনিয়া আজ্ঞা করিলেন আসিতে কহ। রাজা কৃষ্ণচন্দ্র রায় নানা বিধ ভেটের দ্রব্যাদি দিয়া দাঁড়াইয়া রহিলেন ভেটের সামিগ্রী নবাব সাহেব দৃষ্টি করিয়া তুষ্ট হইয়া বসিতে আজ্ঞা করিয়া জিজ্ঞাসা করিলেন শারীরিক ভাল আছ। রাজা করপুটে নিবেদন করিলেন সাহেবের প্রসাদাৎ সকল মঙ্গল এবং শারীরিকও মঙ্গল। এই রূপ অনেক শিষ্টাচার গেল ক্ষণেক বসিয়া রাজা নিবেদন করিলেন যদি আজ্ঞা হয় তবে বাসায় যাই অনেক ২ নিবেদন আছে পশ্চাৎ গোচর করিব। নবাব অনুমতি দিলেন। এ দিবস রাজা বাসায় আসিয়া মহারাজ মহেন্দ্র ও রাজা রাম নারায়ণ ও রাজা রাজবল্লভ এবং জাগৎসেট ও মীর জাফরালি খান ইহারদিগের নিকট মনুষ্য প্রেরিত করিলেন আমি সাক্ষাৎ করিতে জাইব। সকলেই অনুমতি করিলেন রাত্রে আসিতে কহিও। ক্রমে ২ রাজা সকলের নিকট রাত্রে গমন করিয়া আত্ম নিবেদন করিলেন। পরে জগৎসেট কহিলেন এ দেশের অত্যন্ত অপ্রতুল হইল দেশাধিকারী অতি দুরন্ত কারু বাক্য শুনে না দিন ২ দৌরাত্ম্য অধিক হইতেছে অতএব সকলে এক বাক্যতা হইয়া বিবেচনা না করিলে কাহারু নিস্কৃতি নাই। এই কথার পর রাজা কৃষ্ণচন্দ্র রায় কহিলেন আপনারা রাজ দ্বারে কর্ত্তা আমরা আপনকারদিগের মতাবলম্বী যেমন ২ কহিবেন সেই রূপ কার্য্য করিব। ইহাই শুনিয়া জগৎসেট কহিলেন অদ্য বাসায় যাওন আমি মহারাজ মহেন্দ্রের সহিত পরামর্শ করিয়া নিভৃত এক স্থানে বসিয়া আপনকারকে ডাকাইব। সে দিবস বিদায় হইয়া রাজা বাসায় আসিলেন। পরে এক দিবস জগৎসেটের বাটিতে রাজা মহেন্দ্র প্রভৃতি সকলে বসিয়া রাজা কৃষ্ণচন্দ্র রায়কে আহ্বান করিলেন দূত আসিয়া রাজাকে লইয়া গেল যথা যোগ্য স্থানে সকলে বসিলেন। ক্ষণেক পরে রাজা রাম নারায়ণ প্রশ্ন করিলেন আপনারা সকলেই বিবেচনা করুণ দেশাধিকারী অতিশয় দূর্বৃত্ত উত্তর ২ দৌরাত্ম্যের বৃদ্ধি হইতেছে অতএব কি করা যায় এই কথার পর মহারাজা মহেন্দ্র কহিলেন আমরা পুরুষানুক্রমে নবাবের চাকর যদি আমারদিগের হইতে কোন ক্ষতি নবাব সাহেবের হয় তবে অধর্ম্ম এবং অখ্যাতি অতএব আমি কোন মন্দ কর্ম্মের মধ্যে থাকিব না তবে যে পূর্ব্বে এক আদ বাক্য কহিয়াছিলাম সে বড় উষ্মা প্রযুক্ত এই ক্ষণে বিবেচনা করিলাম এ সব কার্য্য ভাল নয়। এই কথার পর রাজা রাম নারায়ণ ও রাজা রাজ বল্লভ এবং জগৎসেট ও মীর জাফরালী খান কহিলেন যদ্যপি আপনি এ পরামর্শ হইতে ক্ষান্ত হইলেন কিন্তু দেশ রক্ষা পায় না এবং ভদ্র লোকের জাতি প্রাণ থাকাভার হইল। অনেক ২ রূপ কহিতে মহারাজা মহেন্দ্র কহিলেন তোমরা কি প্রকার করিবা। তখন রাজা রাম নারায়ণ কহিলেন পূর্ব্বে এ কথার প্রস্থাপ এক দিবস হইয়াছিল তাহাতে সকলে কহিয়াছিলেন রাজা কৃষ্ণচন্দ্র রায় অতি বড় মন্ত্রী তাহাকে আনাইয়া জিজ্ঞাসা যাউক তিনি যেমন ২ পরামর্শ দিবেন সেই মত কার্য্য করিব। এখন রাজা কৃষ্ণচন্দ্র রায় এই সাক্ষাতে আছেন ইহাকে জিজ্ঞাসা করুণ যে ২ পরামর্শ কহেন তাহাই শ্রবণ করিয়া যে হয় পশ্চাৎ করিবেন। ইহার পর রাজা কৃষ্ণচন্দ্র রায়কে সকলে জিজ্ঞাসা করিলেন তুমি সকলি জ্ঞাত হইয়াছ এখন কি কর্ত্তব্য। রাজা কৃষ্ণচন্দ্র রায় হাস্য করিয়া নিবেদন করিলেন মহাশয়েরা সকলেই প্রধান মনুষ্য আপনকারা আমাকে অনুমতি করিতেছেন পরামর্শ দিতে এ বড় আশ্চর্য্য সে যে হউক আমি নিবেদন করি তাহা শ্রবণ করুণ আমারদিগের দেশাধিকারী যিনি ইনি জবন ইহার দৌরাত্ম্য ক্রমে আপনারা ব্যস্ত হইয়া উপায়ান্তর চিন্তা করিতেছেন। সমভিব্যাহৃত মীর জাফরালি খান সাহেব ইনিও জাতে জবন অতএব আমার আশ্চর্য্য বোধ হইতেছে। এই কথার পর সকলে হাস্য করিয়া কহিলেন হাঁ ইনি জবন বটেন কিন্তু ইহার প্রহৃতি অতি উত্তম আপনি ইহাকে সন্দেহ করিবেন না। পশ্চাৎ কৃষ্ণচন্দ্র রায় নিবেদন করিলেন এ দেশের উপর বুঝি ঈশ্বরের নিগ্রহ হইয়াছে নতুবা এক কালীন এত হয় না প্রথম যিনি দেশাধিকারী ইহার সর্ব্বদা পরানিষ্ট চিন্তা এবং যেখানে শু নেন সুন্দরী স্ত্রী আছে তাহা বলক্রমে গ্রহণ করেন এবং কিঞ্চিৎ অপরাধে জাতি প্রাণ নষ্ট করেন দ্বিতীয় বরগী আসিয়া দেশ লুট করে তাহতে মনোযোগ নাই তৃতীয় সন্যাসী আসিয়া যাহার উত্তম ঘর দেখে তাহাই ভাঙ্গিয়া কাষ্ঠ করে তাহা কেহ নিবারণ করে না অশেষ প্রকার এ দেশে উৎপাত হইয়াছে অতএব দেশের কর্ত্তা জবন থাকিলে কাহারু ধর্ম্ম থাকিবে না এবং জাতিও থাকিবে না অতএব ঈশ্বরের নিগ্রহ না হইলে এত উৎপাত হয় না আমি এ কারণ অনেক ২ বিশিষ্ট লোককে কহিয়াছি তোমরা সকলে ঈশ্বরের আরাধনা বিশিষ্ট রূপে কর যেন আর উৎপাত না হয় এবং জবন অধিকারী না থাকে আত্ম ২ জাতি ধর্ম্ম রক্ষা পায়। এই রূপ ব্যবহার আমি সর্ব্বদাই করিতেছি অতএব নিবেদন করি ঈশ্বর সৃষ্টি করিয়াছেন নষ্ট করিবেন না কিন্তু এক সুপরামর্শ আছে আমি নিবেদন করি যদি সকলের পরামর্শ স্থির হয় তবে তাহার চেষ্টা পাইতে পারি। তখন সকলে জিজ্ঞাসা করিলেন কি পরামর্শ কহ। রাজা কৃষ্ণচন্দ্র রায় কহিলেন সকলে মনোযোগ করিয়া শ্রবণ করুণ॥
+</p><p>এ দেশের অধিকারী সর্ব্বপ্রকারে উত্তম হন এবং অন্য জাতি ও এ দেশীয় না হন তবেই মঙ্গল হয়। জগৎসেট প্রভৃতি কহিলেন এমন কে তাহা বিস্তারিয়া কহ। রাজা কহিলেন বিলাতে নিবাস জাতে ইঙ্গরাজ কলিকাতায় কোঠি করিয়া আছেন যদি তাহারা এরাজের রাজা হন তবে সকল মঙ্গল হবেক। এই শুনিয়া সকলেই কহি লেন তাহারদিগের কি ২ গুণ আছে। রাজা কৃষ্ণচন্দ্র রায় কহিলেন তাহাদিগের গুণ এই ২ সকল সত্যবাদী জিতেন্দ্রিয় পরহিংসা করেন না যোদ্ধা অতিবড় প্রজা প্রতি যথেষ্ট দয়া এবং অত্যন্ত ক্ষমতাপন্ন বুদ্ধিতে বৃহস্পতির ন্যায় ধনেতে কুবের তুল্য ধার্ম্মিক এবং অর্জুনের ন্যায় পরাক্রম প্রজা পালনে সাক্ষাৎ যুধিষ্ঠির এবং সকলে ঐক্যতাপন্ন শিষ্টের পালন দুষ্টের দমন রাজার সকল গুণ তাহারদিগের আছে অতএব যদি তাহারা এ দেশাধিকারী হন তবে সকলের নিস্তার নতুবা জবনে সকল নষ্ট করিবেক। এই কথার পর জগৎ সেট কহিলেন তাহারা উত্তম বটেন তাহা আমি জ্ঞাত আছি কিন্তু তাহারদিগের বাক্য আমরাও বুঝিতে পারি না ও অমাদিগের বাক্য তাহারাও বুঝিতে পারেন না ইহার পর রাজা কৃষ্ণচন্দ্র রায় কহিলেন এখন তাহারা কলিকাতায় কোঠি করিয়া বানিজ্য করিতেছেন সেই কলিকাতার দক্ষিণে কালীঘাট নামে এক স্থান আছে তাহাতে কালী ঠাকুরাণী আছেন আমি মধ্যে ২ কালী পূজার কারণ গিয়া থাকি সেই কালে কলিকাতার কোঠির যিনি বড় সাহেব তাহার সহিত সাক্ষাৎ করিয়া থাকি ইহাতেই তাহার চরিত্র আমি সমস্তই জ্ঞাত আছি। এই কথার পর রাজা রামনারায়ণ কহিলেন আপনি মধ্যে ২ কলিকাতার কোঠির বড় সাহেবের সঙ্গে সাক্ষাৎ করেন কিন্তু তাহার বাক্য কি প্রকারে আপনি বুঝেন আর আপনকার কথা তিনি বা কি প্রকারে জ্ঞাত হন। এই কথার উত্তর রাজা কৃষ্ণচন্দ্র রায় করিলেন কলিকাতায় অনেক ২ বিশিষ্ট লোকের বসতি আছে তাহারা সকলে ইঙ্গরাজী ভাষা অভ্যাস করিয়াছেন এবং সেই সকল বিশিষ্ট মনুষ্য সাহেবের চাকর অছেন তাহারাই বুঝাইয়া দেন। ইহা শুনিয়া সকলে কহিলেন ইহারা এ দেশের কর্ত্তা হইলে সকল রক্ষা পায় অতএব আপনি কলিকাতায় গমন করিয়া যে সকল কথা উপস্থিত হইল এই সকল বৃত্তান্ত কোঠির বড় সাহেবের নিকট জ্ঞাত করাইবা তিনি যেমন ২ কহেন বিস্তারিত আমারদের কাহিবা এবং তিনি প্রতিজ্ঞা করিবেন তাহারা দেশাধিকারী হইলে আমারদিগের এ রাজের প্রতুল করিবেন আর এখন যে ২ কার্য্য আমারদিগের আছে ইহাতেই রাখিবেন। এই কথার পরে রাজা কৃষ্ণচন্দ্র রায় কহিলেন তাহারা দেশাধিকারী হইবেন রাজ্যের প্রতুল রাখিলেই রাজার প্রতুল হয় আমাদের এ কথা কহনে আবশ্যক নাই তবে যে কথা কহিলেন আপনারদিগের যে ২ কার্য্য আছে ইহাতেই নিযুক্ত রাখিবেন তাহার কোন সন্দেহ মহাশয়েরা করিবেন না তাহারদিগের রাজ্য হইলেই সুখি সকল লোক হইবেক কিন্তু আপনারা আমাকে নিতান্ত স্থির করিয়া আজ্ঞা করুণ। পরে সকলেই কহিলেন এই স্থির হইল আপনি কলিকাতায় গমন করুণ। ইহা বলিয়া রাজা কৃষ্ণচন্দ্র রায়কে বিদায় করিয়া সকলে স্ব স্ব স্থানে প্রস্থান করিলেন॥
+</p><p>পর দিবস রাজা কৃষ্ণচন্দ্র রায় নবাব সাহেবের নিকট আত্ম রাজ্যের অপ্রতুল নিবেদন করিয়া রাজধানিতে বিদায় হইয়া নিজ রাজ্যে প্রস্থান করিলেন। পরে শিবনিবাসের বাটীতে উপনীত হইলেন। রাজা যাবদীয় পাত্র মিত্র গণকে আজ্ঞা করিলেন আমি এক বার কালীঘাটে যাইব তোমরা প্রস্তুত হও। সকলে যে আজ্ঞা বালিয়া রাজ সভাহইতে আত্ম ২ স্থানে আসিয়া রাজার গমনের আয়োজন করিতে প্রবর্ত্ত হইলেন। কিঞ্চিৎ গৌণে রাজা কৃষ্ণচন্দ্র রায় পাত্রকে সঙ্গে করিয়া কালীঘাটে আসিলেন। কিঞ্চিৎ কাল পরে রাজা কৃষ্ণচন্দ্র রায় কোঠির বড় সাহেবের নিকট আপন পাত্রকে পাঠাইলেন আর কহিলেন তুমি সাহেবকে নিবেদন কর গিয়া আমি কল্য সাক্ষাৎ করিতে যাইব। রাজার পাত্র আসিয়া সাহেবের সাহিত সাক্ষাৎ করিয়া নিবেদন করিলেন মহারাজ কৃষ্ণচন্দ্র রায় কালীঘাটে আসিয়াছেন এখন বাসনা সাহেবের সহিত সাক্ষাৎ করেন। সাহেব আজ্ঞা কারিলেন আসিতে কহ। সাহেবের আজ্ঞা পাইয়া পাত্র রাজাকে সমভিব্যাহৃত করিয়া পর দিবস সাহেবের নিকট আনিলেন। রাজা কৃষ্ণচন্দ্র রায় সাহেবের সহিত সাক্ষাৎ করিবামাত্র সাহেব যথেষ্ট মর্য্যাদা কারিয়া বসিতে সিংহাসন দিলেন। রাজা ও সাহেব দুই জন সিংহাসনে বসিয়া অনেক ২ হাস্য পরিহাস করিলেন এবং রাজা কৃষ্ণচন্দ্র রায় অনেক শিষ্টাচার করিলেন। সাহেবের প্রধান যে চাকর তিনি উভয়েরি বাক্য বুঝাইয়া জ্ঞাত করাইতে লাগিলেন। অনেক ২ কথার পর রাজা কহিলেন আমার কিঞ্চিৎ বিশেষ নিবেদন আছে। সাহেব কহিলেন কি নিবেদন। রাজা মুরসদাবাদের বৃত্তান্ত সমস্ত জ্ঞাত করাইলেন আর কহিলেন এ রাজ্য আপনারা রক্ষা না করিলে যাবদীয় লোক অত্যন্ত ব্যামোহ পায় এবং জবন অধিকারী থাকিলে সকল দেশ নষ্ট হয় এই কারণ নবাবের প্রধান ২ পাত্র মিত্রগণ আপনকার নিকটে আমাকে প্রেরণ করিয়াছেন। সকল বৃত্তান্ত সাহেব শ্রবণ করিয়া আশ্বাস দিয়া কহিলেন আমি এ সংবাদ বিলাতে লিখি সেখানকার আজ্ঞা আনিয়া পশ্চাৎ যুদ্ধ করিয়া এ দেশ করতলে আনিয়া সকল মনুষ্যকে পরম সুখে রাখিব তুমি এই সমাচার নবাবের পাত্র মিত্রগণকে লিখহ। এবং যথেষ্ট আশ্বাস করিয়া রাজা কৃষ্ণচন্দ্র রায়কে বিদায় করিয়া সাহেব সকল বৃত্তান্ত বিলাতে লিখিলেন। রাজা কৃষ্ণচন্দ্র রায় শিবনিবাসের বাটীতে উপস্থিত হইয়া সকল বিস্তারিত নবাব সাহেবের প্রধান ২ পাত্রকে জ্ঞাত করাইলেন সকলে শ্রবণ করিয়া হৃষ্ট হইলেন॥
+</p><p>দৈবের ঘটনা ক্রমে নবাবের বিপদ উপস্থিত হইল তাহার বৃত্তান্ত এই॥
+</p><p>ইঙ্গরাজের বানিজ্যের কোঠি অনেক গ্রামে ছিল যে জিনিষের যে রাজকর নিয়ম ছিল সেই মত নবাব সাহেব পাইতেন। নবাব স্রাজেরদৌলা অন্তঃকরণে করিলেন ইঙ্গরাজের ব্যাপার বানিজ্য অতি বিস্তর করিতে লাগিলেন অতএব আমি এখন আধিক রাজকর লইব ইহাই মনোমধ্যে বিবেচনা করিয়া প্রধান ২ পাত্রগণকে আজ্ঞা করিলেন সর্ব্বত্রে সম্বাদ লিখহ যেখানে ২ ইঙ্গরাজের বানিজ্যের কোঠি আছে সেই ২ খানে আমার যে ২ চাকরেরা রাজকরের কারণ আছে তাহারদিগের উপর এই লিখহ যে সব নিয়ম আছে তাহা অপেক্ষা রাজকর অধিক লয়। ইহা শুনিয়া পাত্র কহিলেন ইঙ্গরাজ সাহেবেরা বিদেশী মহাজন এ দেশে অনেক কালাবধি ব্যাপার বানিজ্য করেন নিয়মিত রাজকর বরাবর দেন কখন অধিক দেন নাই এখন আপনি অধিক লইবেন এ উত্তম পরামর্শ না তবে মহাশয় কর্ত্তা যেমত আজ্ঞা হয়। এই কথায় যাবতীয় প্রধান ২ পাত্র মিত্রগণ সকলেই কহিলেন মহারাজ মহেন্দ্র যে কহিলেন এই উত্তম আদ্যোপান্ত যে হইয়া আসিতেছে এখন তাহাতে ব্যতিক্রম করা ভাল নহে। পাত্রমিত্রগণের বাক্য শ্রবণ করিয়া নবাব উষ্মান্বিত হইয়া কহিলেন তােমরা আমার চাকর আমি যেমন ২ কহিব সেই মত কার্য্য করিবা তােমরদিগের বিবেচনায় কি করে পুনরায় যদি এ বিষয়েতে কেহ বাক্য কহ তবে তাহার যথেষ্ট শাস্তি করিব। সকলে নিঃশব্দ হইলেন পরে আজ্ঞা প্রমাণ যেখানে ২ কোঠি ছিল সেই ২ খানের আত্ম চাকরের প্রতি লিপি লিখিলেন অদ্যাবধি ইঙ্গরাজ সাহেবলােকেরা বানিজ্য যে করিতেছে তাহারদিগকে করের যে নিয়ম ছিল তাহা অপেক্ষা রাজকর আধিক লইবা। এই সমাচার পাইয়া নবাবের চাকরলােকেরা কোঠির চাকরেরদিগের স্থানে অধিক রাজকর লইতে উদ্যত হইল কোঠির চাকর সমস্ত কলি কাতার কোঠির বড় সাহেবকে বিস্তারিত সমাচার লিখিলেন সাহেব সর্ব্বত্রের পত্র পায়া সম্বাদ জ্ঞাত হইলেন।
+</p><p>এই সময় নবাব সাহেব রাজা রাজবল্লভের উপর কোন কার্য্যের কারণ উষ্মান্বিত হইলেন কিন্তু বাহ্যে প্রকাশ করেন নাই। রাজা রাজবল্লভ আপন পুত্র কৃষ্ণ দাসের সাহিত গোপনে বিবেচনা করিলেন যে নবাব সাহেব আমারদিগের উপর উষ্মা করিয়াছেন অতএব যদি আমরা এথানে থাকি তবে জাতি প্রাণ ও ধন সকল যাবেক অতএব এই সময় সপরিবারে পলায়ন করি। রাজা কৃষ্ণ দাস কহিলেন নবাবের সাক্ষাতে থাকিলে এ সকলি সারিরে কিন্তু পলায়ন করিয়া কোথায় যাইব সকল দেশ নবাবের। রাজা রাজবল্লভ কহিলেন চল কলিকাতায় যাই সে স্থান নবাবের অধিকার নহে ইঙ্গরাজ সাহেবেরদিগের অধিকার এবং তাহারদিগের গুণরাজা কৃষ্ণ চন্দ্র রায় বিস্তারিয়া কহিয়াছেন তাহাতে আমি জ্ঞাত আছি তাহারা শরণাগত জনকে ত্যাগ করেন না অতএব কলিকাতায় গমন করা পরামর্শ নতুবা সকল নষ্ট হবেক। এই স্থির করিয়া সপরিবারে পলায়ন করিয়া রাজা রাজবল্লত কলিকাতায় আসিয়া কোঠির বড় সাহেবের শরণ লইয়া বিস্তারিত নিবেদন করিলেন। কোঠির সাহেব আশ্বাস করিয়া বলিলেন তোমারদিগের কোন চিন্তা নাই তুমি কলিকাতায় থাকহ। ইহাই বালিয়া আপনার প্রধান চাকরকে কহিয়া দিলেন রাজা রাজবল্লভ ও কৃষ্ণদাস দুই জনে নবাবের সঙ্কায় পলায়ন করিয়া আমার শরণ লইয়াছে তুমি যথেষ্ট আশ্বাস দিয়া উত্তম এক স্থানে রাখহ। সাহেবের আজ্ঞা মতে প্রধান২ চাকর উত্তম স্থানে রাখিলেন।
+</p><p>কিছুকাল গৌণে নবার স্রাজেরদৌলা শ্রবণ করিলেন যে রাজা রাজবল্লভ ও কৃষ্ণ দাস সপরিবারে পলায়ন করিয়া কালকাতায় গিয়া রহিয়াছে শুনিবা মাত্র আতি ক্রোধান্বিত হইয়া মহারাজ মহেন্দ্রকে আজ্ঞা করিলেন কলিকাতার কোঠির বড় সাহেবকে এক পত্র লিখ যে আমার চাকর রাজবল্লভ ও কৃষ্ণ দাস এখান হইতে পলায়ন করিয়া আপনার নিকটে আছে তাহারদিগের দুই জনকে বন্ধন করিয়া আমার নিকট শীঘ্র পাঠাইবে। মহারাজা মহেন্দ্রনবাসাহেবের আজ্ঞা শুনিয়া নিঃশব্দে রাহিলেন ক্ষণেকের পর নিবেদন করিলেন যে আজ্ঞা তাহাই লিখিতেছি কিন্তু এক নিবেদন আছে কলিকাতার কোঠির যে বড় সাহেব আছেন তাহারাদিগের জাতের এক নিয়ম আছে যদি কেহ শরণাগত হয় তার জন্যে আপনার প্রাণ দিলে ও যাদি সে রক্ষা পায় তাহাও করেন। এ কেবল তাহারদিগের নিয়ম নহে সকলেরি শাস্ত্রে এই মত আছে শরণাগত রক্ষা করিলে ধর্ম্ম আর শরণাগত ত্যাগ করিলে অধর্ম্ম কিন্তু বিশেষ তাহারদিগের পণ প্রাণ থাকিতে শরণাগত ত্যাগ করেন না অতএব নিবেদন করি কিঞ্চিৎ কালের জন্যে রাজবল্লভ কলিকাতায় থাকুক পশ্চাৎ কৌশল ক্রমে আমি তাহাকে আনিতেছি হটাৎ এমত লিখন যদি আপনি লিখেন আর কোঠির সাহেব রাজবল্লভকে ত্যাগ না করেন তবেই বিবাদ উপস্থিত হইবেক তাহাতে যে রূপ কার্য্য করিতে আজ্ঞা করেন সেই মত কার্য্য করি। নবাব শুনিয়া অধিক ক্রোধ করিয়া কহিলেন এখনি কোঠির সাহেবকে লিখহ। পরে মহারাজ মহেন্দ্র মুনসিলোককে পত্র লিখিতে আজ্ঞা করিয়া দিলেন পত্রের বিবরণ এই।
+</p><p>আত্মমঙ্গল সংবাদ লিখিয়া লিখিলেন আমার চাকর রাজা রাজবল্লত ও রাজা কৃষ্ণ দাস এখান হইতে পলায়ন করিয়া আপনকার নিকটে রহিয়াছে অতএব ভাইজী তাহারদিগের দুই জনকে বন্ধন করিয়া শীঘ্র আমার নিকট পাঠাইবেন ইহাতে কদাচ অন্য মত করিবেন না। এই মত পত্র লিখিয়া কলিকাতায় পাঠাইলেন। কোঠির বড় সাহেব লিপি পাইয়া আপন প্রধান২ পাত্র মিত্র গণকে আহ্বান করিয়া পত্র দেখাইলেন। চাকরেরা পত্র জ্ঞাত হইয়া সাহেবকে পত্রের অর্থ জ্ঞাত করাইলেন পত্রের অর্থ শুনিয়া সাহেব হাস্য করিয়া আত্ম চাকরকে আজ্ঞা করিলেন পত্রের উত্তর লিখহ। নবাব সাহেবকে কলিকাতার কোঠির বড় সাহেব উত্তর লিখিলেন তাহার বিবরণ এই।
+</p><p>আত্মমঙ্গল সমাচার লিখিয়া লিখিলেন ভাই সাহেবের এক পত্র পাইয়া পরম হৃষ্ট হইয়া সমাচার জ্ঞাত হইলাম। আপনকার চাকর রাজা রাজবল্লভ ও রাজা কৃষ্ণ দাস দুই জন পলায়ন করিয়া আমার শরণাপন্ন হই য়াছে তাহার কারণ এই ভাই সাহেবের সঙ্গে আমার যথেষ্ট প্রণয় আছে আমার নিকট থাকিলে ইহারা ভয় হইতে মুক্ত হইবেক অতএব এ ক্ষুদ্র লোক ইহার প্রতি আপনকার ক্রোধ সে কেমন যেমন মেষের উপর সিংহের পরাক্রম অতএব আপনি এ দেশাধিকারী সকলের উপর কৃপাবলোকন করিয়া পালন করিতে উচিত হয়। ইহাতে যদ্যপি অল্প ২ অপরাধে চাকরেরদিগের ওপর নিগ্রহ করেন তবে কর্ত্তার মহিমার ত্রুটি হয়। আর লিখিয়াছেন দুই জনকে বন্ধন করিয়া শীঘ্র পাঠাইতে এ বড় আশ্চর্য্য বাক্য শরণাগত জনকে ত্যাগ করিতে সর্ব্ব শাস্ত্রে নিষেধ এবং আমারদিগের শাস্ত্রে ও ব্যবহারে যথেষ্ট মন্দ অতএব কিঞ্চিৎ কালের জন্যে আপনি ব্যস্ত হইবেন না আমি কৌশল ক্রমে রাজবল্লভকে নিকট পাঠাইব। আর আমারদিগের বানিজ্য এ দেশে অনেক কালাবধি আছে তাহাতে রাজকরের যে নিয়ম আছে তাহা এখন দিতেছি হটাৎ আপনকার চাকরেরা অধিক লইতে চাহে এ বিষয় আপনি আত্ম লোকেরদিগকে বারণ করিয়া দিবেন যেন আধিক না চাহে॥
+</p><p>নবাব সাহেব কোঠির সাহেবের পত্রের উত্তর জ্ঞাত হইয়া পাত্রমিত্রগণকে আজ্ঞা করিলেন কলকাতার কোঠির সাহেব যে উত্তর লিখিয়াছেন তাহার শীঘ্র প্রত্যুত্তর লিখহ। পাত্র আজ্ঞামতে পত্র লিখিলেন তাহার বিবরণ এই।
+</p><p>আত্ম মঙ্গল লিখিয়া লিখিলেন ভাইজীর প্রত্যুত্তর পত্র পাইয়া সংবাদ জ্ঞাত হইলাম। লিখিয়াছেন রাজ বল্লভ ও কৃষ্ণ দাস দুই জন পলায়ন করিয়া আপনকার শরণাগত হইয়াছে অতএব শরণাগত ব্যক্তিকে ত্যাগ করণে যথেষ্ট অধর্ম্ম সে প্রমাণ বটে কিন্তু রাজাজ্ঞা পরিত্যাগ করিলেও অধর্ম্ম আছে। আর আপনি বিদেশী তাহাতে মহাজন দেশাধিকারির সাহিত বিবাদ হয় এমত কার্য্য করা উচিত নহে অতএব আমি এ দেশের অধিকারী আমার বাক্যে যদ্যপি নিয়ম ভঙ্গ হয় তাহাও পণ্ডিতের কর্ত্তব্য আপনকার সহিত যথেষ্ট প্রণয় আছে যাহাতে প্রণয় ভঙ্গ না হয় এমত করিবেন। আর লিখিয়াছেন আপনকার কোঠি যেখানে২ সেই২ স্থানে আমার লােকে অধিক রাজকর লইতে উদ্যত হইয়াছে। তাহার কারণ এই পূর্ব্বে যখন আপনারা এ দেশে কোঠি করিলেন তখন অল্প২ সামিগ্রীর বাণিজ্য করিলেন এখন অতিশয় দ্রব্য ক্রয় বিক্রয় করিতেছেন অতএব ইহাতে কি রূপে পূর্ব্বের মত রাজকর থাকে। এবং সওদাগরেরদিগেরও এই ধর্ম্ম যদি অধিক বাণিজ্য হয় তবে যে দেশাধিকারী থাকে তাহাকে ও কিঞ্চিৎ অধিক দেয় সে যে হউক। এখনি রাজবল্লভ ও কৃষ্ণ দাসকে শীঘ্র এখানে পাঠাইবেন এবং যেখানে২ আপনকার কোঠি আছে সেই২ কোঠিতে সমাচার লিখিবেন অধিক রাজকর দেয় বরং এখন যে হারে রাজকর দিবেন এইমত চির কাল থাকিবেক। এইরূপ পত্র লিখিয়া কলিকাতায় পাঠাইলেন। দূত আসিয়া কোঠির বড় সাহেবকে পত্র দিলেক। কোঠির বড় সাহেব পত্র জ্ঞাত হইয়া পুনরায় উত্তর লিখিলেন তাহার বিবরণ এই।
+</p><p>আপন মঙ্গল ও শিষ্টাচারের পর লিখিলেন নবাব ভাইজীউ সাহেবের পত্র পাইয়া সকল সম্বাদ জ্ঞাত হইলাম। রাজা রাজবল্লভ ও কৃষ্ণ দাসের কারণ পুনঃ ২ লিখিতেছেন আর লিখিয়াছেন যে দেশাধিকারির বাক্যে নিয়ম ভঙ্গ করিতে পারে এবং রাজাজ্ঞা লঙ্ঘনে পাপ আছে সেও প্রমাণ বটে কিন্তু আত্ম ২ শাস্ত্রমতে এই হয় যে শরণাগত জনের কারণ প্রাণ দিবেক তথাপি তাহাকে ত্যাগ করিবে না অতএব দেশাধিকারী ব্যতিরেক অন্য কেহ প্রাণ দণ্ড করিতে পারে না তুল্যাতুল্য হইলেই প্রাণের সঙ্কা কিন্তু শরণাগতের কারণ সে সঙ্কা করিবে না তাহার প্রমাণ অনেক ২ শাস্ত্রে আছে সমান জনের সহিত শরণাগতের কারণ বিবাদ হইলে প্রাণ যাওনের কারণ কি অতএব যেখানে প্রাণ পণ সেখানে শরণাগতের জন্যে যদি দেশাধিকারির সহিত বিবাদ হয় তাহাও স্বীকার করিবে তাহাতে যদ্যপি প্রাণ যায় তথাপি ধর্ম্ম এবং যে নিয়ম আছে তাহাও রক্ষা হবে। অতএব আপনকার নিকট উত্তম ২ পাণ্ডিত আছে তাহারদিগকে জিজ্ঞাসা করিবেন যদি তাহারদিগের ব্যবস্থাতে শরণাগতকে ত্যাগ করা যায় তবে আমি ত্যাগ করিব। আর এ রাজ্য পূর্ব্বে হিন্দু লোকেরদিগের ছিল আপনকার নিকটে অনেক ২ হিন্দু চাকর আছে তাহারা অবশ্য আপন ২ শাস্ত্র জ্ঞাত আছে দেখ অতি পূর্ব্বে দণ্ডী নামে এক রাজা ছিলেন সর্ব্বদা মৃগয়া করিতেন। এক দিবস দণ্ডী রাজা মৃগয়াতে গমন করিলেন এক বনের মধ্যে গমন করিয়া মৃগয়া করিতেছেন। ইতিমধ্যে এক অশ্বিনী দেখিলেন অত্যন্ত চঞ্চল গতি এবং আশ্চর্য্য মূর্ত্তি অশ্বিনীকে দেখিয়া রাজা অতিশয় হৃষ্ট হইয়া সকল সৈনকে কহিলেন এই আশ্বিনীকে ধর। রাজাজ্ঞা পাইয়া সকল সৈন্য অশ্বিনীকে ধরিলেক। দণ্ডী রাজা অশ্বিনীকে লইয়া আত্মরাজ্যে আসিলেন। আশ্বিনী দিবসে ঘোটকী রাত্রে এক অপূর্ব্বা সুন্দরী কন্যা হয় ইহাতে দণ্ডী রাজার বড় আশ্চর্য্য বোধ হইল। এই রূপে কিছু কাল যায় এক দিবস রজনীতে সেই কন্যাকে দণ্ডী রাজা জিজ্ঞাসা করিলেন তুমি কে আমাকে সত্য কহ। তখন সেই কন্যা কহিলেন আমি স্বর্গের নৃত্যকী ছিলাম এক দিবস ইন্দ্রের নিকটে নৃত্য করিতেছি অন্যমনস্কা হইলাম ইহাতেই তাল ভঙ্গ হইল। তাল ভঙ্গ হওনে ইন্দ্র উষ্মা করিয়া কহিলেন যেমন তুমি মন্দ নৃত্য করিলা অতএব অশ্বিনী হইয়া সর্ব্বদা বন মধ্যে নৃত্য কর গিয়া। পরে আমি ইন্দ্রকে বহুবিধ স্তব করিলাম। পরে ইন্দ্র কিঞ্চিৎ তুষ্ট হইয়া কহিলেন তুমি রজনীতে কন্যা হইবা এবং দণ্ডী রাজা তোমাকে ধরিবেক তার পর মুক্ত হইয়া আমার নিকটে আসিবা। ইহা শুনিয়া দণ্ডী রাজা যত্ন পূর্ব্বক অশ্বিনীকে রাখেন। এক দিবস শ্রীকৃষ্ণ আপন আলয়হইতে শ্রবণ করিলেন যে দণ্ডী রাজা এক অপূর্ব্বা অশ্বিনী পাইয়াছে সেই অশ্বিনী চাহিলেন দণ্ডী রাজা সে অশ্বিনী কদাচ দিলেন না। পরে শ্রীকৃষ্ণ বহু সৈন্য লইয়া যুদ্ধ করিতে উদ্যত হইলেন। দণ্ডী রাজা শ্রবণ করিলেক যে শ্রীকৃষ্ণ আমার সঙ্গে যুদ্ধ করিতে আসিতেছেন ইহা শুনিয়া পলাইয়া অনেক ২ স্থানে গমন করিলেন। পরে পাণ্ডব পুত্র যুধিষ্টির ভীম অর্জুন নকুল সহদেব ইহারদিগের মধ্যে ভীমের শরণাপন্ন হইলেন। ভীম আশ্বাস করিলেন হে দণ্ডী রাজা অশ্বিনীর সহিত আমার নিকটে থাক তোমার কোন চিন্তা নাই। দণ্ডী রাজা যথেষ্ট আশ্বাস পাইয়া ভীমের নিকটে রাহিলেন। পরে শ্রীকৃষ্ণ শুনিলেন যে দণ্ডী রাজা অশ্বিনী সহিত ভীমের শরণাপন্ন হইয়াছে পশ্চাৎ শ্রীকৃষ্ণ দূত পাঠাইলেন যে দণ্ডী রাজা অশ্বিনীর সহিত সেখানে আছে অতএব তাহাকে এবং অশ্বিনীকে শীঘ্র আমার নিকট পাঠাইবেন। এই সংবাদ পাইয়া ভীম বড় ভাবিত হইলেন ভীমেরদিগের বল বুধি বিক্রম যে কিছু সকলি শ্রীকৃষ্ণ অন্তঃকরণে বিবেচনা করিলেন যে শরণাগত জনকে রক্ষা যদি না করি তবে বৃথা প্রাণ ধারণ করা যদি না দিই তবে কৃষ্ণের সহিত যুদ্ধ করিতে হইবেক কৃষ্ণের যুদ্ধেতে প্রাণ রক্ষা হইবে না তবে কি করি। অনেক মত চিন্তা করিয়া স্থির করিলেন বরং যুদ্ধেতে প্রাণ যায় সেও উত্তম তথাপি শরণাগত জনকে দেয়া মত নহে। ইহাই স্থির করিয়া কৃষ্ণের দূতকে বিদায় করিলেন দণ্ডী রাজা ও অশ্বিনীকে দিলেন না। শ্রীকৃষ্ণ এই সম্বাদ পাইয়া মহা ক্রোধে সৈন্য লইয়া যুদ্ধ করিতে আগমন করিলেন। পশ্চাৎ ভীম আত্ম সহোদরেরদিগকে সম্বাদ দিলেন তখন যুধিষ্টির প্রভৃতি শুনিয়া মহা ক্রোধান্বিত হইয়া রণ করিতে প্রবর্ত্ত। শ্রী কৃষ্ণ কহিলেন তোমরা আমার আশ্রিত দণ্ডী রাজার কারণ আমার সঙ্গে রণ করিতে আসিলা। ভীমার্জুন কহিলেন আপনি যে কহিলেন সে প্রমাণ বটে কিন্তু শরণাগত জনের কারণ আমরা প্রাণ দিতে স্বীকার করিয়াছি। তখন শ্রীকৃষ্ণ হাস্য করিয়া কহিলেন আমি তোমারদিগের সাহস এবং ধর্ম্মজ্ঞান দেখিবার কারণ এ রূপ করিয়াছিলাম। এ রূপে কথোপকথন অনেক হইল পশ্চাৎ অশ্বিণী সাক্ষাতে আসিয়া কৃষ্ণ দর্শন করিয়া ইন্দ্রের অভিসম্পাত হইতে মুক্ত হইয়া আত্ম স্থানে গমন করিলেক॥
+</p><p>অতএব আমি হিন্দু লোকের স্থানে এমন কথা শ্রবণ করিয়াছি এবং হিন্দুর শাস্ত্রেও অনেক স্থানে প্রমাণ আছে যে শরণাগতকে কদাচ ত্যাগ করিবে না। আমারদিগের শাস্ত্রেও শরণাগতকে ত্যাগ করিতে যথেষ্ট নিষেধ আছে তথাপি বার ২ লিখিতেছেন আপনি এ দেশের কর্ত্তা আপনার নিকটে জাতীয় মানুষ্য আছে এবং সকলকে জিজ্ঞাসা করিবেন বিশেষত আমারদিগের গণ প্রাণ সত্বে শরণাগত ব্যক্তিকে ত্যাগ করিব না। অতএব রাজবল্লভ ও কৃষ্ণদাসকে পশ্চাৎ কৌশল ক্রমে আপনকার নিকট পাঠাইর এই ক্ষণে আপনি কিঞ্চিৎ কালের জন্যে স্থির থাকিবেন। আর যে লিখিয়াছেন আমারদিগের বানিজ্য অধিক হইতেছে অতএব রাজকর অধিক লগিবেক কিন্তু আমারাদিগের বানিজ্য এ দেশে অনেক কালাবধি আছে তাহাতে হস্তিনাপুরের সম্রাটের রাজা যিনি তিনি এই নিয়ম করিয়া দিয়াছেন এবং কত২ সুবা গিয়াছে কখন অধিক দিই নাই এখন অধিক দিব না। আপনি বিবেচক বিবেচনা করিয়া যে সৎ পরামর্শ হয় তাহাই করিবেন।
+</p><p>এইমত লিখন লিখিয়া নবাব সাহেবের নিকট পাঠাইলেন।
+</p><p>নবাব সাহেব কলিকাতার কোঠির বড় সাহেবের পত্র জ্ঞাত হইয়া অত্যন্ত ক্রোধান্বিত হইয়া পাত্রকে আজ্ঞা করিলেন কলিকতার কোঠির সাহেব বুঝি আমার বাক্য শুনিলেন না অতএব আর এক পত্র লিখহ যদি বাক্য পালন করেন তবে ভালই নতুবা আমি কলিকাতা লুট করিয়া তাহারদিগকে এ দেশে থাকতে দিব না পাত্র নিবেদন করিলেন আপনি দেশাধিকারী কিন্তু শাস্ত্র মত বিচার করিলে ভাল হয়। তাহাতে নবাব কহিলেন আমার আজ্ঞা লঙঘন করিলে আমি শাস্ত্র বিচার করি না তুমি শীঘ্র পত্রের উত্তর লিখিয়া আনহ। মহারাজ মহেন্দ্র নীরব হইয়া পত্র লেখাইলেন তাহার নিবরণ এই।
+</p><p>আত্ম শিষ্টাচারের পর লিখিলেন ভাই সাহেবের পত্র পাইয়া সকল সমাচার জ্ঞাত হইলাম আপনি অনেক২ শাস্ত্রমত লিখিয়াছেন এবং পূর্ব্ব যেমন২ হইয়াছে তাহাও লিখিয়াছেন এ সকলি প্রমান বটে কিন্তু সর্ব্বত্রেই রাজারাদিগের এইপণ যে শরণাগত ত্যাগ করেন না তাহার কারণ এই রাজা যদি শরণাগত ত্যাগ করেন তবে তার রাজ্যের বহুল্য হয় না এবং পরাক্রমের ও ত্রুটি হয়। আপনি রাজা নহেন মহাজন কেবল ব্যাপার বানিজ্য করিবেন ইহাতে রাজার ন্যায় ব্যবহার কেন অতএব যদি রাজবল্লভ ও কৃষ্ণ দাসকে এথানে শীঘ্র পাঠান তবে ভালই নতুবা আমি আপনকার সহিত যুদ্ধ করিব। আপনি যুদ্ধ সজ্জা করিবেন কিন্তু যদি যুদ্ধ না করেন তবে পূর্ব্বের যে নিয়মিত রাজকর আছে এই ক্ষণে তাহাই দিবেন আমি আপন চাকরেরাদিগকে আজ্ঞা করিয়া দিলাম এবং শ্রীযুৎ কোম্পানির নামে যে ক্রয় বিক্রয় হইবেক তাহারি নিয়ম থাকিবেক কিন্তু আর২ যত সাহেব লােকেরা বানিজ্য করিতেছেন তাহারদিগের স্থানে তাধিক রাজকর লইব অতএব আপনি বিবেচক সৎপরামর্শ করিয়া পুত্রের উত্তর লিখিবেন। এই রূপ পত্র লিখিয়া কলিকাতায় বড় সাহেবের নিকট পাঠাইলেন।
+</p><p>কোঠির বড় সাহেব পত্র জ্ঞাত হইয়া আপনার চাকরলোককে জ্ঞাত করিলেন আর কহিলেন আমি রাজবল্লভ ও কৃষ্ণ দাসকে কদাচ দিব না অতএব বুঝি নবাবের সহিত আমার বিবাদ উপস্থিত হইল কিন্তু নবাব এ দেশাধিকারী তাহার সৈন্য অধিক আমি মহাজনীয় ব্যবসা করি সৈন্য নাই তাহাতে চারা কি তোমরা এ নগরে বাস করিয়া রহিয়াছ অতএব আত্ম২ পরিবার অন্য দেশে প্রেরণ কর আর কিছু সৈন্য যদি সংগ্রহ করিতে পার তা হারও চেষ্টা পাও এবং নবাবের পত্রের উত্তর লিখহ॥
+</p><p>এইমত পত্রের উত্তর প্রত্যুত্তর অনেক ২ গেল নবাব স্রাজেরদৌলা কদাচ কাহারু বাক্য শ্রবণ করিলেন না মহা ক্রোধান্বিত হইয়া যাবদীয় সৈন্য সঙ্গে করিয়া যুদ্ধের কারণ কলিকাতায় প্রস্থান করিলেন॥
+</p><p>কলিকাতার কোঠির বড় সাহেব শুনিলেন যে নবাব স্রাজেরদৌলা সসৈন্যে যুদ্ধ করিতে আসিতেনে ইহা শ্রবণ করিয়া আপনার যাবদীয় চাকর লোককে আহ্বান করিয়া কহিলেন তোমার দিগকে পূর্ব্বেই সকল বৃত্তান্ত কহিয়াছি সংপ্রতি নবাব সসৈন্যে রণ করিতে আসিতেছেন তোমরা সকলে সাবধানে থাকহ এবং আর কিছু সৈন্য আমাকে আনিয়া দেহ। সাহেবের যত ২ চাকর লোক সকলেই উদ্বিগ্ন হইয়া চিন্তা করিতে প্রবর্ত্ত এবং সাহেবের আজ্ঞানুসারে কিছু সৈন্য সংগ্রহ করিয়া দিয়া আত্ম ২ পরিজন লোককে অন্য স্থানে গোপনে রাখিয়া আপনারা সকলে সৈনের সঙ্গে থাকিয়া যুদ্ধের আয়োজন করিতে লাগিলেন। পুরাণ কোঠির গড়ের উপর থরে ২ কামান রাখিয়া রণ সজ্জা করিয়া সকলে সাবধানে থাকিলেন। তখন পুরাতন কোঠির নীচে গঙ্গা ছিলেন তাহাতে যুদ্ধের ছোট জাহাজ প্রস্তুত করিলেন এবং যাবদীয় ধন ও বহুমূল্য দ্রব্য সমস্তই জাহাজে রাখিয়া অত্যন্ত সাহস করিয়া প্রস্তুত হইয়া থাকিলেন এবং বাগবাজারের পুলের উপর পচিশ কামান ও কিঞ্চিৎ সৈন্য রাখিলেন।
+</p>
+
+<p> কিঞ্চিৎ গৌণে নবাব স্রাজেরদৌলা সব সৈন্য লইয়া কলিকাতায় উপস্থিত হইলেন। বাগবাজারের পুলের নিকট উপনীত হইলেই যুদ্ধ আরম্ভ হইল। নবাবের বহু সৈন্য ছিল তথাপি পুলের সৈন্যগণকে জয়ী হইতে পারিতেছে না এবং নবাবের অনেক সৈন্য নষ্ট হইল। কলিকাতা নিবাসী লোক সকল তরণীতেই প্রায় আছে। রাজা রাজবল্লত ও কৃষ্ণ দাস নৌকা যোগে বঙ্গ দেশেতে গমন করিয়া অতি গোপনে রহিলেন। পরে বাগবাজারে অনেক রণ করিয়া কোঠির বড় সাহেবের সৈন্য কাতর হইল। পরে নবাবের সৈন্য নগরে প্রবেশ করিয়া নগর নিবাসিরদিগের ধন এবং দ্রব্য যে যাহা পায় সে তাহাই লইতে লাগিল। পশ্চাৎ-নবাবের প্রধান২ সৈন্য সকল পুরাণ কোঠির নিকট উপনীত হইলেই কোঠির সাহেব রণ করিতে আরম্ভ করিলেন। নবাবের সৈন্যও রণ করিতে লাগিল কিন্তু কাহারু শক্তি হয় না যে এক পদ অগ্রগামী হন। সাহেবের যুদ্ধ ও সাহস দেখিয়া সকলেই যথেষ্ট প্রশংসা করিতে লাগিলেন যে এমন যোদ্ধা কখন কেহ দেখে নাই শীলা বৃষ্টির ন্যায় গোলা গুলি পড়িতেছে। এই রূপ সপ্তাহ রণ হইল নবাবের বিস্তর সৈন্য প্রাণত্যাগ করিলেক। কোঠির সাহেবের সৈন্য অল্প কি করিবেন গড়ে তিষ্টিতে না পারিয়া জাহাজের উপর আরোহণ করিলেন। পশ্চাৎ নবাব সাহেবের সৈন্য গড়ের মধ্যে প্রবেশ করিয়া রণ করিতে লাগিল। কোঠির বড় সাহেব জাহাজের উপর থাকিয়া অনেক প্রকার রণ করিলেন বিস্তর সৈন্যের অল্প সৈন্যে কি করিতে পারে। অনেক যুদ্ধের পর জাহাজ ভাষাইয়া সাহেব বিলাতে গমন করিলেন। তখন ভদ্র লোক সকলেই বিমর্ষ হইয়া কহিতে লাগিলেন যে এ দেশের আর মঙ্গল হয় না কেননা বিদেশী সওদাগর লোক আর আসিবে না যে অন্যায় উপস্থিত হইল অতএব যদি কখন ইঙ্গরাজেরা এ দেশে আইসেন আর ইশ্বর যদি জবনাধিকারী নষ্ট করেন তবেই এ রাজ্যের মঙ্গল হবে নতুবা এ দেশের লোকের যথেষ্ট দুর্গতি হইবেক। এই রূপ পরস্পর কহিতে লাগিলেন এবং ক্ষুদ্র লোক সকলেই হাহাকার করিয়া রোদন করিতে লাগিল আর সকলেই মনে ২ নবাবেরে মন্দ কহিতে লাগিল। কোন ব্যক্তি কহে ভাই হে ইঙ্গরাজের তুল্য সত্যবাদী নাই এবং দয়া যথেষ্ট যে লোক অন্য স্থানে যে বেতন পাইত সেই লোক সাহেবের চাকর হইলে তার দ্বিগুণ বেতন মিলিত। এই রূপ সকলে সাহেবের গুণানুবাদ করিতে প্রবর্ত্ত।
+</p><p>পরে নবার স্রাজেরদৌলা সমরে জয়ী হইয়া যাবদীয় লোককে আজ্ঞা করিলেন কোঠির সাহেবের চাকর লোকের বাটী ঘর যত আছে সকল ভাঙ্গিয়া ফেল। আজ্ঞা মতে সকল ভৃত্যেরা কলিকাতার যাবদীয় অট্টালিকা ভাঙ্গিতে প্রবর্ত্ত হইল নগর মধ্যে উত্তম স্থান রাখিলেক না। এই রূপ নগর ভগ্ন করিয়া সর্ব্বত্র সৈন্য রাখিয়া নবাব মুরসদাবাদে গমন করিলেন। পাত্র মিত্র গণ সকলে অন্যায় দেখিয়া চমৎ হৃত হইলেন শঙ্কায় কেহ কিছু কহিতে পারেন না। এই রূপ এক বৎসুর গত হইল।
+</p><p>পরে ইঙ্গরাজ সাহেবলোক সৈন্যে পাঁচ জাহাজ পরিপূর্ণ করিয়া কলিকাতার নিকটে আসিয়া দূত দ্বারায় সম্বাদ জ্ঞাত হইলেন যে নবাব কিছু সৈন্য রাখিয়া আপনি রাজধানিতে গমন করিয়াছেন। পরে যে সকল সৈন্য কলিকাতায় ছিল তাহারদিগের সঙ্গে রণ করিয়া সে সব সৈন্য নিপাত করিয়া কলিকাতার কোঠির মধ্যে প্রবেশ করিয়া আত্ম পতাকা উঠাইয়া দিলেন।
+</p><p>পশ্চাৎ সকল মনুষ্য পরস্পরায় শ্রবণ করিয়া অত্যন্ত হৃষ্ট হইল এবং পুর্ব্বে যে সকল লোক চাকর ছিল তাহারা শ্রবণ করিয়া আনন্দসাগরে মগ্ন হইয়া আপন২ পরিবার লইয়া নগরে প্রবেশ করিল। পশ্চাৎ সাহেবের নিকট নানা জাতীয় খাদ্য দ্রব্য ভেট দিয়া আত্ম২ সমাচার জ্ঞাত করাইলেন। সাহেব হাস্য করিয়া অনেক প্রকার আশ্বাস দিয়া পূর্ব্বে যে যে লোক যে যে কর্ম্মে নিযুক্ত ছিল সেই২ লোক সেই২ কর্ম্মেতে নিযুক্ত করিলেন। নগরবাসী লোকেরদিগের আনন্দের সীমা নাই। পরে সাহেব প্রধান চাকরকে আজ্ঞা করিলেন যে পূর্ব্বে রাজা কৃষ্ণচস্ত্ররায় আমার নিকটে আসিয়াছিলেন তাহাতে আমি তাহাকে কহিয়াছিলাম যে বিলাতের আজ্ঞা না পাইয়া নবাবের সহিত বিবাদ করিতে পারি না এখন বিলাতের কর্ত্তার আজ্ঞা লইয়া আসিয়াছি নবাবের সহিত রণ করিব তাহারা আমার সাহায্য করিবেন কি না এই সমাচার রাজা কৃষ্ণচন্দ্র রায়কে কহিলে তিনি যে উত্তর করেন তাহা যাহাতে জ্ঞাত হইতে পারি তাহা করহ। প্রধান পাত্র কহিলেন যে আজ্ঞা আমি রাজা কৃষ্ণচন্দ্র রায়ের নিকটে দূত প্রেরিত করিয়া সম্বাদ আনাইতেছি। পরে সাহেবের চাকর সাহেবের আগমন সমাচার বিস্তারিত করিয়া লিখিয়া মহারাজার নিকটে দূত পাঠাইলেন। দূত কৃষ্ণনগরে উপনীত হইয়া মহারাজ কৃষ্ণচন্দ্র রায়কে পত্র দিল। রাজা পূর্ব্বেই সাহেবের আগমন সম্বাদ পাইয়াছিলেন পরে পত্র পাইয়া সকল জ্ঞাত হইয়া অত্যন্ত হৃষ্ট হইয়া দূতকে রাজপ্রসাদ দিয়া পত্রের উত্তর লিখিলেন॥
+</p><p>রাজা কৃষ্ণচন্দ্র রায় সাহেবকে যে পত্র লিখিলেন তাহার বিবরণ এই॥
+</p><p>আপন মঙ্গল এবং অনেক২ প্রকার শিষ্টাচার লিখিয়া লিখিলেন সাহেব পুনরায় আগমন করিয়া কলিকাতা অধিকার করিয়াছেন ইহাতে অমৃতাভিষিক্ত হইয়া আনন্দার্ণবে মগ্ন হইয়াছি এবং বুঝি আমারদিগের এ রাজ্য রক্ষা পাইবে। আপনকার সহিত পূর্ব্বে যে কথোপকথন হইয়াছিল সেই সকল সম্বাদ কারণ মুরসদাবাদে মনুষ্য প্রেরিত করিলাম আপানি রণ সজ্জা করিয়া প্রস্তুত রাখিবেন মুরসাদাবাদের সমাচার পাইলেই নিবেদন লিখিব কিন্তু পূর্ব্বে যে নিবেদন করিয়া আসিয়াছি তাহার অন্যথা কদাচ হবে না॥
+</p><p>এই প্রকার পত্র লিখিয়া কলিকাতায় সাহেবের নিকট পাঠাইয়া দিলেন। পরে মুরসদাবাদে আত্ম পাত্রকে পাঠাইলেন। সাহেব রাজা কৃষ্ণচন্দ্র রায়ের লিপি পাইয়া অত্যন্ত তুষ্ট হইলেন। পশ্চাৎ রাজা কৃষ্ণচন্দ্র রায়ের পাত্র মুরসদাবাদে উপনীত হইয়া মহারাজ মহেন্দ্র ও রাজা রামনারায়ণ ও জগৎসেট ও মীর জাফরালী খান প্রভৃতি সকলকে পূর্ব্বের সমাচার স্মরণ করিয়া দিলেন। সকলেই যথেষ্ট আশ্বাস করিয়া কহিলেন তোমার রাজাকে সম্বাদ দেহ যে কলিকাতায় মানুষ্য পাঠান ও যাহাতে সাহেব ত্বরায় সৈন্য সহিত আইসেন তাহা করেন। মীর জাফরালী খান কহিলেন আমি নবাবের সেনাপতি সকল সৈন্য আমার বসতাপন্ন যেমত২ কহিব তাহাই সৈন্যেরা করিবে কিন্তু আমার এক কথা সাহেবকে পালন করিতে হইবে ইহাই সাহেব পর্য্যন্ত নিবেদন করিয়া করার আনহ তবে যেমত২ সাহেব আজ্ঞা করিবেন আমি সেই মত কার্য্য করিব। রাজা কৃষ্ণচন্দ্র রায়ের পাত্র কহিলেন কি কথা আজ্ঞা করুণ আমি সাহেবতক নিবেদন লিখিয়া করার আনাইব। মীর জাফরালি খান কহিলেন পশ্চাৎ এ দেশের নবাবি আমাকে দিবেন যদি সাহেব এই প্রতিজ্ঞা করেন তবে আমি মনোযোগ করিয়া সাহেবের সহিত যুদ্ধ করিব না এই সমাচারের উত্তর আনহ। পশ্চাৎ কালিপ্রসাদ সিংহ বিস্তারিত সমাচার আপন আত্মীয় জনেক মানুষ্য দিয়া রাজা কৃষ্ণচন্দ্র রায়কে নিবেদন লিখিয়া পাঠাইলেন। মহারাজ মুরসদাবাদের যাবদীয় সম্বাদ লিখিয়া কলিকাতার সাহেবকে জ্ঞাত করাইলেন সাহেব বিস্তারিত সমাচার শুনিয়া যথেষ্ট হৃষ্ট হইয়া রাজা কৃষ্ণচন্দ্র রায়কে লিখিলেন নবাব স্রাজেরদৌলার সেনাপতি মীর জাফরালি খান নবাবি চাহিয়াছে আমিও সত্য করিলাম স্রাজেরদৌলাকে দূর করিয়া মীর জাফরালি খানকে নবাব করিব তুমি এই সমাচার মীর জাফরালি খানকে দিলে সে যেমত উত্তর করে তাই আমাকে লিখিবা। রাজা কৃষ্ণচন্দ্র রায় সাহেবের পত্র জ্ঞাত হইয়া বিস্তারিত সমাচার লোক দ্বারায় আপন পাত্রকে জানাইলেন॥
+</p><p>রাজপাত্র সবিশেষ জ্ঞাত হইয়া মীর জাফরালি খানের নিকট গমন করিয়া আনুপূর্ব্বক সমস্ত নিবেদন করিলেন। মীর জাফরালি অত্যন্ত তুষ্ট হইয়া কহিলেন আমি আর মনোযোগ করিয়া রণ করিব না তুমি সাহেবকে সমাচার দেও যুদ্ধ করিয়া শীঘ্র জয়ী হউন। রাজা কৃষ্ণচন্দ্র রায়ের পাত্র নিবেদন করিলেন যেমন সাহেব সত্য করিয়াছেন আপনাকে নবাব করিবেন তেমন আপানিও সত্য করুণ যে মনোযোগ করিয়া সমর করিবেন না। এই কথার পর মীর জাফরালি খান হাস্য করিয়া সত্য করিলেন রাজা কৃষ্ণচন্দ্র রায়ের পাত্র ঈশ্বরকে সাক্ষী করিয়া বিদায় হইলেন॥
+</p><p>পরে কৃষ্ণনগরে গমন করিয়া দেখেন যে রাজা কৃষ্ণচন্দ্র রায় শিবনিবাসের বাটীতে গিয়াছেন রাজা কৃষ্ণচন্দ্র রায় নবাবের শঙ্কায় কখন কোন বাটীতে থাকেন ইহা আত্মভৃত্যবর্গেরাও জানে না সর্ব্বদা চিন্তান্বিত এই সকল কথার যোজনকর্ত্তা আমি যদি নবাব স্রাজেরদৌলা কিঞ্চিৎ সন্ধান পায় তবে আমার জাতি প্রাণ রাখিবেক না ইহাতে সর্ব্বদা ব্যস্ত থাকেন। পরে পাত্র মুরসদাবাদহইতে মহারাজার নিকটে উপস্থিত হইয়া সমস্ত নিবেদন করিলেন। মহারাজ জ্ঞাত হইয়া পাত্রকে আজ্ঞা করিলেন তুমি অদ্যই কলিকাতায় প্রস্থান কর বিস্তারিত সমাচার সাহেবের নিকটে নিবেদন করিয়া শীঘ্র যাহাতে নবাব নিপাত হয় তাহার চেষ্টা পাও গিয়া। পাত্র রাজাজ্ঞানুসারে কলিকাতায় আসিয়া সাহেবের সঙ্গে সাক্ষাৎ করিয়া আনুপূর্ব্বক সমস্ত নিবেদন করিলেন। সাহেব তুষ্ট হইয়া রাজ পাত্রকে প্রসাদ দ্রব্য দিয়া যথেষ্ট সম্মান করিয়া বিদায় করিলেন। তখন কালীপ্রসাদ সিংহ কিঞ্চিৎ গৌণে বাটী প্রস্থান করিল। সাহেব আপনার যাবদীয় সৈন্যকে আজ্ঞা করিলেন তোমরা সকলে সুসজ্জ করিয়া প্রস্তুত হও আমি কল্য নবাব স্রাজেরদৌলার সাহিত সমর করিতে যাইব অজ্ঞামাত্রে সকল সৈন্য রণ সজ্জা করিয়া প্রস্তুত হইল। সাহেব দেখিলেন সকল সৈন্য প্রস্তুত তখন শুভক্ষণে সাহেব গমন করিলেন। নানা প্রকার বাদ্য বাজিতে লাগিল বাদ্যের ধ্বনিতে এবং সৈন্যের অপূর্ব্ব সজ্জা দেখিয়া সকল লোক চমৎকৃত হইয়া সকলেই জয় ২ ধ্বনি করিতে প্রবর্ত্ত হইল এবং যাত্রিক দ্রব্য সকল সম্মুখে রাখিয়া গ্রামের মানুষেরা মঙ্গল ধ্বনি করিতে লাগিল। সাহেব হাস্য করিয়া আপন সেনাপতিকে আজ্ঞা করিয়া দিলেন গ্রামের লোকের উপর কোন সৈন্য দৌরাত্ম্য করিতে না পারে। সাহেব এই রূপে সৈন্য সঙ্গে করিয়া চলিলেন॥
+</p><p>পরে মুরসদাবাদতক সমাচার হইল যে ইঙ্গরাজ সাহেব নবাবের সহিত রণ করিতে আসিতেছেন এবং নবাব সাহেব পূর্ব্বেই জ্ঞাত ছিলেন বিশেষ জ্ঞাত হইয়া আপন সেনাপতিকে আজ্ঞা করিলেন তুমি পঞ্চাশ হাজার সৈন্য লইয়া পলাশির বাগানে গিয়া প্রস্তুত থাকহ। সাবধানে সমর করিয়া কোন রূপে ইঙ্গরাজ জয়ী হইতে নাপারে বাকি যে সৈন্য এখানে থাকিল তাহা লইয়া আমি পশ্চাৎ গমন করিব কিন্তু ইঙ্গরাজেরা বড় যোদ্ধা এবং অশেষ মন্ত্রণা জানে কোন রূপে ত্রুটি নাহয় সাবধান ২। সেনাপতি মীর জাফরালি খান বিস্ত ২ সাহস দিয়া সৈন্যের সহিত পলাশির বাগানে আসিয়া রণসজ্জা করিয়া আছেন কিন্তু মনোমধ্যে বিচার করিতেছেন কি রূপে ইঙ্গরাজেরা জয়ী হবেন অনেক বিবেচনার পর সৈন্যের মধ্যে প্রধান ২ যে ২ সৈন্য তাহারদিগের সাহিত প্রণয় করিয়া কহিল তোমরা কেহ মনোযোগ করিয়া রণ করিও না যে সেনাপতি সেই যদ্যপি এমন গতি করিতে প্রবর্ত্ত হইল ইহাতেই সকল সৈন্য ঔদাস্য করিয়া অসাবধানে থাকিল॥
+</p><p>পরে ইঙ্গরাজের যাবদীয় সৈন্য পলাশির বাগানে উপনীত হইয়া সমর আরম্ভ করিল। নবাবি সৈন্য সকল দেখিল যে প্রধান ২ সৈন্যেরা মনোযোগ করিয়া যুদ্ধ করে না এবং ইঙ্গরাজের অগ্নিবৃষ্টিতে শত ২ লোক প্রাণ ত্যাগ করিতেছে কি করিব ইহাতে কেহ উষ্মাক্রমে যুদ্ধ করিয়া প্রাণ ত্যাগ করিতেছে। যুদ্ধ ভাল হইতেছে না ইহা দেখিয়া নবাবের চাকর মোহন দাস নামে এক জন সে নবাব সাহেবকে কহিলেক আপনি কি করেন আপনকার চাকরেরা পরামর্শ করিয়া মহাশয়কে নষ্ট করিতে বসিয়াছে। নবাব কহিলেন সে কেমন। মোহন দাস কহিল সেনাপতি মীর জাফরালি খান ইঙ্গরাজের সঙ্গে প্রণয় করিয়া রণ করিতেছে না অতএব নিবেদন আামাকে কিছু সৈন্য দিয়া পলাশির বাগানে পাঠান আমি যাইয়া যুদ্ধ করি আপনি বাকি সৈন্য লইয়া সাবধানে থাকিবেন পূর্ব্বের দ্বারে যথেষ্ট লোক রাখিবেন এবং এই ক্ষণে কোন ব্যক্তিকে বিশ্বাস করিবেন না। নবাব মোহন দাসের বাক্য শ্রবণ করিয়া ভয় যুক্ত হইয়া সাবধানে থাকিয়া মোহন দাসকে পঁচিশ হাজার সৈন্য দিয়া অনেক আশ্বাস করিয়া পলাশিতে প্রেরিত করিলেন। মোহন দাস উপস্থিত হইয়া অত্যন্ত যুদ্ধ করিতে প্রবর্ত্ত হইল। মোহন দাসের যুদ্ধেতে ইঙ্গরাজের সৈন্য শঙ্কান্বিত হইল। মীর জাফরালি খান দেখিলেন এ কর্ম্ম ভাল হইল না যদ্যপি মোহন দাস ইঙ্গরাজকে পরাভব করে আর এ নবাব থাকে তবে আমারদিগের সকলেরি প্রাণ যাইবেক অতএব মোহন দাসকে নিবারণ করিতে হইয়াছে ইহাই বিবেচনা করিয়া নবাবের দূত করিয়া এক জন লোককে পাঠাইলেন সে মোহন দাসকে কহিল আপণাকে নবাব সাহেব ডাকিতেছেন শীঘ্র চলুন। মোহন দাস কহিল আমি রণ ত্যাগ করিয়া কি প্রকারে যাইব। নবাবের দূত কহিল আপনি রাজাজ্ঞা মানেন না। মোহন দাস বিবেচনা করিল এ সকলি চাতুরি এ সময় নবাব সাহেব আমাকে কেন ডাকিবেন ইহা অন্তঃকরণে করিয়া দূতের শিরশ্ছেদন করিয়া পুনরায় সমর করিতে লাগিল। মীর জাফরালি খান বিবেচনা করিল বুঝি প্রমাদ ঘটিল পরে আত্মীয় এক জনকে আজ্ঞা করিল তুমি ইঙ্গরাজের সৈন্য হইয়া মোহন দাসের নিকট গিয়া মোহন দাসকে নষ্ট করহ। আজ্ঞা পাইয়া এক জন মনুষ্য মোহন দাসের নিকট গমন করিয়া অগ্নি বাণ মোহন দাসকে মারিল সেই বাণে মোহন দাস পতন হইল। পরে নবাবি যাবদীয় সৈন্য রণে ভঙ্গ দিয়া পলায়ন করিল ইঙ্গরাজের জয় হইল।
+</p><p>পরে নবাব স্রাজেরদৌলা সকল বৃত্তান্ত শ্রবণ করিয়া মনে২ বিবেচনা করিলেন কোন মতে রক্ষা নাই আপন সৈন্য বৈরি হইল অতএব আমি এখান হইতে পলায়ন করি। ইহাই স্থির করিয়া নৌকোপরি আরোহণ করিয়া পলায়ন করিলেন। পরে ইঙ্গরাজ সাহেবের নিকটে সকল সমাচার নিবেদন করিয়া মীর জাফরালী খান মুরসদাবাদের গড়েতে গমন করিয়া ইঙ্গরাজী পতাকা উঠিয়া দিলে সকলে বুঝিল ইঙ্গরাজ মহাশয়েরদিগের জয় হইল তখন সমস্ত লোকে জয় ২ ধ্বনি করিতে প্রবর্ত্ত হইল এবং নানা বাদ্য বাজিতে লাগিল। যাবদীয় প্রধান ২ মনুষ্য ভেটের দ্রব্য দিয়া সাহেবের নিকট সাক্ষাৎ করিলেন। সাহেব সকলকে আশ্বাস করিয়া যিনি যে কর্ম্মে নিযুক্ত ছিলেন সেই২ কর্ম্মে তাহাকে নিযুক্ত করিয়া রাজপ্রাসাদ দিলেন। মীর জাফরালীকে নবাব করিয়া সকলকে আজ্ঞা করিলেন তোমরা সকলে সাবধান পূর্ব্বক রাজকর্ম্ম করিবা রাজ্যের প্রতুল হয় এবং প্রজা লোকে দুঃখ না পায়। সকলে আজ্ঞানুসারে কার্য্য করিতে লাগিলেন।
+</p><p>পরে নবাব স্রাজেরদৌলা পলায়ন করিয়া যান তিন দিবস অভুক্ত অত্যন্ত ক্ষুধিত নদীর তটের নিকট এক ফকিরের আলয় দেখিয়া নৌকার কর্ণধারকে কহিলেন এই ফকিরের স্থান তুমি ফকিরকে বল কিঞ্চিৎ খাদ্য সামগ্রি দেও এক জন মনুষ্য বড় পীড়িত কিঞ্চিৎ আহার করিবেক। ফকির এই বাক্য শ্রবণ করিয়া নৌকার নিকট আসিয়া দেখিল অত্যন্ত নবাব স্রাজেরদৌলা বিসন্ন বদন। ফকির সকল বৃত্তান্ত জ্ঞাত হইয়াছে বিবেচনা করিল নবাব পলায়ন করিয়া যায় ইহাকে আমি ধরিয়া দিব আমাকে পূর্ব্বে যথেষ্ট নিগ্রহ করিয়াছিল তাহার শোধ লইব ইহাই মনো মধ্যে স্থির করিয়া করপুটে বলিল আহারের দ্রব্য আমি প্রস্তুত করি আপনারা সকলে ভোজন করিয়া প্রস্থান করুণ। ফকিরের প্রিয় বাক্যে নবাব অত্যন্ত তুষ্ট হইয়া ফকিরের বাটীতে গমন করিলেন। ফকির খাদ্য সামগ্রির আয়োজন করিতে লাগিল এবং নিকটে নবাব মীর জাফরালি খানের চাকর ছিল তাহাকে সম্বাদ দিল যে নবাব স্রাজেরদৌলা পলায়ন করিয়া যায় তোমরা নবাবকে ধর। নবাব জাফরালি খানের লোকে এ সম্বাদ পাবা মাত্রে অনেক মনুষ্য একত্র হইয়া নবাব স্রাজেরদৌলাকে ধরিয়া মুরসদাবাদে আনিলেক॥
+</p><p>পরে অতি গোপনে নবাব মীর জাফরালি খানের পুত্র মীর মিরণকে সংবাদ দিয়া ইঙ্গরাজের বড় সাহেবকে সংবাদ দিতে যায় তাহাতে মীর মিরণ নিষেধ করিয়া কহিলেন যে আর কাহাকেও এ সমাচার কহিবা না। মীর মিরণ মনোমধ্যে বিবেচনা করিলেন যদি বড় সাহেব এ সংবাদ শ্রবণ করেন তবে স্রাজেরদৌলা কদাচ নষ্ট হইবে না তবে আমারদিগেরও মঙ্গল হওয়া ভার এবং যে২ পাত্রমিত্রগণেরা আছে ইহারা শ্রবণ করিলেও কদাচ নষ্ট করিতে দিবে না বরং নবাব স্রাজেরদৌলাকে নবাবি দেওনের চেষ্টা পাইবেক অতএব নবাব স্রাজেরদৌলাকে এক দণ্ড রাখা নয় ইহাই স্থির করিয়া আপনি খড়্গ হস্তে করিয়া নবাব স্রাজেরদৌলার নিকটে উপনীত হইলেন। নবাব স্রাজেরদৌলা দেখিলেন মিরণ আমাকে ছেদন করিতে আসিতেছে তনি মিরণকে অনেক২ স্তুতি করিলেন। কিন্তু নির্দয় মিরণ কদাচ ক্ষান্ত হইল না। পশ্চাৎ নবাব স্রাজেরদৌলা ঈশ্বরে মনোযোগ করিয়া নিঃশব্দে রহিলেন তখন মিরণ খড়্গতে নবাবকে ছেদন করিয়া পশ্চাৎ প্রচার করিলেক। এই সকল বৃত্তান্ত বড় সাহেব শ্রবণ করিয়া যথেষ্ট খেদ করিলেন এবং পাত্র মিত্রগণ সকলেই মহাব্যথিত হইয়া কাতর হইলেন॥
+</p>
+
+<p> মহারাজ মহেন্দ্র পাত্র কর্ম্মে আপন ভ্রাতাকে নিযুক্ত কারিয়া কলিকাতায় সপরিবারে আসিলেন। তখন বড় সাহেব বিবেচনা করিলেন জবনকে প্রত্যয় নাই অতএব পূর্ব্বে যেমত নবাবি ভার ছিল সেমত না রাখিয়া রাজ্য করতল করিতে লাগিলেন। স্থানে২ সাহেব লোক কর্ত্তা নবাবের লোকে কার্য্য করে এই রূপ রাজকর্ম্ম হইতে লাগিল। রাজ্যের শাসন দিন২ হইতে লাগিল প্রজা লোকের যথেষ্ট সুখ কোন শঙ্কা নাই ভয়ক্রমে কেহ কাহারু উপরে দৌরাত্ম্য করিতে পারে না রাম রাজার ন্যায় মনুষ্য সকল সুখী হইল। এই রূপে কাল ক্ষেপণ করেন॥
+</p><p>কিঞ্চিৎ কালের পর বড় সাহেব কলিকাতায় আসিয়া রাজা কৃষ্ণচন্দ্র রায়কে আহ্বান করিলেন। রাজা বড় সাহেবের আজ্ঞা পাইয়া কলিকাতায় উপনীত হইয়া বড় সাহেব রাজা কৃষ্ণচন্দ্র রায়কে যথেষ্ট মর্য্যাদা করিয়া কহিলেন তোমার মনোনীত যাহা তাহা বিস্তারিত করিয়া বল আমি পূর্ণ করিব। মহারাজ করপুটে নিবেদন করিলেন আমি কেবল অনুগ্রহের আকাঙ্ক্ষিত। এই কথার পর বড় সাহেব রাজা কৃষ্ণচন্দ্র রায়কে কহিলেন তুমি আমার নিতান্ত বিশ্বাস পাত্র এবং তোমার মন্ত্রণায় সর্ব্বত্র জয়ী হইলাম তোমার যাহাতে ভাল হয় তাহা আমি সর্ব্বদা করিব। মহারাজাকে অনেক প্রিয় বাক্য কহিয়া সে দিবস বাসায় বিদায় করিলেন। পর দিবস রাজাকে বিস্তর২ রাজপ্রাসাদ দিয়া যথেষ্ট সম্মান করিলেন আর পূর্ব্বের যে রাজকর রাজা কৃষ্ণচন্দ্র রায় দিতেন তাহা অপেক্ষা পাঁচ লক্ষ তঙ্কা ঘুচাইয়া ছয় লক্ষ তঙ্কা রাজকরের নিয়ম করিয়া দিলেন ও রাজার সুখ্যাতি বিলাৎ পর্য্যন্ত লিখিয়া মহারাজ কৃষ্ণচন্দ্র রায়কে বিদায় করিলেন। রাজা বড় সাহেবের প্রসাদ প্রাপ্ত হইয়া ও রাজ্যের প্রতুল করিয়া এবং যখনকার যে সমাচার সাহেবতক নিবেদন জ্ঞাত করায় একারণ সর্ব্বাংশে ভাল এক জন লোক বড় সাহেবের নিকটে রাখিয়া আপনি রাজধানিতে গমন করিলেন। রাজা কৃষ্ণচন্দ্র রায়ের পূর্ব্বে যে নাম ব্রাহ্মণেরা দিয়াছিলেন বড় সাহেবও সেই নাম প্রচার করাইলেন যাবদীয় মনুষ্য পত্রাদিতে লিখেন আগ্নিহোত্রী বাজপেয়ী শ্রীমন্মহারাজ রাজেন্দ্র কৃষ্ণচন্দ্র রায় বাহাদুর এই রূপে সর্ব্বত্রেই মহারাজার সুখ্যাতি হইল॥
+</p><p>মহারাজ কৃষ্ণচন্দ্র রায়ের দুই রাণী প্রধান রাণীতে পঞ্চ পুত্র জ্যেষ্ঠের নাম রাজা শিব চন্দ্র দ্বিতীয় ভৈরব চন্দ্র তৃতীয় মহেশচন্দ্র চতুর্থ হরচন্দ্র পঞ্চম ঈশানচন্দ্র এই পঞ্চম পুত্র বড় রাণীর। ছোট রাণীর এক পুত্র শম্ভুচন্দ্র। রাজার এই ছয় পুত্র। পুত্র সকল সর্ব্বাংশে উত্তম নানা বিদ্যাতে বিশারদ। মহারাজ হৃষ্টচন্দ্র রায় পুত্র সকলের রূপে এব গুণে অত্যন্ত হষ্ট রাজার সর্ব্বক্ষণ ধীরবর্গের সহিত অশেষ শাস্ত্রের বিচারেই কাল ক্ষেপণ এবং নিজাধিকার অতিশয় শাসিত যাবদীয় লোকের প্রতি দয়া এবং দরিদ্রে দান ক্ষুধার্ত্ত জনেরে ভোজন করান এই রূপে কালক্ষেপণ। কিছু কালানন্তরে বিবেচনা করিলেন জ্যেষ্ঠ পুত্র শিব চন্দ্র রায় অত্যন্ত শান্ত এবং পণ্ডিত সর্ব্ব গুণে গুণান্বিত দেখিয়া নিজ রাজ্যে শিব চন্দ্র রায়কে অভিষিক্ত করিয়া রাজা করিলেন। এবং আপনি ঈশ্বরে মনস্থির করিয়া ধ্যান করিতে প্রবর্ত্ত ইহলেন। রাজা শিব চন্দ্র রায় রাজ্যাভিষিক্ত হইয়া সর্ব্বদা পিতৃ সেবাতেই মনোযোগ এই রূপে বহু কাল যায়। মহারাজ কৃষ্ণচন্দ্র রায়ের ঈশ্বর প্রাপ্তি হইল॥
+</p><p>মহারাজ শিব চন্দ্র রায় নিয়ম মতে ক্রিয়ানন্তরে কলিকাতায় আসিয়া বড় সাহেবের নিকট সাক্ষাৎ করিলেন। সাহেব লোক অনুগ্রহ করিয়া যথেষ্ট মর্য্যাদা বিদায় করিয়া অধিকারের প্রতুল করিয়া দিয়া রাজ্যে বিদায় করিয়া দিলেন॥
+</p><p>রাজা শিব চন্দ্র রায় নিজ রাজ্যে গমন করিয়া যাবদীয় প্রধান ২ পাত্রমিত্রগণকে আহ্বান করিয়া আজ্ঞা করিলেন তোমরা অনেক কালের মন্ত্রী আমার পূর্ব্ব পুরুষ মহারাজ কৃষ্ণচন্দ্রাদি মহাশয়ের যেমন ২ রাজনীতি কর্ম্ম করিয়াছেন সেইমত আমাকেও তোমরা মন্ত্রণা দিবা আমিও সেইমত কার্য্য করিব। এই বাক্য পাত্রমিত্রগণেরা শ্রবণ করিয়া অত্যন্ত সন্তুষ্ট হইয়া নিবেদন করিলেন মহারাজ আপনি মহামহোপাধ্যায় সর্ব্ব শাস্ত্রে পাণ্ডিত মহাশয়কে মন্ত্রণা দিবার অপেক্ষা নাই তবে যখন যে স্মরণ করাণ তাহা নিবেদন করিব। পাত্রমিত্রগণের বাক্যে রাজা শিব চন্দ্র রায় অত্যন্ত হৃষ্ট হইয়া রাজ প্রসাদ দিয়া সকলের সম্মান করিলেন এই রূপে পরম সুখে রাজ্য করেন॥
+</p>
+
+<p> কিঞ্চিৎ কালের পর মহারাজ শিব চন্দ্র রায় মনোমধ্যে বিবেচনা করিতেচেন পূর্ব্বে যে সকল মহারাজারা আমারদিগের বংশে ছিলেন তাহারা অশেষ প্রকার পুণ্য কর্ম করিয়া দেশান্তরে খ্যাত্যাপন্ন হইয়াছেন অতএব আমিও সেই মতাচরণ করিব ইহাই স্থির করিলেন॥
+</p><p>কিঞ্চিৎ গৌণে নবদ্বীপ হইতে প্রধান ২ পণ্ডিতগণকে আহ্বান করিয়া আনিয়া কহিলেন আমার ইচ্ছা যে মহতী ঘটা করিয়া একটা যজ্ঞ করি অতএব আপনারা বিবেচনা করিয়া আজ্ঞা করুণ কি যজ্ঞ করিব। পণ্ডিতবর্গেবা কহিলেন মহারাজ সোম যাগ করুণ। মহারাজ শিব চন্দ্র রায় পণ্ডিতেরদিগের বাক্যে উত্তম ২ যজ্ঞ করিয়া এবং বহুবিধ দান করিয়া ইশ্বরে মনোর্পণ করিয়া লোকান্তরে গমন করিলেন॥
+</p><p>মহারাজ শিব চন্দ্র রায়ের এক পুত্র ঈশ্বর চন্দ্র রায়। কিছু দিনান্তরে ঈশ্বর চন্দ্র রায় মহাশয় নবদ্বীপের রাজা হইলেন। পূর্ব্বের যে সকল মন্ত্রীরা ছিলেন সে সকল মন্ত্রীদিগেরও লোকান্তর হইয়াছে উপযুক্ত মনুষ্য না পাইয়া অত্যন্ত উদ্বিগ্ন চিত্ত দিন ২ রাজ্যের ক্ষীণতা এবং নানা প্রকারে অর্থ ব্যায় এই প্রকারে কতক কাল রাজ্য করিলেন। ইহার পুত্র গিরীশ চন্দ্র রায়। মহারাজ ইশ্বর চন্দ্র রায় কল্পতরুর ন্যায় দাতা এব ইশ্বরে সর্ব্বদা মন ও বহু বিধ দান করিয়া লোকান্তরে গমন করিলেন।
+</p><p>পরে গিরীশ চন্দ্র রায় মহাশয়কে সাহেব লোক সকলে যথেষ্ট অনুগ্রহ করেন। এই ক্ষণে তিনিই নবদ্বীপের রাজত্ব করিতেছেন কিন্তু রাজের অনেক ক্ষীণতা হইয়াছে তথাপি পূর্ব্বের মহারাজারা যেমত ব্যবহার করিয়াছেন সেই মত আচরণ করিতেছেন। মহারাজ গিরীশ চন্দ্র রায় অত্যন্ত দাতা যাচক জনকে কদাচ বিমুখ করেন না এই রূপে রাজ্য করিতে আরম্ভ করিয়াছেন এবং পূর্ব্ব ২ মহারাজারদিগের যে সকল কৃত্য তাহার যে রূপ ব্যায় ছিল এখন যে রাজের ন্যূনতা হইয়াছে তথাপি সে সকল ব্যায়ের ন্যূনতা নাই এবং পূর্ব্বে যেমত ২ রাজনীতি ছিল ও এখন সেই মত আচরণ করিতেছেন যাবদীয় বিশিষ্ট হয় পণ্ডিতবর্গেরা অদ্যাপি আগমন করিলেও পণ্ডিতের যথেষ্ট সম্মান করেন এব অশেষ প্রকার ধীর সকলকে সন্তোষ করিয়া বিদায় করিতেছেন কোন মতে নিন্দা কর্ম্ম করেন না॥
+</p>
+<div>
+<p>॥ মহারাজ কৃষ্ণচন্দ্র মহাশয়ের চরিত্র॥
+</p>
+</div>
+<div>
+<p>॥ সমাপ্ত হইল॥
+</p>
+</div>
+<div>
+<p>॥
+</p>
+</div>
+
+
+</section>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = (p.currentTheme === 'light' || p.currentTheme === 'dark') ? p.currentTheme : 'dark';
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    const progressFill = document.getElementById('reading-progress-fill');
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        if (progressFill) progressFill.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+    updateProgress(window);
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+            a.addEventListener('click', closeDrawer);
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocMobile);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme; header/footer/drawer now follow the same theme via CSS vars)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+            const themeColorMeta = document.getElementById('theme-color-meta');
+            if (themeColorMeta) themeColorMeta.setAttribute('content', m.bg);
+
+            const activeAccent = getComputedStyle(document.body).getPropertyValue('--bar-accent').trim();
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? activeAccent : 'transparent';
+            });
+            savePrefs();
+        });
+    });
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+    })();
+})();
+</script>
+
+
+</body>
+</html>
