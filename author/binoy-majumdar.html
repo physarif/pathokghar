@@ -72,7 +72,7 @@
             justify-content: space-between;
             height: 3.5rem;
             box-sizing: border-box;
-            padding: 0 0.5rem 0 0.5rem;
+            padding: 0 0.75rem 0 0.75rem;
             position: relative;
         }
         .header-logo {
@@ -83,7 +83,7 @@
             display: flex;
             align-items: center;
         }
-        .header-logo-img { height: 2.5rem; width: auto; display: block; }
+        .header-logo-img { height: 2.2rem; width: auto; display: block; }
         .header-right { display: flex; align-items: stretch; gap: 0; flex: 1 1 auto; height: 100%; }
         #header-search-btn, #header-search-close-btn, #sidebar-open-btn {
             background: none; border: none; padding: 0; cursor: pointer;
@@ -174,8 +174,8 @@
             top: 0;
             left: 0;
             bottom: 0;
-            width: 78%;
-            max-width: 300px;
+            width: 88%;
+            max-width: 340px;
             background: #ffffff;
             z-index: 301;
             transform: translateX(-100%);
@@ -190,30 +190,41 @@
             flex: 0 0 auto;
             display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: 0.75rem;
-            padding: 0 1rem;
+            padding: 0 0.5rem 0 1.25rem;
             border-bottom: 1px solid rgba(17,24,39,0.08);
         }
+        .sidebar-header-brand { display: flex; align-items: center; gap: 0.75rem; }
         .sidebar-header img { height: 1.6rem; width: auto; display: block; }
         .sidebar-header span { font-weight: 700; color: #1f2937; font-size: 1rem; }
+        #sidebar-close-btn {
+            background: none; border: none; cursor: pointer; font: inherit;
+            color: #1f2937;
+            display: flex; align-items: center; justify-content: center;
+            width: 2.75rem; height: 2.75rem;
+            flex: 0 0 auto;
+        }
         .sidebar-nav {
             flex: 1 1 auto;
             overflow-y: auto;
-            padding: 0.5rem 0;
+            padding: 0.25rem 0 0;
         }
         .sidebar-nav a {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: 0.9rem;
-            padding: 0.85rem 1.25rem;
+            padding: 1.05rem 1.25rem;
             text-decoration: none;
             color: #1f2937;
-            font-size: 0.98rem;
-            font-weight: 500;
+            font-size: 1.05rem;
+            font-weight: 400;
+            border-bottom: 1px solid rgba(17,24,39,0.08);
             transition: background 0.15s;
         }
         .sidebar-nav a:hover, .sidebar-nav a:active { background: #F0F3F8; }
-        .sidebar-nav a i { width: 1.25rem; text-align: center; color: #0B57CF; font-size: 1.05rem; }
+        .sidebar-nav a i.sn-chevron { color: rgba(17,24,39,0.35); font-size: 0.85rem; }
 
         /* হেডার ন্যাভ — শুধু সার্চ আইকন, ডান কোণায় */
         .header-nav-group {
@@ -339,14 +350,19 @@
     <div id="sidebar-overlay"></div>
     <aside id="app-sidebar">
         <div class="sidebar-header">
-            <img src="https://pathokghar.com/assets/photos/pathokghar-logo.webp" alt="পাঠক ঘর">
-            <span>পাঠক ঘর</span>
+            <div class="sidebar-header-brand">
+                <img src="https://pathokghar.com/assets/photos/pathokghar-logo.webp" alt="পাঠক ঘর">
+                <span>পাঠক ঘর</span>
+            </div>
+            <button id="sidebar-close-btn" type="button" aria-label="বন্ধ করুন">
+                <i class="fa-solid fa-xmark icon-lg"></i>
+            </button>
         </div>
         <nav class="sidebar-nav">
-            <a href="/"><i class="fa-solid fa-house"></i>প্রধান পাতা</a>
-            <a href="/authors"><i class="fa-solid fa-user-pen"></i>লেখক</a>
-            <a href="/categories"><i class="fa-solid fa-layer-group"></i>বিভাগ</a>
-            <a href="/blog"><i class="fa-solid fa-newspaper"></i>ব্লগ</a>
+            <a href="/">প্রধান পাতা</a>
+            <a href="/authors">লেখক <i class="fa-solid fa-chevron-right sn-chevron"></i></a>
+            <a href="/categories">বিভাগ <i class="fa-solid fa-chevron-right sn-chevron"></i></a>
+            <a href="/blog">ব্লগ</a>
         </nav>
     </aside>
 
@@ -507,6 +523,7 @@
         // Sidebar (hamburger মেনু) টগল
         (function() {
             var openBtn = document.getElementById('sidebar-open-btn');
+            var closeBtn = document.getElementById('sidebar-close-btn');
             var sidebar = document.getElementById('app-sidebar');
             var overlay = document.getElementById('sidebar-overlay');
             if (!openBtn || !sidebar || !overlay) return;
@@ -523,6 +540,7 @@
             }
             openBtn.addEventListener('click', openSidebar);
             overlay.addEventListener('click', closeSidebar);
+            if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') closeSidebar();
             });
