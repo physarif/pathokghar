@@ -182,14 +182,6 @@
         }
 
         const half = Math.floor((windowSize - 1) / 2);
-
-        // শুরুর দিকের পেজে (current <= half+1) তালিকা অপরিবর্তিত থাকবে, কোনো ডট আসবে না
-        if (current <= half + 1) {
-          const result = [];
-          for (let i = 1; i <= windowSize; i++) result.push(i);
-          return result;
-        }
-
         let start = current - half;
         let end = current + (windowSize - 1 - half);
 
@@ -205,21 +197,15 @@
           if (start < 1) start = 1;
         }
 
-        let numbers = [];
+        const numbers = [];
         for (let i = start; i <= end; i++) numbers.push(i);
 
-        const showLeadingDots = start > 1;
-        const showTrailingDots = end < total;
-
-        // ডট দেখানোর জন্য প্রান্তের একটি করে নাম্বার সরিয়ে জায়গা করা, যাতে
-        // selected number সবসময় center এ থাকে
-        if (showLeadingDots) numbers = numbers.slice(1);
-        if (showTrailingDots) numbers = numbers.slice(0, -1);
-
-        let result = [];
-        if (showLeadingDots) result.push('...');
-        result = result.concat(numbers);
-        if (showTrailingDots) result.push('...');
+        // ডট এখানে অতিরিক্ত হিসেবে যোগ হয়, কোনো নম্বর সরিয়ে নয় —
+        // তাই selected number windowSize সংখ্যার মাঝখানেই থাকে
+        const result = [];
+        if (start > 1) result.push('...');
+        numbers.forEach(function(n) { result.push(n); });
+        if (end < total) result.push('...');
         return result;
       }
 
