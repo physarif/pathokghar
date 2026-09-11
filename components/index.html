@@ -164,23 +164,63 @@
       const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');
       const el = document.getElementById('bc-pagination');
 
-      function getFrontCount() {
+      function getWindowSize() {
         const w = window.innerWidth;
-        if (w < 360) return 2;
-        if (w < 420) return 3;
-        return 4;
+        if (w < 360) return 3;
+        if (w < 420) return 4;
+        return 5;
       }
 
       function buildList() {
-        const frontCount = Math.min(getFrontCount(), total - 1);
-        const front = [];
-        for (let i = 1; i <= frontCount; i++) front.push(i);
-        if (frontCount >= total - 1) {
-          const result = front.slice();
-          for (let i = frontCount + 1; i <= total; i++) result.push(i);
+        const windowSize = Math.min(getWindowSize(), total);
+
+        // সবগুলো পেজ windowSize এর মধ্যে ধরে গেলে ডট লাগবে না
+        if (total <= windowSize) {
+          const result = [];
+          for (let i = 1; i <= total; i++) result.push(i);
           return result;
         }
-        return front.concat(['...', total]);
+
+        const half = Math.floor((windowSize - 1) / 2);
+
+        // শুরুর দিকের পেজে (current <= half+1) তালিকা অপরিবর্তিত থাকবে, কোনো ডট আসবে না
+        if (current <= half + 1) {
+          const result = [];
+          for (let i = 1; i <= windowSize; i++) result.push(i);
+          return result;
+        }
+
+        let start = current - half;
+        let end = current + (windowSize - 1 - half);
+
+        // শুরুর দিকে জায়গা না থাকলে শেষের দিকে বাড়িয়ে windowSize ঠিক রাখা
+        if (start < 1) {
+          end += (1 - start);
+          start = 1;
+        }
+        // শেষের দিকে জায়গা না থাকলে শুরুর দিকে বাড়িয়ে windowSize ঠিক রাখা
+        if (end > total) {
+          start -= (end - total);
+          end = total;
+          if (start < 1) start = 1;
+        }
+
+        let numbers = [];
+        for (let i = start; i <= end; i++) numbers.push(i);
+
+        const showLeadingDots = start > 1;
+        const showTrailingDots = end < total;
+
+        // ডট দেখানোর জন্য প্রান্তের একটি করে নাম্বার সরিয়ে জায়গা করা, যাতে
+        // selected number সবসময় center এ থাকে
+        if (showLeadingDots) numbers = numbers.slice(1);
+        if (showTrailingDots) numbers = numbers.slice(0, -1);
+
+        let result = [];
+        if (showLeadingDots) result.push('...');
+        result = result.concat(numbers);
+        if (showTrailingDots) result.push('...');
+        return result;
       }
 
       function render() {
