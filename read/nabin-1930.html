@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="bn"> 
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/nabin-1930.html">
+    <title>নবীন (১৯৩০) - পাঠক ঘর</title>
+    <meta name="description" content="রবীন্দ্রনাথ ঠাকুরের *নবীন* প্রকৃতি, বসন্ত, নবজাগরণ ও জীবনের চিরনবীন আনন্দকে কেন্দ্র করে রচিত একটি কাব্যধর্মী গীতিনাট্য। ১৯৩০ সালে প্রকাশিত এই রচনায় কবির প্রকৃত">
+    <meta property="og:title" content="নবীন (১৯৩০) - পাঠক ঘর">
+    <meta property="og:description" content="রবীন্দ্রনাথ ঠাকুরের *নবীন* প্রকৃতি, বসন্ত, নবজাগরণ ও জীবনের চিরনবীন আনন্দকে কেন্দ্র করে রচিত একটি কাব্যধর্মী গীতিনাট্য। ১৯৩০ সালে প্রকাশিত এই রচনায় কবির প্রকৃত">
+    <meta name="theme-color" id="theme-color-meta" content="#ffffff">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', dark:'#1c1c1e' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', dark:'#e5e7eb' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        var meta = document.getElementById('theme-color-meta');
+        if (meta) meta.setAttribute('content', bg);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+        body.theme-light { background: #ffffff; }
+        body.theme-dark { background: #1c1c1e; }
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.6rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+</style>
+</head>
+<body>
+
+<style>
+    /* ── Bar theme variables (header / footer / drawer) — follow reading mode ── */
+    :root, body {
+        --bar-bg: #ffffff;
+        --bar-text: #1a1a1b;
+        --bar-text-dim: rgba(26,26,27,0.55);
+        --bar-border: rgba(0,0,0,0.1);
+        --bar-btn-active: rgba(0,0,0,0.06);
+        --bar-track: rgba(0,0,0,0.12);
+        --bar-accent: #0B57CF;
+        --bar-accent-soft: rgba(11,87,207,0.12);
+    }
+    body.theme-dark {
+        --bar-bg: #232326;
+        --bar-text: #e5e7eb;
+        --bar-text-dim: rgba(229,231,235,0.55);
+        --bar-border: rgba(255,255,255,0.1);
+        --bar-btn-active: rgba(255,255,255,0.08);
+        --bar-track: rgba(255,255,255,0.18);
+        --bar-accent: #3b82f6;
+        --bar-accent-soft: rgba(59,130,246,0.2);
+    }
+
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--bar-accent);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid var(--bar-accent-soft);
+        border-bottom: 1px solid var(--bar-accent-soft);
+        transition: color 0.3s, border-color 0.3s;
+    }
+    #book-content h1,
+    #book-content h3 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--bar-accent);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid var(--bar-accent-soft);
+        border-bottom: 1px solid var(--bar-accent-soft);
+        transition: color 0.3s, border-color 0.3s;
+    }
+    /* h1/h2 colors now follow --bar-text-dim / --bar-accent (see :root theme variables above),
+       so they automatically match light / dark modes. */
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p {
+        background: #232326;
+        border-color: rgba(255,255,255,0.08);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #0B57CF;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #0B57CF;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(11,87,207,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #0B57CF;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(11,87,207,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2, #book-content h3 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: var(--bar-accent);
+        font-weight: 600;
+        background: var(--bar-accent-soft);
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: var(--bar-text);
+        border-bottom: 1px solid var(--bar-border);
+        transition: color 0.15s, background 0.3s, border-color 0.3s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: var(--bar-text-dim);
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reading progress line — header-এর বাইরে, স্বাধীন fixed element,
+       তাই body.bars-hidden দিয়ে header হাইড হলেও এটা visible থাকবে ── */
+    #reading-progress-bar {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        background: var(--bar-btn-active);
+        z-index: 70;
+        pointer-events: none;
+    }
+    #reading-progress-fill {
+        height: 100%;
+        width: 0%;
+        background: var(--bar-accent);
+    }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        flex-direction: column;
+        padding: 0 0.5rem 0 0.35rem;
+        background: var(--bar-bg);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-row1 {
+        padding-top: 0.4rem;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding-bottom: 0.4rem;
+    }
+    #rh-back {
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0B57CF;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: background 0.15s, color 0.3s;
+    }
+    #rh-back:active { background: var(--bar-btn-active); }
+    #rh-titles {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+    }
+    #rh-title {
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.98rem;
+        font-weight: 600;
+        color: var(--bar-text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: color 0.3s;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 34px;
+        height: 34px;
+        border: none;
+        background: transparent;
+        color: #0B57CF;
+        border-radius: 7px;
+        font-size: 1.05rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s, color 0.3s;
+    }
+    #reader-header .rh-actions button:active { background: var(--bar-btn-active); }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: var(--bar-bg);
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease, background 0.3s;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid var(--bar-border);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--bar-text-dim);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: var(--bar-accent);
+        border-bottom-color: var(--bar-accent);
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--bar-accent);
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--bar-text);
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: auto;
+        min-width: 64px;
+        height: 34px;
+        flex: 1 1 0;
+        padding: 0 12px;
+        border-radius: 8px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        box-shadow: 0 0 0 1px var(--bar-border);
+    }
+    .theme-circle.active { border-color: var(--bar-accent); }
+    .theme-circle svg { display: none; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--bar-border);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: var(--bar-text); }
+    .settings-row-val { font-size: 0.74rem; color: var(--bar-text-dim); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid var(--bar-border);
+        background: var(--bar-btn-active);
+        color: var(--bar-text);
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: var(--bar-accent-soft); border-color: var(--bar-accent); color: var(--bar-text); }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid var(--bar-border);
+        background: var(--bar-btn-active);
+        color: var(--bar-text);
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: var(--bar-accent-soft) !important;
+        border-color: var(--bar-accent) !important;
+        color: var(--bar-text) !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid var(--bar-border);
+        background: transparent;
+        color: var(--bar-text);
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: var(--bar-accent-soft) !important;
+        border-color: var(--bar-accent) !important;
+        color: var(--bar-text) !important;
+    }
+
+</style>
+
+<!-- ══ Reading progress line — header হাইড হলেও visible থাকে ══ -->
+<div id="reading-progress-bar"><div id="reading-progress-fill"></div></div>
+
+<!-- ══ Reader header (back + title/chapter stack + actions) ══ -->
+<header id="reader-header">
+    <div id="rh-row1">
+        <a href="/book/nabin-1930.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+            <i class="fa-solid fa-angle-left"></i>
+        </a>
+        <div id="rh-titles">
+            <h1 id="rh-title">নবীন (১৯৩০)</h1>
+        </div>
+        <div class="rh-actions">
+            <button id="rh-menu-btn" aria-label="সূচিপত্র ও কাস্টমাইজ" title="সূচিপত্র ও কাস্টমাইজ"><i class="fa-solid fa-list-ul"></i></button>
+        </div>
+    </div>
+</header>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle" data-theme="light" style="background:#fff;border-color:#0B57CF;" title="সাদা"></button>
+                    <button class="theme-circle active" data-theme="dark" style="background:#3a3a3a;border-color:#3b82f6;" title="ডার্ক">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e5e7eb" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-justify" title="জাস্টিফাই">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <section><div>
+
+<div>
+<h2><span><b>প্রথম পর্ব্ব</b></span>
+</h2>
+</div>
+<div>
+<div>
+<p>বাসন্তী, হে ভুবনমোহিনী,<br/>
+দিক প্রান্তে, বনে বনান্তে<br/>
+শ্যাম প্রান্তরে আম্রছায়ে,<br/>
+সরোবর তীরে নদী নীরে,<br/>
+নীল আকাশে মলয় বাতাসে,<br/><span>ব্যাপিল অনন্ত তব মাধুরী;</span><br/>
+নগরে গ্রামে কাননে<br/><span>দিনে নিশীথে</span><br/>
+পিক সঙ্গীতে নৃত্য গীত-কলনে<br/><span>বিশ্ব আনন্দিত;</span><br/><span>ভবনে ভবনে</span><br/>
+বীণা তাম রণ-রণ ঝঙ্কৃত।<br/>
+মধুমদমোদিত হৃদয়ে হৃদয়ের<br/>
+নব প্রাণ উচ্ছ্বসিল আজি,<br/>
+বিচলিত চিন উচ্ছ্বলি উন্মাদনা<br/>
+ঝন ঝন ঝনিল মঞ্জীরে মঞ্জীরে॥
+</p>
+</div>
+</div>
+<p>শুনেচো অলিমালা, ওরা বড়ো ধিক্কার দিচ্চে, ঐ ও-পাড়ার মল্লের দল, উৎসবে তোমাদের চাপল্য ওদের ভালো লাগ্চে না। শৈবালপুঞ্জিত গুহাদ্বারে কালো কালেৃো শিলাখণ্ডেল মতো তমিস্রগ্রহণ গাম্ভীর্য্যে ওরা নিশ্চল হয়ে ভ্রুকুটি করচে, নির্ঝরণী ওদের সামনে দিয়ে বেরিয়ে প’ড়েচে এই আনন্দময় বিশ্বের আনন্দপ্রবাহ দিকে দিগন্তে বইয়ে দিতে, নাচে গানে কল্লোলে হিল্লোলে কলহাস্যে;— চূর্ণ চূর্ণ সূর্য্যের আলো উদ্বেল তরঙ্গভঙ্গের ছন্দে ছন্দে বিকীর্ণ ক’রে দিতে। এই আনন্দ-আবেগের অন্তরে অন্তরে যে-অক্ষয় শৌর্য্যের অনুপ্রেরণা আছে, সেটা ওদের শাস্ত্রবচনের বেড়ার বাইরে দিয়ে চ’লে-গেল। ভয় ক’রো না তোমরা; যে-রসরাজের নিমন্ত্রণে তোমরা এসেচো, তাঁর প্রসন্নতা যেমন নেমেচে আমাদের নিকুঞ্জ অন্তঃস্মিত গন্ধরাজ মুকুলের প্রচ্ছন্ন গন্ধরেণুতে তেমনি নামুক্ তোমাদের কন্ঠে কন্ঠে, তোমাদের দেহলতার নিরুদ্ধ নটনোৎসাদে। সেই যিনি সুরের গুরু, তাঁর চরণে নৃত্যের অর্ঘ্য নিবেদন ক’রে দাও।
+</p>
+<div><div>
+<p><span>সুরের গুরু, দাও গো সুরের দীক্ষা</span><br/>
+মোরাসুরের কাঙাল এই আমাদের ভিক্ষা।<br/><span>মন্দাকিনীর ধারা,</span><br/><span>উষার শুকতারা,</span><br/><span>কনকচাঁপা কানে কানে যে-সুর পেলো শিক্ষা।</span><br/><span>তোমার সুরে ভরিয়ে নিয়ে চিত্ত</span><br/><span>যাবো যেথায় বেসুর বাজে নিত্য।</span><br/><span>কোলাহলের বেগে</span><br/><span>ঘূর্ণি উঠে জেগে,</span><br/><span>নিয়ো তুমি আমার বীণার সেইখানেই পরীক্ষা॥</span>
+</p>
+</div> <div>
+<p><span>তুমি সুন্দর যৌবন-ঘন</span><br/><span>রসময় তব মূর্ত্তি,</span><br/><span>দৈন্যভরণ বৈভব তব</span><br/><span>অপচয় পরিপূর্ত্তি।</span><br/><span>নৃত্য গীত কাব্য ছন্দ</span><br/><span>কল গুঞ্জন বর্ণ গন্ধ,</span><br/><span>মরণহীন চির নবীন</span><br/><span>তব মহিমা স্ফূর্ত্তি॥</span>
+</p>
+</div>
+</div>
+<p>একটা ফরমাস এসেচে বসন্ত উৎসবে নতুন কিছু চাই—কিন্তু যাদের রস-বেদনা আছে তা’রা ব’লচে আমরা নতুন চাইনে, আমরা চাই নবীনকে। তা’রা বলে মাধবূ বছরে বছরে সাজ বদ্লায় না, অশোক পলাশ পুরাতন রঙেই বারে বারে রঙীন। এই চিরপুরাতন ধরণী সেই চিরপুরাতন নবীনের দিকে তাকিয়ে বল’চে “লাখ লাখ যুগ হিয়ে হিয়ে রাখনু তবু হিয়া জুড়ন না গেল।​” সেই নবীনের উদ্দেশে তোমাদের গান সুরু ক’রে দাও।
+</p>
+<div>
+<div>
+<p>আন্ গো তারা কা’র কী আছে.<br/>
+দেবার হাওয়া বইলো দিকে দিগন্তরে<br/><span> এই সুসময় ফুরায় পাছে।</span><br/><span> কুঞ্জবনের অঞ্জলি-যে ছাপিয়ে পড়ে</span><br/><span> পলাশ কানন ধৈর্য্য হারায় রঙের পড়ে</span><br/><span> বেণুর শাখা তালে মাতান নাচে॥</span>
+</p>
+</div> <div>
+<p>প্রজাপতি রঙ ভাসালো নীলাম্বরে<br/>
+মৌমাছিরা ধ্বনি উড়ায় বাতাস ’পরে<br/><span> দখিন হাওয়া হেঁকে বেড়ায় জাগো জাগো,</span><br/><span> দোয়েল কোয়েল গানের বিরাম জানে না গে,</span><br/><span> ক্ত রক্তের জাগ্লো প্রলাপ অশোক গাছে॥</span>
+</p>
+</div>
+</div>
+<p>অশোকবনের রংমহলে আজ লাল রঙের তানে তানে পঞ্চম-রাগে সানাই বাজিয়ে দিলে, কুঞ্জবনের বীথিকায় আজ সৌরভের অবারিত দানসত্র। আমরাও তো শূন্যহাতে আসিনি। দানের জোয়ার যখন লাগে অতল জলে তখন ঘাটে ঘাটে দানের বোঝাই-তরী রসি খুলে দিয়ে ভেসে পড়ে। আমাদের ভরা নৌকো দখিন হাওয়ায় পাল তুলে সাগর-মুখো হোলো, সেই কথাটা কন্ঠ খুলে জানিয়ে দাও।
+</p>
+<div>
+<div>
+<p><span>ফাগুন তোমার হাওয়ায় হাওয়ায় </span><br/><span>ক’রেছি যে দান</span><br/><span>আমারআপনহারা প্রাণ,</span><br/><span>আমার বাঁধন-ছেঁড়া প্রাণ॥</span><br/><span>তোমারঅশোকে কিংশুকে</span><br/><span>অলক্ষ্য রং লাগলো আমার অকারণের সুখে,</span><br/><span>তোমারঝাউএর দোলে</span><br/><span>মর্ম্মরিয়া ওঠে আমার দুঃখরাতের গান॥</span><br/><span>পূর্ণিমা সন্ধ্যায়</span><br/><span>তোমার রজনী-গন্ধায়</span><br/><span>রূপ সাগরের পারের পানে উদাসী মন ধায়।</span>
+</p>
+</div> <div>
+<p><span>তোমার প্রজাপতির পাখা</span><br/>
+আমারআকাশ-চাওয়া মুগ্ধচোখের রঙীন স্বপন মাখা;<br/><span>তোমার চাঁদের আলোয়</span><br/><span>মিলায় আমার দুঃখ সুখের সকল অবসান॥</span>
+</p>
+</div>
+</div>
+<p>ভ’রে দাও একেবারে ভ’রে দাও, কোথাও কিছু সঙ্কোচ না থাকে। পূর্ণের উৎসবে দেওয়া আর পাওয়া একই কথা। ঝরনার তা’র এক প্রান্তে পাওয়া রয়েছে অভ্রভেদী শিখরের দিক থেকে, আর এক প্রান্তে দেওয়া রয়েছে অতলস্পর্শ সাগরের দিকে, এর মাঝখানে তো কোনো বিচ্ছেদ নেই, অন্তহীন পাওয়া আর অন্তহীন দেওয়ার আবর্ত্তন নিয়ে এই বিশ্ব।
+</p>
+<div>
+<div>
+<p><span>গানের ডালি ভ’রে দে গো ঊষার কোলে—</span><br/><span>আয় গো তোরা, আয় গো তোরা, আয় গো চ’লে</span><br/><span>চাঁপার কালি চাঁপার গাছে</span><br/><span>সুরের আশায় চেয়ে আছে.</span><br/><span>কান পেতেছে নতুন পাতা, গাইবি ব’লে</span><br/><span>কমল বরণ গগন মাঝে</span><br/><span>কমল চরণ ঐ বিরাজে।</span><br/><span>ঐখানে তোর সুর ভেসে যাক্,</span><br/><span>নবীন প্রাণের ঐ দেশে যাক্,</span><br/><span>ঐ যেখানে সোনার আলোর দুয়ার খোলে॥ </span>
+</p>
+</div>
+</div>
+<p>মধুরিমা দেখো, দেখো, চাঁদের তরণীতে আজ পূর্ণতা পরিপুঞ্জিত। কত দিন ধ’রে এক তিথি থেকে আরেক তিথিতে এগিয়ে আসচে। নন্দনবন থেকে আলোর পারিজাত ভ’রে নিয়ে আলো— কোন্ মাধুরীর মহাশ্বেতা সেই ডালি কোলে নিয়ে ব’সে আছে; ক্ষণে ক্ষণে রাজহংসের ডানার মতো তা’র শুভ্র মেঘের বসনপ্রান্ত আকাশে এলিয়ে পড়চে। আজ ঘুমভাঘা রাতের বাঁশিতে বেহাগের তান লাগ্লো।
+</p>
+<div>
+<div>
+<p>নিবিড় অমা-তিমির হ’তে<br/>
+বাহির হ’লো জোয়ার স্রোতে<br/>শুক্লরাতে চাঁদের তরণী।<br/>
+ভরিল ভরা অরূপ ফুলে,<br/>
+সাজালো ডালা অমরা-কূলে<br/>আলোর মালা চামেলি-বরণী।<br/>শুক্লরাতে চাঁদের তরণী॥<br/>
+তিথির পরে তিথির ঘাটে<br/>
+আসিছে তরী দোলের নাটে,<br/>নীরব হাসে স্বপনে ধরণী।<br/>
+উৎসবের পসরা নিয়ে<br/>
+পূর্ণিমার কূলেতে কি এ<br/>ভিড়িল শেষে তন্দ্রাহরণী<br/>শুক্লরাতে চাঁদের তরণী॥
+</p>
+</div>
+</div>
+<p>দোল লেগেচে এবার। পাওয়া আর না-পাওয়ার মাঝখানে দোল। এক প্রান্তে বিরহ, আর প্রান্তে মিলন, স্পর্শ ক’রে ক’রে দুলচে বিশ্বের হৃদয়। পরিপূর্ণ আর অপূর্ণের মাঝখানে এই দোলন। আলোতে ছায়াতে ঠেকতে ঠেকতে রূপ জাগচে— জীবন থেকে মরণ, মরণ থেকে জীবনে, অন্তর থেকে বাহিরে আবার বাহির থেকে অন্তরে। এই দোলার তালে না মিলিয়ে চললেই রসভঙ্গ হয়। ও পাড়ার ওরা-যে দরজায় আগল এঁটে বসেই রইলো—হিসেবের খাতার উপর ঝুঁকে প’ড়েচে। একবার ওদের দরজার বাইরে দাঁড়িয়ে দোলের ডাক দাও।
+</p>
+<div>
+<div>
+<p>ওরে গৃহবাসী, তোরা খোল্ দ্বার খোলস <br/>লাগলো-যে দোল।<br/>
+স্থলে জলে বন-তলে<br/>লাগলো-যে দোল।<br/>খোল্ দ্বার খোলি।<br/>
+রাঙা হাসি রাশি রাশি অশোকে পলাশে,<br/>
+রাঙা নেশা মেঘে মেশা প্রভাত আকাশে,<br/>নবীন পাতায় লাগে রাঙা হিল্লোল।<br/>খোল্ দ্বার খোল্॥<br/>
+বেণুবন মর্ম্মরে দখিন বাতাসে,<br/>
+প্রজাপতি দোলে ঘাসে ঘাসে—<br/>মউমাছি ফিরে যা’চি ফুলের দখিণা,<br/>পাখায় বাজায় তা’র ভিখারীর বীণা,<br/>মাধবী-বিতানে বায়ু গন্ধে বিভোল।<br/>খোল্ দ্বার খোল্॥
+</p>
+</div>
+</div>
+<p>কিন্তু পূর্ণিমার চাঁদ-যে ধ্যানস্তিমিত লোচন পুরোহিতের মতো আকাশের বেদীতে ব’সে উৎসবের মন্ত্র জপ ক’রতে লাগলো। ওকে দেখাচ্চে যেন জ্যোৎস্না সমুদ্রের ঢেউয়ের চূড়ায় ফেনপুঞ্জের মতো—কিন্তু সে ঢেউ-যে চিত্রাপিতবৎ স্তব্ধ। এদিকে আজ বিশ্বের বিচলিত চিত্ত দক্ষিণের হাওয়ায় ভেসে প’ড়েচে, চঞ্চলের দল মেতেচে বনের শাখায়, পাখীর ডানায়, আর ঐ কি একা অবিচলিত হয়ে থাকবে, নিবাতনিষ্কম্পমিবপ্রদীপম্? নিজে মাতবে না আর বিশ্বকে মাতাবে, সে কেমন হোলো? এর একটা যা-হয় জবাব দিয়ে দাও।
+</p>
+<div>
+<div>
+<p>কে দেবে চাঁদ তোমায় দোলা<br/>
+আপন আলোর স্বপন মাঝে বিভোল ভোলা।<br/>কেবল তোমার চোখের চাওয়ায়<br/>দোলা দোলা হাওয়ায়া হাওয়ায়,<br/>বনে বনে দোল জাগালো<br/> ঐ চাহনি তুফান-তোলা।<br/>
+আজ মানসের সরোবরে<br/>
+কোন্ মাধুরীর কমল কানন<br/>দোলাও তুমি ঢেউয়ের ’পরে।<br/>তোমার হাসির আভাস লেগে<br/>বিশ্বদোলন দোলার বেগে<br/>উঠলো জেগে আমার গানের<br/> হিল্লোলিনী কলরোলা॥
+</p>
+</div>
+</div>
+<p>আজ সব ভীরুদের ভয় ভাঙানো চাই। ঐ মাধবীর দ্বিধা-যে ঘোচে না। এদিকে আকাশে আকাশে প্রগল্ভতা অথচ ওরা রইলো সসঙ্কোচে ছায়ার আড়ালে। ঐ অবগুষ্ঠিতাদের সাহস দাও। বেরিয়ে পড়বার হাওয়া বইলো যে, বকুলগুলো রাশি রাশি ঝরতে বল্চে, যা হয় তো হোক্ গে, আমের মুকুল নির্ভয়ে বলে উঠচে, দিয়ে ফেলবো একবারে শেষ পর্য্যন্ত। যে-পথিক আপনাকে বিলিয়ে দেবার জন্যেই পথে বেরিয়েচে তা’র কাছে আত্মনিবেদনের থালি উপুড় ক’রে দিয়ে তবে তাকে আনতে পারবে নিজের আঙিনায়। কৃপণতা ক’রে সময় বইয়ে দিলে তা চলবে না।
+</p>
+<div>
+<div>
+<p>হে মাধবী, দ্বিধা কেন, আসিবে কি ফিরিবে কি,<br/>
+আঙিনাতে বাহিরিতে মন কেন গেল ঠেকি’।<br/> বাতাসে লুকায়ে থেকে<br/> কে-যে তোরে গেছে ডেকে,<br/>
+পাতায় পাতায় তোরে পত্র সে-যে গেছে লেখি’।<br/>
+কখন দখিণ হ’তে কে দিল দুয়ার ঠেলি’<br/>
+চমকি’ উঠিল জাগি’ চামেলি নয়ন মেলি’।<br/> বকুল পেয়েছে ছাড়া,<br/> করবী দিয়েছ সাড়া,<br/>
+শিরীষ শিহরি’ উঠে দূর হ’তে কারে দেখি’।
+</p>
+</div>
+</div>
+<p>দেখতে দেখতে ভরসা বেড়ে উঠ্চে, পাবো না তো কি? যখন দেখা দেয় না তখনো যে সাড়া দেয়। যে পথে চলে সেখানে-যে তা’র চলার রঙ লাগে। যে-আড়ালে থাকে তা’র ফাঁক দিয়ে আসে তা’র মালার গন্ধ। দুয়ারে অন্ধকার যদি-বা চুপচাপ থাকে, আঙিনায় হাওয়াতে চলে কানাকানি। পড়তে পারিনে সব অক্ষর কিন্তু চিঠিখান মনের ঠিকানায় এসে পৌছয়। লুকিয়েই ও ধরা দেবে এমনিতরাে ওর ভাবখানা।
+</p>
+<div>
+<div>
+<p>সে কি ভাবে গােপন র’বে<br/><span>লুকিয়ে হৃদয়-কাড়া?</span><br/>
+তাহার আসা হাওয়ায় ঢাকা<br/><span>সে-যে সৃষ্টিছাড়া।</span><br/><span>হিয়ায় হিয়ায় জাগলাে বাণী,</span><br/><span>পাতায় পাতায় কানাকানি,</span><br/><span>“ঐ এলাে যে”, “ঐ এলাে যে”</span><br/><span>পরাণ দিল সাড়া॥</span><br/><span>এই তো আমার আপনারি এই</span><br/><span>ফুল-ফোটানাের মাঝে</span><br/><span>তা’রে দেখি নয়ন ভ’রে</span><br/><span>নানা রঙের সাজে।</span><br/><span>এই-যে পাখীর গানে গানে</span><br/><span>চরণ ধ্বনি ব’য়ে আনে,</span><br/><span>বিশ্ববীণার তারে তারে</span><br/><span>এই তো দিল নাড়া॥</span>
+</p>
+</div>
+</div>
+<p>এইবার বেড়া ভাঙলো, দুর্ব্বার বেগে। অন্ধকারের গুহায় অগােচরে জমে উঠেছিলো বন্যার উপক্রমণিকা, হঠাৎ ঝরনা ছুটে বেরােলাে, পাথর গেল ভেঙে, বাধা গেল ভেসে। চরম যখন
+আসেন তখন এক পা এক পা পথ গুণে গুণে আসেন না। একেবারে বজ্রে-শান-দেওয়া বিদ্যুতের মতো, পুঞ্জ পুঞ্জ কালো মেঘের বক্ষ এক আঘাতে বিদীর্ণ ক’রে আসেন।
+</p>
+<div>
+<div>
+<p><span>হৃদয় আমার ঐ বুঝি তোর</span><br/><span>ফাল্গুনী ঢেউ আসে,</span><br/><span>বেড়া-ভাঙার মাতন নামে</span><br/><span>উদ্দাম উল্লাসে॥</span><br/><span>তোমারমোহন এলো সোহন বেশে।</span><br/><span>কুয়াসা-ভার গেল ভেসে,</span><br/><span>এলো তোমার সাধন ধন</span><br/><span>উদার আশ্বাসে॥</span><br/><span>অরণ্যে তোর সুর ছিল না</span><br/><span>বাতাস হিমে ভরা।</span><br/><span>জীর্ণ পাতায় কীর্ণ কানন</span><br/><span>পুষ্পবিহীন ধরা।</span><br/><span>এবারজাগরে হতাশ আয়রে ছুটে</span><br/><span>অবসাদের বাঁধন টুটে,</span><br/><span>বুঝি এলো তোমার পথের সাথী</span><br/><span>উতল উচ্ছাসে॥</span>
+</p>
+</div>
+</div>
+<p>উৎসবের সোনার কাঠি তোমাকে ছুঁয়েচে, চোখ খুলেচে। এইবার সময় হোলো চারদিক দেখে নেবার। আজ দেখতে পাবে, ঐ শিশু হয়ে এসেচে চির নবীন, কিশলয়ে তা’র ছেলেখেলা জমাবার জন্যে। তার দোসর হয়ে তার সঙ্গে যোগ দিল ঐ সূর্য্যের আলো, সে-ও সাজলো শিশু, সারাবেলা সে কেবল ঝিকিমিকি কর’চে। ঐ তা’র কলপ্রলাপ। ওদের নাচে নাচে মর্মরিত হয়ে উঠলো প্রাণগীতিকার প্রথম ধুয়েটি।
+</p>
+<div>
+<div>
+<p><span>ওরাঅকারণে চঞ্চল।</span><br/><span>ডালে ডালে দোলে, বায়ুহিল্লোলে</span><br/><span>নব পল্লবদল।</span><br/><span>ছড়ায়ে ছড়ায়ে ঝিকিমিকি আলো,</span><br/><span>দিকে দিকে ওরা কী খেলা খেলালো,</span><br/><span>মর্ম্মর তানে প্রাণে ওরা আনে</span><br/><span>কৈশাের কোলাহল।</span><br/><span>ওরাকান পেতে শােনে গগনে গগনে</span><br/><span>নীরবের কানাকানি,</span><br/><span>নীলিমার কোন্ বাণী</span><br/><span>ওরা প্রাণঝরনাব উচ্ছল ধার,</span><br/><span>ঝরিয়া ঝরিয়া বহে অনিবার,</span><br/><span>চির-তাপসিনী ধরণীর ওরা</span><br/><span>শ্যামশিখা হােমানল॥</span>
+</p>
+</div>
+</div>
+<p>আবার একবার চেয়ে দেখো—অবজ্ঞায় চোখ ঝাপসা হয়ে থাকে, আজ সেই কুয়াশা যদি কেটে যায় তবে যাকে তুচ্ছ বলে দিনে দিনে এড়িয়ে গেছে। তাকে দেখে নাও তা’র আপন মহিমায়। ঐ দেখাে ঐ বনফুল, মহাপথিকের পথের ধারে ও ফোটে, তাঁর পায়ের করুণ স্পর্শে সুন্দর হয়ে ওঠে ওর প্রণতি। সূর্য্যের আলো ওকে আপন ব’লে চেনে, দখিন হাওয়া ওকে শুধিয়ে যায় কেমন আছ। তােমার গানে আজ ওকে গৌরব দিক্‌। এরা যেন কুরুরাজের সভায় শূদ্রার সন্তান বিদুরের মতো, আসন বটে নীচে, কিন্তু সম্মান স্বয়ং ভীষ্মের চেয়ে কম নয়।
+</p>
+<div><div>
+<p>আজ দখিন বাতাসে<br/>
+নাম-না-জানা কোন্ বনফুল<br/><span>ফুটলো বনের ঘাসে।</span><br/><span>ও মােরপথের সাথী পথে পথে</span><br/><span>গোপনে যায় আসে॥</span><br/>
+কৃষ্ণচূড়া চূড়ায় সাজে,<br/>
+বকুল তােমার মালার মাঝে,<br/>
+শিরীষ তোমার ভ’রবে সাজি<br/><span>ফুটেছে সেই আশে।</span><br/>
+এ মােরপথের বাঁশির সুরে সুরে<br/><span>লুকিয়ে কাঁদে হাসে॥</span><br/>
+ওরেদেখাে বা নাই দেখাে, ওরে<br/><span>যাও বা না যাও ভুলে।</span><br/>
+ওরেনাই বা দিলে দেলা, ওরে<br/><span>নাই বা নিলে তুলে।</span><br/><span>সভায় তােমার ও কেই নয়,</span><br/><span>ওর সাথে নেই ঘরের প্রণয়,</span>
+</p>
+</div> <div>
+<p><span>যাওয়া-আসার আভাস নিয়ে</span><br/><span>রয়েছে এক পাশে॥</span><br/><span>ওগাে ওর সাথে মাের প্রাণের কথা</span><br/><span>নিঃশ্বাসে নিঃশ্বাসে॥</span>
+</p>
+</div>
+</div>
+<p>কাব্যলােকের আদরিণী সহকাবমঞ্জরীকে আর চিনিয়ে দিতে হবে না। সে আপনাকে তাে লুকোতে জানে না। আকাশের হৃদয় সে অধিকার করেছে, মৌমাছির দল বন্দনা ক’রে তা’র কাছ থেকে অজস্র দক্ষিণ নিয়ে যাচ্চে। সকলের আগেই উৎসবের সদাব্রত ও সুরু ক’রে দিয়েছিলো, সকলের শেষ পর্যন্ত ওর আমন্ত্রণ রইলো খােলা। কোকিল ওর গুণগান দিনে রাতে আর শেষ করতে পারছে না—তােমরাও তান লাগাও।
+</p>
+<div>
+<div>
+<p>ও মঞ্জরী, ও মঞ্জরী, আমের মঞ্জরী,<br/>
+আজহৃদয় তােমার উদাস হ’য়ে<br/><span>প’ড়ছে কি ঝরি’ ?</span><br/><span>আমারগান-যে তােমার গন্ধে মিশে</span><br/><span>দিশে দিশে</span><br/><span>ফিরে ফিরে ফেরে গুঞ্জরি’॥</span><br/>
+পূর্ণিমা চাঁদ তােমার শাখায় শাখায়<br/>
+তােমারগন্ধ সাথে আপন আলো মাখায়,<br/><span>ঐদখিন বাতাস গন্ধে পাগল</span><br/><span>ভাঙ্লো আগল</span><br/><span>ঘিরে ঘিরে ফিরে সঞ্চরি’॥</span>
+</p>
+</div>
+</div> দীর্ঘ শুন্য পথটাকে এতদিন ঠেকেছিলাে বড় কঠিন, বড়ো নিষ্ঠুর। আজ তাকে প্রণাম। পথিককে সে তাে অবশেষে এনে পৌছিয়ে দিলে। তারি সঙ্গে এনে দিলে অসীম সাগরের বাণী। দুর্গম উঠলো সেই পথিকের মধ্যে গান গেয়ে। কিন্তু আনন্দ ক’রতে ক’রতেই চোখে জল আসে যে। ভুলবো কেমন ক’রে যে, যে-পথ কাছে নিয়ে আসে, সেই পথই দূরে নিয়ে যায়। পথিককে ঘরে আটক করে না। বাঁধন ছিড়ে নিজেও বেরিয়ে না প’ড়লে ওর সঙ্গে বিচ্ছেদ ঠেকাবে কী ক’রে? আমার ঘর-যে ওর যাওয়া-আসার পথেব মাঝখানে, দেখা দেয় যদি-বা, তা’র পরেই সে-দেখা আবাব কেড়ে নিয়ে চলে যায়।
+<div><div>
+<p>মােরপথিকেরে বুঝি এনেছাে এবারে<br/><span>করুণ রঙীন পথ।</span><br/><span>এসেছে এসেছে অঙ্গনে, মাের</span><br/><span>দুয়ারে লেগেছে রথ।</span><br/><span>সে-যেসাগর পারের বাণী</span><br/><span>মোরপরাণে দিয়েছে আনি’,</span><br/><span>তা’রআঁখির তারায় যেন গান গায়</span><br/><span>অরণ্য পর্ব্বত॥</span><br/><span>দুঃখসুখের এপারে ওপারে</span><br/><span>দোলায় আমার মন,</span><br/><span>কেন অকারণ অশ্রু-সলিলে</span><br/><span>ভ’রে যায় দু-নয়ন।</span>
+</p>
+</div> <div>
+<p><span>ওগোনিদারুণ পথ, জানি,</span><br/><span>জানিপুন নিয়ে যাবে টানি’</span><br/><span>তা’রে, চিরদিন মোর যে-দিল ভরিয়া</span><br/><span>যাবে সে স্বপনবৎ॥</span>
+</p>
+</div>
+</div>
+<p>তবু ওকে ক্ষণকালের বাঁধন পরিয়ে দিতে হবে। টুকরো টুকরো সুখের গাথবো—পরাবো ওকে মাধুয্যের মুক্তোগুলি। ফাগুনের ভরা সাজি থেকে যা কিছু ঝ’রে ঝ’রে প’ড়্চে কুড়িয়ে নেবো, বনের মর্ম্মর, বকুলের গন্ধ, পলাশের রক্তিমা—আমার বাণীর সুত্রে সব গেঁথে বেঁধে দেবো ভা’রমণিবন্ধে। হয়তো আবার আর-বসন্তেও সেই আমার-দেওয়া ভূষণ প’রেই সে আসবে। আমি থাকবো না, কিন্তু কি জানি, আমার দানের ভূষণ হয়তো থাকবে ওর দক্ষিণ হাতে।
+</p>
+<div>
+<div>
+<p>ফাগুনের নবীন আনন্দে<br/>
+গানখানি গাঁথিলাম ছন্দে।<br/><span>দিল তা’রে বনবীথি</span><br/><span>কোকিলের কলগীতি</span><br/><span>ভরি’ দিল বকুলের গন্ধে॥</span><br/><span> মাধবীর মধুময় মন্ত্র</span><br/><span> রঙে রঙে রাঙালো দিগন্ত।</span><br/><span>বাণী মম নিল তুলি’</span><br/><span>পলাশের কলিগুলি,</span><br/><span> বেঁধে দিল তব মণিবন্ধে॥</span>
+</p>
+</div>
+</div>
+
+
+</div></section>
+<section><div>
+
+<div>
+<h2><span>দ্বিতীয় পর্ব্ব</span>
+</h2>
+</div>
+<div>
+<div>
+<p>বেদনা কী ভাষায় রে<br/><span>মর্ম্মে মর্মরি গুঞ্জরি বাজে।</span><br/>
+সে বেদনা সমীরে সমীরে সঞ্চারে,<br/><span>চঞ্চল বেগে বিশ্বে দিল দোলা।</span><br/>
+দিবানিশা আছি নিদ্রাহরা বিরহে,<br/><span>তব নন্দনবন অঙ্গন দ্বারে, মনােমােহন বন্ধু,</span><br/><span>আকুল প্রাণে</span><br/><span>পারিজাত মালা সুগন্ধ হানে॥</span>
+</p>
+</div>
+</div>
+<p>বিদায় দিনের প্রথম হাওয়াটা এবার উৎসবের মধ্যে নিঃশ্বসিত হ’য়ে উঠলো। এখনো কোকিল ডাকচে, এখনাে বকুলবনের সম্বল অজস্র, এখনো আমঞ্জরীর নিমন্ত্রণে মৌমাছিদের আনাগােনা, কিন্তু তবু এই চঞ্চলতার অন্তরে অন্তরে একটা বেদনা শিউরিয়ে উঠলো। সভার বীণা বুঝি নীরব হবে, পথের একতারায় এবার সুর বাঁধা হ’চ্চে। দূর দিগন্তের নীলিমায় দেখা যায় অশ্রুর আভাস—অবসানের গােধূলি-ছায়া নাচে।
+</p>
+<div><div>
+<p>চ’লে যায় মরি হায় বসন্তের দিন।<br/>
+দূর শাখে পিক ডাকে বিরামবিহীন।<br/><span>অধীর সমীর ভরে</span><br/><span>উচ্ছসি’ বকুল ঝরে,</span><br/>
+গন্ধ সনে হ’লাে মন সুদূরে বিলীন।
+</p>
+</div> <div>
+<p>পুলকিত আম্রবীথি ফাল্গুনেরি তাপে,<br/>
+মধুকর গুঞ্জরণে ছায়াতল কাঁপে।<br/><span>কেন জানি অকারণে</span><br/><span>সারাবেলা আনমনে</span><br/>
+পরাণে বাজায় বীণা কে গো উদাসীন॥
+</p>
+</div>
+</div>
+<p>হে সুন্দর, যে-কবি তোমার অভিনন্দন ক'রতে এসেছিলো তা’র ছুটির দিন এলো। তা’র প্রণাম তুমি নাও। যে-গানগুলি এতদিন গ্রহণ ক’রেচো সেই তা’র আপন গানের বন্ধনেই সে বাঁধা রইলো তোমার দ্বারে—তোমার উৎসবলীলায় সে চিরদিন র’য়ে গেল তোমার সাথের সাথী। তোমাকে সে তা’র সুরের রাখী পরিয়েচে—তা“র চিরপরিচয় তোমার ফুলে ফুলে, তোমার পদ-পাত-কম্পিত শ্যামল শল্পবীথিকায়।
+</p>
+<div><div>
+<p>বসন্তে বসন্তে তোমার কবিরে দাও ডাক;<br/><span>যায় যদি সে যাক॥</span><br/>
+রইল তাহার বাণী রইল ভরা সুরে,<br/><span>রইবে না সে দূরে;</span><br/>
+হৃদয় তাহার কুঞ্জে তোমার<br/><span>রইবে না নিবর্বাক॥</span><br/>
+ছন্দ তাহার রইবে বেঁচে<br/><span>কিশলয়ের নবীন নাচে নেচে নেচে।</span>
+</p>
+</div> <div>
+<p>তা’রে তোমার বীণাযায় না যেন ভুলে,<br/><span>তোমার ফুলে ফুলে</span><br/><span>মধুকরের গুঞ্জরণে বেদনা তার থাক্‌॥</span>
+</p>
+</div>
+</div>
+<p>ওর ভয় হ’য়েছে সব কথা বলা হোলো না বুঝি, এদিকে বসপ্তর পালা তো সাঙ্গ হ’য়ে এলো। ওর মল্লিকা বনে এখনি তো! পাপড়িগুলি সব প’ড়বে ঝ’রে—তখন বাণী পাবে কোথায়? ত্বরা কর্ গো ত্বরা কর্। বাতাস তপ্ত হ’য়ে এলো, এই বেলা রিক্ত হবার আগে তোর শেষ অঞ্জলি পূর্ণ ক’রে দে, তা’র পরে আছে করুণ ধূলি, তা’র আঁচলে সব ঝরা ফুলের বিরাম।
+</p>
+<div><div>
+<p>যখনমল্লিকাবনে প্রথম ধ’রেছে কলি<br/><span>তোমার লাগিয়া তখনি, বন্ধু,</span><br/><span>বেঁধেছিনু অঞ্জলি॥</span><br/><span> তখনো কুহেলিজালে</span><br/>
+সখাতরুণী উষার ভালে<br/><span>শিশিরে শিশিরে অরুণ মালিকা</span><br/><span>উঠিতেছে ছলছলি॥</span><br/><span>এখনো বনের গান</span><br/>
+বন্ধুহয়নি তো অবসান,<br/><span>তবু এখনি যাবে কি চলি’?</span>
+</p>
+</div> <div>
+<p>ওমোর করুণ বল্লিকা,<br/>
+তোরশ্রান্ত মল্লিকা<br/><span>ঝরো-ঝরো হ’লো এই বেলা তোর</span><br/><span>শেষ কথা দিস্‌ বলি’?॥</span>
+</p>
+</div>
+</div>
+<p>সুন্দরের বীণার তারে কোমল গান্ধারে মীড় লেগেছে। আকাশের দীর্ঘ নিঃশ্বাস বনে বনে হায় হায় ক’রে উঠলো, পাতা প’ড়চে ঝ’রে ঝ’রে। বসন্তের ভূমিকায় এ পাতাগুলি একদিন শাখায় শাখায় আগমনীর গানে তাল দিয়েছিলো, তা’রাই আজ যাবার পথের ধৃলিকে ঢেকে দিল, পায়ে পায়ে প্রণাম ক’রতে লাগলো বিদায-পথের পথিককে। নবীনকে সন্ন্যাসীর বেশ পরিয়ে দিলে, বললে, তোমার উদয় সুন্দর, তোমার অন্তও সুন্দর হোক্‌।
+</p>
+<div><div>
+<p>ঝরা পাতাগো, আমি তোমারি দলে।<br/>
+অনেক হাসি অনেক অশ্রুজলে<br/><span>ফাগুন দিল বিদায়-মন্ত্র</span><br/><span>আমার হিয়াতলে।</span><br/><span>ঝরা পাতাগো, বসন্তী রং দিয়ে</span><br/><span>শেষের বেশে সেজেছে তুমি কি এ!</span><br/><span>খেলিলে হোলি ধূলায় ঘাসে ঘাসে</span><br/><span>বসন্তের এই চরম ইতিহাসে।</span>
+</p>
+</div> <div>
+<p><span>তোমারি মতো আমারো উত্তরী</span><br/><span>আগুন রঙে দিয়ো রঙীন করি’,</span><br/><span>অস্তরবি লাগাক্‌ পরশমণি</span><br/><span>প্রাণের মম শেষের সম্বলে॥</span>
+</p>
+</div>
+</div>
+<p>মন থাকে সুপ্ত, তখনো দ্বার থাকে খোলা, সেইখান দিয়ে কার আনাগোনা হয়; উত্তরীয়ের গদ্ধ আসে ঘরের মধ্যে, ভূঁইচাপা ফুলের ছিন্ন পাপড়িগুলি লুটিয়ে থাকে তা'র যাওয়ার পথে; তা’র বীণা থেকে বসন্ত-বাহারের রেশটুকু কুড়িয়ে নেয় মধুকর-গুঞ্জরিত দক্ষিণের হাওয়া; কিন্তু জান্তে পাইনে সে এসেছিলো। জেগে উঠে দেখি তা’র আকাশপারের মালা সে পরিরে গিয়েচে,কিন্তু এ-যে বিরহের মালা।
+</p>
+<div>
+<div>
+<p>কখন্‌ দিলে পরায়ে<br/>
+স্বপনে বরণ মালা, ব্যথার মালা।<br/><span>প্রভাতে দেখি জেগে</span><br/><span>অরুণ মেঘে</span><br/>
+বিদায় বাঁশরী বাজে অশ্রু গালা॥<br/><span>গোপনে এসে গেলে</span><br/><span>দেখি নাই আঁখি মেলে।</span><br/>
+আঁধারে দুঃখ-ডোরে<br/><span>বাঁধিল মোরে,</span><br/><span>ভূষণ পরালে বিরহ-বেদন-ঢালা॥</span>
+</p>
+</div>
+</div>
+
+<p> বনবন্ধুর যাবার সময় হোলো, কিন্তু হে বনষ্পতি শাল, অবসানের দিন থেকে তুমি অবসাদ ঘুচিয়ে দিলে। উৎসবের শেষ বেলাকে তোমার অক্লান্ত মঞ্জরী ঐশ্বর্য্যে দিল ভরিয়ে। নবীনের শেষ জয়ধ্বনি তোমার বীরকণ্ঠে। সেই ধ্বনি আজ আকাশকে পূর্ণ ক’রলো, বিষাদের ম্লানতা দূর ক’রে দিলে। অরণ্যভূমির শেষ আনন্দিত বাণী তুমিই শুনিয়ে দিলে যাবার পথের
+পথিককে, বললে, “পুনদ্দর্শনায়।” তোমার আনন্দের সাহস কঠোর বিচ্ছেদের সমুখে দাঁড়িয়ে।
+</p>
+<div>
+<div>
+<p>ক্লান্ত যখন আম্রকলির কাল<br/><span>মাধবী ঝরিল ভূমিতলে অবসন্ন।</span><br/>
+সৌরভ-ধনে তখন তুমি হে শাল<br/><span>বসন্তে করো ধন্য।</span><br/><span>সান্ত্বনা মাগি’ দাঁড়ায় কুঞ্জভূমি</span><br/><span>রিক্তবেলায় অঞ্চল যবে শুন্য।</span><br/><span>বন-সভাতলে সবার উর্দ্ধে তুমি,</span><br/><span>সব অবসানে তোমার দানের পুণ্য॥</span>
+</p>
+</div>
+</div>
+<p>দূরের ডাক এসেচে। পথিক, তোমাকে ফেরাবে কে? তোমার আসা আর তোমার যাওয়াকে আজ এক ক’রে দেখাও। যে-পথ তোমাকে নিয়ে আসে, সেই পথই তোমাকে নিয়ে যায়, আবার সেই পথই ফিরিয়ে আনে। হে চিরনবীন, এই বঙ্কিম পথেই চিরদিন তোমার রথযাত্রা; যখন পিছন ফিরে চ’লে যাও সেই চ’লে যাওয়ার ভঙ্গীটি আবার এসে মেলে সাম্‌নের দিকে ফিরে, আসায়—শেষ পর্য্যন্ত দেখতে পাইনে, হায় হায় করি।
+</p>
+<div>
+<div>
+<p><span>এখন আমার সময় হোলো,</span><br/><span>যাবার দুয়ার খোলো খোলো।</span><br/>
+হোলো দেখা, হোলো মেলা,<br/>
+আলো ছায়ায় হোলো খেলা,<br/><span>স্বপন যে সে ভোলো৷ ভোলো ।</span><br/><span>আকাশ ভরে দূরের গানে,</span><br/><span>অলখ দেশে হৃদয় টানে।</span><br/><span>ওগো সুদূর, ওগো মধুর,</span><br/><span>পথ ব’লে দাও পরাণবঁধূর,</span><br/><span>সব আবরণ তোলো তোলো॥</span>
+</p>
+</div>
+</div>
+<p>বিদায় বেলার অঞ্জলি যা শূন্য ক’রে দেয় তা পূর্ণ হক কোন্খানে সেই কথাটা শোনা যাক্‌।
+</p>
+<div><div>
+<p>এ বেলা ডাক প’ড়েছে কোনখানে<br/>
+ফাগুনের ক্লান্তক্ষণের শেষ গানে!<br/><span>সেখানে স্তব্ধবীণার তারে তারে</span><br/><span>সুরের খেলা ডুব সাঁতারে,</span><br/><span>সেখানে চোখ মেলে যার পাইনে দেখা</span><br/><span>তাহারেমন জানে গো মন জানে॥</span>
+</p>
+</div> <div>
+<p>এ বেলা মন যেতে চায় কোন্খানে<br/>
+নিরালায় লুপ্ত পথের সন্ধানে।<br/><span>সেখানে মিলনদিনের ভোলা হাসি</span><br/><span>লুকিয়ে বাজায় করুণ বাঁশি,</span><br/><span>সেখানে যে-কথাটি হয় নি বলা</span><br/><span>সে-কথা রয় কানে গো রয় কানে॥</span>
+</p>
+</div>
+</div>
+<p>আসন্ন বিরহের ভিতর দিয়ে শেষ বারের মতো দেওয়া-নেওয়া হ’য়ে যাক। তুমি দিয়ে যাও তোমার বাহিরের দান, তোমার উত্তরীয়ের সুগন্ধ, তোমার বাঁশীর গান, আর নিয়ে যাও এই অস্তরের বেদনা আমার নীরবতার ডালি থেকে।
+</p>
+<div>
+<div>
+<p>তুমি কিছু দিয়ে যাও<br/><span>মোর প্রাণে গোপনে গো।</span><br/>
+ফুলের গন্ধে, বাঁশির গানে,<br/><span>মর্ম্মর-মুখরিত পবনে।</span><br/>
+তুমি কিছু নিয়ে যাও<br/><span>বেদনা হ’তে বেদনে।</span><br/>
+যে মোর অশ্রু হাসিতে লীন<br/><span>যে বাণী নীরব নয়নে॥</span>
+</p>
+</div>
+</div>
+<p>খেলা সুরও খেলা, খেলা ভাঙাও খেলা। খেলার আরম্ভে হোলো বাঁধন, খেলার শেষে হোলো বাঁধন খোলা। মরণে বাঁচনে হাতে হাতে ধ’রে এই খেলার নাচন। এই খেলায় পূরোপূরি যোগ দাও—সুরুর সঙ্গে শেষের সঙ্গে সম্পূর্ণ মিলিয়ে নিয়ে জয়ধ্বনি ক’রে চ’লে যাও।
+</p>
+<div>
+<div>
+<p>আজ খেলা-ভাঙার খেলা খেলবি আয়<br/><span>সুখের বাসা ভেঙে ফেলবি আয়!</span><br/><span>মিলনমালার আজ বাঁধন তো টুট্‌বে,</span><br/><span>ফাগুনদিনের আজ স্বপন তো ছুটবে,</span><br/><span>উধাও মনের পাখা মেলবি আয়।</span><br/><span>অস্তগিরির ঐ শিখর-চূড়ে</span><br/><span>ঝড়ের মেঘের আজ ধ্বজা উড়ে।</span><br/><span>কাল-বৈশাখীর হবে-যে নাচন,</span><br/><span>সাথে নাচুক তোর মরণ বাঁচন</span><br/><span>হাসি কাঁদন পায়ে ঠেলবি আয়॥</span>
+</p>
+</div>
+</div>
+<p>পথিক চ’লে গেল সুদূরের বাণীকে জাগিয়ে দিয়ে। এমনি ক’রে কাছের বন্ধনকে বারে বারে সে আলগা করে দেয়। একটা কোন্‌ অপরিচিত ঠিকানার উদ্দেশ বুকের ভিতর রেখে দিয়ে যায়—জানলায় ব’সে দেখতে পাই তার পথ মিলিয়ে গেছে বনরাজি-নীল দিগন্ত-রেখার ওপারে। বিচ্ছেদের ডাক্‌ শুনতে পাই কোন্‌ নীলিম কুহেলিকার প্রান্ত থেকে—উদাস হ’য়ে যায় মন—কিন্ত সেই
+বিচ্ছেদের বাঁশিতে মিলনেরই সুর তো বাজে করুণ সাহানায়।—
+</p>
+
+<div>
+<div>
+<p>বাজে করুণ সুরে, (হায় দূরে, )<br/>
+তব চরণ-তল-চুম্বিত পন্থবীণা।<br/>
+এ মম পান্থ-চিত চঞ্চল<br/><span>জানি না কি উদ্দেশে॥</span><br/>
+যুথী-গন্ধ অশান্ত সমীরে<br/><span>ধায় উতলা উচ্ছ্বাসে,</span><br/>
+তেমনি চিত্ত উদাসী রে<br/><span>নিদারুণ বিচ্ছেদের নিশীথে॥</span>
+</p>
+</div>
+</div>
+<p>এই খেলা-ভাঙার খেলা বীরের খেলা। শেষ পর্য্যন্ত যে ভঙ্গ দিল না তারি জয়। বাঁধন ছিড়ে যে চ’লে যেতে পারলো, পথিকের সঙ্গে বেরিয়ে প’ড়লো পথে, তারি জন্তে জয়ের মালা। পিছনে 
+ফিরে ভাঙা খেল্নার টুকরো কুড়োতে গেল যে কৃপণ, তা’র খেলা পূরো হোলো না—খেলা তাকে মুক্তি দিল না, খেলা তাকে বেঁধে রাখলে। এবার তবে ধূলোর সঞ্চয় চুকিয়ে দিয়ে হাল্কা হ’য়ে 
+বেরিয়ে পড়ো।
+</p>
+<div><div>
+<p>বসন্তে ফুল গাঁথলো আমার<br/><span>জয়ের মালা।</span><br/>
+বইলো প্রাণে দখিন হাওয়া<br/><span>আগুন-জ্বালা!</span>
+</p>
+</div> <div>
+<p><span>পিছের বাঁশি কোণের ঘরে</span><br/><span>মিছেরে ঐ কেঁদে মরে,</span><br/><span>মরণ এবার আনলো আমার</span><br/><span>বরণ ডালা।</span><br/>
+যৌবনেরি ঝড় উঠেছে<br/><span>আকাশ পাতালে।</span><br/>
+নাচের তালের ঝঙ্কারে তা’র<br/><span>আমায় মাতালে।</span><br/><span>কুড়িয়ে নেবার ঘুচলো পেশা,</span><br/><span>উড়িয়ে দেবার লাগলো নেশা,</span><br/><span>আরাম বলে, “এলো আমার</span><br/><span>যাবার পালা!”</span>
+</p>
+</div>
+</div>
+<p>এবার প্রলয়ের মধ্যে পূর্ণ হােক লীলা, শমে এসে সব তান মিলুক্, শান্তি হােক্ মুক্তি হােক্।
+</p>
+<div><div>
+<p><span>ওরে পথিক, ওরে প্রেমিক,</span><br/>
+ বিচ্ছেদে তাের খণ্ড মিলন পূর্ণ হবে।<br/><span>আয়রে সবে</span><br/><span>প্রলয়গানের মহােৎসবে।</span><br/><span>তাণ্ডবে ঐ তপ্ত হাওয়ায় ঘূর্ণী লাগায়,</span><br/><span>মত্ত ঈশান বাজায় বিষাণ শঙ্কা জাগায়,</span><br/><span>ঝঙ্কারিয়া উঠলো আকাশ ঝারবে ঝঞ্ঝারবে।</span>
+</p>
+</div> <div>
+<p><span>আয়রে সবে</span><br/><span> প্রলয় গানের মহোৎসবে॥</span><br/>
+ভাঙন-ধরার ছিন্ন-কবার রুদ্র নাটে<br/>
+যখন সকল ছন্দ-বিকল বন্ধ কাটে,<br/>
+মুক্তিপাগল বৈরাগীদের চিত্ততলে<br/>
+প্রেমসাধনার হোমহুতাশন জ্ব’লবে তবে।<br/><span>ওরে পথিক, ওরে প্রেমিক,</span><br/>
+সব আশাজাল যায়রে যখন উড়ে পুড়ে<br/>
+আশার অতীত দাঁড়ায় তখন ভুবন জুড়ে,<br/><span>স্তব্ধ বাণী নীরব সুবে কথা ক’বে॥</span><br/><span>আয়রে সবে</span><br/><span>প্রলয়গানের মহোৎসবে॥</span>
+</p>
+</div>
+</div>
+<p><br/>
+৩০শে ফাল্গুন,
+</p>
+<dl><dd>১৩৩৭</dd></dl><p><br/></p>
+<div><hr/></div>
+
+</div></section>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = (p.currentTheme === 'light' || p.currentTheme === 'dark') ? p.currentTheme : 'dark';
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    const progressFill = document.getElementById('reading-progress-fill');
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        if (progressFill) progressFill.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+    updateProgress(window);
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+            a.addEventListener('click', closeDrawer);
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocMobile);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme; header/footer/drawer now follow the same theme via CSS vars)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+            const themeColorMeta = document.getElementById('theme-color-meta');
+            if (themeColorMeta) themeColorMeta.setAttribute('content', m.bg);
+
+            const activeAccent = getComputedStyle(document.body).getPropertyValue('--bar-accent').trim();
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? activeAccent : 'transparent';
+            });
+            savePrefs();
+        });
+    });
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+    })();
+})();
+</script>
+
+
+</body>
+</html>
