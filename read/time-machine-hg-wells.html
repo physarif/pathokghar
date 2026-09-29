@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="bn"> 
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/time-machine-hg-wells.html">
+    <title>টাইম মেশিন - পাঠক ঘর</title>
+    <meta name="description" content="*টাইম মেশিন* (The Time Machine) ব্রিটিশ কথাসাহিত্যিক এইচ. জি. ওয়েলসের একটি কালজয়ী বিজ্ঞান কল্পকাহিনি। ১৮৯৫ সালে প্রকাশিত এই উপন্যাসে সময় ভ্রমণের রোমাঞ্চকর কল">
+    <meta property="og:title" content="টাইম মেশিন - পাঠক ঘর">
+    <meta property="og:description" content="*টাইম মেশিন* (The Time Machine) ব্রিটিশ কথাসাহিত্যিক এইচ. জি. ওয়েলসের একটি কালজয়ী বিজ্ঞান কল্পকাহিনি। ১৮৯৫ সালে প্রকাশিত এই উপন্যাসে সময় ভ্রমণের রোমাঞ্চকর কল">
+    <meta name="theme-color" id="theme-color-meta" content="#ffffff">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', dark:'#1c1c1e' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', dark:'#e5e7eb' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        var meta = document.getElementById('theme-color-meta');
+        if (meta) meta.setAttribute('content', bg);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+        body.theme-light { background: #ffffff; }
+        body.theme-dark { background: #1c1c1e; }
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.6rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+</style>
+</head>
+<body>
+
+<style>
+    /* ── Bar theme variables (header / footer / drawer) — follow reading mode ── */
+    :root, body {
+        --bar-bg: #ffffff;
+        --bar-text: #1a1a1b;
+        --bar-text-dim: rgba(26,26,27,0.55);
+        --bar-border: rgba(0,0,0,0.1);
+        --bar-btn-active: rgba(0,0,0,0.06);
+        --bar-track: rgba(0,0,0,0.12);
+        --bar-accent: #0B57CF;
+        --bar-accent-soft: rgba(11,87,207,0.12);
+    }
+    body.theme-dark {
+        --bar-bg: #232326;
+        --bar-text: #e5e7eb;
+        --bar-text-dim: rgba(229,231,235,0.55);
+        --bar-border: rgba(255,255,255,0.1);
+        --bar-btn-active: rgba(255,255,255,0.08);
+        --bar-track: rgba(255,255,255,0.18);
+        --bar-accent: #3b82f6;
+        --bar-accent-soft: rgba(59,130,246,0.2);
+    }
+
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--bar-accent);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid var(--bar-accent-soft);
+        border-bottom: 1px solid var(--bar-accent-soft);
+        transition: color 0.3s, border-color 0.3s;
+    }
+    #book-content h1,
+    #book-content h3 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--bar-accent);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid var(--bar-accent-soft);
+        border-bottom: 1px solid var(--bar-accent-soft);
+        transition: color 0.3s, border-color 0.3s;
+    }
+    /* h1/h2 colors now follow --bar-text-dim / --bar-accent (see :root theme variables above),
+       so they automatically match light / dark modes. */
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p {
+        background: #232326;
+        border-color: rgba(255,255,255,0.08);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #0B57CF;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #0B57CF;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(11,87,207,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #0B57CF;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(11,87,207,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2, #book-content h3 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: var(--bar-accent);
+        font-weight: 600;
+        background: var(--bar-accent-soft);
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: var(--bar-text);
+        border-bottom: 1px solid var(--bar-border);
+        transition: color 0.15s, background 0.3s, border-color 0.3s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: var(--bar-text-dim);
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reading progress line — header-এর বাইরে, স্বাধীন fixed element,
+       তাই body.bars-hidden দিয়ে header হাইড হলেও এটা visible থাকবে ── */
+    #reading-progress-bar {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        background: var(--bar-btn-active);
+        z-index: 70;
+        pointer-events: none;
+    }
+    #reading-progress-fill {
+        height: 100%;
+        width: 0%;
+        background: var(--bar-accent);
+    }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        flex-direction: column;
+        padding: 0 0.5rem 0 0.35rem;
+        background: var(--bar-bg);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-row1 {
+        padding-top: 0.4rem;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding-bottom: 0.4rem;
+    }
+    #rh-back {
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0B57CF;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: background 0.15s, color 0.3s;
+    }
+    #rh-back:active { background: var(--bar-btn-active); }
+    #rh-titles {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+    }
+    #rh-title {
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.98rem;
+        font-weight: 600;
+        color: var(--bar-text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: color 0.3s;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 34px;
+        height: 34px;
+        border: none;
+        background: transparent;
+        color: #0B57CF;
+        border-radius: 7px;
+        font-size: 1.05rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s, color 0.3s;
+    }
+    #reader-header .rh-actions button:active { background: var(--bar-btn-active); }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: var(--bar-bg);
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease, background 0.3s;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid var(--bar-border);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--bar-text-dim);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: var(--bar-accent);
+        border-bottom-color: var(--bar-accent);
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--bar-accent);
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--bar-text);
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: auto;
+        min-width: 64px;
+        height: 34px;
+        flex: 1 1 0;
+        padding: 0 12px;
+        border-radius: 8px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        box-shadow: 0 0 0 1px var(--bar-border);
+    }
+    .theme-circle.active { border-color: var(--bar-accent); }
+    .theme-circle svg { display: none; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--bar-border);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: var(--bar-text); }
+    .settings-row-val { font-size: 0.74rem; color: var(--bar-text-dim); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid var(--bar-border);
+        background: var(--bar-btn-active);
+        color: var(--bar-text);
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: var(--bar-accent-soft); border-color: var(--bar-accent); color: var(--bar-text); }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid var(--bar-border);
+        background: var(--bar-btn-active);
+        color: var(--bar-text);
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: var(--bar-accent-soft) !important;
+        border-color: var(--bar-accent) !important;
+        color: var(--bar-text) !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid var(--bar-border);
+        background: transparent;
+        color: var(--bar-text);
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: var(--bar-accent-soft) !important;
+        border-color: var(--bar-accent) !important;
+        color: var(--bar-text) !important;
+    }
+
+</style>
+
+<!-- ══ Reading progress line — header হাইড হলেও visible থাকে ══ -->
+<div id="reading-progress-bar"><div id="reading-progress-fill"></div></div>
+
+<!-- ══ Reader header (back + title/chapter stack + actions) ══ -->
+<header id="reader-header">
+    <div id="rh-row1">
+        <a href="/book/time-machine-hg-wells.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+            <i class="fa-solid fa-angle-left"></i>
+        </a>
+        <div id="rh-titles">
+            <h1 id="rh-title">টাইম মেশিন</h1>
+        </div>
+        <div class="rh-actions">
+            <button id="rh-menu-btn" aria-label="সূচিপত্র ও কাস্টমাইজ" title="সূচিপত্র ও কাস্টমাইজ"><i class="fa-solid fa-list-ul"></i></button>
+        </div>
+    </div>
+</header>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle" data-theme="light" style="background:#fff;border-color:#0B57CF;" title="সাদা"></button>
+                    <button class="theme-circle active" data-theme="dark" style="background:#3a3a3a;border-color:#3b82f6;" title="ডার্ক">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e5e7eb" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-justify" title="জাস্টিফাই">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <br/>
+<h2>০১. সূচনা – সময়-পর্যটক</h2>
+<hr/>
+<br/>
+
+<div>
+<p><strong>টাইম মেশিন </strong><strong>( Time Machine ) </strong><strong>– উপন্যাস –</strong> <strong>এইচ জি ওয়েলস </strong></p>
+<p>[‘The Time Machine’ প্রথম প্রকাশিত হয় ধারাবাহিক আকারে ‘The New Review’ পত্রিকায় জানুয়ারি থেকে মে ১৮৯৫ সালে। ‘Henry Holt and Company’ পুস্তকাকারে উপন্যাসটি সে বছরেরই মে মাসে প্রকাশ করে। সময় পরিক্রমার উপর সবচেয়ে জনপ্রিয়। কাজ হিসাবে এখনও উপন্যাসটি উল্লেখযোগ্য। এখনও অবধি উপন্যাসটি থেকে অনেকবার রেডিয়ো নাটিকা, সিনেমা হয়েছে এবং কমিকস ফরম্যাটেও এটি যথেষ্ট জনপ্রিয়। মে ১৯২৭ সালে গল্পটি পুনঃপ্রকাশিত হয় ‘Amazing Stories’ পত্রিকায়। অদ্রীশের কলমে গল্পটি প্রথম অনূদিত হয়েছিল ১৯৬৩ সালের জানুয়ারি মাসে ‘আশ্চর্য!’ পত্রিকায় প্রথম সংখ্যায়। ১৯৮৪ সালে অদ্রীশ ‘কিশোর মন’ পত্রিকার শারদীয়া ১৯৮৪ সংখ্যায় এটিকে কমিক্সের জন্য অ্যাডাপ্ট করেন।]</p>
+<p><strong>১। সূচনা</strong></p>
+<p>আদি-অন্তহীন সময়ের পথে যাঁর পর্যটন, তাঁকে সংক্ষেপে ‘সময়-পর্যটক’ই বলব। খুব জটিল একটা বিষয় আমাদের বোঝাচ্ছিলেন তিনি। কথা বলতে বলতে তাঁর ধূসর চোখ দুটো চিকচিক করে উঠছিল–সদা-পাণ্ডুর মুখেও লেগেছিল উত্তেজনার রক্তিম আভা। চুল্লির গনগনে আগুনে ঘরের আবহাওয়া বেশ গরম হয়ে উঠেছিল–আর তারই মাঝে কিম্ভুতকিমাকার চেয়ারগুলোয় মহা-আয়াসে নিজেদের এলিয়ে দিয়ে শুনছিলাম ওঁর বক্তৃতা। অস্থিসার লম্বা আঙুল নেড়ে নেড়ে ভদ্রলোক তাঁর অসম্ভব থিয়োরির দুর্বোধ্য পয়েন্টগুলো বুঝিয়ে দিচ্ছিলেন আমাদের।</p>
+<p>মন দিয়ে শুনুন আমার প্রতিটি কথা। সবাই যা নির্বিবাদে মেনে নিয়েছে, এমন কতকগুলো ধারণা আমি পালটে দেব যুক্তি-প্রমাণ দিয়ে। যেমন ধরুন-না কেন, স্কুলে যে জ্যামিতি আপনার শিখেছেন, তা যে আগাগোড়া একটা ভুল ধারণার ওপর ভিত্তি করে লেখা হয়েছে, তা আপনাদের কারওই জানা নেই।</p>
+<p>বাধা দিয়ে তার্কিক স্বভাবের লালচুলো ফিন্থি বলে ওঠে, আমাদের বয়সের তুলনায় বিষয়টা কিন্তু নিতান্তই।</p>
+<p>তা অবশ্য ঠিক বলেছেন। বলেন মনস্তত্ত্ববিদ।</p>
+<p>ঠিক তেমনি শুধু দৈর্ঘ্য, বিস্তার আর বেধ থাকলেও ঘনক (CUBE)-এর কোনও আদত অস্তিত্বই নেই।</p>
+<p>এখানেই আমার প্রতিবাদ শুরু করে ফিল্বি।</p>
+<p>সবাই তাই জানাবে। বেশ তো, বলুন তাহলে, কোনও ক্ষণিক ঘনকের অস্তিত্ব সম্ভব?</p>
+<p>মোটেই বুঝলাম না। বলে ফিল্বি।</p>
+<p>যে-ঘনকের স্থায়িত্ব এক কণা সময়ের জন্য নেই, তার অস্তিত্ব সম্ভব?</p>
+<p> আমতা আমতা করতে থাকে ফিল্বি।</p>
+<p>সময়-পর্যটক আবার বলে চলেন, তাহলেই বুঝতে পারছেন, যে-কোনও আদত বস্তুর চারদিকে চার রকমের ব্যাপ্তি থাকতেই হবে অর্থাৎ দৈর্ঘ্য, বিস্তার, বেধ ছাড়াও থাকবে স্থায়িত্ব। অবিশ্বাস্য হলেও বাস্তবিকই মাত্রার (DIMENSION) মোট সংখ্যা হল চার। প্রথম তিনটে স্থানের (SPACE), আর চতুর্থটি হল সময় (TIME)। চতুর্থটির অন্তহীন পথেই আমাদের জীবন গড়িয়ে এসে ফুরিয়ে যায় মৃত্যুর দোরগোড়ায়। আসলে প্রথম তিন মাত্রা আর সময়-মাত্রার মধ্যে বিশেষ কোনও তফাতই নেই। আমাদের চেতনাবোধ শুধু সময়-মাত্রার নিরবচ্ছিন্ন পথে যতিহীন গতিতে বয়ে চলেছে–এইটুকুই শুধু যা তফাত। এ ছাড়া চতুর্থ মাত্রার যে-সংজ্ঞা আপনারা শুনেছেন আজ পর্যন্ত–তা একেবারেই ভুল। কেমন, তা-ই নয় কি?</p>
+<p>সংজ্ঞাটা সম্বন্ধে আমার কোনও ধারণাই নেই। স্বীকার করেন প্রাদেশিক মেয়র।</p>
+<p>খুব সহজ সংজ্ঞা। আমাদের গণিতবিদরা বলেন যে, দৈর্ঘ্য, বিস্তার আর বেধ–স্থানের এই তিন মাত্রা প্রত্যেকে প্রত্যেকের সঙ্গে সমকোণে অবস্থিত। কয়েকজন চিন্তাশীল ব্যক্তি হঠাৎ একদিন বলে বসলেন, তা-ই যদি হবে, তবে ওই তিন মাত্রার সঙ্গে সমকোণ করে চতুর্থ মাত্রার অবস্থানই বা সম্ভব নয় কেন? আর তা-ই ভেবেই চার মাত্রার জ্যামিতি লেখার জন্যে উঠে-পড়ে লাগলেন সবাই। এই তো মাসখানেক আগেও নিউ ইয়র্ক ম্যাথেমেটিক্যাল সোসাইটিতে প্রফেসার সাইমন নিউকোর্স এ নিয়ে এক সারগর্ভ বক্তৃতা শুনিয়ে দিলেন আর পাঁচজন গণিতবিদকে। আপনারা জানেন, দু-মাত্রাওয়ালা সমতলে কীভাবে আমরা তৃতীয় মাত্রার ছবি আঁকি। তাঁরা বলেন, ঠিক এইভাবেই নাকি তিন মাত্রার মডেলের ওপর চতুর্থ মাত্রাকেও দেখানো সম্ভব। বুঝলেন তো?</p>
+<p>বুঝলাম। কপাল কুঁচকে বিড়বিড় করেন প্রাদেশিক মেয়র।</p>
+<p>বেশ কিছুদিন ধরেই চার মাত্রার এই জ্যামিতি নিয়ে গবেষণা করছিলাম আমি। বিজ্ঞানীমাত্রই জানেন যে, সময় কেবল স্থানেরই আর-এক রূপ। আবহাওয়ায় খবর-আঁকা এই কাগজটা দেখলেই বিষয়টা একটু পরিষ্কার হবে আপনাদের। এই যে, এই লাইনটা– এটা গতকালের ব্যারোমিটারের পারার ওঠা-নামা নির্দেশ করছে। এবার দেখুন, গতকাল দিনের বেলায় কোথায় ঠেলে উঠছে লাইনটা, রাত্রে নেমে গেছে, আবার আজ সকালে ঠেলে উঠেছে। স্থানের যে তিন মাত্রাকে আমরা জানি, তার কোনওটার ওপরেই কিন্তু পারা এ লাইন আঁকেনি। এঁকেছে সময়-মাত্রার ওপর।</p>
+<p>গনগনে আগুনের দিকে একদৃষ্টে তাকিয়ে বসে ছিলেন ডাক্তার–এবার তিনি মুখ খুললেন, স্থান-মাত্রার আর-এক রূপ যদি সময়, তবে স্থান আর তিন মাত্রার মধ্যে আমরা ইচ্ছামতো যেমন ঘুরে-ফিরে বেড়াতে পারি, তেমনটি সময়ের মধ্যে কেন পারি না?</p>
+<p>হেসে ওঠেন সময়-পর্যটক–সত্যিই কি তা-ই? স্থানের তিন মাত্রার মধ্যে আমাদের গতিবিধি কি একেবারেই অবাধ? ডাইনে, বামে, সামনে, পেছনে গেলাম–অর্থাৎ শুধু দুটো মাত্রার ভেতরে ইচ্ছামতো চলাফেরা করলাম, কিন্তু ওপরে-নিচে আসা-যাওয়া কি সম্ভব? মাধ্যাকর্ষণ তো বাধা দিচ্ছে সেদিকে।</p>
+<p>দিলেই বা? বেলুন তো রয়েছে সে-বাধা কাটাবার জন্য।</p>
+<p>কিন্তু বেলুন আবিষ্কারের আগে ওপরে-নিচে খাড়াইভাবে চলাফেরা করার কোনও পন্থাই মানুষের জানা ছিল না।</p>
+<p>কিন্তু লাফঝাঁপ দিয়ে ওপর-নিচে সামান্য নড়াচড়াও তো করা যেত?</p>
+<p>ওপরে ওঠার চাইতে নিচে নামাটা ছিল আরও সহজ।</p>
+<p>আরে মশাই, সময়ের মধ্যে তো আপনি তা-ও পারছেন না। বর্তমান মুহূর্ত থেকে দূরে চলে যাওয়ার কোনও ক্ষমতাই নেই আপনার।</p>
+<p>ভুল করলেন মশায়, ভুল করলেন ওইখানেই। সারা দুনিয়া ভুল করছে ঠিক ওই জায়গাটিতে। বর্তমান মুহূর্ত থেকে আমরা নিয়তই দূরে সরে যাচ্ছি। দোলনা থেকে কবর পর্যন্ত একটা নিরবচ্ছিন্ন সমান গতিতে আমাদের নির্মাত্রা, নির্বস্তু মানসিক স্থায়িত্ব সময় মাত্রার ওপর দিয়ে এগিয়ে চলেছে–অনন্তকাল ধরে প্রবহমান এই অবিরাম গতির মধ্যে নেই যতির আয়েশ, অনিয়মের দিকহীনতা অথবা স্ব-ইচ্ছার শ্লথতা। পৃথিবীর পঞ্চাশ মাইল ওপরে ছেড়ে দিলে আমরা যেমন শুধু নিচের দিকেই নামতে থাকতাম–ঠিক তেমনি জন্ম থেকে মৃত্যু পর্যন্ত কালপথে আমাদের যাত্রাও রয়েছে অব্যাহত।</p>
+<p>কিন্তু অসুবিধেটা কী জানেন, বাধা দিয়ে বললেন মনোবিজ্ঞানী, স্থানের তিন মাত্রার মধ্যে আপনি যেদিকে খুশি বেড়াতে পারেন কিন্তু সময়ের মধ্যে তো আপনি তা-ও পারছেন না।</p>
+<p>আমার আবিষ্কারের মূল উৎস তো সেইখানেই। ধরুন, অতীতের কোনও একটা ঘটনা চিন্তা করছেন আপনি। তৎক্ষণাৎ আপনার মন উধাও হয়ে যাচ্ছে পুরানো দিনের মাঝে। কিন্তু ইচ্ছেমতো আপনার মনকে আপনি সেখানে ধরে রাখতে পারছেন না। যেমন, মাটি থেকে ছ-ফুট লাফিয়ে উঠেও কোনও বর্বরই পারে না ছ-ফুট উঁচুতে নিজেকে ধরে রাখতে। কিন্তু সভ্য মানুষের মাথা বর্বর মানুষের চেয়েও অনেক উন্নত। তাই বেলুন আবিষ্কার করে তারা যদি মাধ্যাকর্ষণ শক্তিকে হারাতে পারে, তবে নতুন কিছু একটা আবিষ্কার করে সময়-মাত্রার মধ্যে পেছিয়ে যাওয়া অথবা যেদিকে ইচ্ছা যাওয়ার ক্ষমতাই বা তারা পাবে না কেন বলুন?</p>
+<p>অসম্ভব। শক্ত গলায় বলে ফিল্বি।</p>
+<p> কেন অসম্ভব? শুধান সময়-পর্যটক।</p>
+<p>যুক্তি দিয়ে সাদাকে কালো প্রমাণ করতে পারেন, কিন্তু আমার মনে বিশ্বাস তো আর গেঁথে দিতে পারেন না।</p>
+<p>তা অবশ্য ঠিক। আচ্ছা, এখন শুনুন, চার-মাত্রার জ্যামিতি নিয়ে গবেষণা করার পেছনে আমার আসল উদ্দেশ্যটা কী। অনেকদিন আগে আমার মাথায় একটা মেশিনের পরিকল্পনা আসে–</p>
+<p>সময়ের মধ্যে ঘুরে বেড়ানোর জন্যে! উদ্গত বিস্ময় আর চাপতে পারে না পাশের ছেলেটি।</p>
+<p>চালকের ইচ্ছামতো স্থান আর সময়ের মধ্যে যেদিকে খুশি, যেভাবে খুশি, যতক্ষণ খুশি ঘুরে বেড়াবে সেই মেশিন।</p>
+<p>খুকখুক করে হেসে ওঠে ফিল্বি।</p>
+<p>যতসব গাঁজাখুরি থিয়োরি! মুখের ওপর বলে দেন মনোবিজ্ঞানী।</p>
+<p>আমার কাছেও এটা একদিন থিয়োরি ছিল–ছিল অলীক অবাস্তব এক কল্পনা। এবং এ থিয়োরি আপনাদের সামনে কোনওদিনই হাজির করতাম না, যদি না–</p>
+<p>এক্সপেরিমেন্ট! আর চুপ করে বসে থাকতে পারি না আমি। আপনি এবার হাতেনাতে আপনার ওই উদ্ভট থিয়োরি প্রমাণ করতে শুরু করবেন নাকি?</p>
+<p>এক্সপেরিমেন্ট! গোল গোল হয়ে ওঠে ফিল্বির চোখ।</p>
+<p>দেখাই যাক-না থিয়োরির মধ্যে গাঁজার পরিমাণটা কত! শ্লেষভরে বলেন মনোবিজ্ঞানী। সামান্য একটু হাসলেন সময়-পর্যটক। তারপর ঠোঁটের কোণে হাসিটুকু নিয়ে প্যান্টের দু-পকেটে হাত ভরে এগিয়ে গেলেন বারান্দা দিয়ে ওপাশে। একটু পরেই ফিরে এলেন তিনি।</p>
+</div>
+<br/>
+<br/>
+<h2>০২. মেশিন</h2>
+<hr/>
+<br/>
+
+<div>
+<p><strong>২। মেশিন</strong></p>
+<p> চকচকে ধাতুর তৈরি একটা যন্ত্র দেখলাম সময়-পর্যটকের হাতে। টাইমপিসের চেয়ে সামান্য বড় যন্ত্রটা, কিন্তু নিখুঁতভাবে তৈরি। হাতির দাঁত আর কয়েকটা স্বচ্ছ ক্রিস্টালের কারুকাজও দেখলাম তার মাঝে। যন্ত্রটার বিচিত্র গঠন দেখে কৌতূহল না জেগে পারে না।</p>
+<p>এরপরে যা ঘটল তা সত্যই অবর্ণনীয়। আটকোনা একটি টেবিল এনে রাখা হল আগুনের সামনে। ওপরে মেশিনটাকে বসিয়ে একটা চেয়ার টেনে নিয়ে সামনে বসলেন ভদ্রলোক। মেশিন ছাড়াও টেবিলের ওপর ছিল একটা শেড-দেওয়া ল্যাম্প-চিকমিক করছিল মডেলটা তার আলোয়। ঘরের মধ্যে এদিকে-সেদিকে আরও প্রায় ডজনখানেক মোমবাতি থাকায় আলোর অভাব ছিল না মোটেই। আগুনের একেবারে কাছেই বসেছিলাম আমি। সময়-পর্যটকের পেছনে বসল ফিল্বি। বাঁদিকে বসলেন ডাক্তার আর প্রাদেশিক মেয়র –ডানদিকে মনোবিজ্ঞানী, অল্পবয়েসি ছেলেটা রইল আমার ঠিক পেছনেই। প্রত্যেকেই চোখ-কান খুলে বেশ সজাগ হয়ে বসে–কাজেই এরকম পরিস্থিতিতে হাতসাফাই যে একেবারেই অসম্ভব, তা বুঝলাম সবাই।</p>
+<p>আমাদের ওপর একবার চোখ বুলিয়ে নিলেন সময়-পর্যটক। তারপর টেবিলের ওপর কনুই রেখে দু-হাতের তালুতে আলতোভাবে ধরলেন মেশিনটাকে।</p>
+<p>বললেন, ছোট্ট একটা মডেল–আর কিছু না। সময়ের মাঝে খেয়ালখুশিমতো ঘুরে বেড়ানোর অভিনব এক পরিকল্পনা। মেশিনটার নিখুঁত কারুকাজ, এদিকের এই সূক্ষ্ম রডটা, ওপাশের ওই লিভার–প্রতিটিই লক্ষ করার মতো, মনে রাখার মতো। খুবই খুদে এই মেশিন। কিন্তু একেই তৈরি করতে আমার পুরো দুটি বছর গেছে। লিভারটা টিপলে মেশিন উধাও হয়ে যাবে ভবিষ্যতের গর্ভে আর এটা টিপলে যাবে ঠিক উলটোদিকে– অতীতের হারানো পাতায়। এই আসনটা হল চালকের বসবার জায়গা। ভালো করে দেখে রাখুন মডেলটা–টেবিলের ওপর নজর রাখুন সবাই। পরে যেন বলে বসবেন না যে, ধাপ্পাবাজের মতো হাতসাফাইয়ের ভেলকি দেখিয়ে বোকা বানিয়েছি সবাইকে।</p>
+<p>পুরো এক মিনিট সব চুপচাপ। মনোবিজ্ঞানীর বোধহয় কিছু বলার ইচ্ছে ছিল কিন্তু কী ভেবে তিনিও বোবা হয়ে গেলেন।</p>
+<p>সরু একটা লিভারের ওপর হাত রাখলেন সময়-পর্যটক। তারপরেই চট করে বললেন, না, আপনিই আসুন। এগিয়ে দিন আপনার আঙুল।</p>
+<p>ভয়ে ভয়ে তর্জনী এগিয়ে দেন মনোবিজ্ঞানী। সময়-পর্যটক আঙুলটা দিয়ে ঘুরিয়ে দিলেন লিভারটা।</p>
+<p>চোখের সামনে দেখলাম, লিভারটা ঘুরে গেল। কোনও হাতসাফাই নেই, চোখের ধাঁধা নেই। কোনওরকম চালাকি থাকা সম্ভবও নয়। কিন্তু পরক্ষণেই এক ঝলক বাতাসে লাফিয়ে উঠল ল্যাম্পের আকাঁপা শিখাটা। দপ করে নিবে গেল ম্যান্টেলের ওপর রাখা একটা মোমবাতি।</p>
+<p>আর, টেবিলের ওপর ছোট্ট মেশিনটা দুলতে শুরু করল। দেখতে দেখতে অস্পষ্ট হয়ে গেল তার নিখুঁত ধাতব অঙ্গ। সেকেন্ডখানেকের জন্য চিকমিকে তামা আর হাতির দাঁতের একটা ফিকে ভৌতিক ছায়া দুলে উঠল ছায়া-মায়ার মাঝে। আর তারপরেই অদৃশ্য হয়ে গেল সেটুকুও। ল্যাম্প ছাড়া টেবিলের ওপর আর রইল না কিছুই।</p>
+<p>ঠিক পুরো একটা মিনিট কারও মুখে কোনও কথা ফুটল না।</p>
+<p>সংবিৎ ফিরে পেয়ে প্রথমে মনোবিজ্ঞানীই হেঁট হয়ে টেবিলের তলাটা দেখলেন।</p>
+<p> আর প্রসন্ন মুখে হাসতে লাগলেন সময়-পর্যটক। ধীর-পায়ে এগিয়ে গেলেন ম্যান্টলপিসের সামনে–পাইপটা বার করে তামাক ঠাসতে লাগলেন আপন মনে।</p>
+<p>হতভম্বের মতো আমরা এর-ওর মুখের দিকে তাকালাম। ডাক্তার ফস করে বলে ওঠেন, আরে মশাই, আপনি কি সত্যই ভেবেছেন যে, ওই বিদঘুটে মেশিনটা সময়ের পথে হাওয়া খেতে গেল?</p>
+<p>কোনও সন্দেহই নেই সে-বিষয়ে। পাইপে আগুন লাগিয়ে মনোবিজ্ঞানীর দিকে ফিরে দাঁড়ান সময়-পর্যটক। মোটেই ঘাবড়ে যাননি, এমনি ভাব দেখিয়ে মনোবিজ্ঞানী ভদ্রলোক তাড়াতাড়ি কাঁপা হতে একটা সিগারেট ধরাবার চেষ্টা করতে লাগলেন। মুচকি হেসে বলে চললেন সময়-পর্যটক, ল্যাবরেটরিতে বেশ বড় সাইজের একটা মেশিন শেষ হয়ে এল প্রায়। তারপর তো ইচ্ছে আছে, নিজেই একদিন বেরোব।</p>
+<p>এরপর আমরা কেউ আর কোনও কথা বললাম না। অথবা বলবার চেষ্টা করেও পারলাম না। সকৌতুকে আমাদের বিস্ময়-আঁকা মুখগুলোর ওপর একবার চোখ বুলিয়ে নিলেন উনি, তারপর বললেন, আসুন, আসল টাইম মেশিনটা দেখাই আপনাদের।</p>
+<p>বলে, একটা মোমবাতি নিয়ে পা বাড়ালেন বারান্দার পথে। পিছুপিছু চুম্বকে টানা লোহার মতো আমরাও এগিয়ে গেলাম। লম্বা টানা বারান্দার দেওয়ালে আমাদের লম্বা ছায়াগুলো মোমবাতির কাঁপা শিখায় কেঁপে কেঁপে উঠে কেমন জানি শিরশিরে ভাবে ভরিয়ে দিল আমার অন্তর।</p>
+<p>ল্যাবরেটরিতে এসে যা দেখলাম, তা ড্রয়িং রুমে চোখের সামনে অদৃশ্য হয়ে যাওয়া খুদে মেশিনটারই বিরাট সংস্করণ। কতকগুলো অংশ চকচকে নিকেলের তৈরি, সাদা হাতির দাঁতের কাজও দেখলাম কয়েক জায়গায়। পাথরে ক্রিস্টালও বসানো আছে এখানে সেখানে। মেশিনটা প্রায় সম্পূর্ণ হয়ে এলেও কতকগুলো কোনো ক্রিস্টালের ডান্ডা তখনও পড়ে ছিল পাশের বেঞ্চে। একটা তুলে নিয়ে পরীক্ষা করে দেখলাম–মনে হল কোয়ার্টজের তৈরি।</p>
+<p>ডাক্তার বললেন, আপনি কি মশাই তামাশা জুড়েছেন, না সত্যিই সময়ের পথে ঘুরে বেড়ানোর মতলব আঁটছেন?</p>
+<p>মাথার ওপর বাতিটা তুলে ধরে বললেন সময়-পর্যটক, এই মেশিনে বসেই আমি। আমার অভিযান চালাব সময়ের বুকে–এই আমার প্রতিজ্ঞা। জীবনে এর চাইতে বেশি সিরিয়াস যে আর আমি হইনি–তা আপনারা বিশ্বাস করতে পারেন।</p>
+</div>
+<br/>
+<p>ইপাব নির্মাণে ⏩ <a href="https://t.me/bongboi" rel="noopener noreferrer" target="_blank">@bongboi</a>।</p>
+<br/>
+<h2>০৩. সময়-পর্যটকের প্রত্যাবর্তন</h2>
+<hr/>
+<br/>
+
+<div>
+<p><strong>৩। সময়-পর্যটকের প্রত্যাবর্তন</strong></p>
+<p>তখনও কিন্তু আমাদের কেউই টাইম মেশিনকে মনেপ্রাণে বিশ্বাস করে উঠতে পারেনি। দুনিয়ায় একশ্রেণির মানুষ আছে, যাদের চতুরতার পরিমাপ করা সাধারণ মানুষের সাধ্য নয়। চতুর-চূড়ামণি সময়-পর্যটকও এই শ্রেণির মানুষ। নিত্যনতুন ফন্দি যাঁর মাথায় অহরহ গজাচ্ছে, তাঁর সব কথা হট করে বিশ্বাস করে বোকা বনতে মন চায় না কিছুতেই। ডাক্তারের সঙ্গে এ-বিষয়ে পরে আমার কথা হয়েছিল। তিনি তো বললেন, এ একটা রীতিমতো উন্নত ধরনের ম্যাজিক ছাড়া কিছুই নয়। মোমবাতি নিবে যাওয়ার সঙ্গে মেশিন উধাও হওয়ার নিশ্চয় সম্পর্ক আছে। কিন্তু সে-সম্পর্কটা যে কী তা তিনি অনেক গবেষণা করেও আবিষ্কার করতে পারলেন না।</p>
+<p>সেদিন সময়-পর্যটকের ড্রয়িং রুমে কয়েকজন রোজকার অতিথির মধ্যে আমিও ছিলাম। তাই পরের বেস্পতিবার যথাসময়ে হাজির হলাম রিচমন্ডে। গিয়ে দেখি আমার আগেই জনা চার-পাঁচ ভদ্রলোক জমায়েত হয়েছেন। একতাল কাগজ হাতে আগুনের চুল্লির সামনেই দাঁড়িয়ে ছিলেন ডাক্তার। কিন্তু আশপাশে কোথাও সময়-পর্যটকের টিকিটি দেখতে পেলাম না।</p>
+<p>সাড়ে সাতটা বেজে গেল, ডাক্তারই প্রথমে কথা বললেন, এবার ডিনার শুরু করা উচিত, কী বলেন?</p>
+<p>কিন্তু গৃহস্বামী গেলেন কোথায়? শুধাই আমি।</p>
+<p>এখনও এসে পৌঁছাননি। অবশ্য আমাকে একটা চিরকুটে লিখে গেছেন যে, তাঁর জন্য অপেক্ষা না করে আমরা যেন সময়মতো ডিনার খেয়ে নিই।</p>
+<p>ডিনার ঠান্ডা হতে দেওয়া বুদ্ধিমানের কাজ নয় মোটেই। বললেন নামকরা একটা দৈনিক সম্পাদক।</p>
+<p>সুতরাং ঘণ্টা বাজিয়ে ডিনারের আদেশ দিলেন ডাক্তার।</p>
+<p>অভ্যাগতদের মধ্যে আমি আর ডাক্তার ছাড়াও ছিলেন মনোবিজ্ঞানী, ব্ল্যাঙ্ক নামধারী সম্পাদক ভদ্রলোক, আরও দু-জন সাংবাদিক। এঁদের মধ্যে আবার দাড়িওয়ালা ভদ্রলোকটি এমনই মুখচোরা যে, সারাটা সময় একবারও মুখ খুলতে দেখলাম না তাঁকে। ছুরি-কাঁটার সঙ্গে সমানে মুখও চলতে শুরু করে। গত হপ্তার রোমাঞ্চকর এক্সপেরিমেন্টের হাতসাফাইয়ের বর্ণনাটা বেশ রসিয়ে রসিয়ে শোনাচ্ছেন মনোবিজ্ঞানী, সম্পাদকমশাইও তাল মিলিয়ে মাঝে মাঝে রসালো টিপ্পনী ছাড়ছেন, এমন সময়ে কোনওরকম শব্দ না করে খুব আস্তে আস্তে বারান্দার দরজাটা ফাঁক হয়ে যেতে লাগল।</p>
+<p>দরজার দিকে মুখ করে আমি বসেছিলাম, তাই আমারই চোখে পড়ল প্রথম। দরজাটা আস্তে আস্তে সম্পূর্ণ খুলে যেতেই দেখলাম, দোরগোড়ায় দাঁড়িয়ে সময়-পর্যটক স্বয়ং।</p>
+<p>এ কী ব্যাপার? অবাক হয়ে চেঁচিয়ে উঠি আমি।</p>
+<p> কী করে হল এমন অবস্থা? এবার ডাক্তারের চোখে পড়েন তিনি।</p>
+<p>আর, তারপরেই সবার দৃষ্টি গিয়ে পড়ে তাঁর ওপর।</p>
+<p>ঝোড়ো কাকের মতো চেহারা নিয়ে দাঁড়িয়েছিলেন তিনি। ধুলোভরা কোটটা এখানে সেখানে ছিঁড়ে গেছে, হাতাতে লেগেছে সবুজ রঙের ছোপ। উশকোখুশকো চুল; আর, অন্তত আমার তো মনে হল, ধুলোময়লার জন্যেই হোক বা সত্য সত্যই ফ্যাকাশে হয়ে যাওয়ার জন্যেই হোক, চুলগুলো আগের চাইতে যেন অনেক সাদা হয়ে গেছে। মুখ তার বিরং, বিবর্ণ, পাণ্ডুর। চিবুকে একটা দগদগে কাটার চিহ্ন, আর একটা শুকিয়ে এসেছে। দারুণ পরিশ্রমে তাঁর ভাবভঙ্গি কেমন জানি অবসাদময়, ক্লান্তিতে শিথিল। হঠাৎ জোর আলোয় চোখ ধাঁধিয়ে গেলে যেমন হয়, তেমনিভাবে মুহূর্তের জন্য দোরগোড়ায় পা ঘষটালেন তিনি, তারপর ঘরে ঢুকলেন খোঁড়াতে খোঁড়াতে। নির্বাক হয়ে আমরা তাকিয়ে রইলাম তাঁর পানে।</p>
+<p>একটা কথাও বললেন না তিনি। বেদনায় মুখ বিকৃত করে টেবিলের কাছে এসে শ্যাম্পেনের দিকে আঙুল তুলে দেখলেন। তাড়াতাড়ি একটা গেলাস তাঁর দিকে এগিয়ে দিলেন সম্পাদক ভদ্রলোক। এক চুমুকে সেটা নিঃশেষ করে দিয়ে যখন মুখ তুললেন, তখন ঠোঁটের কোণে তাঁর পুরানো হাসি আবার ফুটে উঠেছে ম্লান হয়ে।</p>
+<p>ডাক্তার শুধান, কী ব্যাপার বলুন তো আপনার?</p>
+<p>প্রশ্নটা সময়-পর্যটকের কানে ঢুকেছে বলে মনে হয় না। নীরবে আর-এক গেলাস শ্যাম্পেন শেষ করে উঠে দাঁড়ান তিনি। গালে-মুখে-চিবুকে রক্তের আভা একটু একটু করে ফুটে উঠছিল। থেমে থেমে বললেন তিনি, এখন চলি আমি… হাত-মুখ ধুয়ে জামাকাপড় বদলে আসছি এখুনি। আমার জন্যে শুধু কিছু মাটন রেখে দিন–অনাহারে নাড়িভুড়িসুদ্ধ শুকিয়ে এসেছে। বলে পা টেনে টেনে দরজার দিকে এগিয়ে গেলেন তিনি। আর তখনই লক্ষ করলাম, তাঁর পায়ে জুতো নেই; ছেঁড়া মোজাজোড়া রক্তে মাখামাখি। আর কিছু দেখার আগেই বন্ধ হয়ে গেল দরজা।</p>
+<p>আবার গুঞ্জন শুরু হয় ডিনার টেবিলে। সম্পাদক ভদ্রলোক আপন মনেই বিড়বিড় করতে থাকেন, প্রখ্যাত বিজ্ঞানীর আশ্চর্য ব্যবহার। বোধহয় পরের দিনের কাগজের শিরোনামটাই আওড়ে নেন তিনি।</p>
+<p>আমি বললাম, জল্পনা-কল্পনা আপাতত বন্ধ রেখে আসুন। আধ-খাওয়া খানাটা এবার শেষ করা যাক। উনি ফিরে এলে সবকিছু শোনা যাবেখন।</p>
+<p>উত্তম প্রস্তাব। বলে ছুরি-কাঁটা তুলে নিলেন সম্পাদক ভদ্রলোক। আচ্ছা মশায়, ভদ্রলোক না-হয় মেশিনে চড়ে এক পাক ঘুরেই এলেন। কিন্তু ভবিষ্যতের মানুষগুলোর কাছে কি কোট ঝাড়বার ব্রাশ বা চুল আঁচড়াবার কোনও চিরুনিও নেই?</p>
+<p>দমকা হাসিতে ফেটে পড়ে সবাই। আবহাওয়া অনেকটা লঘু হয়ে যাওয়ায় মনোবিজ্ঞানী আবার গত হপ্তার এক্সপেরিমেন্টের সরস বর্ণনা শুরু করেন। কিন্তু তা শেষ হওয়ার আগেই ফিরে আসেন সময়-পর্যটক। সাধারণ সান্ধ্য পোশাক তাঁর পরনে। চোখের দৃষ্টি তখনও কেমন জানি উদভ্রান্ত।</p>
+<p>সোল্লাসে চেঁচিয়ে ওঠেন সম্পাদক, কী ব্যাপার মশায়? শুনলাম নাকি আগামী দিনগুলোতে বেড়াতে গিয়েছিলেন আপনি? তা রোজবেরির কী খবর শুনে এলেন, বলুন শুনি।</p>
+<p>নীরবে চেয়ারে এসে বসলেন সময়-পর্যটক। স্বভাবসিদ্ধ মৃদু হেসে বললেন, আমার মাটন কোথায়?</p>
+<p>গল্প আগে! চেঁচিয়ে ওঠেন সম্পাদক।</p>
+<p> চুলোয় যাক গল্প। পেটে দানাপানি না পড়লে একটা কথাও বলতে পারব না আমি। ধমনিতে বেশ কিছু পেপটোনের দরকার এখন।</p>
+<p>একটা কথা শুধু বলুন। সত্যই কি সময়ের পথে বেরিয়ে এলেন?</p>
+<p> হ্যাঁ। মুখভরা মাংস চিবুতে চিবুতে জবাব দিলেন সময়-পর্যটক।</p>
+<p>আপনি যা-ই বলুন-না কেন, লাইনপিছু এক শিলিং দেব আমি। প্রত্যুত্তরে আর-এক গেলাস শ্যাম্পেন পান করলেন সময়-পর্যটক।</p>
+<p>ডিনারের বাকি সময়টুকু আর বিশেষ কোনও কথা জমে না। খাওয়া শেষ হলে পর একটা সিগার ধরিয়ে বললেন তিনি, যে-কাহিনি আপনাদের শোনাব, তা যেমনি অবিশ্বাস্য, তেমনি আশ্চর্য রকমের সত্য৷ বিশ্বাস করা, না-করা অবশ্য আপনাদের অভিরুচি। বেলা চারটের সময়ে ল্যাবরেটরিতে ছিলাম আমি… তারপর থেকে পুরো আটটা দিন কাটিয়েছি আমি… এমনভাবে কাটিয়েছি, যা কেউ কল্পনাও করতে পারবে না… কিন্তু সে বিরাট কাহিনি। শুনতে হলে আসুন, স্মোকিং রুমে গিয়ে বসি।</p>
+<p>স্মোকিং রুমে আরামকেদারায় বসার পর আবার শুরু করলেন, একটা শুধু শর্ত আছে, আমাকে কেউ বাধা দেবেন না। রাজি থাকেন তো বলুন।</p>
+<p>কিন্তু একটা অলীক ব্যাপার শুনতে হলে মুখ খোলেন সম্পাদক।</p>
+<p>আজ রাত্রে কোনও তর্ক নয়, বড় শ্রান্ত আমি। অথচ না বললেও ঘুম হবে না আমার। যা বলব, তা-ই শুনতে হবে। কোনও বাধা নয়, রাজি?</p>
+<p>রাজি। বললাম সবাই। তখন শুরু হল সময়-পর্যটকের আশ্চর্য ভ্রমণকাহিনি। চেয়ারে হেলে পড়ে বলে যাচ্ছিলেন তিনি দ্রুততর গতিতে। লিখতে লিখতে কনুই পর্যন্ত টনটনিয়ে উঠছিল আমার। নিশ্চয় খুব মন দিয়ে একাহিনি পড়ছেন আপনারা। কিন্তু তবুও ল্যাম্পের আলোক-বলয়ের মাঝে বক্তার ফ্যাকাশে মুখ আপনারা দেখতে পাচ্ছেন না। শুনতে পাচ্ছেন না তাঁর আবেগ-কাঁপা গমগমে কণ্ঠস্বর। আলোক-সীমানার বাইরে অন্ধকারে বসে রইলাম আমরা। আর দক্ষ শিল্পীর মিড়-গড়ক-গমক-মূৰ্জনা সৃষ্টির মতো শব্দের ইন্দ্রজাল সৃষ্টি করে আমাদের মন্ত্রমুগ্ধ করে রেখে দিলেন সময়-পর্যটক।</p>
+</div>
+<br/>
+<p>ইপাব নির্মাণে ⏩ <a href="https://t.me/bongboi" rel="noopener noreferrer" target="_blank">@bongboi</a>।</p>
+<br/>
+<h2>০৪. সময়-পর্যটন</h2>
+<hr/>
+<br/>
+
+<div>
+<p><strong>8। সময়-পর্যটন</strong></p>
+<p> গত বৃহস্পতিবার আপনাদের কয়েকজনকে টাইম মেশিনের মূলসূত্রগুলি আমি বুঝিয়ে দিয়েছি। অসমাপ্ত মেশিনটাও ল্যাবরেটরিতে নিয়ে গিয়ে দেখিয়েছি। এখনও সেখানেই আছে মেশিনটা–এতটা পথ ঘুরে আসার ফলে একটু ময়লা হয়ে গেছে অবশ্য। তা ছাড়া হাতির দাঁতের একটা রড চিড় খেয়ে গেছে, তামার রেলিংটাও গেছে বেঁকে। বাদবাকি সব ঠিক আছে। ভেবেছিলাম, গত শুক্রবারেই শেষ হয়ে যাবে মেশিনটা, কিন্তু শুক্রবারে কাজ যখন প্রায় শেষ হয়ে এসেছে, দেখলাম, একটা নিকেল রড প্রায় ইঞ্চিখানেকের জন্যে ছোট হচ্ছে। কাজেই নতুন করে তৈরি করতে হল রডটা। সেই কারণেই বেশ খানিকটা দেরি হয়ে গেল। আজ সকালে সম্পূর্ণ হল টাইম মেশিন। আর সকাল দশটার সময়ে শুরু হল তার জীবনযাত্রা। চারদিকে টোকা মেরে স্কুগুলো আর-একবার দেখে নিয়ে কোয়ার্টজ রডে আরও এক ফোঁটা তেল ঢেলে দিলাম। তারপর চেপে বসলাম আসনে। খুলির কাছে পিস্তল ধরে আত্মহত্যা করার আগে মানুষের মনে যে বিচিত্র ভাবের উদয় হয়, আমারও হল তা ই। এক হাতে স্টার্ট দেওয়ার লিভারটা ধরে, অপর হাতে বেশ করে চেপে ধরলাম গতিরোধের লিভারটা। তারপর প্রথমটা ঠেলার পরমুহূর্তেই দ্বিতীয়টাও ঠেলে দিলাম। মনে হল, মাথা ঘুরে গেল আমার। দুঃস্বপ্নের ঘোরে মনে হল যেন তলিয়ে যাচ্ছি অতলে, আর তারপরেই চারপাশে তাকিয়ে দেখি, ঠিক আগের মতো অবস্থাতেই ল্যাবরেটরিতে রয়েছি আমি। কিছুই তো তাহলে হল না! মুহূর্তের জন্য সন্দেহ হল, বুঝি-বা আমার মেধা শেষ পর্যন্ত ছলনা করলে আমায়। পরক্ষণেই আমার চোখ পড়ল ঘড়ির ওপর। এক মুহূর্ত আগেও তো ঘড়ির কাঁটা দাঁড়িয়েছিল দশটা, কি খুব জোর দশটা বেজে এক মিনিটের ঘরে। আর এখন দেখলাম, কাঁটা দুটো ঘুরে এসে দাঁড়িয়েছে সাড়ে তিনটের ঘরে।</p>
+<p>জোরে নিঃশ্বাস নিয়ে দাঁতে দাঁত চেপে দু-হাতে আঁকড়ে ধরলাম স্টার্ট দেওয়ার লিভারটা, আর পরক্ষণেই এক ধাক্কায় ঠেলে দিলাম সামনের দিকে। ধোঁয়ার মতো আবছা হয়ে এল ল্যাবরেটরি, রাশি রাশি আঁধারে ভরে উঠতে লাগল ঘরটা। মিসেস ওয়াচেট ভেতরে এলেন, আমাকে যেন দেখতে পাননি এমনিভাবে এগিয়ে গেলেন বাগানের দরজার দিকে। পথটুকু পেরতে বোধহয় তাঁর মিনিটখানেক লেগেছিল, আমার কিন্তু মনে হল যেন রকেটের মতো সাঁত করে বেরিয়ে গেলেন তিনি। এবার একেবারে শেষ ঘাঁটিতে ঠেলে দিলাম লিভারটা। ফুঁ দিয়ে প্রদীপ নিবিয়ে দেওয়ায় মতো ঝাঁপিয়ে পড়ল নিশার তমসা, পরের মুহূর্তেই রাত কেটে গিয়ে ফুটে উঠল ভোরের আলো। অস্পষ্ট আর আবছা হয়ে উঠতে লাগল ল্যাবরেটরি, আরও অস্পষ্ট… আরও… আরও। আবার রাত এল ঘনিয়ে, তারপরে আবার দিন, আবার রাত, আবার দিন–ক্রমশ অস্পষ্ট ভোমরার গুঞ্জনের মতো একটা ধ্বনি আবর্তের পর আবর্ত রচনা করে চলল আমার কর্ণকুহরে, আর-একটা অজানা, বোবা বিমূঢ়তা চেপে বসতে লাগল আমার মনের ওপর।</p>
+<p>সময়-পর্যটনের সে অদ্ভুত অনুভূতি আপনাদের আমি বোঝাতে পারব না। অত্যন্ত অস্বস্তিকর, অস্বচ্ছন্দ সে-অনুভূতি। অসহায় অবস্থায় তিরের মতো সামনের দিকে উন্মাদ বেগে ছুটে যাওয়ায় যে-অনুভূতি, এ যেন অনেকটা তা-ই। যে-কোনও মুহূর্তে একটা প্রবল সংঘাতের আশঙ্কায় শিউরে উঠল আমার অন্তর। যতই এগিয়ে চললাম, কালো ডানা ঝাঁপটানোর মতো রাত কেটে গিয়ে ফুটে উঠতে লাগল দিনের আলো। দূর হতে দূরে সরে যেতে লাগল ল্যাবরেটরির ধোঁয়াটে রেখা–দেখলাম, আকাশের এ-প্রান্ত থেকে ও-প্রান্তে এক-এক লাফে এগিয়ে চলেছে সূর্য, এক-এক লাফে কাটছে এক-একটি মিনিট আর প্রতিটি মিনিট সূচনা করছে এক-একটি দিনের। মনে হল, ল্যাবরেটরি যেন ধ্বংস হয়ে মিলিয়ে গেল শূন্যে–খোলা বাতাসে এসে পড়লাম আমি। ক্রমশ বৃদ্ধি পেতে লাগল গতিবেগ। ধীরগতি শামুকও চোখের পলকে মিলিয়ে যেতে লাগল দৃষ্টিপথের বাইরে। আঁধার আর আলোকের ঘন ঘন আনাগোনা বেজায় যন্ত্রণাদায়ক হয়ে উঠল আমার চোখে। তারপরেই দেখলাম, সবিরাম আঁধারের মাঝে দ্রুতগতিতে কলা পরিবর্তন করে অমাবস্যা থেকে পূর্ণিমা আর পূর্ণিমা থেকে অমাবস্যার পথে গড়িয়ে চলেছে চন্দ্র–চারপাশে অস্পষ্টভাবে ঝিকমিক করছে ঘূর্ণমান তারার রাশি। দেখতে দেখতে গতি আরও বেড়ে যেতে দিনরাতের স্পন্দন টানা একটা ধূসর রেখায় মিশে এক হয়ে গেল। আশ্চর্য গাঢ় নীল রঙে ঘন হয়ে উঠল আকাশ, গোধূলির শুরুতে যেমন সুন্দর বর্ণচ্ছটা ছড়িয়ে পড়ে, এ যেন তেমনি। সূর্যের ঘন ঘন লাফ মিলিয়ে গিয়ে দেখা গেল শুধু আগুনের একটা টানা রেখা, যেন মহাশূন্যের মাঝে জ্বলজ্বলে এক তির্যক খিলান। আর অস্পষ্টভাবে বাঁকা রেখার মাঝে জ্বলতে-নিবতে লাগল চাঁদ। তারপর আর কোনও তারাই দেখতে পেলাম না, শুধু ঘন নীলের মাঝে একটা জ্বলজ্বলে বৃত্তের দপদপানি জেগে রইল আমার চোখের সামনে। চারপাশে দৃশ্যপটও কুয়াশার মতো অস্পষ্ট হয়ে উঠল। যে-পাহাড়ের নিচে দাঁড়িয়ে এ বাড়িটা, তার সামনেই দাঁড়িয়েছিলাম আমি। ধোঁয়ার মতো ধূসর পাথরের রেখা আমার অনেক উঁচুতে উঠে গিয়েছিল। দেখলাম, চোখের সামনে বৃদ্ধি পাচ্ছে গাছের সারি। এক এক ফুৎকারে পালটে যাচ্ছে তার আকৃতি। বাদামি থেকে সবুজ, তারপরেই ধূসর। এরপরেই ডালপালা ঝাঁকড়া ঝাঁকড়া হয়ে উঠে কাঁপতে কাঁপতে গেল শুকিয়ে। দেখলাম, বড় বড় প্রাসাদ গড়ে উঠছে, সুন্দর কিন্তু আবছা, তারপর মিলিয়ে যাচ্ছে স্বপ্নের মতো। সমস্ত ভূতল মনে হল পালটে যাচ্ছে, চোখের ওপর গলে গলে স্রোতের মতো বয়ে চলেছে। ডায়ালের ওপর গতিনির্দেশক ছোট কাঁটাগুলোর গতি দ্রুত থেকে দ্রুততর হয়ে উঠল। ক্ষণ পরেই দেখলাম, কর্কটক্রান্তি থেকে মকরক্রান্তির মধ্যে দুলছে সূর্যবলয় রেখা এক মিনিটেরও অল্প সময়ের মধ্যে, ফলে এক-এক মিনিটে পেরিয়ে যেতে লাগলাম এক-একটি বছর! আর মিনিটে মিনিটে সাদা তুষার-চাদর ঝলসে উঠতে লাগল পৃথিবীর ওপর, আর পলকের মধ্যে তা মিলিয়ে গিয়ে ফুটে উঠতে লাগল সংক্ষিপ্ত বসন্তের ঝকঝকে সবুজাভা।</p>
+<p>যাত্রারম্ভের সে অস্বচ্ছন্দ অনভূতি আর ততটা তীব্র ছিল না। কীরকম জানি মূৰ্ছাবেশের মতো এক বিচিত্র অনুভূতিতে ভরে উঠেছিল আমার অন্তর। কী জানি কেন এলোমেলোভাবে দুলছিল মেশিনটা। কিন্তু আমার চিন্তাশক্তি তখন এমনই অসাড় হয়ে উঠেছে যে, দুলুনি থামাবার কোনও প্রচেষ্টা আমি করলাম না। উত্তরোত্তর বেড়ে যাওয়া একটা উন্মাদনায় অবশ হয়ে এল আমার সর্ব ইন্দ্রিয়, দুরন্ত বেগে ভবিষ্যতের গর্ভে ধেয়ে চললাম বাধাহীন গতিতে। প্রথমে গতিরোধের কোনও চিন্তাই আসেনি আমার মনে, শুধু ওই বিচিত্র অনুভূতি ছাড়া আর কোনও কিছুই উপলব্ধি করিনি তখনও। কিন্তু অচিরেই নতুন একটা চিন্তাধারা আমার মনে জেগে উঠতে লাগল–বিশেষ একটা ঔৎসুক্য আর সেই সঙ্গে বিশেষ এক আতঙ্ক–শেষে আমার সমস্ত স্নায়ুতে স্নায়ুতে ছড়িয়ে পড়ল সেই চিন্তাধারা। চোখের সামনে ধাবমান জগতের ধোঁয়াটে পটপরিবর্তন দেখে ভাবলাম, না জানি মনুষ্যত্বের কী বিচিত্র বিকাশ, আমাদের আদিম সভ্যতার কী চরম অগ্রগতিই দেখব এবার! দেখলাম, বিরাট বিরাট জমকালো স্থাপত্য নিদর্শন, আমাদের এখনকার বাড়ির চাইতে অনেক বিপুল তাদের আকৃতি, আর তবুও যেন ঝিলমিলে কুয়াশা দিয়ে তা গড়া। দেখলাম, পাহাড়ের পাশের জমি উজ্জ্বল সবুজ রঙে ঝলমল করে উঠল, এমনকী শীতের প্রকোপেও অম্লান রইল তাদের ঔজ্জ্বল্য। চেতনার বিহ্বলতা সত্ত্বেও বুঝলাম, বড় সুন্দর হয়ে উঠেছে। পৃথিবী। আর তাই এবার গতিরোধের চিন্তাই প্রবল হয়ে উঠল আমার মনে।</p>
+<p>আর তখনই অদ্ভুত একটা ঝুঁকির সম্মুখীন হলাম আমি। যে স্থানটুকু আমি বা আমার মেশিন দখল করে রয়েছে, সেখানে অন্য কোনও বস্তু থাকা খুবই সম্ভব। সময়ের মধ্যে দিয়ে দারুণ বেগে ধেয়ে চলার সময়ে অবশ্য এসব সম্ভাবনার কোনও প্রশ্নই ওঠেনি; কেননা, এককথায় বলতে গেলে আমি সূক্ষ্মরূপে সংকীর্ণ জোড়পথে বাষ্পের মতো পিছলে যাচ্ছিলাম এক বস্তু থেকে আর-এক বস্তুর মধ্যে দিয়ে। কিন্তু হঠাৎ গতিরুদ্ধ হওয়া মানেই পথে আসা যে কোনও বস্তুর অণুতে অণু গেঁথে যাওয়া, ফলে আমার প্রতিটি পরমাণু বাধার প্রতিটি পরমাণুর সঙ্গে এমন নিবিড় সংস্পর্শে আসবে, যার পরিণামে ঘটবে একটা কল্পনাতীত রাসায়নিক বিক্রিয়া সম্ভবত দিগন্তবিস্তারী একটা বিস্ফোরণ, আর মেশিন। সমেত রেণু রেণু হয়ে সম্ভাব্য সবকিছুর মাত্রা ছাড়িয়ে কোনও অজানায় আমার মিলিয়ে যাওয়া। মেশিনটাকে তৈরি করার সময়ে এ সম্ভাবনা বারবার ভেবে দেখেছি আমি, কিন্তু শেষ পর্যন্ত অপরিহার্য ঝুঁকি হিসেবে তা আমি প্রসন্ন মনেই মেনে নিয়েছিলাম–বেঁচে থাকতে গেলে যেমন একটা-না-একটা ঝুঁকি মানুষকে নিতে হয়, এ-ও অনেকটা সেইরকম আর কী! কিন্তু সত্যই যখন সে ঝুঁকির মুখোমুখি হলাম, তখন আমার হাত-পা ঠান্ডা হয়ে এল। অচেনা-অজানা গতিবেগ, দীর্ঘকাল ধরে পতনের গা-গুলানো অনুভূতি আর মেশিনের অবিরাম ঝাঁকুনি-দুলুনির ফলেই বোধহয় আমার স্নায়ুও আর ধাতস্থ ছিল না। আপন মনে বললাম, না, থামা উচিত হবে না কোনওমতেই; কিন্তু পরমুহূর্তেই স্থির করলাম, থামতেই হবে। ধৈর্যহীন মূর্খের মতো আচমকা ঝুঁকে পড়লাম লিভারের ওপর–তৎক্ষণাৎ পাক খেতে খেতে উলটে পড়ল মেশিনটা, আর শূন্যপথে ছিটকে গেলাম আমি।</p>
+<p>রাশি রাশি বাজের দামামা বেজে ওঠে আমার কানের পরদায়। মুহূর্তের জন্য হতবুদ্ধি হয়ে পড়েছিলাম আমি। চারপাশে শুনলাম শুধু শিলাবৃষ্টির হিসহিসে শব্দ আর দেখলাম, উলটে-পড়া মেশিনের সামনেই নরম ঘাসজমির ওপর বসে রয়েছি আমি। তখনও সবকিছু ধোঁয়াটে ধোঁয়াটে লাগছিল–কিন্তু কিছুক্ষণের মধ্যেই চোখের ঘোর কেটে গেল। চারপাশে ভালো করে তাকালাম। বাগানের মধ্যে ছোটখাটো একটা লনের ওপর বসে ছিলাম আমি, চারপাশে রডোডেনড্রনের ঝোঁপ; আরও দেখলাম, বরফের অবিরাম আঘাতে রডোডেনড্রনের ঘন বেগুনি আর টুকটুকে লাল রঙের মুকুলগুলি ঝরে ঝরে পড়ছে মাটির ওপর। মেশিনটাকে মেঘের মতো ঘিরে ধরে নেচে নেচে উঠছিল শিলার টুকরোগুলো, ঠিকরে গিয়ে ধোঁয়ার মতো গড়িয়ে পড়ছিল মাটির ওপর। দেখতে দেখতে ভিজে সপসপে হয়ে উঠল আমার সর্বাঙ্গ। আপ্যায়নের চমৎকার নমুনা। আপন মনেই বলি, অসংখ্য বছর পেরিয়ে যে তোমায় এল দেখতে, সে মানুষটার কী হালই করলে তুমি।</p>
+<p>তারপরেই ভাবলাম, বোকার মতো বসে বসে ভেজার কোনও মানে হয় না। উঠে দাঁড়িয়ে চারপাশে তাকালাম। রডোডেনড্রনকুঞ্জের ওপারে অস্পষ্ট শিলাবৃষ্টির মধ্যে দিয়ে দেখলাম, সাদা পাথরে খোদাই প্রকাণ্ড একটা আবছা মূর্তি। এ ছাড়া জগতের সবকিছু রইল অদৃশ্য।</p>
+<p>আমার তখনকার অনুভূতি বর্ণনা করা সত্যই কঠিন। শিলাবৃষ্টি যতই পাতলা হয়ে আসতে লাগল, ততই স্পষ্ট হয়ে উঠতে লাগল সাদা মূর্তিটা। বেজায় উঁচু মূর্তি, একটা সিলভার বা গাছ তো কাঁধের কাছে গিয়ে ঠেকেছিল। আগাগোড়া সাদা মর্মরে তৈরি তার দেহ, আকারে অনেকটা ডানাওয়ালা স্ফিংক্স-এর মতো, কিন্তু ডানা দুটো খাড়াইভাবে নিচে নেমে এসে শুন্যে মেলা রয়েছে, যেন উড়তে গিয়ে হঠাৎ স্থাণু হয়ে গেছে। বেদিটা মনে হল ব্রোঞ্জের তৈরি, ওপরে পুরু হয়ে জমে রয়েছে সবুজ কলঙ্ক। মুখটা ফেরানো ছিল আমার দিকেই, দৃষ্টিহীন চোখ দুটো যেন আমাকেই লক্ষ করছিল, ঠোঁটের কোণ ছুঁয়ে গড়িয়ে পড়ছিল হাসির ছায়া। রোদে-জলে ক্ষয়ে এসেছে মূর্তিটা, দেখলে জরাগ্রস্ত বলে মনে হয়। বেশ কিছুক্ষণের জন্যে দাঁড়িয়ে দাঁড়িয়ে দেখতে লাগলাম–আধ মিনিট কি আধ ঘণ্টা তা জানি না। মূর্তির সামনে আছড়ে-পড়া শিলাবৃষ্টির চাদর কখনও গাঢ়, কখনও ফিকে– আর সেই সঙ্গে মূর্তিটাও যেন কখনও যাচ্ছে পিছিয়ে, কখনও আসছে এগিয়ে। শেষকালে ক্ষণেকের জন্যে জোর করে চোখ ফিরিয়ে দেখলাম, শিলাবৃষ্টির ঘন পরদা দ্রুত ফিকে হয়ে যাচ্ছে, সূর্যের স্বাক্ষর বুকে নিয়ে উজ্জ্বল হয়ে উঠছে নীল আকাশ।</p>
+<p>চোখ ফিরিয়ে আবার তাকালাম গুঁড়ি মেরে বসা সাদা মূর্তিটার দিকে। হঠাৎ আমার এই অভিযানের গোঁয়ারতুমি সমস্ত অন্তর দিয়ে উপলব্ধি করলাম। অস্পষ্ট ওই পরদা একেবারেই মিলিয়ে যাওয়ার পর না জানি কী দৃশ্য দেখব আমি। মানুষ আজ কী অবস্থায় এসে দাঁড়িয়েছে? নিষ্ঠুরতাই কি তাদের সহজ প্রকৃতি? এই সুদীর্ঘকাল পরে মানুষ যে তার মনুষ্যত্ব হারিয়ে একটা অমানবিক নির্মম আর কল্পনাতীত শক্তিমান প্রাণীর পর্যায়ে নেমে যায়নি, তা কে বলতে পারে? হয়তো তাদের চোখে আমি আদিম বিদঘুটে আকারের ভয়ানকদর্শন বর্বর জানোয়ার ছাড়া আর কিছু না, যাকে দেখামাত্র নিধন করতে তৎপর হয়ে উঠবে তারা।</p>
+<p>ইতিমধ্যে আরও কয়েকটা বিপুল আকার দেখতে পেলাম। কমে-আসা ঝড়ের বুক চিরে অস্পষ্টভাবে চোখের সামনে ফুটে উঠল সারি সারি মস্ত বড় বাড়ি, চওড়া আলশে, উঁচু থাম আর পাহাড়ের পাশে বনভূমি। হঠাৎ নিঃসীম আতঙ্কে আমি যেন উন্মাদ হয়ে গেলাম। পাগলের মতো টাইম মেশিনের দিকে ছুটে গিয়ে তাড়াতাড়ি কলকবজাগুলো ঠিক করতে শুরু করে দিলাম। দেখতে দেখতে ঝড়বৃষ্টির মধ্যে দিয়ে উঁকি দিল অরুণদেবের সোনার মুকুট। ধূসর শিলাবৃষ্টি আরও দূরে সরে গেল, তারপর আবছা ভৌতিক ছায়ার মতো মিলিয়ে গেল কোথায়। মাথার ওপর ফিকে বাদামি রঙের পেঁজা তুলোর মতো মেঘের রাশি গাঢ় নীল আকাশের পটে আলপনা আঁকায় ব্যস্ত হয়ে পড়ল। চারপাশে উন্নত মাথায় দাঁড়িয়ে রইল উঁচু বাড়িগুলো, জলে ভিজে চিকমিক করতে লাগল তাদের অলংকরণ, এখানে-সেখানে স্তূপাকার হয়ে পড়ে রইল অগণিত অগলিত সাদা শিলাখণ্ড। এক অজানা জগতের মাঝে একা দাঁড়িয়ে রইলাম আমি। খোলা বাতাসে উড়তে উড়তে মাথার ওপর ছোঁ মারতে উদ্যত বাজপাখি দেখে পায়রার মনে যে ভাবের উদয় হয়, সেইভাবেই শিউরে উঠল আমার তনুমন। আমার আতঙ্ক আর কোনও শাসনই মানলে না। বুকভরা নিঃশ্বাস নিয়ে দাঁতে দাঁত চেপে একসঙ্গে কবজি আর হাঁটু দিয়ে প্রাণপণে আঁকড়ে ধরলাম লিভারটা! মরিয়া হয়ে গিয়েছিলাম কিন্তু একটা প্রবল ঝাঁকুনির সঙ্গে সঙ্গে উলটে গেল মেশিনটা। চিবুকে দারুণ লেগেছিল। এক হাত আসনের ওপর আর এক হাত লিভারের ওপর রেখে আর-একবার উঠে বসবার চেষ্টায় দাঁড়িয়ে দাঁড়িয়ে বেদম হাঁপাতে লাগলাম আমি।</p>
+<p>চিবুকের ওপর জোরালো ওই আঘাতে কেন জানি হঠাৎ আমার লুপ্ত সাহস আবার ফিরে পেলাম। সুদূর ভবিষ্যতের আশ্চর্য জগতের দিকে নিঃশঙ্ক সোৎসুক চোখে তাকালাম। কাছের একটা বাড়ির উঁচু দেওয়ালের অনেক ওপরে একটা গোলাকার জানালায় দেখলাম, মূল্যবান গরম পোশাক-পরা কয়েকটি মূর্তি। আমাকেও দেখেছিল ওরা, আমার দিকেই ওরা মুখ ফিরিয়ে ছিল।</p>
+<p>তারপরই শুনলাম, কতকগুলো স্বর এগিয়ে আসছে আমার দিকে। সাদা স্ফিংক্স-এর পাশ দিয়ে ঝোপঝাড়ের মধ্যে দিয়ে ছুটন্ত মানুষের কাঁধ আর হাত নজরে এল। এদের মধ্যে একজন যে লনের ওপর মেশিন নিয়ে দাঁড়িয়ে ছিলাম আমি, ছুটে এল সেইদিকে। ছোটখাটো একটা মানুষ, ফুট চারেক উঁচু হবে। পরনে টুকটুকে লাল রঙের টিউনিক, কোমরে চামড়ার বন্ধনী, পায়ে স্যান্ডাল বা বুশকিনের মতো একরকম জুতো। হাঁটু পর্যন্ত নগ্ন, মাথাতেও কোনও টুপি নেই। তা-ই দেখেই সেই প্রথম লক্ষ করলাম, কী গরম সেখানকার বাতাস।</p>
+<p>খুদে মানুষটাকে দেখতে কিন্তু ভারী সুন্দর। দেহে-মুখে গরিমা মাখানো, কিন্তু বর্ণনা করা যায় না এমনি শীর্ণ। ক্ষয়িষ্ণু সৌন্দর্য বলে একটা কথা প্রায় শুনে থাকি আমরা, তার আরক্ত মুখ দেখে সেই কথাই মনে পড়ল আমার। ওকে দেখেই হঠাৎ আমি আত্মবিশ্বাস ফিরে পেলাম। হাত তুলে নিলাম মেশিনের ওপর থেকে।</p>
+</div>
+<br/>
+<p>ইপাব নির্মাণে ⏩ <a href="https://t.me/bongboi" rel="noopener noreferrer" target="_blank">@bongboi</a>।</p>
+<br/>
+<h2>০৫. স্বর্ণযুগ</h2>
+<hr/>
+<br/>
+
+<div>
+<p><strong>৫৷ স্বর্ণযুগ</strong></p>
+<p> পরমুহূর্তে মুখোমুখি দাঁড়ালাম আমরা–আমি আর আগামীকালের সেই বিশীর্ণ মানুষটি। সিধে আমার কাছে এসে চোখে চোখ রেখে হেসে উঠল সে। ভাবভঙ্গিতে শঙ্কার লেশমাত্র না দেখে অবাক না হয়ে পারলাম না। তারপরেই সে তার সঙ্গী দুজনের দিকে ফিরে অদ্ভুত কিন্তু বড় মিষ্টি আর দ্রুত উচ্চারণে কী বললে।</p>
+<p>আরও অনেকে ছুটে আসছিল, দেখতে দেখতে বোধহয় আট-দশজন এইরকম সুন্দর খুদে মানুষ ঘিরে ধরল আমাকে। একজন আমাকে কী বললে। আর তখনই বুঝলাম তাদের তুলনায় আমার গলার স্বর কী বিশ্রী কর্কশ আর মোটা। তাই মাথা নেড়ে কানের দিকে আঙুল তুলে দেখলাম আমি। আর-এক পা এগিয়ে আসে সে, একটু ইতস্তত করে, তারপর স্পর্শ করে আমার হাত। আরও কতকগুলো নরম ছোঁয়া অনুভব করলাম ঘাড়ে পিঠে। আমি রক্তমাংসের জীব কি না, তা-ই পরখ করে নিল ওরা। ভয় পাবার মতো কিছু নেই, বরং এদের ছেলেমানুষি স্বাচ্ছন্দ্য, মিষ্টি সৌন্দর্য দেখে মনে গভীর আস্থা জেগে ওঠে। তা ছাড়া ওরা এত রোগা যে আমার তো মনে হল, ওদের ডজনখানেককে একগোছা আলপিনের মতো ছুঁড়ে দিতে পারি। ওদের টাইম মেশিনে হাত দিতে দেখে আমাকেও এবার তৎপর হয়ে উঠতে হল। এতক্ষণে এ বিপদের সম্ভাবনা মোটেই মনে আসেনি। তাড়াতাড়ি স্টার্ট দেওয়ার লিভারটা খুলে নিয়ে পকেটে রেখে দিলাম। তারপর ভাবতে লাগলাম, কী করে কথাবার্তা শুরু করা যায়।</p>
+<p>আরও ভালো করে ওদের চেহারা দেখতে গিয়ে ফুটফুটে সৌন্দর্যের মধ্যে কতকগুলো বৈশিষ্ট্য লক্ষ করলাম। ঢেউতোলা চুলগুলো গাল আর ঘাড়ের কাছে এসে সুচালো প্রান্তে শেষ হয়েছে। মুখের ওপর দাড়িগোঁফের কোনও চিহ্নই নেই। আর কান তো আশ্চর্য রকমের ছোট। ছোট্ট মুখের হাঁ, ঘন লাল পাতলা ঠোঁট, এতটুকু চিবুকটাও সরু হয়ে নেমে এসেছে নিচের দিকে। চোখগুলো কিন্তু বেশ বড় বড়, ভাসা ভাসা চাহনি সে চোখে।</p>
+<p>আমার সঙ্গে কথা বলার চেষ্টা না করে চারপাশে গোল হয়ে দাঁড়িয়ে হেসে হেসে বাঁশির মতো নরম স্বরে নিজেদের মধ্যে কথাবার্তা বলতে লাগল ওরা। বাধ্য হয়ে আমিই শুরু করলাম। টাইম মেশিন আর নিজের দিকে আঙুল তুলে দেখালাম। সময় জিনিসটা কী বোঝানোর জন্যে সূর্যের দিকে আঙুল তুললাম। তৎক্ষণাৎ লাল-সাদা চেক-কাটা পোশাক পরা একজন খুদে মানুষ এগিয়ে এসে মেঘ ডাকার শব্দ নকল করে চমকে দিলে আমায়।</p>
+<p>থতমত খেয়ে গেলাম আমি। সত্যিই কি এরা এত বোকা? জানেন তো, চিরকাল আমি বলে এসেছি, আগামীকালের মানুষরা জ্ঞানে-শিল্পে সব দিক দিয়ে আমাদের চেয়ে অনেক বেশি আগুয়ান হবে। আর, আট লক্ষ দুহাজার সাতশো এক সালের একজন আচমকা শুধাল যে, সূর্য থেকে বাজ আমায় নিয়ে এসেছে কি না। পাঁচ বছরের ছেলের চাইতে ওরা বেশি বুদ্ধি ধরে বলে আমার মনে হল না। খুব হতাশ হয়ে পড়লাম। মুহূর্তের জন্যে ভাবলাম, বৃথাই তৈরি করলাম টাইম মেশিনটা।</p>
+<p>মাথা হেলিয়ে সায় দিয়ে সূর্যের দিকে আঙুল তুলে বাজ পড়ার এমন এক আওয়াজ ছাড়লাম যে ওরা চমকে উঠল। এবার একজন এগিয়ে এসে একেবারে নতুন ধরনের একরকম ফুলের মালা পরিয়ে দিলে আমার গলায়। দেখে সবাই হাততালি দিয়ে উঠল। তারপরে প্রত্যেকেই এদিকে-সেদিকে দৌড়ে গিয়ে রাশি রাশি ফুল এনে ছুঁড়তে লাগল আমার দিকে। বেশ একটা মজাদার খেলায় মেতে উঠল সবাই। ফুলগুলো কিন্তু বিচিত্র ধরনের–কত অযুত বছরের প্রচেষ্টায় প্রকৃতি তাদের যে কত সুন্দর করে তুলেছে তা বোঝাতে পারব না। তারপর একজন প্রস্তাব করলে, খেলাটা কাছের বাড়িটায় সবাইকে দেখানো যাক। তৎক্ষণাৎ আমাকে নিয়ে চলল ওরা। সাদা মর্মরের স্ফিংক্স-এর পাশ দিয়ে ধূসর পাথর দিয়ে তৈরি প্রকাণ্ড একটা প্রাসাদের দিকে এগিয়ে চললাম। যেতে যেতে ওদের উন্নত প্রতিভা সম্বন্ধে দৃঢ়মূল ধারণা আবার ফিরে এল আমার মনে। অনাবিল আনন্দে ভরে উঠল আমার বুক।</p>
+<p>বাড়িটার প্রবেশপথ যেমন উঁচু, তেমনি বিরাট তার আকার-আয়তন। অবাক হয়ে বিরাট তোরণের ওপাশে ছায়া ছায়া রহস্যময় পথের দিকে তাকিয়ে ছিলাম। খুদে মানুষদের মাথার ওপর দিয়ে দেখলাম অযত্নবর্ধিত, অবহেলিত কিন্তু আগাছাহীন বড় সুন্দর একটা বাগান। দেখলাম, অদ্ভুত সুন্দর সাদা রঙের একরকম ফুল, পাপড়িগুলো মোমের মতো মোলায়েম। ফুটখানেক লম্বা বোঁটা সমেত ফুলগুলো এলোমেলোভাবে বুনো উদ্দামতায় ঝোপেঝাড়ে ফুটে রয়েছে। তোরণের খিলানে বিচিত্র কারুকাজ। খুব খুঁটিয়ে না দেখলেও মনে হল, প্রাচীন ফিনিশিয়ান অলংকরণের সঙ্গে তার যেন কিছু মিল আছে। যদিও ভেঙেচুরে গেছে, রোদে-জলে জীর্ণ হয়ে এসেছে, তবুও সে সৌন্দর্য একবার দেখলে মুগ্ধ হয়ে যেতে হয়। আরও অনেক খুদে মানুষ ঝকঝকে গরম পোশাক পরে তোরণের নিচে দাঁড়িয়েছিল, শুভ্র সুন্দর হাত নেড়ে জলতরঙ্গের মতো মিষ্টি কলরোল তুলে ওরা আমায় অভ্যর্থনা জানালে। আর আমি ঊনবিংশ শতাব্দীর কিম্ভুতকিমাকার ময়লা পোশাকে গলায় একরাশ ফুলের মালা ঝুলিয়ে ঢুকলাম তোরণপথে।</p>
+<p>বিশাল তোরণপথ শেষ হয়েছে সেই অনুপাতে বিরাট একটা বাদামি হলঘরে। জানলার কিছু স্বচ্ছ আর কিছু অস্বচ্ছ কাচের মধ্য দিয়ে স্তিমিত আলো আসছিল ভেতরে। বহু উঁচুতে অন্ধকারে মিশে আছে ছাদ। বড় বড় কঠিন সাদা চারকোনা পাথরের চাঁই দিয়ে বাঁধানো মেঝে, পূর্বপুরুষদের চলাফেরার ফলে বহু স্থানে ক্ষয়ে গেছে। মেঝে থেকে ফুটখানেক উঁচু চকচকে পাথরের অসংখ্য টেবিল। ওপরে রাশি রাশি ফলের স্তূপ। কতকগুলো কমলা আর রাস্পবেরির বড় সংস্করণ বলেই মনে হল, বাকিগুলো তো চিনতেই পারলাম না।</p>
+<p>সারি সারি টেবিলের মাঝে অনেকগুলো গদি-মোড়া আসন ছিল। ওরা তার ওপরে বসে পড়ে আমাকেও বসতে ইঙ্গিত করলে। তারপর লোক-দেখানো কোনওরকম আড়ম্বর না করে দুহাত দিয়ে ফল খেতে শুরু করে দিলে। খিদের চোটে আমিও হাত চালাতে কসুর করলাম না। খেতে খেতে আরও ভালো করে দেখতে লাগলাম ঘরটাকে।</p>
+<p>সবচেয়ে আশ্চর্য লাগল ঘরের জীর্ণ অবস্থা। জ্যামিতিক নকশায় তৈরি জানলার কাঁচগুলো অসংখ্য দাগে মলিন হয়ে উঠেছে, ভেঙেও গেছে অনেক জায়গায়। পরদাগুলোর ওপরেও পুরু হয়ে জমেছে ধুলোর স্তর। টেবিলের কোনাতেও দেখলাম চিড় ধরেছে। এসব সত্ত্বেও সবকিছু মিলিয়ে ঘরের সৌন্দর্য কিন্তু সত্যিই অপূর্ব, জমকালো ছবির মতো সাজানো চারদিকে। প্রায় শদুয়েক লোক একসঙ্গে খাচ্ছিল ঘরটাতে, প্রত্যেকেই সাগ্রহে লক্ষ করছিল আমাকে। প্রত্যেকের পরনে একই রকমের কোমল কিন্তু মজবুত রেশমের চকচকে হালকা কাপড়ের পোশাক।</p>
+<p>দেখলাম ফলই তাদের একমাত্র খাদ্য। সুন্দর ভবিষ্যতের এই খুদে মানুষগুলো সত্যিই গোঁড়া নিরামিষাশী। বাধ্য হয়ে আমাকেও আমিষপ্রীতি ত্যাগ করতে হয়েছিল। পরে অবশ্য দেখেছিলাম, ইকথিওসরাসের পদাঙ্ক অনুসরণ করে গোরু, ঘোড়া, মেষ, কুকুরও লোপ পেয়েছে পৃথিবীর বুক থেকে। ফলগুলো কিন্তু সুস্বাদু। বিশেষ করে তিনদিকে খোসাওয়ালা ময়দার মতো গুঁড়োয় ভরা একটা ফলের স্বাদ তো রীতিমতো লোভনীয়। সারা বছরেই পাওয়া যেত ফলটা। আমিও শেষ পর্যন্ত আমার মূল খাদ্য করেছিলাম এই ফলটিকেই। এত রাশি রাশি অদ্ভুতদর্শন ফলমূল তারা কোত্থেকে আনছে, তা না বুঝে প্রথমে খুব অবাক হয়ে গিয়েছিলাম। পরে অবশ্য দেখেছিলাম কোথায় এদের আমদানির উৎস।</p>
+<p>যা-ই হোক, দূর ভবিষ্যতের ফলাহার-পর্বের কথাই বলি আপনাদের। খিদের জ্বালা একটু কমতেই ঠিক করলাম, এদের ভাষা আমাকে শিখতে হবে। একটা ফল উঁচু করে ইশারায় নাম জিজ্ঞেস করলাম। ওরা তো প্রথমে হেসেই কুটি কুটি। শেষে, বেশ সুন্দর চুলওয়ালা একজন বোধহয় কিছু বুঝল। এগিয়ে এসে একটা দুর্বোধ্য শব্দ উচ্চারণ করল সে। অনেক চেষ্টায় রপ্ত করলাম পুঁচকে শব্দটা। এইভাবে একটা একটা করে অন্তত বিশটা দ্রব্যবাচক বিশেষ্য শিখে নিলাম। তারপর সর্বনাম আর খাওয়া, এই ক্রিয়াপদটাও শেখার চেষ্টা করলাম। কিন্তু ওই একঘেয়ে প্রশ্নোত্তরে ওরা বেশ ক্লান্ত আর অনিচ্ছুক হয়ে পড়েছে দেখে ঠিক করলাম, রয়ে-সয়ে শিখে নেওয়া যাবে ওদের ইচ্ছেমতো। পরে অবশ্য বুঝেছিলাম যে, এদের মতো শ্রমবিমুখ আর এত অল্পে পরিশ্রান্ত মানুষ আমি আর জীবনে দেখিনি।</p>
+</div>
+<br/>
+<p>ইপাব নির্মাণে ⏩ <a href="https://t.me/bongboi" rel="noopener noreferrer" target="_blank">@bongboi</a>।</p>
+<br/>
+<h2>০৬. অস্তগামী মানবজাতি</h2>
+<hr/>
+<br/>
+
+<div>
+<p><strong>৬। অস্তগামী মানবজাতি</strong></p>
+<p> অল্পক্ষণের মধ্যেই খুদে মানুষদের মধ্যেই একটা জিনিসের বিশেষ অভাব দেখলাম, তা হল আগ্রহ। ছেলেমানুষের মতো হুল্লোড় করে অবাক হয়ে চেঁচাতে চেঁচাতে ওরা আমাকে ঘিরে ধরত, কিন্তু ক্ষণ পরেই আমাকে ছেড়ে ছুটত নতুন কোনও খেলার সন্ধানে। ডিনার খাওয়ার সময়ে যারা আমাকে ঘিরে বসেছিল, খাওয়া শেষ হওয়ার আগেই দেখলাম তাদের অনেকেই আর নেই। এরপরেও যখনই বাইরে বেরতাম, কতশত পুঁচকে মানুষ ছুটে এসে ঘিরে ধরত আমাকে, কিন্তু আগ্রহ ফুরাতে বেশিক্ষণ লাগত না। যেন তাদেরই একজন আমি, এমনিভাবে কিছুক্ষণ হাসাহাসি হুটোপাটি করে চলে যেত অন্যদিকে।</p>
+<p>বিরাট হলঘর ছেড়ে যখন বাইরে বেরলাম, সূর্য তখন ডুবুডুবু। লাল আভায় রাঙিয়ে উঠেছে চারদিক। ছেড়ে-আসা বিরাট বাড়িটা দেখলাম মস্ত চওড়া একটা নদীর উপত্যকার ওপর। আমাদের টেমস নদী বর্তমান স্থান ছেড়ে মাইলখানেক দূরে সরে গেছে। ঠিক। করলাম, মাইল দেড়েক দূরের পাহাড়টার চুড়োয় উঠে আট লক্ষ দুহাজার সাতশো এক সালের পৃথিবীকে আশ মিটিয়ে দেখতে হবে। সালটা অবশ্য আমার মেশিনের ছোট ডায়াল থেকে পেয়েছিলাম। পাহাড়ের ওপর একটু উঠতেই দেখলাম গ্রানাইটের বিরাট একটা স্তূপ। রাশি রাশি অ্যালুমিনিয়াম দিয়ে পরস্পর জোড়া পাথরের তৈরি ভাঙাচোরা উঁচু উঁচু দেওয়াল দিয়ে ঘেরা বিপুল একটা গোলকধাঁধা। এখানে-সেখানে রাশি রাশি প্যাগোডার মতো ছড়ানো ভারী সুন্দর গাছ, বোধহয় বিছুটি হবে। পাতাগুলোয় কিন্তু আশ্চর্য সুন্দর বাদামি ছোপ, তা ছাড়া বিছুটির সে তীব্র জ্বলুনিও নেই তাতে৷ দেখেই বুঝলাম বিরাট কোনও স্থাপত্যের ধ্বংসস্তূপ সেটা। এরকম ধ্বংসস্তূপ এখানে-সেখানে অনেক দেখলাম। কিন্তু এই বিশেষ স্তূপটাতেই আমি এক অতি বিচিত্র অভিজ্ঞতার, বিচিত্রতর আবিষ্কারের সম্মুখীন হয়েছিলাম কিন্তু সে কথা পরে আসছে।</p>
+<p>উঁচু থেকে আরও একটা জিনিস লক্ষ করলাম। ছোট আকারের বাড়ি দেখতে পেলাম না কোথাও। স্বতন্ত্র গৃহস্থালিও উবে গেছে একেবারে। সবুজ প্রকৃতির মাঝে এখানে-সেখানে শুধু বিপুল আকারের মর্মর-প্রাসাদ। ইংলিশ কটেজের চিহ্ন নেই কোথাও।</p>
+<p>কমিউনিজম, আপন মনেই বলি আমি।</p>
+<p>আমার পেছনে তখনও জনা ছয়েক পুঁচকে মানুষ আসছিল। তাদের পানে চোখ পড়তে আচমকা আর-একটা বৈশিষ্ট্য লক্ষ করলাম। ওদের প্রত্যেকেরই একই পোশাক, একই রকম কেশহীন নরম মুখ আর মেয়েদের মতো সুডৌল অঙ্গপ্রত্যঙ্গ। এতক্ষণ এই আশ্চর্য বৈশিষ্ট্যটুকু চোখেই পড়েনি আমার। কিন্তু একটু ভাবতেই বুঝলাম আসল কারণটা। এ যুগের মানুষদের নারী-পুরুষের আকৃতি একই। শুধু পোশাকের বুনন আর অন্যান্য কয়েকটি তফাত দেখে বুঝে নিতে হয় নারী-পুরুষের প্রভেদ। খুদে মানুষদের ছেলেমেয়েরা কিন্তু বাপ-মায়েদের ছোট সংস্করণ। একটা জিনিস দেখেছি, এরপরেও ও যুগের খোকাখুকুরা শুধু দেহে নয়, মনের দিক দিয়েও অনেক অকালপক্ক।</p>
+<p>নারী-পুরুষের এই অভিন্নতা দেখে খুব বেশি অবাক হলাম না। বরং ভাবলাম, এই তো স্বাভাবিক। যে যুগে দৈহিক বলের প্রাধান্য বেশি, সেই যুগেই তো পুরুষের শক্তি, নারীর ল্যবণ্য আর রকমারি পেশার প্রয়োজনীয়তা অপরিহার্য হয়ে পড়ে। কিন্তু যে যুগে নিটোল নিরাপত্তা মানুষের জীবন ছেয়ে আছে সেখানে, এ ভেদাভেদ লোপ পাওয়াটাই তো স্বাভাবিক।</p>
+<p>পাহাড়ের ওপরের দিকে কিন্তু বড় বাড়ি আর একটাও দেখতে পেলাম না। তবে অত উন্নত যুগেও গুমটিঘরের মতো ছাউনির নিচে একটা কুয়ো দেখে একটু অবাক হলাম। যা ই হোক, আমার সঙ্গে তাল মিলিয়ে চলতে না পেরে খুদে মানুষরা অনেক আগেই আমার সঙ্গ ত্যাগ করেছিল। এখন পাহাড়ের চুড়োয় এসে পৌঁছালাম আমি। নাম-না-জানা একরকম হলদে ধাতুর তৈরি একটা আসন দেখলাম সেখানে, লালচে রঙের মরচে আর নরম শেওলায় ছেয়ে গিয়েছিল ওপরটা। হাত দুটো গ্রিফিনের ছাঁচে ঢালাই করা। এই আসনে বসে সূর্যের পড়ন্ত আলোয় দেখলাম প্রাচীন পৃথিবীর বিচিত্র রূপ। সূর্য তখন দিক্‌রেখার নিচে নেমে গেছে, সিঁদুরে আভার সঙ্গে সোনালি ঝিকিমিকিতে রঙিন হয়ে উঠেছে পশ্চিমের আকাশ। বহু নিচে পালিশ-করা ইস্পাতের তরোয়ালের মতো রয়েছে টেমস নদী। সবুজ ভূমির মাঝে এখানে-সেখানে ছড়িয়ে রয়েছে বিপুলাকার প্রাসাদ আর প্রাসাদকিছু কিছু ভেঙেচুরে গিয়ে মাটি আশ্রয় করেছে। ধরণির অবারণ বাড়ন্তে ভরা বাগিচার মাঝে মাঝে দাঁড়িয়ে সাদা বা রুপোলি মূর্তি, কোথাও বা গম্বুজ আর চার কোণে থামের ছুঁচোলো শীর্ষবিন্দু৷ বেড়া দিয়ে ঘেরা কোনও স্থান নেই, মালিকানাস্বত্বের কোনও চিহ্ন নেই, কৃষিকাজের কোনও প্রমাণ নেই। সমস্ত ধরণি জুড়ে শুধু একটি বাগান, আর কিছুই নেই।</p>
+<p>সেই অপরূপ সন্ধ্যায় এই দৃশ্য দেখে আমার বিজ্ঞানী বিচারবুদ্ধি-বিবেচনা যে সিদ্ধান্তে এল, তা সংক্ষেপে এই–</p>
+<p>ক্ষীয়মাণ মানবজাতির মাঝে এসে দাঁড়িয়েছি আমি। চাহিদা থেকে সৃষ্টি শক্তির সুনিরাপত্তা জন্ম দেয় দুর্বলতার। যে সামাজিক ব্যবস্থাকে সুষ্ঠু করার প্রচেষ্টায় আমরা সর্বশক্তি নিয়োগ করছি, তার কুফল সেদিন উপলব্ধি করলাম। অযুত বছরের চেষ্টায় মানুষ জয় করেছে দুর্জয় প্রকৃতিকে, সমাজের শত সমস্যাকে। আর তাই অখণ্ড নিরাপত্তার মাঝে থেকে ধীরে ধীরে অনন্ত সুপ্তির কোলে ঢলে পড়েছে তাদের শক্তি, মেধা, উদ্যম।</p>
+<p>চাষবাস, বাগান তৈরি আর পশুপালন তারা সুষ্ঠুভাবে নিয়ন্ত্রণ করেছে। মানবজাতির প্রয়োজনে যেটুকু শুধু প্রয়োজন, তা ছাড়া বাদবাকি অদৃশ্য হয়ে গেছে ধরণির বুক থেকে। বাতাস দেখলাম মশকশূন্য, ছত্রাক বা আগাছার চিহ্ন কোথাও দেখলাম না। যেদিকে তাকাই শুধু সুন্দর ফুল, মিষ্টি আর ঝলমলে প্রজাপতি। ব্যাধি লোপ পেয়েছে চিরতরে। যে কদিন ছিলাম সেখানে, কোনও সংক্রামক রোগের সন্ধান পাইনি আমি। পচন আর ক্ষয় আর উদ্ৰব্যস্ত করে না মানুষকে।</p>
+<p>সামাজিক ব্যবস্থার চরম উৎকর্ষ দেখলাম। জমকালো বাড়িতে ঝলমলে পোশাক-পরা ফটফটে নির্ঝঞ্ঝাট জীবনযাপন করছে, দৈনিক পরিশ্রমের কোনও বালাই নেই। সামাজিক বা অর্থনৈতিক কোনও সংগ্রামের চিহ্ন দেখলাম না। ব্যাবসা, বাণিজ্য, দোকানপাট, বিজ্ঞাপন ইত্যাদি কিছুই আর নেই। সে এক সামাজিক স্বর্গ।</p>
+<p>প্রকৃতি বিজয় যে সম্পূর্ণ হয়েছে, আমার সে বিশ্বাস মানুষদের দৈহিক খবৰ্তা, তাদের ধীশক্তির অভাব আর বড় বড় প্রচুর ধ্বংসস্তূপ দেখে বদ্ধমূল হল। সংগ্রামের পরেই আসে প্রশান্তি। শক্তি, উদ্যম, মেধায় বলীয়ান হয়ে উঠেছিল মানবকুল, তাই তাদের অফুরন্ত প্রাণশক্তি নিয়োগ করলে জীবনধারণকে সহজ করে তোলার প্রচেষ্টায়। সফল হল তারা, কিন্তু তারপরেই শুরু হল তার প্রতিক্রিয়া।</p>
+<p>অনাবিল স্বাচ্ছন্দ্য আর নিশ্চিন্ত নিরাপত্তা মানেই মানুষের চিরন্তন অশান্ত উদ্যমের পরিসমাপ্তি; অর্থাৎ যা আমাদের কাছে শক্তি, তা-ই এসে দাঁড়ায় দুর্বলতায়। লক্ষ লক্ষ বছর ধরে যুদ্ধবিগ্রহের ভয়াবহতা এদের স্পর্শ করেনি। বুনো জন্তু বা রোগের প্রকোপ যে মানুষের মহাশত্রু, তা-ও তারা জানেনি। দৈহিক পরিশ্রমের কোনও প্রয়োজন হয়নি। যে বিশাল প্রাসাদগুলো দেখলাম, সেগুলো পূর্ববর্তী সংগ্রামশীল মানবজাতি গঠন করে সূচনা করে গেছে অসীম শান্তিভরা শেষ পরিচ্ছেদের। তাই নিরাপত্তার সোনার খাঁচায় মৃত্যু হল উদ্যম শক্তির। এল সূক্ষ্ম শিল্পচর্চা।</p>
+<p>কিন্তু তা-ও লোপ পাবে ধীরে ধীরে। খুদে মানুষদের মাঝে সেই চিহ্নই দেখলাম আমি। সূর্যের আলোয় নাচ, গান আর ফুলপ্রীতি ছাড়া নতুন কোনও শিল্পবোধই নেই তাদের মধ্যে। এ-ও একদিন ক্ষীণ হয়ে হারিয়ে যাবে পরিতৃপ্ত নিষ্ক্রিয়তার মাঝে। বেদনা আর চাহিদার জাঁতাকল-নিষ্পেষ থেকেই শিল্পচেতনার প্রকাশ। কাজেই যেখানে নেই ক্লেশ, অভাব, দুঃখ–সেখানে শিল্পের মৃত্যু তো স্বাভাবিক!</p>
+<p>জনসংখ্যা বৃদ্ধিও রুদ্ধ হয়েছে। কিন্তু বিপরীত প্রতিক্রিয়া-সূত্র অনুসারে সংখ্যা আরও কমে আসছে। এত ধ্বংসস্তূপই তার প্রমাণ।</p>
+<p>ঘনিয়ে-আসা আঁধারের মাঝে বসে জগতের এই আপাত অবিশ্বাস্য শেষ পরিণতির কথাই চিন্তা করলাম সেদিন।…</p>
+</div>
+<br/>
+<p>ইপাব নির্মাণে ⏩ <a href="https://t.me/bongboi" rel="noopener noreferrer" target="_blank">@bongboi</a>।</p>
+<br/>
+<h2>০৭. শঙ্কা</h2>
+<hr/>
+<br/>
+
+<div>
+<p><strong>৭। শঙ্কা</strong></p>
+<p> মানুষের এই চরম বিজয়গৌরবের কথা ভাবছি, এমন সময়ে উত্তর-পূর্বের আকাশ রুপোর ধারায় ধুইয়ে দিয়ে উঠে এল দ্বাদশীর হলদেটে চাঁদ। নিচে খুদে মানুষের চলাফেরা আর দেখতে পেলাম না। মাথার ওপর দিয়ে নিঃশব্দে উড়ে গেল পেঁচাজাতীয় একটা নিশাচর পাখি। বেশ কনকনে ঠান্ডা অনুভব করলাম। এবার কোথাও ঘুমের আয়োজন করা দরকার। যে বাড়িটা আমি চিনি, সেটার খোঁজে তাকালাম নিচের দিকে। তখনই চাঁদের আলোয় ব্রোঞ্জের বেদির ওপর বসা সাদা স্ফিংক্স মূর্তিটা চোখে পড়ল। সিলভার বাৰ্চটাও নজর এড়াল না। ফ্যাকাশে আলোয় ছায়াকালো রডোডেনড্রনকুঞ্জও দেখতে পেলাম। আর দেখলাম ছোট লনটা। কিন্তু এইটাই কি সেই লন? না, কখনওই নয়।</p>
+<p>কিন্তু সত্যিই এইটাই সেই লন। কেননা, স্ফিংক্স-এর কুষ্ঠরোগীর মতো সাদা মুখটা সেইদিকেই ফেরানো। আর সে বিষয়ে কোনও সন্দেহ যখন আমার রইল না, তখন আমার যে কী মনের অবস্থা হল, তা আপনারা কল্পনা করতে পারবেন না। কেননা, লনের মধ্যে টাইম মেশিনের কোনও চিহ্নই দেখতে পেলাম না আমি!</p>
+<p>যেন চাবুকের ঘায়ে ছিটকে দাঁড়িয়ে উঠলাম। টাইম মেশিন নেই, তার মানে ঊনবিংশ শতাব্দীতে ফিরে যাওয়ার পথ হল বন্ধ। পরের মুহূর্তে ভয়ে বাহ্যজ্ঞানশূন্য হয়ে পাগলের মতো ছুটে চললাম নিচের দিকে। একবার দারুণ আছাড় খেয়ে গভীরভাবে কেটে গেল মাথার কাছে, কিন্তু ভ্রূক্ষেপ না করে উঠে দাঁড়িয়েই আবার ছুটলাম ঊর্ধ্বশ্বাসে। গাল আর চিবুকের ওপর দিয়ে রক্তের উষ্ণধারা গড়িয়ে পড়তে লাগল, কিন্তু আমার খেয়াল নেই। প্রতিমুহূর্তে মনকে আশ্বাস দিলাম, ওরা হয়তো মেশিনটাকে চোখের সামনে থেকে ঝোপঝাড়ে সরিয়ে রেখেছে। কিন্তু তবুও ভয়ে হাত-পা ঠান্ডা হয়ে এল আমার। ঝড়ের বেগে ছুটতে ছুটতে এই বয়সেও দুমাইল পথ দশ মিনিটের মধ্যে পেরিয়ে এসে পৌঁছালাম লনে। বারকয়েক সজোরে চিৎকার করে ডাকলাম ওদের, কিন্তু কারও সাড়াশব্দ পেলাম না।</p>
+<p>লনের আশপাশে টাইম মেশিনের কোনও চিহ্ন দেখতে পেলাম না। এদিকে-সেদিকে পাগলের মতো ছুটতে লাগলাম কিন্তু বৃথা। জাদুমন্ত্রবলে অত বড় মেশিনটা যেন একেবারে উবে গেছে। এই সময়ে হঠাৎ ওপরে চোখ পড়তে দাঁড়িয়ে গেলাম আমি। আমার সামনেই ব্রোঞ্জ বেদির ওপর মাথা তুলে বসে ছিল স্ফিংক্স–চাঁদের ধবধবে আলোয় চিকমিক করছিল তার সাদা ফ্যাকাশে মুখ। মনে হল, আমার দুরবস্থা দেখে যেন শ্লেষ বঙ্কিম হাসি ফুঠেছে তার ঠোঁটের কোণে।</p>
+<p>খুদে মানুষরা মেশিনটা লুকিয়ে রেখেছে কোথাও, এই বলে হয়তো মনকে সান্ত্বনা দিতে পারতাম। কিন্তু তা-ও তো সম্ভব নয়। আমি তো দেখেছি তাদের দৈহিক আর মানসিক শক্তির স্বল্পতা। আর সেই কারণেই আমি আরও ভয় পেলাম। বুঝলাম, মেশিনটাকে সরিয়েছে এমন এক শক্তি, যার সন্দেহ একেবারেই আসেনি আমার মাথায়। অবশ্য একদিক দিয়ে আমি নিশ্চিন্ত ছিলাম। মেশিনটা যে-ই চুরি করুক-না কেন, চালাবার কোনও উপায় তার নেই। কেননা, স্টার্ট দেওয়ার লিভারটা আগে থেকেই রেখে দিয়েছিলাম আমার পকেটে।</p>
+<p>কীরকম যেন উন্মাদ হয়ে গেলাম আমি। মনে আছে, স্ফিংক্স-এর আশপাশে চাঁদের ফুটফুটে আলোয় ঝোপের মধ্যে এলোমেলো ছুটোছুটি শুরু করেছিলাম; একবার হরিণজাতীয় একটা সাদা জানোয়ার চমকে গিয়ে ছুট দিলে চোখের আড়ালে। মনে আছে, গভীর রাতে ঝোপেঝাড়ে এলোপাথাড়ি ঘুসি চালিয়ে কেটেকুটে রক্তাক্ত করে ফেলেছিলাম আঙুলের গাঁটগুলো। তারপর রাগে-ভয়ে পাগলের মতো ছুটে গিয়েছিলাম বিরাট পাষাণ প্রাচীরের মধ্যে। অন্ধকার, নিস্তব্ধ জনশূন্য হলঘরটায় ছুটতে গিয়ে একটা ম্যালেকাইট টেবিলে হোঁচট খাওয়ায় ভাঙতে ভাঙতে বেঁচে গিয়েছিল আমার পায়ের হাড়। দেশলাইয়ের কাঠি জ্বালিয়ে ধূলিধূসর পরদাগুলো পেরিয়ে গিয়েছিলাম ওদিকে।</p>
+<p>ওপাশে গিয়ে দেখলাম আর-একটা হলঘর। খুব নরম গদি-মোড়া বিছানায় প্রায় বিশজন খুদে মানুষ শুয়ে ছিল। হঠাৎ মিশমিশে অন্ধকারের মধ্যে থেকে বিড়বিড় করে বকতে বকতে জ্বলন্ত কাঠি হাতে আমাকে বেরিয়ে আসতে দেখে, বিশেষ করে আমার শ্রীহীন উশকোখুশকো চেহারা দেখে নিশ্চয় অবাক হয়ে গিয়েছিল ওরা। তা ছাড়া দেশলাই কী জিনিস তা তো ওরা ভুলেই গেছে। দুহাতে ওদের ঝাঁকানি দিয়ে উঠলাম আমি, আমার টাইম মেশিন কোথায়? কোথায় রেখেছ আমার মেশিন? ওরা আমার এই অদ্ভুত মূর্তি আর আচরণ দেখে যেন বেশ মজা পেল। অনেকে হেসেই উঠল। কেউ কেউ অবশ্য একটু ভয় ভয় চোখে তাকিয়ে রইল। আমার চারপাশে ওদের ওইভাবে গোল হয়ে দাঁড়িয়ে থাকতে দেখে হঠাৎ ভাবলাম, এ কী বোকার মতো কাজ করছি আমি? দিনের আলোতেই তো দেখেছি, ভয় কী জিনিস তা এরা ভুলে গেছে। আমার এই দুরবস্থায় জোর করে ওদের ভয় পাইয়ে দেওয়া তো চরম বোকামো!</p>
+<p>ফস করে কাঠিটা নিবিয়ে দিয়ে একজনকে ধাক্কা দিয়ে ফেলে হাতড়াতে হাতড়াতে আবার বেরিয়ে এলাম চাঁদের আলোয় ধোয়া আকাশের নিচে। শুনতে পেলাম, আতঙ্কে চিৎকার করে ওরা এলোমেলোভাবে ছুটোছুটি করছে। চাঁদ ক্রমশ উঠতে লাগল ওপরে, কিন্তু এরপর কী যে আমি করেছি তা আর সঠিক মনে নেই। উন্মাদের মতো কেঁদে চেঁচিয়ে চাঁদের আলোয় উজ্জ্বল ধ্বংসস্তূপ আর সবুজ প্রকৃতির মাঝে কতক্ষণ দাপাদাপি করে বেড়িয়েছি, তা জানি না। তারপর কখন জানি নিরাশায় আর পরিশ্রমে অবসন্ন হয়ে স্ফিংক্স এর পাশে ঘাসের ওপর শুয়ে পড়েছিলাম, ঘুমের ঘোরে ঢলে পড়ে ভুলে গিয়েছিলাম আমার সব দুঃখ।</p>
+<p>ঘুম যখন ভাঙল তখন ভোর হয়েছে। এক জোড়া চড়ই আমার হাতের নাগালের মধ্যেই কিচিরমিচির শব্দে নেচে নেচে খেলা করছে।</p>
+<p>ঘুমিয়ে ওঠার ফলে বেশ ঝরঝরে হয়ে উঠেছিল শরীর। মনের সে অবসাদও আর ছিল না। প্রথমেই টাইম মেশিনের চিন্তা মনে এল। উঠে বসে ভাবতে লাগলাম কী করা যায়। ফুটফুটে কয়েকজন খুদে মানুষ ঝরনার মতো মিষ্টি হাসিতে উজ্জ্বল হয়ে উঠে ছুটোছুটি করছিল। ওদের ডেকে আকারে ইঙ্গিতে অনেকভাবে জিজ্ঞেস করলাম মেশিনটার খবর। কিন্তু হদিশ দেওয়া তো দূরের কথা, কেউ কেউ ফ্যালফ্যাল নিরেট আহাম্মকের মতো তাকিয়ে রইল, আর কেউবা হাসতে হাসতে চলে গেল অন্যদিকে। এক-একবার অদম্য ইচ্ছে হল, দুহাতে চড়চাপড় মেরে শিক্ষা দিয়ে দিই পুঁচকে উজবুকগুলোকে। কিন্তু অনেক কষ্টে সামলে নিলাম নিজেকে।</p>
+<p>কী আর করা যায় ভাবতে ভাবতে লনের মাটি পরীক্ষা করতে গিয়েই আনন্দে আমার মন নেচে উঠল। ঘাসজমির ওপর মেশিনটা টেনেহিঁচড়ে নিয়ে যাওয়ার স্পষ্ট চিহ্ন দেখলাম। আর দেখলাম, ছোট ছোট একরকম পদচিহ্ন, অনেকটা স্লথের পায়ের দাগের মতো। দাগগুলো শেষ হয়েছে ব্রোঞ্জের বেদীর সামনে। খুঁটিয়ে দেখতে গিয়ে আবিষ্কার করলাম, বেদীটা নিরেট নয় মোটেই, অনেকগুলো পর, ব্রোঞ্জের পাত জুড়ে তা তৈরি। জোড়ের মুখে বিচিত্র কারুকাজ করা। পাতগুলোর ওপরে অবশ্য কোনও চাবীর গর্ত বা হ্যাণ্ডেল দেখতে পেলাম না, কিন্তু তবুও মনে হল ওগুলো নিশ্চয় খোলা যায় ভেতর থেকে। আমার টাইম মেশিন যে ওই বেদীর মধ্যেই সেঁধিয়েছে, সে বিষয়ে আর কোনও সন্দেহ রইল না আমার। কিন্তু কী করে যে ওখানে গেল, সে সমস্যার সমাধান করতে পারলাম না।</p>
+<p>কমলা রঙের পোশাক-পরা জনাদুয়েক মানুষ ঝোপের মাঝদিয়ে এগিয়ে আসছিল, হাসিমুখে তাদের ডাকলাম আমি। ওরা আসতে ব্রোঞ্জের বেদীটা ইঙ্গিতে খুলে ফেলতে অনুরোধ করলাম। খুব সাধারণ অনুরোধ, ওরা তা বুঝতেও পারল। কিন্তু তারপরেই তাদের অদ্ভুত আচরণ দেখে বাস্তবিকই হতভম্ব হয়ে গেলাম। যেন নিদারুণ অপমানিত হয়েছে, এমনি ভাব চোখেমুখে ফুটিয়ে তুলে সরে গেল ওরা। কিছুই বুঝলাম না। যাই হোক, আর একজন ফুটফুটে মানুষকে পাকড়ালাম। কিন্তু তার মুখেও সেই ভাবতরঙ্গ দেখে নিজেরই যেন লজ্জা হল। কিন্তু সে পেছন ফিরতেই আমার মেজাজ গেল বিগড়ে। যেন তেন-প্রকারেণ ও মেশিন আমার চাই-ই। তিন লাফে গিয়ে খুদে মানুষটার জামা ধরে হিড়হিড় করে টেনে নিয়ে এলাম বেদীর কাছে। কিন্তু চোখেমুখে তার অপরিসীম আতঙ্কের ছবি দেখে মনটা আবার নরম হয়ে পড়ল–ছেড়ে দিলাম তাকে।</p>
+<p>কিন্তু এত সহজে দমে যাবার পাত্র আমি নই। দমাদম শব্দে ব্রোঞ্জের পাতের ওপর ঘুষি মারতে শুরু করলাম। মনে হল, একটা কিছু নড়াচড়ার শব্দ শুনলাম ভেতরে। কে যেন খুক। খুক করে হেসে উঠল। আমার ভুলও হতে পারে। নদীর ধার থেকে বড়সড় আকারের একটা পাথর তুলে এনে সমস্ত শক্তি দিয়ে মারতে লাগলাম সামনের পাতটার ওপর, কিছু কিছু অলংকরণ নষ্ট হয়ে পাতটা খানিকটা তুবড়ে গেল, কিছু ব্রোঞ্জের গুড়োও ঝরে পড়ল। কিন্তু তবুও অটল অনড় রইল সে দুর্ভেদ্য বেদী। দমদম শব্দ শুনে ফুটফুটে মানুষগুলো দূরে দূরে ভীড় করে দাঁড়িয়েছিল, চোখে তাদের অদ্ভুত দৃষ্টি। শেষকালে ক্লান্ত অবসন্ন হয়ে বসে পড়লাম আমি।</p>
+<p>কিন্তু একনাগাড়ে কাঁহাতক আর বেদীটাকে চোখে চোখে রাখা যায়। ঘণ্টার পর ঘণ্টা কাজে ডুবে থাকা খুবই সহজ আমার পক্ষে। কিন্তু নির্মা হয়ে বসে থাকার মতো কষ্টকর আর কিছু নেই। তাই এক সময়ে উঠে পড়ে এলোমেলোভাবে হাঁটতে শুরু করলাম। মনে মনে বললাম, ধৈর্য ধর। মেশিন যে-ই নিক না কেন, বেদীর ওপর দারুণ শব্দ শুনেই সে বুঝেছে, মেশিন নেওয়ায় তুমি খুশী হওনি। কাজেই হয়তো একদিন আপনি ফেরত দিয়ে যাবে। ইতিমধ্যে জড়ভরৎ হয়ে বসে না থেকে দেখে নাও, প্রবীণ জগতের সবকিছু দুচোখ ভরে দেখে নাও।</p>
+<p>তাই দেখতে বেরোলাম আমি। বিজ্ঞানী সুলভ দৃষ্টিভঙ্গী নিয়ে সবকিছুই তন্ন তন্ন করে দেখলাম আর বিচার করলাম। তারপর একসময়ে ঢুকলাম বড় প্রাসাদটায়। লক্ষ্য করলাম খুদে মানুষগুলো যেন আমাকে এড়িয়ে থাকতে চায়। বোধ হয় ব্রোঞ্জের বেদী তুবড়ে দেওয়ার প্রতিক্রিয়া দেখে আমিও বিশেষ মেলামেশা করার চেষ্টা করলাম না। দিন দুয়েকের মধ্যে অবশ্য সবকিছু আবার স্বাভাবিক হয়ে উঠেছিল। আমিও ভাষা শেখার চেষ্টায় খুব ব্যস্ত হয়ে পড়লাম। ভাষা শেখার পেছনে আমার একটা বিশেষ উদ্দেশ্য ছিল। তা হল ব্রোঞ্জের বেদীর মধ্যে টাইম মেশিন সেঁধেনোর ব্যাপারটা তাদের মগজে, তাদেরই ভাষার সাহায্যে ঢোকানোর চেষ্টা। মেশিন উদ্ধার আমাকে করতেই হবে। সেজন্যে কোনও কিছুই করতে কসুর করলাম না আমি।</p>
+</div>
+<br/>
+<p>ইপাব নির্মাণে ⏩ <a href="https://t.me/bongboi" rel="noopener noreferrer" target="_blank">@bongboi</a>।</p>
+<br/>
+<h2>০৮. ব্যাখ্যা</h2>
+<hr/>
+<br/>
+
+<div>
+<p><strong>৮। ব্যাখ্যা</strong></p>
+<p>যতদূর চোখ যায়, দেখি টেম্স উপত্যকার মতোই অকৃপণ প্রাচুর্যে ভরে উঠেছে ধরিত্রীর বুক। প্রতিটি পাহাড়ের ওপর থেকে দেখলাম সেই একই দৃশ্য–প্রাসাদের পর প্রাসাদ, বিচিত্র তাদের গঠন কৌশল, জমকালো তাদের আকার। এক একটা বাড়ি এক এক রকম সৌন্দর্যে ঝলমল করছে। চারিদিক সবুজে সবুজ, এসেছে চিরবসন্ত, এনেছে শধ কড়ি, ফল আর ফল। এখানে সেখানে রুপোর মতো করুক করছে জলের রেখা। আর দূরে একটু একটু করে উঁচু হয়ে গিয়ে নীল পাহাড়ের তরঙ্গে মিশেছে সবুজ জমি, তারপর মিলিয়ে গেছে নিমল নীলাকাশের বুকে। কতকগুলো অদ্ভুত জিনিস কিন্তু চোখে পড়ার মতো। গোলাকার কূয়োর মতো কতকগুলো গভীর গর্ত–বিস্তর ছড়িয়ে আছে এদিকে সেদিকে। পাহাড়ে ওঠার সময়ে একটা দেখেছিলাম পথের ধারে। সবগুলোই ব্রোঞ্জে বাঁধানো, বিচিত্র কারুকাজ করা। বৃষ্টির জলরোধের জন্যে, ওপরে গুমটির মতো গোলগম্বুজ। এই সব কুয়োয় পাশে বসে নীচের কুচকুচ্ অন্ধকারের মধ্যে তাকালে জলের রেখা মোটেই দেখা যায় না, দেশলাইয়ের আলোর প্রতিফলন ফিরে আসে না ওপরে। প্রত্যেকটির মধ্যে শুনেছি বিশেষ একটি শব্দ ধুম্ ধুম ধুম্। বিরাট ইঞ্জিন অবিরাম ঘরে চললে এ জাতীয় শব্দ শোনা যায়। দেশলাইয়ের শিখার কাঁপন থেকে যা আবিষ্কার করলাম, তা আরও আশ্চর্য। দেখলাম, বাতাসের স্রোত বিরামবিহীনভাবে নেমে যাচ্ছে কুয়োগুলির মধ্যে। কাগজের ছোট্ট একটা কুচি ছেড়ে দিলাম কুয়োর মুখে। ধীরে ধীরে ভাসতে ভাসতে নিচের দিকে না নেমে বাতাসের টানে সাঁৎ করে দৃষ্টির আড়ালে নেমে গেল কুচিটা।</p>
+<p>এরপর ঢালু জমির এখানে-সেখানে দাঁড়ানো ছুঁচোলো থামগুলোর সঙ্গে কুয়োগুলোর একটা সম্পর্ক বার করে ফেললাম। দারুণ গরমের দিনে রোদে জ্বলা বালুকা বেলার ওপর যেমন বাতাসের অস্থির কাঁপন দেখা যায়, ঠিক তেমনি থিরথিরে কাঁপন দেখেছিলাম প্রতিটি থামের শীর্ষবিন্দুতে। এ সব থেকেই মাটির তলায় বাতাস চলাচলের একটা বিরাট পরিকল্পনা আঁচ করেছিলাম। কিন্তু আমার ধারণা যে কিছুটা ভুল, তা বুঝলাম পরে।</p>
+<p>স্বীকার করতে লজ্জা নেই যে, ভবিষ্যতে যে লোকালয়ে আমি পৌঁছেছিলাম সেখানকার যানবাহনদি বা পয়ঃপ্রণালী ইত্যাদি সম্বন্ধে খুব বেশি আমি জানতে পারিনি। জানাও সম্ভব নয়। আগামী কাল আর ইউটোপিয়া সম্বন্ধে অনেক বর্ণনা আপনারা পড়েছেন। লক্ষ লক্ষ বছরের ব্যবধান এক লাফে টপকে এমন এক সোনার যুগে গিয়ে পড়লাম, যেখানকার অভিনবত্ব আমাকে হকচকিয়ে তুলল। কাজেই স্বয়ংচালিত ব্যবস্থার একটা অস্পষ্ট ধারণা ছাড়া সে যুগ সম্বন্ধে আর কিছু আপনাদের শোনাতে পারব বলে মনে হয় না আমার।</p>
+<p>যেমন ধরুন, অন্ত্যেষ্টিক্রিয়া সম্বন্ধে কিছুই জানতে পারিনি আমি। শ্মশান বা সমাধিস্তম্ভ জাতীয় কিছু চোখে পড়েনি। ভেবেছিলাম, দূরে কোথাও শ্মশান বা গোরস্থান নিশ্চয় আছে। কিন্তু সে ভাবনা ভাবতে গিয়ে আর একটা আশ্চর্য জিনিষ লক্ষ্য করে স্তম্ভিত হয়ে গেলাম। খুদে মানুষদের মধ্যে বয়স্ক বা অক্ষম একজনও ছিল না। সব মানুষের বয়সই প্রায় সমান, সমান তাদের স্বাস্থ্য আর সৌন্দর্য।</p>
+<p>স্বয়ংচালিত সভ্যতা আর ক্ষয়িষ্ণু মানবজাতি সম্বন্ধে আমার থিয়োরী যে বেশিদিন তেঁকেনি, তা আমি স্বীকার করছি। কিন্তু এ ছাড়া কী আর ভাবা যায় বলুন? যতগুলো বিরাট প্রাসাদে আমি গেছি, সবগুলোতেই শুধু খাবার আর শোবার জায়গা ছাড়া আর কিছু দেখিনি৷ কোনওরকম যন্ত্রপাতির চিহ্নও চোখে পড়েনি। কিন্তু খুদে মানুষদের ঝলমলে পোশাকগুলোও তো মাঝে মাঝে পালটানো দরকার। ওদের অদ্ভুত ডিজাইনের স্যাণ্ডেলগুলো এক রকম ধাতুর তৈরি, সেগুলোই বা আসে কোত্থেকে? অথচ সৃষ্টির স্পৃহা যে ওদের মধ্যে নেই, তা মুখ-চোখ দেখলেই বোঝা যায়। দোকান নেই, আমদানীরও চিহ্ন নেই। সারাদিন শুধু মহাখুশীতে খেলাধুলো করে, নদীতে স্নান করে, ফল খেয়ে, ফুল ছুঁড়ে, রাত্রে দল বেঁধে ঘুমোনোই তাদের কাজ। কিন্তু কীভাবে যে সব চলছে, তা বুঝিনি।</p>
+<p>আট লক্ষ দুহাজার সাতশো এক সালের জগতে পৌঁছানোর পর তৃতীয় দিন কিন্তু আমি একজন সাথী পেলাম। অল্প জলে কয়েকজন খুদে মানুষ স্নান করছিল। বসে বসে দেখছিলাম আমি। হঠাৎ ওদের একজন স্রোতের টানে ভেসে গেল একটু দূরে। টান অবশ্য বেশি ছিল না, কিন্তু তবুও কেউ সাহস করলে না বেচারাকে বাঁচাবার। এ থেকেই বুঝে নিন কি রকম দুর্বল তারা। চোখের সামনে চীৎকার করে কাঁদতে কাঁদতে একজন ডুবে যাচ্ছে দেখে আমি ঝাঁপিয়ে পড়লাম জলে। অল্প চেষ্টাতেই তাকে তুলে আনলাম তীরে। ফুটফুটে ছোট্ট একটি মেয়ে। হাত-পা একটু ঘষতেই চাঙা হয়ে উঠল সে৷ এর পর থেকেই কিন্তু আমার সঙ্গিনী হয়ে উঠল মেয়েটি। সব সময়ে ছায়ার মতো লেগে থাকত আমার পাছু পাছু। আমিও একজন সাথী পেয়ে খুশী হলাম। একটু চেষ্টা করে নামটাও শুনলাম– উইনা। আমার এই ছোট্ট সাথীটির সঙ্গ কিন্তু দিন সাতেকের বেশি পাইনি–সেকথা পরে বলছি!</p>
+<p>উইনার কাছ থেকেই আমি প্রথম জানলাম যে, ভয় এখনও এ জগৎ ছেড়ে যায়নি। দিনের আলোয় দিব্বি হেসে-খেলে বেড়াত সে, কিন্তু আলো ফুরোনোর সঙ্গে সঙ্গে উইনার সাহস-ও ফুরোত। দেখেছি অন্ধকারকে, ছায়াকে আর যত কিছু কালো বস্তুকে ভয় করত সে। শুধু সে-ই নয়। রাত হলেই খুদে মানুষরা বড় বাড়ির মধ্যে ঢুকে পড়ে দল বেঁধে ঘুমোতে৷ আলো না নিয়ে তখন তাদের মাঝে যাওয়া মানে নিদারুণ ভয় পাইয়ে দেওয়া। আমি তো অন্ধকার হয়ে যাওয়ার পর কাউকেই ঘরের বাইরে একলা ঘুরতে বা ঘরের ভেতরে একলা ঘুমোতে দেখিনি।</p>
+<p>সেদিন ভোরের দিকে হঠাৎ আমার ঘুম ভেঙে গেল। দুঃস্বপ্ন দেখছিলাম। মনে হচ্ছিল যেন ডুবে যাচ্ছি আমি আর সমুদ্রের কুৎসিত প্রাণীগুলো তাদের থলথলে ভিজে শুঁড় বোলাচ্ছে আমার মুখে। ধড়মড়িয়ে উঠে বসলাম, আর কেন জানি মনে হল ধূসর রঙের কোনও জানোয়ার এইমাত্র ঘর ছেড়ে বেরিয়ে গেল বাইরে। অদ্ভুত শিরশিরে সে অনুভূতি, বোঝানো যায় না কিছুতেই। আবার ঘুমোবার চেষ্টা করলাম, কিন্তু এত অস্বস্তি বোধ করতে লাগলাম যে, ঘুমোনো আর সম্ভব হল না। আলোছায়ার মায়াময় পরিবেশে রহস্যময় হয়ে উঠেছিল চারিদিক অন্ধকারের বুক চিরে আলোর নিশানা দেখা দিলেও তখনও সবকিছু যেন বর্ণহীন অপ্রাকৃত কুহেলী-ভরা। উঠে পড়লাম। বিরাট হলটা পেরিয়ে প্রাসাদের বাইরের উঠোনে দাঁড়ালাম। ইচ্ছে হল ব্রাহ্মমুহূর্তে দাঁড়িয়ে ভবিষ্যতের সূর্যোদয় দেখব।</p>
+<p>চাঁদ তখন অস্তের পথে। চাঁদের মরা আলো আর ভোরের স্বচ্ছ কিরণ মিশে গিয়ে ফ্যাকাশে আধো আলোর সৃষ্টি হয়েছিল। ঝোঁপঝাড়গুলো তখন কালির মতো কালো, জমি ধোঁয়াটে কুয়াশায় ঢাকা, আকাশ বিরং, বিষণ্ণ। ঠিক এমনি মুহূর্তে মনে হল যেন দূরে পাহাড়ের ওপর ভৌতিক মূর্তি দেখতে পেলাম আমি। ঢালু জমির ওপর চোখ বুলোতে গিয়ে বেশ কয়েকবার চোখে পড়ল অস্পষ্ট কতকগুলো চেহারা। বার দুয়েক মনে হল বাঁদরের মতো একটা সাদা জন্তু পাহাড়ের ওপর বেগে দৌড়ে গেল। আর একবার মনে হল তাদেরই কয়েকজন কালো মতো একটা দেহ বয়ে নিয়ে যাচ্ছে ধ্বংসস্তূপের দিকে। খুব দ্রুত নড়াচড়া করছিল ওরা। কিন্তু শেষ পর্যন্ত যে কোথায় গেল, তা আর দেখতে পেলাম না–যেন ঝোপঝাড়ের সঙ্গে মিলিয়ে গেল সবাই। তখনও চারিদিক অস্পষ্ট। ঠান্ডায় হোক বা যে কারণেই হোক, গা-টা বেশ শিরশির করে উঠল। দুই চোখ মুছে ভালো করে তাকালাম আমি।</p>
+<p>পূর্বদিক ফরশা হয়ে উঠল আস্তে আস্তে। চারিদিক বেশ পরিষ্কার হয়ে উঠতে তীক্ষ্ণ দৃষ্টি মেলে তাকালাম পাহাড়ের দিকে। সাদা মূর্তির কোনও চিহ্নই দেখলাম না। অন্ধকারের প্রাণী ওরা, তাই যেন আধধা আলোর মধ্যে মিলিয়ে গেল অপছায়ার মতো। আমার কিন্তু মনে হল টাইম-মেশিন খুঁজতে গিয়ে যে সাদা রঙের জানোয়ারটাকে আমি চমকে দিয়েছিলাম, তার সঙ্গে এদের নিশ্চয় কোনও সম্পর্ক আছে।</p>
+<p>স্বর্ণযুগের আবহাওয়া যে এ যুগের চাইতে কত বেশি গরম তা আমি আগেই বলেছি। এর কারণ ঠিক করে বলা কঠিন। সুর্য আরও বেশি গরম হওয়ার জন্যেও হতে পারে। অথবা সূর্যের আরও কাছে পৃথিবীর সরে যাওয়ার ফলেও হতে পারে। কিন্তু কনিষ্ঠ ডারউইনের ভবিষ্যদ্বাণী সম্বন্ধে যারা ওয়াকিবহাল নয়, তারা ভুলে যায় যে সূর্য থেকে যেসব গ্রহের জন্ম, তাদের প্রত্যেকেই একে একে আবার ফিরে যাবে সূর্যে। আর যতবার ঘটবে এ ঘটনা, ততবারই নতুন তেজে দপ করে জ্বলে উঠবে সূর্য। হয়তো কাছাকাছি থাকা কোনও গ্রহ এই ভাবেই আশ্রয় নিয়েছে সূর্যের আগুন-জঠরে। কারণ যাই হোক না কেন, সূর্যের কিরণ যে এখনকার চাইতে অনেক বেশি জ্বালা ধরানো, সে বিষয়ে আর কোনও সন্দেহ নেই।</p>
+<p>সেদিন বোধহয় চতুর্থ দিন। সকালবেলা চারদিক বেশ গরম হয়ে উঠেছে। বড় বাড়িটির কাছে বিশাল ভগ্নস্তূপটার আনাচে-কানাচে গরম আর রোদ্দুরের হাত থেকে রেহাই পাওয়ার জন্যে একটা আশ্রয় খুঁজছিলাম। এই পটাতেই তখন আমি খাওয়া-দাওয়া সেরে ঘুমোতাম। এমন সময়ে অদ্ভুত একটা ব্যাপার ঘটল। ভাঙা চোরা ইমারতের একটা স্কুপে ওঠার পর সঙ্কীর্ণ একটা গ্যালারি দেখতে পেলাম, পাশের জানলাগুলো ধ্বসে পড়া পাথরের চাঁইয়ে বন্ধ হয়ে গেছে। বাইয়ের চোখ ধাঁধানো আলো থেকে হঠাৎ ভেতরে তাকিয়ে নিকষ অন্ধকার ছাড়া আর কিছুই দেখতে পেলাম না। হাতড়াতে হাতড়াতে ঢুকলাম ভেতরে, চোখের সামনে তখনও লাল আঁকাবাঁকা রেখা ছাড়া আর কিছু দেখছি না। আচম্বিতে মন্ত্রমুগ্ধের মতো থমকে দাঁড়িয়ে গেলাম আমি। অন্ধকারের ভেতরে থেকে এক জোড়া চোখ তাকিয়ে আছে আমার দিকে–বাইরের দিনের আলোর প্রতিফলনে জ্বলজ্বল করছে সে চোখ।</p>
+<p>আমি বর্তমান যুগের মানুষ, তাই প্রথমেই বুনো জানোয়ারের সম্ভাবনা মনে এল। শক্ত করে মুঠি পাকিয়ে একদৃষ্টে তাকিয়ে রইলাম সামনের জ্বলন্ত গোলাকার চোখ দুটোর দিকে। পিছু ফেরার মতো সাহসও ছিল না আমার। কিন্তু তারপরেই ভাবলাম, এখানকার মানুষ তো বেশ নিশ্চিন্ত নিরাপত্তা মধ্যে বাস করে–তবে…! হঠাৎ মনে পড়ল অন্ধকারকে কী রকম যমের মতো ভয় করে এরা। সাহস একটু ফিরে এসেছিল, তাই সামনের দিকে। এক পা এগিয়ে কথা বললাম আমি। ভয়ের চোটে গলার স্বর অবশ্য রীতিমতো কর্কশ আর বেসুরো শোনাল। সামনে হাত বাড়াতে একটা নরম জিনিসের ছোঁয়া পেলাম। তৎক্ষণাৎ চোখ দুটো সরে গেল পাশের দিকে, আর সাঁৎ করে সাদা মতো একটা কিছু পাশ দিয়ে ছুটে বেরিয়ে গেল পেছন দিকে! বলতে লজ্জা নেই, সঙ্গে সঙ্গে হৃৎত্যন্ত্রটা ধড়াস করে একটা ডিগবাজী খেয়ে এসে ঠেকল গলার কাছে–চট করে পেছন ফিরে দেখলাম আমার পেছনে রোদ-ঝলমলে পথের ওপর দিয়ে মাথা নিচু করে অদ্ভুত ভঙ্গিতে ছুটে যাচ্ছে কিম্ভুতকিমাকার মর্কটের মতো একটা জানোয়ার। গ্রানাইটের একটা চাঁইতে ধাক্কা খেয়ে একদিকে ছিটকে পড়ল জানোয়ারটা, পরমুহূর্তেই উঠে পড়ে মিলিয়ে গেল পাশের ভাঙা পাথরের স্তূপের অন্ধকারে।</p>
+<p>জানোয়ারটাকে অবশ্য খুব খুঁটিয়ে দেখার সময় পাইনি, কিন্তু যতদূর দেখেছি গায়ের রং তার ম্যাড়মেড়ে সাদা, ধূসর-লালাভ বড় বড় অদ্ভুত আকারের দুটো চোখ, আর মাথায় পিঠে শণের মতো চুলের রাশি। এত দ্রুতবেগে অন্ধকারের মাঝে সে সেঁধিয়ে গেল যে এর বেশি কিছু দেখার সুযোগ পেলাম না। আদতে সে চার হাত-পায়ে ভর দিয়ে দৌড়োচ্ছিল, কি সামনে দুহাতে ভর দিয়ে নিচু হয়েছিল, তা-ও দেখিনি। মুহূর্তের জন্য স্তম্ভিত হয়ে দাঁড়িয়ে থেকে ভাঙা স্যুপটার মধ্যে ঢুকে পড়লাম আমি। প্রথমে কিছুই দেখলাম না। বেশ কিছুক্ষণ হাতড়াবার পর দেখি হুবহু সেই রকম কুয়োর মতো একটা গর্ত, আড়াআড়িভাবে ওপরটা ঢেকে রেখেছে একটা ভাঙা থাম। চকিতে ভাবলাম বিদঘুটে জানোয়ারটা কি তাহলে এর মধ্যেই লুকিয়েছে? ফস করে জ্বালোম একটা কাঠি–নিচের দিকে তাকিয়ে দেখি আমার ওপর বড় বড় জ্বলন্ত চোখের অপলক দৃষ্টি রেখে দ্রুতবেগে নিচের দিকে নেমে যাচ্ছে ছোটখাট সাদা একটা প্রাণী। ঠিক যেন একটা মানুষ মাকড়শা! কি বেয়ে জন্তুটা অত তাড়াতাড়ি নামছে দেখতে গিয়ে সেই প্রথম দেখলাম ধাতুর তৈরি হাত-পা রাখার একসারি খোঁটা মইয়ের মতো সিধে নেমে গেছে নিচে। তারপরেই কাঠিটা আঙুল পর্যন্ত পুড়ে নিবে গেল, তাড়াতাড়ি জ্বালালাম আর একটি কাঠি। কিন্তু খুদে দানোটা ততক্ষণে অদৃশ্য হয়ে গেছে নিচের অন্ধকারে।</p>
+<p>কুয়োর অন্ধকারে তাকিয়ে কতক্ষণ যে সেখানে বসেছিলাম জানি না; যাকে এইমাত্র দেখলাম, সে যে একজাতীয় মানুষ, এ ধারণায় কিছুতেই আমার মন সায় দিতে চাইল না। কিন্তু বেশ কিছুক্ষণ ভাবার পর সত্যের মুখ দেখলাম। বুঝলাম, মানুষ আর একটিমাত্র প্রজাতি (species) নয়–দু শ্রেণীর প্রাণীতে ভাগ হয়ে গেছে তারা। ঊর্ধ্ব জগতের ফুটফুটে মানুষরাই আমাদের একমাত্র বংশধর নয়; চোখের সামনে দিয়ে বিদ্যুতের মতো এই যে ম্যাটমেটে সাদা কুৎসিত নিশাচর জানোয়ারটা পালিয়ে গেল এরাও আমাদের রক্ত বহন করছে তাদের শিরায়।</p>
+<p>গোলগম্বুজের গায়ে চারকোণা থামের ওপর বাতাসের থির থির কাঁপন, কুয়ো আর সুষ্ঠু বাতাস চলাচলের পদ্ধতির চিন্তা মনে এল আমার। এই বিরাট আয়োজনের উদ্ভব কোথায়, তা যেন একটু একটু করে দানা বেঁধে উঠতে লাগল আমার মনে। সামঞ্জস্যময়। এই অপূর্ব শৃঙ্খলার সঙ্গে লিমারগুলোর কী সম্পর্ক তারও কিছুটা আঁচ পেলাম, কিন্তু বুঝলাম না, কুয়োর নিচে কী লুকানো আছে। বুঝলাম না, কেন অহরহ যন্ত্রপাতি চলার শব্দ ভেসে আসে ওপরে। ভাবছি একবার নিচে নেমে নিজের চোখে দেখে আসতে হবে সেখানকার রহস্য, এমন সময়ে দুজন খুদে মানুষকে দেখলাম বাইরের আলোয়। ওরা কিন্তু কুয়োর পাড়ে ওই ভাবে আমাকে বসে থাকতে দেখে বেশ ঘাবড়ে গেল। ওদের ডেকে এনে কুয়োর নিচে আঙুল দেখিয়ে ইঙ্গিতে প্রশ্ন করলাম। কিন্তু উত্তর দেওয়া দূরে থাক, কী রকম ভয় ভয় চোখে আমার দিকে তাকিয়ে দুজনেই ছুট লাগালে অন্য দিকে। বাধ্য হয়ে উঠতে হল আমাকে। ঠিক করলাম উইনাকে জিজ্ঞেস করতে হবে কুয়োর রহস্য।</p>
+<p>হাঁটতে হাঁটতে এই সব কথাই ভাবছিলাম। এদের অর্থনৈতিক সমস্যার যে প্রশ্নটি আমাকে রীতিমতো ভাবিয়ে তুলেছিল, তার সমাধানও পেলাম তখন।</p>
+<p>মানুষের এই প্রজাতি যে পাতালবাসী সে বিষয়ে আর দ্বিমত নেই। তিনটি বিশেষ অবস্থা দেখে বুঝলাম কদাচিৎ জমির ওপর আসার কারণ ওদের বহুকাল ধরে মাটির নিচে বসবাসের অভ্যাস। প্রথমেই দেখুন না কেন, যে সব জন্তু বেশিরভাগ সময় অন্ধকারে থাকে, তাদের গায়ের রং ফ্যাকাশে সাদা। কেনটাকি গুহার সাদা মাছের কথা তো জানেনই। তারপর ওদের বড় বড় চোখে আলোর প্রতিফলন যা শুধু নিশাচর প্রাণীদের চোখেই দেখা যায়। উদাহরণ–পেঁচা আর বেড়াল। সব শেষে দেখুন, সূর্যের আলোয় ওর চোখ ধাঁধিয়ে যাওয়া অবস্থাটা। আলো থাকা সত্ত্বেও মাথা নিচু করে ছুটে গিয়ে পাথরে ধাক্কা লাগা আর তার পরেই অন্ধকারের মাঝে আশ্রয় নেওয়ার প্রচেষ্টা–এ সব দেখলে শুধু একটি সিদ্ধান্তেই আসা যায়, তা হল ওদের রেটিনা অর্থাৎ চোখের পর্দা যেমন পাতলা, তেমনি দারুণ অনুভূতিশীল।</p>
+<p>আমার পায়ের নিচে পৃথিবীর বুক অসংখ্য সুড়ঙ্গে ঝাঁঝরা হয়ে রয়েছে। নতুন জাতির নিবাস এই সুড়ঙ্গেই। বাতাস চলাচলের জন্য কুয়ো আর থামের আধিক্য থেকেই অনুমান করা যায় কী সুদূরব্যাপী তাদের বসতি। আর তাই যদি হয়, তাহলে দিনের আলোয় মাটির ওপর যে জাতি বাস করছে, সুখ-সুবিধা চাহিদার জন্যে নিচের জগতের বাসিন্দারা যে তৎপর নয় তাই বা কে নিশ্চয় করে বলতে পারে? এই যুক্তিসঙ্গত চিন্তাধারা থেকে মানব জাতির দুভাগ হয়ে যাওয়া সম্বন্ধে যে থিয়োরী খাড়া ধরলাম, তা শুনুন।</p>
+<p>আমাদের বর্তমান যুগের সমস্যা থেকেই এগনো যাক। মালিক এবং শ্রমিক গোষ্ঠীর মধ্যে ক্রমশ বেড়ে যাওয়া সামাজিক ব্যবধানই রয়েছে সবকিছুর মূলে। ভাবছেন বুঝি আমার মাথা খারাপ হয়েছে। কিন্তু আজকের যুগেই কি সে যুগের পদধ্বনি শুনতে পাচ্ছেন না? লন্ডনে মাটির তলায় মেট্রোপলিটন রেলওয়ে, ইলেকট্রিক রেলওয়ে, সাবওয়ে, মাটির তলায় কারখানা, রেস্তোঁরা দিন দিন বেড়েই চলেছে। বাড়তে বাড়তে এমন অবস্থায় একদিন পৌঁচেছে, যেদিন মাটির ওপর সব অধিকার হারিয়ে মাটির নিচে আশ্রয় নিয়েছে। সমস্ত শিল্প। বছরের পর বছর ফ্যাক্টরীর সংখ্যা বেড়ে গেছে মাটির নিচে, শ্রমিকরা দিনরাতের বেশিরভাগ সময় কাটাতে বাধ্য হয়েছে পাতালের অন্ধকারে। শেষে একদিন…! এমন কি আজও ইস্ট এণ্ডের শ্রমিকরা ইচ্ছেমতো পৃথিবীর ওপর আসার সুযোগ পায় কি?</p>
+<p>গরীবদের কাছ থেকে দূরে সরে যাওয়ার প্রচেষ্টা সবযুগের ধনীদের মধ্যেই আছে। অর্থ, শিক্ষা, সামাজিক প্রতিষ্ঠা–এই সবকিছুই ধনীদের ঠেলে দিয়েছে পৃথিবীর সুখ-স্বাচ্ছন্দ্য আলো-হাওয়ার মধ্যে। আর তারাই গরীবদের বাধ্য করেছে মাটির নিচে থেকে কলকজা চালাতে। হাজার হাজার বছর ওই অবস্থায় থাকতে থাকতে অন্ধকারেই অভ্যস্ত হয়ে উঠেছে। তারা। যেমন অভ্যস্ত হয়েছে ঊধ্বজগতের মালিকরা আলো-হাওয়ার মধ্যে।</p>
+<p>প্রতিভার চরম শিখরে উঠে আদর্শ সমাজ ব্যবস্থার প্রচলন করতে পেরেছিল মানবজাতি। শিক্ষা, সভ্যতা, জ্ঞান, প্রতিভার সে সোনার যুগ কিন্তু একদিন ফুরলো। অত্যন্ত সুষ্ঠু নিরাপত্তার মধ্যে দীর্ঘকাল নিশ্চিন্ত অলস জীবনযাপন করার ফলে উধ্বজগতের বাসিন্দাদের ধীশক্তি, দৈহিক শক্তির সঙ্গে দেহের আকারও কমে আসতে লাগল আস্তে আস্তে। কিন্তু মর্লকরা (পাতালবাসীদের ওই নামেই ডাকত সবাই) মানুষদের বৈশিষ্ট্য কিছু কিছু তখনও বজায় রেখে দিলে নিজেদের মধ্যে। কিন্তু একটা প্রশ্নের সদুত্তর পেলাম না কিছুতেই। টাইম মেশিন কি মর্লকরা নিয়েছে? তাই যদি নেয়, আর ইলয়রা (ফুটফুটে মানুষদের নাম যে ইলয়, তা উইনার কাছে জেনেছিলাম পরে) যদি ওদের প্রভু হয়, তবে মেশিনটা কেন ওরা ফিরিয়ে আনছে না মর্শকদের কাছ থেকে? অন্ধকারকেই বা এত ভয় করে কেন ওরা? এ প্রশ্নের উত্তর তখন না পেলেও পরে পেয়েছিলাম।</p>
+</div>
+<br/>
+<p>ইপাব নির্মাণে ⏩ <a href="https://t.me/bongboi" rel="noopener noreferrer" target="_blank">@bongboi</a>।</p>
+<br/>
+<h2>০৯. মর্লক</h2>
+<hr/>
+<br/>
+
+<div>
+<p><strong>৯। মর্লক</strong></p>
+<p>দুদিন পর আমার নতুন-পাওয়া সূত্র ধরে কাজ শুরু করলাম। স্যাঁতসেঁতে জীবগুলো দেখলেই কেমন জানি গা শির শির করে উঠত আমার। মিউজিয়ামের স্পিরিটে-ডোবানো ম্যাটমেটে সাদা রঙের পোকামাকড়ের মতো দেখতে ওগুলোকে। চুলেও গা ঘিন ঘিন করে। আমার এই গা ঘিঘিনে ভাবটা খুব সম্ভব ইলয়দের কাছ থেকে পেয়েছিলাম। ফুটফুটে জাতটার ওপর আমার বেশ সহানুভূতি এসে গিয়েছিল। তা ছাড়া ওরা যে মর্লকদের মোটেই পছন্দ করে না, তা একটু একটু করে পরে বুঝেছিলাম।</p>
+<p>পরের রাতে ভালো করে ঘুমোতে পারলাম না। শরীরটাও ভালো যাচ্ছিল না। উদ্বেগ আর সংশয়ে বেশ দমে গিয়েছিলাম। বেজায় ভয় পেয়ে বার দুয়েক শিউরে উঠলাম, কী কারণে তা অবশ্য বুঝিনি। রাত হয়ে যেতে নিঃশব্দে হলঘরে এসে ঢুকলাম আমি। খুদে মানুষরা দল বেঁধে ঘুমাচ্ছিল টুকরো টুকরো চাঁদের আলোয় গা এলিয়ে দিয়ে। বুঝলাম, আর দিনকয়েকের মধ্যে অমাবস্যার পথে আরও গড়িয়ে যাবে চাঁদ, আঁধারও একটু একটু করে বাড়তে থাকবে। আর নিচের জগতের কৃমিকীটের মতো জঘন্য সাদা লিমারগুলো পালে পালে উঠে আসবে ওপরে। টাইম মেশিন উদ্ধার করতে হলে যে আগে নিচুতলার রহস্য সমাধান করা দরকার, তা আমি হাড়ে হাড়ে বুঝেছিলাম। কিন্তু একলা এগবার মতো দুঃসাহস আমার ছিল না। একজন সঙ্গীও যদি পেতাম, কাউকে ডরাতাম না। কুয়োর অন্ধকারে তাকালেই গা ছমছম করে উঠত আমার।</p>
+<p>মনের এই অশান্তির হাত থেকে সাময়িকভাবে রেহাই পাওয়ার জন্যে এদিকে-সেদিকে অভিযান শুরু করলাম আমি। সেদিন দক্ষিণ-পশ্চিমে এখনকার কম্বেউডের দিকে গিয়েছিলাম। দেখলাম, অনেক দূরে ঊনবিংশ শতাব্দীর ব্যানস্টিডের দিকে সবুজ রঙের বিরাট একটা ইমারত–এ জাতীয় ইমারত এর আগে আর কোথাও দেখিনি আমি। ও যুগে যত ভেঙেপড়া প্রাসাদ দেখেছিলাম, সেসবের চাইতে অনেক বড় সে ইমারত। গঠনভঙ্গি অনেকটা প্রাচ্য রীতির অনুকরণে। সামনের দিকটা ফিকে সবুজ কি নীলাভ সবুজ রঙের জ্বলজ্বলে চীনে পোর্সেলিনের মতো জিনিস দিয়ে তৈরি। তখুনি ইমারতটার দিকে যাওয়ার ইচ্ছে ছিল, কিন্তু সন্ধে হয়ে আসছিল, কাজেই পরের দিনের জন্যে মুলতুবি রাখলাম অ্যাডভেঞ্চারটা। কিন্তু পরের দিন সকালে উঠে ভাবলাম সবুজ পোর্সেলিনের প্রাসাদে যাওয়ার ইচ্ছেটা আসলে মনকে ছলনা করা। কুয়োর ভেতরে নামার দুঃসাহস আমার নেই, তাই ও পথ না মাড়িয়ে যেতে চাই অন্য কোথাও। ঠিক করলাম, আর দেরি নয়, কুয়োতে এবার নামবই। তখুনি বেরিয়ে পড়লাম ভাঙা স্কুপের কুয়োটার দিকে।</p>
+<p>ছোট্ট উইনা ছুটতে ছুটতে এল আমার সঙ্গে। কুয়োর ধারে মহাখুশিতে নাচ জুড়ে দিল সে। কিন্তু যেই দেখলে কুয়োর মধ্যে ঝুঁকে রয়েছি আমি, অমনি ওর মুখ শুকিয়ে গেল। তারপর যখন ভেতরের পা রাখার হুকগুলোর ওপর পা দিলাম, ভয়ে চেঁচিয়ে উঠে দৌড়ে এসে আমার হাত ধরে টানাটানি শুরু করে দিল ও। বাধা পেতে আরও গোঁ চেপে গেল আমার। হাত ছাড়িয়ে নিয়ে নেমে চললাম নিচের দিকে, আর আতঙ্কে নীল মুখ নিয়ে ওপরে ঝুঁকে রইল উইনা।</p>
+<p>প্রায় দুশো গজ নিচে থামতে হয়েছিল আমাকে। কুয়োর দেওয়ালে গাঁথা ধাতুর শিকগুলো আমার চাইতে হালকা প্রাণীর উপযুক্ত, তাই সাবধানে নামতে নামতে হাতে পায়ে খিল ধরার উপক্রম হল। তারপরেই হঠাৎ একটা হুক উপড়ে এল হাতে, পড়তে পড়তে সামলে নিয়ে এক হাতে ঝুলতে লাগলাম শূন্যে। সে যাত্রা কোনওরকমে বেঁচে গিয়ে আরও সাবধানে নামতে লাগলাম আমি। ওপরে তাকিয়ে দেখি, বহু উঁচুতে গোলাকার নীল আকাশের পটে উইনার ছোট্ট মাথাটা ঝুঁকে রয়েছে। মেশিনের ধুম ধুম শব্দ আরও তীব্র হয়ে উঠল। আবার যখন ওপরে তাকালাম, উইনাকে আর দেখলাম না।</p>
+<p>আরও কিছুক্ষণ নামার পর ডানদিকে ফুটখানেকের মধ্যে দেওয়ালের গায়ে সরু একটা ফাঁক দেখে হাঁপ ছেড়ে বাঁচলাম। ভেতরে ঢুকে দেখি সংকীর্ণ একটা সুড়ঙ্গের মুখ সেটা হাত-পা ছড়িয়ে শুয়ে খানিকটা জিরিয়ে নেওয়া যায়। শিরদাঁড়া আর হাত দুটো তখন খসে পড়ার উপক্রম। ভয়ে-উত্তেজনায় ঘেমেও উঠেছিলাম বেশ। আশপাশের মিশমিশে কাজল অন্ধকারের মাঝে শুধু শুনলাম যন্ত্রপাতির ঘটাং ঘটাং শব্দ। আর অনুভব করলাম, পাম্পের টানে অবিরাম বাতাসের স্রোত বয়ে আসছে ওপর থেকে নিচে।</p>
+<p>কতক্ষণ শুয়ে ছিলাম জানি না। হঠাৎ মুখের ওপর একট নরম হাত এসে পড়ায় ধড়মড়িয়ে উঠে বসলাম আমি। ঝটিতি দেশলাই বার করে ফস করে একটা কাঠি জ্বালিয়ে ফেললাম। আর দেখলাম, আলোর সামনে তিনটে প্রাণী অন্ধের মতো পায়ে পায়ে পিছিয়ে যাচ্ছে–যে প্রাণী ওপরে স্কুপের মধ্যে দেখেছিলাম, হুবহু তার মতোই দেখতে এদের। গভীর জলের মাছের চোখের তারা যেমন বিরাট আর খুব অনুভূতি-সচেতন হয়, আলো পড়লে ঠিকরে যায় বহুদিন মাটির নিচে বাস করার ফলে এদের চোখও তেমনি। অস্বাভাবিকভাবে বড় হয়ে উঠেছে। আলো ছাড়া আমাকে ওরা ভয় করে বলে মনেই হল না। আলো জ্বালামাত্র চটপট তিনজন সেঁধিয়ে গেল অন্ধকারের মধ্যে, সুড়ঙ্গ আর গলিঘুজির ভেতর থেকে অদ্ভুতভাবে শুধু দপদপ করে জ্বলতে লাগল চোখগুলো।</p>
+<p>ওদের ডাকলাম আমি। কিন্তু উধ্বজগতের বাসিন্দাদের ভাষা আর এদের ভাষা তো এক নয়। কাজেই সে চেষ্টা আর না করে সুড়ঙ্গের মধ্যেই পায়ে পায়ে এগিয়ে গেলাম খানিকটা। যন্ত্রপাতির শব্দ আরও জোর হয়ে উঠল। একটু পরেই সুড়ঙ্গের দুপাশের দেওয়ালের আর নাগাল পেলাম না। আর-একটা কাঠি জ্বালাতেই দেখি, বিশাল খিলান-দেওয়া মস্ত এক গহ্বরের মধ্যে এসে দাঁড়িয়েছি আমি। আলোর সংকীর্ণ পরিধির ওপাশে নিঃসীম অন্ধকারের মাঝে কত দূর পর্যন্ত যে গহ্বরটা গেছে, তা আর দেখতে পেলাম না।</p>
+<p>কী যে দেখেছিলাম, ভালো মনে নেই। আলো-আঁধারির মাঝে বিপুলাকার মেশিনগুলোর দানবের মতো কিম্ভুতকিমাকার কালো ছায়া, আর সেই ছায়ার সঙ্গে মিশিয়ে মকদের অস্পষ্ট প্রেতচ্ছায়া আর জ্বলন্ত চোখ। গুমট বাতাসে যেন দম আটকে আসছিল আমার। তাজা রক্তের অদ্ভুত গন্ধে গা গুলিয়ে উঠতে একটু দূরে চোখ পড়ল। দেখলাম, সাদা ধাতুর তৈরি একটা টেবিলের ওপর মাংসের একটা স্তূপ। মর্লকরা তাহলে মাংসাশী। কিন্তু লাল হাড়টা যে কোন প্রাণীর তা ভেবে পেলাম না। অদ্ভুত গন্ধ, বড় বড় অর্থহীন ছায়া, ছায়ার মধ্যে ওত পেতে থাকা কুৎসিত প্রেতচ্ছায়া–এই সবকিছুর একটা ভাসা ভাসা স্মৃতি ছাড়া আর কিছু মনে নেই আমার। তারপরেই কাঠিটা শেষ অবধি পুড়ে আঙুল স্পর্শ করল। চকিতে রাশি রাশি অন্ধকার ঝাঁপিয়ে পড়ল আমার ওপর।</p>
+<p>কোনওরকম হাতিয়ার না নিয়ে টাইম মেশিনে চড়াটা যে আহাম্মকি হয়েছে, তা হাড়ে হাড়ে উপলব্ধি করলাম সেদিন। ওই নিবিড় অন্ধকারের মধ্যে দাঁড়িয়ে ঘেমে উঠলাম– অস্ত্রের মধ্যে শুধু আমার চার হাত-পা, দাঁত আর পকেটের শেষ সম্বল চারটি দেশলাইয়ের কাঠি।</p>
+<p>দেশলাইয়ের কাঠি যে মাত্র চারটিতে এসে ঠেকেছে, তা শেষবার কাঠি জ্বালতে গিয়েই দেখেছিলাম। ইলয়দের নিয়ে মজা করার জন্যে দেদার কাঠি জ্বালাতাম আমি–তখন বুঝিনি, ওই সামান্য কাঠিই এত কাজে লাগতে পারে। অন্ধকারে দাঁড়িয়ে ভাবছি, আর কাঠি অপচয় করা উচিত হবে কি না, এমন সময়ে একটা হাত এসে পড়ল আমার হাতে, তারপরেই সরু আঙুলের ছোঁয়া লাগল আমার মুখে, আর কীরকম বোটকা একটা গন্ধ ভেসে এল নাকে। চারপাশে ভয়াবহ জীবগুলোর শ্বাস-প্রশ্বাসের শব্দ শুনলাম, বহুজনে ঘিরে ধরেছে আমাকে। অনুভব করলাম, খুব সন্তর্পণে দেশলাইয়ের বাক্সটা আমার হাত থেকে টেনে নেওয়ার চেষ্টা করছে কয়েকজন, আর কয়েকটা হাত টানাটানি করছে আমার পোশাক। সারা দেহে এদের ছোঁয়া অনুভব করে আমি এত অস্বস্তি বোধ করতে লাগলাম যে বলার নয়। আচম্বিতে ভাবলাম, এরা কেন এভাবে পরীক্ষা করছে আমায়? কী চায় ওরা? কী ওদের মতলব? ভয়ে শিউরে উঠলাম। হঠাৎ বিকট হুংকার দিয়ে উঠলাম। চমকে পিছিয়ে গেল ওরা, তারপরেই শুনলাম, আবার এগিয়ে আসছে। এবার আরও জোরে চেপে ধরল আমায়, আর অদ্ভুত ফিসফিস স্বরে কথা বলতে লাগল নিজেদের মধ্যে। সর্বাঙ্গ কেপে উঠল আমার। আবার বিকট শব্দে চেঁচিয়ে উঠলাম। এবার কিন্তু ওরা আর ভয় পেল না, বরং রক্ত হিম করা হাসির শব্দ ভেসে এল আমার কানে। ভীষণ ভয় পেয়ে গেলাম। কোনওরকমে একটা কাঠি বার করে জ্বালালাম। তারপর পকেট থেকে এক টুকরো কাগজ বার করে দেশলাইয়ের শিখায় তা জ্বালিয়ে নিয়ে পিছু হটে যেতে লাগলাম সুড়ঙ্গের মধ্যে দিয়ে। কিন্তু একটু যেতে-না-যেতেই নিবে গেল আগুন, অন্ধকারের মধ্যে শুনলাম, খসখস শব্দে মর্লকরা দৌড়ে আসছে আমার দিকে।</p>
+<p>মুহূর্তের মধ্যে কতকগুলো হাত আঁকড়ে ধরল আমায়। ওরা যে আমাকে ভেতরে টেনে নিয়ে যেতে চায়, সে বিষয়ে আর কোনও সন্দেহ রইল না। আর-একটা কাঠি জ্বালিয়ে ওদের মুখের ওপর নেড়ে চোখ ধাঁধিয়ে দিলাম। ওদের চেহারা যে কী কদাকার আর অমানুষিক, তা আপনারা কল্পনা করতে পারবেন না। রক্তহীন, চিবুকহীন মুখ আর বড় বড় গোলাকার লালাভ ধূসর দুই চোখ। চোখের পাতা না থাকায় আলোর জেল্লায় ওরা প্রায় অন্ধ হয়ে গিয়েছিল, সেই সুযোগে ওদের ভালো করে দেখে আমার গা বমি-বমি করে উঠল। বেশি দেরি করলাম না, ওই অবস্থাতেই পিছু হটে চললাম। দ্বিতীয় কাঠি ফুরাতে জ্বালোম তৃতীয় কাঠি। এটা ফুরাতে ফুরাতেই পৌঁছালাম সুড়ঙ্গের মুখে। কুয়োর নিচে বিরাট পাম্পের গুরুগম্ভীর শব্দে মাথা ঘুরে যাওয়ায় কিনারায় শুয়ে পড়লাম আমি। তারপরেই পাশে হাত বাড়ালাম হুকগুলোর দিকে। কিন্তু ঠিক সেই মুহূর্তে ওরা আমার দুপা ধরে দারুণ হ্যাঁচকা টান মারলে পেছনে। শেষ কাঠিটা জ্বালোম আমি… কিন্তু তখুনি নিবে গেল কাঠিটা। ততক্ষণে আমার হাত গিয়ে পড়েছে মইয়ের ওপর। কাজেই প্রচণ্ড কয়েকটা লাথিতে মকদের ছিটকে ফেলে যত তাড়াতাড়ি সম্ভব উঠতে লাগলাম ওপরে। ওদের মধ্যে একজন অবশ্য কিছু দূর পর্যন্ত উঠে আমার বুটটা ধরেছিল, কিন্তু পদাঘাত ছাড়া তার বরাতে সেদিন আর কিছুই জোটেনি।</p>
+<p>ওপরে ওঠা যেন আর ফুরাতেই চায় না। শেষ বিশ-তিরিশ ফুট ওঠার সময়ে দারুণ গা গুলিয়ে উঠল আমার। অতিকষ্টে আঁকড়ে রইলাম হুকগুলো। জ্ঞান হারানোর মতো অবস্থা হল শেষ কয়েক গজ ওঠার সময়ে, প্রাণপণে নিজেকে সামলে রাখলাম। কয়েকবার তো মাথা ঘুরে গেল। একবার মনে হল, পড়ে যাচ্ছি। শেষকালে কোনওরকমে উঠে এলাম কুয়োর মুখের কাছে, টলতে টলতে বেরিয়ে এলাম রোদ্দুরভরা ভাঙা স্কুপের মাঝে। উপুড় হয়ে পড়ে গিয়েছিলাম আমি। মাটির গন্ধ যে কত মিষ্টি, তা বুঝেছিলাম সেদিন। তারপর কানে ভেসে এল উইনা আর কজন ইলয়ের মিষ্টি স্বর। এরপরেই জ্ঞান হারালাম কিছুক্ষণের জন্যে।</p>
+</div>
+<br/>
+<p>ইপাব নির্মাণে ⏩ <a href="https://t.me/bongboi" rel="noopener noreferrer" target="_blank">@bongboi</a>।</p>
+<br/>
+<h2>১০. রাত্রে</h2>
+<hr/>
+<br/>
+
+<div>
+<p><strong>১০। রাত্রে</strong></p>
+<p>আরও শোচনীয় হয়ে উঠল আমার অবস্থা। এতদিন শুধু ভেবেছি, কী করে ফিরে পাওয়া যায় টাইম মেশিন। কিন্তু মর্লকদের আস্তানা আবিষ্কার করার পর থেকে নতুন একটা দুশ্চিন্তা দেখা দিল। সে দুশ্চিন্তা অমাবস্যার অন্ধকারকে নিয়ে।</p>
+<p>অবাক হচ্ছেন আপনারা। ভাবছেন, অমাবস্যার অন্ধকারকে এত ডরানোর কী আছে। কিন্তু উইনাই এ দুশ্চিন্তা ঢোকালে আমার মাথায়। অবোধ্য শব্দ আর দুর্বোধ্য ভাবভঙ্গি দিয়ে সে বুঝিয়ে দিলে রাতের অন্ধকারের বিভীষিকা। প্রতিরাতে অন্ধকারের অন্তরকাল একটু একটু করে বেড়েই চলেছে, এগিয়ে আসছে অমাবস্যা। সেই প্রথম উপলব্ধি করলাম, অন্ধকারকে কেন ইলয়রা এত ভয় পায়। না জানি অন্ধকারের সুযোগ নিয়ে মর্লকরা কী নরকলীলা চালায় মাটির ওপর। আমার দ্বিতীয় অনুমান যে একেবারে ভুল, সে বিষয়ে আরও কোনও সন্দেহ ছিল না। বহুকাল আগে ইলয়রা ছিল মর্লকদের প্রভু। কিন্তু বহু বছর নিশ্চিন্ত জীবনযাপনের ফলে ইলয়রা কারলোভিগনিয়ান রাজাদের মতো আরও সুন্দর হয়ে উঠলেও একেবারে অপদার্থ বনে গেছে। আর মর্লকরা হয়ে দাঁড়িয়েছে তাদের প্রভু। বহুকাল মাটির নিচে থাকার ফলে ওপরের আলো-হাওয়া মোটেই সহ্য হয় না মকদের, তাই ইলয়দের তারা ওপরেই থাকতে দিয়েছে। বহুদিনের মজ্জাগত অভ্যাসের ফলে ইলয়দের পোশাক ইত্যাদির জোগান দিলেও মনিব-চাকরের পুরানো সম্পর্ক আর নেই। বহুকাল আগে মানুষ তার যে ভাইকে নির্বাসনে পাঠিয়েছিল মাটির নিচে–সেই ভাই ফিরে এসেছে অন্য রূপ ধরে। ভয় কী বস্তু, তা ইলয়রা জেনেছিল অনেক আগেই। ধীরে ধীরে আবার নতুন করে এই ভয়ের আস্বাদ তারা পেতে শুরু করেছে। নিচের টেবিলের ওপর রাখা মাংসের দৃশ্যটা চোখের সামনে ভেসে উঠল। হাড়ের আকারটা একটু চেনা মনে হলেও বুঝলাম না ঠিক কোন প্রাণীর।</p>
+<p>ভয় পেয়ে খুদে মানুষরা অসহায় হয়ে থাকতে পারে, কিন্তু আমার পক্ষে তা শোভা পায় না। প্রতিজ্ঞা করলাম, সবার আগে একটা হাতিয়ার আর একটা নিরাপদ আশ্রয় জোগাড় না-করা পর্যন্ত দ্বিতীয় কোনও কাজ আর নয়। ঘুমের সুযোগে ওরা যে ইতিমধ্যেই আমাকে পরীক্ষা করে গেছে, ভাবতেই গা শিরশির করে উঠল আমার।</p>
+<p>বিকেলের দিকে টেম্স উপত্যকায় অনেক খুঁজেপেতেও আশ্রয় কোথাও পেলাম না। কুয়োর গা বেয়ে মর্লকদের ওঠানামা করার ক্ষমতা আমি নিজের চোখে দেখেছি। কাজেই গাছে চড়া বা বাড়িতে ঢোকা তাদের পক্ষে মোটেই কষ্টকর নয়। হঠাৎ সবুজ পোর্সেলিনের প্রাসাদের বেজায় উঁচু ঝকঝকে চুড়োগুলো আমার মনে ভেসে উঠল। তখনই সেই ভরসন্ধের সময়ে ছোট উইনাকে কাঁধে চাপিয়ে চললাম দক্ষিণ-পশ্চিমে সবুজ প্রাসাদের দিকে। ভেবেছিলাম, সাত-আট মাইল দূরে হবে প্রাসাদটা, কিন্তু হাঁটতে হাঁটতে বুঝলাম আমার ধারণা একেবারেই ভুল। তার ওপরে জুতোর একটা পেরেক বেরিয়ে পা ছিঁড়ে ক্ষতবিক্ষত করে দিয়েছিল। খুঁড়িয়ে খুঁড়িয়ে হাঁটতে গিয়ে দেরি হল আরও। সূর্য তখন ডুবে গেছে পশ্চিমে, ফ্যাকাশে হলদেটে আকাশের পটে দেখলাম, ছবির মতো ফুটে রয়েছে প্রাসাদের কালো রেখা।</p>
+<p>কাঁধে চড়ে যাওয়া আর পছন্দ হল না উইনার, আমার পাশে পাশে ছুটে চলল। প্রথম প্রথম আমার পকেটগুলো উইনাকে বেশ ভাবিয়ে তুলেছিল, শেষকালে চমৎকার ফুলদানি হিসেবে ওগুলোকে কাজে লাগায় সে। সে সন্ধ্যাতেও কতকগুলো ফুল দিয়ে সাজিয়ে দিলে আমার দুই প্যান্টের পকেট। প্যান্ট পালটাবার সময়ে…</p>
+<p>সময়-পর্যটক একটু থেমে প্যান্টের পকেট থেকে দুটো আশ্চর্য ধরনের শুকনো ফুল বার করে সামনের টেবিলে রাখলেন। তারপর আবার বলে চললেন।…</p>
+<p>বহুক্ষণ হাঁটবার পর একটা গভীর বনের সামনে হাজির হলাম। ডাইনে-বামে যাওয়ার উপায় নেই, কিন্তু আঁধারে বনের মধ্যে ঢুকে নতুন বিপদ ডেকে আনার সাহসও আমার হল না। ইতিমধ্যে শ্রান্ত হয়ে ঘুমিয়ে পড়ায় কোলে তুলে নিয়েছিলাম উইনাকে। এদিকে ওদিকে তাকিয়েও যখন সবুজ পোর্সেলিন প্রাসাদের কোনও চিহ্ন দেখলাম না, তখন সন্দেহ হল, বোধহয় পথ হারিয়েছি। উইনাকে ঘাসের ওপর সন্তর্পণে শুইয়ে আমি পাশে বসলাম, কখন চাঁদ উঠবে সেই প্রতীক্ষায়।</p>
+<p>চারদিক নিঝুম নিস্তব্ধ। কখনও সখনও অবশ্য বনের ভেতর জীবন্ত প্রাণীর নড়াচড়ার ক্ষীণ শব্দ শুনতে পাচ্ছিলাম। পরিষ্কার রাত। মাথার ওপর তারার ঝিকিমিকি স্পষ্ট দেখা যাচ্ছিল। পুরানো নক্ষত্রগুলোর একটাও দেখতে পেলাম না। একশো জনমেও (generation) যে তারার দলের ধীরগতি ধরা সম্ভব হয় না, তারাই লক্ষ বছরের মধ্যে নতুনভাবে সাজিয়ে নিয়েছে নিজেদের, কিন্তু ছায়াপথটা আগের মতোই ধূলিকণার মতো রাশি রাশি তারায় বোঝাই। দক্ষিণদিকে আমাদের এখানকার SIRIUS-এর চাইতেও ঢের বেশি জ্বলজ্বলে</p>
+<p>একটা লাল তারা দেখলাম। আর এইসব মিটমিটে আলোর মালার মধ্যে পুরানো বন্ধুর মতো জেগে ছিল একটা জ্বলজ্বলে গ্রহ।</p>
+<p>সমস্ত রাত মকদের চিন্তা মন থেকে সরিয়ে রাখলাম জ্যোতিষচর্চা দিয়ে। মাঝে মাঝে অবশ্য ঢুলছিলাম। কতক্ষণ বাদে পুবের আকাশে বর্ণহীন আগুনের আভা ছড়িয়ে দেখা দিল চাঁদের মরা মুখ। আর তারপরেই আস্তে আস্তে তা ঢাকা পড়ে গেল ভোরের আলোয়। ধীরে ধীরে লাল হয়ে উঠতে লাগল পুবের আকাশ। সারারাত কোনও মর্লক হানা দেয়নি আমাদের ওপর। বোধহয় জানতে পারেনি তখনও।</p>
+<p>উঠে দাঁড়াতে গিয়ে দেখি, জুতো আর পায়ের অবস্থা শোচনীয় হয়ে দাঁড়িয়েছে। গোড়ালি ফুলেছে, পায়ের তলাও অক্ষত নেই। কাজেই জুতোজোড়া খুলে নিয়ে ফেলে দিলাম বনের মধ্যে। তারপর উইনাকে ঘুম থেকে তুলে আবার হাঁটা দিলাম। ভোরের আলোয় নির্ভয়ে এদিকে-ওদিকে খেলে বেড়াচ্ছিল কয়েকজন ফুটফুটে ইলয়। আনমনাভাবে তাকিয়ে ছিলাম ওদের দিকে। এমন সময়ে আচমকা পুরানো দৃশ্যটা ভেসে উঠল আমার মনের চোখে। না, কোনও সন্দেহই আর নেই। মাটির নিচে টেবিলে যে মাংস দেখেছি, তার সাদৃশ্য খুঁজে পেলাম। ভাবতেও শিউরে উঠলাম আমি। কোনও সুদূর অতীতে মর্লকদের খাবারের ভাঁড়ার নিশ্চয় ফুরিয়েছিল। খুব সম্ভব হঁদুর-টিদুর খেয়ে বেঁচে থাকত ওরা। এ যুগেও খাওয়ার বাছবিচার মানুষের মধ্যে বিশেষ আর দেখা যায় না। হাজার তিন-চার বছর আগে নরমাংসেও অরুচি ছিল না আমাদের পূর্বপুরুষদের। তারপর কত লক্ষ বছর গেছে কেটে, দারুণ খাদ্যসংকটে পড়ে পাতালবাসী মর্লকদের মধ্যে সে অভ্যাস ফিরে আসা মোটেই বিচিত্র নয়। আমরা যেমন গোরু-ভেড়া-মুরগি পুষি, ওরাও তেমনি পুষছে ইলয়দের শুধু নিজেদের উদরসেবার জন্যে! একশ্রেণির সুবিধাবাদীদের চরম স্বার্থপরতার কী শোচনীয় শাস্তি।</p>
+</div>
+<br/>
+<p>ইপাব নির্মাণে ⏩ <a href="https://t.me/bongboi" rel="noopener noreferrer" target="_blank">@bongboi</a>।</p>
+<br/>
+<h2>১১. সবুজ পোর্সেলিনের প্রাসাদ</h2>
+<hr/>
+<br/>
+
+<div>
+<p><strong>১১। সবুজ পোর্সেলিনের প্রাসাদ</strong></p>
+<p> এইসব কথা ভাবতে ভাবতেই বনের পথ ফুরিয়ে এসেছিল। দূর থেকে সবুজ পোর্সেলিনের প্রাসাদ দেখতে পেলাম। তারপর আরও কিছুটা হাঁটার পর বেলা প্রায় বারোটার সময়ে এসে পৌঁছালাম ভাঙাচোরা প্রাসাদের সামনে। জানলায় দেখলাম ধূলিমলিন ভাঙা কাচের টুকরো, মরচে-ধরা ধাতুর ফ্রেম থেকে বড় বড় সবুজ পাতাগুলো খসে পড়ে গেছে নিচে। খুব উঁচু একটা ঘাসজমির ওপর দাঁড়িয়ে ছিল প্রাসাদটা। উত্তর-পূর্বদিকে মস্ত চওড়া একটা বাড়ি দেখে কিন্তু বেশ অবাক হয়ে গেলাম। আন্দাজে মনে হল, একসময়ে ওয়ার্ডসওয়ার্থ আর ব্যাটার সি ছিল ওই জায়গায়। সাগরের প্রাণীগুলো যে কোথায়, তা অবশ্য ভেবে পেলাম না।</p>
+<p>প্রাসাদ পরীক্ষা করে দেখলাম বাস্তবিকই তা আগাগোড়া পোর্সেলিনে তৈরি। সামনের দিকে বিচিত্র হরফে এককালে কিছু লেখা ছিল, কিন্তু তা পড়া সম্ভব হল না আমার পক্ষে। দরজার পেল্লায় পাল্লাগুলো অনেক আগেই খসে পড়েছিল কবজা থেকে। কাজেই ভেতরে ঢুকতে কোনও অসুবিধা হল না। সামনেই দেখলাম মস্ত লম্বা একটা গ্যালারি, দুপাশের সারি সারি জানলা দিয়ে আলো আসছে ভেতরে। দেখেই মনে হল, এ মিউজিয়াম না হয়ে যায় না। টালি দিয়ে বাঁধানো মেঝেতে পুরু হয়ে জমেছে ধুলো, ওপরে ধুলোর চাদরে ঢাকা-পড়া এদিকে-সেদিকে ছড়ানো কত আশ্চর্য আর অদ্ভুত জিনিস। হলের ঠিক মাঝখানে অতিকায় একটা কঙ্কালের নিচের অংশ পড়ে থাকতে দেখলাম। বাঁকা পা দেখে বুঝলাম কঙ্কালটা মেগাথিরিয়াম জাতীয় কোনও অধুনালুপ্ত প্রাণীর। পুরু ধুলোর মাঝে মাথার খুলি আর ওপরের হাড়গুলো পড়ে ছিল। পাশের খানিকটা অংশ ছাদ থেকে বৃষ্টির জল পড়ে অনেকদিন আগেই ক্ষয়ে ধুলোয় মিশে গেছে। গ্যালারিতে ব্রন্টোসরাসের একটা বিপুল কঙ্কালও দেখলাম। আমার অনুমান তাহলে মিথ্যে নয়, এটা মিউজিয়ামই বটে। পাশের ঢালু তাকগুলোর ধুলো ঝেড়ে পেলাম আমাদের যুগের পরিচিত কাচের আলমারি। ভেতরের জিনিসগুলোর অম্লান অবস্থা দেখে বুঝলাম প্রত্যেকটি আলমারি নিশ্চয় এয়ার-টাইট করা।</p>
+<p>বুঝতেই পারছেন, আগামীকালের সাউথ কেন্সিংটনের এক ভাঙা স্তূপের মাঝে স্তম্ভিত হয়ে দাঁড়িয়ে রইলাম আমি। যেখানে দাঁড়িয়ে ছিলাম, নিশ্চয় এককালে পৃথিবীর জীববিজ্ঞান বিভাগ ছিল সেখানে। কত রকমারি জীবাণু যে দেখলাম, তার ইয়ত্তা নেই। জীবাণু আর ছত্রাক লোপ পাওয়ার ফলে যদিও ক্ষয়ের প্রকোপ শতকরা নিরানব্বই ভাগ কমে গিয়েছিল; তবুও মূল্যবান বহু জীবাণু ধংসের হাত থেকে রেহাই পায়নি। এখানে-সেখানে খুদে মানুষের প্রায়-নষ্ট বহু জীবাণু দেখলাম ধুলোয় মলিন হয়ে উঠেছে। কোথাও টুকরো টুকরো হয়ে ঝুলছে তাকের ওপর। কতকগুলো আলমারির তো কোনও চিহ্নই পেলাম না, বোধহয় মর্লকরা সরিয়েছে সেগুলো। চুঁচ পড়ার শব্দ শোনা যায় এমনি গভীর নৈঃশব্দ্য চেপে বসেছে চারদিকে। পুরু ধুলোয় পা বসে যাচ্ছিল আমাদের। উইনা একটা সামুদ্রিক শজারু নিয়ে খেলা করছিল, আমায় চুপ করে দাঁড়াতে দেখে দৌড়ে এসে হাত ধরে দাঁড়াল পাশে।</p>
+<p>এই একটা হলের আকার দেখে মনে হল, সবুজ পোর্সেলিনের প্রাসাদে শুধু আদিম জীববিজ্ঞানের গ্যালারিই নেই, ঐতিহাসিক গ্যালারি, এমনকী গ্রন্থাগার থাকাও অস্বাভাবিক নয়। গত যুগের মানুষদের বিপুল প্রতিভার এই বিরাট নিদর্শন দেখে স্তম্ভিত না হয়ে পারলাম না। আর-একটু এগতে প্রথম গ্যালারির সঙ্গে আড়াআড়িভাবে আর-একটা ছোট গ্যালারি দেখলাম। এখানে দেখলাম রাশি রাশি খনিজ পদার্থ। হঠাৎ এক টুকরো গন্ধক দেখে ভাবলাম, গান-পাউডার তৈরি করলে কেমন হয়? তা-ই দিয়ে সাদা স্ফিংক্স-এর ব্রোঞ্জের দরজা উড়িয়ে টাইম মেশিন উদ্ধার করা তো নিতান্ত ছেলেখেলা। কিন্তু শোরা পেলাম না কোথাও। নাইট্রেট জাতীয় কোনও কেমিক্যালসই পেলাম না। বলা বাহুল্য, অনেক বছর আগে সেসব উবে মিলিয়ে গেছে বাতাসে। গন্ধকটা কিন্তু তবুও হাতছাড়া করতে মন চাইল না। গ্যালারির মধ্যে আর বিশেষ কিছু দেখার ছিল না। বিশেষ করে খনিজ পদার্থের মাথামুন্ডু যখন আমি বুঝি না, তখন এ হল থেকে বেরিয়ে আর-একটা ভাঙাচোরা হলে প্রবেশ করলাম। এককালে বোধহয় জীববিদ্যার বিভাগ ছিল এখানে– যদিও কিছু আর চেনার উপায় ছিল না তখন। জীবজন্তুর কতকগুলো ধুলো-পড়া টুকরো টুকরো মূর্তি, জারে রাখা শুকনো মমি–জারের স্পিরিট অবশ্য অনেক আগেই উবে গিয়েছিল; দুষ্প্রাপ্য গাছপালার বাদামি একটু ধুলো; বাস, আর কিছু নেই। মানুষ জাতটা কীভাবে দুভাগ হয়ে মর্লক আর ইলয়ে এসে ঠেকেছে, তা দেখতে পেলাম না বলে খুব হতাশ হলাম। এরপর ঢুকলাম একটা মস্ত বড় গ্যালারিতে। একে তো হলটা বড়, তার ওপর আলো কমে আসায় দুপাশের দেওয়ালও দেখা যাচ্ছিল না ভালো করে। ঘরের মেঝে ঢালু হয়ে নেমে গেছে নিচের দিকে। দুরে দুরে অবশ্য ছাদ থেকে বড় বড় সাদা কাচের গ্লোব ঝুলছিল, যদিও বেশির ভাগই আর আস্ত ছিল না। কাচের ফানুস দেখেই বুঝলাম, একসময়ে কৃত্রিম আলোর ব্যবস্থা ছিল জায়গাটায়। দুপাশে মস্ত উঁচু উঁচু মেশিনের সারি চলেছে, এক-একটা মেশিন যে কত বড় তা আপনাদের বলে বোঝাতে পারব না। সব মেশিনেই মরচে ধরেছে, কতকগুলো ভেঙেচুরে গেছে। জানেন তো, যন্ত্রপাতির ওপরে আমার একটু দুর্বলতা আছে, তাই তন্ময় হয়ে গেলাম মেশিনগুলোর মধ্যে। কিন্তু বুঝলাম না কী কাজে লাগত এত মেশিন।</p>
+<p> হঠাৎ গা ঘেঁষে দাঁড়াল উইনা। চমকে উঠেছিলাম আমি। আর তখনই লক্ষ করলাম, গ্যালারির মেঝে তখনও ঢালু হয়ে নেমে চলেছে নিচের দিকে। যেদিক দিয়ে এসেছি, সেদিকটা দেখলাম বেশ খানিকটা উঁচুতে। সরু সরু জানলা দিয়ে আলো ঝরে পড়ছে সেখানে। কিন্তু পথটা যতই ঢালু হয়ে নেমেছে নিচের দিকে, ততই কমেছে জানলার সংখ্যা আর আলোর পরিমাণ। মেশিনগুলোর জটিলতা তখনও আমার মাথায় ঘুরছে, আনমনা হয়ে চলতে চলতে আলো যে আস্তে আস্তে কমে এসেছে তা লক্ষ করিনি। কিন্তু উইনার ভয় ক্রমাগত বেড়েই চলেছে দেখে মেশিনের চিন্তা ছেড়ে ভালো করে তাকালাম সামনের দিকে। দেখলাম, গ্যালারি আরও খানিকটা নেমে নিঃসীম অন্ধকারের মাঝে হারিয়ে গেছে। থমকে গিয়ে চারপাশে তাকাতেই দেখি, আগের চাইতে ধুলো অনেক কমে এসেছে, মেঝেও আর ততটা মসৃণ নয়। আরও সামনে অন্ধকারের দিকে ছোট ছোট কতকগুলো পায়ের ছাপ দেখতে পেলাম।</p>
+<p>তৎক্ষণাৎ বুঝলাম, এ ছাপ মর্লকদের পায়ের ছাপ হয়ে যায় না। বুঝলাম, যন্ত্রপাতি নিয়ে মাথা ঘামাতে গিয়ে এতটা সময় নষ্ট করা কোনওমতেই উচিত হয়নি আমার। বিকেল গড়িয়ে এল। অথচ তখনও পর্যন্ত আত্মরক্ষার জন্যে কোনও হাতিয়ার, কোনও আশ্রয়, এমনকী আগুন জ্বালাবার কোনও বন্দোবস্তও করে উঠতে পারিনি। তারপরেই গ্যালারির নিচে দূর অন্ধকারের মধ্যে থেকে ভেসে এল অদ্ভুত রকমের খসখস শব্দ–যে শব্দ আমি শুনেছি কুয়োর নিচে।</p>
+<p>হঠাৎ মাথায় একটা মতলব এল। পাশের মেশিনটা থেকে লিভারের মতো একটা লোহার ডান্ডা বেরিয়ে ছিল। মেশিনটার ওপর উঠে দুহাতে লিভারটা আঁকড়ে ধরে সব শক্তি দিয়ে চাপ মারলাম পাশের দিকে। মিনিটখানেক জোর দেওয়ার পর খসে এল লিভারটা। দেখলাম মর্লকদের পাতলা খুলি ফাটানোর পক্ষে ওই ডান্ডাই যথেষ্ট। সেই মুহূর্তে দারুণ ইচ্ছে হল, নিচে নেমে গিয়ে কতকগুলো খুলি চুরমার করে আসি। কিন্তু পাছে শেষ পর্যন্ত টাইম মেশিনটা হারাতে হয়, এই ভয়ে এগলাম না। ভাবছেন নিজের বংশধরদের খুন করার এত পাশব ইচ্ছে কেন? আরে মশাই, সে কদর্য জীবগুলোকে দেখলে আপনারও ওই একই ইচ্ছে হত৷</p>
+<p>এক হাতে উইনা আর এক হাতে লোহার ডান্ডা নিয়ে উঠে এলাম ওপরে, ঢুকলাম পাশের আরও বড় একটা হলে। দেখে মনে হল যেন সামরিক গির্জায় ঢুকে পড়েছি। ফালি ফালি ছেঁড়া জীর্ণ নিশান ঝুলছে এদিকে-সেদিকে। বইয়ের মতো কতকগুলো জিনিস দেখলাম, যদিও বই বলে আর চেনা যায় না তাদের। বোর্ড আর চিড়-খাওয়া ধাতুর মলাট দেখেই বুঝলাম, একসময়ে প্রচুর বই স্থান পেয়েছিল এই ঘরে।</p>
+<p>তারপর একটা চওড়া সিঁড়ি বেয়ে এলাম যে ঘরে, একসময়ে বোধহয় শিল্প বিষয়ক বিভাগ ছিল সেখানে। ঘরের একদিকের ছাদ ধসে পড়লেও বাকি অংশে প্রতিটি জিনিস সাজানো ছিল পরিষ্কারভাবে। ব্যস্তসমস্ত হয়ে ইতিউতি দেখতে দেখতে যা চাইছিলাম, তা পেলাম। এক কোণে বায়ুনিরোধক একটা দেশলাইয়ের বাক্স। দুরুদুরু বুকে ঘষলাম একটা কাঠি, ফস করে জ্বলে উঠল কাঠিটা। যাক, তাহলে ভিজে ওঠেনি কাঠিগুলো। মহানন্দে ইচ্ছে হল, দুহাত তুলে নাচি। কিন্তু এ বয়সে নাচা শোভা পায় না, তাই গলা ছেয়ে The Land of the Leal গাইলাম বেশ কিছুক্ষণ ধরে। বীভৎস প্রাণীগুলোকে জব্দ করার একটা জুতসই হাতিয়ার পেয়ে আমার আনন্দ যেন আর বাধা মানতে চাইল না।</p>
+<p>স্মরণাতীত বছরের পরও একেবারে তাজা অবস্থায় দেশলাই পাওয়া যে কতটা সৌভাগ্যের ফলে সম্ভব, সেই কথাই ভাবতে ভাবতে আর-একটা জিনিস দেখে মনটা আবার নেচে উঠল। ভেবেছিলাম জিনিসটা কয়েক টুকরো মোম। ইচ্ছে ছিল বাতি বানানো যাবে, তাই মুখবন্ধ কাচের জারটা ভেঙে ফেললাম। কিন্তু যা পেলাম, তা মোম নয়। গন্ধ থেকে বুঝলাম কর্পূরের টুকরো। হতাশ হয়ে ফেলে দিতে যাচ্ছিলাম, হঠাৎ মনে পড়ল কর্পূর তো দাহ্য পদার্থ। জ্বালিয়ে দিলে বাতির মতো চমৎকার আলো দেবে। সুতরাং পকেটে চালান করে দিলাম টুকরোগুলো। কিন্তু স্ফিংক্স-এর দরজা ওড়ানোর জন্যে কোনও বিস্ফোরক পেলাম না। লোহার ডান্ডা দিয়ে সে কাজ সারব, এই মতলব আঁটতে আঁটতে মহানন্দে বেরিয়ে এলাম ঘর ছেড়ে।</p>
+<p>সে দীর্ঘ অপরাহের খুঁটিনাটি বর্ণনা শোনানোর মতো জোরালো স্মৃতিশক্তি আমার নেই। পরপর সাজিয়ে সব বলাও সম্ভব নয়। মনে আছে, মরচে-পড়া অস্ত্রের একটা লম্বা গ্যালারিতে ঢুকেছিলাম। লোহার ডান্ডা ফেলে দিয়ে কুড়ল নিই কি তলোয়ার নিই, এই দোটানায় পড়লাম সেখানে। দুটোই তো আর বয়ে নিয়ে যাওয়া সম্ভব নয়। শেষকালে ভেবে দেখলাম ব্রোঞ্জের দরজার পক্ষে লোহার ডান্ডাই আদর্শ হাতিয়ার, তা-ই মনস্থির করে তলোয়ার ফেলে রেখে গেলাম অন্যদিকে। দেখলাম প্রচুর বন্দুক, পিস্তল আর রাইফেল। বেশির ভাগ অস্ত্রেই মরচে ছাড়া আর কোনও পদার্থ নেই। কতকগুলো এক ধরনের নতুনরকম ধাতুতে তৈরি মনে হল। সেগুলো অবশ্য মোটামুটি চলনসই অবস্থায় ছিল। কিন্তু কার্ট্রিজ আর গান-পাউডার যা ছিল, তা অনেকদিন আগেই নষ্ট হয়ে মিশে গেছে ধুলোয়। আর একদিকে দেখি সারি সারি দেবমূর্তি সাজানোপলিনেশিয়ান, মেক্সিকান, গ্রিসিয়ান, ফোনিশিয়ান–কোনও দেশই বাদ যায়নি। কী খেয়াল হল, দক্ষিণ আমেরিকার একটা বিদঘুটে দানোর নাকের ওপর লিখে রাখলাম আমার নাম।</p>
+<p>যতই বিকেল গড়িয়ে আসতে লাগল, ততই কমতে লাগল আমার আগ্রহ। ধূলিধূসর নিথর পুরীর একটার পর একটা গ্যালারি পেরিয়ে চললাম আমি। কোনওটায় শুধু ভাঙা পাথর আর মরচে-পড়া ধাতুর রাশি, কোনওটায় ছড়ানো দুষ্প্রাপ্য সামগ্রী। আচমকা চোখে পড়ল টিন-খনির একটা মডেল, তারপরেই হঠাৎ দেখলাম এয়ার-টাইট কৌটোয় পাশাপাশি সাজানো দুটো ডিনামাইট কাটিজ! ইউরেকা বলে চেঁচিয়ে উঠলাম সোল্লাসে। দারুণ আনন্দে তখুনি চুরমার করে ফেললাম কৌটোটা। কিন্তু তার পরেই কীরকম সন্দেহ হল। একটু ইতস্তত করে গ্যালারির কোণে কার্ডিজ রেখে আগুন দিলাম সলতেতে। এমন নিরাশ আর কখনও হইনি আমি। পাঁচ-দশ-পনেরো মিনিট অপেক্ষা করলাম, কিন্তু বিস্ফোরণ আর হল না। বুঝলাম ও দুটো নিছক ডামি ছাড়া আর কিছু না।</p>
+<p>তারপরেই প্রাসাদের মধ্যে ছোট্ট একটা প্রাঙ্গণে এসে পড়লাম আমরা। বেশ পরিষ্কার ঘাসজমির ওপর দেখলাম তিনটে ফলের গাছ। খিদে পেয়েছিল খুব। কাজেই ফলাহারের পর ঘাসের ওপর একটু জিরিয়ে নিলাম। নিরাপদ আশ্রয়স্থান তখনও মেলেনি অথচ রাত এল ঘনিয়ে। মনে মনে ভাবলাম, আর দরকারও হবে না। মর্লকদের দূরে ঠেকিয়ে রাখার পক্ষে এক বাক্স দেশলাই যথেষ্ট। ঠিক করলাম, বাইরে আগুনের কুণ্ড জ্বালিয়ে আজ রাতটা কাটিয়ে কাল সকালেই লোহার ডান্ডা দিয়ে ভাঙব ব্রোঞ্জের দরজা।</p>
+</div>
+<br/>
+<p>ইপাব নির্মাণে ⏩ <a href="https://t.me/bongboi" rel="noopener noreferrer" target="_blank">@bongboi</a>।</p>
+<br/>
+<h2>১২. অন্ধকারে</h2>
+<hr/>
+<br/>
+
+<div>
+<p><strong>১২। অন্ধকারে </strong></p>
+<p>প্রাসাদ থেকে যখন বেরলাম, তখনও দিক্রেখার ওপরে সূর্যের কিনারা দেখা যাচ্ছে। পরের দিন সকালে যেমন করেই হোক সাদা স্ফিংক্স-এর কাছে আমাদের পৌঁছাতে হবে। কাজেই ঠিক করলাম, সামনের বনটাও পেরতে হবে চারদিকে অন্ধকার চেপে বসার আগেই। ইচ্ছে ছিল, রাতে যতটা পারি এগব, তারপর আগুনের কুণ্ড জ্বালিয়ে নিরাপদে ঘুমাব বাকি রাতটা। সেইমতো শুকনো কাঠ আর ঘাস জোগাড় করছিলাম। শেষে দুহাত বোঝাই হয়ে যাওয়ার ফলে তাড়াতাড়ি হাঁটা আর সম্ভব হল না। এর ওপর উইনাও ক্লান্ত হয়ে পড়েছিল। কাজেই বনের সামনে যখন পৌঁছালাম, বেশ আঁধার নেমেছে চারদিকে। বনের ভেতর মিশমিশে অন্ধকার দেখে উইনা আঁকড়ে ধরলে আমায়। কেমন জানি অজানা ভয়ে আমারও গা ছমছম করে উঠল। কিন্তু হঠাৎ কীরকম গোঁ চেপে গেল। ঘুমের অভাবে পরিশ্রমের ফলে ঠিক সুস্থও ছিলাম না আমি। বিপদ আসন্ন জেনেও হটে আসতে মন সায় দিল না।</p>
+<p>যাব কি যাব না ভাবছি, এমন সময়ে ঠিক পেছনে অন্ধকারের মধ্যে অস্পষ্ট তিনটে মূর্তিকে দেখলাম কালো ঝোপের মধ্যে দিয়ে গুঁড়ি মেরে এগিয়ে আসতে। চারপাশে লম্বা ঘাস ছাড়া আত্মরক্ষা করার মতো আর কিছু চোখে পড়ল না, তা ছাড়া মূর্তি তিনটের এগবার ধরনধারণও বিশেষ সুবিধের মনে হল না। প্রায় মাইলখানেক লম্বা বনটা, বনের ওদিকে কোনওরকমে পৌঁছাতে পারলে পাহাড়ের পাশে নিরাপদে রাত কাটানোর মতো অনেক আস্তানা পাওয়া যাবে। ভেবে দেখলাম, কর্পূর আর দেশলাই যখন সঙ্গে আছে, পথে আলোর অভাব হবে না। তবে কাঠকুটোগুলো ফেলে দেওয়া ছাড়া উপায় নেই। কাজে কাজেই ফেলে দিতে হল বোঝাটা। তখনই একটা মতলব এল মাথায়। নিশাচর মর্লকদের ভড়কে দেওয়ার জন্যে কুটোগুলোর ওপর দেশলাইয়ের একটা জ্বলন্ত কাঠি ফেলে দিলাম।</p>
+<p>নাতিশীতোষ্ণ অঞ্চলে দাবানল বড় একটা দেখা যায় না। নিরক্ষীয় অঞ্চলে মাঝে মাঝে শিশিরকণার মধ্যে দিয়ে সূর্যকিরণ ফোকাস বিন্দুতে কেন্দ্রীভূত হয়ে শুকনো ঘাসপাতা জ্বালিয়ে দাবাগ্নি সৃষ্টি করে। কিন্তু এ অঞ্চলে সূর্যের সে তেজ নেই। বাজ পড়লেও বিশেষ জায়গাটি পুড়ে কাঠকয়লা হয়ে যায়, দাবানল জ্বলে না। তা ছাড়া সে যুগে আগুন জ্বালানোর কায়দাকানুনও ভুলে গিয়েছিল সবাই। কাঠকুটোর ওপরে লকলকে লাল আগুনের শিখার নাচ দেখে উইনা তো মহাখুশি। চারপাশে নেচে নেচে ঘুরতে শুরু করে দিলে, ধরে না রাখলে হয়তো আগুনের মধ্যে ঝাঁপিয়ে পড়তেও ছাড়ত না।</p>
+<p>আগুনের আভায় সামনের পথ পরিষ্কার দেখা যাচ্ছিল, উইনাকে কোলে তুলে নিয়ে এগিয়ে চললাম সেদিকে। উইনা কিন্তু কিছুতেই যাবে না অন্ধকারের মধ্যে, কিন্তু না গিয়েও তো উপায় নেই। কিছু দূর গিয়ে দেখলাম, আগুন আশপাশের ঝোপেও ছড়িয়ে পড়েছে, বাঁকা একটা আগুনের রেখা শুকনো ঘাস বয়ে এগিয়ে চলেছে পাহাড়ের দিকে। মাথার ওপর ঘন অন্ধকারের মধ্যে শুধু দু-একটা তারা ঝিকিমিকি দেখতে পাচ্ছিলাম। আশপাশ অন্ধকার হয়ে এসেছিল। দেশলাই জ্বালানোও আর সম্ভব ছিল না, কেননা এক হাতে উইনা আর এক হাতে লোহার ডান্ডা নিয়ে পথ চলতে হচ্ছিল আমাকে।</p>
+<p>কিছু দূর পর্যন্ত পায়ের তলায় শুকনো কুটো ভাঙার মটমট শব্দ, গাছের পাতার সরসরানি আর নিজের শ্বাস-প্রশ্বাসের শব্দ ছাড়া আর কিছুই শুনলাম না। তারপরেই মনে হল, তরু-পল্লবের মর্মরধ্বনি ছাড়াও চারপাশে আবার জেগেছে সেই অদ্ভুত খসখস শব্দ, কারা যেন বাতাসের সরে ফিসফিস করে কথা বলছে নিজেদের মধ্যে। আরও জোরে এগিয়ে চললাম। ফিসফিস আর খসখস শব্দ ক্রমশ স্পষ্ট হয়ে উঠল, তারপরেই শুনলাম পাতালপুরীতে শোনা মর্লকদের অদ্ভুত গলার স্বর। আশপাশেও নিশ্চয় এসে পড়েছিল কয়েকটা মর্লক। সত্যি সত্যিই হঠাৎ কোটের পেছনে একটা টান পড়ল, সঙ্গে সঙ্গে আমার হাত টেনে ধরল একজন। দারুণভাবে থরথর করে কেপে উঠল উইনা, তারপরেই একেবারে নিস্পন্দ হয়ে গেল।</p>
+<p>দেশলাই না জ্বালিয়ে আর উপায় নেই। উইনাকে তাহলে মাটিতে শোয়ানো দরকার। তা ই করলাম। পকেট হাতড়ে দেশলাই বার করছি–কয়েকজন আমার হাঁটু ধরে টানাটানি শুরু করে দিল। তীক্ষ্ণ শিস দেওয়ার মতো বিদঘুটে শব্দও ভেসে এল মর্লকদের দিক থেকে। কতকগুলো নরম হাত আমার কোট আর পিঠ চেপে ধরেছিল, কয়েকটা হাত আমার ঘাড়েও এসে পড়ল। তারপরেই জ্বলে উঠল আমার কাঠিটা। মর্লকদের শুধু সাদা পিঠগুলোই দেখতে পেলাম। তিরবেগে পালাচ্ছে গাছের আড়ালে। এরপর তাকালাম উইনার পানে। আমার পা আঁকড়ে ধরে উপুড় হয়ে মাটির ওপর নিথর দেহে পড়েছিল বেচারা। ভয় হয়ে গেল খুব, নিঃশ্বাস পড়ছিল কি না তা-ও ভালো বোঝা যাচ্ছিল না। তাড়াতাড়ি একটা কর্পূরের ডেলা পকেট থেকে বার করে জ্বালিয়ে নিয়ে একপাশে ছড়ে দিয়ে উইনাকে কোলে তুলে নিলাম। কর্পূরের জোরালো আলোয় মর্লকগুলো আরও দূরে সরে গেলেও মনে হল, পেছনের বন থেকে ভেসে এল বহুজনের নড়াচড়ার শব্দ আর গুঞ্জনধনি। যেন বিরাট একটা দলের সমাবেশ ঘটেছে বনের অন্ধকারে।</p>
+<p>উইনা বোধহয় জ্ঞান হারিয়েছিল। কাঁধের ওপর ওকে তুলে নিয়ে এগতে গিয়ে দারুণ ভয়ে আমার হাত-পা ঠান্ডা হয়ে এল। দেশলাই আর উইনাকে সামলাতে গিয়ে কয়েকবার এদিকে-ওদিকে ফিরেছিলাম, ফলে দিক হারিয়েছি আমি। কোনদিকে যে সবুজ পোর্সেলিনের প্রাসাদ আর কোনদিকেই বা পাহাড়, সব গুলিয়ে গেছে। এরকম অবস্থায় এগনো মানে মরণকে ডেকে আনা। কাজেই ঠিক করলাম, আগুন জেলে রাতটা এখানেই কাটিয়ে দেব। কর্পূরটা জ্বলতে জ্বলতে নিবে আসার আগেই তাড়াতাড়ি কাঠকুটো জড়ো করতে লাগলাম। ভয়ে-উত্তেজনায় ভেতরে ভেতরে ঘেমে উঠছিলাম আমি। আর এখানে সেখানে আমার চারদিকে কুচকুচে অন্ধকারের মাঝে কার্বাঙ্কলের মতো দপদপ করে জ্বলতে লাগল মকদের চোখগুলো।</p>
+<p>হঠাৎ নিবে গেল কর্পূরটা। তাড়াতাড়ি জ্বালালাম একটা কাঠি, এর মধ্যেই কিন্তু জন দুই সাদা মূর্তি এগিয়ে এসেছিল উইনার দিকে। আচমকা দেশলাই জ্বলে ওঠায় একজন ঘুরেই ছুট দিলে, আর-একজনের চোখ এমন ধাঁধিয়ে গেল যে, সিধে এগিয়ে এল আমার দিকেই। কোনওরকম দ্বিধা না করে মোক্ষম এক ঘুসি বসিয়ে দিলাম তার থুতনির ওপর–কোঁক করে একটা শব্দ করে একটু টলমল করেই সটান আছড়ে পড়ল সে মাটির ওপর। পকেট থেকে এক টুকরো কর্পূর বার করে জ্বালিয়ে দিয়ে কাঠকুটো জড়ো করে চললাম দুহাতে। লক্ষ করলাম, মাথার ওপর গাছপালাগুলো বেজায় শুকনো। মনে পড়ল, টাইম মেশিন নিয়ে আসার পর প্রায় হপ্তাখানেক আর বৃষ্টি হয়নি এ অঞ্চলে। সুতরাং কুটো কুড়ানো ছেড়ে লাফ মেরে গাছের শাখাগুলোই টেনে টেনে নামিয়ে আনতে লাগলাম। দেখতে দেখতে সবুজ গাছপালা আর শুকনো কাঠকুটোয় লকলক করে উঠল আগুন। যেমন জোরালো, তেমনি প্রচুর ধোঁয়া সে আগুনে।</p>
+<p>কর্পূরের খরচ এইভাবে কমিয়ে উইনার কাছে গেলাম এবার। অনেক চেষ্টা করলাম, কিন্তু মড়ার মতো নিস্পন্দ হয়ে পড়ে রইল বেচারা। সত্যিই ওর নিঃশ্বাস পড়ছে কি না তা ও বুঝতে পারলাম না।</p>
+<p>ধোঁয়ায়, কর্পূরের ভারী গন্ধে, রাত জাগায় আর পথের ক্লান্তিতে হঠাৎ যেন বড় শ্রান্ত মনে হল নিজেকে। ঘাসের ওপর বসে পড়লাম। আগুন বেশ জোরেই জ্বলছিল, ঘণ্টাখানেকের মতো নিশ্চিন্ত। ঘুমে চোখ জুড়ে আসছিল। তার ওপর সারা বন জুড়ে জেগে ছিল আশ্চর্য এক ঘুমপাড়ানি গুঞ্জন। বসে বসেই ঢুলছিলাম–তারপরেই চোখ খুলে দেখি চারদিক অন্ধকার। আর মর্লকদের হাত আবার পেঁচিয়ে ধরেছে আমাকে। সরু সরু আঙুলগুলোয় এক ঝটকান দিয়ে তাড়াতাড়ি পকেটে হাত দিলাম–কিন্তু নেই, উধাও হয়ে গেছে দেশলাইয়ের বাক্স। ওরা আরও জোরে চেপে ধরল আমাকে। বুঝলাম, ঘুমিয়ে পড়েছিলাম আমি, সেই সময়ে আগুন নিবে যাওয়ার ফলেই এই বিপত্তি। আতঙ্কে আমার সর্বাঙ্গ অবশ হয়ে এল। সমস্ত বনটা মনে হল পোড়া কাঠের গন্ধে ভরে উঠেছে। ওরা আমার ঘাড়, চুল, হাত শক্ত করে চেপে ধরে শুইয়ে দিচ্ছিল মাটিতে, বুকের ওপরেও চড়ে বসেছিল কুৎসিত, নরম প্রাণীগুলো। সে যে কী ভয়ংকর অনুভূতি, তা বর্ণনা করা সম্ভব নয়। মনে হল যেন অতিকায় একটা মাকড়সার জালে জড়িয়ে পড়েছি আমি। আমাকে সম্পূর্ণভাবে পেড়ে ফেলেছিল ওরা, নড়াচড়া করার ক্ষমতা ছিল না। ঘাড়ের কাছে হঠাৎ দাঁত বসার জ্বালা অনুভব করলাম, তাইতেই একটু গড়িয়ে যেতে হাতটা গিয়ে পড়ল লোহার ডান্ডাটার ওপর। নতুন শক্তি পেলাম যেন। প্রাণপণ শক্তিতে ঝাঁকুনি দিয়ে দাঁড়িয়ে উঠলাম, মানুষ-হঁদুরগুলো ছিটকে পড়ল মাটির ওপর। সঙ্গে সঙ্গে দুহাতে ডান্ডাটা চেপে ধরে আন্দাজমতো মুখ লক্ষ্য করে সজোরে ঘোরাতে লাগলাম। শুনতে পেলাম, মড়মড় করে গুড়াচ্ছে হাড়। অনুভব করলাম, মাংস থেতলে দলা পাকিয়ে যাচ্ছে এক-এক আঘাতে –মুহূর্তের মধ্যে আবার মুক্ত হলাম আমি।</p>
+<p>নির্মম এক জিঘাংসায় যেন আমার সমস্ত চেতনা আচ্ছন্ন হয়ে গেল। ভাবলাম, উইনা আর আমি দুজনেই যখন পথ হারিয়ে পড়েছি এদের হাতে, তখন এই কুৎসিত পিশাচগুলোর নরমাংস খাওয়ার সাধ আজকে ভালো করেই মিটিয়ে দেব। একটা গাছের গুঁড়িতে হেলান দিয়ে ডাইনে-বামে বেপরোয়া ডান্ডা ঘোরাতে লাগলাম। সমস্ত জঙ্গলটা ওদের ছুটোছুটি আর চিৎকারে ভরে উঠল। কেটে গেল একটা মিনিট। ওদের স্বর যেন দারুণ উত্তেজনায় আরও কয়েক পরদা উঁচুতে উঠে গেল, ছুটোছুটি আগের চাইতে বেড়ে গেল অনেক। তবুও কিন্তু কাউকে আর নাগালের মধ্যে আসতে দেখলাম না। অন্ধকারের মধ্যে এদিকে-ওদিকে তাকালাম, কেউই আর এল না। মর্লকরা সত্যিই ভয় পেয়ে গেল তাহলে? প্রায় সঙ্গে সঙ্গেই অদ্ভুত একটা জিনিস দেখলাম। মনে হল, অন্ধকার যেন আলোর আভায় স্বচ্ছ হয়ে উঠেছে। আবছাভাবে দেখলাম, আশপাশে ছুটোছুটি করছে সাদা প্রাণীগুলো। পায়ের কাছেই পড়ে রয়েছে তিনটে রক্তাক্ত দেহ। নিজের চোখকে বিশ্বাস করতে পারলাম না যখন দেখলাম, পালে পালে পেছনের জঙ্গল থেকে বেরিয়ে তিরবেগে দৌড়াতে দৌড়াতে সামনের জঙ্গলে মিলিয়ে যাচ্ছে ওরা। স্রোতের মতো অগুনতি মর্লক দুপাশ দিয়ে ছুটে সামনের গাছপালার মাঝে গা-ঢাকা দিচ্ছে। সে এক দেখবার মতো দৃশ্য। লক্ষ করলাম ওদের পেছনগুলো কীরকম লালচে, সাদা নয় মোটেই। রুদ্ধশ্বাসে দাঁড়িয়ে এ দৃশ্য দেখছি এমন সময়ে শাখাপ্রশাখার ফাঁকে তারার মালায় ভরা কালো আকাশে ছোট্ট একটা লাল ফুলিঙ্গ লাফিয়ে উঠেই মিলিয়ে গেল। দেখেই পোড়া কাঠের গন্ধটা কীসের তা বুঝলাম, বুঝলাম ঘুমপাড়ানি গানের মতো সে গুঞ্জনধ্বনি কীসের। অবশ্য সে গুনগুনানি এখন সোঁ সোঁ গর্জনে এসে ঠেকেছে। বুঝলাম লাল আভা কীসের আর কেনই বা মর্লকরা প্রাণ হাতে নিয়ে দৌড়াচ্ছে।</p>
+<p>গাছের আড়াল থেকে এসে এক অপূর্ব দৃশ্য দেখলাম। সামনের গাছগুলোর বড় বড় গুঁড়ির পাশ দিয়ে দেখলাম, লকলকে শিখায় দাউদাউ করে জ্বলছে সমস্ত জঙ্গল। প্রথম যে আগুন জ্বেলেছিলাম আমি, এখন আমারই পেছন ছুটে আসছে সে। দেখেই উইনার কথা মনে পড়ল। তাকিয়ে দেখি, সে-ও উধাও হয়ে গেছে কখন। ভাববার আর সময় ছিল না, হিসহিস পটপট শব্দে ক্রমেই এগিয়ে আসে আগুন। বোমা ফাটার শব্দ করে গাছ থেকে গাছে লাফিয়ে পড়ছে লেলিহান আগুনের শিখা। লোহার ডান্ডাটা নিয়ে তিরবেগে মর্লকদের পথেই দৌড়ালাম। আগুনের সঙ্গে আমার সে দৌড় প্রতিযোগিতা ভোলবার নয়। একবার তো আগুন ডানদিক দিক দিয়ে এত তাড়াতাড়ি সামনে এগিয়ে গেল যে, আগুনের বেড়াজালে পড়ে গেলাম আমি। শেষ পর্যন্ত এক টুকরো খোলা জমিতে বেরিয়ে আসতে পারলাম। এসেই দেখি, একটা মর্লক আগুনের আভায় অন্ধ হয়ে এগিয়ে আসছে আমার দিকে, তারপর আমাকে পেরিয়ে সটান ঢুকে গেল আগুনের মধ্যে!</p>
+<p>এরপরেই দেখলাম সে যুগের সবচেয়ে বীভৎস দৃশ্য। আগুনের আভায় খোলা জমিটা দিনের মতো উজ্জ্বল হয়ে উঠেছিল। ঠিক মাঝখানে ছোটখাটো একটা পাহাড়। চারপাশে শুকনো কাঁটাগাছ গজিয়েছে প্রচুর। ওদিক থেকে আগুনের আর-একটা শাখা এগিয়ে আসছে এদিকে, মধ্যে মধ্যে হলুদ জিব লিকলিক করে লাফিয়ে পড়ছে আমার পানে। অর্থাৎ আগুনের বেড়াজালে আটকা পড়েছিল খোলা জমিটুকু। পাহাড়ের গায়ে তিরিশ-চল্লিশ জন মর্লক জোর আলোয় চোখ ধাঁধিয়ে যাওয়ায় হতভম্বের মতো এলোমেলোভাবে দৌড়াদৌড়ি করছিল। প্রথমে ওদের অন্ধ অবস্থা আমি বুঝিনি, তাই যতবারই ছুটে এসেছে আমার দিকে, ততবার বেধড়ক পিটিয়েছি ডান্ডা দিয়ে। একজন তো মারের চোটে মরেই গেল, জনা তিনেক হাত-পা-মাথা ভেঙে রইল পড়ে। কিছুক্ষণ পরে একজনকে হাতড়াতে হাতড়াতে আগুনের দিকে এগিয়ে যেতে দেখে বুঝলাম ওদের অসহায় অবস্থা। তাই রেহাই দিলাম সে যাত্রা।</p>
+<p>তা সত্ত্বেও মাঝে মাঝে দু-একজন সটান এগিয়ে এল আমার দিকে, প্রতিবারই শিউরে উঠে কাটিয়ে যেতে হল আমায়। মাঝখানে আগুনের তেজ একটু কমে আসতে ভাবলাম, আবার বুঝি মর্লকগুলো দেখে ফেলেছে আমায়। আরও কয়েকটাকে যমালয়ে পাঠাবার জন্যে ডান্ডা তুললাম ওপরে, কিন্তু আবার লকলকে হয়ে উঠল লাল শিখা। ডান্ডা নামিয়ে এদিকে-সেদিকে পায়চারি করতে লাগলাম উইনার খোঁজে, কিন্তু ওর কোনও চিহ্নই দেখতে পেলাম না।</p>
+<p>শেষে হতাশ হয়ে পাহাড়ের চূড়ায় বসে বসে আগুনের আভায় অন্ধ পিশাচগুলোর এলোমলো নড়াচড়া দেখতে লাগলাম। আগুনের ছোঁয়া লাগামাত্র অপার্থিব শব্দে ককিয়ে চিৎকার করে উঠছিল ওরা। দু-একজন অবশ্য ওপরেও উঠে এসেছিল হাতড়াতে হাতড়াতে, কঠিন কয়েকটা ঘুসি মেরে তাদের ধরাশায়ী করার লোভ আর সামলাতে পারিনি।</p>
+<p>সমস্ত রাত দারুণ ঘুমে জুড়ে আসতে লাগল আমার চোখের পাতা। চেঁচিয়ে ছুটে ঘুমকে তাড়াতে হয়েছিল চোখ থেকে। উঠেছি, বসেছি, বেড়িয়েছি এদিকে-ওদিকে, আর ভগবানকে ডেকেছি যেন আজকের রাতের মতো ঘুম না আসে চোখে। তিনবার দেখলাম, যন্ত্রণায় কুঁকড়ে উঠে কতকগুলো মর্লক ছুটে গেল আগুনের ভেতরে। অনেকক্ষণ পর একসময়ে আগুনের লাল আভা আর রাশি রাশি কালো ধোঁয়াকে ফিকে করে দিয়ে এল ভোরের শুভ্র সুন্দর আলো।</p>
+<p>আবার খুঁজে দেখলাম উইনাকে, কিন্তু কোথাও কোনও চিহ্ন দেখতে পেলাম না। মর্লকরা। যে বেচারিকে জ্বলন্ত জঙ্গলের মধ্যে ফেলে পালিয়েছে, সে বিষয়ে কোনও সন্দেহ রইল না আমার। দারুণ ইচ্ছে হল, আরও কয়েকটা মর্লকের মাথা গুঁড়িয়ে দিয়ে আসি। কিন্তু তা করে তো আর উইনাকে ফিরিয়ে দেওয়া যাবে না ইলয়দের মধ্যে। পাহাড়ের চূড়ায় উঠে চারদিকে তাকাতেই সবুজ পোর্সেলিনের প্রাসাদ দেখতে পেলাম। সাদা স্ফিংক্স কোনদিকে আছে, ঠিক করে নিয়ে হাঁটা দিলাম সেইদিকে। আগুন তখনও রয়েছে এখানে-সেখানে। পায়ের তলায় রাশি রাশি ছাই থেকে গুমে গুমে উঠছে ধোঁয়া, গাছগুলোও ভেতরে ভেতরে পুড়ে চলেছে–তাই ধোঁয়া ওঠার বিরাম নেই। ধোঁয়ায় চারদিক কুয়াশার মতো আবছা হয়ে উঠেছিল। অস্পষ্টভাবে দেখলাম, কয়েকটা কদাকার মর্লক গোঙাতে গোঙাতে ঘুরছে। এলোমেলোভাবে। এরই মাঝ দিয়ে খোঁড়াতে খোঁড়াতে এগিয়ে চললাম আমি। পায়ে অবশ্য পুরু করে ঘাস বেঁধে নিয়েছিলাম, তবুও অনাহারে, অনিদ্রায়, অবসাদে আমার তখন এক পা-ও যাওয়ার ক্ষমতা ছিল না। চোখ জ্বালা করছিল নিষ্পাপ উইনার শোচনীয় পরিণতির কথা ভেবে। আমিই তাকে এনেছিলাম, কিন্তু ফিরিয়ে দিতে পারলাম না তার পরিজনদের মাঝে।</p>
+<p>হাঁটতে হাঁটতে হঠাৎ পকেটে হাতড়াতে আনন্দে আমার মন নেচে উঠল। চারটে দেশলাইয়ের কাঠি পেলাম পকেটে। মর্লকরা বাক্সটা বার করে নিলেও কোনওরকমে এ চারটে কাঠি থেকে গেছে পকেটের কোণে।…</p>
+</div>
+<br/>
+<p>ইপাব নির্মাণে ⏩ <a href="https://t.me/bongboi" rel="noopener noreferrer" target="_blank">@bongboi</a>।</p>
+<br/>
+<h2>১৩. সাদা স্ফিংক্সে-এর ফাঁদ</h2>
+<hr/>
+<br/>
+
+<div>
+<p><strong>১৩। সাদা স্ফিংক্সে-এর ফাঁদ</strong></p>
+<p>সকাল আটটা-নটা নাগাদ হলদে ধাতুর আসনের কাছে পৌঁছালাম আমি। চারদিক রোদ্দুরে ভরে উঠেছিল। গভীর প্রশান্তিতে ছেয়ে ছিল দিগদিগন্ত। সে প্রশান্তি আমার মনের জ্বালাযন্ত্রণাও স্নিগ্ধ হাতে জুড়িয়ে দিলে। গত রাতের দুঃস্বপ্নের মতো বিভীষিকা মিলিয়ে গেল মন থেকে, নিদারুণ শ্রান্তিতে সেই কবোষ্ণ সকালে ঘুমিয়ে পড়লাম আমি ঘাসজমির ওপর।</p>
+<p>ঘুম যখন ভাঙল, সূর্য ডুবতে তখন আর বেশি দেরি নেই। আড়মোড়া ভেঙে তাড়াতাড়ি নেমে এলাম নিচে সাদা স্ফিংক্স-এর দিকে। এক হাতে পকেটে দেশলাই কাঠি নাড়াচাড়া করতে করতে অপর হাতে লোহার ডান্ডা বাগিয়ে ধরে নির্ভয়ে এগিয়ে গেলাম বেদির সামনে।</p>
+<p>আর তারপরেই যা দেখলাম, তা আশা করিনি মোটেই। স্ফিংক্স-এর বেদির সামনে গিয়ে দেখি ব্রোঞ্জের দরজা খোলা, মজবুত পাতগুলো সরে গেছে পাশের খাঁজে।</p>
+<p>দেখেই থমকে দাঁড়িয়ে গেলাম–ঢোকা কি উচিত হবে?</p>
+<p>ছোট্ট একটা কামরা দেখলাম ভেতরে, এক কোণে উঁচু জায়গার ওপর রয়েছে টাইম মেশিনটা। ছোট লিভারটা পকেটেই ছিল। ভাবলাম সাদা স্ফিংক্স আক্রমণের এত তোড়জোড় তাহলে সবই বৃথা, শেষ পর্যন্ত আত্মসমর্পণ করল ওরা! লোহার ডান্ডা ছুঁড়ে ফেলে দিলাম। কাজে লাগল না বলে দুঃখ যে হল না তা নয়।</p>
+<p>ভেতরে ঢোকার মুখে আবার থমকে দাঁড়িয়ে গেলাম। কোনও বদ মতলব নেই তো হতভাগাদের? কিন্তু পরক্ষণেই দমকা হাসি চেপে ব্রোঞ্জ ফ্রেম পেরিয়ে সিধে এগিয়ে গেলাম টাইম মেশিনের কাছে। অবাক হয়ে দেখলাম, তেল-টেল দিয়ে বেশ পরিষ্কার করে রাখা হয়েছে মেশিনটা। ওরা হয়তো যন্ত্রটার রহস্য বোঝার জন্যে কতকগুলো অংশ খুলেও ফেলেছিল, না পেরে আগের মতোই ভ্রু এঁটে রেখে দিয়েছিল এক কোণে।</p>
+<p>দাঁড়িয়ে দাঁড়িয়ে বেশ খুশি-খুশি মনে মেশিনটার গায়ে হাত বোলাচ্ছি এমন সময়ে যে ভয় করেছিলাম তা-ই হল। হঠাৎ ব্রোঞ্জের পাত দুটো সড়ত করে বেরিয়ে এসে ঘটাং করে বন্ধ করে দিলে বেদির প্রবেশপথ। নিকষকালো অন্ধকারে কিছুই আর দেখতে পেলাম না, ফাঁদে পড়লাম আমি। মর্লকদের তাহলে এই মতলবই ছিল। আমার কিন্তু বেজায় হাসি পেয়ে গেল ওই অন্ধকারেও।</p>
+<p>ইতিমধ্যে গুনগুন ধ্বনির মতো হাসির শব্দ এগিয়ে আসছিল আমার দিকে। খুব শান্তভাবে দেশলাইয়ের একটা কাঠি ঘষলাম মেশিনের গায়ে। লিভারটা যথাস্থানে বসানোর সময়টুকু শুধু আমার দরকার, তারপরেই ভূতের মতো যাব মিলিয়ে। কিন্তু একটি ছোট্ট জিনিস আমি একেবারেই ভেবে দেখিনি। যে দেশলাইয়ের কাঠি বারবার বারুদে না ঘষলে জ্বলে না, এ হল সেই জাতীয় কাঠি।</p>
+<p>বুঝতেই পারছেন, কীভাবে মুখের হাসি মিলাল আমার। ততক্ষণে আমার ওপর এসে পড়েছে পুঁচকে জানোয়ারগুলো। একজন আমাকে ছুঁতেই হাতের লিভার দিয়ে এক ঘা বসিয়ে দিয়ে কোনওমতে উঠে বসলাম মেশিনের আসনে। আর-একটা হাত এসে পড়ল আমার ওপর, তারপরেই আবার একটা। কিলবিলে সাপের মতো হাতগুলো চেপে বসতে না বসতেই সরু সরু আঙুল দিয়ে লিভারটা ছিনিয়ে নেওয়ার চেষ্টা করতে লাগল ওরা– আর সমানে ঘুসি-লাথি চালিয়ে কোনওরকমে ওদের ঠেকিয়ে রেখে মেশিনের গায়ে লিভারের খাঁজটা হাত বুলিয়ে বুলিয়ে খুঁজতে লাগলাম। একজন তো আচমকা হাত থেকে কেড়েই নিল লিভারটা, তৎক্ষণাৎ মাথা দিয়ে এক দারুণ ঢু মেরে উদ্ধার করলাম সেটা। বেশ কিছুক্ষণ ঝটাপটি করার পর শেষে লিভারটা আটকে গেল খাঁজে, ঠেলেও দিলাম সামনের দিকে। স্যাঁতসেঁতে হাতগুলো পিছলে গেল আমার দেহ থেকে। নিকষ অন্ধকার গেল মিলিয়ে। আগে যেরকম বলেছি, ঠিক সেইরকম ধূসর আলো আর মৃদু গুনগুনানির মধ্যে এসে পড়লাম আবার।</p>
+</div>
+<br/>
+<p>ইপাব নির্মাণে ⏩ <a href="https://t.me/bongboi" rel="noopener noreferrer" target="_blank">@bongboi</a>।</p>
+<br/>
+<h2>১৪. আরও ভবিষ্যতে</h2>
+<hr/>
+<br/>
+
+<div>
+<p><strong>১৪। আরও ভবিষ্যতে</strong></p>
+<p>সময়-পর্যটন যে কী অস্বস্তিকর, তা আপনাদের আগেও বলেছি আমি৷ তার ওপরে এবার আমি ভালো করে আসনে বসতেও পারিনি। পাশের দিকে হেলে পড়ে কোনওরকমে ঠেকেছিলাম আসনে। কতক্ষণ যে এভাবে আঁকড়েছিলাম মেশিনটা, সে খেয়াল ছিল না। দুলুনি আর ঝাঁকুনির মধ্যে কীভাবে এগিয়ে যাচ্ছি, সেসবও দেখার মতো অবস্থা আমার ছিল না। অনেকক্ষণ বাদে একটু সামলে উঠে ডায়ালগুলোর দিকে তাকাতেই চক্ষুস্থির হয়ে গেল। একটা ডায়ালে দেখা যায় শুধু একদিনের হিসেব, আর একটায় হাজার দিনের, তার পাশেরটায় লক্ষ লক্ষ দিনের, আর সব শেষেরটায় কোটি কোটি দিনের। বিপরীত দিকে যাওয়ার লিভারটা না টেনে আমি মেশিনটা শুধু চালিয়ে দিয়েছিলাম, এখন ডায়ালের দিকে তাকাতে দেখি, হাজারের কাঁটাটা ঘড়ির সেকেন্ডের কাঁটার মতো বেগে ঘরে চলেছে–আর আমি এগিয়ে চলেছি আরও ভবিষ্যতের গর্ভে।</p>
+<p>যতই এগতে লাগলাম, চারপাশে দেখলাম এক আশ্চর্য পরিবর্তন। দপদপে ধোঁয়াটে কুয়াশা আরও গাঢ় হয়ে উঠল। তারপরে, প্রচণ্ড বেগে ছুটে চলা সত্ত্বেও মিটমিটে তারার মতো আবার দেখা গেল দিনরাতের দ্রুত পরিবর্তন। ধীরগতিতে গেলে এ পরিবর্তন দেখা যায়। কিন্তু এত নিদারুণ বেগে যাওয়া সত্ত্বেও দিনরাতের আসা-যাওয়া স্পষ্টতর হয়ে উঠল। দারুণ ঘাবড়ে গেলাম। দিবানিশার পরিবর্তন-গতি আরও কমে আসতে লাগল, সেই সঙ্গে কমে এল আকাশে সূর্যের আনাগোনা। শেষকালে মনে হল, পরিবর্তন আসছে কেবল একশো বছর অন্তর অন্তর। প্রথমে পৃথিবীর ওপর দেখা গেল পরিবর্তনহীন স্থির এক গোধূলি, মাঝে মাঝে শুধু কালো আকাশকে চমকে দিয়ে আর গোধূলিকে ঝলসে দিয়ে তিরবেগে উধাও হয়ে গেল কয়েকটা ধূমকেতু।</p>
+<p>আলোর যে চওড়া ফালিটা অবস্থান নির্দেশ করছিল, অনেক আগেই তা অদৃশ্য হয়ে গিয়েছিল। কেননা, আর অস্ত যাচ্ছিল না সূর্য, শুধু পশ্চিমদিক থেকে উঠে আবার নেমে যাচ্ছিল পশ্চিমেই। আর ক্রমশ লাল, আরও জ্বলন্ত হয়ে উঠছিল তার আকৃতি। চাঁদের সব চিহ্ন মিলিয়ে গেল। তারাগুলোর ঘুরপাকও ক্রমশ কমতে কমতে এসে ঠেকল মৃদু সঞ্চরমাণ কয়েকটা আলোর বিন্দুতে। অবশেষে দিক্রেখার ওপর মস্ত বড় গাঢ় লাল সূর্য নিথর হয়ে রইল দাঁড়িয়ে, দীপ্তিহীন উত্তাপে জ্বলতে লাগল আর বিশাল থালার মতো গোল আকৃতি, মাঝে মাঝে ক্ষণেকের জন্যে নিবেও যেতে লাগল। একবার কিছুক্ষণের জন্যে বেশ উজ্জ্বল হয়ে উঠল, কিন্তু দেখতে দেখতে আবার ফিরে এল সেই ম্যাড়মেড়ে লাল আভা। উদয় আর অস্তর ধীরগতি দেখে বুঝলাম, চাঁদ যেমন এ যুগে পৃথিবীর দিকে সমানে একদিক ফিরিয়ে আছে, ঠিক তেমনি পৃথিবীও সূর্যের দিকে একদিক ফিরিয়ে স্থির হয়ে গেল। গতবারের মতো মেশিন সমেত উলটে পড়াটা যাতে আর না হয়, তাই খুব আস্তে আস্তে গতি কমিয়ে আনতে লাগলাম। ঘুরন্ত কাঁটাগুলোর ঘুরপাক ধীরে ধীরে কমে আসতে লাগল, শেষে হাজারের কাঁটাটা নিশ্চল হয়ে গেল দাঁড়িয়ে। স্কেলের ওপর কুয়াশার মতো দিনের কাঁটাটা ঘুরছিল, তাকেও বেশ স্পষ্ট দেখা গেল। আরও আস্তে–জনশূন্য বালুকাবেলার আবছা রেখা আরও স্পষ্ট হয়ে উঠল।</p>
+<p>খুব সাবধানে মেশিন থামিয়ে চারদিকে ভালো করে তাকালাম। আকাশ আর নীল নেই। উত্তর-পূর্বদিক কালির মতো কুচকুচে কালো; আঁধারের মধ্যে থেকে স্থির দ্যুতিতে জ্বলজ্বল করছিল ফ্যাকাশে সাদা তারাগুলো। মাথার ওপর ঘোর রক্তবর্ণ। তারা নেই একটিও। দক্ষিণ-পূর্বদিক টুকটুকে লাল আভায় জ্বলছে, সেদিকেই দিক্রেখায় অর্ধেক ঢাকা পড়ে নিশ্চল হয়ে রয়েছে সূর্যের বিশাল লাল দেহ। চারপাশে পাহাড়গুলো রুক্ষ লালচে রঙের। প্রাণের চিহ্নের মধ্যে দেখলাম, শুধু দক্ষিণ-পূর্বদিক ছেয়ে রয়েছে ঘন সবুজ উদ্ভিদে। একটানা গোধূলির মধ্যে বৃদ্ধি-পাওয়া গাছপালার ওপর যেমন উজ্জ্বল সবুজ রং দেখা যায়, এ রংও যেন সেইরকম। এ যুগে গুহার গাছ-শেওলা আর জঙ্গলের শৈবালের রঙের সঙ্গে সে রঙের মিল আছে অনেকটা।</p>
+<p>ঢালু সমুদ্রতীরের ওপর দাঁড়িয়ে ছিল মেশিনটা। দক্ষিণ-পশ্চিমদিকে পানসে আকাশের পটে দিক্রেখায় গিয়ে মিশেছে সমুদ্র। অদ্ভুত শান্ত তার জল। না আছে ঢেউ, না আছে। আলোড়ন, কেননা বাতাসে চাঞ্চল্য নেই এতটুকুও। খুব মৃদু শ্বাস-প্রশ্বাসের মতো স্পন্দিত হচ্ছিল তার জল, খুব ধীরভাবে একটু উঠে আবার নেমে যাচ্ছিল মসৃণভাবে, তাই দেখেই বোঝা গেল, চিরন্তন সমুদ্র এখনও বেঁচে আছে, এখনও হারায়নি সে তার গতি। তীরের কাছে পুরু নুনের মতো একটা স্তর দেখলাম, পাণ্ডুর আকাশের নিচে লালচে হয়ে উঠেছে তার রং। মাথার মধ্যে একটু যন্ত্রণা বোধ করছিলাম। লক্ষ করলাম, খুব দ্রুত নিঃশ্বাস নিতে হচ্ছে আমায়। পাহাড়ে ওঠার সময়ে যেরকম হয়, সেইরকম। তাইতেই বুঝলাম, এখনকার চাইতে অনেক লঘু হয়ে গেছে তখনকার বাতাস।</p>
+<p>অনেক দূরে জনশূন্য বেলাভূমির ওপর কর্কশ, আর্ত-চিৎকার শুনে দেখি, অতিকায় প্রজাপতির মতো সাদা একটা প্রাণী কাত হয়ে ডানা পতপত করে আকাশে উঠল, তারপর কয়েকটা পাক দিয়ে অদৃশ্য হয়ে গেল ওপাশের পাহাড়ের আড়ালে। সে চিৎকার এমনই রক্ত জমানো যে, আঁতকে উঠে আরও ভালো করে চেপে বসলাম আসনে। চারপাশে আর একবার তাকাতে দেখি, কাছের যে জিনিসটাকে লালচে পাথরের চাঙড় বলে ভেবেছিলাম, আস্তে আস্তে সেটা এগিয়ে আসছে আমার দিকে। তখনই দেখলাম, পাথর নয়, দানব কাঁকড়ার মতো একটা প্রাণী গুঁড়ি মেরে এগচ্ছে আমার পানেই। কল্পনা করুন তো, দূরের ওই টেবিলটার মতো মস্ত বড় একটা কাঁকড়াকে, টলমল করছে তার অনেকগুলো পা, ধীরগতিতে এগিয়ে আসছে আপনার দিকে, বড় বড় দাঁড়া দুটো দুলছে, শংকর মাছের সুদীর্ঘ চাবুকের মতো লম্বা শুড়গুলো এদিকে-ওদিকে নড়ে নড়ে খুঁজছে শিকার, আর ধাতুর মতো কঠিন আর চকচকে আচ্ছাদনের দুপাশ থেকে বোঁটার ডগায় বড় বড় দুটো আগুন চোখ দপদপ জ্বলছে আপনার দিকে। পেছনদিকটা ঢেউতোলা অসমান, পাথরের গায়ে খোদাই করা কারুকাজের মতো হরেকরকম খাঁজকাটা। এখানে-সেখানে জমে রয়েছে সবুজ শেওলার স্তর। কিম্ভুতকিমাকার মুখের গর্তে যেন বিশ্বের খিদে নিয়ে মূর্তিমান বিভীষিকার মতো সে গুঁড়ি মেরে এগিয়ে আসতে লাগল আমার পানে।</p>
+<p>স্থাণুর মতো এই ভয়ংকর দানবটার দিকে একদৃষ্টে তাকিয়ে রয়েছি, এমন সময়ে মাছি বসার মতো একটা সুড়সুড়ি লাগল আমার গালে। হাত দিয়ে ঝেড়ে দিলাম জায়গাটা, কিন্তু পরমুহূর্তেই আবার সুড়সুড় করে উঠল গালটা, আর প্রায় সঙ্গে সঙ্গে কানের ওপরেও পেলাম সেই অনুভূতি। ঠাস করে চাপড় মারতেই সুতোর মতো কীসে হাত ঠেকল। তখুনি কিন্তু হাতের মধ্যে থেকে বেরিয়ে গেল জিনিসটা। দারুণ চমকে পেছন ফিরে দেখি, আর একটা অতিকায় কাঁকড়ার শুড়ের ডগা চেপে ধরেছিলাম আমি। আমার ঠিক পেছনেই দাঁড়িয়ে ছিল দানবটা। বোঁটার প্রান্তে নরকের আগুন জ্বলছিল লাল চোখে, ক্ষুধায় লোলুপ হয়ে উঠেছিল মুখের হাঁ, আর আঠালো কাদা-মাখা বড় বড় দাঁড়া বিরাট সাঁড়াশির মতো আস্তে আন্তে নেমে আসছিল আমার ওপর। চোখের পলক ফেলার আগেই লিভারের ওপর হাত দিয়ে এক মাসের ব্যবধান এনে ফেললাম আমার আর ওই দানোগুলের মধ্যে। মেশিন তখনও সেই একই বেলাভূমিতে দাঁড়িয়ে, কাজেই মূর্তিমান বিভীষিকাগুলোকে দেখতে পেলাম তখনও। প্রায় এক ডজন কাঁকড়া পানসে আলোয় সবুজ শেওলার মধ্যে এদিকে সেদিকে নড়াচড়া করছে।</p>
+<p>সে যে কী ধু ধু শূন্যতা ছড়িয়ে ছিল পৃথিবীর আকাশে-বাতাসে, তা আপনাদের কিছুতেই বোঝাতে পারব না। পুবের লাল আকাশ, পশ্চিমের অন্ধকার, নোনা-ধরা সাগর, পাথরে সাগরতীরে ধীরগতি কুৎসিত দানবগুলো, গাছ-শেওলার একই রকম বিষ-সবুজ রং, ফুসফুস ফাটানো লঘু বাতাস, সবকিছুই নিঃসীম আতঙ্কে আচ্ছন্ন করে দেয় সমস্ত চেতনা। আরও একটা বছর এগিয়ে গেলাম আমি। কিন্তু সেখানেও সেই লাল সূর্য, আরও ম্যাড়মেড়ে। সেই মরা সাগর। সেই ঠান্ডা বাতাস। আর একই রকম কঠিন বর্ম-পরা প্রাণীদের সবুজ শেওলা আর লাল পাহাড়ের মধ্যে নড়াচড়া। আর দেখলাম, পশ্চিম আকাশে মস্ত বড় একাদশীর চাঁদের মতো বাঁকানো একটা পাণ্ডুর রেখা। কিন্তু পরিবর্তন নেই মৃত্যুকঠিন অবসন্ন শ্মশানস্তব্ধতার।</p>
+<p>এইভাবে থেমে থেমে এক-এক লাফে হাজার বছর কি তারও বেশি পেরিয়ে এগিয়ে চললাম আমি। পৃথিবীর অন্তিম অবস্থা দেখতে লাগলাম নিজের চোখে। সভয়ে দেখলাম, পশ্চিম আকাশে ক্রমশ আরও বড়, আরও ফ্যাকাশে হয়ে উঠছে সূর্য। বুঝলাম, পৃথিবীর আয় ফুরিয়ে আসছে। অবশেষে, আজ থেকে তিন কোটি বছর পরে লাল গোলার মতো বিপুল সূর্য প্রায়-অন্ধকার আকাশের দশ ভাগের প্রায় এক ভাগ আবছা করে তুলল। আবার থামলাম আমি। কেননা অগণিত কাঁকড়ার দল দেখলাম অদৃশ্য হয়ে গেছে, গাছ-শেওলা জাতের সবুজ উদ্ভিদ ছাড়া লাল বেলাভূমিতে প্রাণের কোনও চিহ্ন নেই। তারপরেই এল সাদা আস্তরণ। ঠান্ডায় হি-হি করে কেঁপে উঠলাম আমি। সাদা তুষার তার চাদর বিছিয়ে দিতে লাগল হেথায়-সেথায়। কালো আকাশের তারার আলোয় ঝিকমিক করে উঠল তুষারখচিত উত্তর-পূর্বদিক। দেখলাম, ঢেউখেলানো বিস্তর পাহাড়ের লালচে সাদা চুড়ো। সমুদ্রের ধারে জমেছে বরফ, জলে ভেসে যাচ্ছে বরফের চাঁই। তখনও চিরকালের মতো অস্ত-যাওয়া সূর্যের আলোয় রক্তিম লবণ-সমুদ্র জমে যায়নি।</p>
+<p>কোনওরকম জীবিত প্রাণীর আশায় চারপাশে তাকালাম। কিন্তু বৃথা সে চেষ্টা। আকাশে, পৃথিবীতে, সাগরে–কিছুই নড়তে দেখলাম না। প্রাণের চিহ্ন শুধু ছিল পাহাড়ের ওপর সবুজ উদ্ভিদের মধ্যে। সমুদ্রে নিচু একটা বালির চড়া উঠে এসেছে দেখলাম, তীরভূমি থেকেও জল সরে গেছে অনেক দূরে। মনে হল, দূরে বালির চড়ায় কালোমতো একটা জিনিস যেন ঝটপট করে উঠল, কিন্তু সেদিকে তাকাতেই থেমে গেল নড়াচড়া। আমারই চোখের ভুল, পাথর ছাড়া কিছুই দেখিনি। আকাশের তারাগুলো অবশ্য খুব জ্বলজ্বলে মনে হল, অনেকদিনের চেনা পুরানো বন্ধুর মতো মিটমিট করে ওরা তাকিয়ে ছিল আমার দিকে।</p>
+<p>আচমকা লক্ষ করলাম, পশ্চিমে সূর্যের বাইরের গোল রেখা পালটে যাচ্ছে, বাঁকা রেখার একটা জায়গায় যেন বড় রকমের একটা টোল পড়েছে। চোখের সামনে দেখলাম, বড় হয়ে যাচ্ছে টোলটা। পুরো এক মিনিট ক্রমশ এগিয়ে আসা রাশি রাশি অন্ধকারের দিকে একদৃষ্টে তাকিয়ে রইলাম, তারপর বুঝলাম, গ্রহণ শুরু হল। হয় চাঁদ আর না-হয় বুধ গ্রহ আড়াআড়িভাবে যাচ্ছে সূর্যের ওপর দিয়ে। প্রথমে চাঁদ বলেই ভেবেছিলাম, কিন্তু পরে অনেক ভেবে দেখলাম, পৃথিবী আর সূর্যের মধ্যেকার একটি গ্রহকেই সেদিন পৃথিবীর খুব কাছ দিয়ে যেতে দেখেছিলাম।</p>
+<p>অন্ধকার ঘন হয়ে উঠতে লাগল। পূর্বদিক থেকে নতুন তেজে বয়ে এল ঠান্ডা বাতাস। আকাশ থেকে সাদা বরফ-বৃষ্টি আরও বেড়ে উঠল। সমুদ্রের কিনারা থেকে ভেসে এল অদ্ভুত ছলছল শব্দের সঙ্গে কীসের ফিসফিসানি। এইসব প্রাণহীন শব্দ ছাড়া পৃথিবী একেবারে নিস্তব্ধ। নিস্তব্ধ? সে নৈঃশব্দ্য যে কী তা ভাষায় প্রকাশ করা যায় না। পাখির যে কুজন, মানুষের সাড়া, ভেড়ার ডাক, পোকামাকড়ের গুনগুনানি আর স্পন্দন সূচনা করে জীবন, সেসবই থেমে গেছে। অন্ধকার যত ঘন হতে লাগল, ততই বাড়তে লাগল বরফ পড়া, ততই কনকনে হয়ে উঠতে লাগল বাতাস। শেষে, একে একে কিন্তু খুব তাড়াতাড়ি দূরের পাহাড়ের চুড়াগুলো হারিয়ে গেল অন্ধকারের আড়ালে। গোঙিয়ে কেঁদে উঠল বাতাস। দেখলাম, গ্রহণের ঠিক কেন্দ্রের কালো ছায়াটা আমার দিকেই এগিয়ে আসছে। পরের মুহূর্তেই শুধু ফ্যাকাশে তারাগুলো দেখা গেল, আর সবকিছুই গেল অস্পষ্ট হয়ে। আকাশ ঢেকে গেল নিবিড় তিমিরে।</p>
+<p>এই মহাতিমিরের আতঙ্ক চেপে বসল আমার ওপর। দারুণ শীতে হাড়সুদ্ধ কনকনিয়ে উঠছিল, নিঃশ্বাস নিতেও যন্ত্রণা বোধ করছিলাম। থরথরিয়ে কেঁপে উঠলাম, দারুণ গা বমি-বমি ভাব পাক দিয়ে উঠল সর্বাঙ্গে। তারপরেই লাল মুগুর পড়ার মতো সুর্যের কিনারা বেরিয়ে এল আকাশে। নিজেকে সামলাতে মেশিন থেকে নেমে দাঁড়ালাম আমি। মাথা ঘুরতে লাগল আমার, মনে হল ফিরে যাওয়ার মতো ক্ষমতাও আর নেই। অর্ধ-অচেতন হয়ে দাঁড়িয়ে ছিলাম। হঠাৎ দেখলাম, সেই জিনিসটা আবার নড়ে উঠল লাল জলের মাঝে –এবার তার নড়ে ওঠা সম্বন্ধে আর কোনও সন্দেহ রইল না আমার। ফুটবল কি তার চাইতেও বড় গোলাকার একটা বস্তু, গা থেকে কতকগুলো শুড় বেরিয়ে এসেছে। ছলছলে রক্তের মতো লাল জলের বুকে জিনিসটা মনে হল ঘোর কালো রঙের, এদিকে-ওদিকে দিব্যি লাফিয়ে লাফিয়ে ঘুরছিল জিনিসটা। তারপরেই মনে হল, অজ্ঞান হয়ে যাচ্ছি আমি। কিন্তু দূর ভবিষ্যতের ওই ভয়াবহ গোধূলিতে অসহায় অবস্থায় পড়ে থাকার আতঙ্কই আমাকে কোনওরকমে টেনে এনে বসিয়ে দিলে টাইম মেশিনের আসনে।</p>
+</div>
+<br/>
+<p>ইপাব নির্মাণে ⏩ <a href="https://t.me/bongboi" rel="noopener noreferrer" target="_blank">@bongboi</a>।</p>
+<br/>
+<h2>১৫. সময়-পর্যটকের প্রত্যাবর্তন</h2>
+<hr/>
+<br/>
+
+<div>
+<p><strong>১৫৷ সময়-পর্যটকের প্রত্যাবর্তন</strong></p>
+<p> আর তাই ফিরে এলাম আমি। নিশ্চয় বহুক্ষণ জ্ঞান হারিয়ে পড়ে ছিলাম মেশিনের ওপর। দিনরাতের মিটমিটে জ্বলা-নেবা আবার শুরু হল, আবার সোনালি হয়ে উঠল সূর্য, আকাশ নীল। আরও সহজভাবে নিঃশ্বাস নিতে লাগলাম আমি। জমির ওঠানামার রেখা-তরঙ্গ কমে এল–মসৃণ হয়ে উঠল তার গতি। ডায়ালের ওপর পেছনদিকে ঘুরে চলল কাঁটাগুলো। আবার দেখতে পেলাম ক্ষয়িষ্ণু মানবজাতির নিদর্শন বড় বড় বাড়ির আবছা ছায়া। তা-ও গেল মিলিয়ে, এল অন্য দৃশ্য। দেখতে দেখতে লক্ষের কাঁটা শূন্যের ঘরে এসে দাঁড়াতে গতি কমিয়ে দিলাম। অনেকদিনের চেনা আমাদের সুন্দর বাড়িঘরদোর আবার দেখতে পেলাম, হাজারের কাঁটা যেখান থেকে শুরু হয়েছিল, সেখানে এসে থেমে গেল। দিনরাতের আনাগোনা আরও কমে এল। তারপরেই ল্যাবরেটরির পুরানো দেওয়াল ফিরে এল আমার চারপাশে। খুব সাবধানে আরও কমিয়ে দিলাম মেশিনের গতি।</p>
+<p>ছোট্ট কিন্তু বেশ মজার একটা জিনিস লক্ষ করলাম। আগেই বলেছি আপনাদের, যাত্রা শুরু করার মিনিটকয়েকের মধ্যে খুব অল্প গতিবেগের সময়ে মিসেস ওয়াচেটকে ঘরের মধ্যে দিয়ে রকেটের মতো হেঁটে যেতে দেখেছিলাম। ফেরবার সময়ে ঠিক সেই মিনিটটাও পেরিয়ে আসতে হল আমাকে। কিন্তু এখন দেখলাম, সমস্ত জিনিসটা ঘটল উলটোদিক থেকে। উলটোদিক থেকে ফিল্ম চালালে যেরকম দেখা যায়, ঠিক সেইরকমভাবে আগে নিচের দরজাটা খুলে গেল, পিঠটা সামনের দিকে রেখে যেন পিছলে ল্যাবরেটরিতে ঢুকলেন মিসেস ওয়াচেট। আর ওইভাবেই পিছু হেঁটে পেছনের যে দরজা দিয়ে আগে তিনি ঢুকেছিলেন, সেই দরজা দিয়েই বেরিয়ে গেলেন! ঠিক তার আগেই মনে হল, হিলিয়ারকেও মুহূর্তের জন্য দেখলাম, কিন্তু সে-ও বিদ্যুৎ-চমকের মতো চকিতে উধাও হয়ে গেল।</p>
+<p>তারপরেই থামালাম মেশিনটা। চারদিকে তাকিয়ে আবার দেখতে পেলাম আমার পরিচিত ল্যাবরেটরি, যন্ত্রপাতি আর টুকটাক সরঞ্জাম–ঠিক যেভাবে ফেলে গিয়েছিলাম, সেইভাবেই পড়ে রয়েছে এখানে-ওখানে। টলতে টলতে মেশিন থেকে নেমে পাশের বেঞ্চে বসলাম। বেশ কয়েক মিনিট কেঁপে জ্বর আসার মতো দারুণভাবে কাঁপতে লাগলাম। কিছুক্ষণ পর অনেকটা সামলে নিলাম। চারপাশে আগের মতোই রয়েছে আমার পুরানো কারখানা, কিছুই পালটায়নি। ভাবলাম, ঘুমিয়ে পড়েছিলাম। স্বপ্ন ছাড়া আর কিছুই দেখিনি আমি।</p>
+<p>কিন্তু তা তো নয়! ল্যাবরেটরির দক্ষিণ-পূর্ব কোণ থেকে যাত্রা শুরু করেছিল টাইম মেশিন, কিন্তু শেষ হয়েছে উত্তর-পশ্চিমের দেওয়ালের ধারে–সেখানেই এখনও দেখতে পাবেন মেশিনটা। আর এই দূরত্বটুকুই ছিল ছোট লন আর সাদা স্ফিংক্স-এর বেদির মধ্যে -মর্লকরা এই পথটুকুই বয়ে নিয়ে গিয়েছিল টাইম মেশিনটা। বেশ কিছুক্ষণ অসাড় হয়ে রইল আমার মগজ। তারপর উঠে দাঁড়িয়ে প্যাসেজ দিয়ে খোঁড়াতে খোঁড়াতে এলাম এদিকে। দরজার পাশেই টেবিলের ওপর পলমল গেজেটটা দেখলাম। আপনাদের টুকরো টুকরো কথা আর ছুরি-কাঁটার শব্দ শুনতে পেলাম। বড় দুর্বল লাগছিল নিজেকে, তাই একটু ইতস্তত করলাম। কিন্তু মাংসের লোভনীয় সুবাস নাকে আসতেই দরজা খুলে দেখলাম আপনাদের। তারপর কী হল তা তো জানেনই। হাত-মুখ ধুয়ে খাওয়াদাওয়া সেরে এই আশ্চর্য কাহিনি শোনাতে বসেছি আপনাদের।</p>
+</div>
+<br/>
+<p>ইপাব নির্মাণে ⏩ <a href="https://t.me/bongboi" rel="noopener noreferrer" target="_blank">@bongboi</a>।</p>
+<br/>
+<h2>১৬. কাহিনির পর</h2>
+<hr/>
+<br/>
+
+<div>
+<p><strong>১৬। কাহিনির পর</strong></p>
+<p>একটু থেমে আবার বললেন তিনি, ভাবছেন, মস্ত বড় একটা আষাঢ়ে গল্প শুনিয়ে দিলাম। কিন্তু অ্যাডভেঞ্চারের গল্পটা আপনাদের বলার জন্যে যে ফিরে এসেছি তা-ও তো ঠিক বিশ্বাস করে উঠতে পারছি না আমি। ডাক্তারের দিকে তাকিয়ে বললেন, বিশ্বাস করুন, এতটা আশা করা সত্যিই উচিত হয়নি আমার। ধরে নিন, সবটাই ডাহা মিথ্যে, নিছক একটা ভবিষ্যদ্বাণী। ধরে নিন, কারখানায় বসে একটা আজগুবী স্বপ্ন দেখেছি। না-হয় ভাবতে পারেন, মানুষজাতির ভবিষ্যৎ পরিণতি ভাবতে ভাবতে শেষ পর্যন্ত এই গাঁজাখুরি উপন্যাসটাই ফেঁদে বসেছি। নিছক গল্প হিসাবে ধরেই বলুন তো কেমন লাগল আপনাদের?</p>
+<p>পাইপটা তুলে নিয়ে আস্তে আস্তে ঠুকতে লাগলেন তিনি। ক্ষণকালের জন্য গভীর নৈঃশব্দ্য নেমে এল ঘরে। তারপরেই শুরু হল চেয়ার টানার জুতোর মসমস শব্দ। অন্ধকারের মধ্যে তাকিয়ে দেখি, পলকহীন চোখে ডাক্তার লক্ষ করছেন সময়-পর্যটককে। সম্পাদক তাঁর ছনম্বর সিগারেটটার ডগায় চোখ পাকিয়ে তাকিয়ে আছেন। সাংবাদিক ঘড়ি হাতড়াচ্ছেন। বাকি সবাই একেবারে নিশ্চল।</p>
+<p>দীর্ঘশ্বাস ফেলে উঠে দাঁড়ালেন সম্পাদক। কী দুর্ভাগ্য আমাদের, আপনি গল্প-লেখক হতে পারলেন না!</p>
+<p>আপনি তাহলে বিশ্বাস করেননি?</p>
+<p>আরে মশাই–।</p>
+<p>তাহলে করেননি। আমার দিকে ফিরলেন সময়-পর্যটক। দেশলাইটা দিন তো… বিশ্বাস কি আমিও করেছি… কিন্তু…</p>
+<p>হঠাৎ ওঁর চোখ পড়ল টেবিলের ওপর রাখা শুকনো সাদা ফুল দুটোর ওপর। তারপরেই আঙুলের গাঁটের প্রায় শুকনো কাটাছেঁড়াগুলোর দিকে একদৃষ্টে তাকিয়ে রইলেন। ল্যাম্পের কাছে এসে ফল দুটো নেড়েচেড়ে দেখলেন ডাক্তার। বিড়বিড় করে ওঠেন তিনি।</p>
+<p>সাংবাদিক বলেন, একটা বাজতে চলল, এবার তাহলে বাড়ি যাওয়া যাক, কী বলেন?</p>
+<p>মনোবিজ্ঞানী বললেন, অনেক ট্যাক্সি মিলবে এখন।</p>
+<p> ডাক্তার বললেন, ফুলগুলো দেখতে কিন্তু অদ্ভুত। এগুলো নিয়ে যেতে পারি কি?</p>
+<p> ইতস্তত করেন সময়-পর্যটক, তারপর দ্বিধা কাটিয়ে স্পষ্ট বলেন, নিশ্চয় না।</p>
+<p> সত্যি করে বলুন তো কোত্থেকে জোগাড় করলেন ওগুলো? শুধালেন ডাক্তার। দুহাতে মাথা চেপে ধরেন সময়-পর্যটক। একটু চুপ করে থেকে মৃদু কণ্ঠে বললেন, উইনা রেখেছিল আমার পকেটে। কিন্তু… কিন্তু এসব কি সত্যি না কল্পনা? সত্যিই কি আমি কোনওদিন টাইম মেশিন বা তার মডেল তৈরি করেছিলাম? স্বপ্ন, না পাগল হলাম আমি? নাঃ, মেশিনটা দেখতেই হবে আমাকে!</p>
+<p>চট করে ল্যাম্পটা তুলে নিয়ে করিডরের দিকে এগিয়ে গেলেন উনি, পিছুপিছু আমরাও গেলাম। ল্যাম্পের কাঁপা আলোয় দেখলাম দেওয়ালের গায়ে খাড়া মেশিনটা, বিদঘুটে স্কুল তার গড়ন, তামা আবলুশ, হাতির দাঁত আর স্বচ্ছ কোয়ার্টজে চিকমিকে তার শ্রীহীন অঙ্গ। স্বপ্ন যে নয়, তা কঠিন ধাতুর রেলিং স্পর্শ করেই বুঝলাম, হাতির দাঁতের ওপর লেগেছে বাদামি ছোপ, এখানে-সেখানে কাদার দাগ, নিচের অংশে ঘাস আর শেওলার কুচি, একটা রেলিং বেঁকে গেছে। ল্যাম্পটা বেঞ্চির ওপর রেখে বেঁকা রেলিং-এ হাত বুলিয়ে বললেন সময়-পর্যটক, স্বপ্ন নয় তাহলে। যে কাহিনি আপনাদের বললাম, তার প্রতিটি অক্ষর সত্য। বলে ল্যাম্পটা তুলে নিয়ে আমাদের সঙ্গে নিঃশব্দে ফিরে এলেন স্মোকিং রুমে।</p>
+<p>বিদায় নেওয়ার সময় একটু ইতস্তত করে ডাক্তার বললেন, আপনি দিনকতক বিশ্রাম নিন, অতিরিক্ত পরিশ্রম করছেন আজকাল। উত্তরে হা হা করে হেসে উঠলেন সময় পর্যটক।</p>
+<p>সম্পাদকের সঙ্গে একই ট্যাক্সিতে ফিরলাম আমি। ভদ্রলোক তো ডাহা মিথ্যে বলে সবকিছু উড়িয়ে দিলেন। আমার পক্ষে কিন্তু অত চট করে কোনও সিদ্ধান্তে আসা সম্ভব হল না। গল্পটা যেমন আজগুবি আর অবিশ্বাস্য, বলার ভঙ্গিও তেমনি বিশ্বাস্য যুক্তিসংগত। ঠিক করলাম, আবার দেখা করতে হবে সময়-পর্যটকের সঙ্গে। এইসব কথা ভেবে সারারাত ভালো করে ঘুমাতেই পারলাম না আমি।</p>
+<p>পরের দিন সকালে গিয়ে শুনলাম, ল্যাবরেটরিতে রয়েছেন উনি। ল্যাবরেটরিতে গিয়ে কাউকেই দেখতে পেলাম না। টাইম মেশিনটা একইভাবে দাঁড়িয়ে ছিল একপাশে, হাত দিয়ে আলতো করে ছুঁলাম লিভারটা। সঙ্গে সঙ্গে বাতাসে দুলে ওঠার মতো সামান্য দুলে উঠল বিদঘুটে মেশিনটা। চমকে হাত সরিয়ে নিলাম আমি। করিডর দিয়ে স্মোকিং রুমে আসতে আসতে সময়-পর্যটকের সঙ্গে মুখোমুখি হয়ে গেলাম। ভেতর বাড়ি থেকে আসছিলেন উনি। এক কাঁধে ছোট্ট একটা ক্যামেরা, অপর কাঁধে একটা কাপড়ের ব্যাগ। আমাকে দেখে হেসে উঠলেন, মেশিনটা নিয়ে খুব ব্যস্ত এখন, কী খবর আপনার?</p>
+<p>শুধালাম, কাল রাতে বিলকুল ধাপ্পা মারলেন কি সত্যি বললেন, তা-ই জানতে এলাম। সত্যিই কি আপনি সময়ের পথে বেড়াতে পারেন?</p>
+<p>পারি। আমার চোখে চোখ রেখে পরিষ্কার বললেন উনি। তারপর একটু ইতস্তত করে বললেন, আধ ঘণ্টা সময় দিন আমাকে। ম্যাগাজিনগুলো রইল, পড়ন। লাঞ্চ পর্যন্ত যদি সবুর করতে পারেন, সময়পথে সত্যিই ভ্রমণ করতে পারি কি না, তার প্রমাণ আপনাকে আমি দেব। এখন তাহলে আসি।</p>
+<p>বলে চলে গেলেন উনি। ল্যাবরেটরির দরজা বন্ধ হওয়ার শব্দ শুনলাম। যে কথাগুলো বলে গেলেন, তার অর্থ তখন অত খেয়াল করিনি। দৈনিক কাগজটা কিছুক্ষণ পড়ার পর হঠাৎ মনে পড়ল, একটু পরেই একজন প্রকাশকের সঙ্গে দেখা করার কথা আছে। ঘড়ি দেখলাম, সময় আর বেশি নেই। ভাবলাম, সময়-পর্যটককে বলে ভদ্রলোকের সঙ্গে আগে দেখা করে আসি।</p>
+<p>ল্যাবরেটরির দরজার হাতলটা ধরামাত্র একটা বিস্ময়-চকিত চিৎকার শুনলাম, শেষের দিকে অদ্ভুতভাবে ক্ষীণ হয়ে এল শব্দটা আর শুনলাম, ক্লিক শব্দের সঙ্গে সঙ্গে ঘটাং করে একটা আওয়াজ। দরজা খুলতেই এক ঝলক হাওয়া আমার পাশ দিয়ে বেগে বেরিয়ে গেল বাইরে, আর ভেতরে মেঝের ওপর ভাঙা কাঁচ পড়ার ঝনঝন শব্দ ভেসে এল। সময় পর্যটককে ভেতরে দেখলাম না। মুহূর্তের জন্যে বেগে ঘুরপাক খাওয়া তামা আর আবলুশের মাঝে যেন খুব আবছা প্রেতচ্ছায়ার মতো একটা মূর্তিকে বসে থাকতে দেখলাম, সে মূর্তি এত স্বচ্ছ যে, তার মধ্যে দিয়ে পাশে বেঞ্চের ওপর রাখা ড্রয়িং-এর সরঞ্জামগুলোও স্পষ্ট দেখতে পাচ্ছিলাম। কিন্তু চোখ রগড়েই দেখি, ভৌতিক ছায়া অদৃশ্য হয়ে গেছে। টাইম মেশিনও উধাও হয়ে গেছে। দেওয়ালের পাশে ছোট্ট একটা ধুলোর ঘূর্ণিপাক ছাড়া ল্যাবরেটরি একেবারে শূন্য। জানলার একটা কাঁচও দেখলাম ভেঙে এসে পড়েছে ঘরের ভেতর।</p>
+<p>হতভম্ব হয়ে দাঁড়িয়ে রইলাম। আশ্চর্য একটা কাণ্ড ঘটল চোখের সামনেই, তবুও কিন্তু নিজের চোখ-কানকে বিশ্বাস করে উঠতে পারলাম না। এমন সময়ে বাগানের দিকের দরজা খুলে মালি ঢুকল ভেতরে।</p>
+<p>শুধালাম, উনি কি এদিক দিয়ে বাইরে গেলেন?</p>
+<p> না স্যার, এদিকে কেউ আসেনি।</p>
+<p>বুঝলাম সব। প্রকাশকের কথা ভুলে গিয়ে সময়-পর্যটকের জন্য বসে রইলাম আমি। প্রতীক্ষায় রইলাম আরও বিচিত্র কাহিনি শোনার, বিচিত্রতর নিদর্শন আর ফোটোগ্রাফ দেখার আশায়। কিন্তু মনে হচ্ছে, সারাজীবনেও আমার এ প্রতীক্ষা আর ফুরাবে না। সময় পর্যটক উধাও হয়েছেন তিন বছর আগে–আর সবাই জানেন, আজও তিনি ফেরেননি।</p>
+<p>.</p>
+<p><strong>উপসংহার</strong></p>
+<p>সন্দেহ জাগে, সত্যিই কি আর ফিরবেন উনি? হয়তো অতীতে ফিরে গিয়ে আদিম প্রস্তরযুগের রক্তপিপাসু বুনো বর্বরদের হাতে পড়েছেন; না-হয় তলিয়ে গেছেন খড়িগোলা ক্রিটেশাশ সমুদ্রের পাতালগুহায়; নয়তো জুরাসিক আমলের অতিকায় সরীসৃপ আর কিম্ভুতকিমাকার সরিয়ানদের রাক্ষুসে খিদে মিটিয়েছেন নিজেকে দিয়ে। এমনও হতে পারে, উনি এখন প্লিসিওসরাসে ভরা কোনও ওসাইটিক প্রবাল দ্বীপে উদ্ভ্রান্ত হয়ে ঘুরে বেড়াচ্ছেন, অথবা ট্রায়াসিক যুগের নির্জন লবণ সমুদ্রের ধারে পথ ভুলেছেন। কিংবা আরও সামনের দিকে এগিয়ে এমন এক কাছাকাছি যুগে পৌঁছেছেন, যেখানে মানুষ এখনও মানুষ, কিন্তু আমাদের যুগের সব সমস্যা, সব প্রশ্নের সমাধান করে রামরাজ্য সৃষ্টি করেছে। তারা। মানুষ তার সর্বশক্তি নিয়োগ করেছে যে সমাজের উন্নতি করতে, হয়তো একদিন সেই সমাজই হবে তার কবরস্থান। কিন্তু আমার কাছে ভবিষ্যৎ এখনও অজ্ঞানের গভীর অন্ধকারে ভরা–তাঁর কাহিনিই শুধু সামান্য আলো ফেলেছে এখানে-সেখানে। হয়তো সে কাহিনি নিছক অলীক, কিন্তু তবুও আমার কাছে এখনও রয়েছে দুটি শুকনো ফুল–যে ফুল পৃথিবীতে এর আগে বা এখনও কোথাও জন্মায়নি।…</p>
+<p>————</p>
+<p>[১ অধুনালুপ্ত দানবাকার সামুদ্রিক সর্পবিশেষকে ইকথিওসরাস বলে।</p>
+<p> ২ গ্রিফিন একটা কাল্পনিক জন্তুর নাম। এর দেহ সিংহের মতো, চঞ্চু আর ডানা শকুনির মতো।</p>
+<p> ৩ কল্পনার রামরাজ্যকে বলে ইউটোপিয়া। এ-রাজ্যে অঢেল সুখ ছাড়া দুঃখের বালাই নেই।</p>
+<p> ৪ ম্যাডাগাস্কার দ্বীপপুঞ্জের নিশাচর বানরদের লিমার বলে।]</p>
+</div>
+<br/>
+<p>ইপাব নির্মাণে ⏩ <a href="https://t.me/bongboi" rel="noopener noreferrer" target="_blank">@bongboi</a>।</p>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = (p.currentTheme === 'light' || p.currentTheme === 'dark') ? p.currentTheme : 'dark';
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    const progressFill = document.getElementById('reading-progress-fill');
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        if (progressFill) progressFill.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+    updateProgress(window);
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+            a.addEventListener('click', closeDrawer);
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocMobile);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme; header/footer/drawer now follow the same theme via CSS vars)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+            const themeColorMeta = document.getElementById('theme-color-meta');
+            if (themeColorMeta) themeColorMeta.setAttribute('content', m.bg);
+
+            const activeAccent = getComputedStyle(document.body).getPropertyValue('--bar-accent').trim();
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? activeAccent : 'transparent';
+            });
+            savePrefs();
+        });
+    });
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+    })();
+})();
+</script>
+
+
+</body>
+</html>
