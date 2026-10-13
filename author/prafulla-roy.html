@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F0F3F8">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFBP0HJMJV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WFBP0HJMJV');
+    </script>
+    <link rel="icon" type="image/webp" href="https://pathokghar.com/assets/photos/pathokghar-logo.webp">
+    <link rel="apple-touch-icon" href="https://pathokghar.com/assets/photos/pathokghar-logo.webp">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>প্রফুল্ল রায়</title>
+    <meta name="description" content="লেখক প্রফুল্ল রায়-এর 1টি বই পড়ুন ও ডাউনলোড করুন পাঠক ঘরে।">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/author/prafulla-roy.html">
+    <meta property="og:title" content="প্রফুল্ল রায়">
+    <meta property="og:description" content="লেখক প্রফুল্ল রায়-এর 1টি বই পড়ুন ও ডাউনলোড করুন পাঠক ঘরে।">
+    <meta property="og:image" content="https://cdn.pathokghar.com/1791895153079_3q0oujaac72.webp">
+    <meta property="og:url" content="https://pathokghar.pages.dev/author/prafulla-roy.html">
+    <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="পাঠক ঘর">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="প্রফুল্ল রায়">
+    <meta name="twitter:description" content="লেখক প্রফুল্ল রায়-এর 1টি বই পড়ুন ও ডাউনলোড করুন পাঠক ঘরে।">
+    <meta name="twitter:image" content="https://cdn.pathokghar.com/1791895153079_3q0oujaac72.webp">
+    <!-- Pure static CSS — কোনো build step লাগে না। আগে Tailwind CDN (runtime JIT,
+         FOUC), তারপর CI-তে precompile হওয়া tailwind.css ব্যবহার হতো — এখন সেটা
+         এক-বারের জন্য generate করে plain CSS হিসেবে commit করা হয়েছে। -->
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css">
+    <style>
+        /* ── Base / reset ── */
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #F0F3F8;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        * { -webkit-tap-highlight-color: transparent; }
+        a { color: inherit; }
+        ul { padding: 0; margin: 0; }
+
+        /* ── JS-controlled state utilities (নাম বদলানো যাবে না — script এই
+           ক্লাসগুলো classList দিয়ে টগল করে) ── */
+        .hidden { display: none !important; }
+        .flex { display: flex !important; }
+
+        /* সাধারণ বড় আইকন সাইজ */
+        .icon-lg { font-size: 1.4rem; }
+
+        main { flex: 1 1 auto; min-width: 0; }
+
+        /* ── Header (Telegram X স্টাইল — full-width icon row, day/light surface) ── */
+        #site-header {
+            border-bottom: 1px solid rgba(17,24,39,0.08);
+            background: #ffffff;
+        }
+        .header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 3.5rem;
+            box-sizing: border-box;
+            padding: 0 0.75rem 0 0.75rem;
+            position: relative;
+        }
+        .header-logo {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+        }
+        .header-logo-img { height: 2.2rem; width: auto; display: block; }
+        .header-right { display: flex; align-items: stretch; gap: 0; flex: 1 1 auto; height: 100%; }
+        #header-search-btn, #header-search-close-btn, #sidebar-open-btn {
+            background: none; border: none; padding: 0; cursor: pointer;
+            color: #1f2937;
+            font: inherit;
+        }
+        .brand-name-light { font-weight: 300; color: #6b7280; }
+
+        /* ── Header inline search box (header-এর ভেতরে টগল হয়) ── */
+        .header-search-box {
+            align-items: center;
+            gap: 0.75rem;
+            height: 3.5rem;
+            box-sizing: border-box;
+            padding: 0 1rem;
+            position: relative;
+        }
+        .header-search-input {
+            flex: 1;
+            min-width: 0;
+            background: transparent;
+            outline: none;
+            border: none;
+            color: #1f2937;
+            font-size: 1rem;
+        }
+        .header-search-input::placeholder { color: rgba(17,24,39,0.45); }
+        .header-search-suggest {
+            display: none;
+            position: absolute;
+            left: 0; right: 0; top: calc(100% + 0.5rem);
+            background: #ffffff;
+            border: 1px solid rgba(17,24,39,0.08);
+            box-shadow: 0 8px 20px rgba(17,24,39,0.08);
+            border-radius: 0 0 8px 8px;
+            max-height: 70vh;
+            overflow-y: auto;
+            z-index: 60;
+        }
+
+        /* ── Footer (day/light surface — #ffffff surface, #F0F3F8 page bg reference) — মিনিমাল একলাইন ── */
+        .site-footer {
+            background: #ffffff;
+            border-top: 1px solid rgba(17,24,39,0.08);
+            margin-top: 1.5rem;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .footer-container { max-width: 48rem; margin: 0 auto; padding: 0 1.25rem; }
+        .footer-row {
+            padding: 1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .footer-brand { font-size: 0.88rem; color: #6b7280; display: flex; align-items: center; }
+        .footer-brand strong { color: #1f2937; font-weight: 600; }
+        .footer-logo { height: 1.75rem; width: auto; display: block; }
+        .footer-links { display: flex; gap: 1rem; }
+        .footer-links a { font-size: 0.78rem; color: #6b7280; text-decoration: none; transition: color 0.15s; }
+        .footer-links a:hover, .footer-links a:active { color: #0B57CF; }
+
+        /* ── Sidebar (hamburger মেনু — header-এর left side থেকে খোলে) ── */
+        .header-left {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex: 0 0 auto;
+            height: 100%;
+        }
+        #sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(17,24,39,0.4);
+            z-index: 300;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+        #sidebar-overlay.sb-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        #app-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 75%;
+            max-width: 280px;
+            background: #ffffff;
+            z-index: 301;
+            transform: translateX(-100%);
+            transition: transform 0.28s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 2px 0 16px rgba(17,24,39,0.15);
+        }
+        #app-sidebar.sb-open { transform: translateX(0); }
+        .sidebar-nav {
+            flex: 1 1 auto;
+            overflow-y: auto;
+            padding: 0;
+        }
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.9rem;
+            padding: 1.05rem 1.25rem;
+            text-decoration: none;
+            color: #1f2937;
+            font-size: 1.05rem;
+            font-weight: 400;
+            border-bottom: 1px solid rgba(17,24,39,0.08);
+            transition: background 0.15s;
+        }
+        .sidebar-nav a:hover, .sidebar-nav a:active { background: #F0F3F8; }
+        .sidebar-nav a i.sn-chevron { color: rgba(17,24,39,0.35); font-size: 0.85rem; }
+        .sidebar-nav a.sn-active {
+            background: #EAF1FE;
+            color: #0B57CF;
+            font-weight: 600;
+            border-left: 3px solid #0B57CF;
+            padding-left: calc(1.25rem - 3px);
+        }
+        .sidebar-nav a.sn-active i.sn-chevron { color: #0B57CF; }
+
+        /* হেডার ন্যাভ — শুধু সার্চ আইকন, ডান কোণায় */
+        .header-nav-group {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex: 1 1 auto;
+            height: 100%;
+        }
+        .header-nav-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+            width: auto;
+            height: 100%;
+            padding: 0 1rem;
+            color: rgba(17,24,39,0.6);
+            text-decoration: none;
+            position: relative;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font: inherit;
+        }
+
+        /* Floating (sticky) header — নিচে স্ক্রল করলে hide, উপরে স্ক্রল করলে show */
+        #site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 220;
+            transform: translateY(0);
+            transition: transform 0.28s ease;
+            will-change: transform;
+            background: #ffffff !important;
+        }
+        #site-header.header-hidden { transform: translateY(-100%); }
+
+        /* Header search — Google-স্টাইল autosuggest dropdown */
+        .hs-item {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.6rem 1rem;
+            text-decoration: none;
+            color: inherit;
+        }
+        .hs-item:hover, .hs-item.hs-active { background: #C2D7FC; }
+        .hs-thumb {
+            flex-shrink: 0;
+            width: 2.1rem;
+            height: 2.8rem;
+            border-radius: 3px;
+            object-fit: cover;
+            background: #e5e7eb;
+        }
+        .hs-body { min-width: 0; flex: 1; }
+        .hs-title {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: #1f2937;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .hs-title b { color: #0B57CF; font-weight: 700; }
+        .hs-meta {
+            font-size: 0.76rem;
+            color: #6b7280;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .hs-more {
+            display: block;
+            text-align: center;
+            padding: 0.6rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #0B57CF;
+            text-decoration: none;
+            border-top: 1px solid rgba(17,24,39,0.08);
+        }
+
+    </style>
+    <!-- থিম সবসময় day/light mode — dark mode বাদ দেওয়া হয়েছে, accent: #0B57CF -->
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <header id="site-header">
+        <div id="header-default" class="header-row">
+            <div class="header-left">
+                <button id="sidebar-open-btn" type="button" class="header-nav-btn" aria-label="মেনু">
+                    <i class="fa-solid fa-bars icon-lg"></i>
+                </button>
+            </div>
+            <a href="/" class="header-logo" aria-label="পাঠক ঘর">
+                <img src="https://pathokghar.com/assets/photos/pathokghar.webp" alt="পাঠক ঘর" class="header-logo-img">
+            </a>
+            <div class="header-right">
+                <nav class="header-nav-group">
+                    <button id="header-search-btn" type="button" class="header-nav-btn" aria-label="খুঁজুন">
+                        <i class="fa-solid fa-magnifying-glass icon-lg"></i>
+                    </button>
+                </nav>
+            </div>
+        </div>
+        <div id="header-search-box" class="hidden header-search-box">
+            <input id="header-search-input" type="text" placeholder="বই, লেখক বা বিভাগ দিয়ে খুঁজুন..." autocomplete="off" class="header-search-input">
+            <button id="header-search-close-btn" type="button" aria-label="বন্ধ করুন">
+                <i class="fa-solid fa-xmark icon-lg"></i>
+            </button>
+            <div id="header-search-suggest" class="header-search-suggest"></div>
+        </div>
+    </header>
+    <!-- header fixed হওয়ায় নিচের কনটেন্টের জন্য একই উচ্চতার একটি spacer -->
+    <div id="header-spacer"></div>
+
+    <!-- SIDEBAR (hamburger মেনু) -->
+    <div id="sidebar-overlay"></div>
+    <aside id="app-sidebar">
+        <nav class="sidebar-nav">
+            <a href="/">প্রধান পাতা <i class="fa-solid fa-chevron-right sn-chevron"></i></a>
+            <a href="/authors">লেখক <i class="fa-solid fa-chevron-right sn-chevron"></i></a>
+            <a href="/categories">বিভাগ <i class="fa-solid fa-chevron-right sn-chevron"></i></a>
+            <a href="/blog">ব্লগ <i class="fa-solid fa-chevron-right sn-chevron"></i></a>
+        </nav>
+    </aside>
+
+    <script>
+    // Inline search box টগল করা + live autosuggest — header-এ ব্যবহৃত হয়
+    (function() {
+        // ── Autosuggest ──
+        // search-index.json (lightweight, cover/title/author/category) একবার
+        // lazy-fetch হয় — প্রতিটা keystroke এ নয়, প্রথম টাইপ শুরু হলে।
+        var indexData = null;
+        var indexPromise = null;
+
+        function esc(str) {
+            return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+        function highlight(text, q) {
+            var s = esc(text);
+            var idx = s.toLowerCase().indexOf(q.toLowerCase());
+            if (idx === -1) return s;
+            return s.slice(0, idx) + '<b>' + s.slice(idx, idx + q.length) + '</b>' + s.slice(idx + q.length);
+        }
+        function loadIndex() {
+            if (indexPromise) return indexPromise;
+            indexPromise = fetch('/search-index.json')
+                .then(function(r) { return r.ok ? r.json() : []; })
+                .then(function(data) { indexData = data; return data; })
+                .catch(function() { indexData = []; return []; });
+            return indexPromise;
+        }
+
+        function initSearchBox(opts) {
+            var defaultRow = opts.defaultRow;
+            var searchBox = opts.searchBox;
+            var searchBtn = opts.searchBtn;
+            var closeBtn = opts.closeBtn;
+            var searchInput = opts.searchInput;
+            var suggestBox = opts.suggestBox;
+
+            var debounceTimer = null;
+            var activeIndex = -1;
+            var currentItems = [];
+
+            function openSearch() {
+                defaultRow.classList.add('hidden');
+                searchBox.classList.remove('hidden');
+                searchBox.classList.add('flex');
+                searchInput.value = '';
+                searchInput.focus();
+            }
+            function closeSearch() {
+                searchBox.classList.add('hidden');
+                searchBox.classList.remove('flex');
+                defaultRow.classList.remove('hidden');
+                hideSuggestions();
+            }
+            function submitSearch() {
+                var q = searchInput.value.trim();
+                if (q) {
+                    window.location.href = '/search.html?q=' + encodeURIComponent(q);
+                }
+            }
+
+            searchBtn.addEventListener('click', openSearch);
+            closeBtn.addEventListener('click', closeSearch);
+
+            function hideSuggestions() {
+                suggestBox.style.display = 'none';
+                suggestBox.innerHTML = '';
+                activeIndex = -1;
+                currentItems = [];
+            }
+
+            function renderSuggestions(items, q) {
+                currentItems = items;
+                activeIndex = -1;
+                if (!items.length) { hideSuggestions(); return; }
+                var html = items.map(function(book) {
+                    var meta = [book.author, book.category].filter(Boolean).join(' · ');
+                    return '<a href="/book/' + book.slug + '.html" class="hs-item">'
+                        + '<img src="' + esc(book.cover) + '" alt="" class="hs-thumb" loading="lazy">'
+                        + '<div class="hs-body">'
+                        + '<div class="hs-title">' + highlight(book.title, q) + '</div>'
+                        + (meta ? '<div class="hs-meta">' + esc(meta) + '</div>' : '')
+                        + '</div></a>';
+                }).join('');
+                html += '<a href="/search.html?q=' + encodeURIComponent(q) + '" class="hs-more">"' + esc(q) + '" এর সব ফলাফল দেখুন</a>';
+                suggestBox.innerHTML = html;
+                suggestBox.style.display = 'block';
+            }
+
+            function runSearch(q) {
+                loadIndex().then(function(data) {
+                    // input ততক্ষণে বদলে যায়নি কিনা চেক — race condition এড়াতে
+                    if (searchInput.value.trim().toLowerCase() !== q.toLowerCase()) return;
+                    var ql = q.toLowerCase();
+                    var scored = [];
+                    for (var i = 0; i < data.length; i++) {
+                        var b = data[i];
+                        var title = (b.title || '').toLowerCase();
+                        var author = (b.author || '').toLowerCase();
+                        var category = (b.category || '').toLowerCase();
+                        var score = -1;
+                        if (title.indexOf(ql) === 0) score = 3;
+                        else if (title.indexOf(ql) !== -1) score = 2;
+                        else if (author.indexOf(ql) !== -1 || category.indexOf(ql) !== -1) score = 1;
+                        if (score > 0) scored.push({ book: b, score: score });
+                    }
+                    scored.sort(function(a, b) { return b.score - a.score; });
+                    renderSuggestions(scored.slice(0, 6).map(function(s) { return s.book; }), q);
+                });
+            }
+
+            searchInput.addEventListener('input', function() {
+                var q = searchInput.value.trim();
+                clearTimeout(debounceTimer);
+                if (q.length < 2) { hideSuggestions(); return; }
+                debounceTimer = setTimeout(function() { runSearch(q); }, 150);
+            });
+
+            searchInput.addEventListener('keydown', function(e) {
+                var visible = suggestBox.style.display === 'block';
+                if (e.key === 'ArrowDown' && visible) {
+                    e.preventDefault();
+                    activeIndex = Math.min(activeIndex + 1, currentItems.length - 1);
+                    updateActive();
+                } else if (e.key === 'ArrowUp' && visible) {
+                    e.preventDefault();
+                    activeIndex = Math.max(activeIndex - 1, -1);
+                    updateActive();
+                } else if (e.key === 'Enter') {
+                    if (visible && activeIndex >= 0) {
+                        e.preventDefault();
+                        window.location.href = '/book/' + currentItems[activeIndex].slug + '.html';
+                    } else {
+                        submitSearch();
+                    }
+                } else if (e.key === 'Escape') {
+                    if (visible) hideSuggestions();
+                    else closeSearch();
+                }
+            });
+
+            function updateActive() {
+                var links = suggestBox.querySelectorAll('.hs-item');
+                links.forEach(function(el, i) {
+                    el.classList.toggle('hs-active', i === activeIndex);
+                });
+                if (activeIndex >= 0 && links[activeIndex]) {
+                    links[activeIndex].scrollIntoView({ block: 'nearest' });
+                }
+            }
+
+            document.addEventListener('click', function(e) {
+                if (!searchBox.contains(e.target)) hideSuggestions();
+            });
+        }
+
+        // Sidebar-এ current page অনুযায়ী active link হাইলাইট
+        (function() {
+            var path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\/$/, '') || '/';
+            var links = document.querySelectorAll('.sidebar-nav a');
+            links.forEach(function(link) {
+                var href = link.getAttribute('href').replace(/\/index\.html$/, '/').replace(/\/$/, '') || '/';
+                if (href === path) {
+                    link.classList.add('sn-active');
+                }
+            });
+        })();
+
+        // Sidebar (hamburger মেনু) টগল
+        (function() {
+            var openBtn = document.getElementById('sidebar-open-btn');
+            var closeBtn = document.getElementById('sidebar-close-btn');
+            var sidebar = document.getElementById('app-sidebar');
+            var overlay = document.getElementById('sidebar-overlay');
+            if (!openBtn || !sidebar || !overlay) return;
+
+            function openSidebar() {
+                sidebar.classList.add('sb-open');
+                overlay.classList.add('sb-open');
+                if (closeBtn) closeBtn.classList.add('sb-open');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeSidebar() {
+                sidebar.classList.remove('sb-open');
+                overlay.classList.remove('sb-open');
+                if (closeBtn) closeBtn.classList.remove('sb-open');
+                document.body.style.overflow = '';
+            }
+            openBtn.addEventListener('click', openSidebar);
+            overlay.addEventListener('click', closeSidebar);
+            if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeSidebar();
+            });
+        })();
+
+        // Header-এর ভেতরের search box
+        initSearchBox({
+            defaultRow: document.getElementById('header-default'),
+            searchBox: document.getElementById('header-search-box'),
+            searchBtn: document.getElementById('header-search-btn'),
+            closeBtn: document.getElementById('header-search-close-btn'),
+            searchInput: document.getElementById('header-search-input'),
+            suggestBox: document.getElementById('header-search-suggest')
+        });
+    })();
+    </script>
+
+    <script>
+    (function() {
+        var header = document.getElementById('site-header');
+        var spacer = document.getElementById('header-spacer');
+
+        function setSpacerHeight() {
+            spacer.style.height = header.offsetHeight + 'px';
+        }
+        setSpacerHeight();
+        window.addEventListener('resize', setSpacerHeight);
+
+        var lastScrollY = window.pageYOffset;
+        var ticking = false;
+        var threshold = 8; // ছোটখাটো scroll jitter এড়াতে
+
+        function onScroll() {
+            var currentScrollY = window.pageYOffset;
+            var diff = currentScrollY - lastScrollY;
+
+            // একদম উপরে থাকলে সবসময় header দেখাও
+            if (currentScrollY <= header.offsetHeight) {
+                header.classList.remove('header-hidden');
+            } else if (Math.abs(diff) > threshold) {
+                if (diff > 0) {
+                    // নিচের দিকে স্ক্রল — hide
+                    header.classList.add('header-hidden');
+                } else {
+                    // উপরের দিকে স্ক্রল — show
+                    header.classList.remove('header-hidden');
+                }
+                lastScrollY = currentScrollY;
+            }
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(onScroll);
+                ticking = true;
+            }
+        }, { passive: true });
+
+    })();
+    </script>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <div class="author-page-wrap">
+
+<!-- Structured data: Google-কে লেখক সম্পর্কে স্পষ্ট তথ্য দেয় -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "প্রফুল্ল রায়",
+    "image": "https://cdn.pathokghar.com/1791895153079_3q0oujaac72.webp",
+    "description": "",
+    "url": "https://pathokghar.pages.dev/author/prafulla-roy.html"
+}
+</script>
+
+<div class="author-hero-wrap">
+    <div class="author-hero-card">
+        <img src="https://cdn.pathokghar.com/1791895153079_3q0oujaac72.webp" alt="প্রফুল্ল রায়" class="author-hero-avatar">
+        <div class="author-hero-body">
+            <h1 class="author-hero-name">প্রফুল্ল রায়</h1>
+            <hr class="author-hero-rule">
+            <!-- build time-এই markdown থেকে HTML — crawler-এর জন্য প্রথম
+                 লোডেই লেখক পরিচিতি পাওয়া যায়, JS-এর উপর নির্ভরতা নেই -->
+            <div class="author-desc-md"></div>
+        </div>
+    </div>
+</div>
+
+<div style="padding:0 0.5rem 0.5rem;">
+  <!-- বইয়ের লিস্ট build time-এই HTML হিসেবে বসানো — এই পেজের মূল/keyword-rich
+       content, তাই client-side JS-এর বদলে সরাসরি markup-এ থাকা জরুরি -->
+  <div id="author-books-grid" class="bc-list"><a href="/book/soto-dharay-boye-jae.html" class="bc-card"><div class="bc-img-wrap"><img src="https://cdn.pathokghar.com/1791895661516_cuoqbmrf8a6.webp" alt="শত ধারায় বয়ে যায় বই কভার" class="bc-img" loading="lazy"></div><div class="bc-body"><p class="bc-headline"><span class="bc-title">শত ধারায় বয়ে যায়</span></p><p class="bc-desc">দেশভাগের ক্ষত, শেকড় হারানোর যন্ত্রণা আর নতুন করে বেঁচে থাকার সংগ্রাম—এই সবকিছুর এক বিস্তৃত আখ্যান প্রফুল্ল রায়ের ‘শতধারায় বয়ে যায়’। ইতিহাসের এক অন্ধকার সময়কে অবলম্বন করে রচিত এই উপন্যাসে ব্যক্তি</p></div></a></div>
+</div>
+
+</div><!-- /md:px-8 lg:px-16 -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     AUTHOR PROFILE HERO — design এখানে পরিবর্তন করো
+     ═══════════════════════════════════════════════════════════ -->
+<style>
+.author-page-wrap { padding-top: 1rem; }
+@media (min-width: 768px) { .author-page-wrap { padding-top: 1.5rem; padding-left: 2rem; padding-right: 2rem; } }
+@media (min-width: 1024px) { .author-page-wrap { padding-left: 4rem; padding-right: 4rem; } }
+@media (min-width: 768px) { .author-hero-wrap { padding: 0 1.5rem; } }
+.author-hero-wrap {
+    margin-bottom: 0.9rem;
+}
+.author-hero-card {
+    display: block;
+    background: #ffffff;
+    border-radius: 5px;
+    padding: 1.25rem;
+    box-shadow: 0 2px 14px rgba(17,24,39,0.06);
+    margin: 0 0.5rem;
+}
+.author-hero-card::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+@media (min-width: 768px) {
+    .author-hero-card { margin: 0; }
+}
+.author-hero-avatar {
+    float: left;
+    width: 84px;
+    height: 84px;
+    margin-right: 1.1rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #e5e7eb;
+    box-shadow: 0 6px 16px rgba(17,24,39,0.12);
+}
+@media (min-width: 768px) {
+    .author-hero-avatar { width: 104px; height: 104px; }
+}
+.author-hero-body {
+    min-width: 0;
+}
+.author-hero-name {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1f2937;
+    line-height: 1.4;
+    margin: 0;
+}
+@media (min-width: 768px) {
+    .author-hero-name { font-size: 1.4rem; }
+}
+.author-hero-rule {
+    border: none;
+    border-top: 1px dashed #e5e7eb;
+    margin: 0.5rem 0;
+}
+</style>
+
+<!-- ═══════════════════════════════════════════════════════════
+     AUTHOR BOOK CARD — design এখানে পরিবর্তন করো
+     ═══════════════════════════════════════════════════════════ -->
+<style>
+/* Breadcrumb tap underline */
+.bc-link {
+    position: relative;
+    text-decoration: none;
+}
+.bc-link::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -2px;
+    height: 2px;
+    background: #0B57CF;
+    border-radius: 1px;
+    transform: scaleX(0);
+    transition: transform 0.15s ease;
+}
+.bc-link:active::after {
+    transform: scaleX(1);
+}
+</style>
+
+<style>
+/* components/book-card-list.css — সব পেজে (index, books, author, category, search)
+   ব্যবহৃত common book-card LIST design। generate_pages.js এই ফাইলটা একবার লোড করে
+   <style> ট্যাগে মুড়ে প্রতিটা টেমপ্লেটের  placeholder-এ বসিয়ে দেয়।
+   ডিজাইন পরিবর্তন করতে চাইলে শুধু এই ফাইলটা এডিট করলেই সব জায়গায় reflect হবে।
+   ডিজাইন: Editorial variant — layout.html-এর সাথে মিল রেখে day/light পাঠক ঘর
+   palette (#F0F3F8 page bg, #ffffff card surface, #1f2937 টেক্সট, #0B57CF accent)। */
+
+/* List container */
+.bc-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  gap: 0.7rem;
+}
+@media (min-width: 768px) {
+  .bc-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+    padding: 0;
+  }
+}
+
+/* Book card */
+.bc-card {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: flex-start;
+  text-decoration: none;
+  padding: 1rem 1.1rem;
+  transition: background 0.15s, border-color 0.15s;
+  background: #ffffff;
+  border-radius: 5px;
+}
+.bc-card:hover { background: #C2D7FC; }
+
+/* Cover — left side, fixed size 2:3 ratio */
+.bc-img-wrap {
+  flex-shrink: 0;
+  width: 4.5rem;
+  aspect-ratio: 2/3;
+  overflow: hidden;
+  background: #e5e7eb;
+  border-radius: 5px;
+}
+@media (min-width: 768px) { .bc-img-wrap { width: 5.5rem; } }
+
+.bc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Right side text */
+.bc-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+/* Headline: title – author একসাথে */
+.bc-headline {
+  font-size: 1.05rem;
+  line-height: 1.4;
+  margin: 0 0 0.35rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.bc-title {
+  font-weight: 600;
+  color: #1f2937;
+}
+.bc-card:hover .bc-title { text-decoration: none; }
+
+/* Description */
+.bc-desc {
+  margin-top: 0.1rem;
+  font-size: 0.88rem;
+  color: #6b7280;
+  line-height: 1.5;
+  text-align: justify;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/*
+  Book card HTML template (reference — generate_pages.js এ ব্যবহার হয়):
+  <a href="/book/.html" class="bc-card">
+    <div class="bc-img-wrap">
+      <img src="" alt="" class="bc-img" loading="lazy">
+    </div>
+    <div class="bc-body">
+      <p class="bc-headline"><span class="bc-title"></span></p>
+      <p class="bc-desc"></p>
+    </div>
+  </a>
+*/
+</style>
+
+<style>
+.author-desc-md {
+    font-size: 1rem;
+    color: #6b7280;
+    line-height: 1.5rem;
+    text-align: justify;
+}
+.author-desc-md p { margin-bottom: 0.5rem; }
+.author-desc-md p:last-child { margin-bottom: 0; }
+.author-desc-md strong { font-weight: 600; color: inherit; }
+.author-desc-md em { font-style: italic; }
+.author-desc-md a { color: #0B57CF; text-decoration: underline; }
+.author-desc-md a:hover { color: #094aad; }
+.author-desc-md ul { list-style: disc; padding-left: 1.25rem; margin-bottom: 0.5rem; }
+.author-desc-md ol { list-style: decimal; padding-left: 1.25rem; margin-bottom: 0.5rem; }
+.author-desc-md li { margin-bottom: 0.2rem; }
+.author-desc-md h1,.author-desc-md h2,.author-desc-md h3 { font-weight: 700; margin-bottom: 0.4rem; color: inherit; }
+.author-desc-md h1 { font-size: 1.1rem; }
+.author-desc-md h2 { font-size: 1rem; }
+.author-desc-md h3 { font-size: 0.95rem; }
+.author-desc-md blockquote { border-left: 3px solid #6b7280; padding-left: 0.75rem; color: #4b5563; margin: 0.5rem 0; font-style: italic; }
+.author-desc-md code { background: #e5e7eb; color: #1f2937; border-radius: 3px; padding: 0.1rem 0.3rem; font-size: 0.85rem; font-family: monospace; }
+.author-desc-md pre { background: #F0F3F8; color: #1f2937; border-radius: 6px; padding: 0.75rem; overflow-x: auto; margin: 0.5rem 0; }
+.author-desc-md pre code { background: none; padding: 0; }
+.author-desc-md hr { border: none; border-top: 1px solid #e5e7eb; margin: 0.75rem 0; }
+</style>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-container footer-row">
+            <span class="footer-brand"><img src="https://pathokghar.com/assets/photos/pathokghar.webp" alt="পাঠক ঘর" class="footer-logo"></span>
+            <div class="footer-links">
+                <a href="/about">সম্পর্কে</a>
+                <a href="/contact">যোগাযোগ</a>
+                <a href="/policy">শর্তাবলী</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Footer copyright — বছর automatic (current year, বাংলা সংখ্যায়)
+        (function () {
+            const el = document.getElementById('footer-copyright-year');
+            if (!el) return;
+            const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+            const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');
+            el.textContent = toBn(new Date().getFullYear());
+        })();
+    </script>
+
+    <script>
+        // Visit counter — প্রতি পেজ লোড/রিফ্রেশে count বাড়বে
+        (function () {
+            const el = document.getElementById('pg-visit-counter');
+            if (!el) return;
+            const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+            const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');
+            const nums = el.querySelectorAll('b');
+            fetch('/api/visits')
+                .then(r => r.json())
+                .then(data => {
+                    nums[0].textContent = toBn(data.today);
+                    nums[1].textContent = toBn(data.total);
+                })
+                .catch(() => { el.style.display = 'none'; });
+        })();
+    </script>
+
+
+
+
+</body>
+</html>
