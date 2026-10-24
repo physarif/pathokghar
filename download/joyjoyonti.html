@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F0F3F8">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFBP0HJMJV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WFBP0HJMJV');
+    </script>
+    <link rel="icon" type="image/webp" href="https://pathokghar.com/assets/photos/pathokghar-logo.webp">
+    <link rel="apple-touch-icon" href="https://pathokghar.com/assets/photos/pathokghar-logo.webp">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>জয়জয়ন্তী - পাঠক ঘর</title>
+    <meta name="description" content="">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/joyjoyonti.html">
+    <meta property="og:title" content="জয়জয়ন্তী - পাঠক ঘর">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="https://cdn.pathokghar.com/1792849734053_swernrzq13o.webp">
+    <meta property="og:url" content="https://pathokghar.pages.dev/book/joyjoyonti.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="পাঠক ঘর">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="জয়জয়ন্তী - পাঠক ঘর">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://cdn.pathokghar.com/1792849734053_swernrzq13o.webp">
+    <!-- Pure static CSS — কোনো build step লাগে না। আগে Tailwind CDN (runtime JIT,
+         FOUC), তারপর CI-তে precompile হওয়া tailwind.css ব্যবহার হতো — এখন সেটা
+         এক-বারের জন্য generate করে plain CSS হিসেবে commit করা হয়েছে। -->
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css">
+    <style>
+        /* ── Base / reset ── */
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #F0F3F8;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        * { -webkit-tap-highlight-color: transparent; }
+        a { color: inherit; }
+        ul { padding: 0; margin: 0; }
+
+        /* ── JS-controlled state utilities (নাম বদলানো যাবে না — script এই
+           ক্লাসগুলো classList দিয়ে টগল করে) ── */
+        .hidden { display: none !important; }
+        .flex { display: flex !important; }
+
+        /* সাধারণ বড় আইকন সাইজ */
+        .icon-lg { font-size: 1.4rem; }
+
+        main { flex: 1 1 auto; min-width: 0; }
+
+        /* ── Header (Telegram X স্টাইল — full-width icon row, day/light surface) ── */
+        #site-header {
+            border-bottom: 1px solid rgba(17,24,39,0.08);
+            background: #ffffff;
+        }
+        .header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 3.5rem;
+            box-sizing: border-box;
+            padding: 0 0.75rem 0 0.75rem;
+            position: relative;
+        }
+        .header-logo {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+        }
+        .header-logo-img { height: 2.2rem; width: auto; display: block; }
+        .header-right { display: flex; align-items: stretch; gap: 0; flex: 1 1 auto; height: 100%; }
+        #header-search-btn, #header-search-close-btn, #sidebar-open-btn {
+            background: none; border: none; padding: 0; cursor: pointer;
+            color: #1f2937;
+            font: inherit;
+        }
+        .brand-name-light { font-weight: 300; color: #6b7280; }
+
+        /* ── Header inline search box (header-এর ভেতরে টগল হয়) ── */
+        .header-search-box {
+            align-items: center;
+            gap: 0.75rem;
+            height: 3.5rem;
+            box-sizing: border-box;
+            padding: 0 1rem;
+            position: relative;
+        }
+        .header-search-input {
+            flex: 1;
+            min-width: 0;
+            background: transparent;
+            outline: none;
+            border: none;
+            color: #1f2937;
+            font-size: 1rem;
+        }
+        .header-search-input::placeholder { color: rgba(17,24,39,0.45); }
+        .header-search-suggest {
+            display: none;
+            position: absolute;
+            left: 0; right: 0; top: calc(100% + 0.5rem);
+            background: #ffffff;
+            border: 1px solid rgba(17,24,39,0.08);
+            box-shadow: 0 8px 20px rgba(17,24,39,0.08);
+            border-radius: 0 0 8px 8px;
+            max-height: 70vh;
+            overflow-y: auto;
+            z-index: 60;
+        }
+
+        /* ── Footer (day/light surface — #ffffff surface, #F0F3F8 page bg reference) — মিনিমাল একলাইন ── */
+        .site-footer {
+            background: #ffffff;
+            border-top: 1px solid rgba(17,24,39,0.08);
+            margin-top: 1.5rem;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .footer-container { max-width: 48rem; margin: 0 auto; padding: 0 1.25rem; }
+        .footer-row {
+            padding: 1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .footer-brand { font-size: 0.88rem; color: #6b7280; display: flex; align-items: center; }
+        .footer-brand strong { color: #1f2937; font-weight: 600; }
+        .footer-logo { height: 1.75rem; width: auto; display: block; }
+        .footer-links { display: flex; gap: 1rem; }
+        .footer-links a { font-size: 0.78rem; color: #6b7280; text-decoration: none; transition: color 0.15s; }
+        .footer-links a:hover, .footer-links a:active { color: #0B57CF; }
+
+        /* ── Sidebar (hamburger মেনু — header-এর left side থেকে খোলে) ── */
+        .header-left {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex: 0 0 auto;
+            height: 100%;
+        }
+        #sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(17,24,39,0.4);
+            z-index: 300;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+        #sidebar-overlay.sb-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        #app-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 75%;
+            max-width: 280px;
+            background: #ffffff;
+            z-index: 301;
+            transform: translateX(-100%);
+            transition: transform 0.28s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 2px 0 16px rgba(17,24,39,0.15);
+        }
+        #app-sidebar.sb-open { transform: translateX(0); }
+        .sidebar-nav {
+            flex: 1 1 auto;
+            overflow-y: auto;
+            padding: 0;
+        }
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.9rem;
+            padding: 1.05rem 1.25rem;
+            text-decoration: none;
+            color: #1f2937;
+            font-size: 1.05rem;
+            font-weight: 400;
+            border-bottom: 1px solid rgba(17,24,39,0.08);
+            transition: background 0.15s;
+        }
+        .sidebar-nav a:hover, .sidebar-nav a:active { background: #F0F3F8; }
+        .sidebar-nav a i.sn-chevron { color: rgba(17,24,39,0.35); font-size: 0.85rem; }
+        .sidebar-nav a.sn-active {
+            background: #EAF1FE;
+            color: #0B57CF;
+            font-weight: 600;
+            border-left: 3px solid #0B57CF;
+            padding-left: calc(1.25rem - 3px);
+        }
+        .sidebar-nav a.sn-active i.sn-chevron { color: #0B57CF; }
+
+        /* হেডার ন্যাভ — শুধু সার্চ আইকন, ডান কোণায় */
+        .header-nav-group {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex: 1 1 auto;
+            height: 100%;
+        }
+        .header-nav-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+            width: auto;
+            height: 100%;
+            padding: 0 1rem;
+            color: rgba(17,24,39,0.6);
+            text-decoration: none;
+            position: relative;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font: inherit;
+        }
+
+        /* Floating (sticky) header — নিচে স্ক্রল করলে hide, উপরে স্ক্রল করলে show */
+        #site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 220;
+            transform: translateY(0);
+            transition: transform 0.28s ease;
+            will-change: transform;
+            background: #ffffff !important;
+        }
+        #site-header.header-hidden { transform: translateY(-100%); }
+
+        /* Header search — Google-স্টাইল autosuggest dropdown */
+        .hs-item {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.6rem 1rem;
+            text-decoration: none;
+            color: inherit;
+        }
+        .hs-item:hover, .hs-item.hs-active { background: #C2D7FC; }
+        .hs-thumb {
+            flex-shrink: 0;
+            width: 2.1rem;
+            height: 2.8rem;
+            border-radius: 3px;
+            object-fit: cover;
+            background: #e5e7eb;
+        }
+        .hs-body { min-width: 0; flex: 1; }
+        .hs-title {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: #1f2937;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .hs-title b { color: #0B57CF; font-weight: 700; }
+        .hs-meta {
+            font-size: 0.76rem;
+            color: #6b7280;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .hs-more {
+            display: block;
+            text-align: center;
+            padding: 0.6rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #0B57CF;
+            text-decoration: none;
+            border-top: 1px solid rgba(17,24,39,0.08);
+        }
+
+    </style>
+    <!-- থিম সবসময় day/light mode — dark mode বাদ দেওয়া হয়েছে, accent: #0B57CF -->
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <header id="site-header">
+        <div id="header-default" class="header-row">
+            <div class="header-left">
+                <button id="sidebar-open-btn" type="button" class="header-nav-btn" aria-label="মেনু">
+                    <i class="fa-solid fa-bars icon-lg"></i>
+                </button>
+            </div>
+            <a href="/" class="header-logo" aria-label="পাঠক ঘর">
+                <img src="https://pathokghar.com/assets/photos/pathokghar.webp" alt="পাঠক ঘর" class="header-logo-img">
+            </a>
+            <div class="header-right">
+                <nav class="header-nav-group">
+                    <button id="header-search-btn" type="button" class="header-nav-btn" aria-label="খুঁজুন">
+                        <i class="fa-solid fa-magnifying-glass icon-lg"></i>
+                    </button>
+                </nav>
+            </div>
+        </div>
+        <div id="header-search-box" class="hidden header-search-box">
+            <input id="header-search-input" type="text" placeholder="বই, লেখক বা বিভাগ দিয়ে খুঁজুন..." autocomplete="off" class="header-search-input">
+            <button id="header-search-close-btn" type="button" aria-label="বন্ধ করুন">
+                <i class="fa-solid fa-xmark icon-lg"></i>
+            </button>
+            <div id="header-search-suggest" class="header-search-suggest"></div>
+        </div>
+    </header>
+    <!-- header fixed হওয়ায় নিচের কনটেন্টের জন্য একই উচ্চতার একটি spacer -->
+    <div id="header-spacer"></div>
+
+    <!-- SIDEBAR (hamburger মেনু) -->
+    <div id="sidebar-overlay"></div>
+    <aside id="app-sidebar">
+        <nav class="sidebar-nav">
+            <a href="/">প্রধান পাতা <i class="fa-solid fa-chevron-right sn-chevron"></i></a>
+            <a href="/authors">লেখক <i class="fa-solid fa-chevron-right sn-chevron"></i></a>
+            <a href="/categories">বিভাগ <i class="fa-solid fa-chevron-right sn-chevron"></i></a>
+            <a href="/blog">ব্লগ <i class="fa-solid fa-chevron-right sn-chevron"></i></a>
+        </nav>
+    </aside>
+
+    <script>
+    // Inline search box টগল করা + live autosuggest — header-এ ব্যবহৃত হয়
+    (function() {
+        // ── Autosuggest ──
+        // search-index.json (lightweight, cover/title/author/category) একবার
+        // lazy-fetch হয় — প্রতিটা keystroke এ নয়, প্রথম টাইপ শুরু হলে।
+        var indexData = null;
+        var indexPromise = null;
+
+        function esc(str) {
+            return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+        function highlight(text, q) {
+            var s = esc(text);
+            var idx = s.toLowerCase().indexOf(q.toLowerCase());
+            if (idx === -1) return s;
+            return s.slice(0, idx) + '<b>' + s.slice(idx, idx + q.length) + '</b>' + s.slice(idx + q.length);
+        }
+        function loadIndex() {
+            if (indexPromise) return indexPromise;
+            indexPromise = fetch('/search-index.json')
+                .then(function(r) { return r.ok ? r.json() : []; })
+                .then(function(data) { indexData = data; return data; })
+                .catch(function() { indexData = []; return []; });
+            return indexPromise;
+        }
+
+        function initSearchBox(opts) {
+            var defaultRow = opts.defaultRow;
+            var searchBox = opts.searchBox;
+            var searchBtn = opts.searchBtn;
+            var closeBtn = opts.closeBtn;
+            var searchInput = opts.searchInput;
+            var suggestBox = opts.suggestBox;
+
+            var debounceTimer = null;
+            var activeIndex = -1;
+            var currentItems = [];
+
+            function openSearch() {
+                defaultRow.classList.add('hidden');
+                searchBox.classList.remove('hidden');
+                searchBox.classList.add('flex');
+                searchInput.value = '';
+                searchInput.focus();
+            }
+            function closeSearch() {
+                searchBox.classList.add('hidden');
+                searchBox.classList.remove('flex');
+                defaultRow.classList.remove('hidden');
+                hideSuggestions();
+            }
+            function submitSearch() {
+                var q = searchInput.value.trim();
+                if (q) {
+                    window.location.href = '/search.html?q=' + encodeURIComponent(q);
+                }
+            }
+
+            searchBtn.addEventListener('click', openSearch);
+            closeBtn.addEventListener('click', closeSearch);
+
+            function hideSuggestions() {
+                suggestBox.style.display = 'none';
+                suggestBox.innerHTML = '';
+                activeIndex = -1;
+                currentItems = [];
+            }
+
+            function renderSuggestions(items, q) {
+                currentItems = items;
+                activeIndex = -1;
+                if (!items.length) { hideSuggestions(); return; }
+                var html = items.map(function(book) {
+                    var meta = [book.author, book.category].filter(Boolean).join(' · ');
+                    return '<a href="/book/' + book.slug + '.html" class="hs-item">'
+                        + '<img src="' + esc(book.cover) + '" alt="" class="hs-thumb" loading="lazy">'
+                        + '<div class="hs-body">'
+                        + '<div class="hs-title">' + highlight(book.title, q) + '</div>'
+                        + (meta ? '<div class="hs-meta">' + esc(meta) + '</div>' : '')
+                        + '</div></a>';
+                }).join('');
+                html += '<a href="/search.html?q=' + encodeURIComponent(q) + '" class="hs-more">"' + esc(q) + '" এর সব ফলাফল দেখুন</a>';
+                suggestBox.innerHTML = html;
+                suggestBox.style.display = 'block';
+            }
+
+            function runSearch(q) {
+                loadIndex().then(function(data) {
+                    // input ততক্ষণে বদলে যায়নি কিনা চেক — race condition এড়াতে
+                    if (searchInput.value.trim().toLowerCase() !== q.toLowerCase()) return;
+                    var ql = q.toLowerCase();
+                    var scored = [];
+                    for (var i = 0; i < data.length; i++) {
+                        var b = data[i];
+                        var title = (b.title || '').toLowerCase();
+                        var author = (b.author || '').toLowerCase();
+                        var category = (b.category || '').toLowerCase();
+                        var score = -1;
+                        if (title.indexOf(ql) === 0) score = 3;
+                        else if (title.indexOf(ql) !== -1) score = 2;
+                        else if (author.indexOf(ql) !== -1 || category.indexOf(ql) !== -1) score = 1;
+                        if (score > 0) scored.push({ book: b, score: score });
+                    }
+                    scored.sort(function(a, b) { return b.score - a.score; });
+                    renderSuggestions(scored.slice(0, 6).map(function(s) { return s.book; }), q);
+                });
+            }
+
+            searchInput.addEventListener('input', function() {
+                var q = searchInput.value.trim();
+                clearTimeout(debounceTimer);
+                if (q.length < 2) { hideSuggestions(); return; }
+                debounceTimer = setTimeout(function() { runSearch(q); }, 150);
+            });
+
+            searchInput.addEventListener('keydown', function(e) {
+                var visible = suggestBox.style.display === 'block';
+                if (e.key === 'ArrowDown' && visible) {
+                    e.preventDefault();
+                    activeIndex = Math.min(activeIndex + 1, currentItems.length - 1);
+                    updateActive();
+                } else if (e.key === 'ArrowUp' && visible) {
+                    e.preventDefault();
+                    activeIndex = Math.max(activeIndex - 1, -1);
+                    updateActive();
+                } else if (e.key === 'Enter') {
+                    if (visible && activeIndex >= 0) {
+                        e.preventDefault();
+                        window.location.href = '/book/' + currentItems[activeIndex].slug + '.html';
+                    } else {
+                        submitSearch();
+                    }
+                } else if (e.key === 'Escape') {
+                    if (visible) hideSuggestions();
+                    else closeSearch();
+                }
+            });
+
+            function updateActive() {
+                var links = suggestBox.querySelectorAll('.hs-item');
+                links.forEach(function(el, i) {
+                    el.classList.toggle('hs-active', i === activeIndex);
+                });
+                if (activeIndex >= 0 && links[activeIndex]) {
+                    links[activeIndex].scrollIntoView({ block: 'nearest' });
+                }
+            }
+
+            document.addEventListener('click', function(e) {
+                if (!searchBox.contains(e.target)) hideSuggestions();
+            });
+        }
+
+        // Sidebar-এ current page অনুযায়ী active link হাইলাইট
+        (function() {
+            var path = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\/$/, '') || '/';
+            var links = document.querySelectorAll('.sidebar-nav a');
+            links.forEach(function(link) {
+                var href = link.getAttribute('href').replace(/\/index\.html$/, '/').replace(/\/$/, '') || '/';
+                if (href === path) {
+                    link.classList.add('sn-active');
+                }
+            });
+        })();
+
+        // Sidebar (hamburger মেনু) টগল
+        (function() {
+            var openBtn = document.getElementById('sidebar-open-btn');
+            var closeBtn = document.getElementById('sidebar-close-btn');
+            var sidebar = document.getElementById('app-sidebar');
+            var overlay = document.getElementById('sidebar-overlay');
+            if (!openBtn || !sidebar || !overlay) return;
+
+            function openSidebar() {
+                sidebar.classList.add('sb-open');
+                overlay.classList.add('sb-open');
+                if (closeBtn) closeBtn.classList.add('sb-open');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeSidebar() {
+                sidebar.classList.remove('sb-open');
+                overlay.classList.remove('sb-open');
+                if (closeBtn) closeBtn.classList.remove('sb-open');
+                document.body.style.overflow = '';
+            }
+            openBtn.addEventListener('click', openSidebar);
+            overlay.addEventListener('click', closeSidebar);
+            if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeSidebar();
+            });
+        })();
+
+        // Header-এর ভেতরের search box
+        initSearchBox({
+            defaultRow: document.getElementById('header-default'),
+            searchBox: document.getElementById('header-search-box'),
+            searchBtn: document.getElementById('header-search-btn'),
+            closeBtn: document.getElementById('header-search-close-btn'),
+            searchInput: document.getElementById('header-search-input'),
+            suggestBox: document.getElementById('header-search-suggest')
+        });
+    })();
+    </script>
+
+    <script>
+    (function() {
+        var header = document.getElementById('site-header');
+        var spacer = document.getElementById('header-spacer');
+
+        function setSpacerHeight() {
+            spacer.style.height = header.offsetHeight + 'px';
+        }
+        setSpacerHeight();
+        window.addEventListener('resize', setSpacerHeight);
+
+        var lastScrollY = window.pageYOffset;
+        var ticking = false;
+        var threshold = 8; // ছোটখাটো scroll jitter এড়াতে
+
+        function onScroll() {
+            var currentScrollY = window.pageYOffset;
+            var diff = currentScrollY - lastScrollY;
+
+            // একদম উপরে থাকলে সবসময় header দেখাও
+            if (currentScrollY <= header.offsetHeight) {
+                header.classList.remove('header-hidden');
+            } else if (Math.abs(diff) > threshold) {
+                if (diff > 0) {
+                    // নিচের দিকে স্ক্রল — hide
+                    header.classList.add('header-hidden');
+                } else {
+                    // উপরের দিকে স্ক্রল — show
+                    header.classList.remove('header-hidden');
+                }
+                lastScrollY = currentScrollY;
+            }
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(onScroll);
+                ticking = true;
+            }
+        }, { passive: true });
+
+    })();
+    </script>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- components/download.html — layout.html এর  এ inject হবে -->
+
+<style>
+    .progress-bar-fill {
+        height: 100%;
+        border-radius: 9999px;
+        background: linear-gradient(90deg, #0B57CF, #3b82f6);
+        transition: width 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 100%;
+    }
+
+    .step-fade {
+        animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(6px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .pulse-ring {
+        animation: pulse-ring 1.5s ease infinite;
+    }
+    @keyframes pulse-ring {
+        0%   { box-shadow: 0 0 0 0 rgba(11,87,207,0.35); }
+        70%  { box-shadow: 0 0 0 12px rgba(11,87,207,0); }
+        100% { box-shadow: 0 0 0 0 rgba(11,87,207,0); }
+    }
+
+    /* ── Book Info Card (book.html hero card থেকে) ── */
+    .dl-hero-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.1rem;
+        text-align: left;
+        background: #ffffff;
+        border-radius: 5px;
+        padding: 1.25rem;
+        box-shadow: 0 2px 14px rgba(17,24,39,0.06);
+        margin-bottom: 1rem;
+    }
+    .dl-hero-cover {
+        width: 100px;
+        height: 148px;
+        border-radius: 4px;
+        object-fit: cover;
+        background: #e5e7eb;
+        flex-shrink: 0;
+        box-shadow: 0 10px 22px rgba(17,24,39,0.12);
+    }
+    .dl-hero-body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        min-width: 0;
+    }
+    .dl-hero-category {
+        display: inline-block;
+        width: fit-content;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: #0B57CF;
+        background: #F0F3F8;
+        padding: 0.28rem 0.85rem;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: background 0.15s, color 0.15s;
+    }
+    .dl-hero-category:hover { background: #C2D7FC; color: #0B57CF; }
+    .dl-hero-title {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #1f2937;
+        line-height: 1.4;
+        margin: 0;
+    }
+    .dl-hero-author {
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #6b7280;
+        text-decoration: none;
+        transition: color 0.15s;
+    }
+    .dl-hero-author:hover { color: #0B57CF; text-decoration: underline; text-underline-offset: 3px; }
+    .dl-hero-rule {
+        border: none;
+        border-top: 1px dashed #e5e7eb;
+        margin: 0.25rem 0;
+    }
+    .dl-hero-actions {
+        display: flex;
+        gap: 0.6rem;
+        margin-top: 0.15rem;
+    }
+    .dl-hero-link {
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-decoration: none;
+        padding: 0.45rem 1rem;
+        border-radius: 8px;
+        transition: background 0.15s, color 0.15s, transform 0.1s;
+    }
+    .dl-hero-link:active { transform: scale(0.96); }
+    .dl-hero-link-solid { background: #0B57CF; color: #fff; }
+    .dl-hero-link-solid:hover { background: #094aad; }
+    .dl-hero-link-outline { background: transparent; color: #1f2937; border: 1.5px solid #e5e7eb; padding: 0.375rem 0.95rem; }
+    .dl-hero-link-outline:hover { background: #F0F3F8; }
+
+    /* ── Download page layout / step cards ── */
+    .dl-page { max-width: 32rem; margin: 0 auto; padding: 1rem 0.75rem; }
+    @media (min-width: 768px) { .dl-page { padding: 1.5rem; } }
+    .dl-card {
+        background: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 1px 2px rgba(17,24,39,0.05);
+        padding: 1.5rem;
+    }
+    .dl-step1-inner { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+    .dl-icon-circle {
+        width: 3.5rem; height: 3.5rem;
+        border-radius: 50%;
+        background: #F0F3F8;
+        display: flex; align-items: center; justify-content: center;
+        color: #0B57CF;
+        font-size: 1.25rem;
+    }
+    .dl-step1-text { text-align: center; }
+    .dl-step1-title { font-size: 0.875rem; font-weight: 600; color: #1f2937; margin: 0 0 0.125rem; }
+    .dl-step1-sub { font-size: 0.75rem; color: #6b7280; margin: 0; }
+    .dl-get-link-btn {
+        width: 100%;
+        background: #0B57CF;
+        color: #fff;
+        font-weight: 600;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        box-shadow: 0 1px 2px rgba(17,24,39,0.05);
+        transition: background 0.15s, transform 0.1s;
+        cursor: pointer;
+    }
+    .dl-get-link-btn:hover { background: #094aad; }
+    .dl-get-link-btn:active { transform: scale(0.95); }
+
+    /* একক লিংক না থাকলে countdown শেষে EPUB ডাউনলোড লিংক */
+    .dl-format-btns { width: 100%; display: flex; flex-direction: column; gap: 0.6rem; }
+    .dl-download-btn.dl-format-link {
+        background: #DCE8FB;
+        color: #0B57CF;
+        box-shadow: none;
+    }
+    .dl-download-btn.dl-format-link:hover { background: #C2D7FC; }
+
+    .dl-step2-inner { display: flex; flex-direction: column; gap: 1.25rem; }
+    .dl-waiting-text { font-size: 0.75rem; color: #6b7280; text-align: center; margin: 0; }
+
+    .dl-progress-wrap { display: flex; flex-direction: column; gap: 0.5rem; }
+    .dl-progress-row { display: flex; align-items: center; justify-content: space-between; font-size: 0.75rem; color: #6b7280; }
+    .dl-progress-track { width: 100%; height: 0.5rem; background: #e5e7eb; border-radius: 9999px; overflow: hidden; }
+
+    .dl-download-btn {
+        width: 100%;
+        background: #22c55e;
+        color: #fff;
+        font-weight: 600;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        text-decoration: none;
+        display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        box-shadow: 0 1px 2px rgba(17,24,39,0.05);
+        transition: background 0.15s, transform 0.1s;
+    }
+    .dl-download-btn:hover { background: #16a34a; }
+    .dl-download-btn:active { transform: scale(0.95); }
+    .dl-restart-btn {
+        background: none; border: none; cursor: pointer;
+        font-size: 0.75rem; color: #6b7280;
+        text-decoration: underline; text-underline-offset: 2px;
+        transition: color 0.15s;
+    }
+    .dl-restart-btn:hover { color: #0B57CF; }
+
+    .dl-info-strip { margin-top: 1rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.75rem; color: #4b5563; }
+    .dl-info-item { display: flex; align-items: center; gap: 0.375rem; }
+    .dl-info-item i { font-size: 0.625rem; }
+</style>
+
+<!-- ─── Download page (single layout) ─── -->
+<div class="dl-page">
+
+    <!-- Book Info Card: breadcrumb-এর বদলে book.html-এর মতো hero card,
+         এখানে "পড়ুন" ও "বিবরণ" — দুটোই বই পেজে নিয়ে যায় -->
+    <div class="dl-hero-card">
+        <img src="https://cdn.pathokghar.com/1792849734053_swernrzq13o.webp" alt="জয়জয়ন্তী বই এর কভার" width="100" height="148" class="dl-hero-cover">
+        <div class="dl-hero-body">
+            <span class="dl-hero-category">উপন্যাস</span>
+            <p class="dl-hero-title">জয়জয়ন্তী</p>
+            <span class="dl-hero-author">হুমায়ূন আহমেদ</span>
+            <hr class="dl-hero-rule">
+            <div class="dl-hero-actions">
+                <a href="/read/joyjoyonti.html" class="dl-hero-link dl-hero-link-solid">পড়ুন</a>
+                <a href="/book/joyjoyonti.html" class="dl-hero-link dl-hero-link-outline">বিবরণ</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Download action card -->
+    <div class="dl-card">
+        <div id="m-step-1" class="step-fade">
+            <div class="dl-step1-inner">
+                <div class="dl-icon-circle pulse-ring">
+                    <i class="fas fa-download"></i>
+                </div>
+                <div class="dl-step1-text">
+                    <p class="dl-step1-title">বইটি ডাউনলোড করুন</p>
+                    <p class="dl-step1-sub">বিনামূল্যে — কোনো সাবস্ক্রিপশন ছাড়াই</p>
+                </div>
+                <!-- "ডাউনলোড লিংক পান" — ক্লিক করার পরই countdown শেষে
+                     আসল ডাউনলোড লিংক(গুলো) দেখা যাবে -->
+                <button id="m-get-link-btn" class="dl-get-link-btn">
+                    ডাউনলোড লিংক পান
+                </button>
+            </div>
+        </div>
+        <div id="m-step-2" class="hidden step-fade">
+            <div class="dl-step2-inner">
+                <p id="m-waiting-text" class="dl-waiting-text">কয়েক সেকেন্ড অপেক্ষা করুন...</p>
+                <!-- Progress bar -->
+                <div id="m-progress-wrap" class="dl-progress-wrap">
+                    <div class="dl-progress-row">
+                        <span id="m-progress-label">লিংক তৈরি হচ্ছে...</span>
+                        <span id="m-countdown-wrap" class="progress-seconds"><span id="m-countdown-text">5</span>s</span>
+                    </div>
+                    <div class="dl-progress-track">
+                        <div id="m-progress-fill" class="progress-bar-fill"></div>
+                    </div>
+                </div>
+
+                <!-- countdown শেষে: book_download_url থাকলে একক ডাউনলোড বাটন -->
+                <a id="m-download-btn" href="#" class="hidden dl-download-btn step-fade">
+                    <i class="fas fa-download"></i> ডাউনলোড করুন
+                </a>
+
+                <!-- countdown শেষে: book_download_url না থাকলে শুধু EPUB লিংক -->
+                <div id="m-format-links" class="hidden dl-format-btns step-fade">
+                    <a id="m-format-link-epub" href="#" class="dl-download-btn dl-format-link" target="_blank" rel="noopener">
+                        <i class="fas fa-cloud-arrow-down"></i> ডাউনলোড করুন
+                    </a>
+                </div>
+
+                <button id="m-restart-btn" class="hidden dl-restart-btn">
+                    আবার চেষ্টা করুন
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info strip -->
+    <div class="dl-info-strip">
+        <span class="dl-info-item"><i class="fas fa-shield-alt"></i> নিরাপদ</span>
+        <span class="dl-info-item"><i class="fas fa-bolt"></i> দ্রুত</span>
+        <span class="dl-info-item"><i class="fas fa-ban"></i> অবাধ</span>
+    </div>
+</div>
+
+
+
+<script>
+(function () {
+    const DOWNLOAD_URL = '';
+    const BOOK_SLUG     = 'joyjoyonti';
+    const COUNTDOWN_SECONDS = 5;
+
+    // book_download_url না থাকলে ebooks.pathokghar.com থেকে ফরম্যাট অনুযায়ী লিংক তৈরি।
+    // (নোট: টেমপ্লেট লিটারেল/backtick ব্যবহার করা হচ্ছে না — render() ফাংশন
+    // ডলার চিহ্ন ডাবল করে ফেলে, তাতে ইন্টারপোলেশন সিনট্যাক্স ভেঙে যায়। তাই স্ট্রিং concat।)
+    const EBOOKS_BASE = 'https://dl.pathokghar.com/ebooks/';
+    const FORMAT_URLS = {
+        EPUB: EBOOKS_BASE + 'epub/' + BOOK_SLUG + '.epub',
+    };
+
+    // Generic countdown runner — শেষে book_download_url থাকলে একক ডাউনলোড বাটন,
+    // না থাকলে EPUB লিংক দেখাবে
+    function startCountdown(prefix) {
+        const fill    = document.getElementById(prefix + 'progress-fill');
+        const text    = document.getElementById(prefix + 'countdown-text');
+        let remaining = COUNTDOWN_SECONDS;
+
+        // Start full, shrink to 0
+        fill.style.width = '100%';
+
+        // First tick after 1 frame so transition plays
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                fill.style.width = ((remaining - 1) / COUNTDOWN_SECONDS * 100) + '%';
+            });
+        });
+
+        const interval = setInterval(() => {
+            remaining--;
+            text.textContent = remaining;
+            fill.style.width = (remaining / COUNTDOWN_SECONDS * 100) + '%';
+
+            if (remaining <= 0) {
+                clearInterval(interval);
+                // progress wrap + waiting text fade out, তারপর ডাউনলোড লিংক(গুলো) দেখাও
+                const progressWrap  = document.getElementById(prefix + 'progress-wrap');
+                const waitingText   = document.getElementById(prefix + 'waiting-text');
+                const dlBtn         = document.getElementById(prefix + 'download-btn');
+                const formatLinks   = document.getElementById(prefix + 'format-links');
+                const restartBtn    = document.getElementById(prefix + 'restart-btn');
+
+                // fade out
+                if (progressWrap) { progressWrap.style.transition = 'opacity 0.3s'; progressWrap.style.opacity = '0'; }
+                if (waitingText)  { waitingText.style.transition  = 'opacity 0.3s'; waitingText.style.opacity  = '0'; }
+
+                setTimeout(() => {
+                    if (progressWrap) progressWrap.style.display = 'none';
+                    if (waitingText)  waitingText.style.display  = 'none';
+                    if (restartBtn)   restartBtn.style.display   = 'none';
+
+                    if (DOWNLOAD_URL) {
+                        // একটামাত্র ডাউনলোড লিংক
+                        if (dlBtn) {
+                            dlBtn.href = DOWNLOAD_URL;
+                            dlBtn.classList.remove('hidden');
+                            dlBtn.classList.add('step-fade');
+                        }
+                    } else if (formatLinks) {
+                        // শুধু EPUB লিংক
+                        const epub = document.getElementById(prefix + 'format-link-epub');
+                        if (epub) epub.href = FORMAT_URLS.EPUB;
+                        formatLinks.classList.remove('hidden');
+                        formatLinks.classList.add('step-fade');
+                    }
+                }, 300);
+            }
+        }, 1000);
+    }
+
+    function showStep(prefix, n) {
+        // FIX: step-3 নেই, শুধু 1 ও 2 toggle করা হচ্ছে
+        [1, 2].forEach(i => {
+            const el = document.getElementById(prefix + 'step-' + i);
+            if (!el) return;
+            if (i === n) { el.classList.remove('hidden'); el.classList.add('step-fade'); }
+            else el.classList.add('hidden');
+        });
+    }
+
+    // "ডাউনলোড লিংক পান" ক্লিক করার পরই countdown শুরু হয়ে শেষে আসল লিংক(গুলো) দেখা যায়
+    const mGetLinkBtn = document.getElementById('m-get-link-btn');
+    if (mGetLinkBtn) mGetLinkBtn.addEventListener('click', () => { showStep('m-', 2); startCountdown('m-'); });
+
+    const mRestart = document.getElementById('m-restart-btn');
+    if (mRestart) mRestart.addEventListener('click', () => showStep('m-', 1));
+})();
+</script>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-container footer-row">
+            <span class="footer-brand"><img src="https://pathokghar.com/assets/photos/pathokghar.webp" alt="পাঠক ঘর" class="footer-logo"></span>
+            <div class="footer-links">
+                <a href="/about">সম্পর্কে</a>
+                <a href="/contact">যোগাযোগ</a>
+                <a href="/policy">শর্তাবলী</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Footer copyright — বছর automatic (current year, বাংলা সংখ্যায়)
+        (function () {
+            const el = document.getElementById('footer-copyright-year');
+            if (!el) return;
+            const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+            const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');
+            el.textContent = toBn(new Date().getFullYear());
+        })();
+    </script>
+
+    <script>
+        // Visit counter — প্রতি পেজ লোড/রিফ্রেশে count বাড়বে
+        (function () {
+            const el = document.getElementById('pg-visit-counter');
+            if (!el) return;
+            const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+            const toBn = n => String(n).split('').map(d => bnDigits[d] !== undefined ? bnDigits[d] : d).join('');
+            const nums = el.querySelectorAll('b');
+            fetch('/api/visits')
+                .then(r => r.json())
+                .then(data => {
+                    nums[0].textContent = toBn(data.today);
+                    nums[1].textContent = toBn(data.total);
+                })
+                .catch(() => { el.style.display = 'none'; });
+        })();
+    </script>
+
+
+
+
+</body>
+</html>

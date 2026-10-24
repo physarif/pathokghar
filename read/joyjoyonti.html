@@ -1,0 +1,2320 @@
+<!DOCTYPE html>
+<html lang="bn"> 
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Duplicate/thin content: বইয়ের আসল পেজ /book/slug.html-ই index হওয়া
+         উচিত, এই reader টুল পেজ না। crawl allow রেখে শুধু index বন্ধ করা
+         হচ্ছে (follow রাখা হয়েছে যাতে ভেতরের লিংক crawl হতে পারে)। -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://pathokghar.pages.dev/book/joyjoyonti.html">
+    <title>জয়জয়ন্তী - পাঠক ঘর</title>
+    <meta name="description" content="হুমায়ূন আহমেদের *জয়জয়ন্তী* পারিবারিক সম্পর্ক, ভালোবাসা, মানসিক টানাপোড়েন ও জীবনের নানা অনিশ্চয়তা নিয়ে রচিত একটি উপন্যাস।
+
+### কাহিনি ও প্রেক্ষাপট
+উপন্যাসে">
+    <meta property="og:title" content="জয়জয়ন্তী - পাঠক ঘর">
+    <meta property="og:description" content="হুমায়ূন আহমেদের *জয়জয়ন্তী* পারিবারিক সম্পর্ক, ভালোবাসা, মানসিক টানাপোড়েন ও জীবনের নানা অনিশ্চয়তা নিয়ে রচিত একটি উপন্যাস।
+
+### কাহিনি ও প্রেক্ষাপট
+উপন্যাসে">
+    <meta name="theme-color" id="theme-color-meta" content="#ffffff">
+    <link rel="stylesheet" href="/components/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+    <script>
+(function(){
+    try {
+        var p = JSON.parse(localStorage.getItem('pathakghar_reader_prefs') || '{}');
+        var theme = p.currentTheme || 'light';
+        var bg = { light:'#fff', dark:'#1c1c1e' }[theme] || '#fff';
+        var color = { light:'#1a1a1b', dark:'#e5e7eb' }[theme] || '#1a1a1b';
+        var fs = p.fontScale ? (p.fontScale / 100 * 1.05) + 'rem' : (1.00 * 1.05) + 'rem';
+        var ls = p.lineSpacing || 1.5;
+        var mg = p.marginScale !== undefined ? p.marginScale : 5;
+        var align = p.currentAlign || 'left';
+        var fontMap = {
+            noto_serif: "'Noto Serif Bengali','Lora',serif",
+            tiro: "'Tiro Bangla',serif",
+            hind: "'Hind Siliguri',sans-serif",
+            noto_sans: "'Noto Sans Bengali',sans-serif"
+        };
+        var fontFam = fontMap[p.currentFont] || fontMap.noto_serif;
+        var style = document.createElement('style');
+        style.id = 'fouc-shield';
+        style.textContent =
+            'html,body{background:' + bg + '!important}' +
+            '#mobile-reader-bg{background:' + bg + '!important}' +
+            '#book-content{color:' + color + '!important;font-size:' + fs + '!important;line-height:' + ls + '!important;text-align:' + align + '!important;font-family:' + fontFam + '!important}' +
+            '#read-main-content{padding-left:' + mg + '%!important;padding-right:' + mg + '%!important}';
+        document.head.appendChild(style);
+        var meta = document.getElementById('theme-color-meta');
+        if (meta) meta.setAttribute('content', bg);
+        // DOM ready হলে shield সরিয়ে দাও — JS তখন নিজে handle করবে
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('fouc-shield');
+            if (el) el.remove();
+        });
+    } catch(e) {}
+})();
+</script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+        body.theme-light { background: #ffffff; }
+        body.theme-dark { background: #1c1c1e; }
+        #read-layout { display: flex; gap: 0; min-height: 100vh; width: 100%; }
+        #read-column { flex: 1 1 auto; min-width: 0; }
+        #read-main-content {
+            padding: 3.6rem 1.25rem 1.75rem;
+            max-width: 42rem;
+        }
+        #book-content { color: #1f2937; }
+</style>
+</head>
+<body>
+
+<style>
+    /* ── Bar theme variables (header / footer / drawer) — follow reading mode ── */
+    :root, body {
+        --bar-bg: #ffffff;
+        --bar-text: #1a1a1b;
+        --bar-text-dim: rgba(26,26,27,0.55);
+        --bar-border: rgba(0,0,0,0.1);
+        --bar-btn-active: rgba(0,0,0,0.06);
+        --bar-track: rgba(0,0,0,0.12);
+        --bar-accent: #0B57CF;
+        --bar-accent-soft: rgba(11,87,207,0.12);
+    }
+    body.theme-dark {
+        --bar-bg: #232326;
+        --bar-text: #e5e7eb;
+        --bar-text-dim: rgba(229,231,235,0.55);
+        --bar-border: rgba(255,255,255,0.1);
+        --bar-btn-active: rgba(255,255,255,0.08);
+        --bar-track: rgba(255,255,255,0.18);
+        --bar-accent: #3b82f6;
+        --bar-accent-soft: rgba(59,130,246,0.2);
+    }
+
+    @keyframes marquee-scroll {
+        0%   { transform: translateX(100vw); }
+        100% { transform: translateX(-100%); }
+    }
+
+    /* ── Book content typography ── */
+    #book-content {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+    }
+    #book-content h2 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--bar-accent);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid var(--bar-accent-soft);
+        border-bottom: 1px solid var(--bar-accent-soft);
+        transition: color 0.3s, border-color 0.3s;
+    }
+    #book-content h1,
+    #book-content h3 {
+        font-family: 'Noto Serif Bengali', 'Lora', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--bar-accent);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 1.75rem 0 0.75rem;
+        padding: 0.5rem 0;
+        border-top: 1px solid var(--bar-accent-soft);
+        border-bottom: 1px solid var(--bar-accent-soft);
+        transition: color 0.3s, border-color 0.3s;
+    }
+    /* h1/h2 colors now follow --bar-text-dim / --bar-accent (see :root theme variables above),
+       so they automatically match light / dark modes. */
+
+    /* ── প্রতিটা <p> নিজে একটা আলাদা bg-বক্স, শুরু থেকে শেষ পর্যন্ত ── */
+    #book-content p {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 0.6rem 1.1rem;
+        margin-bottom: 0.7rem;
+        line-height: 2;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    body.theme-dark  #book-content p {
+        background: #232326;
+        border-color: rgba(255,255,255,0.08);
+    }
+    #book-content p:empty { display: none; }
+    #book-content p:blank { display: none; }
+    #book-content a {
+        color: #0B57CF;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
+    }
+    /* External link icon */
+    #book-content a[href^="http"]::after,
+    #book-content a[href^="https"]::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        opacity: 0.7;
+    }
+    #book-content img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+        margin: 1.25rem auto;
+        display: block;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+    /* ── Blockquote ── */
+    #book-content blockquote {
+        border-left: 3px solid #0B57CF;
+        margin: 1.5rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(11,87,207,0.05);
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        color: #555;
+    }
+    /* ── HR stylish divider ── */
+    #book-content hr {
+        border: none;
+        text-align: center;
+        margin: 2rem 0;
+        color: #9ca3af;
+        font-size: 1rem;
+        letter-spacing: 0.5rem;
+    }
+    #book-content hr::before {
+        content: '✦ ✦ ✦';
+    }
+    /* ── Table ── */
+    #book-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    #book-content th {
+        background: #0B57CF;
+        color: #fff;
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    #book-content td {
+        padding: 0.55rem 0.85rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    #book-content tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    #book-content tr:last-child td { border-bottom: none; }
+    /* ── Figcaption ── */
+    #book-content figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: 0.78rem;
+        color: #9ca3af;
+        margin-top: -0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    /* ── Text selection ── */
+    #book-content ::selection {
+        background: rgba(11,87,207,0.25);
+        color: inherit;
+    }
+    /* ── Smooth scroll offset ── */
+    #book-content h1, #book-content h2, #book-content h3 {
+        scroll-margin-top: 1.5rem;
+    }
+
+    /* ── TOC active ── */
+    .toc-link.active {
+        color: var(--bar-accent);
+        font-weight: 600;
+        background: var(--bar-accent-soft);
+    }
+    #toc-nav-mobile .toc-link {
+        display: block;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+        font-family: 'Noto Serif Bengali', serif;
+        line-height: 1.5;
+        text-decoration: none;
+        color: var(--bar-text);
+        border-bottom: 1px solid var(--bar-border);
+        transition: color 0.15s, background 0.3s, border-color 0.3s;
+    }
+    #toc-nav-mobile .toc-link:last-child { border-bottom: none; }
+    #toc-nav-mobile .toc-link.h2-link {
+        padding-left: 32px;
+        font-size: 0.78rem;
+        color: var(--bar-text-dim);
+    }
+
+    /* ══════════════════════════════
+       MOBILE reader chrome
+    ══════════════════════════════ */
+    @media (max-width: 767px) {
+
+        /* Reading background themes */
+        body.theme-dark  #mobile-reader-bg { background: #1c1c1e; }
+        body.theme-light #mobile-reader-bg { background: #ffffff; }
+
+        #mobile-reader-bg {
+            min-height: 100vh;
+            transition: background 0.3s;
+        }
+    }
+
+    #toc-controls-bar { position: sticky; top: 0; z-index: 10; }
+
+    /* ── Reading progress line — header-এর বাইরে, স্বাধীন fixed element,
+       তাই body.bars-hidden দিয়ে header হাইড হলেও এটা visible থাকবে ── */
+    #reading-progress-bar {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        background: var(--bar-btn-active);
+        z-index: 70;
+        pointer-events: none;
+    }
+    #reading-progress-fill {
+        height: 100%;
+        width: 0%;
+        background: var(--bar-accent);
+    }
+
+    /* ── Reader header: Lithium-style app bar (back + title + actions) ── */
+    #reader-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 60;
+        display: flex;
+        flex-direction: column;
+        padding: 0 0.5rem 0 0.35rem;
+        background: var(--bar-bg);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        transition: background 0.3s, transform 0.28s ease;
+    }
+    body.bars-hidden #reader-header { transform: translateY(-100%); }
+    #rh-row1 {
+        padding-top: 0.4rem;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding-bottom: 0.4rem;
+    }
+    #rh-back {
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0B57CF;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: background 0.15s, color 0.3s;
+    }
+    #rh-back:active { background: var(--bar-btn-active); }
+    #rh-titles {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+    }
+    #rh-title {
+        margin: 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.98rem;
+        font-weight: 600;
+        color: var(--bar-text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: color 0.3s;
+    }
+    #reader-header .rh-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        flex-shrink: 0;
+    }
+    #reader-header .rh-actions button {
+        width: 34px;
+        height: 34px;
+        border: none;
+        background: transparent;
+        color: #0B57CF;
+        border-radius: 7px;
+        font-size: 1.05rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s, color 0.3s;
+    }
+    #reader-header .rh-actions button:active { background: var(--bar-btn-active); }
+
+
+    /* ══ Unified drawer — opens from the top like Lithium's settings sheet ══ */
+    #unified-wrap {
+        position: fixed;
+        top: 8px; right: 8px;
+        width: 70%;
+        height: 74vh;
+        overflow: hidden;
+        z-index: 500;
+        pointer-events: none;
+        background: var(--bar-bg);
+        border-radius: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        transform-origin: top right;
+        transform: scale(0.85) translateY(-6px);
+        opacity: 0;
+        transition: transform 0.16s cubic-bezier(0.2,0,0,1),
+                    opacity 0.14s ease, background 0.3s;
+    }
+
+    /* Drawer panel */
+    #unified-drawer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #unified-wrap.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Tab bar */
+    #unified-tabs {
+        display: flex;
+        flex-shrink: 0;
+        border-bottom: 1px solid var(--bar-border);
+    }
+    .unified-tab {
+        flex: 1;
+        padding: 14px 0;
+        font-family: 'Noto Serif Bengali', serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--bar-text-dim);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: color 0.15s, border-color 0.15s;
+        letter-spacing: 0.04em;
+    }
+    .unified-tab.active {
+        color: var(--bar-accent);
+        border-bottom-color: var(--bar-accent);
+    }
+
+    /* Panels */
+    .unified-panel {
+        display: none;
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .unified-panel::-webkit-scrollbar { display: none; }
+    .unified-panel.active { display: flex; flex-direction: column; }
+
+    /* Overlay */
+    #unified-overlay {
+        position: fixed; inset: 0;
+        z-index: 499;
+        background: rgba(0,0,0,0.25);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    #unified-overlay.open { opacity: 1; pointer-events: auto; }
+
+    html { scroll-behavior: smooth; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    /* Drawer inner */
+    #settings-drawer-inner {
+        padding: 18px 18px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+    }
+    .settings-drawer-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--bar-accent);
+        margin-bottom: 16px;
+        flex-shrink: 0;
+    }
+    /* Theme circles */
+    .settings-section-label {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--bar-text);
+        margin-bottom: 10px;
+        margin-top: 18px;
+        flex-shrink: 0;
+    }
+    .settings-section-label:first-of-type { margin-top: 0; }
+    .theme-circles {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+    }
+    .theme-circle {
+        width: auto;
+        min-width: 64px;
+        height: 34px;
+        flex: 1 1 0;
+        padding: 0 12px;
+        border-radius: 8px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: border-color 0.15s;
+        box-shadow: 0 0 0 1px var(--bar-border);
+    }
+    .theme-circle.active { border-color: var(--bar-accent); }
+    .theme-circle svg { display: none; }
+
+    /* +/- rows */
+    .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--bar-border);
+        flex-shrink: 0;
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-label { font-size: 0.85rem; color: var(--bar-text); }
+    .settings-row-val { font-size: 0.74rem; color: var(--bar-text-dim); margin-top: 1px; }
+    .settings-row-controls { display: flex; align-items: center; gap: 8px; }
+    .settings-btn {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid var(--bar-border);
+        background: var(--bar-btn-active);
+        color: var(--bar-text);
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1;
+        transition: background 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+    }
+    .settings-btn:active { background: var(--bar-accent-soft); border-color: var(--bar-accent); color: var(--bar-text); }
+
+    /* Font pills */
+    .font-pills {
+        display: flex;
+        gap: 8px;
+        width: auto;
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-shrink: 0;
+    }
+    .font-pills::-webkit-scrollbar { display: none; }
+    .font-pill {
+        flex: 0 0 auto;
+        height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+        border-radius: 8px;
+        border: 1.5px solid var(--bar-border);
+        background: var(--bar-btn-active);
+        color: var(--bar-text);
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .font-pill.active, .font-pill:active {
+        background: var(--bar-accent-soft) !important;
+        border-color: var(--bar-accent) !important;
+        color: var(--bar-text) !important;
+    }
+
+    /* Text align btns */
+    .align-btns { display: flex; gap: 6px; flex-shrink: 0; }
+    .align-btn {
+        width: 38px; height: 38px;
+        border-radius: 6px;
+        border: 1.5px solid var(--bar-border);
+        background: transparent;
+        color: var(--bar-text);
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+    .align-btn svg { stroke: currentColor; }
+    .align-btn.active, .align-btn:active {
+        background: var(--bar-accent-soft) !important;
+        border-color: var(--bar-accent) !important;
+        color: var(--bar-text) !important;
+    }
+
+</style>
+
+<!-- ══ Reading progress line — header হাইড হলেও visible থাকে ══ -->
+<div id="reading-progress-bar"><div id="reading-progress-fill"></div></div>
+
+<!-- ══ Reader header (back + title/chapter stack + actions) ══ -->
+<header id="reader-header">
+    <div id="rh-row1">
+        <a href="/book/joyjoyonti.html" id="rh-back" aria-label="বইয়ের পাতায় ফিরে যান" title="ফিরে যান">
+            <i class="fa-solid fa-angle-left"></i>
+        </a>
+        <div id="rh-titles">
+            <h1 id="rh-title">জয়জয়ন্তী</h1>
+        </div>
+        <div class="rh-actions">
+            <button id="rh-menu-btn" aria-label="সূচিপত্র ও কাস্টমাইজ" title="সূচিপত্র ও কাস্টমাইজ"><i class="fa-solid fa-list-ul"></i></button>
+        </div>
+    </div>
+</header>
+
+
+
+<!-- ══════════════════════════════════════════
+     MOBILE ONLY chrome (hidden on md+)
+══════════════════════════════════════════ -->
+
+<!-- ══ Unified drawer ══ -->
+<div id="unified-wrap">
+    <div id="unified-drawer">
+        <div id="unified-tabs">
+            <button class="unified-tab active" data-tab="toc">সূচিপত্র</button>
+            <button class="unified-tab" data-tab="customize">কাস্টমাইজ</button>
+        </div>
+        <div class="unified-panel active" id="panel-toc">
+            <nav id="toc-nav-mobile"></nav>
+        </div>
+        <div class="unified-panel" id="panel-customize">
+            <div id="settings-drawer-inner">
+                <div class="settings-section-label">থিম</div>
+                <div class="theme-circles">
+                    <button class="theme-circle" data-theme="light" style="background:#fff;border-color:#0B57CF;" title="সাদা"></button>
+                    <button class="theme-circle active" data-theme="dark" style="background:#3a3a3a;border-color:#3b82f6;" title="ডার্ক">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e5e7eb" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">ফন্ট</div>
+                <div class="font-pills" id="font-pills">
+                    <button class="font-pill active" data-font="noto_serif" style="font-family:'Noto Serif Bengali','Lora',serif;">Noto Serif</button>
+                    <button class="font-pill" data-font="tiro" style="font-family:'Tiro Bangla',serif;">Tiro Bangla</button>
+                    <button class="font-pill" data-font="hind" style="font-family:'Hind Siliguri',sans-serif;">Hind Siliguri</button>
+                    <button class="font-pill" data-font="noto_sans" style="font-family:'Noto Sans Bengali',sans-serif;">Noto Sans</button>
+                </div>
+                <div class="settings-section-label" style="margin-top:16px;">এলাইন</div>
+                <div class="settings-row" style="margin-top:0;">
+                    <div class="align-btns" style="width:100%; justify-content:space-between;">
+                        <button class="align-btn" id="align-left" title="বাম">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-center" title="সেন্টার">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                        </button>
+                        <button class="align-btn" id="align-justify" title="জাস্টিফাই">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">টেক্সট সাইজ</div>
+                        <div class="settings-row-val" id="font-size-val">120%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="font-dec">−</button>
+                        <button class="settings-btn" id="font-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">মার্জিন</div>
+                        <div class="settings-row-val" id="margin-val">5%</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="margin-dec">−</button>
+                        <button class="settings-btn" id="margin-inc">+</button>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-label">লাইন স্পেসিং</div>
+                        <div class="settings-row-val" id="line-spacing-val">1.5</div>
+                    </div>
+                    <div class="settings-row-controls">
+                        <button class="settings-btn" id="ls-dec">−</button>
+                        <button class="settings-btn" id="ls-inc">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="unified-overlay"></div>
+
+
+<!-- ══════════════════════════════════════════
+     Main layout wrapper
+══════════════════════════════════════════ -->
+<div id="mobile-reader-bg">
+<div id="read-layout">
+
+    <!-- Reading column -->
+    <div id="read-column">
+        <div id="read-main-content">
+
+            <div id="book-content">
+                <br/>
+<h2>১. একটা স্বপ্ন</h2>
+<hr/>
+<br/>
+
+<div>
+<p><strong>জয়জয়ন্তী – উপন্যাস – হুমায়ূন আহমেদ</strong></p>
+<p>একদা এমনই বাদলশেষের রাতে–<br/>মনে হয় যেন শত জনমের আগে<br/>সে এসে, সহসা হাত রেখেছিল হাতে,<br/>চেয়েছিল মুখে সহজিয়া অনুরাগে।<br/>সে-দিনও এমনই ফসলবিলাসী হাওয়া<br/> মেতেছিল তার চিকুরের পাকা ধানে;<br/>খুঁজেছিল তার আনত দিঠির মানে।<br/>একটি কথার দ্বিধাথরথর চূড়ে<br/>ভর করেছিল সাতটি অমরাবতী।<br/>–(শাশ্বতী, সুধীন্দ্রনাথ দত্ত)</p>
+<p><strong>০১.</strong></p>
+<p>আমি ঘুরে-ফিরে একটা স্বপ্নই দেখি –মামুন এবং আমি পাশাপাশি একটা রিকশা করে যাচ্ছি। রিকশার চাকার সঙ্গে কি করে যেন শাড়ি পেঁচিয়ে গেল। আমি চেঁচিয়ে বলছি –রিকশা থামাতে বল, রিকশা থামাতে বল। মামুন চিৎকার করছে –এই রিকশা, থাম্ থাম। কিন্তু রিকশাওয়ালা কিছুই শুনছে না –সে সমানে প্যাডেল করে যাচ্ছে। আশেপাশে লোক জমে যাচ্ছে। একজন ট্রাফিক পুলিশ পর্যন্ত রিকশা থামাবার জন্য ছুটে আসছে … স্বপ্নের এই জায়গায় আমি জেগে উঠি। আমার বুক ধ্বক ধ্বক করতে থাকে। পানির পিপাসা হয়। নিজেকে ধাতস্থ করতে অনেক সময় লাগে। বিছানায় চুপচাপ বসে হাঁপাতে থাকি। এই সময় বাবা এসে আমার দরজায় ধাক্কা দিতে দিতে বলেন, কি হয়েছে রে মা? কি হয়েছে?</p>
+<p>বাবার ঘর দোতলার শেষ মাথায়। রাতে তার ঘুম হয় না বললেই হয়। তিনি সামান্য শব্দেই চটি পায়ে বের হয়ে আসেন। আমি দুঃস্বপ্ন দেখতে দেখতে যে শব্দ করি তা নিশ্চয়ই সামান্য না।</p>
+<p>আমার পাশের ঘরে বাবলু ঘুমায়। তার ঘুম অবশ্যি কখনো ভাঙে না। আমার মত সেও দুঃস্বপ্ন দেখে। তার দুঃস্বপ্নগুলি বিকট এবং বারবার। সে বিশ্রী ধরনের গোঙানির শব্দ করতে থাকে, হাত-পা ছুঁড়তে থাকে। আমি নিজেই ভয়ে অস্থির হয়ে পড়ি। বাবা ছুটে এসে দরজায় ধাক্কা দিতে দিতে বলেন –কি হয়েছে? এই বাবলু, এই! দরজা খোল, দরজা খোল। বাবলুর দুঃস্বপ্নগুলি সহজে ভাঙে না। সে গো গো শব্দ করতে থাকে এবং বিছানায় নড়াচড়া করতে থাকে। এক একবার মনে হয়, বিছানা থেকে গড়িয়ে বোধহয় মেঝেতে পড়ে যাবে। বাবা ভয় পেয়ে আমাকে ডাকেন –রাত্রি! রাত্রি মা! আমি বাবার পাশে দাঁড়াই। দুজনে মিলে দরজা ধাক্কাতে থাকি। এক সময় বাবলুর ঘুম ভাঙে কিন্তু চেতনা পুরোপুরি ফিরে আসে না –কারণ সে কাঁপা গলায় ডাকতে থাকে –মা! মা! বাতি জ্বালাও মা। তার মনে থাকে না যে। মা মারা গেছেন আট বছর আগে। ছেলের দুঃস্বপ্নের সময় তিনি এসে বাতি জ্বালাতে পারবেন না।</p>
+<p>বাবা ব্যস্ত হয়ে ডাকেন –ও বাবলু! বাবলু!</p>
+<p>বাবলু ক্লান্ত গলায় বলে, জ্বি।</p>
+<p> আমরা আছি এখানে। আমি আছি, রাত্রি আছে। কি হয়েছে রে?</p>
+<p>বোবায় ধরেছে।</p>
+<p>দরজা খুলে বের হয়ে আয়।</p>
+<p>বাবা, পানি খাব।</p>
+<p> দরজা খোল –পানি নিয়ে আসছি।</p>
+<p>পানি আনার জন্যে বাবা নিজেই চটি ফটফট করতে করতে একতলায় নেমে যান। বাবলু দরজা খুলে আমাকে দেখে বোকার মত হাসে।</p>
+<p>বোবায় ধরেছিল। বুঝলি আপা, বুকের উপর চেপে বসেছিল– আজ আমাকে মেরেই ফেলত।</p>
+<p>আয়, বারান্দায় খানিকক্ষণ বোস।</p>
+<p>একটা তাবিজ-টাবিজ কিছু নিতে হবে –নয়ত বেকায়দায় ফেলে ভূতটা আমাকে মেরেই ফেলবে।</p>
+<p>ভূত-টুত কিছু না। তুই স্বপ্ন দেখছিলি।</p>
+<p>আরে রাখ। স্বপ্ন আর বোবায় ধরা এক জিনিস না। বোবায় যাকে ধরে সে জানে। বোবা করে কি জানিস? প্রথমে একটা স্বপ্ন দেখায় –ভয়ের স্বপ্ন। তারপর বুকের উপর চেপে বসে গলা চেপে ধরে। নিঃশ্বাস নিবি সেই উপায় নেই, নড়াচড়া করবি সেই উপায় নেই। সাধারণ নিয়ম হল –একটা বোবা একজনকে ধরে। আমার সবই উল্টা। আমার কাছে দু’টা বোবা আসে। একটার বয়স কম। সেটা চুপচাপ আমার পায়ের উপর বসে থাকে।</p>
+<p>বাবা পানি নিয়ে আসেন। বাবলু এক চুমুক পানি খায়। সে পানি খেতে পারে না। তার গলার ফুটাটা না-কি এমন যে ফুটা দিয়ে সব খাবার নামে, শুধু পানি নামে না। পানি জমা হয়ে থাকে।</p>
+<p>এক চুমুক পানি খেয়েই বাবলু সুস্থ হয়ে আবার ঘুমুতে চলে যায়। কিছুক্ষণের মধ্যেই তার নাক ডাকার শব্দ আসতে থাকে।</p>
+<p>আমার দুঃস্বপ্ন বাবলুর দুঃস্বপ্নের মত ভয়ংকর না, কিন্তু আমি বাবলুর মত চট করে ঘুমুতে পারি না। আমি জেগে থাকি –জেগে জেগে ভাবি –রিকশায় শাড়ি পেচানোর এই স্বপ্ন আমি কেন বার বার দেখি?</p>
+<p>প্রথম কথা হচ্ছে, মামুনের সঙ্গে আমি কখনো রিকশায় চড়িনি। তার রিকশ ভীতি আছে। ছোটবেলায় সে ঝাঁকুনি খেয়ে রিকশা থেকে নিচে পড়ে মাথায় চোট পেয়ে অনেকদিন হাসপাতালে ছিল। তারপর থেকেই সে রিকশায় চড়ে না। প্রয়োজনে সে হাঁটবে, বাসে চড়বে, কিন্তু কখনো রিকশায় না। বিয়ের পর আমরা ঘুরতাম ওদের মরিস মাইনর গাড়িতে। গাড়ি চালাতো মামুন, আমি তার পাশে বসা এবং পেছনের সীটে ওদের ড্রাইভার। মামুন খুব ভাল গাড়ি চালায়, তারপরেও গাড়িতে উঠলেই সে ড্রাইভারকে সঙ্গে নেবে। তাদের বাড়ি থেকে নিউমার্কেট যাবে, পাঁচ মিনিটের পথ –পেছনে ড্রাইভার থাকবেই। তার যুক্তি হচ্ছে –আমি গাড়ির কলকজার কিছুই জানি না। গাড়ি পথে বিগড়ে গেল –তখন করবটা কি? তাছাড়া ধর, একটা একসিডেন্ট করলাম। ঢাকা শহরের জাগ্রত জনতা আমাকে ঘিরে ধরল। মেরে তক্তা বানানোর মতলব করছে। তখন নিজের একজন মানুষ লাগবে যে আমাকে বাঁচানোর চেষ্টা করবে। প্রয়োজনে জীবন তুচ্ছ করে পুলিশ ডেকে আনবে। ড্রাইভার সঙ্গে রাখার এই হল ব্যাকগ্রাউন্ড স্টোরি।</p>
+<p>মামুনকে দেখলে মনে হবে সে খুব আপনভোলা স্বভাবের একজন মানুষ। মনে। হবে কিছুই বোধহয় সে লক্ষ্য করছে না –আসলে সে সবই লক্ষ্য করছে। খুব সাবধানী, খুব হিসেবী একজন মানুষ। বিয়ের পর পর একদিন সকালে নাশতা খেতে বসেছে। সিগারেট চাইল –আমি সিগারেটের প্যাকেট এনে দিলাম। সিগারেট ধরিয়েই সে ভুরু কুঁচকে বলল, চারটা সিগারেট থাকার কথা। তিনটা কেন?</p>
+<p>আমি বললাম, তোমার সিগারেট কে নেবে? তিনটাই ছিল।</p>
+<p>অসম্ভব। রাত এগারোটার সময় দেখেছি –ছটা সিগারেট। শুতে যাবার আগে একটা খেলাম, রইল পঁচ। ভোরবেলা বেড-টির সঙ্গে একটা খেয়েছি –রইল চার। এখন দেখি তিনটা। কারণ কি?</p>
+<p>আমি হাসতে হাসতে বললাম –তুমি হিসাব-নিকাশ বন্ধ কর তো। তুচ্ছ একটা সিগারেট!</p>
+<p>মোটেই তুচ্ছ না। কোথায় গেল বের করতে হবে।</p>
+<p>কে তোমার সিগারেট নেবে বল? দুটা কাজের মেয়ে ছাড়া এখানে কেউ আসেনি।</p>
+<p>ওরাই নিয়েছে।</p>
+<p> ওরা সিগারেট দিয়ে কি করবে?</p>
+<p>খাবে। তুমি জান না লোয়ার লেভেলে স্মোকিং হ্যাবিট খুবই প্রবল। তুমি কাজের মেয়ে দুটাকে ডাক। জেরা করব।</p>
+<p>আমি অবাক হয়ে বললাম, এটা কোন কথা হল? সামান্য একটা সিগারেটের জন্যে তুমি বাসায় কোর্ট বসাবে?</p>
+<p>অবশ্যই বসাব। ব্যাপারটা তুমি যত সামান্য ভাবছ, আমি ভাবছি না। You start by Killing a cat, you end up by Killing a man. ডাক দু’জনকে।</p>
+<p>আমার সামনে তুমি এটা করতে পারবে না।</p>
+<p>বেশ, আমি আড়ালেই করব। তুমি শুধু ডেকে দাও।</p>
+<p>আমি দু’জনকে ডেকে চায়ের কাপ হাতে ওদের বাড়ির ছাদে উঠে গেলাম। পুরো ব্যাপারটা আমার কাছে এত অস্বাভাবিক লাগছিল! মামুন দশ মিনিটের মাথায় ছাদে উঠে এসে হাসিমুখে বলল, চুরনি ধরা পড়েছে। মতির মা স্বীকার করেছে।</p>
+<p>কি বলেছে?</p>
+<p>ও সুন্দর একটা গল্প সাজিয়েছে। ঘর ঝাট দিতে গিয়ে সে দেখল সিগারেটের প্যাকেট থেকে একটা সিগারেট মোঝেতে কি করে যেন পড়ে গেছে। মাটিতে পড়ে থাকা সিগারেট আমি আর খাব না ভেবে সে সিগারেটটা তার ট্রাংকে রেখে দিয়েছে। দেশে যখন যাবে তখন মতির বাবাকে দেবে।</p>
+<p>এই গুরুতর অপরাধের জন্যে তুমি তাকে কি শাস্তি দিয়েছ? মেরেছ?</p>
+<p>না। ওকে এক মাসের বেতন, দেশে যাবার গাড়িভাড়া এবং একটা সিগারেট কেনার পয়সা দিয়ে বলেছি পাঁচ মিনিটের মধ্যে বাড়ি ছেড়ে দিতে।</p>
+<p>তুমি সত্যি এটা করেছ?</p>
+<p>অবশ্যই। তুমি পাঁচ মিনিট পর নিচে নামলে মতির মা’কে দেখবে না। রাত্রি, তুমি এরকম অবাক হয়ে আমার দিকে তাকাচ্ছ কেন?</p>
+<p>অবাক হয়েছি, এই জন্যেই অবাক হয়ে তাকাচ্ছি।</p>
+<p> অল্পতে অবাক হয়ো না। বী প্র্যাকটিক্যাল।</p>
+<p>আমি প্র্যাকটিক্যাল ম্যান হতে পারিনি। চেষ্টাও করিনি। তিন বছর একজন প্র্যাকটিক্যাল মানুষের সঙ্গে বসবাস করেছি। এবং এক সময় মনে হয়েছে –পারছি না। আর পারছি না। টুকুনের বয়স তখন দেড় বছর। সে আমাদের সঙ্গে ঘুমোয় না। আলাদা ঘরে বেবীখাটের উপর ঘুমায়। রাতে তাকে দেখাশোনা করে একজন ট্রেইন্ড আয়া।</p>
+<p>আমাদের সঙ্গে ঘুমুলে সে বার বার জাগে, কাঁদে। বিছানা ভিজিয়ে দেয়। মামুনের ঘুমের অসুবিধা হয়। তার দরকার পুরো রাতের ঘুম। সে ঘুম নষ্ট করতে রাজি না।</p>
+<p>এক রাতে সে টুকুনের কান্নায় বিরক্ত হয়ে বলল, আমার এক রাতের অনিদ্রার অর্থ জান? এক রাতের অনিদ্রা মানেই দিনের কাজকর্ম ভণ্ডুল। এই অবস্থায় দিনে কাজকর্ম ভণ্ডুল করতে দেয়া যায় না। আমার মাথাটা এখন থাকবে ভাদ্র মাসের দিঘির পানির মত। ঢেউ থাকবে না। ঘূর্ণি থাকবে না। বুঝতে পারছ?</p>
+<p>পারছি।</p>
+<p>মুখে পারছি বলেলও তুমি আসলে পারছ না। আমাকে হৃদয়হীন মানুষ বলে মনে করছ। ব্যাপার সে রকম না। আমি একটা ইন্ডাস্ট্রি শুরু করছি। বাপ-দাদার জমানো সব টাকা সেখানে ঢেলেছি। ব্যাংকের কাছে আমার পোন কত জান? দুই কোটি পঁচিশ লক্ষ টাকা। আমার দায়িত্ব বুঝতে পারছ? হয় আমি আকাশ ফুড়ে ওঠে যাব –নয় পাতালে প্রবেশ করব। কাজেই এত সাবধানতা। তুমি এই সময়ে কোন কিছু নিয়ে আমাকে বিরক্ত করবে না। এমন কিছু করবে না যাতে আমি আমি …</p>
+<p>বিরক্ত হও।</p>
+<p>বিরক্তির কথা আগেই বলেছি, অন্য একটা টার্ম খুঁজছি।</p>
+<p>রাগ?</p>
+<p>হ্যাঁ রাগ। অবশ্যি রাগ আমি কখনো হই না। আমার লিমিট হচ্ছে বিরক্তি পর্যন্ত। আমার ব্যাপারে তোমার ভেতর যদি কোন খটকা তৈরি হয় সেই খটকা দূর করার জন্যও ব্যস্ত হবার দরকার নেই। যথাসময়ে খটকা দূর হবে। দয়া করে তিনটা বছর যেতে দাও, আমি ব্যবসা দাঁড় করিয়ে ফেলি …। </p>
+<p>ওর সম্পর্কে নানান ধরনের খটকা আমার মধ্যে তৈরি হতে লাগল। যেমন– নানান কাজে ছ’দিন-সাতদিনের জন্যে তাকে বাইরে যেতে হয়। তার সঙ্গি থাকে তার অফিসের এক মহিলা টাইপিস্ট। বেঁটেখাট, কালো একজন মহিলা — পুরুষদের মত গলা। দেশের বাইরে এত কি টাইপ করার কাজ থাকে যে একজন টাইপিস্ট নিয়ে যেতে হয়? অবশ্যি কুরূপা একজন বয়স্কা মহিলা –অন্য কিছু ভাববার। অবকাশও নেই। তবু একবার রাতে খাবার সময় জিজ্ঞেস করলাম, তুমি বাইরে কোথাও যেতে হলেই টাইপিস্ট নিয়ে যাও কেন? টাইপের কাজ এত কি বল তো?</p>
+<p>মামুন খাওয়া বন্ধ করে আমার দিকে তাকাল। তার ভুরু কুঁচকে গেল। অর্থাৎ সে বিরক্ত হচ্ছে।</p>
+<p>তুমি কি সত্যি সত্যি জানতে চাও?</p>
+<p>হ্যাঁ।</p>
+<p>জানতে চাচ্ছ যখন বলি– উত্তরটা পছন্দের হবে না, তারপরেও বলি এবং ঝামেলা শেষ করে রাখি। নয়ত বার বার তুমি এই প্রসঙ্গ তুলবে, ঝামেলার সৃষ্টি করবে। শুরুতেই আমাদের মধ্যে এক ধরনের বোঝাঁপড়া হয়ে যাওয়া ভাল। তুমি তোমার সীমা জানবে, আমি আমার সীমা জানব। বুঝতে পারছ?</p>
+<p>না। তবে বোঝার চেষ্টা করছি।</p>
+<p>আমার টাইপিস্ট ফরিদাকে তুমি দেখেছ। তার প্রেমে আমার হাবুডুবু খাওয়ার কোন কারণ নেই তা বোধহয় তুমি ধরতে পারছ। পারছ না?</p>
+<p>পারছি।</p>
+<p>আমি যখন বাইরে যাই তখন সাইট সিইং-এর জন্যে যাই না। এটা কোন আনন্দের ভ্রমণ না, কাজের ভ্রমণ। সে সময় আমাকে কি পরিমাণ খাটুনি করতে হয় তা তোমাকে একবার নিয়ে দেখিয়ে আনব। যাই হোক, যে কথা বলছিলাম –পৃথিবীর সকল পুরুষ মানুষদের মতো আমারও কিছু শারীরিক চাহিদা আছে। আমি তো আর দেশের বাইরে গিয়ে প্রস্টিটিউট খুঁজে বেড়াতে পারি না। আমার সময়ও নেই, আগ্রহও নেই। ফরিদাকে এই কারণেই আমাকে নিয়ে যেতে হয়।</p>
+<p>মামুন খাওয়া শেষ করে হাত ধুয়ে সহজ ভঙ্গিতে সিগারেট ধরাল। আমি হতভম্ব হয়ে তাকিয়ে আছি। কোন মানুষ এত সহজে এমন কথা বলতে পারে? সে কি করেই-বা ভেবে নিল এই কথাগুলো শোনার পর আমি স্বাভাবিক থাকব? মামুন বলল, কাউকে বল আমাকে হালকা করে কফি দিতে। চিনি যেন আধ চামচ দেয়।</p>
+<p>আমি কফির কথা বলে এসে তার সামনে বসলাম। মামুনের ভুরু কুঁচকাল। সে বিরক্ত হচ্ছে। সে কি ধরেই নিয়েছিল তার সব কথাবার্তা হজম করে আমি শান্ত ভঙ্গিতে ঘুমুতে যাব?</p>
+<p>মামুন বলল, কিছু বলবে?</p>
+<p> হ্যাঁ।</p>
+<p>ফরিদা প্রসঙ্গে?</p>
+<p> না, ফরিদা প্রসঙ্গে না। আমার নিজের প্রসঙ্গে।</p>
+<p>বল।</p>
+<p> আমি তোমার সঙ্গে বাস করতে পারব না।</p>
+<p>মামুন আমার দিকে ঝুঁকে এসে বলল, কেন? আমি সত্যি কথা বলেছি বলে? সত্যবাদীর সঙ্গে বাস করা যায় না? সত্যি কথাটা না বললে তুমি কোনদিনই জানতে পারতে না।</p>
+<p>আমি বললাম, তুমি ধরেই নিয়েছ আমার তোমাকে ছাড়া গতি নেই। এই জীবন আমার তোমার সঙ্গেই কাটাতে হবে। এই প্রচণ্ড আত্মবিশ্বাসের কারণেই তুমি অনায়াসে কিছু কুৎসিত কথা আমাকে বলে ফেললে। এটা হল শুরু। এরপরে বাকি জীবনে তুমি আরো অনেক কুৎসিত কাজ করবে, আমাকে সেই সব সহ্য করতে হবে। তোমার সঙ্গে আমি নানা জায়গায় বেড়াতে যাব। পার্টিতে যাব। বিয়েবাড়ির অনুষ্ঠানে যাব। হাসিমুখে গল্প করব। সবাই বলবে– বাহ! মেয়েটা তো বেশ সুখী। এটা হতে দেয়া ঠিক হবে না।</p>
+<p>কি চাও তুমি? সেপারেশন? ডিভোর্স?</p>
+<p>আমি লক্ষ্য করলাম, এই কঠিন বাক্যটা বলার ফাঁকে মামুন ঠোঁট চেপে হাসল। সে ধরেই নিয়েছে আমি হাস্যকর কিছু কথা বলছি। মামুন হাই তুলতে তুলতে বলল, তুমি যা চাও তাই হবে। তুমি যদি প্র্যাকটিক্যাল মানুষের মত সব দিক বিবেচনা করে আমার সঙ্গে থাকতে চাও, থাকতে পার। শর্ত একটাই –আমাকে নিয়ে মাথা ঘামাবে না। আমার জীবনযাপনের কিছু বিশেষ পদ্ধতি আছে। তোমাকে সে সব মেনে নিতে হবে আর তুমি যদি চলে যেতে চাও, তাও যেতে পারবে।</p>
+<p>আমি চলে যাব।</p>
+<p>গুড। তোমাকে ছয় মাস চিন্তা করার সময় দেয়া হল। তুমি তোমার বাবার কাছে চলে যাও। ছ’মাস চিন্তা কর। ঠাণ্ডা মাথায় চিন্তা কর –ছ’মাস পর তোমার যদি মনে হয় তোমার ডিসিসান ভুল ছিল, তুমি স্যুটকেস নিয়ে চলে আসবে। আমি একটি কথাও জিজ্ঞেস করব না। আর ছ’মাস পর যদি মনে হয় তোমার সিদ্ধান্ত সঠিক, তাহলে তো কথা নেই।</p>
+<p>টুকুনকে আমি সঙ্গে নিয়ে যাব।</p>
+<p>টুকুনের কথা এখানে আসছে কেন? আমি রক্ষিতা ধরনের একটা মেয়েকে নিয়ে দেশের বাইরে যাই এই সংবাদে টুকুন খুব চিন্তিত বলে তো মনে হয় না। টুকুন এখানেই থাকবে। আর এই ছ’মাস তুমি তার সঙ্গে দেখাও করবে না।</p>
+<p>কেন?</p>
+<p>সঙ্গত কারণেই করবে না। দুজনের দেখা-সাক্ষাত মানেই ভালবাসার ব্যাপারটা জিইয়ে রাখা। এতে পরবর্তী সময়ে টুকুনেরও কষ্ট হবে, তোমারও কষ্ট হবে। ভালবাসার বন্ধন পুরোপুরি কেটে যাওয়াই ভাল।</p>
+<p>আমি যাতে এখানে থেকে যাই তার জন্যে তুমি এক ধরনের চাপ সৃষ্টির চেষ্টা করছ।</p>
+<p>না। আমি প্র্যাকটিক্যাল মানুষ। আমি সমস্যাটা একজন বাস্তববাদী মানুষ হিসেবেই দেখার চেষ্টা করছি। আমাকে যদি ছেড়ে চলে যাও তাহলে তুমি বাকি জীবন একা একা কাটাবে, এটা আমি মনে করি না। আমার তো একা থাকার প্রশ্নই উঠে না। টুকুনকে দোটানায় রাখার কোন মানে নেই।</p>
+<p>তুমি ওকে কি বলবে আমি মরে গেছি?</p>
+<p> সস্তা উপন্যাসের ডায়লগ আমি বলি না। যেটা সত্যি সেটাই বলব।</p>
+<p>আমি সেই রাতে এক মুহূর্তের জন্যে ঘুমুলাম না। পুরো রাত জেগে কাটালাম। মামুন আমার পাশেই নিশ্চিন্ত হয়ে ঘুমুল।</p>
+<p>পরদিন দুটা স্যুটকেস হাতে বাবার কাছে চলে এলাম। বাবা বললেন –কি হয়েছে রে মা?</p>
+<p>আমি হেসে বললাম, চলে এসেছি বাবা, তুমি আমাকে তোমার বাড়িতে থাকতে দেবে?</p>
+<p>বাবা কয়েক মুহূর্ত আমার দিকে তাকিয়ে থেকে ছুটে এসে আমাকে জড়িয়ে ধরলেন।</p>
+<p>ছ’মাস কেটে গেল। এই ছ’মাসে আমার কখনো ঐ বাড়িতে ফিরে যাবার ইচ্ছে হয়নি। টুকুনের জন্য কষ্ট হয়েছে। তীব্র কষ্ট। যে কষ্টের কোন সীমা-পরিসীমা নেই।</p>
+<p>জীবন কাটছিল এক ধরনের ঘোরের মধ্যে। যেন আমি অসুস্থ। বোধশক্তিহীন মানুষ। খাচ্ছি, ঘুমুচ্ছি, চলাফেরা করছি।</p>
+<p>আমার সমস্যা কি বাবা কোনদিন জানতে চাইলেন না। তবে মামুনের সঙ্গে তিনি। কথা বলতে গেলেন। তাদের মধ্যে কি হল তাও আমি জানি না। এম্নিতেই বাবা চুপচাপ। আরো চুপচাপ হয়ে গেলেন। তাঁর একমাত্র কাজ হল বারান্দায় জলচৌকিতে বসে খবরের কাগজ পড়া।</p>
+<p>বাবলুর সঙ্গে বাসার কোন যোগ নেই –সে মাঝে মধ্যে খুব হৈ-চৈ করত –সংসারে এসব কি হচ্ছে? কি হচ্ছে এসব? বিয়ে ভেঙে যাচ্ছে এরকম গুজব কেন কানে আসছে? আমি কিন্তু টলারেট করব না –ঐ লোকটার কানে ধরে আমি স্টেডিয়ামের চারদিকে চক্কর দেওয়ার। আমার এই পাওয়ার আছে। মারাত্মক সব লোকজনের সঙ্গে আমার কানেকশন আছে। ফজলু ভাইয়ের সঙ্গে সপ্তাহে তিন চারদিন এক টেবিলে চা খাই। ডেঞ্জারাস লোক। একদিন বাসায় নিয়ে আসব। বুঝলি আপা, আমি সহজ লোক না । আমাকে ভয় পাওয়ার দুই হাজার দুইটা কারণ আছে।</p>
+<p>বাবলুর সবকিছুই সাময়িক। হৈ-চৈও সাময়িক। কিছুক্ষণ হৈ-চৈয়ের পর সে সহজ স্বাভাবিক মানুষ। খাচ্ছে-দাচ্ছে, ঘুমুচ্ছে। আমি বাসায় থাকায় তাকেই সবচে’ খুশি মনে হয়। খুশিটা সে গোপন করে না।</p>
+<p>তুই যে এখানে আছিস –খুব ভাল হয়েছে। বাসাটা শুশানের মত ছিল। আমি আর বাবা এত বড় একটা বাড়ি– চিন্তা কর অবস্থা! এখন ফাইন হয়েছে। তাছাড়া কোন বাড়িতে মহিলা না থাকলে বাড়িটা ছেলেদের হোস্টেল হয়ে যায় — সব মন্দের একটা ভাল দিক আছে। তুই এখানে আছিস, এর মারাত্মক একটা ভাল দিক আছে …।</p>
+<p>আট মাসের মাথায় মামুনের চিঠি পেলাম। ভুল বললাম, মামুনের চিঠি না –মামুনের উকিলের চিঠি। গাধা চিঠি। এরকম চিঠি এডভোকেট সাহেব নিশ্চয়ই অনেককে পাঠিয়েছেন। চিঠিতে কোর্টের দীর্ঘ এবং ক্লান্তিকর প্রক্রিয়ায় না গিয়ে দু’জন একত্রে কাজি অফিসে উপস্থিত হয়ে তালাকনামা প্রস্তুতের সুপারিশ করা হয়েছে।</p>
+<p>আমি উকিলের চিঠি বাবাকে দেখালাম। বাবা বললেন, কি করবি? যাবি?</p>
+<p>আমি হা-সূচক মাথা নাড়লাম।</p>
+<p> যা করছিস ভেবে-চিন্তে করছিস তো?</p>
+<p>হ্যাঁ।</p>
+<p> বাবা শ্রান্তস্বরে বললেন, আচ্ছা।</p>
+<p>বাবা সেদিন যদি শুধু ‘আচ্ছা’ শব্দটা না বলে অন্যকিছু বলতেন তাহলে আমার সিদ্ধান্তের পরিবর্তন হত কি? হয়ত হত। বাবার কথা অগ্রাহ্য করার ক্ষমতা আমার নেই– বাবা এই ব্যাপারটা জানেন বলেই বোধহয় শুধু বললেন –আচ্ছা। মা বেঁচে থাকলে তিনি কি করতেন? ভয়ংকর এইসব ঘটনায় হাসির কিছু খুঁজে পেয়ে হয়ত হেসে ফেলতেন। ছোটবেলায় ফুটবল খেলতে গিয়ে বাবলু হাত ভেঙে বাসায় ফিরল। বন্ধু বান্ধব ধরাধরি করে নিয়ে আসছে। বাবলু কিছুক্ষণ পর পর ঠোঁট গোল করে ওহোহো ওহোহো জাতীয় শব্দ করে কাঁদছে। মা বললেন –বাবলু, তুই এমন। ইংরেজি ভাষায় কাঁদছিস কেন? বলেই হেসে ফেললেন। মা’কে সেদিন আমার খুব নিষ্ঠুর মনে হয়েছিল। এখনো মনে হয়।</p>
+<p>কাজি অফিসে মামুন এসেছিল সিল্কের একটা হাওয়াই শার্ট পরে। ধবধবে সাদা জমিনের উপর হালকা সবুজ পাতার ছাপ দেয়া শার্ট। ক্রীম কালারের প্যান্ট। চুল সুন্দর করে আঁচড়ানো। মুখও হাসি-হাসি। যেন সে কোন একটা উৎসবে এসেছে। তার সঙ্গে অফিসের কয়েকজন কর্মচারি। বাইশ-তেইশ বছরের হালকা পাতলা গড়নের একটা মেয়েও সঙ্গে আছে। সেও সম্ভবত অফিসেরই কেউ হবে। স্যার স্যার বলছে। মামুন হয়ত ইচ্ছা করেই মেয়েটিকে সঙ্গে নিয়ে এসেছে। আমি রিকশা থেকে নামতেই সে এগিয়ে এল। সহজ ভঙ্গিতে হাসল। একজন হাসলে উত্তরে। অন্যজনকেও হাসতে হয়। আমি হাসতে পারলাম না। কেন জানি নিজেকে খুব ছোট মনে হচ্ছিল।</p>
+<p>মামুন বলল –কি, ভাল?</p>
+<p>আমি মাথা নাড়লাম।</p>
+<p>কাগজপত্র সব রেডি করা আছে। দু’জন শুধু একসঙ্গে যাব –সই করব। দ্যাটস অল। তোমাকে একটু অপেক্ষা করতে হবে। আমার লইয়ারকে একটা জিনিস জানতে পাঠিয়েছি। ও এসে পড়বে। তুমি আস আমার সঙ্গে। কাজি সাহেবের অফিসে একটা আইসোলেটেড ঘর আছে– সেখানে বোস। চা-টা কিছু খাবে?</p>
+<p>না। টুকুন কেমন আছে?</p>
+<p>ভাল আছে বলেই তো মনে হয়।</p>
+<p>ভাল আছে কি-না তুমি জান না?</p>
+<p>গত পরশুর খবর জানি –ভাল আছে। ও তো এখানে থাকে না। আমার বড়বোনের সঙ্গে ওকে ইংল্যাণ্ড পাঠিয়ে দিয়েছি। আপাতত সে বোনের সঙ্গেই আছে। চার বছর হলে পাবলিক স্কুলে ভর্তি করিয়ে দেব।</p>
+<p>আমাকে তুমি কিছুই জানাওনি।</p>
+<p>তোমাকে জানানোর প্রয়োজন মনে করিনি।</p>
+<p>আমার নিজের ছেলে — সে কোথায় থাকবে, কোথায় থাকবে না তা আমি জানব না?</p>
+<p>তোমাকে আগেও বলেছি। এখনো বলছি। তোমার না জানাই ভাল। তোমাদের ভেতর যোগাযোগ থাকলে –তোমার জন্যও সমস্যা, তার জন্যেও সমস্যা। আমি সমস্যা পছন্দ করি না। আমি প্রাণপণ চেষ্টা করি সমস্যা কমাতে। আমার কাছ থেকে শেখার কিছু নেই– কিন্তু এই ব্যাপারটা শিখতে পার।</p>
+<p>আমি কোনদিন আমার বাচ্চাকে দেখতে পারব না?</p>
+<p>পারবে। দেখতে পারবে না এমন কথা তো হচ্ছে না। তবে তার আগে আমাকে নিশ্চিত হতে হবে যে, এখন দেখাদেখি হলে সমস্যা হবে না। ভাল কথা, তুমি যদি টুকুনের অভিভাবকত্ব দাবি কর তাহলে তোমাকে কিন্তু কোর্টে যেতে হবে। ডিভোর্স। স্যুট ফাইল করতে হবে। তাও তুমি করতে পার, আমার আপত্তি নেই।</p>
+<p>কথা বলতে বলতে মামুন হাসছে। পরম শত্রুকে কোণঠাসা করার যে আনন্দ, মামুনের চোখে-মুখে সেই আনন্দ। আমার চোখে পানি এলে সে আরো আনন্দিত হবে। আমি যদি কাঁদতে কাঁদতে বলি, টুকুনকে আমার কাছে দিয়ে দাও, তাহলে সে নিশ্চয়ই মনের আনন্দে হেসে ফেলবে।</p>
+<p>আমি তাকে সেই আনন্দ দিলাম না। সহজভাবেই কাগজপত্র সই করলাম। মামুন বলল –ভাল থেকো।</p>
+<p>আমি বললাম, চেষ্টা করব।</p>
+<p>মামুন হালকা গলায় বলল, টুকুনকে নিয়ে তুমি কোন দুঃশ্চিন্তা করবে না। ও ভাল আছে, ভাল থাকবে। টুকুন ঢাকায় এলে তোমাকে খবর দেব, তুমি এসে দেখে যেও।</p>
+<p>ও কবে আসবে?</p>
+<p>তা তো বলতে পারছি না।</p>
+<p>ফেরার পথে আমি রিকশায় এলাম না। মামুন তার গাড়িতে করে আমাকে নামিয়ে দিল। পেছনের সীটে আমি এবং মামুন। সামনের সীটে ড্রাইভারের পাশে ওর অফিসেরই কোন কর্মচারি। মামুন সারাক্ষণই সেই ভদ্রলোকের সঙ্গে ফ্যাক্টরির স্ট্রাকচারাল কি সমস্যা নিয়ে কথা বলতে লাগল। আমি যে তার পাশে বসে আছি এটা তার মনে রইল না।</p>
+<p>সেই রাতেই আমি প্রথম স্বপ্নটা দেখলাম। রিকশা করে আমি এবং মামুন যাচ্ছি। আমার শাড়ি আটকে গেছে রিকশার চাকায়। মামুন রিকশা থামাবার জন্যে প্রাণপণ চেষ্টা করছে। রিকশা থামছে না।</p>
+<p>.</p>
+<p><strong>০২.</strong></p>
+<p>এখনকার বখা ছেলেরা গলায় রুমাল বাধে না। কিন্তু বাবলু গলায় লাল রঙের একটা স্কার্ফ জড়িয়েছে। ভিডিও দোকানের বারান্দায় কয়েকটা চেয়ার এবং একটা টুল একত্র করে আকাশের দিকে তাকিয়ে চিৎ হয়ে পড়ে আছে। মনে হয় আকাশের সৌন্দর্যে সে মুগ্ধ। আমি তাকে দেখেও না দেখার ভান করলাম। সে আকাশ দেখছে, দেখুক। এমন প্রকৃতিপ্রেমিককে বিরক্ত করা ঠিক না। আমি পাশ কাটিয়ে যাচ্ছি– বাবলু তড়াক করে উঠে বসে বলল –আপা, কোথায় যাচ্ছিস?</p>
+<p>আমি দাঁড়ালাম কিন্তু জবাব দিলাম না। জবাব দেয়ার কিছু নেইও। আমি কোথাও যাচ্ছি না। রাস্তায় ঘুরতে বের হয়েছি। রিকশায় করে শহরে ঘুরব। ঘুরতে ঘুরতে ক্লান্ত হয়ে এক সময় ফিরে আসব। বাবলু উদাস গলায় বলল, গুলিস্তানের দিকে যাবি না, হেভী গ্যাঞ্জাম হচ্ছে। টিয়ার গ্যাস ফাটাফাটি। দু’জন স্পট ডেড।</p>
+<p>বাবলু আশা করেছিল আমি জানতে চাইব কি নিয়ে গ্যাঞ্জাম। জিজ্ঞেস করলে সে দীর্ঘ এক গল্প ফাদার সুযোগ পেয়ে যেত। সে সুযোগ তাকে দেয়া যায় না। আমি দরদাম ঠিক না করেই একটা ফাঁকা রিকশায় উঠে পড়লাম। বাবলু আহত চোখে তাকিয়ে আছে। থাকুক। যা ইচ্ছা করুক। ওর সঙ্গে কথা বলতে ইচ্ছা করছে না।</p>
+<p>পরশু রাতে সে বাসায় ফিরেছে মদ খেয়ে। চোখ লাল, মুখের কথা জড়ানো। হাঁটা দূরের কথা –ঠিকমত দাঁড়াতেও পারছে না। বাবা হতভম্ভ হয়ে বললেন, তোর কি হয়েছে? বাবলু আনন্দিত গলায় বলল, নাথিং। কিছুই হয়নি।</p>
+<p>শরীর খারাপ নাকি রে?</p>
+<p>শরীর খারাপ না। শরীর ভাল। মনটা হেভী খারাপ।</p>
+<p>বাবা কিছু বুঝতে না পেরে অবাক হয়ে আমার দিকে তাকালেন। আমি বললাম, বাবা, ও মদ খেয়ে এসেছে।</p>
+<p>বাবা হতভম্ভ গলায় বললেন, সে কি?</p>
+<p>তিনি বোধহয় তার আটষট্টি বছরের জীবনে এত বিস্মিত আগে আর হননি। তিনি একবার বাবলুর দিকে তাকাচ্ছেন, একবার আমার দিকে তাকাচ্ছেন। বাবলু যদি এখন বলে –আপা মিথ্যা কথা বলছে, আমি মদ খাইনি, তাহলে তিনি তার। কথাই বিশ্বাস করবেন।</p>
+<p>মাতালরা সত্যবাদী হয়, কাজেই বাবলু সত্যি কথাই বলল –দাঁত বের করে বলল, খুব সামান্য খেয়েছি বাবা। টেস্ট করেছি। বন্ধুবান্ধবরা ধরল। না বলতে পারলাম না। মনটাও ছিল হেভী উদাস।</p>
+<p>বাবার বিস্ময় কাটছে না। বাবলু যেমন নিজের পায়ে দাঁড়াতে পারছে না, দেয়াল ধরে দাঁড়িয়ে আছে, বাবারও সে রকম অবস্থা। তিনিও দাঁড়িয়ে থাকতে পারছেন না। অল্প অল্প কাঁপছেন। আমি বললাম, বাবা, তুমি ওকে বল বাড়ি ছেড়ে চলে যেতে। আর কখনো যেন এ বাড়িতে না ঢুকে।</p>
+<p>বাবলু চোখ লাল করে বলল, চলে যাব কেন? এটা কি তোর একার বাড়ি? তোর যেমন রাইট আছে, আমারো রাইট আছে। তোর হাফ রাইট, আমার ফুল রাইট। আন্ডারস্ট্যান্ড?</p>
+<p>বলতে বলতে বাবলু বসে পড়ল এবং বিকট শব্দে বমি করতে লাগল। বমির সঙ্গে তার নাড়িভুড়ি পর্যন্ত উঠে আসছে এমন অবস্থা। বাবা বসে দুহাতে বাবলুর মাথা ধরলেন। বাবলু তার গায়েও বমি করল।</p>
+<p>বমি করার ফাঁকে ফাঁকে বাবলু বলল, গরম পানি লাগা তো আপা। হেভী গোসল দিতে হবে। শালা মাখামাখি হয়ে গেছি। ঘরে সাবান আছে না?</p>
+<p>এই দৃশ্য দাঁড়িয়ে দেখা মুশকিল। আমি রান্নাঘরে এসে চুলায় পানি চড়িয়ে চুপচাপ বসে রইলাম। পানি ধীরে সুস্থে গরম হোক। আমি বসে থাকব। ঘরে যে কাণ্ড ঘটছে তা দেখতে ইচ্ছা করছে না।</p>
+<p>বাবা রান্নাঘরে ঢুকে বললেন, গরম পানি কি হয়েছে খুকী?</p>
+<p>হচ্ছে।</p>
+<p>তিনি ইতস্ততঃ করে বললেন, ছেলেমানুষ একটা ভুল করে ফেলেছে। বদ বন্ধু বান্ধব জুটলে যা হয়। তুই মন খারাপ করিস না।</p>
+<p>আমি মন খারাপ করছি না। আমার জন্যে তোমাকে ব্যস্ত হবে হবে না।</p>
+<p> বাজে কিছু বন্ধু বান্ধব জুটেছে –ওরাই …?</p>
+<p>তোমাকে সাফাই গাইতে হবে না, বাবা।</p>
+<p> মা, তুই রাগ করিস না– রাগ করিস না।</p>
+<p> আমি রাগ করছি না। পানি গরম করছি।</p>
+<p>আচ্ছা মা, আচ্ছা।</p>
+<p>বালতি ভর্তি গরম পানি নিয়ে বারান্দায় গিয়ে দেখি বাবা এর মধ্যেই বাথরুম থেকে পানি এনে নোংরা ধুয়ে-মুছে পরিষ্কার করে ফেলেছেন। বাবলুকে কলঘরে একটা জলচৌকির উপর বসিয়ে রেখেছেন। বাবলু শান্তমুখে বসে আছে। আমাকে দেখে বলল, আপা, গরম পানি বাথরুমে দিয়ে যা।</p>
+<p>বাবলুকে বাবা গোসল করালেন। আমি কলঘরের দরজায় দাঁড়িয়ে দাঁড়িয়ে এই দৃশ্য দেখলাম। বাবলুর চোখে-মুখে লজ্জা বা অস্বস্তির বিন্দু মাত্র নেই। মনে হচ্ছে সে বেশ আনন্দ পাচ্ছে। মাঝে মাঝে মুখে পানি নিয়ে কুলকুচা করে সেই পানি অনেক দূরে ছিটাচ্ছে। বাবা বললেন –শরীর খারাপ ভাবটা কি দূর হয়েছে?</p>
+<p>বাবলু খুশিখুশি গলায় বলল, শরীর তো আমার ঠিকই আছে। মনটা হেভী খারাপ। সাবান দিয়ে গোসল করলে তো আর মন-খারাপ ভাব দূর হয় না?</p>
+<p>কি জন্যে মন খারাপ সেটা সকালে শুনব। এখন বাতি নিভিয়ে লেপ গায়ে দিয়ে শুয়ে থাক। কিছু খাবি?</p>
+<p>পান খাব, বাবা। মুখ টক হয়ে আছে।</p>
+<p>ঘরে পান ছিল না। বাবা নিজেই পান কিনে আনলেন। সেই পান বাবলু খেতে পারল না। তার আগেই ঘুমিয়ে পড়ল। নাক ডাকিয়ে ঘুম।</p>
+<p>রাতে আমরা দুজনই কিছু খেলাম না। বমি ঘাঁটার জন্যে বাবার কিছু খেতে ইচ্ছা করছিল না। আমার খেতে ইচ্ছা করছিল না রাগের জন্যে।</p>
+<p>আমি এবং বাবা, আমরা দুজন অনেক রাত পর্যন্ত বারান্দায় বসে রইলাম। দু’জনই চুপচাপ। একবার বাবা বললেন, তোর এম. এ. পরীক্ষার রেজাল্ট কবে হবে? আমি বললাম, সামনের মাসের প্রথম সপ্তাহে।</p>
+<p>গুড, ভেরি গুড।</p>
+<p>বাবা যখনই কথা বলার কিছু পান না, তখনই আমার পরীক্ষার রেজাল্ট কবে হবে তা নিয়ে উদ্বেগ প্রকাশ করেন। প্রায়ই আমাকে আমার পরীক্ষার রেজাল্ট কবে হবে তা বলতে হয়।</p>
+<p>বাবলুকে নিয়ে কি করা যায় বল তো?</p>
+<p> বাড়ি থেকে বের করে দাও। ঘাড় ধরে বের করে দাও।</p>
+<p> তুই তো মা রাগের কথা বলছিস। চিন্তা-ভাবনা করে কিছু বল।</p>
+<p>চিন্তা-ভাবনা করেই বলছি।</p>
+<p>বাবা ঘুমুতে গেলেন রাত বারোটার দিকে। বারোটার আগে তিনি কখনোই ঘুমুতে যান না। বারোটার পর তিনি তাহাজ্জুতের নফল নামাজ পড়েন। এই নামাজ রাত বারোটার পর পড়তে হয় বলে তাকে বারোটা পর্যন্ত জেগে থাকতে হয়।</p>
+<p>বাবার ঘুমুতে যাবার পরও আমি অনেক রাত পর্যন্ত একা একা বারান্দায় বসে রইলাম। আমাদের দোতলার দক্ষিণ অংশের ভাড়াটে নাজমুল সাহেবের বাড়িতে অনেক রাত পর্যন্ত বাতি জ্বলে। নাজমুল সাহেব গভীর রাত পর্যন্ত পড়াশোনা এবং লেখালেখি করেন। মাঝে মাঝে ক্লান্ত হয়ে তিনি বারান্দায় এসে সিগারেট ধরান। দু তিনটা টান দিয়েই সেই সিগারেট ছুঁড়ে ফেলে আবার ঘরে ঢুকে যান। নাজমুল সাহেবরা অনেকদিন থেকেই আমাদের বাড়িতে আছেন। এত দীর্ঘদিন কেউ থাকলে তার সঙ্গে সহজ সম্পর্ক হয়ে যাওয়ার কথা। এই ভদ্রলোকের সঙ্গে হয়নি। তিনি কারো সঙ্গেই কথা বলেন না। সম্ভবত নিজের স্ত্রীর সঙ্গেও না। রাস্তায় হঠাৎ আমার সঙ্গে দেখা হলে ঝট করে চোখ ফিরিয়ে নেন কিংবা রাস্তার দিকে তাকিয়ে হাঁটতে। থাকেন যাতে চোখে চোখ না পড়ে কিংবা কথা বলতে না হয়। তাকে স্লমালিকুম দিলে তিনি বেশির ভাগ সময়ই না শোনার চেষ্টা করেন। সেটা সম্ভব না হলে উ ঊ বলে মাথা নাড়েন। পরিবারে একজন অস্বাভাবিক মানুষ থাকলে তার ছোঁয়া অন্য সবার মধ্যেই পড়ে। সেই জন্যেই বোধহয় নাজমুল সাহেবের স্ত্রী পান্না ভাবীর স্বভাবও খানিকটা বিচিত্র। তিনি প্রচুর কথা বলেন। প্রচুর গল্প করেন –সেই সব গল্পের সবই হল ভয়ংকর ধরনের গল্প। কোথায় কে কাকে খুন করেছে এই জাতীয় গল্প। নিখুঁত বর্ণনা। স্বামী সম্পর্কেও তিনি প্রচুর গল্প করেন, যেসব গল্প কোন সুস্থ মাথার স্ত্রী তার স্বামী সম্পর্কে কখনো করবেন না–</p>
+<p>তোমার ভাইকে বাইরে থেকে ফেরেশতার মত মনে হয় না? ফলস ফেরেশতা। আসল জিনিস না, নকল। পুরোটাই মুখোশ। রাত-দিন বই পড়ে, লিখে –মনে হবে, বাবা, কি বিরাট স্কলার! নাওয়া-খাওয়ার সময় নেই। আসলে ফলস স্কলার। মুখের সামনে বই ধরে রাখলেই স্কলার হয় না। মুখের সামনে বই ধরে রাখে কেন জান? যাতে আমার সঙ্গে কথা বলতে না হয়। আমার কথা বিশ্বাস করলে না, তাই না? ভাবছ, পান্না ভাবী বানিয়ে বানিয়ে কথা বলছে। আমি নিজেও এটা শুরুতে ধরতে পারিনি। শুরুতে আমার মনে হয়েছিল– আহা, কত বড় স্কলারকে বিয়ে করেছি। আমার জীবন ধন্য। পরে বুঝলাম, সবই ভান। ওর। সবটাই ভান। পায়ের নখ থেকে মাথার চল পর্যন্ত ভান। ও যে নিঃশ্বাস ফেলে সেই নিঃশ্বাসটা পর্যন্ত ভান। ও হচ্ছে ভান-সম্রাট।</p>
+<p>রাস্তায় তোমার সঙ্গে দেখা হলে চোখ তুলে তাকাবে না। সালাম দিলে –সালাম। পর্যন্ত নিবে না। কিন্তু তলে তলে মেয়েমানুষ দেখার জন্যে শুধুই ছোঁক ছোঁক করে। বাসায় কাজের মেয়ে-টেয়ে যে রাখি ওর নজর সেই দিকে। এরা সারাদিন কাজ করে, রাতে মরার মত ঘুমায়। ঘুমের সময় তো আর সব সময় কাপড়-চোপড় ঠিক থাকে না –এই হয়ত পা থেকে শাড়ি খানিকটা ওঠে গেল, বা ব্লাউজের একটা বোতাম খুলে গেল। তোমার ভাইয়ের তখন ঈদ উৎসব। হা করে তাকিয়ে থাকবে। চোখে পলক পড়বে না। তার ধারণা কেউ কিছু জানে না। আমি তো বিছানায় শুয়ে ঘুমুচ্ছি। আমি দেখব কি? সে তো জানে না –আমি জেগে থাকি। মটকা মেরে পড়ে থাকি। স্পাইয়ের মত পা টিপে টিপে একবার এসে দেখে যাই। কি দেখি জান? দেখি, আমাদের স্কলার সাহেব হা করে বোতাম খোলা ব্লাউজের দিকে তাকিয়ে আছেন। কাজের মেয়েরা তো আর ব্লাউজের নিচে কিছু পরে না। ওদের ব্লাউজের বোতাম খোলো মানে অনেক কিছু। আমি করি কি –আড়াল থেকে দেখে চলে আসি। কিছু বলি না। একেবারেই যে বলি না তা না –একবার বললাম, কি দেখছ?</p>
+<p>সে আমার দিকে তাকিয়ে স্কলারের মত গলায় বলল –প্রাচীন ভারতে চারটা ক্লাস ছিল –ব্রাহ্মণ, ক্ষত্রিয়, বৈশ্য, শুদ্র। এই ক্লাসগুলি এখনো আছে। প্রবলভাবেই আছে। এই মেয়েটাকে দেখ আজকের ক্লাস সিস্টেমে সে শুদ্র। অস্পৃশ্য।</p>
+<p>অস্পৃশ্য কে বলল –ওকে ছুঁয়ে দিলে কিছু হবে না। যাও, ছুঁয়ে এসো।</p>
+<p>স্কলার সাহেব এমনভাবে তাকালেন যেন আমার মাথা খারাপ হয়ে গেছে। আমার চিকিৎসা দরকার। আসল চিকিৎসা কার দরকার তা জানি শুধু আমি … ।</p>
+<p>.</p>
+<p>নাজমুল সাহেবকে দেখছি বারান্দায় এসে দাঁড়িয়ে সিগারেট টানছেন। তার স্ত্রীও নিশ্চয়ই আড়াল থেকে লক্ষ্য করছেন। ছায়ার মত পেছনে পেছনে আছেন। লক্ষ্য না করার কথা না। আজকে যে নাটক বাড়িতে হল সেই নাটকের পুরোটা পান্নাভাবী জানেন, এটাও নিশ্চিত।</p>
+<p>বারান্দায় আলো নেই। আমি অন্ধকারে বসে আছি। আমাকে ভদ্রলোক দেখতে পারছেন না। আমি তাকে দেখছি। স্নামালিকুম বলে আমি ভদ্রলোককে চমকে দেব না-কি? স্নামালিকুম বললে উনি কি করবেন? উ ঊ জাতীয় শব্দ করে এক দৌড়ে ঘরে ঢুকে যাবেন?</p>
+<p>আমি নিজের অজান্তে হঠাৎ বলে ফেললাম, স্লামালিকুম নাজমুল ভাই। উনি চমকালেন না। অবাক হলেন না। আমাকে অবাক করে দিয়ে স্বাভাবিকভাবে বললেন –তুমি এত রাত পর্যন্ত জেগে আছ যে?</p>
+<p>আমি তো খুব রাত জাগি।</p>
+<p>তা জানি।</p>
+<p>জানেন? আশ্চর্য তো! আমি ভেবেছিলাম –আপনি শুধু আপনার বই এবং লেখার খাতায় কি ঘটছে তা জানেন। আর কিছু জানেন না।</p>
+<p>নাজমুল সাহেব আবারো আমাকে অবাক করে দিয়ে শব্দ করে হাসলেন। এই প্রথম দেখলাম তিনি সিগারেট দুটা টান দিয়ে ফেলে দিলেন না। বারান্দার রেলিঙে ঝুঁকে গল্প করবে লাগলেন —</p>
+<p>এম. এ. পাশ করার পর কি করবে কিছু ঠিক করেছ?</p>
+<p>জি করেছি।</p>
+<p> কি করবে?</p>
+<p> ঘুমাব। আরাম করে ঘুমাব।</p>
+<p> আরাম করে তো এখনো ঘুমুতে পার। এখন তো আর পড়াশোনা নেই।</p>
+<p>পড়াশোনা না থাকলেও টেনশন আছে। পাশ করব কি করব না।</p>
+<p>কি বলছ তুমি! খুব ভাল পাশ করবে তুমি। যে ভাবে পড়াশোনা কর তাতে খারাপ রেজাল্টের কোন সম্ভাবনা নেই</p>
+<p>আমি কি খুব পড়াশোনা করেছি।</p>
+<p> দিন রাতই তো দেখতাম পড়ছ।</p>
+<p> আপনি চারপাশে কি ঘটে তা লক্ষ্য করেন? আশ্চর্য!</p>
+<p>তিনি আবারো শব্দ করে হাসলেন। আর তখন ঘুম ভেঙে বাবলু উঠে এসে বলল, আপা, ভাত দে। খিদে।</p>
+<p>রাত বাজে কটা জানিস?</p>
+<p>কটা?</p>
+<p>প্রায় তিনটা।</p>
+<p>তিনটার সময় ভাত খাওয়া যাবে না –এমন কোন কথা আছে? আছে এমন। কোন আইন? থাকলে বল– পেনাল কোডের কোন ধারায় আছে?</p>
+<p>আমি রাত তিনটায় বাবলুর জন্যে ভাত বাড়তে গেলাম। অনেক যন্ত্রণা করতে হবে। ঠাণ্ডা ভাত সে খাবে না। ভাত গরম করতে হবে। তরকারী গরম করতে হবে। সালাদ বানাতে হবে। খেতে বসে বলে বসতে পারে –মাছ খাব না, ডিম ভেজে দে। ঘরে ডিম আছে কি-না তাও জানি না।</p>
+<p>বাবলু গোগ্রাসে খাচ্ছে। তার খুব যে খিদে পেয়েছে বোঝাই যাচ্ছে। সন্ধ্যারাতে সে কি কাণ্ড করেছে তাও বোধহয় তার মনে নেই।</p>
+<p>আপা, একটা ডিম ভেজে দে।</p>
+<p>ডিম নেই।</p>
+<p>সামান্য একটা ডিমও ঘরে থাকে না?</p>
+<p> থাকে। আজ নেই।</p>
+<p>আজ নেই কেন? সংসারে আমরা তিনটা মোটে মানুষ, একটা কাজের লোকও নেই। মাসের শেষে ছ’ হাজার টাকা বাড়ি ভাড়া পাস। যায় কোথায় টাকাটা?</p>
+<p>কথা বলিস না। চুপ করে খা।</p>
+<p>চুপ করে খাব কেন? আমি একটা প্রশ্ন করেছি। আমি তার আনসার চাই। গিভ মি এন এক্সপ্লেনেশন।</p>
+<p>ওর সঙ্গে কথা বলা নিরর্থক। আমি চুপ করে রইলাম –সে ভাতের থালা সরিয়ে দিয়ে বলল, –যা, খাব না তোর ভাত।</p>
+<p>না খেলে উঠে যা।</p>
+<p>আমি উঠব কি উঠব না সেটা আমার ব্যাপার।</p>
+<p>তাহলে বসে থাক। আমি চললাম।</p>
+<p>বাবলু বলল, তোর দেমাগ খুব বেশি হয়ে গেছে, সেটা কি তুই জানিস? তুই ডুবছিস তোর দেমাগের জন্যে।</p>
+<p>তাই নাকি?</p>
+<p>হ্যাঁ তাই। তোর হাসবেন্ড যে ঘাড় ধরে তোকে বার করে দিয়েছে –তোর দেমাগের জন্যে বার করে দিয়েছে। অন্য কিছু না। এ বাড়িতে তুই পড়ে আছিস আমার দয়ার উপর। আর কিছু না।</p>
+<p>আমি তাকিয়ে আছি বাবলুর দিকে। এইসব কি নেশাগ্রস্ত মানুষের কথা? নাকি তার মনে এই ব্যাপারগুলি আছে? নেশার কারণে বের হয়ে আসছে?</p>
+<p>নিজের ছেলেকে তুই ঈদের দিনেও চোখের দেখা দেখতে পারিস না। কেন পারিস না? তোর দেমাগের জন্যে।</p>
+<p>চুপ কর বাবলু।</p>
+<p>বাবুল চুপ করল। আমি শান্ত ভঙ্গিতে থালা-বাসন সরালাম। টেবিল মুছলাম। বাবলু বলল, পানি খাব।</p>
+<p>আমি পানি এনে দিলাম। সহজ গলাতেই বললাম, চল ঘুমুবি। বাবলু আপত্তি করল না। উঠে এল। আমি শুয়ে পড়লাম নিজের ঘরে। হঠাৎ খুব ক্লান্তি বোধ করছি। মনে হচ্ছে অনেকদিন ঘুমুইনি। অনেকদিন পর যেন আজ প্রথম ঘুমুতে যাচ্ছি। খুব ক্লান্ত মানুষ ঘুমুতে পারে না। আমিও ঘুমুতে পারছি না। ঘুমুতে না পারার আরেকটা বড় কারণ হল, বাবলু ঠিক আমার ঘরের সামনে হাঁটাহাঁটি করছে। শব্দে করে হাঁটা, ইচ্ছা করেই যেন এত শব্দ করছে। শুধু যে শব্দ করে হাঁটছে তা না, চেয়ার পরেও টানাটানি করছে। সম্ভবত সে চাচ্ছে আমি বলি –শব্দ করছিস কেন? যাতে সে আরেকটা ঝগড়া বাধাবার সুযোগ পাবে।</p>
+<p>এখন আমার দরজায় ধাক্কা পড়ছে। আমি বললাম, কি হয়েছে বাবলু?</p>
+<p> একটু দরজা খুলবি আপা?</p>
+<p>কেন?</p>
+<p>খুব জরুবী একটা কথা বলব। খুবই জরুরী। এক মিনিট লাগবে।</p>
+<p>সকালে শুনব।</p>
+<p> সকালে না আপা –এখন শুনতে হবে।</p>
+<p>বাবলু, তুই খুব বিরক্ত করছিস।</p>
+<p> দরজা না খুললে আমি আরো বিরক্ত করব। লাথি দিয়ে দরজা ভেঙে ফেলব।</p>
+<p>ধমাধম শব্দে দরজায় লাথি পড়তে লাগল। শব্দে নিশ্চয়ই পাড়া জেগে উঠেছে। পান্নাভাবী বাতি নিভিয়ে অন্ধকারে ঘাপটি মেরে বসে আছেন কি হচ্ছে শোনার জন্যে। আমি বাবার চটির শব্দ শুনলাম। বাবা কঠিন গলায় কখনো কথা বলতে পারেন না। আজও পারলেন না –নরম গলায় বললেন, কি হয়েছে রে?</p>
+<p>বাবলু কোন শব্দ করল না। বাবা বললেন –তুই আমার সঙ্গে আয়।</p>
+<p> কোথায় যাব?</p>
+<p> আমার ঘরে আয়। তোর সঙ্গে কথা বলি।</p>
+<p>রাত-দুপুরে কি কথা? রাত-দুপুরে যদি দরজা ভাঙাভাঙি করা যায় তাহলে কথাও শোনা যায়।</p>
+<p> উপদেশ শুনতে ভাল লাগে না, বাবা।</p>
+<p>উপদেশ শুনতে হবে না। আয় তুই।</p>
+<p>না আমি যাব না। আমাকে সে দুই চোখে দেখতে পারে না। কেন পারে না? আমি কি করেছি? আমি হয়েছি দুনিয়ার খারাপ, সে হয়েছে মহিলা-ফেরেশতা। সে যে একজন বিবাহিত লোকের সঙ্গে রাত তিনটার সময় প্রেম করে সেটা কিছু না?</p>
+<p>বাবা ক্লান্ত গলায় ডাকলেন, বাবলু!</p>
+<p>বাবলু পাত্তা দিল না। গলার স্বর আরো উঁচিয়ে বলল, আমি কিছু করলেই দোষ হয়ে যায়। কারণ আমি নন্দঘোষ। যত দোষ নন্দঘোষ। আপার কোন দোষ নেই। সে মহাপবিত্র। রাত তিনটায় প্রেম করলেও কিছু না –বিবাহিত মানুষের সঙ্গে ট্যাক্সি করে ঘুরলেও কিছু না।</p>
+<p>সে কথা বলেই যাচ্ছে। বলেই যাচ্ছে। তাকে এখন আর থামানো যাবে না। একটা সূঁচ-সূতা এনে তার ঠোঁট সেলাই করে ফেললেও সে কোন না কোনভাবে কথা বলবে। আমি মাথার উপর লেপ টেনে দিলাম। অন্যকিছু ভাবতে চেষ্টা করছি। মিষ্টি কোন স্মৃতি –যা আমাকে বর্তমান ভুলিয়ে দেবে। এমন কিছু কি আছে? টুকুনের কথা ভাবব? না না, টুকুন না, টুকুনের কথা ভাবব না। কিছুতেই না। তবে মনে মনে তার কাছে একটা চিঠি লেখা যায়। মনে মনে লেখা চিঠি নাকি পৌঁছে যায়। এই পৃথিবী খুব রহস্যময়। পৃথিবীর অনেক রহস্যের একটা রহস্য হচ্ছে– মনের চিঠি। ঠিকানা লাগে না, পোস্টাল কোড লাগে না। চিঠি লিখলেই হল —</p>
+<p>আমার ছোট্ট বাবা টুকুন সোনা,</p>
+<p>তুমি এখন কি করছ গো সোনা? ভাল আছ? ঘুমুচ্ছ? আজ বেশ শীত পড়েছে, তাই না বাবা? গায়ে লেপ আছে তো? তোমার বিশ্রী অভ্যাস আছে গা থেকে লেপ ফেলে দেয়ার। ঠাণ্ডা লেগে গেলে খুব কষ্ট হবে। কাজেই সাবধান। খালি পায়ে মেঝেতে হাঁটাহাঁটি করবে না। এবং কখনো মন খারাপ করবে না। যদি কোন কারণে মন খারাপ হয়, সঙ্গে সঙ্গে বাবাকে বলবে। ছাদের রেলিং ধরে কখনো নিচে উঁকি দেবে না। আর একা একা ছাদে যাবারও দরকার নেই।</p>
+<p>বাবা, তুমি কি এখন গল্পের বই পড়তে পার? আমি সুন্দর সুন্দর কিছু গল্পের বই কিনে তোমাকে পাঠাব। আর একটা সুন্দর খাতা এবং কলম কিনে পাঠাব। ঐ খাতাটায় তুমি রোজ মাকে চিঠি লিখবে। আমি একদিন গিয়ে তোমার সেই খাতা নিয়ে আসব।</p>
+<p>শোন বাবা, এবার কি তোমার জন্মদিন খুব ধুমধাম করে হয়েছে? জন্মদিনে কি কি উপহার পেয়েছ? একদিন এসে সব দেখে যাব। আমি তোমার জন্যে জন্মদিনের একটা উপহার কিনে রেখেছিলাম। দিতে পারিনি। সমস্যা কি হয়েছে জান বাবা –আমি ইচ্ছা করলেই তোমাদের বাড়িতে আসতে পারি না। তোমার বাবার সঙ্গে আমার ঝগড়া হয়েছে। বড়রাও মাঝে মাঝে ঝগড়া করে। কাজেই দুজন দুজায়গায় থাকছি। কিন্তু আমরা দুজনই তোমাকে অনেক অনেক ভালবাসি। এখন তুমি তা বুঝতে না পারলেও … যতই দিন যাবে ততই বুঝতে পারবে …</p>
+<p>না, চিঠিটা ভাল হচ্ছে না। আমি মনে মনে লেখা চিঠির পাতাটা ছিঁড়ে ফেললাম। টুকুনের চিঠিতে বড়দের ঝগড়ার কথা কিছু থাকার প্রয়োজন নেই। ওর চিঠি থাকবে ভালবাসায় ডুবানো।</p>
+<p>বারান্দায় বাবলুর কথাবার্তা শোনা যাচ্ছে না। ও কি চলে গেছে? কখন গেল? পানির পিপাসা হচ্ছে। উঠতে ইচ্ছা করছে না। চোখে ঘুম নেমে আসছে। ঘুমের মধ্যেই ঠিক করলাম, কাল সকালে মামুনের সঙ্গে দেখা করব –তাকে বলব … কি বলব তাকে? …</p>
+<p>.</p>
+<p><strong>০৩.</strong></p>
+<p>প্লেট ভর্তি ভাপা পিঠা নিয়ে ভোরবেলাতেই পান্না ভাবী উপস্থিত। তিনি হাসিমুখে বললেন, রাত্রি নাও তোমার জন্যে গরম পিঠা এনেছি। এক্ষুণী খাও –ঠাণ্ডা হলে খেতে পারবে না।</p>
+<p>পান্না ভাবী ভোরবেলাতেই গোসল করেছেন। চুল ভেজা। পাট ভাঙ্গা নতুন শাড়ি পরেছেন। তাকে সুন্দর লাগছে। কাল রাতে বাবলুর কুৎসিত কথা তিনি নিশ্চয়ই শুনেননি। শুনলে এত হাসিখুশি তাঁকে দেখাতো না। আমি বললাম, ভাবী আপনাকে সুন্দর লাগছে। সকালবেলা এত সাজ গোজ?</p>
+<p>আজ তোমার ভাইয়ের জন্মদিন। ভাবলাম সাজগোজ করে –পিঠা বানিয়ে জন্মদিনের মানুষটাকে চমকে দেই। ভাপা পিঠা তোমার ভাইয়ের খুব পছন্দ।</p>
+<p>নাজমুল ভাইকে জন্মদিনের শুভেচ্ছা জানিয়ে দেবেন ভাবী।</p>
+<p>আমি জানাব কেন? তুমি জানিও। তুমি জানালেই বেশি খুশি হবে। পিঠা খাও– ঠাণ্ডা হয়ে যাচ্ছে।</p>
+<p>আমি পিঠা মুখে দিলাম। আগুন গরম-ভাপ উঠছে।</p>
+<p>কেমন হয়েছে?</p>
+<p>খুব ভাল।</p>
+<p>পিঠার মধ্যে ভাপা পিঠা বানানোই সবচে কঠিণ যদিও দেখে মনে হয় সবচে সহজ। একটু উনিশ বিশ হয়েছে কি পিঠা শক্ত হয়ে যাবে। খেয়ে স্বাদ পাবে না।</p>
+<p>মোটেও শক্ত হয় নি। খেতে খুব ভাল হয়েছে।</p>
+<p> ছ পিস এনেছি। তোমাদের সবার জন্যে দু পিস করে।</p>
+<p> পান্না ভাবী থংকস।</p>
+<p>যার জন্যে সাতসকালে পিঠা বানালাম সে এখনো ঘুমে। মনে হয় কাল অনেক রাত পর্যন্ত জেগেছে। তার ঘুম ভাঙ্গার আগেই কিছু ফুল এনে বিছানায় ছড়িয়ে দেব। আইডিয়া কেমন?</p>
+<p>খুব ভাল আইডিয়া।</p>
+<p>ফুলের দোকান কি খুলেছে?</p>
+<p>এত সকালে কি খুলবে।</p>
+<p>পান্না ভাবী নিঃশ্বাস ফেলে বললেন, তাহলে বরং একটু পরেই যাই। তুমি চা করতো রাত্রি। তোমার সঙ্গে বসে চা খাই। শরীর ম্যাজ ম্যাজ করছে। কাল রাতে কি হয়েছে শোন –রাত এগারোটার সময় মার সঙ্গে টেলিফোনে কথা হল। অকারণে মার সঙ্গে খানিকক্ষণ রাগারাগি করলাম। সাংঘাতিক মাথা ধরল। রাগ কমানোর জন্যে ছটা হিপনল খেয়ে শুয়েছি– এক ঘুমে রাত কাবার।</p>
+<p>আমি মনে মনে হাসলাম। কাল রাতের ব্যাপার পান্নাভাবী সবই জানেন। এটা কাটান দেয়ার জন্যেই ঘুমের ট্যাবলেট হিপনলের কথা নিয়ে এসেছেন।</p>
+<p>আমি চা বানাচ্ছি– পান্না ভাবী আমার সামনে মোড়ায় বসে আছেন। আমি যতদূর জানি পান্নাভাবী চা খান না। চা খাওয়ার এই ভণিতার পেছনেও নিশ্চয়ই কোন করাণ আছে। কে জানে কি সেই কারন।</p>
+<p>রাত্রি!</p>
+<p>জি ভাবী।</p>
+<p>তোমাকে আমি আমার ছোটবোনের মত মনে করি।</p>
+<p>আমি জানি ভাবী।</p>
+<p>না তুমি জান না। তোমাকে যে আমি কতটা ভালবাসি তা আমি জানি। অন্য কেউ জানে না। অন্য কারোর জানার কথাও না। আমিতো আর আমার মনের কথা শহরে ঢোল দিয়ে সবাইকে বলব না —</p>
+<p>তাতো বটেই।</p>
+<p>নিতান্ত আপনজন ভেবে আমি তোমাকে কয়েকটা কথা বলব বোন।</p>
+<p>আমি শংকিত গলায় বললাম –বলুন। আমার ভয় হচ্ছে পান্না ভাবী কাল রাতের ব্যাপারটা তুলে আনেন কি-না। তিনি গলা অনেকখানি নামিয়ে ফিস ফিস করে বললেন –তুমি কি ইদানীং আমার কাজের মেয়ে রাণীকে লক্ষ্য করেছ?</p>
+<p>কেন বলুনতো?</p>
+<p>লক্ষ্য করেছ কি-না বল।</p>
+<p>রোজইতো দেখি।</p>
+<p>সেই দেখা না– ভাল করে দেখেছ কি-না। ওর শরীর এখন কেমন ভার ভারন্ত মনে হয় না?</p>
+<p>আমি তাকিয়ে আছি পান্নাভাবী গলা আরো নামিয়ে প্রায় ফিস ফিস করে বললেন –মনে হয় কোন একটা কান্ড হারামজাদী বাঁধিয়েছে– কাকে সন্দেহ করছি বলব? শুনে আকাশ থেকে পড়বেনা– সন্দেহ না, আমি জানি — মূল নায়ক আমার কর্তা। সর্বজন শ্রদ্ধেয় অধ্যাপক নাজমুল হক পি এইচ ডি –গবেষক — পন্ডিত –যিনি মেয়েদের দিকে চোখ ভুলেও তাকান না।</p>
+<p>কি যে বলেন ভাবী।</p>
+<p>না জেনে কিছু বলি না –জেনে শুনে বলি। ঐদিন কি হয়েছে শোন তোমার নাজমুল ভাই বই পড়ছে –আমি রাণীকে বললাম –যাও খালুকে চা দিয়ে আস। সে চায়ের কাপ নিয়ে যাচ্ছে আমি আড়াল থেকে দেখছি। কি দেখলাম জান রাণী চায়ের কাপ নামিয়ে রাখল, তারপর চোখ ঘুরিয়ে ঘুরিয়ে হাসি। স্ত্রী রাধিকার লীলা।</p>
+<p>ভাবী এসব আপনার কল্পনা।</p>
+<p>কল্পনা না বাস্তব পঞ্চাশটা টাকা খরচ করলেই ধরা পড়ে যাবে। প্রেগনেন্সি টেস্টে পঞ্চাশ টাকা লাগে। আমি চুপ করে আছি, কিছু বলছি না। কয়েকটা দিন যাক তারপর তোমার গবেষক ভাই বুঝবে রাত দুপুরে মেয়েমানুষ নিয়ে গবেষণা করলে কি হয়। আমি কি করব শুনতে চাও?</p>
+<p>জি না আমি শুনতে চাচ্ছি না।</p>
+<p> শোন। শোন –আমি মারামারি কাটাকাটির মধ্যে নেই ঐসব আমি করব না। আমি কাজী ডেকে এনে বিয়ে পড়িয়ে দেব। বিয়ে হয়ে গেলে কাজের মেয়ের সমস্যাও সমাধান হয়ে যাবে। কাজের মেয়েতো বেশিদিন থাকে না — আজ এই বাড়ি –কাল ঐ বাড়ি … পরশু গার্মেন্টস বিয়ে হয়ে গেলে স্বামীর সংসারে থাকবে।</p>
+<p>পান্নাভাবী চা খাচ্ছেন না। চায়ের কাপ হাতে নিয়ে কথা বলে যাচ্ছেন। আমি হতভম্ব হয়ে শুনছি।</p>
+<p>রাত্রি উঠি ফুলের দোকান বোধহয় খুলেছে।</p>
+<p>পান্নাভাবী ঠাণ্ডা চা, এক চুমুকে শেষ করে উঠে পরলেন। ব্যস্ত হয়ে যাচ্ছেন ফুলের খোঁজে। রান্নাঘর থেকে বের হতেই তার দেখা হল বাবলুর সঙ্গে –তিনি আন্তরিক ভঙ্গিতে বললেন, কি রে বাবলু ভাল আছিস? তিনি বাবলুকে তুই করে বলেন। বাবলুর সঙ্গে তার আলাদা খাতির। বাবলু তার উত্তরে কি বলল বোঝা গেলো না।</p>
+<p>কাল রাতে এমন হৈ চৈ শুরু করলি কেন?</p>
+<p>আমি যা ভেবেছিলাম তাই। পান্নাভাবী কাল রাতের হৈ চৈ পুরাটাই শুনেছেন ভালমতই শুনেছেন।</p>
+<p>বাবলু কাল রাত হয়েছিল কি?</p>
+<p>কিছুই না। নাথিং।</p>
+<p>বাবলু বলতো ফুলের দোকান খুলেছে কি না?</p>
+<p>ফুলের দোকান দিয়ে কি করবে?</p>
+<p>তোর দুলাভাইয়ের জন্মদিন –ফুল কিনব। তোর কি এখন কোন কাজ আছে?</p>
+<p>হাতমুখ ধোব। নাস্তা খাব।</p>
+<p>হাতমুখ পরে ধুলেও হবে। তুই আয়তো আমার সঙ্গে ফুল কিনব। ফুল পছন্দ করে দিবি।</p>
+<p>ফুলের আবার পছন্দ অপছন্দ কি? ফুল দেখতে সব এক রকম।</p>
+<p> তুই চলতো।</p>
+<p>মুখ ধুইনিতো।</p>
+<p>কুলি করে নে। কুলি করলেই হবে –তুই আজ আমার সঙ্গে নাশতা খাবি।</p>
+<p>ওকে ভাবী। ওকে।</p>
+<p>আমি মনে মনে হাসলাম। পান্নাভাবী আজ আর বাবলুকে ছাড়বেন না। জেঁকের মত পেছনে লেগে থাকবেন। কাল রাতে কি হয়েছিল তা খুঁটে খুঁটে বের করবেন। আমাকে মিথ্যা কথাটা বলার দরকার ছিল কি? কেন বললেন –কাল রাতে হিপনল খেয়ে মরার মত ঘুমিয়েছেন।</p>
+<p>.</p>
+<p>বাবাকে নাশতা দিতে গেলাম। বাবা বললেন, বাবলু খেয়েছে?</p>
+<p>ও পান্না ভাবীর সঙ্গে ফুল কিনতে গেছে।</p>
+<p>বাবলুর সঙ্গে আমার কিছু কথা ছিল।</p>
+<p> কথা থাকলে কথা বলবে। ও আসুক তোমার সঙ্গে কথা বলতে বলি।</p>
+<p>বাবা নাশতা খেলেন না –খালি পেটে চায়ে চুমুক দিলেন –আমি চাইনা ও এ বাড়িতে বাস করুক।</p>
+<p>এ বাড়িতে বাস না করলে কোথায় বাস করবে?</p>
+<p>ওর বন্ধু বান্ধব আছে। ওরকি থাকার জায়গার অভাব আছে?</p>
+<p>বাবা তুমি রাগের কথা বলছ।</p>
+<p>রাগের কথা বলাটাকি অন্যায় হচ্ছে?</p>
+<p>হ্যাঁ অন্যায় হচ্ছে।</p>
+<p>আমাকে তুই কি করতে বলিস?</p>
+<p> চুপ করে থাকতে বলি।</p>
+<p>চুপ করেইতো আছি।</p>
+<p>আরো চুপ করে যাও।</p>
+<p>বাবলুর কি হবে?</p>
+<p>ওকে নিয়ে চিন্তার কিছু নেই বাবা। খুব মন্দ হবার কোন ক্ষমতা ওর নেই। ওর দৌড় মাঝে মাঝে নেশা ভাং করে হৈ চৈ করা পর্যন্ত।</p>
+<p>নেশা ভাং করাটা তোর কাছে তেমন গুরুত্ব পূর্ণ কিছু মনে হচ্ছে না? বাইশ তেইশ বছরের একটা ছেলে নেশা করে বাসায় আসবে?</p>
+<p>ওর একটাই সমস্যা বাবা। ও বোকা। ও যা করছে বোকা বলেই করছে। বুদ্ধি থাকলে ও নেশা ঠিকই করতো –কিন্তু নেশা করে বাসায় আসত না। বোকা হবার। দায় দায়িত্ব তার না। কাজেই ওকে সামলাতে হবে অন্য ভাবে।</p>
+<p>কি ভাবে?</p>
+<p>চিন্তা করছি। তুমি কিছু ভেবো না। শুধু চা খাচ্ছ কেন বাবা –নাশতা খাও।</p>
+<p> কিছু খেতে ইচ্ছা করছে না।</p>
+<p>বাবলুকে নিয়ে আমার তেমন কোন চিন্তা নেই বাবা। আমার চিন্তা তোমাকে নিয়ে।</p>
+<p>আমাকে নিয়ে কিসের চিন্তা?</p>
+<p>অবসর সময়ে মানুষকে কাজে কর্মে ব্যস্ত হতে হয়। ব্যস্ত না হলে নানান সমস্যা– তুমি কিছুই করছ না। দিন রাত বসে থাক। ব্যস্ততা বাড়াও বাবা।</p>
+<p>কি করব?</p>
+<p>সেটা তুমি ভেবে বের কর। আমরা সবাই মিলে গ্রামের বাড়িতে চলে গেলে কেমন হয় বাবা? খামার বাড়ির মত কর। হাঁস মুরগী, গরু বাছুর এইসব থাকবে। শাক শজি ফলাবে। আমিও তোমার সঙ্গে থাকব। বাবলু থাকবে। ব্যাক টু দ্যা ভিলেজ।</p>
+<p>এইসব বলা খুব সহজ মা। করা কঠিণ।</p>
+<p>যে টা সহজে বলা যায় সেটা সহজে করাও যায়। কেউ করতে চায় না, কারণ মনে করে করা যাবে না।</p>
+<p>তুই যা ভাবিস তা করতে পারিস?</p>
+<p>হ্যাঁ পারি। কাল রাত থেকে ভাবছি –আজ দুপুরে আমি টুকুনকে নিয়ে আসব। টুকুন আমার সঙ্গে কয়েকদিন থাকবে।</p>
+<p>ওতো শুনেছি দেশের বাইরে।</p>
+<p>আমার কেন জানি মনে হয় এখন সে দেশেই আছে। বাচ্চা একটা ছেলে। এতদিন বাইরে থাকবে না।</p>
+<p>বাবা তীক্ষ্ণ দৃষ্টিতে তাকিয়ে রইলেন। আমি বললাম, তোমার কি ধারনা আমি টুকুনকে নিয়ে আসতে পারব না?</p>
+<p>ওরা কি দেবে?</p>
+<p>হ্যাঁ দেবে।</p>
+<p>কখন যাবি?</p>
+<p>দুপুরে যাব।</p>
+<p>দুপুরে কেন এখন চলে যা–</p>
+<p>না এখন না। আমি ওদের কি বলব না বলব তা খুব সুন্দর করে আগে গুছিয়ে নেব। আমার সময় লাগবে।</p>
+<p>বাবার চোখ চকচক করছে। তিনি হাসলেন। আনেকদিন পর বাবার হাসিমুখ দেখলাম। এই বাড়িতে হাসি নেই বললেই হয়। আমরা কেউ হাসি না। শুধু মা হাসতেন। কথায় কথায় হাসতেন। হয়ত দেয়ালে বসা একটা টিকটিকি টিকটিক করে উঠল। মা চেঁচিয়ে বলবেন, ও খুকি শুনলি টিকটিকিটা কেমন চিকণ গলায় টিকটিক করল –হি হি হি। আমার ধারনা মা তার সঙ্গে সব হাসি নিয়ে চলে গেছেন। কোন একদিন আবার একজন কেউ সব হাসি নিয়ে ফিরে আসবে। সেই একজন কে? সেকি টুকুন? না টুকুন না। টুকুনও হাসতে জানে না। সে জন্ম থেকেই গম্ভীর। দু বছর বয়সেই সে কেমন ভুডু কুঁচকে তাকাত। জটিল জটিল সব বাক্য তৈরী করত। একবার সে বলল, মা আমার জুতায় কংকর। কি অদ্ভুত কান্ড। কংকর শব্দটা তাকে কে শেখাল। এমন কঠিণ শব্দ আমি নিজে কখনো বলি না। তার বাবা কি শিখিয়েছে। আমি মামুনকে বললাম, আচ্ছা টুকুনকে কংকর শব্দটাকি তুমি শিখিয়েছ?</p>
+<p>সে টুকুনের মতই ভুডু কুঁচকে বলল –কংকর মানে কি? আমি কংকর টংকর শেখাব কেন? তাছাড়া বাচ্চাদের কিছু শেখাতে হয় না –দে পিক আপ ওয়াইস।</p>
+<p>কোত্থেকে পিক আপ করে?</p>
+<p>কে জানে কোত্থেকে? এটা এমন জরুরী কোন সমস্যা না। এটা নিয়ে মাথা ঘামাচ্ছ কেন? টংকর কংকর যা ইচ্ছা বলুক। কথা শিখছে –এটাই কথা।</p>
+<p>অদ্ভুত অদ্ভুত শব্দ শিখছে …।</p>
+<p>কংকর কোন অদ্ভুত শব্দ না। অল্পতে উত্তেজিত হয়ো না তো।</p>
+<p>আমার তিন বছরের বিবাহিত জীবনে মামুন আমাকে অল্পতে উত্তেজিত না। হবার জটিল বিদ্যা শেখানোর চেষ্টা করেছে। আমি শিখতে পারিনি। এই কঠিণ বিদ্যা শিখেছি তাকে ছেড়ে চলে আসার পর। উত্তেজিত হওয়া বা বিস্মিত হওয়ার ক্ষমতা আজ আমার নষ্ট হয়ে গেছে।</p>
+<p>বাবা!</p>
+<p>উ।</p>
+<p>বাবলুকে ধরে একটা বিয়ে দিয়ে দিলে কেমন হয়?</p>
+<p>বাবা বিরক্ত গলায় বললেন, বিয়ে?</p>
+<p>হু বিয়ে। ফুটফুটে একটা মেয়ের সঙ্গে বিয়ে। সারা বাড়ি জুড়ে ছোটাছুটি করবে। এই ছাদে উঠবে, এই ছাদে নামবে। বাবলুর সঙ্গে ঝগড়া করবে, আবার ঝগড়া মিটমাট হবে।</p>
+<p>জেনেশুনে অগাটার সঙ্গে একটা মেয়ের বিয়ে দেব। একটা মেয়ের জীবন নষ্ট করব?</p>
+<p>উল্টোটাও হতে পারে। বিয়ে দেবার কারণে মেয়েটা বাবলুকে ঠিকঠাক করে ফেলতে পারে।</p>
+<p>যদি ঠিকঠাক করতে না পারে?</p>
+<p>না পারলে মেয়েটার জীবন ছাড়খাড় হয়ে যাবে। মনের কষ্টে হয়ত সে বিষ খাবে, কিংবা ছাদ থেকে লাফিয়ে রাস্তায় পড়ে যাবে। এটা হল মেয়ে হয়ে জন্মানোর খেসারত। ভয়ংকর এক্সপেরিমেন্ট মেয়েদের দিয়েই করানো হয়।</p>
+<p>বাবা বললেন –এ রকম কোন এক্সপেরিমেন্ট আমি করব না। ভুলেও এইসব মাথায় স্থান দিবি না। ভুলেও না। জেনেশুনে এক নেশাড়ুর সঙ্গে একটা মেয়েকে জুড়ে দেব। তুই আমাকে এত ছোট ভাবলি?</p>
+<p>বাবলু ফিরে এসেছে। উঠোনে বসে দাঁত মাজছে। তার টুথপেস্ট আছে। ব্রাশ আছে। কিন্তু এখন দাঁত মাজছে লবণ দিয়ে। আঙ্গুলের ডগায় লবন নিয়ে সমানে ডলছে। তার কোন জ্ঞানী বন্ধু-বান্ধব হয়ত তাকে বলেছে লবন দিয়ে দাঁত মাজলে দাঁত ভাল থাকে।</p>
+<p>আজ নাশতা খাব না, পান্নাভাবীর ওখানে নাশতার দাওয়াত।</p>
+<p>আচ্ছা শুনলাম।</p>
+<p>আজ দুপুরেও কিছু খাব না –দুপুরেও দাওয়াত। বজলুর বোনের বিয়ে। বজলুকে চিনেছতো? আসে মাঝে মাঝে জোড়া ভুডু … ওর বোনটারও জোড়া</p>
+<p>ভাল।</p>
+<p>আপা রাতে ফিরতে দেরি হবে। বজলুর বোনের বরের নারায়ণগঞ্জে নিজের বাড়ি –বরকনেকে ঐ বাড়িতে পৌঁছে তারপর আসতে হবে। রাতেও কিছু খাব না। তোদের অনেক পয়সা বাঁচিয়ে দিলাম। তিনবেলার খোরাকির খরচ বেঁচে গেল। এই জমানায় তিনবেলার খোরাকী বাঁচা সহজ কথা না।…</p>
+<p>বাবলু দাতে লবন ঘসতে ঘসতে কথা বলে যাচ্ছে। আমি লক্ষ্য করলাম, বাবা তার কথা মন দিয়ে শুনছেন। বাবার চোখের দৃষ্টিতে হতাশা ও ক্লান্তি। এই বাবলু প্রথম যখন কথা শিখল তখনও নিশ্চয়ই তিনি এমনই মন দিয়ে তার কথা শুনতেন। তার প্রতিটি শব্দ শুনে তার মন নিশ্চয়ই আনন্দে অভিভূত হতেন …..</p>
+<p>মামনুদের অফিসের কর্মচারীদের কেউ আমাকে চেনে না। কিংবা চিনলেও তারা এমন কিছু করল না যাতে মনে হতে পারে আমি তাদের পরিচিত। একজন মহিলা সেক্রেটারী মিষ্টি গলায় বললেন– এম ডি সাহেবতো এখন খুব ব্যস্ত। লাঞ্চ আওয়ার। লাঞ্চ আওয়ারে তিনি কারো সঙ্গে দেখা করেন না। আপনি তিনটার পর আসুন।</p>
+<p>আমি বললাম, খুব জরুরী একটা দরকার ছিল।</p>
+<p>মেয়েটি মিষ্টি করে হেসে বলল –এখন দেড়টা বাজে। অল্প কিছুক্ষণের মধ্যেই তিনটা বাজবে। যত জরুরী কথাই থাকুক দেড় ঘন্টায় তেমন কোন ক্ষতি বোধহয় হবে না।</p>
+<p>একটা কাগজ দিন। আমি একটা স্লীপ লিখে দি। স্লীপটা উনাকে দেখান।</p>
+<p>মেয়েটি আবারো হাসল। মাথার চুল ঠিক করতে করতে বলল, আপনার কথা। থেকে মনে হচ্ছে স্লীপটা পাঠালেই স্যার আপনাকে ডেকে পাঠাবেন। কিন্তু আপনি আমার দিকটা দেখুন। আমরা কাজটা হচ্ছে একটা থেকে তিনটা পর্যন্ত কেউ যেন স্যারের সঙ্গে দেখা করতে না পারে সেটা দেখা। যাই হোক –এই নিন কাগজ। স্লীপ কি লিখতে চান লিখুন। সঙ্গে কলম আছে?</p>
+<p>মেয়েটি স্লীপ নিয়ে ঘরে ঢুকল। প্রায় সঙ্গে সঙ্গেই ফিরে এসে বলল, স্যার আপনাকে আগামী মঙ্গলবার সকাল ১০টা থেকে এগারোটার মধ্যে আসতে বলেছেন। এর আগে তিনি সময় করতে পারবেন না।</p>
+<p>আমি উঠে দাঁড়ালাম। মেয়েটা নরম গলায় বলল –স্লীপ না পাঠালে ভাল করতেন। আমি তিনটার সময় স্যারের ঘরে আপনাকে ঢুকিয়ে দিতাম। মেয়েটা স্লীপটা আমার দিকে এগিয়ে দিয়ে বলল –স্লীপটা নিয়ে যাবেন?</p>
+<p>আমি হাত বাড়িয়ে কাগজটা নিয়ে নিলাম –কাগজে লিখেছিলাম –টুকুনের মা।</p>
+<p>.</p>
+<p><strong>০৪.</strong></p>
+<p>শেষরাতে প্রচন্ড শোঁ শোঁ শব্দ, দমকা বাতাস।</p>
+<p>আমাদের বারান্দায় ঝুলন্ত তারের মাথায় চল্লিশ পাওয়ারের যে বাতি সারারাত জ্বলে, সেই বাতি খুব দুলছে। আমি অবশ্যি বাতির দুলুনি দেখছি না আমার ঘর থেকে বারান্দা দেখা যায় না তবে এই দুলুনির সঙ্গে সঙ্গে ঘরের ভেতরে আলো এবং ছায়াও দুলছে। বাহ, ভাল লাগছে তো! আমার ঘরটাকে নৌকার মত লাগছে। না ঘর না, আমার বিছানাটাকে নৌকার মত লাগছে। পালতোলা নৌকা, মাথার উপরে মশারিটা হল নৌকার পাল। আমি লেপের ভেতর ঢুকে পড়লাম। ঝড়-বাদলার সময় লেপের ভেতর গুটিশুটি মেরে শুয়ে থাকতে ভাল লাগে। শোঁ শোঁ শব্দ খুব বাড়ছে, দমকা বাতাস জোরালো হচ্ছে। প্রচণ্ড শব্দে খুব কাছেই কোথাও বাজ পড়ল। নিশ্চয়ই কোন লাইটপোস্টের উপর। বারান্দার বাতি নিভে গেল। এই বাতির সঙ্গে শহরের সব বাতিও সম্ভবত নিভে গেল। কি গাঢ় কি তীব্র অন্ধকার!</p>
+<p>এইবার বোধহয় বাবলু জেগেছে। পাশের ঘর থেকে খটখট শব্দ পাচ্ছি। বাবলু নিশ্চয়ই বাতি জ্বালাবার চেষ্টা করছে। এক্ষুণি সে কিছু একটার সঙ্গে ধাক্কা খাবে, চায়ের কাপ বা গ্লাসটাস কিছু ভেঙে দারুণ চেঁচামেচি শুরু করবে। আমি ছুটে গিয়ে দেখব, হাত কেটে ফেলেছে। রক্ত পড়ছে।</p>
+<p>বাবলু দরজায় ধাক্কা দিতে দিতে চেঁচাচ্ছে –রাত্রি, এই রাত্রি। ভূমিকম্প হচ্ছে। ভূমিকম্প!</p>
+<p>আমি নিজের মনে হাসলাম। ভয় পেলে বাবলু প্রথম যে বাক্যটি বলবে তা হল, ভূমিকম্প হচ্ছে। ভূমিকম্প। এখন সে যা করবে তা হল পাগলের মত দরজা খুঁজে বেড়াবে। কিন্তু খুঁজে পাবে না। দরজা পেলেও দরজার ছিটকিনি খুঁজে পাবে না। এক সময় বাইশ-তেইশ বছরের এই যুবক বাচ্চাদের মতো হাউমাউ করে কাঁদতে শুরু করবে।</p>
+<p>বাবলু প্রচণ্ড শব্দে দরজায় লাথি দিচ্ছে। এখনো কাঁদতে শুরু করেনি, তবে শুরু করবে। কিছুক্ষণের মধ্যেই শুরু করবে। আমি জেগে আছি, কিন্তু আমার কথা বলতে ইচ্ছে করছে না। বাবলুর সঙ্গে আজকাল আমার একেবারেই কথা বলতে ইচ্ছা করে না। কাল রাতে আবার মদ খেয়ে এসে খুব হৈ-চৈ শুরু করল। বাবা ঘুমিয়ে পড়েছিলেন। হৈ-চৈ শুনে উঠে এসে অবাক হয়ে বললেন, কি হয়েছে?</p>
+<p>বাবলু হাসিমুখে বলল, কিছু হয়নি তো বাবা। আপনি উঠে এসেছেন কেন? আপনি ওল্ডম্যান। আপনার রেস্ট দরকার।</p>
+<p>চেঁচাচ্ছিস কেন?</p>
+<p>বাবলুর মুখের হাসি আরো বিস্তৃত হল। এক ধরনের সুখি-সুখি গলায় বলল, আমি চেঁচাচ্ছি না। আপনার মেয়ে চেঁচাচ্ছে। আপনার মেয়ে আমার সঙ্গে মেজাজ করছে। ভাত দিতে বলছি, ভাত দিচ্ছে না। গেটের দরজাও খুলছিল না। আমি প্রায় আধঘণ্টা ধরে দরজা ধাক্কালাম, কড়া নাড়লাম। নো রেসপন্স। আমাকে সে মানুষ বলেই মনে করে না।</p>
+<p>বাবা ক্লান্ত গলায় বললেন, রাত্রি মা, বাবলুকে খেতে দে।</p>
+<p>বাবুল মধুর স্বরে বলল, তুমি শুয়ে পড় বাবা। আমার জন্যে তোমাকে ভাবতে হবে না। কেউ আমার জন্যে ভাবুক এটা আমি চাইও না। তুমি আরাম করে ঘুমাও। তোমার ঘুম দরকার, রেস্ট দরকার।</p>
+<p>কিছুক্ষণ আগেই বাবাকে সে আপনি আপনি করছিল, এখন তুমি তুমি করছে। নেশা করলে তার এই অবস্থা হয়।</p>
+<p>বাবা চটি ফটফট করে নিজের ঘরের দিকে চলে গেলেন। মেঝের দিকে তাকিয়ে ক্লান্ত ভঙ্গির হাঁটা। ক্লান্ত, পরিশ্রান্ত হতাশ একজন মানুষ। তিনি বিছানায় শুয়ে থাকবেন, কিন্তু ঘুমুবেন না। যত রাতই হোক আমি যদি তার ঘরের কাছের জানালার পাশে দাঁড়িয়ে ডাকি –বাবা! তিনি সঙ্গে সঙ্গে কোমল গলায় বলবেন, কি হয়েছে রে মা! জীবনের শেষ দিনগুলি তিনি হয়ত জেগে জেগেই কাটাবেন।</p>
+<p>আমি বাবলুকে ভাত বেড়ে দিলাম। সে হাত-মুখ ধুয়ে খেতে বসল। আমি জানি সে কিছুই খেতে পারবে না। নেশা করে সে যখন আসে, কিছুই খেতে পারে না। খানিকক্ষণ ভাত নাড়াচাড়া করে উঠে পড়ে। আজও উঠে পড়বে। কিন্তু খেতে দেবার সময় তাকে খুব গুছিয়ে খাবার দিতে হবে। আলাদা প্লেটে কাঁচামরিচ, লবণ, পেঁয়াজ। কাঁচামরিচ না থাকলে শুকনো মরিচ তেলে কড়া করে ভেজে দিতে হবে।</p>
+<p>খেতে বসে বাবলু ভুরু কুঁচকে বলল, আইটেমের অবস্থা তো খুবই খারাপ। রাস্তার ফকির-ফাঁকারও এরচে ভাল খায়। তুই ডিম ভেজে নিয়ে আয়। ডিম আছে না?</p>
+<p>আছে। কিন্তু ডিম তো তুই খাবি না, এক কণা মুখে দিয়ে খাওয়া ছেড়ে উঠে পড়বি।</p>
+<p>ভাল করে ডিম ভেজে আন তো। খিদেয় আমার নাড়ি জ্বলে যাচ্ছে …।</p>
+<p>আমি ডিম ভেজে আনলাম। বাবলু যথারীতি ডিম ভাজা নাড়াচাড়া করতে লাগল। আমি বলাম, খাবি না?</p>
+<p>বাবলু বলল, খিদেটা হঠাৎ ভ্যানিস হয়ে গেল। বেশি খিদে লাগলে এটা হয় –হঠাৎ খিদে চলে যায়। চা খাব। আগুন মার্কা চা।</p>
+<p>তুই চাও খাবি না। এক চুমুক দিয়ে রেখে দিবি …</p>
+<p>আরে না, চা খেতে হবে। চা বানিয়ে আন্তু রন্ত চা নিয়ে আসবি। তুরন্ত কি জানিস তো? তুরন্ত হচ্ছে ভেরি কুইক। বিনা চিনির চা। ডায়াবেটিসের ব্যাপারে আগে থেকে প্রিকশান নিচ্ছি। তুইও বিনা চিনির চা খাওয়া অভ্যাস কর, নয় তো বুড়ো বয়সে কষ্ট পাবি। দিনের মধ্যে পঞ্চাশবার বাথরুমে যেতে হবে। মেয়ে ছেলের জন্যে সেটা খুবই অপমান জনক।</p>
+<p>চা বানিয়ে এনে দেখি টেবিলে মাথা রেখে বাবলু ঘুমুচ্ছে। নাক ডাকিয়ে ঘুম। তাকে অনেক করে ডেকে তুললাম, সে ঘুম ভেঙেই খুব স্বাভাবিক ভঙ্গিতে চায়ের কাপে দুটা চুমুক দিয়ে ঘুমুতে চলে গেল। তার যাওয়ার ভঙ্গি দেখে আমার একটু হিংসা লাগল। কি স্বাভাবিক একজন মানুষ! স্বাভাবিক এবং সুখি। পৃথিবীর কোন। দুঃখ-কষ্ট তাকে স্পর্শ করছে না। সে বাস করছে আনন্দময় ভুবনে …</p>
+<p>অবশ্যি রাতের এই ঝড় বোধহয় তাকে কাবু করে ফেলেছে। নেশাও হয়ত কাটেনি। সে দরজা ধাক্কাচ্ছে পাগলের মত। ইচ্ছা করলেই আমি তার ভয় কমাতে পারি। ইচ্ছা করলেই আমি বলতে পারি –চেঁচামেচি করিস না। ভূমিকম্প-টম্প কিছু হচ্ছে না। ঝড় হচ্ছে। চুপ করে শুয়ে থাক। এতে কি বাবলু চুপ করবে?</p>
+<p>বারান্দায় চটির ফটফট আওয়াজ আসছে। বাবার পায়ের চটির শব্দ এত সুন্দর! শব্দটার ভেতরই এক ধরনের ভরসা আছে। যেন বাবা তার চটির শব্দ দিয়ে জানাচ্ছেন –ভয় পাস না। আছি, আমি আছি। আমি তোদের পাশেই আছি।</p>
+<p>বাবার চটির শব্দ বাবলুর ঘরের কাছে এসে থেমে গেল। বাবা কোমল গলায় ডাকলেন, বাবলু!</p>
+<p>বাবলু কাঁপা গলায় বলল, ভূমিকম্প হচ্ছে বাবা। ভূমিকম্প হচ্ছে।</p>
+<p> ঝড় হচ্ছে, ভূমিকম্প না।</p>
+<p> বাবা, ঝড়-টর না, ভূমিকম্প হচ্ছে। তোমরা বুঝতে পারছ না।</p>
+<p>আমার ঘরের একটা অংশ আলোকিত হল। বাবা টর্চলাইট জ্বেলেছেন। আশা করা যাচ্ছে, এই আলোয় বাবলু তার দরজার ছিটকিনি খুঁজে পাবে। হুড়মুড় শব্দ হল। বকুল গাছের ডাল ভেঙেছে নিশ্চয়ই। বাবার ঘরের লাগোয়া পুরানো একটা বকুলগাছ আছে। ঝড়-টর হলেই তার একটা ডাল ভাঙবে। ঝড় হয়েছে অথচ বকুলগাছের কোন ডালপালা ভাঙেনি এমন কখনো হয়নি।</p>
+<p>ডাল ভাঙার শব্দ মিলিয়ে যাবার আগেই বাবলু আতঙ্কে অস্থির হয়ে চেঁচাল, কি হল বাবা? কি হল?</p>
+<p>ডাল ভেঙেছে।</p>
+<p>ডাল ভাঙল কেন?</p>
+<p>তুই দরজা খুলে বের হয়ে আয়।</p>
+<p> ছিটকিনি পাচ্ছি না।</p>
+<p> টর্চ লাইট ধরে আছি। তুই শান্ত হ।</p>
+<p>বাবলু ছিটকিনি খুঁজে পেয়েছে। খুট করে শব্দ হল। বাবা বললেন, তুই এমন হাঁপাচ্ছিস কেন? ভয়ের কি আছে?</p>
+<p>ভূমিকম্প হচ্ছে! ভয় পাব না?</p>
+<p>ধর, আমার হাত ধর।</p>
+<p>পানি খাব বাবা।</p>
+<p> বসে থাক, আমি পানি নিয়ে আসি।</p>
+<p>আমি একা একা বসে থাকব না।</p>
+<p> আচ্ছা, তুই আয় আমার সঙ্গে।</p>
+<p>আমি তাদের পায়ের শব্দ পাচ্ছি। না, আমি শুধু চটি পায়ে বাবার যাবার শব্দই শুনছি, ধরে নিচ্ছি, বাবলুও সঙ্গে যাচ্ছে। খুব সম্ভব বাবার হাত ধরে ধরেই যাচ্ছে। একটা শিশু তার বাবার সঙ্গে ঝড়-বৃষ্টির রাতে যে ভাবে যাবে, বাবলু সে ভাবেই যাচ্ছে। সব মানুষের ভেতর একজন শিশু বাস করে। মাঝে মাঝে তার উপস্থিতি টের পাওয়া যায়। বাবলুর ভেতরের শিশুটি মনে হয় সারাক্ষণ জেগে থাকে।</p>
+<p>বড় ঝড় কখনো বৃষ্টি ছাড়া হয় না। আমার দেখা মতে এই প্রথম এত দীর্ঘ সময়। নিয়ে বৃষ্টিবিহীন ঝড় হল। এখন বৃষ্টির ফোঁটা পড়তে শুরু করেছে। আমাদের বাড়িটা পাকা দালান হলেও বারান্দাটা টিনের। টিনের ছাদে ঝনঝন শব্দ উঠছে। বৃষ্টি মাথায় নিয়ে বাবলু এবং বাবা ফিরছেন। আমি বাবলুর বিরক্ত গলা শুনলাম –এ কি, আমি তো ভিজে যাচ্ছি। বিরক্তি সে বাবার দিকে প্রকাশ করল। যেন তার ভিজে যাওয়ার দায়ভাগ বাবার।</p>
+<p>বাবা শোনে, আমি একা একা এখন এই ঘরে ঘুমুতে পারব না।</p>
+<p> আয়, আমার ঘরে চলে আয়।</p>
+<p>না, আপনার ঘরে গেলে আমার ঘুম আসবে না।</p>
+<p> তাহলে কি করবি?</p>
+<p>আপনি আমার সঙ্গে ঘুমুবেন।</p>
+<p>আচ্ছা চল।</p>
+<p>আপনি দেয়ালের দিকে ঘুমুবেন বাবা। আমি দেয়ালের দিকে ঘুমুতে পারি না।</p>
+<p> আচ্ছা তাই হবে।</p>
+<p> বাবা, শিলাবৃষ্টি হচ্ছে নাকি?</p>
+<p>না, সাধারণ বৃষ্টিই হচ্ছে।</p>
+<p>সাধারণ বৃষ্টিতে এত শব্দ হবে কেন?</p>
+<p>বাবা সেই সেই কেন প্রশ্নের জবাব দিলেন না। এখন বাবলুর কোন কথাবার্তাও শোনা যাচ্ছে না। সম্ভবত সে ঘুমিয়ে পড়েছে। বাবাকে জড়িয়ে ধরেই হয়ত ঘুমুচ্ছে। আমি জেগে আছি। বাবাও নিশ্চয়ই জেগে আছেন। আমি জানি, ইদানিং বাবার ঘুমের খুব সমস্যা হচ্ছে। আজকের রাতটা ঘুমুবার জন্যে খুব ভাল। প্রচণ্ড শীতে লেপের আরামদায়ক ওম, বৃষ্টি ও বাতাসের শব্দ। আজ রাতে শহরের লোকজন খুব আরাম করে ঘুমুবে। তারপরেও কেউ কেউ জেগে থাকবে। লেপের উষ্ণতা, বৃষ্টির ঘুমপাড়ানি শব্দেও তাদের ঘুম আসবে না। এ রকম লোকের সংখ্যা কতজন হবে? পাঁচ, দশ, পঞ্চাশ, হাজার … নাকি তার চেয়েও বেশি?</p>
+<p>বৃষ্টির বেগ বাড়ছে। সকালে ঘুম ভেঙে দেখব ভেতরে, উঠোনে পানি থৈ থৈ করছে। অল্প বৃষ্টিতেই পানি জমে যায়। আজ বৃষ্টি যা হচ্ছে আজ তো মনে হয় এক হাঁটু পানি জমে যাবে। এত পানি একসঙ্গে দেখতে পেলে টুকুন কি করতো? তার মাথা খারাপের মত হয়ে যেত। পানির সঙ্গে এই ছেলেটার কোন একটা যোগ আছে। পানি দেখলেই সে ছটফট করে ওঠে।</p>
+<p>আমি বিছানায় শুয়ে শুয়ে ভাবছি, খুব ভোরবেলায় বাবলুকে যদি পাঠিয়ে দেই টুকুনকে আনার জন্যে, তাহলে কি টুকুনকে মামুন পাঠাবে? বেশিক্ষণের জন্যে না, ঘণ্টাখানিকের জন্যে। বেশি হলে দুঘণ্টা। আসবে? দুঘণ্টা মার সঙ্গে থাকবে, তারপর চলে যাবে। দেশে না থাকলে ভিন্ন কথা। কিন্তু যদি থাকে তাহলেকি তারা তাকে আসতে দেবে? একটা চিঠি লিখে আমি বাবলুকে পাঠাতে পারি। তাতে কি লাভ হবে? বাবলু তো ঐ বাড়িতেই ঢুকতে পারবে না। দারোয়ান চিঠি হাতে নিয়ে যাবে। বাবলুকে দাঁড়িয়ে থাকতে হবে গেটের বাইরে। কিছুক্ষণ পর দারোয়ান এসে বলবে –সাহেব নাই।</p>
+<p>কিংবা এমনও হতে পারে, বাবলু যাবেই না। রাস্তায় নেমেই চিঠি ফেলে দেবে। গভীর রাতে বাসায় ফিরে উদাস গলায় বলবে –আপা, তোর এক্স-হাসবেণ্ডের কাছে গিয়েছিলাম। পেলাম না। কেউ নেই। ব্যাংকক-ফ্যাংকক চলে গেছে। বড়লোকের কারবার। এরা থুথু ফেলার জন্যেও ব্যাংকক চলে যায় …।</p>
+<p>আমি নিজেও যেতে পারি। তবে কাল হল সোমবার আমার যাবার কথা মঙ্গলবার। একদিন আগেই না হয় গেলাম। টুকুনকে আগে কখনো আনতে যাই নি। এই প্রথম যাচ্ছি। মার দাবী কি খুব তুচ্ছ করার মত কিছু? ঝড় বৃষ্টিতে টুকুনও। বাবলুর মত ভয় পাচ্ছে নাতো? সেকি ভূমিকম্প শব্দটা বলতে পারে? আচ্ছা, আমি এইসব কি ভাবছি? কেনই-বা ভাবছি? টুকুন ভাল আছে। আনন্দে আছে। তার মার বাড়ির উঠোনে জমে থাকা ময়লা পানি দেখার জন্যে তার আসার দরকার। নেই।</p>
+<p>ঝুম ঝুম শব্দে বৃষ্টি পড়ছে তো পড়ছেই। আষাঢ় মাসেও তো এত বৃষ্টি হয় না। আজ নিশ্চয়ই উঠোন ছাপিয়ে পানি একতলার ঘরে ঢুকে যাবে। একবার কি নিচে নেমে দেখে আসব? অন্ধকারে কোন কিছু দেখা যায় না, কিন্তু পানি দেখা যায়, অন্ধকারে পানি চকচক করতে থাকে। আচ্ছা, পানির কি নিজস্ব কোন আলো আছে?</p>
+<p>বৃষ্টির সঙ্গে সঙ্গে ঝড় কমে এসেছিল। এখন আবার শুরু হয়েছে। বকুল গাছের আরেকটা ডাল কি ভাঙবে? আচ্ছা, রান্নাঘরের জানালা কি বন্ধ করে রেখেছিলাম? বন্ধ না করে থাকলে লণ্ডভণ্ড হয়ে গেছে।</p>
+<p>পান্না ভাবী জেগেছেন। চেঁচিয়ে চেঁচিয়ে কি যেন বলছেন। স্বামীকে বোধহয় ধমকাচ্ছেন। ঝড় বৃষ্টির মত একটা প্রাকৃতিক দুর্যোগ হবে আর তার স্বামী ধমক খাবেন না –তাতো হয় না। ঝড়ের শোঁ শোঁ শব্দ শুনতে শুনতে পান্নাভাবীর চেঁচামেচি শুনতে শুনতে ঘুমিয়ে পড়লাম। কিন্তু ঘুমের মধ্যেও শব্দ হতে থাকল। তবে সেই শব্দ আর ঝড়ের শব্দ থাকল না– ট্রেনের শব্দ হয়ে গেল। লম্বা একটা ট্রেন এঁকেবেঁকে ছুটছে, কোথাও থামছে না। কি দুলুনি সেই ট্রেনের!</p>
+</div>
+<br/>
+<h2>২. সুন্দর সকাল</h2>
+<hr/>
+<br/>
+
+<div>
+<p><strong>০৫.</strong></p>
+<p>ভোরবেলায় ঘুম ভেঙে দেখি সুন্দর সকাল। ঝকঝকে রোদ। আকাশে মেঘের ছিটেফোঁটা নেই। উঠোনে পানি জমেনি। রান্নাঘর লণ্ডভণ্ড হয়নি। বকুল গাছের ডাল ভাঙার শব্দ শুনেছিলাম। তেমন কিছু না, ছোট্ট একটা ডাল ভেঙেছে। অথচ রাতে মনে হয়েছিল পুরো গাছটা বুঝি ভেঙে পড়ে গেছে।</p>
+<p>বাবা একতলার বারান্দায় চাদর গায়ে জবুথবু হয়ে বসে আছেন। তিনি আমাকে দেখে হাসলেন। হাসির ধরন অন্য রকম। যেন এই হাসির আড়ালে কোন মজার রহস্য আছে। সেটা কি? কলঘরের দিকে তাকিয়ে দেখি তকতক করছে। এটাই হল রহস্য। বাবা ফজরের নামাজ শেষ করেই বাড়ি ঝাঁট দিয়েছেন। যে জন্যে বকুল গাছের একটা পাতাও উঠোনে পড়ে নেই। বাবার বাড়ি পরিষ্কারের বাতিক আছে। হঠাৎ হঠাৎ এই বাতিক মাথাচড়া দিয়ে উঠে। তাঁর শরীর ভাল না। কিছুদিন থেকেই বুকে ব্যথা হচ্ছে। এ রকম বুকে ব্যথা নিয়ে এতটা পরিশ্রম করা কি উচিত? বাবাকে এইসব কে বোঝাবে?</p>
+<p>শুধু বারান্দা এবং উঠোন না, বাথরুমও ঝকঝক করছে। দেয়ালে ঝুল জমেছিল, এখন কিছু নেই। দুটা বালতি কানায় কানায় পানি ভর্তি। পানি ভর্তি বালতি দেখে আজ যাত্রা শুরু। দিনটা হয়ত ভাল যাবে। চোখে-মুখে পানি দিতে দিতে ভাবছি– আজ কি নাশতা বানানো যায়? সকালে ঘুম ভাঙতেই নাশতার সমস্যাটা মেজাজ খারাপ করে দেয়। বাবলু পরোটা ছাড়া কিছু খেতে পারে না। অন্য কিছু নাকি তার গলা দিয়ে নামে না। গলার ফুটার কাছে আটকে থাকে। বাবা পরোটা খেতে পারেন না, তাঁর জন্যে খুব পাতলা করে রুটি বানাতে হয়। আমি নিজে দুটার কোনটাই খেতে পারি না। আমার পছন্দ হল পাতলা খিচুড়ি। এত পাতলা যে প্রায় স্যুপের মত। মজার ব্যাপার হল, পাতলা স্যুপের মত খিচুড়ি রান্নার কৌশল আমার জানা নেই। মার কাছ থেকে এই বিদ্যা যে শিখে রাখা দরকার ছিল তা কখনো মনে হয়নি। সব সময় মনে হয়েছে রান্নাবান্না শেখার দরকার কি? মা তো আছেনই। একবার শীতের সময় মা হঠ্যৎ এসে বললেন, ও খুকি, আয় তোকে একটা রান্না শিখিয়ে দেই। তোর বাবার খুব পছন্দের রান্না। কঁচা টমেটো পুড়িয়ে ভর্তা। আমি গল্পের বই পড়ছিলাম। বই থেকে মুখ না তুলেই বললাম, টমেটো ভর্তা বানানোর কৌশল আমি শিখতে চাচ্ছি না মা। গুপ্ত বিদ্যা তোমার কাছেই থাকুক। মা কিছু না বলে আমার বিছানার পাশে বসলেন। আমি বললাম, কিছু বলবে? মা বললেন, না। আমি বললাম, তাহলে দয়া করে উঠে যাও। আমি খুব দুঃখের একটা উপন্যাস পড়ছি। উপন্যাস পড়তে পড়তে আমি কাঁদতে শুরু করব। অন্যের সামনে কাঁদতে ভাল লাগে না। মা হাসিমুখে বললেন, কি বইরে খুকি? আমি বললাম, কি বই জেনে কি করবে? তুমি তো আর বই পড় না। মা আবারো হাসলেন। নরম গলায় বললেন, চা খাবি খুকী? চা বানিয়ে দেই? আমি বিরক্ত হয়ে বললাম, চা খাব না। তুমি আর বিরক্ত করো না তো মা। মা ওঠে গেলেন, দশ মিনিটের মাথায় আবার ফিরে এলেন। একহাতে পিরিচে ঢাকা চায়ের কাপ, অন্য হাতে এক বাটি মুড়ি। তখন আমি বইটি পড়ে কেঁদে বুক ভাসাচ্ছি। মা চায়ের কাপ নামিয়ে রাখতে রাখতে হাসিমুখে বললেন, তুই কি যে পাগল! বই পড়ে কেউ এরকম কাঁদে? বইটা জানালা দিয়ে ফেলে দে তো। আমি বই মেঝেতে ফেলে দিয়ে মাকে জড়িয়ে ধরে শব্দ করে কাঁদতে লাগলাম। মাকে জড়িয়ে ধরে সেই আমার শেষ কান্না।</p>
+<p>সেদিন সন্ধ্যাতেই হঠাৎ মার শরীর খারাপ হল। শরীর খারাপ হলে তিনি কাউকে কিছু বলেন না। সেদিনও বললেন না। নিজের ঘরে চুপচাপ শুয়ে রইলেন। শুয়ে থাকতেও তার বোধহয় ভাল লাগল না। তিনি সেখান থেকে উঠে এসে। বারান্দায় মেঝেতে বসলেন। আমি বললাম, তুমি ঠাণ্ডা মেঝেতে বসে আছ কেন মা? মা হাসিমুখে বললেন, এম্নি। খুকি, তুই বাবলুকে বল তো একটু আসতে।</p>
+<p>আমি বললাম, ওকে ডেকে দিচ্ছি। কিন্তু তুমি আমাকে খুকি ডাকা কবে বন্ধ করবে?</p>
+<p>আচ্ছা যা, আর ডাকব না।</p>
+<p>আমি বাবলুকে খবর দিতে গেলাম। সে বিরক্ত মুখে বলল, কি জন্যে ডাকছে? উপদেশ দিতে চায়? আমার উপদেশ লাগবে না। এডভাইস আমি হেইট করি।</p>
+<p>সে বছরই বাবলু দ্বিতীয়বারের মত আই. এ. ফেল করেছে। ফেল করায় খুব মেজাজ হয়েছে। কেউ ডাকলেই সে ভাবে উপদেশ দেবার জন্যে ডাকা হচ্ছে। বাবলু এল না। গটগট করে মার সামনে দিয়েই বের হয়ে গেল। মা ডাকলেন, এই শোন। বাবলু থমথমে গলায় বলল, আমার কাজ আছে। মা হাসতে লাগলেন, যেন তার কনিষ্ঠ পুত্রের ব্যবহারে তিনি খুব মজা পাচ্ছেন। আমাকে বললেন, ফেল করার পর মনে হয় বাবলুর কাজের চাপ খুব বেড়েছে।</p>
+<p>আমি বিরক্ত হয়ে বললাম, তুমি হেসে হেসে ওর এই সর্বনাশ করেছ। কখনো রাগ করো না, কখনো ধমক দাও না, তোমার ছেলেমেয়েরা পরীক্ষা ফেল করবে না তো কি?</p>
+<p>মা বললেন, খুকি, তোর বাবা কোথায় জানিস?</p>
+<p>না।</p>
+<p>অফিস থেকে ফিরতে তো দেরি করে না। আজ এত দেরি করছে কেন?</p>
+<p>খুব বেশি দেরি হয়নি মা। পাঁচটার সময় অফিস ছুটি হয়– এখন বাজছে মাত্র ছটা। বাবার দেরি দেখে তুমি কি ভয় পাচ্ছ?</p>
+<p>না, ভয় পাচ্ছি না।</p>
+<p>ঠাণ্ডার মধ্যে মেঝেতে বসে থাকবে না মা, তোমাকে দেখে আমারই ঠাণ্ডা লাগছে –ঘরে গিয়ে খাটের উপর বোস।</p>
+<p>ঘরে যেতে ইচ্ছা করছে না। তুই বরং একটা কম্বল এনে বিছিয়ে দে, আমি কম্বলের উপর শুয়ে থাকি।</p>
+<p>সন্ধ্যাবেলা কম্বলের উপর শুয়ে থাকবে কেন? তোমার কি শরীর খারাপ?</p>
+<p>না, আমার শরীর খারাপ না। শরীর ভালই আছে।</p>
+<p>আমি একটা কম্বল এনে ভাজ করে বিছিয়ে দিলাম। মা কম্বলে উঠে এলেন।</p>
+<p>বালিশ দেব মা?</p>
+<p>না, বালিশ লাগবে না। খুকি, তুই কি তোর বাবার অফিসে একটা টেলিফোন করে দেখবি দেরি হচ্ছে কেন?</p>
+<p>ঠিক করে বল তো মা, তোমার কি শরীর খারাপ লাগছে?</p>
+<p>মা আবারো হাসলেন। মাথা নেড়ে বললেন, শরীর ভালই আছে।</p>
+<p>আমাদের টেলিফোন নেই, পান্না ভাবীদের আছে। আমি দোতলায় টেলিফোন করতে গেলাম –এই ফাঁকে খালি বাড়িতে মা মারা গেলেন। টেলিফোন শেষ করে ফিরে এসে দেখি তিনি কাত হয়ে শুয়ে আছেন। তার ঠোঁটের কোণায় হাসি। সারাজীবন তার হাসিমুখ দেখেছি। মৃত্যুর সময়ও হাসিমুখ দেখলাম।</p>
+<p>.</p>
+<p>কলঘর থেকে বের হয়েই মনে হল –কি আশ্চর্য! আজ তো বাবা-মার ম্যারেজ ডে। আজ পৌষ মাসের ছ তারিখ। ভোররাতে উঠে বাবা যে ঘর ধুয়ে ঝকঝকে করে ফেলেছেন –এই হল তার রহস্য। মা নোংরা দেখতে পারতেন না। বিশেষ বিশেষ দিন মার এই স্বভাবের কথা বাবার হয়ত মনে পড়ে। তার ঘর পরিষ্কারের বাতিক মাথাচাড়া দিয়ে উঠে।</p>
+<p>রান্নাঘরে ঢুকতে যাচ্ছি বাবা ডেকে বললেন, আমার জন্যে নাশতা বানাবি না।</p>
+<p> কেন?</p>
+<p>শরীরটা ভাল লাগছে না। ভাবছি, রোজা রেখে ফেলব।</p>
+<p>শরীর ঠিক রাখার রোজা? শেষ রাতে কিছু খাও নি …।</p>
+<p>উপবাস একটা বয়সে খুব কাজে লাগে। আমার এখন যাচ্ছে –উপবাসের বয়স।</p>
+<p>হুটহাট করে রোজা রাখার এই ব্যাপারটা বাবার ইদানিংকালের। প্রায়ই এরকম হয় –নাশতা নিয়ে গেছি, বাবা বলেছেন– আজ কিছু খাবনা রে মা। ভাবছি, রোজা রেখে ফেলব।</p>
+<p>তবে আজকের রোজার অন্য অর্থ আছে। বিশেষ দিন সামনে রেখে উপবাস। সেই বিশেষ দিনের কথা মুখ ফুটে বলতে পারছেন না। আর বললেই কি হবে? আমরা তো আর উৎসব করতে পারব না। যে দুজনকে নিয়ে বিবাহবার্ষিকী তার একজনকে দিয়ে উৎসব হয়না।</p>
+<p>খুকি!</p>
+<p>জ্বি বাবা।</p>
+<p>বাবলুকে নিয়ে কি করা যায় বল তো মা –ও তো ভাল যন্ত্রণা করছে!</p>
+<p>নেশা করার কথা বলছ?</p>
+<p>এটা তো আছেই –বাড়ি বিক্রির তাল ধরেছে। আজ না-কি দালাল আসবে।</p>
+<p> কখন আসবে?</p>
+<p>সকালেই আসার কথা।</p>
+<p>তুমি বাবা এসব নিয়ে মোটেও মাথা ঘামাবে না। যা ইচ্ছা বাবলু বলুক, কিচ্ছু যায় আসে না। তোমার বাড়ি তুমি বিক্রি করবে না। এর উপর কথা কি? না কি তুমি বিক্রি করতে চাও?</p>
+<p>না-না।</p>
+<p>তাহলে সমস্যা কি?</p>
+<p> না, কোন সমস্যা নেই।</p>
+<p>বাবা দীর্ঘ নিঃশ্বাস ফেলে চুপ করে গেলেন। আমি চলে গেলাম রান্নাঘরে। ঘুম ভাঙলেই বাবলু নাশতার জন্যে হৈচৈ শুরু করবে। তার জন্যই বোধহয় হৈচৈ-এর জন্যে হয়েছে।</p>
+<p>চায়ের কেতলী চুলায় বসিয়েছি। পান্না ভাবীর কাজের মেয়েটি এক কাপ লবণ নিতে এল। পান্না ভাবী লবণ চেয়ে পাঠিয়েছেন। একটা চিরকুটও দিয়েছেন —</p>
+<p>রাত্রি,<br/>এক কাপ লবণ রাণীর হাতে দিয়ে দিও।<br/>সময় করে এসো। কথা আছে।<br/>–পান্না ভাবী।</p>
+<p>পান্নাভাবী মানুষটা বেশ অদ্ভুত। দিনের মধ্যে তিন-চারবার স্লিপ পাঠাবেন। তাঁর রান্নাঘরে এক গাদা কাগজ সুতো দিয়ে বাঁধা। কাগজের সঙ্গে একটা পেনসিলও ঝুলছে। তিনি সেখান থেকে কাগজ ছিঁড়েন এবং স্লিপ লেখেন। রাত এগারোটায় একবার স্লীপ এল —</p>
+<p>রাত্রি,<br/>তোমার ভাই খেতে বসেছে। কাঁচামরিচ চাচ্ছে। রাণীর হাতে একটা কাঁচামরিচ পাঠিয়ে দাও (যদি থাকে)।<br/>–তোমার পান্না ভাবী।</p>
+<p> যদিও স্লিপ পাঠানোর কোন দরকার নেই, রাণী মুখে বললেই হয়। কিংবা তিনি দোতলার রেলিং ধরে দাঁড়ালেও আমার সঙ্গে কথা বলতে পারেন।</p>
+<p>আমি কাপে লবণ ভরতে ভরতে বললাম, তোদের বুঝি লবণ শেষ হয়ে গেছে? রাণী অন্যদিকে মুখ ফিরিয়ে হাসল।</p>
+<p>হাসছিস কেন?</p>
+<p>আমার ঘরে লবণ আছে।</p>
+<p> লবণ আছে তাহলে নিচ্ছিস কেন?</p>
+<p>আমি ক্যামনে বলব আফা? আমরার আম্মার মাথার ঠিক-ঠিকানা নাই –কি করে কি না করে …।</p>
+<p>রাণী আবার মুখ অন্যদিকে ফিরিয়ে হাসছে। তার বেগম সাহেবের মাথার ঠিক ঠিকানা না থাকায় সে মনে হয় খুব মজা পাচ্ছে।</p>
+<p>গত দুই দিন ধইরা সাহেবরে কি সব কথা বলতাছে না তুললে বিশ্বাস হইব না। বুঝছেন আফা, লজ্জায় আমি মইরা যাই –এমন অবস্থা। আমারে লইয়া কথা। ছিঃ ছিঃ কি শরম!</p>
+<p>রাণী, তুমি এখন যাও — আমি কাজ করছি।</p>
+<p> পরে এক সময় আইয়া আফনেরে সব বিত্তান্ত বলব।</p>
+<p>আমাকে কিছু বলতে হবে না।</p>
+<p>আফনেরে একবার যাইতে বলছে। আফনের লগে আম্মার জরুরী কথা আছে।</p>
+<p>আমি যাব একসময়। তুমি এখন ওঠ।</p>
+<p>বাবলু পানির জগ নিয়ে বারান্দায় বসেছে। বাবার সঙ্গে খুব চেঁচামেচি শুরু করেছে। সে একাই চেঁচাচ্ছে, বাবা শুধু শুনে যাচ্ছেন। চেঁচামেচির বিষয়বস্তু হচ্ছে –কেন বাড়ি বিক্রি হবে না? কি আছে এই ভাঙা বাড়িতে? বাবা একবার শুধু বললেন, সকালবেলা কেন চেঁচাচ্ছিস?</p>
+<p>বাবলু রীতিমত হুংকার দিল, এমন কোন আইন আছে যে সকালে চেঁচানো যাবে না? বলুন আইনের কোন ধারায় আছে পেনাল কোডের কোথায় লেখা আছে?</p>
+<p>আচ্ছা, ওর কি মাথা টাথা খারাপ হয়ে গেছে? ও এরকম করছে কেন? বাবার উচিত চুপচাপ বসে থেকে কিছু একটা করা।</p>
+<p>এক পয়সা কেপিট্যাল নাই যে ব্যবসা করব। মাত্র তিন লাখ টাকা হলে ভিডিও-র দোকান দিতে পারি। চালু একটা ভিডিও দোকান থাকলে –আর কি লাগে? কিছুই লাগে না। কাকে আমি এটা বুঝাব? আমার কথার কি কোন দাম আছে? কোন দাম নেই।</p>
+<p>বাবা বললেন, চুপ কর।</p>
+<p>আমি চুপ করব কেন? আপনি চুপ করেন। এখন আর আপনার কথামত সংসার চলবে না। এখন এখন …</p>
+<p>সকালবেলা এইসব কি শুরু করলি …?</p>
+<p>আমি কিছুই শুরু করিনি। আপনি শুরু করেছেন। আমি বসে বসে ভেরেন্ডা ফ্রাই করব? আমার একটা লাইফ নেই? আমি আপনার কোন কথা শুনতে চাই না—- আজ এগারোটার সময় লোক আসবে –আপনি তাদের সঙ্গে কথা বলবেন … অবশ্যই বলবেন। যদি না বলেন … ।</p>
+<p>না বললে কি করবি? তুই মারবি না-কি আমাকে?</p>
+<p>আমি বারান্দায় এসে বললাম, বাবলু, নাশতা খেতে আয়। বাবলু খুবই স্বাভাবিক ভঙ্গিতে রান্নাঘরে ঢুকল। তাকে দেখে কে বলবে যে কিছুক্ষণ আগেই হৈ চৈ করে এসেছে? চুলার আগুনের উপর হাত মেলে দিয়ে খুশি গলায় বলল –শালার শীত কাকে বলে দেখলি? নাশতা এখানেই দে। আগুনের পাশে বসে নাশতা খেয়ে ফেলি। তোর সাথে আমার আর্জেন্ট কথা আছে। নাশতা খেতে খেতে কথা সারি।</p>
+<p>তোর সঙ্গে আমার কোন কথা নেই।</p>
+<p>তোর কথা নেই। কিন্তু আমার আছে …। বাবা আমার কথা শুনতে চাচ্ছে না, তোকে শুনতে হবে। মোট বার কাঠার উপরে আমাদের এই ভাঙা বাড়ি। আমরা দেড়তলা নিয়ে থাকি –অর্ধেকটা ভাড়া দেই। সেই ভাড়ায় সংসার চলছে। কি ভাবে চলছে? গরুর গাড়ির মত –টুকুর টুকুর। টুকুর টুকুর। অথচ এখন ঢাকা শহরের এরকম একটা জায়গায় বার কাঠা জমি হল গোল্ডমাইন। স্বর্ণখনি … তুই আমার কথা শুনছিস তো?</p>
+<p>শুনছি।</p>
+<p>বাড়িটা বিক্রি করে দিলে যে টাকা পাওয়া যাবে সেটা শুনলে তোর হাত থেকে চায়ের কাপ পড়ে যাবে। সেই টাকায় গুলশান এলাকায় বাড়ি ভাড়া করে আমরা পায়ের উপর পা তুলে বাকি জীবন কাটিয়ে দিতে পারি।</p>
+<p>তুই তোর ভিডিও-র দোকানটাও দিতে পারিস।</p>
+<p>অবশ্যই পারি। ভিডিও-র দোকান বলে হেলা করিস না। আমি যা করতে যাচ্ছি তা হল –ফুল ভিডিও ইউনিট। রেন্টাল সেকশান তো থাকবেই। রেন্টাল সেকশানের বাইরে থাকবে ভিডিও ইউনিট প্লাস স্টুডিও … তুই তো আমার কথা শুনছিস না?</p>
+<p>শুনছি।</p>
+<p>শুনলে কিছু বলছিস না কেন?</p>
+<p> তোর কথা বলার কথা। আমার বলার কথা না।</p>
+<p>হ্যাঁ, দ্যাটস রাইট। টোটাল পরিকল্পনা করা আছে। অনেকের সঙ্গে কথাও বলেছি। একজন তার একটা পুরো ভিডিও ইউনিট বিক্রি করে দিচ্ছে পানির দামে।</p>
+<p>তোর ভিডিও ইউনিটে কত টাকা লাগবে?</p>
+<p>শুরুতে লাগবে লাখ দশেক। কিছু রানিং কপিটেল লাগবে। কর্মচারীদের বেতন। দোকান ভাড়া …।</p>
+<p>আমি তোকে দশলাখ টাকা দেব। বাড়ি বিক্রি হবে না।</p>
+<p>বাবলু চোখ বড় বড় করে বলল –দশ লাখ টাকা তুই আমাকে দিবি?</p>
+<p> হ্যাঁ।</p>
+<p>পাবি কোথায়?</p>
+<p>কোথায় পাব সেটা দিয়ে তো তোর দরকার নেই। তোর পেলেই হল। তবে একটা কঠিন শর্ত আছে।</p>
+<p>কি শর্ত?</p>
+<p>বাড়ি বিক্রির নামও মুখে আনবি না।</p>
+<p>কেন?</p>
+<p>এই বাড়িতে আমরা ছোট থেকে বড় হয়েছি। বকুল গাছের নিচে মার কবর আছে। দাদাজানের কবর আছে। এর উপর দশতলা বিল্ডিং হবে?</p>
+<p>বাবলু চিন্তিত মুখে সিগারেট ধরিয়েছে। আমি বললাম, আরেক কাপ চা দেব?</p>
+<p> দে? তোর কাছে সত্যি দশলাখ টাকা আছে?</p>
+<p>হু।</p>
+<p> পেয়েছিস কোথায়? মামুন সাহেব দিয়েছে?</p>
+<p> সেটা জানা তো জরুরী না। জরুরী হল –টাকাটা তুই পাবি কি পাবি না।</p>
+<p>আমি পাব?</p>
+<p> হ্যাঁ।</p>
+<p>কখন পাব?</p>
+<p>তুই খোঁজ-খবর করতে থাক। আজই তো আর তোর দশ লাখ টাকার দরকার নেই?</p>
+<p>না, আজ দরকার নেই।</p>
+<p>এত বড় একটা ব্যবসায় নামছিস, ভালমত খোঁজ খবর করবি না? এক লোক পানির দামে তার ভিডিও ইউনিট বিক্রি করে দিতে চাচ্ছে। কেন চাচ্ছে? সেটা দেখার দরকার না? হয়ত ঐ যন্ত্রটাই নষ্ট। ছবি উল্টা আসে।</p>
+<p>বাবলুর ভুরু কুঁচকে আছে। সে গভীর চিন্তায় পড়েছে। আমি বললাম, খোঁজ খবর কর। ঘোরাঘুরি করতে খরচ আছে –আমি সেই খরচ দিয়ে দিচ্ছি। ঐটা দশলাখ টাকা থেকে কাটা যাবে। তবে যেহেতু এটা ক্যাপিটেল থেকে দিচ্ছি সেহেতু প্রতিটি পাই-পয়সার হিসাব খাতায় লিখে রাখবি।</p>
+<p>তা তো রাখতেই হবে। আপা, তুই কি আমার পার্টনার হবি?</p>
+<p>না।</p>
+<p>তোর কি সত্যি দশ লাখ টাকা আছে?</p>
+<p>আছে, এক কথা কবার বলব।</p>
+<p>টাকাটা রেখেছিস কোথায়? ব্যাঙ্কে?</p>
+<p>ব্যাঙ্ক ছাড়া কোথায় রাখব? তোষকের নিচে তো রাখতে পারি না। ফিক্সড ডিপোজিটে রাখা আছে।</p>
+<p>ভাল। ফিক্সড ডিপোজিটে রাখাই ভাল।</p>
+<p>বাবলু আরাম করে সিগারেটে টান দিচ্ছে। ওর দিকে তাকিয়ে আমার মায়াই লাগছে। ওর এত কম বুদ্ধি! বিশ্বাস করে ফেলেছে যে আমার দশলাখ টাকা আছে। কি করে বিশ্বাস করতে পারল? একবারও ভাবল না, এতগুলি টাকা কোত্থেকে আসবে?</p>
+<p>বাবলু নাশতা শেষ করে আমার সঙ্গে উঠে এল। আমি তাকে দু হাজার টাকা দিলাম। সে হতভম্ব গলায় বলল, মাত্র দু হাজার?</p>
+<p>দু হাজারের বেশি টাকার এখন তো তোর দরকার নেই। এই টাকাটা তো তুই রিকশা ভাড়াতেই খরচ করবি –এই টাকাটা দিয়ে তো তুই আর ভিডিও ইউনিট কিনতে যাবি না।</p>
+<p>তা ঠিক।</p>
+<p>হিসাবপত্র তুই কিন্তু লিখে রাখবি।</p>
+<p> অবশ্যই লিখে রাখব।</p>
+<p>আর শোন, এগারোটার সময় তোর কি সব দালাল-ফালালের বাবার সঙ্গে দেখা করার কথা –ওরা যেন না আসে।</p>
+<p>আচ্ছা, ওদের বলে দেব।</p>
+<p>আরেকটা কথা শোন বাবলু, বাড়ি আমরা বিক্রি করব কেন? দরকার হলে বাড়ি ভেঙে নিজেরাই মাল্টিস্টোরিড বিল্ডিং করব। মাটির নিচে থাকবে পার্কিং স্পেস। একতলায় তোর ভিডিও ইউনিট। দোতলা থেকে পাঁচতলা পর্যন্ত ফ্ল্যাট।</p>
+<p>বাবলু চোখ বড় বড় করে তাকিয়ে আছে। আমার কথা পুরোপুরি বিশ্বাস করতে পারছে না, আবার অবিশ্বাসও করতে পারছে না। সে ইতস্তত করে বলল, পুরো একতলাটা ভিডিও ইউনিট হবে?</p>
+<p>তোর প্রয়োজন হলে হবে। প্রয়োজন না হলে দোকানপাট হতে পারে।</p>
+<p>আমার পুরোটাই লাগবে। ভিডিও ইউনিটের সঙ্গে আমার একটা ফটোগ্রাফির দোকানও থাকবে। স্টিল ফটোগ্রাফি।</p>
+<p>স্টিল ফটোগ্রাফির ব্যবসা কি আর ভাল হবে? স্টুডিওতে আজকাল কেউ ছবি তুলতে যায়? ছবি যা তোলার ঘরেই তুলে।</p>
+<p>বাবলু উৎসাহের সঙ্গে বলল ফটোগ্রাফি ব্যবসার তুই কিছুই জানিস না। ঢাকা শহরে পাসপোর্ট সাইজ ছবি কতগুলি তোলা হয় তুই জানিস? ইউনিভার্সিটি এডমিশন টেস্টে লাগে, কলেজে লাগে, স্কুলে লাগে, যে কোন এপ্লিকেশনে লাগে। এমনকি মরার পরে কবর দেয়ার জন্যে লাগে—পাসপোর্ট সাইজ ছবি তো তুই আর ঘরে বসে তুলতে পারবি না –স্টুডিওতে গিয়ে তুলতে হবে।</p>
+<p>মরা মানুষ স্টুডিওতে গিয়ে ছবি তুলবে কি ভাবে?</p>
+<p> পুরানো পাসপোর্ট সাইজ ছবি দিয়ে ওদের কাজ সারতে হবে।</p>
+<p> ও আচ্ছা।</p>
+<p>স্টুডিওর ব্যবসা হল –এই যুগের সবচে রমরমা ব্যবসা।</p>
+<p> বেশ তো। তুই তাহলে একটা স্টুডিওর ব্যবস্থাও রাখ।</p>
+<p> রাখতেই হবে, উপায় নেই। সারভাইভেলের জন্যে রাখতে হয়।</p>
+<p>বাবলু আনন্দিত মুখে সিঁড়ি দিয়ে নেমে যাচ্ছে। বাবার সঙ্গে সে সহজভাবে কথাবার্তা বলবে। দুহাজার টাকা শেষ না হওয়া পর্যন্ত তার মেজাজ কিছু দিনের। জন্যে ঠাণ্ডা থাকবে।</p>
+<p>বাবলু ঠিকই নিচে বাবার সঙ্গে কথা বলছে। বাবলুর গলাই শুধু শুনছি। বাবা হা হুঁ করে যাচ্ছেন। বাবলু বলছে –বাবা, ঠিক করেছি বাড়ি অন্যের কাছে বিক্রি করব না। যা করার নিজেরাই করব। এগারোটার সময় দালাল পার্টি চলে আসবে। আমি তো আর থাকব না –আমার অন্য কাজ আছে। আপনি ওদের বলে দেবেন –পথ দেখ।</p>
+<p>আচ্ছা।</p>
+<p>বলবেন– কথাবার্তা যা বলার আমার ছেলের সঙ্গে বল– সংসার এখন আমার ছেলেই দেখছে। আমি এখন ওল্ডম্যান, রিটায়ার্ড করেছি –আল্লা-বিল্লা নিয়ে থাকি ….।</p>
+<p>আচ্ছা যা, বলব।</p>
+<p>কিছু কিছু মানুষের সুখী হবার ক্ষমতা দেখলে ঈর্ষায় গা জ্বলে। বাবলু তাদের একজন। প্রতিদিন অন্তত কয়েকবার সে নিজেকে এই পৃথিবীর সবচেয়ে সুখী মানুষ ভাবে। এরচে আনন্দময় ব্যাপার আর কি হতে পারে!</p>
+<p>.</p>
+<p>বাবুল চলে যেতেই বাবা বললেন, রাত্রি মা, তোর কথাটা নিয়ে আমি খুব ভাবছি। কাল অনেক রাত পর্যন্ত ভাবলাম।</p>
+<p>কোন কথাটা বাবা?</p>
+<p>ঐ যে বাবলুকে বিয়ে দেবার কথা বললি –নতুন একজন মানুষ এলে সংসারের সৌন্দর্য বাড়ে। তোরও একজন সঙ্গি হয়।</p>
+<p>আমার সঙ্গির চেয়ে বড় কথা তোমার সঙ্গি হয়। তোমারই কথা বলার লোক দরকার।</p>
+<p>বাবা নিঃশ্বাস ফেলে বললেন, কথা হচ্ছে –বাবলুকে কে মেয়ে দেবে? কার এতো দায় পড়েছে? তাছাড়া লুকোছাপা করে তো বিয়ে দেয়া যাবে না। ছেলে যে কি চিজ সেটা আগেভাগেই বলে নিতে হবে। তার তো গুণের অভাব নেই।</p>
+<p>পত্রিকায় বিজ্ঞাপন দিয়ে দেব –পরপর তিনবার আই এ, ফেল পাত্রের জন্য সুন্দরী, শিক্ষিতা, গৃহকর্মে নিপুণা সদ্বংশজাত পাত্রী প্রয়োজন। পাত্রের নেশাভাং করার সামান্য অভ্যাস আছে। মেজাজ খারাপ হলে সে করে না এমন জিনিস নেই। হৈ-চৈ, ভাংচুর, মারামারি তার মধ্যে অন্যতম। পাত্রের ভাল দিকের মধ্যে একটি হল –পাত্রের বাবা এই পৃথিবীর সেরা মানুষদের একজন।</p>
+<p>বাবা হেসে ফেললেন। অনেকদিন পর তাকে হাসতে দেখলাম। হাসি ভয়ংকর ছোঁয়াচে, আমি নিজেও হাসছি। দুজনই হাসছি বেশ শব্দ করে। আমাদের হাসির শব্দ শুনেই বোধহয় দক্ষিণের বারান্দায় পান্নাভাবী এসে দাঁড়িয়েছেন। তিনি বারান্দায় কাপড় শুকাতে দিচ্ছেন। কাপড় শুকাতে দেয়ার ব্যাপারটা তাঁর অজুহাত। তিনি আমাদের হাসি শুনে বারান্দায় এসেছেন দেখার জন্যে যে কি হচ্ছে। আমরা যতক্ষণ হাসাহাসি করব ততক্ষণ তিনি বারান্দাতেই থাকবেন। নড়বেন না।</p>
+<p>বাবা!</p>
+<p>কি রে মা?</p>
+<p>তুমি কি সত্যি বাবলুর বিয়ে দিতে চাও?</p>
+<p> বুঝতে পারছি না।</p>
+<p>সত্যি সত্যি যদি চাও তাহলে পান্নাভাবীকে বলতে পারি। বিয়ে-টিয়ের ব্যাপারে তাঁর দারুণ উৎসাহ। দেখবে, এক সপ্তাহের মধ্যে বিয়ে ঠিকঠাক হয়ে যাবে। বলব উনাকে?</p>
+<p>না থাক। মেয়েটার জীবন নষ্ট করে দেবে। দরকার কি?</p>
+<p>আমি মনে মনে হাসলাম। জীবন নষ্ট হবার হলে নষ্ট হবেই। কোন হিসাব নিকাশ কাজে লাগবে না। মামুন ছেলে হিসেবে কি চমৎকার ছিল না? সুন্দর, সুপুরুষ। কি প্রচণ্ড প্রাণশক্তি! সে কথা বলতে শুরু করলে মুগ্ধ হয়ে শুনতে হবে। সে যখন যা বলবে তখন মনে হবে এটাই সত্যি। টুকুনকে সে আমার সঙ্গে দেখা করতে দিচ্ছে না। ভয়ংকর একটা অন্যায় সে করছে কিন্তু কেন করছে সেই যুক্তি যখন সে দেয় তখন মনে হয় সে যা করছে ভালই করছে। ব্যাপারটা এরকমই হওয়া উচিত।</p>
+<p>দক্ষিণের বারান্দা থেকে পান্নাভাবী ডাকলেন –রাত্রি, এই রাত্রি।</p>
+<p>আমি তাকালাম। পান্নাভাবী বললেন, তাড়াতাড়ি একটু আস তো। তাঁর গলার স্বরে মনে হওয়া স্বাভাবিক যে ভয়ংকর কিছু ঘটে যাচ্ছে। যদিও কিছুই ঘটছে না। পান্নাভাবীর গলার স্বরে থাকে সার্বক্ষণিক উদ্বেগ। এই উদ্বেগের কোন ভিত্তি নেই। আমি দোতলার দিকে রওনা হলাম।</p>
+<p>পান্নাভাবীর বসার ঘরে নাজমুল ভাই। তিনি চাদর গায়ে সোফায় বসে আছেন। তার হাতে বই বা প্যাড এবং কলম থাকার কথা, এখন কিছুই নেই। তাঁকে দেখে মনে হচ্ছে সুন্দর এই সকালে তিনি ভয়ংকর কোন দুঃস্বপ্ন নিয়ে বসে আছেন। আমি বললাম, কেমন আছেন নাজমুল ভাই?</p>
+<p>তিনি কোন শব্দ করলেন না। তাঁর দৃষ্টি মেঝেতে নিবদ্ধ। পান্নাভাবী বললেন, তোমাকে একটা কথা জিজ্ঞেস করেছে আর তুমি পাথরের মূর্তি হয়ে গেছ। ব্যাপার। কি? কিছু একটা বল।</p>
+<p>নাজমুল ভাই কিছু বললেন না, আরো একটু গুটিয়ে গেলেন। পান্নাভাবী বললেন, রাত্রির সঙ্গে দিনের আলোয় কথা বলতে তোমার এত লজ্জা কেন? বেচারীর নাম রাত্রি বলে যে তার সাথে শুধুই রাত্রে কথা বলতে হবে তা তো না। তোমার অস্বাভাবিক আচরণ সহ্য করা আমার পক্ষে অসম্ভব হয়ে দাঁড়িয়েছে। তুমি রাত্রির দিকে তাকিয়ে একটু হাস তো।</p>
+<p>নাজমুল ভাই ছোট্ট করে নিঃশ্বাস ফেললেন। আমি বললাম, আমাকে কি জন্যে ডেকেছেন ভাবী?</p>
+<p>শোবার ঘরে আস। বলছি।</p>
+<p>জরুরী কিছু?</p>
+<p>জরুরী তো বটেই। খুবই জরুরী।</p>
+<p>পান্নাভাবী আমার হাত ধরে আমাকে তাঁর শোবার ঘরে নিয়ে এসে দরজা বন্ধ করে দিলেন। আমি বললাম, আপনার জরুরী কথার আগে আগে আমি একটা জরুরী কথা বলে নেই। পরে ভুলে যাব –ভাবী, আপনার সন্ধানে কি ভাল কোন মেয়ে আছে? মিষ্টি স্বভাবের হাসি-খুশি মেয়ে।</p>
+<p>কেন?</p>
+<p>বাবলুর বিয়ে দেব।</p>
+<p>মেয়ে তো একটা না, গণ্ডায় গণ্ডায় আছে। ভাল ভাল মেয়ে আছে। একটা মেয়ে আছে — জাহাঙ্গীরনগর ইউনিভার্সিটিতে ইংরেজিতে এম. এ. পড়ছে। অনার্সে ফার্স্ট ক্লাস থার্ড হয়েছিল।</p>
+<p>আমি অবাক হয়ে বললাম, এরকম একটা মেয়ে বাবলুর মত ছাগলকে বিয়ে করবে কেন?</p>
+<p>ছাগল বলছিস কেন? সুন্দর চেহারা। ঢাকা শহরে এতবড় বাড়ি। সংসারের দায়দায়িত্ব কিছুই নেই।</p>
+<p>আই এ, ফেল বখা একটা ছেলে। নেশাভাং করছে।</p>
+<p>পুরুষ মানুষ তো গাছ না –পুরুষ মানুষ একটু এদিক-ওদিক করে। বিয়ের পর নেশাভাং না করলেই হল। আর আই এ. ফেল এইটা বলার দরকার কি? কেউ তো আর সার্টিফিকেট পরীক্ষার জন্যে আসছে না? মেয়ের বাবা-মারা কখনো ছেলের পরীক্ষার সার্টিফিকেট দেখে না। তারা দেখে বাড়িঘর। তুমি এখন আমার কথা শোন।</p>
+<p>বলুন শুনছি।</p>
+<p>রাণীর ইউরিন টেস্ট করতে দিয়েছি। আজ রেজাল্ট দেবে। আমি আনতে যাচ্ছি।</p>
+<p>ও আচ্ছা।</p>
+<p> পান্নাভাবীর চোখ চকচক করতে লাগল। মহিলা কি অসুস্থ? সুস্থ কোন মেয়ে এমনভাবে কথা বলে না। পান্নাভাবী গলা নামিয়ে প্রায় ফিস ফিস করে বললেন –টেস্ট পজিটিভ হলে মজা দেখবে। আজই বিয়ে পড়িয়ে দেব। চাকরাণী নিয়ে বাসর করবে। আমি পাশেই বসে থাকব।</p>
+<p>আমি বললাম, এইটাই কি আপনার জরুরী কথা?</p>
+<p> হ্যাঁ, এইটাই জরুরী কথা। তোমার শোনা দরকার।</p>
+<p>আমার শোনা দরকার কেন?</p>
+<p>আমার আপনজন তো কেউ নেই। তোমাকে ছোটবোনের মত দেখি এই জন্যেই বলা।</p>
+<p>পান্নাভাবী আমাকে ঘরে রেখেই কাপড় বদলাতে শুরু করলেন। এই তাঁর আর এক অদ্ভুত মানসিকতা। ব্যাপারটা এর আগেও কয়েকবার ঘটেছে। পরনে শুধু পেটিকোট রেখে তিনি আর সবকিছু খুলে ফেলেন এবং বেশ স্বাভাবিক ভঙ্গিতেই কথাবার্তা বলতে থাকেন। যেন কাপড় পরার ব্যাপারটা তিনি ভুলে গেছেন। অর্ধনগ্ন অবস্থায় চুল আঁচড়াতে বসেন যেন কাপড় পরার আগে চুল আঁচড়ানোটা সেরে ফেলা দরকার। পান্নাভাবী এটা কেন করেন? তাঁর শরীরটা যে খুব সুন্দর এটা কি আমাকে দেখাতে চান? তার কি কোন প্রয়োজন আছে?</p>
+<p>পান্নাভাবী, আমি যাই।</p>
+<p>যাই যাই করছ কেন? বোস না, কাপড়টা পরি, তারপর একসঙ্গে বের হই।</p>
+<p>কাপড় পরতে ভাবীর অনেক সময় লাগল। কোন শাড়িই পছন্দ হয় না। একটা পছন্দ হল, সেটা খানিকটা কুঁচকে আছে। রাণীকে ডাকলেন শাড়ি ইস্ত্রি করে দেবার জন্যে। তিনি শুধু পেটিকোট পরে আমার সঙ্গে গল্প করছেন। রাণী শাড়ি ইস্ত্রি করছে। শাড়ি ইস্ত্রি করতে করতেই সে একবার মুখ নিচু করে হাসল। পান্নাভাবী থমথমে গলায় বললেন –হাসছিস কেন? কেন হাসছিস? তুই ভেবেছিস কি নষ্টামি করে এত সহজে পার পেয়ে যাবি? এত সহজে তোকে আমি ছেড়ে দেব? কত ধানে কত চাল তোকে বুঝিয়ে ছাড়ব।</p>
+<p>রাণী গালাগালি গায়ে মাখছে না। সে ইস্ত্রি করে যাচ্ছে। পান্নাভাবীর গলার স্বর উঁচু থেকে উঁচুতে উঠছে। আমি তাদের এই অবস্থায় রেখে চলে এলাম।</p>
+<p>আমার নিজেরই অনেক সমস্যা, অন্যের সমস্যায় জড়িয়ে পড়ার কোন কারণ নেই। চলে আসার সময় নাজমুল ভাইকে দেখে খুব মায়া লাগল। কেমন জবুথবু হয়ে বসে আছেন। তাঁকে জড় পদার্থের মত লাগছে। আমি বললাম, নাজমুল ভাই, যাচ্ছি। তিনি চোখ তুললেন না। মেঝের দিকে তাকিয়ে রইলেন।</p>
+<p>.</p>
+<p>সেই রাতে এক কাণ্ড হল। রাত দশটার মত বাজে। আমি ছাদে হাঁটতে গেছি। ছাদে হাঁটা আমার নিত্যদিনের অভ্যাস না। মাঝে মাঝে যাই। আমাদের ছাদটা তেমন সুন্দর না –ছাদে ওঠার সিঁড়িটাও সরু এবং অন্ধকার। তার চেয়েও বড় কথা –ছাদের না-কি কি একটা দোষ আছে। অনেকেই ছাদে লম্বা লম্বা মানুষ হাঁটাহাঁটি করতে দেখেছে। মা বেঁচে থাকা অবস্থায় কখনোই একা আমাকে ছাদে আসতে দিতেন না। এখন মাঝে মাঝে আসি। কিন্তু কিছুক্ষণের মধ্যেই বাবা সিঁড়িঘরের কাছে এসে ব্যস্ত হয়ে আমাকে ডাকতে থাকেন, রাত্রি, নেমে আয় তো মা। নেমে আয়।</p>
+<p>আজও তাই হল। ছাদে কিছুক্ষণ হাঁটার পরই বাবা এসে ডাকলেন, নেমে আয় তো মা। আমি বললাম, আমি নামব না বাবা, তুমি উঠে এসো।</p>
+<p>বাবা বললেন, নাজমুল সাহেব তোকে খোঁজ করছেন। উনার স্ত্রী সকালে বাড়ি থেকে বের হয়েছেন, এখনো ফেরেননি। ভদ্রলোক খুব অস্থির হয়েছেন।</p>
+<p>অস্থির হলে আমি কি করব? আমি তো জানি না ইনি কোথায়?</p>
+<p>তোর সঙ্গে কথা বলতে চাচ্ছেন, নেমে আয় না।</p>
+<p>নাজমুল ভাই আমাদের বারান্দায় দাঁড়িয়েছিলেন। সকালের সেই জবুথবু ভাব আরো বেড়েছে পান্নাভাবী না ফেরায় তিনি যে খুব চিন্তিত সেটা বোঝা যাচ্ছে। কথাও ঠিকমত বলতে পারছেন না, জড়িয়ে যাচ্ছে। আমাকে বললেন, ও বাইরে গেলে কখনো একঘণ্টা-আধঘণ্টার বেশি থাকতে পারে না। আজ কি ব্যাপার কিছুই বুঝতে পারছি না। তুমি কি জান কোথায় গিয়েছে?</p>
+<p>কোথায় গিয়েছেন আমি জানি –রাণীর প্রেগনেন্সি টেস্টের রিপোর্ট আনতে। কিন্তু সেই কথা নাজমুল ভাইকে বলা যায় না। আমি চুপ করে রইলাম।</p>
+<p>নাজমুল ভাই প্রায় অস্পষ্ট স্বরে বললেন, আমাকে নিয়ে ওর নানা সন্দেহ। অকারণ সব সন্দেহ। আমি জানি তোমাকে সে সব বলেছে –এই জন্যেই প্রসঙ্গটা বললাম। তুমি কি না কি ভাবছ ….</p>
+<p>আমি কিছুই ভাবছি না।</p>
+<p>ও এরকম ছিল না। বিয়ের পর পর ওর জরায়ুতে টিউমার ধরা পড়ল। ডাক্তাররা জরায়ু কেটে বাদ দিল। তারপর থেকে ওর ধারণা হয়েছে, যেহেতু তার কোনদিন বাচ্চা-কাচ্চা হবে না সেহেতু আমার কাছে তার কোন দাম নেই। তখন থেকেই সন্দেহ-রোগ। তুমি কিছু মনে করো না।</p>
+<p>আমি কিছু মনে করছি না। আপনি আমাকে নিয়ে কোন চিন্তা করবেন না।</p>
+<p>ওর সন্দেহটা তুমি ক্ষমার চোখে দেখো। সাইকোলজিক্যাল সমস্যা। ভাল কোন সাইকিয়াট্রিস্টকে দেখাতে চাই –ওকে সেই কথাটা বলারও সাহস নেই –হুঁট করে রেগে উঠবে। রাত্রি, তোমার কাছে আমি খুব লজ্জিত।</p>
+<p>আমার কাছে লজ্জিত কেন?</p>
+<p>উনি কিছুক্ষণ চুপ করে থেকে প্রায় কাঁদো কাঁদো গলায় বললেন –ওর সবচে বড় সন্দেহ তোমাকে নিয়ে। ওর ধারণা, তুমি স্বামী-সংসার ছেড়ে এ বাড়িতে চলে এসেছ শুধুই আমার কারণে।</p>
+<p>সে কি?</p>
+<p>তোমাদের বাড়ি ছেড়ে আমি অন্য কোথাও বাসা ভাড়া নিতে চেয়েছিলাম, সে তাও করতে দেবে না। আমি কি যে বিপদে পড়েছি সেটা শুধু আমি জানি। কাল রাতে তোমার সঙ্গে কথা হয়েছে– সে শুনে ফেলেছে, তারপর থেকে মাথা খারাপের মত হয়ে গেছে।</p>
+<p>আমি হতভম্ব হয়ে তাকিয়ে আছি। অবাক হয়ে দেখছি ভদ্রলোকের চোখে পানি এসে গেছে। তিনি চোখের পানি গোপন করার চেষ্টা করলেন না। চোখ মুছলেন। শান্ত গলায় বললেন, ও যদি জানতো তাকে আমি কতটা ভালবাসি তাহলে এইসব পাগলামী সে করতো না। সেটা জানানোর বুদ্ধি কি তাও আমি জানি না। ওর বাচ্চা-কাচ্চা হবে না তাতে কি হয়েছে? ওকে আমি ওর জন্যেই ভালবাসি।</p>
+<p>দোতলার দক্ষিণের বারান্দা থেকে রাণী উৎফুল্ল গলায় বলল, আম্মা আসছেন। এই অক্ষণ বেবীটেক্সী থাইক্যা নামছেন।</p>
+<p>নাজমুল ভাই তাঁর ঘরে যাচ্ছেন। আমি যাচ্ছি তাঁর পেছনে পেছনে। কি ব্যাপার জেনে আসা যাক।</p>
+<p>পান্নাভাবী আমাকে দেখে আনন্দিত গলায় বললেন, বাবলুর জন্যে এত দেরি হল। ওর জন্যে মেয়ে দেখতে নানান জায়গায় গেলাম। একটির সঙ্গে কথাবার্তা মোটামুটি বলে এসেছি। কাল এ বাড়িতে নিয়ে আসব। তুমি দেখ পছন্দ হয় কিনা। মেয়ের একটাই শুধু ডিফেক্ট– গায়ের রঙ শ্যামলা।</p>
+<p>আমি বললাম, যে রিপোর্টের জন্যে গিয়েছিলেন সেই রিপোর্ট কি?</p>
+<p>পান্নাভাবী গম্ভীর গলায় বললেন, রিপোর্ট কিছু পাওয়া যায়নি। তোমার ভাই তো আর বোকা না। এত কাঁচা কাজ করবে না। প্রপার প্রিকশান নিয়ে মাঠে নামবে। করেছেও তাই। ভাল কথা –মেয়েটার নাম বীনু। ওরা পাঁচ বোন, সে হচ্ছে সবচে বড়। কোন ফ্যামিলিতে অনেকগুলি মেয়ে যদি থাকে তাহলে বড় মেয়েটা হয় সবচে ভাল। তাকে সংসার দেখতে হয়, বোনদের মানুষ করতে হয়– এইসব করতে করতে ওরা খুব কাজের মেয়ে হয়। বীনু এবার লালমাটিয়া কলেজে বি. এ. পড়ছে। তার বাপ-মা এখনি বিয়ে দিতে চায়। অনেকগুলি মেয়ে তো এখন থেকে পার করা না ধরলে সমস্যা। ওদের সংসারের অবস্থাও নড়বড়ে। দিনে আনি দিনে খাইয়ের চেয়েও খারাপ।</p>
+<p>পান্নাভাবী কথা বলেই যাচ্ছেন। বলেই যাচ্ছেন। আমি শুনছি। পান্নাভাবীর মুখ থেকে চোখ ফেরাতে পারছি না। এই মহিলা যে এত রূপবতী তা আগে কখনো লক্ষ্য করিনি। এরকম একটা ব্যাপার ওদের চোখ এড়িয়ে গেল কি করে বুঝতে পারছি না।</p>
+<p>.</p>
+<p><strong>০৬.</strong></p>
+<p>মামুনদের অফিসের মেয়েটি আমাকে চিনল। হাসি মুখে বলল, ও আপনি এসেছেন? আমি মাথা নাড়লাম। আজ মঙ্গলবার। দশটা এখনো বাজে নি। ছসাত মিনিট বাকি আছে। মামুন আমাকে সকাল দশটায় আসতে বলেছে। রীতিমত এপয়েন্টমেন্ট করে আসা।</p>
+<p>মেয়েটি বলল, আপনি চলে যান। স্যার ঘরে একা আছেন।</p>
+<p> দশটাতো এখনো বাজে নি।</p>
+<p> না বাজুক ঢুকে যান।</p>
+<p>মামুনের ঘর অন্ধকার। বড় সাহেবদের কামরায় আলো কম থাকার নিয়ম। আলো কম মানেই রহস্য। বড় সাহেবরা চারদিকে রহস্য রাখতে পছন্দ করেন। মামুন বলল, এসো এসো। আমি বললাম, ভাল আছ?</p>
+<p>হ্যাঁ ভাল আছি। তিন পাউন্ড ওজন পর্যন্ত বেড়েছে। ঐ দিন তোমাকে দেখা করতে দেইনি– মেজাজ খুব খারাপ ছিল –তার চেয়ে বড় কথা অন্য একটা এপয়েন্টমেন্ট ছিল।</p>
+<p>সাফাই দেবার দরকার নেই।</p>
+<p>সাফাই গাইছি না। যেটা সত্যি সেটা বলছি। মালয়েশিয়ার সঙ্গে কোলাবোরেশনে আমার ইন্ডাসট্রি। ওদের একজন রিপ্রেজেনটেটিভ এসেছিলেন। এসেই নানান ফ্যাকড়া। প্রথম দিনেই বললেন –তার লোনলি লাগছে একজন কোম্পেনিয়ন পেলে ভাল হয়। কোম্পেনিয়ন কি আশাকরি বুঝতে পারছ।</p>
+<p>পারছি।</p>
+<p>সোহারওয়ার্দি উদ্যানের কুড়ি টাকা রোটের কোন মেয়েকে নিয়ে দিলেতো হবে না –আমার এমন মেয়ে দরকার হোটেল সোনারগায়ে থেকে যার অভ্যাস আছে। যে ইংরেজি বলতে পারে। ইন্টারেস্টিং কনভারসেসান চালাতে পারে। বিছানাতেও যার পারফরমেন্স চমৎকার …</p>
+<p>আমাকে এসব কেন শুনাচ্ছ?</p>
+<p>শুনতে ভাল লাগছে না?</p>
+<p>না।</p>
+<p>শোন এই গল্পের শেষটা খুব ইন্টারেস্টিং। গল্পের শুরু ভাল না লাগলেও –শেষটা ভাল লাগবে। যাই হোক ভদ্রলোকের জন্যে একজন কোম্পেনিয়ন জোগাড় করে দিলাম। আমি মেয়েটিকে খুব ভালমত চিনি। কোম্পেনিয়ান হিসেবে এরচে ভাল কিছু কল্পনাও করা যায় না। সমস্যা দেখা দিল তারপর।</p>
+<p>কি সমস্যা?</p>
+<p>মামুন হাসতে হাসতে বলল, এই দেখ তুমিও এখন আগ্রহ বোধ করছ গল্প শুনতে চাচ্ছ — যাই হোক শোন সেই মালয়েশিন তার কোম্পেনিয়ান পেয়ে এতই আনন্দিত আমাকে টেলিফোন করে বলল –এই মেয়েটিকে বিয়ে করে সে দেশে নিয়ে যেতে চায়। এই টেলিফোনটা পেলাম তোমার স্লীপ পাঠানোর দশ মিনিট আগে। ব্যাটা টেলিফোনেই কেঁদে ফেলে এমন অবস্থা– রাগে আমার শরীর জ্বলে যাচ্ছে। তুমি ফুর্তি করতে চাও –ফুর্তি কর উটাস ঝামেলা কেন? আর তুমি চাইলেই ঐ মেয়ে তোমাকে বিয়ে করবে কেন? মেয়েটার স্বামী আছে, সংসার আছে।</p>
+<p>স্বামী সংসার আছে?</p>
+<p>অবশ্যই আসে। পারিবারিক জীবনে এইসব মেয়েরা সুখী ধরণের হয়। সুখ প্রধানত আছে অর্থনৈতিক মুক্তি থেকে। এইসব মেয়েদের অর্থনৈতিক মুক্তি থাকে। শরীরকে মন্দির মসজিদ ভাবলে চলে না। শরীর হচ্ছে শরীর। শরীরের আবার পবিত্রতা কি?</p>
+<p>তুমি এসব আমাকে কেন শুনাচ্ছ?</p>
+<p>কেন শুনাচ্ছি নিজেও জানি না। যাই হোক কেন এসেছ বল।</p>
+<p>টুকুনের জন্যে এসেছি। ও এখন কোথায়?</p>
+<p> আগে যেখানে ছিল সেখানেই আছে তবে শিগগীরই দেশে আসছে।</p>
+<p>আমার সঙ্গে কিছুদিন ওকে থাকতে দেবে?</p>
+<p>কিছুদিন না। ঘন্টা খানিক কিংবা ঘন্টা দুই ওর সঙ্গে কাটাতে চাইলে কাটাবে। মা-ছেলের কঠিণ ভালবাসাকে এড়াতে চাই –সেই জন্যেই এই ব্যবস্থা।</p>
+<p>টুকুন কবে আসবে?</p>
+<p>একজাক্ট ডেট জানি না। ও এলে অবস্থা বুঝে তোমাকে খবর দেব। রিসিপশনিষ্ট মেয়েটিকে পাঠিয়ে দেব। ওর নাম –তপতী। সুন্দর নাম না?</p>
+<p>হ্যাঁ।</p>
+<p>মালয়েশীয়ান ব্যাটা যে মেয়ের জন্যে পাগলের মত হয়ে আছে –তপতী হচ্ছে সেই মেয়ে।</p>
+<p>এই জাতীয় মেয়ে তাহলে তোমার হাতের কাছেই থাকে?</p>
+<p> রাখতে হয়। রাত্রি তুমি কি আমার সঙ্গে লাঞ্চ করবে? না।</p>
+<p>অনেকদিন পর তোমাকে দেখে ভাল লাগছে –এই জন্যে বলছি। বন্ধু হতেতো বাধা নেই।</p>
+<p>বাধা আছে। আমি উঠব।</p>
+<p>বোস আরেকটু বোস। দুটা কথা বলি মন দিয়ে শোন –স্ত্রী হিসেবে তুমি চমৎকার। ইচ্ছে করলে তুমি আবারো আমার কাছে ফেরত আসতে পার। একটাই শর্ত — আমাকে আমার মত থাকতে দিতে হবে।</p>
+<p>তোমার কাছে ফিরে যাবার আমার কোন ইচ্ছা নেই।</p>
+<p>একদিন ইচ্ছা হবে তখন আর সময় থাকবে না। আমি বিয়ের কথা ভাবছি। তোমার সন্ধানে কোন ভাল মেয়ে আছে?</p>
+<p>কি রকম মেয়ে চাও? এমন কেউ যাকে কখনো কোন পুরুষ স্পর্শ করে নি?</p>
+<p>মামুন শব্দ করে হাসতে লাগল। আমি উঠে দাঁড়াতে দাঁড়াতে বললাম, আমার সন্ধানে তেমন কেউ নেই –আর থাকলেও জেনেশুনে তোমার কাছে পাঠাতাম না।</p>
+<p>মামুন বলল, টুকুনের কিছু রিসেন্ট ছবি এসেছে –তুমি দেখতে চাও?</p>
+<p>না। ছবি দেখব না। আমি ওকেই দেখব।</p>
+<p>মামুনের ঘর থেকে বের হতেই তপতী বলল –স্যারের সঙ্গে কথা শেষ হয়েছে?</p>
+<p>আমি মাথা নাড়লাম।</p>
+<p> তপতী মিষ্টি করে হাসল। মেয়েটার হাসি এত সুন্দর। এত পবিত্র।</p>
+<p>.</p>
+<p><strong>০৭.</strong></p>
+<p>ভোরবেলা সত্যি সত্যি বীনু মেয়েটি এসে উপস্থিত। পান্নাভাবী মেয়েটিকে আমার কাছে এনে বললেন –এ হল বীনু, আমার দূরসম্পর্কের আত্মীয় –আমার এখানে বেড়াতে এসেছে। আমি আবার আজ সারাদিন একটা কাজে ব্যস্ত থাকব। বাইরে যেতে হবে। রাত্রি, তোমার সঙ্গে ও খানিকক্ষণ থাকুক, তারপর চলে যাবে।</p>
+<p>আমি মুগ্ধ হয়ে পান্নাভাবীর বানানো কথা শুনছি। মেয়েটিকে কি জন্যে এখানে আনা হয়েছে তা সে যেমন জানে আমিও জানি। মাঝখানের এই মিথ্যা কথাগুলির প্রয়োজন কি ছিল? মেয়েটি খুব অস্বস্তি বোধ করছে। সংকোচে এতটুকু হয়ে গেছে। চোখ তুলে তাকাতেও পারছে না। সে নিচু হয়ে আমার পা ছুঁয়ে সালাম করতে গেল। আমি কপ করে তার হাত ধরে ফেললাম।</p>
+<p>পান্নাভাবী বললেন, সালাম করতে চাচ্ছে, বাধা দিচ্ছ কেন? সালাম করবে না? মুরুব্বীদের সালাম না করলে দোয়া পাবে কোত্থেকে? দোয়া তো গাছ থেকে পড়ে না। মানুষের কাছ থেকেই আসে।</p>
+<p>বোঝা যাচ্ছে সালামের ব্যাপারটা পান্নাভাবীই শিখিয়ে দিয়েছেন। মনে হয় তিনি আটঘাট বেঁধেই নেমেছেন।</p>
+<p>রাত্রি, বাবলু কি ঘরে আছে?</p>
+<p> হ্যাঁ আছে। ঘুমুচ্ছে।</p>
+<p> ওকে ডেকে তোল। ওর সঙ্গে কথা আছে।</p>
+<p>বাবলুকে ডেকে তুলতে হল না, সে নিজেই উঠে এল। অপরিচিত তরুণী একটা মেয়ে দাঁড়িয়ে আছে –সে ব্যাপারটাকে মোটেই পাত্তা দিল না। রান্নাঘর থেকে লবণ এনে সবার সামনে দাঁত মাজতে বসল। পান্নাভাবী বললেন –দাঁতে লবণ ঘসছিস কি জন্যে? কি হয়েছে?</p>
+<p>বাবলু গম্ভীর গলায় বলল, কিছু হয়নি। দাঁত ঠিক রাখতে হবে না? দাঁত ঠিক রাখার একটাই উপায় –লবণ। চিনি হল দাঁতের বিষ। লবণ দাঁতের অমৃত।</p>
+<p>কে বলেছে তোকে?</p>
+<p>বলতে হবে কেন? এটা হল জেনারেল নলেজ। সামুদ্রিক মাছের দাঁত এত ভাল হয় কেন? লোনা পানিতে থাকে বলেই এই অবস্থা।</p>
+<p>বীনু ফিক করে হেসে ফেলেছে। হাসি গোপন করার জন্যে চট করে সে অন্যদিকে ঘুরে দাঁড়িয়েছে। তাতে হাসি লুকানো যাচ্ছে না। হাসির উচ্ছ্বাসে তার শরীর কাঁপছে। তৎক্ষণাৎ মেয়েটিকে আমার পছন্দ হয়ে গেল। হালকা-পাতলা মেয়ে। গায়ের রঙ শ্যামলা নয়, কালোই বলতে হবে। সেই কালোর স্নিগ্ধতা চোখে পড়ার মত। এক ধরনের মানুষ আছে যাদের দেখলেই মনে হয় পৃথিবীর কোন দুঃখ কষ্ট ওদের স্পর্শ করার ক্ষমতা রাখে না। এই মেয়ে মনে হয় সেই জাতের।</p>
+<p>পান্নাভাবী বাবলুর দিকে ঝুঁকে এসে বললেন, বাবলু, তুই কি আমার একটা উপকার করতে পারবি?</p>
+<p>কি উপকার?</p>
+<p>বীনুর দিকে একটু তাকিয়ে দেখ– এ হল আমার দূর-সম্পর্কের বোন। আমার এখানে বেড়াতে এসেছে। সারাদিন থাকবে, বিকেলে চলে যাবে। তুই বিকেলে ওকে একটু বাসায় পৌঁছে দিবি। পারবি না?</p>
+<p>না।</p>
+<p>না কেন? ও থাকে গোরানে। একা একা যাবে এতদূর?</p>
+<p>বাবলু বিরক্ত হয়ে বলল, ও একা একা যাবে না দোকাতিকা যাবে ওটা তার। ব্যাপার। আমার কাজ আছে।</p>
+<p>বীনু দেখি আবার অন্যদিকে মুখ ফিরিয়ে হাসছে। হাসির গমকে তার শরীর কাঁপছে। বাহ, খুব চমৎকার মেয়ে তো!</p>
+<p>পান্নাভাবী বললেন, কি কাজ?</p>
+<p> তুমি তা জেনে কি করবে? শতেক কাজ।</p>
+<p>বিকেলে এক ফাঁকে একটু সময় করতে পারবি না?</p>
+<p>না</p>
+<p>বিপদের সময় সামান্য সাহায্যও করবি না?</p>
+<p>নো।</p>
+<p>বাচ্চা একটা মেয়ে, একা একা এতদূর যাবে?</p>
+<p>বাবলু মাথা ঘুরিয়ে বীনুর দিকে একবার তাকিয়ে বিরক্ত গলায় বলল –বাচ্চামেয়ে তুমি কোথায় দেখলে? ঢাকা শহরে বাস করলে একা একা ঘোরাফেরা করতেই হবে। এখান থেকে ওখানে গেলেই যদি পুলিশ স্কর্ট লাগে তাহলে তো সমস্যা। পুরো দেশটাই এখন মেয়েদের হাতে –খালেদা জিয়া প্রধানমন্ত্রী, শেখ হাসিনা বিরোধী দলের প্রধান, ঘাতক দালাল নির্মূল কমিটির প্রধান জাহানারা ইমাম … এই অবস্থায় একটা মেয়ে একা একা গোরান যেতে পারবে না?</p>
+<p>বীনু বলল, আমি একা একা যেতে পারব।</p>
+<p> বাবলু খুশিখুশি গলায় বলল, গুড। ভেরী গুড!</p>
+<p>সে মুখ ভর্তি পানি নিয়ে বিকট শব্দে গার্গল করতে লাগল। আমি বীনুকে বললাম, বীনু, তুমি এসো আমার সঙ্গে।</p>
+<p>.</p>
+<p>আমরা দুজন রান্নাঘরে বসে আছি। বীনুকে চা বানিয়ে দিয়েছি। সে শান্ত ভঙ্গিতে চা খাচ্ছে। মেয়েটি খুব যে শান্ত তা মনে হচ্ছে না। তার চোখে ছটফট ভাব আছে। একটা নীল রঙের সূতির শাড়ি পরেছে। এটিই বোধহয় তাদের পরিবারের সবচে দামী শাড়ি। ঠোঁটে লিপিস্টিক দিয়েছিল, পরে মুছে ফেলেছে –আভাস আছে। যে স্যাণ্ডেল পরে এসেছে সেই স্যাণ্ডেল জোড়া সস্তা এবং পুরানো। আমি বললাম, তারপর বীনু, বল তুমি কেমন আছ?</p>
+<p>বীনু থমমত খেয়ে বলল, জ্বি ভাল আছি।</p>
+<p>আমার ভাইটাকে তোমার কেমন লাগল?</p>
+<p>বীনু হকচকিয়ে গেছে। কি বলবে বুঝতে পারছে না। চায়ের কাপের দিকে তাকিয়ে আছে। এক সময় ক্ষীণ গলায় বলল, ভাল।</p>
+<p>ও যে বোকা সেটা কি বুঝতে পেরেছ?</p>
+<p>বীনু এক পলক আমার চোখের দিকে তাকিয়ে মাথা নিচু করে ফেলল। তারপর আমাকে অবাক করে দিয়ে হা-সূচক মাথা নাড়ল।</p>
+<p>আমি বললাম, তোমাকে আমার খুব পছন্দ হয়েছে। কিছু কিছু মানুষকে প্রথম দেখাতেই পছন্দ হয়ে যায়। তোমার বেলাতেও তাই হয়েছে। পান্নাভাবী তোমাকে এ বাড়িতে কেন এনেছেন তা তুমি ভাল করেই জান। আমিও জানি। কাজেই কোন রকম লুকোছাপা না করে এসো আমরা সহজভাবে কথা বলি। পারবে না সহজভাবে কথা বলতে?</p>
+<p>পারব।</p>
+<p>শোন বীনু, আমি নিজে খুব দুঃখী একটা মেয়ে। কেন দুঃখী তাও তুমি জান। পান্নাভাবী নিশ্চয়ই তোমাকে বলেছেন। বলেননি?</p>
+<p>জি বলেছেন।</p>
+<p>দুঃখী মেয়েরা সাধারণত ভাল হয়। আমিও ভাল। এই জন্যেই তোমার সঙ্গে সরাসরি সব কথা বলব। ঠিক আছে?</p>
+<p>জ্বি, ঠিক আছে।</p>
+<p>বাবলু সম্পর্কে পান্নাভাবী তোমাকে কি বলেছেন?</p>
+<p>তেমন কিছু বলেননি।</p>
+<p> ও পড়াশোনা কি করেছে সেসব কিছু বলেনি?</p>
+<p>বলেছেন এম. এ. পড়তে পড়তে পড়া ছেড়ে দিয়েছেন। টিচারের সঙ্গে কি নিয়ে ঝামেলা হয়েছিল। উনি তো স্বাধীনচেতা ধরনের, কাজেই বলে বসলেন –আর পড়বেন না। তবে শিগগিরই না-কি আবার ভর্তি হবেন।</p>
+<p>পান্নাভাবী কিছুই ঠিক বলেননি। ও তিনবার আই, এ. ফেল করে হ্যাটট্রিক করেছে। ফুটবলে হ্যাটট্রিক করলে খেলোয়াড়রা যেমন আনন্দিত হয় –পরীক্ষায় হ্যাটট্রিক করেও সে তেমনি আনন্দিত।</p>
+<p>বীনু হেসে ফেলল। এবং সহজ হয়ে গেল। আমি বললাম, দেখ বীনু, বখা ছেলে বলতে যা বোঝায় আমার এই ভাই সে রকম। গুণ্ডা হবার ক্ষমতা তার নেই। গুণ্ডা হতে হলে সাহস লাগে, কিছু বুদ্ধিও লাগে। এই দুয়ের কোনটাই তার নেই। তার প্রধান কাজ হল –আজেবাজে কিছু বন্ধু বান্ধবের পেছনে ঘোরা। ওদের খেদমত করা। মাঝে মাঝে মদ-টদ খেয়ে বাসায় ফিরে। এরকম একটা ছেলেকে তুমি কি জেনেশুনে বিয়ে করবে?</p>
+<p>না।</p>
+<p>না করাই উচিত। আমি কখনোই করতাম না। যেটা আমি করব না সেটা তোমাকে করতে বলতে পারি না। তোমাকে আমার খুব পছন্দ হয়েছে। আমি চাই তোমার খুব ভাল বিয়ে হোক।</p>
+<p>আমাকে আপনার পছন্দ হয়েছে কেন?</p>
+<p>তোমাকে আমার পছন্দ হবার প্রধান কারণ হল –তোমার স্বভাব অনেকটা আমার মার মত। মাও তোমার মত শুধু শুধু হাসতেন। বাবলু যখন প্রথমবার আই এ. ফেল করে মাকে গম্ভীর গলায় বলল –মা, রেজাল্ট হয়েছে। ফেল করেছি। মা সঙ্গে সঙ্গে বললেন– পা ছুঁয়ে সালাম কর। বাবলু রাগী গলায় বলল, সালাম করব কেন? মা বললেন, পরীক্ষায় পাশ করলে দোয়া নেবার জন্যে মানুষ সালাম করে। তুই ফেল করেছিস, তোর তো ডবল দোয়া দরকার। তুই দুবার সালাম করবি। বলেই মার কি যে হাসি!</p>
+<p>বীনু হাসতে শুরু করেছে। আমিও হাসছি। অনেকদিন পর এ বাড়িতে হাসির তুফান উঠল। হাসির শব্দে বিস্মিত হয়ে বাবা রান্নাঘরে চলে এলেন। বাবা বীনুর দিকে তাকিয়ে বললেন, এ কে?</p>
+<p>এ হল বীনু। ওর সঙ্গে বাবলুর বিয়ে হবে। আমি এই মেয়েকে ছাড়ব না। এর জীবন নষ্ট হলে নষ্ট হবে –ওকে থাকতে হবে আমার সঙ্গে।</p>
+<p>বাবা তাকিয়ে আছেন। কিছু বুঝতে পারছেন না। আবার যেন সব কিছুই বুঝে ফেলেছেন। তাঁর চোখে বিস্ময় এবং খানিকটা বিষণ্ণতা। বীনু বাবাকে সালাম করতে গেল। বাবা তাকে জড়িয়ে ধরলেন ধরা গলায় বললেন, মা, তুমি আমার ছেলেটাকে ঠিক করে দাও। তুমি পারবে। তোমাকে পারতেই হবে।</p>
+<p>.</p>
+<p>বীনু সারাক্ষণ আমার পাশে পাশে রইল। ঘরে বাজার ছিল না। আমি তাকে সঙ্গে নিয়ে নিউ মার্কেটের কাঁচা বাজার থেকে বাজার করে আনলাম। ও অনেক গল্প করল। সরল ধরনের দুঃখ নিয়ে গল্প। অভাব-অনটনের গল্প।</p>
+<p>বুঝলেন আপা, আমাদের সংসারটা আমাকে চালাতে হয়। মা কোন হিসাব নিকাশ করতে পারেন না। হিসাব-নিকাশ কি রাখবেন, তার কোন মেয়ের কি নাম সেটাই তাঁর মনে থাকে না। অনেকগুলি মেয়ে হলে যা হয়। নাম রাখার সময় গণ্ডগোল করেছেন। মিল দিয়ে দিয়ে নাম বীনু, লীনু, ঝিনু, নিনু, টিনু … কে নাকি মাকে বলেছিল মিল দিয়ে নাম রাখলে বেহেশতে একসঙ্গে থাকা যায়। মা আমাদের বেহেশতে এক সঙ্গে রাখার ব্যবস্থা করতে গিয়ে এমন ঝামেলা করেছেন। তাঁর হয়ত দরকার লীনুকে, তিনি ডাকছেন ঝিনু, ঝিনু–। যে কথা বলছিলাম আপা, মাসের এক তারিখে বেতন এনে বাবা পুরো টাকাটা আমার হাতে তুলে দিয়ে বলেন, খুব সাবধানে খরচ করবি। খুব সাবধান। একটা পয়সা যেন এদিক-ওদিক না হয় –কষ্টের পয়সা। আপনারা তো আপা বড়লোক মানুষ, আমাদের সমস্যা বুঝবেন না। মাসের ত্রিশটা দিন ত্রিশটা বৎসরের মত। প্রায়ই লোকজনদের বলতে শুনি, টাকাপয়সা তুচ্ছ। যারা এসব বলে আমার ইচ্ছা করে এদের কিছুদিন এনে আমাদের সংসারে রাখি। মাসখানিক থাকলেই এরা বলতে শুরু করবে– পৃথিবীর সবচে বড় জিনিস হল অর্থ।</p>
+<p>তোমার বাবা সম্পর্কে তো তুমি কিছু বলছ না? উনি কেমন?</p>
+<p>সাধারণ একজন মানুষ। মন্দও না, ভালও না। সারাক্ষণ মেজাজ খারাপ করে। থাকেন। দিনের মধ্যে দশবার বলেন, মাকে বিয়ে করে তাঁর এই হাল। মা হচ্ছে। মেয়ে-তৈরীর একটা যন্ত্র বিশেষ। মাঝে মাঝে এমন হয় –আমরা বোনরা মিলে ঠিক করি সবাই এক সঙ্গে বাড়ি ছেড়ে পালিয়ে যাব।</p>
+<p>কোথায় পালাবে?</p>
+<p>কোথায় পালাব ঠিক করতে পারি না বলেই তো পালানো হয় না। বিয়ে করে অন্য সংসারে চলে যাওয়াও এক ধরনের পালানো। তাই না আপা?</p>
+<p>হ্যাঁ তাই।</p>
+<p>আমার বিয়ে হলে বাবার খুব সুবিধা হবে। আমার ছোট দুই বোন খুবই রূপবতী। ওদের সঙ্গে সঙ্গে বিয়ে হবে যাবে। ওদের ভাল ভাল বিয়ের প্রস্তাব আসছে। একজন হল ইউনিভার্সিটির টিচার। কমনওয়েলথ স্কলারশিপ নিয়ে কানাডা যাচ্ছে। ওদের খুব আগ্রহ। বাবা রাজি হচ্ছেন না।</p>
+<p>রাজি হচ্ছেন না কেন?</p>
+<p>বাবা পরিষ্কার বলে দিয়েছেন, বড় মেয়ের বিয়ে না দিয়ে আমি ছোট মেয়েদের বিয়ে দেব না। অসম্ভব। এম্নিতেই আমার মেয়ের কষ্টের সীমা নেই। তাকে বাদ দিয়ে ছোট বোনদের বিয়ে দিয়ে কষ্ট বাড়াব –তা হবে না।</p>
+<p>তুমি একটু আগে বললে তোমার বাবা ভালও না, মন্দও না। তোমার কথা শুনে মনে হচ্ছে তিনি নিতান্তই ভাল মানুষ।</p>
+<p>তাঁর ভালমানুষি এই একটাই –আমাকে খুব আদর করেন। অতিরিক্ত আদর। এটাও তো ঠিক না। সব মেয়েকেই সমান আদর করা উচিত না?</p>
+<p>দুপুরে খাবার পর ওকে নিয়ে এক সঙ্গে বিছানায় গড়াতে গেলাম। অনেকদিন পর দুপুরে কথা বলার একজন সঙ্গী পাওয়া গেল। আমি বললাম, বীনু, আমি ঝোঁকের মাথায় বাবাকে বলেছি, এই মেয়েটিকে আমি যেতে দেব না। এখানে রেখে দেব। বাবলুর সঙ্গে বিয়ে দেব। তুমি ঝোঁকের কথায় কোন গুরুত্ব দিও না। ভালমত ভাব। ভেবে যদি ঠিক কর তুমি আমার ভাইকে বিয়ে করবে তাহলে আমি একটা কাজ করব।</p>
+<p>কি কাজ?</p>
+<p>বাবাকে বলব এই বাড়িঘর তোমাকে লিখে দিতে।</p>
+<p> কেন?</p>
+<p>সঙ্গত কারণেই এটা করতে হবে। নয়ত বাবলু সব বিক্রি-টিক্রি করে তোমাকে নিয়ে ভিক্ষা করতে বের হবে।</p>
+<p>বীনু গম্ভীর গলায় বলল, এই কাজ কখনো করবেন না। এটা করলে মনে হবে আপনি লোভ দেখিয়ে আমাকে রাজি করাচ্ছেন। আমি এম্নিতেই রাজি। আমি জানি এরচে ভাল বিয়ে আমার হবে না।</p>
+<p>.</p>
+<p>বিকেলে বাবলু চলে এল। আমার ঘরের সামনে দাঁড়িয়ে বলল, আপা, ঐ ছোঁকরি আছে না চলে গেছে?</p>
+<p>আছে।</p>
+<p>ওকে বের হতে বল, দিয়ে আসি। পান্নাভাবী যে এক একটা ঝামেলা তৈরি করে ভাল লাগে না! অসহ্য বোধ হয়।</p>
+<p>বাবলু সন্ধ্যাবেলা বীনুকে পৌঁছে দিয়ে আসতে গেল। ফিরল রাত এগারোটায়। মহা বিরক্ত।</p>
+<p>ঐ মেয়েকে সঙ্গে নিয়ে গিয়ে কি যে ঝামেলায় পড়েছি কহতব্য নয়। গিয়ে দেখি হেভী গ্যাঞ্জাম। মেয়েটার বাবা তার ছোট মেয়েকে হেভী চড় লাগিয়েছে। মেয়ে মেঝেতে পড়ে গিয়ে মাথাটাথা ফাটিয়ে রক্তারক্তি। বীনু তার বোনের অবস্থা দেখে শুরু করল মরাকান্না। কি আর করি বীনুকে! তার বোনকে নিয়ে গেলাম মেডিকেলে। স্টিচ করালাম, এটিএস দিলাম। বাসায় পৌঁছে দিলাম। তারপর আর আমাকে আসতে দেবে না। ভাত খেয়ে আসতে হবে। চিন্তা কর গ্যাঞ্জাম।</p>
+<p>তুই কি করলি? ভাত খেয়ে এলি?</p>
+<p>উপায় কি?</p>
+<p>কি দিয়ে খেলি?</p>
+<p>আজেবাজে খাওয়া– ডাল, ছোটমাছ। আমি বিরক্ত হয়ে বললাম –ডিম ভেজে দাও।</p>
+<p>তখন বীনু কি করল? নিশ্চয়ই হেসে ফেলল?</p>
+<p>বাবলু বিস্মিত হয়ে বলল, তুই কি করে বুঝলি?</p>
+<p>আন্দাজে বলেছি।</p>
+<p>কারেক্ট আন্দাজ করেছিস। বীনুর এমন হাসি! এর মধ্যে হাসার কি আছে? তারপর খেতে বসে আরেক যন্ত্রণা! সব কটা বোন গোল হয়ে আমার সামনে বসা।</p>
+<p>বোনগুলি সুন্দর না খুব?</p>
+<p>হ্যাঁ সুন্দর। পরীর হাট।</p>
+<p>তোকে ডিম ভেজে দিয়েছিল?</p>
+<p> হ্যাঁ।</p>
+<p>আমি কিছুক্ষণ চুপচাপ থেকে বললাম –বাবলু, তুই বীনু মেয়েটাকে বিয়ে করবি?</p>
+<p>বাবলু হা করে আমার দিকে তাকিয়ে রইল।</p>
+<p>.</p>
+<p><strong>০৮.</strong></p>
+<p>বসার ঘরে চশমা পরা অল্পবয়েসী একটা ছেলে বসে আছে। আমি ঘরে ঢুকে চমকে গেলাম। ছেলেটি.আরো বেশি চমকাল। নার্ভাস গলায় বলল, বাবলু সাহেব আমাকে এখানে বসিয়ে রেখে সিগারেট কিনতে গেছেন।</p>
+<p>ও কি বাবলুর বন্ধু বান্ধবদের কেউ? কথাবার্তায় সে রকম মনে হচ্ছে না। চোখে মোটা ফ্রেমের চশমা। হালকা সবুজ শার্টের উপর সাদা স্যুয়েটার। রোগা পাতলা একটি ছেলে। বিনীত ভঙ্গিতে দাঁড়িয়ে আছে। এ বাবলুর বন্ধু হতে পারে না। বাবলুর বন্ধুরা এত বিনয়ী নয়। তা ছাড়া তারা ঘরেও ঢুকে না। ভিডিও দোকানের সামনের বেঞ্চে বসে আড্ডা দেয়।</p>
+<p>আমি বললাম, তুমি দাঁড়িয়ে আছ কেন? বোস।</p>
+<p>তুমি বলাটা বোধহয় ঠিক হয়নি। বাবলু আমার এক বছরের ছোট। তার চেনামানুষরা তার বয়েসী হবে এটা ভাবার কোন কারণ নেই। তাছাড়া বাবলু আমার ছোট ভাই এবং তাকে তুই করে বলি বলেই তার পরিচিত সবাইকে তুমি বলব সেটাই-বা কেমন কথা? তবে ছেলেটিকে দেখেই ফস করে মুখ দিয়ে তুমি বের হয়ে। গেছে। এখন আপনি বলা অর্থহীন। নিজের অস্বস্তি ঢাকার জন্যেই কিছু কথা বলতে হয়। কথা খুঁজে পাচ্ছি না।</p>
+<p>তুমি কি চা খাবে?</p>
+<p>জ্বি না। এক গ্লাস পানি খেতে পারি। আপনাকে কষ্ট করতে হবে না –কারো হাতে পাঠিয়ে দিলেই হবে।</p>
+<p>আমি নিজেই পানি নিয়ে এলাম। সে যেভাবে পানি খেল তাতে মনে হল খুবই তৃষ্ণা পেয়েছে। বাবলু এখনো ফেরেনি। সিগারেট কিনতে তার এতটা সময় লাগার কথা না। সামনেই দোকান, যাবে আর নিয়ে আসবে।</p>
+<p>বাবলুর সঙ্গে কি দরকার?</p>
+<p>উনি বলছিলেন আপনার এই বাড়ি ভেঙে মাল্টিস্টোরিড বিল্ডিং করবেন। আমি একজন আর্কিটেক্ট –গত মাসে আমার রেজাল্ট হয়েছে।</p>
+<p>ও আচ্ছা। বাবলু তোমাকে নিয়ে এসেছে?</p>
+<p>জ্বি। আমি আপনাদের কাছেই থাকি –মেইন রোডের ওপাশে হলুদ রঙের একটা তিনতলা দালান আছে না? তার ঠিক পেছনের দোতলা বাড়িটা আমাদের।</p>
+<p>ও আচ্ছা। বাবলুর সঙ্গে তোমার পরিচয় কি ভাবে?</p>
+<p>আমি আর্কিটেক্ট শুনে উনি পরশুদিন গিয়েছিলেন। উনি হলেন প্রথম ব্যক্তি যিনি বাড়ির ডিজাইন করবার জন্যে আমার কাছে গিয়েছিলেন। আমি এত খুশি হয়েছিলাম। আমি উনাকে বলেছিলাম আপনার বাড়ির ডিজাইন আমি বিনা টাকায় করে দেব।</p>
+<p>বাবলুর জন্যে তো ভালই হল।</p>
+<p>নতুন পাশ করা আর্কিটেক্টের উপর তো মানুষের কনফিডেন্স থাকে না– তাদের অনেক কষ্ট করে উপরে উঠতে হয়।</p>
+<p>সেটা তো সবার জন্যেই সত্যি। বাবলু বোধহয় সিগারেট আনতে গিয়ে অন্য কোথাও চলে গেছে। তুমি না হয় অন্য আরেকদিন এসো। তুমি করে বলছি বলে রাগ করছ না তো? তোমাকে বাচ্চা বাচ্চা দেখাচ্ছিল –তুমি বলে ফেলেছি।</p>
+<p>তাতে কোন অসুবিধা নেই। আমি কি আপনাদের বাড়িটা একটু দেখতে পারি? এর মধ্যে বাবলু সাহেব হয়ত চলে আসবেন।</p>
+<p>বাড়ি দেখতে কোন অসুবিধা নেই, দেখ।</p>
+<p>আপনি কিন্তু এখনো আমার নাম জানতে চাননি –আমার নাম ইস্তিয়াক।</p>
+<p>ও আচ্ছা আচ্ছা –এসো, বাড়ি দেখ।</p>
+<p>ইস্তিয়াক খুব উৎসাহ নিয়ে ভেতরের উঠোনে এসে দাঁড়াল। হালকা গলায় বলল, পুরানো বাড়ির একটা আলাদা সৌন্দর্য আছে। আপন আপন লাগে। আধুনিক বাড়িগুলিতে নিজেদের অতিথির মত লাগে। আচ্ছা, আপনার কাছে কি গজফিতা আছে?</p>
+<p>কেন বল তো?</p>
+<p>একটু মাপব।</p>
+<p>গজফিতা নেই।</p>
+<p>আচ্ছা, গজফিতা আমি নিয়ে আসব। আপনি আমাকে একটা কাগজ আর পেন্সিল দিতে পারবেন? কয়েকটা পয়েন্ট নোট করে নিয়ে যেতাম।</p>
+<p>কাগজ আর পেন্সিল অবশ্যই দিতে পারব। মুশকিল হচ্ছে আমি এখন বেরুব। তুমি বরং বাবলুর সঙ্গে যোগাযোগ করে অন্য একদিন এসো।</p>
+<p>আজ বিকেলে যদি আসি আপনাদের অসুবিধা হবে?</p>
+<p>না, আমার কোন অসুবিধা হবে না।</p>
+<p>আপনি বোধহয় আমার উপর তেমন কনফিডেন্স পাচ্ছেন না। আমি এবার ফার্স্টক্লাস ফার্স্ট হয়েছি। ডিজাইনে আমি রেকর্ড নাম্বার পেয়েছি।</p>
+<p>তাই নাকি?</p>
+<p>জ্বি। নিজের মুখে নিজের কথা বলতে আমার খুবই লজ্জা লাগছে– কিন্তু আপনি এত অবহেলার সংগে আমাকে দেখছিলেন বলে বাধ্য হয়ে বললাম।</p>
+<p>বলে ভালই করেছ।</p>
+<p>আমি আমার জীবনের প্রথম ডিজাইনটা বিনা পারিশ্রমিকে করব বলে কেন ঠিক করেছি সেটাও আপনাকে বলি –লুই ক্যান তাই করেছিলেন।</p>
+<p>লুই ক্যান কে?</p>
+<p>লুই ক্যান হলেন পৃথিবীর সেরা স্থপতিদের একজন। ঢাকার সেকেণ্ড ক্যাপিটেল– সংসদ ভবন — এইসব তাঁর করা।</p>
+<p>ও আচ্ছা।</p>
+<p>আপনার সঙ্গে অনেক বকবক করে ফেলেছি। আপনি বোধহয় আমাকে বাঁচাল ভাবছেন। এম্নিতে আমি খুব কম কথা বলি।</p>
+<p>আমি হাসতে হাসতে বললাম, এম্নিতে কম কথা বল –তাহলে এখন এত বেশি কথা কেন বলছ?</p>
+<p>ইস্তিয়াক হাসল আর তখনি বাবলু ঢুকল। আমি হাঁপ ছেড়ে বাচলাম। অপরিচিত কারো সঙ্গে ভদ্রতা বজায় রেখে দীর্ঘ সময় কথাবার্তা বলতে ভাল লাগে না। তাছাড়া অনেক কাজ পড়ে আছে। বাবার হজমের সমস্যা হচ্ছে। তাঁর জন্যে পেপের তরকারী রান্না করতে হবে। পান্নাভাবী আমাকে নিয়ে কোথায় নাকি যাবেন। তিনি এমন এক মহিলা –একবার যখন ঠিক করেছেন আমাকে নিয়ে বের হবেন তখন বের হবেনই। কতক্ষণ লাগবে উনার কে জানে? অল্প সময়ের ব্যাপার হলে –দুপুরের রান্না চড়াবার আগেই সেরে আসা যায়। সমস্যা হচ্ছে– পান্নাভাবী। বলছেন না– তিনি কোথায় যাবেন, কতক্ষণের জন্য যাবেন।</p>
+<p>.</p>
+<p>.</p>
+<p>আমি পান্নাভাবীর সঙ্গে বের হলাম ভরদুপুরে। ইস্তিয়াক তখনো আছে। গজফিতা নিয়ে এসেছে। দুজনে মিলে মাপামাপি করছে। ইস্তিয়াকের যতটা উৎসাহ বাবলুর উৎসাহ তারচে বেশি। বাবা বারান্দায় বসে কিছুটা অবাক হয়েই মাপামাপি দেখছেন।</p>
+<p>পান্নাভাবী কোথায় যাচ্ছেন সেই রহস্য রিকশায় উঠে ভেদ করলেন। তিনি যাচ্ছেন অসম্ভব ক্ষমতাসম্পন্ন এক সাইকিকের কাছে। সেই সাইকিক নাকি বিবাহিত মেয়েদের চোখের দিকে তাকিয়ে তাদের স্বামীদের অনেক গুপ্ত ব্যাপার বলে দিতে পারেন। আমি বিরক্ত হয়ে বললাম –নাজমুল ভাইয়ের গুপ্ত ব্যাপার আপনি জানতে চাচ্ছেন জানুন –কিন্তু আমাকে সঙ্গে নিচ্ছেন কেন? আমি তো কিছু জানতে চাচ্ছি না।</p>
+<p>একা যেতে অস্বস্তি লাগে এই জন্যেই তোমাকে নিচ্ছি। আরেকটা কারণও অবশ্যি আছে। ঐ সাইকিক ভদ্রলোকের বাড়ির পাশেই বীনুদের বাসা। ওদের কাছ থেকেও ঘুরে আসব। বাবলুর সঙ্গে বীনুর বিয়ের কতদূর কি হল। তুমি তো বলেছিলে মেয়েটিকে পছন্দ হয়েছে। তারপর কি?</p>
+<p>পছন্দ হওয়া পর্যন্তই। আর এগুচ্ছে না। বাবলুর মেয়েটিকে পছন্দ হয়েছে। বলেই মনে হয়। তবে সে ঘোষণা দিয়েছে কোটিপতি না হবার আগে বিয়ে করবে না। মনে হচ্ছে –বাবলুর কোটিপতি না হওয়া পর্যন্ত বীনুকে অপেক্ষা করতে হবে</p>
+<p>সাইকিক ভদ্রলোককে এই ব্যাপারেও কাজে লাগানো যাবে। উনি বশীকরণ মন্ত্রও জানেন।</p>
+<p>বশীকরণ মন্ত্র দিয়ে বশ করিয়ে তারপর বাবলুকে বিয়ে দিতে হবে?</p>
+<p> প্রয়োজনে দিতে হবে।</p>
+<p>এই যুগে মন্ত্রতন্ত্র কেউ বিশ্বাস করে ভাবী?</p>
+<p>আগের যুগে বিশ্বাস করলে যদি কোন ক্ষতি না হয়ে থাকে –এ যুগে বিশ্বাস করলেও কোন ক্ষতি নেই। মন্ত্র তন্ত্র, কুফুরী কালাম এইসব আছে। তুমি ভদ্রলোকের সঙ্গে কথা বললেই বুঝবে।</p>
+<p>উনি কত টাকা নেন?</p>
+<p>ধরাবাঁধা কিছু নেই। খুশি হয়ে তুমি যা দেবে তাই নেবেন। কিছু না দিলেও ক্ষতি নেই।</p>
+<p>ভাবী, আমি ঐ লোকের কাছে যেতে চাচ্ছি না।</p>
+<p>তোমার নিজের জন্যেও তো তাঁর কাছে তোমার যাওয়া দরকার। পরীক্ষা করে। দেখতে দোষ কি? তুমি তোমার ছেলের কথা তাঁকে জিজ্ঞেস কর। দেখ উনি কি বলেন।</p>
+<p>ভদ্রলোক আর্মির রিটায়ার্ড সুবাদার। আর্মির সঙ্গে সাইকিক ক্ষমতার যোগসূত্র –ভাবতেই অস্বস্তি লাগে। লম্বা চওড়া মানুষ। মাথায় এক গাছি চুলও নেই– বেলের মত পরিষ্কার চকচকে একটা মাথা। মুখে প্রকাণ্ড গোঁফ আছে। ধবধবে সাদা। গোঁফ। ভাবভঙ্গি অমায়িক। দুপুরের খাওয়া সেরে পান চিবুচ্ছেন তখন আমরা উপস্থিত। অসময়ে উপস্থিত হওয়ায় ভদ্রলোক বিরক্ত না হয়ে খুশি হলেন বলে মনে হল। পান্নাভাবী এই লোকের অপরিচিত নন। পান্নাভাবীকে দেখেই তিনি হাসিমুখে বললেন, আবারো কোন সমস্যা?</p>
+<p>পান্নাভাবী হাসলেন।</p>
+<p>ভদ্রলোক বললেন –আপনি আপনার স্বামী নিয়ে শুধু শুধু দুশ্চিন্তা করছেন। উনি ভাল আছেন –উনার কোন সমস্যা নাই।</p>
+<p>ঠিক বলছেন তো?</p>
+<p>অবশ্যই ঠিক বলছি।</p>
+<p>আমার এক বোনকে নিয়ে এসেছি। ওর চোখের দিকে তাকিয়ে কিছু বলুন তো।</p>
+<p>ভদ্রলোক আমার দিকে তাকালেন। আমি সঙ্গে সঙ্গে বললাম, আপনাকে কিছু বলতে হবে না। পান্নাভাবী বললেন –না না, আপনি বলুন। আপনি ওর ছেলের সম্পর্কে বলুন। ওর ছেলের নাম টুকুন। ছেলেটা কেমন আছে?</p>
+<p>ভাল আছে।</p>
+<p>ও এখন কোথায় আছে? দেশে না দেশের বাইরে?</p>
+<p> ও এখন দেশেই আছে।</p>
+<p>আমি স্পষ্ট বিরক্তি নিয়ে বললাম, পান্নাভাবী, চলুন বাসায় যাই। আমার প্রচণ্ড মাথা ধরেছে।</p>
+<p>আর একটু বোস না।</p>
+<p>না, আমি আর এক সেকেণ্ড বসব না। প্লীজ ভাবী, চলুন।</p>
+<p>নিতান্ত অনিচ্ছায় পান্নাভাবী উঠলেন।</p>
+<p>.</p>
+<p>মানুষের মন যে কত দুর্বল তার সবচে বড় প্রমাণ হল ঐ দিন সন্ধ্যাবেলায় আমার খুব অস্থির লাগতে লাগল। বার বার মনে হচ্ছে –হতেও তো পারে –সাইকিক ভদ্রলোক ঠিকই বলেছেন। টুকুন এসেছে। মানুষের অস্বাভাবিক ক্ষমতা একেবারে যে থাকে না –তা তো না। ইএসপি নিয়ে পশ্চিমা দেশে আজকাল কত গবেষণা হচ্ছে।</p>
+<p>মানুষের ক্ষমতার কতটুকুই বা আমরা জানি? একবার খোঁজ নিয়ে আসতে তো দোষের কিছু নেই।</p>
+<p>রাত নটার দিকে অস্থির হয়ে পড়লাম। বাবলু আজ বাড়িতেই আছে। ওকে সঙ্গে নিয়ে মামুনের বাড়িতে উপস্থিত হওয়া যায় না। ওকে কিছু বলতে লজ্জা লাগছে। রাত নটা এমন কিছু রাত না। আমি একাই যেতে পারি, যেতে কতক্ষণ আর লাগবে? সত্যি সত্যি মামুনদের বাড়িতে উপস্থিত হলাম। মামুনের ইদানিং অনেক টাকাপয়সা হয়েছে– কিন্তু সে বাড়ি রেখেছে আগের মতই। সেই পুরানো গেট। পুরানো দেয়াল। শুধু দারোয়ান নতুন। সে আমার দিকে সরু চোখে তাকিয়ে রইল। তাকানোর ধরন থেকেই বলা যাচ্ছে নানান ধরনের প্রশ্ন করে সে আমাকে বিরক্ত করবে। আমি তাকে সে সুযোগ না দেয়ার জন্যেই বললাম –মামুন কি আছে?</p>
+<p>দারোয়ান হকচকিয়ে গিয়ে বলল, জি স্যার আছেন। যান, চলে যান।</p>
+<p>এ বাড়িতে আজ বোধহয় কোন পার্টি। অনেক গাড়ি –অনেক লোকজন। ড্রয়িং রুমে জায়গা না হওয়ায় অনেকে বসেছে বারান্দায় বেতের চেয়ারে। তপতী মেয়েটি বারান্দায় বসে কার সঙ্গে যেন গল্প করছে। মেয়েটা তো ভারী সুন্দর। সাদা শাড়িতে স্বরস্বতী প্রতিমার মত দেখাচ্ছে। রূপবতীদের ধবধবে সাদা শাড়িতে খুব মানায়। কিন্তু রূপবতীরা কেন জানি সাদা রং পছন্দ করে না। আমি কি করব? চলে যাব না সিঁড়ি বারান্দায় হতচকিত ভঙ্গিতে দাঁড়িয়ে থাকব?</p>
+<p>রাত্রি, তুমি দাঁড়িয়ে আছ কেন? এসো।</p>
+<p>মামুন নিজেই আমাকে এগিয়ে নিতে এলো। এরকম ভঙ্গি করল যেন আমি নিমন্ত্রিত অতিথিদের একজন। আসতে দেরি করেছি।</p>
+<p>কোন পার্টি না-কি?</p>
+<p>হু। আজ ফ্যাক্টরি স্টার্ট হল সেই উপলক্ষে পার্টি। তুমি ভাল দিনে এসেছ। এসো, ভেতরে এসো।</p>
+<p>তোমার পার্টির রসভঙ্গ করতে চাই না। টুকুন কি তোমার কাছে?</p>
+<p>না। ওর আসার কথা, আসেনি। এই মাসেই এসে যাবে। এলেই খবর পাবে। শুধু টুকুনের খোঁজ নিতেই এসেছ?</p>
+<p>হু। এখন যাই।</p>
+<p>একটু বসে যাও।</p>
+<p>না।</p>
+<p>চল তোমাকে গাড়ির ব্যবস্থা করে দেই, পৌঁছে দেবে।</p>
+<p> গাড়ি লাগবে না।</p>
+<p>মামুন হেসে ফেলে বলল, আমি তোমার বন্ধু না হতে পারি, শত্রু না। তুমি শত্রুর মত আমাকে দেখছ কেন? ড্রাইভার যাবে, তোমাকে পৌঁছে দিয়ে আসবে। ঢাকা শহরের যা অবস্থা –একা একা রাতে রিকশায় চলাই মুশকিল। তুমি একা এসেছ?</p>
+<p>আমি জবাব দিলাম না। এত মন খারাপ লাগছে –আমি ধরেই নিয়েছিলাম টুকুনকে পাওয়া যাবে। দেখা হলে প্রথম কোন কথাটা বলব তাও ভেবে এসেছি — কেমন আছেন গো বড় ব্যাটা টুকুন সোনা? এই বাক্যটির বিশেষ মাহাত্ম আছে। চির গম্ভীর টুকুনের গাম্ভীর্য এই বাক্যটিতে কেন জানি ভেঙে যেত। সে ফিক করে হেসে ফেলতো। হেসে ফেলেই বুঝতো, হাসা ঠিক হয়নি। সে গম্ভীর হবার চেষ্টা করে আরো বেশি হেসে ফেলতো।</p>
+<p>.</p>
+<p>বাসায় ফিরে দেখি –বাবলু চিন্তিত মুখে বাইরে বারান্দায় হাঁটাহাঁটি করছে। সে আমাকে দেখেই হুংকার দিয়ে উঠল –কাউকে কিছু না বলে কোথায় গিয়েছিলি? আমরা চিন্তায় চিন্তায় অস্থির। বাবা এর মধ্যে একশবার দোতলা একতলা করেছেন। গিয়েছিলি কোথায়?</p>
+<p>কোথাও না –রিকশা করে রাস্তায় ঘুরেছি।</p>
+<p> কেন?</p>
+<p> এম্নি ঘুরলাম। ভাত খেয়েছিস?</p>
+<p>না। তোর কোন খোঁজ নেই –আমি চিন্তায় চিন্তায় অস্থির। এর মধ্যে ভাতও খেয়ে ফেলব? তুই ভাবিস কি আমাকে?</p>
+<p>আয় ভাত খেয়ে নেই। খিদে লেগেছে।</p>
+<p>বাবা বললেন, রাতে কিছু খাবেন না। শুধু এক গ্লাস লেবুর শরবত খাবেন। আমি কোথায় গিয়েছিলাম –কেন গিয়েছিলাম কিছুই জিজ্ঞেস করলেন না। আমি যে ফিরে এসেছি এই আনন্দেই তিনি অভিভূত।</p>
+<p>.</p>
+<p>খেতে বসে বাবলু হড়বড় করে নানান কথা বলতে লাগল। বুঝলি আপা, ইস্তিয়াককে তো দেখেছিস স্কলার ছেলে। ছোট-খাট দেখতে কিন্তু ধানী মরিচ। রেকর্ড মার্ক পেয়ে বেড়াছেঁড়া অবস্থা। স্কলারশীপ পাওয়ার সম্ভাবনা। পেলেই বিদেশ চলে যাবে। স্কলার ছেলে তো দেশে থাকে না। আমার কাজটা বিনা পয়সায়। করে দেবে।</p>
+<p>বিনা পয়সায় তুই-ই-বা কেন একটা লোককে দিয়ে কাজ করাবি?</p>
+<p>টাকা নিতে না চাইলে আমি কি করব? আমি তো দিতেই চাই।</p>
+<p>তুই তাহলে সত্যি সত্যি মাল্টিস্টোরিড বিল্ডিং বানাচ্ছিস?</p>
+<p>অবশ্যই বানাচ্ছি। দুটা এ্যাপার্টমেন্ট বিক্রি করব। ব্যাংক লোন নেব। ব্যাংক লোনের ব্যবস্থাও ইস্তিয়াক করবে –ওর এক মামা হলেন অগ্রণী ব্যাংকের এম. ডি।</p>
+<p>তুই তো দেখি মাছের তেলে মাছ ভেজে ফেলেছিস।</p>
+<p>বাবলু আনন্দে হেসে ফেলল। অনেকদিন পর আজ এই প্রথম খাওয়া নিয়ে হৈ চৈ করল না।</p>
+<p>আপা!</p>
+<p>কি?</p>
+<p>বাবলু ইতস্তত করে বলল, আজ বিকেলে বীনুদের বাড়ি গিয়েছিলাম। ওদের বাসার সামনে দিয়ে যাচ্ছিলাম, হঠাৎ মনে হল, ঐদিন ছোট মেয়েটা মাথায় ব্যথা পেয়েছে –খোঁজ নিয়ে যাই। নয়ত আবার ভাবতে পারে –কেমন মানুষ, খোঁজ নিল না!</p>
+<p>খোঁজ নিয়েছিস?</p>
+<p>হু।</p>
+<p>আছে কেমন?</p>
+<p>ভালই আছে –তবে বীনুর জ্বর। ওর নাকি রাতে শোবার আগে গোসল করার অভ্যাস। গোসল করতে গিয়ে ঠাণ্ডা লাগিয়েছে। চুল লম্বা তো –গোসল করে ভেজা চুল শুকায় না।</p>
+<p>তুই কি চুল মেপে এসেছিস?</p>
+<p> মাপতে হবে কেন? লম্বা চুল দেখে বোঝা যায় না?</p>
+<p> কি কথা হল বীনুর সঙ্গে?</p>
+<p>কথা আর কি হবে? আমি যাই বলি এই মেয়ে শুধু মুখ অন্যদিকে নিয়ে হাসে। দেশের পলিটিকস নিয়ে একটা সিরিয়াস কথা বলেছি, সেটা শুনেও হেসে ফেলেছে।</p>
+<p>তোর সিরিয়াস কথা না বলাই ভাল। সবার মুখে সিরিয়াস কথা মানায় না।</p>
+<p>বাবলু বিরক্ত হয়ে বলল, তুই ঠাট্টা করছিস? আমাকে তুই এত বোকা ভাবিস কেন? আমার কাজকর্ম, কথাবার্তা বোকার মত, বুদ্ধি বোকার মত না।</p>
+<p>আমি হাসলাম। বাবলু বলল, শুধু শুধু হাসিস না –ভাল কথা, আমি বীনুকে বলেছি তুই তাকে এ বাড়িতে আসতে বলেছিস। তোর কি যেন জরুরী কথা।</p>
+<p>আমি অবাক হয়ে বললাম, কই, কখন বললাম?</p>
+<p>আহা, আমি মিসটেক করে একটা কথার কথা বলে ফেলেছি, তুই তাই ধরে রেখেছিস কেন? মানুষ মিসটেক করে না?</p>
+<p>বীনু কখন আসবে?।</p>
+<p>অসুখ কমলেই আসবে। কে জানে অসুখ নিয়েই হয়ত আসবে। তুই জরুরী কথা বলার জন্যে ডেকেছিস এটা শুনেই সে অস্থির হয়েছে।</p>
+<p>আমি হাসছি। আমার হাসি দেখে বাবলু খুব বিরক্ত হচ্ছে।</p>
+</div>
+<br/>
+<h2>৩. অস্বস্তিকর দৃশ্য</h2>
+<hr/>
+<br/>
+
+<div>
+<p><strong>০৯.</strong></p>
+<p>ভোরবেলাটা অস্বস্তিকর এক দৃশ্য দিয়ে শুরু হয়েছে। আমাদের উঠোনে রাণী দাঁড়িয়ে কাঁদছে। পাশে তার ট্রাঙ্ক। পান্নাভাবী সবার সামনে তার ট্রাঙ্কের তালা খুলছেন। রাণীকে বিদেয় করে দেয়া হয়েছে। বিদায় মুহূর্তে তার বিছানা তার ট্রাংক তল্লাসি করা হচ্ছে। এই তল্লাসি করা হচ্ছে বেশ আয়োজন করে। পান্নাভাবীর বাড়ির কাজের ছেলেটা দাঁড়িয়ে আছে, তাদের ড্রাইভার আছে। কৌতূহল নিয়ে তাকিয়ে আছে বাবলু। একটু দূরে শুকনো মুখে নাজমুল ভাই দাঁড়িয়ে। তিনি বললেন –তল্লাসি আড়ালে করলে হত না?</p>
+<p>পান্নাভাবী ফোঁস করে বললেন –চুরি আড়ালে করা হয়। তল্লাসি আড়ালে হয় না। তোমার বাড়তি মায়া কেন? তোমার খারাপ লাগলে চলে যাও। তোমাকে দাঁড়িয়ে থাকতে কে বলেছে?</p>
+<p>নাজমুল ভাই চলে যেতে ধরলেন। পান্নাভাবী বললেন, না, তুমি যাবে না। তুমি দাঁড়াও। নাজমুল ভাই দাঁড়িয়ে পড়লেন।</p>
+<p>রাণীর বিছানায় কিছু পাওয়া গেল না। ট্রাঙ্ক খোলা হল। ট্রাঙ্কের এক কোণে রুমালে মোড়া পান্নাভাবীর সোনার বালা পাওয়া গেল। রাণী চেঁচিয়ে কাঁদতে শুরু করল। পান্নাভাবী বালাটার দিকে হতভম্ভ হয়ে তাকিয়ে আছেন।</p>
+<p>বাবলু বলল, এমি এমি ছেড়ে দেয়া ঠিক হবে না ভাবী। পুলিশে হ্যান্ডঅভার করে দিতে হবে।</p>
+<p>পান্নাভাবী কঠিন গলায় বললেন, তুই চুপ করে থাক। কি করতে হবে না করতে হবে আমি জানি। এই রাণী, মরাকান্না কাঁদবি না। খবর্দার।</p>
+<p>রাণী কাঁদতে কাঁদতে বলল, আম্মা, আমি কিছুই জানি না।</p>
+<p>তোকে কিছু জানতে হবে না। কাঁদতে হবে না। তুই চলে যা। তোকে যেন এ বাড়ির ত্রিসীমানায় না দেখি।</p>
+<p>পান্না ভাবী তাকে এক মাসের বেতন দিয়ে দিলেন। রোজার ঈদের আগে একবার এসে জাকাতের শাড়ি নিয়ে যেতে বললেন। নাটকের অবসান ঘটিয়ে আমাকে বললেন, তোমার সঙ্গে কথা আছে –রাত্রি, আমার সঙ্গে একটু আস। ছাদে আস।</p>
+<p>কথা শোনার জন্যে ছাদে যেতে হবে কেন? এইখানেই বলুন।</p>
+<p>না, এখানে বলা যাবে না –জরুরী কথা। অসম্ভব জরুরী।</p>
+<p>আমি বিরক্তমুখে পান্নাভাবীর অসম্ভব জরুরী কথা শোনার জন্যে ছাদে গেলাম। সকালের কড়া রোদে আমার কখনো ছাদে যেতে ইচ্ছা করে না। ছাদ হল রাতের জন্যে। সকালের জন্যে বারান্দা এবং দুপুরের জন্যে দরজা-জানালা বন্ধ ঘর।</p>
+<p>আপনার জরুরী কথাটা কি পান্নাভাবী?</p>
+<p>রাণীকে বিদেয় করে দিলাম।</p>
+<p> সে তো দেখতেই পেলাম।</p>
+<p>কোন একটা বড় অজুহাত না দিয়ে তো বিদায় করা যায় না –এই জন্যেই চুরির ব্যাপারটা নিয়ে এসেছি।</p>
+<p>ও তাহলে চুরি করেনি?</p>
+<p>না, হাতের বালাটা রুমালে ঢুকিয়ে আমি এর ট্রাঙ্কে রেখে দিয়েছিলাম। মেয়েটার স্বভাব-চরিত্র খারাপ হলেও চুরির অভ্যাস নেই।</p>
+<p>ভাবী, এরকম একটা নোংরা কাজ কেন করলেন?</p>
+<p>সেটাই তোমাকে বলার জন্যে এখানে নিয়ে এসেছি। তোমার ভাইকে শায়েস্তা করার জন্যে এটা করেছি। তোমার ভাইকে বলেছি রাণীর প্রেগনেন্সি টেস্ট পজিটিভ এসেছে। এবং আমি তোমার ভাইকেই সন্দেহ করছি। এতে হবে কি –সারাজীবন সে ভয়ে আধমরা থাকবে।</p>
+<p>তাঁর দায়দায়িত্ব থাকলে তবেই ভয়ে আধমরা থাকবেন। তাঁর কোন দায়-দায়িত্ব নেই যখন তখন যা হবে –তিনি ক্রমেই আপনাকে অপছন্দ করতে থাকবেন।</p>
+<p>তুমি এরকম আজেবাজে কথা বলবে না।</p>
+<p>ভাবী, আমি কোন আজেবাজে কথা বলছি না। যা সত্যি সেটাই বলছি। একটা মানুষকে আপনি ক্রমেই দেয়ালের দিকে চেপে ধরছেন। এক সময় তার নিঃশ্বাস নেবার জায়গাও থাকবে না। তখন ভয়াবহ ব্যাপার হবে।</p>
+<p>কি ভয়াবহ ব্যাপার হবে? সে আমাকে মেরে ফেলবে?</p>
+<p>না, তা উনি করবেন না। মানুষের স্বভাব অতি বিচিত্র। এত কিছুর পরেও তিনি আপনাকে ভালবাসেন। সেই ভালবাসার কারণে আপনি বেঁচে যাবেন। সমস্যা হবে তাঁর। তিনি নিজে ভয়ংকর কিছু করে বসবেন। একদিন দেখবেন ফ্যানের সিলিং-এ ঝুলছেন, কিংবা ছাদ থেকে রাস্তায় লাফিয়ে পড়ে গেছেন।</p>
+<p>পান্নাভাবী কঠিন গলায় বললেন, তোমার এত বুদ্ধি, তোমার এত বিবেচনা কিন্তু নিজের সংসারে এই বুদ্ধি-বিবেচনা কাজে লাগল না কেন? তোমাকে কেন গলাধাক্কা। দিয়ে বের করে দিল?</p>
+<p>আমি অবাক হয়ে পান্নাভাবীর দিকে তাকিয়ে আছি। তাকে এখন দেখাচ্ছে ক্রুদ্ধ বাঘিনীর মত। কুদ্ধ বাঘিনী কেমন দেখতে আমি জানি না কিন্তু পান্নাভাবীর রাগে টকটকে লাল হওয়া মুখ আর বড় বড় চোখের দিকে তাকিয়ে বাঘিনীর কথাই মনে পড়ল।</p>
+<p>রাত্রি শোন –তোমাকে আমি ছোটবোনের মত দেখি –তোমাকে স্নেহ করি। সেই জন্যেই এতদিন কিছু বলিনি –কিন্তু তলে তলে তুমি কি করছ তা-কি আমি জানি না? ভাল করেই জানি।</p>
+<p>আমি কি করছি?</p>
+<p>রাত দুটা-তিনটায় তোমার নাজমুল ভাইয়ের সঙ্গে গুজগুজ, ফুসফুস-এর অর্থ কি আমি জানি না? আমি ঠিকই জানি।</p>
+<p>প্লীজ ভাবী, আপনি চুপ করুন। আপনি কি বলছেন আপনি নিজে বুঝতে পারছেন না?</p>
+<p>আমি কচি খুকী। আমি এখনো বোতলে করে দুদু খাই। কাজেই আমি কিছু বুঝতে পারি না। আর তুমি সব বোঝ। সব জান। তুমি ভেবেছে কি? এত সহজে তোমাকে ছেড়ে দেব? হাটে হাড়ি ভেঙে দেব না? আমাকে এত সহজ মেয়ে মনে করবে না। তুমি আমার সংসার ভেঙেছ। আমিও তোমার সংসার ভাঙব।</p>
+<p>ভাবী, আমার কোন সংসার নেই, কাজেই ভাঙার প্রশ্ন আসে না। তাছাড়া আপনার সংসার ভাঙেনি। ভাঙার কোন সম্ভাবনা নেই।</p>
+<p>পান্নাভাবীর চোখ জ্বলছে। হাত-পা কাঁপছে। এ কী ভয়ংকর অবস্থা!</p>
+<p>শোন রাত্রি, আমার সংসার ভাঙার জন্যে আমি তোমাকে অভিশাপ দিচ্ছি– তুমি কোনদিন তোমার ছেলেকে কাছে পাবে না। কোনদিন না। কোনদিন না।</p>
+<p>আমি পান্নাভাবীর কথায় রাগ করলাম না। সহজ গলায় বললাম– ছেলেকে কাছে না পেলে না পাব। আপনি দয়া করে শান্ত হোন।</p>
+<p>পান্নাভাবী হাউমাউ করে কাঁদছেন। আমি নিচে চলে এলাম। পান্নাভাবীর পাশে ছাদে দাঁড়িয়ে থাকার কোন অর্থ হয় না। বাবাকে নিয়ে ইসলামিয়া চক্ষু হাসপাতালে। যেতে হবে। তার চোখে না-কি সমস্যা হচ্ছে। ভাল দেখতে পাচ্ছেন না। তার নিজের কোন অভিযোগ নেই। টিভি ছেড়ে তিনি টিভির সামনে বসে থাকেন। কিন্তু তার চোখ-মুখ দেখ মনে হয় তিনি কিছু দেখছেন না।</p>
+<p>ইসলামিয়া চক্ষু হাসপাতালের ডাক্তার বললেন –আপনার চেখের অবস্থা খুবই খারাপ। আপনি তো কিছুই দেখছেন না। এতদিন আসেননি কেন?</p>
+<p>বাবা বললেন, আমার তেমন অসুবিধা হচ্ছে না।</p>
+<p>চোখে দেখচ্ছেন না আর আপনার অসুবিধা হচ্ছে না এসব আপনি কি বলছেন?</p>
+<p>অনেক তো দেখলাম। আর কত? আমার কোন আফসোস নেই ডাক্তার সাহেব। আমি ভাল আছি। সুখেই আছি।</p>
+<p>আপনিই খুবই অদ্ভুত কথা বলছেন– যাই হোক, সেটা আপনার ব্যাপার– আমার যা বলার বলি। আপনার বা চোখে এখনো কিছু দৃষ্টিশক্তি আছে। তবে ছানি পড়েছে। ছানি কেটে দিতে হবে। আপনি অবশ্যই হাসপাতালে ভর্তি হবেন।</p>
+<p>জি আচ্ছা, হব।</p>
+<p>বাবাকে নিয়ে রিকশায় করে ফিরছি। বাবা ডান হাতে আমাকে জড়িয়ে ধরে রেখেছেন। ভাবটা এরকম যেন রিকশা থেকে ঝাঁকুনি খেয়ে পড়ে গেলে আমাকে রক্ষা করবেন।</p>
+<p>খুকী?</p>
+<p>জ্বি বাবা।</p>
+<p>সুন্দর একটা সংসার শুরু করেছিলাম। সব একেবারে ছিন্নভিন্ন হয়ে গেল। চোখ দিয়ে আমি কি করব বল? কি দেখব আমি?</p>
+<p>সব আবার ঠিক হয়ে যাবে। বাবলুর বিয়ে হলেই সংসারের চাকা ঘুরে যাবে।</p>
+<p> এই কথা কেন বলছিস?</p>
+<p>আমার মন বলছে। বীনু মেয়েটার ভেতর সংসার সাজানোর ক্ষমতা আছে। ও যেখানে থাকবে সেখানেই আনন্দ তৈরি হবে।</p>
+<p>তোর মধ্যেও তো সেই ক্ষমতা ছিল।</p>
+<p>হ্যাঁ আমার মধ্যেও ছিল। ক্ষমতা কাজে লাগানোর ব্যাপার আছে। সবাই ক্ষমতা কাজে লাগাতে পারে না। বীনু পারবে। কাজেই চোখ ঠিক করতে হবে। ওদের সাজানো সংসার তোমাকে দেখতে হবে না?</p>
+<p>তা তো হবেই। খুকী!</p>
+<p> জ্বি বাবা।</p>
+<p>একটু পার্কের দিকে বেড়াতে যাবি? তোরা তো জানিস না তোর মার এই একটা শখ ছিল –আমাকে নিয়ে পার্কে ঘোরা। তোরা শুনলে হাসাহাসি করবি। এই জন্যে তোদের লুকিয়ে সে পার্কে যেত। গাছপালা তার এত পছন্দ ছিল!</p>
+<p>চল পার্কে যাই। বোটানিক্যাল গার্ডেনে যাবে?</p>
+<p>চল যাই। আরেকটা কথা তোকে বলি খুকী– ডাক্তার আমার চোখ যত খারাপ বলছে আমার চোখ তত খারাপ না। রাতে দেখতে কষ্ট হয় কিন্তু দিনের বেলা আমি ভালই দেখি।</p>
+<p>আমাকে দেখতে পাচ্ছ?</p>
+<p>অবশ্যই পাচ্ছি।</p>
+<p>বাবা হঠাৎ গম্ভীর হয়ে গেলেন। ছোট্ট করে নিঃশ্বাস ফেললেন। তিনি সম্ভবত ডুব দিয়েছেন নিজের জগতে। সব মানুষকেই কখনো না কখনো নিজের জগতে ডুব দিতে হয়। বয়স বাড়ার সঙ্গে সঙ্গে সেই জগতে ডুবে থাকার সময় ক্রমেই বাড়তে থাকে। মৃত্যু বোধহয় পুরোপুরি ডুবে যাওয়া। বাবার এই নিজস্ব জগক্টা কেমন কে জানে! আজকাল আমার জানতে ইচ্ছে করে। খুব জানতে ইচ্ছে করে। বাবা গাঢ় স্বরে বললেন, ও খুকী!</p>
+<p>কি বাবা?</p>
+<p>তোকে নিয়ে ঘুরছি। খুব ভাল লাগছে রে মা।</p>
+<p>ভাল লাগলে আজ সারাদিন বোটানিক্যাল গার্ডেনে বসে থাকব। আর পথে পথে হাঁটব।</p>
+<p>বাবা এক হাতে চোখ মুছলেন। গভীর আনন্দে তার চোখে পানি এসেছে কি না বুঝতে পারছি না। আজকাল এম্নিতেই তাঁর চোখ দিয়ে পানি পড়ে।</p>
+<p>.</p>
+<p><strong>১০.</strong></p>
+<p>আমি দোতলার বারান্দা থেকে দেখলাম ইস্তিয়াক, বাবলু এবং বীনু গজফিতা নিয়ে টানাটনি করছে। মাঝ-উঠোনে একটা টেবিল বিছানো হয়েছে। সেই টেবিলে। পেপারওয়েটে চাপা দেয়া কিছু কাগজপত্র, একটা পেনসিল। ইস্তিয়াক মাঝে মাঝে টেবিলের কাছে যাচ্ছে –কি সব লিখছে আবার মাপামাপি হচ্ছে। শুরুতে শুধু ইস্তিয়াক এবং বাবলু ছিল। বীনু এসেছে কিছুক্ষণ আগে। সে দোতালায় উঠতে যাচ্ছিল, বাবলু ধমকের মত গলায় বলল, বীনু, ফিতার মাথাটা ধর তো।</p>
+<p>আমি দোতলা থেকে বীনুর মুখ দেখতে পাচ্ছিলাম না, সে সম্ভবত হাসল, কারণ বাবলুর কঠিন গলা শুনলাম, হাসছ কেন? একটা কাজ করতে বলছি এর মধ্যে হাসির কি আছে? না-কি ফিতার মাথা ধরলে মানহানি হবে।</p>
+<p>বীনুর গলা শুনলাম। সে বলল, মানহানি হবে না, দিন ধরছি।</p>
+<p>বাবলু বলল, এ হচ্ছে ইস্তিয়াক। স্কলার ছেলে। ফার্স্টক্লাস ফার্স্ট হয়েছে। ডিজাইন বলে একটা ব্যাপার আছে, সেই ডিজাইনে রেকর্ড মার্ক পেয়েছে। ইস্তিয়াক আমার বাড়ির প্ল্যান করে দিচ্ছে। একটা পয়সা নিচ্ছে না।</p>
+<p>বীনু বলল, এত সুন্দর বাড়ি আপনারা ভেঙে ফেলবেন?</p>
+<p>বাবলু বিরক্ত গলায় বলল, সুন্দরের তুমি কি দেখলে? অন্ধকার বাড়ি। আলো নেই, বাতাস নেই, চারদিকে ঘর।</p>
+<p>আমার এরকম বাড়িই ভাল লাগে।</p>
+<p>তোমার ভাল লাগলে তো হবে না। সবার ভাল লাগতে হবে। তুমি আবার কোথায় রওনা হলে?</p>
+<p>আপার সঙ্গে দেখা করে আসি।</p>
+<p>আপা তো পালিয়ে যাচ্ছে না। কাজের মাঝখানে চলে যাওয়া আমার খুবই অপছন্দ।</p>
+<p>আচ্ছা যাচ্ছি না। এখন কি করতে হবে বলুন?</p>
+<p>ইস্তিয়াক যাই বলবে তুমি তাই করবে। আমি এই ফাঁকে চট করে দোকান থেকে চা নিয়ে আসি। ইস্তিয়াকের আবার মিনিটে মিনিটে চা লাগে। আপাকে কতবার আর বলব?</p>
+<p>আমি দেখলাম বাবলু ফ্লাস্ক নিয়ে হন্তদন্ত হয়ে চলে যাচ্ছে। সে যে কি আনন্দে আছে তা দূর থেকেও আমি বুঝতে পারছি। ইস্তিয়াক ছেলেটির প্রতি কৃতজ্ঞতায় আমার মন ভরে গেল। এই ছেলে বাবলুর ভেতর স্বপ্ন জাগিয়ে তুলেছে। স্বপ্ন তৈরি করা সহজ ব্যাপার না। বড় লেখক, বড় কবি এবং মহাপুরুষরাই শুধু স্বপ্ন জাগাতে পারেন।</p>
+<p>বীনু এতক্ষণ পর আমাকে দেখল। হাসল। আমি বললাম, কি খবর বীনু?</p>
+<p>আপা, আপনি নাকি আমাকে খবর দিয়েছেন, খুব জরুরি?</p>
+<p>আমি হাসলাম। বীনু সিঁড়ি বেয়ে উঠে এল।</p>
+<p> জরুরি খবরটা কি?</p>
+<p>আমি আবারও হাসলাম। বীনু বলল, বাবলু ভাই যে মিথ্যেমিথ্যি আমাকে আসতে বলেছেন সেটা তখনি বুঝেছি।</p>
+<p>বেশি বেশি বুঝা ভাল না বীনু। যারা বেশি বুঝে তাদের অনেক সমস্যা।</p>
+<p>যারা কম বুঝে তাদের আরো অনেক বেশি সমস্যা।</p>
+<p>আমার ভাইটাকে কি তোমার পছন্দ হয়েছে?</p>
+<p>বীনু অন্যদিকে মুখ ফিরিয়ে হাসল। প্রসঙ্গ পাল্টাবার জন্যে বলল, ইস্তিয়াক সাহেব কি উনার বন্ধু?</p>
+<p>এখন তো সেরকমই মনে হচ্ছে। তবে সম্পর্কটা ঠিক বন্ধুর মত না। অনেকটা গুরু-শিষ্যের মত। ইস্তিয়াককে সে পীরের মত দেখছে।</p>
+<p>আমারও তাই মনে হয়েছে।</p>
+<p>বাবলু চায়ের ফ্লাস্ক নিয়ে এসে আবার বের হয়ে গেছে। তার অতি ব্যস্ত ভঙ্গি। নিশ্বাস ফেলার সময়ও নেই এমন ভাব। আমি নিচে নেমে এলাম। আমারও দোকানের চা খেতে ইচ্ছা করছে। চা খেতে খেতে ইস্তিয়াকের সঙ্গে কিছুক্ষণ গল্প করা যাক। নিজের কাজকর্ম ফেলে ও যে ভাবে আমাদের এখানে পড়ে আছে দেখে মায়াই লাগে।</p>
+<p>ইস্তিয়াকের খবর কি?</p>
+<p>তেমন কোন খবর নেই আপা। মোটামুটি ড্রয়িং একটা পঁড়া করিয়েছি। এক সপ্তাহের মধ্যে ফাইনাল করে ফেলব।</p>
+<p>কি রকম হচ্ছে ডিজাইন?</p>
+<p>সহজ, কিন্তু সুন্দর। বাড়িটার দিকে তাকিয়ে কেউ চোখ বড় বড় বলবে না — আরে, এটা কি? আবার বাড়িটার দিকে না তাকিয়ে কেউ চলে যাবে তাও হবে না।</p>
+<p>জিনিসটা হবে কেমন?</p>
+<p>একতলায় অর্ধেক হবে ফাঁকা। গাড়ির গ্যারেজ, বাকি অর্ধেকে বাবলু সাহেবের ভিডিও, স্টুডিও, কিছু দোকানপাট। দোতলা, তিনতলা, চারতলায় এ্যাপার্টমেন্ট। প্রতি দোতলায় দুটা করে মোট ছটা। ছাদটা হবে রিক্রিয়েশন স্পট।</p>
+<p>সেখানে কি থাকবে?</p>
+<p>একটা সুইমিং পুল থাকবে, ব্যাডমিন্টন কোর্ট এবং টেনিস কোর্ট থাকবে। হেথ ক্লাব থাকবে।</p>
+<p>বল কি?</p>
+<p>আরো আছে– বাচ্চাদের একটা সেকশন আছে</p>
+<p> তুমি দেখি ভয়াবহ কাণ্ডকারখানা শুরু করেছ।</p>
+<p>ভয়াবহ কিছু করছি না আপা। আমি যা করছি তা হল অসম্ভব সুন্দর একটা ডিজাইন দিয়ে যাচ্ছি। যদিও জানি আপনারা এই বাড়ি কখনোই ভাঙবেন না।</p>
+<p>ইস্তিয়াকের কথায় আমি চমকালাম। আমার চমক ইস্তিয়াকের চোখ এড়াল না। সে সহজ গলায় বলল, আপনারা কেন এই বাড়ি ভাঙবেন না সেটাও আমি জানি। এই বাড়ি ঘিরে আপনাদের অনেক স্মৃতি। বাড়ি ভাঙা মানে স্মৃতি নষ্ট করে ফেলা। স্মৃতির ব্যাপারে মানুষ খুব স্পর্শকাতর। সে সবকিছু নষ্ট করতে রাজি, স্মৃতি নষ্ট করতে রাজি না। এ ছাড়া আছে সাহসের অভাব। অভ্যস্ত পরিবেশ থেকে নতুন পরিবেশে যেতে যে সাহস লাগে আমাদের সেই সাহস নেই বললেই হয়।</p>
+<p>বীনু বলল, আপনি যখন নিশ্চিত এই বাড়ি ভাঙা হবে না তাহলে কষ্ট করে ডিজাইন করছেন কেন?</p>
+<p>করছি, কারণ ডিজাইন শেষ করবার পর, ডিজাইন দেখিয়ে আমি আপনাদের বাড়ি ভাঙার ব্যাপারে প্রভাবিত করতে পারব ভেবেই করছি। আমার আত্মবিশ্বাস প্রবল।</p>
+<p>আমি বললাম, তুমি চায়ের কাপ হাতে নিয়ে — দাঁড়িয়ে আছ। চা খাচ্ছ না।</p>
+<p>ইস্তিয়াক বলল, আমি চা একেবারেই খাই না। বাবলু সাহেবকে এই কথা কয়েকবার বলেছি, তারপরেও কেন জানি উনার মাথায় ঢুকে গেছে আমি মিনিটে মিনিটে চা খাই। উনি চায়ের কাপ আমার হাতে দেন। আমি এক-দুচুমুক খেয়ে। ফেলে দেই। চা-টা যে আমি ফেলে দিচ্ছি সেটাও উনার চোখে পড়ছে না।</p>
+<p>আমি বললাম, ইস্তিয়াক! তুমি আজ দুপুরে আমাদের সঙ্গে খাবে। তেমন কিছু না, আমরা যা খাই তাই খাবে। ডাল ভাত। ভাল কথা, বাবলু কি তোমার সঙ্গে বীনুর পরিচয় করিয়ে দিয়েছে?</p>
+<p>না, পরিচয় করিয়ে দেননি। তবে উনার কথা শুনেছি।</p>
+<p>কোথায় শুনেছ?</p>
+<p> বাবলু সাহেব বলেছেন।</p>
+<p> বীনু বিস্মিত হয়ে বলল, কি বলেছেন?</p>
+<p>বলেছেন –বীনু মেয়েটার বিশ্রী কিছু অভ্যাস আছে। রাতের বেলা ঠাণ্ডা পানি দিয়ে গোসল করা। রোজ রাতে ঠাণ্ডা পানিতে গোসল করে। চুল শুকায় না –ঠাণ্ডা লেগে যায়। আপনি নাকি দুদিন পরে পরেই জ্বরজারি বাঁধিয়ে ফেলেন।</p>
+<p>আমি তাকালাম বীনুর দিকে। সে খুব লজ্জা পাচ্ছে। আবার খুব আনন্দও পাচ্ছে। লজ্জা ও আনন্দে তার চোখ চকচক করছে।</p>
+<p>ইস্তিয়াক আমার দিকে তাকিয়ে বলল, আপা, আপনি আমার একটা কথা মন দিয়ে শুনুন। বাড়ি ভেঙে ফেলুন। ব্যাংক লোনের ব্যবস্থা আমি করে দেব। এর ফল শুভ হবে।</p>
+<p>আমি চাপা গলায় বললাম, বাড়ির দক্ষিণে যে বকুল গাছ আছে সেই বকুলতলায় আমার মার করব আছে।</p>
+<p>আপনার মা মাটির নিচে বাস করছেন না। তাঁর শরীর মাটিতে মিশে গেছে। তার পরেও বলছি –আপনার মার কবরের জায়গাটার উপর কোন স্ট্রাকচার উঠবে না। ডিজাইনে এই ব্যবস্থা রাখা হয়েছে।</p>
+<p>ইস্তিয়াক এমনভাবে আমার দিকে তাকিয়ে আছে যেন এই মুহূর্তেই সে আমার কাছ থেকে হ্যাঁ বা না জাতীয় কিছু শুনতে চায়। তাও কি সম্ভব?</p>
+<p>ইস্তিয়াক বলল, আপা, কিছু বলুন।</p>
+<p>আমি বললাম, এই বাড়ি ভাঙা হবে না। আমার বা বাবার আপত্তির কথা তুমি বাদ দাও। বাবলুও কখনো এই বাড়ি ভাঙতে পারবে না। ধর, বাড়ি ভাঙার জন্যে মিস্ত্রী ডাকা হল। মিস্ত্রী যেই মুহূর্তে শাবলের একটা ঘা দেবে সেই মুহূর্তে বাবলু ছুটে এসে বলবে– না না, থাক থাক। যেমন আছে তেমন থাক।</p>
+<p>আপনার এই ধারণার কারণ কি?</p>
+<p>এই ধারণার মূল কারণ হল –মানুষ হিসেবে আমি এবং বাবা, আমরা দুজনই অনেক আধুনিক। বাবলু সেই তুলনায় অনাধুনিক ওর বয়স তো কম হয়নি –এই বয়সেও সে খুব কষ্ট পেলে কি করে জান? মার কবরের কাছে চলে যায়। বিড় বিড় করে মাকে তার কষ্টের কথা বলে। যে ছেলে এই কাজ করে সে কোন দিনই তার সারাজীবনের স্মৃতির বাড়ি ভাঙবে না।</p>
+<p>ইস্তিয়াক বলল, আপা, আপনি যা বললেন তা ঠিক না। বাবলু সাহেবের মনে। নতুন বাড়ির ছবি ঝলমল করছে। তিনি এক ধরনের ঘোরের মধ্যে চলে এসেছেন। ঘোরের কারণেই বাড়ি ভাঙতে তিনি আপত্তি করবেন না। বাড়ি তৈরি হলে পর ঘোর কাটবে। তখন হয়ত মন খারাপ হবে। সেই মন-খারাপও সাময়িক ব্যাপার হবে। আপনি কি আমার সঙ্গে বাজি রাখবেন?</p>
+<p>না, আমি বাজি রাখব না। বাজি রাখলেই হারব। আমি কখনো বাজি জিততে পারি না।</p>
+<p>.</p>
+<p><strong>১১.</strong></p>
+<p>বাবাকে আজ চোখের হাসপাতালে ভর্তি করানো হবে। তাঁকে দেখে মনে হচ্ছে তিনি খানিকটা ভয় পেয়েছেন। সকালে ঘুম থেকে ওঠেই বললেন, অপারেশনটা না করালে হয় না? আমি তো তেমন প্রয়োজন দেখছি না। ভালই দেখি তো। ডাক্তাররা সব কিছু বাড়িয়ে বাড়িয়ে বলে।</p>
+<p>তোমার কি ভয় লাগছে বাবা?</p>
+<p>নাহ।</p>
+<p>ভয়ের কিছু নেই। চোখের ছানি কাটিয়ে অপারেশন কোন অপারেশন না।</p>
+<p>তুই তো মা ডাক্তারের মত কথা বলছিস।</p>
+<p>তোমার যদি খুব বেশি ভয় লাগে তাহলে আজ যেতে হবে না। আরেকদিন যাবে।</p>
+<p>না না, আজই যাব।</p>
+<p>বাবা গম্ভীর হয়ে বারান্দায় বসে রইলেন। তিনি যেমন স্বাভাবিক ভঙ্গিতে বসেন সেরকম বসা না –শক্ত হয়ে বসে থাকা। যেন মেহমান হিসেবে এসেছেন। আমি বললাম, বাবা, তোমাকে তো বিকেলে হাসপাতালে নিয়ে যাওয়া হবে। তুমি সকাল থেকেই বারান্দায় এমন শক্ত হয়ে বসে আছ কেন? বিছানায় শুয়ে বিশ্রাম কর।</p>
+<p>শুতে ইচ্ছা করছে না। বসে থাকতে ভালই লাগছে।</p>
+<p> বাবাকে হাসপাতালে নিয়ে যাওয়া হবে এই খবর আমাদের আত্মীয়-স্বজনরা জেনে গেছেন। ঢাকায় আমাদের আত্মীয়-স্বজন তেমন নেই। যারা আছেন, তারা সবাই একবার করে দেখে ফেলেছেন। কেউ আবার কলা-টলাও নিয়ে আসছেন। একজন হরলিক্স নিয়ে এলেন।</p>
+<p>আত্মীয়-স্বজন আমাদের বাড়িতে এলে আমার ভাল লাগে না। অবধারিতভাবে তারা আমার দুঃখময় জীবন নিয়ে আফসোস করেন। আফসোস করাটা তাঁরা দায়িত্ববোধের কারণেই করেন। কঠিন গলায় মামুনের কিছু সমালোচনা করা হয়। লোকটা পিশাচ না শয়তান এ নিয়ে গবেষণা হয়। কেউ কেউ আমাকে সান্তনা দেবার চেষ্টা করেন। আমার সান্ত্বনার প্রয়োজন নেই এই কথাটা কেউ বুঝতে চান না। এই ভাবে জীবন পার করা উচিত না — বিয়ে করা উচিত। যা ঘটেছে, ঘটেছে। এটা। নিয়ে বসে থাকলে তো হবে না।</p>
+<p>আমার দূর সম্পর্কের এক চাচা আছেন যার কাজই হচ্ছে আমার বিয়ের জন্যে অদ্ভুত অদ্ভুত সব ছেলের খোঁজ আনা। একবার এক ছেলের খোঁজ আনলেন। সে অষ্ট্রেলিয়ায় থাকে। বেলজিয়ামের ছেলে। বাংলাদেশে অনেকদিন ছিল। ভাল বাংলা জানে। বাঙালী মেয়েদের তার খুব পছন্দ। সে একটা বাঙালী ডিভোর্সড মেয়ে বিয়ে করতে চায়।</p>
+<p>আমি বললাম, ডিভোর্সড কেন? কুমারী মেয়ে বিয়ে করতে অসুবিধা কি?</p>
+<p>অসুবিধা কি তা তো এত ডিটেল জানি না। তুই রাজি থাকলে তখন না হয় খোঁজ-খবর করব।</p>
+<p>এই জাতীয় মানুষদের পছন্দ করার কোনই কারণ নেই। এদের অপমান করে বাড়ি থেকে তাড়িয়ে দেবারও উপায় নেই। বাবাকে হাসপাতালে ভর্তি করা হবে এই খবরে যারা উদ্বিগ্ন হয়ে আসছেন সঙ্গত কারণেই হাসিমুখে তাদের সঙ্গে আমার কথা বলতে হচ্ছে। মনে হচ্ছে যতই দিন যাচ্ছে ততই আমি অভিনয় কলায় পারদর্শী হয়ে উঠছি। কি সুন্দর অভিনয় করে যাচ্ছি! যে আসছে তার সঙ্গেই হাসিমুখে কথা বলছি।</p>
+<p>বিকেলে বাবাকে নিয়ে বেরুবার আগে আগে পান্নাভাবী এলেন। আমার সঙ্গে রাগারাগি হৈচৈ-এর পর এই প্রথম তিনি আমাদের বাড়িতে এলেন। বাবাকে পা ছুঁয়ে সালাম করে বললেন –চাচা, আপনি হাসপাতালে ভর্তি হচ্ছেন কেউ আমাকে এই খবর দেয়নি। আপনাদের বাসায় সকাল থেকে লোকজন আসছে কেন খোঁজ নিতে গিয়ে জানলাম। আমরা কি আপনার পর?</p>
+<p>বাবা অপ্রস্তুত গলায় বললেন, না না, তোমরা পর হবে কেন মা?</p>
+<p>আপনারা বাড়ি ভেঙে নতুন বাড়ি বানাচ্ছেন। বাড়ি ভাঙলে আমরা যাব কোথায়? আমরা কিছুই জানি না। এদিকে বাড়ি ভাঙা হচ্ছে।</p>
+<p>বাবা আমার দিকে তাকালেন। কি বলবেন বুঝতে পারছেন না।</p>
+<p>পান্নাভাবীর চোখে পানি এসে গেল। তিনি ফোঁপাতে ফোঁপাতে বললেন –আমার বাবা নেই, আপনাকে বাবার মত দেখে এসেছি।</p>
+<p>তা তো বটেই, তা তো বটেই।</p>
+<p>রাত্রিকে আমি নিজের বোনের চেয়েও আপন জানি। সে আমার সঙ্গে কথা বলে না।</p>
+<p>বাবা আবারও অসহায়ের মত তাকালেন আমার দিকে। পান্নাভাবী আরো শব্দ করে কেঁদে উঠলেন। আমি বললাম, ভাবী, এখন আমাদের রওনা হতে হয়। পাঁচটার আগেই বাবাকে হাসপাতালে নিতে বলেছে।</p>
+<p>আমি চাচাজানের সঙ্গে দুটা কথা বলব। চাচাজান শুনুন– আপনি হাসপাতালে ভর্তি হচ্ছেন। মানুষের জীবন-মরণের কোন ঠিক নেই। কাজেই আপনাকে আমি সব কথা বলতে চাই –আমি রাত্রির সামনেই বলব –আমি কোন লুকোছাপা করব না। আমি লুকোছাপার মেয়ে না –আমি কাউকে কেয়ারও করি না। কেন কেয়ার করব? কার জন্যে কেয়ার করব– যে মেয়ের স্বামী থেকেও নেই সে কেন ..</p>
+<p>পান্নাভাবীর কথা শেষ হবার আগেই নাজমুল ভাই চলে এলেন। পান্নাভাবী তাকে দেখে চুপ করে গেলেন। এরকম কখনো হয় না।</p>
+<p>নাজমুল ভাই শান্ত গলায় বললেন –পান্না, তুমি ঘরে যাও।</p>
+<p>পান্নাভাবী আপত্তি করলেন না। চোখ মুছে বের হয়ে গেলেন।</p>
+<p>নাজমুল ভাই বললেন, আপনাদের হাসপাতালে নিয়ে যাবার জন্যে আমি গাড়ি রেখে দিয়েছি। চলুন দিয়ে আসি। পান্নার কোন কথাতেই আপনারা কিছু মনে করবেন না। ও পুরোপুরি অসুস্থ। চিকিৎসা শুরু হয়েছে। ডাক্তাররা চিকিৎসা করছেন।</p>
+<p>বাবা কখনো কিছু জানতে চান না। এখনো জানতে চাইলেন না। নাজমুল ভাইয়ের গাড়িতে করেই আমরা হাসপাতালে গেলাম। নাজমুল ভাই বসলেন ড্রাইভারের পাশে। আমি বাবাকে নিয়ে পেছনের সীটে। আমি সারাক্ষণই বাবার হাত ধরে থাকলাম। এক সময় বললাম –ভয় লাগছে বাবা?</p>
+<p>বাবা বললেন, হ্যাঁ।</p>
+<p>বাবা তাকিয়ে আছেন রাস্তার দিকে। মনে হচ্ছে খুব আগ্রহ নিয়ে তিনি জনস্রোত দেখছেন।</p>
+<p>.</p>
+<p>আমার ইচ্ছা ছিল বাবার সঙ্গে রাতে হাসপাতালে থাকব। বাবা কিছুতেই তা করতে দিলেন না। তিনি একা থাকবেন। বাবাকে ভর্তি করিয়ে নাজমুল ভাইয়ের গাড়িতে করেই আমি ফিরে আসছি। নাজমুল ভাই ফেরার সময়ও ড্রাইভারের পাশে বসতে যাচ্ছিলেন –আমি বললাম, আপনি পেছনে আসুন নাজমুল ভাই। গল্প করতে করতে যাই। নাজমুল ভাই পেছনে এসে বসলেন ঠিকই। কিন্তু কোন গল্প গুজবে গেলেন না। সারা পথ চুপ করে রইলেন। বাড়ির কাছাকাছি যখন এসেছি। তখন খুব নিচু গলায় বললেন –তোমার পান্নাভাবীর এখন ধারণা হয়েছে। হাসপাতালে তার একটি মেয়ে হয়েছিল। মেয়েটি চুরি হয়ে যায়। এই ঘটনা সবাই মিলে তার কাছ থেকে গোপন করেছে।</p>
+<p>নাজমুল ভাই ছোট করে নিঃশ্বাস ফেললেন।</p>
+<p>আমি বললাম, আপনি চিন্তা করবেন না নাজমুল ভাই। সমস্যা আসে, সমস্যা চলেও যায়। পান্নাভাবীর এই সমস্যা দূর হয় যাবে। কত ভাল চিকিৎসা এখন বের হয়েছে। আপনি ভাবীকে নিয়ে দূরে কোথাও বেড়াতে যান।</p>
+<p>নাজমুল ভাই ক্লান্ত গলায় বললেন –তাই করব। ডাক্তারও সে রকম সাজেস্ট করেছেন। আমি ওকে নিয়ে নেপাল যাচ্ছি।</p>
+<p>খুব ভাল করছেন। আপনি আরেকটি কাজ করুন –আপনার সব বইপত্র ছুঁড়ে ফেলে দিয়ে পুরো সময়টা ভাবীকে দিন। শরীরের অসুখের অসংখ্য চিকিৎসা আছে। মনের অসুখের একমাত্র চিকিৎসা হচ্ছে মমতা, ভালবাসা। আপনি ভালবেসে পান্নাভাবীর হাত ধরুন, দেখবেন তাঁর অর্ধেক অসুখ সেরে গেছে।</p>
+<p>ওকে আমি কি পরিমাণ ভালবাসি তা তুমি জান না রাত্রি।</p>
+<p>আপনি ঠিক বলেননি নাজমুল ভাই। আপনার ভালবাসা থাকলে আজ ভাবীর এই অবস্থা হত না।</p>
+<p>নাজমুল ভাই তাকিয়ে আছেন। বিরক্ত চোখেই তাকিয়ে আছেন। আমি তার বিরক্তি সম্পূর্ণ উপেক্ষা করে বললাম– পান্নাভাবী আপনার সম্পর্কে কিছু নোংরা কথাও বলেন। সেই কথাগুলিও সত্যি বলেই আমার ধারণা।</p>
+<p>নাজমুল ভাই শান্ত গলায় বললেন, গাড়িতে একজন ড্রাইভার আছে। আমি চুপ করে গেলাম।</p>
+<p>পান্নাভাবীর কথাগুলি যে সত্য তা জোর গলায় বলার পেছনে আমার কারণ। আছে। উনার সঙ্গে প্রচণ্ড রাগারাগি হবার পর সেই রাতেই তিনি আমার কাছে একটা খাম পাঠিয়ে দিয়েছিলেন। সেই খামে রাণীর প্রেগনেন্সি রিপোর্ট, সঙ্গে ছোট্ট চিঠি –রাত্রি, রিপোর্টটা দেখ। পজেটিভ। শুরুতে তোমাকে অন্যকথা বলেছিলাম। তোমার নাজমুল ভাইকে ছোট করতে ইচ্ছা করছিল না বলেই। তোমার সঙ্গে রাগারাগির জন্যে আমি মোটেও দুঃখিত নই। দয়া করে তুমি আমার সঙ্গে কথা বলতে আসবে না। আমি কোন কথা বলতে আগ্রহী না।</p>
+<p>.</p>
+<p>বাসায় এসে দেখি বাবলু ফিরেছে। সে খুব উত্তেজিত। তার উত্তেজনার প্রধান কারণ ইস্তিয়াক প্ল্যান দিয়ে দিয়েছে। ডিআইটি এ্যালুভেলের জন্যে দেয়া এগারো কপি প্ল্যান। সেই সঙ্গে বাড়িটি তৈরি হবার পর কেমন দেখাবে সেই মডেল।</p>
+<p>বাবলু বলল, কি অসাধারণ কাজ করেছে দেখেছিস আপা?</p>
+<p>আমি বললাম, হ্যাঁ দেখলাম।</p>
+<p> রাতদিন খেটে কাজটা করেছে। চলে যাবে তো — এই জন্যেই করা।</p>
+<p>কোথায় যাবে?</p>
+<p>কানাডায় চলে যাচ্ছে। হাইরাইজ বিল্ডিং টেকনিকে পি-এইচ. ডি করবে। আপা, মডেলটা দেখ– মডেলটা করতে ওর নিশ্চয়ই অনেক টাকা লেগেছে। এই টাকাটা ওকে দিয়ে দেয়া দরকার। তাই না?</p>
+<p>হ্যাঁ।</p>
+<p>কত টাকা লেগেছে মডেলে জেনে নেয়া দরকার। জিজ্ঞেস করা হয়নি।</p>
+<p>আমি অবাক হয়ে বাবলুকে দেখছি। বাবাকে আমি হাসপাতালে ভর্তি করিয়ে এসেছি। এই সম্পর্কে সে কিছুই জানতে চাচ্ছে না। আশ্চর্য কাণ্ড! সে কাপড় পরছে –ইস্তিয়াকের কাছেই যাচ্ছে বোধহয়।</p>
+<p>কোথায় যাচ্ছিস?</p>
+<p>মডেলটা বীনুকে দেখিয়ে আনি। ও খুব খুশি হবে। ওর দারুণ আগ্রহ। ভাবছি ইস্তিয়াককে সঙ্গে করে নিয়ে যাব। ও যেতে চাইবে কিনা কে জানে। ও সঙ্গে গেলে সুন্দর করে সব কিছু এক্সপ্লেইন করতে পারত। ভাল কথা আপা, তোর একটা চিঠি আছে। টেবিলে রেখে দিয়েছি –এক লোক এসে দিয়ে গেছে।</p>
+<p>কার চিঠি?</p>
+<p>জানি না কার। জিজ্ঞেস করিনি। আপা শোন, আমি ঠিক করেছি ডিআইটি প্ল্যান কালই জমা দিয়ে দেব। কাল ভাল দিন আছে– শুক্রবার।</p>
+<p>শুক্রবারে অফিস বন্ধ থাকার কথা না?</p>
+<p>ও আচ্ছা আচ্ছা। ভুলে গেছি। এত খুশি লাগছে, বুঝলি আপা –মাথা আউলা হয়ে গেছে — হা হা হা।</p>
+<p>.</p>
+<p>দামী খামের ভেতর ছোট্ট চিঠি। মামুন লিখেছে —</p>
+<p>রাত্রি,<br/>টুকুন এসেছে। কাল ভোরে তোমার কাছে পাঠিয়ে দেব। সারাদিন থাকুক। রাতে থাকতে চাইলেও রেখে দিতে পার। ব্যাগে অষুধপত্র আছে। কোন্টা কখন খাওয়াতে হবে তা লিস্ট করা আছে। ভাল থেকো।<br/>–মামুন</p>
+<p>এটা কি স্বপ্ন? আমি কি স্বপ্ন দেখছি। আমার চিৎকার করে বলতে ইচ্ছা হচ্ছে –অপ্রত্যাশিত যে আনন্দ আমি এই মুহূর্তে পেলাম সেই আনন্দের জন্যে আমি পৃথিবীর সমস্ত মানুষের সমস্ত অপরাধ ক্ষমা করে দিতে পারি।</p>
+<p>টুকুন আসছে! টুকুন!</p>
+<p>কত বড় হয়েছে টুকুন? তিন বছরে একটা শিশু কত বড় হয়? ও আমাকে দেখে প্রথম বাক্যটা কি বলবে? ও কি আমাকে লজ্জা পাবে? অষুধপত্রের কথা বলছে কেন? ওর কি অসুখ? আমার বাবুর অসুখ হবে কেন?</p>
+<p>আমি সারারাত বারান্দায় বসে রইলাম। অসহ্য যন্ত্রণায় শরীর জ্বলছে। সেই যন্ত্রণাতেও তীব্র আনন্দ।</p>
+<p>ঢাকা শহরের সব মানুষ ঘুমুচ্ছে। আমার ইচ্ছে করছে প্রতিটি বাড়িতে বাড়িতে যাই। ওদের ঘুম ভাঙিয়ে বলি –আপনারা ঘুমুচ্ছেন কেন? টকুন আসছে। টুকুন। আপনারা কেউ ঘুমুতে পারবেন না। আপনাদের সবাইকে জেগে থাকতে হবে।</p>
+<p>.</p>
+<p><strong>১২.</strong></p>
+<p>দোতলায় ওঠার সিঁড়ির মুখে টুকুন দাঁড়িয়ে আছে। তার পরনে ধবধবে শাদা প্যান্ট, শাদা শার্ট। পায়ের জুতাজোড়াও শাদা –কিন্তু মোজা টকটকে লাল। তার হাতে একটা ইংরেজি ছড়ার বই। তার পাশে নীল রঙের বড়সর একটা ব্যাগ। আমি দোতলার সিঁড়ির মাথায় দাঁড়িয়ে তার দিকে তাকিয়ে আছি।</p>
+<p>টুকুন বোধহয় লজ্জা পাচ্ছে। সে সরাসরি আমার দিকে তাকাচ্ছে না। একবার তাকিয়েই চোখ অন্যদিকে ফিরিয়ে নিল। উঠোনে দুটা কাক বসেছে। সে এখন তাকিয়ে আছে কাকের দিকে।</p>
+<p>আমি ডাকলাম –টুকুন!</p>
+<p>টুকুন চমকে আমার দিকে তাকিয়ে আবার কাক দেখতে লাগল। আমি সিঁড়ির মাথাতেই দাঁড়িয়ে রইলাম। মনে হচ্ছে আমার পা জমে গেছে। আমি নড়তে পারছি না।</p>
+<p>টুকুন, তুমি কি আমাকে চিনতে পারছ?</p>
+<p>সে কাকের দিকে তাকিয়ে থেকেই হা-সূচক মাথা নাড়ল।</p>
+<p>আমি কে বল তো?</p>
+<p>সে উত্তর দিল না। কাকটা উড়ে গিয়ে রান্নাঘরের বারান্দার কার্নিশে বসেছে। সে দৃষ্টি ফিরিয়ে নিয়েছে সেদিকে। কোন রকম আবেগ এই মুহূর্তে দেখানো ঠিক হবে না। তার সঙ্গে কথা বলতে হবে সহজ স্বাভাবিক গলায়। যেন সে কয়েক দিনের জন্যে বেড়াতে গিয়েছিল, এখন এসেছে। মাঝখানের দু বছরের কথা ভুলে যেতে হবে। আমার বাবুর ছোট্ট হৃদয় তীব্র আবেগ সহ্য করতে পারবে না। চিৎকার করে কাঁদবে। আমি তাকে কাঁদবে না। আমি নিজেও কাঁদব না। আমি এই পৃথিবীর সেরা অভিনেত্রীদের একজন। আমি আজ অস্কার পাওয়ার মত অভিনয় করব।</p>
+<p>আমি সিঁড়ি বেয়ে নিচে নেমে এলাম। টুকুনের সামনে দাঁড়িয়ে সহজ গলায় বললাম, তোমার হাতে এটা কি বই বাবা?</p>
+<p>টুকুন বলল –রাইমের বই।</p>
+<p>এই হচ্ছে আমার সঙ্গে তার প্রথম কথা। কি মিষ্টি গলা! শুধু কি মিষ্টি –একই সঙ্গে স্বরটা করুণ ও বিষণ্ণ।</p>
+<p>বইটা কি তুমি আমার জন্যে এনেছ?</p>
+<p>না।</p>
+<p>তোমার জন্যে?</p>
+<p> হ্যাঁ।</p>
+<p>তুমি বই পড়তে পার?</p>
+<p> হ্যাঁ।</p>
+<p> এটা তো ইংরেজি বই, তুমি কি বাংলা পড়তে পার?</p>
+<p>না।</p>
+<p>আচ্ছা, তোমাকে আমি শিখিয়ে দেব। তুমি কি আমার কোলে উঠবে?</p>
+<p>না।</p>
+<p>এসো একটু কোলে নিয়ে দেখি।</p>
+<p>কোলে উঠব না। ঐটা কি কাক?</p>
+<p> হ্যাঁ কাক।</p>
+<p>কাকটা এখানে বসে আছে কেন?</p>
+<p> কাকটা তোমাকে দেখছে।</p>
+<p>এই বাড়িতে কি মাছ আছে?</p>
+<p>না।</p>
+<p>আমাদের বাড়িতে মাছ আছে।</p>
+<p> লাল মাছ?</p>
+<p>একটা আছে কালো মাছ।</p>
+<p>এসো তোমাকে একটু কোলে নেই।</p>
+<p> না।</p>
+<p>বাবা, তোমাকে কোলে নিতে ইচ্ছে করছে যে।</p>
+<p>টুকুন দু হাত বাড়িয়ে দিল। আমি তাকে কোলে তুলে নিলাম –পাখির মত হালকা শরীর। এত রোগা কেন আমার ছোট্ট ময়না?</p>
+<p>টুকুন দু হাতে আমার গলা জড়িয়ে ধরে আছে। তার শরীর কাঁপতে শুরু করছে। আমার বাবু কাঁদছে। এত কান্না জমা ছিল তার ছোট্ট বুকে? কঁদুক, আমার বাবু কাঁদুক। আমি কাঁদব না। আমি কিছুতেই কাঁদব না। আমি শুধু পৃথিবীর না– এই বিশব্রহ্মাণ্ডের সব শ্রেষ্ট অভিনেত্রীর মত হাসিমুখে কথা বলে যাব। আমার বাবু যেন তার মার চোখের এক বিন্দু অশ্রুও না দেখে।</p>
+<p>টুকুন দেখ দেখ, আরেকটা কাক এসেছে।</p>
+<p>টুকুন মুখ গুঁজে আছে। সে এখন আর কিছুই দেখবে না। অপরূপ পৃথিবীর কোন দৃশ্য দেখারই এখন আর তার প্রয়োজন নেই।</p>
+<p>টুকুন ঘুমুচ্ছে। কাঁদতে কাঁদতে সে আমার কোলেই ঘুমিয়ে পড়েছিল। তাকে বিছানায় শুইয়ে দিয়েছি। ছড়ার বইটা এখনো তার হাতে ধরা। মনে হয় এই বইটা তার খুব প্রিয়। আমি টুকুনের পাশে বসে তার নীল ব্যাগ দেখছি। নীল ব্যাগে অনেক জিনিসের সঙ্গে খামে মোড়া একটি চিঠি আছে। চিঠিটা এই নিয়ে দ্বিতীয়বার পড়লাম। মামুন লিখছে–</p>
+<p>টুকুনকে পাঠালাম।<br/> তোমাকে কয়েকটা ব্যাপার বলা হয়নি। প্রধান ব্যাপারটা হল টুকুন অসুস্থ, ভাল রকম অসুস্থ। তাকে দেশের বাইরে দীর্ঘদিন রাখার পেছনের এটাই মূল কারণ। তোমাকে বলা হয়নি কারণ শুধু শুধু তোমাকে দুশ্চিন্তাগ্রস্ত করাটাকে অপ্রয়োজনীয় মনে করেছি। ওর হার্টে একটা অপারেশন হয়েছে– অপারেশটা ভাল হয়নি –আবারও করতে হবে। তার জন্যে তার শরীর সারানোর প্রয়োজন। ওকে দেশে আনা হয়েছে। তুমি ওর সঙ্গে থেকে –ওকে সঙ্গ দিয়ে ওর শরীর সারাবার ব্যাপারে সাহায্য করে।<br/>আরো একটি জরুরি ব্যাপার তোমার জেনে নেয়া ভাল। আমি বিয়ে করেছি। তোমার নিশ্চয়ই মনে আছে এক রাতে তুমি টুকুনের খোঁজে আমার বাড়িতে এসে দেখলে একটা পার্টি হচ্ছে। পাটিটা ছিল বিয়ে উপলক্ষ দেয়া ঘরোরা পার্টি। তোমাকে এই খবর তখন দেইনি কারণ তুমি মনে কষ্ট পেতে।<br/>আমি জানি তুমি শক্ত ও কঠিন ধরনের মেয়ে। জীবনের বাস্তবতাকে কষ্ট হলেও স্বীকার করে নেবার ক্ষমতা তোমার আছে।….</p>
+<p>ঘুমের মধ্যেই ঠোঁট বাঁকিয়ে টুকুন কান্নার মত করছে। খুব যখন ছোট ছিল তখন সে এরকম করত। আমার বাবু কি কোন দুঃস্বপ্ন দেখছে? না, আর দুঃস্বপ্ন নয়। আমার সোনামণির জীবন থেকে সব দুঃস্বপ্ন দূর হয়ে যাক। আমি নিচু হয়ে তার গালে চুমু খেলাম। টুকুনের বাকা ঠোঁট আবার ঠিক হয়ে গেল।</p>
+<p>.</p>
+<p><strong>১৩.</strong></p>
+<p>ডাক্তার সাহেব আজ বাবার চোখের ব্যান্ডেজ খুলবেন। দশটায় ব্যান্ডেজ খোলার কথা, আমি এবং বাবলু সকাল সাতটা থেকে বসে আছি। বাবাকে খুব উদ্বিগ্ন মনে হচ্ছে। তিনি ঘামছেন। একটু পর পর পানি খেতে চাচ্ছেন। তার তীব্র উদ্বেগের কারণ আমার কাছে স্পষ্ট হচ্ছে না।</p>
+<p>বাবা বললেন, টুকুন কেমন আছে রে?</p>
+<p>আমি বললাম, ও ভাল আছে বাবা।</p>
+<p> ওকে নিয়ে এলে ভাল করতি। চোখ মেলেই টুকুনকে দেখতাম।</p>
+<p>ও বাবা তার বাবার সঙ্গে দিনাজপুর গিয়েছে। কয়েকদিন ওদের গ্রামের বাড়িতে থাকবে। দিনাজপুর থেকে এসে আমাদের সঙ্গে থাকবে।</p>
+<p>আমাকে চিনতে পারবে কিনা কে জানে!</p>
+<p> চিনতে পারবে। চিনতে না পারার কি আছে?</p>
+<p>চিনতে না পারলেও ক্ষতি নেই। দ্রুত ভাব করে ফেলব।</p>
+<p>আমার মনে হল বাবা আজ যেন অন্যদিনের চেয়েও অনেক বেশি কথা বলছেন। এত কথা বলা তার স্বভাবে নেই। উদ্বেগের কারণেই কি কথা বেশি বলছেন?</p>
+<p>বাবলুর সঙ্গেও বাবার অনেক কথা হল। বাবা নিজেই বললেন –বাড়ির প্ল্যান নাকি খুব সুন্দর হয়েছে?</p>
+<p>বাবলু বলল –শুধু সুন্দর বললে ইস্তিয়াককে খাটো করা হয়। ইস্তিয়াক হচ্ছে একটা জিনিয়াস ছেলে। ও থাকলে ভাল হত, বাড়িটা সুপারভাইজ করতে পারত।</p>
+<p>ও থাকছে না?</p>
+<p>না থাকছে না। কানাডা চলে যাচ্ছে। সামনের মাসেই চলে যাচ্ছে। তোমাকে । বলিনি?</p>
+<p>না।</p>
+<p>খুব ভাল অফার পেয়েছে।</p>
+<p>যাচ্ছে কবে?</p>
+<p>সামনের মাসে। টিকিট এখনো কনফার্ম করেনি। অসাধারণ একটা ছেলে বাবা। আমার লোনের সব ব্যবস্থা করে গেছে।</p>
+<p>তাই নাকি?</p>
+<p>হ্যাঁ। টাকাপয়সা কিচ্ছু নেয়নি। মডেল যে করেছে সেই মডেলের পয়সাও নেয়নি।</p>
+<p>বলিস কি?</p>
+<p>আমি কি ঠিক করেছি জান বাবা –একটা এপার্টমেন্ট ওকে আমি গিফট করব। আমার অনেক লস হয়ে যাবে। এপার্টমেন্ট মানে তো পঁচিশ-ত্রিশ লাখ টাকা। সহজ ব্যাপার না। তারপরেও মনস্থির করেছি।</p>
+<p>ভাল।</p>
+<p>টুকুনকেও একটা এপার্টমেন্ট দিয়ে দেব। মামার তরফ থেকে সামান্য উপহার। চারটা না, পাঁচ না, একটাই ভাগ্নে …।</p>
+<p>টুকুন কি তোকে পছন্দ করেছে?</p>
+<p> না। ডাকলে কাছে আসে না। আমার মধ্যে পছন্দ করার তো কিছু নেই।</p>
+<p>বাবা হাসলেন। চোখ বাঁধা মানুষের হাসি সম্পূর্ণ অন্যরকম। হাসিটা কান্নার মত দেখায়। মানুষ হাসার সময় ঠোঁট এবং চোখ ব্যবহার করে। কাদার সময় শুধুই চোখ।</p>
+<p>বাবলু বলল, বাবা, আমি কি ডিআইটি প্ল্যান জমা দিয়ে দেব?</p>
+<p> দে।</p>
+<p>তোমাকে সই করতে হবে। জমি তো তোমার নামে।</p>
+<p>জমি আমি লিখে দিয়ে দেব। তবে তোর নামে লিখব না। তুই বিয়ে কর। তারপর তোর স্ত্রীর নামে লিখব। তোর নামে লিখলে তুই বিক্রি করে আমাদের সবাইকে পথে বসাবি।</p>
+<p>বাবলু দরাজ গলায় বলল, আচ্ছা দেখা যাক। তোমার কাছে যেটা ভাল মনে হয় সেটাই করবে। বাড়িটা হলেই হল।</p>
+<p>.</p>
+<p>ডাক্তার সাহেব বাবার চাখের ব্যান্ডেজ খুললেন। শান্ত গলায় বললেন, দেখতে পাচ্ছেন?</p>
+<p>বাবা বললেন, হ্যাঁ।</p>
+<p>আমার আঙুলের দিকে তাকিয়ে বলুন কটা আঙুল।</p>
+<p>বাবা ক্লান্ত গলায় বললেন –আমি দেখতে পাচ্ছি কিন্তু কিন্তু … কটা আঙুল ঠিক বুঝতে পারছি না।</p>
+<p>আপনি সত্যি দেখতে পাচ্ছেন? ফাম্বল করবেন না, দেখতে পাচ্ছেন?</p>
+<p> বাবা চুপ করে রইলেন।</p>
+<p>.</p>
+<p>আমরা অন্ধ বাবাকে নিয়ে বাড়িতে ফিরে এলাম। তাকে তার পুরানো জায়গায় — বারান্দায় ইজিচেয়ারে বসিয়ে দিলাম। বাবা বললেন, তোরা আমার ব্যাপারে মোটেও মন খারাপ করবি না। চোখে অনেকদিন দেখেছি। অল্প কিছুদিন না দেখলে কিছু যায় আসে না। অন্ধ হবার কিছু সুবিধাও আছে। অন্ধদের কনসানট্রেশন ভাল হয়। এখন নামাজে যখন দাঁড়াব –খুব কনসানট্রেশন নিয়ে দাঁড়াব। খুকী, তুই বাবলুকে কান্নাকাটি করতে নিষেধ কর। ও ভেউ ভেউ করে কাঁদছে খুব বিরক্ত লাগছে। এ রকম মরাকান্নার কি আছে? তুই ওকে বুঝিয়ে শান্ত কর, আর বীনু মেয়েটাকে খবর দিয়ে নিয়ে আয়। ওকে দেখলে বাবলু তার হৈ-চৈ কান্না বন্ধ করবে। বাবলুকে আমার কাছে আসতে বল।</p>
+<p>.</p>
+<p>বাবলু কাঁদছে মার কবরের কাছে বসে। যেন সে তার কান্নাটা মাকে শুনাতে চায়।</p>
+<p>আমি ডাকলাম, বাবলু!</p>
+<p> বাবলু রাগী গলায় বলল, বিরক্ত করিস না আপা!</p>
+<p> বাবা ডাকছেন।</p>
+<p>বাবা ডাকলেই আমাকে যেতে হবে?</p>
+<p>আমি বাবলুকে মার কবরের পাশে বসিয়ে রেখেই চলে এলাম। কাঁদুক, সবাই কাঁদুক। আমি কাঁদব না, আমি কিছুতেই কাঁদব না। আমি বরং হাসিমুখে বাবার সঙ্গে গল্প করব। আমি বাবার কাছে গিয়ে বললাম, চা খাবে বাবা?</p>
+<p>খাব।</p>
+<p> দুধ চা না লেবু চা?</p>
+<p>দুধ চা।</p>
+<p>.</p>
+<p>রাতের বেলা অবাক হয়ে দেখি, বাবলু বালিশ হাতে বাবার ঘরের দিকে যাচ্ছে। আমি বললাম, ব্যাপার কি রে?</p>
+<p>বাবলু ক্ষীণ স্বরে বলল, আমি বাবার সঙ্গে ঘুমুব। অন্ধ মানুষ। কখন কি দরকার হয়।</p>
+<p>যা ঘুমো।</p>
+<p>আর আমি ঠিক করেছি বাড়িঘর ভাঙব না। এই বাড়ির কোথায় কি আছে বাবা চেনেন –দেয়ালে ধরে ধরে যেখানে ইচ্ছা চলে যেতে পারবেন –তাই না?</p>
+<p>আমি হাসলাম। বাবলু বিরক্ত হয়ে বলল, হাসছিস কেন? হাসির কি বললাম?</p>
+<p> তুই ছেলেটা খারাপ না।</p>
+<p>আমি খারাপ হব কেন?</p>
+<p> বীনু তোকে বিয়ে করে সুখী হলেও হতে পারে। কিছু সম্ভাবনা আছে।</p>
+<p>বাবলু রাগী গলায় বলল, অন্ধ বাবা ঘরে পড়ে আছেন এর মধ্যে তুই বিয়ের কথা তুললি। আশ্চর্য কান্ড। হার্ট বলে কোন বস্তু কি তোর নেই?</p>
+<p>আমি হাসছি।</p>
+<p> ঠিক মার মত হাসার চেষ্টা করছি।</p>
+<p>.</p>
+<p><strong>১৪.</strong></p>
+<p>ভোরবেলায় বীনু এসে উপস্থিত। ওকে দেখেই মনে হচ্ছে ও সারারাত ঘুমুয়নি। চুল উস্কখুস্কু। চোখের নিচে কালি। মুখ শুকিয়ে এতটুকু হয়ে গেছে।</p>
+<p>আমি বললাম, ব্যাপার কি বীনু?</p>
+<p> বীনু ক্ষীণ স্বরে বলল, কিছু না।</p>
+<p>কিছু তো বটেই, সেই কিছুটা কি?</p>
+<p> আপা, পানি খাব।</p>
+<p>আমি তাকে পানি এনে দিলাম। সে এক চুমুক দিয়েই গ্লাস নামিয়ে রাখল।</p>
+<p>তুমি কি আমাকে কিছু বলতে এসেছ বীনু?</p>
+<p>না।</p>
+<p>আমার মনে হয় তুমি কিছু একটা বলতে এসেছ। বলে ফেল।</p>
+<p>বীনু শুকনো গলায় বলল, বলতে পারছি না।</p>
+<p> এমন কি ঘটল যে বলতে পর্যন্ত পারছ না?</p>
+<p>বীনু নিচু গলায় বলল, ইস্তিয়াক সাহেবের বাবা-মা কাল সন্ধ্যায় আমাদের বাসায় এসেছিলেন। তারা তাদের ছেলের জন্যে আমাকে পছন্দ করে গেছেন। ছেলেই নাকি তাদের পাঠিয়েছে। তারা চাচ্ছেন এক সপ্তাহের মধ্যে যেন বিয়েটা হয়। যাতে ভিসা নিয়ে আমি ইস্তিয়াক সাহেবের সঙ্গেই বাইরে চলে যেতে পারি।</p>
+<p>বেশ কিছু সময় চুপ করে থেকে আমি বললাম, তোমার বাবা-মা দারুণ খুশি?</p>
+<p>হ্যাঁ খুশি। মা কাল সারারাত নফল নামাজ পড়েছেন। বাবা মিষ্টি কিনে আমাদের যত আত্মীয়-স্বজন আছেন সবার বাড়িতে পাঠিয়েছেন। এখন আমি কি করব আপনি বলে দিন।</p>
+<p>তুমি কি করবে তা তোমাকেই চিন্তা করে বের করতে হবে। আমি এখানে কেউ না।</p>
+<p>আমি চিন্তা করে কিছু পাচ্ছি না। আপনি বলে দিন। আপনি যা বলবেন আমি তাই করব।</p>
+<p>দেখ বীনু, ইস্তিয়াক চমৎকার ছেলে। জীবনে সে অনেক বড় হবে। আর আমার ভাই হচ্ছে বখা একটা ছেলে– তিনবার পরীক্ষা দিয়েও আই. এ. পাশ করতে পারেনি। কোন কিছুতেই তার স্থিরতা নেই। প্রায়ই নেশা করে বাড়ি ফেরে . . .</p>
+<p>আপা প্লীজ, এই ভাবে বলবেন না।</p>
+<p>সত্যকে সত্যের মত করেই বলতে হয় বীনু। মিথ্যা দিয়ে ঢেকে সত্য বলা যায় না।</p>
+<p>উনি আমাকে খুব পছন্দ করেন।</p>
+<p>বাবলু অবশ্যই তোমাকে পছন্দ করে। ইস্তিয়াকও কিন্তু করে। না করলে সে তার বাবা মাকে পাঠাতো না।</p>
+<p>আমি কি করব আপা আপনি বলে দিন।</p>
+<p>আমরা কেউ মহাপুরুষ না বীনু। আমরা সাধারণ মানুষ। আমরা আমাদের নিজেদের সুখই প্রধান করে দেখব। তোমারও তাই করা উচিত। ইস্তিয়াককে বিয়ে করলে তুমি অনেক সুখী হবে বলে আমার ধারণা। তবে তুমি আমার ধারণা মিথ্যাও প্রমাণ করতে পার। সাধারণ মানুষদেরও অসাধারণ সব ক্ষমতা থাকে।</p>
+<p>বীনু বলল, আপা, আমি যাই।</p>
+<p>আচ্ছা যাও।</p>
+<p>এই প্রথম বীনু একবারও না হেসে আমাদের বাড়ি থেকে বিদেয় হল। বাবলু ঘর থেকে বের হয়ে বলল, বীনুর গলা শুনলাম। ওকি এসেছিল না-কি? আমি বললাম –না।</p>
+<p>.</p>
+<p><strong>১৫.</strong></p>
+<p>মামুন পাজেরো জীপ পাঠিয়ে দিয়েছে। জীপের ড্রাইভার বিজ বিজ করে যা বলল তার অর্থ হল –আমি যেন এক্ষুণি চলে যাই। টুকুন অসুস্থ। দিনাজপুর থেকে ফিরেই অসুস্থ হয়ে পড়েছে। তাকে ভর্তি করা হয়েছে পিজি হাসপাতালে। অবস্থা ভাল না। অবস্থা খুবই খারাপ।</p>
+<p>কি বলছে ড্রাইভার এসব? আমি ব্যাকুল হয়ে ডাকলাম –বাবলু! বাবলু। বাবলু ছুটে এল। যে ভীত গলায় বলল, আপা, কি হয়েছে?</p>
+<p>আমি অস্পষ্ট স্বরে বললাম, আমার টুকুন মরে যাচ্ছে। আমার পাশে কেউ নেই। –তুই আমাকে হাত ধরে গাড়িতে তুলে দে–। বাবা ইজিচেয়ার থেকে তীক্ষ্ণ গলায় বললেন –মা কি হয়েছে? কি হয়েছে? আমি বাবার কথার জবাব দিলাম না। আমার পৃথিবী শব্দ শূন্য হয়ে যাচ্ছে –বাবা আরো কি যেন বলছেন, আমি শুনতে পাচ্ছি না।</p>
+<p>.</p>
+<p>হাসপাতালের গেটে মামুন দাঁড়িয়ে। তার পাশে শান্ত চেহারার এই মেয়েটা কে? তার স্ত্রী? বাহ, মিষ্টি চেহারা তো মেয়েটির! কি লম্বা চুল।!</p>
+<p>মামুন আমার কাছে এগিয়ে এল। সহজ স্বাভাবিক গলায় বলল –টুকুনকে ইনটেনসিভ কেয়ারে রাখা হয়েছে। অক্সিজেন দেয়া হচ্ছে। ডাক্তাররা বলেছেন, অবস্থা ক্রিটিক্যাল। এই ধাক্কাটা কোনক্রমে যদি সামলাতে পারে তাহলে ওকে সঙ্গে সঙ্গে বাইরে পাঠিয়ে দেব। তুমি ওর পাশে গিয়ে দাঁড়াও।</p>
+<p>ওর কি জ্ঞান আছে?</p>
+<p>হ্যাঁ, জ্ঞান আছে?</p>
+<p>আমি ইনটেনসিভ কেয়ারে ঢুকলাম। আমার ছোট্ট বাবু কাত হয়ে শুয়ে আছে। তার নাকে অক্সিজেনের নল। বাবুর ছোট্ট বুক ওঠা-নামা করছে। দুজন ডাক্তার তার পাশে দাঁড়িয়ে আছেন। একজন বৃদ্ধ ডাক্তার দোয়া পড়ছেন। এটা কোন সূরা? সূরা ইয়াছিন? আমি বললাম, –আমি কি আমার বাচ্চাটাকে কোলে নিয়ে বিছানায় বসে থাকতে পারি? অক্সিজেনের নল-টল যে রকম আছে সে রকম থাকবে। আমি কোন কিছুতেই হাত দেব না।</p>
+<p>বৃদ্ধ ডাক্তার বললেন— আপনি আপনার ছেলেকে কোলে নিয়ে বসুন।</p>
+<p>আমার কোলে তুলে দিতেই টুকুন চোখ মেলে আমাকে দেখল। আমি বললাম, বাবা, তোমার কোথায় ব্যথা?</p>
+<p>সে তার বুক দেখিয়ে দিল।</p>
+<p>আমি তার ছোট্ট বুকে হাত রাখলাম।</p>
+<p>এখন আমি কি করব? প্রার্থনা? না, আমি কোন প্রার্থনা করব না। কেন আমি প্রার্থনা করব?</p>
+<p>বাবা, ব্যথা কি খুব বেশি?</p>
+<p>টুকুন তীব্র ব্যথা নিয়ে হাসার চেষ্টা করল। আমার সামনে মনিটার। সেখানে আলোর বিন্দু ওঠা-নামা করছে, জীবন এবং মৃত্যুর সীমা নির্দেশ করে যাচ্ছে। আমি তাকিয়ে আছি আমার টুকুনের দিকে।</p>
+<p>আমি কাঁদব না। আমি কিছুতেই কাঁদব না।</p>
+<p>মামুনকে ছেড়ে আসার সময় প্রতিজ্ঞা করেছিলাম কোনদিন চোখের পানি ফেলব না। সেই প্রতিজ্ঞা আমাকে রাখতেই হবে। তাছাড়া আমাকে কাঁদতে দেখলে আমার সোনা ভয় পেতে পারে।</p>
+<p>কতক্ষণ কাটিয়েছি আমি জানি না। একসময় বৃদ্ধ ডাক্তার বললেন –আপনার ছেলের ইসিজি নরম্যাল হয়ে গেছে। ও এখন ভাল আছে। ঘুমুচ্ছে। ক্রাইসিস কেটে গেছে। আপনি যান, বিশ্রাম করুন। আর ভয়ের কিছু নেই।</p>
+<p>বাইরে এসে দেখি বারান্দায় পা ছড়িয়ে বসে বাবলু কাঁদছে। আমি বললাম –কাঁদিস না। ও ভাল আছে। চল, বাবাকে খবরটা দিয়ে আসি।</p>
+<p>আমরা দুই ভাইবোন হাত ধরাধরি করে সিঁড়ি দিয়ে নামছি। মামুন তার স্ত্রীকে নিয়ে দাঁড়িয়ে আছে সিঁড়ির গোড়ায়। তার সমস্ত আত্মীয়-স্বজনরাও আছে। তারা সবাই তাকিয়ে আছে আমাদের দিকে।</p>
+<p>আমি মনে মনে বললাম, হে পৃথিবীর সুখী মানুষরা, তোমরা এই দুই দুঃখী ভাইবোনের দিকে এমনভাবে তাকিয়ে থেকো না। তোমরা আমাদেরকে আমাদের মত থাকতে দাও।</p>
+</div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+(function () {
+    const bookContent  = document.getElementById('book-content');
+    const mobileReaderBg = document.getElementById('mobile-reader-bg');
+    const tocMobile    = document.getElementById('toc-nav-mobile');
+
+    let fontScale   = 100;
+    let marginScale = 5;
+    let lineSpacing = 1.5;
+    let currentAlign= 'left';
+    let currentTheme= 'light';
+    let currentFont = 'noto_serif';
+
+    const fontFamilyMap = {
+        noto_serif: "'Noto Serif Bengali','Lora',serif",
+        tiro:       "'Tiro Bangla',serif",
+        hind:       "'Hind Siliguri',sans-serif",
+        noto_sans:  "'Noto Sans Bengali',sans-serif"
+    };
+
+    // ── Save / Load ──
+    const STORAGE_KEY = 'pathakghar_reader_prefs';
+    function savePrefs() {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ fontScale, marginScale, lineSpacing, currentAlign, currentTheme, currentFont }));
+        } catch(e) {}
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const p = JSON.parse(raw);
+            if (p.fontScale)    fontScale    = p.fontScale;
+            if (p.marginScale !== undefined) marginScale = p.marginScale;
+            if (p.lineSpacing)  lineSpacing  = p.lineSpacing;
+            if (p.currentAlign) currentAlign = p.currentAlign;
+            if (p.currentTheme) currentTheme = (p.currentTheme === 'light' || p.currentTheme === 'dark') ? p.currentTheme : 'dark';
+            if (p.currentFont && fontFamilyMap[p.currentFont]) currentFont = p.currentFont;
+        } catch(e) {}
+    }
+    loadPrefs();
+
+    const unifiedWrap   = document.getElementById('unified-wrap');
+    const unifiedToggle = document.getElementById('unified-toggle-btn');
+    const unifiedOverlay= document.getElementById('unified-overlay');
+    const unifiedDrawer = document.getElementById('unified-drawer');
+
+    // ── Top/bottom bar: scroll-direction hide/show + 6s idle auto-hide ──
+    (function () {
+        const readMain = document.getElementById('read-main-content');
+        let autoHideTimer;
+        let lastY = window.scrollY;
+
+        function showBars() {
+            document.body.classList.remove('bars-hidden');
+            scheduleAutoHide();
+        }
+        function hideBars() {
+            document.body.classList.add('bars-hidden');
+            clearTimeout(autoHideTimer);
+        }
+        function scheduleAutoHide() {
+            clearTimeout(autoHideTimer);
+            autoHideTimer = setTimeout(hideBars, 6000);
+        }
+        function toggleBars() {
+            document.body.classList.contains('bars-hidden') ? showBars() : hideBars();
+        }
+
+        window.__readerBars = { show: showBars, hide: hideBars };
+
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            if (delta > 4) {
+                hideBars();
+            } else if (delta < -4) {
+                showBars();
+            } else {
+                scheduleAutoHide();
+            }
+            lastY = y;
+        }, { passive: true });
+
+        if (readMain) {
+            readMain.addEventListener('click', (e) => {
+                if (e.target.closest('a, button, input, select, textarea, img')) return;
+                if (window.getSelection && window.getSelection().toString().length > 0) return;
+                toggleBars();
+            });
+        }
+    })();
+
+    // ── Toggle opacity on scroll ──
+    let unifiedScrollTimer;
+    function onScrollFade() {
+        if (unifiedToggle && !unifiedWrap.classList.contains('open')) {
+            unifiedToggle.classList.add('scrolling');
+            clearTimeout(unifiedScrollTimer);
+            unifiedScrollTimer = setTimeout(() => unifiedToggle.classList.remove('scrolling'), 800);
+        }
+    }
+    window.addEventListener('scroll', onScrollFade, { passive: true });
+
+    // ── Progress bar on scroll ──
+    const progressFill = document.getElementById('reading-progress-fill');
+    function updateProgress(el) {
+        let scrollTop, scrollHeight, clientHeight;
+        if (el === window) {
+            scrollTop    = window.scrollY;
+            scrollHeight = document.documentElement.scrollHeight;
+            clientHeight = window.innerHeight;
+        } else {
+            scrollTop    = el.scrollTop;
+            scrollHeight = el.scrollHeight;
+            clientHeight = el.clientHeight;
+        }
+        const docH = scrollHeight - clientHeight;
+        const pct  = docH > 0 ? (scrollTop / docH) * 100 : 0;
+        if (progressFill) progressFill.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', () => updateProgress(window), { passive: true });
+    updateProgress(window);
+
+    // ── Build TOC ──
+    const headings = Array.from(bookContent.querySelectorAll('h1, h2'))
+        .filter(h => h.textContent.trim() !== '');
+
+    function closeTocDrawer() { closeDrawer(); }
+
+    function buildToc(nav) {
+        headings.forEach((h, i) => {
+            h.id = h.id || ('sec-' + i);
+            const a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent.trim();
+            a.dataset.idx = i;
+            const isH1 = h.tagName === 'H1';
+            a.className = 'toc-link ' + (isH1 ? 'h1-link' : 'h2-link');
+            a.addEventListener('click', closeDrawer);
+            nav.appendChild(a);
+        });
+    }
+    buildToc(tocMobile);
+
+    // ── TOC active ──
+    const allTocLinks = document.querySelectorAll('.toc-link');
+    function updateTocActive(scrollTop) {
+        let current = 0;
+        headings.forEach((h, i) => {
+            if (scrollTop >= h.offsetTop - 120) current = i;
+        });
+        allTocLinks.forEach(a => {
+            a.classList.toggle('active', parseInt(a.dataset.idx) === current);
+        });
+    }
+    window.addEventListener('scroll', () => updateTocActive(window.scrollY), { passive: true });
+    updateTocActive(window.scrollY);
+
+    // ── Unified drawer open/close ──
+    function openDrawer() {
+        unifiedWrap.classList.add('open');
+        unifiedOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (window.__readerBars) window.__readerBars.hide();
+        else document.body.classList.add('bars-hidden');
+    }
+    function closeDrawer() {
+        unifiedWrap.classList.remove('open');
+        unifiedOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    if (unifiedToggle) {
+        unifiedToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unifiedWrap.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+    }
+
+    // ── Header action buttons: open the same unified drawer on the right tab ──
+    function openDrawerOnTab(tabName) {
+        const tabBtn = document.querySelector('.unified-tab[data-tab="' + tabName + '"]');
+        if (tabBtn) tabBtn.click();
+        openDrawer();
+    }
+    const rhMenuBtn = document.getElementById('rh-menu-btn');
+    if (rhMenuBtn) rhMenuBtn.addEventListener('click', () => openDrawerOnTab('toc'));
+    unifiedOverlay.addEventListener('click', closeDrawer);
+    unifiedOverlay.addEventListener('touchend', (e) => { e.preventDefault(); closeDrawer(); });
+    unifiedOverlay.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+    unifiedDrawer.addEventListener('touchmove', (e) => {
+        const panel = unifiedDrawer.querySelector('.unified-panel.active');
+        if (!panel || !panel.contains(e.target)) e.preventDefault();
+    }, { passive: false });
+
+    // ── Tab switching ──
+    document.querySelectorAll('.unified-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.unified-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.unified-panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    let touchStartX = 0;
+
+    // ── Font family ──
+    function updateFontPillColors() {
+        // Colors are static (dark drawer via CSS); only toggle the active class.
+        document.querySelectorAll('.font-pill').forEach(el => {
+            el.classList.toggle('active', el.dataset.font === currentFont);
+        });
+    }
+    function applyFontFamily() {
+        bookContent.style.fontFamily = fontFamilyMap[currentFont] || fontFamilyMap.noto_serif;
+        document.querySelectorAll('.font-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.font === currentFont);
+        });
+        updateFontPillColors();
+        savePrefs();
+    }
+    document.querySelectorAll('.font-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentFont = btn.dataset.font;
+            applyFontFamily();
+        });
+    });
+
+    // ── Font size ──
+    function applyFont() {
+        bookContent.style.fontSize = (fontScale / 100 * 1.05) + 'rem';
+        document.getElementById('font-size-val').textContent = fontScale + '%';
+        savePrefs();
+    }
+    document.getElementById('font-inc').addEventListener('click', () => { if (fontScale < 200) { fontScale += 10; applyFont(); } });
+    document.getElementById('font-dec').addEventListener('click', () => { if (fontScale > 50)  { fontScale -= 10; applyFont(); } });
+
+    // ── Text align ──
+    const alignLeft    = document.getElementById('align-left');
+    const alignCenter  = document.getElementById('align-center');
+    const alignJustify = document.getElementById('align-justify');
+    function setAlign(a) {
+        currentAlign = a;
+        bookContent.style.textAlign = a;
+        [alignLeft, alignCenter, alignJustify].forEach(btn => {
+            btn.classList.toggle('active', btn.id === 'align-' + a);
+        });
+        savePrefs();
+    }
+    alignLeft.addEventListener('click',    () => setAlign('left'));
+    alignCenter.addEventListener('click',  () => setAlign('center'));
+    alignJustify.addEventListener('click', () => setAlign('justify'));
+
+    // ── Margin ──
+    function applyMargin() {
+        document.getElementById('read-main-content').style.paddingLeft  = marginScale + '%';
+        document.getElementById('read-main-content').style.paddingRight = marginScale + '%';
+        document.getElementById('margin-val').textContent = marginScale + '%';
+        savePrefs();
+    }
+    document.getElementById('margin-inc').addEventListener('click', () => { if (marginScale < 25) { marginScale += 2; applyMargin(); } });
+    document.getElementById('margin-dec').addEventListener('click', () => { if (marginScale > 0)  { marginScale -= 2; applyMargin(); } });
+
+    // ── Line spacing ──
+    function applyLineSpacing() {
+        bookContent.style.lineHeight = lineSpacing;
+        document.getElementById('line-spacing-val').textContent = lineSpacing.toFixed(1);
+        savePrefs();
+    }
+    document.getElementById('ls-inc').addEventListener('click', () => { if (lineSpacing < 3.0) { lineSpacing = +(lineSpacing + 0.1).toFixed(1); applyLineSpacing(); } });
+    document.getElementById('ls-dec').addEventListener('click', () => { if (lineSpacing > 1.0) { lineSpacing = +(lineSpacing - 0.1).toFixed(1); applyLineSpacing(); } });
+
+    // ── Theme ── (reading-content theme; header/footer/drawer now follow the same theme via CSS vars)
+    const themeMap = {
+        light: { bg: '#fff',     text: '#1a1a1b' },
+        dark:  { bg: '#1c1c1e',  text: '#e5e7eb' },
+    };
+    document.querySelectorAll('.theme-circle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = btn.dataset.theme;
+            currentTheme = t;
+            const m = themeMap[t];
+            document.body.className = document.body.className.replace(/theme-\w+/g, '').trim();
+            document.body.classList.add('theme-' + t);
+            mobileReaderBg.style.background = m.bg;
+            bookContent.style.color = m.text;
+            const themeColorMeta = document.getElementById('theme-color-meta');
+            if (themeColorMeta) themeColorMeta.setAttribute('content', m.bg);
+
+            const activeAccent = getComputedStyle(document.body).getPropertyValue('--bar-accent').trim();
+            document.querySelectorAll('.theme-circle').forEach(b => {
+                b.classList.toggle('active', b.dataset.theme === t);
+                b.style.borderColor = b.dataset.theme === t ? activeAccent : 'transparent';
+            });
+            savePrefs();
+        });
+    });
+
+    // ── Restore saved prefs on load ──
+    (function restoreAll() {
+        applyFontFamily();
+        applyFont();
+        applyMargin();
+        applyLineSpacing();
+        setAlign(currentAlign);
+        const restoreBtn = document.querySelector(`.theme-circle[data-theme="${currentTheme}"]`);
+        if (restoreBtn) restoreBtn.dispatchEvent(new Event('click'));
+    })();
+})();
+</script>
+
+
+</body>
+</html>
